@@ -198,22 +198,6 @@ module Peddler
       Peddler::Reports::UnshippedOrdersReport.new(self.transport.dup, params)
     end
     
-    def new_order_fulfillment_batch
-      Peddler::Feeds::OrderFulfillment::Batch.new
-    end
-    
-    def new_fulfilled_order(params={})
-      Peddler::Feeds::OrderFulfillment::Item.new(params)
-    end
-    
-    def new_order_cancellation_batch
-      Peddler::Feeds::OrderCancellation::Batch.new
-    end
-    
-    def new_cancelled_order(params={})
-      Peddler::Feeds::OrderCancellation::Item.new(params)
-    end
-    
     # Returns status of most recent reports. Optional "count" defaults to 10. Name works with the following values:
     #
     # [ :upload, :order, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ]
