@@ -1,4 +1,5 @@
 =Peddler
+
 [Peddler](http://snl.github.com/peddler/doc) is a Ruby wrapper to the Amazon Inventory management API.
 
     client = Peddler::Client.new :username => "foo@bar.com",
