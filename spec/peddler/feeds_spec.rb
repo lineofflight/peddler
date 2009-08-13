@@ -62,7 +62,7 @@ module Peddler
         
         it "should create content for upload" do
           @feed << @cancelled_order
-          @feed.file_content.should == "TemplateType=OrderCanceellation  Version=1.0/1.0.3 This row for Amazon.com use only.  Do not modify or delete.\r\norder-id\tcancellation-reason-code\tamazon-order-item-code\r\n123-1234567-1234567\t\t\r\n"
+          @feed.file_content.should == "TemplateType=OrderCancellation  Version=1.0/1.0.3 This row for Amazon.com use only.  Do not modify or delete.\r\norder-id\tcancellation-reason-code\tamazon-order-item-code\r\n123-1234567-1234567\t\t\r\n"
         end
       end
     end
