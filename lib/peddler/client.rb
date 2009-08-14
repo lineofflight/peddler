@@ -1,5 +1,5 @@
 # = Peddler
-# The affectionately-named Peddler is a Ruby wrapper to the Amazon Inventory management API. It supports all the functionality, new and old, provided by the API.
+# Peddler is a Ruby wrapper to the Amazon Inventory management API.
 # 
 # Peddler::Client has some detailed explanation and examples of usage.
 module Peddler
