@@ -1,7 +1,7 @@
 # = Peddler
-# Peddler is a Ruby wrapper to the Amazon Inventory management API.
+# The affectionately-named Peddler is a Ruby wrapper to the Amazon Inventory management API. It supports all the functionality, new and old, provided by the API.
 # 
-# See Peddler::Client for further info.
+# Peddler::Client has some detailed explanation and examples of usage.
 module Peddler
   # This is the public interface of the Peddler library.
   class Client
@@ -15,25 +15,22 @@ module Peddler
       params.each_pair { |key, value| self.send("#{key}=", value) }
     end
     
-    # Sets Amazon username.
     def username=(username)
       self.transport.username = username
     end
     
-    # Sets Amazon password.
     def password=(password)
       self.transport.password = password
     end
     
-    # Sets Amazon region. Acceptable values are:
-    # [ "us", "uk", "de", "ca", "fr", "jp" ]
+    # Sets Amazon region. Works with [ "us", "uk", "de", "ca", "fr", "jp" ].
     def region=(region)
       self.transport.region = region
     end
     
     # Creates an inventory batch.
     #
-    # Here's some sample usage:
+    # A sample workflow:
     #
     #   batch = client.new_inventory_batch
     #   book = new_inventory_item :product_id => "1234567890",
@@ -43,7 +40,8 @@ module Peddler
     #   batch << book
     #   batch.upload
     #
-    # The batch should now have an upload id assigned to it by Amazon. Once processed, you can view the error log like so:
+    # The batch should now have an upload id assigned to it by Amazon. Once processed, you can use this to 
+    # check the error log:
     #
     #    report = client.new_report :upload, :id => batch.id
     #    report.body
@@ -56,8 +54,8 @@ module Peddler
       Peddler::Inventory::Batch.new(self.transport.dup)
     end
     
-    # Creates an inventory item. Parameter keys are lowercased and underscored but otherwise correspond
-    # to Amazon's colum titles in the sample tab-delimited templates.
+    # Creates an inventory item. Parameter keys are lowercased and underscored but otherwise the same as
+    # Amazon's colum titles in their tab-delimited templates.
     def new_inventory_item(params={})
       Peddler::Inventory::Item.new(params)
     end
@@ -69,41 +67,61 @@ module Peddler
     
     # Creates an order fulfillment batch.
     #
-    #   feed = client.new_order_fulfillment_feed
+    # A sample workflow:
     #
-    # See Peddler::Feeds::OrderFulfillment::Batch for more info on what you can do with the returned instance.
+    #   feed = client.new_order_fulfillment_feed
+    #   fulfilled_order = new_fulfilled_order :order_id    => "123-1234567-1234567",
+    #                                         :order_date  => "2009-08-01"
+    #   feed << fulfilled_order
+    #   feed.upload
+    #   feed.status
+    #   => "_SUBMITTED_"
+    #
+    # Now, refresh the status until you see:
+    #
+    #   report.status!
+    #   => "_DONE_"
+    #
+    # Finally, check the processing report:
+    #
+    #   report.download.to_s
+    #
     def new_order_fulfillment_feed
       Peddler::Feeds::OrderFulfillment::Batch.new(self.transport.dup)
     end
     
-    # Creates an item that can then be added to an order fulfillment feed.
-    #
-    #   fulfilled_order = new_fulfilled_order :order_id    => "123-1234567-1234567",
-    #                                         :order_date  => "2009-08-01"
-    #   feed << fulfilled_order
-    #
-    # Keys are lowercased and underscored but otherwise correspond to the header details
-    # in section 7.1 of the API docs.
+    # Creates an item that can then be added to an order fulfillment feed. Keys are lowercased and underscored but
+    # otherwise the same as Amazon's headers. See section 7.1 in the API docs.
     def new_fulfilled_order(params={})
       Peddler::Feeds::OrderFulfillment::Item.new(params)
     end
     
     # Creates an order cancellation batch.
     #
-    #   feed = client.new_order_cancellation_feed
+    # A sample workflow:
     #
-    # See Peddler::Feeds::OrderCancellation::Batch for more info on what you can do with the returned instance.
+    #   feed = client.new_order_cancellation_feed
+    #   cancelled_order = new_fulfilled_order :order_id    => "123-1234567-1234567"
+    #   feed << cancelled_order
+    #   feed.upload
+    #   feed.status
+    #   => "_SUBMITTED_"
+    #
+    # Now, refresh the status until you see:
+    #
+    #   report.status!
+    #   => "_DONE_"
+    #
+    # Finally, check the processing report:
+    #
+    #   report.download.to_s
+    #
     def new_order_cancellation_feed
       Peddler::Feeds::OrderCancellation::Batch.new(self.transport.dup)
     end
     
-    # Creates an item that can then be added to an order cancellation feed.
-    #
-    #   cancelled_order = new_fulfilled_order :order_id    => "123-1234567-1234567"
-    #   feed << cancelled_order
-    #
-    # Keys are lowercased and underscored but otherwise correspond to the header details
-    # in section 7.4 of the API docs.
+    # Creates an item that can then be added to an order cancellation feed. Keys are lowercased and underscored but
+    # otherwise the same as Amazon's headers. See section 7.4 in the API docs.
     def new_cancelled_order(params={})
       Peddler::Feeds::OrderCancellation::Item.new(params)
     end
@@ -134,19 +152,18 @@ module Peddler
     
     # Creates a refund item that can then be added to a refund batch.
     #
-    # Reasons can be [ "GeneralAdjustment" "CouldNotShip" "DifferentItem" "MerchandiseNotReceived" "MerchandiseNotAsDescribed" ]
+    # Reasons can be [ "GeneralAdjustment" "CouldNotShip" "DifferentItem" "MerchandiseNotReceived" "MerchandiseNotAsDescribed" ].
     def new_refund(params={})
       Peddler::Refunds::Item.new(params)
     end
     
     # Creates an instance for an already-generated report. Works only with what I call legacy reports - that is,
-    # anything given before section 7 in the API docs.
+    # anything that comes before section 7 in the API docs.
     # 
-    # Use one of the following report names:
-    # [ :upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ]
+    # Report names can be [ :upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ].
     #
     # You can download a specific report by using its ID. Otherwise, the instance will fetch the latest available report. One
-    # small exception -- upload reports do require an ID and will return nil if you don't provide one.
+    # oddball exception -- upload reports do require an ID and will return nil if you don't provide one.
     # 
     #   orders_report = client.new_report :order
     #   orders = Peddler::Handlers::TabDelimitedHandler.decode_response(orders_report.body)
@@ -172,7 +189,7 @@ module Peddler
     #
     #   client.generate_report :open_listings
     #
-    # A word of caution. Open listings crap up with larger inventories. I will have to migrate to a cURL-based
+    # A word of caution. Open listings may crap up with larger inventories. I will have to migrate to a cURL-based
     # HTTP client to get that working again.
     def generate_report(name,params={})
       Peddler::LegacyReports.generate(self.transport, name, params)

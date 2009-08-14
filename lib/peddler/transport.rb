@@ -5,6 +5,7 @@ module Peddler
     end
   end
   
+  # Our work horse. Runs on top of Net::HTTP.
   class Transport
     API_HOSTS       = {:us => "secure.amazon.com",
                        :uk => "secure.amazon.co.uk",
@@ -90,7 +91,7 @@ module Peddler
     end
     
   protected
-    #Returns Net::HTTP instance
+    #Returns the Net::HTTP instance.
     def conn
       if @conn
         @conn

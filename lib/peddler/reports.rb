@@ -1,9 +1,9 @@
 module Peddler
   # This module generates and downloads unshipped order reports.
-  # I decided to keep this out of Peddler::LegacyReports because the API is very different.
+  # I decided to keep this out of Peddler::LegacyReports because the API is quite different.
   module Reports
-    # Unshipped orders report. It's very similar to the feed objects so I'm just porting over the class.
-    # It will have a few stray attributes but whatever...
+    # This is an unshipped orders report. It's very similar to the feed objects so I'm just porting over the class.
+    # It will have a few stray attributes, but whatever.
     class UnshippedOrdersReport < Peddler::Feeds::Feed
       alias         :unshipped_orders :batch
       attr_accessor :starts_at, :ends_at, :scheduled

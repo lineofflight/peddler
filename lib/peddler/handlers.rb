@@ -38,6 +38,7 @@ module Peddler
     end
     
     class TabDelimitedHandler
+      # Parses tab-delimited content, returning an array of OpenStruct objects corresponding to the rows in the former.
       def self.decode_response(res)
         lines = res.split("\n")
         if lines.size > 1
@@ -51,19 +52,6 @@ module Peddler
         else
           res
         end
-      end
-    end
-    
-    class TabDelimitedFile < OpenStruct #nodoc:all
-      def initialize(lines)
-        
-        report = report.scan(/([a-z]+)=([^=]+)($| )/).inject({}){ |memo, value| memo.merge( { remap_key_name(value[0]) => value[1].strip }) }
-        super(report)
-      end
-
-      def remap_key_name(key)
-        REMAPPED_KEY_NAMES.each_pair { |old, new| key.gsub!(Regexp.escape(old), new) }
-        key
       end
     end
   end

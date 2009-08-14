@@ -1,7 +1,7 @@
 module Peddler
   # This module contains methods to manage legacy reports -- anything that comes before section 7 in the API docs.
   module LegacyReports
-    # Returns statuses of most recent reports in an array of openstructs.
+    # Returns statuses of most recent reports in an array of OpenStructs.
     def self.latest(transport,name,params={})
       transport.legacize_request
       if name == :upload
@@ -17,7 +17,7 @@ module Peddler
       Peddler::Handlers::XMLHandler.parse_legacy(xml)
     end
     
-    # Requests a report to be generated. Returns the report instance if request is successful.
+    # Requests a report to be generated and returns the report instance if request is successful.
     def self.generate(transport,name,params={})
       transport.legacize_request
       transport.path << "manual-reports/generate-report-now"

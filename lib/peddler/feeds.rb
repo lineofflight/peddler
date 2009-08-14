@@ -1,12 +1,9 @@
 module Peddler
   # This module includes functionality to handle the charge-when-ship-related feeds Amazon added to the API
-  # in its latest incarnation in 2009 (v. 2.7.1).
+  # in its latest incarnation in 2009.
   module Feeds
     # Downloadable file. The processing report in case of feeds. Outputs Amazon's response verbatim.
-    # Will add functionality to parse the response some time down the road. For the time being, try:
-    #
-    #   feed.download.to_s
-    #
+    # Will add functionality to parse the response some time down the road.
     class Download
       attr_accessor :id, :type, :related_reference_id, :available_at, :acknowledged
       
@@ -119,14 +116,6 @@ module Peddler
     module OrderFulfillment
       # This class contains methods to upload order fulfillment info to Amazon.
       # See sections 7.1 through 7.3 in the API documentation for more detail.
-      #
-      #   feed = client.new_order_fulfillment_feed
-      #   fulfilled_order = new_fulfilled_order :order_id    => "123-1234567-1234567",
-      #                                         :order_date  => "2009-08-01"
-      #   feed << fulfilled_order
-      #   feed.upload
-      #   p feed.download.to_s if feed.status! == "_DONE_"
-      #
       class Batch < Peddler::Feeds::Feed
         def initialize(transport)
           @file_header = "order-id\torder-item-id\tquantity\tship-date\tcarrier-code\tcarrier-name\ttracking-number\tship-method\r\n"
@@ -169,7 +158,6 @@ module Peddler
       end
 
       # This is a cancelled order item.
-      # Use convenience method provided in the client to instantiate.
       class Item
         attr_accessor :order_id, :amazon_order_item_code
         attr_reader   :cancellation_reason_code

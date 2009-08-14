@@ -29,7 +29,7 @@ module Peddler
       
     end
     
-    # This is a refund. Use the convenience method in the client to create one.
+    # This is a refund.
     class Item
       REFUND_REASONS = %w{ GeneralAdjustment CouldNotShip DifferentItem MerchandiseNotReceived MerchandiseNotAsDescribed }
       
