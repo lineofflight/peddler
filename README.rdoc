@@ -1,0 +1,104 @@
+=  Peddler
+
+Peddler is a Ruby wrapper to the Amazon Inventory management API.
+
+== Example usage
+
+Fire off a client:
+
+  client = Peddler::Client.new(
+    :username => "foo@bar.com",
+    :password => "secret",
+    :region   => "us")
+
+Create an inventory file:
+
+  batch = client.new_inventory_batch
+  item = client.new_inventory_item(
+    :product_id => "1234567890",
+    :price      => 100.00,
+    :sku        => "SKU-123",
+    :quantity   => 10)
+  batch << item
+  ...
+
+Repeat ad infinitum and then upload:
+
+  batch.upload
+
+The batch now should have an upload ID assigned to it. Let's check its error log.
+
+  upload_log = client.new_report(
+    :upload,
+    :id => batch.id)
+  upload_log.body
+  => "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n"
+  
+You're done uploading your inventory and now want to download some reports from Amazon. Let's go ahead and fetch a preorder list for the past two days to see if there is anything you can fill:
+
+  preorders_report = client.new_report(
+    :preorder,
+    :product_line => "Books",
+    :frequency    => 2)
+  preorders = Peddler::Handlers::TabDelimitedHandler.decode_response(preorders_report.body)
+  p preorders.size
+  => 2000
+  p preorders[0].asin
+  => "1234567890"
+  p preorders[0].average_asking_price
+  => "100"
+  
+Maybe you're probably wondering if you have any new orders:
+
+  orders_report = client.new_report :order
+  orders = Peddler::Handlers::TabDelimitedHandler.decode_response(orders_report.body)
+  p orders.size
+  => 1500
+  p orders[0].item_name
+  => "A Thousand Plateaus: Capitalism and Schizophrenia (Paperback) by Gilles Deleuze"
+
+You have processed the orders and want to post back the results to Amazon, now that they're "charge when ship." Let's start with sending shipment info:
+  
+  feed = client.new_order_fulfillment_feed
+  fulfilled_order = new_fulfilled_order(
+    :order_id         => "123-1234567-1234567",
+    :order_date       => "2009-08-01",
+    :carrier_code     => "USPS",
+    :tracking_number  => "0308 0330 0000 0000 0000")
+  feed << fulfilled_order
+  
+Again, repeat until done and upload:
+
+  feed.upload
+  
+Curious to see the processing report?
+  
+  p feed.status
+  => "_SUBMITTED_"
+  
+Refresh until you see:
+
+  p feed.status!
+  => "_DONE_"
+
+Finally, check the report:
+
+  p feed.download.to_s
+  => ...
+  
+Sadly, you also have an order you can't fulfill. No problem. The workflow is quite similar:
+
+  feed = client.new_order_cancellation_feed
+  cancelled_order = new_cancelled_order(
+    :order_id => "123-1234567-1234567")
+  feed << cancelled_order
+  feed.upload
+  sleep(60)
+  feed.status!
+  => "_DONE_"  
+  p feed.download.to_s
+  => ...
+
+Run rdoc and check the source for more detailed info.
+
+Copyright © 2009 Hakan Senol Ensari, released under the MIT license

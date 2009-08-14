@@ -33,10 +33,11 @@ module Peddler
     # A sample workflow:
     #
     #    batch = client.new_inventory_batch
-    #    book = new_inventory_item :product_id => "1234567890",
-    #                              :sku        => "SKU-001",
-    #                              :price      => 10.00,
-    #                              :quantity   => 1
+    #    book = new_inventory_item(
+    #      :product_id => "1234567890",
+    #      :sku        => "SKU-001",
+    #      :price      => 10.00,
+    #      :quantity   => 1)
     #    batch << book
     #    batch.upload
     #
@@ -70,8 +71,9 @@ module Peddler
     # A sample workflow:
     #
     #    feed = client.new_order_fulfillment_feed
-    #    fulfilled_order = new_fulfilled_order :order_id    => "123-1234567-1234567",
-    #                                          :order_date  => "2009-08-01"
+    #    fulfilled_order = new_fulfilled_order(
+    #      :order_id    => "123-1234567-1234567",
+    #      :order_date  => "2009-08-01")
     #    feed << fulfilled_order
     #    feed.upload
     #    feed.status
@@ -79,12 +81,12 @@ module Peddler
     #
     # Now, refresh the status until you see:
     #
-    #    report.status!
+    #    feed.status!
     #    => "_DONE_"
     #
     # Finally, check the processing report:
     #
-    #    report.download.to_s
+    #    feed.download.to_s
     #
     def new_order_fulfillment_feed
       Peddler::Feeds::OrderFulfillment::Batch.new(self.transport.dup)
@@ -101,7 +103,8 @@ module Peddler
     # A sample workflow:
     #
     #    feed = client.new_order_cancellation_feed
-    #    cancelled_order = new_fulfilled_order :order_id    => "123-1234567-1234567"
+    #    cancelled_order = new_cancelled_order(
+    #      :order_id    => "123-1234567-1234567")
     #    feed << cancelled_order
     #    feed.upload
     #    feed.status
@@ -109,12 +112,12 @@ module Peddler
     #
     # Now, refresh the status until you see:
     #
-    #    report.status!
+    #    feed.status!
     #    => "_DONE_"
     #
     # Finally, check the processing report:
     #
-    #    report.download.to_s
+    #    feed.download.to_s
     #
     def new_order_cancellation_feed
       Peddler::Feeds::OrderCancellation::Batch.new(self.transport.dup)
@@ -129,18 +132,21 @@ module Peddler
     # Creates a refund batch.
     #
     #    batch = client.new_refund_batch
-    #    refund = client.new_refund :order_id                 => "123-1234567-1234567",
-    #                              :payments_transaction_id  => "12341234567890",
-    #                              :refund_amount            => 10.00,
-    #                              :reason                   => "CouldNotShip",
-    #                              :message                  => "With our apologies."
+    #    refund = client.new_refund(
+    #      :order_id                 => "123-1234567-1234567",
+    #      :payments_transaction_id  => "12341234567890",
+    #      :refund_amount            => 10.00,
+    #      :reason                   => "CouldNotShip",
+    #      :message                  => "With our apologies.")
     #    batch << refund
     #    batch.upload
     #
     # To follow up on the status of the upload a little while afterwards:
     #
     #    status = client.latest_reports :batch_refund, :count => 1
-    #    report = client.new_report :batch_refund, :id => status[0].id
+    #    report = client.new_report(
+    #      :batch_refund,
+    #      :id => status[0].id)
     #   
     # Assuming the refund was successfully processed, report.body should now output:
     #
@@ -168,7 +174,10 @@ module Peddler
     #    orders[0].buyer_name
     #    => "John Doe"
     #
-    #    preorders_report = client.new_report :preorder, :product_line => "Books", :frequency => 2
+    #    preorders_report = client.new_report(
+    #      :preorder,
+    #      :product_line  => "Books",
+    #      :frequency     => 2)
     #    preorders = Peddler::Handlers::TabDelimitedHandler.decode_response(preorders_report.body)
     #    preorders[0].average_asking_price
     #    => "100"
