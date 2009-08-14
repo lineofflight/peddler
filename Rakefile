@@ -8,8 +8,7 @@ begin
     s.email = "hakan.ensari@papercavalier.com"
     s.homepage = "http://github.com/snl/peddler"
     s.description = "Peddler is a Ruby wrapper to the Amazon Inventory Management API."
-    s.authors = ["Hakan Şenol Ensari"]
-    #s.files =  FileList["[A-Z]*", "{bin,generators,lib,test}/**/*", 'lib/jeweler/templates/.gitignore']
+    s.authors = ["Hakan Senol Ensari"]
     s.add_dependency "xmlsimple"
     s.add_development_dependency "rspec"
   end
