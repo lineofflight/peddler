@@ -139,8 +139,8 @@ module Peddler
       Peddler::Refunds::Item.new(params)
     end
     
-    # Creates an instance for an already-generated report. Works only with what I call legacy reports -- that is,
-    # anything outlined before section 7 in the API docs.
+    # Creates an instance for an already-generated report. Works only with what I call legacy reports - that is,
+    # anything given before section 7 in the API docs.
     # 
     # Use one of the following report names:
     # [ :upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ]
