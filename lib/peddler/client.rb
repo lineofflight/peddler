@@ -157,13 +157,13 @@ module Peddler
       Peddler::Refunds::Item.new(params)
     end
     
-    # Creates an instance for an already-generated report. Works only with what I call legacy reports - that is,
+    # Creates an instance for an already-generated report. Works only with what I call legacy reports, that is,
     # anything that comes before section 7 in the API docs.
     # 
     # Report names can be [ :upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ].
     #
     # You can download a specific report by using its ID. Otherwise, the instance will fetch the latest available report. One
-    # oddball exception -- upload reports do require an ID and will return nil if you don't provide one.
+    # oddball exception: upload reports do require an ID and will return nil if you don't provide one.
     # 
     #   orders_report = client.new_report :order
     #   orders = Peddler::Handlers::TabDelimitedHandler.decode_response(orders_report.body)
