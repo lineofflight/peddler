@@ -173,6 +173,9 @@ module Peddler
         
         # Outputs a formatted line for the tab-delimited upload file.
         def to_s
+          if @cancellation_reason_code.nil? != @amazon_order_item_code.nil?
+            raise PeddlerError.new("Provide codes for both cancellation reason and Amazon order item (or omit both).")
+          end
           "#{@order_id}\t#{@cancellation_reason_code}\t#{@amazon_order_item_code}\r\n"
         end
       end

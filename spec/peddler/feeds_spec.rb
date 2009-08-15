@@ -64,6 +64,16 @@ module Peddler
           @feed << @cancelled_order
           @feed.file_content.should == "TemplateType=OrderCancellation  Version=1.0/1.0.3 This row for Amazon.com use only.  Do not modify or delete.\r\norder-id\tcancellation-reason-code\tamazon-order-item-code\r\n123-1234567-1234567\t\t\r\n"
         end
+        
+        it "should raise error if cancellation reason code is given but Amazon order item code is missing" do
+          @cancelled_order.cancellation_reason_code = "BuyerCanceled"
+          lambda { @cancelled_order.to_s }.should raise_error(PeddlerError)
+        end
+        
+        it "should raise error if Amazon order item code is given but cancellation reason code is missing" do
+          @cancelled_order.amazon_order_item_code = "111111111111"
+          lambda { @cancelled_order.to_s }.should raise_error(PeddlerError)
+        end
       end
     end
   end

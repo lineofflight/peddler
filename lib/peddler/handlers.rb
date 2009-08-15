@@ -38,7 +38,7 @@ module Peddler
     end
     
     class TabDelimitedHandler
-      # Parses tab-delimited content, returning an array of OpenStruct objects corresponding to the rows in the former.
+      # Decodes tab-delimited content into an array of OpenStruct objects.
       def self.decode_response(res)
         lines = res.split("\n")
         if lines.size > 1

@@ -23,14 +23,14 @@ module Peddler
       self.transport.password = password
     end
     
-    # Sets Amazon region. Works with [ "us", "uk", "de", "ca", "fr", "jp" ].
+    # Sets Amazon region.
+    #
+    # Possible regions: ["us", "uk", "de", "ca", "fr", "jp"]
     def region=(region)
       self.transport.region = region
     end
     
     # Creates an inventory batch.
-    #
-    # A sample workflow:
     #
     #    batch = client.new_inventory_batch
     #    book = new_inventory_item(
@@ -40,16 +40,9 @@ module Peddler
     #      :quantity   => 1)
     #    batch << book
     #    batch.upload
-    #
-    # The batch should now have an upload id assigned to it by Amazon. Once processed, you can use this to 
-    # check the error log:
-    #
-    #     report = client.new_report :upload, :id => batch.id
-    #     report.body
-    #
-    # That should output something like the following, assuming everything went well with the upload:
-    #
-    #     "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n"
+    #    report = client.new_report :upload, :id => batch.id
+    #    p report.body
+    #    => "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n"
     #
     def new_inventory_batch
       Peddler::Inventory::Batch.new(self.transport.dup)
@@ -68,8 +61,6 @@ module Peddler
     
     # Creates an order fulfillment batch.
     #
-    # A sample workflow:
-    #
     #    feed = client.new_order_fulfillment_feed
     #    fulfilled_order = new_fulfilled_order(
     #      :order_id    => "123-1234567-1234567",
@@ -78,15 +69,10 @@ module Peddler
     #    feed.upload
     #    feed.status
     #    => "_SUBMITTED_"
-    #
-    # Now, refresh the status until you see:
-    #
+    #    sleep(60)
     #    feed.status!
     #    => "_DONE_"
-    #
-    # Finally, check the processing report:
-    #
-    #    feed.download.to_s
+    #    p feed.download.to_s
     #
     def new_order_fulfillment_feed
       Peddler::Feeds::OrderFulfillment::Batch.new(self.transport.dup)
@@ -100,24 +86,19 @@ module Peddler
     
     # Creates an order cancellation batch.
     #
-    # A sample workflow:
-    #
     #    feed = client.new_order_cancellation_feed
     #    cancelled_order = new_cancelled_order(
-    #      :order_id    => "123-1234567-1234567")
+    #      :order_id    => "123-1234567-1234567",
+    #      :cancellation_reason_code => "NoInventory",
+		#      :amazon_order_item_code => "12341234567890")
     #    feed << cancelled_order
     #    feed.upload
     #    feed.status
     #    => "_SUBMITTED_"
-    #
-    # Now, refresh the status until you see:
-    #
+    #    sleep(60)
     #    feed.status!
     #    => "_DONE_"
-    #
-    # Finally, check the processing report:
-    #
-    #    feed.download.to_s
+    #    p feed.download.to_s
     #
     def new_order_cancellation_feed
       Peddler::Feeds::OrderCancellation::Batch.new(self.transport.dup)
@@ -140,17 +121,13 @@ module Peddler
     #      :message                  => "With our apologies.")
     #    batch << refund
     #    batch.upload
-    #
-    # To follow up on the status of the upload a little while afterwards:
-    #
+    #    sleep(60)
     #    status = client.latest_reports :batch_refund, :count => 1
     #    report = client.new_report(
     #      :batch_refund,
     #      :id => status[0].id)
-    #   
-    # Assuming the refund was successfully processed, report.body should now output:
-    #
-    #    "123-1234567-1234567order-item-id: 12341234567890\tSUCCESS 10.00 is Refunded.\r\n"
+    #    p report.body
+    #    => "123-1234567-1234567order-item-id: 12341234567890\tSUCCESS 10.00 is Refunded.\r\n"
     #
     def new_refund_batch
       Peddler::Refunds::Batch.new(self.transport.dup)
@@ -158,19 +135,21 @@ module Peddler
     
     # Creates a refund item that can then be added to a refund batch.
     #
-    # Reasons can be [ "GeneralAdjustment" "CouldNotShip" "DifferentItem" "MerchandiseNotReceived" "MerchandiseNotAsDescribed" ].
+    # Possible reasons: ["GeneralAdjustment", "CouldNotShip", "DifferentItem", "MerchandiseNotReceived", "MerchandiseNotAsDescribed"]
     def new_refund(params={})
       Peddler::Refunds::Item.new(params)
     end
     
     # Creates an instance for an already-generated report. Works only with what I call legacy reports, that is,
-    # anything that comes before section 7 in the API docs. Report names can be [ :upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ].
+    # anything that comes before section 7 in the API docs.
+    #
+    # Possible report names: [:upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter]
     #
     # You can download a specific report by using its ID. Otherwise, the instance will fetch the latest available report. One
     # oddball exception: upload reports do require an ID and will return nil if you don't provide one.
     # 
     #    orders_report = client.new_report :order
-    #    orders = Peddler::Handlers::TabDelimitedHandler.decode_response(orders_report.body)
+    #    orders = client.detab(orders_report.body)
     #    orders[0].buyer_name
     #    => "John Doe"
     #
@@ -178,7 +157,7 @@ module Peddler
     #      :preorder,
     #      :product_line  => "Books",
     #      :frequency     => 2)
-    #    preorders = Peddler::Handlers::TabDelimitedHandler.decode_response(preorders_report.body)
+    #    preorders = client.detab(preorders_report.body)
     #    preorders[0].average_asking_price
     #    => "100"
     # 
@@ -186,13 +165,11 @@ module Peddler
       Peddler::LegacyReports::Report.new(self.transport.dup, name, params)
     end
     
-    # Requests a report. Returns true when successful. Name can be [ :order, :open_listings, :open_listings_lite, :open_listings_liter ].
+    # Requests a report. Returns true when successful.
     #
-    # Here's some sample usage:
+    # Possible report names: [:order, :open_listings, :open_listings_lite, :open_listings_liter]
     #
     #    client.generate_report :order, :number_of_days => 15
-    #
-    #    client.generate_report :open_listings
     #
     # A word of caution. Open listings may crap up with larger inventories. I will have to migrate to a cURL-based
     # HTTP client to get that working again.
@@ -206,15 +183,10 @@ module Peddler
     #    report = client.new_unshipped_order_report
     #    report.status
     #    => "_SUBMITTED_"
-    #
-    # Now, refresh the status until you see:
-    #
+    #    sleep(60)
     #    report.status!
     #    => "_DONE_"
-    #
-    # Once done, you'll get a nifty array of unshipped orders:
-    #
-    #    report.unshipped_orders
+    #    p report.unshipped_orders
     #   
     def new_unshipped_orders_report(params={})
       Peddler::Reports::UnshippedOrdersReport.new(self.transport.dup, params)
@@ -222,14 +194,17 @@ module Peddler
     
     # Returns status of most recent reports. Optional "count" defaults to 10. Name can be [ :upload, :order, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ].
     #
-    # Some sample usage:
-    #
     #    reports = client.latest_reports :order, :count => 1
     #    reports[0]
     #    => #<Peddler::LegacyReports::ReportStatus starts_at="07-29-2009:10-00-06" ... 
     #
     def latest_reports(name,params={})
       Peddler::LegacyReports.latest(self.transport, name, params)
+    end
+    
+    # Decodes tab-delimited content into an array of OpenStruct objects.
+    def detab(msg)
+      Peddler::Handlers::TabDelimitedHandler.decode_response(msg)
     end
     
   protected
