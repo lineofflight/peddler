@@ -87,7 +87,7 @@ Sadly, you also have an order you can't fulfill. No problem. The workflow is sim
   p feed.download.to_s
   => ...
 
-Need to post a partial refund? You'll have to revert to the older batch refund API thingie:
+Need to post a partial refund? You'll have to revert to the older batch refund API method:
 
 	refunds = client.new_refund_batch
   refund = client.new_refund(
