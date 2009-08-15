@@ -1,2 +1,4 @@
 == 0.1.0 / 2009-08-14
   * First public release.
+== 0.1.1 / 2009-08-15
+	* Bumping gem to tag correctly on Github.
