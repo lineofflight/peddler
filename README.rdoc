@@ -62,7 +62,7 @@ Curious to see the processing report?
   p feed.status
   => "_SUBMITTED_"
   
-Refresh until you see:
+Refresh until you get:
 
   p feed.status!
   => "_DONE_"
