@@ -115,9 +115,4 @@ Great sales. For a change, let's download something different from Amazon. Here'
 
 Run rdoc and check the source for more detailed info.
 
-== Todos
-
-* Replace Net::Http with a cURL-based client as former craps up with very large file downloads.
-* Add some more parsers.
-
 Copyright © 2009 Hakan Senol Ensari, released under the MIT license
