@@ -62,7 +62,7 @@ module Peddler
     # Creates an order fulfillment batch.
     #
     #    feed = client.new_order_fulfillment_feed
-    #    fulfilled_order = new_fulfilled_order(
+    #    fulfilled_order = client.new_fulfilled_order(
     #      :order_id    => "123-1234567-1234567",
     #      :order_date  => "2009-08-01")
     #    feed << fulfilled_order
@@ -87,7 +87,7 @@ module Peddler
     # Creates an order cancellation batch.
     #
     #    feed = client.new_order_cancellation_feed
-    #    cancelled_order = new_cancelled_order(
+    #    cancelled_order = client.new_cancelled_order(
     #      :order_id    => "123-1234567-1234567",
     #      :cancellation_reason_code => "NoInventory",
 		#      :amazon_order_item_code => "12341234567890")
