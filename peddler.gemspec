@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{peddler}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Hakan Senol Ensari"]
-  s.date = %q{2009-08-15}
+  s.date = %q{2009-08-17}
   s.description = %q{Peddler is a Ruby wrapper to the Amazon Inventory Management API.}
   s.email = %q{hakan.ensari@papercavalier.com}
   s.extra_rdoc_files = [
@@ -65,14 +65,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<xmlsimple>, [">= 0"])
+      s.add_runtime_dependency(%q<xml-simple>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
     else
-      s.add_dependency(%q<xmlsimple>, [">= 0"])
+      s.add_dependency(%q<xml-simple>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
     end
   else
-    s.add_dependency(%q<xmlsimple>, [">= 0"])
+    s.add_dependency(%q<xml-simple>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
   end
 end
