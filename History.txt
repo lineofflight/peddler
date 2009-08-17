@@ -2,3 +2,5 @@
   * First public release.
 == 0.1.1 / 2009-08-15
 	* Bumping gem to tag correctly on Github.
+== 0.1.2 / 2009-08-17
+	* Fixed gem dependency.

@@ -9,7 +9,7 @@ begin
     s.homepage = "http://github.com/snl/peddler"
     s.description = "Peddler is a Ruby wrapper to the Amazon Inventory Management API."
     s.authors = ["Hakan Senol Ensari"]
-    s.add_dependency "xmlsimple"
+    s.add_dependency "xml-simple"
     s.add_development_dependency "rspec"
   end
 rescue LoadError
