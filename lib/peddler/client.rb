@@ -180,7 +180,7 @@ module Peddler
     # Creates an unshipped order report. Takes on some optional parameters, such as :id, :starts_at, :ends_at. By default,
     # it will request a new unshipped order report for the past seven days.
     #
-    #    report = client.new_unshipped_order_report
+    #    report = client.new_unshipped_orders_report
     #    report.status
     #    => "_SUBMITTED_"
     #    sleep(60)
