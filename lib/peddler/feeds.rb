@@ -150,7 +150,7 @@ module Peddler
     module OrderCancellation
       class Batch < Peddler::Feeds::Feed
         def initialize(transport)
-          @file_header = "TemplateType=OrderCancellation	Version=1.0/1.0.3 This row for Amazon.com use only.	Do not modify or delete.\r\n" +
+          @file_header = "TemplateType=OrderCancellation  Version=1.0/1.0.3 This row for Amazon.com use only.  Do not modify or delete.\r\n" +
                          "order-id\tcancellation-reason-code\tamazon-order-item-code\r\n"
           @type = "_POST_FLAT_FILE_ORDER_ACKNOWLEDGEMENT_DATA_"
           super(transport)
