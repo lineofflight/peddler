@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION.yml",
+     "init.rb",
      "lib/peddler.rb",
      "lib/peddler/client.rb",
      "lib/peddler/feeds.rb",
