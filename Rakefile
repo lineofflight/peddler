@@ -4,7 +4,7 @@ begin
   require "jeweler"
   Jeweler::Tasks.new do |s|
     s.name = "peddler"
-    s.summary = "Peddler is a Ruby wrapper to the Amazon Inventory Management API."
+    s.summary = "A Ruby wrapper to the Amazon Inventory Management API"
     s.email = "hakan.ensari@papercavalier.com"
     s.homepage = "http://github.com/snl/peddler"
     s.description = "Peddler is a Ruby wrapper to the Amazon Inventory Management API."
