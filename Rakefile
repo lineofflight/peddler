@@ -12,6 +12,7 @@ begin
     s.add_dependency "xml-simple"
     s.add_development_dependency "rspec"
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install jeweler"
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
