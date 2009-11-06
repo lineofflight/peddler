@@ -6,7 +6,7 @@ begin
     s.name = "peddler"
     s.summary = "A Ruby wrapper to the Amazon Inventory Management API"
     s.email = "hakan.ensari@papercavalier.com"
-    s.homepage = "http://github.com/snl/peddler"
+    s.homepage = "http://snl.github.com/peddler"
     s.description = "Peddler is a Ruby wrapper to the Amazon Inventory Management API."
     s.authors = ["Hakan Senol Ensari"]
     s.add_dependency "xml-simple"

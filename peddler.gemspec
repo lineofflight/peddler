@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Peddler is a Ruby wrapper to the Amazon Inventory Management API.}
+  s.summary = %q{A Ruby wrapper to the Amazon Inventory Management API}
   s.test_files = [
     "spec/peddler/client_spec.rb",
      "spec/peddler/feeds_spec.rb",
