@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
      "spec/peddler/transport_spec.rb",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/snl/peddler}
+  s.homepage = %q{http://snl.github.com/peddler}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}

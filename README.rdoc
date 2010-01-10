@@ -115,4 +115,4 @@ Great sales. For a change, let's download something different from Amazon. Here'
 
 Run rdoc and check the source for more detailed info.
 
-Copyright © 2009 Hakan Senol Ensari, released under the MIT license
+Copyright © 2009 Hakan Şenol Ensari, released under the MIT license
