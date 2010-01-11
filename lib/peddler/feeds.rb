@@ -1,34 +1,38 @@
 module Peddler
-  # This module includes functionality to handle the charge-when-ship-related feeds Amazon added to the API
-  # in its latest incarnation in 2009.
+  
+  # This module includes functionality to handle the charge-when-ship-related 
+  # feeds Amazon added to the API in 2009.
   module Feeds
-    # Downloadable file. The processing report in case of feeds. Outputs Amazon's response verbatim.
-    # Will add functionality to parse the response some time down the road.
+    
+    # This is a downloadable file. Outputs Amazon's response verbatim for now.
     class Download
       attr_accessor :id, :type, :related_reference_id, :available_at, :acknowledged
       
+      MAPPED_PARAMS = {
+        'DownloadId'          => 'id',
+        'DownloadType'        => 'type',
+        'RelatedReferenceId'  => 'related_reference_id',
+        'AvailableDate'       => 'available_at',
+        'Acknowledged'        => 'acknowledged'}
+      
       def initialize(transport, params={})
-        @mapped_params = {
-          "DownloadId"          => "id",
-          "DownloadType"        => "type",
-          "RelatedReferenceId"  => "related_reference_id",
-          "AvailableDate"       => "available_at",
-          "Acknowledged"        => "acknowledged"}
         @transport = transport
-        params.each_pair{ |key, value| self.send "#{@mapped_params[key]}=", value }
+        params.each_pair{ |k, v| self.send "#{MAPPED_PARAMS[k]}=", v }
       end
       
-      # Retrieves and returns report
+      # Retrieves and returns report.
       def to_s
         @body ||= download_report
       end
-    private
+      
+      private
+      
       def download_report
         return nil if @id.nil?
         @transport.modernize_request
         @transport.query_params.merge!({
-          "Action"      => "download",
-          "downloadId"  => @id})
+          'Action'      => 'download',
+          'downloadId'  => @id})
         @transport.execute_request
       end
     end
@@ -38,21 +42,22 @@ module Peddler
       attr_writer   :file_content
       attr_accessor :batch, :download, :status, :type, :id, :submitted_at, :started_processing_at, :completed_processing_at, :messages_processed, :messages_successful, :messages_with_errors, :messages_with_warnings
       
+      MAPPED_PARAMS = {
+        'UploadStatus'              => 'status',
+        'UploadType'                => 'type',
+        'UploadId'                  => 'id',
+        'SubmittedDate'             => 'submitted_at',
+        'StartedProcessingDate'     => 'started_processing_at',
+        'CompletedProcessingDate'   => 'completed_processing_at',
+        'CompletedProcesssingDate'  => 'completed_processing_at',
+        'MessagesProcessed'         => 'messages_processed',
+        'MessagesSuccessful'        => 'messages_successful',
+        'MessagesWithErrors'        => 'messages_with_errors',
+        'MessagesWithWarnings'      => 'messages_with_warnings'}
+        
       def initialize(transport)
         @transport = transport
         @batch = []
-        @mapped_params = {
-          "UploadStatus"              => "status",
-          "UploadType"                => "type",
-          "UploadId"                  => "id",
-          "SubmittedDate"             => "submitted_at",
-          "StartedProcessingDate"     => "started_processing_at",
-          "CompletedProcessingDate"   => "completed_processing_at",
-          "CompletedProcesssingDate"  => "completed_processing_at",
-          "MessagesProcessed"         => "messages_processed",
-          "MessagesSuccessful"        => "messages_successful",
-          "MessagesWithErrors"        => "messages_with_errors",
-          "MessagesWithWarnings"      => "messages_with_warnings"}
       end
       
       # Returns content of the upload file.
@@ -72,11 +77,11 @@ module Peddler
       
       # Uploads batch.
       def upload
-        raise PeddlerError.new("Batch already uploaded") unless @id.nil?
+        raise PeddlerError.new('Batch already uploaded') unless @id.nil?
         @transport.modernize_request
         @transport.query_params.merge!({
-          "Action"     => "upload",
-          "uploadType" => @type})
+          'Action'     => 'upload',
+          'uploadType' => @type})
         @transport.body = file_content
         res = @transport.execute_request
         process_response(res)
@@ -87,27 +92,25 @@ module Peddler
       def <<(item)
         @batch << item
       end
-    private
+      
+      private
+      
       def refresh_status
         @transport.modernize_request
         @transport.query_params.merge!({
-          "Action"   => "uploadStatus",
-          "uploadId" => @id})
+          'Action'   => 'uploadStatus',
+          'uploadId' => @id})
         res = @transport.execute_request
         process_response(res)
       end
       
       def process_response(res)
-        xml = Peddler::Handlers::XMLHandler.decode_response(res)
-        params = Peddler::Handlers::XMLHandler.parse(:upload, xml)
-        if params[0]
-          params[0].each_pair do |key, value|
-            if key == "RelatedDownloadsList"
-              params = Peddler::Handlers::XMLHandler.parse(:download, value)
-              @download = Peddler::Feeds::Download.new(@transport, params[0])
-            else
-              self.send "#{@mapped_params[key]}=", value
-            end
+        upload = Hash.from_xml(res)['Response']['Upload'] || Hash.from_xml(res)['Response']['UploadsStatusList']['Upload']
+        upload.each_pair do |key, value|
+          if key == 'RelatedDownloadsList'
+            @download = Peddler::Feeds::Download.new(@transport, value['Download'])
+          else
+            self.send "#{MAPPED_PARAMS[key]}=", value
           end
         end
       end
@@ -119,7 +122,7 @@ module Peddler
       class Batch < Peddler::Feeds::Feed
         def initialize(transport)
           @file_header = "order-id\torder-item-id\tquantity\tship-date\tcarrier-code\tcarrier-name\ttracking-number\tship-method\r\n"
-          @type = "_POST_FLAT_FILE_FULFILLMENT_DATA_"
+          @type = '_POST_FLAT_FILE_FULFILLMENT_DATA_'
           super(transport)
         end
       end
@@ -152,7 +155,7 @@ module Peddler
         def initialize(transport)
           @file_header = "TemplateType=OrderCancellation  Version=1.0/1.0.3 This row for Amazon.com use only.  Do not modify or delete.\r\n" +
                          "order-id\tcancellation-reason-code\tamazon-order-item-code\r\n"
-          @type = "_POST_FLAT_FILE_ORDER_ACKNOWLEDGEMENT_DATA_"
+          @type = '_POST_FLAT_FILE_ORDER_ACKNOWLEDGEMENT_DATA_'
           super(transport)
         end
       end
@@ -174,7 +177,7 @@ module Peddler
         # Outputs a formatted line for the tab-delimited upload file.
         def to_s
           if @cancellation_reason_code.nil? != @amazon_order_item_code.nil?
-            raise PeddlerError.new("Provide codes for both cancellation reason and Amazon order item (or omit both).")
+            raise PeddlerError.new('Provide codes for both cancellation reason and Amazon order item (or omit both).')
           end
           "#{@order_id}\t#{@cancellation_reason_code}\t#{@amazon_order_item_code}\r\n"
         end

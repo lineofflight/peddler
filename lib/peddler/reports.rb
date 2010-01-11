@@ -1,28 +1,32 @@
 module Peddler
+  
   # This module generates and downloads unshipped order reports.
-  # I decided to keep this out of Peddler::LegacyReports because the API is quite different.
+  # I decided to keep this out of Peddler::LegacyReports because the API is
+  # quite different.
   module Reports
-    # This is an unshipped orders report. It's very similar to the feed objects so I'm just porting over the class.
-    # It will have a few stray attributes, but whatever.
+    
+    # This is an unshipped orders report. It is very similar to the feed 
+    # objects, so I'm just porting over the class.
     class UnshippedOrdersReport < Peddler::Feeds::Feed
       alias         :unshipped_orders :batch
       attr_accessor :starts_at, :ends_at, :scheduled
       
-      # Creates new unshipped order report. It literally sends a request to Amazon to generate the
-      # report if the report ID is not already set.
+      MAPPED_PARAMS = {
+        "ReportID"                  => "id",
+        "StartDate"                 => "starts_at",
+        "EndDate"                   => "ends_at",
+        "DownloadType"              => "type",
+        "Scheduled"                 => "scheduled",
+        "ReportStatus"              => "status",
+        "SubmittedDate"             => "submitted_at",
+        "StartedProcessingDate"     => "started_processing_at",
+        "CompletedProcessingDate"   => "completed_processing_at",
+        "CompletedProcesssingDate"  => "completed_processing_at"}
+      
+      # Creates new unshipped order report. It will send a request to 
+      # Amazon to generate the report if the report ID is not already set.
       def initialize(transport, params={})
         super(transport)
-        @mapped_params = {
-          "ReportID"                  => "id",
-          "StartDate"                 => "starts_at",
-          "EndDate"                   => "ends_at",
-          "DownloadType"              => "type",
-          "Scheduled"                 => "scheduled",
-          "ReportStatus"              => "status",
-          "SubmittedDate"             => "submitted_at",
-          "StartedProcessingDate"     => "started_processing_at",
-          "CompletedProcessingDate"   => "completed_processing_at",
-          "CompletedProcesssingDate"  => "completed_processing_at"}
         params.each_pair{ |key, value| self.send "#{key}=", value }
         @starts_at ||= (Date.today - 7).strftime("%Y-%m-%dT00:00:00-00:00")
         @ends_at ||= (Date.today + 1).strftime("%Y-%m-%dT00:00:00-00:00")
@@ -33,7 +37,9 @@ module Peddler
         end
         self
       end
-    private
+      
+      private
+      
       def refresh_status
         @transport.modernize_request
         @transport.query_params.merge!({
@@ -55,17 +61,14 @@ module Peddler
       end
       
       def process_response(res)
-        xml = Peddler::Handlers::XMLHandler.decode_response(res)
-        params = Peddler::Handlers::XMLHandler.parse(:report, xml)
-        if params[0]
-          params[0].each_pair do |key, value|
-            if key == "ListOfDownloads"
-              params = Peddler::Handlers::XMLHandler.parse(:download, value)
-              @download = Peddler::Feeds::Download.new(@transport, params[0])
-              @batch = Peddler::Handlers::TabDelimitedHandler.decode_response(@download.to_s)
-            else
-              self.send "#{@mapped_params[key]}=", value
-            end
+        hash = Hash.from_xml(res)
+        hash['Response']['Report'].each_pair do |key, value|
+          if key == "ListOfDownloads"
+            params = Peddler::Handlers::XMLHandler.parse(:download, value)
+            @download = Peddler::Feeds::Download.new(@transport, value['Download'])
+            @batch = Peddler::Handlers::TabDelimitedHandler.decode_response(@download.to_s)
+          else
+            self.send "#{MAPPED_PARAMS[key]}=", value
           end
         end
       end

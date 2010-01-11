@@ -1,33 +1,38 @@
 # = Peddler
-# Peddler is a Ruby wrapper to the Amazon Inventory management API.
+# Peddler is a Ruby wrapper to the {Amazon Inventory management API}[https://images-na.ssl-images-amazon.com/images/G/01/Amazon_AIM/Amazon_AIM.pdf].
 # 
-# Peddler::Client has some detailed explanation and examples of usage.
+# Peddler::Client contains some detailed explanation and examples of usage.
 module Peddler
   # This is the public interface of the Peddler library.
   class Client
     # Creates a client instance.
     #
-    #    client = Peddler::Client.new :username => "foo@bar.com",
-    #                                 :password => "secret",
-    #                                 :region => "us"
+    #    client = Peddler::Client.new(
+    #      :username => 'foo@bar.com',
+    #      :password => 'secret',
+    #      :region   => 'us'
+    #    )
     #
     def initialize(params={})
-      params.each_pair { |key, value| self.send("#{key}=", value) }
+      params.each_pair { |key, value| self.send("#{key}=", value.to_s) }
     end
     
+    # Sets username.
     def username=(username)
       self.transport.username = username
     end
     
+    # Sets password.
     def password=(password)
       self.transport.password = password
     end
     
     # Sets Amazon region.
     #
-    # Possible regions: ["us", "uk", "de", "ca", "fr", "jp"]
+    #     client.region = :jp
+    #
     def region=(region)
-      self.transport.region = region
+      self.transport.region = region.to_s
     end
     
     # Creates an inventory batch.
@@ -40,6 +45,9 @@ module Peddler
     #      :quantity   => 1)
     #    batch << book
     #    batch.upload
+    #
+    # Once the batch is processed, you may view the report:
+    #
     #    report = client.new_report :upload, :id => batch.id
     #    p report.body
     #    => "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n"
@@ -48,8 +56,18 @@ module Peddler
       Peddler::Inventory::Batch.new(self.transport.dup)
     end
     
+    # A short-hand method to purge inventory.
+    #
+    #    client.purge_inventory
+    #
+    def purge_inventory
+      empty_batch = Peddler::Inventory::Batch.new(self.transport.dup)
+      empty_batch.upload(:method => 'purge')
+      
+    end
+    
     # Creates an inventory item. Parameter keys are lowercased and underscored but otherwise the same as
-    # Amazon's colum titles in their tab-delimited templates.
+    # the colum titles in the tab-delimited upload templates provided by Amazon.
     def new_inventory_item(params={})
       Peddler::Inventory::Item.new(params)
     end
@@ -140,13 +158,17 @@ module Peddler
       Peddler::Refunds::Item.new(params)
     end
     
-    # Creates an instance for an already-generated report. Works only with what I call legacy reports, that is,
-    # anything that comes before section 7 in the API docs.
+    # Creates an instance for an already-generated report. Works only with 
+    # legacy reports, meaning anything that comes before section 7 in the API
+    # docs.
     #
-    # Possible report names: [:upload, :order, :preorder, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter]
+    # Possible report names: [:upload, :order, :preorder, :batch_refund,
+    # :open_listings, :open_listings_lite, :open_listings_liter]
     #
-    # You can download a specific report by using its ID. Otherwise, the instance will fetch the latest available report. One
-    # oddball exception: upload reports do require an ID and will return nil if you don't provide one.
+    # You can download a specific report by using its ID. Otherwise, the 
+    # instance will fetch the latest available report. One oddball exception: 
+    # Upload reports do require an ID and will return nil if you don't provide
+    # one.
     # 
     #    orders_report = client.new_report :order
     #    orders = client.detab(orders_report.body)
@@ -171,8 +193,7 @@ module Peddler
     #
     #    client.generate_report :order, :number_of_days => 15
     #
-    # A word of caution. Open listings may crap up with larger inventories. I will have to migrate to a cURL-based
-    # HTTP client to get that working again.
+    # A word of caution. Open listings may crap up with larger inventories.
     def generate_report(name,params={})
       Peddler::LegacyReports.generate(self.transport, name, params)
     end
@@ -207,7 +228,8 @@ module Peddler
       Peddler::Handlers::TabDelimitedHandler.decode_response(msg)
     end
     
-  protected
+    private
+    
     def transport #:nodoc:all
       @transport ||= Peddler::Transport.new
     end

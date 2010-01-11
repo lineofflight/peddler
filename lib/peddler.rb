@@ -1,21 +1,13 @@
 # Peddler is a Ruby wrapper to the Amazon Inventory management API.
 module Peddler
-  VERSION = '0.1.3'  
-end
-
-unless String.method_defined? :camelize
-  class String #:nodoc: all
-    def camelize
-      self.gsub(/(?:^|_)(.)/) { $1.upcase }
-    end
-  end
+  VERSION = '0.2.0'
 end
 
 require 'net/https'
 require 'ostruct'
 require 'tempfile'
 require 'time'
-require 'xmlsimple'
+require 'active_support'
 
 require File.dirname(__FILE__) + '/peddler/client'
 require File.dirname(__FILE__) + '/peddler/handlers'
