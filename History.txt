@@ -11,3 +11,5 @@
 	* Added a purge_inventory short-hand method to the client class.
 == 0.2.1 / 2010-01-10
   * Nasty bug.
+== 0.2.2 / 2010-01-10
+  * Another nasty bug.

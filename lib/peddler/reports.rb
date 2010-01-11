@@ -62,7 +62,8 @@ module Peddler
       
       def process_response(res)
         hash = Hash.from_xml(res)
-        hash['Response']['Report'].each_pair do |key, value|
+        report = Hash.from_xml(res)['Response']['Report'] || Hash.from_xml(res)['Response']['ReportsList']['Report']
+        report.each_pair do |key, value|
           if key == "ListOfDownloads"
             params = Peddler::Handlers::XMLHandler.parse(:download, value)
             @download = Peddler::Feeds::Download.new(@transport, value['Download'])
