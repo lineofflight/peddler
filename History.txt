@@ -13,3 +13,5 @@
   * Nasty bug.
 == 0.2.2 / 2010-01-10
   * Another nasty bug.
+== 0.2.3 / 2010-01-10
+  * Bump

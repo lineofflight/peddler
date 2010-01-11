@@ -1,6 +1,6 @@
 # Peddler is a Ruby wrapper to the Amazon Inventory management API.
 module Peddler
-  VERSION = '0.2.2'
+  VERSION = '0.2.3'
 end
 
 require 'net/https'
