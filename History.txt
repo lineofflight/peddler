@@ -9,3 +9,5 @@
 == 0.2.0 / 2010-01-10
 	* Switched to ActiveSupport under the hood.
 	* Added a purge_inventory short-hand method to the client class.
+== 0.2.1 / 2010-01-10
+  * Nasty bug.

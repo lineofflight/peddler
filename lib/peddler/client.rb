@@ -19,12 +19,12 @@ module Peddler
     
     # Sets username.
     def username=(username)
-      self.transport.username = username
+      transport.username = username
     end
     
     # Sets password.
     def password=(password)
-      self.transport.password = password
+      transport.password = password
     end
     
     # Sets Amazon region.
@@ -32,7 +32,7 @@ module Peddler
     #     client.region = :jp
     #
     def region=(region)
-      self.transport.region = region.to_s
+      transport.region = region.to_s
     end
     
     # Creates an inventory batch.
@@ -53,7 +53,7 @@ module Peddler
     #    => "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n"
     #
     def new_inventory_batch
-      Peddler::Inventory::Batch.new(self.transport.dup)
+      Peddler::Inventory::Batch.new(transport.dup)
     end
     
     # A short-hand method to purge inventory.
@@ -61,7 +61,7 @@ module Peddler
     #    client.purge_inventory
     #
     def purge_inventory
-      empty_batch = Peddler::Inventory::Batch.new(self.transport.dup)
+      empty_batch = Peddler::Inventory::Batch.new(transport.dup)
       empty_batch.upload(:method => 'purge')
       
     end
@@ -74,7 +74,7 @@ module Peddler
     
     # Returns count of pending inventory uploads queued at Amazon.
     def inventory_queue
-      Peddler::Inventory::Queue.count(self.transport)
+      Peddler::Inventory::Queue.count(transport)
     end
     
     # Creates an order fulfillment batch.
@@ -93,7 +93,7 @@ module Peddler
     #    p feed.download.to_s
     #
     def new_order_fulfillment_feed
-      Peddler::Feeds::OrderFulfillment::Batch.new(self.transport.dup)
+      Peddler::Feeds::OrderFulfillment::Batch.new(transport.dup)
     end
     
     # Creates an item that can then be added to an order fulfillment feed. Keys are lowercased and underscored but
@@ -119,7 +119,7 @@ module Peddler
     #    p feed.download.to_s
     #
     def new_order_cancellation_feed
-      Peddler::Feeds::OrderCancellation::Batch.new(self.transport.dup)
+      Peddler::Feeds::OrderCancellation::Batch.new(transport.dup)
     end
     
     # Creates an item that can then be added to an order cancellation feed. Keys are lowercased and underscored but
@@ -148,7 +148,7 @@ module Peddler
     #    => "123-1234567-1234567order-item-id: 12341234567890\tSUCCESS 10.00 is Refunded.\r\n"
     #
     def new_refund_batch
-      Peddler::Refunds::Batch.new(self.transport.dup)
+      Peddler::Refunds::Batch.new(transport.dup)
     end
     
     # Creates a refund item that can then be added to a refund batch.
@@ -184,7 +184,7 @@ module Peddler
     #    => "100"
     # 
     def new_report(name,params={})
-      Peddler::LegacyReports::Report.new(self.transport.dup, name, params)
+      Peddler::LegacyReports::Report.new(transport.dup, name, params)
     end
     
     # Requests a report. Returns true when successful.
@@ -195,7 +195,7 @@ module Peddler
     #
     # A word of caution. Open listings may crap up with larger inventories.
     def generate_report(name,params={})
-      Peddler::LegacyReports.generate(self.transport, name, params)
+      Peddler::LegacyReports.generate(transport, name, params)
     end
     
     # Creates an unshipped order report. Takes on some optional parameters, such as :id, :starts_at, :ends_at. By default,
@@ -210,7 +210,7 @@ module Peddler
     #    p report.unshipped_orders
     #   
     def new_unshipped_orders_report(params={})
-      Peddler::Reports::UnshippedOrdersReport.new(self.transport.dup, params)
+      Peddler::Reports::UnshippedOrdersReport.new(transport.dup, params)
     end
     
     # Returns status of most recent reports. Optional "count" defaults to 10. Name can be [ :upload, :order, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ].
@@ -220,7 +220,7 @@ module Peddler
     #    => #<Peddler::LegacyReports::ReportStatus starts_at="07-29-2009:10-00-06" ... 
     #
     def latest_reports(name,params={})
-      Peddler::LegacyReports.latest(self.transport, name, params)
+      Peddler::LegacyReports.latest(transport, name, params)
     end
     
     # Decodes tab-delimited content into an array of OpenStruct objects.
