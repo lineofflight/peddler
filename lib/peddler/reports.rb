@@ -65,7 +65,6 @@ module Peddler
         report = Hash.from_xml(res)['Response']['Report'] || Hash.from_xml(res)['Response']['ReportsList']['Report']
         report.each_pair do |key, value|
           if key == "ListOfDownloads"
-            params = Peddler::Handlers::XMLHandler.parse(:download, value)
             @download = Peddler::Feeds::Download.new(@transport, value['Download'])
             @batch = Peddler::Handlers::TabDelimitedHandler.decode_response(@download.to_s)
           else
