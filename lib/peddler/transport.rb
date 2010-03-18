@@ -31,23 +31,23 @@ module Peddler
     
     #Returns request instance
     def request
-      req = request_method.new("#{self.path.gsub(/\/$/, "")}/#{self.query_string}")
-      self.headers.each do |header, value|
+      req = request_method.new("#{path.gsub(/\/$/, "")}/#{query_string}")
+      headers.each do |header, value|
         if header.kind_of? Symbol
-          req[header.to_s.gsub(/_/, "")] = value
+          req[header.to_s.gsub(/_/, '')] = value
         else
           req[header] = value
         end
       end
       req.basic_auth(@username, @password) if @username && @password
-      req.body = self.body unless self.body.empty?
+      req.body = body if body.present?
       req
     end
     
     def execute_request
       begin
-        self.conn.start do |http|
-          res = http.request(self.request)
+        conn.start do |http|
+          res = http.request(request)
           case res
           when Net::HTTPSuccess
             res.body
@@ -60,18 +60,18 @@ module Peddler
     
     def clear_request
       self.headers = BASE_HEADERS.dup
-      self.body = ""
+      self.body = nil
     end
     
     def legacize_request
-      self.clear_request
-      self.path = "/exec/panama/seller-admin/"
+      clear_request
+      self.path = '/exec/panama/seller-admin/'
       self.query_params = {}
     end
     
     def modernize_request
-      self.clear_request
-      self.path = "/query/"
+      clear_request
+      self.path = '/query/'
       self.query_params = BASE_PARAMS.dup
     end
     
@@ -86,7 +86,7 @@ module Peddler
     end
     
     def url
-      URI.parse("https://#{self.host}#{self.path.gsub(/\/$/, "")}/#{self.query_string}")
+      URI.parse("https://#{host}#{path}#{query_string}")
     end
     
     def dump_headers(msg)
@@ -95,7 +95,8 @@ module Peddler
       end
     end
     
-  protected
+    private
+    
     #Returns the Net::HTTP instance.
     def conn
       if @conn
@@ -109,7 +110,7 @@ module Peddler
     end
     
     def request_method
-      if !self.body.empty? || !self.query_params.empty?
+      if !body.present? || !query_params.present?
         Net::HTTP::Post
       else
         Net::HTTP::Get
@@ -121,12 +122,12 @@ module Peddler
     end
     
     def query_string
-      unless query_params.empty?
-        query_params.inject("?") do |out, pair|
+      if query_params.present?
+        query_params.inject('?') do |out, pair|
           key, value = pair
           key = key.to_s.gsub(/_([a-z])/) { $1.upcase } if key.kind_of? Symbol
           value = value.httpdate if value.respond_to? :httpdate
-          out += "&" if out.size > 1
+          out += '&' if out.size > 1
           "#{out}#{url_encode(key)}=#{url_encode(value)}"
         end
       end
