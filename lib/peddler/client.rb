@@ -5,42 +5,34 @@
 module Peddler
   # This is the public interface of the Peddler library.
   class Client
-    # Creates a client instance.
+    # Creates a client.
     #
     #    client = Peddler::Client.new(
     #      :username => 'foo@bar.com',
     #      :password => 'secret',
-    #      :region   => 'us'
+    #      :region   => :us
     #    )
     #
+    # Alternatively, set attributes after creating the client:
+    #
+    #    client = Peddler::Client.new
+    #    client.username = 'foo@bar.co.uk'
+    #    client.password = 'tad_more_secret'
+    #    client.region   = 'uk'
+    #
     def initialize(params={})
+      [:username=, :password=, :region=].each do |method|
+        self.class.send(:define_method, method, lambda { |value| transport.send(method, value) })
+      end
       params.each_pair { |key, value| self.send("#{key}=", value.to_s) }
-    end
-    
-    # Sets username.
-    def username=(username)
-      transport.username = username
-    end
-    
-    # Sets password.
-    def password=(password)
-      transport.password = password
-    end
-    
-    # Sets Amazon region.
-    #
-    #     client.region = :jp
-    #
-    def region=(region)
-      transport.region = region.to_s
     end
     
     # Creates an inventory batch.
     #
     #    batch = client.new_inventory_batch
     #    book = new_inventory_item(
-    #      :product_id => "1234567890",
-    #      :sku        => "SKU-001",
+    #      :product_id => '1234567890',
+    #      :sku        => 'SKU-001',
     #      :price      => 10.00,
     #      :quantity   => 1)
     #    batch << book

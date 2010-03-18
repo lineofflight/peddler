@@ -1,24 +1,29 @@
 module Peddler
   class PeddlerError < StandardError
     def initialize(msg)
-      super("#{msg}")
+      super(msg)
     end
   end
   
   # Our work horse. Runs on top of Net::HTTP.
   class Transport
-    API_HOSTS       = {:us => "secure.amazon.com",
-                       :uk => "secure.amazon.co.uk",
-                       :de => "secure.amazon.de",
-                       :ca => "secure.amazon.ca",
-                       :fr => "secure.amazon.fr",
-                       :jp => "vendornet.amazon.co.jp" }
-    BASE_HEADERS    = {"User-Agent"    => "Peddler/#{Peddler::VERSION}",
-                       "Content-Type"  => "text/xml;charset=utf-8",
-                       "Cookie"        => "x-main=YvjPkwfntqDKun0QEmVRPcTTZDMe?Tn?; ubid-main=002-8989859-9917520; ubid-tacbus=019-5423258-4241018;x-tacbus=vtm4d53DvX@Sc9LxTnAnxsFL3DorwxJa; ubid-tcmacb=087-8055947-0795529; ubid-ty2kacbus=161-5477122-2773524; session-id=087-178254-5924832;session-id-time=950660664"}
+    API_HOSTS = {
+      :us => 'secure.amazon.com',
+      :uk => 'secure.amazon.co.uk',
+      :de => 'secure.amazon.de',
+      :ca => 'secure.amazon.ca',
+      :fr => 'secure.amazon.fr',
+      :jp => 'vendornet.amazon.co.jp'
+    }
+                       
+    BASE_HEADERS  = {
+      'User-Agent'    => "Peddler/#{Peddler::VERSION}",
+      'Content-Type'  => 'text/xml;charset=utf-8',
+      'Cookie'        => 'x-main=YvjPkwfntqDKun0QEmVRPcTTZDMe?Tn?; ubid-main=002-8989859-9917520; ubid-tacbus=019-5423258-4241018;x-tacbus=vtm4d53DvX@Sc9LxTnAnxsFL3DorwxJa; ubid-tcmacb=087-8055947-0795529; ubid-ty2kacbus=161-5477122-2773524; session-id=087-178254-5924832;session-id-time=950660664'
+    }
     
     BASE_PARAMS = {
-      "Service" => "MerchantQueryService"
+      'Service' => 'MerchantQueryService'
     }
     
     attr_writer   :username, :password
@@ -76,7 +81,7 @@ module Peddler
       if API_HOSTS.has_key?(region)
         @region = region
       else
-        raise PeddlerError.new("Region not recognized")
+        raise PeddlerError.new('Region not recognized')
       end
     end
     

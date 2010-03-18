@@ -6,11 +6,11 @@ begin
     s.name = 'peddler'
     s.summary = 'A Ruby wrapper to the Amazon Inventory Management API'
     s.email = 'hakan.ensari@papercavalier.com'
-    s.homepage = 'http://snl.github.com/peddler'
+    s.homepage = 'http://papercavalier.github.com/peddler'
     s.description = 'Peddler is a Ruby wrapper to the Amazon Inventory Management API.'
     s.authors = ['Hakan Şenol Ensari']
     s.add_dependency 'activesupport', '>= 2.3.5'
-    s.add_development_dependency 'rspec', '>= 1.2.9'
+    s.add_development_dependency 'rspec', '>= 1.3.0'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
