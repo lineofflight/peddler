@@ -123,13 +123,12 @@ module Peddler
     
     def query_string
       if query_params.present?
-        query_params.inject('?') do |out, pair|
-          key, value = pair
-          key = key.to_s.gsub(/_([a-z])/) { $1.upcase } if key.kind_of? Symbol
-          value = value.httpdate if value.respond_to? :httpdate
-          out += '&' if out.size > 1
-          "#{out}#{url_encode(key)}=#{url_encode(value)}"
+        params = query_params.collect do |k, v|
+          k = k.to_s.gsub(/_([a-z])/) { $1.upcase } if k.kind_of? Symbol
+          v = v.httpdate if v.respond_to? :httpdate
+          "#{k}=#{url_encode(v)}"
         end
+        "?#{params.join('&')}"
       end
     end
     
