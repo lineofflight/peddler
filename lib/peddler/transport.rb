@@ -40,7 +40,7 @@ module Peddler
         end
       end
       req.basic_auth(@username, @password) if @username && @password
-      req.body = body if body.present?
+      req.body = body if body
       req
     end
     
@@ -90,8 +90,8 @@ module Peddler
     end
     
     def dump_headers(msg)
-      msg.each_header do |key, value|
-        p "#{key}=#{value}"
+      msg.each_header do |k, v|
+        p "#{k}=#{v}"
       end
     end
     
@@ -110,7 +110,7 @@ module Peddler
     end
     
     def request_method
-      if !body.present? || !query_params.present?
+      if !body.nil? || (query_params && !query_params.empty?)
         Net::HTTP::Post
       else
         Net::HTTP::Get
@@ -122,19 +122,14 @@ module Peddler
     end
     
     def query_string
-      if query_params.present?
+      if query_params && !query_params.empty?
         params = query_params.collect do |k, v|
           k = k.to_s.gsub(/_([a-z])/) { $1.upcase } if k.kind_of? Symbol
           v = v.httpdate if v.respond_to? :httpdate
-          "#{k}=#{url_encode(v)}"
+          "#{k}=#{v}"
         end
         "?#{params.join('&')}"
       end
-    end
-    
-    def url_encode(value)
-      require 'cgi' unless defined?(CGI) && defined?(CGI::escape)
-      CGI.escape(value.to_s)
     end
   end
 end

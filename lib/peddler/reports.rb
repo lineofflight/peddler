@@ -12,16 +12,16 @@ module Peddler
       attr_accessor :starts_at, :ends_at, :scheduled
       
       MAPPED_PARAMS = {
-        "ReportID"                  => "id",
-        "StartDate"                 => "starts_at",
-        "EndDate"                   => "ends_at",
-        "DownloadType"              => "type",
-        "Scheduled"                 => "scheduled",
-        "ReportStatus"              => "status",
-        "SubmittedDate"             => "submitted_at",
-        "StartedProcessingDate"     => "started_processing_at",
-        "CompletedProcessingDate"   => "completed_processing_at",
-        "CompletedProcesssingDate"  => "completed_processing_at"}
+        'ReportID'                  => 'id',
+        'StartDate'                 => 'starts_at',
+        'EndDate'                   => 'ends_at',
+        'DownloadType'              => 'type',
+        'Scheduled'                 => 'scheduled',
+        'ReportStatus'              => 'status',
+        'SubmittedDate'             => 'submitted_at',
+        'StartedProcessingDate'     => 'started_processing_at',
+        'CompletedProcessingDate'   => 'completed_processing_at',
+        'CompletedProcesssingDate'  => 'completed_processing_at'}
       
       # Creates new unshipped order report. It will send a request to 
       # Amazon to generate the report if the report ID is not already set.
@@ -52,10 +52,10 @@ module Peddler
       def generate_report
         @transport.modernize_request
         @transport.query_params.merge!({
-          "Action"       => "generateReport",
-          "startDate"    => @starts_at,
-          "endDate"      => @ends_at,
-          "downloadType" => @type})
+          'Action'       => 'generateReport',
+          'startDate'    => @starts_at,
+          'endDate'      => @ends_at,
+          'downloadType' => @type})
         res = @transport.execute_request
         process_response(res)
       end

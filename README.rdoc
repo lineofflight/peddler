@@ -7,17 +7,17 @@ Peddler is a Ruby wrapper to the Amazon Inventory management API.
 Fire off a client:
 
   client = Peddler::Client.new(
-    :username => "foo@bar.com",
-    :password => "secret",
-    :region   => "us")
+    :username => 'foo@bar.com',
+    :password => 'secret',
+    :region   => :us)
 
 Create an inventory file:
 
   batch = client.new_inventory_batch
   item = client.new_inventory_item(
-    :product_id => "1234567890",
+    :product_id => '1234567890',
     :price      => 100.00,
-    :sku        => "SKU-123",
+    :sku        => 'SKU-123',
     :quantity   => 10)
   batch << item
   ...
@@ -47,10 +47,10 @@ Now that you have diligently processed the orders, post back the results to Amaz
   
   feed = client.new_order_fulfillment_feed
   fulfilled_order = client.new_fulfilled_order(
-    :order_id         => "123-1234567-1234567",
-    :order_date       => "2009-08-01",
-    :carrier_code     => "USPS",
-    :tracking_number  => "0308 0330 0000 0000 0000")
+    :order_id         => '123-1234567-1234567',
+    :order_date       => '2009-08-01',
+    :carrier_code     => 'USPS',
+    :tracking_number  => '0308 0330 0000 0000 0000')
   feed << fulfilled_order
   
 Again, repeat until done and upload:
@@ -72,13 +72,13 @@ Finally, check the report:
   p feed.download.to_s
   => ...
   
-Sadly, you also have an order you can't fulfill. No problem. The workflow is similar:
+Sadly, you also have an order you can't fulfill and haven't shipped yet. No problem. The workflow is similar:
 
   feed = client.new_order_cancellation_feed
   cancelled_order = client.new_cancelled_order(
-    :order_id => "123-1234567-1234567",
-    :cancellation_reason_code => "NoInventory",
-    :amazon_order_item_code => "12341234567890")
+    :order_id                 => '123-1234567-1234567',
+    :cancellation_reason_code => 'NoInventory',
+    :amazon_order_item_code   => '12341234567890')
   feed << cancelled_order
   feed.upload
   sleep(60)
@@ -87,15 +87,15 @@ Sadly, you also have an order you can't fulfill. No problem. The workflow is sim
   p feed.download.to_s
   => ...
 
-Need to post a partial refund? You'll have to revert to the older batch refund API method:
+Have already confirmed and need to post a partial refund? You'll have to revert to the older batch refund method:
 
   refunds = client.new_refund_batch
   refund = client.new_refund(
-    :order_id                 => "123-1234567-1234567",
-    :payments_transaction_id  => "12341234567890",
+    :order_id                 => '123-1234567-1234567',
+    :payments_transaction_id  => '12341234567890',
     :refund_amount            => 1.00,
-    :reason                   => "GeneralAdjustment",
-    :message                  => "With our apologies.")
+    :reason                   => 'GeneralAdjustment',
+    :message                  => 'With our apologies.')
   refunds << refund
   refunds.upload
 
@@ -103,7 +103,7 @@ Great sales. For a change, let's download something different from Amazon. Here'
 
   preorder_report = client.new_report(
     :preorder,
-    :product_line => "Books",
+    :product_line => 'Books',
     :frequency    => 2)
   preorders = client.detab(preorder_report.body)
   p preorders.size
@@ -115,4 +115,4 @@ Great sales. For a change, let's download something different from Amazon. Here'
 
 Run rdoc and check the source for more detailed info.
 
-Copyright © 2009 Hakan Şenol Ensari, released under the MIT license
+Copyright © 2009 Paper Cavalier, released under the MIT license

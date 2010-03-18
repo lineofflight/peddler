@@ -22,9 +22,9 @@ module Peddler
     #
     def initialize(params={})
       [:username=, :password=, :region=].each do |method|
-        self.class.send(:define_method, method, lambda { |val| transport.send(method, val) })
+        self.class.send(:define_method, method, lambda { |value| transport.send(method, value) })
       end
-      params.each_pair { |key, val| self.send("#{key}=", val) }
+      params.each_pair { |k, v| self.send("#{k}=", v) }
     end
     
     # Creates an inventory batch.

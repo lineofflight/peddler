@@ -40,18 +40,25 @@ module Peddler
       @transport.url.to_s.should == 'https://secure.amazon.com/query/?key1=val1&key2=val2&Service=MerchantQueryService'
     end
     
-    it 'should url_encode query parameters' do
-      @transport.modernize_request
-      @transport.query_params['key'] = '!@#'
-      @transport.url.to_s.should == 'https://secure.amazon.com/query/?key=%21%40%23&Service=MerchantQueryService'
-    end
-    
     it 'should authenticate request' do
       @transport.legacize_request
       req = @transport.request
-      #req['authorization'].should_not be(nil)
+      req['authorization'].should_not be(nil)
     end
     
+    it 'should post if there is a body' do
+      @transport.body = 'foo'
+      @transport.send(:request_method).should == Net::HTTP::Post
+    end
+    
+    it 'should post if there is a query parameter' do
+      @transport.query_params = { :foo => 'bar' }
+      @transport.send(:request_method).should == Net::HTTP::Post
+    end
+    
+    it 'should get if there is no body or query parameter' do
+      @transport.send(:request_method).should == Net::HTTP::Get
+    end
   end
    
 end 
