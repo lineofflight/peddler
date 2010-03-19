@@ -7,21 +7,21 @@ module Peddler
     def self.latest(transport,name,params={})
       transport.legacize_request
       if name == :upload
-        transport.path << "catalog-upload/get-batches"
+        transport.path << 'catalog-upload/get-batches'
         transport.headers[:number_of_batches] = params[:count] if params[:count]
       else
-        transport.path << "manual-reports/get-report-status"
+        transport.path << 'manual-reports/get-report-status'
         transport.headers[:report_name] = name.to_s.camelize
         transport.headers[:number_of_reports] = params[:count] if params[:count]
       end
       res = transport.execute_request
-      Peddler::Handlers::XMLHandler.parse_legacy(Hash.from_xml(res))
+      Peddler::Handlers::XMLHandler.parse_legacy(Hash.from_xml(res)) || []
     end
     
     # Requests a report to be generated and returns the report instance if request is successful.
     def self.generate(transport,name,params={})
       transport.legacize_request
-      transport.path << "manual-reports/generate-report-now"
+      transport.path << 'manual-reports/generate-report-now'
       transport.headers[:report_name] = name.to_s.camelize
       transport.headers.merge!(params)
       res = transport.execute_request
@@ -34,7 +34,7 @@ module Peddler
       
       def initialize(transport, name=nil, params={})
         @transport, @name = transport, name
-        params.each_pair{ |key, value| self.send "#{key}=", value }
+        params.each_pair{ |key, value| self.send '#{key}=', value }
       end
       
       def body
@@ -42,26 +42,27 @@ module Peddler
         @body ||= download
       end
     
-    private
+      private
+      
       def download
         return false if @name.nil? && @id.nil?
         case @name.to_s
-        when "upload"
+        when 'upload'
           @transport.legacize_request
-          @transport.path << "download/errorlog"
-          @transport.headers["BatchID"] = @id
+          @transport.path << 'download/errorlog'
+          @transport.headers['BatchID'] = @id
           @transport.execute_request
         else
           @transport.legacize_request
-          @transport.path << "download/report"
+          @transport.path << 'download/report'
           if @id.nil?
             @transport.headers[:report_name] = @name.to_s.camelize
             if @name == :preorder
-              @transport.headers["productline"] = @product_line if @product_line
-              @transport.headers["frequency"] = @frequency if @frequency
+              @transport.headers['productline'] = @product_line if @product_line
+              @transport.headers['frequency'] = @frequency if @frequency
             end
           else
-            @transport.headers["ReportID"] = @id
+            @transport.headers['ReportID'] = @id
           end
           @transport.execute_request
         end
@@ -84,9 +85,9 @@ module Peddler
     class ReportStatus < Status
       def initialize(input)
         @keymap = {
-          "reportstarttime" => "starts_at",
-          "reportendtime"   => "ends_at",
-          "reportid"        => "id"}
+          'reportstarttime' => 'starts_at',
+          'reportendtime'   => 'ends_at',
+          'reportid'        => 'id' }
         super(input)
       end
     end
@@ -94,13 +95,13 @@ module Peddler
     class UploadStatus < Status
       def initialize(input)
         @keymap = {
-          "status"            => "status",
-          "batchid"           => "id",
-          "numberofwarnings"  => "number_of_warnings",
-          "activateditems"    => "activated_items",
-          "itemsnotacivated"  => "items_not_activated",
-          "itemsnotactivated" => "items_not_activated",
-          "dateandtime"       => "datetime"}
+          'status'            => 'status',
+          'batchid'           => 'id',
+          'numberofwarnings'  => 'number_of_warnings',
+          'activateditems'    => 'activated_items',
+          'itemsnotacivated'  => 'items_not_activated',
+          'itemsnotactivated' => 'items_not_activated',
+          'dateandtime'       => 'datetime' }
         super(input)
       end
     end
