@@ -34,7 +34,7 @@ module Peddler
       
       def initialize(transport, name=nil, params={})
         @transport, @name = transport, name
-        params.each_pair{ |key, value| self.send '#{key}=', value }
+        params.each_pair{ |key, value| self.send "#{key}=", value }
       end
       
       def body
