@@ -26,7 +26,7 @@ module Peddler
       end
       params.each_pair { |k, v| self.send("#{k}=", v) }
     end
-    
+
     # Creates an inventory batch.
     #
     #    batch = client.new_inventory_batch
@@ -47,7 +47,7 @@ module Peddler
     def new_inventory_batch
       Peddler::Inventory::Batch.new(transport.dup)
     end
-    
+
     # A short-hand method to purge inventory.
     #
     #    client.purge_inventory
@@ -55,20 +55,20 @@ module Peddler
     def purge_inventory
       empty_batch = Peddler::Inventory::Batch.new(transport.dup)
       empty_batch.upload(:method => 'purge')
-      
+
     end
-    
+
     # Creates an inventory item. Parameter keys are lowercased and underscored but otherwise the same as
     # the colum titles in the tab-delimited upload templates provided by Amazon.
     def new_inventory_item(params={})
       Peddler::Inventory::Item.new(params)
     end
-    
+
     # Returns count of pending inventory uploads queued at Amazon.
     def inventory_queue
       Peddler::Inventory::Queue.count(transport)
     end
-    
+
     # Creates an order fulfillment batch.
     #
     #    feed = client.new_order_fulfillment_feed
@@ -87,13 +87,13 @@ module Peddler
     def new_order_fulfillment_feed
       Peddler::Feeds::OrderFulfillment::Batch.new(transport.dup)
     end
-    
+
     # Creates an item that can then be added to an order fulfillment feed. Keys are lowercased and underscored but
     # otherwise the same as Amazon's headers. See section 7.1 in the API docs.
     def new_fulfilled_order(params={})
       Peddler::Feeds::OrderFulfillment::Item.new(params)
     end
-    
+
     # Creates an order cancellation batch.
     #
     #    feed = client.new_order_cancellation_feed
@@ -113,13 +113,13 @@ module Peddler
     def new_order_cancellation_feed
       Peddler::Feeds::OrderCancellation::Batch.new(transport.dup)
     end
-    
+
     # Creates an item that can then be added to an order cancellation feed. Keys are lowercased and underscored but
     # otherwise the same as Amazon's headers. See section 7.4 in the API docs.
     def new_cancelled_order(params={})
       Peddler::Feeds::OrderCancellation::Item.new(params)
     end
-    
+
     # Creates a refund batch.
     #
     #    batch = client.new_refund_batch
@@ -142,14 +142,14 @@ module Peddler
     def new_refund_batch
       Peddler::Refunds::Batch.new(transport.dup)
     end
-    
+
     # Creates a refund item that can then be added to a refund batch.
     #
     # Possible reasons: ["GeneralAdjustment", "CouldNotShip", "DifferentItem", "MerchandiseNotReceived", "MerchandiseNotAsDescribed"]
     def new_refund(params={})
       Peddler::Refunds::Item.new(params)
     end
-    
+
     # Creates an instance for an already-generated report. Works only with 
     # legacy reports, meaning anything that comes before section 7 in the API
     # docs.
@@ -178,7 +178,7 @@ module Peddler
     def new_report(name,params={})
       Peddler::LegacyReports::Report.new(transport.dup, name, params)
     end
-    
+
     # Requests a report. Returns true when successful.
     #
     # Possible report names: [:order, :open_listings, :open_listings_lite, :open_listings_liter]
@@ -189,7 +189,7 @@ module Peddler
     def generate_report(name,params={})
       Peddler::LegacyReports.generate(transport, name, params)
     end
-    
+
     # Creates an unshipped order report. Takes on some optional parameters, such as :id, :starts_at, :ends_at. By default,
     # it will request a new unshipped order report for the past seven days.
     #
@@ -204,7 +204,7 @@ module Peddler
     def new_unshipped_orders_report(params={})
       Peddler::Reports::UnshippedOrdersReport.new(transport.dup, params)
     end
-    
+
     # Returns status of most recent reports. Optional "count" defaults to 10. Name can be [ :upload, :order, :batch_refund, :open_listings, :open_listings_lite, :open_listings_liter ].
     #
     #    reports = client.latest_reports :order, :count => 1
@@ -214,14 +214,14 @@ module Peddler
     def latest_reports(name,params={})
       Peddler::LegacyReports.latest(transport, name, params)
     end
-    
+
     # Decodes tab-delimited content into an array of OpenStruct objects.
     def detab(msg)
       Peddler::Handlers::TabDelimitedHandler.decode_response(msg)
     end
-    
+
     private
-    
+
     def transport #:nodoc:all
       @transport ||= Peddler::Transport.new
     end
