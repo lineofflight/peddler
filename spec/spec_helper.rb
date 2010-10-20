@@ -1,3 +1,7 @@
-$: << File.join(File.dirname(__FILE__), '/../lib')
-require 'spec'
-require 'peddler'
+require "rubygems"
+require "bundler/setup"
+require "rspec"
+
+require File.expand_path("../../lib/peddler", __FILE__)
+
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
