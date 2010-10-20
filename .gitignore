@@ -1,4 +1,5 @@
 pkg/*
 *.gem
+*.rbc
 .bundle
 amazon.yml
