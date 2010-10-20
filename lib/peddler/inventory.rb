@@ -13,23 +13,23 @@ module Peddler
         end
       end
     end
-    
+
     # This is an inventory batch.
     class Batch
       attr_reader :id
       attr_accessor :batch
-      
+
       def initialize(transport)
         @transport = transport
         @batch = []
       end
-      
+
       # Uploads batch to Amazon.
       def upload(params={})
         raise PeddlerError.new('Batch already uploaded') unless @id.nil?
         @transport.legacize_request
         @transport.path << 'catalog-upload/'
-        
+
         case params[:method].to_s
         when 'modify'
           @transport.path << 'modify-only'
@@ -42,11 +42,11 @@ module Peddler
           @transport.body = file_content
         end
         params.delete(:method)
-        
+
         params = defaultize(params)
         @transport.headers.merge!(params)
         res = @transport.execute_request
-        
+
         if res =~ /^<BatchID>(.*)<\/BatchID>$/
           @id = $1
         else
@@ -54,7 +54,7 @@ module Peddler
         end
         true
       end
-      
+
       # Returns upload file string.
       def file_content(type=:long)
         case type
@@ -67,14 +67,14 @@ module Peddler
         end
         out
       end
-      
+
       # Adds an item to inventory.
       def <<(item)
         @batch << item
       end
-      
+
       private
-      
+
       def defaultize(params)
         params = {
           :upload_for         => 'Marketplace',
@@ -84,7 +84,7 @@ module Peddler
           :batch_id           => 'Y',
           :email              => 'Y'
         }.merge(params)
-        
+
         # Some Amazon dimwit figured he'd rather not camelize this one
         if params[:enable_expedited_shipping]
           params['enable-expedited-shipping'] = params[:enable_expedited_shipping]
@@ -92,11 +92,11 @@ module Peddler
         else
           params['enable-expedited-shipping'] = 'Y'
         end
-        
+
         params
       end
     end
-    
+
     # This is an inventory item.
     class Item
       attr_accessor :product_id,
@@ -122,11 +122,11 @@ module Peddler
                     :asin1,
                     :asin2,
                     :asin3
-      
+
       def initialize(params={})
         params.each_pair{ |key, value| send("#{key.to_s}=", value) }
       end
-      
+
       def to_s(type=:long)
         case type
         when :long

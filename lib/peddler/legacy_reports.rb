@@ -1,8 +1,8 @@
 module Peddler
-  
+
   # This module contains methods to manage legacy reports -- anything that comes before section 7 in the API docs.
   module LegacyReports
-    
+
     # Returns statuses of most recent reports in an array of OpenStructs.
     def self.latest(transport,name,params={})
       transport.legacize_request
@@ -17,7 +17,7 @@ module Peddler
       res = transport.execute_request
       Peddler::Handlers::XMLHandler.parse_legacy(Hash.from_xml(res)) || []
     end
-    
+
     # Requests a report to be generated and returns the report instance if request is successful.
     def self.generate(transport,name,params={})
       transport.legacize_request
@@ -27,23 +27,23 @@ module Peddler
       res = transport.execute_request
       res =~ /SUCCESS/ ? Peddler::LegacyReports::Report.new(transport, name) : false
     end
-    
+
     # A legacy report
     class Report
       attr_accessor :name, :id, :product_line, :frequency
-      
+
       def initialize(transport, name=nil, params={})
         @transport, @name = transport, name
         params.each_pair{ |key, value| self.send "#{key}=", value }
       end
-      
+
       def body
         return nil if @name == :upload && @id.nil?
         @body ||= download
       end
-    
+
       private
-      
+
       def download
         return false if @name.nil? && @id.nil?
         case @name.to_s
@@ -68,7 +68,7 @@ module Peddler
         end
       end
     end
-    
+
     class Status < OpenStruct
       def initialize(input)
         if input.kind_of? String
@@ -76,12 +76,12 @@ module Peddler
         end
         super(hash)
       end
-    
+
       def id
         @table[:id] || self.object_id
       end
     end
-  
+
     class ReportStatus < Status
       def initialize(input)
         @keymap = {
@@ -91,7 +91,7 @@ module Peddler
         super(input)
       end
     end
-  
+
     class UploadStatus < Status
       def initialize(input)
         @keymap = {
