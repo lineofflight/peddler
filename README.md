@@ -3,7 +3,7 @@ Peddler
 
 Peddler is a Ruby wrapper to the Amazon Inventory management API.
 
-![Peddler](http://www.rootsweb.ancestry.com/~belghist/Flanders/Picts/MusselPeddler.JPG)
+![Peddler](http://github.com/papercavalier/peddler/raw/master/mussels.jpg)
 
 Example usage
 -------------
@@ -36,7 +36,7 @@ The batch now should have an upload ID. Now, check the error log:
       :id => batch.id)
     upload_log.body
     => "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber of records successful\t\t1\n\n"
- 
+
 You are wondering if you have any new orders:
 
     orders_report = client.new_report :order
@@ -47,7 +47,7 @@ You are wondering if you have any new orders:
     => "A Thousand Plateaus: Capitalism and Schizophrenia (Paperback) by Gilles Deleuze"
 
 After processing the orders, post back the results to Amazon:
-  
+
     feed = client.new_order_fulfillment_feed
     fulfilled_order = client.new_fulfilled_order(
       :order_id         => '123-1234567-1234567',
@@ -55,16 +55,16 @@ After processing the orders, post back the results to Amazon:
       :carrier_code     => 'USPS',
       :tracking_number  => '0308 0330 0000 0000 0000')
     feed << fulfilled_order
-  
+
 Once done, upload:
 
     feed.upload
-  
+
 Want to see the processing report?
-  
+
     p feed.status
     => "_SUBMITTED_"
-  
+
 Refresh until you get:
 
     p feed.status!
@@ -73,7 +73,7 @@ Refresh until you get:
 Then, check the report:
 
     p feed.download.to_s
-  
+
 You have an order you can't fill and haven't shipped yet. No problem:
 
     feed = client.new_order_cancellation_feed
@@ -115,6 +115,14 @@ For a change, let's download something different from Amazon, like a preorder re
     p preorders[0].average_asking_price
     => "100"
 
-Check the RDOC files for more info.
+[Read source](http://gloss.papercavalier.com/peddler) for more info.
 
-Copyright © 2009 Paper Cavalier, released under the MIT license
+Todo
+----
+
+Switch to using the [Amazon Marketplace Web Service (Amazon MWS)](https://mws.amazon.com/index.html).
+
+Compatibility
+-------------
+
+Specs pass against Ruby 1.8.7, Ruby 1.9.2, and Rubinius 1.1.
