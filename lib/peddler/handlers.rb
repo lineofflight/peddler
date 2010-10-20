@@ -1,17 +1,17 @@
 module Peddler
   module Handlers
     class XMLHandler
-      
+
       # Parses legacy responses to queries on statuses of generated reports and inventory uploads.
       def self.parse_legacy(hash)
         if hash['Batches']
-          hash['Batches']['Batch'].collect  { |input| Peddler::LegacyReports::UploadStatus.new(input) }
+          [hash['Batches']['Batch']].flatten.collect  { |input| Peddler::LegacyReports::UploadStatus.new(input) }
         elsif hash['Reports']
-          hash['Reports']['Report'].collect { |input| Peddler::LegacyReports::ReportStatus.new(input) }
+          [hash['Reports']['Report']].flatten.collect { |input| Peddler::LegacyReports::ReportStatus.new(input) }
         end
       end
     end
-    
+
     class TabDelimitedHandler
       # Decodes tab-delimited content into an array of OpenStruct objects. It
       # assumes first line contains parameter names.
