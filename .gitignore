@@ -1,3 +1,4 @@
-.DS_Store
-peddler.gemspec
-pkg
+pkg/*
+*.gem
+.bundle
+amazon.yml

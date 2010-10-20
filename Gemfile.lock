@@ -1,0 +1,37 @@
+PATH
+  remote: .
+  specs:
+    peddler (0.2.4)
+      activesupport (>= 2.3.2)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.0.1)
+    addressable (2.2.2)
+    crack (0.1.8)
+    diff-lcs (1.1.2)
+    rspec (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+      rspec-mocks (~> 2.0.1)
+    rspec-core (2.0.1)
+    rspec-expectations (2.0.1)
+      diff-lcs (>= 1.1.2)
+    rspec-mocks (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+    vcr (1.2.0)
+    webmock (1.4.0)
+      addressable (>= 2.2.2)
+      crack (>= 0.1.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activesupport (>= 2.3.2)
+  peddler!
+  rspec (~> 2.0.0)
+  vcr (~> 1.2.0)
+  webmock (~> 1.4.0)
