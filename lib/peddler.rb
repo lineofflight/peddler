@@ -5,6 +5,7 @@ end
 require 'active_support/core_ext/hash'
 require 'net/https'
 require 'ostruct'
+require 'peddler/version'
 require 'peddler/client'
 require 'peddler/handlers'
 require 'peddler/feeds'
