@@ -3,7 +3,7 @@ Peddler
 
 Peddler is a Ruby wrapper to the Amazon Inventory management API.
 
-![Peddler](http://github.com/papercavalier/peddler/raw/master/mussels.jpg)
+![Peddler](https://github.com/papercavalier/peddler/raw/master/mussels.jpg)
 
 Example usage
 -------------
