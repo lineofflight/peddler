@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.name        = 'peddler'
   s.version     = Peddler::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Hakan Ensari']
-  s.email       = ['hakan.ensari@papercavalier.com']
-  s.homepage    = 'http://github.com/papercavalier/peddler'
+  s.authors     = ['Paper Cavalier']
+  s.email       = ['code@papercavalier.com']
+  s.homepage    = 'https://rubygems.org/gems/peddler'
   s.summary     = %q{A Ruby wrapper to the Amazon Inventory Management API}
   s.description = %q{Peddler is a Ruby wrapper to the Amazon Inventory Management API.}
 
@@ -20,9 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'activesupport', '>= 2.3.2'
-  s.add_development_dependency 'rdiscount', '~> 1.6.5'
-  s.add_development_dependency 'sdoc-helpers', '~> 0.1.4'
-  s.add_development_dependency 'rspec', '~> 2.0.0'
-  s.add_development_dependency 'vcr', '~> 1.2.0'
-  s.add_development_dependency 'webmock', '~> 1.4.0'
+  s.add_development_dependency 'rspec', '~> 2.5.0'
+  s.add_development_dependency 'vcr', '~> 1.6.0'
+  s.add_development_dependency 'webmock', '~> 1.6.2'
 end
