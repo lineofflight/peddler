@@ -3,3 +3,4 @@ pkg/*
 *.rbc
 .bundle
 amazon.yml
+Gemfile.lock
