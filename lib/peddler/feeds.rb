@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Peddler
 
   # This module includes functionality to handle the charge-when-ship-related 

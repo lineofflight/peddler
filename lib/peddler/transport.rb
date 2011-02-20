@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Peddler
   class PeddlerError < StandardError
     def initialize(msg)

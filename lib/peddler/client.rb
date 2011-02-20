@@ -1,10 +1,11 @@
-# = Peddler
-# Peddler is a Ruby wrapper to the {Amazon Inventory management API}[https://images-na.ssl-images-amazon.com/images/G/01/Amazon_AIM/Amazon_AIM.pdf].
-# 
-# Peddler::Client contains some detailed explanation and examples of usage.
+# encoding: utf-8
+
+
 module Peddler
+
   # This is the public interface of the Peddler library.
   class Client
+
     # Creates a client.
     #
     #    client = Peddler::Client.new(

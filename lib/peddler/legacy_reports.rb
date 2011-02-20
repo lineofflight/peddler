@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Peddler
 
   # This module contains methods to manage legacy reports -- anything that comes before section 7 in the API docs.
