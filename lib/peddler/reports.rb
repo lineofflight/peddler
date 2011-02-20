@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Peddler
 
   # This module generates and downloads unshipped order reports.

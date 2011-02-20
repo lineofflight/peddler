@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Peddler
   module Refunds
     # This is a refund batch.

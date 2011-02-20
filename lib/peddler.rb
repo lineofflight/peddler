@@ -1,6 +1,4 @@
-# Peddler is a Ruby wrapper to the Amazon Inventory management API.
-module Peddler
-end
+# encoding: utf-8
 
 require 'active_support/core_ext/hash'
 require 'net/https'
@@ -16,3 +14,9 @@ require 'peddler/reports'
 require 'peddler/transport'
 require 'tempfile'
 require 'time'
+
+# = Peddler
+#
+# Peddler is a Ruby wrapper to the {Amazon Inventory management API}[https://images-na.ssl-images-amazon.com/images/G/01/Amazon_AIM/Amazon_AIM.pdf].
+module Peddler
+end
