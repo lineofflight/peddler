@@ -1,2 +1,0 @@
-rvm --create use ree@peddler
-rvm wrapper ree@peddler
