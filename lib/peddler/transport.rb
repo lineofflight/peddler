@@ -49,6 +49,7 @@ module Peddler
     def execute_request
       begin
         conn.start do |http|
+          http.read_timeout = 500
           res = http.request(request)
           case res
           when Net::HTTPSuccess
