@@ -20,7 +20,11 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'activesupport', '>= 2.3.2'
+  s.add_dependency 'i18n'
   s.add_development_dependency 'rspec', '~> 2.5.0'
   s.add_development_dependency 'vcr', '~> 1.6.0'
   s.add_development_dependency 'webmock', '~> 1.6.2'
+  if RUBY_VERSION.include? '1.9'
+    s.add_development_dependency("ruby-debug19", "~> 0.11.0")
+  end
 end
