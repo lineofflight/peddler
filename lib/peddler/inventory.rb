@@ -100,30 +100,30 @@ module Peddler
     end
 
     # This is an inventory item.
-    class Item
-      attr_accessor :product_id,
-                    :product_id_type,
-                    :item_condition,
-                    :price,
-                    :sku,
-                    :quantity,
-                    :add_delete,
-                    :will_ship_internationally,
-                    :expedited_shipping,
-                    :item_note,
-                    :item_is_marketplace,
-                    :fulfillment_center_id,
-                    :item_name,
-                    :item_description,
-                    :category1,
-                    :image_url,
-                    :shipping_fee,
-                    :browse_path,
-                    :storefront_feature,
-                    :boldface,
-                    :asin1,
-                    :asin2,
-                    :asin3
+    class Item < Struct.new(
+      :product_id,
+      :product_id_type,
+      :item_condition,
+      :price,
+      :sku,
+      :quantity,
+      :add_delete,
+      :will_ship_internationally,
+      :expedited_shipping,
+      :item_note,
+      :item_is_marketplace,
+      :fulfillment_center_id,
+      :item_name,
+      :item_description,
+      :category1,
+      :image_url,
+      :shipping_fee,
+      :browse_path,
+      :storefront_feature,
+      :boldface,
+      :asin1,
+      :asin2,
+      :asin3)
 
       def initialize(params={})
         params.each_pair{ |key, value| send("#{key.to_s}=", value) }

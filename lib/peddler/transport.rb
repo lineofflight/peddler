@@ -20,7 +20,6 @@ module Peddler
 
     BASE_HEADERS  = {
       'User-Agent'    => "Peddler/#{Peddler::VERSION}",
-      'Content-Type'  => 'text/xml;charset=utf-8',
       'Cookie'        => 'x-main=YvjPkwfntqDKun0QEmVRPcTTZDMe?Tn?; ubid-main=002-8989859-9917520; ubid-tacbus=019-5423258-4241018;x-tacbus=vtm4d53DvX@Sc9LxTnAnxsFL3DorwxJa; ubid-tcmacb=087-8055947-0795529; ubid-ty2kacbus=161-5477122-2773524; session-id=087-178254-5924832;session-id-time=950660664'
     }
 
@@ -49,6 +48,7 @@ module Peddler
     def execute_request
       begin
         conn.start do |http|
+          http.read_timeout = 500
           res = http.request(request)
           case res
           when Net::HTTPSuccess
@@ -62,6 +62,12 @@ module Peddler
 
     def clear_request
       self.headers = BASE_HEADERS.dup
+      self.headers['Content-Type'] =
+        if [:fr, :de].include? @region
+          'text/xml;charset=utf-8'
+        else
+          'text/xml'
+      end
       self.body = nil
     end
 
