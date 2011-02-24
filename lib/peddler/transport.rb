@@ -63,6 +63,12 @@ module Peddler
 
     def clear_request
       self.headers = BASE_HEADERS.dup
+      self.headers['Content-Type'] =
+        if [:fr, :de].include? @region
+          'text/xml;charset=utf-8'
+        else
+          'text/xml'
+      end
       self.body = nil
     end
 
