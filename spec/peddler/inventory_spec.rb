@@ -70,5 +70,11 @@ module Peddler
         lambda { inventory.upload }.should raise_error(PeddlerError)
       end
     end
+
+    describe Item do
+      it "is a Struct" do
+        Item.is_a? Struct
+      end
+    end
   end
 end
