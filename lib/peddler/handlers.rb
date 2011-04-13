@@ -18,6 +18,12 @@ module Peddler
       # Decodes tab-delimited content into an array of OpenStruct objects. It
       # assumes first line contains parameter names.
       def self.decode_response(res, &block)
+
+        # A hack: ignore invalid utf-8 byte sequences in response
+        if RUBY_VERSION.include?('1.9') && !res.valid_encoding?
+          res = res.unpack('C*').pack('U*')
+        end
+
         if block_given?
           res.scan(/[^\n]+/, &block)
         else
