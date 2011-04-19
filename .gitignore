@@ -6,3 +6,4 @@ amazon.yml
 Gemfile.lock
 .rvmrc
 .rspec
+*un~
