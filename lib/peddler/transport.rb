@@ -54,8 +54,13 @@ module Peddler
           when Net::HTTPSuccess
             body = res.body
             # A hacky way to encode Japanese response bodies into UTF-8 if in Ruby 1.9
-            if body.respond_to?(:encoding) && @region == :jp
-              body.force_encoding("Shift_JIS").encode("UTF-8")
+            if body.respond_to?(:encoding)
+              case @region
+              when :jp
+                body.force_encoding("Shift_JIS").encode("UTF-8")
+              else
+                body.force_encoding("UTF-8")
+              end
             else
               body
             end
