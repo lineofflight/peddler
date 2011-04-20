@@ -20,7 +20,7 @@ module Peddler
       def self.decode_response(res, &block)
 
         # A hack: ignore invalid utf-8 byte sequences in response
-        if RUBY_VERSION.include?('1.9') && !res.valid_encoding?
+        if res.respond_to?(:valid_encoding?) && !res.valid_encoding?
           res = res.unpack('C*').pack('U*')
         end
 
