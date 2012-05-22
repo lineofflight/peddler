@@ -1,7 +1,9 @@
-require "rubygems"
-require "bundler/setup"
-require "rspec"
+# Test where the risk is.
 
-require File.expand_path("../../lib/peddler", __FILE__)
+require 'rspec'
+begin
+  require 'pry'
+rescue LoadError
+end
 
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+require 'peddler'
