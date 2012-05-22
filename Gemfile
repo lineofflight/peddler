@@ -1,4 +1,4 @@
-source "http://rubygems.org"
-
-# Specify your gem's dependencies in peddler.gemspec
+source 'http://rubygems.org'
 gemspec
+
+gem 'jruby-openssl', :platform => :jruby
