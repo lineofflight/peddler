@@ -1,2 +1,0 @@
-rvm rbx@peddler,ree@peddler,1.9.2@peddler exec bundle install
-rvm rbx@peddler,ree@peddler,1.9.2@peddler rake
