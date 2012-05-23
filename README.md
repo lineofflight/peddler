@@ -2,14 +2,17 @@
 
 [![travis][status]][travis]
 
-__The current master is an early work-in-progress. I'll be wading through and
-implementing the APIs as need dictates. Patches are more than welcome. If you
-are looking for the wrapper to the deprecated AIM API,
-[go here][old-peddler].__
-
 ![Peddler][mussels]
 
 Peddler wraps the [Amazon Marketplace Web Service (MWS) APIs][mws].
+
+## Notice
+
+The current master is an early work-in-progress. I'll be wading through and
+implementing the APIs as need dictates. Patches are more than welcome.
+
+If you are looking for the wrapper to the deprecated AIM API,
+[go here][old-peddler].
 
 ## Usage
 
