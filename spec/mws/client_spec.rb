@@ -6,6 +6,16 @@ module MWS
       @client = Client.new 'US'
     end
 
+    describe '#build_list' do
+      subject { @client.build_list 'Value', (1..10).to_a }
+
+      it 'uses a dot notation' do
+        1.upto(10).each do |count|
+          should include "ValueList.Value.#{count}"
+        end
+      end
+    end
+
     describe '#configure' do
       context 'given a block' do
         before do

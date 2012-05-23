@@ -4,9 +4,12 @@ require 'faraday'
 require 'mws/api/products'
 
 require 'mws/endpoint'
+require 'mws/response'
 require 'peddler/user_agent'
 
 module MWS
+  BadResponse = Class.new StandardError
+
   # A client to Amazon Marketplace Web Service (MWS) APIs.
   class Client
     include API::Products
@@ -21,6 +24,18 @@ module MWS
     # locale - A String locale name.
     def initialize(locale)
       @endpoint = Endpoint.new locale
+    end
+
+    # Internal: Builds a parameter list for bulk operations 
+    # 
+    # name   - The String base name of the keys.
+    # values - A String value or an Array of values.
+    #
+    # Returns a Hash of parameters.
+    def build_list(name, values)
+      Array(values).to_enum(:each_with_index).inject({}) do |a, (v, i)|
+        a.update "#{name}List.#{name}.#{i + 1}" => v
+      end
     end
 
     # Configures the credentials of the endpoint.
