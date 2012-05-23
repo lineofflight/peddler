@@ -14,8 +14,9 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake',  '~> 0.9'
   s.add_development_dependency 'rspec', '~> 2.9'
-  s.add_runtime_dependency 'aws-url',   '~> 0.1.0'
+  s.add_runtime_dependency 'aws-url',   '~> 0.1.1'
   s.add_runtime_dependency 'faraday',   '~> 0.8.0'
+  s.add_runtime_dependency 'nokogiri',  '~> 1.5'
 
   s.files         = Dir.glob('lib/**/*') + %w(LICENSE README.md)
   s.test_files    = Dir.glob('spec/**/*')
