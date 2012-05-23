@@ -17,9 +17,12 @@ If you are looking for the wrapper to the deprecated AIM API,
 ## Usage
 
 ```ruby
-client = Peddler.new 'US', key:            'key',
-                           marketplace_id: '123',
-                           secret:         'secret'
+client = MWS::Client.new 'US'
+client.configure do |c|
+  c.key       = 'key'
+  c.secret    = 'secret'
+  c.seller_id = 'seller_id'
+end
 
 client.get_lowest_offer_listings_for_asin '0143105825'
 ```
