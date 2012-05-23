@@ -8,7 +8,7 @@ Peddler wraps the [Amazon Marketplace Web Service (MWS) APIs][mws].
 
 ## Notice
 
-The current master is an early work-in-progress. I'll be wading through and
+The master is an early work-in-progress. I'll be wading through and
 implementing the APIs as need dictates. Patches are more than welcome.
 
 If you are looking for the wrapper to the deprecated AIM API,
