@@ -26,7 +26,7 @@ module MWS
       @endpoint = Endpoint.new locale
     end
 
-    # Internal: Builds a parameter list for bulk operations 
+    # Internal: Builds a parameter list for bulk operations.
     # 
     # name   - The String base name of the keys.
     # values - A String value or an Array of values.
