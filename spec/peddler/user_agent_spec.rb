@@ -6,15 +6,15 @@ module Peddler
       subject { UserAgent.build }
 
       it 'describes the library' do
-        should { match /Peddler\/[\d\w.]+\s/ }
+        should match /Peddler\/[\d\w.]+\s/
       end
 
       it 'describes the Ruby interpreter' do
-        should { match /Language=(?:j?ruby|rbx)/ }
+        should match /Language=(?:j?ruby|rbx)/
       end
 
       it 'describes the host' do
-        should { match /Host=[\w\d]+/ }
+        should match /Host=[\w\d]+/
       end
     end
   end
