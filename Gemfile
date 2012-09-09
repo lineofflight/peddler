@@ -1,7 +1,9 @@
 source 'http://rubygems.org'
 gemspec
-gem 'jruby-openssl', :platform => :jruby
-
+platform :jruby do
+  gem 'jruby-openssl'
+  gem 'minitest'
+end
 unless ENV['CI']
   gem 'guard-minitest'
   gem 'pry'
