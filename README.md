@@ -1,34 +1,22 @@
 # Peddler
 
-[![travis][status]][travis]
+[![travis][1]][2]
 
-![Peddler][mussels]
+![Peddler][3]
 
-Peddler wraps the [Amazon Marketplace Web Service (MWS) APIs][mws].
-
-## Notice
-
-The master is an early work-in-progress. I'll be wading through and
-implementing the APIs as need dictates. Patches are more than welcome.
-
-If you are looking for the wrapper to the deprecated AIM API,
-[go here][old-peddler].
-
-## Usage
+Peddler wraps the [Amazon Marketplace Web Service (MWS) APIs][4].
 
 ```ruby
-client = MWS::Client.new 'US'
-client.configure do |c|
-  c.key       = 'key'
-  c.secret    = 'secret'
-  c.seller_id = 'seller_id'
-end
+request = Peddler::Products.new 'US'
 
-client.get_lowest_offer_listings_for_asin '0143105825'
+request.configure key:      'key',
+                  secret:   'secret',
+                  seller:   'seller'
+
+request.get query: { 'Action => 'GetServiceStatus' }
 ```
 
-[status]: https://secure.travis-ci.org/hakanensari/peddler.png
-[travis]: http://travis-ci.org/hakanensari/peddler
-[old-peddler]: https://github.com/hakanensari/peddler/tree/v0.3.1
-[mussels]: http://f.cl.ly/items/0W3V0A1Z110Q0x461b3H/mussels.jpeg
-[mws]: https://developer.amazonservices.com/gp/mws/docs.html
+[1]: https://secure.travis-ci.org/papercavalier/peddler.png
+[2]: http://travis-ci.org/papercavalier/peddler
+[3]: http://f.cl.ly/items/0W3V0A1Z110Q0x461b3H/mussels.jpeg
+[4]: https://developer.amazonservices.com/gp/mws/docs.html
