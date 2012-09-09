@@ -2,23 +2,21 @@
 $:.push File.expand_path('../lib', __FILE__)
 require 'peddler/version'
 
-Gem::Specification.new do |s|
-  s.name        = 'peddler'
-  s.version     = Peddler::VERSION
-  s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Hakan Ensari']
-  s.email       = ['hakan.ensari@papercavalier.com']
-  s.homepage    = 'http://github.com/hakanensari/peddler'
-  s.summary     = %q{Wraps the Amazon Marketplace Web Service API}
-  s.description = %q{A wrapper to the Amazon Marketplace Web Service (MWS) API}
+Gem::Specification.new do |gem|
+  gem.name        = 'peddler'
+  gem.version     = Peddler::VERSION
+  gem.platform    = Gem::Platform::RUBY
+  gem.authors     = ['Hakan Ensari', 'Ezekiel Templin']
+  gem.email       = ['code@papercavalier.com']
+  gem.homepage    = 'http://github.com/papercavalier/peddler'
+  gem.summary     = %q{Wraps the Amazon Marketplace Web Service API}
+  gem.description = %q{A wrapper to the Amazon Marketplace Web Service (MWS) API}
 
-  s.add_development_dependency 'rake',  '~> 0.9'
-  s.add_development_dependency 'rspec', '~> 2.9'
-  s.add_runtime_dependency 'aws-url',   '~> 0.1.1'
-  s.add_runtime_dependency 'faraday',   '~> 0.8.0'
-  s.add_runtime_dependency 'nokogiri',  '~> 1.5'
+  gem.files         = Dir.glob('lib/**/*') + %w(LICENSE README.md)
+  gem.test_files    = Dir.glob('test/**/*')
+  gem.require_paths = ['lib']
 
-  s.files         = Dir.glob('lib/**/*') + %w(LICENSE README.md)
-  s.test_files    = Dir.glob('spec/**/*')
-  s.require_paths = ['lib']
+  gem.add_development_dependency 'rake'
+  gem.add_dependency 'jeff', '~> 0.4.0'
+  gem.required_ruby_version = '>= 1.9'
 end

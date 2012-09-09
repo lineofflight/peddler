@@ -1,9 +1,11 @@
-# Test where the risk is.
+$:.unshift File.expand_path '../../lib', __FILE__
 
-require 'rspec'
+require 'minitest/autorun'
+require 'minitest/pride'
+
+require 'peddler'
+
 begin
   require 'pry'
 rescue LoadError
 end
-
-require 'peddler'
