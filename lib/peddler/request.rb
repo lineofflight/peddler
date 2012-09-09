@@ -65,17 +65,21 @@ module Peddler
       raise NotImplementedError
     end
 
-    # Returns a String Marketplace ID.
+    # Returns a String Marketplace id.
     #
     # locale - The String MWS API locale (default: the request locale).
     def marketplace(locale = nil)
       MARKETPLACES[locale || @locale] or raise BadLocale
     end
 
+    # Gets the String MWS seller id.
+    #
+    # Raises a Missing Seller error if seller id is missing.
     def seller
       @seller or raise MissingSeller
     end
 
+    # Sets the String MWS seller id.
     attr_writer :seller
   end
 end
