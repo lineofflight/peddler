@@ -1,1 +1,1 @@
-require 'mws/client'
+require 'peddler/products'
