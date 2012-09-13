@@ -1,6 +1,6 @@
-require 'peddler/request'
+require 'peddler/service'
 
 module Peddler
-  class Feeds < Request
+  class Feeds < Service
   end
 end

@@ -2,18 +2,17 @@ require_relative '../spec_helper'
 
 module Peddler
   describe Products do
-    let(:request) { Products.new 'US' }
+    let(:service) { Products.new 'US' }
 
     it 'has an endpoint' do
-      request.endpoint.must_include 'Products/2011-10-01'
+      service.endpoint.must_include 'Products/2011-10-01'
     end
 
-    it 'has default parameters' do
-      %w(key secret seller).each do |attr|
-        request.send "#{attr}=", 'foo'
-      end
-
-      request.params.wont_be_empty
+    it 'gets the service status' do
+      service.configure key:    'foo',
+                        secret: 'bar',
+                        seller: 'baz'
+      service.status.must_match(/GREEN|YELLOW|RED/)
     end
   end
 end

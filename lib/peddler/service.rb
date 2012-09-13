@@ -4,8 +4,8 @@ module Peddler
   BadLocale     = Class.new ArgumentError
   MissingSeller = Class.new ArgumentError
 
-  # A request to an Marketplace Web Services (MWS) API endpoint.
-  class Request
+  # A Marketplace Web Services (MWS) endpoint.
+  class Service
     include Jeff
 
     params 'SellerId' => -> { seller }
@@ -42,7 +42,7 @@ module Peddler
       base.params params
     end
 
-    # Creates a new request for given locale.
+    # Creates a new service endpoint for given locale.
     #
     # locale - The String MWS API locale.
     #
@@ -51,9 +51,9 @@ module Peddler
       @host = HOSTS[@locale = locale] or raise BadLocale
     end
 
-    # Configures the Amazon Product Advertising API request.
+    # Configures the MWS endpoint.
     #
-    # credentials - The Hash credentials of the API endpoint.
+    # credentials - The Hash credentials.
     #               :key    - The String Amazon Web Services (AWS) key.
     #               :secret - The String AWS secret.
     #               :seller - The String MWS Seller Id.
@@ -69,7 +69,8 @@ module Peddler
 
     # Returns a String Marketplace id.
     #
-    # locale - The String MWS API locale (default: the request locale).
+    # locale - The String MWS API locale (default: the locale of the service
+    #          endpoint).
     def marketplace(locale = nil)
       MARKETPLACES[locale || @locale] or raise BadLocale
     end
@@ -83,5 +84,12 @@ module Peddler
 
     # Sets the String MWS seller id.
     attr_writer :seller
+
+    # Gets the String service status.
+    def status
+      get(query: { 'Action' => 'GetServiceStatus' })
+        .body
+        .match(/GREEN|YELLOW|RED/)[0]
+    end
   end
 end

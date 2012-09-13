@@ -1,7 +1,7 @@
-require 'peddler/request'
+require 'peddler/service'
 
 module Peddler
-  class Inventory < Request
+  class Inventory < Service
   end
 end
 
