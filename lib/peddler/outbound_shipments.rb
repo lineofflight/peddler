@@ -1,7 +1,7 @@
-require 'peddler/request'
+require 'peddler/service'
 
 module Peddler
-  class OutboundShipments < Request
+  class OutboundShipments < Service
   end
 end
 
