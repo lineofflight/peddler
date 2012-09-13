@@ -7,13 +7,13 @@
 Peddler wraps the [Amazon Marketplace Web Service (MWS) APIs][4].
 
 ```ruby
-request = Peddler::Products.new 'US'
+service = Peddler::Products.new 'US'
 
-request.configure key:      'key',
-                  secret:   'secret',
-                  seller:   'seller'
+service.configure key:    'key',
+                  secret: 'secret',
+                  seller: 'seller'
 
-request.get query: { 'Action => 'GetServiceStatus' }
+service.status # => "GREEN"
 ```
 
 [1]: https://secure.travis-ci.org/papercavalier/peddler.png
