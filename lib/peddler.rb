@@ -1,3 +1,3 @@
-%w(feeds products).each do |service|
+%w(feeds products sellers).each do |service|
   require "peddler/#{service}"
 end
