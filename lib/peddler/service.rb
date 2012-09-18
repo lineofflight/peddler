@@ -4,9 +4,19 @@ module Peddler
   BadLocale     = Class.new ArgumentError
   MissingSeller = Class.new ArgumentError
 
-  # A Marketplace Web Services (MWS) endpoint.
+  # A wrapper around a Marketplace Web Services (MWS) endpoint.
   class Service
     include Jeff
+
+    class << self
+      # Gets/Sets the path of the MWS endpoint.
+      #
+      # path - A String path (optional).
+      def path(path = nil)
+        @path = path if path
+        @path
+      end
+    end
 
     params 'SellerId' => -> { seller }
 
@@ -63,8 +73,9 @@ module Peddler
       credentials.each { |key, val| self.send "#{key}=", val }
     end
 
+    # Returns the String MWS endpoint.
     def endpoint
-      raise NotImplementedError
+      "https://#{@host}/#{self.class.path}"
     end
 
     # Returns a String Marketplace id.
@@ -89,7 +100,7 @@ module Peddler
     def status
       get(query: { 'Action' => 'GetServiceStatus' })
         .body
-        .match(/GREEN|YELLOW|RED/)[0]
+        .match(/GREEN_?I?|YELLOW|RED/)[0]
     end
   end
 end
