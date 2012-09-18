@@ -54,7 +54,7 @@ pricing decisions for listing those products on Amazon Marketplace websites.
 
 The Reports API lets you request reports about your inventory and orders.
 
-# Sellers
+## Sellers
 
 The Sellers API lets sellers retrieve information about their seller account,
 such as the marketplaces they participate in.
