@@ -18,6 +18,10 @@ module Peddler
       Service.path ''
     end
 
+    it 'has a User-Agent header' do
+      service.headers.wont_be_empty
+    end
+
     it 'gets the service status' do
       service.configure key:    'foo',
                         secret: 'bar',
