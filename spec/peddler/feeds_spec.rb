@@ -2,7 +2,7 @@ require_relative '../spec_helper'
 
 module Peddler
   describe Feeds do
-    let(:service) { Feeds.new 'US' }
+    let(:service) { Feeds.new('US') }
 
     it 'gets the service status' do
       service.configure key:    'foo',
