@@ -1,8 +1,8 @@
 require 'jeff'
 
 module Peddler
-  BadLocale     = Class.new ArgumentError
-  MissingSeller = Class.new ArgumentError
+  BadLocale     = Class.new(ArgumentError)
+  MissingSeller = Class.new(ArgumentError)
 
   # A wrapper around a Marketplace Web Services (MWS) endpoint.
   class Service
@@ -49,10 +49,10 @@ module Peddler
     }
 
     def self.inherited(base)
-      base.params params
+      base.params(params)
     end
 
-    # Creates a new service endpoint for given locale.
+    # Create a new service endpoint for given locale.
     #
     # locale - The String MWS API locale.
     #
@@ -61,7 +61,7 @@ module Peddler
       @host = HOSTS[@locale = locale] or raise BadLocale
     end
 
-    # Configures the MWS endpoint.
+    # Configure the MWS endpoint.
     #
     # credentials - The Hash credentials.
     #               :key    - The String Amazon Web Services (AWS) key.
@@ -70,7 +70,7 @@ module Peddler
     #
     # Returns nothing.
     def configure(credentials)
-      credentials.each { |key, val| self.send "#{key}=", val }
+      credentials.each { |key, val| self.send("#{key}=", val) }
     end
 
     # Returns the String MWS endpoint.
