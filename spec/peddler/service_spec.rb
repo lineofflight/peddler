@@ -2,7 +2,7 @@ require_relative '../spec_helper'
 
 module Peddler
   describe Service do
-    let(:service) { Service.new 'US' }
+    let(:service) { Service.new('US') }
 
     it 'requires a valid locale' do
       -> { Service.new('foo') }.must_raise BadLocale

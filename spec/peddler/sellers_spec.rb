@@ -2,7 +2,7 @@ require_relative '../spec_helper'
 
 module Peddler
   describe Sellers do
-    let(:service) { Sellers.new 'US' }
+    let(:service) { Sellers.new('US') }
 
     it 'configures the endpoint path' do
       service.endpoint.must_match(/Sellers/)
