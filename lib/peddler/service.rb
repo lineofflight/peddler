@@ -37,11 +37,11 @@ module Peddler
     # A list of MWS marketplace ids.
     MARKETPLACES = {
       'CA' => 'A2EUQ1WTGCTBG2',
-      'CN' => nil,
+      'CN' => 'AAHKV2X7AFYLW',
       'DE' => 'A1PA6795UKMFR9',
       'ES' => 'A1RKKUPIHCS9HS',
       'FR' => 'A13V1IB3VIYZZH',
-      'IN' => nil,
+      'IN' => 'A21TJRUUN4KGV',
       'IT' => 'APJ6JRA9NG5V4',
       'JP' => 'A1VC38T7YXB528',
       'UK' => 'A1F83G8C2ARO7P',
