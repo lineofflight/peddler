@@ -1,4 +1,5 @@
 require 'jeff'
+require 'peddler/response'
 
 module Peddler
   # Service is an abstract wrapper around a Marketplace Web Services (MWS)
@@ -23,7 +24,10 @@ module Peddler
     end
 
     # Here we add SellerId to the default parameters already provided by Jeff.
-    params('SellerId' => -> { seller_id })
+    params(
+      'SellerId'      => -> { seller_id },
+      'MarketplaceId' => -> { marketplace_id }
+    )
 
     # A list of MWS hosts.
     HOSTS = {
@@ -57,6 +61,15 @@ module Peddler
       base.params(params)
     end
 
+    # Configure the service credentials.
+    #
+    # credentials - A Hash of credentials.
+    #
+    # Returns nothing.
+    def configure(credentials)
+      credentials.each { |k, v| self.send("#{k}=", v) }
+    end
+
     # Returns the String MWS endpoint.
     def endpoint
       "https://#{HOSTS.fetch(marketplace)}/#{self.class.path}"
@@ -67,13 +80,30 @@ module Peddler
       MARKETPLACE_IDS[marketplace]
     end
 
+    # Override Jeff's HTTP verbs so we can wrap responses.
+    Excon::HTTP_VERBS.each do |method|
+      eval <<-DEF
+        def #{method}(params)
+          Response.new(super(query: params))
+        end
+      DEF
+    end
+
     # Query the operational status of the service.
     #
     # Returns a String GREEN, GREEN_I, YELLOW or RED status.
     def get_service_status
-      res = get(query: { 'Action' => 'GetServiceStatus' })
-        .body
-        .match(/Status>([^<]+)/)[1]
+      post('Action' => 'GetServiceStatus')
+    end
+
+    private
+
+    def list(key, values)
+      Array(values)
+        .to_enum(:each_with_index)
+        .reduce({}) { |hsh, (value, index)|
+          hsh.update("#{key}List.#{key}.#{index + 1}" => value)
+        }
     end
   end
 end
