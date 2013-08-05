@@ -1,13 +1,8 @@
-$:.unshift File.expand_path '../../lib', __FILE__
-
+$:.unshift(File.expand_path('../../lib', __FILE__))
+require 'peddler'
 require 'minitest/autorun'
+require 'minitest/pride'
 begin
-  require 'minitest/pride'
   require 'pry'
 rescue LoadError
 end
-
-require 'peddler'
-
-# https://github.com/geemus/excon/issues/142#issuecomment-8531521
-Excon.defaults[:nonblock] = false if RUBY_PLATFORM == 'java'

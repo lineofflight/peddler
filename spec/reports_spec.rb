@@ -1,12 +1,8 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 module Peddler
-  describe Products do
-    let(:service) { Products.new('US') }
-
-    it 'configures the endpoint path' do
-      service.endpoint.must_match(/Products/)
-    end
+  describe Reports do
+    let(:service) { Reports.new('US') }
 
     it 'gets the service status' do
       service.configure key:    'foo',
