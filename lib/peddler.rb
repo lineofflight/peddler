@@ -1,6 +1,8 @@
-%w(
-  feeds fulfillment_inbound_shipment fulfillment_inventory
-  fulfillment_outbound_shipment orders products reports sellers
-).each do |service|
-  require "peddler/#{service}"
-end
+require 'peddler/feeds'
+require 'peddler/fulfillment_inbound_shipment'
+require 'peddler/fulfillment_inventory'
+require 'peddler/fulfillment_outbound_shipment'
+require 'peddler/orders'
+require 'peddler/products'
+require 'peddler/reports'
+require 'peddler/sellers'
