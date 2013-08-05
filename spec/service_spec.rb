@@ -4,10 +4,10 @@ module Peddler
   describe Service do
     before do
       @klass = Class.new(Service)
-      @service = Products.new(*::MWS_KEYS.values)
+      @service = @klass.new(*::MWS_KEYS.values)
     end
 
-    it 'configures the endpoint path' do
+    it 'configures the URL path' do
       @klass.path('Foo')
       @service.endpoint.must_match(/Foo$/)
     end
@@ -16,9 +16,12 @@ module Peddler
       @service.connection.data[:headers].wont_be_empty
     end
 
-    it 'gets the service status' do
-      res = @service.get_service_status
-      res['Status'].must_match(/GREEN|YELLOW|RED/)
+    it 'returns a marketplace' do
+      @service.marketplace_id.wont_be_empty
+    end
+
+    it 'finds a marketplace' do
+      @service.find_marketplace_id('US').wont_equal @service.find_marketplace_id('GB')
     end
   end
 end

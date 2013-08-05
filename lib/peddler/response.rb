@@ -1,18 +1,14 @@
 require 'delegate'
-require 'forwardable'
 require 'multi_xml'
 
 module Peddler
+  # A thin wrapper around an Excon::Response.
   class Response < SimpleDelegator
-    extend Forwardable
-
-    def_delegator :parse, :[]
-
     # Parse response body into Ruby.
     #
-    # Returns a Hash response.
-    def parse
-      MultiXml.parse(body).values.first.values[1]
+    # Returns a Hash.
+    def to_hash
+      MultiXml.parse(body)
     end
   end
 end
