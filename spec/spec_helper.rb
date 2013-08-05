@@ -6,3 +6,5 @@ begin
   require 'pry'
 rescue LoadError
 end
+
+MWS_KEYS = YAML.load_file(File.expand_path('../amazon.yml', __FILE__))
