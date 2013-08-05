@@ -4,7 +4,7 @@ module Peddler
   describe Service do
     before do
       @klass = Class.new(Service)
-      @service = @klass.new('US', 'key', 'secret', 'seller')
+      @service = Products.new(*::MWS_KEYS.values)
     end
 
     it 'configures the endpoint path' do
@@ -17,7 +17,8 @@ module Peddler
     end
 
     it 'gets the service status' do
-      @service.get_service_status.must_match(/GREEN|YELLOW|RED/)
+      res = @service.get_service_status
+      res['Status'].must_match(/GREEN|YELLOW|RED/)
     end
   end
 end
