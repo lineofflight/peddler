@@ -17,7 +17,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'jeff', '~> 0.7.0'
+  gem.add_dependency 'multi_xml', '~> 0.5.0'
   gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rake'
 
   gem.required_ruby_version = '>= 1.9'

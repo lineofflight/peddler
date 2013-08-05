@@ -5,29 +5,16 @@ module Peddler
   # Service is an abstract wrapper around a Marketplace Web Services (MWS)
   # endpoint.
   #
-  # Its initializer takes four arguments:
+  # The initializer takes four optional arguments:
   #
-  # marketplace           - The String ISO 3166-1 two-letter country code of
-  #                         the Amazon marketplace (default: nil).
-  # aws_access_key_id     - The String AWS access key id (default: nil).
-  # aws_secret_access_key - The String AWS secret access key (default: nil).
-  # seller_id             - The String MWS merchant id (default: nil).
-  Service = Struct.new(:marketplace, :aws_access_key_id, :aws_secret_access_key, :seller_id) do
+  # country               - The String ISO 3166-1 two-letter country code of
+  #                         the Amazon marketplace.
+  # aws_access_key_id     - The String AWS access key id.
+  # aws_secret_access_key - The String AWS secret access key.
+  # seller_id             - The String MWS merchant id.
+  Service = Struct.new(:country, :aws_access_key_id, :aws_secret_access_key, :seller_id) do
     # Jeff owns this service.
     include Jeff
-
-    # Gets/Sets the path of the MWS endpoint.
-    #
-    # path - A String path (optional).
-    def self.path(path = nil)
-      path ? @path = path : @path
-    end
-
-    # Here we add SellerId to the default parameters already provided by Jeff.
-    params(
-      'SellerId'      => -> { seller_id },
-      'MarketplaceId' => -> { marketplace_id }
-    )
 
     # A list of MWS hosts.
     HOSTS = {
@@ -43,7 +30,7 @@ module Peddler
       'US' => 'mws.amazonservices.com'
     }
 
-    # A list of MWS marketplace ids.
+    # A list of marketplace ids.
     MARKETPLACE_IDS = {
       'CA' => 'A2EUQ1WTGCTBG2',
       'CN' => 'AAHKV2X7AFYLW',
@@ -57,53 +44,46 @@ module Peddler
       'US' => 'ATVPDKIKX0DER'
     }
 
+    # Gets/Sets the path of the MWS endpoint.
+    #
+    # path - A String path (default: nil).
+    def self.path(path = nil)
+      path ? @path = path : @path
+    end
+
+    # So that subclasses can continue adding their params.
     def self.inherited(base)
       base.params(params)
     end
 
-    # Configure the service credentials.
-    #
-    # credentials - A Hash of credentials.
-    #
-    # Returns nothing.
-    def configure(credentials)
-      credentials.each { |k, v| self.send("#{k}=", v) }
-    end
+    params('SellerId' => -> { seller_id })
 
     # Returns the String MWS endpoint.
     def endpoint
-      "https://#{HOSTS.fetch(marketplace)}/#{self.class.path}"
+      "https://#{HOSTS.fetch(country)}/#{self.class.path}"
     end
 
-    # Returns the String Marketplace id.
+    # Returns the seller's String marketplace id.
     def marketplace_id
-      MARKETPLACE_IDS[marketplace]
+      find_marketplace_id(country)
     end
 
-    # Override Jeff's HTTP verbs so we can wrap responses.
+    # Find a marketplace id.
+    #
+    # country - A String ISO 3166-1 two-letter country code.
+    #
+    # Returns a String marketplace id.
+    def find_marketplace_id(country)
+      MARKETPLACE_IDS.fetch(country)
+    end
+
+    # Override Jeff's HTTP verbs to wrap responses.
     Excon::HTTP_VERBS.each do |method|
       eval <<-DEF
         def #{method}(params)
-          Response.new(super(query: params))
+          Response.new(super(query: params, idempotent: true, expects: 200))
         end
       DEF
-    end
-
-    # Query the operational status of the service.
-    #
-    # Returns a String GREEN, GREEN_I, YELLOW or RED status.
-    def get_service_status
-      post('Action' => 'GetServiceStatus')
-    end
-
-    private
-
-    def list(key, values)
-      Array(values)
-        .to_enum(:each_with_index)
-        .reduce({}) { |hsh, (value, index)|
-          hsh.update("#{key}List.#{key}.#{index + 1}" => value)
-        }
     end
   end
 end
