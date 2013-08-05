@@ -1,11 +1,11 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 module Peddler
-  describe FulfillmentInboundShipment do
-    let(:service) { FulfillmentInboundShipment.new('US') }
+  describe FulfillmentInventory do
+    let(:service) { FulfillmentInventory.new('US') }
 
     it 'configures the endpoint path' do
-      service.endpoint.must_match(/FulfillmentInboundShipment/)
+      service.endpoint.must_match(/FulfillmentInventory/)
     end
 
     it 'gets the service status' do
