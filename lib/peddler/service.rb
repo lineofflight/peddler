@@ -1,24 +1,29 @@
 require 'jeff'
 
 module Peddler
-  BadLocale     = Class.new(ArgumentError)
-  MissingSeller = Class.new(ArgumentError)
-
-  # A wrapper around a Marketplace Web Services (MWS) endpoint.
-  class Service
+  # Service is an abstract wrapper around a Marketplace Web Services (MWS)
+  # endpoint.
+  #
+  # Its initializer takes four arguments:
+  #
+  # marketplace           - The String ISO 3166-1 two-letter country code of
+  #                         the Amazon marketplace (default: nil).
+  # aws_access_key_id     - The String AWS access key id (default: nil).
+  # aws_secret_access_key - The String AWS secret access key (default: nil).
+  # seller_id             - The String MWS merchant id (default: nil).
+  Service = Struct.new(:marketplace, :aws_access_key_id, :aws_secret_access_key, :seller_id) do
+    # Jeff owns this service.
     include Jeff
 
-    class << self
-      # Gets/Sets the path of the MWS endpoint.
-      #
-      # path - A String path (optional).
-      def path(path = nil)
-        @path = path if path
-        @path
-      end
+    # Gets/Sets the path of the MWS endpoint.
+    #
+    # path - A String path (optional).
+    def self.path(path = nil)
+      path ? @path = path : @path
     end
 
-    params 'SellerId' => -> { seller }
+    # Here we add SellerId to the default parameters already provided by Jeff.
+    params('SellerId' => -> { seller_id })
 
     # A list of MWS hosts.
     HOSTS = {
@@ -27,24 +32,24 @@ module Peddler
       'DE' => 'mws-eu.amazonservices.com',
       'ES' => 'mws-eu.amazonservices.com',
       'FR' => 'mws-eu.amazonservices.com',
+      'GB' => 'mws-eu.amazonservices.com',
       'IN' => 'mws.amazonservices.in',
       'IT' => 'mws-eu.amazonservices.com',
       'JP' => 'mws.amazonservices.jp',
-      'UK' => 'mws-eu.amazonservices.com',
       'US' => 'mws.amazonservices.com'
     }
 
     # A list of MWS marketplace ids.
-    MARKETPLACES = {
+    MARKETPLACE_IDS = {
       'CA' => 'A2EUQ1WTGCTBG2',
       'CN' => 'AAHKV2X7AFYLW',
       'DE' => 'A1PA6795UKMFR9',
       'ES' => 'A1RKKUPIHCS9HS',
       'FR' => 'A13V1IB3VIYZZH',
+      'GB' => 'A1F83G8C2ARO7P',
       'IN' => 'A21TJRUUN4KGV',
       'IT' => 'APJ6JRA9NG5V4',
       'JP' => 'A1VC38T7YXB528',
-      'UK' => 'A1F83G8C2ARO7P',
       'US' => 'ATVPDKIKX0DER'
     }
 
@@ -52,55 +57,23 @@ module Peddler
       base.params(params)
     end
 
-    # Create a new service endpoint for given locale.
-    #
-    # locale - The String MWS API locale.
-    #
-    # Raises a Bad Locale error if locale is not valid.
-    def initialize(locale)
-      @host = HOSTS[@locale = locale] or raise BadLocale
-    end
-
-    # Configure the MWS endpoint.
-    #
-    # credentials - The Hash credentials.
-    #               :key    - The String Amazon Web Services (AWS) key.
-    #               :secret - The String AWS secret.
-    #               :seller - The String MWS Seller Id.
-    #
-    # Returns nothing.
-    def configure(credentials)
-      credentials.each { |key, val| self.send("#{key}=", val) }
-    end
-
     # Returns the String MWS endpoint.
     def endpoint
-      "https://#{@host}/#{self.class.path}"
+      "https://#{HOSTS.fetch(marketplace)}/#{self.class.path}"
     end
 
-    # Returns a String Marketplace id.
+    # Returns the String Marketplace id.
+    def marketplace_id
+      MARKETPLACE_IDS[marketplace]
+    end
+
+    # Query the operational status of the service.
     #
-    # locale - The String MWS API locale (default: the locale of the service
-    #          endpoint).
-    def marketplace(locale = nil)
-      MARKETPLACES[locale || @locale] or raise BadLocale
-    end
-
-    # Gets the String MWS seller id.
-    #
-    # Raises a Missing Seller error if seller id is missing.
-    def seller
-      @seller or raise MissingSeller
-    end
-
-    # Sets the String MWS seller id.
-    attr_writer :seller
-
-    # Gets the String service status.
-    def status
-      get(query: { 'Action' => 'GetServiceStatus' })
+    # Returns a String GREEN, GREEN_I, YELLOW or RED status.
+    def get_service_status
+      res = get(query: { 'Action' => 'GetServiceStatus' })
         .body
-        .match(/GREEN_?I?|YELLOW|RED/)[0]
+        .match(/Status>([^<]+)/)[1]
     end
   end
 end
