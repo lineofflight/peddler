@@ -1,19 +1,19 @@
 require 'jeff'
-require 'peddler/response'
 
 module Peddler
   # Service is an abstract wrapper around a Marketplace Web Services (MWS)
   # endpoint.
   #
-  # The initializer takes four optional arguments:
+  # The initializer takes four arguments:
   #
   # country               - The String ISO 3166-1 two-letter country code of
-  #                         the Amazon marketplace.
+  #                         the base marketplace of the seller.
   # aws_access_key_id     - The String AWS access key id.
   # aws_secret_access_key - The String AWS secret access key.
   # seller_id             - The String MWS merchant id.
+  #
+  # These arguments are optional and can be set individually later.
   Service = Struct.new(:country, :aws_access_key_id, :aws_secret_access_key, :seller_id) do
-    # Jeff owns this service.
     include Jeff
 
     # A list of MWS hosts.
@@ -63,27 +63,13 @@ module Peddler
       "https://#{HOSTS.fetch(country)}/#{self.class.path}"
     end
 
-    # Returns the seller's String marketplace id.
-    def marketplace_id
-      find_marketplace_id(country)
-    end
-
-    # Find a marketplace id.
+    # Get the marketplace id for a given country.
     #
     # country - A String ISO 3166-1 two-letter country code.
     #
     # Returns a String marketplace id.
-    def find_marketplace_id(country)
+    def marketplace_id(country)
       MARKETPLACE_IDS.fetch(country)
-    end
-
-    # Override Jeff's HTTP verbs to wrap responses.
-    Excon::HTTP_VERBS.each do |method|
-      eval <<-DEF
-        def #{method}(params)
-          Response.new(super(query: params, idempotent: true, expects: 200))
-        end
-      DEF
     end
   end
 end
