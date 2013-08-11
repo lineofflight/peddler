@@ -51,9 +51,9 @@ module Peddler
       path ? @path = path : @path
     end
 
-    # So that subclasses can continue adding their params.
     def self.inherited(base)
       base.params(params)
+      base.path(path)
     end
 
     params('SellerId' => -> { seller_id })
