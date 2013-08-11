@@ -18,4 +18,13 @@ class ServiceTest < MiniTest::Test
   def test_gets_marketplace_ids
     refute_equal @service.marketplace_id('US'), @service.marketplace_id('GB')
   end
+
+  def test_inherits_parent_params
+    assert_equal Peddler::Service.params, @klass.params
+  end
+
+  def test_inherits_parent_path
+    @klass.path 'foo'
+    assert_equal @klass.path, Class.new(@klass).path
+  end
 end
