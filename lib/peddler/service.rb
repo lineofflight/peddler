@@ -3,18 +3,26 @@ require 'jeff'
 module Peddler
   # Service is an abstract wrapper around a Marketplace Web Services (MWS)
   # endpoint.
-  #
-  # The initializer takes four arguments:
-  #
-  # country               - The String ISO 3166-1 two-letter country code of
-  #                         the base marketplace of the seller.
-  # aws_access_key_id     - The String AWS access key id.
-  # aws_secret_access_key - The String AWS secret access key.
-  # seller_id             - The String MWS merchant id.
-  #
-  # These arguments are optional and can be set individually later.
-  class Service < Struct.new(:country, :aws_access_key_id, :aws_secret_access_key, :seller_id)
+  class Service
     include Jeff
+
+    attr_accessor :country, :seller_id
+
+    # The initializer takes four arguments:
+    #
+    # country               - The String ISO 3166-1 two-letter country code of
+    #                         the base marketplace of the seller.
+    # aws_access_key_id     - The String AWS access key id.
+    # aws_secret_access_key - The String AWS secret access key.
+    # seller_id             - The String MWS merchant id.
+    #
+    # These arguments are optional and can be set individually later.
+    def initialize(country = nil, aws_access_key_id = nil, aws_secret_access_key = nil, seller_id = nil)
+      @country = country
+      @aws_access_key_id = aws_access_key_id
+      @aws_secret_access_key = aws_secret_access_key
+      @seller_id = seller_id
+    end
 
     # A list of MWS hosts.
     HOSTS = {
