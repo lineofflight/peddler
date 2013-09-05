@@ -13,7 +13,7 @@ module Peddler
   # seller_id             - The String MWS merchant id.
   #
   # These arguments are optional and can be set individually later.
-  Service = Struct.new(:country, :aws_access_key_id, :aws_secret_access_key, :seller_id) do
+  class Service < Struct.new(:country, :aws_access_key_id, :aws_secret_access_key, :seller_id)
     include Jeff
 
     # A list of MWS hosts.

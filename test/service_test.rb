@@ -27,4 +27,8 @@ class ServiceTest < MiniTest::Test
     @klass.path 'foo'
     assert_equal @klass.path, Class.new(@klass).path
   end
+
+  def test_defines_constants_on_service
+    refute_nil @klass.const_get(:HOSTS)
+  end
 end
