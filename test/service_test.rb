@@ -31,4 +31,12 @@ class ServiceTest < MiniTest::Test
   def test_defines_constants_on_service
     refute_nil @klass.const_get(:HOSTS)
   end
+
+  def test_has_a_key
+    refute_nil @service.aws_access_key_id
+  end
+
+  def test_has_a_secret
+    refute_nil @service.aws_secret_access_key
+  end
 end
