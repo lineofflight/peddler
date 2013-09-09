@@ -8,7 +8,7 @@ Service (MWS) APIs][2].
 ## Usage
 
 ```ruby
-client = Peddler::Products.new('US', 'aws_key', 'aws_secret, 'seller_id')
+client = Peddler::Products.new('US', 'aws_key', 'aws_secret', 'seller_id')
 params = {
   'Marketplace' => client.marketplace_id('US'),
   'Action'      => 'ListMatchingProducts',
