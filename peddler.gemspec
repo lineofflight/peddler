@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'jeff', '~> 0.7.0'
   gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'guard-minitest'
   gem.add_development_dependency 'rake'
 
   gem.required_ruby_version = '>= 1.9'
