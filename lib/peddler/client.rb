@@ -10,9 +10,9 @@ module Peddler
 
     def initialize(default_country = nil, aws_access_key_id = nil, aws_secret_access_key = nil, merchant_id = nil)
       @default_country = default_country
-      @aws_access_key_id = aws_access_key_id
-      @aws_secret_access_key = aws_secret_access_key
-      @merchant_id = merchant_id
+      @aws_access_key_id = aws_access_key_id || ENV['AWS_ACCESS_KEY_ID']
+      @aws_secret_access_key = aws_secret_access_key || ENV['AWS_SECRET_ACCESS_KEY']
+      @merchant_id = merchant_id || ENV['MERCHANT_ID']
     end
 
     HOSTS = {
