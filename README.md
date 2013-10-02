@@ -34,7 +34,7 @@ export AWS_SECRET_ACCESS_KEY=secret
 export MERCHANT_ID=merchant_id
 ```
 
-Then, simply instantiate with the country code:
+Then, instantiate with the country code:
 
 ```ruby
 client = MWS::Orders::Client.new('US')
