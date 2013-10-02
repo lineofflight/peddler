@@ -3,7 +3,7 @@ require 'mws/orders/parsers/order_item'
 
 class OrderItemParserTest < ParserTest
   def setup
-    node = fixture('order_items').xpath('//xmlns:OrderItem').first
+    node = fixture('orders/order_items').xpath('//xmlns:OrderItem').first
     @order_item = MWS::Orders::Parsers::OrderItem.new(node)
   end
 

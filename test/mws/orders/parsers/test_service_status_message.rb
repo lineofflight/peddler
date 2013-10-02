@@ -3,7 +3,7 @@ require 'mws/orders/parsers/service_status_message'
 
 class ServiceStatusMessageParserTest < ParserTest
   def setup
-    node = fixture('service_status').xpath('//xmlns:Message').first
+    node = fixture('orders/service_status').xpath('//xmlns:Message').first
     @message = MWS::Orders::Parsers::ServiceStatusMessage.new(node)
   end
 

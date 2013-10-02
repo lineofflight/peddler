@@ -3,7 +3,7 @@ require 'mws/orders/parsers/service_status'
 
 class ServiceStatusParserTest < ParserTest
   def setup
-    node = fixture('service_status').xpath('//xmlns:GetServiceStatusResult').first
+    node = fixture('orders/service_status').xpath('//xmlns:GetServiceStatusResult').first
     @service_status = MWS::Orders::Parsers::ServiceStatus.new(node)
   end
 

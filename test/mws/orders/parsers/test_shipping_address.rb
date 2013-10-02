@@ -3,7 +3,7 @@ require 'mws/orders/parsers/shipping_address'
 
 class ShippingAddressParserTest < ParserTest
   def setup
-    node = fixture('orders').xpath('//xmlns:ShippingAddress').first
+    node = fixture('orders/orders').xpath('//xmlns:ShippingAddress').first
     @address = MWS::Orders::Parsers::ShippingAddress.new(node)
   end
 

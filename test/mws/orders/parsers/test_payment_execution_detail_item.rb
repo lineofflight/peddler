@@ -3,7 +3,7 @@ require 'mws/orders/parsers/payment_execution_detail_item'
 
 class PaymentExecutionDetailItemParserTest < ParserTest
   def setup
-    node = fixture('orders').xpath('//xmlns:PaymentExecutionDetailItem').first
+    node = fixture('orders/orders').xpath('//xmlns:PaymentExecutionDetailItem').first
     @pedi = MWS::Orders::Parsers::PaymentExecutionDetailItem.new(node)
   end
 
