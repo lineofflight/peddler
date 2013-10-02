@@ -1,0 +1,4 @@
+- country: GB
+  aws_access_key_id: foo
+  aws_secret_access_key: bar
+  seller_id: baz

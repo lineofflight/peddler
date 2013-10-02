@@ -1,0 +1,12 @@
+- country: US
+  aws_access_key_id: AKIAJOD3NLXHOMANRNQQ
+  aws_secret_access_key: 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
+  seller_id: A2JYSO6W6KEP83
+- country: GB
+  aws_access_key_id: AKIAJJDQ2MJTMPXKJE4A
+  aws_secret_access_key: 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
+  seller_id: A2D9DZ30GEWP6N
+- country: JP
+  aws_access_key_id: AKIAJ5RDDSRROM6GXQ5Q
+  aws_secret_access_key: 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
+  seller_id: A7BU5WGNVGQ1I
