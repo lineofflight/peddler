@@ -42,7 +42,10 @@ client = MWS::Orders::Client.new('US')
 
 ### Feeds
 
-Not implemented.
+The MWS Feeds API lets you upload inventory and order data to Amazon. You can
+also use this API to get information about the processing of feeds.
+
+[API methods are available on the client][3].
 
 ### Fulfillment Inbound Shipment
 
@@ -65,7 +68,7 @@ Not implemented.
 With the MWS Orders API, you can list orders created or updated during a time
 frame you specify or retrieve information about specific orders.
 
-[API methods are available on the client][3].
+[API methods are available on the client][4].
 
 #### Orders
 
@@ -139,4 +142,5 @@ Not implemented.
 
 [1]: http://f.cl.ly/items/0W3V0A1Z110Q0x461b3H/mussels.jpeg
 [2]: https://developer.amazonservices.com/gp/mws/docs.html
-[3]: https://github.com/papercavalier/peddler/blob/master/lib/mws/orders/client.rb
+[3]: https://github.com/papercavalier/peddler/blob/master/lib/mws/feeds/client.rb
+[4]: https://github.com/papercavalier/peddler/blob/master/lib/mws/orders/client.rb
