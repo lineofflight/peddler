@@ -1,14 +1,14 @@
 require  'parser_helper'
-require 'mws/feeds/parsers/feed'
+require 'mws/feeds/parsers/feed_submission'
 
 class FeedParserTest < ParserTest
   def setup
-    node = fixture('feeds/submit_feed').xpath('//xmlns:FeedSubmissionInfo').first
-    @feed = MWS::Feeds::Parsers::Feed.new(node)
+    node = fixture('feeds/feed_submission').xpath('//xmlns:FeedSubmissionInfo').first
+    @feed = MWS::Feeds::Parsers::FeedSubmission.new(node)
   end
 
-  def test_submission_id
-    assert_kind_of Integer, @feed.submission_id
+  def test_id
+    assert_kind_of Integer, @feed.id
   end
 
   def test_type

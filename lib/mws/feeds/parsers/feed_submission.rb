@@ -3,8 +3,8 @@ require 'peddler/parsers/model'
 module MWS
   module Feeds
     module Parsers
-      class Feed < ::Peddler::Parsers::Model
-        value :submission_id do
+      class FeedSubmission < ::Peddler::Parsers::Model
+        value :id do
           integer_at_xpath('FeedSubmissionId')
         end
 
