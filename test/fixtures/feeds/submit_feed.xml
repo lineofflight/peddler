@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<SubmitFeedResponse xmlns="http://mws.amazonservices.com/doc/2009-01-01/">
+  <SubmitFeedResult>
+    <FeedSubmissionInfo>
+      <FeedSubmissionId>2291326430</FeedSubmissionId>
+      <FeedType>_POST_PRODUCT_DATA_</FeedType>
+      <SubmittedDate>2009-02-20T02:10:35+00:00</SubmittedDate>
+      <FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus>
+    </FeedSubmissionInfo>
+  </SubmitFeedResult>
+  <ResponseMetadata>
+    <RequestId>75424a38-f333-4105-98f0-2aa9592d665c</RequestId>
+  </ResponseMetadata>
+</SubmitFeedResponse>
