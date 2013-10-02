@@ -67,6 +67,7 @@ frame you specify or retrieve information about specific orders.
 
 [API methods are available on the client][3].
 
+#### Orders
 ```ruby
 # See the API for all available parameters.
 client.list_orders(
@@ -89,7 +90,7 @@ client.get_order('123-1234567-1234567')
 
 All above queries will return an enumerable list of orders.
 
-### Order Items
+#### Order Items
 
 List order items based on an order number you specify:
 
@@ -105,7 +106,7 @@ client.list_order_items_by_next_token
 
 All above queries will return an enumerable list of order items.
 
-### Service Status
+#### Service Status
 
 Check the operational status of the API:
 
