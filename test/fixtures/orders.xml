@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<ListOrdersResponse xmlns="https://mws.amazonservices.com/Orders/2011-01-01">
+  <ListOrdersResult>
+    <NextToken>2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=</NextToken>
+    <LastUpdatedBefore>2010-10-05T18%3A12%3A20.687Z</LastUpdatedBefore>
+    <Orders>
+      <Order>
+        <AmazonOrderId>058-1233752-8214740</AmazonOrderId>
+        <PurchaseDate>2010-10-05T00%3A06%3A07.000Z</PurchaseDate>
+        <LastUpdateDate>2010-10-05T12%3A43%3A16.000Z</LastUpdateDate>
+        <OrderStatus>Unshipped</OrderStatus>
+        <OrderType>StandardOrder</OrderType>
+        <SalesChannel>Checkout by Amazon</SalesChannel>
+        <ShipServiceLevel>Std DE Dom</ShipServiceLevel>
+        <FulfillmentChannel>MFN</FulfillmentChannel>
+        <OrderTotal>
+          <CurrencyCode>USD</CurrencyCode>
+          <Amount>111.01</Amount>
+        </OrderTotal>
+        <ShippingAddress>
+          <Name>John Smith</Name>
+          <AddressLine1>2700 First Avenue</AddressLine1>
+          <City>Seattle</City>
+          <StateOrRegion>WA</StateOrRegion>
+          <PostalCode>98102</PostalCode>
+          <CountryCode>US</CountryCode>
+        </ShippingAddress>
+        <NumberOfItemsShipped>0</NumberOfItemsShipped>
+        <NumberOfItemsUnshipped>1</NumberOfItemsUnshipped>
+        <PaymentExecutionDetail>
+          <PaymentExecutionDetailItem>
+            <Payment>
+              <CurrencyCode>USD</CurrencyCode>
+              <Amount>101.01</Amount>
+            </Payment>
+            <PaymentMethod>COD</PaymentMethod>
+          </PaymentExecutionDetailItem>
+          <PaymentExecutionDetailItem>
+            <Payment>
+              <CurrencyCode>USD</CurrencyCode>
+              <Amount>10.00</Amount>
+            </Payment>
+            <PaymentMethod>GC</PaymentMethod>
+          </PaymentExecutionDetailItem>  
+        </PaymentExecutionDetail>
+        <PaymentMethod>COD</PaymentMethod>
+        <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+        <BuyerName>Amazon User</BuyerName>
+        <BuyerEmail>5vlh04mgfmjh9h5@marketplace.amazon.com</BuyerEmail>
+        <ShipmentServiceLevelCategory>Standard
+        </ShipmentServiceLevelCategory>
+      </Order>
+      <Order>
+        <ShipmentServiceLevelCategory>Standard
+        </ShipmentServiceLevelCategory>
+        <OrderTotal>
+          <Amount>10.87</Amount>
+          <CurrencyCode>USD</CurrencyCode>
+        </OrderTotal>
+        <FulfillmentChannel>MFN</FulfillmentChannel>
+        <BuyerEmail>1x3v628skdi34u2@marketplace.amazon.com</BuyerEmail>
+        <OrderStatus>Pending</OrderStatus>
+        <BuyerName>Example Name</BuyerName>
+        <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+        <CbaDisplayableShippingLabel>Example shipment service level
+        </CbaDisplayableShippingLabel>
+        <LastUpdateDate>2012-10-11T15:53:37Z</LastUpdateDate>
+        <PurchaseDate>2012-10-11T14:15:55Z</PurchaseDate>
+        <EarliestShipDate>2012-10-13T05:00:00Z</EarliestShipDate>
+        <LatestShipDate>2012-10-15T07:59:59Z</LatestShipDate>
+        <OrderType>Preorder</OrderType>
+        <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+        <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+        <SalesChannel>Amazon.com</SalesChannel>
+        <ShippingAddress>
+          <Phone>111 222 1234</Phone>
+          <PostalCode>48823</PostalCode>
+          <Name>Example Name</Name>
+          <CountryCode>US</CountryCode>
+          <StateOrRegion>WA</StateOrRegion>
+          <AddressLine1>1234 Ridge Rd</AddressLine1>
+          <City>Seattle</City>
+        </ShippingAddress>
+        <NumberOfItemsShipped>1</NumberOfItemsShipped>
+        <AmazonOrderId>123-1234567-4567890</AmazonOrderId>
+        <PaymentMethod>Other</PaymentMethod>
+      </Order>
+      <Order>
+        <ShipmentServiceLevelCategory>Standard
+        </ShipmentServiceLevelCategory>
+        <FulfillmentChannel>MFN</FulfillmentChannel>
+        <OrderStatus>Pending</OrderStatus>
+        <OrderType>StandardOrder</OrderType>
+        <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+        <LastUpdateDate>2012-10-12T20:34:00Z</LastUpdateDate>
+        <PurchaseDate>2012-10-12T20:33:16Z</PurchaseDate>
+        <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+        <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+        <SalesChannel>Amazon.com</SalesChannel>
+        <NumberOfItemsShipped>0</NumberOfItemsShipped>
+        <AmazonOrderId>123-9876543-6543212</AmazonOrderId>
+        <PaymentMethod>Other</PaymentMethod>
+      </Order>
+    </Orders>
+  </ListOrdersResult>
+  <ResponseMetadata>
+    <RequestId>88faca76-b600-46d2-b53c-0c8c4533e43a</RequestId>
+  </ResponseMetadata>
+</ListOrdersResponse>

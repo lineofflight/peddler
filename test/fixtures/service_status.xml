@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<GetServiceStatusResponse
+xmlns="https://mws.amazonservices.com/Orders/2011-01-01">
+  <GetServiceStatusResult>
+    <Status>GREEN_I</Status>
+    <Timestamp>2010-09-24T21:38:09.676Z</Timestamp>
+    <MessageId>173964729I</MessageId>
+    <Messages>
+      <Message>
+        <Locale>en_US</Locale>
+        <Text>We are experiencing high latency in UK because of heavy
+traffic.</Text>
+      </Message>
+    </Messages>
+  </GetServiceStatusResult>
+  <ResponseMetadata>
+    <RequestId>d80c6c7b-f7c7-4fa7-bdd7-854711cb3bcc</RequestId>
+  </ResponseMetadata>
+</GetServiceStatusResponse>
