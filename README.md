@@ -68,6 +68,9 @@ frame you specify or retrieve information about specific orders.
 [API methods are available on the client][3].
 
 #### Orders
+
+List orders:
+
 ```ruby
 # See the API for all available parameters.
 client.list_orders(
