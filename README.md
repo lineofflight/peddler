@@ -19,7 +19,7 @@ Alternatively, require a particular API only:
 require 'mws/orders'
 ```
 
-Instantiate a client with the ISO-3066 two-letter country code of the
+Instantiate a client with the ISO 3166-1 two-letter country code of the
 marketplace and your seller credentials:
 
 ```ruby
