@@ -47,6 +47,37 @@ also use this API to get information about the processing of feeds.
 
 [API methods are available on the client][3].
 
+Submit a feed:
+
+```ruby
+client.submit_feed(xml, '_POST_PRODUCT_DATA_')
+```
+
+List past feed submissions:
+
+```ruby
+# See the API for all available parameters for this and other methods.
+client.get_feed_submissions
+```
+
+List the next page of feed submissions:
+
+```ruby
+client.get_feed_submissions_by_next_token
+```
+
+Get the feed submission count:
+
+```ruby
+client.get_feed_submission_count(submitted_from_date: 1.day.ago)
+```
+
+Get the processing report for a submitted feed.
+
+```ruby
+client.feed_submission_result('123456')
+```
+
 ### Fulfillment Inbound Shipment
 
 Not implemented.
