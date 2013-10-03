@@ -1,4 +1,4 @@
-require  'parser_helper'
+require 'parser_helper'
 require 'mws/feeds/parsers/feed_submissions'
 
 class FeedSubmissionsParserTest < ParserTest

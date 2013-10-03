@@ -1,4 +1,4 @@
-require 'peddler/parsers/collection'
+require 'peddler/parsers/model'
 require 'mws/feeds/parsers/feed_submission'
 
 module MWS

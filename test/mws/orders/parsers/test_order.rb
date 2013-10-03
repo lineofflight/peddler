@@ -1,4 +1,4 @@
-require  'parser_helper'
+require 'parser_helper'
 require 'mws/orders/parsers/order'
 
 class OrderParserTest < ParserTest

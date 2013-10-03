@@ -1,7 +1,7 @@
-require  'parser_helper'
+require 'parser_helper'
 require 'mws/feeds/parsers/feed_submission'
 
-class FeedParserTest < ParserTest
+class FeedSubmissionParserTest < ParserTest
   def setup
     node = fixture('feeds/feed_submission').xpath('//xmlns:FeedSubmissionInfo').first
     @feed = MWS::Feeds::Parsers::FeedSubmission.new(node)
