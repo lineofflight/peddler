@@ -21,8 +21,8 @@ module MWS
 
       # Public: List orders created or updated during a specified time frame.
       #
-      # params - The Hash request parameters used to narrow the orders list.
-      #          Refer to the MWS Orders API for available parameters.
+      # options - The Hash query parameters used to narrow the list. Refer to
+      #           the MWS Orders API for available parameters.
       #
       # Examples
       #
