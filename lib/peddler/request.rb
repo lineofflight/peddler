@@ -4,14 +4,13 @@ require 'peddler/request/parameters'
 
 module Peddler
   class Request
-    def self.inherited(subclass)
-    end
-    attr :client
+    attr :client, :headers, :last_response
 
-    attr_accessor :last_response
+    attr_accessor :body
 
     def initialize(client)
       @client = client
+      @headers = {}
     end
 
     def next_token
@@ -19,36 +18,41 @@ module Peddler
       node.text if node
     end
 
-    private
+    def parameters(action = nil)
+      @parameters = Parameters.new(action) if action
+      @parameters
+    end
 
     def execute
       fetch
       parse
     end
 
+    private
+
+    def parser
+      @parser ||= Object.const_get(self.class.name.sub('Request', 'Parser'))
+    end
+
     def fetch
-      @last_response = client.post(query: parameters)
+      opts = { query: parameters }
+      opts[:headers] = headers unless headers.empty?
+      opts[:body] = body if body
+
+      # TODO Extract Response into a new class.
+      @last_response = client.post(opts)
     end
 
     def parse
-      parser.new(parser.handle?(:xml) ? xml_payload : body)
+      parser.new(parser.handle?(:xml) ? xml_payload : last_response_body)
     end
 
-    def parameters(action = nil)
-      @parameters = Parameters.new(action) if action
-      @parameters
-    end
-
-    def parser
-      Object.const_get(self.class.name.sub('Request', 'Parser'))
-    end
-
-    def body
+    def last_response_body
       last_response.body
     end
 
     def document
-      Nokogiri::XML(body)
+      Nokogiri::XML(last_response_body)
     end
 
     def xml_payload
