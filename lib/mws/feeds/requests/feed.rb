@@ -7,6 +7,7 @@ module MWS
       class Feed < ::Peddler::Request
         def submit(content, type, options = {})
           set_body(content)
+          set_content_type
           parameters(:submit_feed)
             .update(feed_type: type)
             .update(options)
@@ -18,7 +19,9 @@ module MWS
 
         def set_body(content)
           self.body = content
+        end
 
+        def set_content_type
           headers['Content-Type'] =
             if body.start_with?('<?xml')
               'text/xml'
@@ -32,12 +35,6 @@ module MWS
                 'text/tab-separated-values; charset=iso-8859-1'
               end
             end
-        end
-
-        private
-
-        def xml_payload
-          super.first
         end
       end
     end

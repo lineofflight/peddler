@@ -1,3 +1,4 @@
+require 'mws/feeds/requests/feed'
 require 'mws/feeds/requests/feed_submission_list'
 require 'mws/feeds/requests/feed_submission_count'
 require 'mws/feeds/requests/feed_submission_result'
@@ -6,6 +7,27 @@ require 'peddler/client'
 module MWS
   module Feeds
     class Client < ::Peddler::Client
+      # Public: Upload a feed for processing by Amazon MWS.
+      #
+      # content - The String content of the feed, in XML or flat file format.
+      # type    - A String value indicating how the data should be processed.
+      # options - Other optional Hash query parameters used to define the
+      #           submission.
+      #           :marketplace_id_list - A list of one or more marketplace Ids
+      #                                  that you want the feed to be applied
+      #                                  to (defaults to the client's default
+      #                                  country).
+      #           :purge_and_replace   - A Boolean value that enables the purge
+      #                                  and replace functionality (default:
+      #                                  false).
+      #
+      # Examples
+      #
+      #   client.submit_feed(body, '_POST_PRODUCT_DATA_')
+      #
+      # Returns a Feed Submission.
+      def_delegator :feed, :submit, :submit_feed
+
       # Public: Get a list of feed submissions submitted during a specified time
       # frame.
       #
@@ -55,12 +77,16 @@ module MWS
 
       private
 
-      def feed_submission_count
-        @feed_submission_count ||= Requests::FeedSubmissionCount.new(self)
+      def feed
+        @feed ||= Requests::Feed.new(self)
       end
 
       def feed_submission_list
         @feed_submission_list ||= Requests::FeedSubmissionList.new(self)
+      end
+
+      def feed_submission_count
+        @feed_submission_count ||= Requests::FeedSubmissionCount.new(self)
       end
 
       def feed_submission_result
