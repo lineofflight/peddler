@@ -5,7 +5,7 @@ module MWS
     module Parsers
       class FeedSubmission < ::Peddler::Parsers::Model
         value :id do
-          integer_at_xpath('FeedSubmissionId')
+          text_at_xpath('FeedSubmissionId')
         end
 
         value :type do
