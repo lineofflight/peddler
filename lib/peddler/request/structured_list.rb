@@ -2,12 +2,17 @@ module Peddler
   class Request
     class StructuredList
       KEYS = {
-        order_status:        %w(OrderStatus Status),
-        marketplace_id:      %w(MarketplaceId Id),
+        # Feeds
+        feed_submission_id_list: %w(FeedSubmissionIdList Id),
+        feed_type_list: %w(FeedTypeList Type),
+        feed_processing_status_list: %w(FeedProcessingStatusList Status),
+        # Orders
+        order_status: %w(OrderStatus Status),
+        marketplace_id: %w(MarketplaceId Id),
         fulfillment_channel: %w(FulfillmentChannel Channel),
-        payment_method:      %w(PaymentMethod),
+        payment_method: %w(PaymentMethod),
         tfm_shipment_status: %w(TFMShipmentStatus Status),
-        amazon_order_id:     %w(AmazonOrderId Id)
+        amazon_order_id: %w(AmazonOrderId Id),
       }
 
       attr :keys
