@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<GetFeedSubmissionCountResponse xmlns="http://mws.amazonservices.com/doc/2009-01-01/">
+  <GetFeedSubmissionCountResult>
+    <Count>463</Count>
+  </GetFeedSubmissionCountResult>
+  <ResponseMetadata>
+    <RequestId>21e482a8-15c7-4da3-91a4-424995ed0756</RequestId>
+    </ResponseMetadata>
+</GetFeedSubmissionCountResponse>

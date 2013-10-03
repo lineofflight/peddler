@@ -1,7 +1,7 @@
 require 'integration_helper'
 require 'mws/feeds'
 
-class FeedsTest < IntegrationTest
+class FeedSubmissionListTest < IntegrationTest
   self.api = MWS::Feeds
 
   def test_gets_feed_submission_list
