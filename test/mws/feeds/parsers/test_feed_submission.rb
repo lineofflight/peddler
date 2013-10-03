@@ -8,7 +8,7 @@ class FeedParserTest < ParserTest
   end
 
   def test_id
-    assert_kind_of Integer, @feed.id
+    assert_kind_of String, @feed.id
   end
 
   def test_type
