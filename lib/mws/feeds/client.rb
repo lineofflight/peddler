@@ -1,5 +1,6 @@
 require 'mws/feeds/requests/feed_submission_list'
 require 'mws/feeds/requests/feed_submission_count'
+require 'mws/feeds/requests/feed_submission_result'
 require 'peddler/client'
 
 module MWS
@@ -40,6 +41,18 @@ module MWS
       # Returns the Feed Submission Count.
       def_delegator :feed_submission_count, :get, :get_feed_submission_count
 
+      # Public: Gets the feed processing report and the Content-MD5 header for
+      # the returned HTTP body.
+      #
+      # feed_submission_id - The String Feed Submission Id.
+      #
+      # Examples
+      #
+      #   client.get_feed_submission_result('123456')
+      #
+      # Returns the Feed Submission Result.
+      def_delegator :feed_submission_result, :get, :get_feed_submission_result
+
       private
 
       def feed_submission_count
@@ -48,6 +61,10 @@ module MWS
 
       def feed_submission_list
         @feed_submission_list ||= Requests::FeedSubmissionList.new(self)
+      end
+
+      def feed_submission_result
+        @feed_submission_result ||= Requests::FeedSubmissionResult.new(self)
       end
     end
   end
