@@ -1,9 +1,14 @@
-require 'nokogiri'
+require 'forwardable'
 
 require 'peddler/request/parameters'
+require 'peddler/response_wrapper'
 
 module Peddler
   class Request
+    extend Forwardable
+
+    def_delegator :last_response, :next_token
+
     attr :client, :headers
 
     attr_accessor :body, :last_response
@@ -11,11 +16,6 @@ module Peddler
     def initialize(client)
       @client = client
       @headers = {}
-    end
-
-    def next_token
-      node = xml_payload.at_xpath('xmlns:NextToken')
-      node.text if node
     end
 
     def parameters(action = nil)
@@ -35,31 +35,15 @@ module Peddler
     end
 
     def fetch
-      opts = { query: parameters }
-      opts[:headers] = headers unless headers.empty?
-      opts[:body] = body if body
+      opts = { query: parameters, headers: headers }
+      opts.update(body: body) if body
+      res = client.post(opts)
 
-      # TODO Extract Response into a new class.
-      @last_response = client.post(opts)
+      @last_response = ResponseWrapper.new(res)
     end
 
     def parse
-      parser.new(parser.handle?(:xml) ? xml_payload : last_response_body)
-    end
-
-    def last_response_body
-      last_response.body
-    end
-
-    def document
-      Nokogiri::XML(last_response_body)
-    end
-
-    def xml_payload
-      root = document.root
-      path = root.name.sub('Response', 'Result')
-
-      root.xpath("xmlns:#{path}")
+      parser.new(parser.handle?(:xml) ? last_response.xml_payload : last_response.body)
     end
   end
 end
