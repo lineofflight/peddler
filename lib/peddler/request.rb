@@ -4,9 +4,9 @@ require 'peddler/request/parameters'
 
 module Peddler
   class Request
-    attr :client, :headers, :last_response
+    attr :client, :headers
 
-    attr_accessor :body
+    attr_accessor :body, :last_response
 
     def initialize(client)
       @client = client
