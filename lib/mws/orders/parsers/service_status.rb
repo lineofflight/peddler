@@ -28,6 +28,7 @@ module MWS
         def inspect
           status
         end
+
         alias :to_s :inspect
       end
     end
