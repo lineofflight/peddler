@@ -15,7 +15,7 @@ module Peddler
     end
 
     def next_token
-      node = document.at_xpath('//xmlns:NextToken')
+      node = document.at_xpath('xmlns:NextToken')
       node.text if node
     end
 
@@ -31,7 +31,7 @@ module Peddler
     end
 
     def parse
-      parser.new(parser.handle?(:xml) ? node : body)
+      parser.new(parser.handle?(:xml) ? document : body)
     end
 
     def parameters(action = nil)
@@ -48,11 +48,10 @@ module Peddler
     end
 
     def document
-      Nokogiri::XML(body)
-    end
+      root = Nokogiri::XML(body).root
+      path = root.name.sub('Response', 'Result')
 
-    def node
-      document.xpath("//xmlns:#{name}")
+      root.xpath("xmlns:#{path}")
     end
 
     def name

@@ -5,9 +5,11 @@ class MWSOrdersServiceStatusRequestTest < RequestTest
   def mock_response_body
     <<-EOF
       <Response xmlns="ns">
-        <GetServiceStatusResult>
-          <Status>GREEN</Status>
-        </GetServiceStatusResult>
+        <Result>
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+          </GetServiceStatusResult>
+        </Result>
       </Response>
     EOF
   end

@@ -12,7 +12,7 @@ module MWS
         private
 
         def order_item_nodes
-          xpath('OrderItem')
+          xpath('OrderItems/OrderItem')
         end
       end
     end

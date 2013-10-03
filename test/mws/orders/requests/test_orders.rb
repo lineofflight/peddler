@@ -5,12 +5,14 @@ class MWSOrdersOrdersRequestTest < RequestTest
   def mock_response_body
     <<-EOF
       <Response xmlns="ns">
-        <NextToken>123</NextToken>
-        <Orders>
-          <Order>
-            <Id>123</Id>
-          </Order>
-        </Orders>
+        <Result>
+          <NextToken>123</NextToken>
+          <Orders>
+            <Order>
+              <Id>123</Id>
+            </Order>
+          </Orders>
+        </Result>
       </Response>
     EOF
   end

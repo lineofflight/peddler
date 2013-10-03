@@ -12,7 +12,7 @@ module MWS
         private
 
         def order_nodes
-          xpath('Order').map { |node| Order.new(node) }
+          xpath('Orders/Order').map { |node| Order.new(node) }
         end
       end
     end
