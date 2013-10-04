@@ -38,7 +38,7 @@ class FeedRequestTest < RequestTest
     @feed.client.expect(:default_country, 'US')
     @feed.body = 'foo'
     @feed.set_content_type
-    assert_equal "text/tab-separated-values; charset=iso-8859-1", @feed.headers.fetch('Content-Type')
+    assert_equal "text/tab-separated-values; charset=ISO-8859-1", @feed.headers.fetch('Content-Type')
   end
 
   def test_headers_for_chinese_flat_file
@@ -58,6 +58,6 @@ class FeedRequestTest < RequestTest
   def test_headers_for_xml
     @feed.body = '<?xml version="1.0"?><Foo></Foo>'
     @feed.set_content_type
-    assert_equal 'text/xml', @feed.headers.fetch('Content-Type')
+    assert_equal 'text/xml; charset=ISO-8859-1', @feed.headers.fetch('Content-Type')
   end
 end

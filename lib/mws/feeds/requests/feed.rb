@@ -20,7 +20,7 @@ module MWS
         def set_content_type
           headers['Content-Type'] =
             if body.start_with?('<?xml')
-              'text/xml'
+              'text/xml; charset=ISO-8859-1'
             else
               case client.default_country
               when 'JP'
@@ -28,7 +28,7 @@ module MWS
               when 'CN'
                 'text/tab-separated-values; charset=UTF-16'
               else
-                'text/tab-separated-values; charset=iso-8859-1'
+                'text/tab-separated-values; charset=ISO-8859-1'
               end
             end
         end
