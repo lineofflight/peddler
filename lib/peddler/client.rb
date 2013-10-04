@@ -51,7 +51,7 @@ module Peddler
 
     params('SellerId' => -> { merchant_id })
 
-    def endpoint
+    def aws_endpoint
       "https://#{HOSTS.fetch(default_country)}/#{self.class.path}"
     end
 

@@ -9,7 +9,7 @@ class PeddlerClientTest < MiniTest::Test
 
   def test_configures_path
     @klass.path('Foo')
-    assert @client.endpoint.match(/Foo$/)
+    assert @client.aws_endpoint.match(/Foo$/)
   end
 
   def test_has_user_agent
