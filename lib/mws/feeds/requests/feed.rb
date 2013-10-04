@@ -6,7 +6,7 @@ module MWS
     module Requests
       class Feed < ::Peddler::Request
         def submit(content, type, options = {})
-          set_body(content)
+          self.body = content
           set_content_type
           parameters(:submit_feed)
             .update(feed_type: type)
@@ -15,10 +15,6 @@ module MWS
             .camelize_keys!
 
           execute
-        end
-
-        def set_body(content)
-          self.body = content
         end
 
         def set_content_type

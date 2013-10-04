@@ -36,27 +36,27 @@ class FeedRequestTest < RequestTest
 
   def test_headers_for_latin_flat_file
     @feed.client.expect(:default_country, 'US')
-    @feed.set_body('foo')
+    @feed.body = 'foo'
     @feed.set_content_type
     assert_equal "text/tab-separated-values; charset=iso-8859-1", @feed.headers.fetch('Content-Type')
   end
 
   def test_headers_for_chinese_flat_file
     @feed.client.expect(:default_country, 'CN')
-    @feed.set_body('foo')
+    @feed.body = 'foo'
     @feed.set_content_type
     assert_equal 'text/tab-separated-values; charset=UTF-16', @feed.headers.fetch('Content-Type')
   end
 
   def test_headers_for_japanese_flat_file
     @feed.client.expect(:default_country, 'JP')
-    @feed.set_body('foo')
+    @feed.body = 'foo'
     @feed.set_content_type
     assert_equal 'text/tab-separated-values; charset=Shift_JIS', @feed.headers.fetch('Content-Type')
   end
 
   def test_headers_for_xml
-    @feed.set_body('<?xml version="1.0"?><Foo></Foo>')
+    @feed.body = '<?xml version="1.0"?><Foo></Foo>'
     @feed.set_content_type
     assert_equal 'text/xml', @feed.headers.fetch('Content-Type')
   end
