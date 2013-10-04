@@ -1,0 +1,1 @@
+require 'mws/reports/client'

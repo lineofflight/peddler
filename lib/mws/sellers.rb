@@ -1,0 +1,1 @@
+require 'mws/sellers/client'
