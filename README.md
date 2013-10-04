@@ -47,11 +47,21 @@ also use this API to get information about the processing of feeds.
 
 [API methods are available on the client][3].
 
+Instantiate a client:
+
+```ruby
+client = MWS::Feeds::Client.new('GB')
+```
+
+#### Submit Feed
+
 Submit a feed:
 
 ```ruby
 client.submit_feed(xml, '_POST_PRODUCT_DATA_')
 ```
+
+#### Feed Submission List
 
 List past feed submissions:
 
@@ -66,11 +76,15 @@ List the next page of feed submissions:
 client.get_feed_submissions_by_next_token
 ```
 
+#### Feed Submission Count
+
 Get the feed submission count:
 
 ```ruby
 client.get_feed_submission_count(submitted_from_date: 1.day.ago)
 ```
+
+#### Feed Submission Result
 
 Get the processing report for a submitted feed.
 
@@ -80,19 +94,43 @@ client.feed_submission_result('123456')
 
 ### Fulfillment Inbound Shipment
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::FulfillmentInboundShipment::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Fulfillment Inventory
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::FulfillmentInventory::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Fulfillment Outbound Shipment
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::FulfillmentOutboundShipment::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Off Amazon Payments
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::OffAmazonPayments::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Orders
 
@@ -100,6 +138,12 @@ With the MWS Orders API, you can list orders created or updated during a time
 frame you specify or retrieve information about specific orders.
 
 [API methods are available on the client][4].
+
+Instantiate a client:
+
+```ruby
+client = MWS::Orders::Client.new('GB')
+```
 
 #### Orders
 
@@ -153,23 +197,53 @@ client.get_service_status
 
 ### Products
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::Products::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Recommendations
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::Recommendations::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Reports
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::Reports::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Sellers
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::Sellers::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 ### Subscriptions
 
-Not implemented.
+This API is not implemented yet. You can still use the raw client like so:
+
+```ruby
+client = MWS::Subscriptions::Client.new('GB')
+```
+
+Pull requests are welcome!
 
 [1]: http://f.cl.ly/items/0W3V0A1Z110Q0x461b3H/mussels.jpeg
 [2]: https://developer.amazonservices.com/gp/mws/docs.html
