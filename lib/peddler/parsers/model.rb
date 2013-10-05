@@ -10,6 +10,10 @@ module Peddler
     class Model < XML
       include Structure
 
+      def boolean_at_xpath(path)
+        text_at_xpath(path).strip == 'true'
+      end
+
       def float_at_xpath(path)
         str = text_at_xpath(path)
         str.to_f if str

@@ -31,4 +31,24 @@ class PeddlerModelParserTest < MiniTest::Test
     money = model.money_at_xpath('Price')
     assert_equal '¥1,000', money.format
   end
+
+  def test_parses_truthy_value
+    xml = <<-EOF
+    <Bool xmlns="example">
+      true
+    </Bool>
+    EOF
+    model = build(xml)
+    assert_equal true, model.boolean_at_xpath('Bool')
+  end
+
+  def test_parses_falsy_value
+    xml = <<-EOF
+    <Bool xmlns="example>
+      false
+    </Bool>
+    EOF
+    model = build(xml)
+    assert_equal false, model.boolean_at_xpath('Bool')
+  end
 end
