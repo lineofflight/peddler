@@ -2,6 +2,7 @@ require 'mws/feeds/requests/feed'
 require 'mws/feeds/requests/feed_submission_list'
 require 'mws/feeds/requests/feed_submission_count'
 require 'mws/feeds/requests/feed_submission_result'
+require 'mws/feeds/requests/feed_submissions'
 require 'peddler/client'
 
 module MWS
