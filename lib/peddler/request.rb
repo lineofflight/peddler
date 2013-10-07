@@ -29,6 +29,10 @@ module Peddler
       parse
     end
 
+    def has_next_token?
+      !!next_token
+    end
+
     private
 
     def parser
