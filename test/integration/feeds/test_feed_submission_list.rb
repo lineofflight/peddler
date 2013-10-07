@@ -10,6 +10,8 @@ class FeedSubmissionListTest < IntegrationTest
       refute_empty feeds.to_a
       more_feeds = client.get_feed_submission_list_by_next_token
       refute_empty more_feeds.to_a
+      some_more_feeds = client.get_feed_submission_list_by_next_token(more_feeds.next_token)
+      refute_empty some_more_feeds.to_a
     end
   end
 end

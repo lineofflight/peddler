@@ -10,6 +10,8 @@ class ReportRequestListTest < IntegrationTest
       refute_empty requests.to_a
       more_requests = client.get_report_request_list_by_next_token
       refute_empty more_requests.to_a
+      some_more_requests = client.get_report_request_list_by_next_token(more_requests.next_token)
+      refute_empty some_more_requests.to_a
     end
   end
 end

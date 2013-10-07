@@ -11,4 +11,8 @@ class OrderItemsParserTest < ParserTest
     refute_empty @order_items.to_a
     @order_items.each { |order_item| assert_kind_of MWS::Orders::Parsers::OrderItem, order_item }
   end
+
+  def test_has_token
+    assert @order_items.has_next_token?
+  end
 end

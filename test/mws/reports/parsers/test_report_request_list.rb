@@ -11,4 +11,8 @@ class ReportRequestListParserTest < ParserTest
     refute_empty @list.to_a
     @list.each { |report_request| assert_kind_of MWS::Reports::Parsers::ReportRequest, report_request }
   end
+
+  def test_has_token
+    assert @list.has_next_token?
+  end
 end

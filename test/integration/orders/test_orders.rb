@@ -13,6 +13,9 @@ class OrdersTest < IntegrationTest
       orders = client.list_orders_by_next_token
       amazon_order_ids << orders.to_a.sample.amazon_order_id
 
+      orders = client.list_orders_by_next_token(orders.next_token)
+      amazon_order_ids << orders.to_a.sample.amazon_order_id
+
       orders = client.get_order(*amazon_order_ids)
       assert orders
     end
