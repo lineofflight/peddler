@@ -92,6 +92,14 @@ Get the processing report for a submitted feed:
 client.feed_submission_result('123456')
 ```
 
+#### Feed Submissions
+
+Cancel one or more feed submissions:
+
+```ruby
+client.cancel_feed_submissions(submitted_to_date: 1.day.ago)
+``
+
 ### Fulfillment Inbound Shipment
 
 This API is not implemented yet. You can still use the raw client like so:

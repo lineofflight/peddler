@@ -75,6 +75,14 @@ module MWS
       # Returns the Feed Submission Result.
       def_delegator :feed_submission_result, :get, :get_feed_submission_result
 
+      # Public: Cancel one or more feed submissions.
+      #
+      # options - The Hash query parameters used to narrow the list. Refer to
+      #           the MWS Feeds API for available parameters.
+      #
+      # Returns the canceled Feed Submissions and their count.
+      def_delegator :feed_submissions, :cancel, :cancel_feed_submissions
+
       private
 
       def feed
@@ -91,6 +99,10 @@ module MWS
 
       def feed_submission_result
         @feed_submission_result ||= Requests::FeedSubmissionResult.new(self)
+      end
+
+      def feed_submissions
+        @feed_submissions ||= Requests::FeedSubmissions.new(self)
       end
     end
   end
