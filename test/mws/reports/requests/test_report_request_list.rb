@@ -34,13 +34,10 @@ class ReportRequestListRequestTest < RequestTest
     assert_kind_of MWS::Reports::Parsers::ReportRequestList, res
   end
 
-  def test_returns_next_token
-    @requests.last_response = mock_response
-    assert_equal '123', @requests.next_token
-  end
-
   def test_gets_report_request_list_by_next_token
-    @requests.last_response = mock_response
+    mock_parsed_response = MiniTest::Mock.new
+    mock_parsed_response.expect(:next_token, '123')
+    @requests.last_parsed_response = mock_parsed_response
     res = @requests.get_by_next_token
     assert_kind_of MWS::Reports::Parsers::ReportRequestList, res
   end
