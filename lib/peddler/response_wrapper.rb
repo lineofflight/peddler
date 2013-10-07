@@ -17,7 +17,7 @@ module Peddler
       Nokogiri::XML(body)
     end
 
-    def xml_payload
+    def result_node
       root = document.root
       path = root.name.sub('Response', 'Result')
 
@@ -25,7 +25,7 @@ module Peddler
     end
 
     def next_token
-      node = xml_payload.at_xpath('xmlns:NextToken')
+      node = result_node.at_xpath('xmlns:NextToken')
       node.text if node
     end
   end
