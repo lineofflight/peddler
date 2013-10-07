@@ -28,5 +28,9 @@ module Peddler
       node = xml_payload.at_xpath('xmlns:NextToken')
       node.text if node
     end
+    
+    def next_token?
+      last_response  && next_token
+    end
   end
 end
