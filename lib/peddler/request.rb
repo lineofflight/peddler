@@ -8,7 +8,6 @@ module Peddler
     extend Forwardable
 
     def_delegator :last_response, :next_token
-    def_delegator :last_response, :xml_payload, :last_xml_payload
 
     attr :client, :headers
 
@@ -48,7 +47,7 @@ module Peddler
     end
 
     def parse
-      parser.new(parser.handle?(:xml) ? last_xml_payload : last_response.body)
+      parser.new(parser.handle?(:xml) ? last_response.result_node : last_response.body)
     end
   end
 end
