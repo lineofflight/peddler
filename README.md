@@ -98,7 +98,7 @@ Cancel one or more feed submissions:
 
 ```ruby
 client.cancel_feed_submissions(submitted_to_date: 1.day.ago)
-``
+```
 
 ### Fulfillment Inbound Shipment
 
