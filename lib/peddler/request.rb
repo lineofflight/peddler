@@ -1,14 +1,8 @@
-require 'forwardable'
-
 require 'peddler/request/parameters'
 require 'peddler/response_wrapper'
 
 module Peddler
   class Request
-    extend Forwardable
-
-    def_delegator :last_parsed_response, :next_token
-
     attr :client, :headers
 
     attr_accessor :body, :last_parsed_response
@@ -26,6 +20,10 @@ module Peddler
     def execute
       res = fetch
       parse(res)
+    end
+
+    def next_token
+      last_parsed_response.next_token if last_parsed_response
     end
 
     def has_next_token?
