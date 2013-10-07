@@ -27,13 +27,10 @@ class FeedSubmissionListRequestTest < RequestTest
     assert_kind_of MWS::Feeds::Parsers::FeedSubmissionList, res
   end
 
-  def test_returns_next_token
-    @feeds.last_response = mock_response
-    assert_equal '123', @feeds.next_token
-  end
-
   def test_gets_feed_submission_list_by_next_token
-    @feeds.last_response = mock_response
+    mock_parsed_response = MiniTest::Mock.new
+    mock_parsed_response.expect(:next_token, '123')
+    @feeds.last_parsed_response = mock_parsed_response
     res = @feeds.get_by_next_token
     assert_kind_of MWS::Feeds::Parsers::FeedSubmissionList, res
   end

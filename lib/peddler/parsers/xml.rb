@@ -7,17 +7,22 @@ module Peddler
         type == :xml
       end
 
+      def text_at_xpath(path)
+        node = at_xpath(path)
+        node.text if node
+      end
+
       def at_xpath(path)
-        document.at_xpath(with_namespace(path))
+        document.at_xpath(add_namespace(path))
       end
 
       def xpath(path)
-        document.xpath(with_namespace(path))
+        document.xpath(add_namespace(path))
       end
 
       private
 
-      def with_namespace(path)
+      def add_namespace(path)
         path.split('/').map { |attr| "xmlns:#{attr}" }.join('/')
       end
     end
