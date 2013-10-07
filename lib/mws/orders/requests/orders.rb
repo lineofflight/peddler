@@ -26,9 +26,11 @@ module MWS
           execute
         end
 
-        def list_by_next_token
+        def list_by_next_token(token = next_token)
+          return unless token
+
           parameters(:list_orders_by_next_token)
-            .update(next_token: next_token)
+            .update(next_token: token)
             .camelize_keys!
 
           execute

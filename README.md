@@ -76,6 +76,13 @@ List the next page of feed submissions:
 client.get_feed_submissions_by_next_token
 ```
 
+You can optionally specify a token:
+
+```ruby
+res = client.get_feed_submissions
+client.get_feed_submissions_by_next_token(res.next_token)
+```
+
 #### Feed Submission Count
 
 Get the feed submission count:
@@ -171,6 +178,13 @@ List the next page of orders:
 client.list_orders_by_next_token
 ```
 
+You can optionally specify a token:
+
+```ruby
+res = client.list_orders
+client.list_orders_by_next_token(res.next_token)
+```
+
 Get one or more orders based on their order numbers:
 
 ```ruby
@@ -191,6 +205,13 @@ List the next page of order items:
 
 ```ruby
 client.list_order_items_by_next_token
+```
+
+You can optionally specify a token:
+
+```ruby
+res = client.list_order_items
+client.list_order_items_by_next_token(res.next_token)
 ```
 
 All above queries will return an enumerable list of order items.

@@ -33,11 +33,15 @@ module MWS
 
       # Public: List the next page of orders using the NextToken parameter.
       #
+      # token - A String token (default: The token returned in the last
+      #         request).
+      #
       # Examples
       #
       #   client.list_orders_by_next_token
       #
-      # Returns an enumerable list of Orders.
+      # Returns an enumerable list of Orders or false if there are no more pages
+      # left.
       def_delegator :orders, :list_by_next_token, :list_orders_by_next_token
 
       # Public: List order items for an amazon order.
@@ -54,11 +58,15 @@ module MWS
       # Public: List the next page of order items using the NextToken
       # parameter.
       #
+      # token - A String token (default: The token returned in the last
+      #         request).
+      #
       # Examples
       #
       #   client.list_order_items_by_next_token
       #
-      # Returns an enumerable list of Order Items.
+      # Returns an enumerable list of Order Items or false if there are no more
+      # pages left.
       def_delegator :order_items, :list_by_next_token, :list_order_items_by_next_token
 
       # Public: Get the service status of the API.

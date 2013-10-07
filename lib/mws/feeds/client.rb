@@ -44,11 +44,15 @@ module MWS
 
       # Public: List the next page of the list of feed submissions.
       #
+      # token - A String token (default: The token returned in the last
+      #         request).
+      #
       # Examples
       #
       #   client.get_feed_submission_list_by_next_token
       #
-      # Returns an enumerable Feed Submission List.
+      # Returns an enumerable Feed Submission List or false if there are no more
+      # pages left.
       def_delegator :feed_submission_list, :get_by_next_token, :get_feed_submission_list_by_next_token
 
       # Public: Get a count of the feeds submitted during a specified time
