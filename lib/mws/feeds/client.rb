@@ -50,7 +50,7 @@ module MWS
       # Returns an enumerable Feed Submission List.
       def_delegator :feed_submission_list, :get_by_next_token, :get_feed_submission_list_by_next_token
 
-      # Public: Returns a count of the feeds submitted during a specified time
+      # Public: Get a count of the feeds submitted during a specified time
       # frame.
       #
       # options - The Hash query parameters used to narrow the list. Refer to
@@ -63,7 +63,7 @@ module MWS
       # Returns the Feed Submission Count.
       def_delegator :feed_submission_count, :get, :get_feed_submission_count
 
-      # Public: Gets the feed processing report and the Content-MD5 header for
+      # Public: Get the feed processing report and the Content-MD5 header for
       # the returned HTTP body.
       #
       # feed_submission_id - The String Feed Submission Id.
@@ -74,6 +74,14 @@ module MWS
       #
       # Returns the Feed Submission Result.
       def_delegator :feed_submission_result, :get, :get_feed_submission_result
+
+      # Public: Cancel one or more feed submissions.
+      #
+      # options - The Hash query parameters used to narrow the list. Refer to
+      #           the MWS Feeds API for available parameters.
+      #
+      # Returns the canceled Feed Submissions and their count.
+      def_delegator :feed_submissions, :cancel, :cancel_feed_submissions
 
       private
 
@@ -91,6 +99,10 @@ module MWS
 
       def feed_submission_result
         @feed_submission_result ||= Requests::FeedSubmissionResult.new(self)
+      end
+
+      def feed_submissions
+        @feed_submissions ||= Requests::FeedSubmissions.new(self)
       end
     end
   end

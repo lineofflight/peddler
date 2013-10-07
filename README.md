@@ -86,11 +86,19 @@ client.get_feed_submission_count(submitted_from_date: 1.day.ago)
 
 #### Feed Submission Result
 
-Get the processing report for a submitted feed.
+Get the processing report for a submitted feed:
 
 ```ruby
 client.feed_submission_result('123456')
 ```
+
+#### Feed Submissions
+
+Cancel one or more feed submissions:
+
+```ruby
+client.cancel_feed_submissions(submitted_to_date: 1.day.ago)
+``
 
 ### Fulfillment Inbound Shipment
 
