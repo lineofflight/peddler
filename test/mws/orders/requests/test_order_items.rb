@@ -26,13 +26,10 @@ class MWSOrdersOrderItemsRequestTest < RequestTest
     assert_kind_of MWS::Orders::Parsers::OrderItems, res
   end
 
-  def test_returns_next_token
-    @order_items.last_response = mock_response
-    assert_equal '123', @order_items.next_token
-  end
-
   def test_lists_order_items_by_next_token
-    @order_items.last_response = mock_response
+    mock_parsed_response = MiniTest::Mock.new
+    mock_parsed_response.expect(:next_token, '123')
+    @order_items.last_parsed_response = mock_parsed_response
     res = @order_items.list_by_next_token
     assert_kind_of MWS::Orders::Parsers::OrderItems, res
   end

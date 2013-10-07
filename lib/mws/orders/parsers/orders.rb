@@ -1,18 +1,21 @@
 require 'mws/orders/parsers/order'
 require 'peddler/parsers/collection'
+require 'peddler/parsers/tokenable'
 
 module MWS
   module Orders
     module Parsers
       class Orders < ::Peddler::Parsers::Collection
-        extend Forwardable
+        include ::Peddler::Parsers::Tokenable
 
-        def_delegator :order_nodes, :each
+        def each(&blk)
+          order_nodes.each { |node| yield Order.new(node) }
+        end
 
         private
 
         def order_nodes
-          xpath('Orders/Order').map { |node| Order.new(node) }
+          xpath('Orders/Order')
         end
       end
     end

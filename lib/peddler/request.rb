@@ -7,11 +7,11 @@ module Peddler
   class Request
     extend Forwardable
 
-    def_delegator :last_response, :next_token
+    def_delegator :last_parsed_response, :next_token
 
     attr :client, :headers
 
-    attr_accessor :body, :last_response
+    attr_accessor :body, :last_parsed_response
 
     def initialize(client)
       @client = client
@@ -24,8 +24,8 @@ module Peddler
     end
 
     def execute
-      fetch
-      parse
+      res = fetch
+      parse(res)
     end
 
     def has_next_token?
@@ -43,11 +43,12 @@ module Peddler
       opts.update(body: body) if body
       res = client.post(opts)
 
-      @last_response = ResponseWrapper.new(res)
+      ResponseWrapper.new(res)
     end
 
-    def parse
-      parser.new(parser.handle?(:xml) ? last_response.result_node : last_response.body)
+    def parse(response)
+      document = parser.handle?(:xml) ? response.result_node : response.body
+      @last_parsed_response = parser.new(document)
     end
   end
 end

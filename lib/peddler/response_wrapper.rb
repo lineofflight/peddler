@@ -23,10 +23,5 @@ module Peddler
 
       root.xpath("xmlns:#{path}")
     end
-
-    def next_token
-      node = result_node.at_xpath('xmlns:NextToken')
-      node.text if node
-    end
   end
 end
