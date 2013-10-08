@@ -9,6 +9,19 @@ require 'peddler/client'
 module MWS
   module Reports
     class Client < ::Peddler::Client
+      # Public: Create a report request.
+      #
+      # type    - The String type of report to request.
+      # options - The Hash query parameters used to narrow the list. Refer to
+      #           the MWS Reports API for available parameters.
+      #
+      # Examples
+      #
+      #   client.request_report('_GET_ORDERS_DATA_')
+      #
+      # Returns the Report Request Info.
+      def_delegator :report_request_info, :request, :request_report
+
       # Public: Get a list of report requests submitted during a specified time
       # frame.
       #
@@ -105,6 +118,10 @@ module MWS
       def_delegator :report, :get, :get_report
 
       private
+
+      def report_request_info
+        @report_request_info ||= Requests::ReportRequestInfo.new(self)
+      end
 
       def report_request_list
         @report_request_list ||= Requests::ReportRequestList.new(self)
