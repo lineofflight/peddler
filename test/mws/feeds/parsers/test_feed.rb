@@ -7,7 +7,7 @@ class FeedParserTest < ParserTest
     @feed = MWS::Feeds::Parsers::Feed.new(node)
   end
 
-  def test_submission
-    assert_kind_of MWS::Feeds::Parsers::FeedSubmissionInfo, @feed.submission
+  def test_submission_info
+    assert_kind_of MWS::Feeds::Parsers::FeedSubmissionInfo, @feed.submission_info
   end
 end
