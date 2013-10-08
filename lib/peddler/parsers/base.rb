@@ -1,8 +1,8 @@
 module Peddler
   module Parsers
     class Base
-      def self.handle?(type)
-        raise NotImplementedError
+      def self.xml?
+        false
       end
 
       attr :document

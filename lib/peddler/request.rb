@@ -45,7 +45,7 @@ module Peddler
     end
 
     def parse(response)
-      document = parser.handle?(:xml) ? response.result_node : response.body
+      document = parser.xml? ? response.result_node : response.body
       @last_parsed_response = parser.new(document)
     end
   end

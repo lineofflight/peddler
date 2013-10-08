@@ -3,8 +3,8 @@ require 'peddler/parsers/base'
 module Peddler
   module Parsers
     class XML < Base
-      def self.handle?(type)
-        type == :xml
+      def self.xml?
+        true
       end
 
       def text_at_xpath(path)
