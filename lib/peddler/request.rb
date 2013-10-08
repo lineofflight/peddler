@@ -37,7 +37,7 @@ module Peddler
     end
 
     def fetch
-      opts = { query: parameters, headers: headers }
+      opts = { query: parameters, headers: headers, idempotent: true }
       opts.update(body: body) if body
       res = client.post(opts)
 

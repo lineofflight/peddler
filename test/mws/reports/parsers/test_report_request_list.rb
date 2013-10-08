@@ -9,7 +9,7 @@ class ReportRequestListParserTest < ParserTest
 
   def test_has_report_request_list
     refute_empty @list.to_a
-    @list.each { |report_request| assert_kind_of MWS::Reports::Parsers::ReportRequest, report_request }
+    @list.each { |request| assert_kind_of MWS::Reports::Parsers::ReportRequestInfo, request }
   end
 
   def test_has_token

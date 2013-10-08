@@ -1,5 +1,5 @@
 require 'peddler/parsers/collection'
-require 'mws/reports/parsers/report_request'
+require 'mws/reports/parsers/report_request_info'
 require 'peddler/parsers/tokenable'
 
 module MWS
@@ -9,12 +9,12 @@ module MWS
         include ::Peddler::Parsers::Tokenable
 
         def each(&blk)
-          report_request_nodes.each { |node| yield ReportRequest.new(node) }
+          report_request_info_nodes.each { |node| yield ReportRequestInfo.new(node) }
         end
 
         private
 
-        def report_request_nodes
+        def report_request_info_nodes
           xpath('ReportRequestInfo')
         end
       end

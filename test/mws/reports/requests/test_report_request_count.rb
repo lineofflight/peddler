@@ -13,11 +13,11 @@ class ReportRequestCountRequestTest < RequestTest
   end
 
   def setup
-    @request = MWS::Reports::Requests::ReportRequestCount.new(mock_client)
+    @count = MWS::Reports::Requests::ReportRequestCount.new(mock_client)
   end
 
-  def test_gets_report_request__submission_count
-    res = @request.get(submitted_from_date: 0)
+  def test_gets_report_request_count
+    res = @count.get(submitted_from_date: 0)
     assert_equal 1, res.count
   end
 end

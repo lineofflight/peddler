@@ -11,7 +11,7 @@ class ReportRequestsParserTest < ParserTest
     assert_kind_of Integer, @cancelations.count
   end
 
-  def test_canceled_report_requests
-    refute_empty @cancelations.report_requests
+  def test_canceled_report_request_infos
+    refute_empty @cancelations.report_request_infos
   end
 end

@@ -1,5 +1,5 @@
 require 'peddler/parsers/model'
-require 'mws/reports/parsers/report_request'
+require 'mws/reports/parsers/report_request_info'
 
 module MWS
   module Reports
@@ -9,8 +9,8 @@ module MWS
           integer_at_xpath('Count')
         end
 
-        def report_requests
-          xpath('ReportRequestInfo').map { |node| ReportRequest.new(node) }
+        def report_request_infos
+          xpath('ReportRequestInfo').map { |node| ReportRequestInfo.new(node) }
         end
       end
     end

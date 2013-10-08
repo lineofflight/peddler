@@ -3,7 +3,7 @@ require 'peddler/parsers/model'
 module MWS
   module Reports
     module Parsers
-      class ReportRequest < ::Peddler::Parsers::Model
+      class ReportRequestInfo < ::Peddler::Parsers::Model
         value :id do
           text_at_xpath('ReportRequestId')
         end
@@ -20,7 +20,7 @@ module MWS
           time_at_xpath('EndDate')
         end
 
-        value :scheduled do
+        value :scheduled? do
           boolean_at_xpath('Scheduled')
         end
 
