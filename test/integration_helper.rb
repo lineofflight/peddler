@@ -7,7 +7,9 @@ class IntegrationTest < MiniTest::Test
   end
 
   def accounts
-    YAML.load_file(File.expand_path('../fixtures/mws.yml', __FILE__))
+    YAML.load_file(File.expand_path('../fixtures/smws.yml', __FILE__))
+  rescue Errno::ENOENT
+    skip('Credentials missing')
   end
 
   def setup
