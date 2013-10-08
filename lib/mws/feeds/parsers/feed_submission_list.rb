@@ -1,5 +1,5 @@
 require 'peddler/parsers/collection'
-require 'mws/feeds/parsers/feed_submission'
+require 'mws/feeds/parsers/feed_submission_info'
 require 'peddler/parsers/tokenable'
 
 module MWS
@@ -9,12 +9,12 @@ module MWS
         include ::Peddler::Parsers::Tokenable
 
         def each(&blk)
-          feed_submission_nodes.each { |node| yield FeedSubmission.new(node) }
+          feed_submission_info_nodes.each { |node| yield FeedSubmissionInfo.new(node) }
         end
 
         private
 
-        def feed_submission_nodes
+        def feed_submission_info_nodes
           xpath('FeedSubmissionInfo')
         end
       end

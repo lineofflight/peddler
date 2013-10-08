@@ -9,7 +9,7 @@ class FeedSubmissionListParserTest < ParserTest
 
   def test_has_feed_submission_list
     refute_empty @feed_submission_list.to_a
-    @feed_submission_list.each { |feed| assert_kind_of MWS::Feeds::Parsers::FeedSubmission, feed }
+    @feed_submission_list.each { |feed| assert_kind_of MWS::Feeds::Parsers::FeedSubmissionInfo, feed }
   end
 
   def test_has_token

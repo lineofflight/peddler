@@ -1,5 +1,5 @@
 require 'peddler/parsers/model'
-require 'mws/feeds/parsers/feed_submission'
+require 'mws/feeds/parsers/feed_submission_info'
 
 module MWS
   module Feeds
@@ -10,7 +10,7 @@ module MWS
         end
 
         def feed_submissions
-          xpath('FeedSubmissionInfo').map { |node| FeedSubmission.new(node) }
+          xpath('FeedSubmissionInfo').map { |node| FeedSubmissionInfo.new(node) }
         end
       end
     end

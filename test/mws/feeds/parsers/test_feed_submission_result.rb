@@ -8,6 +8,6 @@ class FeedSubmissionResultParserTest < ParserTest
   end
 
   def test_content
-    assert_equal @body, @result.to_s
+    assert_equal @body, @result.document
   end
 end

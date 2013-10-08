@@ -8,6 +8,6 @@ class FeedParserTest < ParserTest
   end
 
   def test_submission
-    assert_kind_of MWS::Feeds::Parsers::FeedSubmission, @feed.submission
+    assert_kind_of MWS::Feeds::Parsers::FeedSubmissionInfo, @feed.submission
   end
 end
