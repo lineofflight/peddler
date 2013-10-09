@@ -1,5 +1,7 @@
 # Peddler
 
+[![Build Status](https://travis-ci.org/papercavalier/peddler.png)](https://travis-ci.org/papercavalier/peddler)
+
 ![Peddler][1]
 
 **Peddler** is a full-featured Ruby interface to the [Amazon Marketplace Web
