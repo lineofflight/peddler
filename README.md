@@ -40,6 +40,8 @@ Then, instantiate with the country code:
 client = MWS::Orders::Client.new('US')
 ```
 
+To debug the HTTP exchange, set the `EXCON_DEBUG` environment variable.
+
 ### Feeds
 
 The MWS Feeds API lets you upload inventory and order data to Amazon. You can
