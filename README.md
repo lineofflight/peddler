@@ -40,7 +40,8 @@ Then, instantiate with the country code:
 client = MWS::Orders::Client.new('US')
 ```
 
-To debug the HTTP exchange, set the `EXCON_DEBUG` environment variable.
+When developing, set the `EXCON_DEBUG` environment variable to debug the HTTP
+exchange.
 
 ### Feeds
 
