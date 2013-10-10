@@ -7,6 +7,7 @@ require 'mws/reports/requests/report'
 require 'mws/reports/requests/report_scheduler'
 require 'mws/reports/requests/report_schedule_list'
 require 'mws/reports/requests/report_schedule_count'
+require 'mws/reports/requests/report_acknowledgements'
 require 'peddler/client'
 
 module MWS
