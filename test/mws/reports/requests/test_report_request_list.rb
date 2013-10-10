@@ -20,8 +20,8 @@ class ReportRequestListRequestTest < RequestTest
             </StartedProcessingDate>
             <CompletedDate>2011-02-17T23:44:48+00:00</CompletedDate>
           </ReportRequestInfo>
-        </Response>
-      </Result>
+        </Result>
+      </Response>
     EOF
   end
 

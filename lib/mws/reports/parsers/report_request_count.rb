@@ -1,12 +1,9 @@
-require 'peddler/parsers/model'
+require 'peddler/parsers/counter'
 
 module MWS
   module Reports
     module Parsers
-      class ReportRequestCount < ::Peddler::Parsers::Model
-        value :count do
-          integer_at_xpath('Count')
-        end
+      class ReportRequestCount < ::Peddler::Parsers::Counter
       end
     end
   end

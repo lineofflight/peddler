@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<GetReportScheduleListResponse xmlns="http://mws.amazonservices.com/
+doc/2009-01-01/">
+  <GetReportScheduleListResult>
+  <NextToken></NextToken>
+    <HasNext>false</HasNext>
+    <ReportSchedule>
+      <ReportType>_GET_ORDERS_DATA_</ReportType>
+      <Schedule>_30_DAYS_</Schedule>
+      <ScheduledDate>2009-02-20T02:10:42+00:00</ScheduledDate>
+    </ReportSchedule>
+  </GetReportScheduleListResult>
+  <ResponseMetadata>
+    <RequestId>c0464157-b74f-4e52-bd1a-4ebf4bc7e5aa</RequestId>
+  </ResponseMetadata>
+</GetReportScheduleListResponse>

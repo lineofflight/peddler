@@ -7,7 +7,7 @@ class ReportRequestListParserTest < ParserTest
     @list = MWS::Reports::Parsers::ReportRequestList.new(node)
   end
 
-  def test_has_report_request_list
+  def test_has_report_requests
     refute_empty @list.to_a
     @list.each { |request| assert_kind_of MWS::Reports::Parsers::ReportRequestInfo, request }
   end

@@ -1,12 +1,9 @@
-require 'peddler/parsers/model'
+require 'peddler/parsers/counter'
 
 module MWS
   module Feeds
     module Parsers
-      class FeedSubmissionCount < ::Peddler::Parsers::Model
-        value :count do
-          integer_at_xpath('Count')
-        end
+      class FeedSubmissionCount < ::Peddler::Parsers::Counter
       end
     end
   end

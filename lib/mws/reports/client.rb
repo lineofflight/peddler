@@ -4,6 +4,9 @@ require 'mws/reports/requests/report_requests'
 require 'mws/reports/requests/report_list'
 require 'mws/reports/requests/report_count'
 require 'mws/reports/requests/report'
+require 'mws/reports/requests/report_scheduler'
+require 'mws/reports/requests/report_schedule_list'
+require 'mws/reports/requests/report_schedule_count'
 require 'peddler/client'
 
 module MWS
@@ -100,10 +103,6 @@ module MWS
       #
       # Examples
       #
-      def report
-        @report ||= Requests::Report.new(self)
-      end
-
       #   client.get_report_count
       #
       # Returns a Report Count.
@@ -114,8 +113,84 @@ module MWS
       #
       # id - The String generated report id.
       #
+      # Examples
+      #
+      #   client.get_report('123456')
+      #
       # Returns a Report.
       def_delegator :report, :get, :get_report
+
+      # Public: Create, update, or delete a report request schedule.
+      #
+      # type         - The String report type.
+      # schedule     - The String value that indicates how often a report
+      #                request should be created.
+      # scheduled_at - The Time when the next report request is scheduled to be
+      #                submitted (default: Now).
+      #
+      # Examples
+      #
+      #   client.manage_report_schedule('_GET_ORDERS_DATA_', '_1_HOUR_')
+      #
+      # Returns a Report Schedule.
+      def_delegator :report_scheduler, :manage, :manage_report_schedule
+
+      # Public: Delete a report request schedule.
+      #
+      # type - The String report type.
+      #
+      # Examples
+      #
+      #   client.delete_report_schedule('_GET_ORDERS_DATA_')
+      #
+      # Returns a Report Schedule.
+      def_delegator :report_scheduler, :delete, :delete_report_schedule
+
+      # Public: Get a list of order report requests that are scheduled to be
+      # submitted to MWS for processing.
+      #
+      # types - One or more String report types (default: all report types).
+      #
+      # Examples
+      #
+      #   client.get_report_schedule_list
+      #
+      # Returns a Report Schedule List.
+      def_delegator :report_schedule_list, :get, :get_report_schedule_list
+
+      # Public: Get a count of order report requests  that are scheduled to be
+      # submitted to MWS.
+      #
+      # types - One or more String report types (default: all report types).
+      #
+      # Examples
+      #
+      #   client.get_report_schedule_count
+      #
+      # Returns the Report Schedule Count.
+      def_delegator :report_schedule_count, :get, :get_report_schedule_count
+
+      # Public: Update acknowledged status of one or more reports to true.
+      #
+      # ids - One or more Integer report ids.
+      #
+      # Examples
+      #
+      #   client.acknowledge_reports(123)
+      #
+      # Returns Report Acknowledgements.
+      def_delegator :report_acknowledgements, :acknowledge, :acknowledge_reports
+
+      # Public: Update acknowledged status of one or more reports to false.
+      #
+      # ids - One or more Integer report ids.
+      #
+      # Examples
+      #
+      #   client.unacknowledge_reports(123)
+      #
+      # Returns Report Acknowledgements.
+      def_delegator :report_acknowledgements, :unacknowledge, :unacknowledge_reports
 
       private
 
@@ -145,6 +220,22 @@ module MWS
 
       def report
         @report ||= Requests::Report.new(self)
+      end
+
+      def report_scheduler
+        @report_scheduler ||= Requests::ReportScheduler.new(self)
+      end
+
+      def report_schedule_list
+        @report_schedule_list ||= Requests::ReportScheduleList.new(self)
+      end
+
+      def report_schedule_count
+        @report_schedule_count ||= Requests::ReportScheduleCount.new(self)
+      end
+
+      def report_acknowledgements
+        @report_acknowledgements ||= Requests::ReportAcknowledgements.new(self)
       end
     end
   end

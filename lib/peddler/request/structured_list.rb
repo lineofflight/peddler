@@ -14,6 +14,7 @@ module Peddler
         tfm_shipment_status: %w(TFMShipmentStatus Status),
         amazon_order_id: %w(AmazonOrderId Id),
         # Reports
+        report_id_list: %w(ReportIdList Id),
         report_request_id_list: %w(ReportRequestIdList Id),
         report_type_list: %w(ReportTypeList Type),
         report_processing_status_list: %w(ReportProcessingStatusList Status),

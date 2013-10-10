@@ -7,8 +7,8 @@ class ReportRequestCountRequestTest < RequestTest
       <Response xmlns="ns">
         <Result>
           <Count>1</Count>
-        </Response>
-      </Result>
+        </Result>
+      </Response>
     EOF
   end
 

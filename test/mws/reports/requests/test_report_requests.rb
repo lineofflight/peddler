@@ -13,8 +13,8 @@ class ReportRequestsRequesttTest < RequestTest
             <SubmittedDate>2009-02-20T02:10:35+00:00</SubmittedDate>
             <FeedProcessingStatus>_CANCELLED_</FeedProcessingStatus>
           </ReportRequestInfo>
-        </Response>
-      </Result>
+        </Result>
+      </Response>
     EOF
   end
 

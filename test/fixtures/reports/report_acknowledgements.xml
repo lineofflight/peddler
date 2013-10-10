@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<UpdateReportAcknowledgementsResponse
+  xmlns="http://mws.amazonservices.com/doc/2009-01-01/">
+  <UpdateReportAcknowledgementsResult>
+    <Count>1</Count>
+    <ReportInfo>
+      <ReportId>841997483</ReportId>
+      <ReportType>_GET_MERCHANT_LISTINGS_DATA_</ReportType>
+      <ReportRequestId>2234038326</ReportRequestId>
+      <AvailableDate>2009-01-06T03:48:36+00:00</AvailableDate>
+      <Acknowledged>true</Acknowledged>
+      <AcknowledgedDate>2009-02-20T02:10:41+00:00</AcknowledgedDate>
+    </ReportInfo>
+  </UpdateReportAcknowledgementsResult>
+  <ResponseMetadata>
+    <RequestId>42a578a7-ed92-486b-ac67-5de7464fcdfa</RequestId>
+  </ResponseMetadata>
+</UpdateReportAcknowledgementsResponse>
