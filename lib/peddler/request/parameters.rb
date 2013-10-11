@@ -23,7 +23,8 @@ module Peddler
 
         each do |key, value|
           if StructuredList.handle?(key)
-            lists.update(StructuredList.new(key).build(delete(key)))
+            list = StructuredList.new(key).build(delete(key))
+            lists.update(list)
           end
         end
 
