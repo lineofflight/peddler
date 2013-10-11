@@ -12,6 +12,7 @@ require 'peddler/client'
 
 module MWS
   module Reports
+    # The Reports API lets you request reports about your inventory and orders.
     class Client < ::Peddler::Client
       # Public: Create a report request.
       #
@@ -51,7 +52,7 @@ module MWS
       # Returns an enumerable Report Request List.
       def_delegator :report_request_list, :get_by_next_token, :get_report_request_list_by_next_token
 
-      # Public: Returns a count of the reports requested during a specified time
+      # Public: Get a count of the reports requested during a specified time
       # frame.
       #
       # options - The Hash query parameters used to narrow the list. Refer to
@@ -68,6 +69,10 @@ module MWS
       #
       # options - The Hash query parameters used to narrow the list. Refer to
       #           the MWS Reports API for available parameters.
+      #
+      # Examples
+      #
+      #   client.cancel_report_requests(submitted_to_date: 1.hour.ago)
       #
       # Returns the canceled report requests and their count.
       def_delegator :report_requests, :cancel, :cancel_report_requests

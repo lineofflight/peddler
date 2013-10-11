@@ -5,6 +5,8 @@ require 'peddler/client'
 
 module MWS
   module Orders
+    # With the MWS Orders API, you can list orders created or updated during a
+    # time frame you specify or retrieve information about specific orders.
     class Client < ::Peddler::Client
       path 'Orders/2011-01-01'
 
