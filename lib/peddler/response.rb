@@ -2,15 +2,15 @@ require 'forwardable'
 require 'nokogiri'
 
 module Peddler
-  class ResponseWrapper
+  class Response
     extend Forwardable
 
-    def_delegator :response, :body
+    attr :http_response
 
-    attr :response
+    def_delegator :http_response, :body
 
-    def initialize(response)
-      @response = response
+    def initialize(http_response)
+      @http_response = http_response
     end
 
     def document

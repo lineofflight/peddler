@@ -1,5 +1,5 @@
 require 'peddler/request/parameters'
-require 'peddler/response_wrapper'
+require 'peddler/response'
 
 module Peddler
   class Request
@@ -41,7 +41,7 @@ module Peddler
       opts.update(body: body) if body
       res = client.post(opts)
 
-      ResponseWrapper.new(res)
+      Response.new(res)
     end
 
     def parse(response)

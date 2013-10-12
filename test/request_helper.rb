@@ -9,7 +9,7 @@ class RequestTest < Minitest::Test
     res = Minitest::Mock.new
     res.expect(:body, mock_response_body)
 
-    Peddler::ResponseWrapper.new(res)
+    Peddler::Response.new(res)
   end
 
   def mock_client
