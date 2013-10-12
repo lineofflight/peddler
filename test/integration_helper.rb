@@ -7,6 +7,7 @@ class IntegrationTest < MiniTest::Test
   end
 
   def accounts
+    skip if ENV['SKIP_INTEGRATION']
     YAML.load_file(File.expand_path('../fixtures/mws.yml', __FILE__))
   rescue Errno::ENOENT
     skip('Credentials missing')
