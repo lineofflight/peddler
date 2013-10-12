@@ -12,11 +12,6 @@ module Peddler
         node.text if node
       end
 
-      def text_at_xpath(path)
-        node = at_xpath(path)
-        node.text if node
-      end
-
       def at_xpath(path)
         document.at_xpath(add_namespace(path))
       end
