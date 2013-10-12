@@ -40,12 +40,28 @@ class PeddlerModelParserTest < MiniTest::Test
     EOF
     model = build(xml)
     assert_equal true, model.boolean_at_xpath('Bool')
+
+    xml = <<-EOF
+    <Bool xmlns="example">
+      Yes
+    </Bool>
+    EOF
+    model = build(xml)
+    assert_equal true, model.boolean_at_xpath('Bool')
   end
 
   def test_parses_falsy_value
     xml = <<-EOF
     <Bool xmlns="example>
       false
+    </Bool>
+    EOF
+    model = build(xml)
+    assert_equal false, model.boolean_at_xpath('Bool')
+
+    xml = <<-EOF
+    <Bool xmlns="example>
+      No
     </Bool>
     EOF
     model = build(xml)

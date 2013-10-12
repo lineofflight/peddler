@@ -11,7 +11,7 @@ module Peddler
       include Structure
 
       def boolean_at_xpath(path)
-        text_at_xpath(path).strip == 'true'
+        !!text_at_xpath(path).match(/true|yes/i)
       end
 
       def float_at_xpath(path)

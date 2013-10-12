@@ -134,11 +134,7 @@ The Reports API lets you request reports about your inventory and orders.
 
 The Sellers API lets sellers retrieve information about their seller account, such as the marketplaces they participate in.
 
-```ruby
-client = MWS::Sellers::Client.new('GB')
-```
-
-Pull requests are welcome!
+[Read the client API methods.][sellers-api]
 
 ### Subscriptions
 
@@ -157,3 +153,4 @@ Pull requests are welcome!
 [feeds-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/feeds/client.rb
 [orders-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/orders/client.rb
 [reports-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/orders/client.rb
+[sellers-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/sellers/client.rb

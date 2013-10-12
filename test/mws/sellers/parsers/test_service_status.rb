@@ -1,10 +1,10 @@
 require 'parser_helper'
-require 'mws/orders/parsers/service_status'
+require 'mws/sellers/parsers/service_status'
 
-class OrdersServiceStatusParserTest < ParserTest
+class SellersServiceStatusParserTest < ParserTest
   def setup
-    node = fixture('orders/service_status').xpath('//xmlns:GetServiceStatusResult').first
-    @service_status = MWS::Orders::Parsers::ServiceStatus.new(node)
+    node = fixture('sellers/service_status').xpath('//xmlns:GetServiceStatusResult').first
+    @service_status = MWS::Sellers::Parsers::ServiceStatus.new(node)
   end
 
   def test_status
@@ -13,10 +13,6 @@ class OrdersServiceStatusParserTest < ParserTest
 
   def test_timestamp
     assert_kind_of Time, @service_status.timestamp
-  end
-
-  def test_message_id
-    assert_kind_of String, @service_status.message_id
   end
 
   def test_messages
