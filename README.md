@@ -88,6 +88,8 @@ Pull requests are welcome!
 
 ### Off Amazon Payments
 
+The Off-Amazon Payments API helps you to process payments for purchases made by buyers using Amazon Payments on your website. This API enables you to programmatically retrieve shipping and payment information provided by the buyer from their Amazon account and to authorize, capture, and refund funds to enable a variety of payments scenarios.
+
 While this API is not implemented yet, you may still use the raw client like so:
 
 ```ruby
@@ -116,6 +118,8 @@ Pull requests are welcome!
 
 ### Recommendations
 
+The Recommendations API enables you to programmatically retrieve Amazon Selling Coach recommendations by recommendation category. A recommendation is an actionable, timely, and personalized opportunity to increase your sales and performance.
+
 While this API is not implemented yet, you may still use the raw client like so:
 
 ```ruby
@@ -137,6 +141,8 @@ The Sellers API lets sellers retrieve information about their seller account, su
 [Read the client API methods.][sellers-api]
 
 ### Subscriptions
+
+The Amazon MWS Subscriptions API enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.
 
 While this API is not implemented yet, you may still use the raw client like so:
 
