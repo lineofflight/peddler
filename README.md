@@ -158,5 +158,5 @@ Pull requests are welcome!
 [docs]: https://developer.amazonservices.com/gp/mws/docs.html
 [feeds-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/feeds/client.rb
 [orders-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/orders/client.rb
-[reports-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/orders/client.rb
+[reports-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/reports/client.rb
 [sellers-api]: https://github.com/papercavalier/peddler/blob/master/lib/mws/sellers/client.rb
