@@ -1,4 +1,5 @@
 require 'mws/reports/requests/report_request_list'
+require 'mws/reports/requests/report_request_info'
 require 'mws/reports/requests/report_request_count'
 require 'mws/reports/requests/report_requests'
 require 'mws/reports/requests/report_list'
