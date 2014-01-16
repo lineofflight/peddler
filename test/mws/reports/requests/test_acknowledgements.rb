@@ -15,8 +15,8 @@ class ReportAcknowledgementsTest < RequestTest
             <Acknowledged>true</Acknowledged>
             <AcknowledgedDate>2009-02-20T02:10:41+00:00</AcknowledgedDate>
           </ReportInfo>
-        </Response>
-      </Result>
+        </Result>
+      </Response>
     EOF
   end
 

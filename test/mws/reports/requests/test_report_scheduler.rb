@@ -12,8 +12,8 @@ class ReportSchedulerRequestTest < RequestTest
             <Schedule>_30_DAYS_</Schedule>
             <ScheduledDate>2009-02-20T02:10:42+00:00</ScheduledDate>
           </ReportSchedule>
-        </Response>
-      </Result>
+        </Result>
+      </Response>
     EOF
   end
 

@@ -13,8 +13,8 @@ class FeedSubmissionListRequestTest < RequestTest
             <SubmittedDate>2009-02-20T02:10:35+00:00</SubmittedDate>
             <FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus>
           </FeedSubmissionInfo>
-        </Response>
-      </Result>
+        </Result>
+      </Response>
     EOF
   end
 
