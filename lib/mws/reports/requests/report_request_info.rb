@@ -7,7 +7,7 @@ module MWS
       class ReportRequestInfo < ::Peddler::Request
         def request(type, options = {})
           parameters(:request_report)
-            .update(type: type)
+            .update(report_type: type)
             .update(options)
             .timestamp!
             .format_structured_lists!
