@@ -1,11 +1,11 @@
 require 'peddler/request'
-require 'mws/reports/parsers/report_request_info'
+require 'mws/reports/parsers/report_request'
 
 module MWS
   module Reports
     module Requests
-      class ReportRequestInfo < ::Peddler::Request
-        def request(type, options = {})
+      class ReportRequest < ::Peddler::Request
+        def submit(type, options = {})
           parameters(:request_report)
             .update(report_type: type)
             .update(options)

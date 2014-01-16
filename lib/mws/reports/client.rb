@@ -1,5 +1,5 @@
+require 'mws/reports/requests/report_request'
 require 'mws/reports/requests/report_request_list'
-require 'mws/reports/requests/report_request_info'
 require 'mws/reports/requests/report_request_count'
 require 'mws/reports/requests/report_requests'
 require 'mws/reports/requests/report_list'
@@ -26,7 +26,7 @@ module MWS
       #   client.request_report('_GET_ORDERS_DATA_')
       #
       # Returns the Report Request Info.
-      def_delegator :report_request_info, :request, :request_report
+      def_delegator :report_request, :submit, :request_report
 
       # Public: Get a list of report requests submitted during a specified time
       # frame.
@@ -201,8 +201,8 @@ module MWS
 
       private
 
-      def report_request_info
-        @report_request_info ||= Requests::ReportRequestInfo.new(self)
+      def report_request
+        @report_request ||= Requests::ReportRequest.new(self)
       end
 
       def report_request_list
