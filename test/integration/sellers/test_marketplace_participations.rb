@@ -5,9 +5,11 @@ class SellersTest < IntegrationTest
   self.api = MWS::Sellers
 
   def test_lists_marketplace_participations
-    @clients.each do |client|
-      mps = client.list_marketplace_participations
-      assert_kind_of MWS::Sellers::Parsers::MarketplaceParticipations, mps
+    VCR.use_cassette('sellers_test/test_lists_marketplace_participations') do
+      @clients.each do |client|
+        mps = client.list_marketplace_participations
+        assert_kind_of MWS::Sellers::Parsers::MarketplaceParticipations, mps
+      end
     end
   end
 end

@@ -1,0 +1,424 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=***REMOVED***&Action=GetReportList&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A48Z&Signature=3mN2FMq4YRyiU4voJ2s1B89ySBQFYc9cYoKEwgOgDWw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:06:54 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '58.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:20:00 UTC
+      x-mws-response-context:
+      - huZmSrqj1hdg8WKqIzlYU71FXyEuneOaHdNBKX5HVmBmZEH8flmsfoMH0Tf7vG7mPSaMRSP9OXCs
+        O089iQLBDqJoJG7QuiaR, IP9m8vJWontRwt/sMHjQehejU1lwUL3GP7Anyw1zkhBlkoeMK0TYRG/qTDSnH+VPPvoe2OGHcDDd
+        yQVRUBfWrw==
+      x-amz-request-id:
+      - 1cb820e9-1559-4a79-b116-46dd6f94508d
+      x-mws-request-id:
+      - 1cb820e9-1559-4a79-b116-46dd6f94508d
+      x-mws-timestamp:
+      - '2014-01-20T14:06:49.644Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>czdWN+/y8GID2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>14580416673</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926642540</ReportRequestId><AvailableDate>2014-01-20T14:04:02+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14580375073</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8927491738</ReportRequestId><AvailableDate>2014-01-20T14:01:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14580342143</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926957236</ReportRequestId><AvailableDate>2014-01-20T13:57:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579952183</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926642460</ReportRequestId><AvailableDate>2014-01-20T13:19:15+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579765793</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8927189550</ReportRequestId><AvailableDate>2014-01-20T13:01:36+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579731593</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926436128</ReportRequestId><AvailableDate>2014-01-20T12:58:14+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579728413</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926641222</ReportRequestId><AvailableDate>2014-01-20T12:57:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579554773</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926436096</ReportRequestId><AvailableDate>2014-01-20T12:39:57+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579447323</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926436052</ReportRequestId><AvailableDate>2014-01-20T12:27:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579434583</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926386322</ReportRequestId><AvailableDate>2014-01-20T12:26:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>1cb820e9-1559-4a79-b116-46dd6f94508d</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:06:55 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=***REMOVED***&Action=GetReportListByNextToken&NextToken=czdWN%2B%2Fy8GID2s1QD6a1Faatt7H%2BKoLIM48r5nOh7ZQ1q7%2Bbiy1IyF130dcAIezsKtggkW5lERV7B%2B2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A55Z&Signature=%2BgXuupEFv4KuVwzdGX8GCApX1ajupV8r2eBPAivxNRo%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:06:54 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1798.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:20:00 UTC
+      x-mws-response-context:
+      - xNt4vqurtXpX4RH2EP6g1U/0FuvOc4H071e5TjSmN6dEESYIvC49+QxiBBATZAN3FTUMLvhEgxHu
+        D4TnFkFN0Hf3J1tB0jmo, b2RqCIJIQDhfdpeh/olRhznE4MwvK39nRe01k6uUK29lPyK7975eXS6k2xhJ/EsA/oAmhoiWLcA=
+      x-amz-request-id:
+      - 17042f1c-7905-4fd4-9825-171bc74fc17e
+      x-mws-request-id:
+      - 17042f1c-7905-4fd4-9825-171bc74fc17e
+      x-mws-timestamp:
+      - '2014-01-20T14:06:55.283Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListByNextTokenResult><NextToken>z0FYB49KMM0D2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQA6Rov0EQZhnBOmNq6uuAJKCwi968QkimCus63QYNQdQMTmzw615Yq/tinIbRuLMISyoYkkmy7z+7kR78MqE7qtbuxNIfAZWJhIzH8ak8ZQQ==</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>14579220833</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926386072</ReportRequestId><AvailableDate>2014-01-20T12:03:15+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579132933</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926339990</ReportRequestId><AvailableDate>2014-01-20T11:53:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14579105653</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926385974</ReportRequestId><AvailableDate>2014-01-20T11:50:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578699113</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926339924</ReportRequestId><AvailableDate>2014-01-20T11:04:31+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578448433</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926339852</ReportRequestId><AvailableDate>2014-01-20T10:36:44+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578443953</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926277694</ReportRequestId><AvailableDate>2014-01-20T10:36:20+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578239383</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926277148</ReportRequestId><AvailableDate>2014-01-20T10:12:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578144013</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926324978</ReportRequestId><AvailableDate>2014-01-20T10:02:35+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578107833</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926276348</ReportRequestId><AvailableDate>2014-01-20T09:59:02+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14578053593</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926226548</ReportRequestId><AvailableDate>2014-01-20T09:52:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListByNextTokenResult><ResponseMetadata><RequestId>17042f1c-7905-4fd4-9825-171bc74fc17e</RequestId></ResponseMetadata></GetReportListByNextTokenResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:06:55 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=***REMOVED***&Action=GetReportListByNextToken&NextToken=z0FYB49KMM0D2s1QD6a1Faatt7H%2BKoLIM48r5nOh7ZQA6Rov0EQZhnBOmNq6uuAJKCwi968QkimCus63QYNQdQMTmzw615Yq%2FtinIbRuLMISyoYkkmy7z%2B7kR78MqE7qtbuxNIfAZWJhIzH8ak8ZQQ%3D%3D&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A55Z&Signature=5O3bmy1R3GHI1TWfjKCFukNkQSDSqOwHCKtSXIntrXQ%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:06:54 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1798.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:20:00 UTC
+      x-mws-response-context:
+      - s9EzAjxBPVkj7R8MS/+tITkB3+rZYMSrcSyI9D9I7CA5JE/wBP0etn3j817a0xt5RKx6LmyEkswJ
+        lfk3W57iGNmjN4Kltzq/, /AAtQpiXTYcZaohrTWoYnOWCJ/mBso70A0HWQCUWA3/jKY1RpGlpEEo+EId0+jeOLhucVR1eOAc=
+      x-amz-request-id:
+      - e5ada57c-75f7-4f6b-91f8-10ebeedb5431
+      x-mws-request-id:
+      - e5ada57c-75f7-4f6b-91f8-10ebeedb5431
+      x-mws-timestamp:
+      - '2014-01-20T14:06:55.585Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListByNextTokenResult><NextToken>JOGdjwm+RDED2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1Vics9Qddm+MAZXezqL3zOdsSbmacoXJ/DpulSjWGHtMI97cCF0lF8LikDi82KPvCv/LqsB0EzxybTwcKfw+6ArCJSD3H2TGIqw42eT2ivg==</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>14578007073</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926226492</ReportRequestId><AvailableDate>2014-01-20T09:47:42+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14577983783</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8926226410</ReportRequestId><AvailableDate>2014-01-20T09:45:18+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14576982523</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8925725448</ReportRequestId><AvailableDate>2014-01-20T08:02:31+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14576413033</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8925433792</ReportRequestId><AvailableDate>2014-01-20T07:02:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14575149483</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8924810164</ReportRequestId><AvailableDate>2014-01-20T05:01:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14574511123</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8924514672</ReportRequestId><AvailableDate>2014-01-20T04:01:20+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14573844593</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8924210094</ReportRequestId><AvailableDate>2014-01-20T03:02:10+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14573165863</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8923895948</ReportRequestId><AvailableDate>2014-01-20T02:02:47+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14572504103</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8923583096</ReportRequestId><AvailableDate>2014-01-20T01:05:03+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>14572495413</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>8923583072</ReportRequestId><AvailableDate>2014-01-20T01:04:23+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListByNextTokenResult><ResponseMetadata><RequestId>e5ada57c-75f7-4f6b-91f8-10ebeedb5431</RequestId></ResponseMetadata></GetReportListByNextTokenResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:06:55 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=***REMOVED***&Action=GetReportList&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A55Z&Signature=%2BAXYsFtnUnHOS2%2B8YEWgdNsG90YNw9to1XsVvrH5x3o%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:06:57 GMT
+      Server:
+      - Server
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '57.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:07:00 UTC
+      x-mws-response-context:
+      - jVfsgrPtcNN45N57YmFiScxM+LAiZcoV39Bu+/tw1IIzJ9mraFMMTWUhvgOG81dpD0KkQCkqpdhl
+        SA+dgH/OtsB7Ue8Ydhtd, tCTV65VjxQ5f+cPZqz5Atl0GiX38mTByh9b17KSrN8s04NsWrFtgSyEOKjGEcIJLf4lYR/6QkxA9
+        7fwJ/qArMA==
+      x-amz-request-id:
+      - 9459916c-fd5b-4c3d-8095-28a4a18c0732
+      x-mws-request-id:
+      - 9459916c-fd5b-4c3d-8095-28a4a18c0732
+      x-mws-timestamp:
+      - '2014-01-20T14:06:57.484Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>8SRHNfGJtDQD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>30118528924</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7500132428</ReportRequestId><AvailableDate>2014-01-20T14:02:44+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30118459704</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7501442072</ReportRequestId><AvailableDate>2014-01-20T14:01:23+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30117756064</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7500131886</ReportRequestId><AvailableDate>2014-01-20T13:42:51+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30117595564</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499701290</ReportRequestId><AvailableDate>2014-01-20T13:38:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30116150584</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7500949110</ReportRequestId><AvailableDate>2014-01-20T13:01:23+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30116116384</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499701152</ReportRequestId><AvailableDate>2014-01-20T13:00:31+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30115399584</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499700932</ReportRequestId><AvailableDate>2014-01-20T12:41:17+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30115397484</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499618380</ReportRequestId><AvailableDate>2014-01-20T12:41:14+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30114154424</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499618022</ReportRequestId><AvailableDate>2014-01-20T12:07:15+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30114072724</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7500505950</ReportRequestId><AvailableDate>2014-01-20T12:05:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>9459916c-fd5b-4c3d-8095-28a4a18c0732</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:06:58 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=***REMOVED***&Action=GetReportListByNextToken&NextToken=8SRHNfGJtDQD2s1QD6a1Faatt7H%2BKoLIM48r5nOh7ZQ1q7%2Bbiy1IyF130dcAIezsKtggkW5lERV7B%2B2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A58Z&Signature=HATD4vEH6rSfp3Y%2F8tc1BxkVQ72RxTNQn3jAGoaQqLw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:06:58 GMT
+      Server:
+      - Server
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1798.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:07:00 UTC
+      x-mws-response-context:
+      - 6GzMm8SsEbz0fIDV9VYFh4IfgIVtuk6rnPDjBvy5RhOFmq2SGrKSTEcoU7Q7fpbmBwNNq5+T65lQ
+        o/EXYL2xFpLyjPnDp+P5, OZoAPVq33YP65De5ScG5LHA89TVFuwtaTH8g0hYowti9aVN8GN4B6c97VhMghZXeQogyh+ZDUmr7
+        j4+DgzHOhQ==
+      x-amz-request-id:
+      - 0bdc2997-0c65-4ec8-b5a9-73a0d3822005
+      x-mws-request-id:
+      - 0bdc2997-0c65-4ec8-b5a9-73a0d3822005
+      x-mws-timestamp:
+      - '2014-01-20T14:06:58.751Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListByNextTokenResult><NextToken>/Qf/kPjjuTMD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQA6Rov0EQZhnBOmNq6uuAJKCwi968QkimCus63QYNQdQMTmzw615Yq/tinIbRuLMISyoYkkmy7z+7kR78MqE7qtbuxNIfAZWJhIzH8ak8ZQQ==</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>30113902844</ReportId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><ReportRequestId>7500479000</ReportRequestId><AvailableDate>2014-01-20T12:01:43+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30113355344</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499538034</ReportRequestId><AvailableDate>2014-01-20T11:46:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30113337364</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499617642</ReportRequestId><AvailableDate>2014-01-20T11:45:58+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30112133184</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499537834</ReportRequestId><AvailableDate>2014-01-20T11:12:48+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30111755604</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7500000814</ReportRequestId><AvailableDate>2014-01-20T11:03:05+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30111448564</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499537358</ReportRequestId><AvailableDate>2014-01-20T10:54:11+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30111154264</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499444082</ReportRequestId><AvailableDate>2014-01-20T10:45:50+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30110106904</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499443740</ReportRequestId><AvailableDate>2014-01-20T10:17:04+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30109579344</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499513626</ReportRequestId><AvailableDate>2014-01-20T10:03:32+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30109506964</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499443470</ReportRequestId><AvailableDate>2014-01-20T10:01:36+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListByNextTokenResult><ResponseMetadata><RequestId>0bdc2997-0c65-4ec8-b5a9-73a0d3822005</RequestId></ResponseMetadata></GetReportListByNextTokenResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:06:59 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=***REMOVED***&Action=GetReportListByNextToken&NextToken=%2FQf%2FkPjjuTMD2s1QD6a1Faatt7H%2BKoLIM48r5nOh7ZQA6Rov0EQZhnBOmNq6uuAJKCwi968QkimCus63QYNQdQMTmzw615Yq%2FtinIbRuLMISyoYkkmy7z%2B7kR78MqE7qtbuxNIfAZWJhIzH8ak8ZQQ%3D%3D&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A59Z&Signature=ibUK1me6HvB4l%2FR2fHPzpo2hiP6z02zpyIT6tmHUWK8%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:06:59 GMT
+      Server:
+      - Server
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1798.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:07:00 UTC
+      x-mws-response-context:
+      - 6GzMm8SsEbz0fIDV9VYFh4IfgIVtuk6rnPDjBvy5RhOFmq2SGrKSTEcoU7Q7fpbmBwNNq5+T65lQ
+        o/EXYL2xFpLyjPnDp+P5, 0AA4ZC8kSOriGxzd7tgMWuvkm8VPk/FogpmGzLwBvYUd5AkF8ESSgtp5GG7EraZlThsQt35VYLwB
+        NkSAHtegHw==
+      x-amz-request-id:
+      - 07977bd6-b607-4b36-909a-b7646fb214b5
+      x-mws-request-id:
+      - 07977bd6-b607-4b36-909a-b7646fb214b5
+      x-mws-timestamp:
+      - '2014-01-20T14:06:59.058Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListByNextTokenResult><NextToken>0nzhjPoF3WED2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1Vics9Qddm+MAZXezqL3zOdsSbmacoXJ/DpulSjWGHtMI97cCF0lF8LikDi82KPvCv/LqsB0EzxybTwcKfw+6ArCJSD3H2TGIqw42eT2ivg==</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>30109248264</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499361826</ReportRequestId><AvailableDate>2014-01-20T09:54:23+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30109121824</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499361754</ReportRequestId><AvailableDate>2014-01-20T09:50:43+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30108985324</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499361678</ReportRequestId><AvailableDate>2014-01-20T09:46:42+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30107421244</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7499041210</ReportRequestId><AvailableDate>2014-01-20T09:03:21+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30107396444</ReportId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><ReportRequestId>7499038374</ReportRequestId><AvailableDate>2014-01-20T09:02:50+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30105418744</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7498584970</ReportRequestId><AvailableDate>2014-01-20T08:02:49+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30103656684</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7498171952</ReportRequestId><AvailableDate>2014-01-20T07:02:57+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30102032164</ReportId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><ReportRequestId>7497782848</ReportRequestId><AvailableDate>2014-01-20T06:01:54+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30102016804</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7497771400</ReportRequestId><AvailableDate>2014-01-20T06:01:24+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>30099190624</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>7497069168</ReportRequestId><AvailableDate>2014-01-20T04:01:21+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListByNextTokenResult><ResponseMetadata><RequestId>07977bd6-b607-4b36-909a-b7646fb214b5</RequestId></ResponseMetadata></GetReportListByNextTokenResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:06:59 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=***REMOVED***&Action=GetReportList&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A06%3A59Z&Signature=GuBmw%2BYkCFGkodj68LY6tUDV6MC8PfJr3D4Geyr7tpU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:07:05 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '59.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:47:00 UTC
+      x-mws-response-context:
+      - OWU1+uJ6ODBK1RSkzySlHx6Pr3L1jhGFAvJUheLntVdI6f8lqv0nPZp7vwj1LGv5xGupLCSjGrmQ
+        GZZB3zLuA3ghm/eWUQ8l, 5knX5Jjw5Y6XeNOF3xtJSlrzwfhN6CwWD1jVFoLoAihSfybjNXpNFtrRdPR/e50z/zusJTf9Cnsc
+        vfDEv2BHXQ==
+      x-amz-request-id:
+      - 83582585-0d74-401f-b98e-b1b9d0b9cc7f
+      x-mws-request-id:
+      - 83582585-0d74-401f-b98e-b1b9d0b9cc7f
+      x-mws-timestamp:
+      - '2014-01-20T14:07:00.279Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>EPsDftYIY6QD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>3475887525</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828963717</ReportRequestId><AvailableDate>2014-01-20T14:01:06+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475830385</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828917291</ReportRequestId><AvailableDate>2014-01-20T13:54:20+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475755505</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828864193</ReportRequestId><AvailableDate>2014-01-20T13:45:45+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475745505</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828903403</ReportRequestId><AvailableDate>2014-01-20T13:44:23+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475693065</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828864119</ReportRequestId><AvailableDate>2014-01-20T13:38:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475669825</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828839077</ReportRequestId><AvailableDate>2014-01-20T13:35:42+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475597985</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828864033</ReportRequestId><AvailableDate>2014-01-20T13:27:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475547765</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828838977</ReportRequestId><AvailableDate>2014-01-20T13:21:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475520605</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828825689</ReportRequestId><AvailableDate>2014-01-20T13:17:22+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475515045</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828825437</ReportRequestId><AvailableDate>2014-01-20T13:16:58+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>83582585-0d74-401f-b98e-b1b9d0b9cc7f</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:07:06 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=***REMOVED***&Action=GetReportListByNextToken&NextToken=EPsDftYIY6QD2s1QD6a1Faatt7H%2BKoLIM48r5nOh7ZQ1q7%2Bbiy1IyF130dcAIezsKtggkW5lERV7B%2B2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A07%3A06Z&Signature=UlHHmSKXv9w7oyCnKU1sTZGnMjrLsTYzs7sWW3pxJrM%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:07:11 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:47:00 UTC
+      x-mws-response-context:
+      - IweRHGN6qI/mpX7YKZTtAyGyxwTcncAPii1/sZfod1f5RCNbiK7QRnvFQOYkJFPJ/TQohNrNC2jJ
+        I6lZBWZrQNYJxXySC6BQ, wTUEN9KG9rEqPrqSXz7qaOZ+U7kozim010txeLzsCoyQM+wJSdGxXrtKZfQ92QlRryJJE8HZToEg
+        lkJcXVH+Uw==
+      x-amz-request-id:
+      - 156a98e9-3c12-4ec8-a952-a01c078545b8
+      x-mws-request-id:
+      - 156a98e9-3c12-4ec8-a952-a01c078545b8
+      x-mws-timestamp:
+      - '2014-01-20T14:07:06.204Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListByNextTokenResult><NextToken>IQuHr9ht5qID2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQA6Rov0EQZhnBOmNq6uuAJKCwi968QkimCus63QYNQdQMTmzw615Yq/tinIbRuLMISyoYkkmy7z+7kR78MqE7qtbuxNIfAZWJhIzH8ak8ZQQ==</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>3475438125</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828838825</ReportRequestId><AvailableDate>2014-01-20T13:07:20+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475376205</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828886693</ReportRequestId><AvailableDate>2014-01-20T13:01:13+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475302025</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828797069</ReportRequestId><AvailableDate>2014-01-20T12:51:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475226865</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828825207</ReportRequestId><AvailableDate>2014-01-20T12:41:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475209925</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828796843</ReportRequestId><AvailableDate>2014-01-20T12:37:57+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475190805</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828771547</ReportRequestId><AvailableDate>2014-01-20T12:34:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475107645</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828796815</ReportRequestId><AvailableDate>2014-01-20T12:24:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475070985</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828771463</ReportRequestId><AvailableDate>2014-01-20T12:20:58+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3475053065</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828757523</ReportRequestId><AvailableDate>2014-01-20T12:17:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474961325</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828771277</ReportRequestId><AvailableDate>2014-01-20T12:07:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListByNextTokenResult><ResponseMetadata><RequestId>156a98e9-3c12-4ec8-a952-a01c078545b8</RequestId></ResponseMetadata></GetReportListByNextTokenResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:07:12 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=***REMOVED***&Action=GetReportListByNextToken&NextToken=IQuHr9ht5qID2s1QD6a1Faatt7H%2BKoLIM48r5nOh7ZQA6Rov0EQZhnBOmNq6uuAJKCwi968QkimCus63QYNQdQMTmzw615Yq%2FtinIbRuLMISyoYkkmy7z%2B7kR78MqE7qtbuxNIfAZWJhIzH8ak8ZQQ%3D%3D&SellerId=***REMOVED***&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-01-20T14%3A07%3A12Z&Signature=lYLNRmAQ%2BJtyV11C5vwfJFUs5GXkMlGtqWS9CW3l37g%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/0.7.4 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Mon, 20 Jan 2014 14:07:16 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Mon,20 Jan 2014 14:47:00 UTC
+      x-mws-response-context:
+      - rvv0IllGH7oHpG92KuEzeMv14pWVkczpcSVpOXvR7otp+Ztg0S9MdqwrmIVQjKCnLqzuJspqNSop
+        mkTAaaRomHt+qeFdRtqn, 9yzwDqOG1pFJdjEZtDHike/Y1UDpCH50b5mBcdtGcKoN6jqiY7mYFR3ccb85Wz2Tx/Xe0Vv+97L3
+        f/WrROA1MA==
+      x-amz-request-id:
+      - 4d42e76e-f084-4972-be40-645bc527d293
+      x-mws-request-id:
+      - 4d42e76e-f084-4972-be40-645bc527d293
+      x-mws-timestamp:
+      - '2014-01-20T14:07:12.501Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListByNextTokenResult><NextToken>N46PoTSIvosD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1Vics9Qddm+MAZXezqL3zOdsSbmacoXJ/DpulSjWGHtMI97cCF0lF8LikDi82KPvCv/LqsB0EzxybTwcKfw+6ArCJSD3H2TGIqw42eT2ivg==</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>3474935285</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828816787</ReportRequestId><AvailableDate>2014-01-20T12:04:52+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474916265</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828757487</ReportRequestId><AvailableDate>2014-01-20T12:03:37+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474890685</ReportId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><ReportRequestId>828811853</ReportRequestId><AvailableDate>2014-01-20T12:00:55+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474871145</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828726213</ReportRequestId><AvailableDate>2014-01-20T11:57:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474791345</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828757425</ReportRequestId><AvailableDate>2014-01-20T11:48:00+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474737065</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828726063</ReportRequestId><AvailableDate>2014-01-20T11:42:57+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474723185</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828699967</ReportRequestId><AvailableDate>2014-01-20T11:40:59+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474663985</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828725897</ReportRequestId><AvailableDate>2014-01-20T11:32:43+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474619265</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828699863</ReportRequestId><AvailableDate>2014-01-20T11:27:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>3474593425</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>828686689</ReportRequestId><AvailableDate>2014-01-20T11:24:00+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListByNextTokenResult><ResponseMetadata><RequestId>4d42e76e-f084-4972-be40-645bc527d293</RequestId></ResponseMetadata></GetReportListByNextTokenResponse>
+    http_version: 
+  recorded_at: Mon, 20 Jan 2014 14:07:17 GMT
+recorded_with: VCR 2.8.0
