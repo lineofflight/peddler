@@ -3,11 +3,11 @@ require 'peddler/request/parameters'
 
 class PeddlerRequestParametersTest < MiniTest::Test
   def setup
-    @parameters = Peddler::Request::Parameters.new(:do_it)
+    @parameters = Peddler::Request::Parameters.new(:do_it_with_sku)
   end
 
   def test_has_an_action_key
-    assert_equal 'DoIt', @parameters.fetch('Action')
+    assert_equal 'DoItWithSKU', @parameters.fetch('Action')
   end
 
   def test_formats_timestamps
