@@ -18,6 +18,8 @@ module Peddler
         report_request_id_list: %w(ReportRequestIdList Id),
         report_type_list: %w(ReportTypeList Type),
         report_processing_status_list: %w(ReportProcessingStatusList Status),
+        # Products
+        seller_sku_list: %w(SellerSKUList SellerSKU)
       }
 
       attr :keys
