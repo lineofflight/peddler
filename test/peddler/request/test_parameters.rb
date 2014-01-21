@@ -22,6 +22,11 @@ class PeddlerRequestParametersTest < MiniTest::Test
     assert_equal 'foo', @parameters.format_structured_lists!.fetch('OrderStatus.Status.1')
   end
 
+  def test_formats_structured_lists_with_skip_options
+    @parameters.store(:order_status, 'foo')
+    assert_raises(KeyError) { @parameters.format_structured_lists!(skip: [:order_status]).fetch('OrderStatus.Status.1') }
+  end
+
   def test_camelizes_keys
     @parameters.store(:underscored_key, 'baz')
     refute @parameters.camelize_keys!.has_key?(:underscored_key)
