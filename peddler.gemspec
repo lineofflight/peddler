@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'structure', '~> 0.25.1'
   gem.add_development_dependency 'guard-minitest'
   gem.add_development_dependency 'minitest', '~> 5.0'
+  gem.add_development_dependency 'minitest-emoji'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rake'
 
