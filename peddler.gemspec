@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'jeff', '~> 1.0'
-  gem.add_dependency 'money', '~> 5.0'
+  gem.add_dependency 'money', '~> 6.0'
   gem.add_dependency 'nokogiri', '~> 1.5'
   gem.add_dependency 'structure', '~> 0.25.1'
   gem.add_development_dependency 'guard-minitest'
