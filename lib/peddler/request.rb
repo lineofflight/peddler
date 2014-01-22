@@ -7,6 +7,8 @@ module Peddler
 
     attr_accessor :body, :last_parsed_response
 
+    attr_writer :parser
+
     def initialize(client)
       @client = client
       @headers = {}
@@ -17,9 +19,13 @@ module Peddler
       @parameters
     end
 
-    def execute
-      res = fetch
-      parse(res)
+    def execute(&blk)
+      if block_given?
+        fetch(&blk)
+      else
+        res = Response.new(fetch)
+        parse(res)
+      end
     end
 
     def next_token
@@ -36,12 +42,12 @@ module Peddler
       @parser ||= Object.const_get(self.class.name.sub('Request', 'Parser'))
     end
 
-    def fetch
+    def fetch(&blk)
       opts = { query: parameters, headers: headers, idempotent: true, expects: 200 }
       opts.update(body: body) if body
-      res = client.post(opts)
+      opts.update(response_block: blk) if block_given?
 
-      Response.new(res)
+      client.post(opts)
     end
 
     def parse(response)
