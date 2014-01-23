@@ -5,6 +5,10 @@ module MWS
     module Parsers
       class Product < ::Peddler::Parsers::XML
 
+        def identifiers
+          Identifiers.new(xpath('Identifiers'))
+        end
+
       end
     end
   end

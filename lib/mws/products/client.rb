@@ -1,6 +1,7 @@
 require 'mws/products/requests/offer_listings'
 require 'mws/products/parsers/offer_listings'
 require 'mws/products/parsers/product'
+require 'mws/products/parsers/identifiers'
 
 module MWS
   module Products
