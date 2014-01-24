@@ -11,4 +11,9 @@ class ProductParserTest < ParserTest
     assert_kind_of MWS::Products::Parsers::Identifiers, @product.identifiers
     assert @product.identifiers.document.any?
   end
+
+  def test_lowest_offer_listings
+    assert_kind_of MWS::Products::Parsers::LowestOfferListings, @product.lowest_offer_listings
+    assert @product.lowest_offer_listings.document.any?
+  end
 end

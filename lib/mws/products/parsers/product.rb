@@ -9,6 +9,10 @@ module MWS
           Identifiers.new(xpath('Identifiers'))
         end
 
+        def lowest_offer_listings
+          LowestOfferListings.new(xpath('LowestOfferListings'))
+        end
+
       end
     end
   end
