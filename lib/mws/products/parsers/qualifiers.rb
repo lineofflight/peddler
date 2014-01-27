@@ -7,7 +7,7 @@ module MWS
 
         [ :item_condition, :item_subcondition,
           :fulfillment_channel, :seller_positive_feedback_rating].each do |method|
-          define_method method do
+          value method do
             text_at_xpath(symbol_to_xpath(method))
           end
         end
