@@ -21,6 +21,10 @@ module MWS
           Qualifiers.new(xpath('Qualifiers'))
         end
 
+        def price
+          Price.new(xpath('Price'))
+        end
+
       end
     end
   end
