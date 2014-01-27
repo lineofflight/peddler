@@ -22,4 +22,9 @@ class LowestOfferListingParserTest < ParserTest
     assert_kind_of MWS::Products::Parsers::Qualifiers, @lowest_offer_listing.qualifiers
     assert @lowest_offer_listing.qualifiers.document
   end
+
+  def test_price
+    assert_kind_of MWS::Products::Parsers::Price, @lowest_offer_listing.price
+    assert @lowest_offer_listing.price.document
+  end
 end
