@@ -17,6 +17,10 @@ module MWS
           boolean_at_xpath('MultipleOffersAtLowestPrice')
         end
 
+        def qualifiers
+          Qualifiers.new(xpath('Qualifiers'))
+        end
+
       end
     end
   end

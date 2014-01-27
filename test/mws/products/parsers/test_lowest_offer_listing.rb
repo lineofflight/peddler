@@ -17,4 +17,9 @@ class LowestOfferListingParserTest < ParserTest
   def test_multiple_offers
     assert_kind_of FalseClass, @lowest_offer_listing.multiple_offers
   end
+
+  def test_qualifiers
+    assert_kind_of MWS::Products::Parsers::Qualifiers, @lowest_offer_listing.qualifiers
+    assert @lowest_offer_listing.qualifiers.document
+  end
 end
