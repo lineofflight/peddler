@@ -4,6 +4,7 @@ require 'mws/products/parsers/product'
 require 'mws/products/parsers/identifiers'
 require 'mws/products/parsers/lowest_offer_listing'
 require 'mws/products/parsers/lowest_offer_listings'
+require 'mws/products/parsers/qualifiers'
 
 module MWS
   module Products
