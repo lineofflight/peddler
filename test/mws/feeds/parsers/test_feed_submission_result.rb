@@ -5,7 +5,6 @@ class FeedSubmissionResultParserTest < ParserTest
   def setup
     @node = fixture_from_cassette('feed_submission_result_test/test_gets_feed_submission_result', 1).xpath('//AmazonEnvelope')
     @result = MWS::Feeds::Parsers::FeedSubmissionResult.new(@node)
-    binding.pry
   end
 
   def test_content
