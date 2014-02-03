@@ -22,8 +22,12 @@ module Peddler
 
       private
 
+      def xml_namespace
+        'xmlns:'
+      end
+
       def add_namespace(path)
-        path.split('/').map { |attr| "xmlns:#{attr}" }.join('/')
+        path.split('/').map { |attr| "#{xml_namespace}#{attr}" }.join('/')
       end
 
       def symbol_to_xpath(symbol)
