@@ -11,8 +11,8 @@ module MWS
 
         private
 
-        def add_namespace(path)
-          path
+        def xml_namespace
+          ''
         end
       end
     end
