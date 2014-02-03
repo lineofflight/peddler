@@ -18,4 +18,13 @@ class FeedSubmissionResultParserTest < ParserTest
   def test_status_code
     assert_kind_of String, @result.status_code
   end
+
+  [ :messages_processed, :messages_successful,
+    :messages_with_error, :messages_with_warning].each do |key|
+
+    define_method "test_#{key}" do
+      assert_kind_of Integer, @result.send(key)
+    end
+  end
+
 end
