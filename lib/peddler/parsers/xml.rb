@@ -20,11 +20,11 @@ module Peddler
         document.xpath(add_namespace(path))
       end
 
-      private
-
       def xml_namespace
         'xmlns:'
       end
+
+      private
 
       def add_namespace(path)
         path.split('/').map { |attr| "#{xml_namespace}#{attr}" }.join('/')

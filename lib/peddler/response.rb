@@ -9,8 +9,9 @@ module Peddler
 
     def_delegator :http_response, :body
 
-    def initialize(http_response)
+    def initialize(http_response, xml_namespace = 'xmlns:')
       @http_response = http_response
+      @xml_namespace = xml_namespace
     end
 
     def document
@@ -21,7 +22,7 @@ module Peddler
       root = document.root
       path = root.name.sub('Response', 'Result')
 
-      root.xpath("xmlns:#{path}")
+      root.xpath("#{@xml_namespace}#{path}")
     end
   end
 end

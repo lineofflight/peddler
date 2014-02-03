@@ -23,7 +23,7 @@ module Peddler
       if block_given?
         fetch(&blk)
       else
-        res = Response.new(fetch)
+        res = Response.new(fetch, xml_namespace)
         parse(res)
       end
     end
@@ -37,6 +37,10 @@ module Peddler
     end
 
     private
+
+    def xml_namespace
+      'xmlns:'
+    end
 
     def parser
       @parser ||= Object.const_get(self.class.name.sub('Request', 'Parser'))
