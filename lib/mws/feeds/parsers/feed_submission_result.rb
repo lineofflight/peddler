@@ -11,6 +11,10 @@ module MWS
           text_at_xpath('MessageType')
         end
 
+        value :status_code do
+          text_at_xpath('Message/ProcessingReport/Summary/StatusCode')
+        end
+
       end
     end
   end

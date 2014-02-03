@@ -14,4 +14,8 @@ class FeedSubmissionResultParserTest < ParserTest
   def test_message_type
     assert_kind_of String, @result.message_type
   end
+
+  def test_status_code
+    assert_kind_of String, @result.status_code
+  end
 end
