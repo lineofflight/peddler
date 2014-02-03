@@ -3,11 +3,16 @@ require 'mws/feeds/parsers/feed_submission_result'
 
 class FeedSubmissionResultParserTest < ParserTest
   def setup
-    @body = 'foo'
-    @result = MWS::Feeds::Parsers::FeedSubmissionResult.new(@body)
+    @node = fixture_from_cassette('feed_submission_result_test/test_gets_feed_submission_result', 1).xpath('//AmazonEnvelope')
+    @result = MWS::Feeds::Parsers::FeedSubmissionResult.new(@node)
+    binding.pry
   end
 
   def test_content
-    assert_equal @body, @result.document
+    assert_equal @node, @result.document
+  end
+
+  def test_message_type
+    assert_kind_of String, @result.message_type
   end
 end
