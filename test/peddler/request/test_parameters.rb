@@ -3,11 +3,11 @@ require 'peddler/request/parameters'
 
 class PeddlerRequestParametersTest < MiniTest::Test
   def setup
-    @parameters = Peddler::Request::Parameters.new(:do_it)
+    @parameters = Peddler::Request::Parameters.new(:do_it_with_sku)
   end
 
   def test_has_an_action_key
-    assert_equal 'DoIt', @parameters.fetch('Action')
+    assert_equal 'DoItWithSKU', @parameters.fetch('Action')
   end
 
   def test_formats_timestamps
@@ -20,6 +20,11 @@ class PeddlerRequestParametersTest < MiniTest::Test
   def test_formats_structured_lists
     @parameters.store(:order_status, 'foo')
     assert_equal 'foo', @parameters.format_structured_lists!.fetch('OrderStatus.Status.1')
+  end
+
+  def test_formats_structured_lists_with_skip_options
+    @parameters.store(:order_status, 'foo')
+    assert_raises(KeyError) { @parameters.format_structured_lists!(skip: [:order_status]).fetch('OrderStatus.Status.1') }
   end
 
   def test_camelizes_keys

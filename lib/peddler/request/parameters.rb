@@ -7,7 +7,7 @@ module Peddler
   class Request
     class Parameters < SimpleDelegator
       def initialize(action)
-        super({ 'Action' => camelize(action) })
+        super({ 'Action' => action_name(action) })
       end
 
       def timestamp!
@@ -18,10 +18,11 @@ module Peddler
         self
       end
 
-      def format_structured_lists!
+      def format_structured_lists!(options = {})
         lists = {}
-
+        skip = options.delete(:skip).to_a
         each do |key, value|
+          next if skip.include?(key)
           if StructuredList.handle?(key)
             list = StructuredList.new(key).build(delete(key))
             lists.update(list)
@@ -48,6 +49,10 @@ module Peddler
       end
 
       private
+
+      def action_name(action)
+        camelize(action).gsub(/Sku$/, 'SKU')
+      end
 
       def camelize(sym)
         sym.to_s.split('_').map(&:capitalize).join

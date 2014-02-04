@@ -20,10 +20,18 @@ module Peddler
         document.xpath(add_namespace(path))
       end
 
+      def xml_namespace
+        'xmlns:'
+      end
+
       private
 
       def add_namespace(path)
-        path.split('/').map { |attr| "xmlns:#{attr}" }.join('/')
+        path.split('/').map { |attr| "#{xml_namespace}#{attr}" }.join('/')
+      end
+
+      def symbol_to_xpath(symbol)
+        symbol.to_s.split('_').map(&:capitalize).join
       end
     end
   end

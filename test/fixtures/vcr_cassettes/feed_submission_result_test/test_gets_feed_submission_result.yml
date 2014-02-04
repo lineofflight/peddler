@@ -1,0 +1,313 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AKIAJOD3NLXHOMANRNQQ&Action=GetFeedSubmissionList&FeedProcessingStatusList.Status.1=_DONE_&FeedTypeList.Type.1=_POST_PRODUCT_PRICING_DATA_&MaxCount=1&SellerId=A2JYSO6W6KEP83&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-03T09%3A56%3A49Z&Signature=fTb7iKH6MajDxoFgLaWeosNOO0JYMm62vaJKqSxJ3Cg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 09:56:48 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Mon,03 Feb 2014 09:57:00 UTC
+      x-mws-response-context:
+      - 1jOaKSW7Lhzj7GlUO8bTe7bBKYmWhIWw7mqb4B2/aNDublG+zputqh0cgyVg0UmaikD761KvWxaG
+        xNmTOT6Te4dUa8a1hBRe, IcporDgSjWOZO7lQTEk+qeEDwXMeMtpQV/6rm92vT0Ts/41Cem8QpDWvHIeF2qfXa4joLiIwDFHJ
+        WmNyrx4LKQ==
+      x-amz-request-id:
+      - 1972cf29-ac5a-40cf-8c49-4000db68c2dc
+      x-mws-request-id:
+      - 1972cf29-ac5a-40cf-8c49-4000db68c2dc
+      x-mws-timestamp:
+      - '2014-02-03T09:56:49.214Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=15
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>Z2MjPCGZ/k9mmFQFVAtP1eTO+tGkgGLkjp69bq33oj9bdAh3tX2FNXGsHLYYIfzBJAqoJBez60VVp3lB6YnzwQEy8IVZgbJMkxRO1FyMCnYkLqJRH2Sv7J+j8NyU1OYDUYfBxyzLIsc6U8pTg0alM/OFsSl6sjyecZc9scyruazlq9Sjtnhm8n/HO2VmDQdvGPKdzdCe+37EF2W0jaGriDSGEWdv8Bzkq2FIuUN4Nw2YTXN22nuAbrLnbK7ImtHaeeYF/KLnN1EBu0Fqq1CwKK2lRtXLbIxq0Eh4jrQDylLUCgaPCdW6RCadKzEeEusy3cI0uHZp6GzvMxwB+DzdntIOZOI2O7zH+99KXgI4yiHO5wnAx56C5SsN6YnUbbizNxHjFbVdZeqNs4qC4dOOfchWqS+HZl5UEeiEUQyiFfMz84Xe5lw4gfmjUNbpKrVEvrEpx2k5U2J39WmLwNAWvFYKcInn2pl59uUG7Jj7GQtdQTkchL452Pf1ykz4t/rASlHQ+i0NSqYF/x4kZ57aPDgJ7737vsY+QmRRhBTNy0MeIhTwLtsSlBCRekH3HiJbylDPbRy3HMgkJdTLpdA06OpYe/5PC1WC4VcZRx10YnJuyA6bhPes9BlVo8nGhgUKtBtq5rQH9ZoMk/0zmEATaBtjXCjo6oxjNqFrI1AGAnAMggyi3Y0AGLsr2algpvqzRkcp67Pno8MKD6kBF25mhtLGe1h7pAbQVG9UuDBxsoyX3vnSK2WjKBH+mHbaKK5rdtW/yvUw+AB2g/ypquDs4AoJsSoZt8UmWKscAqFhC+cD6dr24G+1TO5olmhdw3fGLezCi/DOmEqkBCKD9f27S3DAjoOO7fuSP/Yy2RSDUbl2dnGQOlaiaEFutyrTjDcA18mjEl1DLimsXOzEuFbkjiOT4MB2mREvOVb4+GVpv4ghWLqRIdlFn/MwEwPoj/Y8WyJ+GfPvGTMY2Hv9Yv0TR2v2YZy+Uxq9NIePGjBOyN6CCMpBFrCVh5S+IpRjymDe</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>9013048504</FeedSubmissionId><FeedType>_POST_PRODUCT_PRICING_DATA_</FeedType><SubmittedDate>2014-01-31T13:11:40+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-01-31T13:11:51+00:00</StartedProcessingDate><CompletedProcessingDate>2014-01-31T13:13:16+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>1972cf29-ac5a-40cf-8c49-4000db68c2dc</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 09:56:50 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AKIAJOD3NLXHOMANRNQQ&Action=GetFeedSubmissionResult&FeedSubmissionId=9013048504&SellerId=A2JYSO6W6KEP83&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-03T09%3A56%3A50Z&Signature=K6CZmW2O6HEYkbYajRarBILOm945L8GBARpSeFbkdGU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 09:56:49 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '60.0'
+      x-mws-quota-resetsOn:
+      - Mon,03 Feb 2014 09:57:00 UTC
+      Content-MD5:
+      - M5hcduPTaHDCDjzZ5kJqNg==
+      x-mws-response-context:
+      - xNt4vqurtXpX4RH2EP6g1U/0FuvOc4H071e5TjSmN6dEESYIvC49+QxiBBATZAN3FTUMLvhEgxHu
+        D4TnFkFN0Hf3J1tB0jmo, OCYJE4Rnrx9JyoAcSQZve2Cu5m7LtQTcPhkR43f9siyH1z32WWEpKh27RnQWMkMQJprQjN0I7en5
+        6/QULhS4TQ==
+      x-amz-request-id:
+      - 7fd08742-6f7a-4f6a-a870-c3c0fae2ac68
+      x-mws-request-id:
+      - 7fd08742-6f7a-4f6a-a870-c3c0fae2ac68
+      x-mws-timestamp:
+      - '2014-02-03T09:56:49.964Z'
+      Content-Type:
+      - application/octet-stream
+      Content-Length:
+      - '880'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:noNamespaceSchemaLocation=\"amzn-envelope.xsd\">\n\t<Header>\n\t\t<DocumentVersion>3.00</DocumentVersion>\n\t\t<MerchantIdentifier>M_NOTHEORY_770513</MerchantIdentifier>\n\t</Header>\n\t<MessageType>ProcessingReport</MessageType>\n\t<Message>\n\t\t<MessageID>1</MessageID>\n\t\t<ProcessingReport>\n\t\t\t<ProcessingReportType>Price</ProcessingReportType>\n\t\t\t<DocumentTransactionID>9013048504</DocumentTransactionID>\n\t\t\t<Summary
+        MarketplaceName=\"Amazon.com\">\n\t\t\t<StatusCode>Complete</StatusCode>\n\t\t\t<ProcessingSummary>\n\t\t\t\t<MessagesProcessed>2</MessagesProcessed>\n\t\t\t\t<MessagesSuccessful>2</MessagesSuccessful>\n\t\t\t\t<MessagesWithError>0</MessagesWithError>\n\t\t\t\t<MessagesWithWarning>0</MessagesWithWarning>\n\t\t\t</ProcessingSummary>\n\t\t\t</Summary>\n\t\t</ProcessingReport>\n\t</Message>\n</AmazonEnvelope>"
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 09:56:51 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AKIAJOD3NLXHOMANRNQQ&Action=GetFeedSubmissionList&FeedProcessingStatusList.Status.1=_DONE_&FeedTypeList.Type.1=_POST_PRODUCT_PRICING_DATA_&MaxCount=1&SellerId=A2JYSO6W6KEP83&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-03T09%3A57%3A36Z&Signature=GsmuzTgcl7liDF8C5xv7EWCy4frd9092eLBjLvqafYw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 09:57:35 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Mon,03 Feb 2014 10:57:00 UTC
+      x-mws-response-context:
+      - SxXhpt42PKIUiYZUTIFtuthyhcFlkwAc2Letyh2fAS/6YyMICY9JVGuw55DmXGPwWliKdGy43gds
+        jR4FNAvsMs2u65yNn49B, FKYYYCGUmK3UC6OwcosZeihWNLZWxmriu7I+KqnGgmUaHAI8qLZr8c5AhfOEIXq3+cHaFe1e2k/X
+        xof5BYRYcw==
+      x-amz-request-id:
+      - 793326e4-a1b0-4fcd-a188-70610b1de52d
+      x-mws-request-id:
+      - 793326e4-a1b0-4fcd-a188-70610b1de52d
+      x-mws-timestamp:
+      - '2014-02-03T09:57:36.017Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>qp5N1rHKZtxmmFQFVAtP1eTO+tGkgGLkjp69bq33oj9bdAh3tX2FNXGsHLYYIfzBJAqoJBez60VVp3lB6YnzwQEy8IVZgbJMkxRO1FyMCnYkLqJRH2Sv7J+j8NyU1OYDUYfBxyzLIsc6U8pTg0alM/OFsSl6sjyecZc9scyruazlq9Sjtnhm8n/HO2VmDQdvGPKdzdCe+37EF2W0jaGriDSGEWdv8Bzkq2FIuUN4Nw2YTXN22nuAbrLnbK7ImtHaeeYF/KLnN1EBu0Fqq1CwKK2lRtXLbIxq0Eh4jrQDylLUCgaPCdW6RCadKzEeEusy3cI0uHZp6GzvMxwB+DzdntIOZOI2O7zH+99KXgI4yiHO5wnAx56C5SsN6YnUbbizNxHjFbVdZeqNs4qC4dOOfchWqS+HZl5UEeiEUQyiFfMz84Xe5lw4gfmjUNbpKrVEvrEpx2k5U2J39WmLwNAWvFYKcInn2pl59uUG7Jj7GQtdQTkchL452Pf1ykz4t/rASlHQ+i0NSqYF/x4kZ57aPDgJ7737vsY+QmRRhBTNy0MeIhTwLtsSlBCRekH3HiJbylDPbRy3HMgkJdTLpdA06OpYe/5PC1WC4VcZRx10YnJuyA6bhPes9BlVo8nGhgUKtBtq5rQH9ZoMk/0zmEATaBtjXCjo6oxjNqFrI1AGAnAMggyi3Y0AGLsr2algpvqzRkcp67Pno8MKD6kBF25mhtLGe1h7pAbQVG9UuDBxsoyX3vnSK2WjKBH+mHbaKK5rdtW/yvUw+AB2g/ypquDs4AoJsSoZt8UmWKscAqFhC+cD6dr24G+1TO5olmhdw3fGLezCi/DOmEqkBCKD9f27S3DAjoOO7fuSP/Yy2RSDUbl2dnGQOlaiaEFutyrTjDcA18mjEl1DLimsXOzEuFbkjiOT4MB2mREvOVb4+GVpv4ghWLqRIdlFn/MwEwPoj/Y8WyJ+GfPvGTMY2Hv9Yv0TR2v2YZy+Uxq9NIePGjBOyN6CCMpBFrCVh5S+IpRjymDe</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>9013048504</FeedSubmissionId><FeedType>_POST_PRODUCT_PRICING_DATA_</FeedType><SubmittedDate>2014-01-31T13:11:40+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-01-31T13:11:51+00:00</StartedProcessingDate><CompletedProcessingDate>2014-01-31T13:13:16+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>793326e4-a1b0-4fcd-a188-70610b1de52d</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 09:57:37 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AKIAJOD3NLXHOMANRNQQ&Action=GetFeedSubmissionResult&FeedSubmissionId=9013048504&SellerId=A2JYSO6W6KEP83&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-03T09%3A57%3A37Z&Signature=Y%2FuN3vEiBZh04sHcJpTeuTJprQ90CAHBr9q4d9ZlXag%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 09:57:36 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '60.0'
+      x-mws-quota-resetsOn:
+      - Mon,03 Feb 2014 10:57:00 UTC
+      Content-MD5:
+      - M5hcduPTaHDCDjzZ5kJqNg==
+      x-mws-response-context:
+      - OH5Lmpr7nZdzDgOHjtUwh1ew9xFv+w/tCzmdx7vZPhHhv2T5SJbwGgzwsTQflLs1sQL+LW/GY8bO
+        cjBaIQCxZ4uaLhha07tT, FKYYYCGUmK3UC6OwcosZeihWNLZWxmriu7I+KqnGgmUaHAI8qLZr8c5AhfOEIXq3+cHaFe1e2k/X
+        xof5BYRYcw==
+      x-amz-request-id:
+      - 5d78fc6f-66b6-441c-a003-7abd41ccc757
+      x-mws-request-id:
+      - 5d78fc6f-66b6-441c-a003-7abd41ccc757
+      x-mws-timestamp:
+      - '2014-02-03T09:57:36.569Z'
+      Content-Type:
+      - application/octet-stream
+      Content-Length:
+      - '880'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=14
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:noNamespaceSchemaLocation=\"amzn-envelope.xsd\">\n\t<Header>\n\t\t<DocumentVersion>3.00</DocumentVersion>\n\t\t<MerchantIdentifier>M_NOTHEORY_770513</MerchantIdentifier>\n\t</Header>\n\t<MessageType>ProcessingReport</MessageType>\n\t<Message>\n\t\t<MessageID>1</MessageID>\n\t\t<ProcessingReport>\n\t\t\t<ProcessingReportType>Price</ProcessingReportType>\n\t\t\t<DocumentTransactionID>9013048504</DocumentTransactionID>\n\t\t\t<Summary
+        MarketplaceName=\"Amazon.com\">\n\t\t\t<StatusCode>Complete</StatusCode>\n\t\t\t<ProcessingSummary>\n\t\t\t\t<MessagesProcessed>2</MessagesProcessed>\n\t\t\t\t<MessagesSuccessful>2</MessagesSuccessful>\n\t\t\t\t<MessagesWithError>0</MessagesWithError>\n\t\t\t\t<MessagesWithWarning>0</MessagesWithWarning>\n\t\t\t</ProcessingSummary>\n\t\t\t</Summary>\n\t\t</ProcessingReport>\n\t</Message>\n</AmazonEnvelope>"
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 09:57:38 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AKIAJOD3NLXHOMANRNQQ&Action=GetFeedSubmissionList&FeedProcessingStatusList.Status.1=_DONE_&FeedTypeList.Type.1=_POST_PRODUCT_PRICING_DATA_&MaxCount=1&SellerId=A2JYSO6W6KEP83&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-03T09%3A57%3A47Z&Signature=Ukb%2BT%2B1uNfp%2BemF1Yd4Ef13KPIPIpv%2BmYsf6QnSoaHQ%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 09:57:45 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Mon,03 Feb 2014 10:57:00 UTC
+      x-mws-response-context:
+      - bm1VKoOFWZLdHD3b+9TG0OQ+cveFHw/UWcJDyZy9LEBABRkvJosYLd9Rvn/uHmB0e5vqSNUboddM
+        ljQVn4c4arIGb98khkGn, l5TLmAacbPohWQ7z/8VHpnCJoOXuO+zH7tagUT5Dv1saQKppxI/vYF+qsBnuN/0GyA6kMyalmFo=
+      x-amz-request-id:
+      - c5284245-893c-49e5-89c1-c991e589587e
+      x-mws-request-id:
+      - c5284245-893c-49e5-89c1-c991e589587e
+      x-mws-timestamp:
+      - '2014-02-03T09:57:46.663Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>2oX2p/CL7+NmmFQFVAtP1eTO+tGkgGLkjp69bq33oj9bdAh3tX2FNXGsHLYYIfzBJAqoJBez60VVp3lB6YnzwQEy8IVZgbJMkxRO1FyMCnYkLqJRH2Sv7J+j8NyU1OYDUYfBxyzLIsc6U8pTg0alM/OFsSl6sjyecZc9scyruazlq9Sjtnhm8n/HO2VmDQdvGPKdzdCe+37EF2W0jaGriDSGEWdv8Bzkq2FIuUN4Nw2YTXN22nuAbrLnbK7ImtHaeeYF/KLnN1EBu0Fqq1CwKK2lRtXLbIxq0Eh4jrQDylLUCgaPCdW6RCadKzEeEusy3cI0uHZp6GzvMxwB+DzdntIOZOI2O7zH+99KXgI4yiHO5wnAx56C5SsN6YnUbbizNxHjFbVdZeqNs4qC4dOOfchWqS+HZl5UEeiEUQyiFfMz84Xe5lw4gfmjUNbpKrVEvrEpx2k5U2J39WmLwNAWvFYKcInn2pl59uUG7Jj7GQtdQTkchL452Pf1ykz4t/rASlHQ+i0NSqYF/x4kZ57aPDgJ7737vsY+QmRRhBTNy0MeIhTwLtsSlBCRekH3HiJbylDPbRy3HMgkJdTLpdA06OpYe/5PC1WC4VcZRx10YnJuyA6bhPes9BlVo8nGhgUKtBtq5rQH9ZoMk/0zmEATaBtjXCjo6oxjNqFrI1AGAnAMggyi3Y0AGLsr2algpvqzRkcp67Pno8MKD6kBF25mhtLGe1h7pAbQVG9UuDBxsoyX3vnSK2WjKBH+mHbaKK5rdtW/yvUw+AB2g/ypquDs4AoJsSoZt8UmWKscAqFhC+cD6dr24G+1TO5olmhdw3fGLezCi/DOmEqkBCKD9f27S3DAjoOO7fuSP/Yy2RSDUbl2dnGQOlaiaEFutyrTjDcA18mjEl1DLimsXOzEuFbkjiOT4MB2mREvOVb4+GVpv4ghWLqRIdlFn/MwEwPoj/Y8WyJ+GfPvGTMY2Hv9Yv0TR2v2YZy+Uxq9NIePGjBOyN6CCMpBFrCVh5S+IpRjymDe</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>9013048504</FeedSubmissionId><FeedType>_POST_PRODUCT_PRICING_DATA_</FeedType><SubmittedDate>2014-01-31T13:11:40+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-01-31T13:11:51+00:00</StartedProcessingDate><CompletedProcessingDate>2014-01-31T13:13:16+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>c5284245-893c-49e5-89c1-c991e589587e</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 09:57:47 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AKIAJOD3NLXHOMANRNQQ&Action=GetFeedSubmissionResult&FeedSubmissionId=9013048504&SellerId=A2JYSO6W6KEP83&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-03T09%3A57%3A47Z&Signature=n6qm%2FgbsrFAzu0SR18Z8YZNJE7l0fpzyJKbRYZzc5u4%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; netgurus-MacBook-Air.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 09:57:46 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '60.0'
+      x-mws-quota-resetsOn:
+      - Mon,03 Feb 2014 10:57:00 UTC
+      Content-MD5:
+      - M5hcduPTaHDCDjzZ5kJqNg==
+      x-mws-response-context:
+      - bm1VKoOFWZLdHD3b+9TG0OQ+cveFHw/UWcJDyZy9LEBABRkvJosYLd9Rvn/uHmB0e5vqSNUboddM
+        ljQVn4c4arIGb98khkGn, a6a5p5gh+6JJozddPcAzFEwztWjOBQ3c7IBMCHwnWuaq4dQ7AhqNcr9Cq6+022Gcd3yiKWP9oFI=
+      x-amz-request-id:
+      - ae423384-9d20-4614-972d-a4738eabf850
+      x-mws-request-id:
+      - ae423384-9d20-4614-972d-a4738eabf850
+      x-mws-timestamp:
+      - '2014-02-03T09:57:47.207Z'
+      Content-Type:
+      - application/octet-stream
+      Content-Length:
+      - '880'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=13
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+        xsi:noNamespaceSchemaLocation=\"amzn-envelope.xsd\">\n\t<Header>\n\t\t<DocumentVersion>3.00</DocumentVersion>\n\t\t<MerchantIdentifier>M_NOTHEORY_770513</MerchantIdentifier>\n\t</Header>\n\t<MessageType>ProcessingReport</MessageType>\n\t<Message>\n\t\t<MessageID>1</MessageID>\n\t\t<ProcessingReport>\n\t\t\t<ProcessingReportType>Price</ProcessingReportType>\n\t\t\t<DocumentTransactionID>9013048504</DocumentTransactionID>\n\t\t\t<Summary
+        MarketplaceName=\"Amazon.com\">\n\t\t\t<StatusCode>Complete</StatusCode>\n\t\t\t<ProcessingSummary>\n\t\t\t\t<MessagesProcessed>2</MessagesProcessed>\n\t\t\t\t<MessagesSuccessful>2</MessagesSuccessful>\n\t\t\t\t<MessagesWithError>0</MessagesWithError>\n\t\t\t\t<MessagesWithWarning>0</MessagesWithWarning>\n\t\t\t</ProcessingSummary>\n\t\t\t</Summary>\n\t\t</ProcessingReport>\n\t</Message>\n</AmazonEnvelope>"
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 09:57:48 GMT
+recorded_with: VCR 2.8.0

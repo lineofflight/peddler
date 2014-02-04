@@ -25,6 +25,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'minitest-emoji'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'vcr'
 
   gem.required_ruby_version = '>= 1.9'
 end
