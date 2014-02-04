@@ -20,9 +20,12 @@ module Peddler
 
     def result_node
       root = document.root
-      path = root.name.sub('Response', 'Result')
-
-      root.xpath("#{@xml_namespace}#{path}")
+      if @xml_namespace.size > 0
+        path = root.name.sub('Response', 'Result')
+        root.xpath("#{@xml_namespace}#{path}")
+      else
+        root
+      end
     end
   end
 end
