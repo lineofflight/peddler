@@ -11,7 +11,7 @@ class FeedSubmissionResultTest < IntegrationTest
           feed_type_list: '_POST_PRODUCT_PRICING_DATA_', max_count: 1)
         feed_submission_id = feeds.first.id
         result = client.get_feed_submission_result(feed_submission_id)
-        refute_empty result.to_s
+        assert_equal result.messages_processed, 2
       end
     end
   end
