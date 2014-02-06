@@ -3,13 +3,13 @@ require 'helper'
 require 'vcr'
 
 VCR.configure do |c|
-  nondeterministic_params = %w(AWSAccessKeyId SellerId Signature Timestamp StartDate CreatedAfter)
+  nondeterministic_params = %w(AWSAccessKeyId SellerId Signature Timestamp StartDate CreatedAfter Destination.AttributeList.member.1.Value)
 
   extract_query_value = ->(interaction, key) do
     query = URI.parse(interaction.request.uri).query
     query_values = CGI.parse(query)
-
-    query_values[key].first
+    value = query_values[key].first
+    CGI.escape(value) if value
   end
 
   c.hook_into :excon
@@ -20,6 +20,7 @@ VCR.configure do |c|
   }
   c.filter_sensitive_data('aws_access_key_id') { |interaction| extract_query_value.(interaction, 'AWSAccessKeyId') }
   c.filter_sensitive_data('seller_id') { |interaction| extract_query_value.(interaction, 'SellerId') }
+  c.filter_sensitive_data('sqs_queue_url') { |interaction| extract_query_value.(interaction, 'Destination.AttributeList.member.1.Value') }
 end
 
 class IntegrationTest < MiniTest::Test
