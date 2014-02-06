@@ -5,7 +5,6 @@ module MWS
   module Products
     module Parsers
       class LowestOfferListings < ::Peddler::Parsers::Collection
-
         def each(&blk)
           lowest_offer_listing_nodes.each { |node| yield LowestOfferListing.new(node) }
         end
@@ -15,7 +14,6 @@ module MWS
         def lowest_offer_listing_nodes
           xpath('LowestOfferListing')
         end
-
       end
     end
   end

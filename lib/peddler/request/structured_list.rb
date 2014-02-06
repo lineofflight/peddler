@@ -19,7 +19,8 @@ module Peddler
         report_type_list: %w(ReportTypeList Type),
         report_processing_status_list: %w(ReportProcessingStatusList Status),
         # Products
-        seller_sku_list: %w(SellerSKUList SellerSKU)
+        seller_sku_list: %w(SellerSKUList SellerSKU),
+        asin_list: %w(ASINList ASIN)
       }
 
       attr :keys

@@ -4,13 +4,17 @@ module MWS
   module Products
     module Parsers
       class Price < ::Peddler::Parsers::Model
-
-        [:landed_price, :listing_price, :shipping].each do |key|
-          value key do
-            money_at_xpath(symbol_to_xpath(key))
-          end
+        value :landed_price do
+          money_at_xpath('LandedPrice')
         end
 
+        value :listing_price do
+          money_at_xpath('ListingPrice')
+        end
+
+        value :shipping do
+          money_at_xpath('Shipping')
+        end
       end
     end
   end

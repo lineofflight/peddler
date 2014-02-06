@@ -1,24 +1,19 @@
-require 'peddler/parsers/xml'
+require 'peddler/parsers/model'
+require 'mws/products/parsers/sku_identifier'
+require 'mws/products/parsers/marketplace_asin'
 
 module MWS
   module Products
     module Parsers
       class Identifiers < ::Peddler::Parsers::Model
-
-        value :marketplace_id do
-          text_at_xpath('MarketplaceASIN/MarketplaceId')
+        value :marketplace_asin do
+          node = at_xpath('MarketplaceASIN')
+          MarketplaceASIN.new(node)
         end
 
-        value :asin do
-          text_at_xpath('MarketplaceASIN/ASIN')
-        end
-
-        value :seller_id do
-          text_at_xpath('SKUIdentifier/SellerId')
-        end
-
-        value :seller_sku do
-          text_at_xpath('SKUIdentifier/SellerSKU')
+        value :sku_identifier do
+          node = at_xpath('SKUIdentifier')
+          SKUIdentifier.new(node) if node
         end
       end
     end
