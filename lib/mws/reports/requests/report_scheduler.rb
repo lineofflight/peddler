@@ -12,7 +12,7 @@ module MWS
           }
           options.update(scheduled_date: scheduled_at) if scheduled_at
 
-          parameters(:get_report_count)
+          parameters('ManageReportSchedule')
             .update(options)
             .timestamp!
             .camelize_keys!

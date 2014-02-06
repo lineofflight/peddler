@@ -1,7 +1,7 @@
 require 'request_helper'
 require 'mws/reports/requests/report_scheduler'
 
-class ReportSchedulerRequestTest < RequestTest
+class ReportschedulerRequestTest < RequestTest
   def mock_response_body
     <<-EOF
       <Response xmlns="ns">
@@ -18,16 +18,16 @@ class ReportSchedulerRequestTest < RequestTest
   end
 
   def setup
-    @scheduler = MWS::Reports::Requests::ReportScheduler.new(mock_client)
+    @schedule = MWS::Reports::Requests::ReportScheduler.new(mock_client)
   end
 
   def test_manages_report_schedule
-    res = @scheduler.manage('_GET_ORDERS_DATA_', '_1_HOUR_')
+    res = @schedule.manage('_GET_ORDERS_DATA_', '_1_HOUR_')
     assert_kind_of MWS::Reports::Parsers::ReportScheduler, res
   end
 
   def test_deletes_report_schedule
-    res = @scheduler.delete('_GET_ORDERS_DATA_')
+    res = @schedule.delete('_GET_ORDERS_DATA_')
     assert_kind_of MWS::Reports::Parsers::ReportScheduler, res
   end
 end

@@ -3,11 +3,23 @@ require 'helper'
 require 'vcr'
 
 VCR.configure do |c|
+  nondeterministic_params = %w(AWSAccessKeyId SellerId Signature Timestamp StartDate CreatedAfter)
+
+  extract_query_value = ->(interaction, key) do
+    query = URI.parse(interaction.request.uri).query
+    query_values = CGI.parse(query)
+
+    query_values[key].first
+  end
+
   c.hook_into :excon
   c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
   c.default_cassette_options = {
-    match_requests_on: [:method, VCR.request_matchers.uri_without_param(*%w(AWSAccessKeyId SellerId StartDate Signature Timestamp CreatedAfter))]
+    match_requests_on: [:method, VCR.request_matchers.uri_without_param(*nondeterministic_params)],
+    record: :new_episodes
   }
+  c.filter_sensitive_data('aws_access_key_id') { |interaction| extract_query_value.(interaction, 'AWSAccessKeyId') }
+  c.filter_sensitive_data('seller_id') { |interaction| extract_query_value.(interaction, 'SellerId') }
 end
 
 class IntegrationTest < MiniTest::Test
@@ -16,10 +28,10 @@ class IntegrationTest < MiniTest::Test
   end
 
   def accounts
-    skip if ENV['SKIP_INTEGRATION']
     YAML.load_file(File.expand_path('../fixtures/mws.yml', __FILE__))
   rescue Errno::ENOENT
-    skip('Credentials missing')
+    warn('Credentials not set')
+    YAML.load_file(File.expand_path('../fixtures/mws.yml.example', __FILE__))
   end
 
   def setup

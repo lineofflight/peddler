@@ -3,9 +3,8 @@ require 'mws/products/parsers/lowest_offer_listings'
 require 'mws/products/parsers/lowest_offer_listing'
 
 class LowestOfferListingsParserTest < ParserTest
-
   def setup
-    node = fixture_from_cassette('offer_listings_test/test_get_lower_for_sku').xpath('//xmlns:LowestOfferListings')
+    node = fixture('products/lowest_offer_listings_for_sku').xpath('//xmlns:LowestOfferListings')
     @lowest_offer_listings = MWS::Products::Parsers::LowestOfferListings.new(node)
   end
 

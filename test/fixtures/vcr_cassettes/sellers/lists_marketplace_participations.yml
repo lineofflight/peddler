@@ -1,0 +1,362 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A47Z&Signature=ecaJtKNApGR3yII9fA9CH%2BCDD7gO88eTGRpLPBKqesk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:48 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - 85rav7EGOxz8rbCFI9nXbtyeMAWmyM4u0/vnz8GbiVTT8nWwI2tjoDYPvsl8quktXMn9L5ylW0df
+        1ZGsxBj6tQ==, PtwdBoDWW0AGXCbuYQ4uw+ytlMLpjYZZ+bI7rOh743CBKCCSp7wf+9xHRBVmM1P4KkhnLs2cG0o=
+      x-amz-request-id:
+      - 1d9b1fc7-4841-4858-a0d1-df98750919d3
+      x-mws-request-id:
+      - 1d9b1fc7-4841-4858-a0d1-df98750919d3
+      x-mws-timestamp:
+      - '2014-02-04T11:17:48.132Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=6
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId><Name>Amazon.ca</Name><DefaultCountryCode>CA</DefaultCountryCode><DefaultCurrencyCode>CAD</DefaultCurrencyCode><DefaultLanguageCode>en_CA</DefaultLanguageCode><DomainName>www.amazon.ca</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>1d9b1fc7-4841-4858-a0d1-df98750919d3</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:48 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A48Z&Signature=Vn7ci48qGKFyi4%2BSzE%2FlsEf8y2XVrb3FE7czVlgHoXo%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:47 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - oTN8Sbbfgn4HsDOtlIUWNe6nJxmbr8aJJ7fnLIY4DMcqBSkgehCrQ2FvoIiC4rKScjubgkypM87g
+        qqZCv18eeQCS6YW3d9a3, VKYijOBCTROiRL8SPh4e5iaiIFwutXQsOWZYmK23RBJ0VJZRfqu2IQv2mfeFQlpXa2bgwXI+QCNw
+        fogAiKRAmw==
+      x-amz-request-id:
+      - 35f024ca-0bea-447a-b13e-5cbc3dc4d909
+      x-mws-request-id:
+      - 35f024ca-0bea-447a-b13e-5cbc3dc4d909
+      x-mws-timestamp:
+      - '2014-02-04T11:17:48.544Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=12
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><Name>Amazon.de</Name><DefaultCountryCode>DE</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>de_DE</DefaultLanguageCode><DomainName>www.amazon.de</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>35f024ca-0bea-447a-b13e-5cbc3dc4d909</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:48 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A48Z&Signature=eCRY6J4VjO7CfkN1DSkpEbLC0BxaKvpbodWlPsVgxIA%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:48 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - h67PZJRvxJmiEpJdLPrSDxw6Tw8SM7p+H1JXGTynv/9tHUDUDE3zMehoYz5NxF3NwPk4L6MXt5cM
+        n4TGBpS4/ImWiHH3sfCr, gVcQ7+kzEAyQrKyVEI5IikFXZAN/KQGixzwXPCjE+Q9aKljEAE+1+mz2s5mY+9GQoizBBCpITxuI
+        Be3HhxGIkQ==
+      x-amz-request-id:
+      - 612672f0-eabc-4cb8-9c16-303321e91957
+      x-mws-request-id:
+      - 612672f0-eabc-4cb8-9c16-303321e91957
+      x-mws-timestamp:
+      - '2014-02-04T11:17:48.891Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A1RKKUPIHCS9HS</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><Name>Amazon.co.uk</Name><DefaultCountryCode>GB</DefaultCountryCode><DefaultCurrencyCode>GBP</DefaultCurrencyCode><DefaultLanguageCode>en_GB</DefaultLanguageCode><DomainName>www.amazon.co.uk</DomainName></Marketplace><Marketplace><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><Name>Amazon.de</Name><DefaultCountryCode>DE</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>de_DE</DefaultLanguageCode><DomainName>www.amazon.de</DomainName></Marketplace><Marketplace><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><Name>Amazon.fr</Name><DefaultCountryCode>FR</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>fr_FR</DefaultLanguageCode><DomainName>www.amazon.fr</DomainName></Marketplace><Marketplace><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><Name>Amazon.it</Name><DefaultCountryCode>IT</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>it_IT</DefaultLanguageCode><DomainName>www.amazon.it</DomainName></Marketplace><Marketplace><MarketplaceId>A1RKKUPIHCS9HS</MarketplaceId><Name>Amazon.es</Name><DefaultCountryCode>ES</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>es_ES</DefaultLanguageCode><DomainName>www.amazon.es</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>612672f0-eabc-4cb8-9c16-303321e91957</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:49 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A49Z&Signature=B6dkVZAvZQxjAQ65gGm8j%2BMKUBzP9t4UrOILZz%2Fyx%2BY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:48 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - 93DXC7SQ4mq/t/xfXoINZp6OqFAZACRqiuyb4lle+3eHAH/ilCwvouglRtZYOVTVxCwqXi5G5glH
+        KdQPReaYiMjeKt/ncWdP, IdrVpTLk3LcRjCz1QrS1PHh2PEAdz4O6Fmnv8g0y/U2kN1W4cIYNlUB04MiPmH3EBOH7XSLcDjf+
+        if1OwBrnEg==
+      x-amz-request-id:
+      - 507ae8c5-56ef-4775-b1d9-ba6c185550f2
+      x-mws-request-id:
+      - 507ae8c5-56ef-4775-b1d9-ba6c185550f2
+      x-mws-timestamp:
+      - '2014-02-04T11:17:49.292Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=10
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><Name>Amazon.fr</Name><DefaultCountryCode>FR</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>fr_FR</DefaultLanguageCode><DomainName>www.amazon.fr</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>507ae8c5-56ef-4775-b1d9-ba6c185550f2</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:49 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A49Z&Signature=p261BngdDcj0s682mHw0kJLUZHfCzUqIbnmNZ6zYx40%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:49 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - WutnKu4Pw5H6P+PabJl6hpViYnJy2CJcTaF80DuoYvo95YEMArOW+w2iqwp5MFb1Txp9Bpz3NLkT
+        3eJVxblGevN8W4rJSmtN, mhP+LOuNOyG/hVM8IyjTK23yY4OJSzRTKTMI2TmngiDMCp0ibTPLidM5CkPKishHTGMDvG6owpSg
+        Z8n6YBNMqA==
+      x-amz-request-id:
+      - dac3b41f-50e3-4270-8333-84118e4f80b5
+      x-mws-request-id:
+      - dac3b41f-50e3-4270-8333-84118e4f80b5
+      x-mws-timestamp:
+      - '2014-02-04T11:17:49.598Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>AZMDEXL2RVFNN</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><Name>Amazon.co.uk</Name><DefaultCountryCode>GB</DefaultCountryCode><DefaultCurrencyCode>GBP</DefaultCurrencyCode><DefaultLanguageCode>en_GB</DefaultLanguageCode><DomainName>www.amazon.co.uk</DomainName></Marketplace><Marketplace><MarketplaceId>AZMDEXL2RVFNN</MarketplaceId><Name>SI UK Prod Marketplace</Name><DefaultCountryCode>GB</DefaultCountryCode><DefaultCurrencyCode>GBP</DefaultCurrencyCode><DefaultLanguageCode>en_GB</DefaultLanguageCode><DomainName>siprodukmarketplace.stores.amazon.co.uk</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>dac3b41f-50e3-4270-8333-84118e4f80b5</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:49 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A49Z&Signature=eLnrknHrcvtfKCJeL5BYJRfNWZrm%2BCOY86R0liiGShk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:49 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - E8xCCw+HnXPWP+6bQ2aiehHujZsLlWjGJFoIpXD0F3iSW1QlCs8KHKhcO0mBEYBRg1AOilo8/fke
+        jpGge7Smer5dBFSrgBZA, DIuGT4JKsytXVYAfpiT7hLBh3ZdJvfJqbA+iZ502/hQVCziDG9DzxhuXzUuVaHVawM/FKblY2k37
+        drgsKUPcJg==
+      x-amz-request-id:
+      - 861bdc73-8c34-4d25-9c81-a8bb80575521
+      x-mws-request-id:
+      - 861bdc73-8c34-4d25-9c81-a8bb80575521
+      x-mws-timestamp:
+      - '2014-02-04T11:17:49.926Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A1RKKUPIHCS9HS</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>Yes</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><Name>Amazon.co.uk</Name><DefaultCountryCode>GB</DefaultCountryCode><DefaultCurrencyCode>GBP</DefaultCurrencyCode><DefaultLanguageCode>en_GB</DefaultLanguageCode><DomainName>www.amazon.co.uk</DomainName></Marketplace><Marketplace><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><Name>Amazon.de</Name><DefaultCountryCode>DE</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>de_DE</DefaultLanguageCode><DomainName>www.amazon.de</DomainName></Marketplace><Marketplace><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><Name>Amazon.fr</Name><DefaultCountryCode>FR</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>fr_FR</DefaultLanguageCode><DomainName>www.amazon.fr</DomainName></Marketplace><Marketplace><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><Name>Amazon.it</Name><DefaultCountryCode>IT</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>it_IT</DefaultLanguageCode><DomainName>www.amazon.it</DomainName></Marketplace><Marketplace><MarketplaceId>A1RKKUPIHCS9HS</MarketplaceId><Name>Amazon.es</Name><DefaultCountryCode>ES</DefaultCountryCode><DefaultCurrencyCode>EUR</DefaultCurrencyCode><DefaultLanguageCode>es_ES</DefaultLanguageCode><DomainName>www.amazon.es</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>861bdc73-8c34-4d25-9c81-a8bb80575521</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:50 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A50Z&Signature=2YkwhXqm8tuurKnnRbgcix8vj3vjcgFpOgXF6zKtEYs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:50 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - FJ5O1TnffJidKvMvGckoA8PRh0EA/+Sx0hP4VcOd34mEOQ9eEvskHMVQgh/iQ7MdauqvIeIBgPg=,
+        AhawfhSrwgk3D/c4mA1mzZwg3tUz65MG8n5foV1J7HwhtXNQQOqzP0buzmhJlE65ecc8b5Xo/rex
+        dJMqWCYz2g==
+      x-amz-request-id:
+      - 241763cc-82b1-4b8f-ba62-d0212f090693
+      x-mws-request-id:
+      - 241763cc-82b1-4b8f-ba62-d0212f090693
+      x-mws-timestamp:
+      - '2014-02-04T11:17:51.026Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=15
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>A1VC38T7YXB528</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>A1VC38T7YXB528</MarketplaceId><Name>Amazon.co.jp</Name><DefaultCountryCode>JP</DefaultCountryCode><DefaultCurrencyCode>JPY</DefaultCurrencyCode><DefaultLanguageCode>ja_JP</DefaultLanguageCode><DomainName>www.amazon.jp</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>241763cc-82b1-4b8f-ba62-d0212f090693</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:51 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=ListMarketplaceParticipations&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A51Z&Signature=2bxQBhMGGoLUsqUz%2FR9bgbA1zhX%2B4NQjZ4YRK2ANISg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:51 GMT
+      Server:
+      - AmazonMWS
+      x-mws-response-context:
+      - 5miLpgdIMH+vFfxF+mR0tOqOR4FwcBz6edjK7iQ60WjXok/ClxVY2OWtmH3tttGpYakLLcAQD0s=,
+        XBvRWZ1R/Ub2RRO5b0unf/rN5/T6CvN/5CPxiXS3rLAqi5cChYR5CjTGJJnjyqlKMsE6g3nN2yEb
+        1yaS3CkcaQ==
+      x-amz-request-id:
+      - eb70b63c-dd88-40c7-a7a4-dd70d71e2b7c
+      x-mws-request-id:
+      - eb70b63c-dd88-40c7-a7a4-dd70d71e2b7c
+      x-mws-timestamp:
+      - '2014-02-04T11:17:51.668Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <ListMarketplaceParticipationsResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01"><ListMarketplaceParticipationsResult><ListParticipations><Participation><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation><Participation><MarketplaceId>A2ZV50J4W1RKNI</MarketplaceId><SellerId>seller_id</SellerId><HasSellerSuspendedListings>No</HasSellerSuspendedListings></Participation></ListParticipations><ListMarketplaces><Marketplace><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><Name>Amazon.com</Name><DefaultCountryCode>US</DefaultCountryCode><DefaultCurrencyCode>USD</DefaultCurrencyCode><DefaultLanguageCode>en_US</DefaultLanguageCode><DomainName>www.amazon.com</DomainName></Marketplace><Marketplace><MarketplaceId>A2ZV50J4W1RKNI</MarketplaceId><Name>Non-Amazon</Name><DefaultCountryCode>US</DefaultCountryCode><DefaultCurrencyCode>USD</DefaultCurrencyCode><DefaultLanguageCode>en_US</DefaultLanguageCode><DomainName>sim1.stores.amazon.com</DomainName></Marketplace></ListMarketplaces></ListMarketplaceParticipationsResult><ResponseMetadata><RequestId>eb70b63c-dd88-40c7-a7a4-dd70d71e2b7c</RequestId></ResponseMetadata></ListMarketplaceParticipationsResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:51 GMT
+recorded_with: VCR 2.8.0

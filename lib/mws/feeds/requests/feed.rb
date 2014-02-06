@@ -8,7 +8,7 @@ module MWS
         def submit(content, type, options = {})
           self.body = content
           set_content_type
-          parameters(:submit_feed)
+          parameters('SubmitFeed')
             .update(feed_type: type)
             .update(options)
             .format_structured_lists!

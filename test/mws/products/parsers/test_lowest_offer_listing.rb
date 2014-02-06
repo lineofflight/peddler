@@ -4,18 +4,20 @@ require 'mws/products/parsers/lowest_offer_listing'
 class LowestOfferListingParserTest < ParserTest
 
   def setup
-    node = fixture_from_cassette('offer_listings_test/test_get_lower_for_sku').xpath('//xmlns:LowestOfferListing')
+    node = fixture('products/lowest_offer_listings_for_sku').xpath('//xmlns:LowestOfferListing')
     @lowest_offer_listing = MWS::Products::Parsers::LowestOfferListing.new(node)
   end
 
-  [:offer_listings_considered_count, :seller_feedback_count].each do |method|
-    define_method "test_#{method}" do
-      assert_kind_of Integer, @lowest_offer_listing.public_send(method)
-    end
+  def test_number_of_offer_listings_considered
+    assert_kind_of Integer, @lowest_offer_listing.number_of_offer_listings_considered
   end
 
-  def test_multiple_offers
-    assert_kind_of FalseClass, @lowest_offer_listing.multiple_offers
+  def test_seller_feedback_count
+    assert_kind_of Integer, @lowest_offer_listing.seller_feedback_count
+  end
+
+  def test_multiple_offers_at_lowest_price
+    assert_includes [true, false], @lowest_offer_listing.multiple_offers_at_lowest_price
   end
 
   def test_qualifiers

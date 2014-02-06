@@ -1,0 +1,402 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A42Z&Signature=X9LHM7WTS5IMXoLQGJEYuUP0hI16v33hCjyyS8bmvsA%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:42 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 625da6aa-cf9d-4d46-8ef2-bbc10c710e26
+      x-mws-timestamp:
+      - '2014-02-04T11:17:43.237Z'
+      x-mws-response-context:
+      - 4/UjgN0o2stH8hJmYz2CndXaOqnHaR/PD81IHHeZuaSrwRq2xN/byzymEfTdTtFW0Mb5yp57CVzL
+        /WfbltzE+g==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:43.237Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>625da6aa-cf9d-4d46-8ef2-bbc10c710e26</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:43 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A43Z&Signature=FPH%2BlHJ7%2FUiJezPa4hqCoFcXlYqvQpvCV4c7L%2BK7MAs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:43 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - ed5216a6-6f5e-41de-929c-cd4aace925c0
+      x-mws-timestamp:
+      - '2014-02-04T11:17:43.921Z'
+      x-mws-response-context:
+      - gVcQ7+kzEAyQrKyVEI5IikFXZAN/KQGixzwXPCjE+Q9aKljEAE+1+mz2s5mY+9GQoizBBCpITxuI
+        Be3HhxGIkQ==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=16
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:43.921Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>ed5216a6-6f5e-41de-929c-cd4aace925c0</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:43 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A43Z&Signature=z%2BYNSdAEJvjouI95PaA6J2rLekrZxdAhbhpvJJXlD%2FA%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:43 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 1c8b929f-4381-4e24-8557-63ac7858c622
+      x-mws-timestamp:
+      - '2014-02-04T11:17:44.099Z'
+      x-mws-response-context:
+      - DIuGT4JKsytXVYAfpiT7hLBh3ZdJvfJqbA+iZ502/hQVCziDG9DzxhuXzUuVaHVawM/FKblY2k37
+        drgsKUPcJg==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:44.099Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>1c8b929f-4381-4e24-8557-63ac7858c622</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:44 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A44Z&Signature=V3tgalZEaepBKLEYkDpTw4cXK9d%2FalO9eatjpzco6Do%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:43 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 383914fb-1880-433d-b5b8-8a627d393290
+      x-mws-timestamp:
+      - '2014-02-04T11:17:44.284Z'
+      x-mws-response-context:
+      - LlIDf3hYeFjhIhMEw7xFJJRfZbQ4hQrcvwK577wLx4zsqRw5lIfs2iHtla5Rd1wHfxsCuQ6cfkqk
+        zFV74MtmFg==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:44.284Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>383914fb-1880-433d-b5b8-8a627d393290</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:44 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A44Z&Signature=bdbY%2BRu7rQ%2F%2B8wOZFM2foXXCFkts%2Bkd8OONbLB%2FfUFc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:45 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 5a0f1a1f-776b-41b7-b2fb-5eb7b607c16c
+      x-mws-timestamp:
+      - '2014-02-04T11:17:45.808Z'
+      x-mws-response-context:
+      - DIuGT4JKsytXVYAfpiT7hLBh3ZdJvfJqbA+iZ502/hQVCziDG9DzxhuXzUuVaHVawM/FKblY2k37
+        drgsKUPcJg==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:45.808Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>5a0f1a1f-776b-41b7-b2fb-5eb7b607c16c</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:45 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A45Z&Signature=9VUcovXiT1f2YfZfEVKi5r%2FMEQ61DuwakhYy%2B5uvxoI%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:45 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 0ef2d3ba-12bd-4724-882b-1d33e8fd15b6
+      x-mws-timestamp:
+      - '2014-02-04T11:17:46.061Z'
+      x-mws-response-context:
+      - 4GgHy+DefVcdmkQ1BV0nhSHHcp09hs62rBleyrE7GLs5YZ3027cp9WLHuM0gQt9xnl4lYXQHE24k
+        yVohv7Rwjw==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:46.061Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>0ef2d3ba-12bd-4724-882b-1d33e8fd15b6</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:46 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A46Z&Signature=pUzIvotkuZcRxNPqWxthnWZJrpxXNVpHKAiEX9kt3Lw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:46 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - abbc4665-d50d-423f-8a09-0df5bbcaf209
+      x-mws-timestamp:
+      - '2014-02-04T11:17:47.010Z'
+      x-mws-response-context:
+      - AhawfhSrwgk3D/c4mA1mzZwg3tUz65MG8n5foV1J7HwhtXNQQOqzP0buzmhJlE65ecc8b5Xo/rex
+        dJMqWCYz2g==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:47.010Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>abbc4665-d50d-423f-8a09-0df5bbcaf209</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:47 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=aws_access_key_id&Action=GetServiceStatus&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A47Z&Signature=d%2BC63ovl44srYYcegDUy92gq3Y21Hm7Ixbpf4mfD9C0%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:47 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 45751415-9a4f-42ee-86f4-142c216aa66e
+      x-mws-timestamp:
+      - '2014-02-04T11:17:47.599Z'
+      x-mws-response-context:
+      - Mv6J6TcrEAhiU0FuK8hv49cKh1zLmpgi37ho3GPCOQUMbR+fpyYnvNd/96wotP2w3WCJiq/7ETQ=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-02-04T11:17:47.599Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>45751415-9a4f-42ee-86f4-142c216aa66e</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:47 GMT
+recorded_with: VCR 2.8.0

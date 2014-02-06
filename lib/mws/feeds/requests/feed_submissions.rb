@@ -6,7 +6,7 @@ module MWS
     module Requests
       class FeedSubmissions < ::Peddler::Request
         def cancel(options = {})
-          parameters(:cancel_feed_submissions)
+          parameters('CancelFeedSubmissions')
             .update(options)
             .timestamp!
             .format_structured_lists!

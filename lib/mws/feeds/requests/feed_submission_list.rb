@@ -6,7 +6,7 @@ module MWS
     module Requests
       class FeedSubmissionList < ::Peddler::Request
         def get(options = {})
-          parameters(:get_feed_submission_list)
+          parameters('GetFeedSubmissionList')
             .update(options)
             .timestamp!
             .format_structured_lists!
@@ -18,7 +18,7 @@ module MWS
         def get_by_next_token(token = next_token)
           return false unless token
 
-          parameters(:get_feed_submission_list_by_next_token)
+          parameters('GetFeedSubmissionListByNextToken')
             .update(next_token: token)
             .camelize_keys!
 

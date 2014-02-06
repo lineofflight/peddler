@@ -6,7 +6,7 @@ module MWS
     module Requests
       class Orders < ::Peddler::Request
         def get(*amazon_order_ids)
-          parameters(:get_order)
+          parameters('GetOrder')
             .update(amazon_order_id: amazon_order_ids)
             .format_structured_lists!
             .camelize_keys!
@@ -17,7 +17,7 @@ module MWS
         def list(options)
           options[:marketplace_id] ||= client.marketplace_id
 
-          parameters(:list_orders)
+          parameters('ListOrders')
             .update(options)
             .timestamp!
             .format_structured_lists!
@@ -29,7 +29,7 @@ module MWS
         def list_by_next_token(token = next_token)
           return unless token
 
-          parameters(:list_orders_by_next_token)
+          parameters('ListOrdersByNextToken')
             .update(next_token: token)
             .camelize_keys!
 

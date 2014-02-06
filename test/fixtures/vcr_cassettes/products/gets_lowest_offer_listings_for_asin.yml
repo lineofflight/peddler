@@ -1,0 +1,410 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A55Z&Signature=fU8eQ3MN183ZoAHCS%2Bi8yTYsdFU8RHTFilp7KxAqS6k%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:55 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '288000.0'
+      x-mws-quota-remaining:
+      - '262460.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:03:00 UTC
+      x-mws-response-context:
+      - 5Ud2WVtBoB5iw7uL2mKv0moLiH6gvfls2EwV5R6R56LvMJpW3xpfWp1mKF6RarB3i69d6l4Jl0bb
+        mhPymQBR3Q==, MqRhgLOMLbU2NbkvAdoSyugFMWIRJUZ9hkQp/GsZF/etmnxawpD5S4gtOqmTEPVx/b7R7bhKig0=
+      x-amz-request-id:
+      - 568ee8c7-985c-4543-b0ca-10633acc080e
+      x-mws-request-id:
+      - 568ee8c7-985c-4543-b0ca-10633acc080e
+      x-mws-timestamp:
+      - '2014-02-04T11:17:55.566Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>true</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>11990</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>CAD</CurrencyCode><Amount>37.46</Amount></LandedPrice><ListingPrice><CurrencyCode>CAD</CurrencyCode><Amount>30.97</Amount></ListingPrice><Shipping><CurrencyCode>CAD</CurrencyCode><Amount>6.49</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>14 or more days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>1000</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>CAD</CurrencyCode><Amount>37.47</Amount></LandedPrice><ListingPrice><CurrencyCode>CAD</CurrencyCode><Amount>30.98</Amount></ListingPrice><Shipping><CurrencyCode>CAD</CurrencyCode><Amount>6.49</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>6</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>CAD</CurrencyCode><Amount>43.08</Amount></LandedPrice><ListingPrice><CurrencyCode>CAD</CurrencyCode><Amount>36.59</Amount></ListingPrice><Shipping><CurrencyCode>CAD</CurrencyCode><Amount>6.49</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>Unknown</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>4072</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>CAD</CurrencyCode><Amount>47.87</Amount></LandedPrice><ListingPrice><CurrencyCode>CAD</CurrencyCode><Amount>41.38</Amount></ListingPrice><Shipping><CurrencyCode>CAD</CurrencyCode><Amount>6.49</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>568ee8c7-985c-4543-b0ca-10633acc080e</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:55 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A17%3A55Z&Signature=4Zbe34YJkx4sVWKZ9qMwP%2FcHEHfy6aoMJrBVlOG0zS8%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:17:56 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '288000.0'
+      x-mws-quota-remaining:
+      - '149260.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:19:00 UTC
+      x-mws-response-context:
+      - tZy9SQWgMCPXqWZt2ZXRls3DXEL2hL/4AdHskoW0853tf6rx7272HGkIpf5Cgz/n9oLsfLrz4pue
+        jV+wleqlKLbucgluCVaE, B4tqCLKIJ1AOSIlh5FzZGqQawqR9qYl76keJpZe7AL8LZ7L704ghPQ9QoA+are5C8nbqjDttxtEU
+        dTL958tlDQ==
+      x-amz-request-id:
+      - 49f2e6fa-5142-4865-9439-c1448b2066c6
+      x-mws-request-id:
+      - 49f2e6fa-5142-4865-9439-c1448b2066c6
+      x-mws-timestamp:
+      - '2014-02-04T11:17:56.349Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=14
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>false</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Amazon</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>195457</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>16.95</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>16.95</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>0.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>Unknown</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>614</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.74</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>14.74</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>4</NumberOfOfferListingsConsidered><SellerFeedbackCount>255795</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>19.27</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>16.27</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>84305</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.34</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.34</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>2012</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.34</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.34</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>4</NumberOfOfferListingsConsidered><SellerFeedbackCount>30698</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>22.77</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>19.77</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>10380</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.19</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.19</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>318</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.48</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.48</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>True</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>14 or more days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>5932</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>24.11</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>21.11</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>3.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>49f2e6fa-5142-4865-9439-c1448b2066c6</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:17:56 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1F83G8C2ARO7P&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A23%3A29Z&Signature=PGfKMvhiQqPvoA0u6jjDZOjqERvcckfcoyMjU5jupbk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:23:29 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '288000.0'
+      x-mws-quota-remaining:
+      - '255519.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:07:00 UTC
+      x-mws-response-context:
+      - uYPZ9Ryv9XHNoWoxpwN76/f5AnpkECfZImABsT+PSvqq6M28vQlIn4dW5ZE1pqhcrdzYGp4MHFpo
+        3FehEdsaD7UaILqxh//1, lLMTBuJs5d5jyitOIKfBScl0Xxt1sJ0WI2aqV9GWygurCakZBV9e80D+5GmOAyNEfF3iyFBCk0L+
+        xqjROmH24g==
+      x-amz-request-id:
+      - e1ce6cf8-2c03-44f5-8969-0e4b109b6b1d
+      x-mws-request-id:
+      - e1ce6cf8-2c03-44f5-8969-0e4b109b6b1d
+      x-mws-timestamp:
+      - '2014-02-04T11:23:29.398Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>false</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A1F83G8C2ARO7P</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>16881</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>10.41</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>7.61</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>16881</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>10.44</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>7.64</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>8</NumberOfOfferListingsConsidered><SellerFeedbackCount>9541</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>10.46</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>7.66</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Good</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>Unknown</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>23</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>10.70</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>7.90</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>5154</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>11.84</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>9.04</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Amazon</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>195457</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>12.58</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>12.58</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>0.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>553323</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>15.87</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>13.07</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>43234</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>15.87</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>13.07</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>158254</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>16.40</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>13.60</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>158254</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>GBP</CurrencyCode><Amount>16.40</Amount></LandedPrice><ListingPrice><CurrencyCode>GBP</CurrencyCode><Amount>13.60</Amount></ListingPrice><Shipping><CurrencyCode>GBP</CurrencyCode><Amount>2.80</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>e1ce6cf8-2c03-44f5-8969-0e4b109b6b1d</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:23:29 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A23%3A29Z&Signature=uE6ST2erUnHquFxwSIBtACOfdnp5wEtnnUSjGGhy5HU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:23:29 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '576000.0'
+      x-mws-quota-remaining:
+      - '329819.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - DKKbpXSI/82S/39W4pRRD51uyASct/30IsZPzP1ylG4+5LOwpKqTkAzdOW3l5baZlkFM0jl/2zq0
+        RVT6VVVfpg==, 4LmNh4LkQBDUBCbVsqVUB5UP2uK+ypmr1Yw02JnIVrfaETUf7U0n9r6kkYvyKn2bpzVPYXPtMlD8
+        1VB4Ln65bA==
+      x-amz-request-id:
+      - 6d0a4e78-16d5-4104-8b71-14acf3234440
+      x-mws-request-id:
+      - 6d0a4e78-16d5-4104-8b71-14acf3234440
+      x-mws-timestamp:
+      - '2014-02-04T11:23:30.449Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>true</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A1VC38T7YXB528</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>707</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>JPY</CurrencyCode><Amount>2718.00</Amount></LandedPrice><ListingPrice><CurrencyCode>JPY</CurrencyCode><Amount>2468.00</Amount></ListingPrice><Shipping><CurrencyCode>JPY</CurrencyCode><Amount>250.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>707</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>JPY</CurrencyCode><Amount>2773.00</Amount></LandedPrice><ListingPrice><CurrencyCode>JPY</CurrencyCode><Amount>2523.00</Amount></ListingPrice><Shipping><CurrencyCode>JPY</CurrencyCode><Amount>250.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>14 or more days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>548</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>JPY</CurrencyCode><Amount>2830.00</Amount></LandedPrice><ListingPrice><CurrencyCode>JPY</CurrencyCode><Amount>2580.00</Amount></ListingPrice><Shipping><CurrencyCode>JPY</CurrencyCode><Amount>250.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Amazon</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>195457</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>JPY</CurrencyCode><Amount>3030.00</Amount></LandedPrice><ListingPrice><CurrencyCode>JPY</CurrencyCode><Amount>3030.00</Amount></ListingPrice><Shipping><CurrencyCode>JPY</CurrencyCode><Amount>0.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>16325</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>JPY</CurrencyCode><Amount>3126.00</Amount></LandedPrice><ListingPrice><CurrencyCode>JPY</CurrencyCode><Amount>2876.00</Amount></ListingPrice><Shipping><CurrencyCode>JPY</CurrencyCode><Amount>250.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>1895</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>JPY</CurrencyCode><Amount>3169.00</Amount></LandedPrice><ListingPrice><CurrencyCode>JPY</CurrencyCode><Amount>2919.00</Amount></ListingPrice><Shipping><CurrencyCode>JPY</CurrencyCode><Amount>250.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>6d0a4e78-16d5-4104-8b71-14acf3234440</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:23:31 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A23%3A31Z&Signature=MsFmk%2B3ZKJiz9gV4tjO8bkZjmmPj3n7YnJ56C%2FsCrFY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:23:31 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '288000.0'
+      x-mws-quota-remaining:
+      - '287999.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:20:00 UTC
+      x-mws-response-context:
+      - jZFLyASFD4QYyS9eDwDEBhjukkHtFpN6gq6aPD04UJstbNvpDwgCe9/9ei4oeQVPNGtmCq342QM=,
+        Q89HLKiSurkYkw5GHjkkyjKDLtW+U+NAsMxXyLjYJyWF+mZhtIDtFOE+8zlDuh5/ixSv8QEmaS1d
+        /tBEA+AU8Q==
+      x-amz-request-id:
+      - 0bdfbcff-c6bf-4be9-b65f-feb00450b7f1
+      x-mws-request-id:
+      - 0bdfbcff-c6bf-4be9-b65f-feb00450b7f1
+      x-mws-timestamp:
+      - '2014-02-04T11:23:31.615Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=16
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>false</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>38522</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>18.46</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>14.47</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>2049</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>18.92</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>14.93</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>Unknown</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>899</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>21.48</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>17.49</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>True</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>3012</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>25.75</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>21.76</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>3603</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>25.75</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>21.76</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>109555</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>26.66</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>22.67</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>193757</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>28.30</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>24.31</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>193757</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>28.52</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>24.53</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>Unknown</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>603414</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>29.55</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>25.56</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>77</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>31.19</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>27.20</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>31</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>31.69</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>27.70</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>14 or more days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>6013</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>USD</CurrencyCode><Amount>32.59</Amount></LandedPrice><ListingPrice><CurrencyCode>USD</CurrencyCode><Amount>28.60</Amount></ListingPrice><Shipping><CurrencyCode>USD</CurrencyCode><Amount>3.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>0bdfbcff-c6bf-4be9-b65f-feb00450b7f1</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:23:32 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=APJ6JRA9NG5V4&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A23%3A37Z&Signature=OhmyROjCMvkwyZevztLfnIbX7xRmchm%2BTaeJcn%2BqwNs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:23:37 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '144000.0'
+      x-mws-quota-remaining:
+      - '125279.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:54:00 UTC
+      x-mws-response-context:
+      - LNy4Yv1KbEiRLabaDJd1y8qflFVivVtqxHk09wPXOX8DnOj6rgmsfKpZVvr7RQc2Yw9SXZyBv0gn
+        PDN9r29RyP+Q3DvnaFda, B4tqCLKIJ1AOSIlh5FzZGqQawqR9qYl76keJpZe7AL8LZ7L704ghPQ9QoA+are5C8nbqjDttxtEU
+        dTL958tlDQ==
+      x-amz-request-id:
+      - 0f6611ba-6001-4b6b-b21e-9a968dce28ef
+      x-mws-request-id:
+      - 0f6611ba-6001-4b6b-b21e-9a968dce28ef
+      x-mws-timestamp:
+      - '2014-02-04T11:23:37.261Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>true</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>14 or more days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>7804</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.37</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>14.97</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.40</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Amazon</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>195457</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.38</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.38</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>0.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>3856</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.85</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>18.45</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.40</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>4</NumberOfOfferListingsConsidered><SellerFeedbackCount>4485</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>22.47</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.07</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.40</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>6</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>25.90</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.50</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.40</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>65</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>26.15</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.75</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.40</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>0f6611ba-6001-4b6b-b21e-9a968dce28ef</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:23:37 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=A13V1IB3VIYZZH&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A23%3A40Z&Signature=pJkEzZfBtnpwNZ4A2ULt%2BcNOpvfjmToB%2BxXddy1UEfU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:23:40 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '288000.0'
+      x-mws-quota-remaining:
+      - '220999.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - wJlXAzkEpj5J1SlKUFI8st1PYAm4Qfwj624CjDSIz9qlEC9bHQY/bhrHfYw2CCgEBNOeYdBHxNd9
+        TkdpOqPICV3PlfLFkU2p, LPxNTJBvRbBw/qlObakNyDfabH8pMm6njZ4N5djXzp3gSMDWifD6IBgeZS2AILl++N1cjyD7w4Qa
+        iF7eeQjliQ==
+      x-amz-request-id:
+      - dd5b8f78-8c5e-44fb-88c1-c432d8c4f65a
+      x-mws-request-id:
+      - dd5b8f78-8c5e-44fb-88c1-c432d8c4f65a
+      x-mws-timestamp:
+      - '2014-02-04T11:23:40.640Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=15
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>false</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A13V1IB3VIYZZH</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>4</NumberOfOfferListingsConsidered><SellerFeedbackCount>11353</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>19.58</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>16.59</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>14 or more days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>3072</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>19.59</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>16.60</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>7</NumberOfOfferListingsConsidered><SellerFeedbackCount>37079</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.97</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.98</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Amazon</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>195457</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>21.73</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>21.73</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>0.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>Unknown</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>849</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>22.22</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>19.23</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>Mint</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>37079</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.38</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.39</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>41</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.39</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.40</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>2286</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>24.02</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>21.03</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>70-79%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>34</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>26.79</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.80</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>dd5b8f78-8c5e-44fb-88c1-c432d8c4f65a</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:23:41 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01?ASINList.ASIN.1=1780935374&AWSAccessKeyId=aws_access_key_id&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1RKKUPIHCS9HS&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A27%3A54Z&Signature=DEtUfKx82hFlAty1SiqfXqGASZs%2FUgyhyf1On90IKnU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:27:54 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '144000.0'
+      x-mws-quota-remaining:
+      - '141718.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:11:00 UTC
+      x-mws-response-context:
+      - HANuYi2J4NQ/o5HRHMjq8V90rZffcsNNg3WBbcKFLUcxscf1vkIQwWgE4ChBROJQbcmizT+aqHR9
+        M/k36Sd/sCj+m9NkOqb0, B4tqCLKIJ1AOSIlh5FzZGqQawqR9qYl76keJpZe7AL8LZ7L704ghPQ9QoA+are5C8nbqjDttxtEU
+        dTL958tlDQ==
+      x-amz-request-id:
+      - 635e4ed8-b221-433e-950e-fc1ebbbc6d87
+      x-mws-request-id:
+      - 635e4ed8-b221-433e-950e-fc1ebbbc6d87
+      x-mws-timestamp:
+      - '2014-02-04T11:27:55.031Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult ASIN="1780935374" status="Success"><AllOfferListingsConsidered>true</AllOfferListingsConsidered><Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A1RKKUPIHCS9HS</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Amazon</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>195457</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.33</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.33</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>0.00</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>5</NumberOfOfferListingsConsidered><SellerFeedbackCount>13366</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.57</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>17.58</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>70-79%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>114</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>22.40</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>19.41</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>11</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>23.39</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>20.40</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>3</NumberOfOfferListingsConsidered><SellerFeedbackCount>289</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>25.47</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>22.48</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>Just Launched</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>0</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>29.99</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>27.00</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>2</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>31.34</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>28.35</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2 days</Max></ShippingTime><SellerPositiveFeedbackRating>Less than 70%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>2</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>32.92</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>29.93</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>2.99</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>635e4ed8-b221-433e-950e-fc1ebbbc6d87</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:27:55 GMT
+recorded_with: VCR 2.8.0

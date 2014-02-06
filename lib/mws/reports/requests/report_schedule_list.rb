@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ReportScheduleList < ::Peddler::Request
         def get(*types)
-          parameters(:get_report_schedule_list)
+          parameters('GetReportScheduleList')
             .update(report_type_list: types)
             .format_structured_lists!
             .camelize_keys!

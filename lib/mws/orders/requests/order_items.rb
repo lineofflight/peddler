@@ -6,7 +6,7 @@ module MWS
     module Requests
       class OrderItems < ::Peddler::Request
         def list(amazon_order_id)
-          parameters(:list_order_items)
+          parameters('ListOrderItems')
             .update(amazon_order_id: amazon_order_id)
             .camelize_keys!
 
@@ -16,7 +16,7 @@ module MWS
         def list_by_next_token(token = next_token)
           return unless token
 
-          parameters(:list_order_items_by_next_token)
+          parameters('ListOrderItemsByNextToken')
             .update(next_token: token)
             .camelize_keys!
 

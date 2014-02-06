@@ -1,0 +1,410 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A18Z&Signature=2y0sYiJLDxtXaCcdqs0HlbWN%2FHOYQ09Udd6HM93fDBQ%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:03:00 UTC
+      x-mws-response-context:
+      - SxXhpt42PKIUiYZUTIFtuthyhcFlkwAc2Letyh2fAS/6YyMICY9JVGuw55DmXGPwWliKdGy43gds
+        jR4FNAvsMs2u65yNn49B, xvr/DV2HyS3r2MCdhw+GtOW5crBGLnIhzgePL58O5p5JGmNqTeHt1HUx/J8X66HY5d3f91rEbh9E
+        VIh4cahJew==
+      x-amz-request-id:
+      - c23618f2-d684-4b12-850d-7f42a6452882
+      x-mws-request-id:
+      - c23618f2-d684-4b12-850d-7f42a6452882
+      x-mws-timestamp:
+      - '2014-02-04T11:36:18.801Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>c23618f2-d684-4b12-850d-7f42a6452882</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:18 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A18Z&Signature=1sQAI0DBdUoe4Td63ay38joezfmhxnz0Hk30reL7Ojs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:19:00 UTC
+      x-mws-response-context:
+      - 9+nu2hmCzE/raiHb3Y8Exys8BJhhgVneiXszPT3nBJXUsX+HmpQ6LUqUPrRSTEh0aW4s6YwenZ0w
+        43WL33+BdgKjvngiGGVn, iIpS4dvBFnG35RyJCBPlQF+nqYkbIBFFaLmAoBShdcW0Xc66cKhH/e4etl056wwPDdEiY/yiuTuH
+        A0miOro+Jg==
+      x-amz-request-id:
+      - e3313c71-2bc8-457d-a3e4-37f55e17d2ed
+      x-mws-request-id:
+      - e3313c71-2bc8-457d-a3e4-37f55e17d2ed
+      x-mws-timestamp:
+      - '2014-02-04T11:36:19.418Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=15
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>e3313c71-2bc8-457d-a3e4-37f55e17d2ed</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A19Z&Signature=dWhD5A3rwviynwIf7RrKvTmZtrv4Nen6SAdb54o0gHQ%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:11:00 UTC
+      x-mws-response-context:
+      - jVfsgrPtcNN45N57YmFiScxM+LAiZcoV39Bu+/tw1IIzJ9mraFMMTWUhvgOG81dpD0KkQCkqpdhl
+        SA+dgH/OtsB7Ue8Ydhtd, DIuGT4JKsytXVYAfpiT7hLBh3ZdJvfJqbA+iZ502/hQVCziDG9DzxhuXzUuVaHVawM/FKblY2k37
+        drgsKUPcJg==
+      x-amz-request-id:
+      - 675ebb8f-f023-476c-9340-14d7ca41b85b
+      x-mws-request-id:
+      - 675ebb8f-f023-476c-9340-14d7ca41b85b
+      x-mws-timestamp:
+      - '2014-02-04T11:36:19.645Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>675ebb8f-f023-476c-9340-14d7ca41b85b</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A19Z&Signature=GVQq4mvQHsr4KDiNJIwYt7H4hkKTTZ9TAeq%2BhFo%2FJV0%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:19 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - MC50X1tnispv3puAiGuB23XH3SrjpLwoRgVw3Y/XRlog104ODwcyDthMJb7iwn3rVjw8vwgkRs0I
+        bLURPl40Cq4uQWnYo0o4, iIpS4dvBFnG35RyJCBPlQF+nqYkbIBFFaLmAoBShdcW0Xc66cKhH/e4etl056wwPDdEiY/yiuTuH
+        A0miOro+Jg==
+      x-amz-request-id:
+      - f1cd45e2-a089-4fcd-ad0c-40a5dd460182
+      x-mws-request-id:
+      - f1cd45e2-a089-4fcd-ad0c-40a5dd460182
+      x-mws-timestamp:
+      - '2014-02-04T11:36:19.850Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=17
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>f1cd45e2-a089-4fcd-ad0c-40a5dd460182</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A19Z&Signature=v4UqO6bJWjFjj1d5BfP%2BU7dAWon3wQlhVAe81Jl9MYk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:20 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:07:00 UTC
+      x-mws-response-context:
+      - 05zr2coTFLMhroyEp0rSuSeBGaGSv/dIm6pioMRfZGArU6gbNoHhnIFjpiIf2aR/ZUFC+DmYAUqG
+        vCG36qxgC2sYH9ABDKkd, O6YuKPpOiGCWrM2/mGDLEbqo2vfsgqupzw4FWWmfYKxa57ExDJWBcnTS28l6TIZqXd9LYoLqimCQ
+        NYtvMY3/1w==
+      x-amz-request-id:
+      - 3450174f-097e-4c1d-8579-61ce9da4613e
+      x-mws-request-id:
+      - 3450174f-097e-4c1d-8579-61ce9da4613e
+      x-mws-timestamp:
+      - '2014-02-04T11:36:20.075Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=17
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>3450174f-097e-4c1d-8579-61ce9da4613e</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:20 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A20Z&Signature=XI03ZlTfaiWgmVBTIxEbP9ioEV%2B%2FidguktIm5XlUugI%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:20 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:54:00 UTC
+      x-mws-response-context:
+      - IORYGWLNvdMqB6QJMoCBQP4XrUxKK9UK1gS089F+NQir46Ol1XlTGPbSCHr9yVojWqW+sdUmRDfk
+        K9o/ESp8mW8kCcGY3JdZ, wDEKO18q37ugUDn48henforkrNKRZgzmaL9awEIbg4uMsTJS5D+YdA0hYjKALj7rhSDdnWPci7pD
+        a/Ap1Yy8EA==
+      x-amz-request-id:
+      - 782957be-1c1f-4a6c-8485-c2c7bfdeb343
+      x-mws-request-id:
+      - 782957be-1c1f-4a6c-8485-c2c7bfdeb343
+      x-mws-timestamp:
+      - '2014-02-04T11:36:20.297Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>782957be-1c1f-4a6c-8485-c2c7bfdeb343</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:20 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A20Z&Signature=hpKSxsOmVCUG1z92VbPzggl95PNxJfRsYSJ0rN%2BqLug%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:20 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - OWU1+uJ6ODBK1RSkzySlHx6Pr3L1jhGFAvJUheLntVdI6f8lqv0nPZp7vwj1LGv5xGupLCSjGrmQ
+        GZZB3zLuA3ghm/eWUQ8l, 9YyXguH0vJa3Ts154cPD848f6Quc0AlPEbUL1MEHH3BVNtN2f3bR5WjJBOZ50359ROhBWeXv5i98
+        et/TY++eCQ==
+      x-amz-request-id:
+      - 656e03f8-85f3-4fc9-b3a4-ec7d21f24e8a
+      x-mws-request-id:
+      - 656e03f8-85f3-4fc9-b3a4-ec7d21f24e8a
+      x-mws-timestamp:
+      - '2014-02-04T11:36:21.033Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=17
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>656e03f8-85f3-4fc9-b3a4-ec7d21f24e8a</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:21 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportScheduleList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A36%3A21Z&Signature=vwdnsSto2VE7sAnwRmKHdgNmRJA6BsxGDfBXXE5ycVI%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:36:21 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:20:00 UTC
+      x-mws-response-context:
+      - xNt4vqurtXpX4RH2EP6g1U/0FuvOc4H071e5TjSmN6dEESYIvC49+QxiBBATZAN3FTUMLvhEgxHu
+        D4TnFkFN0Hf3J1tB0jmo, o2X4kcTIBKPWakrrGPdX7GAKTG3aNXIioNQxj0c0qPutkAzLjUv7gMZilSh1IwiYMeeqMgyVigc=
+      x-amz-request-id:
+      - 185c18b0-a815-4759-b6c8-3262f3ae3722
+      x-mws-request-id:
+      - 185c18b0-a815-4759-b6c8-3262f3ae3722
+      x-mws-timestamp:
+      - '2014-02-04T11:36:21.653Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>185c18b0-a815-4759-b6c8-3262f3ae3722</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:36:21 GMT
+recorded_with: VCR 2.8.0

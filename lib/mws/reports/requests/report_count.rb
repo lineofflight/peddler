@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ReportCount < ::Peddler::Request
         def get(options = {})
-          parameters(:get_report_count)
+          parameters('GetReportCount')
             .update(options)
             .timestamp!
             .format_structured_lists!

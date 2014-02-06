@@ -6,7 +6,7 @@ module MWS
     module Requests
       class FeedSubmissionResult < ::Peddler::Request
         def get(feed_submission_id)
-          parameters(:get_feed_submission_result)
+          parameters('GetFeedSubmissionResult')
             .update(feed_submission_id: feed_submission_id)
             .camelize_keys!
 

@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=aws_access_key_id&Action=GetReportCount&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A48%3A43Z&Signature=Ohp70iEdxJZj%2FD757n6NuXgfptumk7h2NMyAo2ORs%2Bc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:48:46 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:03:00 UTC
+      x-mws-response-context:
+      - iKOFy+E9hy9kEyzlnGxHC1R8V/IUiGsIK9Ve8CRLlAnYoduZGqJ4fzcXf9R8SSvhFfPYLAVbjA1/
+        dycK+eHhuCY/rverbi0U, CAPQCNn086H6LgBRw10Vis6pVpr4rYiWd9eT1JnekjnSU2aK6ln4zF/+OfqRB7uTQRKvAApWlk4=
+      x-amz-request-id:
+      - d33f79b9-36ee-45ac-b43a-2c72ee4a044c
+      x-mws-request-id:
+      - d33f79b9-36ee-45ac-b43a-2c72ee4a044c
+      x-mws-timestamp:
+      - '2014-02-04T11:48:44.887Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=14
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>24782</Count></GetReportCountResult><ResponseMetadata><RequestId>d33f79b9-36ee-45ac-b43a-2c72ee4a044c</RequestId></ResponseMetadata></GetReportCountResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:48:47 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportCount&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A48%3A47Z&Signature=BbKzWePwD7eSJgz40n5ob%2FcIcgL1qP1a%2BRQmXWIiq0g%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:48:52 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '78.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:20:00 UTC
+      x-mws-response-context:
+      - huZmSrqj1hdg8WKqIzlYU71FXyEuneOaHdNBKX5HVmBmZEH8flmsfoMH0Tf7vG7mPSaMRSP9OXCs
+        O089iQLBDqJoJG7QuiaR, xvr/DV2HyS3r2MCdhw+GtOW5crBGLnIhzgePL58O5p5JGmNqTeHt1HUx/J8X66HY5d3f91rEbh9E
+        VIh4cahJew==
+      x-amz-request-id:
+      - b8a4eb4e-0ce5-45cd-9c34-a681bc995200
+      x-mws-request-id:
+      - b8a4eb4e-0ce5-45cd-9c34-a681bc995200
+      x-mws-timestamp:
+      - '2014-02-04T11:48:48.125Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>47588</Count></GetReportCountResult><ResponseMetadata><RequestId>b8a4eb4e-0ce5-45cd-9c34-a681bc995200</RequestId></ResponseMetadata></GetReportCountResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:48:52 GMT
+recorded_with: VCR 2.8.0

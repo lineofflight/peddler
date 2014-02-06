@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ReportAcknowledgements < ::Peddler::Request
         def update(acknowledged, *ids)
-          parameters(:update_report_acknowledgements)
+          parameters('UpdateReportAcknowledgement')
             .update(report_id_list: ids, acknowledged: acknowledged)
             .format_structured_lists!
             .camelize_keys!
