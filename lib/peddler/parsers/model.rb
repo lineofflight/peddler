@@ -37,6 +37,10 @@ module Peddler
         str = text_at_xpath(path)
         Time.parse(CGI.unescape(str)) if str
       end
+
+      def attribute(name)
+        document.attribute(name).text
+      end
     end
   end
 end
