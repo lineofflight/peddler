@@ -17,6 +17,10 @@ module Peddler
         "#<#{self.class} (#{count})>"
       end
 
+      def to_h
+        map { |el| el.respond_to?(:to_h) ? el.to_h : el }
+      end
+
       alias :to_s :inspect
     end
   end
