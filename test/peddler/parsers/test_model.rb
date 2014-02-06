@@ -67,4 +67,15 @@ class PeddlerModelParserTest < MiniTest::Test
     model = build(xml)
     assert_equal false, model.boolean_at_xpath('Bool')
   end
+
+  def test_parses_attribute
+    xml = <<-EOF
+    <Attr xmlns="example" foo="bar">
+      false
+    </Attr>
+    EOF
+    document = Nokogiri(xml).xpath('//xmlns:Attr')
+    model = Peddler::Parsers::Model.new(document)
+    assert_equal 'bar', model.attribute('foo')
+  end
 end

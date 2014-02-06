@@ -6,7 +6,7 @@ module MWS
     module Requests
       class MarketplaceParticipations < ::Peddler::Request
         def list
-          parameters(:list_marketplace_participations)
+          parameters('ListMarketplaceParticipations')
             .camelize_keys!
 
           execute
@@ -15,7 +15,7 @@ module MWS
         def list_by_next_token(token = next_token)
           return false unless token
 
-          parameters(:list_marketplace_participations_by_next_token)
+          parameters('ListMarketplaceParticipationsByNextToken')
             .update(next_token: token)
             .camelize_keys!
 

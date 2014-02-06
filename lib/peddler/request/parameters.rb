@@ -7,7 +7,7 @@ module Peddler
   class Request
     class Parameters < SimpleDelegator
       def initialize(action)
-        super({ 'Action' => action_name(action) })
+        super('Action' => action)
       end
 
       def timestamp!
@@ -49,10 +49,6 @@ module Peddler
       end
 
       private
-
-      def action_name(action)
-        camelize(action).gsub(/Sku$/, 'SKU')
-      end
 
       def camelize(sym)
         sym.to_s.split('_').map(&:capitalize).join

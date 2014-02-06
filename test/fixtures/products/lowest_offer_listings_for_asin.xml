@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<GetLowestOfferListingsForASINResponse
+  xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+<GetLowestOfferListingsForASINResult ASIN="B002KT3XQM" status="Success">
+  <AllOfferListingsConsidered>true</AllOfferListingsConsidered>
+  <Product xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"
+           xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd">
+    <Identifiers>
+      <MarketplaceASIN>
+        <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+        <ASIN>B002KT3XQM</ASIN>
+      </MarketplaceASIN>
+    </Identifiers>
+    <LowestOfferListings>
+      <LowestOfferListing>
+        <Qualifiers>
+          <ItemCondition>Used</ItemCondition>
+          <ItemSubcondition>VeryGood</ItemSubcondition>
+          <FulfillmentChannel>Merchant</FulfillmentChannel>
+          <ShipsDomestically>True</ShipsDomestically>
+          <ShippingTime>
+            <Max>0-2 days</Max>
+          </ShippingTime>
+          <SellerPositiveFeedbackRating>90-94%</SellerPositiveFeedbackRating>
+        </Qualifiers>
+        <NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered>
+        <SellerFeedbackCount>762</SellerFeedbackCount>
+        <Price>
+          <LandedPrice>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>32.99</Amount>
+          </LandedPrice>
+          <ListingPrice>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>28.00</Amount>
+          </ListingPrice>
+          <Shipping>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>4.99</Amount>
+          </Shipping>
+        </Price>
+        <MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice>
+      </LowestOfferListing>
+      <LowestOfferListing>
+        <Qualifiers>
+          <ItemCondition>New</ItemCondition>
+          <ItemSubcondition>New</ItemSubcondition>
+          <FulfillmentChannel>Amazon</FulfillmentChannel>
+          <ShipsDomestically>True</ShipsDomestically>
+          <ShippingTime>
+            <Max>0-2 days</Max>
+          </ShippingTime>
+          <SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating>
+        </Qualifiers>
+        <NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered>
+        <SellerFeedbackCount>181744</SellerFeedbackCount>
+        <Price>
+          <LandedPrice>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>34.27</Amount>
+          </LandedPrice>
+          <ListingPrice>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>34.27</Amount>
+          </ListingPrice>
+          <Shipping>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>0.00</Amount>
+          </Shipping>
+        </Price>
+        <MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice>
+      </LowestOfferListing>
+      <LowestOfferListing>
+        <Qualifiers>
+          <ItemCondition>New</ItemCondition>
+          <ItemSubcondition>New</ItemSubcondition>
+          <FulfillmentChannel>Amazon</FulfillmentChannel>
+          <ShipsDomestically>True</ShipsDomestically>
+          <ShippingTime>
+            <Max>0-2 days</Max>
+          </ShippingTime>
+          <SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating>
+        </Qualifiers>
+        <NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered>
+        <SellerFeedbackCount>13213</SellerFeedbackCount>
+        <Price>
+          <LandedPrice>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>41.18</Amount>
+          </LandedPrice>
+          <ListingPrice>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>41.18</Amount>
+          </ListingPrice>
+          <Shipping>
+            <CurrencyCode>USD</CurrencyCode>
+            <Amount>0.00</Amount>
+          </Shipping>
+        </Price>
+        <MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice>
+      </LowestOfferListing>
+    </LowestOfferListings>
+  </Product>
+</GetLowestOfferListingsForASINResult>
+<ResponseMetadata>
+  <RequestId>60979901-82af-457b-8bdd-EXAMPLE28478</RequestId>
+</ResponseMetadata>
+</GetLowestOfferListingsForASINResponse>

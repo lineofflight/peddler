@@ -3,13 +3,19 @@ require 'mws/products/parsers/price'
 
 class PriceParserTest < ParserTest
   def setup
-    node = fixture_from_cassette('offer_listings_test/test_get_lower_for_sku').xpath('//xmlns:Price')
+    node = fixture('products/lowest_offer_listings_for_sku').xpath('//xmlns:Price')
     @price = MWS::Products::Parsers::Price.new(node)
   end
 
-  [:landed_price, :listing_price, :shipping].each do |method|
-    define_method "test_#{method}" do
-      assert_kind_of Money, @price.public_send(method)
-    end
+  def test_landed_price
+    assert_kind_of Money, @price.landed_price
+  end
+
+  def test_listing_price
+    assert_kind_of Money, @price.listing_price
+  end
+
+  def test_shipping
+    assert_kind_of Money, @price.shipping
   end
 end

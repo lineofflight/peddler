@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ReportRequests < ::Peddler::Request
         def cancel(options = {})
-          parameters(:cancel_report_requests)
+          parameters('CancelReportRequests')
             .update(options)
             .timestamp!
             .format_structured_lists!

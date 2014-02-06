@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ReportList < ::Peddler::Request
         def get(options = {})
-          parameters(:get_report_list)
+          parameters('GetReportList')
             .update(options)
             .timestamp!
             .format_structured_lists!
@@ -18,7 +18,7 @@ module MWS
         def get_by_next_token(token = next_token)
           return false unless token
 
-          parameters(:get_report_list_by_next_token)
+          parameters('GetReportListByNextToken')
             .update(next_token: token)
             .camelize_keys!
 

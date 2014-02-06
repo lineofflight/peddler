@@ -6,7 +6,7 @@ module MWS
     module Requests
       class Report < ::Peddler::Request
         def get(id, &blk)
-          parameters(:get_report)
+          parameters('GetReport')
             .update(report_id: id)
             .camelize_keys!
 

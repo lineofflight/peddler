@@ -1,0 +1,1223 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A06Z&Signature=zz5tXk98D4vQfCZPrRHfTPthyZnFezeLZUrMujU1qOg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:09 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '72.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:03:00 UTC
+      x-mws-response-context:
+      - huZmSrqj1hdg8WKqIzlYU71FXyEuneOaHdNBKX5HVmBmZEH8flmsfoMH0Tf7vG7mPSaMRSP9OXCs
+        O089iQLBDqJoJG7QuiaR, dQwRIxw26nuiVh18hX67GjbM+nxudbLIZPit3gQjIHr6H5ZLXyt0tokx9h1mP73E2Y7V9JsUGQHh
+        m6qXA8nrig==
+      x-amz-request-id:
+      - 65e4ee79-ddaf-42af-ba3f-c7cf44123bb2
+      x-mws-request-id:
+      - 65e4ee79-ddaf-42af-ba3f-c7cf44123bb2
+      x-mws-timestamp:
+      - '2014-02-04T11:29:06.514Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>omDDq7x8tCZmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUekG7R3GrrwKdOM1t6iCQ6j4+udb1DaCBS7x3EKaUNYP5KqIWYaDuUS/hAiYz4BjSFAEd6Q4cqHGbrsYzvVHZdBRZPKRNT9/dty48fEATNx/JtOT2QJG9OdurzGoByFA0pidqZAmLaFqzcGfBs629BVMnpebRsAXK2njVB/l+th+azcZbn9CIEWF6U9JDLNksdCeuiequAMsPUARc7r8ROKKaeeBSN0GwO6CHOqQ5I5e3JSTqp8zyutk6GdD05xDnAigUE67c4Fed/x+Nb7yRWq+T+trZ7c0J3neNVsAOcM8BmPYy8Joi36a6OuO6nRssOZWMLtS4xmC0XJdLiilZ63p5QmEX5Zja9wsIkiDGsz3B+62fxv2HcJOiuAmTlwzmLrbdgPmSzB13swaJpP0jZBdneJ/e9K9CAYOi6zqUmgVszYY60CujIo+mPhxrz0YirMTpY6vpow+g==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>9043478482</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:36+00:00</StartDate><EndDate>2014-02-04T11:06:36+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:36+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9039974044</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:07:59+00:00</StartDate><EndDate>2014-02-04T00:07:59+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:07:59+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14820272523</GeneratedReportId><StartedProcessingDate>2014-02-04T00:08:11+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:08:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9037573824</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14815585093</GeneratedReportId><StartedProcessingDate>2014-02-03T18:26:47+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:48:40+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9036725994</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14813436613</GeneratedReportId><StartedProcessingDate>2014-02-03T16:01:48+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:23:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9032022472</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14803621393</GeneratedReportId><StartedProcessingDate>2014-02-03T00:48:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T01:09:20+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9031939228</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:52+00:00</StartDate><EndDate>2014-02-03T00:00:53+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14802818713</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:15+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:01:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9024539938</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:28+00:00</StartDate><EndDate>2014-02-02T00:06:28+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:28+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14787466983</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:46+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:53+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9016978842</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:48+00:00</StartDate><EndDate>2014-02-01T00:08:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14771680153</GeneratedReportId><StartedProcessingDate>2014-02-01T00:08:56+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:09:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9008975182</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:37+00:00</StartDate><EndDate>2014-01-31T00:03:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14754473623</GeneratedReportId><StartedProcessingDate>2014-01-31T00:03:53+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:04:02+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9000996150</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:01:04+00:00</StartDate><EndDate>2014-01-30T00:01:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:01:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14737384253</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:26+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:01:35+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>65e4ee79-ddaf-42af-ba3f-c7cf44123bb2</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:10 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=omDDq7x8tCZmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUekG7R3GrrwKdOM1t6iCQ6j4%2Budb1DaCBS7x3EKaUNYP5KqIWYaDuUS%2FhAiYz4BjSFAEd6Q4cqHGbrsYzvVHZdBRZPKRNT9%2Fdty48fEATNx%2FJtOT2QJG9OdurzGoByFA0pidqZAmLaFqzcGfBs629BVMnpebRsAXK2njVB%2Fl%2Bth%2BazcZbn9CIEWF6U9JDLNksdCeuiequAMsPUARc7r8ROKKaeeBSN0GwO6CHOqQ5I5e3JSTqp8zyutk6GdD05xDnAigUE67c4Fed%2Fx%2BNb7yRWq%2BT%2BtrZ7c0J3neNVsAOcM8BmPYy8Joi36a6OuO6nRssOZWMLtS4xmC0XJdLiilZ63p5QmEX5Zja9wsIkiDGsz3B%2B62fxv2HcJOiuAmTlwzmLrbdgPmSzB13swaJpP0jZBdneJ%2Fe9K9CAYOi6zqUmgVszYY60CujIo%2BmPhxrz0YirMTpY6vpow%2Bg%3D%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A10Z&Signature=XFrdp%2FIrCUcbUwrVNG%2FwuVVMyG7kN5s2agq6UZUqlc4%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:10 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:03:00 UTC
+      x-mws-response-context:
+      - OH5Lmpr7nZdzDgOHjtUwh1ew9xFv+w/tCzmdx7vZPhHhv2T5SJbwGgzwsTQflLs1sQL+LW/GY8bO
+        cjBaIQCxZ4uaLhha07tT, f9NXWs5yFX4qv23oHrxjYf0zWkYjDfPLmGHXsVLtnpayOiB94lt0cIdELb8YoIFUxrxzGMf45sl+
+        HXyMkvySpA==
+      x-amz-request-id:
+      - fd923a7b-dff2-4068-afc4-941f5f78da8c
+      x-mws-request-id:
+      - fd923a7b-dff2-4068-afc4-941f5f78da8c
+      x-mws-timestamp:
+      - '2014-02-04T11:29:10.941Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>4XyQzy983rxmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUfFpcBskDdu3Zj1MHeOV2/5/XQYSD4aAxfxhh5Pyyptla1H9Co8CLof58okPbd4hJ0ZXVUSUX4IytzAyMFt4mb8SSXild3uvpCsij1FjOr6mbVcIkBm0+aOeRmqkTxWuHZ89Lesa/GRig6P3pELsqcC/Ttcmr5aJco6EFGUqm0FWrjykSIOnkM92PmmPT6xMRvD96Q9k0iDObQsc1F5QLzs7llNeyqRSVqy2rZv9c/TkjB11Bh9k/8zO1bpGdWp0pVbjOEY8+c6vAeOg28aHoP4LmvVqQuj+qw4wTd9iH1c1Ehxn1wPMv2la6OuO6nRssOZWMLtS4xmC0XJdLiilZ63QI8bBLCPU5dJvmoIrlK6Y5qEtGbIZEm7uUWfjIJMhU0sCArhHOSBwdAcohPQbVm3ykM0BaY05CfJhsEvxC56nyanbHJ4M0q1RrrLlLhKBV7UpiXcr6YmwVHjfwGyuVrPX/Z+OZsntfnQapsRvOfG8A==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>8993078172</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:04:23+00:00</StartDate><EndDate>2014-01-29T00:04:23+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:04:23+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14720436053</GeneratedReportId><StartedProcessingDate>2014-01-29T00:04:35+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:04:43+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8985122642</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:01:03+00:00</StartDate><EndDate>2014-01-28T00:01:04+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:01:04+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14703205063</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:17+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:01:25+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8977268424</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:07:03+00:00</StartDate><EndDate>2014-01-27T00:07:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:07:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14686204263</GeneratedReportId><StartedProcessingDate>2014-01-27T00:07:15+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:07:23+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8969958214</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:01:06+00:00</StartDate><EndDate>2014-01-26T00:01:06+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:01:06+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14671088543</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:16+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8962603820</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:52+00:00</StartDate><EndDate>2014-01-25T00:06:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:52+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14655950213</GeneratedReportId><StartedProcessingDate>2014-01-25T00:07:02+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:07:11+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8959833686</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14650473343</GeneratedReportId><StartedProcessingDate>2014-01-24T16:52:24+00:00</StartedProcessingDate><CompletedDate>2014-01-24T17:19:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8959581512</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:18+00:00</StartDate><EndDate>2014-01-24T15:38:18+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:18+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14649876333</GeneratedReportId><StartedProcessingDate>2014-01-24T16:10:16+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:35:36+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8958788514</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14647871373</GeneratedReportId><StartedProcessingDate>2014-01-24T13:27:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:53:48+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8958149362</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:42+00:00</StartDate><EndDate>2014-01-24T10:51:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14646734053</GeneratedReportId><StartedProcessingDate>2014-01-24T11:20:31+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:46:32+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8954837030</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:38+00:00</StartDate><EndDate>2014-01-24T00:03:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14639350343</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:58+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:04:05+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>fd923a7b-dff2-4068-afc4-941f5f78da8c</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:11 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=4XyQzy983rxmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUfFpcBskDdu3Zj1MHeOV2%2F5%2FXQYSD4aAxfxhh5Pyyptla1H9Co8CLof58okPbd4hJ0ZXVUSUX4IytzAyMFt4mb8SSXild3uvpCsij1FjOr6mbVcIkBm0%2BaOeRmqkTxWuHZ89Lesa%2FGRig6P3pELsqcC%2FTtcmr5aJco6EFGUqm0FWrjykSIOnkM92PmmPT6xMRvD96Q9k0iDObQsc1F5QLzs7llNeyqRSVqy2rZv9c%2FTkjB11Bh9k%2F8zO1bpGdWp0pVbjOEY8%2Bc6vAeOg28aHoP4LmvVqQuj%2Bqw4wTd9iH1c1Ehxn1wPMv2la6OuO6nRssOZWMLtS4xmC0XJdLiilZ63QI8bBLCPU5dJvmoIrlK6Y5qEtGbIZEm7uUWfjIJMhU0sCArhHOSBwdAcohPQbVm3ykM0BaY05CfJhsEvxC56nyanbHJ4M0q1RrrLlLhKBV7UpiXcr6YmwVHjfwGyuVrPX%2FZ%2BOZsntfnQapsRvOfG8A%3D%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A11Z&Signature=q07N%2B9%2BhRE%2B1BlPgx0AOepsJSNuynh2zeQP%2FZSIxSrk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:11 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:03:00 UTC
+      x-mws-response-context:
+      - bm1VKoOFWZLdHD3b+9TG0OQ+cveFHw/UWcJDyZy9LEBABRkvJosYLd9Rvn/uHmB0e5vqSNUboddM
+        ljQVn4c4arIGb98khkGn, a6a5p5gh+6JJozddPcAzFEwztWjOBQ3c7IBMCHwnWuaq4dQ7AhqNcr9Cq6+022Gcd3yiKWP9oFI=
+      x-amz-request-id:
+      - 00af2f4d-7475-4c5a-9bff-c0fade7be6cf
+      x-mws-request-id:
+      - 00af2f4d-7475-4c5a-9bff-c0fade7be6cf
+      x-mws-timestamp:
+      - '2014-02-04T11:29:11.498Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>MlB0GdCHkwZmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUcKFKzEDcAnvhdbjtShdQ+II7roc0h5KkMTPgVhugeHLD59reTt2UM1dAvGkFuSznZx6c+uLZkBn+4gddPSRa80spkbg/+BhE2sij1FjOr6mbVcIkBm0+aOeRmqkTxWuHZ89Lesa/GRig6P3pELsqcC/Ttcmr5aJcpaLX/W0g2+ffiWgYV3Xm03bnUKjyZKBO1CeuiequAMsPUARc7r8ROKKaeeBSN0GwO6CHOqQ5I5e3JSTqp8zyutk6GdD05xDnAigUE67c4FebcEgX4xpCjQO/CI4ur4rFs5642BWwT706JxsOrRvhLGILw084swFa2uNgKpctdl9g/pjSU1/NSyDEAFh7N9g51HIy7zsJ+lt74R/qH4F9Nig5lrJEdmhsWrS+5ZuPZ58PYLYfAis2et5FOo1YmmLgwwawV76glEDJcAGN0Wb8FmmSWxk+RDEAAoDXyxUSCkM7/EcjaRNR8mjSQN8bQR0FQ=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>8946926720</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:54+00:00</StartDate><EndDate>2014-01-23T00:03:54+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:54+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14622354753</GeneratedReportId><StartedProcessingDate>2014-01-23T00:04:46+00:00</StartedProcessingDate><CompletedDate>2014-01-23T00:04:54+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8943649242</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:00:55+00:00</StartDate><EndDate>2014-01-22T15:00:56+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:00:56+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14614961693</GeneratedReportId><StartedProcessingDate>2014-01-22T15:01:35+00:00</StartedProcessingDate><CompletedDate>2014-01-22T15:01:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8942721944</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:56+00:00</StartDate><EndDate>2014-01-22T12:00:56+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:56+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14613079043</GeneratedReportId><StartedProcessingDate>2014-01-22T12:01:57+00:00</StartedProcessingDate><CompletedDate>2014-01-22T12:02:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8941829902</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T09:00:48+00:00</StartDate><EndDate>2014-01-22T09:00:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T09:00:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14611418243</GeneratedReportId><StartedProcessingDate>2014-01-22T09:01:20+00:00</StartedProcessingDate><CompletedDate>2014-01-22T09:01:27+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8940916694</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T06:00:44+00:00</StartDate><EndDate>2014-01-22T06:00:44+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T06:00:44+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14609589053</GeneratedReportId><StartedProcessingDate>2014-01-22T06:01:36+00:00</StartedProcessingDate><CompletedDate>2014-01-22T06:01:42+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8939982792</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T03:00:57+00:00</StartDate><EndDate>2014-01-22T03:00:57+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T03:00:57+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14607613393</GeneratedReportId><StartedProcessingDate>2014-01-22T03:01:41+00:00</StartedProcessingDate><CompletedDate>2014-01-22T03:01:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8939017366</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T00:03:31+00:00</StartDate><EndDate>2014-01-22T00:03:31+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T00:03:31+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14605509263</GeneratedReportId><StartedProcessingDate>2014-01-22T00:03:40+00:00</StartedProcessingDate><CompletedDate>2014-01-22T00:03:48+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8937954524</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T21:03:12+00:00</StartDate><EndDate>2014-01-21T21:03:12+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T21:03:12+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14603144363</GeneratedReportId><StartedProcessingDate>2014-01-21T21:03:29+00:00</StartedProcessingDate><CompletedDate>2014-01-21T21:03:37+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8936878198</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T18:06:16+00:00</StartDate><EndDate>2014-01-21T18:06:16+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T18:06:16+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14600666673</GeneratedReportId><StartedProcessingDate>2014-01-21T18:06:22+00:00</StartedProcessingDate><CompletedDate>2014-01-21T18:06:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8935770380</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T15:00:47+00:00</StartDate><EndDate>2014-01-21T15:00:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T15:00:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14598173283</GeneratedReportId><StartedProcessingDate>2014-01-21T15:01:15+00:00</StartedProcessingDate><CompletedDate>2014-01-21T15:01:23+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>00af2f4d-7475-4c5a-9bff-c0fade7be6cf</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:11 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A11Z&Signature=vOSmLcEpwrEYuPKrHOvhWpVgTem5GIcUmrpnN9CAQ2U%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:12 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '77.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:19:00 UTC
+      x-mws-response-context:
+      - 9+nu2hmCzE/raiHb3Y8Exys8BJhhgVneiXszPT3nBJXUsX+HmpQ6LUqUPrRSTEh0aW4s6YwenZ0w
+        43WL33+BdgKjvngiGGVn, 30DAYQs61gfvl6VDa7UM5bte35eE8f8P8IRF9y6OJc5VBzQdT/aCwz03mROb4uHIhQ4pNazVr1jP
+        Swnu8ho6Ng==
+      x-amz-request-id:
+      - c8c8dab1-715f-4ced-8f39-96e45c6d986d
+      x-mws-request-id:
+      - c8c8dab1-715f-4ced-8f39-96e45c6d986d
+      x-mws-timestamp:
+      - '2014-02-04T11:29:12.300Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>I0+onzdabkZmmFQFVAtP1W61sFe1Er6569S5ldlbt0QKFKzEDcAnvh37NQxf/I+9I7roc0h5KkMeirk1lOcyB2Rgv+KfIVNeGUhtLiQcFmbj5nQRs8nTUD62yg1hSwqX2/jY4KA85QStOgCxg3zewa/8MKFZNzPPLKQ0BI4USK8OiH5ek1s0dvjrSs0haDglwt/gVY2m6ieufyOhrMeA+sAjEwJE0IGL/tMw38pDmF7D96Q9k0iDObQsc1F5QLzs7llNeyqRSVr2zf2IkpKb144EcJ/sAPE62xaG0V9UfXN2YTrvpY5Awo3BBnklQvFFRXXxG2Wm+cHbvmZNbUKIVIJn0CtRS+GyNrLEwZs+0aLsjQRX2L8+P2K3vzF7ltBnLZmEqCmxfhq6OqU3/FxGjOIVZ8jUzbA9HARdV3BQEAoj5wnAdL1GuSq6I0sGVfgKylYsIQYtRcw7J3jGJl6YwWmami9KrsqAQSKyrAEo7SQoPq+kz4VoUXNwjmPYSCkg0GqbEbznxvA=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7652869984</ReportRequestId><ReportType>_GET_FLAT_FILE_OPEN_LISTINGS_DATA_</ReportType><StartDate>2014-02-03T11:14:38+00:00</StartDate><EndDate>2014-02-04T11:14:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:14:38+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:24:00+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7652807498</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:35+00:00</StartDate><EndDate>2014-02-04T11:06:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:35+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:18:00+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7648400736</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:08:10+00:00</StartDate><EndDate>2014-02-04T00:08:11+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:08:11+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30762762524</GeneratedReportId><StartedProcessingDate>2014-02-04T00:08:27+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:08:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7647772400</ReportRequestId><ReportType>_GET_FLAT_FILE_OPEN_LISTINGS_DATA_</ReportType><StartDate>2014-02-02T22:40:31+00:00</StartDate><EndDate>2014-02-03T22:40:31+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T22:40:31+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30761514844</GeneratedReportId><StartedProcessingDate>2014-02-03T22:49:37+00:00</StartedProcessingDate><CompletedDate>2014-02-03T23:26:58+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7647772218</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_BACK_COMPAT_</ReportType><StartDate>2014-02-02T22:40:28+00:00</StartDate><EndDate>2014-02-03T22:40:28+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T22:40:28+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7647771986</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_</ReportType><StartDate>2014-02-02T22:40:23+00:00</StartDate><EndDate>2014-02-03T22:40:23+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T22:40:23+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7645634044</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30751665004</GeneratedReportId><StartedProcessingDate>2014-02-03T17:53:34+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:31:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7644521550</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30746753684</GeneratedReportId><StartedProcessingDate>2014-02-03T15:38:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:17:25+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7639661184</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_</ReportType><StartDate>2014-02-02T04:48:54+00:00</StartDate><EndDate>2014-02-03T04:48:54+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T04:48:54+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-03T04:57:08+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7639660944</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_BACK_COMPAT_</ReportType><StartDate>2014-02-02T04:48:48+00:00</StartDate><EndDate>2014-02-03T04:48:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T04:48:48+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-03T04:56:48+00:00</StartedProcessingDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>c8c8dab1-715f-4ced-8f39-96e45c6d986d</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:12 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=I0%2BonzdabkZmmFQFVAtP1W61sFe1Er6569S5ldlbt0QKFKzEDcAnvh37NQxf%2FI%2B9I7roc0h5KkMeirk1lOcyB2Rgv%2BKfIVNeGUhtLiQcFmbj5nQRs8nTUD62yg1hSwqX2%2FjY4KA85QStOgCxg3zewa%2F8MKFZNzPPLKQ0BI4USK8OiH5ek1s0dvjrSs0haDglwt%2FgVY2m6ieufyOhrMeA%2BsAjEwJE0IGL%2FtMw38pDmF7D96Q9k0iDObQsc1F5QLzs7llNeyqRSVr2zf2IkpKb144EcJ%2FsAPE62xaG0V9UfXN2YTrvpY5Awo3BBnklQvFFRXXxG2Wm%2BcHbvmZNbUKIVIJn0CtRS%2BGyNrLEwZs%2B0aLsjQRX2L8%2BP2K3vzF7ltBnLZmEqCmxfhq6OqU3%2FFxGjOIVZ8jUzbA9HARdV3BQEAoj5wnAdL1GuSq6I0sGVfgKylYsIQYtRcw7J3jGJl6YwWmami9KrsqAQSKyrAEo7SQoPq%2Bkz4VoUXNwjmPYSCkg0GqbEbznxvA%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A12Z&Signature=7%2FktycXy1NAC%2BpKVjeNF9sdO1bN8qPfSenpFaYUjrE4%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:12 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:19:00 UTC
+      x-mws-response-context:
+      - asQaTKPDniwZ8wbqARpQc8BhAV638jISuY3f8Maz7Hx/12JjE1Mb5iy0MRZE2kHykXcHnHszW3LD
+        rWkwPRUjKFCuE/rtlAnu, WWHXlzDX9td6wNjKfR7P0+TxJARQW6TCexKDByFcGiVFMXYF8dZa7ilp5qpA5Oo09EOzdlDKlWWe
+        kPl9uYSodw==
+      x-amz-request-id:
+      - 849c0f69-fb2b-43c4-bdd8-fb6b0025f1b4
+      x-mws-request-id:
+      - 849c0f69-fb2b-43c4-bdd8-fb6b0025f1b4
+      x-mws-timestamp:
+      - '2014-02-04T11:29:12.605Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=16
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>xEBwoIucK2ZmmFQFVAtP1W61sFe1Er6569S5ldlbt0QKFKzEDcAnvujHfMVaM8PkXo8gJh7ALreHlBP8s5ozgGw+/gXlTlg3v4rCHlc2d8a5wBeVQ69aN7AdCOja2ieGCqezYaI6ouCsij1FjOr6mbVcIkBm0+aOeRmqkTxWuHZ89Lesa/GRig6P3pELsqcCRhdN9B9PUtho5t3F/hSdRFriA2Bw8RWGLWW1y7msbRXD96Q9k0iDObQsc1F5QLzs7llNeyqRSVr2zf2IkpKb144EcJ/sAPE62xaG0V9UfXN2YTrvpY5Awvv3nNQMRzrIX170KugOBm8Qgp659MLp7t8sLWbg+2Oca6OuO6nRssOZWMLtS4xmC0XJdLiilZ63foAkXrM3KYFhoyjvppRzggyZ3/Bmnpd3vBrgVLmNfh5dcirdEc8ap8ukU2fWfDpyN7qEaRzulQubPnBkx2JaMGG8aIgS8U/kngykS75NNX7T0YNUwIIpFl/2fjmbJ7X50GqbEbznxvA=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7637959674</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30717332184</GeneratedReportId><StartedProcessingDate>2014-02-03T00:25:42+00:00</StartedProcessingDate><CompletedDate>2014-02-03T01:07:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637859742</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:58+00:00</StartDate><EndDate>2014-02-03T00:00:58+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:58+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30715521904</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:37+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:02:02+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7628308216</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:16+00:00</StartDate><EndDate>2014-02-02T00:06:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30673470284</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:34+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7618621378</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:32+00:00</StartDate><EndDate>2014-02-01T00:08:32+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:32+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30631361324</GeneratedReportId><StartedProcessingDate>2014-02-01T00:08:49+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:09:05+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7615118340</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_BACK_COMPAT_</ReportType><StartDate>2014-01-30T16:06:14+00:00</StartDate><EndDate>2014-01-31T16:06:14+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T16:06:14+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30694715864</GeneratedReportId><StartedProcessingDate>2014-01-31T16:13:49+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:33:38+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7613475432</ReportRequestId><ReportType>_GET_FLAT_FILE_OPEN_LISTINGS_DATA_</ReportType><StartDate>2014-01-30T12:43:22+00:00</StartDate><EndDate>2014-01-31T12:43:22+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T12:43:22+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30610262704</GeneratedReportId><StartedProcessingDate>2014-01-31T12:52:55+00:00</StartedProcessingDate><CompletedDate>2014-01-31T13:43:10+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7608167418</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:35+00:00</StartDate><EndDate>2014-01-31T00:03:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:35+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30585234284</GeneratedReportId><StartedProcessingDate>2014-01-31T00:03:42+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:03:59+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7597585786</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:01:03+00:00</StartDate><EndDate>2014-01-30T00:01:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:01:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30538903604</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:43+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:01:59+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7586949080</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:04:08+00:00</StartDate><EndDate>2014-01-29T00:04:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:04:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30492502004</GeneratedReportId><StartedProcessingDate>2014-01-29T00:04:29+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:04:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7585740434</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITE_</ReportType><StartDate>2014-01-27T21:20:10+00:00</StartDate><EndDate>2014-01-28T21:20:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T21:20:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30488636604</GeneratedReportId><StartedProcessingDate>2014-01-28T21:24:04+00:00</StartedProcessingDate><CompletedDate>2014-01-28T22:02:45+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>849c0f69-fb2b-43c4-bdd8-fb6b0025f1b4</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:12 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=xEBwoIucK2ZmmFQFVAtP1W61sFe1Er6569S5ldlbt0QKFKzEDcAnvujHfMVaM8PkXo8gJh7ALreHlBP8s5ozgGw%2B%2FgXlTlg3v4rCHlc2d8a5wBeVQ69aN7AdCOja2ieGCqezYaI6ouCsij1FjOr6mbVcIkBm0%2BaOeRmqkTxWuHZ89Lesa%2FGRig6P3pELsqcCRhdN9B9PUtho5t3F%2FhSdRFriA2Bw8RWGLWW1y7msbRXD96Q9k0iDObQsc1F5QLzs7llNeyqRSVr2zf2IkpKb144EcJ%2FsAPE62xaG0V9UfXN2YTrvpY5Awvv3nNQMRzrIX170KugOBm8Qgp659MLp7t8sLWbg%2B2Oca6OuO6nRssOZWMLtS4xmC0XJdLiilZ63foAkXrM3KYFhoyjvppRzggyZ3%2FBmnpd3vBrgVLmNfh5dcirdEc8ap8ukU2fWfDpyN7qEaRzulQubPnBkx2JaMGG8aIgS8U%2FkngykS75NNX7T0YNUwIIpFl%2F2fjmbJ7X50GqbEbznxvA%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A12Z&Signature=oxIYkrzPQ7awyaNgvZrCm5e95ID3wZbI9r948JcNEi8%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:12 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:19:00 UTC
+      x-mws-response-context:
+      - eNlPTsTKMTjGfhvKt7mBV4Q9Db7NNpntY/kYxw1K1dZYxpfY7m0RzsLQoUkX+ItKjLC/j3HDlWnP
+        VaIhOKTekaI2vvCrPB+8, cj5KXSxtfoakRDq1L+iGcUM//juKNIEZZAl6dXKaBQtuSCigr85/1cTTtj7laHLp3rmeGHn1zrDk
+        dJbIhteG/A==
+      x-amz-request-id:
+      - a31404dd-4ff8-404d-b795-c98206d76433
+      x-mws-request-id:
+      - a31404dd-4ff8-404d-b795-c98206d76433
+      x-mws-timestamp:
+      - '2014-02-04T11:29:12.896Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>FTektAj5qVlmmFQFVAtP1W61sFe1Er6569S5ldlbt0QKFKzEDcAnvujHfMVaM8PkQo+ege07lLXkKH0dmI8M0yc1zFHhJFgr2ME4SYkjAs4/xmFqHMSe/HLr0ZbLst8U1xxtOlEVImaycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQqC9ymH5SfrsOfrfoOagDuhXsItzsR5IViGenTkgtjPnlVWsE+xTnaZr9dopd6VoAC3qcs6Ji/AyO0BxjyuBQmoq+Dz1m4AWR7Vvx2e1ep8O5zLyJ90IkYgrwHC/nRNZxpDlXGNR2jAV2Rn2DPoJlsSC8NPOLMBWtrjYCqXLXZfYP6Y0lNfzUsgxABYezfYOdUJAHkb2bys1KjCal980wEtuC4x4ATIuZ/gKLYx8g+A4jxjFrJHT3QIyU+fpAVHFD5KMoKJQ7DdYZLHWaVSNvBzK6WQ0VtuVeN83Wcfa7ja9y63tM7wbn+x5+V69lWNG6</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7582917592</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITE_</ReportType><StartDate>2014-01-27T15:17:22+00:00</StartDate><EndDate>2014-01-28T15:17:22+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T15:17:22+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30476379604</GeneratedReportId><StartedProcessingDate>2014-01-28T15:26:23+00:00</StartedProcessingDate><CompletedDate>2014-01-28T16:10:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7576332586</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:01:00+00:00</StartDate><EndDate>2014-01-28T00:01:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:01:00+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30445735464</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:36+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:01:51+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7566268876</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:07:07+00:00</StartDate><EndDate>2014-01-27T00:07:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:07:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30402439724</GeneratedReportId><StartedProcessingDate>2014-01-27T00:07:30+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:07:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7556630334</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:01:08+00:00</StartDate><EndDate>2014-01-26T00:01:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:01:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30360405764</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:39+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:55+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7546939252</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:30+00:00</StartDate><EndDate>2014-01-25T00:06:31+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:31+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30318572464</GeneratedReportId><StartedProcessingDate>2014-01-25T00:06:39+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:06:54+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543573478</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30307324304</GeneratedReportId><StartedProcessingDate>2014-01-24T17:22:10+00:00</StartedProcessingDate><CompletedDate>2014-01-24T18:07:02+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543222890</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:17+00:00</StartDate><EndDate>2014-01-24T15:38:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30305776564</GeneratedReportId><StartedProcessingDate>2014-01-24T15:46:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T17:22:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7541979470</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30298407944</GeneratedReportId><StartedProcessingDate>2014-01-24T13:12:35+00:00</StartedProcessingDate><CompletedDate>2014-01-24T14:00:01+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7540917920</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:35+00:00</StartDate><EndDate>2014-01-24T10:51:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:35+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30293470704</GeneratedReportId><StartedProcessingDate>2014-01-24T11:02:09+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:44:04+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7536737686</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:31+00:00</StartDate><EndDate>2014-01-24T00:03:32+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:32+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30274021684</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:41+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:03:56+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>a31404dd-4ff8-404d-b795-c98206d76433</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:13 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A13Z&Signature=ZP6F54JjPiKZ1puChHi4g%2FPp2LYGxFIOI9wWO5n7Klc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '74.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:11:00 UTC
+      x-mws-response-context:
+      - 05zr2coTFLMhroyEp0rSuSeBGaGSv/dIm6pioMRfZGArU6gbNoHhnIFjpiIf2aR/ZUFC+DmYAUqG
+        vCG36qxgC2sYH9ABDKkd, lLMTBuJs5d5jyitOIKfBScl0Xxt1sJ0WI2aqV9GWygurCakZBV9e80D+5GmOAyNEfF3iyFBCk0L+
+        xqjROmH24g==
+      x-amz-request-id:
+      - a1acbeb1-1b44-4788-be6d-3a2d587a8e44
+      x-mws-request-id:
+      - a1acbeb1-1b44-4788-be6d-3a2d587a8e44
+      x-mws-timestamp:
+      - '2014-02-04T11:29:13.261Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>O7jFABqF7o5mmFQFVAtP1VDBGlc7dym/SoIy5kHAIonFpcBskDdu3R37NQxf/I+9kcruO31Io2WRc8nF+G1TT1uOfjWh5y29FYIVgGPoXoJrEqNpVwZY5xgw9mHQJ9YkOk9GiFrVtpuycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQqC9ymH5SfrsbeneXbB3NaE9yHFwuwmnG31CvUU9oKPvD96Q9k0iDObQsc1F5QLzs7llNeyqRSVoOJCPAxJEA6N0kzzcu0YXvETUfBQKPQQRC/WDIWCQyIwW1FMfoeZE4nc/QTnpBikY1ZFHvyWQn9jm6UmiC2mvgNrLEwZs+0aLsjQRX2L8+P2K3vzF7ltBnlgyuUH8rUjquLYMaoMOiPwRlQEh6VpR00waN019AqZ5tnp0ybEYVqzBVCBHOxxGtHgpi1zXOWcVon5Gxz2N9k0k5fFnGi27FB+ON2qiCsZ5BIrKsASjtJCg+r6TPhWhRc3COY9hIKSDQapsRvOfG8A==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7652807508</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:35+00:00</StartDate><EndDate>2014-02-04T11:06:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:35+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:17:59+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7648397726</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:07:45+00:00</StartDate><EndDate>2014-02-04T00:07:45+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:07:45+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30762747684</GeneratedReportId><StartedProcessingDate>2014-02-04T00:08:06+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:08:08+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7645634046</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30751492784</GeneratedReportId><StartedProcessingDate>2014-02-03T17:53:33+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:27:12+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7644521554</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30746761724</GeneratedReportId><StartedProcessingDate>2014-02-03T15:38:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:17:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637959672</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30717283264</GeneratedReportId><StartedProcessingDate>2014-02-03T00:25:42+00:00</StartedProcessingDate><CompletedDate>2014-02-03T01:05:31+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637850714</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:39+00:00</StartDate><EndDate>2014-02-03T00:00:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30715491424</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:06+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:01:09+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7628306806</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:05+00:00</StartDate><EndDate>2014-02-02T00:06:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30673448644</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:13+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7618620036</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:25+00:00</StartDate><EndDate>2014-02-01T00:08:25+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:25+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30631353064</GeneratedReportId><StartedProcessingDate>2014-02-01T00:08:48+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:08:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7608166546</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:28+00:00</StartDate><EndDate>2014-01-31T00:03:28+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:28+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30585230904</GeneratedReportId><StartedProcessingDate>2014-01-31T00:03:42+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:03:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7597576922</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:00:42+00:00</StartDate><EndDate>2014-01-30T00:00:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:00:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30538878804</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:06+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:01:10+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>a1acbeb1-1b44-4788-be6d-3a2d587a8e44</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:18 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=O7jFABqF7o5mmFQFVAtP1VDBGlc7dym%2FSoIy5kHAIonFpcBskDdu3R37NQxf%2FI%2B9kcruO31Io2WRc8nF%2BG1TT1uOfjWh5y29FYIVgGPoXoJrEqNpVwZY5xgw9mHQJ9YkOk9GiFrVtpuycJ%2FIO%2Fjxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQqC9ymH5SfrsbeneXbB3NaE9yHFwuwmnG31CvUU9oKPvD96Q9k0iDObQsc1F5QLzs7llNeyqRSVoOJCPAxJEA6N0kzzcu0YXvETUfBQKPQQRC%2FWDIWCQyIwW1FMfoeZE4nc%2FQTnpBikY1ZFHvyWQn9jm6UmiC2mvgNrLEwZs%2B0aLsjQRX2L8%2BP2K3vzF7ltBnlgyuUH8rUjquLYMaoMOiPwRlQEh6VpR00waN019AqZ5tnp0ybEYVqzBVCBHOxxGtHgpi1zXOWcVon5Gxz2N9k0k5fFnGi27FB%2BON2qiCsZ5BIrKsASjtJCg%2Br6TPhWhRc3COY9hIKSDQapsRvOfG8A%3D%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A18Z&Signature=V5xLrkRu8%2Bii17Lls%2FYHRdtlErbK7w0%2BdV4wLIHUHAM%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:11:00 UTC
+      x-mws-response-context:
+      - IORYGWLNvdMqB6QJMoCBQP4XrUxKK9UK1gS089F+NQir46Ol1XlTGPbSCHr9yVojWqW+sdUmRDfk
+        K9o/ESp8mW8kCcGY3JdZ, cj5KXSxtfoakRDq1L+iGcUM//juKNIEZZAl6dXKaBQtuSCigr85/1cTTtj7laHLp3rmeGHn1zrDk
+        dJbIhteG/A==
+      x-amz-request-id:
+      - 6e5b3288-ddff-4f20-9afe-3706256b7634
+      x-mws-request-id:
+      - 6e5b3288-ddff-4f20-9afe-3706256b7634
+      x-mws-timestamp:
+      - '2014-02-04T11:29:19.110Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>0SDd6QpGF+xmmFQFVAtP1VDBGlc7dym/SoIy5kHAIonFpcBskDdu3ejHfMVaM8Pkr10oOlK+4ZBbD49EDB2xXQteewiK1Q44j3kbaYk4bFQ5Dvm588uPn/BGWFqTk0lzzce2dr7FII2tOgCxg3zewa/8MKFZNzPPLKQ0BI4USK8OiH5ek1s0dvjrSs0haDglsSJhjbJxCg8AisGTirWN+iGdizOjfjVcKT04iqsRHbVMgmqdt9Aa1OikavSLbdrIxISU8aBivCRAihGMnMcc8+4cchLSjw4yXkpovsooIRituX+PNS+2IzWGxeNcuc+Vk0lo+fmA9lX/D24Kxssn+vwEGQncDo+fNrLEwZs+0aLsjQRX2L8+P2K3vzF7ltBnwUZfzgO7dNlpT3cydf1LGUc0PMdDj7ExLs50XliimACpLpyjMj+0Lo5GSca170r9fekoHLsTZX9v8M3PYAEiKN69Pha7H0odN0FnD5/233x9u5/bHWqY9iBNBXoKs0qsX/Z+OZsntfnQapsRvOfG8A==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7586947532</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:03:54+00:00</StartDate><EndDate>2014-01-29T00:03:54+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:03:54+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30492479964</GeneratedReportId><StartedProcessingDate>2014-01-29T00:04:10+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:04:13+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7576328118</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:00:46+00:00</StartDate><EndDate>2014-01-28T00:00:47+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:00:47+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30445722484</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:23+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:01:35+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7566266684</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:06:52+00:00</StartDate><EndDate>2014-01-27T00:06:53+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:06:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30402424744</GeneratedReportId><StartedProcessingDate>2014-01-27T00:07:10+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:07:12+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7556620490</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:00:39+00:00</StartDate><EndDate>2014-01-26T00:00:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:00:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30360375044</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:04+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7546936700</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:07+00:00</StartDate><EndDate>2014-01-25T00:06:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30318562064</GeneratedReportId><StartedProcessingDate>2014-01-25T00:06:19+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:06:21+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543573490</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30307851684</GeneratedReportId><StartedProcessingDate>2014-01-24T17:32:30+00:00</StartedProcessingDate><CompletedDate>2014-01-24T18:23:02+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543222882</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:17+00:00</StartDate><EndDate>2014-01-24T15:38:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30306127704</GeneratedReportId><StartedProcessingDate>2014-01-24T15:46:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T17:32:26+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7542239510</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_</ReportType><StartDate>2014-01-10T13:16:00+00:00</StartDate><EndDate>2014-01-24T13:16:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:36:23+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30297621184</GeneratedReportId><StartedProcessingDate>2014-01-24T13:37:24+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:37:28+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7542239216</ReportRequestId><ReportType>_GET_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-01-10T13:16:00+00:00</StartDate><EndDate>2014-01-24T13:16:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:36:19+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30297621504</GeneratedReportId><StartedProcessingDate>2014-01-24T13:37:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:37:28+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7541979474</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30298648904</GeneratedReportId><StartedProcessingDate>2014-01-24T13:12:35+00:00</StartedProcessingDate><CompletedDate>2014-01-24T14:07:40+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>6e5b3288-ddff-4f20-9afe-3706256b7634</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=0SDd6QpGF%2BxmmFQFVAtP1VDBGlc7dym%2FSoIy5kHAIonFpcBskDdu3ejHfMVaM8Pkr10oOlK%2B4ZBbD49EDB2xXQteewiK1Q44j3kbaYk4bFQ5Dvm588uPn%2FBGWFqTk0lzzce2dr7FII2tOgCxg3zewa%2F8MKFZNzPPLKQ0BI4USK8OiH5ek1s0dvjrSs0haDglsSJhjbJxCg8AisGTirWN%2BiGdizOjfjVcKT04iqsRHbVMgmqdt9Aa1OikavSLbdrIxISU8aBivCRAihGMnMcc8%2B4cchLSjw4yXkpovsooIRituX%2BPNS%2B2IzWGxeNcuc%2BVk0lo%2BfmA9lX%2FD24Kxssn%2BvwEGQncDo%2BfNrLEwZs%2B0aLsjQRX2L8%2BP2K3vzF7ltBnwUZfzgO7dNlpT3cydf1LGUc0PMdDj7ExLs50XliimACpLpyjMj%2B0Lo5GSca170r9fekoHLsTZX9v8M3PYAEiKN69Pha7H0odN0FnD5%2F233x9u5%2FbHWqY9iBNBXoKs0qsX%2FZ%2BOZsntfnQapsRvOfG8A%3D%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A19Z&Signature=0QrzCPW49UZktN1NkMIfQL5qiUmhn86nMzJvNzBBqvs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:19 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:11:00 UTC
+      x-mws-response-context:
+      - pXUERlXdjpT6ljOy4eBTlFTSBL2fuUBa0Xb9nf6uhIMaMUPGbEK/BlsegtabYkbct3G2KazkWY+h
+        ufMWcZbV0eEoK2T9diH/, a3YDyojw7z6hLvklMzKbS7369AkfO3BNps5DdjhUi5iq+hQEvTcKn5K5KuJY7J0++/uWLCpNm5LZ
+        kFLOWIL71g==
+      x-amz-request-id:
+      - 5fa3dd3c-3198-4840-81fe-82e659456eba
+      x-mws-request-id:
+      - 5fa3dd3c-3198-4840-81fe-82e659456eba
+      x-mws-timestamp:
+      - '2014-02-04T11:29:19.587Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=17
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>pTQ/WF/zHPRmmFQFVAtP1VDBGlc7dym/SoIy5kHAIok99JOpf0t2rujHfMVaM8PkT5mMO/0B2DKAyimUOS3W73u4fVpt2gZrNSbdh5YvY62PpG3qYKxwWc71ygMvEk54847fd3O8CJCbTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVQP3Ie/gaJzEl01uWoCcCz/hAl2yFcn9H3RFXUSZaSXkQnronqrgDLD1AEXO6/ETiimnngUjdBsDHAc0vpeczLX/HZn6BjLATzflYy4rHbLMnGyhRBKNlo4fI0sNzdUiEgjUvAImZwLBVJ7BX5u4rh1AAHmAcEvOBSC8NPOLMBWtrjYCqXLXZfYP6Y0lNfzUsgxABYezfYOddkGNlG7vx23VNfwE+AGcOMI+jf9tAfVXhLdmGC24siH+HuGKJ3DIDUAu28Ws2ayD+sDcwCUG9+qDsoIo7nZHWQDfltfSLSf+6743QbLe3LTQapsRvOfG8A==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7540918140</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:38+00:00</StartDate><EndDate>2014-01-24T10:51:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30293336084</GeneratedReportId><StartedProcessingDate>2014-01-24T11:02:09+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:40:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7536736712</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:23+00:00</StartDate><EndDate>2014-01-24T00:03:24+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:24+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30274013884</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:41+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:03:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7526663960</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:38+00:00</StartDate><EndDate>2014-01-23T00:03:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30230341264</GeneratedReportId><StartedProcessingDate>2014-01-23T00:03:58+00:00</StartedProcessingDate><CompletedDate>2014-01-23T00:04:00+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7522574408</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:00:24+00:00</StartDate><EndDate>2014-01-22T15:00:24+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:00:24+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30211927164</GeneratedReportId><StartedProcessingDate>2014-01-22T15:00:53+00:00</StartedProcessingDate><CompletedDate>2014-01-22T15:00:55+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7521122766</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:40+00:00</StartDate><EndDate>2014-01-22T12:00:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30205301984</GeneratedReportId><StartedProcessingDate>2014-01-22T12:01:02+00:00</StartedProcessingDate><CompletedDate>2014-01-22T12:01:14+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7519699236</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T09:00:40+00:00</StartDate><EndDate>2014-01-22T09:00:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T09:00:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30198717664</GeneratedReportId><StartedProcessingDate>2014-01-22T09:01:03+00:00</StartedProcessingDate><CompletedDate>2014-01-22T09:01:05+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7518484072</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T06:00:31+00:00</StartDate><EndDate>2014-01-22T06:00:31+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T06:00:31+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30193516624</GeneratedReportId><StartedProcessingDate>2014-01-22T06:01:56+00:00</StartedProcessingDate><CompletedDate>2014-01-22T06:01:58+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7517434506</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T03:00:34+00:00</StartDate><EndDate>2014-01-22T03:00:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T03:00:35+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30189352504</GeneratedReportId><StartedProcessingDate>2014-01-22T03:01:00+00:00</StartedProcessingDate><CompletedDate>2014-01-22T03:01:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7516369296</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T00:03:15+00:00</StartDate><EndDate>2014-01-22T00:03:15+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T00:03:15+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30184951644</GeneratedReportId><StartedProcessingDate>2014-01-22T00:03:29+00:00</StartedProcessingDate><CompletedDate>2014-01-22T00:03:32+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7515100572</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T21:02:33+00:00</StartDate><EndDate>2014-01-21T21:02:33+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T21:02:33+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30179328244</GeneratedReportId><StartedProcessingDate>2014-01-21T21:02:45+00:00</StartedProcessingDate><CompletedDate>2014-01-21T21:02:48+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>5fa3dd3c-3198-4840-81fe-82e659456eba</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A19Z&Signature=5Df1Dw2DSZr2kRrMsdnBVkMRJkLxUriWLoSyE7aAmNk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:22 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '72.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - jVfsgrPtcNN45N57YmFiScxM+LAiZcoV39Bu+/tw1IIzJ9mraFMMTWUhvgOG81dpD0KkQCkqpdhl
+        SA+dgH/OtsB7Ue8Ydhtd, KCZOC7aWKeTn4prdsHrbBvkGwB9gyKBilFcMhqldjpbsMOXsw5Yw0CVksa1fwCNHSyAS3wZvPu1h
+        uvunAOGRvw==
+      x-amz-request-id:
+      - c1bac00a-8a64-4962-af2a-95c3927e86cf
+      x-mws-request-id:
+      - c1bac00a-8a64-4962-af2a-95c3927e86cf
+      x-mws-timestamp:
+      - '2014-02-04T11:29:19.939Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=16
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>TtCCfzMzJkxmmFQFVAtP1Xu7U3oo9WSkcfJp5gCmNNcKFKzEDcAnvujHfMVaM8PkuUo619QPjyPA8689XmvvLyhVnts75lvL3XXlCtmHqBnlsojT4STUjEf+mUZgSFFSkrki0esUilWycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQqC9ymH5Sfrt5rEl3zhw3fA49sNIkTCg9iGenTkgtjPnlVWsE+xTnaZr9dopd6VoAOsFij4udp/wn1e4xPiBKrNIEAP3QjtRox5oyyFgU8WW5zLyJ90IkYo4zoEtW61kMpYI4Z276OhueLNORL9z9sSC8NPOLMBWtrjYCqXLXZfYP6Y0lNfzUsgxABYezfYOd1fAxUCbZ/wpK452ZMF/bv+t8zpUEazCul73sNbW58zhRkiUl0rfRyBQCNpRxztyKLquFspaLaLexqo4dfUJDjDuHwXOHMI2QN83Wcfa7ja9y63tM7wbn+x5+V69lWNG6</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7652807524</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:35+00:00</StartDate><EndDate>2014-02-04T11:06:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:35+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:17:59+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7648399604</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:07:57+00:00</StartDate><EndDate>2014-02-04T00:07:57+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:07:57+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30762748824</GeneratedReportId><StartedProcessingDate>2014-02-04T00:08:08+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:08:13+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7645634048</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30751540804</GeneratedReportId><StartedProcessingDate>2014-02-03T17:53:33+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:28:27+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7644521586</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30746505424</GeneratedReportId><StartedProcessingDate>2014-02-03T15:38:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:10:47+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637959670</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30717140084</GeneratedReportId><StartedProcessingDate>2014-02-03T00:25:42+00:00</StartedProcessingDate><CompletedDate>2014-02-03T01:01:01+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637854358</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:47+00:00</StartDate><EndDate>2014-02-03T00:00:47+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:47+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30715496704</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:17+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:01:23+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7628307118</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:09+00:00</StartDate><EndDate>2014-02-02T00:06:09+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:09+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30673466064</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:32+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:47+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7618618784</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:06+00:00</StartDate><EndDate>2014-02-01T00:08:06+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:06+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30631344104</GeneratedReportId><StartedProcessingDate>2014-02-01T00:08:29+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:08:34+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7608165814</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:21+00:00</StartDate><EndDate>2014-01-31T00:03:22+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:22+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30585228684</GeneratedReportId><StartedProcessingDate>2014-01-31T00:03:42+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:03:47+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7597579698</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:00:49+00:00</StartDate><EndDate>2014-01-30T00:00:49+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:00:49+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30538885684</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:20+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:01:27+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>c1bac00a-8a64-4962-af2a-95c3927e86cf</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:23 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=TtCCfzMzJkxmmFQFVAtP1Xu7U3oo9WSkcfJp5gCmNNcKFKzEDcAnvujHfMVaM8PkuUo619QPjyPA8689XmvvLyhVnts75lvL3XXlCtmHqBnlsojT4STUjEf%2BmUZgSFFSkrki0esUilWycJ%2FIO%2Fjxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQqC9ymH5Sfrt5rEl3zhw3fA49sNIkTCg9iGenTkgtjPnlVWsE%2BxTnaZr9dopd6VoAOsFij4udp%2Fwn1e4xPiBKrNIEAP3QjtRox5oyyFgU8WW5zLyJ90IkYo4zoEtW61kMpYI4Z276OhueLNORL9z9sSC8NPOLMBWtrjYCqXLXZfYP6Y0lNfzUsgxABYezfYOd1fAxUCbZ%2FwpK452ZMF%2Fbv%2Bt8zpUEazCul73sNbW58zhRkiUl0rfRyBQCNpRxztyKLquFspaLaLexqo4dfUJDjDuHwXOHMI2QN83Wcfa7ja9y63tM7wbn%2Bx5%2BV69lWNG6&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A23Z&Signature=nrIgJfgdfSexHp3KNqQUwb9qp6gRordOuUrDqp6NauQ%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:24 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - jVfsgrPtcNN45N57YmFiScxM+LAiZcoV39Bu+/tw1IIzJ9mraFMMTWUhvgOG81dpD0KkQCkqpdhl
+        SA+dgH/OtsB7Ue8Ydhtd, a3YDyojw7z6hLvklMzKbS7369AkfO3BNps5DdjhUi5iq+hQEvTcKn5K5KuJY7J0++/uWLCpNm5LZ
+        kFLOWIL71g==
+      x-amz-request-id:
+      - b72a5d02-5342-4590-8f59-120ca87a9d5f
+      x-mws-request-id:
+      - b72a5d02-5342-4590-8f59-120ca87a9d5f
+      x-mws-timestamp:
+      - '2014-02-04T11:29:24.095Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>iP09fClg9NZmmFQFVAtP1Xu7U3oo9WSkcfJp5gCmNNfFpcBskDdu3ejHfMVaM8PkhG5AT/w0fMZ5Nj1LjobjTkNKWy4F4OeDOCHe0PMJVH0BYBYuterssl7mUEb5akvb5t5UFbEoYL2bTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVQP3Ie/gaJzEl01uWoCcCz+OtGSYXsvDWXxIwekoy1iFiGenTkgtjPnlVWsE+xTnaZr9dopd6VoAOsFij4udp/wn1e4xPiBKrNIEAP3QjtRox5oyyFgU8WW5zLyJ90IkYsMBdKhPm8uRPfwpeP2aemUmRBEGai+PXyC8NPOLMBWtrjYCqXLXZfYP6Y0lNfzUsgxABYezfYOduaH4jw8QIO+lDRC0pFsaZYueHVMQubz1EsgP+G3KfoIxONTkMg5iiaP6fqqn8bEucJYKcyYHZvt3K6lJfDGchw2v2aKCWYvKQf79cNfctYk3zdZx9ruNr3Lre0zvBuf7Hn5Xr2VY0bo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7586947910</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:04:01+00:00</StartDate><EndDate>2014-01-29T00:04:02+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:04:02+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30492483624</GeneratedReportId><StartedProcessingDate>2014-01-29T00:04:11+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:04:16+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7576330432</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:00:54+00:00</StartDate><EndDate>2014-01-28T00:00:54+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:00:54+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30445720764</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:27+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:01:33+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7566267724</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:06:57+00:00</StartDate><EndDate>2014-01-27T00:06:58+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:06:58+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30402427364</GeneratedReportId><StartedProcessingDate>2014-01-27T00:07:12+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:07:17+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7556625674</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:00:51+00:00</StartDate><EndDate>2014-01-26T00:00:51+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:00:51+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30360390424</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:25+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:30+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7546938656</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:24+00:00</StartDate><EndDate>2014-01-25T00:06:25+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:25+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30318569584</GeneratedReportId><StartedProcessingDate>2014-01-25T00:06:38+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:06:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543573488</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30305199204</GeneratedReportId><StartedProcessingDate>2014-01-24T16:29:10+00:00</StartedProcessingDate><CompletedDate>2014-01-24T17:06:05+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543222878</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:17+00:00</StartDate><EndDate>2014-01-24T15:38:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30303776464</GeneratedReportId><StartedProcessingDate>2014-01-24T15:46:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:26:37+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7541979472</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30298140504</GeneratedReportId><StartedProcessingDate>2014-01-24T13:12:35+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:52:04+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7540917954</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:35+00:00</StartDate><EndDate>2014-01-24T10:51:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:35+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30293441704</GeneratedReportId><StartedProcessingDate>2014-01-24T11:02:08+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:43:13+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7536735430</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:16+00:00</StartDate><EndDate>2014-01-24T00:03:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30274014044</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:39+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:03:45+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>b72a5d02-5342-4590-8f59-120ca87a9d5f</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:24 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=iP09fClg9NZmmFQFVAtP1Xu7U3oo9WSkcfJp5gCmNNfFpcBskDdu3ejHfMVaM8PkhG5AT%2Fw0fMZ5Nj1LjobjTkNKWy4F4OeDOCHe0PMJVH0BYBYuterssl7mUEb5akvb5t5UFbEoYL2bTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVQP3Ie%2FgaJzEl01uWoCcCz%2BOtGSYXsvDWXxIwekoy1iFiGenTkgtjPnlVWsE%2BxTnaZr9dopd6VoAOsFij4udp%2Fwn1e4xPiBKrNIEAP3QjtRox5oyyFgU8WW5zLyJ90IkYsMBdKhPm8uRPfwpeP2aemUmRBEGai%2BPXyC8NPOLMBWtrjYCqXLXZfYP6Y0lNfzUsgxABYezfYOduaH4jw8QIO%2BlDRC0pFsaZYueHVMQubz1EsgP%2BG3KfoIxONTkMg5iiaP6fqqn8bEucJYKcyYHZvt3K6lJfDGchw2v2aKCWYvKQf79cNfctYk3zdZx9ruNr3Lre0zvBuf7Hn5Xr2VY0bo%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A24Z&Signature=TPmPYECbK6rUp6nUJU2Eoz5aUaTv%2B%2Focn3T9wnG7h2c%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:24 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - RT5+7PDh8e6afh1DZynKTCxhc9d5tvEn9f1HUFNO365iuSGqy08bk9Zhu1Gs9UXg1UlibhmvPl26
+        M/0VZ23EVdyrmKQWxEtJ, i33yGIMNB3QOGl1sWlfhMAbcN+4ELZE63QJQnuKByYf6W84AFZrEdJWIMsQksQNW2VPHsrp31Y30
+        jMkqCwWN4w==
+      x-amz-request-id:
+      - ac7db1b7-e09c-4c01-a54b-004760242146
+      x-mws-request-id:
+      - ac7db1b7-e09c-4c01-a54b-004760242146
+      x-mws-timestamp:
+      - '2014-02-04T11:29:24.450Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>mNFq4PcsrNdmmFQFVAtP1Xu7U3oo9WSkcfJp5gCmNNcKFKzEDcAnvpj1MHeOV2/5Xo8gJh7ALrfAInU+EDPkilXoVXQu1EGi2j/3/RjQgCEAvylbNf7iyxtSSKE3DK9KDyzVG89XZIWycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQqC9ymH5Sfrt5whRPXJqScR1oCDC6HfRPiGenTkgtjPnlVWsE+xTnaZr9dopd6VoAOsFij4udp/wn1e4xPiBKrNIEAP3QjtRox5oyyFgU8WVMZ58Nf8sf8mIa0svm2fmpprUePp5WPe+YjUkQjdeoQzayxMGbPtGi7I0EV9i/Pj9it78xe5bQZ8RT2sPnBwCNq3GlScSMVwv5EFDbo/zH5aoochE4DEyIF8PcsseLexW78qMhouZ02jgYepMdTkdAcw6V/Q5gP59nfyvOreWfwoGzbnmmvv5OWBWaBaxaevEONilXmddjsGNd+vnSeTQx</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7526663860</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:37+00:00</StartDate><EndDate>2014-01-23T00:03:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30230343844</GeneratedReportId><StartedProcessingDate>2014-01-23T00:03:58+00:00</StartedProcessingDate><CompletedDate>2014-01-23T00:04:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7522581916</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:00:41+00:00</StartDate><EndDate>2014-01-22T15:00:41+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:00:41+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30211947804</GeneratedReportId><StartedProcessingDate>2014-01-22T15:01:19+00:00</StartedProcessingDate><CompletedDate>2014-01-22T15:01:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7521120300</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:34+00:00</StartDate><EndDate>2014-01-22T12:00:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30205291404</GeneratedReportId><StartedProcessingDate>2014-01-22T12:00:55+00:00</StartedProcessingDate><CompletedDate>2014-01-22T12:01:01+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7519695972</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T09:00:31+00:00</StartDate><EndDate>2014-01-22T09:00:31+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T09:00:31+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30198717504</GeneratedReportId><StartedProcessingDate>2014-01-22T09:00:58+00:00</StartedProcessingDate><CompletedDate>2014-01-22T09:01:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7518487700</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T06:00:38+00:00</StartDate><EndDate>2014-01-22T06:00:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T06:00:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30193528004</GeneratedReportId><StartedProcessingDate>2014-01-22T06:02:11+00:00</StartedProcessingDate><CompletedDate>2014-01-22T06:02:16+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7517436962</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T03:00:42+00:00</StartDate><EndDate>2014-01-22T03:00:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T03:00:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30189357104</GeneratedReportId><StartedProcessingDate>2014-01-22T03:01:06+00:00</StartedProcessingDate><CompletedDate>2014-01-22T03:01:11+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7516369366</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T00:03:16+00:00</StartDate><EndDate>2014-01-22T00:03:16+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T00:03:16+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30184958064</GeneratedReportId><StartedProcessingDate>2014-01-22T00:03:29+00:00</StartedProcessingDate><CompletedDate>2014-01-22T00:03:46+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7515103380</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T21:03:02+00:00</StartDate><EndDate>2014-01-21T21:03:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T21:03:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30179354564</GeneratedReportId><StartedProcessingDate>2014-01-21T21:03:23+00:00</StartedProcessingDate><CompletedDate>2014-01-21T21:03:28+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7513818740</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T18:06:04+00:00</StartDate><EndDate>2014-01-21T18:06:04+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T18:06:04+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30173470844</GeneratedReportId><StartedProcessingDate>2014-01-21T18:06:20+00:00</StartedProcessingDate><CompletedDate>2014-01-21T18:06:25+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7512339034</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T15:00:41+00:00</StartDate><EndDate>2014-01-21T15:00:41+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T15:00:41+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30166667724</GeneratedReportId><StartedProcessingDate>2014-01-21T15:01:10+00:00</StartedProcessingDate><CompletedDate>2014-01-21T15:01:20+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>ac7db1b7-e09c-4c01-a54b-004760242146</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:24 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A24Z&Signature=cKfQ4GuJuWt9d7JokMPW1t9H1nf6j0cslbSbapxnE8Y%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:27 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '73.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:07:00 UTC
+      x-mws-response-context:
+      - pXUERlXdjpT6ljOy4eBTlFTSBL2fuUBa0Xb9nf6uhIMaMUPGbEK/BlsegtabYkbct3G2KazkWY+h
+        ufMWcZbV0eEoK2T9diH/, 30DAYQs61gfvl6VDa7UM5bte35eE8f8P8IRF9y6OJc5VBzQdT/aCwz03mROb4uHIhQ4pNazVr1jP
+        Swnu8ho6Ng==
+      x-amz-request-id:
+      - 550666a7-6680-43d2-8464-f284de3c3cbc
+      x-mws-request-id:
+      - 550666a7-6680-43d2-8464-f284de3c3cbc
+      x-mws-timestamp:
+      - '2014-02-04T11:29:24.811Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>Wc18e3sOyxtmmFQFVAtP1cISAhu58h9XfJsgXILeC9kJ56emKxA7UXGsHLYYIfzBQ2nQ7JQDqXrTRx18V3z2SN8elC+1HEqp8wmMUOxTWVUESPt379o2oDwEWvi+Np7MYwWNJo6n6Is6U8pTg0alM/OFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzPLUW94ix7njCmdws2KNby0+PfRIKTdZf+zxmoIQVQpSh6m8o/CWxhj2j148AoUEqMWL1n6ztRlfivUjc0oKqdanUqgnIcDQqrvV83StGLTWrFGc51klDrQO8GMAdkEATuAYFu2aBAr8kZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2Qj4HDHVsLaYcexaVvRIRFYdK1ZsSQEgYXGNGYo6YRyKBjqp3KPJM/4+19Vp5YsZCqVfCtr2ievwZu6a+wEyVF7jUxRAQYZwPnBfa0UGKUV2smdt089J/f8+KgmDFNODsJl7LC7zcJSzo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7652807514</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:36+00:00</StartDate><EndDate>2014-02-04T11:06:36+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:36+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:17:59+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7648399964</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:08:04+00:00</StartDate><EndDate>2014-02-04T00:08:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:08:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30762766784</GeneratedReportId><StartedProcessingDate>2014-02-04T00:08:27+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:08:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7645634050</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30751006084</GeneratedReportId><StartedProcessingDate>2014-02-03T17:53:33+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:12:31+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7644521564</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30745964084</GeneratedReportId><StartedProcessingDate>2014-02-03T15:38:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T15:57:27+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637959680</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30716794424</GeneratedReportId><StartedProcessingDate>2014-02-03T00:25:42+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:46:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637858130</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:54+00:00</StartDate><EndDate>2014-02-03T00:00:55+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:55+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30715518984</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:32+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:01:54+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7628309104</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:24+00:00</StartDate><EndDate>2014-02-02T00:06:25+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:25+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30673474404</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:34+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7618623086</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:53+00:00</StartDate><EndDate>2014-02-01T00:08:54+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:54+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30631373824</GeneratedReportId><StartedProcessingDate>2014-02-01T00:09:08+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:09:33+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7608167982</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:43+00:00</StartDate><EndDate>2014-01-31T00:03:43+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:43+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30585248444</GeneratedReportId><StartedProcessingDate>2014-01-31T00:04:04+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:04:26+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7597586422</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:01:10+00:00</StartDate><EndDate>2014-01-30T00:01:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:01:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30538906884</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:42+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:02:06+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>550666a7-6680-43d2-8464-f284de3c3cbc</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:28 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=Wc18e3sOyxtmmFQFVAtP1cISAhu58h9XfJsgXILeC9kJ56emKxA7UXGsHLYYIfzBQ2nQ7JQDqXrTRx18V3z2SN8elC%2B1HEqp8wmMUOxTWVUESPt379o2oDwEWvi%2BNp7MYwWNJo6n6Is6U8pTg0alM%2FOFsSl6sjyecZc9scyruaxM2mXgi7TjEbd%2BPzk7D6uzPLUW94ix7njCmdws2KNby0%2BPfRIKTdZf%2BzxmoIQVQpSh6m8o%2FCWxhj2j148AoUEqMWL1n6ztRlfivUjc0oKqdanUqgnIcDQqrvV83StGLTWrFGc51klDrQO8GMAdkEATuAYFu2aBAr8kZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2Qj4HDHVsLaYcexaVvRIRFYdK1ZsSQEgYXGNGYo6YRyKBjqp3KPJM%2F4%2B19Vp5YsZCqVfCtr2ievwZu6a%2BwEyVF7jUxRAQYZwPnBfa0UGKUV2smdt089J%2Ff8%2BKgmDFNODsJl7LC7zcJSzo%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A28Z&Signature=WKdOaPp7jFnGZs1Tf8fvB%2FDquGBy%2B1hLmMqh9cH3rrk%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:29 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:07:00 UTC
+      x-mws-response-context:
+      - IORYGWLNvdMqB6QJMoCBQP4XrUxKK9UK1gS089F+NQir46Ol1XlTGPbSCHr9yVojWqW+sdUmRDfk
+        K9o/ESp8mW8kCcGY3JdZ, NFL5TmbXIho6MNTCfqoqS15dX4imP0l7NGdWFwotRgTkzkNICVF6eguqPexxrqMw2dnpJ+WNnP8y
+        iJxgwmyexw==
+      x-amz-request-id:
+      - 29193e43-31c8-4593-abcc-eeaacbdcd64c
+      x-mws-request-id:
+      - 29193e43-31c8-4593-abcc-eeaacbdcd64c
+      x-mws-timestamp:
+      - '2014-02-04T11:29:28.957Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>v3NaJTbgqU5mmFQFVAtP1cISAhu58h9XfJsgXILeC9kI1APqmQga9HGsHLYYIfzBVJp+PGzeOqrs41H0jTM9cI4GHADt2usgqAoORy3BN0owizSTp2WHsdtGQ6Qkzg3ANFoSBpPfizcSyoYkkmy7z/56WMbynWobFFcZD6owPMAHizskK/YiQvlC3HjQwANu3+RIjB3A9k5fpw1PHlh9+q2I3LmeiOaQ6SUVGj3dkVltrBHPKPJewQ4kvpFXXecoja8naDNrFxy6gbqnX2etIyx8HVwVXw0BnC43wkYG0u1uA/Z2U176IhaH6tHFFj0lxL2JVPsBUHTYtEJgcxoCUpP2qPv63wlJSMYCqpinhnFTFuLi3ZpSecbDOVD/TcFJcYDMcizxJkhoJmGOG2PrNeFkhtKLDLSog0ckRuE4bQXNP0JIeU/w44+3IryvhwKk3gcbWOtieVvFHbFVX3e6L+41kThyxXZnTt6yCKCeGzv7bNd4fPYzntjZAErPVLAilL4ilGPKYN4=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7586951524</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:04:28+00:00</StartDate><EndDate>2014-01-29T00:04:29+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:04:29+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30492517304</GeneratedReportId><StartedProcessingDate>2014-01-29T00:04:48+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:05:09+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7576335512</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:01:08+00:00</StartDate><EndDate>2014-01-28T00:01:09+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:01:09+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30445763704</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:48+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:02:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7566268930</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:07:08+00:00</StartDate><EndDate>2014-01-27T00:07:09+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:07:09+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30402441704</GeneratedReportId><StartedProcessingDate>2014-01-27T00:07:30+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:07:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7556627692</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:00:58+00:00</StartDate><EndDate>2014-01-26T00:00:58+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:00:58+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30360406604</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:36+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:58+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7546941192</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:45+00:00</StartDate><EndDate>2014-01-25T00:06:46+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:46+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30318581304</GeneratedReportId><StartedProcessingDate>2014-01-25T00:06:59+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:07:21+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543573492</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30304567404</GeneratedReportId><StartedProcessingDate>2014-01-24T16:29:10+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:48:46+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543222874</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:17+00:00</StartDate><EndDate>2014-01-24T15:38:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30303038224</GeneratedReportId><StartedProcessingDate>2014-01-24T15:46:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:07:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7541979476</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30297528284</GeneratedReportId><StartedProcessingDate>2014-01-24T13:12:35+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:34:53+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7540917874</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:34+00:00</StartDate><EndDate>2014-01-24T10:51:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30292839564</GeneratedReportId><StartedProcessingDate>2014-01-24T11:02:09+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:26:33+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7536737808</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:33+00:00</StartDate><EndDate>2014-01-24T00:03:33+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:33+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30274023384</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:41+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:04:00+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>29193e43-31c8-4593-abcc-eeaacbdcd64c</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:29 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=v3NaJTbgqU5mmFQFVAtP1cISAhu58h9XfJsgXILeC9kI1APqmQga9HGsHLYYIfzBVJp%2BPGzeOqrs41H0jTM9cI4GHADt2usgqAoORy3BN0owizSTp2WHsdtGQ6Qkzg3ANFoSBpPfizcSyoYkkmy7z%2F56WMbynWobFFcZD6owPMAHizskK%2FYiQvlC3HjQwANu3%2BRIjB3A9k5fpw1PHlh9%2Bq2I3LmeiOaQ6SUVGj3dkVltrBHPKPJewQ4kvpFXXecoja8naDNrFxy6gbqnX2etIyx8HVwVXw0BnC43wkYG0u1uA%2FZ2U176IhaH6tHFFj0lxL2JVPsBUHTYtEJgcxoCUpP2qPv63wlJSMYCqpinhnFTFuLi3ZpSecbDOVD%2FTcFJcYDMcizxJkhoJmGOG2PrNeFkhtKLDLSog0ckRuE4bQXNP0JIeU%2Fw44%2B3IryvhwKk3gcbWOtieVvFHbFVX3e6L%2B41kThyxXZnTt6yCKCeGzv7bNd4fPYzntjZAErPVLAilL4ilGPKYN4%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A29Z&Signature=UC7xnpZ7vMm%2FciIcS7MSYwl59AdjmoSrWCbaCbuqY50%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:29 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:07:00 UTC
+      x-mws-response-context:
+      - 9+nu2hmCzE/raiHb3Y8Exys8BJhhgVneiXszPT3nBJXUsX+HmpQ6LUqUPrRSTEh0aW4s6YwenZ0w
+        43WL33+BdgKjvngiGGVn, lLMTBuJs5d5jyitOIKfBScl0Xxt1sJ0WI2aqV9GWygurCakZBV9e80D+5GmOAyNEfF3iyFBCk0L+
+        xqjROmH24g==
+      x-amz-request-id:
+      - 66ef32ec-756b-4ffc-8804-6af93caa256a
+      x-mws-request-id:
+      - 66ef32ec-756b-4ffc-8804-6af93caa256a
+      x-mws-timestamp:
+      - '2014-02-04T11:29:29.860Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>34Uq7UKobjVmmFQFVAtP1cISAhu58h9XfJsgXILeC9mDLyBvZ3uS03GsHLYYIfzB9yNAsJUkuuCNcwFmZkQyx/PraLc9WBV3tbeh0FUH6JxnTH0VMxQcM5oUTQDnIcPzhKvoEjVGKUNniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpiomo4PkoVCU3ND9IrjU3/dG8ACJjDMbFja/d/i4VUDze3/MNqMV8mJPo24ATchuIYs8kcrNzmGlWpBh9z2xS505P/Ofesifm3xIasgM2uRj2Kv8YhVnqreHJHNOt+pPAumIuwBJEOboCBvkf4FTlXClZ/vfyuLhfMdmv+3BbA0JRz9CX5PJsdGBWNN/qROJCU3tAoWRm8SSpSQ9INan6XxDfJue3ErOTaXqPPcj/ue6tSojq9dux7+1tn8ic4EHMeBuApyBDn+WElg7B8QdHQ3mLOVLL34l3Wnfqou+cKUj14jR+smZ8oheUbRYH8iU/FCR8xAZ2M0Qz2Y051TPxxk=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7526666370</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:59+00:00</StartDate><EndDate>2014-01-23T00:03:59+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:59+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30230364184</GeneratedReportId><StartedProcessingDate>2014-01-23T00:04:17+00:00</StartedProcessingDate><CompletedDate>2014-01-23T00:04:39+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7522588496</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:01:01+00:00</StartDate><EndDate>2014-01-22T15:01:01+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:01:01+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30211977544</GeneratedReportId><StartedProcessingDate>2014-01-22T15:01:38+00:00</StartedProcessingDate><CompletedDate>2014-01-22T15:02:00+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7521126372</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:47+00:00</StartDate><EndDate>2014-01-22T12:00:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30205315424</GeneratedReportId><StartedProcessingDate>2014-01-22T12:01:15+00:00</StartedProcessingDate><CompletedDate>2014-01-22T12:01:37+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7519701892</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T09:00:50+00:00</StartDate><EndDate>2014-01-22T09:00:51+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T09:00:51+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30198735064</GeneratedReportId><StartedProcessingDate>2014-01-22T09:01:06+00:00</StartedProcessingDate><CompletedDate>2014-01-22T09:01:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7518491250</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T06:00:48+00:00</StartDate><EndDate>2014-01-22T06:00:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T06:00:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30193541264</GeneratedReportId><StartedProcessingDate>2014-01-22T06:02:20+00:00</StartedProcessingDate><CompletedDate>2014-01-22T06:02:41+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7517439224</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T03:00:49+00:00</StartDate><EndDate>2014-01-22T03:00:49+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T03:00:49+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30189364064</GeneratedReportId><StartedProcessingDate>2014-01-22T03:01:12+00:00</StartedProcessingDate><CompletedDate>2014-01-22T03:01:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7516370934</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T00:03:29+00:00</StartDate><EndDate>2014-01-22T00:03:29+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T00:03:29+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30184972704</GeneratedReportId><StartedProcessingDate>2014-01-22T00:03:49+00:00</StartedProcessingDate><CompletedDate>2014-01-22T00:04:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7515104526</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T21:03:09+00:00</StartDate><EndDate>2014-01-21T21:03:09+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T21:03:09+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30179364184</GeneratedReportId><StartedProcessingDate>2014-01-21T21:03:24+00:00</StartedProcessingDate><CompletedDate>2014-01-21T21:03:46+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7513819808</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T18:06:10+00:00</StartDate><EndDate>2014-01-21T18:06:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T18:06:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30173478904</GeneratedReportId><StartedProcessingDate>2014-01-21T18:06:20+00:00</StartedProcessingDate><CompletedDate>2014-01-21T18:06:39+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7513737942</ReportRequestId><ReportType>_GET_AFN_INVENTORY_DATA_</ReportType><StartDate>2014-01-20T17:56:41+00:00</StartDate><EndDate>2014-01-21T17:56:41+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T17:56:41+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30173122844</GeneratedReportId><StartedProcessingDate>2014-01-21T17:56:52+00:00</StartedProcessingDate><CompletedDate>2014-01-21T17:57:01+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>66ef32ec-756b-4ffc-8804-6af93caa256a</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:30 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A30Z&Signature=ng2DQBLCVSWv3ScdXo%2FBqlDvnYKQCpPzwSQvKuEoQoU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:35 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '72.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:54:00 UTC
+      x-mws-response-context:
+      - 6GzMm8SsEbz0fIDV9VYFh4IfgIVtuk6rnPDjBvy5RhOFmq2SGrKSTEcoU7Q7fpbmBwNNq5+T65lQ
+        o/EXYL2xFpLyjPnDp+P5, KCZOC7aWKeTn4prdsHrbBvkGwB9gyKBilFcMhqldjpbsMOXsw5Yw0CVksa1fwCNHSyAS3wZvPu1h
+        uvunAOGRvw==
+      x-amz-request-id:
+      - 75c560c2-b2e9-4fe2-ac3e-a045206219a7
+      x-mws-request-id:
+      - 75c560c2-b2e9-4fe2-ac3e-a045206219a7
+      x-mws-timestamp:
+      - '2014-02-04T11:29:30.347Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=15
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>v8xWyjOgRcFmmFQFVAtP1ZAhUqJcwn7jlxcAelbtyeM99JOpf0t2rhdbjtShdQ+IhG5AT/w0fMZXXKVrlUJTqB/iuBT7WFE9+WJHv8/kERXk+UtQue6Z05GnwmbuQ1cPakUg5HI4VTOycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQJ1p9ATx3PR2GR21J2CQnsMlPrW/sLgifKT04iqsRHbVMgmqdt9Aa1OikavSLbdrIxISU8aBivCRAihGMnMcc8yVtWOJPzCSS4DDYBJjYI4FndgJLJu1/O86oZaTBP7bUXHpcHAadKTvbvmZNbUKIVIJn0CtRS+GyNrLEwZs+0aLsjQRX2L8+P2K3vzF7ltBnImpk466ocb+FH76Jzqpyb/LWHd42SraXEOFlrTZUVP8sal2C11sLBptXA1B44s0SxVLyFu35Es+0VmJMxGeMtonJgzj+GmqSdtZzrrITNnevK5V7s/07AP4ZdpWHuoOz</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7652807510</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:35+00:00</StartDate><EndDate>2014-02-04T11:06:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:35+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:17:59+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7648397398</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:07:37+00:00</StartDate><EndDate>2014-02-04T00:07:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:07:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30762738604</GeneratedReportId><StartedProcessingDate>2014-02-04T00:07:48+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:07:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7645634042</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30751775224</GeneratedReportId><StartedProcessingDate>2014-02-03T17:53:34+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:34:52+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7644521606</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30746544624</GeneratedReportId><StartedProcessingDate>2014-02-03T15:38:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:11:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7643502724</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_</ReportType><StartDate>2014-01-20T13:06:08+00:00</StartDate><EndDate>2014-02-03T13:06:11+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T13:26:29+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30740122644</GeneratedReportId><StartedProcessingDate>2014-02-03T13:26:44+00:00</StartedProcessingDate><CompletedDate>2014-02-03T13:26:47+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7643500406</ReportRequestId><ReportType>_GET_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-01-20T13:06:08+00:00</StartDate><EndDate>2014-02-03T13:06:11+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T13:26:18+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30740121364</GeneratedReportId><StartedProcessingDate>2014-02-03T13:26:41+00:00</StartedProcessingDate><CompletedDate>2014-02-03T13:26:44+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637959692</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30717147104</GeneratedReportId><StartedProcessingDate>2014-02-03T00:25:42+00:00</StartedProcessingDate><CompletedDate>2014-02-03T01:01:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7637850090</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:37+00:00</StartDate><EndDate>2014-02-03T00:00:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30715490064</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:05+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:01:08+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7628305854</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:00+00:00</StartDate><EndDate>2014-02-02T00:06:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:00+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30673448664</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:12+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7618617216</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:07:58+00:00</StartDate><EndDate>2014-02-01T00:07:58+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:07:58+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30631335284</GeneratedReportId><StartedProcessingDate>2014-02-01T00:08:09+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:08:22+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>75c560c2-b2e9-4fe2-ac3e-a045206219a7</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:36 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=v8xWyjOgRcFmmFQFVAtP1ZAhUqJcwn7jlxcAelbtyeM99JOpf0t2rhdbjtShdQ%2BIhG5AT%2Fw0fMZXXKVrlUJTqB%2FiuBT7WFE9%2BWJHv8%2FkERXk%2BUtQue6Z05GnwmbuQ1cPakUg5HI4VTOycJ%2FIO%2Fjxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQJ1p9ATx3PR2GR21J2CQnsMlPrW%2FsLgifKT04iqsRHbVMgmqdt9Aa1OikavSLbdrIxISU8aBivCRAihGMnMcc8yVtWOJPzCSS4DDYBJjYI4FndgJLJu1%2FO86oZaTBP7bUXHpcHAadKTvbvmZNbUKIVIJn0CtRS%2BGyNrLEwZs%2B0aLsjQRX2L8%2BP2K3vzF7ltBnImpk466ocb%2BFH76Jzqpyb%2FLWHd42SraXEOFlrTZUVP8sal2C11sLBptXA1B44s0SxVLyFu35Es%2B0VmJMxGeMtonJgzj%2BGmqSdtZzrrITNnevK5V7s%2F07AP4ZdpWHuoOz&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A36Z&Signature=rVpyYACHj3VWBfM2eknWKUGMRleaUip5T9H%2Fezxes5U%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:36 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:54:00 UTC
+      x-mws-response-context:
+      - xStyffJSunysdV+jI7a9IqVWfupTtNAUDLKE1PZvD4ZizRmwukByYT1mv+6Jf9CrZ2jx/HU7+NHQ
+        qCHEltkOTc30HGq6SU9j, TVJQBPYuNJBe8gfCGoB2dm7Skj4f/iN9K2NVG/Fx7SWfi+iTP3NGpdZS8wnoYFdZti3+0xcathI5
+        xk57CvCQUg==
+      x-amz-request-id:
+      - bf560b7c-184f-4f11-9647-e4ad695fca5e
+      x-mws-request-id:
+      - bf560b7c-184f-4f11-9647-e4ad695fca5e
+      x-mws-timestamp:
+      - '2014-02-04T11:29:36.499Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=19
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>AjSkiDex69pmmFQFVAtP1ZAhUqJcwn7jlxcAelbtyePFpcBskDdu3ejHfMVaM8PkChwnDBwvXpPb0ULyHnn/HeeZ/IAWenXjtZS+ct313N3D+M3nPRfTRIUoRj2Ztzq9bmLmn0dzalybTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVQP3Ie/gaJzEl01uWoCcCz9OP6xrxjxnmF7h/TXIMP6dQnronqrgDLD1AEXO6/ETiimnngUjdBsDHAc0vpeczLX/HZn6BjLAT95EbryqQCdAmRLxhHDLDkcfI0sNzdUiEuB8CqZhNVasbrkXIzPDITnYozsQivJ/g0mJJwtDzcF1kfIJWrdc+pl1pzi48rmcg8nC5sa/LFuNqJdy7ik2k9wRjuUSU3oUWUKl1sWPSp906WNmMkWbTf/oujO8s2db0Fr8852Cf2ON9PSwBMp0NEUvi44vvRD2YbiAl2xPrlE++ce29iYHUWw3zdZx9ruNr3Lre0zvBuf7Hn5Xr2VY0bo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7608165764</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:20+00:00</StartDate><EndDate>2014-01-31T00:03:21+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:21+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30585227704</GeneratedReportId><StartedProcessingDate>2014-01-31T00:03:42+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:03:45+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7597576264</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:00:40+00:00</StartDate><EndDate>2014-01-30T00:00:41+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:00:41+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30538877384</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:05+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:01:08+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7586944800</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:03:34+00:00</StartDate><EndDate>2014-01-29T00:03:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:03:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30492465844</GeneratedReportId><StartedProcessingDate>2014-01-29T00:03:49+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:03:51+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7576327072</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:00:44+00:00</StartDate><EndDate>2014-01-28T00:00:44+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:00:44+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30445719444</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:22+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:01:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7566264866</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:06:33+00:00</StartDate><EndDate>2014-01-27T00:06:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:06:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30402414744</GeneratedReportId><StartedProcessingDate>2014-01-27T00:06:50+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:06:53+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7556619956</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:00:38+00:00</StartDate><EndDate>2014-01-26T00:00:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:00:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30360373324</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:02+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:04+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7546935280</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:05:59+00:00</StartDate><EndDate>2014-01-25T00:06:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:00+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30318561484</GeneratedReportId><StartedProcessingDate>2014-01-25T00:06:18+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:06:20+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543573484</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30305352824</GeneratedReportId><StartedProcessingDate>2014-01-24T16:32:10+00:00</StartedProcessingDate><CompletedDate>2014-01-24T17:10:12+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7543222888</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:17+00:00</StartDate><EndDate>2014-01-24T15:38:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30303948764</GeneratedReportId><StartedProcessingDate>2014-01-24T15:46:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:31:48+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7541979480</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30298263304</GeneratedReportId><StartedProcessingDate>2014-01-24T13:12:35+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:55:35+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>bf560b7c-184f-4f11-9647-e4ad695fca5e</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:36 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=AjSkiDex69pmmFQFVAtP1ZAhUqJcwn7jlxcAelbtyePFpcBskDdu3ejHfMVaM8PkChwnDBwvXpPb0ULyHnn%2FHeeZ%2FIAWenXjtZS%2Bct313N3D%2BM3nPRfTRIUoRj2Ztzq9bmLmn0dzalybTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVQP3Ie%2FgaJzEl01uWoCcCz9OP6xrxjxnmF7h%2FTXIMP6dQnronqrgDLD1AEXO6%2FETiimnngUjdBsDHAc0vpeczLX%2FHZn6BjLAT95EbryqQCdAmRLxhHDLDkcfI0sNzdUiEuB8CqZhNVasbrkXIzPDITnYozsQivJ%2Fg0mJJwtDzcF1kfIJWrdc%2Bpl1pzi48rmcg8nC5sa%2FLFuNqJdy7ik2k9wRjuUSU3oUWUKl1sWPSp906WNmMkWbTf%2FoujO8s2db0Fr8852Cf2ON9PSwBMp0NEUvi44vvRD2YbiAl2xPrlE%2B%2Bce29iYHUWw3zdZx9ruNr3Lre0zvBuf7Hn5Xr2VY0bo%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A36Z&Signature=a9JCebMol5mixJdfUFke07q8MJMMqPQiZy7%2BE%2Bo7CGw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:37 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:54:00 UTC
+      x-mws-response-context:
+      - RT5+7PDh8e6afh1DZynKTCxhc9d5tvEn9f1HUFNO365iuSGqy08bk9Zhu1Gs9UXg1UlibhmvPl26
+        M/0VZ23EVdyrmKQWxEtJ, LPxNTJBvRbBw/qlObakNyDfabH8pMm6njZ4N5djXzp3gSMDWifD6IBgeZS2AILl++N1cjyD7w4Qa
+        iF7eeQjliQ==
+      x-amz-request-id:
+      - 44c5632a-d262-496d-97d5-2bfee30e53fe
+      x-mws-request-id:
+      - 44c5632a-d262-496d-97d5-2bfee30e53fe
+      x-mws-timestamp:
+      - '2014-02-04T11:29:37.132Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>XFpgma/lQARmmFQFVAtP1ZAhUqJcwn7jlxcAelbtyeOkG7R3GrrwKdOM1t6iCQ6jnWHdh9yLqxyye2K1bDKsmQNJYU93/mlZImDcHsYeght+Hdb95Ti77iKS10S1Ixg4PuJQPeq3enCsij1FjOr6mbVcIkBm0+aOeRmqkTxWuHZ89Lesa/GRig6P3pELsqcCRhdN9B9PUtiLjrwOSax5mv/zcwu0N2j1aVH3dafDAlZCeuiequAMsPUARc7r8ROKKaeeBSN0GwMcBzS+l5zMtf8dmfoGMsBP3kRuvKpAJ0CZEvGEcMsORx8jSw3N1SISCNS8AiZnAsHKZyF0+kq0Ezm6UmiC2mvgNrLEwZs+0aLsjQRX2L8+P2K3vzF7ltBnlgyuUH8rUjpneYrmtS3cj2pLsOeIKEfMuk/QiCx1N0bzFIdxK+d7ECNwXnl/k7JKQBWzwbtqRcRNDgvm8sdDRK0NKq7cKoJ0aTdGML7iHppdoHueeL2+zQ==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>7540918162</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:39+00:00</StartDate><EndDate>2014-01-24T10:51:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30293562744</GeneratedReportId><StartedProcessingDate>2014-01-24T11:02:09+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:46:45+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7536734760</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:08+00:00</StartDate><EndDate>2014-01-24T00:03:09+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:09+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30273998964</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:20+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:03:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7526663310</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:30+00:00</StartDate><EndDate>2014-01-23T00:03:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30230328944</GeneratedReportId><StartedProcessingDate>2014-01-23T00:03:38+00:00</StartedProcessingDate><CompletedDate>2014-01-23T00:03:40+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7522574036</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:00:23+00:00</StartDate><EndDate>2014-01-22T15:00:23+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:00:23+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30211927004</GeneratedReportId><StartedProcessingDate>2014-01-22T15:00:52+00:00</StartedProcessingDate><CompletedDate>2014-01-22T15:00:55+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7521119494</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:32+00:00</StartDate><EndDate>2014-01-22T12:00:32+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:32+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30205289664</GeneratedReportId><StartedProcessingDate>2014-01-22T12:00:54+00:00</StartedProcessingDate><CompletedDate>2014-01-22T12:00:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7519695340</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T09:00:30+00:00</StartDate><EndDate>2014-01-22T09:00:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T09:00:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30198711784</GeneratedReportId><StartedProcessingDate>2014-01-22T09:00:56+00:00</StartedProcessingDate><CompletedDate>2014-01-22T09:00:58+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7518480522</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T06:00:18+00:00</StartDate><EndDate>2014-01-22T06:00:18+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T06:00:18+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30193514124</GeneratedReportId><StartedProcessingDate>2014-01-22T06:01:46+00:00</StartedProcessingDate><CompletedDate>2014-01-22T06:01:48+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7517434162</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T03:00:33+00:00</StartDate><EndDate>2014-01-22T03:00:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T03:00:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30189356664</GeneratedReportId><StartedProcessingDate>2014-01-22T03:00:59+00:00</StartedProcessingDate><CompletedDate>2014-01-22T03:01:11+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7516368718</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T00:03:08+00:00</StartDate><EndDate>2014-01-22T00:03:09+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T00:03:09+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30184949564</GeneratedReportId><StartedProcessingDate>2014-01-22T00:03:29+00:00</StartedProcessingDate><CompletedDate>2014-01-22T00:03:31+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>7515100520</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T21:02:31+00:00</StartDate><EndDate>2014-01-21T21:02:32+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T21:02:32+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>30179327884</GeneratedReportId><StartedProcessingDate>2014-01-21T21:02:45+00:00</StartedProcessingDate><CompletedDate>2014-01-21T21:02:47+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>44c5632a-d262-496d-97d5-2bfee30e53fe</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:37 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A37Z&Signature=IzBdhZo2SOKWARXAYPEtwkxMiPgEY8lT2N%2B6waf1bxs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:39 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '72.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - OWU1+uJ6ODBK1RSkzySlHx6Pr3L1jhGFAvJUheLntVdI6f8lqv0nPZp7vwj1LGv5xGupLCSjGrmQ
+        GZZB3zLuA3ghm/eWUQ8l, pdcWrGqibl1AXTUD7JsnyKSw6lNnxjyVw9eIHtzfd0tL3mcF65T0IVcY+kNCnILNBJ4KVQ9XXR0H
+        qQJpGvT36w==
+      x-amz-request-id:
+      - 057cafaf-3d07-405f-bf9a-b32537ac0b21
+      x-mws-request-id:
+      - 057cafaf-3d07-405f-bf9a-b32537ac0b21
+      x-mws-timestamp:
+      - '2014-02-04T11:29:38.035Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>vhaFgLDoN9lmmFQFVAtP1aJ17H3LduXOl9cxtGNDuZR2bcPOQemsgnGsHLYYIfzBt7Bk/hW2DBbHKzY5stlijTaop7eqqGm4Gik3oztG+2w9l3rJQKByC0k6cdYSDWZc2kQ0ZfGARWw6U8pTg0alM/OFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzfwQCTAkJV94sEzsCelmtetzMdnewWlRi+zxmoIQVQpSh6m8o/CWxhj2j148AoUEqMWL1n6ztRlcW5HxDPEQC0IYT4kb5hhXm8eIFqy7GKFOHJHNOt+pPAretAmcqQNFYLl8ugVE71sMkZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2Q6sWZXcNq9qjljjBpm+qoqq1YNmrDDuUIcUgbgI2xmhnjlnHtx4TC9GGk0wKkjaXmYqh29UAOoVK4OHptwvMORidQMzjFZgUfCW2aatHJSDx/FvRu1qMCMY3yho/p1sX3m9voz4djmnXPZjTnVM/HGQ==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>847441369</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:37+00:00</StartDate><EndDate>2014-02-04T11:06:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:37+00:00</SubmittedDate><ReportProcessingStatus>_IN_PROGRESS_</ReportProcessingStatus><StartedProcessingDate>2014-02-04T11:06:50+00:00</StartedProcessingDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>846780851</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:07:52+00:00</StartDate><EndDate>2014-02-04T00:07:53+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:07:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3555836745</GeneratedReportId><StartedProcessingDate>2014-02-04T00:08:03+00:00</StartedProcessingDate><CompletedDate>2014-02-04T00:08:10+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>846535103</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3554918765</GeneratedReportId><StartedProcessingDate>2014-02-03T17:47:37+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:21:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>846432477</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:40+00:00</StartDate><EndDate>2014-02-03T15:29:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3554532465</GeneratedReportId><StartedProcessingDate>2014-02-03T15:31:12+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:06:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>845533583</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3550469145</GeneratedReportId><StartedProcessingDate>2014-02-03T00:16:05+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:51:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>845520527</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:00:48+00:00</StartDate><EndDate>2014-02-03T00:00:49+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:00:49+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3550270045</GeneratedReportId><StartedProcessingDate>2014-02-03T00:01:22+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:01:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>844339085</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:13+00:00</StartDate><EndDate>2014-02-02T00:06:14+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:14+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3545083605</GeneratedReportId><StartedProcessingDate>2014-02-02T00:06:25+00:00</StartedProcessingDate><CompletedDate>2014-02-02T00:06:32+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>843140771</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:12+00:00</StartDate><EndDate>2014-02-01T00:08:13+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:13+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3539885245</GeneratedReportId><StartedProcessingDate>2014-02-01T00:08:32+00:00</StartedProcessingDate><CompletedDate>2014-02-01T00:08:37+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>841897177</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:29+00:00</StartDate><EndDate>2014-01-31T00:03:29+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:29+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3534470765</GeneratedReportId><StartedProcessingDate>2014-01-31T00:03:45+00:00</StartedProcessingDate><CompletedDate>2014-01-31T00:03:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>840658207</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:00:51+00:00</StartDate><EndDate>2014-01-30T00:00:51+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:00:51+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3529065205</GeneratedReportId><StartedProcessingDate>2014-01-30T00:01:23+00:00</StartedProcessingDate><CompletedDate>2014-01-30T00:01:28+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>057cafaf-3d07-405f-bf9a-b32537ac0b21</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:40 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=vhaFgLDoN9lmmFQFVAtP1aJ17H3LduXOl9cxtGNDuZR2bcPOQemsgnGsHLYYIfzBt7Bk%2FhW2DBbHKzY5stlijTaop7eqqGm4Gik3oztG%2B2w9l3rJQKByC0k6cdYSDWZc2kQ0ZfGARWw6U8pTg0alM%2FOFsSl6sjyecZc9scyruaxM2mXgi7TjEbd%2BPzk7D6uzfwQCTAkJV94sEzsCelmtetzMdnewWlRi%2BzxmoIQVQpSh6m8o%2FCWxhj2j148AoUEqMWL1n6ztRlcW5HxDPEQC0IYT4kb5hhXm8eIFqy7GKFOHJHNOt%2BpPAretAmcqQNFYLl8ugVE71sMkZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2Q6sWZXcNq9qjljjBpm%2Bqoqq1YNmrDDuUIcUgbgI2xmhnjlnHtx4TC9GGk0wKkjaXmYqh29UAOoVK4OHptwvMORidQMzjFZgUfCW2aatHJSDx%2FFvRu1qMCMY3yho%2Fp1sX3m9voz4djmnXPZjTnVM%2FHGQ%3D%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A40Z&Signature=sS%2FEFPSVQZH38WuEcnHiG6KklJnVe8j7QEYc4hhFazU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:40 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - R60lF+IKrvsjZQiBV0j6+7Ua8Pd3ZsICrdHhMl8l0oO0h6r47gCWmmAGQGp9g1ndrCn3DZg9NuS8
+        XSvkSglw8EPTMPfzIaSq, 138DeRnxKaEwsQOH6AK3SI1982OYeIeEZzU11aGK0C2Pz7VOoCpetXnhYWXtUb0eqhhpQwy3d9mH
+        GTgI6Ts5dw==
+      x-amz-request-id:
+      - 41e5ea2a-f779-4e15-aef8-65b4c59b722b
+      x-mws-request-id:
+      - 41e5ea2a-f779-4e15-aef8-65b4c59b722b
+      x-mws-timestamp:
+      - '2014-02-04T11:29:41.339Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=8
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>ntAWXSlhYZJmmFQFVAtP1aJ17H3LduXOl9cxtGNDuZRuIc2nujnqm3GsHLYYIfzBXo14Gq1vvwQvzeJnWTXo1vbW/D7WiUpLA2NB+S6BvvCgYDOPWzNDv5GEskJ3Rg5WU65VjUQZRikFbRuX/++CGNe1pshJhSCtRBjO3S+7JjvelHVH7wFIJ4xvz8OaFzKi7R1XklqiRjXaZOdDuqymXjohiBLaQMGl6SUVGj3dkVltrBHPKPJewQ4kvpFXXecoja8naDNrFxwlaS5Rum8eXRWSdmx/g2yW/IbboTV6fdKrFGc51klDre/UyPiOie/Yz/1g5d6Jus4kZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2QpR3Sop99lBbwnpXQiMw3Ncg3gWbYY1vDeMBikT6hj8OqY151I43hzI5WQ+/LU94z8AolIJaA+CaXkKJ6tFS13hlxQAHcfdatN4x0FmeBaNiUviKUY8pg3g==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>839431979</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:03:41+00:00</StartDate><EndDate>2014-01-29T00:03:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:03:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3523715145</GeneratedReportId><StartedProcessingDate>2014-01-29T00:03:51+00:00</StartedProcessingDate><CompletedDate>2014-01-29T00:03:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>838231395</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:00:52+00:00</StartDate><EndDate>2014-01-28T00:00:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:00:52+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3518478705</GeneratedReportId><StartedProcessingDate>2014-01-28T00:01:33+00:00</StartedProcessingDate><CompletedDate>2014-01-28T00:01:37+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>837005503</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:06:41+00:00</StartDate><EndDate>2014-01-27T00:06:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:06:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3513113045</GeneratedReportId><StartedProcessingDate>2014-01-27T00:06:59+00:00</StartedProcessingDate><CompletedDate>2014-01-27T00:07:04+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>835842633</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:00:47+00:00</StartDate><EndDate>2014-01-26T00:00:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:00:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3508016465</GeneratedReportId><StartedProcessingDate>2014-01-26T00:01:28+00:00</StartedProcessingDate><CompletedDate>2014-01-26T00:01:32+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>834677469</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:14+00:00</StartDate><EndDate>2014-01-25T00:06:15+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:15+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3502969325</GeneratedReportId><StartedProcessingDate>2014-01-25T00:06:21+00:00</StartedProcessingDate><CompletedDate>2014-01-25T00:06:25+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>834381751</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:43+00:00</StartDate><EndDate>2014-01-24T16:21:43+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:43+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3501911325</GeneratedReportId><StartedProcessingDate>2014-01-24T16:21:56+00:00</StartedProcessingDate><CompletedDate>2014-01-24T17:03:12+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>834349601</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:18+00:00</StartDate><EndDate>2014-01-24T15:38:18+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:18+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3501770925</GeneratedReportId><StartedProcessingDate>2014-01-24T15:38:35+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:17:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>834208687</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3501174165</GeneratedReportId><StartedProcessingDate>2014-01-24T13:03:26+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:42:16+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>834087183</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:37+00:00</StartDate><EndDate>2014-01-24T10:51:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3500655665</GeneratedReportId><StartedProcessingDate>2014-01-24T10:51:47+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:29:25+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>833454393</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:22+00:00</StartDate><EndDate>2014-01-24T00:03:23+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:23+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3497666425</GeneratedReportId><StartedProcessingDate>2014-01-24T00:03:44+00:00</StartedProcessingDate><CompletedDate>2014-01-24T00:03:48+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>41e5ea2a-f779-4e15-aef8-65b4c59b722b</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:42 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=ntAWXSlhYZJmmFQFVAtP1aJ17H3LduXOl9cxtGNDuZRuIc2nujnqm3GsHLYYIfzBXo14Gq1vvwQvzeJnWTXo1vbW%2FD7WiUpLA2NB%2BS6BvvCgYDOPWzNDv5GEskJ3Rg5WU65VjUQZRikFbRuX%2F%2B%2BCGNe1pshJhSCtRBjO3S%2B7JjvelHVH7wFIJ4xvz8OaFzKi7R1XklqiRjXaZOdDuqymXjohiBLaQMGl6SUVGj3dkVltrBHPKPJewQ4kvpFXXecoja8naDNrFxwlaS5Rum8eXRWSdmx%2Fg2yW%2FIbboTV6fdKrFGc51klDre%2FUyPiOie%2FYz%2F1g5d6Jus4kZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2QpR3Sop99lBbwnpXQiMw3Ncg3gWbYY1vDeMBikT6hj8OqY151I43hzI5WQ%2B%2FLU94z8AolIJaA%2BCaXkKJ6tFS13hlxQAHcfdatN4x0FmeBaNiUviKUY8pg3g%3D%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A42Z&Signature=wolJiRyuKIyOS%2FMoMjBcqatdbixdcjhbKVB1FXP%2BtMc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:42 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 11:47:00 UTC
+      x-mws-response-context:
+      - OWU1+uJ6ODBK1RSkzySlHx6Pr3L1jhGFAvJUheLntVdI6f8lqv0nPZp7vwj1LGv5xGupLCSjGrmQ
+        GZZB3zLuA3ghm/eWUQ8l, 2X2Amh6hMme7RD8xWfQnqHmd06xvorxc0frTrw19QCznC0l9wqBJgw2gvN/R17ClVszIuDdIC30I
+        PbmU3ngEuQ==
+      x-amz-request-id:
+      - f495ae16-78ee-40d5-9034-ea86c707ecdb
+      x-mws-request-id:
+      - f495ae16-78ee-40d5-9034-ea86c707ecdb
+      x-mws-timestamp:
+      - '2014-02-04T11:29:42.881Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=18
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>KtQj6UXTMAZmmFQFVAtP1aJ17H3LduXOl9cxtGNDuZR2bcPOQemsgnGsHLYYIfzBAtRZ9YcW/Cl6QRI4AVRzOCmR7blpdgqYlFWlHdwtF5QGOvOdAfJl51FwIWpJogBD/EU+TUqDcOdniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpgwAOu8xo3N54pZWHuUvJx5Qrc3R36yJwbqTSKecd2the3/MNqMV8mJPo24ATchuIYs8kcrNzmGlKxuwr7+8HpzsTdSa9RBH2PtiJMY9EY3WMhjbAgoWK15OpKO+1RknsK3lRt+1MHhbXyCRxq1oh6ilZ/vfyuLhfMdmv+3BbA0JRz9CX5PJsdGBWNN/qROJCU3tAoWRm8SSqWBA05O78LF/47AaaCLW34O6pjFB3ETVLrM3BO2Ikx7agjpWh3xgkNyEuClaW7oI7r2DnRVJVwCpvBAtjZmLTP+iKwbnLR096UBYLzXGG4RcnqpYkh5YkOKgmDFNODsJl7LC7zcJSzo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>832223385</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:43+00:00</StartDate><EndDate>2014-01-23T00:03:44+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:44+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3492202645</GeneratedReportId><StartedProcessingDate>2014-01-23T00:03:51+00:00</StartedProcessingDate><CompletedDate>2014-01-23T00:03:54+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>831825595</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:00:44+00:00</StartDate><EndDate>2014-01-22T15:00:44+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:00:44+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3490400205</GeneratedReportId><StartedProcessingDate>2014-01-22T15:00:59+00:00</StartedProcessingDate><CompletedDate>2014-01-22T15:01:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>831656189</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:41+00:00</StartDate><EndDate>2014-01-22T12:00:41+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:41+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3489576825</GeneratedReportId><StartedProcessingDate>2014-01-22T12:01:05+00:00</StartedProcessingDate><CompletedDate>2014-01-22T12:01:11+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>831476179</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T09:00:38+00:00</StartDate><EndDate>2014-01-22T09:00:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T09:00:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3488720845</GeneratedReportId><StartedProcessingDate>2014-01-22T09:00:59+00:00</StartedProcessingDate><CompletedDate>2014-01-22T09:01:04+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>831274045</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T06:00:26+00:00</StartDate><EndDate>2014-01-22T06:00:27+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T06:00:27+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3487773145</GeneratedReportId><StartedProcessingDate>2014-01-22T06:00:49+00:00</StartedProcessingDate><CompletedDate>2014-01-22T06:00:52+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>831092861</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T03:00:43+00:00</StartDate><EndDate>2014-01-22T03:00:44+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T03:00:44+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3486895965</GeneratedReportId><StartedProcessingDate>2014-01-22T03:01:26+00:00</StartedProcessingDate><CompletedDate>2014-01-22T03:01:29+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>830917529</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T00:03:21+00:00</StartDate><EndDate>2014-01-22T00:03:22+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T00:03:22+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3486072825</GeneratedReportId><StartedProcessingDate>2014-01-22T00:03:31+00:00</StartedProcessingDate><CompletedDate>2014-01-22T00:03:34+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>830788201</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T21:02:39+00:00</StartDate><EndDate>2014-01-21T21:02:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T21:02:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3485501105</GeneratedReportId><StartedProcessingDate>2014-01-21T21:02:53+00:00</StartedProcessingDate><CompletedDate>2014-01-21T21:02:58+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>830698817</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T18:06:02+00:00</StartDate><EndDate>2014-01-21T18:06:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T18:06:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3485186025</GeneratedReportId><StartedProcessingDate>2014-01-21T18:06:12+00:00</StartedProcessingDate><CompletedDate>2014-01-21T18:06:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>830545295</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-22T15:00:34+00:00</StartDate><EndDate>2014-01-21T15:00:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-21T15:00:35+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>3484469645</GeneratedReportId><StartedProcessingDate>2014-01-21T15:00:57+00:00</StartedProcessingDate><CompletedDate>2014-01-21T15:01:01+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>f495ae16-78ee-40d5-9034-ea86c707ecdb</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:43 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestList&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A43Z&Signature=ilGJGsXaoMBaHpMbT5ZUmMrGl%2BG9fLookEoWBSAMkNE%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:49 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '77.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:20:00 UTC
+      x-mws-response-context:
+      - s9EzAjxBPVkj7R8MS/+tITkB3+rZYMSrcSyI9D9I7CA5JE/wBP0etn3j817a0xt5RKx6LmyEkswJ
+        lfk3W57iGNmjN4Kltzq/, a6a5p5gh+6JJozddPcAzFEwztWjOBQ3c7IBMCHwnWuaq4dQ7AhqNcr9Cq6+022Gcd3yiKWP9oFI=
+      x-amz-request-id:
+      - fb79a2d2-a5d6-4636-8699-ff5cae175f25
+      x-mws-request-id:
+      - fb79a2d2-a5d6-4636-8699-ff5cae175f25
+      x-mws-timestamp:
+      - '2014-02-04T11:29:43.686Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=16
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>UwIbcSlESOZmmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA52bcPOQemsgnGsHLYYIfzBEfMckkjOis4coeceY0spu4/Yhz9wGBnzIC/lTx6qyf8Y0wRNDb48pTuevSBZKvtk39HppsoADltniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpmr//XpN6JTHJG6eBM2nmP6uYnTl3sUy/b63vAFLd2oZe3/MNqMV8mJPo24ATchuIYs8kcrNzmGl3p+lKEYB7Eo2CJMQvmFQ6k5YBVfcvE5JJE8/zgdfbqSHJHNOt+pPArnkztH5AfN2q90OtnwVCu3YtEJgcxoCUpP2qPv63wlJSMYCqpinhnFTFuLi3ZpSecbDOVD/TcFJBxZwJ1Hx6kvOXCd00S5BFOzSPO6hZOCNG+UIeH5mxk3B44QJocuCcShayiamWWx8lFnInTVFGeudRRjZJ6/ei0pU3OP/LhPonNEhL3PlSGS9XLv4YIlCZULimCg1m7s4l7LC7zcJSzo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>9043478474</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-04T11:06:36+00:00</StartDate><EndDate>2014-02-04T11:06:36+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T11:06:36+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9039974540</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-05T00:08:03+00:00</StartDate><EndDate>2014-02-04T00:08:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-04T00:08:03+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9037573816</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T17:47:30+00:00</StartDate><EndDate>2014-02-03T17:47:30+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T17:47:30+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14815285043</GeneratedReportId><StartedProcessingDate>2014-02-03T18:26:47+00:00</StartedProcessingDate><CompletedDate>2014-02-03T18:29:55+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9036725980</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T15:29:39+00:00</StartDate><EndDate>2014-02-03T15:29:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T15:29:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14813179373</GeneratedReportId><StartedProcessingDate>2014-02-03T16:01:48+00:00</StartedProcessingDate><CompletedDate>2014-02-03T16:05:05+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9032022454</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-02-03T00:15:48+00:00</StartDate><EndDate>2014-02-03T00:15:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:15:48+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14803412823</GeneratedReportId><StartedProcessingDate>2014-02-03T00:48:59+00:00</StartedProcessingDate><CompletedDate>2014-02-03T00:52:00+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9031939918</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-04T00:01:02+00:00</StartDate><EndDate>2014-02-03T00:01:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-03T00:01:03+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9024539424</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-03T00:06:20+00:00</StartDate><EndDate>2014-02-02T00:06:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-02T00:06:20+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9016978480</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-02T00:08:39+00:00</StartDate><EndDate>2014-02-01T00:08:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-02-01T00:08:39+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9008975512</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-01-01T00:03:42+00:00</StartDate><EndDate>2014-01-31T00:03:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-31T00:03:42+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9000994060</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-31T00:00:55+00:00</StartDate><EndDate>2014-01-30T00:00:56+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-30T00:00:56+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>fb79a2d2-a5d6-4636-8699-ff5cae175f25</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:49 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=UwIbcSlESOZmmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA52bcPOQemsgnGsHLYYIfzBEfMckkjOis4coeceY0spu4%2FYhz9wGBnzIC%2FlTx6qyf8Y0wRNDb48pTuevSBZKvtk39HppsoADltniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpmr%2F%2FXpN6JTHJG6eBM2nmP6uYnTl3sUy%2Fb63vAFLd2oZe3%2FMNqMV8mJPo24ATchuIYs8kcrNzmGl3p%2BlKEYB7Eo2CJMQvmFQ6k5YBVfcvE5JJE8%2FzgdfbqSHJHNOt%2BpPArnkztH5AfN2q90OtnwVCu3YtEJgcxoCUpP2qPv63wlJSMYCqpinhnFTFuLi3ZpSecbDOVD%2FTcFJBxZwJ1Hx6kvOXCd00S5BFOzSPO6hZOCNG%2BUIeH5mxk3B44QJocuCcShayiamWWx8lFnInTVFGeudRRjZJ6%2Fei0pU3OP%2FLhPonNEhL3PlSGS9XLv4YIlCZULimCg1m7s4l7LC7zcJSzo%3D&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A49Z&Signature=0XCoV%2BTbBja4fe%2B3wUiEr1sWhyNCKEhGzk5GKAJVFgs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:49 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:20:00 UTC
+      x-mws-response-context:
+      - iKOFy+E9hy9kEyzlnGxHC1R8V/IUiGsIK9Ve8CRLlAnYoduZGqJ4fzcXf9R8SSvhFfPYLAVbjA1/
+        dycK+eHhuCY/rverbi0U, QuMl+BLIEUoxkMzZmKb05SCtUR5IVN2/idtyMX+GZg1kFTn/wmfg3RIlYnvtjx2JgiKX27/kqFY=
+      x-amz-request-id:
+      - 46981fbd-4792-4e37-8e74-70e3bd1f3ea3
+      x-mws-request-id:
+      - 46981fbd-4792-4e37-8e74-70e3bd1f3ea3
+      x-mws-timestamp:
+      - '2014-02-04T11:29:50.196Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=16
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>7g3m1TVPLR1mmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA4I1APqmQga9HGsHLYYIfzBheekpprnWIx1pwhutzlDDcV2cXGWBWaWnMPuCru/Z4AnQkmv1KRs+iqJ7M/MUEZGePkUUbszLdJniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpgwAOu8xo3N5bJYeZSbxizdhjpoaLKeWTBNgP5xv6RLSe3/MNqMV8mJPo24ATchuIYs8kcrNzmGl3p+lKEYB7Eo2CJMQvmFQ6k5YBVfcvE5JJE8/zgdfbqSHJHNOt+pPAu74xXw5EoO60gE1e9zqXmGlZ/vfyuLhfMdmv+3BbA0JRz9CX5PJsdGBWNN/qROJCU3tAoWRm8SS7DZrDC0wHik3PHU2vP17jwUU4MlvELCJ64Yz+2wfO59fxqd+sFwCnIPYXxjJnwDxmyBPA1QCsEoyIyKq4KC3Ydp38YUEs7IvvVy7+GCJQmVC4pgoNZu7OJeywu83CUs6</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>8993077618</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-30T00:04:15+00:00</StartDate><EndDate>2014-01-29T00:04:15+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-29T00:04:15+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8985123000</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-29T00:01:07+00:00</StartDate><EndDate>2014-01-28T00:01:07+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-28T00:01:07+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8983928100</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_</ReportType><StartDate>2014-01-13T20:20:55+00:00</StartDate><EndDate>2014-01-27T20:21:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T20:45:14+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14700542353</GeneratedReportId><StartedProcessingDate>2014-01-27T20:45:38+00:00</StartedProcessingDate><CompletedDate>2014-01-27T20:45:40+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8983928092</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_V2_</ReportType><StartDate>2014-01-13T20:20:55+00:00</StartDate><EndDate>2014-01-27T20:21:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T20:45:13+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14700542213</GeneratedReportId><StartedProcessingDate>2014-01-27T20:45:38+00:00</StartedProcessingDate><CompletedDate>2014-01-27T20:45:40+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8983928042</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_XML_</ReportType><StartDate>2014-01-13T20:20:55+00:00</StartDate><EndDate>2014-01-27T20:21:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T20:45:13+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14700542193</GeneratedReportId><StartedProcessingDate>2014-01-27T20:45:38+00:00</StartedProcessingDate><CompletedDate>2014-01-27T20:45:40+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8983927900</ReportRequestId><ReportType>_GET_ALT_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-01-13T20:20:55+00:00</StartDate><EndDate>2014-01-27T20:21:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T20:45:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14700545753</GeneratedReportId><StartedProcessingDate>2014-01-27T20:45:38+00:00</StartedProcessingDate><CompletedDate>2014-01-27T20:45:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8983927894</ReportRequestId><ReportType>_GET_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-01-13T20:20:55+00:00</StartDate><EndDate>2014-01-27T20:21:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T20:45:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14700543043</GeneratedReportId><StartedProcessingDate>2014-01-27T20:45:38+00:00</StartedProcessingDate><CompletedDate>2014-01-27T20:45:46+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8983927884</ReportRequestId><ReportType>_GET_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-01-13T20:20:55+00:00</StartDate><EndDate>2014-01-27T20:21:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T20:45:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14700542533</GeneratedReportId><StartedProcessingDate>2014-01-27T20:45:38+00:00</StartedProcessingDate><CompletedDate>2014-01-27T20:45:41+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8977267554</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-28T00:06:59+00:00</StartDate><EndDate>2014-01-27T00:07:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-27T00:07:00+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8969957492</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-27T00:00:59+00:00</StartDate><EndDate>2014-01-26T00:01:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-26T00:01:00+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>46981fbd-4792-4e37-8e74-70e3bd1f3ea3</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:50 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=aws_access_key_id&Action=GetReportRequestListByNextToken&NextToken=7g3m1TVPLR1mmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA4I1APqmQga9HGsHLYYIfzBheekpprnWIx1pwhutzlDDcV2cXGWBWaWnMPuCru%2FZ4AnQkmv1KRs%2BiqJ7M%2FMUEZGePkUUbszLdJniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpgwAOu8xo3N5bJYeZSbxizdhjpoaLKeWTBNgP5xv6RLSe3%2FMNqMV8mJPo24ATchuIYs8kcrNzmGl3p%2BlKEYB7Eo2CJMQvmFQ6k5YBVfcvE5JJE8%2FzgdfbqSHJHNOt%2BpPAu74xXw5EoO60gE1e9zqXmGlZ%2FvfyuLhfMdmv%2B3BbA0JRz9CX5PJsdGBWNN%2FqROJCU3tAoWRm8SS7DZrDC0wHik3PHU2vP17jwUU4MlvELCJ64Yz%2B2wfO59fxqd%2BsFwCnIPYXxjJnwDxmyBPA1QCsEoyIyKq4KC3Ydp38YUEs7IvvVy7%2BGCJQmVC4pgoNZu7OJeywu83CUs6&SellerId=seller_id&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-02-04T11%3A29%3A50Z&Signature=XWNbd%2FxkLz7yFU8ocrzEpnzbheoOE8efnWY62fj5jwM%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 04 Feb 2014 11:29:50 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '1800.0'
+      x-mws-quota-remaining:
+      - '1800.0'
+      x-mws-quota-resetsOn:
+      - Tue,04 Feb 2014 12:20:00 UTC
+      x-mws-response-context:
+      - huZmSrqj1hdg8WKqIzlYU71FXyEuneOaHdNBKX5HVmBmZEH8flmsfoMH0Tf7vG7mPSaMRSP9OXCs
+        O089iQLBDqJoJG7QuiaR, OdMe5A/TAlzX3vNfIs0n1lEbPzIwbiR+cg3iZteJpIjt162aYGNWyhR2wdrVHDACYHcPmTdbn2o=
+      x-amz-request-id:
+      - 28776387-aff8-4b0b-a3c8-db067386ab30
+      x-mws-request-id:
+      - 28776387-aff8-4b0b-a3c8-db067386ab30
+      x-mws-timestamp:
+      - '2014-02-04T11:29:50.744Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+      Keep-Alive:
+      - timeout=2, max=20
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - ''
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListByNextTokenResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListByNextTokenResult><NextToken>N0IL2pssbjtmmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA6DLyBvZ3uS03GsHLYYIfzB+nVSpwcUlG03qQAi9ySeybLhckt3rjh7WjZdNnQmuqOHrlwiyVPOKIaKgcNfwU3huS+9rQF2+7w6U8pTg0alM/OFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzxWHcvngA9N3/uILmAiuC2U37Eux+IPsK+zxmoIQVQpSh6m8o/CWxhj2j148AoUEqMWL1n6ztRlelnQOIhJEEC4ly5NULPYkSlN6nfkQQuemrFGc51klDrRbuwKSqp+WUpVlj1RcL/S4kZdtU98tf6TyzDH4bWJgVV7roLAQk9Nz9yogXi4VUoF6adabzEL2Q8iskwpuxmjq8y9JyqJKFkvlsESBRSBPXfodyTJ3J8G7tTabIoQTROuehhN5+yO3cYM8H5ANRxq/AWdNvyyykf2pYDeaUT0dVK7hQHviFC4Zo0jdKpCIHkQV+99o384TClL4ilGPKYN4=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>8962602958</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-26T00:06:37+00:00</StartDate><EndDate>2014-01-25T00:06:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-25T00:06:37+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8959833682</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T16:21:42+00:00</StartDate><EndDate>2014-01-24T16:21:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T16:21:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14650154173</GeneratedReportId><StartedProcessingDate>2014-01-24T16:52:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:56:45+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8959581492</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T15:38:17+00:00</StartDate><EndDate>2014-01-24T15:38:17+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T15:38:17+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14649621053</GeneratedReportId><StartedProcessingDate>2014-01-24T16:10:16+00:00</StartedProcessingDate><CompletedDate>2014-01-24T16:15:30+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8958788496</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T13:03:20+00:00</StartDate><EndDate>2014-01-24T13:03:20+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T13:03:20+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14647716683</GeneratedReportId><StartedProcessingDate>2014-01-24T13:27:23+00:00</StartedProcessingDate><CompletedDate>2014-01-24T13:33:37+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8958148922</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_LITER_</ReportType><StartDate>2014-01-24T10:51:35+00:00</StartDate><EndDate>2014-01-24T10:51:35+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T10:51:35+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14646565033</GeneratedReportId><StartedProcessingDate>2014-01-24T11:20:31+00:00</StartedProcessingDate><CompletedDate>2014-01-24T11:27:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8954837084</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-25T00:03:39+00:00</StartDate><EndDate>2014-01-24T00:03:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-24T00:03:40+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8946926006</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-24T00:03:46+00:00</StartDate><EndDate>2014-01-23T00:03:46+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-23T00:03:46+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8944276836</ReportRequestId><ReportType>_GET_MERCHANT_LISTINGS_DATA_BACK_COMPAT_</ReportType><StartDate>2014-01-22T16:50:43+00:00</StartDate><EndDate>2014-01-22T16:50:43+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T16:50:43+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>14618013473</GeneratedReportId><StartedProcessingDate>2014-01-22T17:31:15+00:00</StartedProcessingDate><CompletedDate>2014-01-22T18:49:26+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8943648648</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T15:00:48+00:00</StartDate><EndDate>2014-01-22T15:00:48+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T15:00:48+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo><ReportRequestInfo><ReportRequestId>8942721578</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2013-12-23T12:00:52+00:00</StartDate><EndDate>2014-01-22T12:00:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-01-22T12:00:52+00:00</SubmittedDate><ReportProcessingStatus>_SUBMITTED_</ReportProcessingStatus></ReportRequestInfo></GetReportRequestListByNextTokenResult><ResponseMetadata><RequestId>28776387-aff8-4b0b-a3c8-db067386ab30</RequestId></ResponseMetadata></GetReportRequestListByNextTokenResponse>
+    http_version: 
+  recorded_at: Tue, 04 Feb 2014 11:29:51 GMT
+recorded_with: VCR 2.8.0

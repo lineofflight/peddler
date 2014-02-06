@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ServiceStatus < ::Peddler::Request
         def get
-          parameters(:get_service_status)
+          parameters('GetServiceStatus')
           execute
         end
       end

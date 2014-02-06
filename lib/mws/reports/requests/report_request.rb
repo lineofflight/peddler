@@ -6,7 +6,7 @@ module MWS
     module Requests
       class ReportRequest < ::Peddler::Request
         def submit(type, options = {})
-          parameters(:request_report)
+          parameters('RequestReport')
             .update(report_type: type)
             .update(options)
             .timestamp!

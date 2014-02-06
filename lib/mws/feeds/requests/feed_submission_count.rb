@@ -6,7 +6,7 @@ module MWS
     module Requests
       class FeedSubmissionCount < ::Peddler::Request
         def get(options = {})
-          parameters(:get_feed_submission_count)
+          parameters('GetFeedSubmissionCount')
             .update(options)
             .timestamp!
             .format_structured_lists!
