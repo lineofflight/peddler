@@ -1,6 +1,9 @@
 require 'helper'
 require 'nokogiri'
 
+# To suppress deprecation notice
+I18n.enforce_available_locales = false
+
 class ParserTest < MiniTest::Test
   def fixture(type)
     file = File.expand_path("../fixtures/#{type}.xml", __FILE__)
