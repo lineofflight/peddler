@@ -19,7 +19,7 @@ module MWS
       #
       # Examples
       #
-      #   client.register_destination('https://sqs.us-east-1.amazonaws.com/123/Test')
+      #   client.register_destination('https://foo/123/bar')
       #
       # Returns a Destination.
       def_delegator :destination, :register, :register_destination
@@ -29,7 +29,7 @@ module MWS
       #
       # Examples
       #
-      #   client.deregister_destination('https://sqs.us-east-1.amazonaws.com/123/Test')
+      #   client.deregister_destination('https://foo/123/bar')
       #
       # Returns a Destination.
       def_delegator :destination, :deregister, :deregister_destination
@@ -38,7 +38,7 @@ module MWS
       #
       # Examples
       #
-      #   client.send_test_notification_to('https://sqs.us-east-1.amazonaws.com/123/Test')
+      #   client.send_test_notification_to('https://foo/123/bar')
       #
       # Returns a Destination.
       def_delegator :destination, :send_test_notification_to, :send_test_notification_to_destination
