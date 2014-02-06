@@ -25,10 +25,6 @@ module Peddler
       def add_namespace(path)
         path.split('/').map { |attr| "xmlns:#{attr}" }.join('/')
       end
-
-      def symbol_to_xpath(symbol)
-        symbol.to_s.split('_').map(&:capitalize).join
-      end
     end
   end
 end

@@ -1,18 +1,18 @@
-require 'peddler/parsers/xml'
+require 'mws/products/parsers/identifiers'
+require 'mws/products/parsers/lowest_offer_listings'
+require 'peddler/parsers/model'
 
 module MWS
   module Products
     module Parsers
-      class Product < ::Peddler::Parsers::XML
-
-        def identifiers
+      class Product < ::Peddler::Parsers::Model
+        value :identifiers do
           Identifiers.new(xpath('Identifiers'))
         end
 
-        def lowest_offer_listings
+        value :lowest_offer_listings do
           LowestOfferListings.new(xpath('LowestOfferListings'))
         end
-
       end
     end
   end

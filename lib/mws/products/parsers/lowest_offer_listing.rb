@@ -1,11 +1,16 @@
 require 'peddler/parsers/model'
+require 'mws/products/parsers/qualifiers'
+require 'mws/products/parsers/price'
 
 module MWS
   module Products
     module Parsers
       class LowestOfferListing < ::Peddler::Parsers::Model
+        value :qualifiers do
+          Qualifiers.new(xpath('Qualifiers'))
+        end
 
-        value :offer_listings_considered_count do
+        value :number_of_offer_listings_considered do
           integer_at_xpath('NumberOfOfferListingsConsidered')
         end
 
@@ -13,18 +18,13 @@ module MWS
           integer_at_xpath('SellerFeedbackCount')
         end
 
-        value :multiple_offers do
-          boolean_at_xpath('MultipleOffersAtLowestPrice')
-        end
-
-        def qualifiers
-          Qualifiers.new(xpath('Qualifiers'))
-        end
-
-        def price
+        value :price do
           Price.new(xpath('Price'))
         end
 
+        value :multiple_offers_at_lowest_price do
+          boolean_at_xpath('MultipleOffersAtLowestPrice')
+        end
       end
     end
   end
