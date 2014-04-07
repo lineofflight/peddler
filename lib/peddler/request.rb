@@ -39,7 +39,7 @@ module Peddler
     private
 
     def parser
-      @parser ||= Object.const_get(self.class.name.sub('Request', 'Parser'))
+      @parser ||= self.class.name.sub('Request', 'Parser').split('::').inject(Object) { |mod, klass| mod.const_get(klass) }
     end
 
     def fetch(&blk)
