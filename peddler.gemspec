@@ -7,10 +7,10 @@ Gem::Specification.new do |gem|
   gem.version     = Peddler::VERSION
   gem.platform    = Gem::Platform::RUBY
   gem.authors     = ['Hakan Ensari']
-  gem.email       = ['hakan.ensari@papercavalier.com']
-  gem.homepage    = 'http://github.com/papercavalier/peddler'
+  gem.email       = ['hakanensari@me.com']
+  gem.homepage    = 'http://github.com/hakanensari/peddler'
   gem.summary     = %q{Wraps the Amazon MWS APIs}
-  gem.description = %q{A Ruby interface to the Amazon Marketplace Web Service (MWS) APIs}
+  gem.description = %q{A Ruby interface to the Amazon MWS API}
 
   gem.files         = Dir.glob('lib/**/*') + %w(LICENSE README.md)
   gem.test_files    = Dir.glob('test/**/*')
