@@ -1,45 +1,33 @@
-require 'forwardable'
 require 'jeff'
+require 'peddler/operation'
+require 'peddler/parser'
 
 module Peddler
+  # @abstract Subclass to implement an MWS API section.
   class Client
-    extend Forwardable
     include Jeff
 
-    attr_accessor :default_country, :merchant_id
-
-    def initialize(default_country = nil, aws_access_key_id = nil, aws_secret_access_key = nil, merchant_id = nil)
-      @default_country = default_country
-      @aws_access_key_id = aws_access_key_id || ENV['AWS_ACCESS_KEY_ID']
-      @aws_secret_access_key = aws_secret_access_key || ENV['AWS_SECRET_ACCESS_KEY']
-      @merchant_id = merchant_id || ENV['MERCHANT_ID']
-    end
+    BadMarketplaceId = Class.new(StandardError)
 
     HOSTS = {
-      'CA' => 'mws.amazonservices.ca',
-      'CN' => 'mws.amazonservices.com.cn',
-      'DE' => 'mws-eu.amazonservices.com',
-      'ES' => 'mws-eu.amazonservices.com',
-      'FR' => 'mws-eu.amazonservices.com',
-      'GB' => 'mws-eu.amazonservices.com',
-      'IN' => 'mws.amazonservices.in',
-      'IT' => 'mws-eu.amazonservices.com',
-      'JP' => 'mws.amazonservices.jp',
-      'US' => 'mws.amazonservices.com'
+      'A2EUQ1WTGCTBG2' => 'mws.amazonservices.ca',
+      'AAHKV2X7AFYLW'  => 'mws.amazonservices.com.cn',
+      'A1PA6795UKMFR9' => 'mws-eu.amazonservices.com',
+      'A1RKKUPIHCS9HS' => 'mws-eu.amazonservices.com',
+      'A13V1IB3VIYZZH' => 'mws-eu.amazonservices.com',
+      'A1F83G8C2ARO7P' => 'mws-eu.amazonservices.com',
+      'A21TJRUUN4KGV'  => 'mws.amazonservices.in',
+      'APJ6JRA9NG5V4'  => 'mws-eu.amazonservices.com',
+      'A1VC38T7YXB528' => 'mws.amazonservices.jp',
+      'ATVPDKIKX0DER'  => 'mws.amazonservices.com'
     }
 
-    MARKETPLACE_IDS = {
-      'CA' => 'A2EUQ1WTGCTBG2',
-      'CN' => 'AAHKV2X7AFYLW',
-      'DE' => 'A1PA6795UKMFR9',
-      'ES' => 'A1RKKUPIHCS9HS',
-      'FR' => 'A13V1IB3VIYZZH',
-      'GB' => 'A1F83G8C2ARO7P',
-      'IN' => 'A21TJRUUN4KGV',
-      'IT' => 'APJ6JRA9NG5V4',
-      'JP' => 'A1VC38T7YXB528',
-      'US' => 'ATVPDKIKX0DER'
-    }
+    attr_writer :merchant_id, :marketplace_id
+    attr_reader :body
+
+    alias :configure :tap
+
+    params('SellerId' => -> { merchant_id })
 
     def self.path(path = nil)
       path ? @path = path : @path
@@ -49,14 +37,66 @@ module Peddler
       base.params(params)
     end
 
-    params('SellerId' => -> { merchant_id })
-
     def aws_endpoint
-      "https://#{HOSTS.fetch(default_country)}/#{self.class.path}"
+      "https://#{host}/#{self.class.path}"
     end
 
-    def marketplace_id(country = default_country)
-      MARKETPLACE_IDS.fetch(country)
+    def marketplace_id
+      @marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
+    end
+
+    def merchant_id
+      @merchant_id ||= ENV['MWS_MERCHANT_ID']
+    end
+
+    def headers
+      @headers ||= {}
+    end
+
+    def body=(str)
+      headers['Content-Type'] = content_type(str)
+      @body = str
+    end
+
+    def operation(action = nil)
+      action ? @operation = Operation.new(action) : @operation
+    end
+
+    def run(parser = Parser, &blk)
+      opts = { query: operation, headers: headers, expects: 200 }
+      opts.store(:body, body) if body
+      opts.store(:response_block, blk) if block_given?
+      res = post(opts)
+
+      parser.parse(res)
+    end
+
+    private
+
+    def content_type(str)
+      if str.start_with?('<?xml')
+        'text/xml'
+      else
+        "text/tab-separated-values; charset=#{host_encoding}"
+      end
+    end
+
+    def host_encoding
+      if host.end_with?('jp')
+        'Shift_JIS'
+      elsif host.end_with?('cn')
+        'UTF-16'
+      else
+        'ISO-8859-1'
+      end
+    end
+
+    def host
+      HOSTS.fetch(marketplace_id) { raise BadMarketplaceId }
+    end
+
+    def extract_options(args)
+      args.last.is_a?(Hash) ? args.pop : {}
     end
   end
 end

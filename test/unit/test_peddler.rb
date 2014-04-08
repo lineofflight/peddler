@@ -2,7 +2,7 @@ require 'helper'
 require 'peddler'
 
 class PeddlerTest < MiniTest::Test
-  def test_loads_apis
-    assert_equal 11, MWS.constants.size
+  def test_loads_all_apis
+    assert_equal 13, MWS.constants.size
   end
 end
