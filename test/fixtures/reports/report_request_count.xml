@@ -1,9 +1,0 @@
-<GetReportRequestCountResponse xmlns="http://mws.amazonservices.com/
-doc/2009-01-01/">
-  <GetReportRequestCountResult>
-    <Count>1276</Count>
-  </GetReportRequestCountResult>
-  <ResponseMetadata>
-    <RequestId>7e155027-3741-4422-95a7-1de12703c13e</RequestId>
-  </ResponseMetadata>
-</GetReportRequestCountResponse>

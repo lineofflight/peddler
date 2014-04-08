@@ -1,41 +1,52 @@
 require 'yaml'
-require 'helper'
 require 'vcr'
 
-VCR.configure do |c|
-  nondeterministic_params = %w(AWSAccessKeyId SellerId Signature Timestamp StartDate CreatedAfter Destination.AttributeList.member.1.Value)
+require 'helper'
 
-  extract_query_value = ->(interaction, key) do
-    query = URI.parse(interaction.request.uri).query
-    query_values = CGI.parse(query)
-    value = query_values[key].first
-    CGI.escape(value) if value
+VCR.configure do |c|
+  c.hook_into :excon
+  c.cassette_library_dir = 'test/vcr_cassettes'
+
+  c.before_record do |interaction|
+    interaction.ignore! if interaction.response.status.code >= 400
   end
 
-  c.hook_into :excon
-  c.cassette_library_dir = 'test/fixtures/vcr_cassettes'
+  nondeterministic_params = %w(
+    AWSAccessKeyId SellerId Signature Timestamp StartDate CreatedAfter
+    Destination.AttributeList.member.1.Value
+  )
+  matcher = VCR.request_matchers.uri_without_param(*nondeterministic_params)
   c.default_cassette_options = {
-    match_requests_on: [:method, VCR.request_matchers.uri_without_param(*nondeterministic_params)],
+    match_requests_on: [:method, matcher],
     record: :new_episodes
   }
-  c.filter_sensitive_data('aws_access_key_id') { |interaction| extract_query_value.(interaction, 'AWSAccessKeyId') }
-  c.filter_sensitive_data('seller_id') { |interaction| extract_query_value.(interaction, 'SellerId') }
-  c.filter_sensitive_data('sqs_queue_url') { |interaction| extract_query_value.(interaction, 'Destination.AttributeList.member.1.Value') }
 end
 
 class IntegrationTest < MiniTest::Test
-  class << self
-    attr_accessor :api
+  def api_name
+    self.class.name.match(/(.*)Test/)[1]
   end
 
-  def accounts
-    YAML.load_file(File.expand_path('../fixtures/mws.yml', __FILE__))
-  rescue Errno::ENOENT
-    warn('Credentials not set')
-    YAML.load_file(File.expand_path('../fixtures/mws.yml.example', __FILE__))
+  def clients
+    accounts = begin
+      YAML.load_file(File.expand_path('../mws.yml', __FILE__)).shuffle
+    rescue Errno::ENOENT
+      warn('Skipping integration tests')
+      []
+    end
+
+    accounts.map do |account|
+      MWS.const_get(api_name).new.configure do |c|
+        account.each { |k, v| c.send("#{k}=", v) }
+      end
+    end
   end
 
   def setup
-    @clients = accounts.map { |mws| self.class.api.const_get(:Client).new(*mws.values) }
+    VCR.insert_cassette(api_name)
+  end
+
+  def teardown
+    VCR.eject_cassette
   end
 end

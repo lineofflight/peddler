@@ -1,5 +1,7 @@
 .bundle
 Gemfile.lock
-mws.yml
+.yardoc
 bin
+mws.yml
 pkg
+vcr_cassettes

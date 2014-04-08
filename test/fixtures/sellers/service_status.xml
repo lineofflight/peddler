@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<GetServiceStatusResponse
-xmlns="https://mws.amazonservices.com/FraudManagement/2010-09-28
-">
-  <GetServiceStatusResult>
-    <Status>GREEN</Status>
-    <Timestamp>2010-09-24T21:38:09.676Z</Timestamp>
-  </GetServiceStatusResult>
-</GetServiceStatusResponse>

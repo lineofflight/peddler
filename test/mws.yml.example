@@ -1,0 +1,4 @@
+- marketplace_id: 123
+  merchant_id: 123
+  aws_access_key_id: 123
+  aws_secret_access_key: 123
