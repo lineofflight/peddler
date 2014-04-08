@@ -1,3 +1,5 @@
+require 'mws/cart_information'
+require 'mws/customer_information'
 require 'mws/feeds'
 require 'mws/fulfillment_inbound_shipment'
 require 'mws/fulfillment_inventory'
