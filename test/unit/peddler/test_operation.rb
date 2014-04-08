@@ -1,5 +1,5 @@
 require 'helper'
-require 'peddler/Operation'
+require 'peddler/operation'
 
 class OperationTest < MiniTest::Test
   def setup
