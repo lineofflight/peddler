@@ -1,7 +1,10 @@
 language: ruby
 rvm:
+  - 1.9.3
   - 2.0.0
   - 2.1.0
+  - jruby-19mode
+  - rbx-2
 before_script:
   - export AWS_ACCESS_KEY_ID=foo
   - export AWS_SECRET_ACCESS_KEY=bar
