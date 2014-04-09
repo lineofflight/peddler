@@ -11,7 +11,6 @@ module MWS
     # Lists products and their attributes, based on a search query
     #
     # @see http://docs.developer.amazonservices.com/en_US/products/Products_ListMatchingProducts.html
-    # @method list_matching_products
     # @overload list_matching_products(query, opts = { marketplace_id: marketplace_id })
     #   @param query [String]
     #   @param opts [Hash]

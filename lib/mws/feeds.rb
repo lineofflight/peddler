@@ -15,8 +15,8 @@ module MWS
     # @option opts [Array<String>, String] :marketplace_id_list
     # @option opts [Boolean] :purge_and_replace
     # @return [Peddler::Parser]
-    def submit_feed(content, feed_type, opts = {})
-      self.body = content
+    def submit_feed(feed_content, feed_type, opts = {})
+      self.body = feed_content
       operation('SubmitFeed')
         .add(opts.merge('FeedType' => feed_type))
         .structure!('MarketplaceId', 'Id')
@@ -51,7 +51,6 @@ module MWS
     # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionListByNextToken.html
     # @param next_token [String]
     # @return [Peddler::Parser]
-    # @return false if there are no more pages
     def get_feed_submission_list_by_next_token(next_token)
       operation('GetFeedSubmissionListByNextToken')
         .add('NextToken' => next_token)

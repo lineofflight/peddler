@@ -42,7 +42,6 @@ module MWS
     # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrdersByNextToken.html
     # @param next_token [String]
     # @return [Peddler::Parser]
-    # @return false if there are no more pages
     def list_orders_by_next_token(next_token)
       operation('ListOrdersByNextToken')
         .add('NextToken' => next_token)
@@ -80,7 +79,6 @@ module MWS
     # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrderItemsByNextToken.html
     # @param next_token [String]
     # @return [Peddler::Parser]
-    # @return false if there are no more pages
     def list_order_items_by_next_token(next_token)
       operation('ListOrderItemsByNextToken')
         .add('NextToken' => next_token)

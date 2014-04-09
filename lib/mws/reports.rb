@@ -47,7 +47,6 @@ module MWS
     # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestListByNextToken.html
     # @param next_token [String]
     # @return [Peddler::Parser]
-    # @return false if there are no more pages
     def get_report_request_list_by_next_token(next_token)
       operation('GetReportRequestListByNextToken')
         .add('NextToken' => next_token)
@@ -116,7 +115,6 @@ module MWS
     # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportListByNextToken.html
     # @param next_token [String]
     # @return [Peddler::Parser]
-    # @return false if there are no more pages
     def get_report_list_by_next_token(next_token)
       operation('GetReportListByNextToken')
         .add('NextToken' => next_token)
@@ -187,7 +185,7 @@ module MWS
     # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
     # @param next_token [String]
     # @raise [NotImplementedError]
-    def get_report_schedule_list_by_next_token(token = next_token)
+    def get_report_schedule_list_by_next_token(next_token)
       raise NotImplementedError
     end
 
