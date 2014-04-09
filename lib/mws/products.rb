@@ -16,7 +16,7 @@ module MWS
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
     #   @option opts [String] :query_context_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def list_matching_products(query, opts = {})
       opts[:marketplace_id] ||= marketplace_id
 
@@ -35,7 +35,7 @@ module MWS
     #   @param id_list [Array<String>]
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_matching_product_for_id(id_type, *id_list)
       opts = extract_options(id_list)
       opts[:marketplace_id] ||= marketplace_id
@@ -54,7 +54,7 @@ module MWS
     #   @param asins [Array<String>]
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_matching_product(*asins)
       opts = extract_options(asins)
       opts[:marketplace_id] ||= marketplace_id
@@ -73,7 +73,7 @@ module MWS
     #   @param skus [Array<String>]
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_competitive_pricing_for_sku(*skus)
       opts = extract_options(skus)
       opts[:marketplace_id] ||= marketplace_id
@@ -92,7 +92,7 @@ module MWS
     #   @param asins [Array<String>]
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_competitive_pricing_for_asin(*asins)
       opts = extract_options(asins)
       opts[:marketplace_id] ||= marketplace_id
@@ -114,7 +114,7 @@ module MWS
     #   @option opts [String] :marketplace_id
     #   @option opts [String] :item_condition
     #   @option opts [Boolean] :exclude_me
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_lowest_offer_listings_for_sku(*skus)
       opts = extract_options(skus)
       opts[:marketplace_id] ||= marketplace_id
@@ -136,7 +136,7 @@ module MWS
     #   @option opts [String] :marketplace_id
     #   @option opts [String] :item_condition
     #   @option opts [Boolean] :exclude_me
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_lowest_offer_listings_for_asin(*asins)
       opts = extract_options(asins)
       opts[:marketplace_id] ||= marketplace_id
@@ -157,7 +157,7 @@ module MWS
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
     #   @option opts [String] :item_condition
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_my_price_for_sku(*skus)
       opts = extract_options(skus)
       opts[:marketplace_id] ||= marketplace_id
@@ -178,7 +178,7 @@ module MWS
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
     #   @option opts [String] :item_condition
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_my_price_for_asin(*asins)
       opts = extract_options(asins)
       opts[:marketplace_id] ||= marketplace_id
@@ -198,7 +198,7 @@ module MWS
     #   @param sku [String]
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_product_categories_for_sku(sku, opts = {})
       opts[:marketplace_id] ||= marketplace_id
 
@@ -215,7 +215,7 @@ module MWS
     #   @param asin [String]
     #   @param opts [Hash]
     #   @option opts [String] :marketplace_id
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_product_categories_for_asin(asin, opts = {})
       opts[:marketplace_id] ||= marketplace_id
 
@@ -228,7 +228,7 @@ module MWS
     # Gets the service status of the API
     #
     # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetServiceStatus.html
-    # @return Peddler::Parser
+    # @return [Peddler::XMLParser]
     def get_service_status
       operation('GetServiceStatus')
       run

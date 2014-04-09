@@ -14,7 +14,7 @@ module MWS
     #
     # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
     # @param marketplace_id [String]
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_last_updated_time_for_recommendations(marketplace_id = marketplace_id)
       operation('GetLastUpdatedTimeForRecommendations')
         .add('MarketplaceId' => marketplace_id)
@@ -31,7 +31,7 @@ module MWS
     #   @option opts [String] :marketplace_id
     #   @option opts [String] :recommendation_category
     #   @option opts [String] :category_query_list
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def list_recommendations(opts = {})
       opts[:marketplace_id] ||= marketplace_id
 
@@ -46,7 +46,7 @@ module MWS
     #
     # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendationsByNextToken.html
     # @param next_token [String]
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def list_recommendations_by_next_token(next_token)
       operation('ListRecommendationsByNextToken')
         .add('NextToken' => next_token)
@@ -57,7 +57,7 @@ module MWS
     # Gets the service status of the API
     #
     # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetServiceStatus.html
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_service_status
       operation('GetServiceStatus')
       run
