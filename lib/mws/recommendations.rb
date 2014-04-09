@@ -32,11 +32,11 @@ module MWS
     #   @option opts [String] :recommendation_category
     #   @option opts [String] :category_query_list
     # @return [Peddler::Parser]
-    def list_recommendations(opt = {})
-      opt[:marketplace_id] ||= marketplace_id
+    def list_recommendations(opts = {})
+      opts[:marketplace_id] ||= marketplace_id
 
       operation('ListRecommendations')
-        .add(opt)
+        .add(opts)
         .structure!('CategoryQueryList', 'CategoryQuery', '1', 'FilterOptions', 'FilterOption')
 
       run
