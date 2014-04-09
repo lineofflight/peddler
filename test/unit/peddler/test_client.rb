@@ -89,7 +89,7 @@ class ClientTest < MiniTest::Test
 
   def test_streams_response
     chunks = ''
-    streamer = -> (chunk, _, _) { chunks << chunk }
+    streamer = ->(chunk, _, _) { chunks << chunk }
     @client.run(Parser, &streamer)
 
     assert_equal @body, chunks
