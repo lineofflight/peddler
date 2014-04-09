@@ -13,10 +13,8 @@ module MWS
     # Registers a new destination to receive notifications
     #
     # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_RegisterDestination.html
-    # @method register_destination
-    # @overload register_destination(sqs_queue_url, marketplace_id = marketplace_id)
-    #   @param sqs_queue_url [String]
-    #   @param marketplace_id [String]
+    # @param sqs_queue_url [String]
+    # @param marketplace_id [String]
     # @return [Peddler::Parser]
     def register_destination(sqs_queue_url, marketplace_id = marketplace_id)
       operation('RegisterDestination')
@@ -29,10 +27,8 @@ module MWS
     # Removes an existing destination from the list of registered destinations
     #
     # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeregisterDestination.html
-    # @method deregister_destination
-    # @overload deregister_destination(sqs_queue_url, marketplace_id = marketplace_id)
-    #   @param sqs_queue_url [String]
-    #   @param marketplace_id [String]
+    # @param sqs_queue_url [String]
+    # @param marketplace_id [String]
     # @return [Peddler::Parser]
     def deregister_destination(sqs_queue_url, marketplace_id = marketplace_id)
       operation('DeregisterDestination')
@@ -57,10 +53,8 @@ module MWS
     # Sends a test notification to an existing destination
     #
     # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_SendTestNotificationToDestination.html
-    # @method send_test_notification_to_destination
-    # @overload send_test_notification_to_destination(sqs_queue_url, marketplace_id = marketplace_id)
-    #   @param sqs_queue_url [String]
-    #   @param marketplace_id [String]
+    # @param sqs_queue_url [String]
+    # @param marketplace_id [String]
     # @return [Peddler::Parser]
     def send_test_notification_to_destination(sqs_queue_url, marketplace_id = marketplace_id)
       operation('SendTestNotificationToDestination')
