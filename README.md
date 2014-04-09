@@ -113,8 +113,6 @@ The MWS Products API helps you get information to match your products to existin
 
 ### Recommendations
 
-**Not implemented**
-
 The Recommendations API enables you to programmatically retrieve Amazon Selling Coach recommendations by recommendation category. A recommendation is an actionable, timely, and personalized opportunity to increase your sales and performance.
 
 [Read more](http://rubydoc.info/gems/peddler/MWS/Recommendations)
