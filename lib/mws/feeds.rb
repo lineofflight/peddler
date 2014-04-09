@@ -14,7 +14,7 @@ module MWS
     # @param opts [Hash]
     # @option opts [Array<String>, String] :marketplace_id_list
     # @option opts [Boolean] :purge_and_replace
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def submit_feed(feed_content, feed_type, opts = {})
       self.body = feed_content
       operation('SubmitFeed')
@@ -35,7 +35,7 @@ module MWS
     # @option opts [Array<String>, String] :feed_processing_status_list
     # @option opts [String, #iso8601] :submitted_from_date
     # @option opts [String, #iso8601] :submitted_to_date
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_feed_submission_list(opts = {})
       operation('GetFeedSubmissionList')
         .add(opts)
@@ -50,7 +50,7 @@ module MWS
     #
     # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionListByNextToken.html
     # @param next_token [String]
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_feed_submission_list_by_next_token(next_token)
       operation('GetFeedSubmissionListByNextToken')
         .add('NextToken' => next_token)
@@ -67,7 +67,7 @@ module MWS
     # @option opts [Array<String>, String] :feed_processing_status_list
     # @option opts [String, #iso8601] :submitted_from_date
     # @option opts [String, #iso8601] :submitted_to_date
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def get_feed_submission_count(opts = {})
       operation('GetFeedSubmissionCount')
         .add(opts)
@@ -86,7 +86,7 @@ module MWS
     # @option opts [Array<String>, String] :feed_type_list
     # @option opts [String, #iso8601] :submitted_from_date
     # @option opts [String, #iso8601] :submitted_to_date
-    # @return [Peddler::Parser]
+    # @return [Peddler::XMLParser]
     def cancel_feed_submissions(opts = {})
       operation('CancelFeedSubmissions')
         .add(opts)
@@ -98,7 +98,8 @@ module MWS
     #
     # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionResult.html
     # @param feed_submission_id [Integer, String]
-    # @return Peddler::Parser
+    # @return [Peddler::XMLParser] if the report is in XML format
+    # @return [Peddler::CSVParser] if the report is a flat file
     def get_feed_submission_result(feed_submission_id)
       operation('GetFeedSubmissionResult')
         .add('FeedSubmissionId' => feed_submission_id)
