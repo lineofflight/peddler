@@ -28,6 +28,24 @@ class OperationTest < MiniTest::Test
     assert_equal 'foo', @operation.fetch('time')
   end
 
+  def test_stringifies_hash_values
+    @operation.store('Foo', { bar: 1 })
+    assert_equal 1, @operation.fetch('Foo.Bar')
+    refute @operation.has_key?('Foo')
+  end
+
+  def test_stringifies_nested_hash_values
+    @operation.store('Foo', { bar: { baz: 1 } })
+    assert_equal 1, @operation.fetch('Foo.Bar.Baz')
+    refute @operation.has_key?('Foo')
+  end
+
+  def test_stringifies_struct_values
+    @operation.store('Foo', Struct.new(:bar, :baz).new(1, 2))
+    assert_equal 1, @operation.fetch('Foo.Bar')
+    assert_equal 2, @operation.fetch('Foo.Baz')
+  end
+
   def test_update_returns_delegator
     assert_kind_of Peddler::Operation, @operation.add(foo: 'bar')
   end
