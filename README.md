@@ -51,7 +51,7 @@ export AWS_SECRET_ACCESS_KEY="rOMa3ydPBTJ3AD0bxERTOX0Fv0fAC6Q0s6/czMZO"
 
 With the MWS Cart Information API, you can retrieve shopping carts that your Amazon Webstore customers have created. The Cart Information API enables you to programmatically integrate Amazon Webstore cart information with your CRM systems, marketing applications, and other systems that require cart data.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/CartInformation)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/CartInformation)
 
 ### Customer Information
 
@@ -59,13 +59,13 @@ With the MWS Cart Information API, you can retrieve shopping carts that your Ama
 
 With the MWS Customer Information API, you can retrieve information from the customer accounts of your Amazon Webstore customers. This customer information includes customer name, contact information, customer account type, and associated Amazon Webstore marketplaces. The Customer Information API enables you to programmatically integrate Amazon Webstore customer account information with your CRM systems, marketing applications, and other systems that require customer data.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/CustomerInformation)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/CustomerInformation)
 
 ### Feeds
 
 The MWS Feeds API lets you upload inventory and order data to Amazon. You can also use this API to get information about the processing of feeds.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Feeds)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Feeds)
 
 ### Fulfillment Inbound Shipment
 
@@ -73,7 +73,7 @@ The MWS Feeds API lets you upload inventory and order data to Amazon. You can al
 
 With the MWS Fulfillment Inbound Shipment API, you can create and update inbound shipments of inventory in the Amazon Fulfillment Network. You can also also request lists of inbound shipments or inbound shipment items based on criteria that you specify.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/FulfillmentInboundShipment)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentInboundShipment)
 
 ### Fulfillment Inventory
 
@@ -81,7 +81,7 @@ With the MWS Fulfillment Inbound Shipment API, you can create and update inbound
 
 The MWS Fulfillment Inventory API can help you stay up-to-date on the availability of your inventory in the Amazon Fulfillment Network. The Fulfillment Inventory API reports real-time availability information for your Amazon Fulfillment Network inventory regardless of whether you are selling your inventory on Amazon's retail web site or through other retail channels.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/FulfillmentInventory)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentInventory)
 
 ### Fulfillment Outbound Shipment
 
@@ -89,49 +89,49 @@ The MWS Fulfillment Inventory API can help you stay up-to-date on the availabili
 
 The MWS Fulfillment Outbound Shipment API enables you to fulfill orders placed through channels other than Amazon's retail web site, using your inventory in the Amazon Fulfillment Network. You can request previews of potential fulfillment orders that return estimated shipping fees and shipping dates based on shipping speed. You can get detailed item-level, shipment-level, and order-level information for any existing fulfillment order that you specify. You can also request lists of existing fulfillment orders based on when they were fulfilled and by the fulfillment method associated with them.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/FulfillmentOutboundShipment)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentOutboundShipment)
 
 ### Off Amazon Payments
 
 The MWS Off-Amazon Payments API helps you to process payments for purchases made by buyers on your website using the Login and Pay with Amazon service. This API enables you to programmatically retrieve shipping and payment information provided by the buyer from their Amazon account. It allows you to authorize, capture, and refund payments, enabling a variety of payments scenarios.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/OffAmazonPayments)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/OffAmazonPayments)
 
 ### Orders
 
 With the MWS Orders API, you can list orders created or updated during a time frame you specify or retrieve information about specific orders.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Orders)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Orders)
 
 ### Products
 
 The MWS Products API helps you get information to match your products to existing product listings on Amazon Marketplace websites and to make sourcing and pricing decisions for listing those products on Amazon Marketplace websites.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Products)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Products)
 
 ### Recommendations
 
 The Recommendations API enables you to programmatically retrieve Amazon Selling Coach recommendations by recommendation category. A recommendation is an actionable, timely, and personalized opportunity to increase your sales and performance.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Recommendations)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Recommendations)
 
 ### Reports
 
 The Reports API lets you request reports about your inventory and orders.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Reports)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Reports)
 
 ### Sellers
 
 The Sellers API lets sellers retrieve information about their seller account, such as the marketplaces they participate in.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Sellers)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Sellers)
 
 ### Subscriptions
 
 The Amazon MWS Subscriptions API section enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.
 
-[Read more](http://rubydoc.info/gems/peddler/MWS/Subscriptions)
+[Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Subscriptions)
 
 [1]: https://travis-ci.org/hakanensari/peddler.png
 [2]:https://travis-ci.org/hakanensari/peddler
