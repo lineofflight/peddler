@@ -15,16 +15,18 @@ module MWS
     #
     # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_SetOrderReferenceDetails.html
     # @param amazon_order_reference_id [String]
-    # @param order_reference_attributes [Hash]
-    # @option order_reference_attributes [Struct, Hash] :order_total
-    # @option order_reference_attributes [String] :platform_id
-    # @option order_reference_attributes [String] :seller_note
-    # @option order_reference_attributes [Struct, Hash] :seller_order_attributes
+    # @param order_total [Struct, Hash]
+    # @param opts [Hash]
+    # @option opts [String] :platform_id
+    # @option opts [String] :seller_note
+    # @option opts [Struct, Hash] :seller_order_attributes
     # @return [Peddler::XMLParser]
-    def set_order_reference_details(amazon_order_reference_id, order_reference_attributes)
+    def set_order_reference_details(amazon_order_reference_id, order_total, opts = {})
       operation('SetOrderReferenceDetails')
-        .add('AmazonOrderReferenceId' => amazon_order_reference_id)
-        .add('OrderReferenceAttributes' => order_reference_attributes)
+        .add(
+          'AmazonOrderReferenceId' => amazon_order_reference_id,
+          'OrderReferenceAttributes' => opts.merge('OrderTotal' => order_total)
+        )
 
       run
     end
