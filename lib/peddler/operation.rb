@@ -23,9 +23,22 @@ module Peddler
 
     def store(key, val)
       key = camelize(key) if key.is_a?(Symbol)
-      val = val.iso8601 if val.respond_to?(:iso8601)
 
-      __getobj__.store(key, val)
+
+      if val.respond_to?(:iso8601)
+        val = val.iso8601
+      elsif val.is_a?(Struct)
+        val = val.to_h
+      end
+
+      if val.is_a?(Hash)
+        val.each do |subkey, subval|
+          subkey = camelize(subkey) if subkey.is_a?(Symbol)
+          store([key, subkey].join('.'), subval)
+        end
+      else
+        __getobj__.store(key, val)
+      end
     end
 
     def update(hsh)
