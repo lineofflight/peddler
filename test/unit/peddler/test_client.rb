@@ -24,8 +24,12 @@ class ClientTest < MiniTest::Test
   end
 
   def test_configures_path
-    @klass.path('Foo')
-    assert @client.aws_endpoint.match(/Foo$/)
+    @klass.path('/Foo')
+    assert @client.aws_endpoint.match(%r{/Foo$})
+  end
+
+  def test_default_path
+    assert_equal '/', @klass.path
   end
 
   def test_has_user_agent

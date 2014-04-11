@@ -6,7 +6,7 @@ module MWS
   # sourcing and pricing decisions for listing those products on Amazon
   # Marketplace websites.
   class Products < ::Peddler::Client
-    path 'Products/2011-10-01'
+    path '/Products/2011-10-01'
 
     # Lists products and their attributes, based on a search query
     #

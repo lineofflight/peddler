@@ -12,6 +12,6 @@ module MWS
   #
   # @todo Not implemented
   class FulfillmentOutboundShipment < ::Peddler::Client
-    path 'FulfillmentOutboundShipment/2010-10-01'
+    path '/FulfillmentOutboundShipment/2010-10-01'
   end
 end

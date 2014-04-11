@@ -30,7 +30,7 @@ module Peddler
     params('SellerId' => -> { merchant_id })
 
     def self.path(path = nil)
-      path ? @path = path : @path
+      path ? @path = path : @path ||= '/'
     end
 
     def self.inherited(base)
@@ -38,7 +38,7 @@ module Peddler
     end
 
     def aws_endpoint
-      "https://#{host}/#{self.class.path}"
+      "https://#{host}#{self.class.path}"
     end
 
     def marketplace_id

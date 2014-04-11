@@ -6,7 +6,7 @@ module MWS
   # is an actionable, timely, and personalized opportunity to increase your
   # sales and performance.
   class Recommendations < ::Peddler::Client
-    path 'Recommendations/2013-04-01'
+    path '/Recommendations/2013-04-01'
 
     # Checks whether there are active recommendations for each category for the
     # given marketplace, and if there are, returns the time when recommendations
