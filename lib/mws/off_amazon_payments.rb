@@ -7,6 +7,11 @@ module MWS
   # information provided by the buyer from their Amazon account. It allows you
   # to authorize, capture, and refund payments, enabling a variety of payments
   # scenarios.
+  #
+  # @note The Off-Amazon Payments API section is only applicable to payments
+  #   made through the Login and Pay with Amazon service offered by Amazon
+  #   Payments. You cannot use this API section to process payments for Amazon
+  #   Marketplace, Amazon Webstore, or Checkout by Amazon.
   class OffAmazonPayments < ::Peddler::Client
     path '/OffAmazonPayments/2013-01-01/'
 
