@@ -8,6 +8,6 @@ module MWS
   #
   # @todo Not implemented
   class CartInformation < ::Peddler::Client
-    path 'CartInformation/2014-03-01'
+    path '/CartInformation/2014-03-01'
   end
 end

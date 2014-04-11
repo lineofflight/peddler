@@ -4,7 +4,7 @@ module MWS
   # The Sellers API lets sellers retrieve information about their seller
   # account, such as the marketplaces they participate in.
   class Sellers < ::Peddler::Client
-    path 'Sellers/2011-07-01'
+    path '/Sellers/2011-07-01'
 
     # Lists the marketplaces the seller participates in
     #

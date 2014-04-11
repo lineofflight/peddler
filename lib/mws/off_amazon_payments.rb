@@ -8,7 +8,7 @@ module MWS
   # to authorize, capture, and refund payments, enabling a variety of payments
   # scenarios.
   class OffAmazonPayments < ::Peddler::Client
-    path 'OffAmazonPayments/2013-01-01/'
+    path '/OffAmazonPayments/2013-01-01/'
 
     # Sets order reference details such as the order total and a description for
     # the order

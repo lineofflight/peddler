@@ -11,6 +11,6 @@ module MWS
   #
   # @todo Not implemented
   class CustomerInformation < ::Peddler::Client
-    path 'CustomerInformation/2014-03-01'
+    path '/CustomerInformation/2014-03-01'
   end
 end
