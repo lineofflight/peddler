@@ -47,8 +47,6 @@ export AWS_SECRET_ACCESS_KEY="rOMa3ydPBTJ3AD0bxERTOX0Fv0fAC6Q0s6/czMZO"
 
 ### Cart Information
 
-**Not implemented**
-
 With the MWS Cart Information API, you can retrieve shopping carts that your Amazon Webstore customers have created. The Cart Information API enables you to programmatically integrate Amazon Webstore cart information with your CRM systems, marketing applications, and other systems that require cart data.
 
 [Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/CartInformation)
