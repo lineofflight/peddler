@@ -18,7 +18,7 @@ module MWS
 
     # Lists shopping carts
     #
-    # @see http://docs.developer.amazonservices.com/en_US/cart_info/CartInfo_ListCarts.html#CartInfo_ListCarts
+    # @see http://docs.developer.amazonservices.com/en_US/cart_info/CartInfo_ListCarts.html
     # @param date_range_start [String, #iso8601]
     # @param opts [Hash]
     # @option opts [String] :marketplace_id
