@@ -28,7 +28,7 @@ module Peddler
       if val.respond_to?(:iso8601)
         val = val.iso8601
       elsif val.is_a?(Struct)
-        val = val.to_h
+        val = val.to_h if val.respond_to?(:to_h)
       end
 
       if val.is_a?(Hash)
