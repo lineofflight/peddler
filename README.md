@@ -53,8 +53,6 @@ With the MWS Cart Information API, you can retrieve shopping carts that your Ama
 
 ### Customer Information
 
-**Not implemented**
-
 With the MWS Customer Information API, you can retrieve information from the customer accounts of your Amazon Webstore customers. This customer information includes customer name, contact information, customer account type, and associated Amazon Webstore marketplaces. The Customer Information API enables you to programmatically integrate Amazon Webstore customer account information with your CRM systems, marketing applications, and other systems that require customer data.
 
 [Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/CustomerInformation)
