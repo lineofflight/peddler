@@ -211,7 +211,7 @@ module MWS
       run
     end
 
-    # Returns the operational status of the API
+    # Gets the operational status of the API
     #
     # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetServiceStatus.html
     # @return [Peddler::XMLParser]
