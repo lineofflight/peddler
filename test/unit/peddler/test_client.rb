@@ -4,7 +4,7 @@ require 'peddler/client'
 
 class ClientTest < MiniTest::Test
   module Parser
-    def self.parse(res); res; end
+    def self.parse(res, *); res; end
   end
 
   def setup

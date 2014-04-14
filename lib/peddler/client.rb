@@ -68,7 +68,7 @@ module Peddler
       opts.store(:response_block, blk) if block_given?
       res = post(opts)
 
-      parser.parse(res)
+      parser.parse(res, host_encoding)
     end
 
     private
@@ -83,6 +83,8 @@ module Peddler
 
     def host_encoding
       if host.end_with?('jp')
+        # Caveat: I've had one instance in the past where Shift_JIS didn't
+        # work but Windows-31J did when parsing a report.
         'Shift_JIS'
       elsif host.end_with?('cn')
         'UTF-16'
