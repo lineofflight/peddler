@@ -21,7 +21,7 @@ module Peddler
     end
 
     def records_count
-      summarize if summary
+      summarize if has_summary?
     end
 
     def valid?
