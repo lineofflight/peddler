@@ -1,3 +1,4 @@
+
 # Peddler
 
 [![Build Status][1]][2]
@@ -72,8 +73,6 @@ With the MWS Fulfillment Inbound Shipment API, you can create and update inbound
 [Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentInboundShipment)
 
 ### Fulfillment Inventory
-
-**Not implemented**
 
 The MWS Fulfillment Inventory API can help you stay up-to-date on the availability of your inventory in the Amazon Fulfillment Network. The Fulfillment Inventory API reports real-time availability information for your Amazon Fulfillment Network inventory regardless of whether you are selling your inventory on Amazon's retail web site or through other retail channels.
 
