@@ -220,6 +220,7 @@ module MWS
       run
     end
 
+    # @api private
     def operation(*)
       super.tap do |opts|
         unless opts.has_key?('MarketplaceId')
