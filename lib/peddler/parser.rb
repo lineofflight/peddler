@@ -11,10 +11,10 @@ module Peddler
         # Don't parse if there's no body
         return res unless res.body
 
-        case res.headers['Content-Type']
-        when 'text/xml'
+        content_type = res.headers['Content-Type']
+        if content_type.start_with?('text/xml')
           XMLParser.new(res)
-        when 'application/octet-stream'
+        elsif content_type == 'application/octet-stream'
           FlatFileParser.new(res, encoding)
         else
           raise NotImplementedError
