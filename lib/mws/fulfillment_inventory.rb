@@ -7,20 +7,36 @@ module MWS
   # your Amazon Fulfillment Network inventory regardless of whether you are
   # selling your inventory on Amazon's retail web site or through other retail
   # channels.
-  #
-  # @todo Not implemented
   class FulfillmentInventory < ::Peddler::Client
     path '/FulfillmentInventory/2010-10-01'
 
     # Returns information about the availability of a seller's inventory
-    def list_inventory_supply
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupply.html
+    # @param opts [Hash]
+    # @option opts [Array<String>, String] :seller_skus
+    # @option opts [String, #iso8601] :query_start_date_time
+    # @option opts [String] :response_group
+    # @return [Peddler::XMLParser]
+    def list_inventory_supply(opts = {})
+      operation('ListInventorySupply')
+        .add(opts)
+        .structure!('SellerSkus', 'member')
+
+      run
     end
 
     # Returns the next page of information about the availability of a seller's
     # inventory
-    def list_inventory_supply_by_next_token
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupplyByNextToken.html
+    # @param next_token [String]
+    # @return [Peddler::XMLParser]
+    def list_inventory_supply_by_next_token(next_token)
+      operation('ListInventorySupplyByNextToken')
+        .add('NextToken' => next_token)
+
+      run
     end
 
     # Gets the operational status of the API
