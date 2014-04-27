@@ -16,6 +16,10 @@ module Peddler
       MultiXml.parse(body)
     end
 
+    def valid?
+      headers['Content-Length'].to_i == body.size if headers['Content-Length']
+    end
+
     private
 
     def find_result

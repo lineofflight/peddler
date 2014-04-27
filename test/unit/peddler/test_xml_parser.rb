@@ -4,7 +4,7 @@ require 'peddler/xml_parser'
 class XMLParserTest < MiniTest::Test
   def setup
     body = '<Response><Result><NextToken>123</NextToken><Foo>Bar</Foo></Result></Response>'
-    res = OpenStruct.new(body: body, headers: { 'Content-Type' => 'text/xml'})
+    res = OpenStruct.new(body: body, headers: { 'Content-Type' => 'text/xml', 'Content-Length' => '78'})
 
     @parser = Peddler::XMLParser.new(res)
   end
@@ -15,5 +15,9 @@ class XMLParserTest < MiniTest::Test
 
   def test_next_token
     assert_equal '123', @parser.next_token
+  end
+
+  def test_validates
+    assert @parser.valid?
   end
 end
