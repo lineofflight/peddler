@@ -1,7 +1,7 @@
 require 'helper'
 require 'peddler/structured_list'
 
-class StructuredListTest < MiniTest::Test
+class PeddlerStructuredListTest < MiniTest::Test
   def setup
     @list = Peddler::StructuredList.new('OrderStatus', 'Status')
   end

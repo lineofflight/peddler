@@ -1,7 +1,7 @@
 require 'helper'
 require 'peddler/xml_parser'
 
-class XMLParserTest < MiniTest::Test
+class PeddlerXMLParserTest < MiniTest::Test
   def setup
     body = '<Response><Result><NextToken>123</NextToken><Foo>Bar</Foo></Result></Response>'
     res = OpenStruct.new(body: body, headers: { 'Content-Type' => 'text/xml', 'Content-Length' => '78'})
