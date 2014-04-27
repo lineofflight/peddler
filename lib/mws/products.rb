@@ -18,8 +18,6 @@ module MWS
     #   @option opts [String] :query_context_id
     # @return [Peddler::XMLParser]
     def list_matching_products(query, opts = {})
-      opts[:marketplace_id] ||= marketplace_id
-
       operation('ListMatchingProducts')
         .add(opts.merge('Query' => query))
 
@@ -192,8 +190,6 @@ module MWS
     #   @option opts [String] :marketplace_id
     # @return [Peddler::XMLParser]
     def get_product_categories_for_sku(sku, opts = {})
-      opts[:marketplace_id] ||= marketplace_id
-
       operation('GetProductCategoriesForSKU')
         .add(opts.merge('SellerSKU' => sku))
 
@@ -209,8 +205,6 @@ module MWS
     #   @option opts [String] :marketplace_id
     # @return [Peddler::XMLParser]
     def get_product_categories_for_asin(asin, opts = {})
-      opts[:marketplace_id] ||= marketplace_id
-
       operation('GetProductCategoriesForASIN')
         .add(opts.merge('ASIN' => asin))
 
@@ -226,11 +220,11 @@ module MWS
       run
     end
 
-    private
-
-    def extract_options(args)
+    def operation(*)
       super.tap do |opts|
-        opts[:marketplace_id] ||= marketplace_id
+        unless opts.has_key?('MarketplaceId')
+          opts.store('MarketplaceId', marketplace_id)
+        end
       end
     end
   end
