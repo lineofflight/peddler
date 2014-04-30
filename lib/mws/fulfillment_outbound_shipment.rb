@@ -21,8 +21,14 @@ module MWS
 
     # Requests that Amazon ship items from the seller's Amazon Fulfillment
     # Network inventory to a destination address
-    def create_fulfillment_order
-      raise NotImplementedError
+    def create_fulfillment_order(orderOpts, address, items)
+      operation('CreateFulfillmentOrder')
+        .add(orderOpts)
+        .add('DestinationAddress' => address)
+        .add('Items' => items)
+        .structure!('Items', 'member')
+      run
+      
     end
 
     # Updates and/or requests shipment for a fulfillment order with an order
@@ -54,8 +60,9 @@ module MWS
 
     # Requests that Amazon stop attempting to fulfill an existing fulfillment
     # order
-    def cancel_fulfillment_order
-      raise NotImplementedError
+    def cancel_fulfillment_order(order_id)
+      operation('CancelFulfillmentOrder').add('SellerFulfillmentOrderId' => order_id)
+      run
     end
 
     # Gets the operational status of the API

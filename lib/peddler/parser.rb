@@ -10,9 +10,8 @@ module Peddler
       def parse(res, encoding = 'ISO-8859-1')
         # Don't parse if there's no body
         return res unless res.body
-
         case res.headers['Content-Type']
-        when 'text/xml'
+        when /text\/xml/
           XMLParser.new(res)
         when 'application/octet-stream'
           FlatFileParser.new(res, encoding)
