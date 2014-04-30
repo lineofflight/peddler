@@ -5,7 +5,6 @@ class FulfillmentOutboundShipmentTest < IntegrationTest
   TEST_VER = 2
   
   def test_gets_service_status
-    return
     clients.each do |client|
       res = client.get_service_status
       refute_empty res.parse
