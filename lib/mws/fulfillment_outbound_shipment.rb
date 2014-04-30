@@ -21,6 +21,13 @@ module MWS
 
     # Requests that Amazon ship items from the seller's Amazon Fulfillment
     # Network inventory to a destination address
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentOrder.html
+    # @param orderOpts [Hash]
+    # @param address [Hash]
+    # @option items [Array] 
+    # @return [Peddler::XMLParser]
+    
     def create_fulfillment_order(orderOpts, address, items)
       operation('CreateFulfillmentOrder')
         .add(orderOpts)
@@ -60,6 +67,13 @@ module MWS
 
     # Requests that Amazon stop attempting to fulfill an existing fulfillment
     # order
+    # Note: orders are not cancellable immediately when created; wait a few minutes or you 
+    # will get a 500 error from MWS
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CancelFulfillmentOrder.html
+    # @param order_id [String]
+    # @return [Peddler::XMLParser]
+    
     def cancel_fulfillment_order(order_id)
       operation('CancelFulfillmentOrder').add('SellerFulfillmentOrderId' => order_id)
       run
