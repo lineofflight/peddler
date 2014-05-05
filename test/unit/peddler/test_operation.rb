@@ -1,7 +1,7 @@
 require 'helper'
 require 'peddler/operation'
 
-class OperationTest < MiniTest::Test
+class PeddlerOperationTest < MiniTest::Test
   def setup
     @operation = Peddler::Operation.new('Foo')
   end

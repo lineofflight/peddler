@@ -11,7 +11,7 @@ VCR.configure do |c|
     interaction.ignore! if interaction.response.status.code >= 400
   end
 
-  nondeterministic_params = %w(Signature Timestamp StartDate CreatedAfter)
+  nondeterministic_params = %w(Signature Timestamp StartDate CreatedAfter QueryStartDateTime)
   matcher = VCR.request_matchers.uri_without_param(*nondeterministic_params)
   c.default_cassette_options = {
     match_requests_on: [:method, matcher],

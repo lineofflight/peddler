@@ -18,8 +18,6 @@ module MWS
     #   @option opts [String] :query_context_id
     # @return [Peddler::XMLParser]
     def list_matching_products(query, opts = {})
-      opts[:marketplace_id] ||= marketplace_id
-
       operation('ListMatchingProducts')
         .add(opts.merge('Query' => query))
 
@@ -38,7 +36,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_matching_product_for_id(id_type, *id_list)
       opts = extract_options(id_list)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetMatchingProductForId')
         .add(opts.merge('IdType' => id_type, 'IdList' => id_list))
@@ -57,7 +54,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_matching_product(*asins)
       opts = extract_options(asins)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetMatchingProduct')
         .add(opts.merge('ASINList' => asins))
@@ -76,7 +72,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_competitive_pricing_for_sku(*skus)
       opts = extract_options(skus)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetCompetitivePricingForSKU')
         .add(opts.merge('SellerSKUList' => skus))
@@ -95,7 +90,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_competitive_pricing_for_asin(*asins)
       opts = extract_options(asins)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetCompetitivePricingForASIN')
         .add(opts.merge('ASINList' => asins))
@@ -117,7 +111,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_lowest_offer_listings_for_sku(*skus)
       opts = extract_options(skus)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetLowestOfferListingsForSKU')
         .add(opts.merge('SellerSKUList' => skus))
@@ -139,7 +132,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_lowest_offer_listings_for_asin(*asins)
       opts = extract_options(asins)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetLowestOfferListingsForASIN')
         .add(opts.merge('ASINList' => asins))
@@ -160,7 +152,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_my_price_for_sku(*skus)
       opts = extract_options(skus)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetMyPriceForSKU')
         .add(opts.merge('SellerSKUList' => skus))
@@ -181,7 +172,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_my_price_for_asin(*asins)
       opts = extract_options(asins)
-      opts[:marketplace_id] ||= marketplace_id
 
       operation('GetMyPriceForASIN')
         .add(opts.merge('ASINList' => asins))
@@ -200,8 +190,6 @@ module MWS
     #   @option opts [String] :marketplace_id
     # @return [Peddler::XMLParser]
     def get_product_categories_for_sku(sku, opts = {})
-      opts[:marketplace_id] ||= marketplace_id
-
       operation('GetProductCategoriesForSKU')
         .add(opts.merge('SellerSKU' => sku))
 
@@ -217,8 +205,6 @@ module MWS
     #   @option opts [String] :marketplace_id
     # @return [Peddler::XMLParser]
     def get_product_categories_for_asin(asin, opts = {})
-      opts[:marketplace_id] ||= marketplace_id
-
       operation('GetProductCategoriesForASIN')
         .add(opts.merge('ASIN' => asin))
 
@@ -232,6 +218,15 @@ module MWS
     def get_service_status
       operation('GetServiceStatus')
       run
+    end
+
+    # @api private
+    def operation(*)
+      super.tap do |opts|
+        unless opts.has_key?('MarketplaceId')
+          opts.store('MarketplaceId', marketplace_id)
+        end
+      end
     end
   end
 end
