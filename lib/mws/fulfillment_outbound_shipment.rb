@@ -1,4 +1,5 @@
 require 'peddler/client'
+require 'excon'
 
 module MWS
   # The Fulfillment Outbound Shipment API enables you to fulfill orders placed
@@ -23,16 +24,29 @@ module MWS
     # Network inventory to a destination address
     #
     # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentOrder.html
-    # @param orderOpts [Hash]
+    # @param sellerFulfillmentOrderId [String]
+    # @param displayableOrderId [String]
+    # @param displayableOrderDateTime [String]
+    # @param displayableOrderComment [String]
+    # @param shippingSpeedCategory [String]
+    # @param destinationAddress [Address hash.  See http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#Address]
+    # @params Items [Array of CreateFulfillmentOrderItem. See http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CreateFulfillmentOrderItem]
     # @param address [Hash]
     # @option items [Array] 
+    # @param opts [Hash]
     # @return [Peddler::XMLParser]
     
-    def create_fulfillment_order(orderOpts, address, items)
+    def create_fulfillment_order(sellerFulfillmentOrderId, displayableOrderId, displayableOrderDateTime,
+      displayableOrderComment, shippingSpeedCategory, destinationAddress, items, opts = {})
+      opts.merge!('SellerFulfillmentOrderId' => sellerFulfillmentOrderId,
+                  'DisplayableOrderId' => displayableOrderId,
+                  'DisplayableOrderDateTime' => displayableOrderDateTime,
+                  'DisplayableOrderComment' => displayableOrderComment,
+                  'ShippingSpeedCategory' => shippingSpeedCategory,
+                  'DestinationAddress' => destinationAddress,
+                  'Items' => items)
       operation('CreateFulfillmentOrder')
-        .add(orderOpts)
-        .add('DestinationAddress' => address)
-        .add('Items' => items)
+        .add(opts)
         .structure!('Items', 'member')
       run
       
