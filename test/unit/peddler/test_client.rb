@@ -14,18 +14,11 @@ class PeddlerClientTest < MiniTest::Test
 
     @klass = Class.new(Peddler::Client)
     @client = @klass.new
-    
-    accounts = begin
-      YAML.load_file(File.expand_path('../../../mws.yml', __FILE__)).shuffle
-    rescue Errno::ENOENT
-      warn('Skipping unit tests')
-      []
-    end
-    
-    account = accounts.first
-    account.each do |k, v|
-      @client.send("#{k}=", v)
-    end
+
+    @client.aws_access_key_id = 'key'
+    @client.aws_secret_access_key = 'secret'
+    @client.merchant_id = 'seller'
+    @client.marketplace_id = 'ATVPDKIKX0DER' # US
 
     @client.operation('Foo')
   end
