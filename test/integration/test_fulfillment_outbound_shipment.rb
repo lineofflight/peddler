@@ -47,8 +47,12 @@ class FulfillmentOutboundShipmentTest < IntegrationTest
       end
 
     rescue Excon::Errors::HTTPStatusError => e
-      warn "Failure (status: #{e.response.status}): #{e.response.body}"
-      raise e
+      if e.response.body.include?('Seller is not registered')
+        skip('Seller not registered')
+      else
+        warn "Failure (status: #{e.response.status}): #{e.response.body}"
+        raise e
+      end
     end
   end
 end
