@@ -24,23 +24,21 @@ module MWS
     # Network inventory to a destination address
     #
     # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentOrder.html
-    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#Address
-    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CreateFulfillmentOrderItem
-    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CODSettings
     # @param seller_fulfillment_order_id [String]
     # @param displayable_order_id [String]
     # @param displayable_order_date_time [String, #iso8601]
     # @param displayable_order_comment [String]
     # @param shipping_speed_category [String]
-    # @param destination_address [Hash]
-    # @params items [Array<Hash>]
-    # @param address [Hash]
-    # @option items [Array]
+    # @param destination_address [Struct, Hash]
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#Address
+    # @params items [Array<Struct, Hash>]
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CreateFulfillmentOrderItem
     # @param opts [Hash]
     # @option opts [String] :fulfillment_action
     # @option opts [String] :fulfillment_policy
     # @option opts [Array<String>] :notification_email_list
-    # @option opts [Hash] :cod_settings
+    # @option opts [Struct, Hash] :cod_settings
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CODSettings
     # @return [Peddler::XMLParser]
     def create_fulfillment_order(seller_fulfillment_order_id, displayable_order_id, displayable_order_date_time, displayable_order_comment, shipping_speed_category, destination_address, items, opts = {})
       if opts.has_key?(:cod_settings)
@@ -96,11 +94,11 @@ module MWS
     # order
     #
     # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CancelFulfillmentOrder.html
-    # @param order_id [String]
+    # @param seller_fulfillment_order_id [String]
     # @return [Peddler::XMLParser]
-    def cancel_fulfillment_order(order_id)
+    def cancel_fulfillment_order(seller_fulfillment_order_id)
       operation('CancelFulfillmentOrder')
-        .add('SellerFulfillmentOrderId' => order_id)
+        .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id)
 
       run
     end
