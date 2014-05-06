@@ -14,10 +14,11 @@ module Peddler
         content_type = res.headers['Content-Type']
         if content_type.start_with?('text/xml')
           XMLParser.new(res)
-        elsif content_type == 'application/octet-stream'
-          FlatFileParser.new(res, encoding)
         else
-          raise NotImplementedError
+          # Amazon returns a variety of content types for flat files, so we
+          # simply assume that anything not XML is a flat file rather than code
+          # defensively and check content type again.
+          FlatFileParser.new(res, encoding)
         end
       end
     end
