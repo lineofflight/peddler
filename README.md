@@ -1,13 +1,13 @@
 
 # Peddler
 
-[![Build Status][1]][2]
+[![Travis](https://travis-ci.org/hakanensari/peddler.png)](https://travis-ci.org/hakanensari/peddler)
 
-**Peddler** is a Ruby interface to the [Amazon MWS API][3], a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
+**Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
 To use Amazon MWS, you must have an eligible seller account.
 
-![Peddler][4]
+![Peddler](http://f.cl.ly/items/231z2m0r1Q2o2q1n0w1N/peddler.jpg)
 
 ## Configuration
 
@@ -127,8 +127,3 @@ The Sellers API lets sellers retrieve information about their seller account, su
 The Amazon MWS Subscriptions API section enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.
 
 [Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/Subscriptions)
-
-[1]: https://travis-ci.org/hakanensari/peddler.png
-[2]:https://travis-ci.org/hakanensari/peddler
-[3]: https://developer.amazonservices.com/
-[4]: http://f.cl.ly/items/231z2m0r1Q2o2q1n0w1N/peddler.jpg
