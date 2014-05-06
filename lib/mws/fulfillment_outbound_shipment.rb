@@ -1,4 +1,5 @@
 require 'peddler/client'
+require 'excon'
 
 module MWS
   # The Fulfillment Outbound Shipment API enables you to fulfill orders placed
@@ -21,8 +22,34 @@ module MWS
 
     # Requests that Amazon ship items from the seller's Amazon Fulfillment
     # Network inventory to a destination address
-    def create_fulfillment_order
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentOrder.html
+    # @param sellerFulfillmentOrderId [String]
+    # @param displayableOrderId [String]
+    # @param displayableOrderDateTime [String]
+    # @param displayableOrderComment [String]
+    # @param shippingSpeedCategory [String]
+    # @param destinationAddress [Address hash.  See http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#Address]
+    # @params Items [Array of CreateFulfillmentOrderItem. See http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CreateFulfillmentOrderItem]
+    # @param address [Hash]
+    # @option items [Array] 
+    # @param opts [Hash]
+    # @return [Peddler::XMLParser]
+    
+    def create_fulfillment_order(sellerFulfillmentOrderId, displayableOrderId, displayableOrderDateTime,
+      displayableOrderComment, shippingSpeedCategory, destinationAddress, items, opts = {})
+      opts.merge!('SellerFulfillmentOrderId' => sellerFulfillmentOrderId,
+                  'DisplayableOrderId' => displayableOrderId,
+                  'DisplayableOrderDateTime' => displayableOrderDateTime,
+                  'DisplayableOrderComment' => displayableOrderComment,
+                  'ShippingSpeedCategory' => shippingSpeedCategory,
+                  'DestinationAddress' => destinationAddress,
+                  'Items' => items)
+      operation('CreateFulfillmentOrder')
+        .add(opts)
+        .structure!('Items', 'member')
+      run
+      
     end
 
     # Updates and/or requests shipment for a fulfillment order with an order
@@ -54,8 +81,16 @@ module MWS
 
     # Requests that Amazon stop attempting to fulfill an existing fulfillment
     # order
-    def cancel_fulfillment_order
-      raise NotImplementedError
+    # Note: orders are not cancellable immediately when created; wait a few minutes or you 
+    # will get a 500 error from MWS
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CancelFulfillmentOrder.html
+    # @param order_id [String]
+    # @return [Peddler::XMLParser]
+    
+    def cancel_fulfillment_order(order_id)
+      operation('CancelFulfillmentOrder').add('SellerFulfillmentOrderId' => order_id)
+      run
     end
 
     # Gets the operational status of the API
