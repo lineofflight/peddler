@@ -53,6 +53,11 @@ class PeddlerClientTest < MiniTest::Test
     assert_equal '123', @client.aws_access_key_id
   end
 
+  def test_configures_when_initialising
+    client = @klass.new(aws_access_key_id: '123')
+    assert_equal '123', client.aws_access_key_id
+  end
+
   def test_guards_against_bad_marketplace_id
     assert_raises(Peddler::Client::BadMarketplaceId) do
       client = Peddler::Client.new

@@ -37,6 +37,10 @@ module Peddler
       base.params(params)
     end
 
+    def initialize(opts = {})
+      opts.each { |k, v| self.send("#{k}=", v) }
+    end
+
     def aws_endpoint
       "https://#{host}#{self.class.path}"
     end
