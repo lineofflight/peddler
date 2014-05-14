@@ -12,7 +12,7 @@ To use Amazon MWS, you must have an eligible seller account.
 
 ## Configuration
 
-Require the library and instantiate a client.
+Require the library and instantiate a client:
 
 ```ruby
 require 'peddler'
@@ -28,8 +28,9 @@ client = MWS.orders(
   aws_access_key_id: 'AKIVICHZMZ2JRSSLC27W',
   aws_secret_access_key: 'rOMa3ydPBTJ3AD0bxERTOX0Fv0fAC6Q0s6/czMZO'
 )
+```
 
-Or you can set them via `Client#configure`.
+Or you can set them via `Client#configure`:
 
 ```ruby
 client.configure do |c|
@@ -40,7 +41,7 @@ client.configure do |c|
 end
 ```
 
-Or you may use environment variables if you have only a single set of credentials:
+Alternatively, use environment variables if you only have a single set of credentials:
 
 ```sh
 export MWS_MARKETPLACE_ID="A1F83G8C2ARO7P"
