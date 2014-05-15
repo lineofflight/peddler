@@ -19,7 +19,7 @@ module MWS
 
     MWS.constants.each do |klass|
       method_name = klass.to_s.gsub(/(.)([A-Z])/,'\1_\2').downcase
-      def_delegator klass, :new, method_name
+      def_delegator MWS.const_get(klass), :new, method_name
     end
   end
 end
