@@ -16,6 +16,13 @@ class PeddlerStructuredListTest < MiniTest::Test
     assert_equal exp, @list.build(%w(foo bar))
   end
 
+  def test_handles_single_key
+    list = Peddler::StructuredList.new('Foo')
+    exp = { 'Foo.1' => 'bar' }
+
+    assert_equal exp, list.build('bar')
+  end
+
   def test_handles_more_than_two_keys
     list = Peddler::StructuredList.new('QueryList', 'Query', '1', 'FilterOptions', 'FilterOption')
     exp = { 'QueryList.Query.1.FilterOptions.FilterOption.1' => 'foo' }
