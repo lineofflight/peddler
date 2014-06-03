@@ -33,6 +33,13 @@ class PeddlerClientTest < MiniTest::Test
     assert @client.aws_endpoint.match(%r{/Foo$})
   end
 
+  def test_instance_path_overrides_class_path
+    @klass.path('/Foo')
+
+    @client.path = '/Foo/Bar'
+    assert @client.aws_endpoint.match(%r{/Foo/Bar$})
+  end
+
   def test_default_path
     assert_equal '/', @klass.path
   end
