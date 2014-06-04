@@ -22,6 +22,7 @@ module Peddler
       'ATVPDKIKX0DER'  => 'mws.amazonservices.com'
     }
 
+    attr_accessor :path
     attr_writer :merchant_id, :marketplace_id
     attr_reader :body
 
@@ -42,7 +43,7 @@ module Peddler
     end
 
     def aws_endpoint
-      "https://#{host}#{self.class.path}"
+      "https://#{host}#{self.path || self.class.path}"
     end
 
     def marketplace_id
