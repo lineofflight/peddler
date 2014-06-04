@@ -219,5 +219,23 @@ module MWS
       operation('GetServiceStatus')
       run
     end
+
+    # Creates an order reference for the given object
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CreateOrderReferenceForId.html
+    # @param id [String]
+    # @param id_type [String]
+    # @option opts [Boolean] :inherit_shipping_address
+    # @option opts [Boolean] :confirm_now
+    # @return [Peddler::XMLParser]
+    def create_order_reference_for_id(id, id_type, opts = {})
+      operation('CreateOrderReferenceForId')
+        .add(opts.merge(
+          'Id' => id,
+          'IdType' => id_type
+        ))
+
+      run
+    end
   end
 end
