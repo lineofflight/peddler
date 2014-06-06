@@ -1,32 +1,30 @@
 module Peddler
-  module Errors
-    BadMarketplaceId = Class.new(StandardError)
+  UnknownMarketplaceIdError = Class.new(StandardError)
 
-    class ApiError < StandardError
-      attr_accessor :request, :response
+  class ApiError < StandardError
+    attr_accessor :request, :response
 
-      def initialize(request, response)
-        @request = request
-        @response = response
-      end
+    def initialize(request, response)
+      @request = request
+      @response = response
     end
+  end
 
-    class MissingDataError < StandardError
-      attr_accessor :xml, :selector
+  class MissingDataError < StandardError
+    attr_accessor :xml, :selector
 
-      def initialize(xml, selector)
-        @xml = xml
-        @selector = selector
-      end
+    def initialize(xml, selector)
+      @xml = xml
+      @selector = selector
     end
+  end
 
-    class MalformedDataError < StandardError
-      attr_accessor :selector, :value
+  class MalformedDataError < StandardError
+    attr_accessor :selector, :value
 
-      def initialize(selector, value)
-        @selector = selector
-        @value = value
-      end
+    def initialize(selector, value)
+      @selector = selector
+      @value = value
     end
   end
 end

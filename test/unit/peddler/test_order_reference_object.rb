@@ -32,6 +32,32 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
     assert !oro.partial_destination_address?
   end
 
+  def test_css_present
+    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
+    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro.fetch!
+
+    assert_equal oro.css("Destination PostalCode"), "60602"
+  end
+
+  def test_css_blank
+    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
+    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro.fetch!
+
+    assert_equal oro.css("Destination YoMama"), ""
+  end
+
+  def test_css_bang
+    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
+    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro.fetch!
+
+    assert_raises Peddler::MissingDataError do
+      oro.css!("Destination YoMama")
+    end
+  end
+
   private
 
   def stubbed_peddler(xml)

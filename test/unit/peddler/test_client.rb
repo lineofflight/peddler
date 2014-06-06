@@ -66,7 +66,7 @@ class PeddlerClientTest < MiniTest::Test
   end
 
   def test_guards_against_bad_marketplace_id
-    assert_raises(Peddler::Client::BadMarketplaceId) do
+    assert_raises(Peddler::UnknownMarketplaceIdError) do
       client = Peddler::Client.new
       client.marketplace_id = '123'
       client.get

@@ -7,7 +7,6 @@ module Peddler
   # @abstract Subclass to implement an MWS API section.
   class Client
     include Jeff
-    include Peddler::Errors
 
     HOSTS = {
       'A2EUQ1WTGCTBG2' => 'mws.amazonservices.ca',
@@ -99,7 +98,9 @@ module Peddler
     end
 
     def host
-      HOSTS.fetch(marketplace_id) { raise BadMarketplaceId }
+      HOSTS.fetch(marketplace_id) do
+        raise UnknownMarketplaceIdError, "Marketplace '#{marketplace_id}' not found in #{HOSTS.inspect}"
+      end
     end
 
     def extract_options(args)
