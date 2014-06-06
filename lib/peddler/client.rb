@@ -1,13 +1,13 @@
 require 'jeff'
 require 'peddler/operation'
 require 'peddler/parser'
+require 'peddler/errors'
 
 module Peddler
   # @abstract Subclass to implement an MWS API section.
   class Client
     include Jeff
-
-    BadMarketplaceId = Class.new(StandardError)
+    include Peddler::Errors
 
     HOSTS = {
       'A2EUQ1WTGCTBG2' => 'mws.amazonservices.ca',
