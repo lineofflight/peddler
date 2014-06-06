@@ -1,4 +1,5 @@
 require 'mws/off_amazon_payments'
+require 'nokogiri'
 
 module Peddler
   # This class models an Amazon Order Reference Object, which is a record created on their end to track information
@@ -25,11 +26,11 @@ module Peddler
     end
 
     def css(selector)
-      simple_xml_select(oro_details.body, selector, false)
+      simple_xml_select(response_object.body, selector, false)
     end
 
     def css!(selector)
-      simple_xml_select(oro_details.body, selector, true)
+      simple_xml_select(response_object.body, selector, true)
     end
 
     # First/last name splitting if your data model splits names in two. See NAME_SPLITTER for
@@ -53,7 +54,7 @@ module Peddler
 
     rescue => e
       if e.class.parent == Excon::Errors
-        xml = MultiXml.parse(e.response.body)
+        xml = Nokogiri::XML(e.response.body)
         raise ApiError.new(e.request, e.response),
           "#{xml.at_css('Error > Code')}: #{xml.at_css('Error > Message')}"
       else
@@ -68,9 +69,9 @@ module Peddler
     def simple_xml_select(xml, selector, raise_on_nil = false)
       node = get_node(xml, selector)
 
-      if node.blank? && raise_on_nil
+      if node.nil? && raise_on_nil
         raise MissingDataError.new(xml, selector), "Missing response data '#{selector}'"
-      elsif node.blank?
+      elsif node.nil?
         ""
       else
         node.text
@@ -78,7 +79,7 @@ module Peddler
     end
 
     def get_node(xml, selector)
-      MultiXml.parse(xml).at_css(selector)
+      Nokogiri::XML(xml).at_css(selector)
     end
   end
 end
