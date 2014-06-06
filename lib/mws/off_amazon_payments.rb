@@ -1,4 +1,5 @@
 require 'peddler/client'
+require 'peddler/order_reference_object'
 
 module MWS
   # The Off-Amazon Payments API helps you to process payments for purchases

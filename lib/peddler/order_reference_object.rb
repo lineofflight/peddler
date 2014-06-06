@@ -8,8 +8,7 @@ module Peddler
     PARTIAL_ADDRESS_CONTRAINT = "AmountNotSet"
     NAME_SPLITTER = /^(.+)\s(.+)$/
 
-    attr_reader :api
-    attr_accessor :oro_id, :response_object
+    attr_reader :api, :response_object, :oro_id
 
     def initialize(oro_id, api = MWS.off_amazon_payments)
       @oro_id = oro_id
@@ -18,7 +17,7 @@ module Peddler
     end
 
     def fetch!
-      self.response_object = api.get_order_reference_details(oro_id)
+      @response_object = api.get_order_reference_details(oro_id)
     end
 
     def partial_destination_address?
