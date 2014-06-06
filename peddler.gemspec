@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'jeff', '~> 1.0'
   gem.add_dependency 'multi_xml', '~> 0.5.0'
   gem.add_development_dependency 'minitest', '~> 5.0'
-  gem.add_development_dependency 'minitest-emoji'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'vcr'
