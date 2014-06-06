@@ -42,7 +42,7 @@ module Peddler
       if matchdata = value.match(NAME_SPLITTER)
         [matchdata[1], matchdata[2]]
       else
-        raise Amazon::MalformedDataError.new(selector, value),
+        raise Peddler::MalformedDataError.new(selector, value),
           "malformed value '#{value}' of node '#{selector}'"
       end
     end

@@ -58,6 +58,32 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
     end
   end
 
+  def test_splits_into_two
+    oro = Peddler::OrderReferenceObject.new('')
+
+    oro.stub(:css!, "Susie Smith", 'Some > Selector') do
+      assert_equal oro.split_name!('Some > Selector'), ["Susie", "Smith"]
+    end
+  end
+
+  def test_errors_on_one_word_name
+    oro = Peddler::OrderReferenceObject.new('')
+
+    oro.stub(:css!, "Susie", 'Some > Selector') do
+      assert_raises Peddler::MalformedDataError do
+        oro.split_name!('Some > Selector')
+      end
+    end
+  end
+
+  def test_splits_freaky_name
+    oro = Peddler::OrderReferenceObject.new('')
+
+    oro.stub(:css!, "Xiomara Sawyer Jett Amelia", 'Some > Selector') do
+      assert_equal oro.split_name!('Some > Selector'), ["Xiomara Sawyer Jett", "Amelia"]
+    end
+  end
+
   private
 
   def stubbed_peddler(xml)
