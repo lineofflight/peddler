@@ -1,13 +1,12 @@
 require 'jeff'
 require 'peddler/operation'
 require 'peddler/parser'
+require 'peddler/errors'
 
 module Peddler
   # @abstract Subclass to implement an MWS API section.
   class Client
     include Jeff
-
-    BadMarketplaceId = Class.new(StandardError)
 
     HOSTS = {
       'A2EUQ1WTGCTBG2' => 'mws.amazonservices.ca',
@@ -99,7 +98,9 @@ module Peddler
     end
 
     def host
-      HOSTS.fetch(marketplace_id) { raise BadMarketplaceId }
+      HOSTS.fetch(marketplace_id) do
+        raise UnknownMarketplaceIdError, "Marketplace '#{marketplace_id}' not found in #{HOSTS.inspect}"
+      end
     end
 
     def extract_options(args)
