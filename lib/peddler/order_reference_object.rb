@@ -49,23 +49,6 @@ module Peddler
 
     private
 
-    def with_pretty_error_handling
-      yield
-
-    rescue => e
-      if e.class.parent == Excon::Errors
-        xml = Nokogiri::XML(e.response.body)
-        raise ApiError.new(e.request, e.response),
-          "#{xml.at_css('Error > Code')}: #{xml.at_css('Error > Message')}"
-      else
-        raise
-      end
-    end
-
-    def price_object(amount)
-      {"Amount" => amount, "CurrencyCode" => "USD"}
-    end
-
     def simple_xml_select(xml, selector, raise_on_nil = false)
       node = get_node(xml, selector)
 
