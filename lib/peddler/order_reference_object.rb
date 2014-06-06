@@ -3,7 +3,7 @@ require 'nokogiri'
 
 module Peddler
   # This class models an Amazon Order Reference Object, which is a record created on their end to track information
-  # about an orders placed using Off-Amazon Payments.
+  # about orders placed using Off-Amazon Payments.
   class OrderReferenceObject
     PARTIAL_ADDRESS_CONTRAINT = "AmountNotSet"
     NAME_SPLITTER = /^(.+)\s(.+)$/
