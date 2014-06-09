@@ -24,6 +24,10 @@ module Peddler
       css("Constraints > Constraint > ConstraintID").include?(PARTIAL_ADDRESS_CONTRAINT)
     end
 
+    def state
+      css("OrderReferenceStatus > State").downcase.to_sym
+    end
+
     def css(selector)
       simple_xml_select(response_object.body, selector, false)
     end

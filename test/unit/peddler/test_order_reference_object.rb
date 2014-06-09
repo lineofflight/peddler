@@ -32,6 +32,14 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
     assert !oro.partial_destination_address?
   end
 
+  def test_state
+    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
+    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro.fetch!
+
+    assert_equal oro.state, :open
+  end
+
   def test_css_present
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
     oro = Peddler::OrderReferenceObject.new('donkey', peddler)
