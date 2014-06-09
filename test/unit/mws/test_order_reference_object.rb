@@ -2,12 +2,6 @@ require 'helper'
 require 'mws/order_reference_object'
 
 class MWSOrderReferenceObjectTest < MiniTest::Test
-  def test_initialization
-    oro = MWS::OrderReferenceObject.new('blah')
-    assert_equal oro.id, 'blah'
-    assert oro.api.instance_of?(MWS::OffAmazonPayments)
-  end
-
   def test_state_predicates
     oro = MWS::OrderReferenceObject.new('donkey')
 

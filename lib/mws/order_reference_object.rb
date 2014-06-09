@@ -25,7 +25,7 @@ module MWS
     end
 
     def partial_destination_address?
-      css("Constraints > Constraint > ConstraintID").include?(PARTIAL_ADDRESS_CONTRAINT)
+      at_path("GetOrderReferenceDetailsResponse GetOrderReferenceDetailsResult OrderReferenceDetails Constraints Constraint ConstraintID").include?(PARTIAL_ADDRESS_CONTRAINT)
     end
   end
 end

@@ -4,7 +4,7 @@ module MWS
   class OAPObject
     NAME_SPLITTER = /^(.+)\s(.+)$/
 
-    attr_reader :api, :response_object, :id
+    attr_reader :api, :id, :response_object, :response_hash
 
     def initialize(id, api = MWS.off_amazon_payments)
       @id = id
@@ -16,12 +16,12 @@ module MWS
       raise '#fetch! not implemented on child class'
     end
 
-    def css(selector)
-      simple_xml_select(response_object.body, selector, false)
+    def at_path(path)
+      find_value(path)
     end
 
-    def css!(selector)
-      simple_xml_select(response_object.body, selector, true)
+    def at_path!(path)
+      find_value(path, true)
     end
 
     # First/last name splitting if your data model splits names in two. See NAME_SPLITTER for
@@ -38,22 +38,25 @@ module MWS
       end
     end
 
-    private
-
-    def simple_xml_select(xml, selector, raise_on_nil = false)
-      node = get_node(xml, selector)
-
-      if node.nil? && raise_on_nil
-        raise Peddler::MissingDataError.new(xml, selector), "Missing response data '#{selector}'"
-      elsif node.nil?
-        ""
-      else
-        node.text
-      end
+    def response_hash
+      @response_hash ||= MultiXml.parse(response_object.body)
     end
 
-    def get_node(xml, selector)
-      Nokogiri::XML(xml).at_css(selector)
+    private
+
+    def find_value(path, raise_on_nil = false)
+      node = response_hash.dup
+
+      path.split(' ').each do |part|
+        node = node.fetch(part) or break
+      end
+
+      if node.nil? && raise_on_nil
+        raise Peddler::MissingDataError.new(response_hash, path),
+          "Missing response data at '#{path}'"
+      end
+
+      node
     end
   end
 end
