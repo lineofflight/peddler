@@ -8,6 +8,16 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
     assert oro.api.instance_of?(MWS::OffAmazonPayments)
   end
 
+  def test_state_predicates
+    oro = Peddler::OrderReferenceObject.new('donkey')
+
+    oro.stub(:state, :draft)     { assert oro.draft?, true }
+    oro.stub(:state, :open)      { assert oro.open?, true }
+    oro.stub(:state, :suspended) { assert oro.suspended?, true }
+    oro.stub(:state, :canceled)  { assert oro.canceled?, true }
+    oro.stub(:state, :closed)    { assert oro.closed?, true }
+  end
+
   def test_fetch
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
     oro = Peddler::OrderReferenceObject.new('donkey', peddler)

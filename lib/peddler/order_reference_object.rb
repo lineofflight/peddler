@@ -7,6 +7,7 @@ module Peddler
   class OrderReferenceObject
     PARTIAL_ADDRESS_CONTRAINT = "AmountNotSet"
     NAME_SPLITTER = /^(.+)\s(.+)$/
+    STATES = %i(draft open suspended canceled closed)
 
     attr_reader :api, :response_object, :oro_id
 
@@ -14,6 +15,10 @@ module Peddler
       @oro_id = oro_id
       @api = api
       @response_object = nil
+    end
+
+    STATES.each do |s|
+      define_method("#{s}?") { state == s }
     end
 
     def fetch!
