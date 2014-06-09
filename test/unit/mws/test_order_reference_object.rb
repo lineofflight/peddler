@@ -1,15 +1,15 @@
 require 'helper'
-require 'peddler/order_reference_object'
+require 'mws/order_reference_object'
 
-class PeddlerOrderReferenceObjectTest < MiniTest::Test
+class MWSOrderReferenceObjectTest < MiniTest::Test
   def test_initialization
-    oro = Peddler::OrderReferenceObject.new('blah')
+    oro = MWS::OrderReferenceObject.new('blah')
     assert_equal oro.oro_id, 'blah'
     assert oro.api.instance_of?(MWS::OffAmazonPayments)
   end
 
   def test_state_predicates
-    oro = Peddler::OrderReferenceObject.new('donkey')
+    oro = MWS::OrderReferenceObject.new('donkey')
 
     oro.stub(:state, :draft)     { assert oro.draft?, true }
     oro.stub(:state, :open)      { assert oro.open?, true }
@@ -20,7 +20,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_fetch
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert oro.response_object.body.length > 0
@@ -28,7 +28,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_partial_destination_address_true
     peddler = stubbed_peddler(EXAMPLE_ORO_XML_PARTIAL)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert oro.partial_destination_address?
@@ -36,7 +36,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_partial_destination_address_false
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert !oro.partial_destination_address?
@@ -44,7 +44,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_state
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert_equal oro.state, :open
@@ -52,7 +52,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_css_present
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert_equal oro.css("Destination PostalCode"), "60602"
@@ -60,7 +60,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_css_blank
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert_equal oro.css("Destination YoMama"), ""
@@ -68,7 +68,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
 
   def test_css_bang
     peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = Peddler::OrderReferenceObject.new('donkey', peddler)
+    oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
     assert_raises Peddler::MissingDataError do
@@ -77,7 +77,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
   end
 
   def test_splits_into_two
-    oro = Peddler::OrderReferenceObject.new('')
+    oro = MWS::OrderReferenceObject.new('')
 
     oro.stub(:css!, "Susie Smith", 'Some > Selector') do
       assert_equal oro.split_name!('Some > Selector'), ["Susie", "Smith"]
@@ -85,7 +85,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
   end
 
   def test_errors_on_one_word_name
-    oro = Peddler::OrderReferenceObject.new('')
+    oro = MWS::OrderReferenceObject.new('')
 
     oro.stub(:css!, "Susie", 'Some > Selector') do
       assert_raises Peddler::MalformedDataError do
@@ -95,7 +95,7 @@ class PeddlerOrderReferenceObjectTest < MiniTest::Test
   end
 
   def test_splits_freaky_name
-    oro = Peddler::OrderReferenceObject.new('')
+    oro = MWS::OrderReferenceObject.new('')
 
     oro.stub(:css!, "Xiomara Sawyer Jett Amelia", 'Some > Selector') do
       assert_equal oro.split_name!('Some > Selector'), ["Xiomara Sawyer Jett", "Amelia"]

@@ -1,7 +1,7 @@
 require 'mws/off_amazon_payments'
 require 'nokogiri'
 
-module Peddler
+module MWS
   # This class models an Amazon Order Reference Object, which is a record created on their end to track information
   # about orders placed using Off-Amazon Payments.
   class OrderReferenceObject
@@ -61,7 +61,7 @@ module Peddler
       node = get_node(xml, selector)
 
       if node.nil? && raise_on_nil
-        raise MissingDataError.new(xml, selector), "Missing response data '#{selector}'"
+        raise Peddler::MissingDataError.new(xml, selector), "Missing response data '#{selector}'"
       elsif node.nil?
         ""
       else
