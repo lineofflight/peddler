@@ -4,7 +4,7 @@ require 'mws/order_reference_object'
 class MWSOrderReferenceObjectTest < MiniTest::Test
   def test_initialization
     oro = MWS::OrderReferenceObject.new('blah')
-    assert_equal oro.oro_id, 'blah'
+    assert_equal oro.id, 'blah'
     assert oro.api.instance_of?(MWS::OffAmazonPayments)
   end
 
