@@ -12,6 +12,10 @@ module MWS
       @response_object = nil
     end
 
+    def fetch!
+      raise '#fetch! not implemented on child class'
+    end
+
     def css(selector)
       simple_xml_select(response_object.body, selector, false)
     end
