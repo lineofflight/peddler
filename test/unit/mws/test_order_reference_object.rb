@@ -41,7 +41,7 @@ class MWSOrderReferenceObjectTest < MiniTest::Test
     oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
-    assert_equal oro.state, :open
+    assert_equal :open, oro.state
   end
 
   def test_css_present
@@ -49,7 +49,7 @@ class MWSOrderReferenceObjectTest < MiniTest::Test
     oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
-    assert_equal oro.css("Destination PostalCode"), "60602"
+    assert_equal "60602", oro.css("Destination PostalCode")
   end
 
   def test_css_blank
@@ -57,7 +57,7 @@ class MWSOrderReferenceObjectTest < MiniTest::Test
     oro = MWS::OrderReferenceObject.new('donkey', peddler)
     oro.fetch!
 
-    assert_equal oro.css("Destination YoMama"), ""
+    assert_equal "", oro.css("Destination YoMama")
   end
 
   def test_css_bang
@@ -74,7 +74,7 @@ class MWSOrderReferenceObjectTest < MiniTest::Test
     oro = MWS::OrderReferenceObject.new('')
 
     oro.stub(:css!, "Susie Smith", 'Some > Selector') do
-      assert_equal oro.split_name!('Some > Selector'), ["Susie", "Smith"]
+      assert_equal ["Susie", "Smith"], oro.split_name!('Some > Selector')
     end
   end
 
@@ -92,7 +92,7 @@ class MWSOrderReferenceObjectTest < MiniTest::Test
     oro = MWS::OrderReferenceObject.new('')
 
     oro.stub(:css!, "Xiomara Sawyer Jett Amelia", 'Some > Selector') do
-      assert_equal oro.split_name!('Some > Selector'), ["Xiomara Sawyer Jett", "Amelia"]
+      assert_equal ["Xiomara Sawyer Jett", "Amelia"], oro.split_name!('Some > Selector')
     end
   end
 
