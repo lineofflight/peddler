@@ -66,7 +66,7 @@ class PeddlerClientTest < MiniTest::Test
   end
 
   def test_guards_against_bad_marketplace_id
-    assert_raises(Peddler::Client::BadMarketplaceId) do
+    assert_raises(Peddler::UnknownMarketplaceIdError) do
       client = Peddler::Client.new
       client.marketplace_id = '123'
       client.get
@@ -114,5 +114,26 @@ class PeddlerClientTest < MiniTest::Test
     @client.run(Parser, &streamer)
 
     assert_equal @body, chunks
+  end
+
+  def test_raises_pretty_error
+    response = Class.new do
+      define_method(:body) { "<Error><Code>DerpHerps</Code><Message>Such pretty, so message</Message></Error>" }
+    end.new
+
+    excon_error = Class.new(StandardError) do
+      define_method(:request) { "Whatevs" }
+      define_method(:response) { response }
+    end.new
+
+    assert_raises Peddler::ApiError do
+      @client.with_pretty_error_handling { raise excon_error }
+    end
+
+    begin
+      @client.with_pretty_error_handling { raise excon_error }
+    rescue Peddler::ApiError => e
+      assert_equal e.message, "DerpHerps: Such pretty, so message"
+    end
   end
 end

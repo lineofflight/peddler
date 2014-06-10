@@ -1,4 +1,5 @@
 require 'peddler/client'
+require 'mws/order_reference_object'
 
 module MWS
   # The Off-Amazon Payments API helps you to process payments for purchases
@@ -48,6 +49,15 @@ module MWS
         .add(opts.merge('AmazonOrderReferenceId' => amazon_order_reference_id))
 
       run
+    end
+
+    # Returns a representation of an Order Reference Object.
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetOrderReferenceDetails.html
+    # @param amazon_order_reference_id [String]
+    # @return [MWS::OrderReferenceObject]
+    def get_order_reference_object(amazon_order_reference_id)
+      MWS::OrderReferenceObject.new(amazon_order_reference_id, self).tap { |o| o.fetch! }
     end
 
     # Confirms that the order reference is free of constraints and all required
@@ -217,6 +227,24 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_service_status
       operation('GetServiceStatus')
+      run
+    end
+
+    # Creates an order reference for the given object
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CreateOrderReferenceForId.html
+    # @param id [String]
+    # @param id_type [String]
+    # @option opts [Boolean] :inherit_shipping_address
+    # @option opts [Boolean] :confirm_now
+    # @return [Peddler::XMLParser]
+    def create_order_reference_for_id(id, id_type, opts = {})
+      operation('CreateOrderReferenceForId')
+        .add(opts.merge(
+          'Id' => id,
+          'IdType' => id_type
+        ))
+
       run
     end
   end

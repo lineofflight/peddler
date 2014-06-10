@@ -1,13 +1,13 @@
 require 'jeff'
 require 'peddler/operation'
 require 'peddler/parser'
+require 'peddler/errors'
+require 'nokogiri'
 
 module Peddler
   # @abstract Subclass to implement an MWS API section.
   class Client
     include Jeff
-
-    BadMarketplaceId = Class.new(StandardError)
 
     HOSTS = {
       'A2EUQ1WTGCTBG2' => 'mws.amazonservices.ca',
@@ -76,6 +76,19 @@ module Peddler
       parser.parse(res, host_encoding)
     end
 
+    def with_pretty_error_handling
+      yield
+
+    rescue => e
+      if e.respond_to?(:request) && e.respond_to?(:response)
+        xml = Nokogiri::XML(e.response.body)
+        raise Peddler::ApiError.new(e.request, e.response),
+          "#{xml.at_css('Error > Code').text}: #{xml.at_css('Error > Message').text}"
+      else
+        raise
+      end
+    end
+
     private
 
     def content_type(str)
@@ -99,7 +112,9 @@ module Peddler
     end
 
     def host
-      HOSTS.fetch(marketplace_id) { raise BadMarketplaceId }
+      HOSTS.fetch(marketplace_id) do
+        raise UnknownMarketplaceIdError, "Marketplace '#{marketplace_id}' not found in #{HOSTS.inspect}"
+      end
     end
 
     def extract_options(args)
