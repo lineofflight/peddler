@@ -21,11 +21,24 @@ module MWS
     end
 
     def state
-      css("OrderReferenceStatus > State").downcase.to_sym
+      at_path(%[
+        GetOrderReferenceDetailsResponse
+        GetOrderReferenceDetailsResult
+        OrderReferenceDetails
+        OrderReferenceStatus
+        State
+      ]).downcase.to_sym
     end
 
     def partial_destination_address?
-      at_path("GetOrderReferenceDetailsResponse GetOrderReferenceDetailsResult OrderReferenceDetails Constraints Constraint ConstraintID").include?(PARTIAL_ADDRESS_CONTRAINT)
+      at_path?(%[
+        GetOrderReferenceDetailsResponse
+        GetOrderReferenceDetailsResult
+        OrderReferenceDetails
+        Constraints
+        Constraint
+        ConstraintID
+       ], PARTIAL_ADDRESS_CONTRAINT)
     end
   end
 end

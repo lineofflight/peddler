@@ -44,57 +44,6 @@ class MWSOrderReferenceObjectTest < MiniTest::Test
     assert_equal :open, oro.state
   end
 
-  def test_css_present
-    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = MWS::OrderReferenceObject.new('donkey', peddler)
-    oro.fetch!
-
-    assert_equal "60602", oro.css("Destination PostalCode")
-  end
-
-  def test_css_blank
-    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = MWS::OrderReferenceObject.new('donkey', peddler)
-    oro.fetch!
-
-    assert_equal "", oro.css("Destination YoMama")
-  end
-
-  def test_css_bang
-    peddler = stubbed_peddler(EXAMPLE_ORO_XML)
-    oro = MWS::OrderReferenceObject.new('donkey', peddler)
-    oro.fetch!
-
-    assert_raises Peddler::MissingDataError do
-      oro.css!("Destination YoMama")
-    end
-  end
-
-  def test_splits_into_two
-    oro = MWS::OrderReferenceObject.new('')
-
-    oro.stub(:css!, "Susie Smith", 'Some > Selector') do
-      assert_equal ["Susie", "Smith"], oro.split_name!('Some > Selector')
-    end
-  end
-
-  def test_errors_on_one_word_name
-    oro = MWS::OrderReferenceObject.new('')
-
-    oro.stub(:css!, "Susie", 'Some > Selector') do
-      assert_raises Peddler::MalformedDataError do
-        oro.split_name!('Some > Selector')
-      end
-    end
-  end
-
-  def test_splits_freaky_name
-    oro = MWS::OrderReferenceObject.new('')
-
-    oro.stub(:css!, "Xiomara Sawyer Jett Amelia", 'Some > Selector') do
-      assert_equal ["Xiomara Sawyer Jett", "Amelia"], oro.split_name!('Some > Selector')
-    end
-  end
 
   private
 
