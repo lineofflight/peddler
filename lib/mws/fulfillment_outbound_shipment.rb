@@ -10,14 +10,29 @@ module MWS
   # and order-level information for any existing fulfillment order that you
   # specify. You can also request lists of existing fulfillment orders based on
   # when they were fulfilled and by the fulfillment method associated with them.
-  #
-  # @todo Not implemented
   class FulfillmentOutboundShipment < ::Peddler::Client
     path '/FulfillmentOutboundShipment/2010-10-01'
 
     # Lists fulfillment order previews
-    def get_fulfillment_preview
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetFulfillmentPreview.html
+    # @param address [Struct, Hash]
+    # @param items [Array<Struct, Hash>]
+    # @param opts [Hash]
+    # @option opts Array[String] :shipping_speed_categories
+    # @option opts Boolean :include_cod_fulfillment_preview
+    # @return [Peddler::XMLParser]
+    def get_fulfillment_preview(address, items, opts = {})
+      if opts.has_key?(:include_cod_fulfillment_preview)
+        opts['IncludeCODFulfillmentPreview'] = opts.delete(:include_cod_fulfillment_preview)
+      end
+
+      operation('GetFulfillmentPreview')
+        .add(opts.merge('Address' => address, 'Items' => items))
+        .structure!('Items', 'member')
+        .structure!('ShippingSpeedCategories')
+
+      run
     end
 
     # Requests that Amazon ship items from the seller's Amazon Fulfillment
@@ -30,15 +45,12 @@ module MWS
     # @param displayable_order_comment [String]
     # @param shipping_speed_category [String]
     # @param destination_address [Struct, Hash]
-    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#Address
     # @params items [Array<Struct, Hash>]
-    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CreateFulfillmentOrderItem
     # @param opts [Hash]
     # @option opts [String] :fulfillment_action
     # @option opts [String] :fulfillment_policy
     # @option opts [Array<String>] :notification_email_list
     # @option opts [Struct, Hash] :cod_settings
-    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Datatypes.html#CODSettings
     # @return [Peddler::XMLParser]
     def create_fulfillment_order(seller_fulfillment_order_id, displayable_order_id, displayable_order_date_time, displayable_order_comment, shipping_speed_category, destination_address, items, opts = {})
       if opts.has_key?(:cod_settings)
@@ -65,23 +77,64 @@ module MWS
 
     # Updates and/or requests shipment for a fulfillment order with an order
     # hold on it
-    def update_fulfillment_order
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_UpdateFulfillmentOrder.html
+    # @param seller_fulfillment_order_id [String]
+    # @param opts [Hash]
+    # @option opts [String] :fulfillment_action
+    # @option opts [String] :displayable_order_id
+    # @option opts [String, #iso8601] :displayable_order_date_time
+    # @option opts [String] :displayable_order_comment
+    # @option opts [String] :shipping_speed_category
+    # @option opts [Struct, Hash] :destination_address
+    # @option opts [String] :fulfillment_policy
+    # @option opts [Array<String>] :notification_email_list
+    # @option opts [Array<Struct, Hash>] :items
+    # @return [Peddler::XMLParser]
+    def update_fulfillment_order(seller_fulfillment_order_id, opts = {})
+      operation('UpdateFulfillmentOrder')
+        .add(opts.merge('SellerFulfillmentOrderId' => seller_fulfillment_order_id))
+        .structure!('NotificationEmailList', 'member')
+        .structure!('Items', 'member')
+
+      run
     end
 
     # Gets a fulfillment order
-    def get_fulfillment_order
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetFulfillmentOrder.html
+    # @param seller_fulfillment_order_id [String]
+    # @return [Peddler::XMLParser]
+    def get_fulfillment_order(seller_fulfillment_order_id)
+      operation('GetFulfillmentOrder')
+        .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id)
+
+      run
     end
 
     # Returns a list of fulfillment orders fulfilled on or after a date
-    def list_all_fulfillment_orders
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrders.html
+    # @param opts [Hash]
+    # @option opts [String, #iso8601] :query_start_date_time
+    # @return [Peddler::XMLParser]
+    def list_all_fulfillment_orders(query_start_date_time = nil)
+      opts = query_start_date_time ? { 'QueryStartDateTime' => query_start_date_time } : {}
+      operation('ListAllFulfillmentOrders').add(opts)
+
+      run
     end
 
     # Returns the next page of fulfillment orders
-    def list_all_fulfillment_orders_by_next_token
-      raise NotImplementedError
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrdersByNextToken.html
+    # @param next_token [String]
+    # @return [Peddler::XMLParser]
+    def list_all_fulfillment_orders_by_next_token(next_token)
+      operation('ListAllFulfillmentOrdersByNextToken')
+        .add('NextToken' => next_token)
+
+      run
     end
 
     # Returns delivery tracking information for a package in an outbound
