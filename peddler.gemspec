@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'http://github.com/hakanensari/peddler'
   gem.summary     = %q{Wraps the Amazon MWS APIs}
   gem.description = %q{A Ruby interface to the Amazon MWS API}
+  gem.license     = 'MIT'
 
   gem.files         = Dir.glob('lib/**/*') + %w(LICENSE README.md)
   gem.test_files    = Dir.glob('test/**/*')
