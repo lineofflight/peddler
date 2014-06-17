@@ -15,6 +15,134 @@ module MWS
   class OffAmazonPayments < ::Peddler::Client
     path '/OffAmazonPayments/2013-01-01/'
 
+    # Creates an order reference for the given object
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CreateOrderReferenceForId.html
+    # @param id [String]
+    # @param id_type [String]
+    # @param opts [Hash]
+    # @option opts [Boolean] :inherit_shipping_address
+    # @option opts [Boolean] :confirm_now
+    # @return [Peddler::XMLParser]
+    def create_order_reference_for_id(id, id_type, opts = {})
+      operation('CreateOrderReferenceForId')
+        .add(opts.merge(
+          'Id' => id,
+          'IdType' => id_type
+        ))
+
+      run
+    end
+
+    # Returns details about the Billing Agreement object and its current state
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetBillingAgreementDetails.html
+    # @param amazon_billing_agreement_id [String]
+    # @param opts [Hash]
+    # @option opts [String] :address_consent_token
+    # @return [Peddler::XMLParser]
+    def get_billing_agreement_details(amazon_billing_agreement_id, opts = {})
+      operation('GetBillingAgreementDetails')
+        .add(opts.merge(
+          'AmazonBillingAgreementId' => amazon_billing_agreement_id
+        ))
+
+      run
+    end
+
+    # Sets billing agreement details such as a description of the agreement and
+    # other information about the seller
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_SetBillingAgreementDetails.html
+    # @param amazon_billing_agreement_id [String]
+    # @param billing_agreement_attributes [Struct, Hash]
+    # @return [Peddler::XMLParser]
+    def set_billing_agreement_details(amazon_billing_agreement_id, billing_agreement_attributes)
+      operation('SetBillingAgreementDetails')
+        .add(
+          'AmazonBillingAgreementId' => amazon_billing_agreement_id,
+          'BillingAgreementAttributes' => billing_agreement_attributes
+        )
+
+      run
+    end
+
+    # Confirms that the billing agreement is free of constraints and all
+    # required information has been set on the billing agreement
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_ConfirmBillingAgreement.html
+    # @param amazon_billing_agreement_id [String]
+    # @return [Peddler::XMLParser]
+    def confirm_billing_agreement(amazon_billing_agreement_id)
+      operation('ConfirmBillingAgreement')
+        .add(
+          'AmazonBillingAgreementId' => amazon_billing_agreement_id
+        )
+
+      run
+    end
+
+    # Validates the status of the BillingAgreement object and the payment method
+    # associated with it
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_ValidateBillingAgreement.html
+    # @param amazon_billing_agreement_id [String]
+    # @return [Peddler::XMLParser]
+    def validate_billing_agreement(amazon_billing_agreement_id)
+      operation('ValidateBillingAgreement')
+        .add(
+          'AmazonBillingAgreementId' => amazon_billing_agreement_id
+        )
+
+      run
+    end
+
+    # Reserves a specified amount against the payment method(s) stored in the
+    # billing agreement
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_AuthorizeOnBillingAgreement.html
+    # @param amazon_billing_agreement_id [String]
+    # @param authorization_reference_id [String]
+    # @param authorization_amount [Hash, Struct]
+    # @param opts [Hash]
+    # @option opts [String] :seller_authorization_note
+    # @option opts [Integer] :transaction_timeout
+    # @option opts [Boolean] :capture_now
+    # @option opts [String] :soft_descriptor
+    # @option opts [String] :seller_note
+    # @option opts [String] :platform_id
+    # @option opts [Hash, Struct] :seller_order_attributes
+    # @option opts [Boolean] :inherit_shipping_address
+    # @return [Peddler::XMLParser]
+    def authorize_on_billing_agreement(amazon_billing_agreement_id, authorization_reference_id, authorization_amount, opts = {})
+      operation('AuthorizeOnBillingAgreement')
+        .add(opts.merge(
+          'AmazonBillingAgreementId' => amazon_billing_agreement_id,
+          'AuthorizationReferenceId' => authorization_reference_id,
+          'AuthorizationAmount' => authorization_amount
+        ))
+
+      run
+    end
+
+    # Confirms that you want to terminate the billing agreement with the buyer
+    # and that you do not expect to create any new order references or
+    # authorizations on this billing agreement
+    #
+    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CloseBillingAgreement.html
+    # @param amazon_billing_agreement_id [String]
+    # @param opts [Hash]
+    # @option opts [String] :closure_reason
+    # @return [Peddler::XMLParser]
+    def close_billing_agreement(amazon_billing_agreement_id, opts = {})
+      operation('CloseBillingAgreement')
+        .add(opts.merge(
+          'AmazonBillingAgreementId' => amazon_billing_agreement_id
+        ))
+
+      run
+    end
+
     # Sets order reference details such as the order total and a description for
     # the order
     #
@@ -217,24 +345,6 @@ module MWS
     # @return [Peddler::XMLParser]
     def get_service_status
       operation('GetServiceStatus')
-      run
-    end
-
-    # Creates an order reference for the given object
-    #
-    # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CreateOrderReferenceForId.html
-    # @param id [String]
-    # @param id_type [String]
-    # @option opts [Boolean] :inherit_shipping_address
-    # @option opts [Boolean] :confirm_now
-    # @return [Peddler::XMLParser]
-    def create_order_reference_for_id(id, id_type, opts = {})
-      operation('CreateOrderReferenceForId')
-        .add(opts.merge(
-          'Id' => id,
-          'IdType' => id_type
-        ))
-
       run
     end
   end
