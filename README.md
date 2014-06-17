@@ -30,17 +30,6 @@ client = MWS.orders(
 )
 ```
 
-Or you can set them via `Client#configure`:
-
-```ruby
-client.configure do |c|
-  c.marketplace_id = 'A1F83G8C2ARO7P'
-  c.merchant_id = 'A2A9WNXCU02UZW'
-  c.aws_access_key_id = 'AKIVICHZMZ2JRSSLC27W'
-  c.aws_secret_access_key = 'rOMa3ydPBTJ3AD0bxERTOX0Fv0fAC6Q0s6/czMZO'
-end
-```
-
 Alternatively, use environment variables if you only have a single set of credentials:
 
 ```sh
