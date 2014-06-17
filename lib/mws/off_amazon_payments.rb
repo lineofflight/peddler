@@ -15,6 +15,15 @@ module MWS
   class OffAmazonPayments < ::Peddler::Client
     path '/OffAmazonPayments/2013-01-01/'
 
+    # Switches the client to the sandbox environment
+    #
+    # @see https://payments.amazon.com/help/Checkout-by-Amazon/Using-the-Checkout-by-Amazon-Sandbox/Overview-of-the-Sandbox
+    # @return [self]
+    def sandbox
+      self.path = '/OffAmazonPayments_Sandbox/2013-01-01/'
+      self
+    end
+
     # Creates an order reference for the given object
     #
     # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CreateOrderReferenceForId.html
