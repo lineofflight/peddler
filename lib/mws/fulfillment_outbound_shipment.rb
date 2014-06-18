@@ -20,7 +20,7 @@ module MWS
     # @param items [Array<Struct, Hash>]
     # @param opts [Hash]
     # @option opts Array[String] :shipping_speed_categories
-    # @option opts Boolean :include_cod_fulfillment_preview
+    # @option opts [Boolean] :include_cod_fulfillment_preview
     # @return [Peddler::XMLParser]
     def get_fulfillment_preview(address, items, opts = {})
       if opts.has_key?(:include_cod_fulfillment_preview)
