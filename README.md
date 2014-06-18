@@ -61,8 +61,6 @@ The MWS Feeds API lets you upload inventory and order data to Amazon. You can al
 
 ### Fulfillment Inbound Shipment
 
-**Not implemented**
-
 With the MWS Fulfillment Inbound Shipment API, you can create and update inbound shipments of inventory in the Amazon Fulfillment Network. You can also also request lists of inbound shipments or inbound shipment items based on criteria that you specify.
 
 [Read more](http://rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentInboundShipment)
