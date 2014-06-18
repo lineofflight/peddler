@@ -43,7 +43,7 @@ module Peddler
     end
 
     def aws_endpoint
-      "https://#{host}#{self.path || self.class.path}"
+      "https://#{host}#{path || self.class.path}"
     end
 
     def marketplace_id
