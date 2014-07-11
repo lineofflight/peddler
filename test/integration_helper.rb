@@ -40,10 +40,10 @@ class IntegrationTest < MiniTest::Test
   end
 
   def setup
-    VCR.insert_cassette(api_name)
+    ENV['LIVE'] ? VCR.turn_off! : VCR.insert_cassette(api_name)
   end
 
   def teardown
-    VCR.eject_cassette
+    VCR.eject_cassette if VCR.turned_on?
   end
 end
