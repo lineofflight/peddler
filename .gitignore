@@ -2,6 +2,6 @@
 Gemfile.lock
 .yardoc
 bin
-mws.yml
+mws.yml*
 pkg
 vcr_cassettes
