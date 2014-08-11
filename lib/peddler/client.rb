@@ -23,7 +23,7 @@ module Peddler
     }
 
     attr_accessor :path
-    attr_writer :merchant_id, :marketplace_id
+    attr_writer :merchant_id, :marketplace_id, :parser
     attr_reader :body
 
     alias :configure :tap
@@ -54,6 +54,10 @@ module Peddler
       @merchant_id ||= ENV['MWS_MERCHANT_ID']
     end
 
+    def parser
+      @parser ||= Parser
+    end
+
     def headers
       @headers ||= {}
     end
@@ -67,7 +71,7 @@ module Peddler
       action ? @operation = Operation.new(action) : @operation
     end
 
-    def run(parser = Parser, &blk)
+    def run(&blk)
       opts = { query: operation, headers: headers, expects: 200 }
       opts.store(:body, body) if body
       opts.store(:response_block, blk) if block_given?
