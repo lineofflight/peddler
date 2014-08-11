@@ -19,6 +19,7 @@ class PeddlerClientTest < MiniTest::Test
     @client.aws_secret_access_key = 'secret'
     @client.merchant_id = 'seller'
     @client.marketplace_id = 'ATVPDKIKX0DER' # US
+    @client.parser = Parser
 
     @client.operation('Foo')
   end
@@ -104,14 +105,14 @@ class PeddlerClientTest < MiniTest::Test
   end
 
   def test_runs_a_request
-    res = @client.run(Parser)
+    res = @client.run
     assert_equal @body, res.body
   end
 
   def test_streams_response
     chunks = ''
     streamer = ->(chunk, _, _) { chunks << chunk }
-    @client.run(Parser, &streamer)
+    @client.run(&streamer)
 
     assert_equal @body, chunks
   end
