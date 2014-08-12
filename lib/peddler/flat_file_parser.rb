@@ -21,7 +21,7 @@ module Peddler
     end
 
     def records_count
-      summarize if has_summary?
+      summarize if summary?
     end
 
     def valid?
@@ -31,7 +31,7 @@ module Peddler
     private
 
     def extract_content
-      if has_summary?
+      if summary?
         @summary, @content = body.split("\n\n")
       else
         @content = body.dup
@@ -42,7 +42,7 @@ module Peddler
       content.force_encoding(encoding).encode('UTF-8')
     end
 
-    def has_summary?
+    def summary?
       body.start_with?('Feed Processing Summary')
     end
 

@@ -1,9 +1,9 @@
 require 'peddler/client'
 
 module MWS
-  # The Sellers API lets sellers retrieve information about their seller
-  # account, such as the marketplaces they participate in.
   module Sellers
+    # The Sellers API lets sellers retrieve information about their seller
+    # account, such as the marketplaces they participate in.
     class Client < ::Peddler::Client
       path '/Sellers/2011-07-01'
 

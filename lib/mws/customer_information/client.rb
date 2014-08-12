@@ -1,22 +1,22 @@
 require 'peddler/client'
 
 module MWS
-  # With the Customer Information API, you can retrieve information from the
-  # customer accounts of your Amazon Webstore customers. This customer
-  # information includes customer name, contact information, customer account
-  # type, and associated Amazon Webstore marketplaces. The Customer Information
-  # API enables you to programmatically integrate Amazon Webstore customer
-  # account information with your CRM systems, marketing applications, and other
-  # systems that require customer data.
-  #
-  # @note The Customer Information API section only returns customer information
-  #   for Webstores with Seller-Branded Checkout. No customer information is
-  #   returned for Webstores with Amazon.com checkout. If your Webstore offers
-  #   both checkout options, customer information is returned only for
-  #   Seller-Branded Checkout accounts.
-  # @note In addition to registering for Amazon MWS, you must request
-  #   authorization to use the Customer Information API.
   module CustomerInformation
+    # With the Customer Information API, you can retrieve information from the
+    # customer accounts of your Amazon Webstore customers. This customer
+    # information includes customer name, contact information, customer account
+    # type, and associated Amazon Webstore marketplaces. The Customer
+    # Information API enables you to programmatically integrate Amazon Webstore
+    # customer account information with your CRM systems, marketing
+    # applications, and other systems that require customer data.
+    #
+    # @note The Customer Information API section only returns customer
+    #   information for Webstores with Seller-Branded Checkout. No customer
+    #   information is returned for Webstores with Amazon.com checkout. If your
+    #   Webstore offers both checkout options, customer information is returned
+    #   only for Seller-Branded Checkout accounts.
+    # @note In addition to registering for Amazon MWS, you must request
+    #   authorization to use the Customer Information API.
     class Client < ::Peddler::Client
       path '/CustomerInformation/2014-03-01'
 
@@ -48,7 +48,8 @@ module MWS
         run
       end
 
-      # Returns customer accounts based on the CustomerId values that you specify
+      # Returns customer accounts based on the CustomerId values that you
+      # specify
       #
       # @see http://docs.developer.amazonservices.com/en_US/customer_info/CustomerInfo_GetCustomersForCustomerId.html
       # @overload get_customers_for_customer_id(*customer_id_list, opts = {})
@@ -73,7 +74,6 @@ module MWS
         operation('GetServiceStatus')
         run
       end
-
     end
   end
 end

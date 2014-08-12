@@ -12,7 +12,7 @@ module Peddler
     def structure!(*list_keys)
       list_key = list_keys.first
 
-      if has_key?(list_key)
+      if key?(list_key)
         builder = StructuredList.new(*list_keys)
         vals = delete(list_key)
         update(builder.build(vals))
@@ -23,7 +23,6 @@ module Peddler
 
     def store(key, val)
       key = camelize(key) if key.is_a?(Symbol)
-
 
       if val.respond_to?(:iso8601)
         val = val.iso8601
@@ -46,7 +45,7 @@ module Peddler
       self
     end
 
-    alias :add :update
+    alias_method :add, :update
 
     private
 

@@ -1,8 +1,8 @@
 require 'peddler/client'
 
 module MWS
-  # The Reports API lets you request reports about your inventory and orders.
   module Reports
+    # The Reports API lets you request reports about your inventory and orders.
     class Client < ::Peddler::Client
       # Creates a report request
       #
@@ -153,7 +153,6 @@ module MWS
         run(&blk)
       end
 
-
       # Creates, updates, or deletes a report request schedule
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_ManageReportSchedule.html
@@ -185,10 +184,9 @@ module MWS
       # List next page of scheduled reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
-      # @param next_token [String]
       # @raise [NotImplementedError]
-      def get_report_schedule_list_by_next_token(next_token)
-        raise NotImplementedError
+      def get_report_schedule_list_by_next_token(*)
+        fail NotImplementedError
       end
 
       # Count scheduled reports

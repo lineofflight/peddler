@@ -26,7 +26,7 @@ module Peddler
     attr_writer :merchant_id, :marketplace_id, :parser
     attr_reader :body
 
-    alias :configure :tap
+    alias_method :configure, :tap
 
     params('SellerId' => -> { merchant_id })
 
@@ -39,7 +39,7 @@ module Peddler
     end
 
     def initialize(opts = {})
-      opts.each { |k, v| self.send("#{k}=", v) }
+      opts.each { |k, v| send("#{k}=", v) }
     end
 
     def aws_endpoint
@@ -103,7 +103,7 @@ module Peddler
     end
 
     def host
-      HOSTS.fetch(marketplace_id) { raise BadMarketplaceId }
+      HOSTS.fetch(marketplace_id) { fail BadMarketplaceId }
     end
 
     def extract_options(args)
