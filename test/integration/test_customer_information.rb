@@ -1,7 +1,7 @@
-require 'integration_helper'
+require 'integration_test_helper'
 require 'mws/customer_information'
 
-class CustomerInformationTest < IntegrationTest
+class TestCustomerInformation < IntegrationTest
   def test_gets_service_status
     clients.each do |client|
       res = client.get_service_status

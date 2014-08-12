@@ -1,7 +1,7 @@
-require 'helper'
+require 'test_helper'
 require 'peddler/parser'
 
-class PeddlerParserTest < MiniTest::Test
+class TestPeddlerParser < MiniTest::Test
   def assert_parser(klass, *content_types)
     content_types.each do |content_type|
       res = OpenStruct.new(headers: { 'Content-Type' => content_type }, body: '')

@@ -1,0 +1,184 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/CustomerInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A43Z&Signature=vmXCB8fzM3UQZdiG0LTJDCB1vQsYxQ1nPoYgownasZ8%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:35:43 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - b485ecc8-6e4e-4085-815c-beab20f591ea
+      x-mws-timestamp:
+      - '2014-08-12T11:35:44.140Z'
+      x-mws-response-context:
+      - Bv0mDgLiGvAe460SMP077L4nPxQp5twtZ4eivyzDF9bIZfDOw1j1hbVgApr6AMG92LM5tC0oPi4=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '385'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/schema/Customers/2014-03-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-08-12T11:35:44.140Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>b485ecc8-6e4e-4085-815c-beab20f591ea</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:35:44 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/CustomerInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A44Z&Signature=Yj5dR%2F%2FoXueUIbSfn%2Bg%2B08ga4opqP8Ee21EVb7HGG8Q%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:35:44 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 3e77e97c-c9d4-4ed8-a735-fa05c1abb0c2
+      x-mws-timestamp:
+      - '2014-08-12T11:35:44.437Z'
+      x-mws-response-context:
+      - vebq7hzGTE+7uBTSfgdO0hWdZDTFnPeiL1VXsYY0BW3ZuFfmMR53/P8ZnpmZCmyR8EAZJ9wjWJU=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '385'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/schema/Customers/2014-03-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-08-12T11:35:44.437Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>3e77e97c-c9d4-4ed8-a735-fa05c1abb0c2</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:35:44 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/CustomerInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A44Z&Signature=dglo3f865O7fAjMU5D43oUsyWDghkDwQmqDHjjZcgtc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:35:45 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 7bfd6a65-8333-42b7-bfd3-1a7a3b41eb1a
+      x-mws-timestamp:
+      - '2014-08-12T11:35:45.351Z'
+      x-mws-response-context:
+      - tU26esXjstlGxMX6GQzzRtidtkR02dYB+4oxDUfeaNhh7jZiLRHGbxhdBBc6VOFDYGlhYeuc/w0u
+        nB78OAwm7A==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '385'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/schema/Customers/2014-03-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-08-12T11:35:45.351Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>7bfd6a65-8333-42b7-bfd3-1a7a3b41eb1a</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:35:45 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/CustomerInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A45Z&Signature=jgHQlYFoGIavnL%2B1jGaduLOV2TLdDl9yZPRDzYF0MNU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:35:45 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 5e231e31-7d3c-4b51-85fe-a97f32306ffb
+      x-mws-timestamp:
+      - '2014-08-12T11:35:45.855Z'
+      x-mws-response-context:
+      - IQK4oT4FiN+COl7amBume2ihl8fUc/O2J72tYTWDlXJOm9OmgNgTNzYroB443Tn4ogG4zQp1BFY=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '385'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/schema/Customers/2014-03-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-08-12T11:35:45.855Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>5e231e31-7d3c-4b51-85fe-a97f32306ffb</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:35:45 GMT
+recorded_with: VCR 2.9.2

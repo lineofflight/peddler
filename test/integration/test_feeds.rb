@@ -1,7 +1,7 @@
-require 'integration_helper'
+require 'integration_test_helper'
 require 'mws/feeds'
 
-class FeedsTest < IntegrationTest
+class TestFeeds < IntegrationTest
   def test_gets_feed_submission_count
     clients.each do |client|
       res = client.get_feed_submission_count

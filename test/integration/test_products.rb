@@ -1,7 +1,7 @@
-require 'integration_helper'
+require 'integration_test_helper'
 require 'mws/products'
 
-class ProductsTest < IntegrationTest
+class TestProducts < IntegrationTest
   def test_lists_matching_products
     clients.each do |client|
       res = client.list_matching_products('architecture')

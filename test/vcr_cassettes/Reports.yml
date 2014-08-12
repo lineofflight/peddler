@@ -1,0 +1,1070 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A45%3A54Z&Signature=g23u3PiM3O43XJWEdwD6V4u6hT4RyivHOOm7ySleD8s%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:45:57 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:03:00.000Z'
+      x-mws-response-context:
+      - ZK2dFfzW10BjumsOfh8njPTcyYqoD2nQNFXon+GDcHWP4tLaCLcCoTJZf/1vU9xNcFx5/hBJ7A3q
+        /2vo5W1nQ3RWQJ9idgB+, NHfq4wR/IZHHRcKLGFa28iB9h4LBP/uRJx9e6iV2BcJuabvuuC2VU5gVNQ4ek6ZgYtIMx1tF4Dxo
+        ClnqY2sWCw==
+      x-amz-request-id:
+      - 82ef694a-c7b4-45d3-9174-93dbc28ae32e
+      x-mws-request-id:
+      - 82ef694a-c7b4-45d3-9174-93dbc28ae32e
+      x-mws-timestamp:
+      - '2014-08-12T11:45:55.279Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>374</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>82ef694a-c7b4-45d3-9174-93dbc28ae32e</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:45:57 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A45%3A57Z&Signature=udH1ZQCkYNfvallMJyRUE2Fqwc0UcxVHIZxpb39bq5w%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:00 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:19:00.000Z'
+      x-mws-response-context:
+      - 7c/3NAvn2xIEeMNutfC/CtFnHF4QkjOl/TVdNJgQWhESkFwFsUNDOBlJTGOV/BtnSiu8uaDdnl4G
+        0iJlUe4zE+KJlhSsZdrT, LJhnKnPyN0ywLPPeUaUB2RLtFl5dKBtO2kNWLkMtl7PsnBnGjapIwF4Py5Mur+YM7meFQ0/rN6E=
+      x-amz-request-id:
+      - fb77460d-91dd-45a4-9940-bc903b15aa62
+      x-mws-request-id:
+      - fb77460d-91dd-45a4-9940-bc903b15aa62
+      x-mws-timestamp:
+      - '2014-08-12T11:45:58.651Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>387</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>fb77460d-91dd-45a4-9940-bc903b15aa62</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:01 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A01Z&Signature=F536oS1Te0kLNsdBQ23IXdh3JaPU0FXizfDhvpFfUu0%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:02 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T11:47:00.000Z'
+      x-mws-response-context:
+      - LwVH5A8aBXeJV3NEVn9kznm9dF8VPbEyKwVaBuqKhY5o50u24gm0/0MICJHKzhmT+3AzPryRZ6IC
+        zbP7kjS9clB+O+T4gorq, opMB9lzpLWXPz9g+jwE1Qyp2uS+st3Ov0y+eO1SL9gqXidOsHtEYYZieMBNgCcjhpTqx+Jt4fQE=
+      x-amz-request-id:
+      - 218e5b48-9af7-48f0-a6f3-e8f09a8fba9d
+      x-mws-request-id:
+      - 218e5b48-9af7-48f0-a6f3-e8f09a8fba9d
+      x-mws-timestamp:
+      - '2014-08-12T11:46:01.785Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>471</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>218e5b48-9af7-48f0-a6f3-e8f09a8fba9d</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:04 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A04Z&Signature=7r00CyRqJCheTfqgsOk%2BmESOswa1xyGDh2X2HGypF4s%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:07 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:20:00.000Z'
+      x-mws-response-context:
+      - 5+ZO2YeE24dkDJinIf2qHazaSH4T+6BRUAzJ0X7PbI4xeTqA+xyQpszWkLe5Ecae8m0ghtAz5+KT
+        P+sM/YudLm5WxPvboDjR, SRc9DYlnOUUEsRRiqsRmwfhotEyv8slaUVv/d3pfV/t0fpRD1KXHiPok6jBdTvFf7meNprJ7CcE=
+      x-amz-request-id:
+      - 5f47ce6a-93bc-4a23-9aa3-e2c544813d9d
+      x-mws-request-id:
+      - 5f47ce6a-93bc-4a23-9aa3-e2c544813d9d
+      x-mws-timestamp:
+      - '2014-08-12T11:46:05.023Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>438</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>5f47ce6a-93bc-4a23-9aa3-e2c544813d9d</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:07 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A07Z&Signature=TmzFw6i9nh4ouFVd6ljiAteSAaPxRvpu5q%2FyIe93iL8%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:08 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '59.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:03:00.000Z'
+      x-mws-response-context:
+      - dusJWUWFP6PbkKMMYZhL0/ayDYrQcivulbvBaK9uNh1qpE+23ix6L969VJrFzY/a6LaOOSIJGYH1
+        xsP48P1pM0zxBW/u2HI6, RcUjeUgduKbN/e67VibXbjn6Nq1OjuSOfvXbqb41VD1zRRE7Cw9RgVVLHveGide/348AWbK+nJhd
+        ipGHRQ6aKQ==
+      x-amz-request-id:
+      - 22f79ef5-26ae-4875-8a63-fd0b5b2eebb6
+      x-mws-request-id:
+      - 22f79ef5-26ae-4875-8a63-fd0b5b2eebb6
+      x-mws-timestamp:
+      - '2014-08-12T11:46:08.311Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>6D1FC3dhXSAD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>18738184403</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10790032718</ReportRequestId><AvailableDate>2014-08-12T11:43:07+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18737962603</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789752558</ReportRequestId><AvailableDate>2014-08-12T11:27:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736996833</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789621732</ReportRequestId><AvailableDate>2014-08-12T10:20:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736473233</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789340354</ReportRequestId><AvailableDate>2014-08-12T09:46:08+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736115723</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789067508</ReportRequestId><AvailableDate>2014-08-12T09:20:53+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18735652533</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788857350</ReportRequestId><AvailableDate>2014-08-12T08:50:07+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734988173</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788722888</ReportRequestId><AvailableDate>2014-08-12T08:05:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734503203</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788425406</ReportRequestId><AvailableDate>2014-08-12T07:33:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734183923</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788287406</ReportRequestId><AvailableDate>2014-08-12T07:12:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733627383</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788072014</ReportRequestId><AvailableDate>2014-08-12T06:39:26+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>22f79ef5-26ae-4875-8a63-fd0b5b2eebb6</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:09 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A09Z&Signature=IXf1A4iz6w0oJGcqj%2Biu3FQyYlVGQrmZhK5vE55dxq0%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:10 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '59.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:19:00.000Z'
+      x-mws-response-context:
+      - 7c/3NAvn2xIEeMNutfC/CtFnHF4QkjOl/TVdNJgQWhESkFwFsUNDOBlJTGOV/BtnSiu8uaDdnl4G
+        0iJlUe4zE+KJlhSsZdrT, Rmm7ClBv953kBIBwfKABSFuaTfZLDDgg06oZcPgN2h8BAbdfTm92C6lKJnRZ5JKKA5qZAuGyg1g=
+      x-amz-request-id:
+      - dac3b8f7-1e9e-46a8-9025-ec16f38691cd
+      x-mws-request-id:
+      - dac3b8f7-1e9e-46a8-9025-ec16f38691cd
+      x-mws-timestamp:
+      - '2014-08-12T11:46:10.584Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>isfSUOS/9VcD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>41150111724</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9926584358</ReportRequestId><AvailableDate>2014-08-12T11:44:04+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41149275404</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9926136292</ReportRequestId><AvailableDate>2014-08-12T11:28:32+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41146799264</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9925718498</ReportRequestId><AvailableDate>2014-08-12T10:42:53+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41145696884</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9926253994</ReportRequestId><AvailableDate>2014-08-12T10:22:18+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41144500464</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9925398248</ReportRequestId><AvailableDate>2014-08-12T10:01:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41142439724</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9924993930</ReportRequestId><AvailableDate>2014-08-12T09:20:09+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41141437024</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9925398146</ReportRequestId><AvailableDate>2014-08-12T09:02:11+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41141295224</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9924583660</ReportRequestId><AvailableDate>2014-08-12T08:58:06+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41139313924</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9924194888</ReportRequestId><AvailableDate>2014-08-12T08:17:26+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41137176524</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9923919326</ReportRequestId><AvailableDate>2014-08-12T07:33:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>dac3b8f7-1e9e-46a8-9025-ec16f38691cd</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:10 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A10Z&Signature=XyeYAmyXx4X5PPz%2Fd0KR3E5vHHxQpB0LNLsK9IO%2F6Tg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:11 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '57.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T11:47:00.000Z'
+      x-mws-response-context:
+      - 9aDAzT6CGPZk5DhpZDYqcS3iieE34qwl8NtIHl6jR04yK1qoMqHzsxcJgeJgziwyvHv1TrQEvGzZ
+        Hx0HRCjvcNgnnNw4t5G1, c6m/uzBkCKmhy0CSofbUjfAPjnCeA7a/TY9kilhiNW9TP4HelSncUGqJ57hW63cYbbz5zVIHNsHk
+        PTMHMZeSlg==
+      x-amz-request-id:
+      - 024df32d-8f10-4444-a318-656e0b08354d
+      x-mws-request-id:
+      - 024df32d-8f10-4444-a318-656e0b08354d
+      x-mws-timestamp:
+      - '2014-08-12T11:46:11.785Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>biDYYHabO00D2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>4663394685</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102942033</ReportRequestId><AvailableDate>2014-08-12T11:27:18+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663319965</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102920217</ReportRequestId><AvailableDate>2014-08-12T11:10:47+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663260805</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102954251</ReportRequestId><AvailableDate>2014-08-12T11:01:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663170545</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102886681</ReportRequestId><AvailableDate>2014-08-12T10:45:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663092885</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102875025</ReportRequestId><AvailableDate>2014-08-12T10:28:05+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663051585</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102908455</ReportRequestId><AvailableDate>2014-08-12T10:19:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662939425</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102854119</ReportRequestId><AvailableDate>2014-08-12T09:58:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662863285</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102829623</ReportRequestId><AvailableDate>2014-08-12T09:43:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662799345</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102815711</ReportRequestId><AvailableDate>2014-08-12T09:29:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662689405</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102788553</ReportRequestId><AvailableDate>2014-08-12T09:07:20+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>024df32d-8f10-4444-a318-656e0b08354d</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:12 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A12Z&Signature=%2BbgQ6T4wGqvmj3DFEYheItxSkCxSSGJCWmc41v4%2F46k%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:13 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '60.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:20:00.000Z'
+      x-mws-response-context:
+      - bIN7OaWffTkbgyIDqFYNAef4/Mwn11ubAxjB80sa+6+iFPcOL1/KsfX/Acw728iqqtUpQedEqUHg
+        ja0jIp4caPjcg4yREZTi, OLCr4v1nEHwIvEb/vgyoFO2KhBWL7YaJ/1XZ4G0FTHg3gwsFZYhWJLuuBKu+8LRYOoJ42b6Lxz3h
+        1qa9ru/9Wg==
+      x-amz-request-id:
+      - 5e5268d9-0000-4651-96cb-817191cdf271
+      x-mws-request-id:
+      - 5e5268d9-0000-4651-96cb-817191cdf271
+      x-mws-timestamp:
+      - '2014-08-12T11:46:12.711Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>IdxqFTaM37cD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>18737553883</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789396956</ReportRequestId><AvailableDate>2014-08-12T11:00:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18737000973</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789963132</ReportRequestId><AvailableDate>2014-08-12T10:20:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736569863</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788987732</ReportRequestId><AvailableDate>2014-08-12T09:52:26+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18735692393</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788555130</ReportRequestId><AvailableDate>2014-08-12T08:52:43+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734859813</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788217144</ReportRequestId><AvailableDate>2014-08-12T07:58:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733832663</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787928196</ReportRequestId><AvailableDate>2014-08-12T06:52:09+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733108873</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787589474</ReportRequestId><AvailableDate>2014-08-12T06:06:59+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733005363</ReportId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><ReportRequestId>10788153786</ReportRequestId><AvailableDate>2014-08-12T06:01:47+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18732441663</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787383228</ReportRequestId><AvailableDate>2014-08-12T05:26:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18731612373</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787010414</ReportRequestId><AvailableDate>2014-08-12T04:33:24+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>5e5268d9-0000-4651-96cb-817191cdf271</RequestId></ResponseMetadata></GetReportListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:13 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A13Z&Signature=qgt4Lwe4r0I%2Bx7sh%2BHNTF4j5swQvCrn58HqH6g8gbYM%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:13 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:03:00.000Z'
+      x-mws-response-context:
+      - bIN7OaWffTkbgyIDqFYNAef4/Mwn11ubAxjB80sa+6+iFPcOL1/KsfX/Acw728iqqtUpQedEqUHg
+        ja0jIp4caPjcg4yREZTi, Q4cRG8kcY+4tjUoX8idS528OYFH/cexnI15YqH51GQkg/9d5bY6MYN+GpZ4MJSSV4ytNoYfbhxtz
+        3jv4twTstg==
+      x-amz-request-id:
+      - c6478c01-51b3-4a47-a299-ff9bca41dd39
+      x-mws-request-id:
+      - c6478c01-51b3-4a47-a299-ff9bca41dd39
+      x-mws-timestamp:
+      - '2014-08-12T11:46:14.126Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>0</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>c6478c01-51b3-4a47-a299-ff9bca41dd39</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:14 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A14Z&Signature=YPscRizLvMwzfw2ldZ%2BxdJPFW9wRDXAxRcxUxgRJV%2FE%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:14 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:19:00.000Z'
+      x-mws-response-context:
+      - SXtzrbaxRmrAz+bpEQ258aPBjcMIdNF1j/ghanod+EN8CdSh+jPdwUR4S2wtTZ8xoyZ5lYilDk5N
+        bKxbwuQbqF/mDSBnqM6S, YN9/LWg6hvziW84XOfW8eDuFoWj/EAwEeec2mHhioKXQtu+Uz8YqNwQs5HtpxyQZaFekdK2bcins
+        yVxerU58jg==
+      x-amz-request-id:
+      - 610d59e3-500d-4fdc-a72e-ceb659524b90
+      x-mws-request-id:
+      - 610d59e3-500d-4fdc-a72e-ceb659524b90
+      x-mws-timestamp:
+      - '2014-08-12T11:46:14.405Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>0</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>610d59e3-500d-4fdc-a72e-ceb659524b90</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:14 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A14Z&Signature=nLLJCT%2Blzir%2FlmNnB2Y5FbgeTal%2FX9RlF3k89d7kK1c%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:15 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T11:47:00.000Z'
+      x-mws-response-context:
+      - 9aDAzT6CGPZk5DhpZDYqcS3iieE34qwl8NtIHl6jR04yK1qoMqHzsxcJgeJgziwyvHv1TrQEvGzZ
+        Hx0HRCjvcNgnnNw4t5G1, h2Jr4rECwPRxoyUHGx3dYejIzsU1qUVRJKqlfdzX1cdHe07P2A7BzPx+flNbGOrwRvYsLn3oOlI=
+      x-amz-request-id:
+      - 001773c7-3efa-4e29-b873-49a0be2697b9
+      x-mws-request-id:
+      - 001773c7-3efa-4e29-b873-49a0be2697b9
+      x-mws-timestamp:
+      - '2014-08-12T11:46:15.198Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>1</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>001773c7-3efa-4e29-b873-49a0be2697b9</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:15 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A15Z&Signature=hupC%2Bz3j1ACTTdhWJCOHHmLGXNqlgchc1fyLYtitKZg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:16 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:20:00.000Z'
+      x-mws-response-context:
+      - Pgkzcbn1rJRAP+39x3fQ2pJmEk1EpmPGEHvcVL0pMkQJhBY8Dyt47Bv7zd+wPS6EGxriJWihhEY6
+        J6J/S0oBRp8sr4WVV+Vm, UE1v4fCyqJA6JZ/ooT0RnJ4FCy7tt7cNzI6wu+LqZjFdU7QrctCp/eKpn7W2cH1hjKB5t7zDro0=
+      x-amz-request-id:
+      - b3ffd2a3-29c9-4127-bb1d-091d27dd0ef1
+      x-mws-request-id:
+      - b3ffd2a3-29c9-4127-bb1d-091d27dd0ef1
+      x-mws-timestamp:
+      - '2014-08-12T11:46:16.105Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>0</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>b3ffd2a3-29c9-4127-bb1d-091d27dd0ef1</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:16 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A16Z&Signature=F32dR243b%2FCGWmGlf1I%2BNa2VRMokqwkdUvOw8OUJPq0%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:15 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:03:00.000Z'
+      x-mws-response-context:
+      - egwIUvofa8g25APTF09fZDK0AacVsyXnPRSG6EKkewKKn0IsZX3sAkmpH63sLDsg6KaDd2M4J9Ke
+        6fKTZtPIG1OgMlP0u3mn, iFVAYZsZPgTZrdBHwiXuh+0E5UOmQhY1gRCi4WXd7KHR98IKCcBuqESgm7wqpDK9misOG8TGGU9H
+        cfMv27zjoQ==
+      x-amz-request-id:
+      - 16cfe4b7-0619-4ba2-bfd2-fc19f5e85f95
+      x-mws-request-id:
+      - 16cfe4b7-0619-4ba2-bfd2-fc19f5e85f95
+      x-mws-timestamp:
+      - '2014-08-12T11:46:16.673Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>16cfe4b7-0619-4ba2-bfd2-fc19f5e85f95</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:16 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A16Z&Signature=iqcDQC9b0ekuAiqa77QavZC%2FgaYMt9bsfRif2o%2BiGrs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:16 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:19:00.000Z'
+      x-mws-response-context:
+      - g9/onxF15wZLmT4d/tMrDBOHVTqu4mNuaFO96a7pqhVgpYmOUd+pAtLU0PBSPoDDGpdtLjxs7lKI
+        tIEdHIlOUzkf5A+kHYEU, jyjCdwtXzWGJrBRrJ1YqKmKGhGL/DKFN7M5T8sgaRzwnFccxMQSCjYxAqQaDrBX6DBdGlT/SSuM=
+      x-amz-request-id:
+      - 5841da13-126d-4705-9bd9-fc65fb3162de
+      x-mws-request-id:
+      - 5841da13-126d-4705-9bd9-fc65fb3162de
+      x-mws-timestamp:
+      - '2014-08-12T11:46:16.916Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>5841da13-126d-4705-9bd9-fc65fb3162de</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:16 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A16Z&Signature=8qVpTBZml0kFqNwR%2BqOzRhltLk6xB8CCdvEOjeTDNIw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:17 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T11:47:00.000Z'
+      x-mws-response-context:
+      - kQuwg7wGM/RCw5nzKnSsGWse0jH8Xik3LFSi2/Sv27ZbZFa8+uvy7edJ9RNn9mcucDlLPA06ILFx
+        efs5i1wJch1MjTfuh+7Q, EG4eV8SktP8ATlVskk7rJ4ir+1fss4UybC+l7zKqUbL4HbYHLlHK2u5HWAYDEt4fEMrPFCADguZO
+        avVCsNmy1w==
+      x-amz-request-id:
+      - 6e59c292-017c-455a-bddc-4527b83231f7
+      x-mws-request-id:
+      - 6e59c292-017c-455a-bddc-4527b83231f7
+      x-mws-timestamp:
+      - '2014-08-12T11:46:17.881Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext><ReportSchedule><ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType><Schedule>_1_DAY_</Schedule><ScheduledDate>2014-08-12T22:18:44+00:00</ScheduledDate></ReportSchedule></GetReportScheduleListResult><ResponseMetadata><RequestId>6e59c292-017c-455a-bddc-4527b83231f7</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:18 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A18Z&Signature=LCjdLOQm1OhqDScI%2F0TO5BvekNAapbMbptyklaATYxc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:20:00.000Z'
+      x-mws-response-context:
+      - Ug5gVbuC3DnrIXvVQkSg4d6w48CrLHmw3GvgyrgjJHW4GR2kHK0tGujYaSauPMTWNRv3gcJHVnIC
+        imNV0mP8Yh93QcL1yEsp, N9V88MjlNLzMLoLGl2CumBrBrxayZ9zTxGOWPGF1FQEf39mKOmVFT5QVCSMDOOvYZE6poIuw5pQ=
+      x-amz-request-id:
+      - f6040338-edd1-4803-9efa-eb4c43912121
+      x-mws-request-id:
+      - f6040338-edd1-4803-9efa-eb4c43912121
+      x-mws-timestamp:
+      - '2014-08-12T11:46:18.575Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>f6040338-edd1-4803-9efa-eb4c43912121</RequestId></ResponseMetadata></GetReportScheduleListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:18 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A18Z&Signature=zGRaeCrAheAkVJlhUfkvzCpCHcbpNbLsSanTBMTWlMY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:18 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:03:00.000Z'
+      x-mws-response-context:
+      - CMoknPIdab8T8Oiv7SB+gMzkEC+YeIcJogXQknm0do4Ajmvx5EQxUWThKAS2P19IlfyUjJhaW4CN
+        2f9vOOSM+0e8PjSFrMTd, K2qWXAZDKn8QgbAA4gaRsVK+x7kLYgwILLVXuEJZdWgXmQU4akGKLWMSXnRySpHGJFmu3/FuTBM=
+      x-amz-request-id:
+      - 1a562690-0c38-4138-8d2d-5f0f21e604c8
+      x-mws-request-id:
+      - 1a562690-0c38-4138-8d2d-5f0f21e604c8
+      x-mws-timestamp:
+      - '2014-08-12T11:46:19.128Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>kGosEYW9pVpmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUcKFKzEDcAnvtOM1t6iCQ6jI7roc0h5KkPR6W7TgSRZ4ytzcQExk4h4/F3sakH4wA0eDa2Q5LZzbby+vJAE/4+JHuSaTGx3CQ2ycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQTbK8+eN5L+aWEl2JEUxbDs5fPT7VsK5u0wfus6cNQksnOe6t5s/G/HaJXmzg7+Ocf6muahHzo943H1RfaIT8ywm48+ixA1Ky+5vCarQdVQAoScr4r39Zp+10zxS1703xAPumZqILfWpHubh1h46e3Ghrew4nT/456REAF68FK9chs1VcqI5EDl7Q48NOuaikBsNUiXrVGfAWw5IGjyW34WDXuUOlSm69Sq7bkxmplIzHz3R26I0eIP7w9sYBr9NEluHOboVq3IjpovhapIl+1htq3lG5cR2B1ZvYbK2x0uzy/NfsyZQQLjBWNGLShTI7DS5kORaN6VA=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>10788153968</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:36+00:00</StartDate><EndDate>2014-08-12T06:01:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18733013613</GeneratedReportId><StartedProcessingDate>2014-08-12T06:01:58+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:02:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10785526996</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:02:53+00:00</StartDate><EndDate>2014-08-12T00:02:53+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:02:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18726739903</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:40+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:45+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10782555146</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:08+00:00</StartDate><EndDate>2014-08-11T18:00:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18719320913</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:22+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:00:27+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10779755336</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:42+00:00</StartDate><EndDate>2014-08-11T12:02:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18712441983</GeneratedReportId><StartedProcessingDate>2014-08-11T12:03:02+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:03:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10777214308</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T06:01:45+00:00</StartDate><EndDate>2014-08-11T06:01:45+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T06:01:45+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18706928443</GeneratedReportId><StartedProcessingDate>2014-08-11T06:02:03+00:00</StartedProcessingDate><CompletedDate>2014-08-11T06:02:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10774679858</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T00:06:05+00:00</StartDate><EndDate>2014-08-11T00:06:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T00:06:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18700902683</GeneratedReportId><StartedProcessingDate>2014-08-11T00:06:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T00:06:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10772021560</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T18:01:33+00:00</StartDate><EndDate>2014-08-10T18:01:33+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T18:01:33+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18694573193</GeneratedReportId><StartedProcessingDate>2014-08-10T18:01:47+00:00</StartedProcessingDate><CompletedDate>2014-08-10T18:01:52+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10769494292</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T12:02:40+00:00</StartDate><EndDate>2014-08-10T12:02:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T12:02:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18688774023</GeneratedReportId><StartedProcessingDate>2014-08-10T12:02:52+00:00</StartedProcessingDate><CompletedDate>2014-08-10T12:02:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10767058820</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T06:01:12+00:00</StartDate><EndDate>2014-08-10T06:01:13+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T06:01:13+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18683586203</GeneratedReportId><StartedProcessingDate>2014-08-10T06:01:33+00:00</StartedProcessingDate><CompletedDate>2014-08-10T06:01:38+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10764565060</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T00:01:05+00:00</StartDate><EndDate>2014-08-10T00:01:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T00:01:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18677777253</GeneratedReportId><StartedProcessingDate>2014-08-10T00:01:25+00:00</StartedProcessingDate><CompletedDate>2014-08-10T00:01:30+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>1a562690-0c38-4138-8d2d-5f0f21e604c8</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A19Z&Signature=GQEZ3Cz6VNPuJsJllY3TVZ3fxmXNKDXmgzJNB5OCZVA%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:19 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:19:00.000Z'
+      x-mws-response-context:
+      - g9/onxF15wZLmT4d/tMrDBOHVTqu4mNuaFO96a7pqhVgpYmOUd+pAtLU0PBSPoDDGpdtLjxs7lKI
+        tIEdHIlOUzkf5A+kHYEU, rt1Ra2lYqFTVMSzK5xqVJ1BCzzn+NaCwH5B9DewCjOGGkzoR+2+rgl0XT3setuadaTH7YRxpqpw=
+      x-amz-request-id:
+      - ba9181af-bdcf-4e49-8763-8194070ce2ae
+      x-mws-request-id:
+      - ba9181af-bdcf-4e49-8763-8194070ce2ae
+      x-mws-timestamp:
+      - '2014-08-12T11:46:19.487Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>JL0LUQ+KdTdmmFQFVAtP1W61sFe1Er6569S5ldlbt0TFpcBskDdu3R37NQxf/I+9gDxUX+Oc0jbuXvK6Dlqkdq9Mu0v9KzvI7hiN0vSL86Wi4XSb1piYJFf/dIfiRlQkPER1VTZcHvybTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVYZi8r6ySm3n7/9M2M4GysjFq3grLTKu8iXyr4vG0OlTKW9m83ZS3a9/AC1h7K/iVBkDkAI1xwLugeJMosZjzuiSkGS0LEEe5+SWUZqHDBNBf3vvCP2MLSd9lvkHVghFOl0PptlprUCbbSPtfFGo8hOeN38Ihho7PQ84aAsyr+WZ6REAF68FK9chs1VcqI5EDl7Q48NOuaikScIZ8A5OxMJYL36bQWxQiD0vdV8ApVwgcualMou7wKXLAQMa9s+hWJj3XhXiJBNB19K0lV54Kmm0iDngjVdb3uBzU5eZ1npJaQT0hVRF9fZ1s4CsdcEx4i7Ub/KdjDT42okwQwJWsmf4nVNSa7UDqA==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>9923640822</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:33+00:00</StartDate><EndDate>2014-08-12T06:01:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41133054944</GeneratedReportId><StartedProcessingDate>2014-08-12T06:01:57+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:02:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9920618284</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:03:01+00:00</StartDate><EndDate>2014-08-12T00:03:02+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:03:02+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41119533444</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:26+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:31+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9916934456</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:11+00:00</StartDate><EndDate>2014-08-11T18:00:12+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:12+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41102035644</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:33+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:00:38+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9912987526</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:36+00:00</StartDate><EndDate>2014-08-11T12:02:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41082723144</GeneratedReportId><StartedProcessingDate>2014-08-11T12:02:57+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:03:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9909108738</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T06:01:50+00:00</StartDate><EndDate>2014-08-11T06:01:51+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T06:01:51+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41063968224</GeneratedReportId><StartedProcessingDate>2014-08-11T06:02:12+00:00</StartedProcessingDate><CompletedDate>2014-08-11T06:02:17+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9906064348</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T00:06:04+00:00</StartDate><EndDate>2014-08-11T00:06:04+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T00:06:04+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41050386864</GeneratedReportId><StartedProcessingDate>2014-08-11T00:06:17+00:00</StartedProcessingDate><CompletedDate>2014-08-11T00:06:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9902529652</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T18:01:34+00:00</StartDate><EndDate>2014-08-10T18:01:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T18:01:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41033570004</GeneratedReportId><StartedProcessingDate>2014-08-10T18:01:55+00:00</StartedProcessingDate><CompletedDate>2014-08-10T18:02:00+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9899145652</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T12:02:43+00:00</StartDate><EndDate>2014-08-10T12:02:43+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T12:02:43+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41017098884</GeneratedReportId><StartedProcessingDate>2014-08-10T12:03:01+00:00</StartedProcessingDate><CompletedDate>2014-08-10T12:03:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9895902312</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T06:01:09+00:00</StartDate><EndDate>2014-08-10T06:01:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T06:01:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41001835504</GeneratedReportId><StartedProcessingDate>2014-08-10T06:01:30+00:00</StartedProcessingDate><CompletedDate>2014-08-10T06:01:35+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9892988712</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T00:01:09+00:00</StartDate><EndDate>2014-08-10T00:01:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T00:01:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>40988950544</GeneratedReportId><StartedProcessingDate>2014-08-10T00:01:25+00:00</StartedProcessingDate><CompletedDate>2014-08-10T00:01:30+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>ba9181af-bdcf-4e49-8763-8194070ce2ae</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:19 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A19Z&Signature=ujAnS96Zy58bsWhY5mE2zLT%2FpFOodLKgCKDkf%2BOjhIw%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:20 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T11:47:00.000Z'
+      x-mws-response-context:
+      - 4SUleUDkGex+EREH5K6KiM+ESaE9jiY0dWDLdiNuqV6WIuEDN3cXp4RvXaO/4CMV9YBqNSH0aMbH
+        FsDYsPSDW+nTVjI+BQoJ, h2Jr4rECwPRxoyUHGx3dYejIzsU1qUVRJKqlfdzX1cdHe07P2A7BzPx+flNbGOrwRvYsLn3oOlI=
+      x-amz-request-id:
+      - 1f4c09e2-cf4f-4cce-9c6a-6df28bbc4306
+      x-mws-request-id:
+      - 1f4c09e2-cf4f-4cce-9c6a-6df28bbc4306
+      x-mws-timestamp:
+      - '2014-08-12T11:46:20.254Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>ftUKv8k2Fq1mmFQFVAtP1aJ17H3LduXOl9cxtGNDuZQJ56emKxA7UXGsHLYYIfzBDxLHD4P1qA/XhSCkAHb2N4NqLkxqtD0eAhImHdEjO6mayoptLKUHJx+MP7WG1vJXgezB56JNE686U8pTg0alM/OFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzSXdek3HGfg5zbHlcKrL69PSbtn/CPspW+zxmoIQVQpSh6m8o/CWxhj2j148AoUEqMWL1n6ztRlcW5HxDPEQC0IYT4kb5hhXmdDyc/RQL7ruvuKtLhr4WDacRpN9l86m4Y4dKY+zVawilZ/vfyuLhfMdmv+3BbA0JRz9CX5PJsdGBWNN/qROJCU3tAoWRm8SSDCwW0XGZEXPQsIckhfgeYMX/yE650R63b5rkCnU+zffNQfR3CYgRmjpZ9JNyLKJRcBT0b79cab2If/HklbeztF6Bowh81ZJEe5dcpWUo51IF9iHYuH8+7eKgmDFNODsJl7LC7zcJSzo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>1102586403</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:39+00:00</StartDate><EndDate>2014-08-12T06:01:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4661616325</GeneratedReportId><StartedProcessingDate>2014-08-12T06:02:00+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:02:05+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1102158339</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:02:59+00:00</StartDate><EndDate>2014-08-12T00:03:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:03:00+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4659693765</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:17+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1102059349</ReportRequestId><ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType><StartDate>2014-08-10T22:18:44+00:00</StartDate><EndDate>2014-08-11T22:18:44+00:00</EndDate><Scheduled>true</Scheduled><SubmittedDate>2014-08-11T22:18:55+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4659292825</GeneratedReportId><StartedProcessingDate>2014-08-11T22:19:14+00:00</StartedProcessingDate><CompletedDate>2014-08-11T22:20:43+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1101863315</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:14+00:00</StartDate><EndDate>2014-08-11T18:00:14+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:14+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4658522965</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:55+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:00:59+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1101502203</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:35+00:00</StartDate><EndDate>2014-08-11T12:02:36+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:36+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4656921945</GeneratedReportId><StartedProcessingDate>2014-08-11T12:02:45+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:02:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1101064711</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T06:01:47+00:00</StartDate><EndDate>2014-08-11T06:01:47+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T06:01:47+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4654962745</GeneratedReportId><StartedProcessingDate>2014-08-11T06:02:05+00:00</StartedProcessingDate><CompletedDate>2014-08-11T06:02:08+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1100644439</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T00:06:02+00:00</StartDate><EndDate>2014-08-11T00:06:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T00:06:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4653058625</GeneratedReportId><StartedProcessingDate>2014-08-11T00:06:07+00:00</StartedProcessingDate><CompletedDate>2014-08-11T00:06:10+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1100540759</ReportRequestId><ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType><StartDate>2014-08-09T22:18:44+00:00</StartDate><EndDate>2014-08-10T22:18:44+00:00</EndDate><Scheduled>true</Scheduled><SubmittedDate>2014-08-10T22:18:46+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4652615105</GeneratedReportId><StartedProcessingDate>2014-08-10T22:19:00+00:00</StartedProcessingDate><CompletedDate>2014-08-10T22:19:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1100350023</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T18:01:29+00:00</StartDate><EndDate>2014-08-10T18:01:29+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T18:01:29+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4651862145</GeneratedReportId><StartedProcessingDate>2014-08-10T18:01:46+00:00</StartedProcessingDate><CompletedDate>2014-08-10T18:01:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1099982923</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T12:02:38+00:00</StartDate><EndDate>2014-08-10T12:02:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T12:02:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4650234865</GeneratedReportId><StartedProcessingDate>2014-08-10T12:03:22+00:00</StartedProcessingDate><CompletedDate>2014-08-10T12:03:25+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>1f4c09e2-cf4f-4cce-9c6a-6df28bbc4306</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:20 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A20Z&Signature=kws2%2FWg7kkxwZmZn%2FsB0RSiLTmuVD0WCr17gMuq6mkg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:46:21 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:20:00.000Z'
+      x-mws-response-context:
+      - Pgkzcbn1rJRAP+39x3fQ2pJmEk1EpmPGEHvcVL0pMkQJhBY8Dyt47Bv7zd+wPS6EGxriJWihhEY6
+        J6J/S0oBRp8sr4WVV+Vm, mYMyIPrnV9EA90t7FTbTYwZwI3VlYzR9Kr1tWd/+zdsr/1PurmKGIU9uSJsqB1dTtzsPzFjUsZw=
+      x-amz-request-id:
+      - 3bca333c-f809-4eef-8d44-24533dd767db
+      x-mws-request-id:
+      - 3bca333c-f809-4eef-8d44-24533dd767db
+      x-mws-timestamp:
+      - '2014-08-12T11:46:20.801Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>n+IGNd0ywS9mmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA5PKMQKsxq6yHGsHLYYIfzBMcVOR8D4UXAylAm8OpoEJTaqFlHjVAW2m8V1FZrUQjzthhC7FHLHAYMkUnqIDXXZSruG8EPSRSBniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpuv0hp7lZ/InswCD8pyebNx8gpg1Hhgue8OUt7j012w0em0tvOXXe6ZUXBqxQRiuW9n6Cf0sJ/O5a6CJYFzqtC0bMiThtmVzgvs37tFd7ZwNUTfOcq9pE3FGBA0SiHVqEkY9HqvxV60xcTqzn4hZYbfliWhvBSok1FfZdBMqhaG09oyimDxqCjPp9ZADyeP15dyBa9WBloO/BA5nmlyKwV9Qm7Z3C13qQXejD4PZtF3+ZYJvQgmd0mYh9rF6RqKHWy0bzasUN7qbjoNYB/lZMcxmxRVdWhZqDQga2GnVME6YWDdcStbtdayFJ4QOhzZfNg==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>10788153786</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:33+00:00</StartDate><EndDate>2014-08-12T06:01:33+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:33+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18733005363</GeneratedReportId><StartedProcessingDate>2014-08-12T06:01:42+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:01:47+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10785528124</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:03:03+00:00</StartDate><EndDate>2014-08-12T00:03:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:03:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18726730383</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:11+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783929830</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_XML_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:43:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722801893</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:09+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:09+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783928962</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_V2_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:43:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722798393</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:03+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927898</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:57+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722795563</GeneratedReportId><StartedProcessingDate>2014-08-11T20:42:57+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:42:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927670</ReportRequestId><ReportType>_GET_ALT_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722805963</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927656</ReportRequestId><ReportType>_GET_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722805653</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927650</ReportRequestId><ReportType>_GET_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722804623</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:16+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10782555040</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:07+00:00</StartDate><EndDate>2014-08-11T18:00:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18719343393</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:23+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:01:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10779754564</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:34+00:00</StartDate><EndDate>2014-08-11T12:02:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18712446123</GeneratedReportId><StartedProcessingDate>2014-08-11T12:03:16+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:03:21+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>3bca333c-f809-4eef-8d44-24533dd767db</RequestId></ResponseMetadata></GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:46:21 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A47%3A40Z&Signature=P8V5TzWajQyhiO6e%2BhqitIUcx%2FPXi4NkNkSjQvtyU2Q%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:47:42 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:03:00.000Z'
+      x-mws-response-context:
+      - ZK2dFfzW10BjumsOfh8njPTcyYqoD2nQNFXon+GDcHWP4tLaCLcCoTJZf/1vU9xNcFx5/hBJ7A3q
+        /2vo5W1nQ3RWQJ9idgB+, b6ka19D9+Gs6/8kF8GQbI6HYmXifeH7wVHtnh5ORggzsNIuAnnWuvWsuWwzT2MNGxM7EyhNIjXS1
+        pH/tk04UwA==
+      x-amz-request-id:
+      - 082495fb-3055-441d-892a-92f802d8a3fa
+      x-mws-request-id:
+      - 082495fb-3055-441d-892a-92f802d8a3fa
+      x-mws-timestamp:
+      - '2014-08-12T11:47:41.489Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>3841</Count></GetReportCountResult><ResponseMetadata><RequestId>082495fb-3055-441d-892a-92f802d8a3fa</RequestId></ResponseMetadata></GetReportCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:47:42 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A47%3A42Z&Signature=qFFkSE4zqhyZi1AMUc6%2FsUV7P9hNR6h%2F8Qn4IE5NLoA%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:47:57 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:19:00.000Z'
+      x-mws-response-context:
+      - QpCeFBbpz2jJq4iQGwe4uGnmChpHIQQjr3GB+OxopP6OuZOIV5Av2IwHoegsQ3qsdsBhyQ9P1yBc
+        VXAoD+ts7N6qHShg+SLa, jWz/3EP8QFQAjc5N3oGP/4BFbQQk39A5e+9ACTS2iWG+bQbVBuB8P/7ag+V6raEM6cikMLPqmRM=
+      x-amz-request-id:
+      - ca8d5679-374a-4c0c-98ab-c39b9a359f84
+      x-mws-request-id:
+      - ca8d5679-374a-4c0c-98ab-c39b9a359f84
+      x-mws-timestamp:
+      - '2014-08-12T11:47:43.053Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>3110</Count></GetReportCountResult><ResponseMetadata><RequestId>ca8d5679-374a-4c0c-98ab-c39b9a359f84</RequestId></ResponseMetadata></GetReportCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:47:58 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A47%3A58Z&Signature=wX6m07VFNAqHaDe9At9dMzj3KVZoOXSrNflrAIkWyZI%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:47:59 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:47:00.000Z'
+      x-mws-response-context:
+      - LwVH5A8aBXeJV3NEVn9kznm9dF8VPbEyKwVaBuqKhY5o50u24gm0/0MICJHKzhmT+3AzPryRZ6IC
+        zbP7kjS9clB+O+T4gorq, tU26esXjstlGxMX6GQzzRtidtkR02dYB+4oxDUfeaNhh7jZiLRHGbxhdBBc6VOFDYGlhYeuc/w0u
+        nB78OAwm7A==
+      x-amz-request-id:
+      - 7b251062-fcb7-4019-8b92-e6d348ec384b
+      x-mws-request-id:
+      - 7b251062-fcb7-4019-8b92-e6d348ec384b
+      x-mws-timestamp:
+      - '2014-08-12T11:47:58.727Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>5241</Count></GetReportCountResult><ResponseMetadata><RequestId>7b251062-fcb7-4019-8b92-e6d348ec384b</RequestId></ResponseMetadata></GetReportCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:48:00 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A48%3A00Z&Signature=oGwIiR8iVLVHGSbto1U07JFHQkvIdcT%2BnJS4s1Ap1Vo%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Tue, 12 Aug 2014 11:48:01 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2014-08-12T12:20:00.000Z'
+      x-mws-response-context:
+      - 3osntDZEtK5dSV1EUXMxsZxvBp+g15vhSanvmLQITu+iFs8LT1X9nlu8+TnTUXnicG01eKGBJANe
+        AlD0XdpqMd6iDKNmCYO5, xyanCRIHNV9nx8+bgg/Xw5p6u5RnBWFSklsP6FmVRD79WE4ndxNwLU1ujReBO+v0REZ7JGXHzgCj
+        XcXELA9Hew==
+      x-amz-request-id:
+      - 1e3b0eef-78b4-4d69-b8e9-8a38d50dbf66
+      x-mws-request-id:
+      - 1e3b0eef-78b4-4d69-b8e9-8a38d50dbf66
+      x-mws-timestamp:
+      - '2014-08-12T11:48:00.846Z'
+      Content-Type:
+      - text/xml
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>3354</Count></GetReportCountResult><ResponseMetadata><RequestId>1e3b0eef-78b4-4d69-b8e9-8a38d50dbf66</RequestId></ResponseMetadata></GetReportCountResponse>
+    http_version: 
+  recorded_at: Tue, 12 Aug 2014 11:48:02 GMT
+recorded_with: VCR 2.9.2

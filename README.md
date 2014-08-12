@@ -1,8 +1,9 @@
 
 # Peddler
 
-[![Travis](https://travis-ci.org/hakanensari/peddler.svg)](https://travis-ci.org/hakanensari/peddler)
+[![Build Status](https://travis-ci.org/hakanensari/peddler.svg)](https://travis-ci.org/hakanensari/peddler)
 [![Code Climate](http://img.shields.io/codeclimate/github/hakanensari/peddler.svg)](https://codeclimate.com/github/hakanensari/peddler)
+[![Coverage Status](http://img.shields.io/coveralls/hakanensari/peddler/master.svg)](https://coveralls.io/r/hakanensari/peddler)
 
 **Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
