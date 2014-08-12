@@ -1,7 +1,7 @@
-require 'integration_helper'
+require 'integration_test_helper'
 require 'mws/reports'
 
-class ReportsTest < IntegrationTest
+class TestReports < IntegrationTest
   def test_gets_report_request_count
     clients.each do |client|
       res = client.get_report_request_count
@@ -31,7 +31,6 @@ class ReportsTest < IntegrationTest
   end
 
   def test_gets_report_count
-    skip("Some endpoints don't work")
     clients.each do |client|
       res = client.get_report_count
       refute_empty res.parse

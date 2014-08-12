@@ -1,14 +1,10 @@
-require 'integration_helper'
+require 'integration_test_helper'
 require 'mws/fulfillment_inventory'
 
-class FulfillmentInventoryTest < IntegrationTest
-  def a_month_ago
-    Date.today - 30
-  end
-
+class TestFulfillmentInventory < IntegrationTest
   def test_lists_inventory_supply
     clients.each do |client|
-      res = client.list_inventory_supply(query_start_date_time: a_month_ago)
+      res = client.list_inventory_supply(query_start_date_time: Date.today - 30)
       refute_empty res.parse
     end
   end

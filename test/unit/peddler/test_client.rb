@@ -1,8 +1,8 @@
-require 'helper'
+require 'test_helper'
 require 'excon'
 require 'peddler/client'
 
-class PeddlerClientTest < MiniTest::Test
+class TestPeddlerClient < MiniTest::Test
   module Parser
     def self.parse(res, *); res; end
   end

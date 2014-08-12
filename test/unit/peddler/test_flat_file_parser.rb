@@ -1,7 +1,7 @@
-require 'helper'
+require 'test_helper'
 require 'peddler/flat_file_parser'
 
-class PeddlerFlatFileParserTest < MiniTest::Test
+class TestPeddlerFlatFileParser < MiniTest::Test
   def setup
     body = "Feed Processing Summary:\n\tNumber of records processed\t\t11006\n\tNumber of records successful\t\t11006\n\noriginal-record-number\tsku\terror-code\terror-type\terror-message\n1822\t85da472e-ba6c-11e3-95af-002590a74356\t5000\tWarning\tThe update for Sku '85da472e-ba6c-11e3-95af-002590a74356' was skipped because it is identical to the update in feed '9518995390'.\n"
     body.encode!('ASCII-8BIT')

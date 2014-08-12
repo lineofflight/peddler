@@ -1,7 +1,7 @@
-require 'integration_helper'
+require 'integration_test_helper'
 require 'mws/subscriptions'
 
-class SubscriptionsTest < IntegrationTest
+class TestSubscriptions < IntegrationTest
   def test_lists_registered_destinations
     clients.each do |client|
       res = client.list_registered_destinations

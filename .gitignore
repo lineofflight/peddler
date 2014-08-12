@@ -2,6 +2,5 @@
 Gemfile.lock
 .yardoc
 bin
-mws.yml*
+coverage
 pkg
-vcr_cassettes
