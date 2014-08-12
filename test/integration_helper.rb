@@ -33,7 +33,8 @@ class IntegrationTest < MiniTest::Test
     end
 
     accounts.map do |account|
-      MWS.const_get(api_name).new.configure do |c|
+      klass = MWS.const_get(api_name).const_get(:Client)
+      klass.new.configure do |c|
         account.each { |k, v| c.send("#{k}=", v) }
       end
     end
