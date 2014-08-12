@@ -1,13 +1,13 @@
 require 'peddler/client'
 
 module MWS
-  # The Fulfillment Inventory API can help you stay up-to-date on the
-  # availability of your inventory in the Amazon Fulfillment Network. The
-  # Fulfillment Inventory API reports real-time availability information for
-  # your Amazon Fulfillment Network inventory regardless of whether you are
-  # selling your inventory on Amazon's retail web site or through other retail
-  # channels.
   module FulfillmentInventory
+    # The Fulfillment Inventory API can help you stay up-to-date on the
+    # availability of your inventory in the Amazon Fulfillment Network. The
+    # Fulfillment Inventory API reports real-time availability information for
+    # your Amazon Fulfillment Network inventory regardless of whether you are
+    # selling your inventory on Amazon's retail web site or through other retail
+    # channels.
     class Client < ::Peddler::Client
       path '/FulfillmentInventory/2010-10-01'
 
@@ -27,8 +27,8 @@ module MWS
         run
       end
 
-      # Returns the next page of information about the availability of a seller's
-      # inventory
+      # Returns the next page of information about the availability of a
+      # seller's inventory
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupplyByNextToken.html
       # @param next_token [String]

@@ -10,6 +10,7 @@ end
 
 group :development do
   gem 'pry', require: false
+  gem 'rubocop', require: false
   gem 'yard', require: false
 end
 

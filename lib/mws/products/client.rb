@@ -1,11 +1,11 @@
 require 'peddler/client'
 
 module MWS
-  # The MWS Products API helps you get information to match your products to
-  # existing product listings on Amazon Marketplace websites and to make
-  # sourcing and pricing decisions for listing those products on Amazon
-  # Marketplace websites.
   module Products
+    # The MWS Products API helps you get information to match your products to
+    # existing product listings on Amazon Marketplace websites and to make
+    # sourcing and pricing decisions for listing those products on Amazon
+    # Marketplace websites.
     class Client < ::Peddler::Client
       path '/Products/2011-10-01'
 
@@ -99,8 +99,8 @@ module MWS
         run
       end
 
-      # Gets pricing information for the lowest-price active offer listings for a
-      # product, based on Seller SKU
+      # Gets pricing information for the lowest-price active offer listings for
+      # a product, based on Seller SKU
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForSKU.html
       # @overload get_lowest_offer_listings_for_sku(*skus, opts = { marketplace_id: marketplace_id })
@@ -120,8 +120,8 @@ module MWS
         run
       end
 
-      # Gets pricing information for the lowest-price active offer listings for a
-      # product, identified by its ASIN
+      # Gets pricing information for the lowest-price active offer listings for
+      # a product, identified by its ASIN
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForASIN.html
       # @overload get_lowest_offer_listings_for_asin(*asins, opts = { marketplace_id: marketplace_id })
@@ -141,8 +141,8 @@ module MWS
         run
       end
 
-      # Gets pricing information for seller's own offer listings, based on Seller
-      # SKU
+      # Gets pricing information for seller's own offer listings, based on
+      # Seller SKU
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForSKU.html
       # @overload get_my_price_for_sku(*skus, opts = { marketplace_id: marketplace_id })
@@ -224,7 +224,7 @@ module MWS
       # @api private
       def operation(*)
         super.tap do |opts|
-          unless opts.has_key?('MarketplaceId')
+          unless opts.key?('MarketplaceId')
             opts.store('MarketplaceId', marketplace_id)
           end
         end

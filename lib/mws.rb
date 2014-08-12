@@ -18,7 +18,7 @@ module MWS
     extend Forwardable
 
     MWS.constants.each do |klass|
-      method_name = klass.to_s.gsub(/(.)([A-Z])/,'\1_\2').downcase
+      method_name = klass.to_s.gsub(/(.)([A-Z])/, '\1_\2').downcase
       def_delegator MWS.const_get(klass).const_get(:Client), :new, method_name
     end
   end

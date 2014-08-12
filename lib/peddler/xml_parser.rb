@@ -23,7 +23,7 @@ module Peddler
     private
 
     def find_result
-      results = xml.values[0].find { |k, v| k.include?('Result') }
+      results = xml.values[0].find { |k, _| k.include?('Result') }
       results ? results.last : nil
     end
   end

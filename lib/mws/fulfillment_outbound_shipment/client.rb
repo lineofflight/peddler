@@ -2,15 +2,16 @@ require 'peddler/client'
 require 'excon'
 
 module MWS
-  # The Fulfillment Outbound Shipment API enables you to fulfill orders placed
-  # through channels other than Amazon's retail web site, using your inventory
-  # in the Amazon Fulfillment Network. You can request previews of potential
-  # fulfillment orders that return estimated shipping fees and shipping dates
-  # based on shipping speed. You can get detailed item-level, shipment-level,
-  # and order-level information for any existing fulfillment order that you
-  # specify. You can also request lists of existing fulfillment orders based on
-  # when they were fulfilled and by the fulfillment method associated with them.
   module FulfillmentOutboundShipment
+    # The Fulfillment Outbound Shipment API enables you to fulfill orders placed
+    # through channels other than Amazon's retail web site, using your inventory
+    # in the Amazon Fulfillment Network. You can request previews of potential
+    # fulfillment orders that return estimated shipping fees and shipping dates
+    # based on shipping speed. You can get detailed item-level, shipment-level,
+    # and order-level information for any existing fulfillment order that you
+    # specify. You can also request lists of existing fulfillment orders based
+    # on when they were fulfilled and by the fulfillment method associated with
+    # them.
     class Client < ::Peddler::Client
       path '/FulfillmentOutboundShipment/2010-10-01'
 
@@ -24,7 +25,7 @@ module MWS
       # @option opts [Boolean] :include_cod_fulfillment_preview
       # @return [Peddler::XMLParser]
       def get_fulfillment_preview(address, items, opts = {})
-        if opts.has_key?(:include_cod_fulfillment_preview)
+        if opts.key?(:include_cod_fulfillment_preview)
           opts['IncludeCODFulfillmentPreview'] = opts.delete(:include_cod_fulfillment_preview)
         end
 
@@ -54,7 +55,7 @@ module MWS
       # @option opts [Struct, Hash] :cod_settings
       # @return [Peddler::XMLParser]
       def create_fulfillment_order(seller_fulfillment_order_id, displayable_order_id, displayable_order_date_time, displayable_order_comment, shipping_speed_category, destination_address, items, opts = {})
-        if opts.has_key?(:cod_settings)
+        if opts.key?(:cod_settings)
           opts['CODSettings'] = opts.delete(:cod_settings)
         end
 
@@ -141,7 +142,7 @@ module MWS
       # Returns delivery tracking information for a package in an outbound
       # shipment for a Multi-Channel Fulfillment order
       def get_package_tracking_details
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       # Requests that Amazon stop attempting to fulfill an existing fulfillment

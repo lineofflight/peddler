@@ -1,13 +1,13 @@
 require 'peddler/client'
 
 module MWS
-  # The Amazon MWS Subscriptions API section enables you to subscribe to
-  # receive notifications that are relevant to your business with Amazon. With
-  # the operations in the Subscriptions API section, you can register to
-  # receive important information from Amazon without having to poll the
-  # Amazon MWS service. Instead, the information is sent directly to you when
-  # an event occurs to which you are subscribed.
   module Subscriptions
+    # The Amazon MWS Subscriptions API section enables you to subscribe to
+    # receive notifications that are relevant to your business with Amazon. With
+    # the operations in the Subscriptions API section, you can register to
+    # receive important information from Amazon without having to poll the
+    # Amazon MWS service. Instead, the information is sent directly to you when
+    # an event occurs to which you are subscribed.
     class Client < ::Peddler::Client
       path '/Subscriptions/2013-07-01'
 
@@ -44,7 +44,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListRegisteredDestinations.html
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def list_registered_destinations( marketplace_id = marketplace_id)
+      def list_registered_destinations(marketplace_id = marketplace_id)
         operation('ListRegisteredDestinations')
           .add('MarketplaceId' => marketplace_id)
 
@@ -89,7 +89,10 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_subscription(notification_type, sqs_queue_url, marketplace_id = marketplace_id)
         operation('GetSubscription')
-          .add('MarketplaceId' => marketplace_id, 'NotificationType' => notification_type)
+          .add(
+            'MarketplaceId' => marketplace_id,
+            'NotificationType' => notification_type
+          )
           .add(build_destination(sqs_queue_url))
 
         run
@@ -104,7 +107,10 @@ module MWS
       # @return [Peddler::XMLParser]
       def delete_subscription(notification_type, sqs_queue_url, marketplace_id = marketplace_id)
         operation('DeleteSubscription')
-          .add('MarketplaceId' => marketplace_id, 'NotificationType' => notification_type)
+          .add(
+            'MarketplaceId' => marketplace_id,
+            'NotificationType' => notification_type
+          )
           .add(build_destination(sqs_queue_url))
 
         run

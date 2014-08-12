@@ -1,18 +1,18 @@
 require 'peddler/client'
 
 module MWS
-  # The Off-Amazon Payments API helps you to process payments for purchases
-  # made by buyers on your website using the Login and Pay with Amazon service.
-  # This API enables you to programmatically retrieve shipping and payment
-  # information provided by the buyer from their Amazon account. It allows you
-  # to authorize, capture, and refund payments, enabling a variety of payments
-  # scenarios.
-  #
-  # @note The Off-Amazon Payments API section is only applicable to payments
-  #   made through the Login and Pay with Amazon service offered by Amazon
-  #   Payments. You cannot use this API section to process payments for Amazon
-  #   Marketplace, Amazon Webstore, or Checkout by Amazon.
   module OffAmazonPayments
+    # The Off-Amazon Payments API helps you to process payments for purchases
+    # made by buyers on your website using the Login and Pay with Amazon
+    # service. This API enables you to programmatically retrieve shipping and
+    # payment information provided by the buyer from their Amazon account. It
+    # allows you to authorize, capture, and refund payments, enabling a variety
+    # of payments scenarios.
+    #
+    # @note The Off-Amazon Payments API section is only applicable to payments
+    #   made through the Login and Pay with Amazon service offered by Amazon
+    #   Payments. You cannot use this API section to process payments for Amazon
+    #   Marketplace, Amazon Webstore, or Checkout by Amazon.
     class Client < ::Peddler::Client
       path '/OffAmazonPayments/2013-01-01/'
 
@@ -60,8 +60,8 @@ module MWS
         run
       end
 
-      # Sets billing agreement details such as a description of the agreement and
-      # other information about the seller
+      # Sets billing agreement details such as a description of the agreement
+      # and other information about the seller
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_SetBillingAgreementDetails.html
       # @param amazon_billing_agreement_id [String]
@@ -92,8 +92,8 @@ module MWS
         run
       end
 
-      # Validates the status of the BillingAgreement object and the payment method
-      # associated with it
+      # Validates the status of the BillingAgreement object and the payment
+      # method associated with it
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_ValidateBillingAgreement.html
       # @param amazon_billing_agreement_id [String]
@@ -153,8 +153,8 @@ module MWS
         run
       end
 
-      # Sets order reference details such as the order total and a description for
-      # the order
+      # Sets order reference details such as the order total and a description
+      # for the order
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_SetOrderReferenceDetails.html
       # @param amazon_order_reference_id [String]
@@ -216,8 +216,8 @@ module MWS
       end
 
       # Confirms that an order reference has been fulfilled (fully or partially)
-      # and that you do not expect to create any new authorizations on this order
-      # reference
+      # and that you do not expect to create any new authorizations on this
+      # order reference
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CloseOrderReference.html
       # @param amazon_order_reference_id [String]
@@ -326,7 +326,7 @@ module MWS
       # @option opts [String] :seller_refund_note
       # @option opts [String] :soft_descriptor
       # @return [Peddler::XMLParser]
-      def refund(amazon_capture_id, refund_reference_id, refund_amount, opts ={})
+      def refund(amazon_capture_id, refund_reference_id, refund_amount, opts = {})
         operation('Refund')
           .add(opts.merge(
             'AmazonCaptureId' => amazon_capture_id,
@@ -344,7 +344,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_refund_details(amazon_refund_id)
         operation('GetRefundDetails')
-          .add('AmazonRefundId' => 'amazon_refund_id')
+          .add('AmazonRefundId' => amazon_refund_id)
 
         run
       end

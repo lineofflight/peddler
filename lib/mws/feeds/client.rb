@@ -1,9 +1,9 @@
 require 'peddler/client'
 
 module MWS
-  # The MWS Feeds API lets you upload inventory and order data to Amazon. You
-  # can also use this API to get information about the processing of feeds.
   module Feeds
+    # The MWS Feeds API lets you upload inventory and order data to Amazon. You
+    # can also use this API to get information about the processing of feeds.
     class Client < ::Peddler::Client
       # Uploads a feed
       #

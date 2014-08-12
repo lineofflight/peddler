@@ -1,17 +1,17 @@
 require 'peddler/client'
 
 module MWS
-  # The Recommendations API enables you to programmatically retrieve Amazon
-  # Selling Coach recommendations by recommendation category. A recommendation
-  # is an actionable, timely, and personalized opportunity to increase your
-  # sales and performance.
   module Recommendations
+    # The Recommendations API enables you to programmatically retrieve Amazon
+    # Selling Coach recommendations by recommendation category. A recommendation
+    # is an actionable, timely, and personalized opportunity to increase your
+    # sales and performance.
     class Client < ::Peddler::Client
       path '/Recommendations/2013-04-01'
 
-      # Checks whether there are active recommendations for each category for the
-      # given marketplace, and if there are, returns the time when recommendations
-      # were last updated for each category
+      # Checks whether there are active recommendations for each category for
+      # the given marketplace, and if there are, returns the time when
+      # recommendations were last updated for each category
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
       # @param marketplace_id [String]
@@ -23,8 +23,8 @@ module MWS
         run
       end
 
-      # Lists active recommendations for a specific category or for all categories
-      # for a specific marketplace
+      # Lists active recommendations for a specific category or for all
+      # categories for a specific marketplace
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendations.html
       # @overload list_recommendations(opts = { marketplace_id: marketplace_id })
@@ -38,7 +38,10 @@ module MWS
 
         operation('ListRecommendations')
           .add(opts)
-          .structure!('CategoryQueryList', 'CategoryQuery', '1', 'FilterOptions', 'FilterOption')
+          .structure!(
+            'CategoryQueryList', 'CategoryQuery', '1', 'FilterOptions',
+            'FilterOption'
+          )
 
         run
       end

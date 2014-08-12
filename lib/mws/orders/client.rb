@@ -1,9 +1,9 @@
 require 'peddler/client'
 
 module MWS
-  # With the MWS Orders API, you can list orders created or updated during a
-  # time frame you specify or retrieve information about specific orders.
   module Orders
+    # With the MWS Orders API, you can list orders created or updated during a
+    # time frame you specify or retrieve information about specific orders.
     class Client < ::Peddler::Client
       path '/Orders/2013-09-01'
 
@@ -26,7 +26,9 @@ module MWS
       # @return [Peddler::XMLParser]
       def list_orders(opts = {})
         opts[:marketplace_id] ||= marketplace_id
-        opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status) if opts.has_key?(:tfm_shipment_status)
+        if opts.key?(:tfm_shipment_status)
+          opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status)
+        end
 
         operation('ListOrders')
           .add(opts)
