@@ -30,7 +30,7 @@ module MWS
       # @option opts [String] :date_range_type
       # @return [Peddler::XMLParser]
       def list_customers(opts = {})
-        operation('ListCarts')
+        operation('ListCustomers')
           .add(opts)
 
         run
@@ -58,7 +58,7 @@ module MWS
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_customers_for_customer_id(*customer_id_list)
-        opts = extract_options(id_list)
+        opts = extract_options(customer_id_list)
         operation('GetCustomersForCustomerId')
           .add(opts.merge('CustomerIdList' => customer_id_list))
           .structure!('CustomerIdList', 'CustomerId')
