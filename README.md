@@ -15,7 +15,7 @@ To use Amazon MWS, you must have an eligible seller account.
 
 **Peddler** maps one on one to the MWS APIs and their various operations. It treats required request parameters as ordinary arguments and optional ones as keyword arguments. It parses XML responses with [**MultiXml**](https://github.com/sferik/multi_xml), which helps cast the result nodes into Ruby Hashes. Tab-delimited files are handled with Standard Library's [**CSV**](https://github.com/ruby/ruby/blob/trunk/lib/csv.rb).
 
-Further abstraction is not in the scope of this project. See [**MWS Orders**](https://github.com/hakanensari/mws-orders) for a richer interface to the same-named API, built on **Peddler**.
+Further abstraction is not in the scope of this project. As an example implementation built on **Peddler**, see [**MWS Orders**](https://github.com/hakanensari/mws-orders), which provides a richer interface to the same-named API.
 
 ## Quick Start
 
