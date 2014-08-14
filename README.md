@@ -19,8 +19,6 @@ Further abstraction is not in the scope of this project. See [**MWS Orders**](ht
 
 ## Quick Start
 
-Require the library and instantiate a client:
-
 ```ruby
 require 'peddler'
 
