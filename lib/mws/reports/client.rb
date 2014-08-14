@@ -186,7 +186,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
       # @raise [NotImplementedError]
       def get_report_schedule_list_by_next_token(*)
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       # Count scheduled reports
