@@ -103,7 +103,7 @@ module Peddler
     end
 
     def host
-      HOSTS.fetch(marketplace_id) { fail BadMarketplaceId }
+      HOSTS.fetch(marketplace_id) { raise BadMarketplaceId }
     end
 
     def extract_options(args)

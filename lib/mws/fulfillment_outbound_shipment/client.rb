@@ -142,7 +142,7 @@ module MWS
       # Returns delivery tracking information for a package in an outbound
       # shipment for a Multi-Channel Fulfillment order
       def get_package_tracking_details
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       # Requests that Amazon stop attempting to fulfill an existing fulfillment
