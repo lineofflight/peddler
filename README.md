@@ -11,33 +11,42 @@ To use Amazon MWS, you must have an eligible seller account.
 
 ![Peddler](http://f.cl.ly/items/231z2m0r1Q2o2q1n0w1N/peddler.jpg)
 
-## Configuration
+## Scope
+
+**Peddler** maps one on one to the MWS APIs and their various operations. It treats required request parameters as ordinary arguments and optional ones as keyword arguments. It parses XML responses with [**MultiXml**](https://github.com/sferik/multi_xml), which helps cast the result nodes into Ruby Hashes. Tab-delimited files are handled with Standard Library's [**CSV**](https://github.com/ruby/ruby/blob/trunk/lib/csv.rb).
+
+Further abstraction is not in the scope of this project. See [**MWS Orders**](https://github.com/hakanensari/mws-orders) for a richer interface to the same-named API, built on **Peddler**.
+
+## Quick Start
 
 Require the library and instantiate a client:
 
 ```ruby
 require 'peddler'
+
 client = MWS.orders
+parser = client.list_orders(created_after: 1.month.ago)
+parser.parse
 ```
 
 You can set up credentials when instantiating:
 
 ```ruby
 client = MWS.orders(
-  marketplace_id: 'A1F83G8C2ARO7P',
-  merchant_id: 'A2A9WNXCU02UZW',
-  aws_access_key_id: 'AKIVICHZMZ2JRSSLC27W',
-  aws_secret_access_key: 'rOMa3ydPBTJ3AD0bxERTOX0Fv0fAC6Q0s6/czMZO'
+  marketplace_id:        "YOUR_MARKETPLACE_ID",
+  merchant_id:           "YOUR_MERCHANT_ID",
+  aws_access_key_id:     "YOUR_AWS_ACCESS_KEY_ID",
+  aws_secret_access_key: "YOUR_AWS_SECRET_ACCESS_KEY"
 )
 ```
 
-Alternatively, use environment variables if you only have a single set of credentials:
+Alternatively, you can use environment variables if you only have a single set of credentials:
 
 ```sh
-export MWS_MARKETPLACE_ID="A1F83G8C2ARO7P"
-export MWS_MERCHANT_ID="A2A9WNXCU02UZW"
-export AWS_ACCESS_KEY_ID="AKIVICHZMZ2JRSSLC27W"
-export AWS_SECRET_ACCESS_KEY="rOMa3ydPBTJ3AD0bxERTOX0Fv0fAC6Q0s6/czMZO"
+export MWS_MARKETPLACE_ID=YOUR_MARKETPLACE_ID
+export MWS_MERCHANT_ID=YOUR_MERCHANT_ID
+export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
 ## Usage
