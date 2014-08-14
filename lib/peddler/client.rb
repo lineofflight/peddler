@@ -23,12 +23,20 @@ module Peddler
     }
 
     attr_accessor :path
-    attr_writer :merchant_id, :marketplace_id, :parser
+    attr_writer :merchant_id, :marketplace_id
     attr_reader :body
 
     alias_method :configure, :tap
 
     params('SellerId' => -> { merchant_id })
+
+    def self.parser
+      @parser ||= Parser
+    end
+
+    def self.parser=(parser)
+      @parser = parser
+    end
 
     def self.path(path = nil)
       path ? @path = path : @path ||= '/'
@@ -54,9 +62,6 @@ module Peddler
       @merchant_id ||= ENV['MWS_MERCHANT_ID']
     end
 
-    def parser
-      @parser ||= Parser
-    end
 
     def headers
       @headers ||= {}
@@ -108,6 +113,10 @@ module Peddler
 
     def extract_options(args)
       args.last.is_a?(Hash) ? args.pop : {}
+    end
+
+    def parser
+      self.class.parser
     end
   end
 end

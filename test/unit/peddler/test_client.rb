@@ -13,14 +13,12 @@ class TestPeddlerClient < MiniTest::Test
     Excon.stub({}, body: @body, status: 200)
 
     @klass = Class.new(Peddler::Client)
+    @klass.parser = Parser
     @client = @klass.new
-
     @client.aws_access_key_id = 'key'
     @client.aws_secret_access_key = 'secret'
     @client.merchant_id = 'seller'
     @client.marketplace_id = 'ATVPDKIKX0DER' # US
-    @client.parser = Parser
-
     @client.operation('Foo')
   end
 
