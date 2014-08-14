@@ -62,6 +62,9 @@ module Peddler
       @merchant_id ||= ENV['MWS_MERCHANT_ID']
     end
 
+    def defaults
+      @defaults ||= { expects: 200 }
+    end
 
     def headers
       @headers ||= {}
@@ -77,7 +80,7 @@ module Peddler
     end
 
     def run(&blk)
-      opts = { query: operation, headers: headers, expects: 200 }
+      opts = defaults.merge(query: operation, headers: headers)
       opts.store(:body, body) if body
       opts.store(:response_block, blk) if block_given?
       res = post(opts)

@@ -114,4 +114,23 @@ class TestPeddlerClient < MiniTest::Test
 
     assert_equal @body, chunks
   end
+
+  def test_request_preserves_user_agent
+    instrumentor = Class.new
+    class << instrumentor
+      attr_accessor :events
+
+      def instrument(name, params = {})
+        events.update(name => params)
+        yield if block_given?
+      end
+    end
+    instrumentor.events = {}
+
+    @client.defaults.update(instrumentor: instrumentor)
+    @client.run
+    headers = instrumentor.events['excon.request'][:headers]
+
+    assert headers.has_key?('User-Agent')
+  end
 end
