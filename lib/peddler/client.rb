@@ -10,8 +10,7 @@ module Peddler
     extend Forwardable
     include Jeff
 
-    attr_accessor :path
-    attr_writer :merchant_id, :marketplace_id
+    attr_writer :merchant_id, :marketplace_id, :path
     attr_reader :body
 
     alias_method :configure, :tap
@@ -41,7 +40,7 @@ module Peddler
     end
 
     def aws_endpoint
-      "https://#{host}#{path || self.class.path}"
+      "https://#{host}#{path}"
     end
 
     def marketplace_id
@@ -62,6 +61,10 @@ module Peddler
 
     def headers
       @headers ||= {}
+    end
+
+    def path
+      @path ||= self.class.path
     end
 
     def body=(str)
