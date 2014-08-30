@@ -64,14 +64,6 @@ class TestPeddlerClient < MiniTest::Test
     assert_equal '123', client.aws_access_key_id
   end
 
-  def test_guards_against_bad_marketplace_id
-    assert_raises(Peddler::Client::BadMarketplaceId) do
-      client = Peddler::Client.new
-      client.marketplace_id = '123'
-      client.get
-    end
-  end
-
   def test_sets_content_type_header_for_latin_flat_file_body
     @client.body = 'foo'
     content_type = @client.headers.fetch('Content-Type')
