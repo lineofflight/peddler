@@ -17,7 +17,7 @@ To use Amazon MWS, you must have an eligible seller account.
 require 'peddler'
 
 client = MWS.orders
-parser = client.list_orders
+parser = client.get_service_status
 parser.parse
 ```
 
