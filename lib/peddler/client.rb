@@ -72,6 +72,10 @@ module Peddler
       @body = str
     end
 
+    def on_error(&blk)
+      @error_handler = blk
+    end
+
     def operation(action = nil)
       action ? @operation = Operation.new(action) : @operation
     end
@@ -83,6 +87,8 @@ module Peddler
       res = post(opts)
 
       parser.parse(res, encoding)
+    rescue Excon::Errors::Error => ex
+      handle_error(ex) or raise
     end
 
     private
@@ -105,6 +111,11 @@ module Peddler
 
     def parser
       self.class.parser
+    end
+
+    def handle_error(ex)
+      return false unless @error_handler
+      @error_handler.call(ex.request, ex.response)
     end
   end
 end

@@ -17,28 +17,40 @@ To use Amazon MWS, you must have an eligible seller account.
 require 'peddler'
 
 client = MWS.orders
-parser = client.list_orders(created_after: 1.month.ago)
+parser = client.list_orders
 parser.parse
 ```
+
+You can handle HTTP client errors by rescuing API calls individually or defining a global handler on the client level:
+
+```ruby
+client.on_error do |request, response|
+  if response.status == 503
+    # handle throttling by backing off and retrying
+  end
+end
+```
+
+## Credentials
 
 You can set up credentials when instantiating:
 
 ```ruby
 client = MWS.orders(
-  marketplace_id:        "YOUR_MARKETPLACE_ID",
-  merchant_id:           "YOUR_MERCHANT_ID",
-  aws_access_key_id:     "YOUR_AWS_ACCESS_KEY_ID",
-  aws_secret_access_key: "YOUR_AWS_SECRET_ACCESS_KEY"
+  marketplace_id:        "...",
+  merchant_id:           "...",
+  aws_access_key_id:     "...",
+  aws_secret_access_key: "..."
 )
 ```
 
-Alternatively, you can use environment variables if you only have a single set of credentials:
+Alternatively, use environment variables:
 
 ```sh
-export MWS_MARKETPLACE_ID=YOUR_MARKETPLACE_ID
-export MWS_MERCHANT_ID=YOUR_MERCHANT_ID
-export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+export MWS_MARKETPLACE_ID=...
+export MWS_MERCHANT_ID=...
+export AWS_ACCESS_KEY_ID=...
+export AWS_SECRET_ACCESS_KEY=...
 ```
 
 ## Usage
