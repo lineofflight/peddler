@@ -28,7 +28,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def list_carts(date_range_start, opts = {})
         operation('ListCarts')
-          .add(opts.merge('DateRangeStart' => date_range_start))
+          .add(opts.update('DateRangeStart' => date_range_start))
 
         run
       end

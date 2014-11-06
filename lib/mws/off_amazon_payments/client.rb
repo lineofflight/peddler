@@ -36,7 +36,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def create_order_reference_for_id(id, id_type, opts = {})
         operation('CreateOrderReferenceForId')
-          .add(opts.merge(
+          .add(opts.update(
             'Id' => id,
             'IdType' => id_type
           ))
@@ -53,7 +53,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_billing_agreement_details(amazon_billing_agreement_id, opts = {})
         operation('GetBillingAgreementDetails')
-          .add(opts.merge(
+          .add(opts.update(
             'AmazonBillingAgreementId' => amazon_billing_agreement_id
           ))
 
@@ -126,7 +126,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def authorize_on_billing_agreement(amazon_billing_agreement_id, authorization_reference_id, authorization_amount, opts = {})
         operation('AuthorizeOnBillingAgreement')
-          .add(opts.merge(
+          .add(opts.update(
             'AmazonBillingAgreementId' => amazon_billing_agreement_id,
             'AuthorizationReferenceId' => authorization_reference_id,
             'AuthorizationAmount' => authorization_amount
@@ -146,7 +146,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def close_billing_agreement(amazon_billing_agreement_id, opts = {})
         operation('CloseBillingAgreement')
-          .add(opts.merge(
+          .add(opts.update(
             'AmazonBillingAgreementId' => amazon_billing_agreement_id
           ))
 
@@ -168,7 +168,7 @@ module MWS
         operation('SetOrderReferenceDetails')
           .add(
             'AmazonOrderReferenceId' => amazon_order_reference_id,
-            'OrderReferenceAttributes' => opts.merge('OrderTotal' => order_total)
+            'OrderReferenceAttributes' => opts.update('OrderTotal' => order_total)
           )
 
         run
@@ -183,7 +183,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_order_reference_details(amazon_order_reference_id, opts = {})
         operation('GetOrderReferenceDetails')
-          .add(opts.merge('AmazonOrderReferenceId' => amazon_order_reference_id))
+          .add(opts.update('AmazonOrderReferenceId' => amazon_order_reference_id))
 
         run
       end
@@ -210,7 +210,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def cancel_order_reference(amazon_order_reference_id, opts = {})
         operation('CancelOrderReference')
-          .add(opts.merge('AmazonOrderReferenceId' => amazon_order_reference_id))
+          .add(opts.update('AmazonOrderReferenceId' => amazon_order_reference_id))
 
         run
       end
@@ -226,7 +226,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def close_order_reference(amazon_order_reference_id, opts = {})
         operation('CloseOrderReference')
-          .add(opts.merge('AmazonOrderReferenceId' => amazon_order_reference_id))
+          .add(opts.update('AmazonOrderReferenceId' => amazon_order_reference_id))
 
         run
       end
@@ -246,7 +246,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def authorize(amazon_order_reference_id, authorization_reference_id, authorization_amount, opts = {})
         operation('Authorize')
-          .add(opts.merge(
+          .add(opts.update(
             'AmazonOrderReferenceId' => amazon_order_reference_id,
             'AuthorizationReferenceId' => authorization_reference_id,
             'AuthorizationAmount' => authorization_amount
@@ -280,7 +280,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def capture(amazon_authorization_id, capture_reference_id, capture_amount, opts = {})
         operation('Capture')
-          .add(opts.merge(
+          .add(opts.update(
             'AmazonAuthorizationId' => amazon_authorization_id,
             'CaptureReferenceId' => capture_reference_id,
             'CaptureAmount' => capture_amount
@@ -311,7 +311,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def close_authorization(amazon_authorization_id, opts = {})
         operation('CloseAuthorization')
-          .add(opts.merge('AmazonAuthorizationId' => amazon_authorization_id))
+          .add(opts.update('AmazonAuthorizationId' => amazon_authorization_id))
 
         run
       end
@@ -328,7 +328,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def refund(amazon_capture_id, refund_reference_id, refund_amount, opts = {})
         operation('Refund')
-          .add(opts.merge(
+          .add(opts.update(
             'AmazonCaptureId' => amazon_capture_id,
             'RefundReferenceId' => refund_reference_id,
             'RefundAmount' => refund_amount

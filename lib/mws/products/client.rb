@@ -20,7 +20,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def list_matching_products(query, opts = {})
         operation('ListMatchingProducts')
-          .add(opts.merge('Query' => query))
+          .add(opts.update('Query' => query))
 
         run
       end
@@ -39,7 +39,7 @@ module MWS
         opts = extract_options(id_list)
 
         operation('GetMatchingProductForId')
-          .add(opts.merge('IdType' => id_type, 'IdList' => id_list))
+          .add(opts.update('IdType' => id_type, 'IdList' => id_list))
           .structure!('IdList', 'Id')
 
         run
@@ -207,7 +207,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_product_categories_for_asin(asin, opts = {})
         operation('GetProductCategoriesForASIN')
-          .add(opts.merge('ASIN' => asin))
+          .add(opts.update('ASIN' => asin))
 
         run
       end

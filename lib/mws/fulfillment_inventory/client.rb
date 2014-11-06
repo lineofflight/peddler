@@ -15,7 +15,7 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupply.html
       # @param opts [Hash]
-      # @option opts [Array<String>, String] :seller_skus
+      # @option opts [Array<String>, String] :seller_sku_list
       # @option opts [String, #iso8601] :query_start_date_time
       # @option opts [String] :response_group
       # @return [Peddler::XMLParser]
