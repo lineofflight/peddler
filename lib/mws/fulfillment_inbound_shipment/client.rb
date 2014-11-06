@@ -19,12 +19,10 @@ module MWS
       # @return [Peddler::XMLParser]
       def create_inbound_shipment_plan(ship_from_address, inbound_shipment_plan_request_items, opts = {})
         operation('CreateInboundShipmentPlan')
-          .add(
-            opts.merge(
-              'ShipFromAddress' => ship_from_address,
-              'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
-            )
-          )
+          .add(opts.update(
+            'ShipFromAddress' => ship_from_address,
+            'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
+          ))
           .structure!('InboundShipmentPlanRequestItems', 'member')
 
         run
@@ -40,12 +38,10 @@ module MWS
       # @return [Peddler::XMLParser]
       def create_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
         operation('CreateInboundShipment')
-          .add(
-            opts.merge(
-              'ShipmentId' => shipment_id,
-              'InboundShipmentHeader' => inbound_shipment_header
-            )
-          )
+          .add(opts.update(
+            'ShipmentId' => shipment_id,
+            'InboundShipmentHeader' => inbound_shipment_header
+          ))
           .structure!('InboundShipmentItems', 'member')
 
         run
@@ -61,12 +57,10 @@ module MWS
       # @return [Peddler::XMLParser]
       def update_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
         operation('UpdateInboundShipment')
-          .add(
-            opts.merge(
-              'ShipmentId' => shipment_id,
-              'InboundShipmentHeader' => inbound_shipment_header
-            )
-          )
+          .add(opts.update(
+            'ShipmentId' => shipment_id,
+            'InboundShipmentHeader' => inbound_shipment_header
+          ))
           .structure!('InboundShipmentItems', 'member')
 
         run
@@ -145,7 +139,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_package_labels(shipment_id, page_type, opts = {})
         operation('GetPackageLabels')
-          .add(opts.merge(
+          .add(opts.update(
             'ShipmentId' => shipment_id,
             'PageType' => page_type
           ))

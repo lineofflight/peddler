@@ -19,7 +19,7 @@ module MWS
       def submit_feed(feed_content, feed_type, opts = {})
         self.body = feed_content
         operation('SubmitFeed')
-          .add(opts.merge('FeedType' => feed_type))
+          .add(opts.update('FeedType' => feed_type))
           .structure!('MarketplaceId', 'Id')
 
         run

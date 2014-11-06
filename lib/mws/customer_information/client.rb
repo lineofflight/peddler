@@ -60,7 +60,7 @@ module MWS
       def get_customers_for_customer_id(*customer_id_list)
         opts = extract_options(customer_id_list)
         operation('GetCustomersForCustomerId')
-          .add(opts.merge('CustomerIdList' => customer_id_list))
+          .add(opts.update('CustomerIdList' => customer_id_list))
           .structure!('CustomerIdList', 'CustomerId')
 
         run

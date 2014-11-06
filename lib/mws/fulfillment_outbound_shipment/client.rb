@@ -30,7 +30,7 @@ module MWS
         end
 
         operation('GetFulfillmentPreview')
-          .add(opts.merge('Address' => address, 'Items' => items))
+          .add(opts.update('Address' => address, 'Items' => items))
           .structure!('Items', 'member')
           .structure!('ShippingSpeedCategories')
 
@@ -95,7 +95,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def update_fulfillment_order(seller_fulfillment_order_id, opts = {})
         operation('UpdateFulfillmentOrder')
-          .add(opts.merge('SellerFulfillmentOrderId' => seller_fulfillment_order_id))
+          .add(opts.update('SellerFulfillmentOrderId' => seller_fulfillment_order_id))
           .structure!('NotificationEmailList', 'member')
           .structure!('Items', 'member')
 

@@ -16,7 +16,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def request_report(report_type, opts = {})
         operation('RequestReport')
-          .add(opts.merge('ReportType' => report_type))
+          .add(opts.update('ReportType' => report_type))
           .structure!('MarketplaceIdList', 'Id')
 
         run
@@ -163,7 +163,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def manage_report_schedule(report_type, schedule, opts = {})
         operation('ManageReportSchedule')
-          .add(opts.merge('ReportType' => report_type, 'Schedule' => schedule))
+          .add(opts.update('ReportType' => report_type, 'Schedule' => schedule))
 
         run
       end
