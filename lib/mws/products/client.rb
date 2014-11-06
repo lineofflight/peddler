@@ -19,7 +19,7 @@ module MWS
       #   @option opts [String] :query_context_id
       # @return [Peddler::XMLParser]
       def list_matching_products(query, opts = {})
-        operation('ListMatchingProducts')
+        operation_with_marketplace('ListMatchingProducts')
           .add(opts.update('Query' => query))
 
         run
@@ -38,7 +38,7 @@ module MWS
       def get_matching_product_for_id(id_type, *id_list)
         opts = extract_options(id_list)
 
-        operation('GetMatchingProductForId')
+        operation_with_marketplace('GetMatchingProductForId')
           .add(opts.update('IdType' => id_type, 'IdList' => id_list))
           .structure!('IdList', 'Id')
 
@@ -56,8 +56,8 @@ module MWS
       def get_matching_product(*asins)
         opts = extract_options(asins)
 
-        operation('GetMatchingProduct')
           .add(opts.merge('ASINList' => asins))
+        operation_with_marketplace('GetMatchingProduct')
           .structure!('ASINList', 'ASIN')
 
         run
@@ -74,8 +74,8 @@ module MWS
       def get_competitive_pricing_for_sku(*skus)
         opts = extract_options(skus)
 
-        operation('GetCompetitivePricingForSKU')
           .add(opts.merge('SellerSKUList' => skus))
+        operation_with_marketplace('GetCompetitivePricingForSKU')
           .structure!('SellerSKUList', 'SellerSKU')
 
         run
@@ -92,8 +92,8 @@ module MWS
       def get_competitive_pricing_for_asin(*asins)
         opts = extract_options(asins)
 
-        operation('GetCompetitivePricingForASIN')
           .add(opts.merge('ASINList' => asins))
+        operation_with_marketplace('GetCompetitivePricingForASIN')
           .structure!('ASINList', 'ASIN')
 
         run
@@ -113,8 +113,8 @@ module MWS
       def get_lowest_offer_listings_for_sku(*skus)
         opts = extract_options(skus)
 
-        operation('GetLowestOfferListingsForSKU')
           .add(opts.merge('SellerSKUList' => skus))
+        operation_with_marketplace('GetLowestOfferListingsForSKU')
           .structure!('SellerSKUList', 'SellerSKU')
 
         run
@@ -134,8 +134,8 @@ module MWS
       def get_lowest_offer_listings_for_asin(*asins)
         opts = extract_options(asins)
 
-        operation('GetLowestOfferListingsForASIN')
           .add(opts.merge('ASINList' => asins))
+        operation_with_marketplace('GetLowestOfferListingsForASIN')
           .structure!('ASINList', 'ASIN')
 
         run
@@ -154,8 +154,8 @@ module MWS
       def get_my_price_for_sku(*skus)
         opts = extract_options(skus)
 
-        operation('GetMyPriceForSKU')
           .add(opts.merge('SellerSKUList' => skus))
+        operation_with_marketplace('GetMyPriceForSKU')
           .structure!('SellerSKUList', 'SellerSKU')
 
         run
@@ -174,8 +174,8 @@ module MWS
       def get_my_price_for_asin(*asins)
         opts = extract_options(asins)
 
-        operation('GetMyPriceForASIN')
           .add(opts.merge('ASINList' => asins))
+        operation_with_marketplace('GetMyPriceForASIN')
           .structure!('ASINList', 'ASIN')
 
         run
@@ -191,8 +191,8 @@ module MWS
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_product_categories_for_sku(sku, opts = {})
-        operation('GetProductCategoriesForSKU')
           .add(opts.merge('SellerSKU' => sku))
+        operation_with_marketplace('GetProductCategoriesForSKU')
 
         run
       end
@@ -206,7 +206,7 @@ module MWS
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_product_categories_for_asin(asin, opts = {})
-        operation('GetProductCategoriesForASIN')
+        operation_with_marketplace('GetProductCategoriesForASIN')
           .add(opts.update('ASIN' => asin))
 
         run
@@ -222,8 +222,8 @@ module MWS
       end
 
       # @api private
-      def operation(*)
-        super.tap do |opts|
+      def operation_with_marketplace(*args)
+        operation(*args).tap do |opts|
           unless opts.key?('MarketplaceId')
             opts.store('MarketplaceId', marketplace_id)
           end
