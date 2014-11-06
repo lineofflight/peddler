@@ -48,16 +48,16 @@ module MWS
       # Lists products and their attributes, based on a list of ASIN values
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProductForId.html
-      # @overload get_matching_product(*asins, opts = { marketplace_id: marketplace_id })
-      #   @param asins [Array<String>]
+      # @overload get_matching_product(*asin_list, opts = { marketplace_id: marketplace_id })
+      #   @param asin_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
-      def get_matching_product(*asins)
-        opts = extract_options(asins)
+      def get_matching_product(*asin_list)
+        opts = extract_options(asin_list)
 
-          .add(opts.merge('ASINList' => asins))
         operation_with_marketplace('GetMatchingProduct')
+          .add(opts.update('ASINList' => asin_list))
           .structure!('ASINList', 'ASIN')
 
         run
@@ -66,16 +66,16 @@ module MWS
       # Gets the current competitive price of a product, based on Seller SKU
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForSKU.html
-      # @overload get_competitive_pricing_for_sku(*skus, opts = { marketplace_id: marketplace_id })
-      #   @param skus [Array<String>]
+      # @overload get_competitive_pricing_for_sku(*seller_sku_list, opts = { marketplace_id: marketplace_id })
+      #   @param seller_sku_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
-      def get_competitive_pricing_for_sku(*skus)
-        opts = extract_options(skus)
+      def get_competitive_pricing_for_sku(*seller_sku_list)
+        opts = extract_options(seller_sku_list)
 
-          .add(opts.merge('SellerSKUList' => skus))
         operation_with_marketplace('GetCompetitivePricingForSKU')
+          .add(opts.update('SellerSKUList' => seller_sku_list))
           .structure!('SellerSKUList', 'SellerSKU')
 
         run
@@ -84,16 +84,16 @@ module MWS
       # Gets the current competitive price of a product, identified by its ASIN
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForASIN.html
-      # @overload get_competitive_pricing_for_asin(*asins, opts = { marketplace_id: marketplace_id })
-      #   @param asins [Array<String>]
+      # @overload get_competitive_pricing_for_asin(*asin_list, opts = { marketplace_id: marketplace_id })
+      #   @param asin_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
-      def get_competitive_pricing_for_asin(*asins)
-        opts = extract_options(asins)
+      def get_competitive_pricing_for_asin(*asin_list)
+        opts = extract_options(asin_list)
 
-          .add(opts.merge('ASINList' => asins))
         operation_with_marketplace('GetCompetitivePricingForASIN')
+          .add(opts.update('ASINList' => asin_list))
           .structure!('ASINList', 'ASIN')
 
         run
@@ -103,18 +103,18 @@ module MWS
       # a product, based on Seller SKU
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForSKU.html
-      # @overload get_lowest_offer_listings_for_sku(*skus, opts = { marketplace_id: marketplace_id })
-      #   @param skus [Array<String>]
+      # @overload get_lowest_offer_listings_for_sku(*seller_sku_list, opts = { marketplace_id: marketplace_id })
+      #   @param seller_sku_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       #   @option opts [Boolean] :exclude_me
       # @return [Peddler::XMLParser]
-      def get_lowest_offer_listings_for_sku(*skus)
-        opts = extract_options(skus)
+      def get_lowest_offer_listings_for_sku(*seller_sku_list)
+        opts = extract_options(seller_sku_list)
 
-          .add(opts.merge('SellerSKUList' => skus))
         operation_with_marketplace('GetLowestOfferListingsForSKU')
+          .add(opts.update('SellerSKUList' => seller_sku_list))
           .structure!('SellerSKUList', 'SellerSKU')
 
         run
@@ -124,18 +124,18 @@ module MWS
       # a product, identified by its ASIN
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForASIN.html
-      # @overload get_lowest_offer_listings_for_asin(*asins, opts = { marketplace_id: marketplace_id })
-      #   @param asins [Array<String>]
+      # @overload get_lowest_offer_listings_for_asin(*asin_list, opts = { marketplace_id: marketplace_id })
+      #   @param asin_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       #   @option opts [Boolean] :exclude_me
       # @return [Peddler::XMLParser]
-      def get_lowest_offer_listings_for_asin(*asins)
-        opts = extract_options(asins)
+      def get_lowest_offer_listings_for_asin(*asin_list)
+        opts = extract_options(asin_list)
 
-          .add(opts.merge('ASINList' => asins))
         operation_with_marketplace('GetLowestOfferListingsForASIN')
+          .add(opts.update('ASINList' => asin_list))
           .structure!('ASINList', 'ASIN')
 
         run
@@ -145,17 +145,17 @@ module MWS
       # Seller SKU
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForSKU.html
-      # @overload get_my_price_for_sku(*skus, opts = { marketplace_id: marketplace_id })
-      #   @param skus [Array<String>]
+      # @overload get_my_price_for_sku(*seller_sku_list, opts = { marketplace_id: marketplace_id })
+      #   @param seller_sku_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       # @return [Peddler::XMLParser]
-      def get_my_price_for_sku(*skus)
-        opts = extract_options(skus)
+      def get_my_price_for_sku(*seller_sku_list)
+        opts = extract_options(seller_sku_list)
 
-          .add(opts.merge('SellerSKUList' => skus))
         operation_with_marketplace('GetMyPriceForSKU')
+          .add(opts.update('SellerSKUList' => seller_sku_list))
           .structure!('SellerSKUList', 'SellerSKU')
 
         run
@@ -165,17 +165,17 @@ module MWS
       # its ASIN
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForASIN.html
-      # @overload get_my_price_for_asin(*skus, opts = { marketplace_id: marketplace_id })
-      #   @param asins [Array<String>]
+      # @overload get_my_price_for_asin(*seller_sku_list, opts = { marketplace_id: marketplace_id })
+      #   @param asin_list [Array<String>]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       # @return [Peddler::XMLParser]
-      def get_my_price_for_asin(*asins)
-        opts = extract_options(asins)
+      def get_my_price_for_asin(*asin_list)
+        opts = extract_options(asin_list)
 
-          .add(opts.merge('ASINList' => asins))
         operation_with_marketplace('GetMyPriceForASIN')
+          .add(opts.update('ASINList' => asin_list))
           .structure!('ASINList', 'ASIN')
 
         run
@@ -186,13 +186,13 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForSKU.html
       # @overload get_product_categories_for_sku(sku, opts = { marketplace_id: marketplace_id })
-      #   @param sku [String]
+      #   @param seller_sku [String]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
-      def get_product_categories_for_sku(sku, opts = {})
-          .add(opts.merge('SellerSKU' => sku))
+      def get_product_categories_for_sku(seller_sku, opts = {})
         operation_with_marketplace('GetProductCategoriesForSKU')
+          .add(opts.update('SellerSKU' => seller_sku))
 
         run
       end
