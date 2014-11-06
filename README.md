@@ -21,16 +21,6 @@ parser = client.get_service_status
 parser.parse
 ```
 
-You can handle HTTP client errors by rescuing API calls individually or defining a global handler on the client level:
-
-```ruby
-client.on_error do |request, response|
-  if response.status == 503
-    # handle throttling by backing off and retrying
-  end
-end
-```
-
 ## Credentials
 
 You can set up credentials when instantiating:
@@ -140,3 +130,9 @@ The Sellers API lets sellers retrieve information about their seller account, su
 The Amazon MWS Subscriptions API section enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.
 
 [Read the API](http://www.rubydoc.info/gems/peddler/MWS/Subscriptions/Client)
+
+### Webstore
+
+With the Webstore API section of Amazon Marketplace Web Service (Amazon MWS), you can get “Email Me When Available” subscription information for items listed on your Amazon Webstore. The Webstore API section can help you plan your inventory replenishment cycle by enabling you to query for items that your customers subscribed to when they clicked the Email Me When Available button on your Webstore. The Webstore API section can also return information about the notifications that were sent to your customers when out-of-stock items came back in stock. This information, when combined with sales information that your Webstore tracks, can help you determine how many notifications were converted into sales.
+
+[Read the API](http://www.rubydoc.info/gems/peddler/MWS/Webstore/Client)
