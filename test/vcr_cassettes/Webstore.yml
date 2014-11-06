@@ -1,0 +1,383 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-11-06T01%3A43%3A45Z&Signature=Q59aKTmnwpFhCrkLt39qNUxRKErzCC4TpTe9pv0Bv74%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:43:39 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 32c855f2-869b-4388-a378-99f89698bbde
+      x-mws-timestamp:
+      - '2014-11-06T01:43:39.948Z'
+      x-mws-response-context:
+      - jc1U7JVFZvx7TZiem+QBDIPR4xsHlYCJbHNhDEUVx2wsisD08GztNE+RH+9+JqijU8r09ThXBKs=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/webstore/2014-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-11-06T01:43:39.948Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>32c855f2-869b-4388-a378-99f89698bbde</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:43:46 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-11-06T01%3A43%3A46Z&Signature=uTy3oi71CScntO7Ob%2Bcq8eMSD%2BIghTmYGCKXgyxflSs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:43:40 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 14793a11-9123-4460-aa05-d5150f0b55cb
+      x-mws-timestamp:
+      - '2014-11-06T01:43:40.523Z'
+      x-mws-response-context:
+      - R18+sgLUQaLue+3OCoHCqvxY6xiZWFo8MlOlbnGWEONbxr/iXsy70tZOuYnkdbv0H68lC3Zpzbg=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/webstore/2014-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-11-06T01:43:40.523Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>14793a11-9123-4460-aa05-d5150f0b55cb</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:43:46 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-11-06T01%3A43%3A46Z&Signature=8ft39xUNz7sxJojqOy6F%2FDIA2%2BM%2Bl0q9O9k3UfQWAiE%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:43:41 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - aaa8f04d-8a86-4e5c-a8ba-f821477773a6
+      x-mws-timestamp:
+      - '2014-11-06T01:43:41.485Z'
+      x-mws-response-context:
+      - 5aIaW62twoD+ex1te/QK3uzXtIvO+IN7VSeih+ubFv3SKA5R3VCPi1Z1gnYX04hc7aVNPFcoQK4=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/webstore/2014-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-11-06T01:43:41.485Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>aaa8f04d-8a86-4e5c-a8ba-f821477773a6</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:43:47 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-11-06T01%3A43%3A47Z&Signature=Gy01xJubcaOoOuPORSMcAkPPn7Wv9ZxTwHwb0dnuAXo%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:43:41 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 1f93acff-d54a-4695-a316-e6776bb05b21
+      x-mws-timestamp:
+      - '2014-11-06T01:43:42.087Z'
+      x-mws-response-context:
+      - yi2sF8bJXm01f2jP4gnWZEpRzz58/ib1U1jahHvXWDfNQ7WmdSEqRROrLveQ+Dw7C9yTsRpnQ5w=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/webstore/2014-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2014-11-06T01:43:42.087Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>1f93acff-d54a-4695-a316-e6776bb05b21</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:43:48 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptionsCount&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&SubscriptionState=Subscribed&Timestamp=2014-11-06T01%3A43%3A48Z&Signature=faY2cxOOHAKUfdk5rp19CizUW0BR0WMekFDFlA35uqU%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:43:43 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Thu, 06 Nov 2014 01:43:43 GMT
+      x-mws-request-id:
+      - 950cbdde-d54d-4e0c-8a3f-9f688b7cffcc
+      x-mws-timestamp:
+      - '2014-11-06T01:43:42.781Z'
+      x-mws-response-context:
+      - DheMOgLnQrOdwdr67sBYuAJ4GhmrHz3fKfp5Zq/2aE7DXs/c+Vivy+0EBzerUQx4Bkg3sVyI3Ow=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '537'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListSubscriptionsCountResponse xmlns="http://mws.amazonservices.com/schema/Webstore/2014-09-01">
+          <ListSubscriptionsCountResult>
+            <StartDate>2014-07-01T01:43:43.034Z</StartDate>
+            <SellerId>MERCHANT_ID</SellerId>
+            <NextToken/>
+            <EndDate>2014-11-06T01:43:43.054Z</EndDate>
+            <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+            <SubscriptionList/>
+          </ListSubscriptionsCountResult>
+          <ResponseMetadata>
+            <RequestId>950cbdde-d54d-4e0c-8a3f-9f688b7cffcc</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsCountResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:43:49 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptionsCount&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&SubscriptionState=Subscribed&Timestamp=2014-11-06T01%3A47%3A18Z&Signature=I29X1QUUaqAUbmx%2FiF3zCUxYkKpuAE5CP8gdtIxusgY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:47:13 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Thu, 06 Nov 2014 01:47:13 GMT
+      x-mws-request-id:
+      - fe2f5221-4d59-4f5f-920b-188a66855c9d
+      x-mws-timestamp:
+      - '2014-11-06T01:47:13.223Z'
+      x-mws-response-context:
+      - hSYSuH9JUydmnq6sV5hLes5KOBm4xybSRGEAVXtLfRtsp3Buhxcv5AsTWfOREzvFWWRFzrjol0U=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '536'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListSubscriptionsCountResponse xmlns="http://mws.amazonservices.com/schema/Webstore/2014-09-01">
+          <ListSubscriptionsCountResult>
+            <StartDate>2014-07-01T01:47:13.415Z</StartDate>
+            <SellerId>MERCHANT_ID</SellerId>
+            <NextToken/>
+            <EndDate>2014-11-06T01:47:13.432Z</EndDate>
+            <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+            <SubscriptionList/>
+          </ListSubscriptionsCountResult>
+          <ResponseMetadata>
+            <RequestId>fe2f5221-4d59-4f5f-920b-188a66855c9d</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsCountResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:47:19 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptionsCount&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&SubscriptionState=Subscribed&Timestamp=2014-11-06T01%3A47%3A18Z&Signature=I29X1QUUaqAUbmx%2FiF3zCUxYkKpuAE5CP8gdtIxusgY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:47:13 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Thu, 06 Nov 2014 01:47:13 GMT
+      x-mws-request-id:
+      - fe2f5221-4d59-4f5f-920b-188a66855c9d
+      x-mws-timestamp:
+      - '2014-11-06T01:47:13.223Z'
+      x-mws-response-context:
+      - hSYSuH9JUydmnq6sV5hLes5KOBm4xybSRGEAVXtLfRtsp3Buhxcv5AsTWfOREzvFWWRFzrjol0U=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '536'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListSubscriptionsCountResponse xmlns="http://mws.amazonservices.com/schema/Webstore/2014-09-01">
+          <ListSubscriptionsCountResult>
+            <StartDate>2014-07-01T01:47:13.415Z</StartDate>
+            <SellerId>MERCHANT_ID</SellerId>
+            <NextToken/>
+            <EndDate>2014-11-06T01:47:13.432Z</EndDate>
+            <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+            <SubscriptionList/>
+          </ListSubscriptionsCountResult>
+          <ResponseMetadata>
+            <RequestId>fe2f5221-4d59-4f5f-920b-188a66855c9d</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsCountResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:47:19 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Webstore/2014-09-01/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptionsCount&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&SubscriptionState=Subscribed&Timestamp=2014-11-06T01%3A47%3A18Z&Signature=I29X1QUUaqAUbmx%2FiF3zCUxYkKpuAE5CP8gdtIxusgY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.1.0 (Language=Ruby; Hakans-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Thu, 06 Nov 2014 01:47:13 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Thu, 06 Nov 2014 01:47:13 GMT
+      x-mws-request-id:
+      - fe2f5221-4d59-4f5f-920b-188a66855c9d
+      x-mws-timestamp:
+      - '2014-11-06T01:47:13.223Z'
+      x-mws-response-context:
+      - hSYSuH9JUydmnq6sV5hLes5KOBm4xybSRGEAVXtLfRtsp3Buhxcv5AsTWfOREzvFWWRFzrjol0U=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '536'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListSubscriptionsCountResponse xmlns="http://mws.amazonservices.com/schema/Webstore/2014-09-01">
+          <ListSubscriptionsCountResult>
+            <StartDate>2014-07-01T01:47:13.415Z</StartDate>
+            <SellerId>MERCHANT_ID</SellerId>
+            <NextToken/>
+            <EndDate>2014-11-06T01:47:13.432Z</EndDate>
+            <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+            <SubscriptionList/>
+          </ListSubscriptionsCountResult>
+          <ResponseMetadata>
+            <RequestId>fe2f5221-4d59-4f5f-920b-188a66855c9d</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsCountResponse>
+    http_version:
+  recorded_at: Thu, 06 Nov 2014 01:47:19 GMT
+recorded_with: VCR 2.9.3

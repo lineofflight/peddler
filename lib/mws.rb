@@ -12,6 +12,7 @@ require 'mws/recommendations'
 require 'mws/reports'
 require 'mws/sellers'
 require 'mws/subscriptions'
+require 'mws/webstore'
 
 module MWS
   class << self
