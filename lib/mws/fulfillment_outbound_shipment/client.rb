@@ -47,7 +47,7 @@ module MWS
       # @param displayable_order_comment [String]
       # @param shipping_speed_category [String]
       # @param destination_address [Struct, Hash]
-      # @params items [Array<Struct, Hash>]
+      # @param items [Array<Struct, Hash>]
       # @param opts [Hash]
       # @option opts [String] :fulfillment_action
       # @option opts [String] :fulfillment_policy
@@ -117,8 +117,7 @@ module MWS
       # Returns a list of fulfillment orders fulfilled on or after a date
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrders.html
-      # @param opts [Hash]
-      # @option opts [String, #iso8601] :query_start_date_time
+      # @param query_start_date_time [String, #iso8601]
       # @return [Peddler::XMLParser]
       def list_all_fulfillment_orders(query_start_date_time = nil)
         opts = query_start_date_time ? { 'QueryStartDateTime' => query_start_date_time } : {}
