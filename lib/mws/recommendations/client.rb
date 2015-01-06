@@ -16,7 +16,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def get_last_updated_time_for_recommendations(marketplace_id = marketplace_id)
+      def get_last_updated_time_for_recommendations(marketplace_id = marketplace_id())
         operation('GetLastUpdatedTimeForRecommendations')
           .add('MarketplaceId' => marketplace_id)
 
