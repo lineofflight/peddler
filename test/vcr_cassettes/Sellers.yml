@@ -182,4 +182,208 @@ http_interactions:
         </GetServiceStatusResponse>
     http_version: 
   recorded_at: Tue, 12 Aug 2014 11:46:30 GMT
-recorded_with: VCR 2.9.2
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Sellers/2011-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetAuthToken&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-01-23T22%3A54%3A53Z&Signature=c2dj8ajtyrmxd31IFL%2FJ%2FbobjeGd4MafnQkPhbxJDSc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; pdeazeta.home)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Fri, 23 Jan 2015 22:54:54 GMT
+      Server:
+      - AmazonMWS
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MarketplaceWebServiceSellers.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=EgdkRiiJN2hX3S7CNkXmrAdX0DIfo3qciDQmhuXvtT8=
+      X-Amz-Date:
+      - Fri, 23 Jan 2015 22:54:55 GMT
+      x-mws-request-id:
+      - 0bbe3825-49e6-40d2-ad15-9f700a065aad
+      x-mws-timestamp:
+      - '2015-01-23T22:54:55.451Z'
+      x-mws-response-context:
+      - yTHwX3WT+3pj5v8KaKwLdQVR4/fif3KtfT8OPIvRkiAKY++eagEEBgh2u6A+EKjS7euy7l7kJhw=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '399'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetAuthTokenResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetAuthTokenResult>
+            <SellerId>MERCHANT_ID</SellerId>
+            <MWSAuthToken>MWS_AUTH_TOKEN</MWSAuthToken>
+          </GetAuthTokenResult>
+          <ResponseMetadata>
+            <RequestId>0bbe3825-49e6-40d2-ad15-9f700a065aad</RequestId>
+          </ResponseMetadata>
+        </GetAuthTokenResponse>
+    http_version:
+  recorded_at: Fri, 23 Jan 2015 22:54:55 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetAuthToken&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-01-23T22%3A54%3A53Z&Signature=c2dj8ajtyrmxd31IFL%2FJ%2FbobjeGd4MafnQkPhbxJDSc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; pdeazeta.home)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Fri, 23 Jan 2015 22:54:54 GMT
+      Server:
+      - AmazonMWS
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MarketplaceWebServiceSellers.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=EgdkRiiJN2hX3S7CNkXmrAdX0DIfo3qciDQmhuXvtT8=
+      X-Amz-Date:
+      - Fri, 23 Jan 2015 22:54:55 GMT
+      x-mws-request-id:
+      - 0bbe3825-49e6-40d2-ad15-9f700a065aad
+      x-mws-timestamp:
+      - '2015-01-23T22:54:55.451Z'
+      x-mws-response-context:
+      - yTHwX3WT+3pj5v8KaKwLdQVR4/fif3KtfT8OPIvRkiAKY++eagEEBgh2u6A+EKjS7euy7l7kJhw=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '399'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetAuthTokenResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetAuthTokenResult>
+            <SellerId>MERCHANT_ID</SellerId>
+            <MWSAuthToken>MWS_AUTH_TOKEN</MWSAuthToken>
+          </GetAuthTokenResult>
+          <ResponseMetadata>
+            <RequestId>0bbe3825-49e6-40d2-ad15-9f700a065aad</RequestId>
+          </ResponseMetadata>
+        </GetAuthTokenResponse>
+    http_version:
+  recorded_at: Fri, 23 Jan 2015 22:54:55 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Sellers/2011-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetAuthToken&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-01-23T22%3A54%3A53Z&Signature=c2dj8ajtyrmxd31IFL%2FJ%2FbobjeGd4MafnQkPhbxJDSc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; pdeazeta.home)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Fri, 23 Jan 2015 22:54:54 GMT
+      Server:
+      - AmazonMWS
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MarketplaceWebServiceSellers.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=EgdkRiiJN2hX3S7CNkXmrAdX0DIfo3qciDQmhuXvtT8=
+      X-Amz-Date:
+      - Fri, 23 Jan 2015 22:54:55 GMT
+      x-mws-request-id:
+      - 0bbe3825-49e6-40d2-ad15-9f700a065aad
+      x-mws-timestamp:
+      - '2015-01-23T22:54:55.451Z'
+      x-mws-response-context:
+      - yTHwX3WT+3pj5v8KaKwLdQVR4/fif3KtfT8OPIvRkiAKY++eagEEBgh2u6A+EKjS7euy7l7kJhw=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '399'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetAuthTokenResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetAuthTokenResult>
+            <SellerId>MERCHANT_ID</SellerId>
+            <MWSAuthToken>MWS_AUTH_TOKEN</MWSAuthToken>
+          </GetAuthTokenResult>
+          <ResponseMetadata>
+            <RequestId>0bbe3825-49e6-40d2-ad15-9f700a065aad</RequestId>
+          </ResponseMetadata>
+        </GetAuthTokenResponse>
+    http_version:
+  recorded_at: Fri, 23 Jan 2015 22:54:55 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Sellers/2011-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetAuthToken&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-01-23T22%3A54%3A53Z&Signature=c2dj8ajtyrmxd31IFL%2FJ%2FbobjeGd4MafnQkPhbxJDSc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; pdeazeta.home)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Fri, 23 Jan 2015 22:54:54 GMT
+      Server:
+      - AmazonMWS
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MarketplaceWebServiceSellers.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=EgdkRiiJN2hX3S7CNkXmrAdX0DIfo3qciDQmhuXvtT8=
+      X-Amz-Date:
+      - Fri, 23 Jan 2015 22:54:55 GMT
+      x-mws-request-id:
+      - 0bbe3825-49e6-40d2-ad15-9f700a065aad
+      x-mws-timestamp:
+      - '2015-01-23T22:54:55.451Z'
+      x-mws-response-context:
+      - yTHwX3WT+3pj5v8KaKwLdQVR4/fif3KtfT8OPIvRkiAKY++eagEEBgh2u6A+EKjS7euy7l7kJhw=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '399'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetAuthTokenResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetAuthTokenResult>
+            <SellerId>MERCHANT_ID</SellerId>
+            <MWSAuthToken>MWS_AUTH_TOKEN</MWSAuthToken>
+          </GetAuthTokenResult>
+          <ResponseMetadata>
+            <RequestId>0bbe3825-49e6-40d2-ad15-9f700a065aad</RequestId>
+          </ResponseMetadata>
+        </GetAuthTokenResponse>
+    http_version:
+  recorded_at: Fri, 23 Jan 2015 22:54:55 GMT
+recorded_with: VCR 2.9.3
