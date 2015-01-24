@@ -10,15 +10,18 @@ module Peddler
     extend Forwardable
     include Jeff
 
-    attr_writer :merchant_id, :marketplace_id, :auth_token, :path
+    attr_accessor :auth_token
+    attr_writer :merchant_id, :marketplace_id, :path
     attr_reader :body
 
     alias_method :configure, :tap
 
     def_delegators :marketplace, :host, :encoding
 
-    params('SellerId' => -> { merchant_id })
-    params('MWSAuthToken' => -> { auth_token })
+    params(
+      'SellerId' => -> { merchant_id },
+      'MWSAuthToken' => -> { auth_token }
+    )
 
     def self.parser
       @parser ||= Parser
@@ -50,10 +53,6 @@ module Peddler
 
     def merchant_id
       @merchant_id ||= ENV['MWS_MERCHANT_ID']
-    end
-
-    def auth_token
-      @auth_token ||= ENV['MWS_AUTH_TOKEN']
     end
 
     def marketplace

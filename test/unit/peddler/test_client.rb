@@ -51,6 +51,14 @@ class TestPeddlerClient < MiniTest::Test
     assert_equal Peddler::Client.params, @klass.params
   end
 
+  def test_params_include_seller_id
+    assert @klass.params.key?("SellerId")
+  end
+
+  def test_params_include_auth_token
+    @klass.params.key?("MWSAuthToken")
+  end
+
   def test_configures
     @client.configure do |config|
       config.aws_access_key_id = '123'
