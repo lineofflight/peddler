@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.platform    = Gem::Platform::RUBY
   gem.authors     = ['Hakan Ensari']
   gem.email       = ['hakanensari@me.com']
-  gem.homepage    = 'http://github.com/hakanensari/peddler'
+  gem.homepage    = 'https://github.com/hakanensari/peddler'
   gem.summary     = %q{Wraps the Amazon MWS APIs}
   gem.description = %q{A Ruby interface to the Amazon MWS API}
   gem.license     = 'MIT'
