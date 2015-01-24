@@ -37,13 +37,12 @@ VCR.configure do |c|
     'CreatedAfter', 'QueryStartDateTime'
   )
   c.default_cassette_options = {
-    match_requests_on: [:method, matcher],
+    match_requests_on: [:host, :path, matcher],
     record: :none
   }
 
   IntegrationTest::ACCOUNTS.each do |account|
     c.filter_sensitive_data('MERCHANT_ID') { account.fetch('merchant_id') }
-    c.filter_sensitive_data('AWS_SECRET_ACCESS_KEY') { account.fetch('aws_secret_access_key') }
     c.filter_sensitive_data('AWS_ACCESS_KEY_ID') { account.fetch('aws_access_key_id') }
   end
 end
