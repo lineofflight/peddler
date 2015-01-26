@@ -43,6 +43,18 @@ export AWS_ACCESS_KEY_ID=...
 export AWS_SECRET_ACCESS_KEY=...
 ```
 
+### MWS Authorized Tokens
+
+If instantiating a client for another seller, you have to provide the `MWSAuthToken` generated for you by the latter:
+
+```ruby
+client = MWS.orders(
+  marketplace_id: "...",
+  merchant_id:    "...",
+  auth_token:     "..."
+)
+```
+
 ## Usage
 
 ### Cart Information
