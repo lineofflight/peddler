@@ -12,7 +12,7 @@ module MWS
       # @option opts [String, #iso8601] :start_date
       # @option opts [String, #iso8601] :end_date
       # @option opts [String] :report_options
-      # @option opts [Array<String>, String] :marketplace_id
+      # @option opts [Array<String>, String] :marketplace_id_list
       # @return [Peddler::XMLParser]
       def request_report(report_type, opts = {})
         operation('RequestReport')
