@@ -11,3 +11,8 @@ env:
     - AWS_ACCESS_KEY_ID=foo
     - AWS_SECRET_ACCESS_KEY=bar
     - JRUBY_OPTS=--2.0
+matrix:
+  allow_failures:
+    - rvm:
+      - ruby-head
+      - jruby-head
