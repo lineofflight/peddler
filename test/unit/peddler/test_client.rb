@@ -3,8 +3,9 @@ require 'excon'
 require 'peddler/client'
 
 class TestPeddlerClient < MiniTest::Test
-  module Parser
-    def self.parse(res, *); res; end
+  class Parser
+    def initialize(*); end
+    def parse(res); res; end
   end
 
   def setup
