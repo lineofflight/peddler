@@ -90,7 +90,7 @@ module Peddler
       opts.store(:response_block, blk) if block_given?
       res = post(opts)
 
-      parser.parse(res)
+      parser.parse(res, encoding)
     rescue Excon::Errors::Error => ex
       handle_error(ex) or raise
     end
@@ -114,7 +114,7 @@ module Peddler
     end
 
     def parser
-      self.class.parser.new(encoding)
+      self.class.parser
     end
 
     def handle_error(ex)
