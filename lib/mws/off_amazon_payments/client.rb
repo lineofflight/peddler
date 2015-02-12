@@ -296,7 +296,7 @@ module MWS
       # @param amazon_capture_id [String]
       # @return [Peddler::XMLParser]
       def get_capture_details(amazon_capture_id)
-        operation('GetAuthorizationDetails')
+        operation('GetCaptureDetails')
           .add('AmazonCaptureId' => amazon_capture_id)
 
         run
