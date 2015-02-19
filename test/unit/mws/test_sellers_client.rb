@@ -1,32 +1,31 @@
 require 'test_helper'
-require 'mws/fulfillment_inventory/client'
+require 'mws/sellers/client'
 
-class TestFulfillmentInventoryClient < MiniTest::Test
+class TestSellersClient < MiniTest::Test
   def setup
-    @client = MWS::FulfillmentInventory::Client.new
+    @client = MWS::Sellers::Client.new
   end
 
-  def test_lists_inventory_supply
+  def test_lists_marketplace_participations
     operation = {
-      'Action' => 'ListInventorySupply',
-      'SellerSkus.member.1' => '1'
+      'Action' => 'ListMarketplaceParticipations'
     }
 
     @client.stub(:run, nil) do
-      @client.list_inventory_supply(seller_skus: '1')
+      @client.list_marketplace_participations
     end
 
     assert_equal operation, @client.operation
   end
 
-  def test_lists_inventory_supply_by_next_token
+  def test_lists_marketplace_participations_by_next_token
     operation = {
-      'Action' => 'ListInventorySupplyByNextToken',
+      'Action' => 'ListMarketplaceParticipationsByNextToken',
       'NextToken' => '1'
     }
 
     @client.stub(:run, nil) do
-      @client.list_inventory_supply_by_next_token('1')
+      @client.list_marketplace_participations_by_next_token('1')
     end
 
     assert_equal operation, @client.operation
