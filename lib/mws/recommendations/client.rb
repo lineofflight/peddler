@@ -31,7 +31,7 @@ module MWS
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :recommendation_category
-      #   @option opts [String] :category_query_list
+      #   @option opts [Array<Struct, Hash>] :category_query_list
       # @return [Peddler::XMLParser]
       def list_recommendations(opts = {})
         opts[:marketplace_id] ||= marketplace_id

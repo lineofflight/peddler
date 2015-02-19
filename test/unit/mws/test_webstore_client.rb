@@ -1,14 +1,9 @@
 require 'test_helper'
-require 'mws/products/client'
+require 'mws/webstore/client'
 
-class TestProductsClient < MiniTest::Test
+class TestWebstoreClient < MiniTest::Test
   def setup
-    @client = MWS::Products::Client.new
-  end
-
-  def test_operation_includes_marketplace_id
-    client = MWS::Products::Client.new
-    assert client.operation_with_marketplace('Foo').has_key?('MarketplaceId')
+    @client = MWS::Webstore::Client.new
   end
 
   def test_gets_service_status
