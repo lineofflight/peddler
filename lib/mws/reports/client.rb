@@ -209,7 +209,7 @@ module MWS
       # @param report_id_list [Array<String>]
       # @return [Peddler::XMLParser]
       def update_report_acknowledgements(acknowledged, *report_id_list)
-        operation('UpdateReportAcknowledgement')
+        operation('UpdateReportAcknowledgements')
           .add('ReportIdList' => report_id_list, 'Acknowledged' => acknowledged)
           .structure!('ReportIdList', 'Id')
 
