@@ -1,4 +1,5 @@
 require 'coveralls'
+Coveralls.wear!
 require 'minitest/autorun'
 require 'yaml'
 require 'vcr'
@@ -71,5 +72,3 @@ VCR.configure do |c|
     c.filter_sensitive_data('AWS_ACCESS_KEY_ID') { account['aws_access_key_id'] }
   end
 end
-
-Coveralls.wear!
