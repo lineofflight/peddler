@@ -49,9 +49,11 @@ If instantiating a client for another seller, you have to provide the `MWSAuthTo
 
 ```ruby
 client = MWS.orders(
-  marketplace_id: "...",
-  merchant_id:    "...",
-  auth_token:     "..."
+  marketplace_id:        "...",
+  merchant_id:           "...",
+  aws_access_key_id:     "...",
+  aws_secret_access_key: "...",
+  auth_token:            "..."
 )
 ```
 
