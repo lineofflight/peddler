@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'helper'
 require 'mws/webstore/client'
 
-class TestWebstoreClient < MiniTest::Test
+class TestMWSWebstoreClient < MiniTest::Test
   def setup
     @client = MWS::Webstore::Client.new
   end

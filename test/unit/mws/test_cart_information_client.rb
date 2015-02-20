@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'helper'
 require 'mws/cart_information/client'
 
-class TestCartInformationClient < MiniTest::Test
+class TestMWSCartInformationClient < MiniTest::Test
   def setup
     @client = MWS::CartInformation::Client.new
   end

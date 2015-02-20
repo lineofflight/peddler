@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'helper'
 require 'mws/off_amazon_payments/client'
 
 class TestMWSOffAmazonPaymentsClient < MiniTest::Test
