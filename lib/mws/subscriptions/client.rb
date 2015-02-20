@@ -137,7 +137,7 @@ module MWS
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
       def update_subscription(notification_type, sqs_queue_url, enabled, marketplace_id = marketplace_id())
-        operation('CreateSubscription')
+        operation('UpdateSubscription')
           .add('MarketplaceId' => marketplace_id)
           .add(build_subscription(notification_type, sqs_queue_url, enabled))
 
