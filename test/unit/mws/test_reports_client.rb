@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'helper'
 require 'mws/reports/client'
 
-class TestReportsClient < MiniTest::Test
+class TestMWSReportsClient < MiniTest::Test
   def setup
     @client = MWS::Reports::Client.new
   end

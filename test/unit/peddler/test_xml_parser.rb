@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'helper'
 require 'peddler/xml_parser'
 
 class TestPeddlerXMLParser < MiniTest::Test

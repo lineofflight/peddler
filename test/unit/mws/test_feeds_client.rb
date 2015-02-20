@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'helper'
 require 'mws/feeds/client'
 
-class TestFeedsClient < MiniTest::Test
+class TestMWSFeedsClient < MiniTest::Test
   def setup
     @client = MWS::Feeds::Client.new
   end

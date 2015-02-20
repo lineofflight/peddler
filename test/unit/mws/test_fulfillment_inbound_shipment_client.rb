@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'helper'
 require 'mws/fulfillment_inbound_shipment/client'
 
-class TestFulfillmentInboundShipmentClient < MiniTest::Test
+class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   def setup
     @client = MWS::FulfillmentInboundShipment::Client.new
   end

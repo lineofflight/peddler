@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'helper'
 require 'mws/subscriptions/client'
 
-class TestSubscriptionsClient < MiniTest::Test
+class TestMWSSubscriptionsClient < MiniTest::Test
   def setup
     @client = MWS::Subscriptions::Client.new
 

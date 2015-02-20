@@ -1,4 +1,4 @@
-require 'integration_test_helper'
+require 'helper'
 require 'mws/reports'
 
 class TestReports < IntegrationTest
