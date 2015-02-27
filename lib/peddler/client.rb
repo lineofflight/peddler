@@ -84,10 +84,10 @@ module Peddler
       action ? @operation = Operation.new(action) : @operation
     end
 
-    def run(&blk)
+    def run
       opts = defaults.merge(query: operation, headers: headers)
       opts.store(:body, body) if body
-      opts.store(:response_block, blk) if block_given?
+      opts.store(:response_block, Proc.new) if block_given?
       res = post(opts)
 
       parser.parse(res, encoding)
