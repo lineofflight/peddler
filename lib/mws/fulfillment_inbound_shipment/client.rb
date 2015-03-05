@@ -82,6 +82,7 @@ module MWS
             'ShipmentType' => shipment_type,
             'TransportDetails' => transport_details
           )
+          .structure!('PackageList', 'member')
 
         run
       end

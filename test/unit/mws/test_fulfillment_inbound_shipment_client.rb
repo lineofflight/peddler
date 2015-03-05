@@ -51,16 +51,24 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   end
 
   def test_puts_transport_content
+    transport_details = {
+      'ParcelData' => {
+        'PackageList' => {
+          'TrackingId' => '123'
+        }
+      }
+    }
+
     operation = {
       'Action' => 'PutTransportContent',
       'ShipmentId' => '1',
       'IsPartnered' => true,
       'ShipmentType' => 'Foo',
-      'TransportDetails.Foo' => '1'
+      'TransportDetails.ParcelData.PackageList.TrackingId' => '123'
     }
 
     @client.stub(:run, nil) do
-      @client.put_transport_content('1', true, 'Foo', { 'Foo' => '1' })
+      @client.put_transport_content('1', true, 'Foo', transport_details)
     end
 
     assert_equal operation, @client.operation
