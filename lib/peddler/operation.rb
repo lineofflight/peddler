@@ -10,11 +10,11 @@ module Peddler
     end
 
     def structure!(*list_keys)
-      list_key = list_keys.first
+      list_key = list_keys.shift
 
-      if key?(list_key)
-        builder = StructuredList.new(*list_keys)
-        vals = delete(list_key)
+      if found_key = keys.find { |key| key.end_with?(list_key) }
+        builder = StructuredList.new(found_key, *list_keys)
+        vals = delete(found_key)
         update(builder.build(vals))
       end
 
