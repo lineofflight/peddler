@@ -53,9 +53,11 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   def test_puts_transport_content
     transport_details = {
       'ParcelData' => {
-        'PackageList' => {
+        'PackageList' => [
+          {
           'TrackingId' => '123'
-        }
+          }
+        ]
       }
     }
 
@@ -64,7 +66,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       'ShipmentId' => '1',
       'IsPartnered' => true,
       'ShipmentType' => 'Foo',
-      'TransportDetails.ParcelData.PackageList.TrackingId' => '123'
+      'TransportDetails.ParcelData.PackageList.member.1.TrackingId' => '123'
     }
 
     @client.stub(:run, nil) do
