@@ -5,7 +5,7 @@ class TestPeddlerParser < MiniTest::Test
   def assert_parser(klass, *content_types)
     content_types.each do |content_type|
       res = OpenStruct.new(headers: { 'Content-Type' => content_type }, body: '')
-      parser = Peddler::Parser.parse(res)
+      parser = Peddler::Parser.new(res)
 
       assert_kind_of klass, parser
     end
