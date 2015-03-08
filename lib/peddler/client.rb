@@ -23,20 +23,30 @@ module Peddler
       'MWSAuthToken' => -> { auth_token }
     )
 
-    def self.parser
-      @parser ||= Parser
-    end
+    class << self
+      attr_reader :error_handler
 
-    def self.parser=(parser)
-      @parser = parser
-    end
+      def parser
+        @parser ||= Parser
+      end
 
-    def self.path(path = nil)
-      path ? @path = path : @path ||= '/'
-    end
+      def parser=(parser)
+        @parser = parser
+      end
 
-    def self.inherited(base)
-      base.params(params)
+      def path(path = nil)
+        path ? @path = path : @path ||= '/'
+      end
+
+      def on_error(&blk)
+        @error_handler = blk
+      end
+
+      private
+
+      def inherited(base)
+        base.params(params)
+      end
     end
 
     def initialize(opts = {})
@@ -80,6 +90,10 @@ module Peddler
       @error_handler = blk
     end
 
+    def error_handler
+      @error_handler || self.class.error_handler
+    end
+
     def operation(action = nil)
       action ? @operation = Operation.new(action) : @operation
     end
@@ -118,8 +132,8 @@ module Peddler
     end
 
     def handle_error(ex)
-      return false unless @error_handler
-      @error_handler.call(ex.request, ex.response)
+      return false unless error_handler
+      error_handler.call(ex.request, ex.response)
     end
   end
 end
