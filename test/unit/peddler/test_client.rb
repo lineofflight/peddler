@@ -134,7 +134,24 @@ class TestPeddlerClient < MiniTest::Test
     assert headers.has_key?('User-Agent')
   end
 
-  def test_error_callback
+  def test_error_callback_on_class
+    Excon.stub({}, { status: 503 })
+
+    assert_raises(Excon::Errors::ServiceUnavailable) do
+      @client.run
+    end
+
+    @klass.on_error do |_, res|
+      assert_equal 503, res.status
+    end
+
+    @client.run
+
+    Excon.stubs.clear
+    @klass.instance_variable_set(:@error_handler, nil)
+  end
+
+  def test_error_callback_on_instance
     Excon.stub({}, { status: 503 })
 
     assert_raises(Excon::Errors::ServiceUnavailable) do
