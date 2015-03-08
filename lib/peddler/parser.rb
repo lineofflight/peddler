@@ -7,7 +7,7 @@ module Peddler
     class << self
       # The inevitable messiness of massaging data produced by a motley army of
       # Amazon developers
-      def parse(res, encoding = 'ISO-8859-1')
+      def new(res, encoding = 'ISO-8859-1')
         # Don't parse if there's no body
         return res unless res.body
 

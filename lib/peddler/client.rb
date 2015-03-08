@@ -90,7 +90,7 @@ module Peddler
       opts.store(:response_block, Proc.new) if block_given?
       res = post(opts)
 
-      parser.parse(res, encoding)
+      parser.new(res, encoding)
     rescue Excon::Errors::Error => ex
       handle_error(ex) or raise
     end
