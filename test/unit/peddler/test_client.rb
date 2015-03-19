@@ -166,4 +166,15 @@ class TestPeddlerClient < MiniTest::Test
 
     Excon.stubs.clear
   end
+
+  def test_deprecates_call_to_parser_parse
+    deprecated_parser = Module.new do
+      def self.parse(res, *); res; end
+    end
+    @client.stub :warn, nil do
+      @klass.parser = deprecated_parser
+      res = @client.run
+      assert_equal @body, res.body
+    end
+  end
 end

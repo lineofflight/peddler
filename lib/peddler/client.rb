@@ -105,8 +105,15 @@ module Peddler
       res = post(opts)
 
       parser.new(res, encoding)
-    rescue Excon::Errors::Error => ex
-      handle_error(ex) or raise
+    rescue Excon::Errors::Error => e
+      handle_error(e) or raise
+    rescue NoMethodError => e
+      if e.message == "undefined method `new' for #{parser}"
+        warn "[DEPRECATION] `Parser.parse` is deprecated. Please use `Parser.new` instead."
+        parser.parse(res, encoding)
+      else
+        raise
+      end
     end
 
     private
@@ -131,9 +138,9 @@ module Peddler
       self.class.parser
     end
 
-    def handle_error(ex)
+    def handle_error(e)
       return false unless error_handler
-      error_handler.call(ex.request, ex.response)
+      error_handler.call(e.request, e.response)
     end
   end
 end
