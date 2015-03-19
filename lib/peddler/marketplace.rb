@@ -19,7 +19,7 @@ module Peddler
     attr_reader :id
 
     def initialize(id)
-      @id = id
+      @id = id or fail BadId, 'missing MarketplaceId'
     end
 
     def host
@@ -41,7 +41,7 @@ module Peddler
     private
 
     def find_host
-      HOSTS.fetch(id) { raise BadId }
+      HOSTS.fetch(id) { fail BadId, %Q("#{id}" is not a valid MarketplaceId) }
     end
 
     def japanese?
