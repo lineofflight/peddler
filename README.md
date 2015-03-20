@@ -76,22 +76,25 @@ MWS::Orders::Client.parser = MyParser
 
 For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/mws-orders) library.
 
-Finally, you can handle network errors caused by throttling or other transient issues by rescuing or defining an error handler.
+Finally, you can handle network errors caused by throttling or other transient issues by defining an error handler.
 
 ```ruby
-
-begin
-  client.some_method
-rescue Excon::Errors::ServiceUnavailable
-  sleep 1 and retry
-end
-
-
 MWS::Orders::Client.on_error do |request, response|
   if response.status == 503
     logger.info "I was throttled"
   end
 end
+```
+
+Alternatively, you can simply rescue.
+
+```ruby
+begin
+  client.some_method
+rescue Excon::Errors::ServiceUnavailable
+  sleep 1 and retry
+end
+```
 
 ## The APIs
 
