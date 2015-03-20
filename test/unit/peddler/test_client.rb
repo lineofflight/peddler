@@ -167,6 +167,31 @@ class TestPeddlerClient < MiniTest::Test
     Excon.stubs.clear
   end
 
+  def test_error_callback_on_client_ancestor
+    Excon.stub({}, { status: 503 })
+
+    assert_raises(Excon::Errors::ServiceUnavailable) do
+      @client.run
+    end
+
+    Peddler::Client.on_error do |_, res|
+      assert_equal 503, res.status
+    end
+
+    klass = Class.new(Peddler::Client)
+    klass.parser = Parser
+    client = klass.new
+    client.aws_access_key_id = 'key'
+    client.aws_secret_access_key = 'secret'
+    client.merchant_id = 'seller'
+    client.marketplace_id = 'ATVPDKIKX0DER' # US
+    client.operation('Foo')
+    client.run
+
+    Excon.stubs.clear
+    Peddler::Client.instance_variable_set(:@error_handler, nil)
+  end
+
   def test_deprecates_call_to_parser_parse
     deprecated_parser = Module.new do
       def self.parse(res, *); res; end

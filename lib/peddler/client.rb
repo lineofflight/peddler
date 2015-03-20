@@ -46,6 +46,7 @@ module Peddler
 
       def inherited(base)
         base.params(params)
+        base.on_error &@error_handler if @error_handler
       end
     end
 
