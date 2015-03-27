@@ -18,7 +18,8 @@ module MWS
     # @note In addition to registering for Amazon MWS, you must request
     #   authorization to use the Customer Information API.
     class Client < ::Peddler::Client
-      path '/CustomerInformation/2014-03-01'
+      version "2014-03-01"
+      path "/CustomerInformation/#{version}"
 
       # Lists customer accounts based on search criteria that you specify
       #

@@ -11,7 +11,7 @@ module Peddler
     include Jeff
 
     attr_accessor :auth_token
-    attr_writer :merchant_id, :marketplace_id, :path
+    attr_writer :merchant_id, :marketplace_id, :path, :version
     attr_reader :body
 
     alias_method :configure, :tap
@@ -36,6 +36,10 @@ module Peddler
 
       def path(path = nil)
         path ? @path = path : @path ||= '/'
+      end
+
+      def version(version = nil)
+        version ? @version = version : @version ||= ""
       end
 
       def on_error(&blk)
@@ -82,6 +86,10 @@ module Peddler
       @path ||= self.class.path
     end
 
+    def version
+      @version ||= self.class.version
+    end
+
     def body=(str)
       headers['Content-Type'] = content_type(str)
       @body = str
@@ -100,6 +108,7 @@ module Peddler
     end
 
     def run
+      operation.store('Version', version) unless version.to_s == ""
       opts = defaults.merge(query: operation, headers: headers)
       opts.store(:body, body) if body
       opts.store(:response_block, Proc.new) if block_given?

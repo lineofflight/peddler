@@ -58,7 +58,7 @@ VCR.configure do |c|
   # Ignore transient params when building VCR fixtures.
   matcher = VCR.request_matchers.uri_without_param(
     'AWSAccessKeyId', 'SellerId', 'Signature', 'Timestamp', 'StartDate',
-    'CreatedAfter', 'QueryStartDateTime'
+    'CreatedAfter', 'QueryStartDateTime', 'Version'
   )
 
   c.default_cassette_options = {
