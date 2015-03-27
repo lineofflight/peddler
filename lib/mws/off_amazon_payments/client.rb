@@ -14,14 +14,15 @@ module MWS
     #   Payments. You cannot use this API section to process payments for Amazon
     #   Marketplace, Amazon Webstore, or Checkout by Amazon.
     class Client < ::Peddler::Client
-      path '/OffAmazonPayments/2013-01-01/'
+      version "2013-01-01"
+      path "/OffAmazonPayments/#{version}/"
 
       # Switches the client to the sandbox environment
       #
       # @see https://payments.amazon.com/help/Checkout-by-Amazon/Using-the-Checkout-by-Amazon-Sandbox/Overview-of-the-Sandbox
       # @return [self]
       def sandbox
-        self.path = '/OffAmazonPayments_Sandbox/2013-01-01/'
+        self.path = "/OffAmazonPayments_Sandbox/#{version}/"
         self
       end
 

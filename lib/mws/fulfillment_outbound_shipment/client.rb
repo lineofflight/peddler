@@ -13,7 +13,8 @@ module MWS
     # on when they were fulfilled and by the fulfillment method associated with
     # them.
     class Client < ::Peddler::Client
-      path '/FulfillmentOutboundShipment/2010-10-01'
+      version "2010-10-01"
+      path "/FulfillmentOutboundShipment/#{version}"
 
       # Lists fulfillment order previews
       #
