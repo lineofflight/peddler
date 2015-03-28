@@ -19,7 +19,13 @@ module Accounts
     @data.each(&blk)
   end
 
-  @data = YAML.load_file(File.expand_path('../mws.yml', __FILE__))
+  %w(mws.yml mws.yml.example).each do |path|
+    file = File.expand_path("../#{path}", __FILE__)
+    if File.exists?(file)
+      @data = YAML.load_file(file)
+      break
+    end
+  end
 end
 
 # Sets up clients and bootstraps VCR for integration tests
@@ -63,7 +69,7 @@ VCR.configure do |c|
 
   c.default_cassette_options = {
     match_requests_on: [:host, :path, matcher],
-    record: :none
+    record: !!ENV['RECORD'] ? :new_episodes : :none
   }
 
   # So that fixtures do not depend on merchant credentials
