@@ -50,7 +50,11 @@ module Peddler
     private
 
     def camelize(sym)
-      sym.to_s.split('_').map(&:capitalize).join
+      sym
+        .to_s
+        .split('_')
+        .map { |token| token == "sku" ? "SKU" : token.capitalize }
+        .join
     end
   end
 end
