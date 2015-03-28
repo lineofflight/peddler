@@ -8,11 +8,4 @@ class TestSellers < IntegrationTest
       refute_empty res.parse
     end
   end
-
-  def test_get_auth_token
-    clients.each do |client|
-      res = client.get_auth_token
-      refute_empty res.parse
-    end
-  end
 end

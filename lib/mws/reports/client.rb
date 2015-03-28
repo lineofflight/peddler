@@ -4,6 +4,8 @@ module MWS
   module Reports
     # The Reports API lets you request reports about your inventory and orders.
     class Client < ::Peddler::Client
+      version '2009-01-01'
+
       # Creates a report request
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_RequestReport.html

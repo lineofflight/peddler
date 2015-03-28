@@ -2,166 +2,308 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A37%3A31Z&Signature=vKbyG%2BKZTK2kncF4nH1P5utWVEdq3O2T%2FF4myRetOCg%3D
+    uri: https://mws.amazonservices.com/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CreateInboundShipmentPlan&InboundShipmentPlanRequestItems.member.1.Quantity=1&InboundShipmentPlanRequestItems.member.1.SellerSKU=123&SellerId=MERCHANT_ID&ShipFromAddress.AddressLine1=1%20Main%20St&ShipFromAddress.City=New%20York&ShipFromAddress.CountryCode=US&ShipFromAddress.Name=John&ShipFromAddress.PostalCode=10001&ShipFromAddress.StateOrProvinceCode=NY&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T17%3A57%3A11Z&Version=2010-10-01&Signature=HTahqK%2F34j2%2Bwf2v8WKG%2BtrZDyjt8%2BxbunzOyPgLDLY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:37:31 GMT
+      - Sat, 28 Mar 2015 17:57:12 GMT
       Server:
       - AmazonMWS
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FBAInboundServiceMWS.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=pT7xwpu6WctYKsTIO4luDvcrW/ltDjciVEUTPrjPmvk=,
+        Algorithm=HmacSHA256
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 17:57:13 GMT
       x-mws-request-id:
-      - 211fa22d-13d6-430f-92ba-200bf76d1107
+      - de487c2f-4526-4e71-b7be-017d31d3e0fe
       x-mws-timestamp:
-      - '2014-08-12T11:37:31.663Z'
+      - '2015-03-28T17:57:12.406Z'
       x-mws-response-context:
-      - JjtqBj4ZWOyFuXpk+Q81KOKW0UeZiXoCPuOR02w55N5ZqA+fd2G/H61IR07F+0L6tCU2EoEB5EKM
-        IEHZ7f7Svw==
+      - 2hWxqzUcaXDGC4YOjP3uif9AKpJg+kQQvcNcFab+tkR2c/AX0Dqck/K757lRslJU++WNkKTVZGQ=
       Content-Type:
       - text/xml
       Content-Length:
-      - '390'
+      - '1119'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:37:31.663Z</Timestamp>
-          </GetServiceStatusResult>
+        <CreateInboundShipmentPlanResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <CreateInboundShipmentPlanResult>
+            <InboundShipmentPlans>
+              <member>
+                <LabelPrepType>SELLER_LABEL</LabelPrepType>
+                <DestinationFulfillmentCenterId>IND1</DestinationFulfillmentCenterId>
+                <ShipToAddress>
+                  <City>Whitestown</City>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>46075</PostalCode>
+                  <Name>Amazon.com</Name>
+                  <AddressLine1>4255 Anson Blvd</AddressLine1>
+                  <StateOrProvinceCode>IN</StateOrProvinceCode>
+                </ShipToAddress>
+                <Items>
+                  <member>
+                    <FulfillmentNetworkSKU>X000R2R7FX</FulfillmentNetworkSKU>
+                    <Quantity>1</Quantity>
+                    <SellerSKU>123</SellerSKU>
+                  </member>
+                </Items>
+                <ShipmentId>FBA2KCQ9RK</ShipmentId>
+              </member>
+            </InboundShipmentPlans>
+          </CreateInboundShipmentPlanResult>
           <ResponseMetadata>
-            <RequestId>211fa22d-13d6-430f-92ba-200bf76d1107</RequestId>
+            <RequestId>de487c2f-4526-4e71-b7be-017d31d3e0fe</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:37:31 GMT
+        </CreateInboundShipmentPlanResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 17:57:13 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A37%3A31Z&Signature=yrYCRZ94Z1LZhiqJWOF64q2Gl9bWA41XwJY806%2FWnN0%3D
+    uri: https://mws.amazonservices.ca/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CreateInboundShipmentPlan&InboundShipmentPlanRequestItems.member.1.Quantity=1&InboundShipmentPlanRequestItems.member.1.SellerSKU=123&SellerId=MERCHANT_ID&ShipFromAddress.AddressLine1=1%20Main%20St&ShipFromAddress.City=New%20York&ShipFromAddress.CountryCode=US&ShipFromAddress.Name=John&ShipFromAddress.PostalCode=10001&ShipFromAddress.StateOrProvinceCode=NY&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T17%3A57%3A11Z&Version=2010-10-01&Signature=HTahqK%2F34j2%2Bwf2v8WKG%2BtrZDyjt8%2BxbunzOyPgLDLY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:37:31 GMT
+      - Sat, 28 Mar 2015 17:57:12 GMT
       Server:
       - AmazonMWS
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FBAInboundServiceMWS.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=pT7xwpu6WctYKsTIO4luDvcrW/ltDjciVEUTPrjPmvk=,
+        Algorithm=HmacSHA256
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 17:57:13 GMT
       x-mws-request-id:
-      - 92059445-1817-4197-bfde-3912c3762592
+      - de487c2f-4526-4e71-b7be-017d31d3e0fe
       x-mws-timestamp:
-      - '2014-08-12T11:37:31.908Z'
+      - '2015-03-28T17:57:12.406Z'
       x-mws-response-context:
-      - BKaeterCWYSU95KF141HyQmODf32kBW330fwaR22NA53TqK8GU3lcEN+nYKiQsiQ2fgJXrGxLruO
-        BKpTbV+S4w==
+      - 2hWxqzUcaXDGC4YOjP3uif9AKpJg+kQQvcNcFab+tkR2c/AX0Dqck/K757lRslJU++WNkKTVZGQ=
       Content-Type:
       - text/xml
       Content-Length:
-      - '390'
+      - '1119'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:37:31.908Z</Timestamp>
-          </GetServiceStatusResult>
+        <CreateInboundShipmentPlanResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <CreateInboundShipmentPlanResult>
+            <InboundShipmentPlans>
+              <member>
+                <LabelPrepType>SELLER_LABEL</LabelPrepType>
+                <DestinationFulfillmentCenterId>IND1</DestinationFulfillmentCenterId>
+                <ShipToAddress>
+                  <City>Whitestown</City>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>46075</PostalCode>
+                  <Name>Amazon.com</Name>
+                  <AddressLine1>4255 Anson Blvd</AddressLine1>
+                  <StateOrProvinceCode>IN</StateOrProvinceCode>
+                </ShipToAddress>
+                <Items>
+                  <member>
+                    <FulfillmentNetworkSKU>X000R2R7FX</FulfillmentNetworkSKU>
+                    <Quantity>1</Quantity>
+                    <SellerSKU>123</SellerSKU>
+                  </member>
+                </Items>
+                <ShipmentId>FBA2KCQ9RK</ShipmentId>
+              </member>
+            </InboundShipmentPlans>
+          </CreateInboundShipmentPlanResult>
           <ResponseMetadata>
-            <RequestId>92059445-1817-4197-bfde-3912c3762592</RequestId>
+            <RequestId>de487c2f-4526-4e71-b7be-017d31d3e0fe</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:37:31 GMT
+        </CreateInboundShipmentPlanResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 17:57:13 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A37%3A31Z&Signature=3QiJCxXYH9bKo%2BOKCtH1wvjL%2BNni6hbxmxk4wLmPuns%3D
+    uri: https://mws.amazonservices.jp/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CreateInboundShipmentPlan&InboundShipmentPlanRequestItems.member.1.Quantity=1&InboundShipmentPlanRequestItems.member.1.SellerSKU=123&SellerId=MERCHANT_ID&ShipFromAddress.AddressLine1=1%20Main%20St&ShipFromAddress.City=New%20York&ShipFromAddress.CountryCode=US&ShipFromAddress.Name=John&ShipFromAddress.PostalCode=10001&ShipFromAddress.StateOrProvinceCode=NY&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T17%3A57%3A11Z&Version=2010-10-01&Signature=HTahqK%2F34j2%2Bwf2v8WKG%2BtrZDyjt8%2BxbunzOyPgLDLY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:37:32 GMT
+      - Sat, 28 Mar 2015 17:57:12 GMT
       Server:
       - AmazonMWS
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FBAInboundServiceMWS.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=pT7xwpu6WctYKsTIO4luDvcrW/ltDjciVEUTPrjPmvk=,
+        Algorithm=HmacSHA256
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 17:57:13 GMT
       x-mws-request-id:
-      - 28520062-34c5-40f9-98a3-2c3321a9a274
+      - de487c2f-4526-4e71-b7be-017d31d3e0fe
       x-mws-timestamp:
-      - '2014-08-12T11:37:32.621Z'
+      - '2015-03-28T17:57:12.406Z'
       x-mws-response-context:
-      - zfJW0wadpD2ohf1b7/5UnCqylcsP7JYw3HfqKZruXnBiM/aK+5onS8qCv+KP37l/q0a3jCW09AIN
-        aLtzcJRGpw==
+      - 2hWxqzUcaXDGC4YOjP3uif9AKpJg+kQQvcNcFab+tkR2c/AX0Dqck/K757lRslJU++WNkKTVZGQ=
       Content-Type:
       - text/xml
       Content-Length:
-      - '390'
+      - '1119'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:37:32.621Z</Timestamp>
-          </GetServiceStatusResult>
+        <CreateInboundShipmentPlanResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <CreateInboundShipmentPlanResult>
+            <InboundShipmentPlans>
+              <member>
+                <LabelPrepType>SELLER_LABEL</LabelPrepType>
+                <DestinationFulfillmentCenterId>IND1</DestinationFulfillmentCenterId>
+                <ShipToAddress>
+                  <City>Whitestown</City>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>46075</PostalCode>
+                  <Name>Amazon.com</Name>
+                  <AddressLine1>4255 Anson Blvd</AddressLine1>
+                  <StateOrProvinceCode>IN</StateOrProvinceCode>
+                </ShipToAddress>
+                <Items>
+                  <member>
+                    <FulfillmentNetworkSKU>X000R2R7FX</FulfillmentNetworkSKU>
+                    <Quantity>1</Quantity>
+                    <SellerSKU>123</SellerSKU>
+                  </member>
+                </Items>
+                <ShipmentId>FBA2KCQ9RK</ShipmentId>
+              </member>
+            </InboundShipmentPlans>
+          </CreateInboundShipmentPlanResult>
           <ResponseMetadata>
-            <RequestId>28520062-34c5-40f9-98a3-2c3321a9a274</RequestId>
+            <RequestId>de487c2f-4526-4e71-b7be-017d31d3e0fe</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:37:32 GMT
+        </CreateInboundShipmentPlanResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 17:57:13 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A37%3A32Z&Signature=oZZQG24Pl3B2qZt9bc%2BfOOHzMhR98YhpjN%2BLfXDuBCE%3D
+    uri: https://mws-eu.amazonservices.com/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CreateInboundShipmentPlan&InboundShipmentPlanRequestItems.member.1.Quantity=1&InboundShipmentPlanRequestItems.member.1.SellerSKU=123&SellerId=MERCHANT_ID&ShipFromAddress.AddressLine1=1%20Main%20St&ShipFromAddress.City=New%20York&ShipFromAddress.CountryCode=US&ShipFromAddress.Name=John&ShipFromAddress.PostalCode=10001&ShipFromAddress.StateOrProvinceCode=NY&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T17%3A57%3A11Z&Version=2010-10-01&Signature=HTahqK%2F34j2%2Bwf2v8WKG%2BtrZDyjt8%2BxbunzOyPgLDLY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:37:32 GMT
+      - Sat, 28 Mar 2015 17:57:12 GMT
+      Server:
+      - AmazonMWS
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FBAInboundServiceMWS.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=pT7xwpu6WctYKsTIO4luDvcrW/ltDjciVEUTPrjPmvk=,
+        Algorithm=HmacSHA256
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 17:57:13 GMT
+      x-mws-request-id:
+      - de487c2f-4526-4e71-b7be-017d31d3e0fe
+      x-mws-timestamp:
+      - '2015-03-28T17:57:12.406Z'
+      x-mws-response-context:
+      - 2hWxqzUcaXDGC4YOjP3uif9AKpJg+kQQvcNcFab+tkR2c/AX0Dqck/K757lRslJU++WNkKTVZGQ=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '1119'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <CreateInboundShipmentPlanResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <CreateInboundShipmentPlanResult>
+            <InboundShipmentPlans>
+              <member>
+                <LabelPrepType>SELLER_LABEL</LabelPrepType>
+                <DestinationFulfillmentCenterId>IND1</DestinationFulfillmentCenterId>
+                <ShipToAddress>
+                  <City>Whitestown</City>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>46075</PostalCode>
+                  <Name>Amazon.com</Name>
+                  <AddressLine1>4255 Anson Blvd</AddressLine1>
+                  <StateOrProvinceCode>IN</StateOrProvinceCode>
+                </ShipToAddress>
+                <Items>
+                  <member>
+                    <FulfillmentNetworkSKU>X000R2R7FX</FulfillmentNetworkSKU>
+                    <Quantity>1</Quantity>
+                    <SellerSKU>123</SellerSKU>
+                  </member>
+                </Items>
+                <ShipmentId>FBA2KCQ9RK</ShipmentId>
+              </member>
+            </InboundShipmentPlans>
+          </CreateInboundShipmentPlanResult>
+          <ResponseMetadata>
+            <RequestId>de487c2f-4526-4e71-b7be-017d31d3e0fe</RequestId>
+          </ResponseMetadata>
+        </CreateInboundShipmentPlanResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 17:57:13 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A06%3A10Z&Version=2010-10-01&Signature=yXqzxtpxPdx4UaVGOJSqcUrMeQBn5PDqeOWAaWf54lo%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:06:11 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - 28a8858f-a8fb-4abf-8c66-7bcf8b2507fc
+      - 1fb5ff67-8fef-46aa-80e6-faa88acccf55
       x-mws-timestamp:
-      - '2014-08-12T11:37:33.076Z'
+      - '2015-03-28T18:06:11.752Z'
       x-mws-response-context:
-      - lPOimc2MXSAgJcYZDKcguKz5jsrSskeyUgP0DK4Qt7OwAOvrPyRax8aZSwqCzBQ9U+IX6KiFlWE=
+      - 1lFuAyNXriBG+Vi+1BZYIxBrGFcDTQ41JYDdgiWPx9mTqB39FEhOGdkAMKhdKDRJQQ+2jSot9NU=
       Content-Type:
       - text/xml
       Content-Length:
@@ -175,12 +317,147 @@ http_interactions:
         <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
           <GetServiceStatusResult>
             <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:37:33.076Z</Timestamp>
+            <Timestamp>2015-03-28T18:06:11.752Z</Timestamp>
           </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>28a8858f-a8fb-4abf-8c66-7bcf8b2507fc</RequestId>
+            <RequestId>1fb5ff67-8fef-46aa-80e6-faa88acccf55</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:37:33 GMT
-recorded_with: VCR 2.9.2
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 18:06:11 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A06%3A11Z&Version=2010-10-01&Signature=JNsZa2Hb2U04rP6ZThrSOaENDSdQvw0WXx5cYvxHBdM%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:06:11 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 6581c009-7a99-4e29-8313-5383798e87f3
+      x-mws-timestamp:
+      - '2015-03-28T18:06:12.290Z'
+      x-mws-response-context:
+      - cVYfWvKzYOcB9+f/cFqQKo/GbKve/C3tlTEs1k0MS2Ul1Ug278OVZ+SQTqngwq9nnrhGLGhAGJU=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '390'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:06:12.290Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>6581c009-7a99-4e29-8313-5383798e87f3</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 18:06:12 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A06%3A12Z&Version=2010-10-01&Signature=CqTeiu06e9AbebBRyHois2cQzwFK2km0YlXricgqLb4%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:06:13 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - e8a1e822-6d0d-41f0-8a35-eea75a490100
+      x-mws-timestamp:
+      - '2015-03-28T18:06:13.542Z'
+      x-mws-response-context:
+      - ixFM4BhKB6JwNNslJEtkUi7JUdapk26n1JZhopSVkzQn57ywSONH2AS0/8cAIiTOEyIoyJBqlRg=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '390'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:06:13.542Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>e8a1e822-6d0d-41f0-8a35-eea75a490100</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 18:06:13 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/FulfillmentInboundShipment/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A06%3A13Z&Version=2010-10-01&Signature=WLH1PVduEBrxVSrqBhab3xjRyH9y%2FOeyFUzPQ%2FU2cEM%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:06:13 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 02e3a4da-374d-495d-a2de-8544199d8993
+      x-mws-timestamp:
+      - '2015-03-28T18:06:14.379Z'
+      x-mws-response-context:
+      - QvH7RK6h+pvI0cJgjK7So5nXMiDp0YBzShUTXdwLb1dMWp0UG8RzfwR8rJym/7pjejdc8tfv+Os=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '390'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInboundShipment/2010-10-01/">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:06:14.379Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>02e3a4da-374d-495d-a2de-8544199d8993</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 18:06:14 GMT
+recorded_with: VCR 2.9.3

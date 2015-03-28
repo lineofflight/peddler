@@ -2,267 +2,208 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A45Z&Signature=jb54AjrpLpE%2BuTgQBB4VL%2BHn9QI5IC7e2JQ0GQQUrCc%3D
+    uri: https://mws.amazonservices.ca/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A07Z&Version=2013-07-01&Signature=vvZcvEm0PTDdYYR2TisqLQWDBmXalEfRjSE6TVHFKrU%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:45 GMT
+      - Sat, 28 Mar 2015 18:14:07 GMT
       Server:
       - AmazonMWS
-      x-amzn-ActionTrace:
-      - amzn1.tr.562779a7-2216-11e4-9aa6-0a5a6ef40000.0..PisWmw
       x-mws-request-id:
-      - 6b348414-97bf-403a-a699-ff8cdb03551a
+      - f682fe2e-803c-4a33-a60a-1cc987939035
       x-mws-timestamp:
-      - '2014-08-12T11:46:45.719Z'
+      - '2015-03-28T18:14:07.909Z'
       x-mws-response-context:
-      - 4nn2BShp1spRWVJWoE21t43irXtcofGhPBlvZDe+7688dMzCDlearkaXK4mDkywAvrrriqVvlQ8=
+      - oZ4PTfnpxoK81Doj3eRqAkjUxWN5RqqJlPaZzpQh0vOivX2PGyHzSwoDmjl8xi98ANy44dcdPXk=
       Content-Type:
       - text/xml
       Content-Length:
-      - '777'
+      - '388'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <ListSubscriptionsResult>
-            <SubscriptionList>
-              <member>
-                <NotificationType>AnyOfferChanged</NotificationType>
-                <IsEnabled>true</IsEnabled>
-                <Destination>
-                  <DeliveryChannel>SQS</DeliveryChannel>
-                  <AttributeList>
-                    <member>
-                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
-                      <Key>sqsQueueUrl</Key>
-                    </member>
-                  </AttributeList>
-                </Destination>
-              </member>
-            </SubscriptionList>
-          </ListSubscriptionsResult>
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:14:07.909Z</Timestamp>
+          </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>6b348414-97bf-403a-a699-ff8cdb03551a</RequestId>
+            <RequestId>f682fe2e-803c-4a33-a60a-1cc987939035</RequestId>
           </ResponseMetadata>
-        </ListSubscriptionsResponse>
+        </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:45 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:07 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A45Z&Signature=%2BtaS643qGsJ8oUxiWFEcOcQGGRK3P0K7%2FnYCoJCac5g%3D
+    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A07Z&Version=2013-07-01&Signature=jffcpJV8YHCyiBmKzi2v1sK5ZEF%2BaMyOjEPHdMsSMVo%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:46 GMT
+      - Sat, 28 Mar 2015 18:14:07 GMT
       Server:
       - AmazonMWS
-      x-amzn-ActionTrace:
-      - amzn1.tr.5658003b-2216-11e4-96e0-0a5128e20000.0..7znF=h
       x-mws-request-id:
-      - 92b9aa72-8a55-46e0-ad86-a5e8e792c22c
+      - 9860138e-6d7d-4dad-bf69-e4a0350ea07d
       x-mws-timestamp:
-      - '2014-08-12T11:46:46.059Z'
+      - '2015-03-28T18:14:08.392Z'
       x-mws-response-context:
-      - oJoTMJFNchuGfbtTETf9Dyledun0WLJ9Anhw/InURAiVpI8K5xByku86nUP283lOG1ram8fpr20=
+      - Xrqt0dPCGk5LJsXgsBJqQ0yHUOoAf5HKvN4MYYaX4EcQCrNmkROkwCBNLN6DqFsTQxJeQGtVljU=
       Content-Type:
       - text/xml
       Content-Length:
-      - '777'
+      - '388'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <ListSubscriptionsResult>
-            <SubscriptionList>
-              <member>
-                <NotificationType>AnyOfferChanged</NotificationType>
-                <IsEnabled>true</IsEnabled>
-                <Destination>
-                  <DeliveryChannel>SQS</DeliveryChannel>
-                  <AttributeList>
-                    <member>
-                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
-                      <Key>sqsQueueUrl</Key>
-                    </member>
-                  </AttributeList>
-                </Destination>
-              </member>
-            </SubscriptionList>
-          </ListSubscriptionsResult>
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:14:08.392Z</Timestamp>
+          </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>92b9aa72-8a55-46e0-ad86-a5e8e792c22c</RequestId>
+            <RequestId>9860138e-6d7d-4dad-bf69-e4a0350ea07d</RequestId>
           </ResponseMetadata>
-        </ListSubscriptionsResponse>
+        </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:46 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:08 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A46Z&Signature=B6Km90znbmq15Wfrn%2BkomgJEPHh3nYE9QZK%2BStRP9Yc%3D
+    uri: https://mws.amazonservices.jp/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A08Z&Version=2013-07-01&Signature=FmlbZNlvY0cyVVWCSDFxDdnW%2B3iQJbmI1tz1bmd%2FLLw%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:46 GMT
+      - Sat, 28 Mar 2015 18:14:09 GMT
       Server:
       - AmazonMWS
-      x-amzn-ActionTrace:
-      - amzn1.tr.56cd7dce-2216-11e4-a4e6-0ae9bfe50000.0..e6Bm4Y
       x-mws-request-id:
-      - 4596c2bc-8646-4272-b598-a25cb7def579
+      - 6ecd42f7-889b-4df1-a630-81d96981ef09
       x-mws-timestamp:
-      - '2014-08-12T11:46:46.795Z'
+      - '2015-03-28T18:14:09.403Z'
       x-mws-response-context:
-      - xfrP7fExdkBPD2Ieyyi/m89E+MuAZqPRCVikOvH9abYvZC32nVyusupO5SgI9qAc9E7KjYaapavK
-        aYjnTNYkiQ==
+      - dOCWy8fi/C8Ir/m32bWG0cz1rdfdoP+/Cj4I3lq+DsVXpGAzvYhrZgaUP3Ww7rH5ZUlRXaIy0yE=
       Content-Type:
       - text/xml
       Content-Length:
-      - '777'
+      - '388'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <ListSubscriptionsResult>
-            <SubscriptionList>
-              <member>
-                <NotificationType>AnyOfferChanged</NotificationType>
-                <IsEnabled>true</IsEnabled>
-                <Destination>
-                  <DeliveryChannel>SQS</DeliveryChannel>
-                  <AttributeList>
-                    <member>
-                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
-                      <Key>sqsQueueUrl</Key>
-                    </member>
-                  </AttributeList>
-                </Destination>
-              </member>
-            </SubscriptionList>
-          </ListSubscriptionsResult>
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:14:09.403Z</Timestamp>
+          </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>4596c2bc-8646-4272-b598-a25cb7def579</RequestId>
+            <RequestId>6ecd42f7-889b-4df1-a630-81d96981ef09</RequestId>
           </ResponseMetadata>
-        </ListSubscriptionsResponse>
+        </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:47 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:09 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A47Z&Signature=hhEoCJChvFMZxL9%2FTw42msrHiBIKDTRilv%2F96iA4oBw%3D
+    uri: https://mws.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A09Z&Version=2013-07-01&Signature=FScfA68fSrpMA4nucgftNCowj2bsqm8vmY6pfq6JPdI%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:47 GMT
+      - Sat, 28 Mar 2015 18:14:09 GMT
       Server:
       - AmazonMWS
-      x-amzn-ActionTrace:
-      - amzn1.tr.571f2086-2216-11e4-8baf-0a589b4b0000.0..ERwAWK
       x-mws-request-id:
-      - 79de0337-85ab-49ac-8ab8-bba4e7a791cc
+      - 41e4eb29-5010-4242-88e5-b7ab2ec07bee
       x-mws-timestamp:
-      - '2014-08-12T11:46:47.370Z'
+      - '2015-03-28T18:14:10.088Z'
       x-mws-response-context:
-      - 3c9d6HDQPwg2jDIEh7lgxaDBvaWWunVSBcO+xq28RqYGJhba88sFwehhG93E3lAvOdmHHd2O7gE=
+      - h7ZwZEkNJU7cqKZHe/LFDjA3ZhvFH2kdnUhNw2gbsozbHiVuzr75/0Cump/Ea2LxnOmv/dJf+lU=
       Content-Type:
       - text/xml
       Content-Length:
-      - '777'
+      - '388'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <ListSubscriptionsResult>
-            <SubscriptionList>
-              <member>
-                <NotificationType>AnyOfferChanged</NotificationType>
-                <IsEnabled>true</IsEnabled>
-                <Destination>
-                  <DeliveryChannel>SQS</DeliveryChannel>
-                  <AttributeList>
-                    <member>
-                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
-                      <Key>sqsQueueUrl</Key>
-                    </member>
-                  </AttributeList>
-                </Destination>
-              </member>
-            </SubscriptionList>
-          </ListSubscriptionsResult>
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2015-03-28T18:14:10.088Z</Timestamp>
+          </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>79de0337-85ab-49ac-8ab8-bba4e7a791cc</RequestId>
+            <RequestId>41e4eb29-5010-4242-88e5-b7ab2ec07bee</RequestId>
           </ResponseMetadata>
-        </ListSubscriptionsResponse>
+        </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:47 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:10 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A47Z&Signature=ALv2acDKzKMMjC5jyNl35B5GWvEwS%2BnJIf0PmwSMNaI%3D
+    uri: https://mws.amazonservices.ca/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A10Z&Version=2013-07-01&Signature=DgZsF%2Bau%2FqZaiBKaoXBh%2Frt4YRJb2s2E3LJKCCuzL7w%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:47 GMT
+      - Sat, 28 Mar 2015 18:14:10 GMT
       Server:
       - AmazonMWS
-      x-amzn-ActionTrace:
-      - amzn1.tr.577110b0-2216-11e4-9aa6-0a5a6ef40000.0..yKwFpS
       x-mws-request-id:
-      - 53fd06b6-0025-4ccb-a45f-c402c9da5c7b
+      - 4d01dc9f-37d9-4fc9-b720-762ddf7bc853
       x-mws-timestamp:
-      - '2014-08-12T11:46:47.897Z'
+      - '2015-03-28T18:14:11.046Z'
       x-mws-response-context:
-      - JCLN5tciB00vto7da9f0ucKVU7SWvlFPhQgwevbxz3A7K4JwcPfd2gVXfG09zOLiWdLj8QutwxY=
+      - QkvUcxpsefjlWnMexveJLzAEcdWIwPgtvNcDzEtPBJOOERec6dpEh4zzrK0yoQVJfBzfCe7q3B8=
       Content-Type:
       - text/xml
       Content-Length:
@@ -296,38 +237,37 @@ http_interactions:
             </DestinationList>
           </ListRegisteredDestinationsResult>
           <ResponseMetadata>
-            <RequestId>53fd06b6-0025-4ccb-a45f-c402c9da5c7b</RequestId>
+            <RequestId>4d01dc9f-37d9-4fc9-b720-762ddf7bc853</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:48 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:11 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A48Z&Signature=LKA%2FwNbWAA%2F4QPOY8v7pQGtxee7q4z42SN17zwMlcz4%3D
+    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A11Z&Version=2013-07-01&Signature=3yo1lXwE%2F6SPyz6wjQjyMf1aoAKLqbl%2FNL4STp4%2FTm0%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:47 GMT
+      - Sat, 28 Mar 2015 18:14:11 GMT
       Server:
       - AmazonMWS
       x-amzn-ActionTrace:
-      - amzn1.tr.57953b2d-2216-11e4-96e0-0a5128e20000.0..I3EhQJ
+      - amzn1.tr.3bee2fa7-d576-11e4-a60b-0a5128e20000.0..Ao5DA$
       x-mws-request-id:
-      - 8f1d9541-1379-41bf-a3c3-9330f58ba5c6
+      - b282d3e3-7297-4be3-910d-f165d13901f1
       x-mws-timestamp:
-      - '2014-08-12T11:46:48.136Z'
+      - '2015-03-28T18:14:11.578Z'
       x-mws-response-context:
-      - kon2P6JN9rfmahRP3+E0D4wpDXeaijseuFnYYucCLoKb3SVfImiyyKXnmJUi9UVMkx9oLuhxY3Pn
-        SjU4Cr0H5g==
+      - xcmaMMZeD+DpvtAYNa1n/6QmM4gT5Bx+UJos4kOeXqP6a0gq3fBDYyCSbl2Zy1ZJQkqz0o+DtDo=
       Content-Type:
       - text/xml
       Content-Length:
@@ -361,38 +301,37 @@ http_interactions:
             </DestinationList>
           </ListRegisteredDestinationsResult>
           <ResponseMetadata>
-            <RequestId>8f1d9541-1379-41bf-a3c3-9330f58ba5c6</RequestId>
+            <RequestId>b282d3e3-7297-4be3-910d-f165d13901f1</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:48 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:11 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A48Z&Signature=8acjAxMU%2FZUAMBlquLt9DX2B9%2B4scRGsiNZHZulAAkU%3D
+    uri: https://mws.amazonservices.jp/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A11Z&Version=2013-07-01&Signature=pnmuV1wK1nOZ%2FeXXBshHmtR5IQeUcGTqM4tF52NsoPQ%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:49 GMT
+      - Sat, 28 Mar 2015 18:14:12 GMT
       Server:
       - AmazonMWS
       x-amzn-ActionTrace:
-      - amzn1.tr.580c66d3-2216-11e4-bae5-0ae959680000.0..zEGPtw
+      - amzn1.tr.3c83b815-d576-11e4-8018-0ae921390000.0..0O3!40
       x-mws-request-id:
-      - ca9008cd-2356-4d9e-9276-69aa1ecca49d
+      - 6b4609fe-0d58-40ef-a3cc-6bf48f272c35
       x-mws-timestamp:
-      - '2014-08-12T11:46:48.896Z'
+      - '2015-03-28T18:14:12.559Z'
       x-mws-response-context:
-      - Qc5LTD70s67S4OpklHeGrVEcVqdDvQ3aItY8K+BlnJ6mIYObd6Jw3wN00LflmgPSXGlnlojUmVeT
-        2CmhGm0FJA==
+      - ZU+375zIRqw01K0u/07SQfM/HRWhOY8bEYdhJ/pkpg2BHYMrZfn28e9dx3bh+owyVVYmeqHYQ+I=
       Content-Type:
       - text/xml
       Content-Length:
@@ -426,37 +365,37 @@ http_interactions:
             </DestinationList>
           </ListRegisteredDestinationsResult>
           <ResponseMetadata>
-            <RequestId>ca9008cd-2356-4d9e-9276-69aa1ecca49d</RequestId>
+            <RequestId>6b4609fe-0d58-40ef-a3cc-6bf48f272c35</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:49 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:12 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A49Z&Signature=OrgHmjrIEXXBUM2mYumOugKzbT%2FutjMXZQAAi6oOfiY%3D
+    uri: https://mws.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A12Z&Version=2013-07-01&Signature=Wkxwo3snjReQjs1BzVJFAj4V7PSTXYml4nfM0%2FJc48k%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:49 GMT
+      - Sat, 28 Mar 2015 18:14:13 GMT
       Server:
       - AmazonMWS
       x-amzn-ActionTrace:
-      - amzn1.tr.58561984-2216-11e4-9aa6-0a5a6ef40000.0..0vAJnL
+      - amzn1.tr.3cf2f4c5-d576-11e4-9c02-0a5a6ef40000.0..paS6p7
       x-mws-request-id:
-      - ff4ec3d0-db4b-4386-a874-9bfe9aa1b423
+      - 4c55775d-5a57-4ae5-8fa6-348f6a0933c1
       x-mws-timestamp:
-      - '2014-08-12T11:46:49.435Z'
+      - '2015-03-28T18:14:13.278Z'
       x-mws-response-context:
-      - BC3cXllrRrX+Zv0k/+SlQz9ogLRG8ZcE+sQ5fARm+GaaoLqRDZNcflnroK21iJR/4eX31QI7fSo=
+      - Hll1linkWDHZD+D2ij1ogPLzDr1+uxGwY3RvwZnON6o0ivB3464eolotRzj8VDZtvw+ZxbsLLyc=
       Content-Type:
       - text/xml
       Content-Length:
@@ -490,191 +429,239 @@ http_interactions:
             </DestinationList>
           </ListRegisteredDestinationsResult>
           <ResponseMetadata>
-            <RequestId>ff4ec3d0-db4b-4386-a874-9bfe9aa1b423</RequestId>
+            <RequestId>4c55775d-5a57-4ae5-8fa6-348f6a0933c1</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:49 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:13 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A49Z&Signature=DWGx0HvbcfBHqU%2BF21ZBil2LDVmSB%2BZ12YA4IbOPXfQ%3D
+    uri: https://mws.amazonservices.ca/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A13Z&Version=2013-07-01&Signature=p6iUYbNG0iquQmXE3yPOGFF7t1sozWRLG%2FeZgtBkjJ4%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:49 GMT
+      - Sat, 28 Mar 2015 18:14:13 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - 5fe445ad-b6fb-486f-85aa-83f66055c3f6
+      - f59a0e06-154f-4d6f-8817-eac31f706a4d
       x-mws-timestamp:
-      - '2014-08-12T11:46:49.914Z'
+      - '2015-03-28T18:14:14.083Z'
       x-mws-response-context:
-      - "+riP/YaH/4HRRY0ywfzzabh/42fPvVj73ETPDXRuD+ns+ooEGVktOO5jIJ6NXAy9B5Q56hWHxhfD
-        30flRB0AIg=="
+      - 9q6jlDaYFOgsql4nv654pXWtv8i4AnvxOYb+cKFzG4wmrURIPpxylPagGX2vlnNh3qfUNhE2IDw=
       Content-Type:
       - text/xml
       Content-Length:
-      - '388'
+      - '777'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:46:49.914Z</Timestamp>
-          </GetServiceStatusResult>
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList>
+              <member>
+                <NotificationType>AnyOfferChanged</NotificationType>
+                <IsEnabled>true</IsEnabled>
+                <Destination>
+                  <DeliveryChannel>SQS</DeliveryChannel>
+                  <AttributeList>
+                    <member>
+                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
+                      <Key>sqsQueueUrl</Key>
+                    </member>
+                  </AttributeList>
+                </Destination>
+              </member>
+            </SubscriptionList>
+          </ListSubscriptionsResult>
           <ResponseMetadata>
-            <RequestId>5fe445ad-b6fb-486f-85aa-83f66055c3f6</RequestId>
+            <RequestId>f59a0e06-154f-4d6f-8817-eac31f706a4d</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
+        </ListSubscriptionsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:49 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:14 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A49Z&Signature=LkifAfAmEMeGypUhrYWf2rqX1tpI%2BP96IXHBS5nRlao%3D
+    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A14Z&Version=2013-07-01&Signature=YET%2FJIw9oFxMM2BxNwkGnSIwAAdAKeg56T0t3%2FYsZ6Y%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:49 GMT
+      - Sat, 28 Mar 2015 18:14:13 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - 9590f203-40db-4cd3-a766-401faa0c7e08
+      - 817372fb-9a0e-4126-97d6-c5481f8a0e88
       x-mws-timestamp:
-      - '2014-08-12T11:46:50.106Z'
+      - '2015-03-28T18:14:14.581Z'
       x-mws-response-context:
-      - hfhWG4pKt8/shgzGRiysDrc4/EaRCQImQtGfULi/w0ekWCNoPCD68AlnhhxgiAMpKjfgWtL1zPA=
+      - oPVq5camRTBJ7wop36QyviXjRLHn4rnqCm0PmAihyDFZhBodSpm+wLly9qhS1FnV44togysRf/Q=
       Content-Type:
       - text/xml
       Content-Length:
-      - '388'
+      - '777'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:46:50.106Z</Timestamp>
-          </GetServiceStatusResult>
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList>
+              <member>
+                <NotificationType>AnyOfferChanged</NotificationType>
+                <IsEnabled>true</IsEnabled>
+                <Destination>
+                  <DeliveryChannel>SQS</DeliveryChannel>
+                  <AttributeList>
+                    <member>
+                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
+                      <Key>sqsQueueUrl</Key>
+                    </member>
+                  </AttributeList>
+                </Destination>
+              </member>
+            </SubscriptionList>
+          </ListSubscriptionsResult>
           <ResponseMetadata>
-            <RequestId>9590f203-40db-4cd3-a766-401faa0c7e08</RequestId>
+            <RequestId>817372fb-9a0e-4126-97d6-c5481f8a0e88</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
+        </ListSubscriptionsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:50 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:14 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A50Z&Signature=Q%2Fh2Qxjn78pOC0WqBHA1spb4Efy49ntuh2smnG8xQDQ%3D
+    uri: https://mws.amazonservices.jp/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A14Z&Version=2013-07-01&Signature=u1ch7TiNOhfLV80M%2BLvTZqHzjF8ADY71RD8HyvIsZOY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:50 GMT
+      - Sat, 28 Mar 2015 18:14:15 GMT
       Server:
       - AmazonMWS
+      x-amzn-ActionTrace:
+      - amzn1.tr.3e634e12-d576-11e4-90ea-0ae992940000.0..Kpxk82
       x-mws-request-id:
-      - 50bb6396-0daf-4ecc-a2ff-f9446287595f
+      - 67489315-fa27-46ec-8226-b15e4e710f40
       x-mws-timestamp:
-      - '2014-08-12T11:46:50.826Z'
+      - '2015-03-28T18:14:15.701Z'
       x-mws-response-context:
-      - NOdHHaufbZUl//df+Tg3Els/yDH7Qa7guv07Mf5HnKP9eD4FYaln+MLkL4ONJnpnYyNXR1CPXsc=
+      - IQUaf4MMX+s+xJUJ3ZGnWPI7tABJYCx+5c8pq8Gh7V+alMOFS70nxkAB3IJpjrzQ8z7psFvs6GM=
       Content-Type:
       - text/xml
       Content-Length:
-      - '388'
+      - '777'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:46:50.826Z</Timestamp>
-          </GetServiceStatusResult>
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList>
+              <member>
+                <NotificationType>AnyOfferChanged</NotificationType>
+                <IsEnabled>true</IsEnabled>
+                <Destination>
+                  <DeliveryChannel>SQS</DeliveryChannel>
+                  <AttributeList>
+                    <member>
+                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
+                      <Key>sqsQueueUrl</Key>
+                    </member>
+                  </AttributeList>
+                </Destination>
+              </member>
+            </SubscriptionList>
+          </ListSubscriptionsResult>
           <ResponseMetadata>
-            <RequestId>50bb6396-0daf-4ecc-a2ff-f9446287595f</RequestId>
+            <RequestId>67489315-fa27-46ec-8226-b15e4e710f40</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
+        </ListSubscriptionsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:50 GMT
+  recorded_at: Sat, 28 Mar 2015 18:14:15 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A50Z&Signature=m9ORD%2Fbjak2SnVjkvgqxr9tP8WEmaq05nd1%2Bdi1r3GQ%3D
+    uri: https://mws.amazonservices.com/Subscriptions/2013-07-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A14%3A15Z&Version=2013-07-01&Signature=6VZo212iJrS2SDYWYv%2B%2FGrItg2DuV9RtnEJ1Fk6RFVU%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:51 GMT
+      - Sat, 28 Mar 2015 18:14:16 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - e37122c2-f7d3-4014-b75f-a1a7b879e21f
+      - 5b700336-bdd2-40b8-b9f6-70883ce4081a
       x-mws-timestamp:
-      - '2014-08-12T11:46:51.305Z'
+      - '2015-03-28T18:14:16.431Z'
       x-mws-response-context:
-      - aAYveHNiP2xuHKJ65qscU1w7adwOvwgc08YtC19YFkQ/QAi3QHtom3iHDYhflIY3rSDL2wI13MXE
-        RD3D4VhLXQ==
+      - 1lFuAyNXriBG+Vi+1BZYIxBrGFcDTQ41JYDdgiWPx9mTqB39FEhOGdkAMKhdKDRJQQ+2jSot9NU=
       Content-Type:
       - text/xml
       Content-Length:
-      - '388'
+      - '777'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
       string: |
-        <?xml version="1.0"?>
-        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
-          <GetServiceStatusResult>
-            <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:46:51.305Z</Timestamp>
-          </GetServiceStatusResult>
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList>
+              <member>
+                <NotificationType>AnyOfferChanged</NotificationType>
+                <IsEnabled>true</IsEnabled>
+                <Destination>
+                  <DeliveryChannel>SQS</DeliveryChannel>
+                  <AttributeList>
+                    <member>
+                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
+                      <Key>sqsQueueUrl</Key>
+                    </member>
+                  </AttributeList>
+                </Destination>
+              </member>
+            </SubscriptionList>
+          </ListSubscriptionsResult>
           <ResponseMetadata>
-            <RequestId>e37122c2-f7d3-4014-b75f-a1a7b879e21f</RequestId>
+            <RequestId>5b700336-bdd2-40b8-b9f6-70883ce4081a</RequestId>
           </ResponseMetadata>
-        </GetServiceStatusResponse>
+        </ListSubscriptionsResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:51 GMT
-recorded_with: VCR 2.9.2
+  recorded_at: Sat, 28 Mar 2015 18:14:16 GMT
+recorded_with: VCR 2.9.3

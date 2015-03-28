@@ -5,13 +5,29 @@ require 'peddler/operation'
 require 'peddler/parser'
 
 module Peddler
-  # @abstract Subclass to implement an MWS API section.
+  # An abstract client
+  #
+  # Subclass to implement an MWS API section.
   class Client
     extend Forwardable
     include Jeff
 
+    # @return [String] the MWSAuthToken used to access another seller's account
     attr_accessor :auth_token
-    attr_writer :merchant_id, :marketplace_id, :path, :version
+
+    # @return [String] the merchant's Seller ID
+    attr_writer :merchant_id
+
+    # @return [String] the merchant's Marketplace ID
+    attr_writer :marketplace_id
+
+    # @return [String] the HTTP path of the API
+    attr_writer :path
+
+    # @return [String] the version of the API
+    attr_writer :version
+
+    # @return [String] the body of the HTTP request
     attr_reader :body
 
     alias_method :configure, :tap
@@ -20,7 +36,8 @@ module Peddler
 
     params(
       'SellerId' => -> { merchant_id },
-      'MWSAuthToken' => -> { auth_token }
+      'MWSAuthToken' => -> { auth_token },
+      'Version' => -> { version }
     )
 
     class << self
@@ -39,7 +56,7 @@ module Peddler
       end
 
       def version(version = nil)
-        version ? @version = version : @version ||= ""
+        version ? @version = version : @version
       end
 
       def on_error(&blk)
@@ -108,7 +125,6 @@ module Peddler
     end
 
     def run
-      operation.store('Version', version) unless version.to_s == ""
       opts = defaults.merge(query: operation, headers: headers)
       opts.store(:body, body) if body
       opts.store(:response_block, Proc.new) if block_given?
