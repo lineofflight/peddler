@@ -27,6 +27,12 @@ class TestPeddlerOperation < MiniTest::Test
     refute @operation.has_key?(:foo_bar)
   end
 
+  def test_store_upcases_sku
+    @operation.store(:seller_sku, 'baz')
+    assert @operation.has_key?('SellerSKU')
+    refute @operation.has_key?(:seller_sku)
+  end
+
   def test_store_timestamps_time_values
     ts = Minitest::Mock.new
     ts.expect(:iso8601, 'foo')
