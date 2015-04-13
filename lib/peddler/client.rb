@@ -12,22 +12,17 @@ module Peddler
     extend Forwardable
     include Jeff
 
-    # @return [String] the MWSAuthToken used to access another seller's account
+    # The MWSAuthToken used to access another seller's account
+    # @return [String]
     attr_accessor :auth_token
 
-    # @return [String] the merchant's Seller ID
-    attr_writer :merchant_id
+    attr_writer :merchant_id, :marketplace_id, :path
 
-    # @return [String] the merchant's Marketplace ID
-    attr_writer :marketplace_id
-
-    # @return [String] the HTTP path of the API
-    attr_writer :path
-
-    # @return [String] the version of the API
+    # @api private
     attr_writer :version
 
-    # @return [String] the body of the HTTP request
+    # The body of the HTTP request
+    # @return [String]
     attr_reader :body
 
     alias_method :configure, :tap
@@ -41,24 +36,34 @@ module Peddler
     )
 
     class << self
+      # @api private
       attr_reader :error_handler
 
+      # @api private
       def parser
         @parser ||= Parser
       end
 
+      # A custom parser
+      # @!parse attr_writer :parser
+      # @return [Object]
       def parser=(parser)
         @parser = parser
       end
 
+      # @api private
       def path(path = nil)
         path ? @path = path : @path ||= '/'
       end
 
+      # @api private
       def version(version = nil)
         version ? @version = version : @version
       end
 
+      # Sets an error handler
+      # @yieldparam request [Excon::Request]
+      # @yieldparam response [Excon::Response]
       def on_error(&blk)
         @error_handler = blk
       end
@@ -71,59 +76,88 @@ module Peddler
       end
     end
 
+    # Creates a new client instance
+    #
+    # @param opts [Hash]
+    # @option opts [String] :marketplace_id
+    # @option opts [String] :merchant_id
+    # @option opts [String] :aws_access_key_id
+    # @option opts [String] :aws_secret_access_key
+    # @option opts [String] :auth_token
     def initialize(opts = {})
       opts.each { |k, v| send("#{k}=", v) }
     end
 
+    # @api private
     def aws_endpoint
       "https://#{host}#{path}"
     end
 
+    # The merchant's Marketplace ID
+    # @!parse attr_reader :marketplace_id
+    # @return [String]
     def marketplace_id
       @marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
     end
 
+    # The merchant's Seller ID
+    # @!parse attr_reader :merchant_id
+    # @return [String]
     def merchant_id
       @merchant_id ||= ENV['MWS_MERCHANT_ID']
     end
 
+    # @api private
     def marketplace
       @marketplace ||= find_marketplace
     end
 
-    def defaults
-      @defaults ||= { expects: 200 }
-    end
-
-    def headers
-      @headers ||= {}
-    end
-
+    # The HTTP path of the API
+    # @!parse attr_reader :path
+    # @return [String]
     def path
       @path ||= self.class.path
     end
 
+    # @api private
     def version
       @version ||= self.class.version
     end
 
+    # @!parse attr_writer :body
     def body=(str)
       headers['Content-Type'] = content_type(str)
       @body = str
     end
 
+    # @api private
+    def defaults
+      @defaults ||= { expects: 200 }
+    end
+
+    # @api private
+    def headers
+      @headers ||= {}
+    end
+
+    # Sets an error handler
+    # @yieldparam request [Excon::Request]
+    # @yieldparam response [Excon::Response]
     def on_error(&blk)
       @error_handler = blk
     end
 
+    # @api private
     def error_handler
       @error_handler || self.class.error_handler
     end
 
+    # @api private
     def operation(action = nil)
       action ? @operation = Operation.new(action) : @operation
     end
 
+    # @api private
     def run
       opts = defaults.merge(query: operation, headers: headers)
       opts.store(:body, body) if body
