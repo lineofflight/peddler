@@ -11,7 +11,6 @@ module MWS
       # Lists the marketplaces the seller participates in
       #
       # @see http://docs.developer.amazonservices.com/en_US/sellers/Sellers_ListMarketplaceParticipations.html
-      # @param next_token [String]
       # @return [Peddler::XMLParser]
       def list_marketplace_participations
         operation('ListMarketplaceParticipations')
