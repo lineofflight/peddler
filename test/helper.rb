@@ -58,7 +58,8 @@ VCR.configure do |c|
 
   # HTTP errors are not Peddler's concern, so ignore them to ease development.
   c.before_record do |interaction|
-    interaction.ignore! if interaction.response.status.code >= 400
+    code = interaction.response.status.code
+    interaction.ignore! if code >= 400 && code != 414
   end
 
   # Ignore transient params when building VCR fixtures.
