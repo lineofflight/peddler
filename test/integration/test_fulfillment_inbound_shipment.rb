@@ -23,9 +23,8 @@ class TestFulfillmentInboundShipment < IntegrationTest
   end
 
   def test_handles_large_requests
-    skip "The API returns a 414 here"
     address = Address.new('John', '1 Main St', 'New York', 'NY', '10001', 'US')
-    items = 200.times.map { |count| Item.new(count, 1) }
+    items = 100.times.map { |count| Item.new(count, 1) }
     clients.each do |client|
       res = client.create_inbound_shipment_plan(address, items)
       assert_equal 200, res.status
