@@ -16,7 +16,7 @@ class TestPeddlerMarketplace < MiniTest::Test
 
   def test_guard_against_missing_marketplace_id
     assert_raises(Peddler::Marketplace::BadId, 'missing MarketplaceId') do
-      marketplace = Peddler::Marketplace.new(nil)
+      Peddler::Marketplace.new(nil)
     end
   end
 

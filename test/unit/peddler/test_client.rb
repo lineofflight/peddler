@@ -4,7 +4,9 @@ require 'peddler/client'
 
 class TestPeddlerClient < MiniTest::Test
   module Parser
-    def self.new(res, *); res; end
+    def self.new(res, *)
+      res
+    end
   end
 
   def setup
@@ -44,7 +46,7 @@ class TestPeddlerClient < MiniTest::Test
   end
 
   def test_has_user_agent
-    assert @client.connection.data[:headers].has_key?('User-Agent')
+    assert @client.connection.data[:headers].key?('User-Agent')
   end
 
   def test_inherits_parents_params
@@ -131,11 +133,11 @@ class TestPeddlerClient < MiniTest::Test
     @client.run
     headers = instrumentor.events['excon.request'][:headers]
 
-    assert headers.has_key?('User-Agent')
+    assert headers.key?('User-Agent')
   end
 
   def test_error_callback_on_class
-    Excon.stub({}, { status: 503 })
+    Excon.stub({}, status: 503)
 
     assert_raises(Excon::Errors::ServiceUnavailable) do
       @client.run
@@ -152,7 +154,7 @@ class TestPeddlerClient < MiniTest::Test
   end
 
   def test_error_callback_on_instance
-    Excon.stub({}, { status: 503 })
+    Excon.stub({}, status: 503)
 
     assert_raises(Excon::Errors::ServiceUnavailable) do
       @client.run
@@ -168,7 +170,7 @@ class TestPeddlerClient < MiniTest::Test
   end
 
   def test_error_callback_on_client_ancestor
-    Excon.stub({}, { status: 503 })
+    Excon.stub({}, status: 503)
 
     assert_raises(Excon::Errors::ServiceUnavailable) do
       @client.run
@@ -194,7 +196,9 @@ class TestPeddlerClient < MiniTest::Test
 
   def test_deprecates_call_to_parser_parse
     deprecated_parser = Module.new do
-      def self.parse(res, *); res; end
+      def self.parse(res, *)
+        res
+      end
     end
     @client.stub :warn, nil do
       @klass.parser = deprecated_parser

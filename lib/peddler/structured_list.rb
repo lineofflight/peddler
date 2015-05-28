@@ -8,7 +8,7 @@ module Peddler
     def build(vals)
       Array(vals)
         .each_with_index
-        .reduce(Hash.new) { |hsh, (v, i)| hsh.merge(compose_key(i + 1) => v) }
+        .reduce({}) { |hsh, (v, i)| hsh.merge(compose_key(i + 1) => v) }
     end
 
     private

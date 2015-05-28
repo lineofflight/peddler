@@ -41,7 +41,7 @@ module Peddler
     private
 
     def find_host
-      HOSTS.fetch(id) { fail BadId, %Q("#{id}" is not a valid MarketplaceId) }
+      HOSTS.fetch(id) { fail BadId, %("#{id}" is not a valid MarketplaceId) }
     end
 
     def japanese?

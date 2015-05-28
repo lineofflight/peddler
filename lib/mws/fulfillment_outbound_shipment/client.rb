@@ -55,6 +55,7 @@ module MWS
       # @option opts [Array<String>] :notification_email_list
       # @option opts [Struct, Hash] :cod_settings
       # @return [Peddler::XMLParser]
+      # rubocop:disable MethodLength, ParameterLists
       def create_fulfillment_order(seller_fulfillment_order_id, displayable_order_id, displayable_order_date_time, displayable_order_comment, shipping_speed_category, destination_address, items, opts = {})
         if opts.key?(:cod_settings)
           opts['CODSettings'] = opts.delete(:cod_settings)
@@ -71,7 +72,7 @@ module MWS
               'DestinationAddress' => destination_address,
               'Items' => items
             )
-          )
+              )
           .structure!('Items', 'member')
           .structure!('NotificationEmailList', 'member')
 
@@ -142,7 +143,7 @@ module MWS
       # Returns delivery tracking information for a package in an outbound
       # shipment for a Multi-Channel Fulfillment order
       def get_package_tracking_details
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       # Requests that Amazon stop attempting to fulfill an existing fulfillment

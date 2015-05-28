@@ -32,7 +32,7 @@ module Accounts
 
   %w(mws.yml mws.yml.example).each do |path|
     file = File.expand_path("../#{path}", __FILE__)
-    if File.exists?(file)
+    if File.exist?(file)
       @data = YAML.load_file(file)
       break
     end
@@ -81,7 +81,7 @@ VCR.configure do |c|
 
   c.default_cassette_options = {
     match_requests_on: [:host, :path, matcher],
-    record: !!ENV['RECORD'] ? :new_episodes : :none
+    record: !ENV['RECORD'] ? :none : :new_episodes
   }
 
   # So that fixtures do not depend on merchant credentials

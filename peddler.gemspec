@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'peddler/version'
 
 Gem::Specification.new do |gem|
@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.authors     = ['Hakan Ensari']
   gem.email       = ['hakanensari@me.com']
   gem.homepage    = 'https://github.com/hakanensari/peddler'
-  gem.summary     = %q{Wraps the Amazon MWS APIs}
-  gem.description = %q{A Ruby interface to the Amazon MWS API}
+  gem.summary     = 'Wraps the Amazon MWS APIs'
+  gem.description = 'A Ruby interface to the Amazon MWS API'
   gem.license     = 'MIT'
 
   gem.files         = Dir.glob('lib/**/*') + %w(LICENSE README.md)

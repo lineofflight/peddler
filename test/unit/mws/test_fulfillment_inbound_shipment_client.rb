@@ -55,7 +55,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       'ParcelData' => {
         'PackageList' => [
           {
-          'TrackingId' => '123'
+            'TrackingId' => '123'
           }
         ]
       }

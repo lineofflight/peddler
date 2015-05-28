@@ -21,8 +21,8 @@ module MWS
       def create_inbound_shipment_plan(ship_from_address, inbound_shipment_plan_request_items, opts = {})
         operation('CreateInboundShipmentPlan')
           .add(opts.update(
-            'ShipFromAddress' => ship_from_address,
-            'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
+                 'ShipFromAddress' => ship_from_address,
+                 'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
           ))
           .structure!('InboundShipmentPlanRequestItems', 'member')
 
@@ -40,8 +40,8 @@ module MWS
       def create_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
         operation('CreateInboundShipment')
           .add(opts.update(
-            'ShipmentId' => shipment_id,
-            'InboundShipmentHeader' => inbound_shipment_header
+                 'ShipmentId' => shipment_id,
+                 'InboundShipmentHeader' => inbound_shipment_header
           ))
           .structure!('InboundShipmentItems', 'member')
 
@@ -59,8 +59,8 @@ module MWS
       def update_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
         operation('UpdateInboundShipment')
           .add(opts.update(
-            'ShipmentId' => shipment_id,
-            'InboundShipmentHeader' => inbound_shipment_header
+                 'ShipmentId' => shipment_id,
+                 'InboundShipmentHeader' => inbound_shipment_header
           ))
           .structure!('InboundShipmentItems', 'member')
 
@@ -142,8 +142,8 @@ module MWS
       def get_package_labels(shipment_id, page_type, opts = {})
         operation('GetPackageLabels')
           .add(opts.update(
-            'ShipmentId' => shipment_id,
-            'PageType' => page_type
+                 'ShipmentId' => shipment_id,
+                 'PageType' => page_type
           ))
 
         run

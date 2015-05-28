@@ -11,8 +11,8 @@ module Peddler
 
     def structure!(*list_keys)
       list_key = list_keys.shift
-
-      if found_key = keys.find { |key| key.end_with?(list_key) }
+      found_key = keys.find { |key| key.end_with?(list_key) }
+      if found_key
         builder = StructuredList.new(found_key, *list_keys)
         vals = delete(found_key)
         update(builder.build(vals))
@@ -21,6 +21,7 @@ module Peddler
       self
     end
 
+    # rubocop:disable AbcSize, MethodLength, PerceivedComplexity
     def store(key, val)
       key = camelize(key) if key.is_a?(Symbol)
 

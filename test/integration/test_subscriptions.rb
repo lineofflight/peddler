@@ -9,7 +9,6 @@ class TestSubscriptions < IntegrationTest
     end
   end
 
-
   def test_lists_subscriptions
     clients.each do |client|
       res = client.list_subscriptions
