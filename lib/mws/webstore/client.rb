@@ -2,8 +2,8 @@ require 'peddler/client'
 
 module MWS
   module Webstore
-    # With the Webstore API section of Amazon MWS, you can get “Email Me When
-    # Available” subscription information for items listed on your Amazon
+    # With the Webstore API section of Amazon MWS, you can get "Email Me When
+    # Available" subscription information for items listed on your Amazon
     # Webstore. The Webstore API section can help you plan your inventory
     # replenishment cycle by enabling you to query for items that your customers
     # subscribed to when they clicked the Email Me When Available button on your
@@ -68,9 +68,9 @@ module MWS
         opts[:marketplace_id] ||= marketplace_id
         operation('GetSubscriptionDetails')
           .add(opts.update(
-            'SellerSKU' => seller_sku,
-            'SubscriptionState' => subscription_state,
-            'DateRangeStart' => date_range_start
+                 'SellerSKU' => seller_sku,
+                 'SubscriptionState' => subscription_state,
+                 'DateRangeStart' => date_range_start
           ))
 
         run

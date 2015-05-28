@@ -8,6 +8,8 @@ module Peddler
   # An abstract client
   #
   # Subclass to implement an MWS API section.
+  #
+  # rubocop:disable ClassLength
   class Client
     extend Forwardable
     include Jeff
@@ -44,12 +46,7 @@ module Peddler
         @parser ||= Parser
       end
 
-      # A custom parser
-      # @!parse attr_writer :parser
-      # @return [Object]
-      def parser=(parser)
-        @parser = parser
-      end
+      attr_writer :parser
 
       # @api private
       def path(path = nil)
@@ -61,7 +58,7 @@ module Peddler
         version ? @version = version : @version
       end
 
-      # Sets an error handler
+      # Sets an error handler
       # @yieldparam request [Excon::Request]
       # @yieldparam response [Excon::Response]
       def on_error(&blk)
@@ -72,7 +69,7 @@ module Peddler
 
       def inherited(base)
         base.params(params)
-        base.on_error &@error_handler if @error_handler
+        base.on_error(&@error_handler) if @error_handler
       end
     end
 
@@ -140,7 +137,7 @@ module Peddler
       @headers ||= {}
     end
 
-    # Sets an error handler
+    # Sets an error handler
     # @yieldparam request [Excon::Request]
     # @yieldparam response [Excon::Response]
     def on_error(&blk)
@@ -158,6 +155,7 @@ module Peddler
     end
 
     # @api private
+    # rubocop:disable AbcSize, MethodLength
     def run
       opts = defaults.merge(query: operation, headers: headers)
       opts.store(:body, body) if body
@@ -169,7 +167,8 @@ module Peddler
       handle_error(e) or raise
     rescue NoMethodError => e
       if e.message == "undefined method `new' for #{parser}"
-        warn "[DEPRECATION] `Parser.parse` is deprecated. Please use `Parser.new` instead."
+        warn "[DEPRECATION] `Parser.parse` is deprecated. "\
+             "Please use `Parser.new` instead."
         parser.parse(res, encoding)
       else
         raise

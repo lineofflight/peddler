@@ -3,7 +3,7 @@ require 'mws/fulfillment_inbound_shipment'
 
 class TestFulfillmentInboundShipment < IntegrationTest
   Address = Struct.new(:name, :address_line_1, :city, :state_or_province_code,
-    :postal_code, :country_code)
+                       :postal_code, :country_code)
   Item = Struct.new(:seller_sku, :quantity)
 
   def test_creates_inbound_shipment_plan

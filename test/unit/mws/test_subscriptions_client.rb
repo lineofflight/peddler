@@ -133,7 +133,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     operation = {
       'Action' => 'CreateSubscription',
       'MarketplaceId' => '123',
-      'Subscription.IsEnabled'=>true,
+      'Subscription.IsEnabled' => true,
       'Subscription.NotificationType' => 'foo',
       'Subscription.Destination.DeliveryChannel' => 'SQS',
       'Subscription.Destination.AttributeList.member.1.Key' => 'sqsQueueUrl',
@@ -151,7 +151,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     operation = {
       'Action' => 'CreateSubscription',
       'MarketplaceId' => '321',
-      'Subscription.IsEnabled'=>true,
+      'Subscription.IsEnabled' => true,
       'Subscription.NotificationType' => 'foo',
       'Subscription.Destination.DeliveryChannel' => 'SQS',
       'Subscription.Destination.AttributeList.member.1.Key' => 'sqsQueueUrl',
