@@ -221,12 +221,10 @@ class TestPeddlerClient < MiniTest::Test
     end
   end
 
-  def test_deprecates_marketplace_id
-    assert_output nil, /DEPRECATION/ do
-      @client.marketplace_id = "123"
-    end
-    assert_output nil, /DEPRECATION/ do
-      @client.marketplace_id
-    end
+  def test_deprecated_marketplace_id_accessor
+    refute_nil @client.marketplace_id
+    @client.marketplace_id = "123"
+    assert_equal "123",  @client.marketplace_id
+    assert_equal @client.primary_marketplace_id,  @client.marketplace_id
   end
 end
