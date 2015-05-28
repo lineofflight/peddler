@@ -4,7 +4,7 @@ require 'mws/subscriptions/client'
 class TestMWSSubscriptionsClient < MiniTest::Test
   def setup
     @client = MWS::Subscriptions::Client.new
-    @client.marketplace_id = '123'
+    @client.primary_marketplace_id = '123'
   end
 
   def test_registers_destination

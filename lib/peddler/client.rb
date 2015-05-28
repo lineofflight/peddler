@@ -18,7 +18,7 @@ module Peddler
     # @return [String]
     attr_accessor :auth_token
 
-    attr_writer :merchant_id, :marketplace_id, :path
+    attr_writer :merchant_id, :primary_marketplace_id, :path
 
     # @api private
     attr_writer :version
@@ -91,10 +91,24 @@ module Peddler
     end
 
     # The merchant's Marketplace ID
-    # @!parse attr_reader :marketplace_id
+    # @!parse attr_reader :primary_marketplace_id
     # @return [String]
+    def primary_marketplace_id
+      @primary_marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
+    end
+
+    # @deprecated Use {#primary_marketplace_id} instead.
     def marketplace_id
-      @marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
+      warn "[DEPRECATION] `Client#marketplace_id` is deprecated. "\
+           "Please use `Client#primary_marketplace_id` instead."
+      @primary_marketplace_id
+    end
+
+    # @deprecated Use {#primary_marketplace_id=} instead.
+    def marketplace_id=(marketplace_id)
+      warn "[DEPRECATION] `Client#marketplace_id=` is deprecated. "\
+           "Please use `Client#primary_marketplace_id=` instead."
+      @primary_marketplace_id = marketplace_id
     end
 
     # The merchant's Seller ID
@@ -178,7 +192,7 @@ module Peddler
     private
 
     def find_marketplace
-      Marketplace.new(marketplace_id)
+      Marketplace.new(primary_marketplace_id)
     end
 
     def content_type(str)

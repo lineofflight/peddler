@@ -4,7 +4,7 @@ require 'mws/products/client'
 class TestMWSProductsClient < MiniTest::Test
   def setup
     @client = MWS::Products::Client.new
-    @client.marketplace_id = '123'
+    @client.primary_marketplace_id = '123'
   end
 
   def test_lists_matching_products

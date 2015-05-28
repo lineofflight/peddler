@@ -29,7 +29,7 @@ module MWS
       #   @option opts [Array<String>] :seller_sku_list
       # @return [Peddler::XMLParser]
       def list_subscriptions_count(subscription_state, opts = {})
-        opts[:marketplace_id] ||= marketplace_id
+        opts[:marketplace_id] ||= primary_marketplace_id
         if opts.key?(:seller_sku_list)
           opts['SellerSKUList'] = opts.delete(:seller_sku_list)
         end
@@ -65,7 +65,7 @@ module MWS
       #   @option opts [String, #iso8601] :date_range_end
       # @return [Peddler::XMLParser]
       def get_subscription_details(seller_sku, subscription_state, date_range_start, opts = {})
-        opts[:marketplace_id] ||= marketplace_id
+        opts[:marketplace_id] ||= primary_marketplace_id
         operation('GetSubscriptionDetails')
           .add(opts.update(
                  'SellerSKU' => seller_sku,

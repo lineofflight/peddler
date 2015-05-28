@@ -27,7 +27,7 @@ module MWS
       # @return [Peddler::XMLParser]
       # rubocop:disable MethodLength
       def list_orders(opts = {})
-        opts[:marketplace_id] ||= marketplace_id
+        opts[:marketplace_id] ||= primary_marketplace_id
         if opts.key?(:tfm_shipment_status)
           opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status)
         end

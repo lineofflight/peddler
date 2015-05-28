@@ -7,7 +7,7 @@ class TestMWSWebstoreClient < MiniTest::Test
   end
 
   def test_lists_subscriptions_count
-    @client.marketplace_id = '123'
+    @client.primary_marketplace_id = '123'
     operation = {
       'Action' => 'ListSubscriptionsCount',
       'MarketplaceId' => '123',
@@ -55,7 +55,7 @@ class TestMWSWebstoreClient < MiniTest::Test
   end
 
   def test_get_subscriptions_details
-    @client.marketplace_id = '123'
+    @client.primary_marketplace_id = '123'
     operation = {
       'Action' => 'GetSubscriptionDetails',
       'MarketplaceId' => '123',

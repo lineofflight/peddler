@@ -7,7 +7,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
   end
 
   def test_sandboxes
-    @client.marketplace_id = 'A1F83G8C2ARO7P'
+    @client.primary_marketplace_id = 'A1F83G8C2ARO7P'
     refute_includes @client.aws_endpoint, 'Sandbox'
     assert_includes @client.sandbox.aws_endpoint, 'Sandbox'
   end

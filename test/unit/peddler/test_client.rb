@@ -20,7 +20,7 @@ class TestPeddlerClient < MiniTest::Test
     @client.aws_access_key_id = 'key'
     @client.aws_secret_access_key = 'secret'
     @client.merchant_id = 'seller'
-    @client.marketplace_id = 'ATVPDKIKX0DER' # US
+    @client.primary_marketplace_id = 'ATVPDKIKX0DER' # US
     @client.operation('Foo')
   end
 
@@ -82,7 +82,7 @@ class TestPeddlerClient < MiniTest::Test
   end
 
   def test_sets_content_type_header_for_chinese_flat_file_body
-    @client.marketplace_id = 'AAHKV2X7AFYLW'
+    @client.primary_marketplace_id = 'AAHKV2X7AFYLW'
     @client.body = 'foo'
     content_type = @client.headers.fetch('Content-Type')
 
@@ -90,7 +90,7 @@ class TestPeddlerClient < MiniTest::Test
   end
 
   def test_sets_content_type_header_for_japanese_flat_file_body
-    @client.marketplace_id = 'A1VC38T7YXB528'
+    @client.primary_marketplace_id = 'A1VC38T7YXB528'
     @client.body = 'foo'
     content_type = @client.headers.fetch('Content-Type')
 
@@ -186,7 +186,7 @@ class TestPeddlerClient < MiniTest::Test
     client.aws_access_key_id = 'key'
     client.aws_secret_access_key = 'secret'
     client.merchant_id = 'seller'
-    client.marketplace_id = 'ATVPDKIKX0DER' # US
+    client.primary_marketplace_id = 'ATVPDKIKX0DER' # US
     client.operation('Foo')
     client.run
 
@@ -204,6 +204,15 @@ class TestPeddlerClient < MiniTest::Test
       @klass.parser = deprecated_parser
       res = @client.run
       assert_equal @body, res.body
+    end
+  end
+
+  def test_deprecates_marketplace_id
+    assert_output nil, /DEPRECATION/ do
+      @client.marketplace_id = "123"
+    end
+    assert_output nil, /DEPRECATION/ do
+      @client.marketplace_id
     end
   end
 end
