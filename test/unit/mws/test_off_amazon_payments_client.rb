@@ -188,6 +188,19 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_gets_authorization_details
+    operation = {
+      'Action' => 'GetAuthorizationDetails',
+      'AmazonAuthorizationId' => '1'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_authorization_details('1')
+    end
+
+    assert_equal operation, @client.operation
+  end
+
   def test_captures
     operation = {
       'Action' => 'Capture',
