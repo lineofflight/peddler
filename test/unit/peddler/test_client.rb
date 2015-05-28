@@ -207,6 +207,20 @@ class TestPeddlerClient < MiniTest::Test
     end
   end
 
+  def test_raises_no_method_errors_not_related_to_deprecated_parser
+    bad_parser = Module.new do
+      def self.new(*)
+        fail NoMethodError, "foo"
+      end
+    end
+    @klass.parser = bad_parser
+    @client.stub :warn, nil do
+      assert_raises NoMethodError do
+        @client.run
+      end
+    end
+  end
+
   def test_deprecates_marketplace_id
     assert_output nil, /DEPRECATION/ do
       @client.marketplace_id = "123"

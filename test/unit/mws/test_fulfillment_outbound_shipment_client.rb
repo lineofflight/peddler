@@ -11,14 +11,16 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
       'Action' => 'GetFulfillmentPreview',
       'Address.Foo' => '1',
       'Items.member.1.Bar' => '2',
-      'ShippingSpeedCategories.1' => '3'
+      'ShippingSpeedCategories.1' => '3',
+      'IncludeCODFulfillmentPreview' => true
     }
 
     @client.stub(:run, nil) do
       @client.get_fulfillment_preview(
         { 'Foo' => '1' },
         [{ 'Bar' => '2' }],
-        shipping_speed_categories: ['3']
+        shipping_speed_categories: ['3'],
+        include_cod_fulfillment_preview: true
       )
     end
 
@@ -35,6 +37,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
       'ShippingSpeedCategory' => '5',
       'DestinationAddress.Foo' => '1',
       'Items.member.1.Bar' => '2',
+      'CODSettings.Foo' => '1',
       'NotificationEmailList.member.1' => '1'
     }
 
@@ -43,6 +46,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
         '1', '2', '3', '4', '5',
         { 'Foo' => '1' },
         [{ 'Bar' => '2' }],
+        cod_settings: { 'Foo' => '1' },
         notification_email_list: ['1']
       )
     end
@@ -89,6 +93,19 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
 
     @client.stub(:run, nil) do
       @client.list_all_fulfillment_orders
+    end
+
+    assert_equal operation, @client.operation
+  end
+
+  def test_lists_all_fulfillment_orders_by_next_token
+    operation = {
+      'Action' => 'ListAllFulfillmentOrdersByNextToken',
+      'NextToken' => '1'
+    }
+
+    @client.stub(:run, nil) do
+      @client.list_all_fulfillment_orders_by_next_token('1')
     end
 
     assert_equal operation, @client.operation
