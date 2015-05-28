@@ -1,2 +1,23 @@
+AllCops:
+  Exclude:
+    - 'test/helper.rb'
+AbcSize:
+  Exclude:
+    - 'test/**/*'
+AccessorMethodName:
+  Exclude:
+    - 'lib/mws/**/client.rb'
+AndOr:
+  Enabled: false
+ClassLength:
+  Exclude:
+    - 'test/**/*'
+Documentation:
+  Enabled: false
+LineLength:
+  Enabled: false
+MethodLength:
+  Exclude:
+    - 'test/**/*'
 StringLiterals:
   Enabled: false

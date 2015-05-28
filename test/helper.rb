@@ -1,5 +1,16 @@
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!
+
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+
+SimpleCov.start do
+  add_filter '/test/'
+  minimum_coverage(99.62)
+end
+
 require 'minitest/autorun'
 require 'yaml'
 require 'vcr'
