@@ -1,19 +1,17 @@
 source 'https://rubygems.org'
-gemspec
 
 gem 'rake'
 
-group :development, :test do
-  gem 'minitest', require: false
-  gem 'vcr', require: false
-end
-
 group :development do
-  gem 'pry', require: false
-  gem 'rubocop', require: false
-  gem 'yard', require: false
+  gem 'pry'
 end
 
 group :test do
-  gem 'coveralls', require: false
+  gem 'coveralls'
+  gem 'minitest'
+  gem 'rubocop'
+  gem 'vcr'
+  gem 'yard'
 end
+
+gemspec
