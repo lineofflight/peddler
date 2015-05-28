@@ -99,15 +99,11 @@ module Peddler
 
     # @deprecated Use {#primary_marketplace_id} instead.
     def marketplace_id
-      warn "[DEPRECATION] `Client#marketplace_id` is deprecated. "\
-           "Please use `Client#primary_marketplace_id` instead."
       @primary_marketplace_id
     end
 
     # @deprecated Use {#primary_marketplace_id=} instead.
     def marketplace_id=(marketplace_id)
-      warn "[DEPRECATION] `Client#marketplace_id=` is deprecated. "\
-           "Please use `Client#primary_marketplace_id=` instead."
       @primary_marketplace_id = marketplace_id
     end
 
