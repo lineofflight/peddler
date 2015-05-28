@@ -34,15 +34,11 @@ Each client requires valid MWS credentials. You can set some or all when or afte
 
 ```ruby
 client = MWS::Orders::Client.new(
-  marketplace_id:        "foo",
-  merchant_id:           "bar",
-  aws_access_key_id:     "baz",
+  primary_marketplace_id: "foo",
+  merchant_id: "bar",
+  aws_access_key_id: "baz",
   aws_secret_access_key: "qux"
 )
-
-# Swap marketplace
-client.marketplace_id = "quux"
-```
 
 Alternatively, you can set these globally in the shell.
 

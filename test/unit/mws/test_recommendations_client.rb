@@ -26,7 +26,7 @@ class TestMWSRecommendationsClient < MiniTest::Test
       'MarketplaceId' => '123'
     }
 
-    @client.marketplace_id = '123'
+    @client.primary_marketplace_id = '123'
     @client.stub(:run, nil) do
       @client.list_recommendations(category_query_list: [{ 'Foo' => '1' }])
     end

@@ -17,7 +17,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def get_last_updated_time_for_recommendations(marketplace_id = marketplace_id())
+      def get_last_updated_time_for_recommendations(marketplace_id = primary_marketplace_id)
         operation('GetLastUpdatedTimeForRecommendations')
           .add('MarketplaceId' => marketplace_id)
 
@@ -35,7 +35,7 @@ module MWS
       #   @option opts [Array<Struct, Hash>] :category_query_list
       # @return [Peddler::XMLParser]
       def list_recommendations(opts = {})
-        opts[:marketplace_id] ||= marketplace_id
+        opts[:marketplace_id] ||= primary_marketplace_id
 
         operation('ListRecommendations')
           .add(opts)
