@@ -13,15 +13,18 @@ module MWS
     #   made through the Login and Pay with Amazon service offered by Amazon
     #   Payments. You cannot use this API section to process payments for Amazon
     #   Marketplace, Amazon Webstore, or Checkout by Amazon.
+    #
+    # rubocop:disable ClassLength
     class Client < ::Peddler::Client
-      path '/OffAmazonPayments/2013-01-01/'
+      version "2013-01-01"
+      path "/OffAmazonPayments/#{version}/"
 
       # Switches the client to the sandbox environment
       #
       # @see https://payments.amazon.com/help/Checkout-by-Amazon/Using-the-Checkout-by-Amazon-Sandbox/Overview-of-the-Sandbox
       # @return [self]
       def sandbox
-        self.path = '/OffAmazonPayments_Sandbox/2013-01-01/'
+        self.path = "/OffAmazonPayments_Sandbox/#{version}/"
         self
       end
 
@@ -37,8 +40,8 @@ module MWS
       def create_order_reference_for_id(id, id_type, opts = {})
         operation('CreateOrderReferenceForId')
           .add(opts.update(
-            'Id' => id,
-            'IdType' => id_type
+                 'Id' => id,
+                 'IdType' => id_type
           ))
 
         run
@@ -54,7 +57,7 @@ module MWS
       def get_billing_agreement_details(amazon_billing_agreement_id, opts = {})
         operation('GetBillingAgreementDetails')
           .add(opts.update(
-            'AmazonBillingAgreementId' => amazon_billing_agreement_id
+                 'AmazonBillingAgreementId' => amazon_billing_agreement_id
           ))
 
         run
@@ -127,9 +130,9 @@ module MWS
       def authorize_on_billing_agreement(amazon_billing_agreement_id, authorization_reference_id, authorization_amount, opts = {})
         operation('AuthorizeOnBillingAgreement')
           .add(opts.update(
-            'AmazonBillingAgreementId' => amazon_billing_agreement_id,
-            'AuthorizationReferenceId' => authorization_reference_id,
-            'AuthorizationAmount' => authorization_amount
+                 'AmazonBillingAgreementId' => amazon_billing_agreement_id,
+                 'AuthorizationReferenceId' => authorization_reference_id,
+                 'AuthorizationAmount' => authorization_amount
           ))
 
         run
@@ -147,7 +150,7 @@ module MWS
       def close_billing_agreement(amazon_billing_agreement_id, opts = {})
         operation('CloseBillingAgreement')
           .add(opts.update(
-            'AmazonBillingAgreementId' => amazon_billing_agreement_id
+                 'AmazonBillingAgreementId' => amazon_billing_agreement_id
           ))
 
         run
@@ -247,9 +250,9 @@ module MWS
       def authorize(amazon_order_reference_id, authorization_reference_id, authorization_amount, opts = {})
         operation('Authorize')
           .add(opts.update(
-            'AmazonOrderReferenceId' => amazon_order_reference_id,
-            'AuthorizationReferenceId' => authorization_reference_id,
-            'AuthorizationAmount' => authorization_amount
+                 'AmazonOrderReferenceId' => amazon_order_reference_id,
+                 'AuthorizationReferenceId' => authorization_reference_id,
+                 'AuthorizationAmount' => authorization_amount
           ))
 
         run
@@ -281,9 +284,9 @@ module MWS
       def capture(amazon_authorization_id, capture_reference_id, capture_amount, opts = {})
         operation('Capture')
           .add(opts.update(
-            'AmazonAuthorizationId' => amazon_authorization_id,
-            'CaptureReferenceId' => capture_reference_id,
-            'CaptureAmount' => capture_amount
+                 'AmazonAuthorizationId' => amazon_authorization_id,
+                 'CaptureReferenceId' => capture_reference_id,
+                 'CaptureAmount' => capture_amount
           ))
 
         run
@@ -296,7 +299,7 @@ module MWS
       # @param amazon_capture_id [String]
       # @return [Peddler::XMLParser]
       def get_capture_details(amazon_capture_id)
-        operation('GetAuthorizationDetails')
+        operation('GetCaptureDetails')
           .add('AmazonCaptureId' => amazon_capture_id)
 
         run
@@ -329,9 +332,9 @@ module MWS
       def refund(amazon_capture_id, refund_reference_id, refund_amount, opts = {})
         operation('Refund')
           .add(opts.update(
-            'AmazonCaptureId' => amazon_capture_id,
-            'RefundReferenceId' => refund_reference_id,
-            'RefundAmount' => refund_amount
+                 'AmazonCaptureId' => amazon_capture_id,
+                 'RefundReferenceId' => refund_reference_id,
+                 'RefundAmount' => refund_amount
           ))
 
         run

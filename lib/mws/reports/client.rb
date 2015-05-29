@@ -4,6 +4,8 @@ module MWS
   module Reports
     # The Reports API lets you request reports about your inventory and orders.
     class Client < ::Peddler::Client
+      version '2009-01-01'
+
       # Creates a report request
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_RequestReport.html
@@ -12,7 +14,7 @@ module MWS
       # @option opts [String, #iso8601] :start_date
       # @option opts [String, #iso8601] :end_date
       # @option opts [String] :report_options
-      # @option opts [Array<String>, String] :marketplace_id
+      # @option opts [Array<String>, String] :marketplace_id_list
       # @return [Peddler::XMLParser]
       def request_report(report_type, opts = {})
         operation('RequestReport')
@@ -186,7 +188,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
       # @raise [NotImplementedError]
       def get_report_schedule_list_by_next_token(*)
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       # Count scheduled reports
@@ -209,7 +211,7 @@ module MWS
       # @param report_id_list [Array<String>]
       # @return [Peddler::XMLParser]
       def update_report_acknowledgements(acknowledged, *report_id_list)
-        operation('UpdateReportAcknowledgement')
+        operation('UpdateReportAcknowledgements')
           .add('ReportIdList' => report_id_list, 'Acknowledged' => acknowledged)
           .structure!('ReportIdList', 'Id')
 

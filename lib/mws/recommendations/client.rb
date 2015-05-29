@@ -7,7 +7,8 @@ module MWS
     # is an actionable, timely, and personalized opportunity to increase your
     # sales and performance.
     class Client < ::Peddler::Client
-      path '/Recommendations/2013-04-01'
+      version "2013-04-01"
+      path "/Recommendations/#{version}"
 
       # Checks whether there are active recommendations for each category for
       # the given marketplace, and if there are, returns the time when
@@ -16,7 +17,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def get_last_updated_time_for_recommendations(marketplace_id = marketplace_id)
+      def get_last_updated_time_for_recommendations(marketplace_id = primary_marketplace_id)
         operation('GetLastUpdatedTimeForRecommendations')
           .add('MarketplaceId' => marketplace_id)
 
@@ -31,10 +32,10 @@ module MWS
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :recommendation_category
-      #   @option opts [String] :category_query_list
+      #   @option opts [Array<Struct, Hash>] :category_query_list
       # @return [Peddler::XMLParser]
       def list_recommendations(opts = {})
-        opts[:marketplace_id] ||= marketplace_id
+        opts[:marketplace_id] ||= primary_marketplace_id
 
         operation('ListRecommendations')
           .add(opts)

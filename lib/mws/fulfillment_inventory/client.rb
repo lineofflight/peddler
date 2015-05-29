@@ -9,13 +9,14 @@ module MWS
     # selling your inventory on Amazon's retail web site or through other retail
     # channels.
     class Client < ::Peddler::Client
-      path '/FulfillmentInventory/2010-10-01'
+      version "2010-10-01"
+      path "/FulfillmentInventory/#{version}"
 
       # Returns information about the availability of a seller's inventory
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupply.html
       # @param opts [Hash]
-      # @option opts [Array<String>, String] :seller_sku_list
+      # @option opts [Array<String>, String] :seller_skus
       # @option opts [String, #iso8601] :query_start_date_time
       # @option opts [String] :response_group
       # @return [Peddler::XMLParser]

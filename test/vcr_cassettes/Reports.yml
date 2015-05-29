@@ -2,1069 +2,2120 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A45%3A54Z&Signature=g23u3PiM3O43XJWEdwD6V4u6hT4RyivHOOm7ySleD8s%3D
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A41Z&Version=2009-01-01&Signature=kHIcbGPHmTzzULUvm8xqib1JzrwQ126aTkq%2F5yfNl18%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:45:57 GMT
+      - Sat, 28 Mar 2015 18:37:41 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - ZK2dFfzW10BjumsOfh8njPTcyYqoD2nQNFXon+GDcHWP4tLaCLcCoTJZf/1vU9xNcFx5/hBJ7A3q
-        /2vo5W1nQ3RWQJ9idgB+, NHfq4wR/IZHHRcKLGFa28iB9h4LBP/uRJx9e6iV2BcJuabvuuC2VU5gVNQ4ek6ZgYtIMx1tF4Dxo
-        ClnqY2sWCw==
-      x-amz-request-id:
-      - 82ef694a-c7b4-45d3-9174-93dbc28ae32e
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=MGJlvHEhk4wZjJfLlnPMCpptsSeDZG2Pbdeh/hS3OsA=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:42 GMT
       x-mws-request-id:
-      - 82ef694a-c7b4-45d3-9174-93dbc28ae32e
+      - 518ce2d2-5e78-4841-9f57-13ce9775d839
       x-mws-timestamp:
-      - '2014-08-12T11:45:55.279Z'
+      - '2015-03-28T18:37:42.270Z'
+      x-mws-response-context:
+      - 2hWxqzUcaXDGC4YOjP3uif9AKpJg+kQQvcNcFab+tkR2c/AX0Dqck/K757lRslJU++WNkKTVZGQ=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '337'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>374</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>82ef694a-c7b4-45d3-9174-93dbc28ae32e</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleListResult>
+            <HasNext>false</HasNext>
+          </GetReportScheduleListResult>
+          <ResponseMetadata>
+            <RequestId>518ce2d2-5e78-4841-9f57-13ce9775d839</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:45:57 GMT
+  recorded_at: Sat, 28 Mar 2015 18:37:42 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A45%3A57Z&Signature=udH1ZQCkYNfvallMJyRUE2Fqwc0UcxVHIZxpb39bq5w%3D
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A42Z&Version=2009-01-01&Signature=cT%2FX%2BZh8SVDMuc0QHaNJBLIFDpfudRBJVFxI%2Bo%2BC2mM%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:00 GMT
+      - Sat, 28 Mar 2015 18:37:42 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - 7c/3NAvn2xIEeMNutfC/CtFnHF4QkjOl/TVdNJgQWhESkFwFsUNDOBlJTGOV/BtnSiu8uaDdnl4G
-        0iJlUe4zE+KJlhSsZdrT, LJhnKnPyN0ywLPPeUaUB2RLtFl5dKBtO2kNWLkMtl7PsnBnGjapIwF4Py5Mur+YM7meFQ0/rN6E=
-      x-amz-request-id:
-      - fb77460d-91dd-45a4-9940-bc903b15aa62
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=NJT3Vm60aiBX+7fnz/o5C4mw8qIFtwpAgWcHWp7gu50=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:42 GMT
       x-mws-request-id:
-      - fb77460d-91dd-45a4-9940-bc903b15aa62
+      - 66527a55-6cfc-403a-8e75-917f52655499
       x-mws-timestamp:
-      - '2014-08-12T11:45:58.651Z'
+      - '2015-03-28T18:37:42.755Z'
+      x-mws-response-context:
+      - uJtwYfeH/m9q8Nr1vZLaPu3XfhobeJkTgt8v/IvM1Gf+yfanrZR0Wqp/fPst4htR63PTLLGoXnA=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '337'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>387</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>fb77460d-91dd-45a4-9940-bc903b15aa62</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleListResult>
+            <HasNext>false</HasNext>
+          </GetReportScheduleListResult>
+          <ResponseMetadata>
+            <RequestId>66527a55-6cfc-403a-8e75-917f52655499</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:01 GMT
+  recorded_at: Sat, 28 Mar 2015 18:37:42 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A01Z&Signature=F536oS1Te0kLNsdBQ23IXdh3JaPU0FXizfDhvpFfUu0%3D
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A42Z&Version=2009-01-01&Signature=Z%2F7fW9rOqjMxUK2MbqUL%2BTJlRAlC9BrI7NBrDbqCSiU%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:02 GMT
+      - Sat, 28 Mar 2015 18:37:43 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - LwVH5A8aBXeJV3NEVn9kznm9dF8VPbEyKwVaBuqKhY5o50u24gm0/0MICJHKzhmT+3AzPryRZ6IC
-        zbP7kjS9clB+O+T4gorq, opMB9lzpLWXPz9g+jwE1Qyp2uS+st3Ov0y+eO1SL9gqXidOsHtEYYZieMBNgCcjhpTqx+Jt4fQE=
-      x-amz-request-id:
-      - 218e5b48-9af7-48f0-a6f3-e8f09a8fba9d
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=ZZWoO9jlnohRGf/hdBMRSSKsBjG7/r1H2e0dh1w+ZnQ=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:43 GMT
       x-mws-request-id:
-      - 218e5b48-9af7-48f0-a6f3-e8f09a8fba9d
+      - 5e63989f-d06e-49e5-a159-f495e6e35eb4
       x-mws-timestamp:
-      - '2014-08-12T11:46:01.785Z'
+      - '2015-03-28T18:37:43.650Z'
+      x-mws-response-context:
+      - IQUaf4MMX+s+xJUJ3ZGnWPI7tABJYCx+5c8pq8Gh7V+alMOFS70nxkAB3IJpjrzQ8z7psFvs6GM=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '537'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>471</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>218e5b48-9af7-48f0-a6f3-e8f09a8fba9d</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleListResult>
+            <HasNext>false</HasNext>
+            <ReportSchedule>
+              <ScheduledDate>2015-03-28T22:29:24+00:00</ScheduledDate>
+              <Schedule>_1_DAY_</Schedule>
+              <ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType>
+            </ReportSchedule>
+          </GetReportScheduleListResult>
+          <ResponseMetadata>
+            <RequestId>5e63989f-d06e-49e5-a159-f495e6e35eb4</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:04 GMT
+  recorded_at: Sat, 28 Mar 2015 18:37:43 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A04Z&Signature=7r00CyRqJCheTfqgsOk%2BmESOswa1xyGDh2X2HGypF4s%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A43Z&Version=2009-01-01&Signature=XJMc8Cf5OSEl869ON0Dfe6q1JyMgcNHWIZR9n1N3hS4%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:07 GMT
+      - Sat, 28 Mar 2015 18:37:44 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - 5+ZO2YeE24dkDJinIf2qHazaSH4T+6BRUAzJ0X7PbI4xeTqA+xyQpszWkLe5Ecae8m0ghtAz5+KT
-        P+sM/YudLm5WxPvboDjR, SRc9DYlnOUUEsRRiqsRmwfhotEyv8slaUVv/d3pfV/t0fpRD1KXHiPok6jBdTvFf7meNprJ7CcE=
-      x-amz-request-id:
-      - 5f47ce6a-93bc-4a23-9aa3-e2c544813d9d
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=cvarnkH6OuKSNUqQLnc2P7p2C2jgfIdccZ8tyEHz5Og=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:44 GMT
       x-mws-request-id:
-      - 5f47ce6a-93bc-4a23-9aa3-e2c544813d9d
+      - 98740169-f5cb-4e39-85dc-f6056c08da98
       x-mws-timestamp:
-      - '2014-08-12T11:46:05.023Z'
+      - '2015-03-28T18:37:44.217Z'
+      x-mws-response-context:
+      - wzJFlTru/kuqUTK7AAi6ArG5P/YjF+SgkublKinpHKVstY7PZWvpBhGItDi007Pp7/khxU/cbo8=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '337'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestCountResult><Count>438</Count></GetReportRequestCountResult><ResponseMetadata><RequestId>5f47ce6a-93bc-4a23-9aa3-e2c544813d9d</RequestId></ResponseMetadata></GetReportRequestCountResponse>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleListResult>
+            <HasNext>false</HasNext>
+          </GetReportScheduleListResult>
+          <ResponseMetadata>
+            <RequestId>98740169-f5cb-4e39-85dc-f6056c08da98</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:07 GMT
+  recorded_at: Sat, 28 Mar 2015 18:37:44 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A07Z&Signature=TmzFw6i9nh4ouFVd6ljiAteSAaPxRvpu5q%2FyIe93iL8%3D
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A44Z&Version=2009-01-01&Signature=jEOFGX4BxwarQvG50NrCAuyWpjnFA5d4gXYs1HAoVQI%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:08 GMT
+      - Sat, 28 Mar 2015 18:37:44 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=/wpcoOtw7Kwoppz52zUfVJm2qCg9UVCG+DbLGoQdy78=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:44 GMT
+      x-mws-request-id:
+      - 52efcd0a-61c5-44cd-b30b-faf4c032a71f
+      x-mws-timestamp:
+      - '2015-03-28T18:37:44.754Z'
+      x-mws-response-context:
+      - eIBtVusGU21bjEbuBk7IfXkCMYSz1E+2enIgRFOSzphsdqvAK8MfpEiVVdfpRlYh0PEXEDsRHJI=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '333'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleCountResult>
+            <Count>0</Count>
+          </GetReportScheduleCountResult>
+          <ResponseMetadata>
+            <RequestId>52efcd0a-61c5-44cd-b30b-faf4c032a71f</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:44 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A44Z&Version=2009-01-01&Signature=VZaahSRen9%2FQSf1rib6xDEmKWNqzt8nm2AtZeRhU3e4%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:44 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=7bWKZxn7W77ePEjmgpmtFgjcYfv+Z2qQ8cz8Yu/9xtM=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:45 GMT
+      x-mws-request-id:
+      - 6b3ff707-837d-4115-beab-aee0916046b9
+      x-mws-timestamp:
+      - '2015-03-28T18:37:45.044Z'
+      x-mws-response-context:
+      - ol2m7JBXseLwWKOkIg/DpK3hYoZopj2t7crVvrtPaL/klQs5oswsLdmrKEno9jkGBK+AoTAQpzY=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '333'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleCountResult>
+            <Count>0</Count>
+          </GetReportScheduleCountResult>
+          <ResponseMetadata>
+            <RequestId>6b3ff707-837d-4115-beab-aee0916046b9</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:45 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A45Z&Version=2009-01-01&Signature=8I6Fy9JRrcnlg7te5FkIJkT%2BDB7lzaDUMDqy2VubxoY%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:44 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=YuxqgtdmUg2X8Kohb/P17BEtDxZrEc2W36f+fDh8dns=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:45 GMT
+      x-mws-request-id:
+      - 41959e07-9126-4945-927e-c40085d8e95e
+      x-mws-timestamp:
+      - '2015-03-28T18:37:45.766Z'
+      x-mws-response-context:
+      - U1SW67lhFEXIdnTxgImiV3QJrVqUwQD+hUyhSUUkJDglbDQ+jGNaHuFXGmBQhYf1ZbLSnTsxUa8=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '333'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleCountResult>
+            <Count>1</Count>
+          </GetReportScheduleCountResult>
+          <ResponseMetadata>
+            <RequestId>41959e07-9126-4945-927e-c40085d8e95e</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:45 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A45Z&Version=2009-01-01&Signature=Vng9BXfmYCn2%2FxpXjxrCHYlGfdiI2Oa3TeeiDzmVEno%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:46 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=G+wLzdoPKHh1Uxxq71Q+5gfP/lmgkKA3eDL8hSLUfuM=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:46 GMT
+      x-mws-request-id:
+      - 517296f6-e6bf-4d56-ab44-77d2b6c4c1f0
+      x-mws-timestamp:
+      - '2015-03-28T18:37:46.338Z'
+      x-mws-response-context:
+      - eIBtVusGU21bjEbuBk7IfXkCMYSz1E+2enIgRFOSzphsdqvAK8MfpEiVVdfpRlYh0PEXEDsRHJI=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '333'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleCountResult>
+            <Count>0</Count>
+          </GetReportScheduleCountResult>
+          <ResponseMetadata>
+            <RequestId>517296f6-e6bf-4d56-ab44-77d2b6c4c1f0</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:46 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A46Z&Version=2009-01-01&Signature=I2gq9xrmeLzUIwAVskuSlT5v%2Fgg2iPM1GDwnf82Okdg%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:46 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=IXZkzwLyb9zXlcdscCuUop7DctVtrRlnNOIV6CUaeCE=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:46 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
+      x-mws-request-id:
+      - c86c165b-d03e-4f89-a45c-5f059fff30a4
+      x-mws-timestamp:
+      - '2015-03-28T18:37:46.867Z'
+      x-mws-response-context:
+      - c3vPpNAr0FIC6NN/sl0e025Ae3eu7Rzn3c8IgqVX7xGtDj65ZaOntpsP8DUOBUBOesZfk/Nqx8s=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '7166'
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestListResult>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T18:00:37+00:00</StartDate>
+              <CompletedDate>2015-03-28T18:00:54+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55232199873</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:38+00:00</SubmittedDate>
+              <EndDate>2015-03-28T18:00:38+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T18:00:51+00:00</StartedProcessingDate>
+              <ReportRequestId>75482016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T12:00:11+00:00</StartDate>
+              <CompletedDate>2015-03-28T12:00:36+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55217167473</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T12:00:11+00:00</SubmittedDate>
+              <EndDate>2015-03-28T12:00:11+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T12:00:34+00:00</StartedProcessingDate>
+              <ReportRequestId>75436016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T06:00:40+00:00</StartDate>
+              <CompletedDate>2015-03-28T06:01:06+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55203648033</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T06:00:40+00:00</SubmittedDate>
+              <EndDate>2015-03-28T06:00:40+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T06:01:03+00:00</StartedProcessingDate>
+              <ReportRequestId>75395016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T00:00:24+00:00</StartDate>
+              <CompletedDate>2015-03-28T00:00:45+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55188707433</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T00:00:25+00:00</SubmittedDate>
+              <EndDate>2015-03-28T00:00:25+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T00:00:42+00:00</StartedProcessingDate>
+              <ReportRequestId>75354016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T18:00:43+00:00</StartDate>
+              <CompletedDate>2015-03-27T18:01:06+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55171470563</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T18:00:43+00:00</SubmittedDate>
+              <EndDate>2015-03-27T18:00:43+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T18:01:02+00:00</StartedProcessingDate>
+              <ReportRequestId>75315016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T12:00:54+00:00</StartDate>
+              <CompletedDate>2015-03-27T12:01:17+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55154466093</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T12:00:54+00:00</SubmittedDate>
+              <EndDate>2015-03-27T12:00:54+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T12:01:14+00:00</StartedProcessingDate>
+              <ReportRequestId>75275016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T06:00:40+00:00</StartDate>
+              <CompletedDate>2015-03-27T06:01:03+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55140385723</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T06:00:40+00:00</SubmittedDate>
+              <EndDate>2015-03-27T06:00:40+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T06:01:00+00:00</StartedProcessingDate>
+              <ReportRequestId>75235016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T00:01:33+00:00</StartDate>
+              <CompletedDate>2015-03-27T00:01:48+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55124989293</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T00:01:33+00:00</SubmittedDate>
+              <EndDate>2015-03-27T00:01:33+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T00:01:45+00:00</StartedProcessingDate>
+              <ReportRequestId>75204016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-24T18:00:30+00:00</StartDate>
+              <CompletedDate>2015-03-26T18:00:53+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55107197083</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-26T18:00:31+00:00</SubmittedDate>
+              <EndDate>2015-03-26T18:00:31+00:00</EndDate>
+              <StartedProcessingDate>2015-03-26T18:00:50+00:00</StartedProcessingDate>
+              <ReportRequestId>75167016520</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-24T12:00:14+00:00</StartDate>
+              <CompletedDate>2015-03-26T12:00:42+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55089892013</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-26T12:00:14+00:00</SubmittedDate>
+              <EndDate>2015-03-26T12:00:14+00:00</EndDate>
+              <StartedProcessingDate>2015-03-26T12:00:38+00:00</StartedProcessingDate>
+              <ReportRequestId>75124016520</ReportRequestId>
+            </ReportRequestInfo>
+            <HasNext>true</HasNext>
+            <NextToken>KKXjErtG77T2jpZedg0wbVuY6vtoszFEBZG8sdXkcOCBSaSHdvT5x8QvuSc2kMJuqEMuwV3bgZ3Tj5uGXEsDzP10GEg+GgMX0TJvcosBBn44uyk3Ngov6qTBy+IMxp0FMvd27KKhQ5qLJ5kBUyv+2hmhtKU4nf22dpywvsWR4fwPpnzws36KsPOFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzfRkeQNMNyA/uM9aTxIwyNaAdvmy1xvs5EYW5sdQUcXaTVkvPHLi1gxik6og/Qvl/28QjPo4be9WnVhXAmJbjm1W/WMvoW4+WQpMyVHECqSxv0DStZkp6UzXJE/elXdEzx5qbsEEGldGLQ54LLvvX+3IbPlAZtMfVM1SGxiBb9xisTrZJhdQ2oqbj8UENcl5pT5aKfpNvctBVBTyc9nZofIEzSbswL1FgIXtowlmbxN/8vHm380bNmDYIIgETbup8uD+NHfLw35wzWbb9pL74olcBCMXkoTBbPHw5M98NynTYjDE9mwv73Eb2eR+cCnF5l7LC7zcJSzo=</NextToken>
+          </GetReportRequestListResult>
+          <ResponseMetadata>
+            <RequestId>c86c165b-d03e-4f89-a45c-5f059fff30a4</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:47 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A47Z&Version=2009-01-01&Signature=rCBJq67ioxcf5eBb4%2Fh15qHlv0EL%2F40EvN8Ult8Lx1Y%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:46 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=lxdBjVNC6zFhlGG1kscT+a13K4SJZhR+1WmSDsE4vbs=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:47 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
+      x-mws-request-id:
+      - 75a70063-ac0b-4616-afa6-9623f5eb4da0
+      x-mws-timestamp:
+      - '2015-03-28T18:37:47.185Z'
+      x-mws-response-context:
+      - gf59f8nbRksTQCY+caSLf/SG/f3UptxVDpyWXuBIUAZDgB3z/xHjAL5/8d9R2sG0RuHwp+cmNaM=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '7176'
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestListResult>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T18:00:40+00:00</StartDate>
+              <CompletedDate>2015-03-28T18:01:00+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128388790864</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:40+00:00</SubmittedDate>
+              <EndDate>2015-03-28T18:00:40+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T18:00:52+00:00</StartedProcessingDate>
+              <ReportRequestId>73217016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T12:00:13+00:00</StartDate>
+              <CompletedDate>2015-03-28T12:00:37+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128345948904</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T12:00:14+00:00</SubmittedDate>
+              <EndDate>2015-03-28T12:00:14+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T12:00:30+00:00</StartedProcessingDate>
+              <ReportRequestId>73167016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T06:00:42+00:00</StartDate>
+              <CompletedDate>2015-03-28T06:01:01+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128305696824</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T06:00:42+00:00</SubmittedDate>
+              <EndDate>2015-03-28T06:00:42+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T06:00:55+00:00</StartedProcessingDate>
+              <ReportRequestId>73120016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T00:00:28+00:00</StartDate>
+              <CompletedDate>2015-03-28T00:00:52+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128273294104</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T00:00:28+00:00</SubmittedDate>
+              <EndDate>2015-03-28T00:00:28+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T00:00:48+00:00</StartedProcessingDate>
+              <ReportRequestId>73077016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T18:00:45+00:00</StartDate>
+              <CompletedDate>2015-03-27T18:01:05+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128232915624</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T18:00:45+00:00</SubmittedDate>
+              <EndDate>2015-03-27T18:00:45+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T18:01:00+00:00</StartedProcessingDate>
+              <ReportRequestId>73035016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T12:00:59+00:00</StartDate>
+              <CompletedDate>2015-03-27T12:01:23+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128184811644</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T12:00:59+00:00</SubmittedDate>
+              <EndDate>2015-03-27T12:00:59+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T12:01:16+00:00</StartedProcessingDate>
+              <ReportRequestId>72987016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T06:00:43+00:00</StartDate>
+              <CompletedDate>2015-03-27T06:01:04+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128138381444</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T06:00:44+00:00</SubmittedDate>
+              <EndDate>2015-03-27T06:00:44+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T06:00:57+00:00</StartedProcessingDate>
+              <ReportRequestId>72944016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T00:01:40+00:00</StartDate>
+              <CompletedDate>2015-03-27T00:01:58+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128105436444</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T00:01:40+00:00</SubmittedDate>
+              <EndDate>2015-03-27T00:01:40+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T00:01:52+00:00</StartedProcessingDate>
+              <ReportRequestId>72904016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-24T18:00:34+00:00</StartDate>
+              <CompletedDate>2015-03-26T18:00:57+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128064398924</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-26T18:00:35+00:00</SubmittedDate>
+              <EndDate>2015-03-26T18:00:35+00:00</EndDate>
+              <StartedProcessingDate>2015-03-26T18:00:50+00:00</StartedProcessingDate>
+              <ReportRequestId>72860016520</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-24T12:00:15+00:00</StartDate>
+              <CompletedDate>2015-03-26T12:00:37+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>128016662544</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-26T12:00:16+00:00</SubmittedDate>
+              <EndDate>2015-03-26T12:00:16+00:00</EndDate>
+              <StartedProcessingDate>2015-03-26T12:00:31+00:00</StartedProcessingDate>
+              <ReportRequestId>72819016520</ReportRequestId>
+            </ReportRequestInfo>
+            <HasNext>true</HasNext>
+            <NextToken>ovpKiZa6faz2jpZedg0wbVuY6vtoszFEn49F+ytER18LQ0oPYBFYErudlxL/J7sKzqM9zvUD3RdxrBy2GCH8wTct64tAtKzUl9e6QR/b7sdnRurYtp+gtM+9Eb7NrvyAZjLXtYisaeipP1J6sD7EnumV93YUzhYiVwrHjELkHcJRMdAjeo1d90wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQm0NqsOXwI6fxCpygPDNN7ktJ/w3vJJdEGH+R2VWBX8QYjhHTe1mZh3aJXmzg7+Ocf6muahHzo95iZEgK91vlSDMWMKLsAzyu/hDr0hKGH3LOzFaA7nfLt0+hWH0OSZ78r+xirmyTR5otZaFFsaLe3YanJqC2kCIj7m3Eq32uyg6r8PR3VMAxrX5WM7jNu0PYxdK+tvk/dAVgDVAnx5eEkYt8LjfZWfZYDRJpuyeJ8OAHdPjfHcPuMxV1Tvc7M2c1+JP4c4IULEadGEfZ8WKTRm+LvUGZCLLWtvCfNE8g6JxPmX44XQP9Dg588qVI5CtJ/hl2lYe6g7M=</NextToken>
+          </GetReportRequestListResult>
+          <ResponseMetadata>
+            <RequestId>75a70063-ac0b-4616-afa6-9623f5eb4da0</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:47 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A47Z&Version=2009-01-01&Signature=aE9BrxPtE0KcrAadDq3MyGSV5Is0ENqQQ3CyF1P52Fc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:47 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=B7GUBY1VzpcY33TApxpwB+i92tchkyT9wYP2MB8NMCc=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:48 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
+      x-mws-request-id:
+      - 19f077f4-ed6b-47c4-9635-32d486e44479
+      x-mws-timestamp:
+      - '2015-03-28T18:37:47.975Z'
+      x-mws-response-context:
+      - zYnlvTYYcM6iCAUR6gh25ub5loyKA6SHCuecy5Ds40WoNkR124yr/J2KDhQNdtLnXfnFz5jBiIg=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '7154'
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestListResult>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T18:00:39+00:00</StartDate>
+              <CompletedDate>2015-03-28T18:01:03+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15514488465</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:39+00:00</SubmittedDate>
+              <EndDate>2015-03-28T18:00:39+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T18:01:00+00:00</StartedProcessingDate>
+              <ReportRequestId>84749016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T12:00:12+00:00</StartDate>
+              <CompletedDate>2015-03-28T12:00:26+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15510065485</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T12:00:12+00:00</SubmittedDate>
+              <EndDate>2015-03-28T12:00:12+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T12:00:23+00:00</StartedProcessingDate>
+              <ReportRequestId>84700016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T06:00:41+00:00</StartDate>
+              <CompletedDate>2015-03-28T06:00:48+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15505013665</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T06:00:41+00:00</SubmittedDate>
+              <EndDate>2015-03-28T06:00:41+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T06:00:46+00:00</StartedProcessingDate>
+              <ReportRequestId>84650016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T00:00:27+00:00</StartDate>
+              <CompletedDate>2015-03-28T00:00:35+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15500216605</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T00:00:27+00:00</SubmittedDate>
+              <EndDate>2015-03-28T00:00:27+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T00:00:33+00:00</StartedProcessingDate>
+              <ReportRequestId>84594016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-03-27T22:29:37+00:00</StartDate>
+              <CompletedDate>2015-03-27T22:30:00+00:00</CompletedDate>
+              <Scheduled>true</Scheduled>
+              <ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType>
+              <GeneratedReportId>15499327445</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T22:29:37+00:00</SubmittedDate>
+              <EndDate>2015-03-27T22:29:37+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T22:29:51+00:00</StartedProcessingDate>
+              <ReportRequestId>84581016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T18:00:43+00:00</StartDate>
+              <CompletedDate>2015-03-27T18:00:52+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15497258665</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T18:00:44+00:00</SubmittedDate>
+              <EndDate>2015-03-27T18:00:44+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T18:00:49+00:00</StartedProcessingDate>
+              <ReportRequestId>84539016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T12:00:56+00:00</StartDate>
+              <CompletedDate>2015-03-27T12:01:18+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15492947125</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T12:00:56+00:00</SubmittedDate>
+              <EndDate>2015-03-27T12:00:56+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T12:01:16+00:00</StartedProcessingDate>
+              <ReportRequestId>84490016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T06:00:42+00:00</StartDate>
+              <CompletedDate>2015-03-27T06:00:54+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15487343885</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T06:00:42+00:00</SubmittedDate>
+              <EndDate>2015-03-27T06:00:42+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T06:00:51+00:00</StartedProcessingDate>
+              <ReportRequestId>84441016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T00:01:34+00:00</StartDate>
+              <CompletedDate>2015-03-27T00:01:57+00:00</CompletedDate>
+              <Scheduled>false</Scheduled>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>15482036905</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T00:01:35+00:00</SubmittedDate>
+              <EndDate>2015-03-27T00:01:35+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T00:01:54+00:00</StartedProcessingDate>
+              <ReportRequestId>84401016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-03-26T22:30:15+00:00</StartDate>
+              <CompletedDate>2015-03-26T22:30:35+00:00</CompletedDate>
+              <Scheduled>true</Scheduled>
+              <ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType>
+              <GeneratedReportId>15481096925</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-26T22:30:15+00:00</SubmittedDate>
+              <EndDate>2015-03-26T22:30:15+00:00</EndDate>
+              <StartedProcessingDate>2015-03-26T22:30:25+00:00</StartedProcessingDate>
+              <ReportRequestId>84383016520</ReportRequestId>
+            </ReportRequestInfo>
+            <HasNext>true</HasNext>
+            <NextToken>o4Yj3gdZFK72jpZedg0wbVuY6vtoszFE8fUTaZuS5OhZc8kvgHfVkuZ4ieeWUxTo8exgs0JkN1VxrBy2GCH8wWDhWEYWVq195z/+yKMooNUVtua7bjWGNFsG3xieQcPirbNmCKUaAQmpm7Nbg0qm1Ztbabj8sOIe3DIqo3MS4uOkL/aq6BiTc9mz4dTLaZrVurzGoByFA0pidqZAmLaFqzcGfBs629BVhQJdwgU88LxkP/lTrYzES+RE43tpBfKKeCEhfTF3elBCeuiequAMsPUARc7r8ROKKaeeBSN0GwPRIw9xZIHO5sxWvEPFyFGWs1Ss++w5KYFwBOMZqov5vUBjsOnfugUxf0OKzYgxDegj8RrdXAI7Bq9RiDe/Vnbb/mnd6sr/04qJKEC/zZZcG5h41jph6GeULjGzEUDHsdFDP5GzwE8NDWZzKQseRBNgeKoL1zcdkb3wepe3HTIkw3IuWlrCzH4uOdAaXtldzLgNv7c3Z8WQl7D8Th0dlzHzFfDf22QQcwYkkJWXNaF/8f4ZdpWHuoOz</NextToken>
+          </GetReportRequestListResult>
+          <ResponseMetadata>
+            <RequestId>19f077f4-ed6b-47c4-9635-32d486e44479</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:48 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A48Z&Version=2009-01-01&Signature=2qyfeVRKkotByv34HOsBOCsZ5ZpdCPieWxRoB8l9mT8%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:48 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=Pi/k3kpvVkiyEaqzGMmFdYFeWal6bNf83T34u7bFBqw=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:48 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
+      x-mws-request-id:
+      - 5f007cca-4ebb-43cb-ab63-7af1b3ccc3fe
+      x-mws-timestamp:
+      - '2015-03-28T18:37:48.548Z'
+      x-mws-response-context:
+      - hRtRtt9273Nyu8ryiunTFjGrNkwUDexyH8neVK9gGPDhFA7bdy0/oa3kYXPZ6pBaSZa1i5rBS1U=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '7176'
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestListResult>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T18:00:40+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-28T18:01:11+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55232214973</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:41+00:00</SubmittedDate>
+              <EndDate>2015-03-28T18:00:41+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T18:01:06+00:00</StartedProcessingDate>
+              <ReportRequestId>55971016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-03-08T00:00:00+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-28T14:43:52+00:00</CompletedDate>
+              <ReportType>_GET_FLAT_FILE_DEA_DATA_</ReportType>
+              <GeneratedReportId>55223692793</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T14:43:30+00:00</SubmittedDate>
+              <EndDate>2015-03-15T00:00:00+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T14:43:50+00:00</StartedProcessingDate>
+              <ReportRequestId>11954281230</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T12:00:13+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-28T12:00:39+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55217170213</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T12:00:13+00:00</SubmittedDate>
+              <EndDate>2015-03-28T12:00:13+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T12:00:35+00:00</StartedProcessingDate>
+              <ReportRequestId>55960016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T06:00:41+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-28T06:01:07+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55203648853</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T06:00:42+00:00</SubmittedDate>
+              <EndDate>2015-03-28T06:00:42+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T06:01:03+00:00</StartedProcessingDate>
+              <ReportRequestId>55952016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-26T00:00:29+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-28T00:00:49+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55188710453</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-28T00:00:29+00:00</SubmittedDate>
+              <EndDate>2015-03-28T00:00:29+00:00</EndDate>
+              <StartedProcessingDate>2015-03-28T00:00:44+00:00</StartedProcessingDate>
+              <ReportRequestId>55944016522</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T18:00:45+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-27T18:01:08+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55171474173</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T18:00:45+00:00</SubmittedDate>
+              <EndDate>2015-03-27T18:00:45+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T18:01:03+00:00</StartedProcessingDate>
+              <ReportRequestId>55937016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T12:00:58+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-27T12:01:21+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55154469333</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T12:00:58+00:00</SubmittedDate>
+              <EndDate>2015-03-27T12:00:58+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T12:01:16+00:00</StartedProcessingDate>
+              <ReportRequestId>55924016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T06:00:43+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-27T06:01:04+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55140386893</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T06:00:43+00:00</SubmittedDate>
+              <EndDate>2015-03-27T06:00:43+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T06:01:01+00:00</StartedProcessingDate>
+              <ReportRequestId>55916016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-25T00:01:38+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-27T00:02:07+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55125004273</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-27T00:01:38+00:00</SubmittedDate>
+              <EndDate>2015-03-27T00:01:38+00:00</EndDate>
+              <StartedProcessingDate>2015-03-27T00:02:02+00:00</StartedProcessingDate>
+              <ReportRequestId>55911016521</ReportRequestId>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <StartDate>2015-02-24T18:00:35+00:00</StartDate>
+              <Scheduled>false</Scheduled>
+              <CompletedDate>2015-03-26T18:00:56+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <GeneratedReportId>55107200303</GeneratedReportId>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <SubmittedDate>2015-03-26T18:00:36+00:00</SubmittedDate>
+              <EndDate>2015-03-26T18:00:36+00:00</EndDate>
+              <StartedProcessingDate>2015-03-26T18:00:51+00:00</StartedProcessingDate>
+              <ReportRequestId>55903016520</ReportRequestId>
+            </ReportRequestInfo>
+            <HasNext>true</HasNext>
+            <NextToken>IBpGkVz5U4z2jpZedg0wbVuY6vtoszFE6qIwpeu/QURKlG7Ok9Ay+Jwz73Lk5r87qEMuwV3bgZ3EQY1DSk1TQe+1pNQfgqQUCOnK6UfmKFDC+3cE9ZORLDD0QIdX5JWOdXQGXjDMDda4biOd4lxDchdPzM+wDot0dpywvsWR4fwPpnzws36KsPOFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzfRkeQNMNyA8aRuB8Zzs+xhjLDG8sGXLG7QI/DAoYuSIyveDyLx6CuPI6dRVwIcAehWU3Hu2Q2K6ncgN92aBFCA9/vWyECJlUrqWue7Pzf5Ag2WpEXojVnTsSDqwueQhl7/XQfUWQlj0Z8CQAYQdgklj0g/gtWAs7V9l0EyqFobT2jKKYPGoKM+n1kAPJ4/Xl3IFr1YGWg7/wzOcscVx2QH+W+JuIVm6KY4D1Z1UNkgD1qBTVvPGmU1U8JQKB4AMEdo9kOlbUEcEdFUlRmI3zYqJCy0EFTF7KIPB2LPNQWEjQSYwGhBUYIB+DwojCoQ95sBNCsrpLcG/PZjTnVM/HGQ==</NextToken>
+          </GetReportRequestListResult>
+          <ResponseMetadata>
+            <RequestId>5f007cca-4ebb-43cb-ab63-7af1b3ccc3fe</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestListResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:48 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A48Z&Version=2009-01-01&Signature=feQhTsNnKwDGaemrazepDHyxiFukGXDe6%2Fyr%2BjQ4MPs%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:50 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '78.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=zQZZ9s9TZJLmQNFbtiObE3FTcVQTYHNlrGT2GVN1Ypo=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:51 GMT
+      x-mws-request-id:
+      - 98b9082d-5200-4a83-9aa9-c9124f0b7d0c
+      x-mws-timestamp:
+      - '2015-03-28T18:37:49.149Z'
+      x-mws-response-context:
+      - 9q6jlDaYFOgsql4nv654pXWtv8i4AnvxOYb+cKFzG4wmrURIPpxylPagGX2vlnNh3qfUNhE2IDw=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '305'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportCountResult>
+            <Count>12807</Count>
+          </GetReportCountResult>
+          <ResponseMetadata>
+            <RequestId>98b9082d-5200-4a83-9aa9-c9124f0b7d0c</RequestId>
+          </ResponseMetadata>
+        </GetReportCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:51 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A51Z&Version=2009-01-01&Signature=PO5QPpRSaCpAx7NVr%2FexhTh%2FaCquxF7SipZVYzyLtpc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:37:53 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '78.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=nObNxIkaU31g6pTJoJCNgk5xvycDdDlhebGbXYumU3M=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:37:53 GMT
+      x-mws-request-id:
+      - 59f0f90a-51ec-4887-ae0b-7f998d264583
+      x-mws-timestamp:
+      - '2015-03-28T18:37:51.729Z'
+      x-mws-response-context:
+      - Xrqt0dPCGk5LJsXgsBJqQ0yHUOoAf5HKvN4MYYaX4EcQCrNmkROkwCBNLN6DqFsTQxJeQGtVljU=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '305'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportCountResult>
+            <Count>13109</Count>
+          </GetReportCountResult>
+          <ResponseMetadata>
+            <RequestId>59f0f90a-51ec-4887-ae0b-7f998d264583</RequestId>
+          </ResponseMetadata>
+        </GetReportCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:37:54 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A54Z&Version=2009-01-01&Signature=9y17c8lIiHJqvAIFr%2F0yBt1iZu9ZU0SMtQeqSeVOa4U%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:38:22 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '78.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=6VoZHDKUN3gmwtk7QlCu9XYbiDhc8p/67l6h5DwVYaM=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:22 GMT
+      x-mws-request-id:
+      - 3aab589e-5736-4350-808f-7245911d5e7f
+      x-mws-timestamp:
+      - '2015-03-28T18:37:54.966Z'
+      x-mws-response-context:
+      - b9KRp0tCuykMA1HNc7tlEv3ULmJxxyIlbw85q+zv+DqRUKSSS0j6I395/GVaHems8/hN5FzAlwU=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '305'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportCountResult>
+            <Count>17969</Count>
+          </GetReportCountResult>
+          <ResponseMetadata>
+            <RequestId>3aab589e-5736-4350-808f-7245911d5e7f</RequestId>
+          </ResponseMetadata>
+        </GetReportCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:38:22 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A22Z&Version=2009-01-01&Signature=%2BEQlnhBvws%2Bna%2FXIHuAm8NaraZh8%2BxaGZ5nSpemDYZQ%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:38:23 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '79.0'
+      x-mws-quota-resetsOn:
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=6IjVEfoHj8fT+tFEx9t8/QnipbFf7eBMnbb40ePkcxY=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:23 GMT
+      x-mws-request-id:
+      - 12636683-6a2a-4281-b1ca-1cdd6e0ecb2a
+      x-mws-timestamp:
+      - '2015-03-28T18:38:23.282Z'
+      x-mws-response-context:
+      - ixrOmZadrUmzi1aOgpIFmMuFMWI2mKm0dPUQzzqvdlOMBrW24U3ywHILirmkOB0+fLc2tPtxo50=
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '304'
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportCountResult>
+            <Count>3427</Count>
+          </GetReportCountResult>
+          <ResponseMetadata>
+            <RequestId>12636683-6a2a-4281-b1ca-1cdd6e0ecb2a</RequestId>
+          </ResponseMetadata>
+        </GetReportCountResponse>
+    http_version: 
+  recorded_at: Sat, 28 Mar 2015 18:38:23 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A23Z&Version=2009-01-01&Signature=oyWxc5mGmlp8I94g3ehwEYUKMqt9CE19tSMx6%2FCjxtc%3D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Sat, 28 Mar 2015 18:38:24 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '60.0'
       x-mws-quota-remaining:
-      - '59.0'
+      - '54.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - dusJWUWFP6PbkKMMYZhL0/ayDYrQcivulbvBaK9uNh1qpE+23ix6L969VJrFzY/a6LaOOSIJGYH1
-        xsP48P1pM0zxBW/u2HI6, RcUjeUgduKbN/e67VibXbjn6Nq1OjuSOfvXbqb41VD1zRRE7Cw9RgVVLHveGide/348AWbK+nJhd
-        ipGHRQ6aKQ==
-      x-amz-request-id:
-      - 22f79ef5-26ae-4875-8a63-fd0b5b2eebb6
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=09XjKGFP6lUxaH6Tc9Xz6AA5dz87I3Vhs6nktHDcnOs=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:24 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - 22f79ef5-26ae-4875-8a63-fd0b5b2eebb6
+      - c203c7fa-7158-4829-95f1-62e3a019ee61
       x-mws-timestamp:
-      - '2014-08-12T11:46:08.311Z'
+      - '2015-03-28T18:38:24.273Z'
+      x-mws-response-context:
+      - 2TpLM86wz3i+Vl3wAaEtJYBVe0HRWTw5Wt/tWk3yUileBZL0Ubdx9RGZEIIp+5dRfTyWceFxiV4=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4101'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>6D1FC3dhXSAD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>18738184403</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10790032718</ReportRequestId><AvailableDate>2014-08-12T11:43:07+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18737962603</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789752558</ReportRequestId><AvailableDate>2014-08-12T11:27:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736996833</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789621732</ReportRequestId><AvailableDate>2014-08-12T10:20:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736473233</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789340354</ReportRequestId><AvailableDate>2014-08-12T09:46:08+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736115723</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789067508</ReportRequestId><AvailableDate>2014-08-12T09:20:53+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18735652533</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788857350</ReportRequestId><AvailableDate>2014-08-12T08:50:07+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734988173</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788722888</ReportRequestId><AvailableDate>2014-08-12T08:05:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734503203</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788425406</ReportRequestId><AvailableDate>2014-08-12T07:33:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734183923</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788287406</ReportRequestId><AvailableDate>2014-08-12T07:12:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733627383</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788072014</ReportRequestId><AvailableDate>2014-08-12T06:39:26+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>22f79ef5-26ae-4875-8a63-fd0b5b2eebb6</RequestId></ResponseMetadata></GetReportListResponse>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportListResult>
+            <HasNext>true</HasNext>
+            <NextToken>EBRmoK+9qWv2jpZedg0wbVuY6vtoszFEBZG8sdXkcOCBSaSHdvT5x8QvuSc2kMJu4FDLL3Zbk3zSp3q1q6zTClZIoHEPgcitEGBCzBTqicKaauGzeKtPeeNJcrsumSvxTrj7I7A9teWH+rgAr5RYCT7/s0cJtY8frIo9RYzq+plaYoYGDb2Hqp3kYWgPgvHe17WmyEmFIK1EGM7dL7smO8pEKkKH6igxo0H//BEEfTVb7Rul5nQQAnGBE1Z2D7BbGqGCCKwvWiHL+KaVAguMARF0d5WYftrUZ+xyeq2QBYwd9MEFzPjPkhjKyTuPFCo6V7vdMNOH9TE9s+TZ9d1GDDN2q/LxNguZF9qcvrxHms7c3yrDR3L0/9EyW2TvBvHbC6YWj139zGSDSOU7i7rvgJEbpAxYDhLTnvOGry+XETR3iA7j+IhgQN5BDh/EJAOOjqrvXaGafZPJUZkrnu14dCVtoKnZqnKN0/GABywtHvJxmlGPicClBcZROudBsMav5gCVG61v3x/YCwtmbmqaHz3iacO+m+sZ+/PiI7Io3Ur9SojiCGq0zMQ2pT3y5CNSASJqS8T6LeIh55UvQhRolsSwWDcIdjgM85CcUXDGG+w2oLKkBFmF/eV8G0SEQYgOUx9DgBwan6T4uo4cSbfA/HNWMkgOgYi4aIOe+Q15Fd0SInuFbChFhZfqI2TABB4tGXijoyKNtvaah2ZW84cKAGFuLTfoE3AkPxXRyyWz74iScVJKLcNk43fZ0f3a6Ocqf9bXIMhNzVYInV8vBxX1Zh39JDsiCSqjZYORbET2lEfaGrlyuXKmdK80bbsvSIBPBPsNwoEDq7EPPNqQiiy8DTxZ5F/8spTE4E3OPJFkNvWd/PTKBEDlY7sFPpbqf+/pZe0kYBDO2uJApKOVKRiUV2dEDPxG9uHqq1L3Ijwh/MHRahj5RLedU89mNOdUz8cZ</NextToken>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:33:13+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55233593993</ReportId>
+              <ReportRequestId>75483016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:29:50+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55233453863</ReportId>
+              <ReportRequestId>75481016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:15:13+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55232828223</ReportId>
+              <ReportRequestId>75480016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:10:30+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55232614163</ReportId>
+              <ReportRequestId>75479016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:03:12+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55232303513</ReportId>
+              <ReportRequestId>75478016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:00:54+00:00</AvailableDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55232199873</ReportId>
+              <ReportRequestId>75482016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:56:55+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55232018593</ReportId>
+              <ReportRequestId>75477016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:39:51+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55231284933</ReportId>
+              <ReportRequestId>75476016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:34:25+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55231051773</ReportId>
+              <ReportRequestId>75474016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:30:06+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55230871153</ReportId>
+              <ReportRequestId>75475016522</ReportRequestId>
+            </ReportInfo>
+          </GetReportListResult>
+          <ResponseMetadata>
+            <RequestId>c203c7fa-7158-4829-95f1-62e3a019ee61</RequestId>
+          </ResponseMetadata>
+        </GetReportListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:09 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:24 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A09Z&Signature=IXf1A4iz6w0oJGcqj%2Biu3FQyYlVGQrmZhK5vE55dxq0%3D
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A24Z&Version=2009-01-01&Signature=QarBy8Ru2VRVdK5pRkitRze4odgZVOxnsvYRmu5wQO8%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:10 GMT
+      - Sat, 28 Mar 2015 18:38:24 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '60.0'
       x-mws-quota-remaining:
-      - '59.0'
+      - '56.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - 7c/3NAvn2xIEeMNutfC/CtFnHF4QkjOl/TVdNJgQWhESkFwFsUNDOBlJTGOV/BtnSiu8uaDdnl4G
-        0iJlUe4zE+KJlhSsZdrT, Rmm7ClBv953kBIBwfKABSFuaTfZLDDgg06oZcPgN2h8BAbdfTm92C6lKJnRZ5JKKA5qZAuGyg1g=
-      x-amz-request-id:
-      - dac3b8f7-1e9e-46a8-9025-ec16f38691cd
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=yC02zBea1ja/sVUnsX0yl4xVkiYrLWWpG/VoS1YI7cU=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:24 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - dac3b8f7-1e9e-46a8-9025-ec16f38691cd
+      - 7e2d40fe-ffc2-457a-be28-b445d6cde9be
       x-mws-timestamp:
-      - '2014-08-12T11:46:10.584Z'
+      - '2015-03-28T18:38:24.900Z'
+      x-mws-response-context:
+      - HJMOenkNdAZsZUyuTns3LF33p/q+6QzYBfGrmRIne37CrTkAb2IruTnOhE6nvBHfpQhkGasEn5A=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4111'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>isfSUOS/9VcD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>41150111724</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9926584358</ReportRequestId><AvailableDate>2014-08-12T11:44:04+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41149275404</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9926136292</ReportRequestId><AvailableDate>2014-08-12T11:28:32+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41146799264</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9925718498</ReportRequestId><AvailableDate>2014-08-12T10:42:53+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41145696884</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9926253994</ReportRequestId><AvailableDate>2014-08-12T10:22:18+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41144500464</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9925398248</ReportRequestId><AvailableDate>2014-08-12T10:01:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41142439724</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9924993930</ReportRequestId><AvailableDate>2014-08-12T09:20:09+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41141437024</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9925398146</ReportRequestId><AvailableDate>2014-08-12T09:02:11+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41141295224</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9924583660</ReportRequestId><AvailableDate>2014-08-12T08:58:06+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41139313924</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9924194888</ReportRequestId><AvailableDate>2014-08-12T08:17:26+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>41137176524</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>9923919326</ReportRequestId><AvailableDate>2014-08-12T07:33:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>dac3b8f7-1e9e-46a8-9025-ec16f38691cd</RequestId></ResponseMetadata></GetReportListResponse>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportListResult>
+            <HasNext>true</HasNext>
+            <NextToken>ryjB92Ff/Qv2jpZedg0wbVuY6vtoszFEn49F+ytER18LQ0oPYBFYErudlxL/J7sKJcPq1mJ0uQ9xrBy2GCH8wVbRZz3xYXBue9GQk8EqgkhqSGkVwT6/bA51LaOhpA4s0KzrJFsbSc1za6oWb41F5BGnh/L/EVWlPMG4jNqghnnjqr69Gld8Ma/8MKFZNzPPLKQ0BI4USK9lu4bpVlqQW3czaUlgS9CLdeYp/OYWrrnSsqyYEAGhV12rcBIx28+37SlQRzWVQa/5kNQGEW6JeeVUU9pHJ5co6ZdVBNTbXsyuOT6obr5nXxCfTguS5d+UxVegJ2qUE+3mvMeFp8lXo8qOjCKWuzitBIc6/hDTXP5qH+UFWl96CUthvMmWhPUe8YvLxh2EEUS/ofhz8KuPGzrARlemYPCj+xVx3gys5o3WpQako7/8ZzhUBn9mq/FazSdgrFWEA2gcxw/bwxwpJSzSRppkma1zbWPX8sAuGJuy8ioiY14sO7PxNdaXbdswu5Pzx3oe72gpRBIGpKV8er5Jh6PpJujcQZpk+zGOiWAyXN4qXYErJXjtbq/pKJL4yAtGR9TAlUgXs1tDRYVS3ghr/RXW4L3Wn5SZuQsayuStO7+wiRwpql7Szz09ae7z+ByGaO4esUwUHN9LeQzU9fm/M2BAVZuH3YuwU0/C1SMGhUxFtPncy0vMnh+Bmfee7u783ydUjYuChVvL+yUS9vSWXEORN66OV/QnA7GCX7fRF+RU6gw8K+YrP6OHBg14LPSWb/Nf6P5y0wYBPKeqR0tMgAn2IO79cRNUq6Eg+JHMtHTFv09h/ktp5/uDmlZMlqXt8l3USBYLCfEzkv8mDMZrQgOuTxhszDpLgC1lBprNzLFMKBmhAJT/sjRCxntcU1lwIkLw9OoGCNUvNIeFs6FAFIKgPhKiGR0qLupy9XXbnxJuTKR65/4ZdpWHuoOz</NextToken>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:27:14+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128391737304</ReportId>
+              <ReportRequestId>73216016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:21:37+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128391150164</ReportId>
+              <ReportRequestId>73215016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:17:48+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128390704664</ReportId>
+              <ReportRequestId>73214016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:12:07+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128390056704</ReportId>
+              <ReportRequestId>73213016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:01:00+00:00</AvailableDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128388790864</ReportId>
+              <ReportRequestId>73217016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:56:43+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128388250484</ReportId>
+              <ReportRequestId>73212016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:52:19+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128387793204</ReportId>
+              <ReportRequestId>73211016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:46:31+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128387098524</ReportId>
+              <ReportRequestId>73210016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:42:16+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128386602684</ReportId>
+              <ReportRequestId>73209016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:28:48+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>128385030044</ReportId>
+              <ReportRequestId>73208016522</ReportRequestId>
+            </ReportInfo>
+          </GetReportListResult>
+          <ResponseMetadata>
+            <RequestId>7e2d40fe-ffc2-457a-be28-b445d6cde9be</RequestId>
+          </ResponseMetadata>
+        </GetReportListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:10 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A10Z&Signature=XyeYAmyXx4X5PPz%2Fd0KR3E5vHHxQpB0LNLsK9IO%2F6Tg%3D
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A25Z&Version=2009-01-01&Signature=q1P0YOv%2FH6Zl62jQ8C66lWrVmbL%2BK6gAxp6%2FBfa1FM8%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:11 GMT
+      - Sat, 28 Mar 2015 18:38:25 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '60.0'
       x-mws-quota-remaining:
-      - '57.0'
+      - '51.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - 9aDAzT6CGPZk5DhpZDYqcS3iieE34qwl8NtIHl6jR04yK1qoMqHzsxcJgeJgziwyvHv1TrQEvGzZ
-        Hx0HRCjvcNgnnNw4t5G1, c6m/uzBkCKmhy0CSofbUjfAPjnCeA7a/TY9kilhiNW9TP4HelSncUGqJ57hW63cYbbz5zVIHNsHk
-        PTMHMZeSlg==
-      x-amz-request-id:
-      - 024df32d-8f10-4444-a318-656e0b08354d
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=nkyv36UQ2jI2NmNSvPd458mjBosZyiFS16B5gnnrpw8=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:25 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - 024df32d-8f10-4444-a318-656e0b08354d
+      - 5cb77ecf-73d7-4dcf-84a0-c889c90c66cf
       x-mws-timestamp:
-      - '2014-08-12T11:46:11.785Z'
+      - '2015-03-28T18:38:25.632Z'
+      x-mws-response-context:
+      - IQUaf4MMX+s+xJUJ3ZGnWPI7tABJYCx+5c8pq8Gh7V+alMOFS70nxkAB3IJpjrzQ8z7psFvs6GM=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4093'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>biDYYHabO00D2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>4663394685</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102942033</ReportRequestId><AvailableDate>2014-08-12T11:27:18+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663319965</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102920217</ReportRequestId><AvailableDate>2014-08-12T11:10:47+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663260805</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102954251</ReportRequestId><AvailableDate>2014-08-12T11:01:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663170545</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102886681</ReportRequestId><AvailableDate>2014-08-12T10:45:38+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663092885</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102875025</ReportRequestId><AvailableDate>2014-08-12T10:28:05+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4663051585</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102908455</ReportRequestId><AvailableDate>2014-08-12T10:19:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662939425</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102854119</ReportRequestId><AvailableDate>2014-08-12T09:58:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662863285</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102829623</ReportRequestId><AvailableDate>2014-08-12T09:43:27+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662799345</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102815711</ReportRequestId><AvailableDate>2014-08-12T09:29:46+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>4662689405</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>1102788553</ReportRequestId><AvailableDate>2014-08-12T09:07:20+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>024df32d-8f10-4444-a318-656e0b08354d</RequestId></ResponseMetadata></GetReportListResponse>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportListResult>
+            <HasNext>true</HasNext>
+            <NextToken>jVO+5C4jUAv2jpZedg0wbVuY6vtoszFE8fUTaZuS5OhZc8kvgHfVkuZ4ieeWUxTocD1cuhwXsvBxrBy2GCH8wZiKccNC/+bGWEmSt53oB7tKicLhpeVMLfP/9VuicRKyYyF5NrT739kanwcDQRAT+SdYBqIX/uYTpC/2qugYk3PZs+HUy2ma1bq8xqAchQNKYnamQJi2hasnKvt8Z9Osmd0vjznkWh9wRru1Sp5IOoF1l6PUopK4Suik75ZCp/1jSUEtc4Iqn0IM/Ibh185VWbQyh+BhafW1X973AndNPqh4ZtSS0OlM9zYasGRD32HmQG9byiMpPLaA7/7z7+zjanu5fBDCzQps2oSW9dBvCLhBuNdl0tx3rOg78mHsnbVtCwOtOnSsQPZZG6Upw5fm2w1O0j5kV2YbMwAtuSLQdzFUHBjjGzl0SudSEZ7S1OL4icWVdYrCdCtF92eCMsfdYDS81bAJoZM9fkXvxWlayWX9Nz1BYDL9ZQ2NTOT+zEyXmFG6W6Ufg7BeAlCn1Kx52896Sg3cYytgA5f4vjm2TrQHMtjr5A8BTk/7qvnadfnTh/kpdCCQ0NHOoxmNKXfOtyzdecDkeVUZREf8GRNiC8clHeOYAsLX6aJhD1Lrxh+zvJHaH5JKt89rjqowL2FFi0VScfR1sQ879qtZOLWPSPut16XeherAQS4qSDUWQdy8LNIPHq58zo4+jwU+sUo1DdZE31HLmy8qzPUQRecO6NcB2aW0Dr5+O85/qGH7NIlupqzt6/9j9l4gQbvmoHkOs5fT11qOjT6ehiA2QmmxDtMsz5yb6UF5VT1arvwisZXGot1VNIXlD3ZYe/b/7xhGeE1rJZIp13uDGkbG8aX8fyx/aBxDg2D7QuhXtCWzkDiKCtgR4Z3sChJyxTvUv7ZIz4QkzxyLyQW+3yOveTExMM3+GXaVh7qDsw==</NextToken>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:34:16+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514765545</ReportId>
+              <ReportRequestId>84750016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:29:45+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514724005</ReportId>
+              <ReportRequestId>84748016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:18:41+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514638905</ReportId>
+              <ReportRequestId>84747016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:08:28+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514561925</ReportId>
+              <ReportRequestId>84746016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:01:03+00:00</AvailableDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514488465</ReportId>
+              <ReportRequestId>84749016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:57:19+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514455545</ReportId>
+              <ReportRequestId>84745016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:56:58+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514452565</ReportId>
+              <ReportRequestId>84744016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:47:02+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514363845</ReportId>
+              <ReportRequestId>84743016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:44:16+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514331845</ReportId>
+              <ReportRequestId>84742016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:36:38+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>15514259225</ReportId>
+              <ReportRequestId>84741016522</ReportRequestId>
+            </ReportInfo>
+          </GetReportListResult>
+          <ResponseMetadata>
+            <RequestId>5cb77ecf-73d7-4dcf-84a0-c889c90c66cf</RequestId>
+          </ResponseMetadata>
+        </GetReportListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:12 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A12Z&Signature=%2BbgQ6T4wGqvmj3DFEYheItxSkCxSSGJCWmc41v4%2F46k%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A25Z&Version=2009-01-01&Signature=TNqDk6mSvTifMMbuxT9pFpojDjIQlhmKjraassO7sXY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:13 GMT
+      - Sat, 28 Mar 2015 18:38:26 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '60.0'
       x-mws-quota-remaining:
-      - '60.0'
+      - '58.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - bIN7OaWffTkbgyIDqFYNAef4/Mwn11ubAxjB80sa+6+iFPcOL1/KsfX/Acw728iqqtUpQedEqUHg
-        ja0jIp4caPjcg4yREZTi, OLCr4v1nEHwIvEb/vgyoFO2KhBWL7YaJ/1XZ4G0FTHg3gwsFZYhWJLuuBKu+8LRYOoJ42b6Lxz3h
-        1qa9ru/9Wg==
-      x-amz-request-id:
-      - 5e5268d9-0000-4651-96cb-817191cdf271
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=8dL83sqtH4TRCf2JUChL3NqFT9Ee4MR7SfPZp+eOmnE=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:26 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - 5e5268d9-0000-4651-96cb-817191cdf271
+      - 2fb2a2a0-d754-4702-bab3-a882becd4f77
       x-mws-timestamp:
-      - '2014-08-12T11:46:12.711Z'
+      - '2015-03-28T18:38:26.166Z'
+      x-mws-response-context:
+      - cIG652FMkAmUVvxuhABKFaZwOyyZEh7lXBClLHiN1PeGAZW4PJ/UcAlGmuls4Kat8eEORydfSr8=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4200'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportListResult><NextToken>IdxqFTaM37cD2s1QD6a1Faatt7H+KoLIM48r5nOh7ZQ1q7+biy1IyF130dcAIezsKtggkW5lERV7B+2iZsfaG8AEIDnOc43qgOR7rwD3TdO9sEYx33nCROr6OQDEMHv57VDYX5hoZBL6wL21W7Gtx89mNOdUz8cZ</NextToken><HasNext>true</HasNext><ReportInfo><ReportId>18737553883</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789396956</ReportRequestId><AvailableDate>2014-08-12T11:00:40+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18737000973</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10789963132</ReportRequestId><AvailableDate>2014-08-12T10:20:41+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18736569863</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788987732</ReportRequestId><AvailableDate>2014-08-12T09:52:26+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18735692393</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788555130</ReportRequestId><AvailableDate>2014-08-12T08:52:43+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18734859813</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10788217144</ReportRequestId><AvailableDate>2014-08-12T07:58:19+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733832663</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787928196</ReportRequestId><AvailableDate>2014-08-12T06:52:09+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733108873</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787589474</ReportRequestId><AvailableDate>2014-08-12T06:06:59+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18733005363</ReportId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><ReportRequestId>10788153786</ReportRequestId><AvailableDate>2014-08-12T06:01:47+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18732441663</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787383228</ReportRequestId><AvailableDate>2014-08-12T05:26:16+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo><ReportInfo><ReportId>18731612373</ReportId><ReportType>FeedSummaryReport</ReportType><ReportRequestId>10787010414</ReportRequestId><AvailableDate>2014-08-12T04:33:24+00:00</AvailableDate><Acknowledged>false</Acknowledged></ReportInfo></GetReportListResult><ResponseMetadata><RequestId>5e5268d9-0000-4651-96cb-817191cdf271</RequestId></ResponseMetadata></GetReportListResponse>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportListResult>
+            <HasNext>true</HasNext>
+            <NextToken>Uv2fMbUhD+/2jpZedg0wbVuY6vtoszFE6qIwpeu/QURKlG7Ok9Ay+Jwz73Lk5r87h4rRLonsG9LEQY1DSk1TQQKleXCLHIDycYnMFBGBNB+fmr1j1gy5jXEJU1PwakMhTKCwdXeqefzptFX/h4/dJ834zZInVy/1rToAsYN83sFmu9hm7DasIP56WMbynWobFFcZD6owPMAHizskK/YiQs0zvFlfhoRUa/t1by8BcYs7BpPb1xsMBNtCiEAd+08wVnKa9vAQGuj5Psi2Pm4cWs75aXUqR18thMs9PFqAEOcULyEDwPZJw1Ip7VSRq+++1YDnV9rkI4UnHnkOLNsh4NOFZoo2kJ9LabnT5MlpAbAoE9E014go/eiJislUKaU4FgIJfTvoez/OJgnvO/ng9tW0UKDBHOTuO3x+A/Qjtxc15EaIBpc+IBLcncRM5ttuHXVKXCdJeXWYPns5C4Zrtwom2DhNiq8DI+eSIjK2yHfwI+unOEkMGbH+6S59QJOhtqXUfnwx1BswOfyONoK2yc3oBWnUreLNbdTrSfuneZjpg0gRg7HAqspLV+PN7d0ZOpSjgS6jViYvfQRZTNBEVGiYuF8nZILYHzD/uHFB/+X7RjMfeZNo4kybLU2vvDot0784Ven/ALYgUZOPDjtungoLySbUS2BBvyIuwuw5c5RUD6bHOOCGcGWApT4ktZxaveYEIZamaai77+uJKGBhsixaPo9jkEdsX8zln4rQx7f6t862TofpbIxY8dV8lUhmdBRxAsZ/7T6estqZh9XML67TnreKfD8Mf+V+bR501EZesREbqT4czo7TDwh+l5VqIo4YMGqz48OpYtoCg623F2/l0DDCy2ysu1Mwt7vNooATaFNeJ6PFTTM31Xz8JBLyo9/I8qXTpvZmULyR3Le0jY9leemWqGfdIIWQxEoje1MiFUzPt0AUG2POmJuC4goVBWBPXAyXvTvPZjTnVM/HGQ==</NextToken>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:27:45+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55233367663</ReportId>
+              <ReportRequestId>55970016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T18:01:11+00:00</AvailableDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55232214973</ReportId>
+              <ReportRequestId>55971016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T17:32:49+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55230991263</ReportId>
+              <ReportRequestId>55969016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T16:42:12+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55228799333</ReportId>
+              <ReportRequestId>55967016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T16:01:43+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55227004363</ReportId>
+              <ReportRequestId>55968016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T16:01:04+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55226974013</ReportId>
+              <ReportRequestId>55966016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T15:59:19+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55226895403</ReportId>
+              <ReportRequestId>55965016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T15:01:38+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55224420153</ReportId>
+              <ReportRequestId>55964016522</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T14:43:52+00:00</AvailableDate>
+              <ReportType>_GET_FLAT_FILE_DEA_DATA_</ReportType>
+              <AcknowledgedDate>2015-03-28T07:44:20+00:00</AcknowledgedDate>
+              <Acknowledged>true</Acknowledged>
+              <ReportId>55223692793</ReportId>
+              <ReportRequestId>11954281230</ReportRequestId>
+            </ReportInfo>
+            <ReportInfo>
+              <AvailableDate>2015-03-28T14:06:24+00:00</AvailableDate>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>55222135513</ReportId>
+              <ReportRequestId>55963016522</ReportRequestId>
+            </ReportInfo>
+          </GetReportListResult>
+          <ResponseMetadata>
+            <RequestId>2fb2a2a0-d754-4702-bab3-a882becd4f77</RequestId>
+          </ResponseMetadata>
+        </GetReportListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:13 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:26 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A13Z&Signature=qgt4Lwe4r0I%2Bx7sh%2BHNTF4j5swQvCrn58HqH6g8gbYM%3D
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A26Z&Version=2009-01-01&Signature=ifpDDcW1QxuZ6xM2oLdmSQeS5RrabB4vsDSwcRKE59k%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:13 GMT
+      - Sat, 28 Mar 2015 18:38:26 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - bIN7OaWffTkbgyIDqFYNAef4/Mwn11ubAxjB80sa+6+iFPcOL1/KsfX/Acw728iqqtUpQedEqUHg
-        ja0jIp4caPjcg4yREZTi, Q4cRG8kcY+4tjUoX8idS528OYFH/cexnI15YqH51GQkg/9d5bY6MYN+GpZ4MJSSV4ytNoYfbhxtz
-        3jv4twTstg==
-      x-amz-request-id:
-      - c6478c01-51b3-4a47-a299-ff9bca41dd39
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=0so1RWuFTI6FoA+w5hMckfCZHbGuUz31Ks+vQXsWghU=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:26 GMT
       x-mws-request-id:
-      - c6478c01-51b3-4a47-a299-ff9bca41dd39
+      - 35c2c626-8989-45e8-bcfa-425795418953
       x-mws-timestamp:
-      - '2014-08-12T11:46:14.126Z'
+      - '2015-03-28T18:38:26.801Z'
+      x-mws-response-context:
+      - wzJFlTru/kuqUTK7AAi6ArG5P/YjF+SgkublKinpHKVstY7PZWvpBhGItDi007Pp7/khxU/cbo8=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '331'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>0</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>c6478c01-51b3-4a47-a299-ff9bca41dd39</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestCountResult>
+            <Count>378</Count>
+          </GetReportRequestCountResult>
+          <ResponseMetadata>
+            <RequestId>35c2c626-8989-45e8-bcfa-425795418953</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:14 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:27 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A14Z&Signature=YPscRizLvMwzfw2ldZ%2BxdJPFW9wRDXAxRcxUxgRJV%2FE%3D
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A27Z&Version=2009-01-01&Signature=rC3mOGoz1HW1K9UZviqF1xTGAKuT2ni%2FyJs1V%2FjvhLU%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:14 GMT
+      - Sat, 28 Mar 2015 18:38:26 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - SXtzrbaxRmrAz+bpEQ258aPBjcMIdNF1j/ghanod+EN8CdSh+jPdwUR4S2wtTZ8xoyZ5lYilDk5N
-        bKxbwuQbqF/mDSBnqM6S, YN9/LWg6hvziW84XOfW8eDuFoWj/EAwEeec2mHhioKXQtu+Uz8YqNwQs5HtpxyQZaFekdK2bcins
-        yVxerU58jg==
-      x-amz-request-id:
-      - 610d59e3-500d-4fdc-a72e-ceb659524b90
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=Hc0tuOstugtUDBZ1vQ+ztoubm4s7CewlGxoR5die+7Q=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:27 GMT
       x-mws-request-id:
-      - 610d59e3-500d-4fdc-a72e-ceb659524b90
+      - 4c328104-06ff-4213-8c1f-9c5abeed29d0
       x-mws-timestamp:
-      - '2014-08-12T11:46:14.405Z'
+      - '2015-03-28T18:38:27.200Z'
+      x-mws-response-context:
+      - izb3n0uOT1NE/ZBCbHnKZeqjmrXs4GBfAILKpAuyuLtUxp5SJ4xg740GLC1i95fJ4AzVPwidEsU=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '331'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>0</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>610d59e3-500d-4fdc-a72e-ceb659524b90</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestCountResult>
+            <Count>379</Count>
+          </GetReportRequestCountResult>
+          <ResponseMetadata>
+            <RequestId>4c328104-06ff-4213-8c1f-9c5abeed29d0</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:14 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:27 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A14Z&Signature=nLLJCT%2Blzir%2FlmNnB2Y5FbgeTal%2FX9RlF3k89d7kK1c%3D
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A27Z&Version=2009-01-01&Signature=I3tnDr0Uv2W8gJHAWHpqJs4I1F1G1F%2FKL%2B1hUaAp1hk%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:15 GMT
+      - Sat, 28 Mar 2015 18:38:27 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - 9aDAzT6CGPZk5DhpZDYqcS3iieE34qwl8NtIHl6jR04yK1qoMqHzsxcJgeJgziwyvHv1TrQEvGzZ
-        Hx0HRCjvcNgnnNw4t5G1, h2Jr4rECwPRxoyUHGx3dYejIzsU1qUVRJKqlfdzX1cdHe07P2A7BzPx+flNbGOrwRvYsLn3oOlI=
-      x-amz-request-id:
-      - 001773c7-3efa-4e29-b873-49a0be2697b9
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=Sw/8ClgYtam1FWpNe03WAK3cxtMCq5dzjgCqBsru580=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:27 GMT
       x-mws-request-id:
-      - 001773c7-3efa-4e29-b873-49a0be2697b9
+      - 70c63c70-abcc-48e2-8631-44f69c66541f
       x-mws-timestamp:
-      - '2014-08-12T11:46:15.198Z'
+      - '2015-03-28T18:38:27.923Z'
+      x-mws-response-context:
+      - UQvCt72ljy3lGbpH+K4JL5DYxfwrKwtUkKWTHSp2t9t6v12Pi/m2w5zfiyTUwTAL2SUcEkCmyAg=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '331'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>1</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>001773c7-3efa-4e29-b873-49a0be2697b9</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestCountResult>
+            <Count>470</Count>
+          </GetReportRequestCountResult>
+          <ResponseMetadata>
+            <RequestId>70c63c70-abcc-48e2-8631-44f69c66541f</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:15 GMT
+  recorded_at: Sat, 28 Mar 2015 18:38:28 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A15Z&Signature=hupC%2Bz3j1ACTTdhWJCOHHmLGXNqlgchc1fyLYtitKZg%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A28Z&Version=2009-01-01&Signature=TTn2MalGVgAG2dabJTpk6h5OqInv1gUhmIByQ8ERZl4%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:46:16 GMT
+      - Sat, 28 Mar 2015 18:38:28 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - Pgkzcbn1rJRAP+39x3fQ2pJmEk1EpmPGEHvcVL0pMkQJhBY8Dyt47Bv7zd+wPS6EGxriJWihhEY6
-        J6J/S0oBRp8sr4WVV+Vm, UE1v4fCyqJA6JZ/ooT0RnJ4FCy7tt7cNzI6wu+LqZjFdU7QrctCp/eKpn7W2cH1hjKB5t7zDro0=
-      x-amz-request-id:
-      - b3ffd2a3-29c9-4127-bb1d-091d27dd0ef1
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=H9fQcF7mlc8mVYhbQfK9SibeAXhDhvUv45ZdHaLH5yo=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:38:28 GMT
       x-mws-request-id:
-      - b3ffd2a3-29c9-4127-bb1d-091d27dd0ef1
+      - e7435c2d-32f1-4f97-a681-84f08998270a
       x-mws-timestamp:
-      - '2014-08-12T11:46:16.105Z'
+      - '2015-03-28T18:38:28.439Z'
+      x-mws-response-context:
+      - FhedtABIJIuwqs1gWIExYoVGvjrU05vZQQM/aDXmaea0QS7Ozv3ciq5LWzy/hTMNZ6tAD0w2ZdQ=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '331'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleCountResult><Count>0</Count></GetReportScheduleCountResult><ResponseMetadata><RequestId>b3ffd2a3-29c9-4127-bb1d-091d27dd0ef1</RequestId></ResponseMetadata></GetReportScheduleCountResponse>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestCountResult>
+            <Count>439</Count>
+          </GetReportRequestCountResult>
+          <ResponseMetadata>
+            <RequestId>e7435c2d-32f1-4f97-a681-84f08998270a</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:16 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A16Z&Signature=F32dR243b%2FCGWmGlf1I%2BNa2VRMokqwkdUvOw8OUJPq0%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:15 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - egwIUvofa8g25APTF09fZDK0AacVsyXnPRSG6EKkewKKn0IsZX3sAkmpH63sLDsg6KaDd2M4J9Ke
-        6fKTZtPIG1OgMlP0u3mn, iFVAYZsZPgTZrdBHwiXuh+0E5UOmQhY1gRCi4WXd7KHR98IKCcBuqESgm7wqpDK9misOG8TGGU9H
-        cfMv27zjoQ==
-      x-amz-request-id:
-      - 16cfe4b7-0619-4ba2-bfd2-fc19f5e85f95
-      x-mws-request-id:
-      - 16cfe4b7-0619-4ba2-bfd2-fc19f5e85f95
-      x-mws-timestamp:
-      - '2014-08-12T11:46:16.673Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>16cfe4b7-0619-4ba2-bfd2-fc19f5e85f95</RequestId></ResponseMetadata></GetReportScheduleListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:16 GMT
-- request:
-    method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A16Z&Signature=iqcDQC9b0ekuAiqa77QavZC%2FgaYMt9bsfRif2o%2BiGrs%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:16 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - g9/onxF15wZLmT4d/tMrDBOHVTqu4mNuaFO96a7pqhVgpYmOUd+pAtLU0PBSPoDDGpdtLjxs7lKI
-        tIEdHIlOUzkf5A+kHYEU, jyjCdwtXzWGJrBRrJ1YqKmKGhGL/DKFN7M5T8sgaRzwnFccxMQSCjYxAqQaDrBX6DBdGlT/SSuM=
-      x-amz-request-id:
-      - 5841da13-126d-4705-9bd9-fc65fb3162de
-      x-mws-request-id:
-      - 5841da13-126d-4705-9bd9-fc65fb3162de
-      x-mws-timestamp:
-      - '2014-08-12T11:46:16.916Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>5841da13-126d-4705-9bd9-fc65fb3162de</RequestId></ResponseMetadata></GetReportScheduleListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:16 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A16Z&Signature=8qVpTBZml0kFqNwR%2BqOzRhltLk6xB8CCdvEOjeTDNIw%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:17 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - kQuwg7wGM/RCw5nzKnSsGWse0jH8Xik3LFSi2/Sv27ZbZFa8+uvy7edJ9RNn9mcucDlLPA06ILFx
-        efs5i1wJch1MjTfuh+7Q, EG4eV8SktP8ATlVskk7rJ4ir+1fss4UybC+l7zKqUbL4HbYHLlHK2u5HWAYDEt4fEMrPFCADguZO
-        avVCsNmy1w==
-      x-amz-request-id:
-      - 6e59c292-017c-455a-bddc-4527b83231f7
-      x-mws-request-id:
-      - 6e59c292-017c-455a-bddc-4527b83231f7
-      x-mws-timestamp:
-      - '2014-08-12T11:46:17.881Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext><ReportSchedule><ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType><Schedule>_1_DAY_</Schedule><ScheduledDate>2014-08-12T22:18:44+00:00</ScheduledDate></ReportSchedule></GetReportScheduleListResult><ResponseMetadata><RequestId>6e59c292-017c-455a-bddc-4527b83231f7</RequestId></ResponseMetadata></GetReportScheduleListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:18 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A18Z&Signature=LCjdLOQm1OhqDScI%2F0TO5BvekNAapbMbptyklaATYxc%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:18 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - Ug5gVbuC3DnrIXvVQkSg4d6w48CrLHmw3GvgyrgjJHW4GR2kHK0tGujYaSauPMTWNRv3gcJHVnIC
-        imNV0mP8Yh93QcL1yEsp, N9V88MjlNLzMLoLGl2CumBrBrxayZ9zTxGOWPGF1FQEf39mKOmVFT5QVCSMDOOvYZE6poIuw5pQ=
-      x-amz-request-id:
-      - f6040338-edd1-4803-9efa-eb4c43912121
-      x-mws-request-id:
-      - f6040338-edd1-4803-9efa-eb4c43912121
-      x-mws-timestamp:
-      - '2014-08-12T11:46:18.575Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportScheduleListResult><NextToken></NextToken><HasNext>false</HasNext></GetReportScheduleListResult><ResponseMetadata><RequestId>f6040338-edd1-4803-9efa-eb4c43912121</RequestId></ResponseMetadata></GetReportScheduleListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:18 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A18Z&Signature=zGRaeCrAheAkVJlhUfkvzCpCHcbpNbLsSanTBMTWlMY%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:18 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - CMoknPIdab8T8Oiv7SB+gMzkEC+YeIcJogXQknm0do4Ajmvx5EQxUWThKAS2P19IlfyUjJhaW4CN
-        2f9vOOSM+0e8PjSFrMTd, K2qWXAZDKn8QgbAA4gaRsVK+x7kLYgwILLVXuEJZdWgXmQU4akGKLWMSXnRySpHGJFmu3/FuTBM=
-      x-amz-request-id:
-      - 1a562690-0c38-4138-8d2d-5f0f21e604c8
-      x-mws-request-id:
-      - 1a562690-0c38-4138-8d2d-5f0f21e604c8
-      x-mws-timestamp:
-      - '2014-08-12T11:46:19.128Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>kGosEYW9pVpmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUcKFKzEDcAnvtOM1t6iCQ6jI7roc0h5KkPR6W7TgSRZ4ytzcQExk4h4/F3sakH4wA0eDa2Q5LZzbby+vJAE/4+JHuSaTGx3CQ2ycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQTbK8+eN5L+aWEl2JEUxbDs5fPT7VsK5u0wfus6cNQksnOe6t5s/G/HaJXmzg7+Ocf6muahHzo943H1RfaIT8ywm48+ixA1Ky+5vCarQdVQAoScr4r39Zp+10zxS1703xAPumZqILfWpHubh1h46e3Ghrew4nT/456REAF68FK9chs1VcqI5EDl7Q48NOuaikBsNUiXrVGfAWw5IGjyW34WDXuUOlSm69Sq7bkxmplIzHz3R26I0eIP7w9sYBr9NEluHOboVq3IjpovhapIl+1htq3lG5cR2B1ZvYbK2x0uzy/NfsyZQQLjBWNGLShTI7DS5kORaN6VA=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>10788153968</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:36+00:00</StartDate><EndDate>2014-08-12T06:01:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18733013613</GeneratedReportId><StartedProcessingDate>2014-08-12T06:01:58+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:02:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10785526996</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:02:53+00:00</StartDate><EndDate>2014-08-12T00:02:53+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:02:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18726739903</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:40+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:45+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10782555146</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:08+00:00</StartDate><EndDate>2014-08-11T18:00:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18719320913</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:22+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:00:27+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10779755336</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:42+00:00</StartDate><EndDate>2014-08-11T12:02:42+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:42+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18712441983</GeneratedReportId><StartedProcessingDate>2014-08-11T12:03:02+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:03:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10777214308</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T06:01:45+00:00</StartDate><EndDate>2014-08-11T06:01:45+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T06:01:45+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18706928443</GeneratedReportId><StartedProcessingDate>2014-08-11T06:02:03+00:00</StartedProcessingDate><CompletedDate>2014-08-11T06:02:07+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10774679858</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T00:06:05+00:00</StartDate><EndDate>2014-08-11T00:06:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T00:06:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18700902683</GeneratedReportId><StartedProcessingDate>2014-08-11T00:06:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T00:06:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10772021560</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T18:01:33+00:00</StartDate><EndDate>2014-08-10T18:01:33+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T18:01:33+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18694573193</GeneratedReportId><StartedProcessingDate>2014-08-10T18:01:47+00:00</StartedProcessingDate><CompletedDate>2014-08-10T18:01:52+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10769494292</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T12:02:40+00:00</StartDate><EndDate>2014-08-10T12:02:40+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T12:02:40+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18688774023</GeneratedReportId><StartedProcessingDate>2014-08-10T12:02:52+00:00</StartedProcessingDate><CompletedDate>2014-08-10T12:02:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10767058820</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T06:01:12+00:00</StartDate><EndDate>2014-08-10T06:01:13+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T06:01:13+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18683586203</GeneratedReportId><StartedProcessingDate>2014-08-10T06:01:33+00:00</StartedProcessingDate><CompletedDate>2014-08-10T06:01:38+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10764565060</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T00:01:05+00:00</StartDate><EndDate>2014-08-10T00:01:05+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T00:01:05+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18677777253</GeneratedReportId><StartedProcessingDate>2014-08-10T00:01:25+00:00</StartedProcessingDate><CompletedDate>2014-08-10T00:01:30+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>1a562690-0c38-4138-8d2d-5f0f21e604c8</RequestId></ResponseMetadata></GetReportRequestListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:19 GMT
-- request:
-    method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A19Z&Signature=GQEZ3Cz6VNPuJsJllY3TVZ3fxmXNKDXmgzJNB5OCZVA%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:19 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - g9/onxF15wZLmT4d/tMrDBOHVTqu4mNuaFO96a7pqhVgpYmOUd+pAtLU0PBSPoDDGpdtLjxs7lKI
-        tIEdHIlOUzkf5A+kHYEU, rt1Ra2lYqFTVMSzK5xqVJ1BCzzn+NaCwH5B9DewCjOGGkzoR+2+rgl0XT3setuadaTH7YRxpqpw=
-      x-amz-request-id:
-      - ba9181af-bdcf-4e49-8763-8194070ce2ae
-      x-mws-request-id:
-      - ba9181af-bdcf-4e49-8763-8194070ce2ae
-      x-mws-timestamp:
-      - '2014-08-12T11:46:19.487Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>JL0LUQ+KdTdmmFQFVAtP1W61sFe1Er6569S5ldlbt0TFpcBskDdu3R37NQxf/I+9gDxUX+Oc0jbuXvK6Dlqkdq9Mu0v9KzvI7hiN0vSL86Wi4XSb1piYJFf/dIfiRlQkPER1VTZcHvybTk9kCRvTnbq8xqAchQNKYnamQJi2has3BnwbOtvQVYZi8r6ySm3n7/9M2M4GysjFq3grLTKu8iXyr4vG0OlTKW9m83ZS3a9/AC1h7K/iVBkDkAI1xwLugeJMosZjzuiSkGS0LEEe5+SWUZqHDBNBf3vvCP2MLSd9lvkHVghFOl0PptlprUCbbSPtfFGo8hOeN38Ihho7PQ84aAsyr+WZ6REAF68FK9chs1VcqI5EDl7Q48NOuaikScIZ8A5OxMJYL36bQWxQiD0vdV8ApVwgcualMou7wKXLAQMa9s+hWJj3XhXiJBNB19K0lV54Kmm0iDngjVdb3uBzU5eZ1npJaQT0hVRF9fZ1s4CsdcEx4i7Ub/KdjDT42okwQwJWsmf4nVNSa7UDqA==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>9923640822</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:33+00:00</StartDate><EndDate>2014-08-12T06:01:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41133054944</GeneratedReportId><StartedProcessingDate>2014-08-12T06:01:57+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:02:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9920618284</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:03:01+00:00</StartDate><EndDate>2014-08-12T00:03:02+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:03:02+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41119533444</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:26+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:31+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9916934456</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:11+00:00</StartDate><EndDate>2014-08-11T18:00:12+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:12+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41102035644</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:33+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:00:38+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9912987526</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:36+00:00</StartDate><EndDate>2014-08-11T12:02:37+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:37+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41082723144</GeneratedReportId><StartedProcessingDate>2014-08-11T12:02:57+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:03:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9909108738</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T06:01:50+00:00</StartDate><EndDate>2014-08-11T06:01:51+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T06:01:51+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41063968224</GeneratedReportId><StartedProcessingDate>2014-08-11T06:02:12+00:00</StartedProcessingDate><CompletedDate>2014-08-11T06:02:17+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9906064348</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T00:06:04+00:00</StartDate><EndDate>2014-08-11T00:06:04+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T00:06:04+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41050386864</GeneratedReportId><StartedProcessingDate>2014-08-11T00:06:17+00:00</StartedProcessingDate><CompletedDate>2014-08-11T00:06:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9902529652</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T18:01:34+00:00</StartDate><EndDate>2014-08-10T18:01:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T18:01:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41033570004</GeneratedReportId><StartedProcessingDate>2014-08-10T18:01:55+00:00</StartedProcessingDate><CompletedDate>2014-08-10T18:02:00+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9899145652</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T12:02:43+00:00</StartDate><EndDate>2014-08-10T12:02:43+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T12:02:43+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41017098884</GeneratedReportId><StartedProcessingDate>2014-08-10T12:03:01+00:00</StartedProcessingDate><CompletedDate>2014-08-10T12:03:06+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9895902312</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T06:01:09+00:00</StartDate><EndDate>2014-08-10T06:01:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T06:01:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>41001835504</GeneratedReportId><StartedProcessingDate>2014-08-10T06:01:30+00:00</StartedProcessingDate><CompletedDate>2014-08-10T06:01:35+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>9892988712</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T00:01:09+00:00</StartDate><EndDate>2014-08-10T00:01:10+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T00:01:10+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>40988950544</GeneratedReportId><StartedProcessingDate>2014-08-10T00:01:25+00:00</StartedProcessingDate><CompletedDate>2014-08-10T00:01:30+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>ba9181af-bdcf-4e49-8763-8194070ce2ae</RequestId></ResponseMetadata></GetReportRequestListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:19 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A19Z&Signature=ujAnS96Zy58bsWhY5mE2zLT%2FpFOodLKgCKDkf%2BOjhIw%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:20 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - 4SUleUDkGex+EREH5K6KiM+ESaE9jiY0dWDLdiNuqV6WIuEDN3cXp4RvXaO/4CMV9YBqNSH0aMbH
-        FsDYsPSDW+nTVjI+BQoJ, h2Jr4rECwPRxoyUHGx3dYejIzsU1qUVRJKqlfdzX1cdHe07P2A7BzPx+flNbGOrwRvYsLn3oOlI=
-      x-amz-request-id:
-      - 1f4c09e2-cf4f-4cce-9c6a-6df28bbc4306
-      x-mws-request-id:
-      - 1f4c09e2-cf4f-4cce-9c6a-6df28bbc4306
-      x-mws-timestamp:
-      - '2014-08-12T11:46:20.254Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>ftUKv8k2Fq1mmFQFVAtP1aJ17H3LduXOl9cxtGNDuZQJ56emKxA7UXGsHLYYIfzBDxLHD4P1qA/XhSCkAHb2N4NqLkxqtD0eAhImHdEjO6mayoptLKUHJx+MP7WG1vJXgezB56JNE686U8pTg0alM/OFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzSXdek3HGfg5zbHlcKrL69PSbtn/CPspW+zxmoIQVQpSh6m8o/CWxhj2j148AoUEqMWL1n6ztRlcW5HxDPEQC0IYT4kb5hhXmdDyc/RQL7ruvuKtLhr4WDacRpN9l86m4Y4dKY+zVawilZ/vfyuLhfMdmv+3BbA0JRz9CX5PJsdGBWNN/qROJCU3tAoWRm8SSDCwW0XGZEXPQsIckhfgeYMX/yE650R63b5rkCnU+zffNQfR3CYgRmjpZ9JNyLKJRcBT0b79cab2If/HklbeztF6Bowh81ZJEe5dcpWUo51IF9iHYuH8+7eKgmDFNODsJl7LC7zcJSzo=</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>1102586403</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:39+00:00</StartDate><EndDate>2014-08-12T06:01:39+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:39+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4661616325</GeneratedReportId><StartedProcessingDate>2014-08-12T06:02:00+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:02:05+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1102158339</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:02:59+00:00</StartDate><EndDate>2014-08-12T00:03:00+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:03:00+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4659693765</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:17+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:22+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1102059349</ReportRequestId><ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType><StartDate>2014-08-10T22:18:44+00:00</StartDate><EndDate>2014-08-11T22:18:44+00:00</EndDate><Scheduled>true</Scheduled><SubmittedDate>2014-08-11T22:18:55+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4659292825</GeneratedReportId><StartedProcessingDate>2014-08-11T22:19:14+00:00</StartedProcessingDate><CompletedDate>2014-08-11T22:20:43+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1101863315</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:14+00:00</StartDate><EndDate>2014-08-11T18:00:14+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:14+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4658522965</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:55+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:00:59+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1101502203</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:35+00:00</StartDate><EndDate>2014-08-11T12:02:36+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:36+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4656921945</GeneratedReportId><StartedProcessingDate>2014-08-11T12:02:45+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:02:50+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1101064711</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T06:01:47+00:00</StartDate><EndDate>2014-08-11T06:01:47+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T06:01:47+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4654962745</GeneratedReportId><StartedProcessingDate>2014-08-11T06:02:05+00:00</StartedProcessingDate><CompletedDate>2014-08-11T06:02:08+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1100644439</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T00:06:02+00:00</StartDate><EndDate>2014-08-11T00:06:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T00:06:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4653058625</GeneratedReportId><StartedProcessingDate>2014-08-11T00:06:07+00:00</StartedProcessingDate><CompletedDate>2014-08-11T00:06:10+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1100540759</ReportRequestId><ReportType>_GET_FLAT_FILE_ORDERS_DATA_</ReportType><StartDate>2014-08-09T22:18:44+00:00</StartDate><EndDate>2014-08-10T22:18:44+00:00</EndDate><Scheduled>true</Scheduled><SubmittedDate>2014-08-10T22:18:46+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4652615105</GeneratedReportId><StartedProcessingDate>2014-08-10T22:19:00+00:00</StartedProcessingDate><CompletedDate>2014-08-10T22:19:56+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1100350023</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T18:01:29+00:00</StartDate><EndDate>2014-08-10T18:01:29+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T18:01:29+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4651862145</GeneratedReportId><StartedProcessingDate>2014-08-10T18:01:46+00:00</StartedProcessingDate><CompletedDate>2014-08-10T18:01:49+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>1099982923</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-11T12:02:38+00:00</StartDate><EndDate>2014-08-10T12:02:38+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-10T12:02:38+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>4650234865</GeneratedReportId><StartedProcessingDate>2014-08-10T12:03:22+00:00</StartedProcessingDate><CompletedDate>2014-08-10T12:03:25+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>1f4c09e2-cf4f-4cce-9c6a-6df28bbc4306</RequestId></ResponseMetadata></GetReportRequestListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:20 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A46%3A20Z&Signature=kws2%2FWg7kkxwZmZn%2FsB0RSiLTmuVD0WCr17gMuq6mkg%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:46:21 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - Pgkzcbn1rJRAP+39x3fQ2pJmEk1EpmPGEHvcVL0pMkQJhBY8Dyt47Bv7zd+wPS6EGxriJWihhEY6
-        J6J/S0oBRp8sr4WVV+Vm, mYMyIPrnV9EA90t7FTbTYwZwI3VlYzR9Kr1tWd/+zdsr/1PurmKGIU9uSJsqB1dTtzsPzFjUsZw=
-      x-amz-request-id:
-      - 3bca333c-f809-4eef-8d44-24533dd767db
-      x-mws-request-id:
-      - 3bca333c-f809-4eef-8d44-24533dd767db
-      x-mws-timestamp:
-      - '2014-08-12T11:46:20.801Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportRequestListResult><NextToken>n+IGNd0ywS9mmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA5PKMQKsxq6yHGsHLYYIfzBMcVOR8D4UXAylAm8OpoEJTaqFlHjVAW2m8V1FZrUQjzthhC7FHLHAYMkUnqIDXXZSruG8EPSRSBniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpuv0hp7lZ/InswCD8pyebNx8gpg1Hhgue8OUt7j012w0em0tvOXXe6ZUXBqxQRiuW9n6Cf0sJ/O5a6CJYFzqtC0bMiThtmVzgvs37tFd7ZwNUTfOcq9pE3FGBA0SiHVqEkY9HqvxV60xcTqzn4hZYbfliWhvBSok1FfZdBMqhaG09oyimDxqCjPp9ZADyeP15dyBa9WBloO/BA5nmlyKwV9Qm7Z3C13qQXejD4PZtF3+ZYJvQgmd0mYh9rF6RqKHWy0bzasUN7qbjoNYB/lZMcxmxRVdWhZqDQga2GnVME6YWDdcStbtdayFJ4QOhzZfNg==</NextToken><HasNext>true</HasNext><ReportRequestInfo><ReportRequestId>10788153786</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T06:01:33+00:00</StartDate><EndDate>2014-08-12T06:01:33+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T06:01:33+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18733005363</GeneratedReportId><StartedProcessingDate>2014-08-12T06:01:42+00:00</StartedProcessingDate><CompletedDate>2014-08-12T06:01:47+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10785528124</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-13T00:03:03+00:00</StartDate><EndDate>2014-08-12T00:03:03+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-12T00:03:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18726730383</GeneratedReportId><StartedProcessingDate>2014-08-12T00:03:11+00:00</StartedProcessingDate><CompletedDate>2014-08-12T00:03:15+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783929830</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_XML_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:43:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722801893</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:09+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:09+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783928962</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_V2_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:43:03+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722798393</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:03+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:03+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927898</ReportRequestId><ReportType>_GET_V2_SETTLEMENT_REPORT_DATA_FLAT_FILE_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:57+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722795563</GeneratedReportId><StartedProcessingDate>2014-08-11T20:42:57+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:42:57+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927670</ReportRequestId><ReportType>_GET_ALT_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722805963</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927656</ReportRequestId><ReportType>_GET_FLAT_FILE_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722805653</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:19+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10783927650</ReportRequestId><ReportType>_GET_PAYMENT_SETTLEMENT_DATA_</ReportType><StartDate>2014-07-28T20:20:41+00:00</StartDate><EndDate>2014-08-11T20:17:52+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T20:42:53+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18722804623</GeneratedReportId><StartedProcessingDate>2014-08-11T20:43:13+00:00</StartedProcessingDate><CompletedDate>2014-08-11T20:43:16+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10782555040</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T18:00:07+00:00</StartDate><EndDate>2014-08-11T18:00:08+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T18:00:08+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18719343393</GeneratedReportId><StartedProcessingDate>2014-08-11T18:00:23+00:00</StartedProcessingDate><CompletedDate>2014-08-11T18:01:24+00:00</CompletedDate></ReportRequestInfo><ReportRequestInfo><ReportRequestId>10779754564</ReportRequestId><ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType><StartDate>2014-07-12T12:02:34+00:00</StartDate><EndDate>2014-08-11T12:02:34+00:00</EndDate><Scheduled>false</Scheduled><SubmittedDate>2014-08-11T12:02:34+00:00</SubmittedDate><ReportProcessingStatus>_DONE_</ReportProcessingStatus><GeneratedReportId>18712446123</GeneratedReportId><StartedProcessingDate>2014-08-11T12:03:16+00:00</StartedProcessingDate><CompletedDate>2014-08-11T12:03:21+00:00</CompletedDate></ReportRequestInfo></GetReportRequestListResult><ResponseMetadata><RequestId>3bca333c-f809-4eef-8d44-24533dd767db</RequestId></ResponseMetadata></GetReportRequestListResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:46:21 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A47%3A40Z&Signature=P8V5TzWajQyhiO6e%2BhqitIUcx%2FPXi4NkNkSjQvtyU2Q%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:47:42 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - ZK2dFfzW10BjumsOfh8njPTcyYqoD2nQNFXon+GDcHWP4tLaCLcCoTJZf/1vU9xNcFx5/hBJ7A3q
-        /2vo5W1nQ3RWQJ9idgB+, b6ka19D9+Gs6/8kF8GQbI6HYmXifeH7wVHtnh5ORggzsNIuAnnWuvWsuWwzT2MNGxM7EyhNIjXS1
-        pH/tk04UwA==
-      x-amz-request-id:
-      - 082495fb-3055-441d-892a-92f802d8a3fa
-      x-mws-request-id:
-      - 082495fb-3055-441d-892a-92f802d8a3fa
-      x-mws-timestamp:
-      - '2014-08-12T11:47:41.489Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>3841</Count></GetReportCountResult><ResponseMetadata><RequestId>082495fb-3055-441d-892a-92f802d8a3fa</RequestId></ResponseMetadata></GetReportCountResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:47:42 GMT
-- request:
-    method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A47%3A42Z&Signature=qFFkSE4zqhyZi1AMUc6%2FsUV7P9hNR6h%2F8Qn4IE5NLoA%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:47:57 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - QpCeFBbpz2jJq4iQGwe4uGnmChpHIQQjr3GB+OxopP6OuZOIV5Av2IwHoegsQ3qsdsBhyQ9P1yBc
-        VXAoD+ts7N6qHShg+SLa, jWz/3EP8QFQAjc5N3oGP/4BFbQQk39A5e+9ACTS2iWG+bQbVBuB8P/7ag+V6raEM6cikMLPqmRM=
-      x-amz-request-id:
-      - ca8d5679-374a-4c0c-98ab-c39b9a359f84
-      x-mws-request-id:
-      - ca8d5679-374a-4c0c-98ab-c39b9a359f84
-      x-mws-timestamp:
-      - '2014-08-12T11:47:43.053Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>3110</Count></GetReportCountResult><ResponseMetadata><RequestId>ca8d5679-374a-4c0c-98ab-c39b9a359f84</RequestId></ResponseMetadata></GetReportCountResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:47:58 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A47%3A58Z&Signature=wX6m07VFNAqHaDe9At9dMzj3KVZoOXSrNflrAIkWyZI%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:47:59 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:47:00.000Z'
-      x-mws-response-context:
-      - LwVH5A8aBXeJV3NEVn9kznm9dF8VPbEyKwVaBuqKhY5o50u24gm0/0MICJHKzhmT+3AzPryRZ6IC
-        zbP7kjS9clB+O+T4gorq, tU26esXjstlGxMX6GQzzRtidtkR02dYB+4oxDUfeaNhh7jZiLRHGbxhdBBc6VOFDYGlhYeuc/w0u
-        nB78OAwm7A==
-      x-amz-request-id:
-      - 7b251062-fcb7-4019-8b92-e6d348ec384b
-      x-mws-request-id:
-      - 7b251062-fcb7-4019-8b92-e6d348ec384b
-      x-mws-timestamp:
-      - '2014-08-12T11:47:58.727Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>5241</Count></GetReportCountResult><ResponseMetadata><RequestId>7b251062-fcb7-4019-8b92-e6d348ec384b</RequestId></ResponseMetadata></GetReportCountResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:48:00 GMT
-- request:
-    method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A48%3A00Z&Signature=oGwIiR8iVLVHGSbto1U07JFHQkvIdcT%2BnJS4s1Ap1Vo%3D
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Date:
-      - Tue, 12 Aug 2014 11:48:01 GMT
-      Server:
-      - AmazonMWS
-      x-mws-quota-max:
-      - '80.0'
-      x-mws-quota-remaining:
-      - '80.0'
-      x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - 3osntDZEtK5dSV1EUXMxsZxvBp+g15vhSanvmLQITu+iFs8LT1X9nlu8+TnTUXnicG01eKGBJANe
-        AlD0XdpqMd6iDKNmCYO5, xyanCRIHNV9nx8+bgg/Xw5p6u5RnBWFSklsP6FmVRD79WE4ndxNwLU1ujReBO+v0REZ7JGXHzgCj
-        XcXELA9Hew==
-      x-amz-request-id:
-      - 1e3b0eef-78b4-4d69-b8e9-8a38d50dbf66
-      x-mws-request-id:
-      - 1e3b0eef-78b4-4d69-b8e9-8a38d50dbf66
-      x-mws-timestamp:
-      - '2014-08-12T11:48:00.846Z'
-      Content-Type:
-      - text/xml
-      Vary:
-      - User-Agent
-    body:
-      encoding: UTF-8
-      string: |-
-        <?xml version="1.0"?>
-        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetReportCountResult><Count>3354</Count></GetReportCountResult><ResponseMetadata><RequestId>1e3b0eef-78b4-4d69-b8e9-8a38d50dbf66</RequestId></ResponseMetadata></GetReportCountResponse>
-    http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:48:02 GMT
-recorded_with: VCR 2.9.2
+  recorded_at: Sat, 28 Mar 2015 18:38:28 GMT
+recorded_with: VCR 2.9.3

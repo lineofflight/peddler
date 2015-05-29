@@ -9,7 +9,8 @@ module MWS
     # Amazon MWS service. Instead, the information is sent directly to you when
     # an event occurs to which you are subscribed.
     class Client < ::Peddler::Client
-      path '/Subscriptions/2013-07-01'
+      version "2013-07-01"
+      path "/Subscriptions/#{version}"
 
       # Registers a new destination to receive notifications
       #
@@ -17,7 +18,7 @@ module MWS
       # @param sqs_queue_url [String]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def register_destination(sqs_queue_url, marketplace_id = marketplace_id)
+      def register_destination(sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('RegisterDestination')
           .add('MarketplaceId' => marketplace_id)
           .add(build_destination(sqs_queue_url))
@@ -31,7 +32,7 @@ module MWS
       # @param sqs_queue_url [String]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def deregister_destination(sqs_queue_url, marketplace_id = marketplace_id)
+      def deregister_destination(sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('DeregisterDestination')
           .add('MarketplaceId' => marketplace_id)
           .add(build_destination(sqs_queue_url))
@@ -44,7 +45,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListRegisteredDestinations.html
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def list_registered_destinations(marketplace_id = marketplace_id)
+      def list_registered_destinations(marketplace_id = primary_marketplace_id)
         operation('ListRegisteredDestinations')
           .add('MarketplaceId' => marketplace_id)
 
@@ -57,7 +58,7 @@ module MWS
       # @param sqs_queue_url [String]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def send_test_notification_to_destination(sqs_queue_url, marketplace_id = marketplace_id)
+      def send_test_notification_to_destination(sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('SendTestNotificationToDestination')
           .add('MarketplaceId' => marketplace_id)
           .add(build_destination(sqs_queue_url))
@@ -72,7 +73,7 @@ module MWS
       # @param sqs_queue_url [String]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def create_subscription(notification_type, sqs_queue_url, marketplace_id = marketplace_id)
+      def create_subscription(notification_type, sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('CreateSubscription')
           .add('MarketplaceId' => marketplace_id)
           .add(build_subscription(notification_type, sqs_queue_url))
@@ -87,7 +88,7 @@ module MWS
       # @param sqs_queue_url [String]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def get_subscription(notification_type, sqs_queue_url, marketplace_id = marketplace_id)
+      def get_subscription(notification_type, sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('GetSubscription')
           .add(
             'MarketplaceId' => marketplace_id,
@@ -105,7 +106,7 @@ module MWS
       # @param sqs_queue_url [String]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def delete_subscription(notification_type, sqs_queue_url, marketplace_id = marketplace_id)
+      def delete_subscription(notification_type, sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('DeleteSubscription')
           .add(
             'MarketplaceId' => marketplace_id,
@@ -121,7 +122,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListSubscriptions.html
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def list_subscriptions(marketplace_id = marketplace_id)
+      def list_subscriptions(marketplace_id = primary_marketplace_id)
         operation('ListSubscriptions')
           .add('MarketplaceId' => marketplace_id)
 
@@ -136,8 +137,8 @@ module MWS
       # @param enabled [Boolean]
       # @param marketplace_id [String]
       # @return [Peddler::XMLParser]
-      def update_subscription(notification_type, sqs_queue_url, enabled, marketplace_id = marketplace_id)
-        operation('CreateSubscription')
+      def update_subscription(notification_type, sqs_queue_url, enabled, marketplace_id = primary_marketplace_id)
+        operation('UpdateSubscription')
           .add('MarketplaceId' => marketplace_id)
           .add(build_subscription(notification_type, sqs_queue_url, enabled))
 

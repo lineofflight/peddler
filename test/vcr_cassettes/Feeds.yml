@@ -2,65 +2,153 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A24Z&Signature=Lid42m1b93RJu%2BYACCdJsNo6VzvR9skoFqWKA69FmMk%3D
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A35Z&Version=2009-01-01&Signature=CSmMnBrOqn1iLcrzmMMQ1YtGP6v36N1MMDDUzHuy%2Fac%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:24 GMT
+      - Sat, 28 Mar 2015 18:36:34 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '80.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - Or107YO2kkD8+AKZDj24B+Op1tPSOlHx+ygMO3OlyKeN8g+5c92jQbi5ta+VmZP1d2gTN/tZk5od
-        kmWpLzUuEcC1HMDzvMF/, 7W6T7Y9J34LDFnfgf9UT5/BVn+knBHWt/HDBzZ3dnp2UmaRkmt0Dwnt9X8kNiZJWy8nv7WDM/rHt
-        MCE//TThqQ==
-      x-amz-request-id:
-      - 0a8b62e0-821a-448c-943e-5602b1f7033b
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=HN9rLg7UBN+lrTFyZgvxM+noDBupFhd7Z4UU6lcsoug=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:35 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - 0a8b62e0-821a-448c-943e-5602b1f7033b
+      - 0c7762bc-5877-4c9b-bc27-538a8bad02be
       x-mws-timestamp:
-      - '2014-08-12T11:36:25.140Z'
+      - '2015-03-28T18:36:35.602Z'
+      x-mws-response-context:
+      - pfykS2598ZhqLhZ+W/tpNsvdLN/k4BkMQ/vCYYmJj4CKFj1LeWBSsX5sJ9nqehDTA+Tl023NjOs=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4936'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>LXioRa8vyodmmFQFVAtP1Ygyll0Bti6tLwZxLuNJPUcKFKzEDcAnvh37NQxf/I+9M4quvll4VBScNPHvwC+R03C5WG44+0syk5OZVlLEOVxhJj/3qRu4rNRLGNCsPO1VReUl7lNynjWycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQTbK8+eN5L+aHZDkA9WeG8Q9VpOmXt+x+gZV1np2VqfMDjWoRUJRYH3aJXmzg7+Ocf6muahHzo943H1RfaIT8ywm48+ixA1Ky+5vCarQdVQAoScr4r39ZpxHVNsNesoa3xLQQo10M8QlsiPqedBQBEXWdUAX7LVsn+jFHEf8c268SlSGhKSWFC9n77qmd/NoZRw3py7Eh4k10PpoVALCFzM6FxlOP9wvCHkQ1oUi5mug9XrvmmBoVd2wSA5v70EwV4I04nfVsrD33DIr38ykw2EVwIzEWBbS0FkHpKEBWrgZPmX44XQP9Dg588qVI5CtJ/hl2lYe6g7M=</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>10790444936</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T11:30:56+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T11:31:11+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10790032718</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:30:40+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:31:08+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789752558</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:50:40+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:51:18+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T11:27:43+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789621732</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:31:25+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:31:45+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:20:21+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789340354</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T08:50:45+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T08:51:03+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:46:10+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789067508</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T08:10:28+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T08:11:13+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:20:55+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788857350</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T07:40:39+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T07:40:58+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T08:50:10+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788722888</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T07:20:41+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T07:20:58+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T08:05:40+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788425406</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T06:40:36+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T06:40:57+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T07:33:48+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788287406</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T06:20:43+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T06:20:59+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T07:12:42+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>0a8b62e0-821a-448c-943e-5602b1f7033b</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionListResult>
+            <HasNext>true</HasNext>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75487016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:35:23+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:35:39+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75486016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:30:37+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:30:41+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75485016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:20:23+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:20:38+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75484016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:15:29+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:15:40+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75483016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:33:15+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:05:27+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:05:40+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75481016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:29:52+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:36+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:00:40+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75480016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:15:15+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:45:32+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:45:39+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75479016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:10:32+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:40:33+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:40:40+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75478016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:03:15+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:35:31+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:35:38+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>75477016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T17:56:57+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:30:20+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:30:37+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <NextToken>f5+UNmS57ov2jpZedg0wbVuY6vtoszFEBZG8sdXkcOCBSaSHdvT5x8QvuSc2kMJuICyhlLgHd4jTj5uGXEsDzP86o1y+VSYZ4jw9yhjV/v4iGgs1WeFPrt/mUD91yo7AZ2I0T2dPSDKEnJREd9OMbnALsdCGt5yRPxuuVZAjoAG5Hd34Twm1igafEPREmauvQPEfQK/OReJ9wNJ/XIY3rAvjRfjTJJa5YKoSylcR8gttj983g7esDtNYMBQR50cnO7Jki6hQ22pB5FkElq0FfC8AGqM6ib8onMwnBsE+SSkly3XvwWLektQtzbvRHQ86i6yxuoznzAUW/XW+OfHJyC/2j8HfamxgA2khKAWRg9zRJhzSzmrt+Tg3TZE+IHYrLHgbu4Ruro0=</NextToken>
+          </GetFeedSubmissionListResult>
+          <ResponseMetadata>
+            <RequestId>0c7762bc-5877-4c9b-bc27-538a8bad02be</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:25 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:35 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A25Z&Signature=ljo%2Byz0q1Mp4EIhX0babM94O6X4k4fenCtUich7UYPo%3D
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A35Z&Version=2009-01-01&Signature=yF65DPC4M%2BTMbUDfRMe%2FFaervU%2FhD3XQAZuQ0XDFiFM%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:25 GMT
+      - Sat, 28 Mar 2015 18:36:35 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
@@ -68,89 +156,265 @@ http_interactions:
       x-mws-quota-remaining:
       - '80.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - QpCeFBbpz2jJq4iQGwe4uGnmChpHIQQjr3GB+OxopP6OuZOIV5Av2IwHoegsQ3qsdsBhyQ9P1yBc
-        VXAoD+ts7N6qHShg+SLa, Ube4XHMhX/2PvjkoIy2pj2HCEx80E00XQj8eSE+7FduutjDjcYN8kr6qEVIyoUXyFmQJqfLP7oBr
-        NElJtby4Rg==
-      x-amz-request-id:
-      - 7f986ed2-ff29-4333-84e6-2a1c3402a977
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=fR59Zxf5TOj4aACboQ8y2Uv2fMv0zgaaQAwah0JslEo=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:36 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - 7f986ed2-ff29-4333-84e6-2a1c3402a977
+      - 7c9c29e0-2a79-4234-8e5f-0ab65a7424f3
       x-mws-timestamp:
-      - '2014-08-12T11:36:25.882Z'
+      - '2015-03-28T18:36:36.020Z'
+      x-mws-response-context:
+      - IIF+rdfMrhJcUTqFpcT49i1rvg0PK2ZA8PmzXLZ9A+GfMlYEOMhmTSSSGz6cpmqPToTBsQxJH/4=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4936'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>eF7N52ppK2pmmFQFVAtP1W61sFe1Er6569S5ldlbt0QKFKzEDcAnvpj1MHeOV2/5nWHdh9yLqxwD4KPDN7Rvnx8Jeqd8TSqw4smnu893nP+D/yd5QLXCiEU/afs2U+Yel4x7O0rq8c2ycJ/IO/jxp0wuPLxFSWjw4KHkpvqz4XOwgC8ckBG1U3iwDZXFBBhQTbK8+eN5L+Y9PCuW1mV+EFX+WetUm1TBlyf1yR3RBUPyW+YJAYPy4ja34sIxRBedl9nmF9PlCzb7nFRMy2U5VQFPhC3NVNmt4m7jyM8LvM8oScr4r39Zp2HN3W0pCls0q3aWcO3pmFUOgSl50pOpHHWdUAX7LVsn+jFHEf8c268SlSGhKSWFC48APp7PPz1NFdF6Ooo4nnvn7FcC5rwLLM3l04J6+15DIBrEHrakwb1gQxQXjCMbXMmz3pEy6KpteEGRnWfMx4Z1fvch4h5EdfyIALKD4+/BgvOjWtEEWG37HV4bnhi3mWNd+vnSeTQx</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>9927034120</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T11:31:15+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T11:31:27+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9926584358</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:51:01+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:51:20+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9926253994</FeedSubmissionId><FeedType>_POST_PAYMENT_ADJUSTMENT_DATA_</FeedType><SubmittedDate>2014-08-12T10:20:35+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:21:24+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:22:20+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9926136292</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:10:21+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:10:38+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T11:28:42+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9925718498</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:31:42+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:31:58+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:42:56+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9925398248</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:01:15+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:01:57+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:01:30+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9925398146</FeedSubmissionId><FeedType>_POST_ORDER_ACKNOWLEDGEMENT_DATA_</FeedType><SubmittedDate>2014-08-12T09:01:14+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:01:29+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:02:12+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9924993930</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T08:20:56+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T08:21:09+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:20:12+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9924583660</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T07:40:55+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T07:41:13+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T08:58:09+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>9924194888</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T07:01:01+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T07:01:13+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T08:17:29+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>7f986ed2-ff29-4333-84e6-2a1c3402a977</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionListResult>
+            <HasNext>true</HasNext>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73221016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:30:24+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:30:42+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73220016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:25:28+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:25:43+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73219016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:20:23+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:20:29+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73218016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:15:28+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:15:46+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73216016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:27:16+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:35+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:00:49+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73215016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:21:39+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:55:18+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:55:28+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73214016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:17:51+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:50:23+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:50:28+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73213016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:12:09+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:45:30+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:45:46+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73212016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T17:56:45+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:30:16+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:30:33+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>73211016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T17:52:21+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:25:16+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:25:32+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <NextToken>cIOZzAhsmcT2jpZedg0wbVuY6vtoszFEn49F+ytER18LQ0oPYBFYErudlxL/J7sKGUy5CXwdXMZxrBy2GCH8waKVViN0gF1iUTkXhUnfIFdn6BkOWQxuVOeOGR3E2c8ABQTfLrndlqBIdXGEOn/pD1PpHoQYVbU0VwrHjELkHcJRMdAjeo1d90wuPLxFSWjwrFhvd4Ov2VRetoY4qbaMvgM3Ak2EcoTpiz6IlERWn587+3otyJBmL1Af2THncJuYOEkX7++/Og+dK/2FODL8gObPNMsCUfTZg1OENQAiQcsY0F7NnX7feN3ZC200rzEa7JP+XnLuizUCOGFcE3BfquF1UQfIp6oAsdQsy6YY2fU4w9xDTDkUFHjRQC0ijpCo/hl2lYe6g7M=</NextToken>
+          </GetFeedSubmissionListResult>
+          <ResponseMetadata>
+            <RequestId>7c9c29e0-2a79-4234-8e5f-0ab65a7424f3</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:25 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:36 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A25Z&Signature=xmqOiwn%2Fm4XF9RafipdLAPW6VaYo%2B6Yig5u%2FcxO1lnQ%3D
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A36Z&Version=2009-01-01&Signature=UoCEEfu2cRhNw54stA%2BvuVRDqvZFr%2FBylO76%2FxAokn0%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:26 GMT
+      - Sat, 28 Mar 2015 18:36:36 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '78.0'
+      - '79.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - kQuwg7wGM/RCw5nzKnSsGWse0jH8Xik3LFSi2/Sv27ZbZFa8+uvy7edJ9RNn9mcucDlLPA06ILFx
-        efs5i1wJch1MjTfuh+7Q, EG4eV8SktP8ATlVskk7rJ4ir+1fss4UybC+l7zKqUbL4HbYHLlHK2u5HWAYDEt4fEMrPFCADguZO
-        avVCsNmy1w==
-      x-amz-request-id:
-      - fbc64feb-65b5-44ea-bdae-bc9e55dd4973
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=ln3A/6PRKsWy+6nKYmYP40xArM9BtJ/sfGZmdup1d+g=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:36 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - fbc64feb-65b5-44ea-bdae-bc9e55dd4973
+      - 9ca88e4c-6669-43f1-a726-92b96d873408
       x-mws-timestamp:
-      - '2014-08-12T11:36:26.661Z'
+      - '2015-03-28T18:36:36.845Z'
+      x-mws-response-context:
+      - VX4/H+39MBmYa23AXBinA+XynQqAbrjq3rG07IxP1fhLIUoTxAx0ih+Xp90ExRNMFdQxLRE6GPU=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '4936'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>7yQLp4uGURRmmFQFVAtP1aJ17H3LduXOl9cxtGNDuZQI1APqmQga9HGsHLYYIfzBLngua36+cIc/YaGH5v88apcawiXYR0vJ6x7c494Bke+ZNtlKe6ZBG2JWBXVS2bYUc9hvfZ8ustZniiniRJOX3AafEPREmauvI7dMWYbEZPToW0ODzFHMpjtBjWf1xBDLFykeVu6UpIS95xGqOJcM6Q9YJj+rFmSSe3/MNqMV8mJPo24ATchuIYs8kcrNzmGlKxuwr7+8HpzsTdSa9RBH2PtiJMY9EY3Wp8xkPlvvEBKuAFIWAFQ2Hd2HmCcXKDErwbldMUCY8gI2tZhRDiwsT7A7oEyJQVRMh6EwVutLPvSY+wMHjI8sqaClhZVPs2yTup9NOA/SFxHzKMZ+qoY+ceHCQ6w/nnd6nECpzK17d3G0mJ+9eZ9TZKef88WvIr3GsQSVRz9vW6h/uT3z7JTDqumWdAkuKWqHvVy7+GCJQmVC4pgoNZu7OJeywu83CUs6</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>1102989203</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T11:30:24+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T11:31:02+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102979889</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T11:20:21+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T11:20:24+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102954251</FeedSubmissionId><FeedType>_POST_PAYMENT_ADJUSTMENT_DATA_</FeedType><SubmittedDate>2014-08-12T11:00:35+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T11:00:37+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T11:01:17+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102942033</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:50:40+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:50:56+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T11:27:23+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102920217</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:30:22+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:30:36+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T11:10:52+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102908455</FeedSubmissionId><FeedType>_POST_PAYMENT_ADJUSTMENT_DATA_</FeedType><SubmittedDate>2014-08-12T10:18:21+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:18:25+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:19:17+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102886681</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:00:39+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:01:27+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:45:43+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102875025</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:50:23+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:50:35+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:28:10+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102854119</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:31:05+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:31:15+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:58:32+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>1102829623</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:10:41+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:10:54+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:43:32+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>fbc64feb-65b5-44ea-bdae-bc9e55dd4973</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionListResult>
+            <HasNext>true</HasNext>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84754016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:35:37+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:35:43+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84753016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:30:39+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:30:50+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84752016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:20:25+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:20:30+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84751016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:10:21+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:10:30+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84750016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:34:18+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:05:29+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:05:49+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84748016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:29:48+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:00:38+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:00:49+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84747016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:18:44+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:50:27+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:50:29+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84746016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:08:30+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:45:33+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:45:49+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84745016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T17:57:23+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:40:34+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:40:48+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>84744016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T17:57:01+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:35:37+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:35:48+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <NextToken>mmBQFKOpWur2jpZedg0wbVuY6vtoszFE8fUTaZuS5OhZc8kvgHfVkuZ4ieeWUxToofL4Nf3l8PpxrBy2GCH8wUHJA2NyKreiLQfWjPUYzxunPmYqtZLB1+AaB4CEKS6nhg9AUKXlEef4rmpQYU5jn1HaFivy+4anPMG4jNqghnnjqr69Gld8Ma/8MKFZNzPPpyEvTTIbWgn5CxRAxRv5sSfDhecfk9+oI7DC7b2BOEYlIyQN8z5HO0KHfIApKuB8M+vCRDe75ah7ou7LHj7Xl7BCroC2CLVGSaBDgJjw6AwFmwVjteMF3pzSmYHdHzU9lduOC20wkDXLEi6/OySrV3/lFdRhGnetMUKaAxSsvLOEagzrXqCV94AnaaMkJ5OkUlKyUbphOXA=</NextToken>
+          </GetFeedSubmissionListResult>
+          <ResponseMetadata>
+            <RequestId>9ca88e4c-6669-43f1-a726-92b96d873408</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:26 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:36 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A26Z&Signature=wmFKZfrnb7GR%2F6Nhd5Rfua3JT%2FKjDipz3jUPZblISGM%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A36Z&Version=2009-01-01&Signature=6l1%2FfyX0ozG7QOUCqa9O9ix7oePVVSonxLRunAs0KT0%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:26 GMT
+      - Sat, 28 Mar 2015 18:36:37 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
@@ -158,202 +422,341 @@ http_interactions:
       x-mws-quota-remaining:
       - '80.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - 0hhxCIFY1LZcIMTdD93RksMrYeg9w6MBWv6oxGpMVBc1/weUIXPoVOeRWKsz73VDqboYZUO3HpDE
-        +lc2WMK3XbognSrbErpG, K2qWXAZDKn8QgbAA4gaRsVK+x7kLYgwILLVXuEJZdWgXmQU4akGKLWMSXnRySpHGJFmu3/FuTBM=
-      x-amz-request-id:
-      - 8dc650f2-8102-4467-b93c-0229ad1b17a7
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=s4W+yWuu3a9agAsAMPyKHnvcCE9R3oV4w9cJBZfZLq8=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:37 GMT
+      Vary:
+      - Accept-Encoding,User-Agent
       x-mws-request-id:
-      - 8dc650f2-8102-4467-b93c-0229ad1b17a7
+      - 3f1f3715-b16c-41af-a8bb-40df299aacbf
       x-mws-timestamp:
-      - '2014-08-12T11:36:27.202Z'
+      - '2015-03-28T18:36:37.374Z'
+      x-mws-response-context:
+      - A3P81TXEX7pUhjuVWjVIpFqmTDvtH7r1akqhMPNNWLfXwZnTBMZpMQrX0QYgIVUxj29zmYg8pI4=
       Content-Type:
       - text/xml
-      Vary:
-      - User-Agent
+      Content-Length:
+      - '5177'
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionListResult><NextToken>Eb48CidVVVxmmFQFVAtP1ZN3bpL1f1eNKvvwpeuneA5ggCN9uir5X3GsHLYYIfzBZ6/hgcsBuWkqoSasWf/ngVLsHYO+X0q+CmIXduGcTB1/jYT1/ejYV05aROKi3+XgPfwH49B+xyg6U8pTg0alM/OFsSl6sjyecZc9scyruaxM2mXgi7TjEbd+Pzk7D6uzv9l1CwV4aNevbiDpiGfEP7YXSSVT+OAsQZF0wPQTwKn7x5WQCovb7vI6dRVwIcAehWU3Hu2Q2K6ncgN92aBFCA9/vWyECJlUrqWue7Pzf5Ag2WpEXojVnXE5VqOevn+iZXNcVBnONv5U6aGSAo2vyatnIFWeXuqun2Fs30Jjfmrd/PUfV5uv2so2606teBIRKBZYl8BjTV7VHt1c7JsmOjGR97yGzyzb6UzyxsgaL73cT+qXdROdmKwHJlUSK3ZihC1nOqIVx5OoOLOQgd9MIxd/JbxAcpMb6yKskavE3voS6kE0yQdwoWKK2gOWcIBdfrrDeRBZ0q4=</NextToken><HasNext>true</HasNext><FeedSubmissionInfo><FeedSubmissionId>10790306256</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T11:10:18+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T11:10:31+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789963132</FeedSubmissionId><FeedType>_POST_ORDER_ACKNOWLEDGEMENT_DATA_</FeedType><SubmittedDate>2014-08-12T10:19:47+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:19:50+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T10:20:42+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789819024</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T10:00:18+00:00</SubmittedDate><FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T10:00:29+00:00</StartedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10789396956</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T09:00:19+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T09:00:25+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T11:00:43+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788987732</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T08:00:20+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T08:00:42+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T09:52:29+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788555130</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T07:00:21+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T07:00:38+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T08:52:45+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10788217144</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T06:10:17+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T06:11:38+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T07:58:21+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10787928196</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T05:30:17+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T05:30:28+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T06:52:11+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10787589474</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T04:40:13+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T04:40:27+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T06:07:01+00:00</CompletedProcessingDate></FeedSubmissionInfo><FeedSubmissionInfo><FeedSubmissionId>10787383228</FeedSubmissionId><FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType><SubmittedDate>2014-08-12T04:10:15+00:00</SubmittedDate><FeedProcessingStatus>_DONE_</FeedProcessingStatus><StartedProcessingDate>2014-08-12T04:10:24+00:00</StartedProcessingDate><CompletedProcessingDate>2014-08-12T05:26:18+00:00</CompletedProcessingDate></FeedSubmissionInfo></GetFeedSubmissionListResult><ResponseMetadata><RequestId>8dc650f2-8102-4467-b93c-0229ad1b17a7</RequestId></ResponseMetadata></GetFeedSubmissionListResponse>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionListResult>
+            <HasNext>true</HasNext>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55972016522</FeedSubmissionId>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_IN_PROGRESS_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T18:30:39+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T18:30:59+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55970016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T18:27:47+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T17:35:36+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T17:35:57+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55969016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T17:32:51+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T16:45:36+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T16:45:52+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55968016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T16:01:43+00:00</CompletedProcessingDate>
+              <FeedType>_POST_ORDER_ACKNOWLEDGEMENT_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T16:00:52+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T16:01:09+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55967016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T16:42:14+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T16:00:30+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T16:00:50+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55966016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T16:01:05+00:00</CompletedProcessingDate>
+              <FeedType>_POST_PAYMENT_ADJUSTMENT_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T16:00:24+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T16:00:29+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55965016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T15:59:22+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T15:05:30+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T15:05:48+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55964016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T15:01:40+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T14:10:24+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T14:10:37+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55963016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T14:06:26+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T13:20:23+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T13:20:35+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedSubmissionId>55962016522</FeedSubmissionId>
+              <CompletedProcessingDate>2015-03-28T13:18:00+00:00</CompletedProcessingDate>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <SubmittedDate>2015-03-28T12:30:34+00:00</SubmittedDate>
+              <StartedProcessingDate>2015-03-28T12:30:52+00:00</StartedProcessingDate>
+            </FeedSubmissionInfo>
+            <NextToken>si8xptwolZD2jpZedg0wbVuY6vtoszFE6qIwpeu/QURKlG7Ok9Ay+Jwz73Lk5r87ICyhlLgHd4hT171PgPvOgKPLzVt2iXlo+Z+Tt6YoA/2eslKv9/sZ55piwb7pN72lYmJfcwVoaesjkYkyqPv9RnIuVk+aV8KwrIo9RYzq+plaYoYGDb2Hqp3kYWgPgvHe17WmyEmFIK0Lz1LQSfaFtQEeVEcpsrg7G4x9QGvKonh/0j4foEcBem3QEHQweJIbiFQRA3FnqmMkAKBtJsjtXGJwaGZl6dqftQxph0eLP/YnnNJLqV7WItwPh8c7n/CpBqwETRBwDMDo8gumXAi8OEvFUmQ2vyjp4wQOhdGwL08URVVnqOhNjSXMgSB8nxnHnqvZ0aNUJbvPZjTnVM/HGQ==</NextToken>
+          </GetFeedSubmissionListResult>
+          <ResponseMetadata>
+            <RequestId>3f1f3715-b16c-41af-a8bb-40df299aacbf</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionListResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:27 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:37 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A27Z&Signature=c6egoPHGCmZ3v3MeDiCGs2S9LooyTjcxdHv1erB6tBs%3D
+    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A37Z&Version=2009-01-01&Signature=jGbPw%2Byx5QjZJ9gt9PU139WRsKCKVC8U5gucZ6a3ahY%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:28 GMT
+      - Sat, 28 Mar 2015 18:36:37 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '55.0'
+      - '61.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:03:00.000Z'
-      x-mws-response-context:
-      - 5+ZO2YeE24dkDJinIf2qHazaSH4T+6BRUAzJ0X7PbI4xeTqA+xyQpszWkLe5Ecae8m0ghtAz5+KT
-        P+sM/YudLm5WxPvboDjR, N9V88MjlNLzMLoLGl2CumBrBrxayZ9zTxGOWPGF1FQEf39mKOmVFT5QVCSMDOOvYZE6poIuw5pQ=
-      x-amz-request-id:
-      - 9ddb19a9-edba-4903-887a-83ff5404e4a3
+      - '2015-03-28T19:03:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=3KtspVaYnPkX7YcMAB2nEnZdaBL+CTs7DQRzvA1ix80=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:37 GMT
       x-mws-request-id:
-      - 9ddb19a9-edba-4903-887a-83ff5404e4a3
+      - 2734ed97-6f31-47cb-89d6-11e05e1e9751
       x-mws-timestamp:
-      - '2014-08-12T11:36:27.757Z'
+      - '2015-03-28T18:36:37.903Z'
+      x-mws-response-context:
+      - M7qRFFF54KMmY6PY8l1934rcTKYCMt4kU3PjRbBPCA71jmynQ8iltkP1qK7Kc40SzdM9Otluz6Y=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '337'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionCountResult><Count>3460</Count></GetFeedSubmissionCountResult><ResponseMetadata><RequestId>9ddb19a9-edba-4903-887a-83ff5404e4a3</RequestId></ResponseMetadata></GetFeedSubmissionCountResponse>
+        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionCountResult>
+            <Count>12430</Count>
+          </GetFeedSubmissionCountResult>
+          <ResponseMetadata>
+            <RequestId>2734ed97-6f31-47cb-89d6-11e05e1e9751</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:28 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:38 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A28Z&Signature=ji%2FHoA3FAkQomo0g%2FYbVkHDpqr1syAKFZ%2FfIQ%2FZa43Y%3D
+    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A38Z&Version=2009-01-01&Signature=Q3%2B8AwCCLDVnLpORf0PT11kGCFVZeQHyQtZYFcVX43c%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:30 GMT
+      - Sat, 28 Mar 2015 18:36:37 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '66.0'
+      - '72.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:19:00.000Z'
-      x-mws-response-context:
-      - QpCeFBbpz2jJq4iQGwe4uGnmChpHIQQjr3GB+OxopP6OuZOIV5Av2IwHoegsQ3qsdsBhyQ9P1yBc
-        VXAoD+ts7N6qHShg+SLa, UEDLsErz4hWB14xp0NY56qVmQRM1xE9Scw5dIdtyZ1k3nE8tu5jA5i86C2wZlyYtsmpk+6jCuYV0
-        2bXqNxKJVQ==
-      x-amz-request-id:
-      - 4d415c03-d2b8-4d73-a026-8a4bcba5ac7e
+      - '2015-03-28T19:19:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=4TzlDqDmSaUZrhOp39EmfaZ0u16l3k8FT0R2+2/jsOQ=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:38 GMT
       x-mws-request-id:
-      - 4d415c03-d2b8-4d73-a026-8a4bcba5ac7e
+      - 995a61c4-30e5-4984-b349-179bcae8a2ab
       x-mws-timestamp:
-      - '2014-08-12T11:36:29.098Z'
+      - '2015-03-28T18:36:38.213Z'
+      x-mws-response-context:
+      - mddgIVXfH8b+kAQfyfWkmPWBxE/KiMBsEyLoVsly+9lwrcS+xnvL5BMeTMsTifN1WUD9f3x7Oqk=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '337'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionCountResult><Count>2846</Count></GetFeedSubmissionCountResult><ResponseMetadata><RequestId>4d415c03-d2b8-4d73-a026-8a4bcba5ac7e</RequestId></ResponseMetadata></GetFeedSubmissionCountResponse>
+        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionCountResult>
+            <Count>12792</Count>
+          </GetFeedSubmissionCountResult>
+          <ResponseMetadata>
+            <RequestId>995a61c4-30e5-4984-b349-179bcae8a2ab</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:30 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:38 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A30Z&Signature=mpHTXhHGImuvLKTxHl68gzHieIa%2BOJoSZBsmi69RtMo%3D
+    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A38Z&Version=2009-01-01&Signature=265OKsceS8T5D1mAHOqpwYrnfVaIKp6I4OlhDD85iEc%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:49 GMT
+      - Sat, 28 Mar 2015 18:36:38 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '46.0'
+      - '53.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T11:47:00.000Z'
-      x-mws-response-context:
-      - 9aDAzT6CGPZk5DhpZDYqcS3iieE34qwl8NtIHl6jR04yK1qoMqHzsxcJgeJgziwyvHv1TrQEvGzZ
-        Hx0HRCjvcNgnnNw4t5G1, anz6r3wXMrSRhSOHr3FsulGhBNt7xbzs7QJsEvSUrDxRhb8efDctmM8vOM4+RjXqtWOfcCHZwVs=
-      x-amz-request-id:
-      - b0c77594-0549-4734-ae71-0f5ba137912b
+      - '2015-03-28T18:47:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=RrUWEWAERA9R5WTGaSvHtLG4p+w2aain+UzPfSSm1G8=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:38 GMT
       x-mws-request-id:
-      - b0c77594-0549-4734-ae71-0f5ba137912b
+      - ce9d8e17-9cbf-4967-aa27-8809205b8716
       x-mws-timestamp:
-      - '2014-08-12T11:36:30.805Z'
+      - '2015-03-28T18:36:38.914Z'
+      x-mws-response-context:
+      - "/AIsCk+2VDW10tz94tXV5yPrMH5qH7FJF/z5eVbDeJb6jVXJBus/JnwOiXOGl+XJS3EoSvlhYEU="
       Content-Type:
       - text/xml
+      Content-Length:
+      - '337'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionCountResult><Count>4877</Count></GetFeedSubmissionCountResult><ResponseMetadata><RequestId>b0c77594-0549-4734-ae71-0f5ba137912b</RequestId></ResponseMetadata></GetFeedSubmissionCountResponse>
+        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionCountResult>
+            <Count>17507</Count>
+          </GetFeedSubmissionCountResult>
+          <ResponseMetadata>
+            <RequestId>ce9d8e17-9cbf-4967-aa27-8809205b8716</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:49 GMT
+  recorded_at: Sat, 28 Mar 2015 18:36:39 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A36%3A49Z&Signature=MThH2Nl9sctqLRH%2FBtZBXWK%2BtECHTKhGz3Sg2rCWh7k%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A36%3A39Z&Version=2009-01-01&Signature=WNONv1dp7lrhGc2UJurYk6zj%2BDy4U%2F4xgoxHEQ4VGB4%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:36:50 GMT
+      - Sat, 28 Mar 2015 18:36:38 GMT
       Server:
       - AmazonMWS
       x-mws-quota-max:
       - '80.0'
       x-mws-quota-remaining:
-      - '66.0'
+      - '70.0'
       x-mws-quota-resetsOn:
-      - '2014-08-12T12:20:00.000Z'
-      x-mws-response-context:
-      - ZK2dFfzW10BjumsOfh8njPTcyYqoD2nQNFXon+GDcHWP4tLaCLcCoTJZf/1vU9xNcFx5/hBJ7A3q
-        /2vo5W1nQ3RWQJ9idgB+, mG77u66oTxDvsTt0EZXClEG9cmBP8Ltxt0GbGtB5p4wpC02Y9PgXFn4++Gm4I4s1uidZQB19AaU=
-      x-amz-request-id:
-      - 5f119428-9c3b-44e1-b4ea-a38ac95a8308
+      - '2015-03-28T19:20:00.000Z'
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Encrypted=false, SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true,
+        Signature=r7908cg9bqxMJFj+R/wDK4P6wDes6y8GkeVFx3bzMgA=
+      X-Amz-Date:
+      - Sat, 28 Mar 2015 18:36:39 GMT
       x-mws-request-id:
-      - 5f119428-9c3b-44e1-b4ea-a38ac95a8308
+      - 64fd00d5-1f3b-41a4-ae06-d2c2e8dd3410
       x-mws-timestamp:
-      - '2014-08-12T11:36:50.404Z'
+      - '2015-03-28T18:36:39.424Z'
+      x-mws-response-context:
+      - aEUJHCQme1defelPxbOkur7GCPOQjrmxeAN5aYtMRV/xiOEzNyyMnkklIX0yDokb9IppG8uLI84=
       Content-Type:
       - text/xml
+      Content-Length:
+      - '336'
       Vary:
       - User-Agent
     body:
       encoding: UTF-8
-      string: |-
+      string: |
         <?xml version="1.0"?>
-        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><GetFeedSubmissionCountResult><Count>2978</Count></GetFeedSubmissionCountResult><ResponseMetadata><RequestId>5f119428-9c3b-44e1-b4ea-a38ac95a8308</RequestId></ResponseMetadata></GetFeedSubmissionCountResponse>
+        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionCountResult>
+            <Count>3000</Count>
+          </GetFeedSubmissionCountResult>
+          <ResponseMetadata>
+            <RequestId>64fd00d5-1f3b-41a4-ae06-d2c2e8dd3410</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionCountResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:36:51 GMT
-recorded_with: VCR 2.9.2
+  recorded_at: Sat, 28 Mar 2015 18:36:39 GMT
+recorded_with: VCR 2.9.3

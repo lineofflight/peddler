@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'helper'
 require 'peddler/structured_list'
 
 class TestPeddlerStructuredList < MiniTest::Test

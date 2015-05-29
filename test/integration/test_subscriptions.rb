@@ -1,4 +1,4 @@
-require 'integration_test_helper'
+require 'helper'
 require 'mws/subscriptions'
 
 class TestSubscriptions < IntegrationTest
@@ -8,7 +8,6 @@ class TestSubscriptions < IntegrationTest
       refute_empty res.parse
     end
   end
-
 
   def test_lists_subscriptions
     clients.each do |client|

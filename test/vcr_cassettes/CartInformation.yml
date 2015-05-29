@@ -2,28 +2,28 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A51Z&Signature=J2Czuu60qwZtk0zc7b8TlHG1CixafTerP1NlaEb69UE%3D
+    uri: https://mws.amazonservices.ca/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A10%3A17Z&Version=2014-03-01&Signature=Ld91dAS8OXCk9NNcjb9d4AyEerTSfVMGDAdp7EHmCWU%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:35:51 GMT
+      - Sat, 28 Mar 2015 18:10:17 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - 93f47cf0-208b-4937-ba33-fdd6092fc15b
+      - 2b0de813-3f60-4491-bb6e-d0cf3357bfe4
       x-mws-timestamp:
-      - '2014-08-12T11:35:52.078Z'
+      - '2015-03-28T18:10:18.164Z'
       x-mws-response-context:
-      - UE1v4fCyqJA6JZ/ooT0RnJ4FCy7tt7cNzI6wu+LqZjFdU7QrctCp/eKpn7W2cH1hjKB5t7zDro0=
+      - Sgo7Qu5KPylVVwRH0loOhcAbqyPXY6cN43HTQxjoxNqowhI23+bF1yTDq0vJYpA2TVU6c+7302Q=
       Content-Type:
       - text/xml
       Content-Length:
@@ -37,39 +37,38 @@ http_interactions:
         <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/CartInformation/2014-03-01">
           <GetServiceStatusResult>
             <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:35:52.078Z</Timestamp>
+            <Timestamp>2015-03-28T18:10:18.164Z</Timestamp>
           </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>93f47cf0-208b-4937-ba33-fdd6092fc15b</RequestId>
+            <RequestId>2b0de813-3f60-4491-bb6e-d0cf3357bfe4</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:35:52 GMT
+  recorded_at: Sat, 28 Mar 2015 18:10:18 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A52Z&Signature=%2BiJhSUzNGUlRhq9tuSaI%2F9H9UeXve3jX2YjCbq9SrXM%3D
+    uri: https://mws-eu.amazonservices.com/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A10%3A18Z&Version=2014-03-01&Signature=d4vyZzrPNWdYbhXs5L01DT%2FoERrRfTDWHwyAlSpZb0I%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:35:51 GMT
+      - Sat, 28 Mar 2015 18:10:18 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - a79a0c5f-263c-4d75-b490-ce30d8d03de6
+      - 9e731e3c-39f8-48b0-a373-5b959922cb09
       x-mws-timestamp:
-      - '2014-08-12T11:35:52.301Z'
+      - '2015-03-28T18:10:18.789Z'
       x-mws-response-context:
-      - 5I3NaaenKz3LNJ3cQC+OmA+V2zysBpVNgsZUNkteSbdannoXDi+3yewrZ+nY1gDoFBj5HLYgc2Rd
-        lND+b01YYg==
+      - gf59f8nbRksTQCY+caSLf/SG/f3UptxVDpyWXuBIUAZDgB3z/xHjAL5/8d9R2sG0RuHwp+cmNaM=
       Content-Type:
       - text/xml
       Content-Length:
@@ -83,38 +82,38 @@ http_interactions:
         <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/CartInformation/2014-03-01">
           <GetServiceStatusResult>
             <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:35:52.301Z</Timestamp>
+            <Timestamp>2015-03-28T18:10:18.789Z</Timestamp>
           </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>a79a0c5f-263c-4d75-b490-ce30d8d03de6</RequestId>
+            <RequestId>9e731e3c-39f8-48b0-a373-5b959922cb09</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:35:52 GMT
+  recorded_at: Sat, 28 Mar 2015 18:10:18 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A52Z&Signature=5eM36IQEitBR8THzkQtGG%2BthAuvT9Ik8yK6K8ECp83Y%3D
+    uri: https://mws.amazonservices.jp/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A10%3A18Z&Version=2014-03-01&Signature=SAtKF%2FgZvRKDqsTqHPIsaSkE4xSeqa9jroOreysDc1I%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:35:52 GMT
+      - Sat, 28 Mar 2015 18:10:19 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - 3c50395b-e915-45d4-9c47-2da0d6f59f96
+      - f3fb4bf0-5591-4e61-a7d8-f6a94b253f76
       x-mws-timestamp:
-      - '2014-08-12T11:35:53.052Z'
+      - '2015-03-28T18:10:19.943Z'
       x-mws-response-context:
-      - NOdHHaufbZUl//df+Tg3Els/yDH7Qa7guv07Mf5HnKP9eD4FYaln+MLkL4ONJnpnYyNXR1CPXsc=
+      - o+6g5g3je0wF4ylzv9sE1H71774gad059qXnVpCCZTzi+9LNoRxVtz4r2IKlrDySwAC3X0/Xk3I=
       Content-Type:
       - text/xml
       Content-Length:
@@ -128,38 +127,38 @@ http_interactions:
         <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/CartInformation/2014-03-01">
           <GetServiceStatusResult>
             <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:35:53.052Z</Timestamp>
+            <Timestamp>2015-03-28T18:10:19.943Z</Timestamp>
           </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>3c50395b-e915-45d4-9c47-2da0d6f59f96</RequestId>
+            <RequestId>f3fb4bf0-5591-4e61-a7d8-f6a94b253f76</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:35:53 GMT
+  recorded_at: Sat, 28 Mar 2015 18:10:20 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2014-08-12T11%3A35%3A53Z&Signature=43WdQLm5RExiYH5ktdmWqDEPgiNXA8Dvra8cTVVsCIc%3D
+    uri: https://mws.amazonservices.com/CartInformation/2014-03-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A10%3A20Z&Version=2014-03-01&Signature=W7G0kqHOMU91l%2B731hPIwjZbuNfk%2FuUZh4yEKkcuZKE%3D
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Jeff/1.0.1 (Language=Ruby; hakans-mbp.home)
+      - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
   response:
     status:
       code: 200
       message: 
     headers:
       Date:
-      - Tue, 12 Aug 2014 11:35:52 GMT
+      - Sat, 28 Mar 2015 18:10:20 GMT
       Server:
       - AmazonMWS
       x-mws-request-id:
-      - bdf54905-64fc-427c-9f92-0697bac6c703
+      - 807199e2-f19d-4533-b665-99a61c0a5c71
       x-mws-timestamp:
-      - '2014-08-12T11:35:53.524Z'
+      - '2015-03-28T18:10:20.828Z'
       x-mws-response-context:
-      - N9V88MjlNLzMLoLGl2CumBrBrxayZ9zTxGOWPGF1FQEf39mKOmVFT5QVCSMDOOvYZE6poIuw5pQ=
+      - Lh6MgnORymISTEIkBSTw4s+TO0r0IE43+oryvY9L0GzS4U3kSocWQPx3CjnLV664sQXUxN8wblg=
       Content-Type:
       - text/xml
       Content-Length:
@@ -173,12 +172,12 @@ http_interactions:
         <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/CartInformation/2014-03-01">
           <GetServiceStatusResult>
             <Status>GREEN</Status>
-            <Timestamp>2014-08-12T11:35:53.524Z</Timestamp>
+            <Timestamp>2015-03-28T18:10:20.828Z</Timestamp>
           </GetServiceStatusResult>
           <ResponseMetadata>
-            <RequestId>bdf54905-64fc-427c-9f92-0697bac6c703</RequestId>
+            <RequestId>807199e2-f19d-4533-b665-99a61c0a5c71</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
     http_version: 
-  recorded_at: Tue, 12 Aug 2014 11:35:53 GMT
-recorded_with: VCR 2.9.2
+  recorded_at: Sat, 28 Mar 2015 18:10:20 GMT
+recorded_with: VCR 2.9.3

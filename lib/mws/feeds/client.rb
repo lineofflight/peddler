@@ -5,6 +5,8 @@ module MWS
     # The MWS Feeds API lets you upload inventory and order data to Amazon. You
     # can also use this API to get information about the processing of feeds.
     class Client < ::Peddler::Client
+      version '2009-01-01'
+
       # Uploads a feed
       #
       # @note Feed size is limited to 2,147,483,647 bytes (2^31 -1) per feed
@@ -20,7 +22,7 @@ module MWS
         self.body = feed_content
         operation('SubmitFeed')
           .add(opts.update('FeedType' => feed_type))
-          .structure!('MarketplaceId', 'Id')
+          .structure!('MarketplaceIdList', 'Id')
 
         run
       end

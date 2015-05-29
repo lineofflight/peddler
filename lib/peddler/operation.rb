@@ -10,17 +10,18 @@ module Peddler
     end
 
     def structure!(*list_keys)
-      list_key = list_keys.first
-
-      if key?(list_key)
-        builder = StructuredList.new(*list_keys)
-        vals = delete(list_key)
+      list_key = list_keys.shift
+      found_key = keys.find { |key| key.end_with?(list_key) }
+      if found_key
+        builder = StructuredList.new(found_key, *list_keys)
+        vals = delete(found_key)
         update(builder.build(vals))
       end
 
       self
     end
 
+    # rubocop:disable AbcSize, MethodLength, PerceivedComplexity
     def store(key, val)
       key = camelize(key) if key.is_a?(Symbol)
 
@@ -50,7 +51,11 @@ module Peddler
     private
 
     def camelize(sym)
-      sym.to_s.split('_').map(&:capitalize).join
+      sym
+        .to_s
+        .split('_')
+        .map { |token| token == "sku" ? "SKU" : token.capitalize }
+        .join
     end
   end
 end

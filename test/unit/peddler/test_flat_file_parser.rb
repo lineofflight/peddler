@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'helper'
 require 'peddler/flat_file_parser'
 
 class TestPeddlerFlatFileParser < MiniTest::Test
