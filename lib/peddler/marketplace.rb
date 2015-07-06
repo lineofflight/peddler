@@ -11,6 +11,7 @@ module Peddler
       'A21TJRUUN4KGV'  => 'mws.amazonservices.in',
       'APJ6JRA9NG5V4'  => 'mws-eu.amazonservices.com',
       'A1VC38T7YXB528' => 'mws.amazonservices.jp',
+      'A1AM78C64UM0Y8' => 'mws.amazonservices.com.mx',
       'ATVPDKIKX0DER'  => 'mws.amazonservices.com'
     }
 
