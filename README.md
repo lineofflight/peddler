@@ -39,6 +39,7 @@ client = MWS::Orders::Client.new(
   aws_access_key_id: "baz",
   aws_secret_access_key: "qux"
 )
+```
 
 Alternatively, you can set these globally in the shell.
 
