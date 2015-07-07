@@ -19,5 +19,8 @@ LineLength:
 MethodLength:
   Exclude:
     - 'test/**/*'
+NestedMethodDefinition:
+  Exclude:
+    - 'test/**/*'
 StringLiterals:
   Enabled: false
