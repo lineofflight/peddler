@@ -4,12 +4,8 @@ require 'multi_xml'
 module Peddler
   # @api private
   class XMLParser < SimpleDelegator
-    def next_token
-      parse.fetch('NextToken', false)
-    end
-
     def parse
-      @result ||= find_result
+      @data ||= find_data
     end
 
     def xml
@@ -17,14 +13,14 @@ module Peddler
     end
 
     def valid?
-      headers['Content-Length'].to_i == body.size if headers['Content-Length']
+      return unless headers['Content-Length']
+      headers['Content-Length'].to_i == body.size
     end
 
     private
 
-    def find_result
-      results = xml.values[0].find { |k, _| k.include?('Result') }
-      results ? results.last : nil
+    def find_data
+      fail NotImplementedError
     end
   end
 end

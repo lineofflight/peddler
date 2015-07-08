@@ -69,9 +69,11 @@ module Peddler
 
       def inherited(base)
         base.params(params)
-        base.on_error(&@error_handler) if @error_handler
+        base.on_error(&@error_handler)
       end
     end
+
+    @error_handler = -> (e) { fail e }
 
     # Creates a new client instance
     #
@@ -166,13 +168,13 @@ module Peddler
 
     # @api private
     def run
-      opts = build_opts
+      opts = build_options
       opts.store(:response_block, Proc.new) if block_given?
       res = post(opts)
 
       parser.new(res, encoding)
     rescue Excon::Errors::Error => e
-      handle_error(e) or raise
+      handle_error(e)
     end
 
     private
@@ -197,16 +199,31 @@ module Peddler
       self.class.parser
     end
 
-    def build_opts
+    def build_options
       opts = defaults.merge(query: operation, headers: headers)
-      opts.store(:body, body) if body
-
-      opts
+      body ? opts.update(body: body) : opts
     end
 
     def handle_error(e)
-      return false unless error_handler
-      error_handler.call(e.request, e.response)
+      e = decorate_error(e)
+      error_handler.call(*deprecate_error_handler_arguments(e))
+    end
+
+    def decorate_error(e)
+      if e.is_a?(::Excon::Errors::HTTPStatusError)
+        e.instance_variable_set(:@response, ErrorParser.new(e.response))
+      end
+
+      e
+    end
+
+    def deprecate_error_handler_arguments(e)
+      if error_handler.parameters.size == 2
+        warn "[DEPRECATION] Error handler now expects exception as argument."
+        [e.request, e.response]
+      else
+        [e]
+      end
     end
   end
 end

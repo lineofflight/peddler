@@ -143,14 +143,12 @@ class TestPeddlerClient < MiniTest::Test
       @client.run
     end
 
-    @klass.on_error do |_, res|
-      assert_equal 503, res.status
+    @klass.on_error do |e|
+      assert_equal 503, e.response.status
     end
-
-    @client.run
+    @client.run # no longer raises
 
     Excon.stubs.clear
-    @klass.instance_variable_set(:@error_handler, nil)
   end
 
   def test_error_callback_on_instance
@@ -160,10 +158,9 @@ class TestPeddlerClient < MiniTest::Test
       @client.run
     end
 
-    @client.on_error do |_, res|
-      assert_equal 503, res.status
+    @client.on_error do |e|
+      assert_equal 503, e.response.status
     end
-
     @client.run
 
     Excon.stubs.clear
@@ -172,26 +169,54 @@ class TestPeddlerClient < MiniTest::Test
   def test_error_callback_on_client_ancestor
     Excon.stub({}, status: 503)
 
-    assert_raises(Excon::Errors::ServiceUnavailable) do
-      @client.run
+    @klass.on_error do |e|
+      assert_equal 503, e.response.status
     end
-
-    Peddler::Client.on_error do |_, res|
-      assert_equal 503, res.status
-    end
+    @client.run # no longer raises
 
     klass = Class.new(Peddler::Client)
     klass.parser = Parser
-    client = klass.new
-    client.aws_access_key_id = 'key'
-    client.aws_secret_access_key = 'secret'
-    client.merchant_id = 'seller'
-    client.primary_marketplace_id = 'ATVPDKIKX0DER' # US
-    client.operation('Foo')
-    client.run
+    other_client = klass.new
+    other_client.aws_access_key_id = 'key'
+    other_client.aws_secret_access_key = 'secret'
+    other_client.merchant_id = 'seller'
+    other_client.primary_marketplace_id = 'ATVPDKIKX0DER' # US
+    other_client.operation('Foo')
+    assert_raises(Excon::Errors::ServiceUnavailable) do
+      other_client.run
+    end
 
     Excon.stubs.clear
-    Peddler::Client.instance_variable_set(:@error_handler, nil)
+  end
+
+  def test_decorates_error_response
+    res = {
+      body: '<ErrorResponse><Error>Foo</Error></ErrorResponse>',
+      status: 503
+    }
+    Excon.stub({}, res)
+    e = nil
+
+    begin
+      @client.run
+    rescue => e
+      assert e.response.parse
+    end
+
+    assert e
+  end
+
+  def test_deprecated_error_callback
+    Excon.stub({}, status: 503)
+
+    @client.on_error do |_, res|
+      assert_equal 503, res.status
+    end
+    assert_output nil, /DEPRECATION/ do
+      @client.run
+    end
+
+    Excon.stubs.clear
   end
 
   def test_deprecated_marketplace_id_accessor
