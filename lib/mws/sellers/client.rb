@@ -37,16 +37,6 @@ module MWS
         operation('GetServiceStatus')
         run
       end
-
-      # Gets the MWS Auth Token of the seller account
-      #
-      # @see http://docs.developer.amazonservices.com/en_US/auth_token/AuthToken_GetAuthToken.html
-      # @todo Remove this method after June 30, 2015 as it will no longer be available.
-      # @return [Peddler::XMLParser]
-      def get_auth_token
-        operation('GetAuthToken')
-        run
-      end
     end
   end
 end

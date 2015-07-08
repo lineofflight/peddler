@@ -42,16 +42,4 @@ class TestMWSSellersClient < MiniTest::Test
 
     assert_equal operation, @client.operation
   end
-
-  def test_gets_auth_token
-    operation = {
-      'Action' => 'GetAuthToken'
-    }
-
-    @client.stub(:run, nil) do
-      @client.get_auth_token
-    end
-
-    assert_equal operation, @client.operation
-  end
 end
