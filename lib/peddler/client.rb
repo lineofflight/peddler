@@ -97,12 +97,12 @@ module Peddler
       @primary_marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
     end
 
-    # @deprecated Use {#primary_marketplace_id} instead.
+    # @deprecated Use {#primary_marketplace_id}.
     def marketplace_id
       @primary_marketplace_id
     end
 
-    # @deprecated Use {#primary_marketplace_id=} instead.
+    # @deprecated Use {#primary_marketplace_id=}.
     def marketplace_id=(marketplace_id)
       @primary_marketplace_id = marketplace_id
     end
@@ -165,24 +165,14 @@ module Peddler
     end
 
     # @api private
-    # rubocop:disable AbcSize, MethodLength
     def run
-      opts = defaults.merge(query: operation, headers: headers)
-      opts.store(:body, body) if body
+      opts = build_opts
       opts.store(:response_block, Proc.new) if block_given?
       res = post(opts)
 
       parser.new(res, encoding)
     rescue Excon::Errors::Error => e
       handle_error(e) or raise
-    rescue NoMethodError => e
-      if e.message == "undefined method `new' for #{parser}"
-        warn "[DEPRECATION] `Parser.parse` is deprecated. "\
-             "Please use `Parser.new` instead."
-        parser.parse(res, encoding)
-      else
-        raise
-      end
     end
 
     private
@@ -205,6 +195,13 @@ module Peddler
 
     def parser
       self.class.parser
+    end
+
+    def build_opts
+      opts = defaults.merge(query: operation, headers: headers)
+      opts.store(:body, body) if body
+
+      opts
     end
 
     def handle_error(e)
