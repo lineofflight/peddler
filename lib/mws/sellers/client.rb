@@ -31,7 +31,7 @@ module MWS
 
       # Gets the service status of the API
       #
-      # @see http://docs.developer.amazonservices.com/en_US/sellers/MWS_GetServiceStatus.html
+      # @see http://docs.developer.amazonservices.com/en_US/sellers/Sellers_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')
