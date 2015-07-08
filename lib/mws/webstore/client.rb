@@ -20,7 +20,7 @@ module MWS
       # including the items that are subscribed to
       #
       # @see http://docs.developer.amazonservices.com/en_US/webstore/Webstore_ListSubscriptionsCount.html
-      # @overload list_subscriptions_count(subscription_state, opts = { marketplace_id: marketplace_id })
+      # @overload list_subscriptions_count(subscription_state, opts = { marketplace_id: primary_marketplace_id })
       #   @param subscription_state [String]
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id

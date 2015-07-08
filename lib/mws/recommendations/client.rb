@@ -28,7 +28,7 @@ module MWS
       # categories for a specific marketplace
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendations.html
-      # @overload list_recommendations(opts = { marketplace_id: marketplace_id })
+      # @overload list_recommendations(opts = { marketplace_id: primary_marketplace_id })
       #   @param opts [Hash]
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :recommendation_category
