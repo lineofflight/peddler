@@ -194,33 +194,6 @@ class TestPeddlerClient < MiniTest::Test
     Peddler::Client.instance_variable_set(:@error_handler, nil)
   end
 
-  def test_deprecates_call_to_parser_parse
-    deprecated_parser = Module.new do
-      def self.parse(res, *)
-        res
-      end
-    end
-    @client.stub :warn, nil do
-      @klass.parser = deprecated_parser
-      res = @client.run
-      assert_equal @body, res.body
-    end
-  end
-
-  def test_raises_no_method_errors_not_related_to_deprecated_parser
-    bad_parser = Module.new do
-      def self.new(*)
-        fail NoMethodError, "foo"
-      end
-    end
-    @klass.parser = bad_parser
-    @client.stub :warn, nil do
-      assert_raises NoMethodError do
-        @client.run
-      end
-    end
-  end
-
   def test_deprecated_marketplace_id_accessor
     refute_nil @client.marketplace_id
     @client.marketplace_id = "123"
