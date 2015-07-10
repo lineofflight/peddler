@@ -1,3 +1,4 @@
+require 'peddler/error_parser'
 require 'peddler/flat_file_parser'
 require 'peddler/xml_response_parser'
 
