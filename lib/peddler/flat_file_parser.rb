@@ -16,8 +16,8 @@ module Peddler
       extract_content
     end
 
-    def parse
-      CSV.parse(scrub_content, OPTIONS) if content
+    def parse(&blk)
+      CSV.parse(scrub_content, OPTIONS, &blk) if content
     end
 
     def records_count

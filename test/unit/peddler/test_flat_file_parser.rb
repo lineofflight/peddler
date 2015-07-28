@@ -15,6 +15,12 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     assert_kind_of CSV::Table, @parser.parse
   end
 
+  def test_parses_data_a_line_at_a_time
+    counter = 0
+    @parser.parse { counter += 1 }
+    assert counter > 0
+  end
+
   def test_summarises
     refute_empty @parser.records_count
   end
