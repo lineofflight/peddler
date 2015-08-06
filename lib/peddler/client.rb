@@ -73,7 +73,7 @@ module Peddler
       end
     end
 
-    @error_handler = -> (e) { fail e }
+    @error_handler = ->(e) { fail e }
 
     # Creates a new client instance
     #
