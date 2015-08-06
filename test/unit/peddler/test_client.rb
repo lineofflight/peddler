@@ -222,7 +222,7 @@ class TestPeddlerClient < MiniTest::Test
   def test_deprecated_marketplace_id_accessor
     refute_nil @client.marketplace_id
     @client.marketplace_id = "123"
-    assert_equal "123",  @client.marketplace_id
-    assert_equal @client.primary_marketplace_id,  @client.marketplace_id
+    assert_equal "123", @client.marketplace_id
+    assert_equal @client.primary_marketplace_id, @client.marketplace_id
   end
 end
