@@ -12,6 +12,8 @@ AndOr:
 ClassLength:
   Exclude:
     - 'test/**/*'
+DotPosition:
+  EnforcedStyle: leading
 Documentation:
   Enabled: false
 LineLength:
