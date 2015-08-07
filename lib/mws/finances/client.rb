@@ -13,11 +13,10 @@ module MWS
       # @param opts [Hash]
       # @option opts [Integer] :max_results_per_page
       # @option opts [Array<String>, String] :amazon_order_id
-      # @option opts [Array<String>, String] :financial_event_group_id      
+      # @option opts [Array<String>, String] :financial_event_group_id
       # @option opts [String, #iso8601] :posted_after
       # @option opts [String, #iso8601] :posted_before
       # @return [Peddler::XMLParser]
-      # rubocop:disable MethodLength
       def list_financial_events(opts = {})
         operation('ListFinancialEvents')
           .add(opts)
@@ -43,11 +42,10 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroups.html
       # @param opts [Hash]
-      # @option opts [Integer] :max_results_per_page    
+      # @option opts [Integer] :max_results_per_page
       # @option opts [String, #iso8601] :financial_event_group_started_after
       # @option opts [String, #iso8601] :financial_event_group_started_before
       # @return [Peddler::XMLParser]
-      # rubocop:disable MethodLength
       def list_financial_event_groups(opts = {})
         operation('ListFinancialEventGroups')
           .add(opts)
@@ -66,16 +64,16 @@ module MWS
 
         run
       end
-      
+
       # Gets API status
       #
       # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_GetServiceStatus.html
       # @return [Peddler::XMLParser]
-      def get_service_status()
+      def get_service_status
         operation('GetServiceStatus')
-        
+
         run
-      end      
+      end
     end
   end
 end
