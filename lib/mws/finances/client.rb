@@ -12,17 +12,13 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEvents.html
       # @param opts [Hash]
       # @option opts [Integer] :max_results_per_page
-      # @option opts [Array<String>, String] :amazon_order_id
-      # @option opts [Array<String>, String] :financial_event_group_id
+      # @option opts [String] :amazon_order_id
+      # @option opts [String] :financial_event_group_id
       # @option opts [String, #iso8601] :posted_after
       # @option opts [String, #iso8601] :posted_before
       # @return [Peddler::XMLParser]
       def list_financial_events(opts = {})
-        operation('ListFinancialEvents')
-          .add(opts)
-          .structure!('AmazonOrderId', 'Id')
-          .structure!('FinancialEventGroupId', 'Id')
-
+        operation('ListFinancialEvents').add(opts)
         run
       end
 
@@ -41,13 +37,14 @@ module MWS
       # Lists financial event groups
       #
       # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroups.html
+      # @param financial_event_group_started_after [String, #iso8601]
       # @param opts [Hash]
       # @option opts [Integer] :max_results_per_page
-      # @option opts [String, #iso8601] :financial_event_group_started_after
       # @option opts [String, #iso8601] :financial_event_group_started_before
       # @return [Peddler::XMLParser]
-      def list_financial_event_groups(opts = {})
+      def list_financial_event_groups(financial_event_group_started_after, opts = {})
         operation('ListFinancialEventGroups')
+          .add('FinancialEventGroupStartedAfter' => financial_event_group_started_after)
           .add(opts)
 
         run
