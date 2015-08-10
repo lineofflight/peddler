@@ -119,6 +119,12 @@ The MWS Feeds API lets you upload inventory and order data to Amazon. You can al
 
 [Read more](http://www.rubydoc.info/gems/peddler/MWS/Feeds/Client)
 
+### Finances
+
+The MWS Finances API enables you to obtain financial information relevant to your business with Amazon. You can obtain financial events for a given order, financial event group, or date range without having to wait until a statement period closes. You can also obtain financial event groups for a given date range.
+
+[Read more](http://www.rubydoc.info/gems/peddler/MWS/Finances/Client)
+
 ### Fulfillment Inbound Shipment
 
 With the MWS Fulfillment Inbound Shipment API, you can create and update inbound shipments of inventory in the Amazon Fulfillment Network. You can also also request lists of inbound shipments or inbound shipment items based on criteria that you specify.
