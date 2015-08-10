@@ -12,7 +12,8 @@ class TestMWSOrdersClient < MiniTest::Test
       'OrderStatus.Status.1' => '1',
       'MarketplaceId.Id.1' => '1',
       'PaymentMethod.1' => '1',
-      'TFMShipmentStatus.Status.1' => '1'
+      'TFMShipmentStatus.Status.1' => '1',
+      'FulfillmentChannel.Channel.1' => 'MFN'
     }
 
     @client.stub(:run, nil) do
@@ -20,7 +21,8 @@ class TestMWSOrdersClient < MiniTest::Test
         marketplace_id: '1',
         order_status: '1',
         tfm_shipment_status: '1',
-        payment_method: '1'
+        payment_method: '1',
+        fulfillment_channel: 'MFN'
       )
     end
 
