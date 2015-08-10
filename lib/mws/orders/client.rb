@@ -35,6 +35,7 @@ module MWS
         operation('ListOrders')
           .add(opts)
           .structure!('OrderStatus', 'Status')
+          .structure!('FulfillmentChannel', 'Channel')
           .structure!('MarketplaceId', 'Id')
           .structure!('PaymentMethod')
           .structure!('TFMShipmentStatus', 'Status')
