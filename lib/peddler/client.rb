@@ -8,8 +8,6 @@ module Peddler
   # An abstract client
   #
   # Subclass to implement an MWS API section.
-  #
-  # rubocop:disable ClassLength
   class Client
     extend Forwardable
     include Jeff

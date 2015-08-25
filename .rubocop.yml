@@ -2,16 +2,14 @@ AllCops:
   Exclude:
     - 'test/helper.rb'
 AbcSize:
-  Exclude:
-    - 'test/**/*'
+  Enabled: false
 AccessorMethodName:
   Exclude:
     - 'lib/mws/**/client.rb'
 AndOr:
   Enabled: false
 ClassLength:
-  Exclude:
-    - 'test/**/*'
+  Enabled: false
 DotPosition:
   EnforcedStyle: leading
 Documentation:
@@ -19,10 +17,13 @@ Documentation:
 LineLength:
   Enabled: false
 MethodLength:
-  Exclude:
-    - 'test/**/*'
+  Enabled: false
 NestedMethodDefinition:
   Exclude:
     - 'test/**/*'
+ParameterLists:
+  Enabled: false
+PerceivedComplexity:
+  Enabled: false
 StringLiterals:
   Enabled: false

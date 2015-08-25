@@ -55,7 +55,6 @@ module MWS
       # @option opts [Array<String>] :notification_email_list
       # @option opts [Struct, Hash] :cod_settings
       # @return [Peddler::XMLParser]
-      # rubocop:disable MethodLength, ParameterLists
       def create_fulfillment_order(seller_fulfillment_order_id, displayable_order_id, displayable_order_date_time, displayable_order_comment, shipping_speed_category, destination_address, items, opts = {})
         if opts.key?(:cod_settings)
           opts['CODSettings'] = opts.delete(:cod_settings)

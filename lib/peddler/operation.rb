@@ -21,7 +21,6 @@ module Peddler
       self
     end
 
-    # rubocop:disable AbcSize, MethodLength, PerceivedComplexity
     def store(key, val)
       key = camelize(key) if key.is_a?(Symbol)
 
