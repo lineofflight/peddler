@@ -17,7 +17,7 @@ Some MWS API sections may require additional authorisation from Amazon.
 Require the library.
 
 ```ruby
-require 'peddler'
+require "peddler"
 ```
 
 Create a client. Peddler provides one for each MWS API under an eponymous namespace.
@@ -29,18 +29,7 @@ client = MWS::Orders::Client.new
 client = MWS.orders
 ```
 
-Each client requires valid MWS credentials. You can set some or all when or after creating the client.
-
-```ruby
-client = MWS::Orders::Client.new(
-  primary_marketplace_id: "foo",
-  merchant_id: "bar",
-  aws_access_key_id: "baz",
-  aws_secret_access_key: "qux"
-)
-```
-
-Alternatively, set these globally in the shell.
+Each client requires valid MWS credentials. You can set these globally in the shell.
 
 ```bash
 export MWS_MARKETPLACE_ID=foo
@@ -49,10 +38,21 @@ export AWS_ACCESS_KEY_ID=baz
 export AWS_SECRET_ACCESS_KEY=qux
 ```
 
-You can now instantiate a client without passing credentials.
+You can now instantiate a client.
 
 ```ruby
 client = MWS::Orders::Client.new
+```
+
+Alternatively, you can set some or all credentials when or after creating the client.
+
+```ruby
+client = MWS::Orders::Client.new(
+  primary_marketplace_id: "foo",
+  merchant_id: "bar",
+  aws_access_key_id: "baz",
+  aws_secret_access_key: "qux"
+)
 ```
 
 If you are creating a client for another seller, pass the latter's `MWSAuthToken` to the client.
