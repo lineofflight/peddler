@@ -9,7 +9,7 @@ module MWS
 
       # Uploads a feed
       #
-      # @note Feed size is limited to 2,147,483,647 bytes (2^31 -1) per feed
+      # @note Feed size is limited to 2,147,483,647 bytes (2^31 -1) per feed.
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_SubmitFeed.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
       # @param feed_content [String] an XML or flat file feed

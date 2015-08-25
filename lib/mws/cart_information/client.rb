@@ -6,7 +6,7 @@ module MWS
     # Amazon Webstore customers have created. The Cart Information API enables
     # you to programmatically integrate Amazon Webstore cart information with
     # your CRM systems, marketing applications, and other systems that require
-    # cart data
+    # cart data.
     #
     # @note The Cart Information API only returns cart information for Webstores
     #   with Seller-Branded Checkout. No cart information is returned for Amazon
