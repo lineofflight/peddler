@@ -13,8 +13,6 @@ module MWS
     #   made through the Login and Pay with Amazon service offered by Amazon
     #   Payments. You cannot use this API section to process payments for Amazon
     #   Marketplace, Amazon Webstore, or Checkout by Amazon.
-    #
-    # rubocop:disable ClassLength
     class Client < ::Peddler::Client
       version "2013-01-01"
       path "/OffAmazonPayments/#{version}/"

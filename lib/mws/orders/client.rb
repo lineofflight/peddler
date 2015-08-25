@@ -27,7 +27,6 @@ module MWS
       # @option opts [String] :max_results_per_page
       # @option opts [String] :tfm_shipment_status
       # @return [Peddler::XMLParser]
-      # rubocop:disable MethodLength
       def list_orders(opts = {})
         opts[:marketplace_id] ||= primary_marketplace_id
         if opts.key?(:tfm_shipment_status)
