@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A55Z&Version=2010-10-01&Signature=ZEeblTUtUphDbyLQawEUzzNnWzu0wodcKpUReSPQYL4%3D
+    uri: https://mws.amazonservices.ca/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A55Z&Version=2010-10-01&Signature=ZEeblTUtUphDbyLQawEUzzNnWzu0wodcKpUReSPQYL4%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -47,10 +47,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:11:56 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A56Z&Version=2010-10-01&Signature=K9OdU2GmW8CVKJeTjZ2Af1F4LQHPGD1nwVwUaDTzevM%3D
+    uri: https://mws-eu.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A56Z&Version=2010-10-01&Signature=K9OdU2GmW8CVKJeTjZ2Af1F4LQHPGD1nwVwUaDTzevM%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -92,10 +92,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:11:56 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A56Z&Version=2010-10-01&Signature=2Z1QP%2BfUZCNqcOH5Sk5Ro%2B6X8jk9j9e1UsEqcBs690w%3D
+    uri: https://mws.amazonservices.jp/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A56Z&Version=2010-10-01&Signature=2Z1QP%2BfUZCNqcOH5Sk5Ro%2B6X8jk9j9e1UsEqcBs690w%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -137,10 +137,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:11:57 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A57Z&Version=2010-10-01&Signature=YfhGEJO3yOp50lEAVyXl5yoKhmXULlG%2FZyz8hFjCqJw%3D
+    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A57Z&Version=2010-10-01&Signature=YfhGEJO3yOp50lEAVyXl5yoKhmXULlG%2FZyz8hFjCqJw%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -182,10 +182,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:11:58 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A58Z&Version=2010-10-01&Signature=xR8K4uc9X%2FtmmaOQtVwpD7hx0V1y8NsP6BTBc6SOCaQ%3D
+    uri: https://mws.amazonservices.ca/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A58Z&Version=2010-10-01&Signature=xR8K4uc9X%2FtmmaOQtVwpD7hx0V1y8NsP6BTBc6SOCaQ%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -225,10 +225,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:12:00 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A00Z&Version=2010-10-01&Signature=BCA2lKnzA2DrX2IRRxB5AECutoXJnymfDVvaD%2BjXxTI%3D
+    uri: https://mws-eu.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A00Z&Version=2010-10-01&Signature=BCA2lKnzA2DrX2IRRxB5AECutoXJnymfDVvaD%2BjXxTI%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -268,10 +268,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:12:00 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A00Z&Version=2010-10-01&Signature=RYhDt494f712BdbRIl5mMnZcK7aQ%2FX9y1VH68fY1X0U%3D
+    uri: https://mws.amazonservices.jp/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A00Z&Version=2010-10-01&Signature=RYhDt494f712BdbRIl5mMnZcK7aQ%2FX9y1VH68fY1X0U%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -311,10 +311,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:12:01 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A01Z&Version=2010-10-01&Signature=nVknTgziJaUWs6bYX%2FRjykhYNvz3r6CQtOUajGBD3cc%3D
+    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A01Z&Version=2010-10-01&Signature=nVknTgziJaUWs6bYX%2FRjykhYNvz3r6CQtOUajGBD3cc%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
