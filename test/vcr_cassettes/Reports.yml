@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A41Z&Version=2009-01-01&Signature=kHIcbGPHmTzzULUvm8xqib1JzrwQ126aTkq%2F5yfNl18%3D
+    uri: https://mws.amazonservices.ca/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A41Z&Version=2009-01-01&Signature=kHIcbGPHmTzzULUvm8xqib1JzrwQ126aTkq%2F5yfNl18%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -58,10 +58,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:42 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A42Z&Version=2009-01-01&Signature=cT%2FX%2BZh8SVDMuc0QHaNJBLIFDpfudRBJVFxI%2Bo%2BC2mM%3D
+    uri: https://mws-eu.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A42Z&Version=2009-01-01&Signature=cT%2FX%2BZh8SVDMuc0QHaNJBLIFDpfudRBJVFxI%2Bo%2BC2mM%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -114,10 +114,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:42 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A42Z&Version=2009-01-01&Signature=Z%2F7fW9rOqjMxUK2MbqUL%2BTJlRAlC9BrI7NBrDbqCSiU%3D
+    uri: https://mws.amazonservices.jp/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A42Z&Version=2009-01-01&Signature=Z%2F7fW9rOqjMxUK2MbqUL%2BTJlRAlC9BrI7NBrDbqCSiU%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -175,10 +175,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:43 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A43Z&Version=2009-01-01&Signature=XJMc8Cf5OSEl869ON0Dfe6q1JyMgcNHWIZR9n1N3hS4%3D
+    uri: https://mws.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A43Z&Version=2009-01-01&Signature=XJMc8Cf5OSEl869ON0Dfe6q1JyMgcNHWIZR9n1N3hS4%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -231,10 +231,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:44 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A44Z&Version=2009-01-01&Signature=jEOFGX4BxwarQvG50NrCAuyWpjnFA5d4gXYs1HAoVQI%3D
+    uri: https://mws.amazonservices.ca/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A44Z&Version=2009-01-01&Signature=jEOFGX4BxwarQvG50NrCAuyWpjnFA5d4gXYs1HAoVQI%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -287,10 +287,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:44 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A44Z&Version=2009-01-01&Signature=VZaahSRen9%2FQSf1rib6xDEmKWNqzt8nm2AtZeRhU3e4%3D
+    uri: https://mws-eu.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A44Z&Version=2009-01-01&Signature=VZaahSRen9%2FQSf1rib6xDEmKWNqzt8nm2AtZeRhU3e4%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -343,10 +343,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:45 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A45Z&Version=2009-01-01&Signature=8I6Fy9JRrcnlg7te5FkIJkT%2BDB7lzaDUMDqy2VubxoY%3D
+    uri: https://mws.amazonservices.jp/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A45Z&Version=2009-01-01&Signature=8I6Fy9JRrcnlg7te5FkIJkT%2BDB7lzaDUMDqy2VubxoY%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -399,10 +399,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:45 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A45Z&Version=2009-01-01&Signature=Vng9BXfmYCn2%2FxpXjxrCHYlGfdiI2Oa3TeeiDzmVEno%3D
+    uri: https://mws.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A45Z&Version=2009-01-01&Signature=Vng9BXfmYCn2%2FxpXjxrCHYlGfdiI2Oa3TeeiDzmVEno%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -455,10 +455,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:46 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A46Z&Version=2009-01-01&Signature=I2gq9xrmeLzUIwAVskuSlT5v%2Fgg2iPM1GDwnf82Okdg%3D
+    uri: https://mws.amazonservices.ca/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A46Z&Version=2009-01-01&Signature=I2gq9xrmeLzUIwAVskuSlT5v%2Fgg2iPM1GDwnf82Okdg%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -632,10 +632,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:47 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A47Z&Version=2009-01-01&Signature=rCBJq67ioxcf5eBb4%2Fh15qHlv0EL%2F40EvN8Ult8Lx1Y%3D
+    uri: https://mws-eu.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A47Z&Version=2009-01-01&Signature=rCBJq67ioxcf5eBb4%2Fh15qHlv0EL%2F40EvN8Ult8Lx1Y%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -809,10 +809,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:47 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A47Z&Version=2009-01-01&Signature=aE9BrxPtE0KcrAadDq3MyGSV5Is0ENqQQ3CyF1P52Fc%3D
+    uri: https://mws.amazonservices.jp/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A47Z&Version=2009-01-01&Signature=aE9BrxPtE0KcrAadDq3MyGSV5Is0ENqQQ3CyF1P52Fc%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -986,10 +986,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:48 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A48Z&Version=2009-01-01&Signature=2qyfeVRKkotByv34HOsBOCsZ5ZpdCPieWxRoB8l9mT8%3D
+    uri: https://mws.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A48Z&Version=2009-01-01&Signature=2qyfeVRKkotByv34HOsBOCsZ5ZpdCPieWxRoB8l9mT8%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1163,10 +1163,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:48 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A48Z&Version=2009-01-01&Signature=feQhTsNnKwDGaemrazepDHyxiFukGXDe6%2Fyr%2BjQ4MPs%3D
+    uri: https://mws.amazonservices.ca/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A48Z&Version=2009-01-01&Signature=feQhTsNnKwDGaemrazepDHyxiFukGXDe6%2Fyr%2BjQ4MPs%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1219,10 +1219,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:51 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A51Z&Version=2009-01-01&Signature=PO5QPpRSaCpAx7NVr%2FexhTh%2FaCquxF7SipZVYzyLtpc%3D
+    uri: https://mws-eu.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A51Z&Version=2009-01-01&Signature=PO5QPpRSaCpAx7NVr%2FexhTh%2FaCquxF7SipZVYzyLtpc%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1275,10 +1275,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:37:54 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A54Z&Version=2009-01-01&Signature=9y17c8lIiHJqvAIFr%2F0yBt1iZu9ZU0SMtQeqSeVOa4U%3D
+    uri: https://mws.amazonservices.jp/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A37%3A54Z&Version=2009-01-01&Signature=9y17c8lIiHJqvAIFr%2F0yBt1iZu9ZU0SMtQeqSeVOa4U%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1331,10 +1331,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:22 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A22Z&Version=2009-01-01&Signature=%2BEQlnhBvws%2Bna%2FXIHuAm8NaraZh8%2BxaGZ5nSpemDYZQ%3D
+    uri: https://mws.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A22Z&Version=2009-01-01&Signature=%2BEQlnhBvws%2Bna%2FXIHuAm8NaraZh8%2BxaGZ5nSpemDYZQ%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1387,10 +1387,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:23 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A23Z&Version=2009-01-01&Signature=oyWxc5mGmlp8I94g3ehwEYUKMqt9CE19tSMx6%2FCjxtc%3D
+    uri: https://mws.amazonservices.ca/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A23Z&Version=2009-01-01&Signature=oyWxc5mGmlp8I94g3ehwEYUKMqt9CE19tSMx6%2FCjxtc%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1514,10 +1514,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:24 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A24Z&Version=2009-01-01&Signature=QarBy8Ru2VRVdK5pRkitRze4odgZVOxnsvYRmu5wQO8%3D
+    uri: https://mws-eu.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A24Z&Version=2009-01-01&Signature=QarBy8Ru2VRVdK5pRkitRze4odgZVOxnsvYRmu5wQO8%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1641,10 +1641,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A25Z&Version=2009-01-01&Signature=q1P0YOv%2FH6Zl62jQ8C66lWrVmbL%2BK6gAxp6%2FBfa1FM8%3D
+    uri: https://mws.amazonservices.jp/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A25Z&Version=2009-01-01&Signature=q1P0YOv%2FH6Zl62jQ8C66lWrVmbL%2BK6gAxp6%2FBfa1FM8%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1768,10 +1768,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A25Z&Version=2009-01-01&Signature=TNqDk6mSvTifMMbuxT9pFpojDjIQlhmKjraassO7sXY%3D
+    uri: https://mws.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A25Z&Version=2009-01-01&Signature=TNqDk6mSvTifMMbuxT9pFpojDjIQlhmKjraassO7sXY%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1896,10 +1896,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:26 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A26Z&Version=2009-01-01&Signature=ifpDDcW1QxuZ6xM2oLdmSQeS5RrabB4vsDSwcRKE59k%3D
+    uri: https://mws.amazonservices.ca/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A26Z&Version=2009-01-01&Signature=ifpDDcW1QxuZ6xM2oLdmSQeS5RrabB4vsDSwcRKE59k%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1952,10 +1952,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:27 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A27Z&Version=2009-01-01&Signature=rC3mOGoz1HW1K9UZviqF1xTGAKuT2ni%2FyJs1V%2FjvhLU%3D
+    uri: https://mws-eu.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A27Z&Version=2009-01-01&Signature=rC3mOGoz1HW1K9UZviqF1xTGAKuT2ni%2FyJs1V%2FjvhLU%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -2008,10 +2008,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:27 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A27Z&Version=2009-01-01&Signature=I3tnDr0Uv2W8gJHAWHpqJs4I1F1G1F%2FKL%2B1hUaAp1hk%3D
+    uri: https://mws.amazonservices.jp/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A27Z&Version=2009-01-01&Signature=I3tnDr0Uv2W8gJHAWHpqJs4I1F1G1F%2FKL%2B1hUaAp1hk%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -2064,10 +2064,10 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:38:28 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A28Z&Version=2009-01-01&Signature=TTn2MalGVgAG2dabJTpk6h5OqInv1gUhmIByQ8ERZl4%3D
+    uri: https://mws.amazonservices.com/
     body:
       encoding: US-ASCII
-      string: ''
+      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A38%3A28Z&Version=2009-01-01&Signature=TTn2MalGVgAG2dabJTpk6h5OqInv1gUhmIByQ8ERZl4%3D'
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
