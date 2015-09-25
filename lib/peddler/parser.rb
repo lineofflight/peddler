@@ -12,8 +12,7 @@ module Peddler
         # Don't parse if there's no body
         return res unless res.body
 
-        content_type = res.headers['Content-Type']
-        if content_type.start_with?('text/xml')
+        if xml?(res)
           XMLResponseParser.new(res)
         else
           # Amazon returns a variety of content types for flat files, so we
@@ -21,6 +20,13 @@ module Peddler
           # defensively and check content type again.
           FlatFileParser.new(res, encoding)
         end
+      end
+
+      def xml?(res)
+        return true if res.headers['Content-Type'].start_with?('text/xml')
+        return true if res.body.start_with?('<?xml')
+
+        false
       end
     end
   end
