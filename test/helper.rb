@@ -16,7 +16,7 @@ require 'yaml'
 require 'vcr'
 begin
   require 'pry'
-rescue LoadError
+rescue LoadError # rubocop:disable HandleExceptions
 end
 
 # Wraps MWS credentials to run integration tests against
