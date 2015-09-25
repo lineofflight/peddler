@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'coveralls'
+require 'peddler/test/vcr_matcher'
 
 SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
@@ -72,15 +73,8 @@ VCR.configure do |c|
     code = interaction.response.status.code
     interaction.ignore! if code >= 400 && code != 414
   end
-
-  # Ignore transient params when building VCR fixtures.
-  matcher = VCR.request_matchers.uri_without_param(
-    'AWSAccessKeyId', 'SellerId', 'Signature', 'Timestamp', 'StartDate',
-    'CreatedAfter', 'QueryStartDateTime'
-  )
-
   c.default_cassette_options = {
-    match_requests_on: [:host, :path, matcher],
+    match_requests_on: [::Peddler::Test::VCRMatcher],
     record: !ENV['RECORD'] ? :none : :new_episodes
   }
 
