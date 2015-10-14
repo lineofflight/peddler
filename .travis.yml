@@ -3,6 +3,9 @@ env:
     - AWS_ACCESS_KEY_ID=foo
     - AWS_SECRET_ACCESS_KEY=bar
 language: ruby
+matrix:
+  allow_failures:
+    - rvm: ruby-head
 rvm:
   - 2.0.0
   - 2.1
