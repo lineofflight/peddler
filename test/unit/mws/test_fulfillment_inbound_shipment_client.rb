@@ -158,14 +158,14 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   def test_lists_inbound_shipments
     operation = {
       'Action' => 'ListInboundShipments',
-      'ShipmentStatusList.member.1.Foo' => '1',
-      'ShipmentIdList.member.1.Bar' => '2'
+      'ShipmentStatusList.member.1' => 'Foo',
+      'ShipmentIdList.member.1' => 'Bar'
     }
 
     @client.stub(:run, nil) do
       @client.list_inbound_shipments(
-        shipment_status_list: [{ 'Foo' => '1' }],
-        shipment_id_list: [{ 'Bar' => '2' }])
+        shipment_status_list: ['Foo'],
+        shipment_id_list: ['Bar'])
     end
 
     assert_equal operation, @client.operation
