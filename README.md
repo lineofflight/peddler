@@ -10,7 +10,7 @@ To use Amazon MWS, you must have an eligible seller account and register for MWS
 
 Some MWS API sections may require additional authorisation from Amazon.
 
-![Peddler](http://f.cl.ly/items/231z2m0r1Q2o2q1n0w1N/peddler.jpg)
+![Peddler](http://f.cl.ly/items/1G1N0A0a0v3a3h241c1Q/peddler.jpg)
 
 ## Usage
 
