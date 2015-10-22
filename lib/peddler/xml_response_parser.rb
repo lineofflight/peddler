@@ -10,8 +10,8 @@ module Peddler
     private
 
     def find_data
-      results = xml.values.first.find { |k, _| k.include?('Result') }
-      results = xml.values.first.find { |k, _| k == 'Message' } unless results
+      results = xml.values.first.find { |k, _| k.include?('Result') } ||
+                xml.values.first.find { |k, _| k == 'Message' }
 
       results ? results.last : nil
     end
