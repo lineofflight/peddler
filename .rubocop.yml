@@ -10,6 +10,9 @@ AndOr:
   Enabled: false
 ClassLength:
   Enabled: false
+CollectionMethods:
+  PreferredMethods:
+    detect: 'find'
 DotPosition:
   EnforcedStyle: leading
 Documentation:
