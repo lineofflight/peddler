@@ -162,6 +162,20 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_queries_nonprimary_marketplaces
+    operation = {
+      'Action' => 'GetProductCategoriesForASIN',
+      'MarketplaceId' => '321',
+      'ASIN' => '1'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_product_categories_for_asin('1', marketplace_id: '321')
+    end
+
+    assert_equal operation, @client.operation
+  end
+
   def test_gets_service_status
     operation = {
       'Action' => 'GetServiceStatus'
