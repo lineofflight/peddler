@@ -141,7 +141,7 @@ module MWS
 
         run
       end
- 
+
       # Gets lowest priced offers for a single product, based on SellerSKU
       #
       # @see http://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForSKU.html
