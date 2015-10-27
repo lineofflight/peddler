@@ -223,11 +223,9 @@ module MWS
       end
 
       # @api private
-      def operation_with_marketplace(*args)
-        operation(*args).tap do |opts|
-          unless opts.key?('MarketplaceId')
-            opts.store('MarketplaceId', primary_marketplace_id)
-          end
+      def operation_with_marketplace(action)
+        operation(action).tap do |opts|
+          opts.store('MarketplaceId', primary_marketplace_id)
         end
       end
     end
