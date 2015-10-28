@@ -37,6 +37,13 @@ class TestProducts < IntegrationTest
     end
   end
 
+  def test_gets_lowest_priced_offers_for_asin
+    clients.each do |client|
+      res = client.get_lowest_priced_offers_for_asin('1780935374', 'New')
+      refute_empty res.parse
+    end
+  end
+
   def test_gets_product_categories_for_asin
     clients.each do |client|
       res = client.get_product_categories_for_asin('1780935374')

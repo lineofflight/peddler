@@ -5,7 +5,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A38Z&Version=2011-10-01&Signature=u%2F8nv2Nv3y4gloWKD1nn1G0Qb6%2Ba4RzbQcwPFhNZQfw%3D'
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A38Z&Version=2011-10-01&Signature=u%2F8nv2Nv3y4gloWKD1nn1G0Qb6%2Ba4RzbQcwPFhNZQfw%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -49,7 +49,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A39Z&Version=2011-10-01&Signature=TAebSrBSbruo2Nj8Ea%2BCvBPU25cGqzPol8vgYw4pf38%3D'
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A39Z&Version=2011-10-01&Signature=TAebSrBSbruo2Nj8Ea%2BCvBPU25cGqzPol8vgYw4pf38%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -112,7 +112,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A40Z&Version=2011-10-01&Signature=WuuQrvvsK6om297m5K0rCXzUVhSBwIqIY5KHKcqOMfo%3D'
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A40Z&Version=2011-10-01&Signature=WuuQrvvsK6om297m5K0rCXzUVhSBwIqIY5KHKcqOMfo%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -156,7 +156,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A41Z&Version=2011-10-01&Signature=CfDLCE6xRw7XEneqO6gGqEuyI7zhB36hoLGeCl8yuww%3D'
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A41Z&Version=2011-10-01&Signature=CfDLCE6xRw7XEneqO6gGqEuyI7zhB36hoLGeCl8yuww%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -200,7 +200,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A42Z&Version=2011-10-01&Signature=G04pjcHGrT3qFkGup0NUmXPxr8JGFAlxpHVMoMRPFtE%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A42Z&Version=2011-10-01&Signature=G04pjcHGrT3qFkGup0NUmXPxr8JGFAlxpHVMoMRPFtE%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -245,7 +245,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A43Z&Version=2011-10-01&Signature=aERIRoMYxJGex%2FcePbr7B2rpG65WtU%2BbqvBYUg%2BSfcw%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A43Z&Version=2011-10-01&Signature=aERIRoMYxJGex%2FcePbr7B2rpG65WtU%2BbqvBYUg%2BSfcw%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -290,7 +290,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A43Z&Version=2011-10-01&Signature=KrMHrzaUkoRRBtu3kcNUQIPdJltPHTFjl5l0vv9xk%2F4%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A43Z&Version=2011-10-01&Signature=KrMHrzaUkoRRBtu3kcNUQIPdJltPHTFjl5l0vv9xk%2F4%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -335,7 +335,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A44Z&Version=2011-10-01&Signature=ZA0p2e2sjBGehxvvJ6n31JMxOqN05JbggN%2BLpNTExW4%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A44Z&Version=2011-10-01&Signature=ZA0p2e2sjBGehxvvJ6n31JMxOqN05JbggN%2BLpNTExW4%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -380,7 +380,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A45Z&Version=2011-10-01&Signature=dDeqXErn6dwKj6cinQFRrpXJ91%2BwsaDV%2BSfgiWohz9w%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A45Z&Version=2011-10-01&Signature=dDeqXErn6dwKj6cinQFRrpXJ91%2BwsaDV%2BSfgiWohz9w%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -424,7 +424,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A46Z&Version=2011-10-01&Signature=KOuM1WNKOLeXTmSB9%2FK5%2BdqLdXuVueHkb0PIE4g5fsY%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A46Z&Version=2011-10-01&Signature=KOuM1WNKOLeXTmSB9%2FK5%2BdqLdXuVueHkb0PIE4g5fsY%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -468,7 +468,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A46Z&Version=2011-10-01&Signature=HCZQGOtUh1K0X2diXkMZu%2BS%2B66GNwdv3HFsUDgwK6xo%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A46Z&Version=2011-10-01&Signature=HCZQGOtUh1K0X2diXkMZu%2BS%2B66GNwdv3HFsUDgwK6xo%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -569,7 +569,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A47Z&Version=2011-10-01&Signature=h7XNrtYb9te5UiQU7Z9dNdxRIovaEwcYCtaUzEeUb9k%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A47Z&Version=2011-10-01&Signature=h7XNrtYb9te5UiQU7Z9dNdxRIovaEwcYCtaUzEeUb9k%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -613,7 +613,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A48Z&Version=2011-10-01&Signature=wJcHJ8%2BBuiWvTdBGlBDUO%2BaWeDH75OrGWGQM43RT1QA%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A48Z&Version=2011-10-01&Signature=wJcHJ8%2BBuiWvTdBGlBDUO%2BaWeDH75OrGWGQM43RT1QA%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -657,7 +657,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A49Z&Version=2011-10-01&Signature=T11xwKAjlKm%2F80XN5O4jvFHMCgANP6Ej%2BRvJXB4glD8%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A49Z&Version=2011-10-01&Signature=T11xwKAjlKm%2F80XN5O4jvFHMCgANP6Ej%2BRvJXB4glD8%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -701,7 +701,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A50Z&Version=2011-10-01&Signature=gUQ6EKFZWaXJdvQIk5wKqzE7TWq8%2BrgprOmHwkE3Z8c%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A50Z&Version=2011-10-01&Signature=gUQ6EKFZWaXJdvQIk5wKqzE7TWq8%2BrgprOmHwkE3Z8c%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -804,7 +804,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A51Z&Version=2011-10-01&Signature=4HRUy4h9qiFdZLHa5iTDmOHZ77yjwxYruTNE7Iu7S2s%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A51Z&Version=2011-10-01&Signature=4HRUy4h9qiFdZLHa5iTDmOHZ77yjwxYruTNE7Iu7S2s%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -848,7 +848,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A52Z&Version=2011-10-01&Signature=EbJsj7TaI91FrRsHlFCm5Ii912FIsnaaWh7U%2FaC6K7c%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A52Z&Version=2011-10-01&Signature=EbJsj7TaI91FrRsHlFCm5Ii912FIsnaaWh7U%2FaC6K7c%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -892,7 +892,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A53Z&Version=2011-10-01&Signature=ZFgW38DOJd3E3TCke0EPr3sJlNFVuS5bOHhOHdAZCmM%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A53Z&Version=2011-10-01&Signature=ZFgW38DOJd3E3TCke0EPr3sJlNFVuS5bOHhOHdAZCmM%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -936,7 +936,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A53Z&Version=2011-10-01&Signature=UZrN39PGePt7XMxPjnaEy1xeedgxzCOUBWctv5YRIQM%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A53Z&Version=2011-10-01&Signature=UZrN39PGePt7XMxPjnaEy1xeedgxzCOUBWctv5YRIQM%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -980,7 +980,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A54Z&Version=2011-10-01&Signature=U3BZvl3xO%2BBDl%2BID3BMJYorBAzpqfc5xeJRXJSExTEw%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A54Z&Version=2011-10-01&Signature=U3BZvl3xO%2BBDl%2BID3BMJYorBAzpqfc5xeJRXJSExTEw%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1024,7 +1024,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A55Z&Version=2011-10-01&Signature=DMiF2nILCl9wUR8CoJIapgoPjpvM9ZUOrrqamjvYSH8%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A55Z&Version=2011-10-01&Signature=DMiF2nILCl9wUR8CoJIapgoPjpvM9ZUOrrqamjvYSH8%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1068,7 +1068,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A56Z&Version=2011-10-01&Signature=jhEMMxVvRLVyeGriikOi0WU9VK0g0MRNnLsTbjkbN4U%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A56Z&Version=2011-10-01&Signature=jhEMMxVvRLVyeGriikOi0WU9VK0g0MRNnLsTbjkbN4U%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1112,7 +1112,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A57Z&Version=2011-10-01&Signature=Mvf3zTNdUOYr8CJ3%2FAYYfLqCF0Ym8FDngVYkh5ies7c%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A57Z&Version=2011-10-01&Signature=Mvf3zTNdUOYr8CJ3%2FAYYfLqCF0Ym8FDngVYkh5ies7c%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1156,7 +1156,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A59Z&Version=2011-10-01&Signature=JUWy0aWM95cJMJIgOgmG8dZmKYj%2BxdYShOX%2Fx8rAsio%3D'
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A59Z&Version=2011-10-01&Signature=JUWy0aWM95cJMJIgOgmG8dZmKYj%2BxdYShOX%2Fx8rAsio%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1200,7 +1200,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A2EUQ1WTGCTBG2&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A00Z&Version=2011-10-01&Signature=DwQ1gekKilnTQsozhKeaC%2BfqTmBah3THJswIPur5eUA%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A2EUQ1WTGCTBG2&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A00Z&Version=2011-10-01&Signature=DwQ1gekKilnTQsozhKeaC%2BfqTmBah3THJswIPur5eUA%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -1742,7 +1742,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1PA6795UKMFR9&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A01Z&Version=2011-10-01&Signature=fKr1Im7HqqHfMdNdqmGlSD0lLIQ5oDIYXzt7NTBh9x0%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1PA6795UKMFR9&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A01Z&Version=2011-10-01&Signature=fKr1Im7HqqHfMdNdqmGlSD0lLIQ5oDIYXzt7NTBh9x0%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -2308,7 +2308,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1VC38T7YXB528&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A02Z&Version=2011-10-01&Signature=J2dE%2BhCnS9Z8zM7eyWWjnWRH8uhq%2F%2B09bBySmKIwink%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1VC38T7YXB528&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A02Z&Version=2011-10-01&Signature=J2dE%2BhCnS9Z8zM7eyWWjnWRH8uhq%2F%2B09bBySmKIwink%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -2676,7 +2676,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=ATVPDKIKX0DER&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A04Z&Version=2011-10-01&Signature=JaxmNu38cP642QBjWzR7ohz60%2F55UEEt9gZWa8BSHUU%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=ATVPDKIKX0DER&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A04Z&Version=2011-10-01&Signature=JaxmNu38cP642QBjWzR7ohz60%2F55UEEt9gZWa8BSHUU%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -2715,4 +2715,1570 @@ http_interactions:
         <ListMatchingProductsResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><ListMatchingProductsResult><Products xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>0262062666</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Frederick, Matthew</ns2:Author><ns2:Binding>Hardcover</ns2:Binding><ns2:Edition>3rd (Third) Edition</ns2:Edition><ns2:ItemDimensions><ns2:Height Units="inches">5.00</ns2:Height><ns2:Length Units="inches">7.00</ns2:Length><ns2:Width Units="inches">0.80</ns2:Width><ns2:Weight Units="pounds">0.89</ns2:Weight></ns2:ItemDimensions><ns2:Label>The MIT Press</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>15.95</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>The MIT Press</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>216</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.90</ns2:Height><ns2:Length Units="inches">7.20</ns2:Length><ns2:Width Units="inches">5.30</ns2:Width><ns2:Weight Units="pounds">0.90</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2007-08-31</ns2:PublicationDate><ns2:Publisher>The MIT Press</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/411HRB1dUHL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">54</ns2:Height><ns2:Width Units="pixels">75</ns2:Width></ns2:SmallImage><ns2:Studio>The MIT Press</ns2:Studio><ns2:Title>101 Things I Learned in Architecture School</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>6262</Rank></SalesRank><SalesRank><ProductCategoryId>173487</ProductCategoryId><Rank>2</Rank></SalesRank><SalesRank><ProductCategoryId>1061</ProductCategoryId><Rank>5</Rank></SalesRank><SalesRank><ProductCategoryId>173508</ProductCategoryId><Rank>14</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>1476784922</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Kushner, Marc</ns2:Author><ns2:Binding>Hardcover</ns2:Binding><ns2:ItemDimensions><ns2:Height Units="inches">7.00</ns2:Height><ns2:Length Units="inches">5.00</ns2:Length><ns2:Width Units="inches">0.70</ns2:Width><ns2:Weight Units="pounds">0.00</ns2:Weight></ns2:ItemDimensions><ns2:Label>Simon &amp; Schuster/ TED</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>16.99</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Simon &amp; Schuster/ TED</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>176</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.98</ns2:Height><ns2:Length Units="inches">7.32</ns2:Length><ns2:Width Units="inches">5.43</ns2:Width><ns2:Weight Units="pounds">0.75</ns2:Weight></ns2:PackageDimensions><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2015-03-10</ns2:PublicationDate><ns2:Publisher>Simon &amp; Schuster/ TED</ns2:Publisher><ns2:ReleaseDate>2015-03-10</ns2:ReleaseDate><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/51ez3aAazFL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">54</ns2:Width></ns2:SmallImage><ns2:Studio>Simon &amp; Schuster/ TED</ns2:Studio><ns2:Title>The Future of Architecture in 100 Buildings (TED Books)</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>2911</Rank></SalesRank><SalesRank><ProductCategoryId>5322</ProductCategoryId><Rank>1</Rank></SalesRank><SalesRank><ProductCategoryId>1002</ProductCategoryId><Rank>1</Rank></SalesRank><SalesRank><ProductCategoryId>15762881</ProductCategoryId><Rank>2</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>0763669903</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Dillon, Patrick</ns2:Author><ns2:Binding>Hardcover</ns2:Binding><ns2:Creator Role="Illustrator">Biesty, Stephen</ns2:Creator><ns2:ItemDimensions><ns2:Height Units="inches">11.66</ns2:Height><ns2:Length Units="inches">10.13</ns2:Length><ns2:Width Units="inches">0.69</ns2:Width><ns2:Weight Units="pounds">1.25</ns2:Weight></ns2:ItemDimensions><ns2:Label>Candlewick</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>19.99</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Candlewick</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>96</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.79</ns2:Height><ns2:Length Units="inches">11.61</ns2:Length><ns2:Width Units="inches">10.24</ns2:Width><ns2:Weight Units="pounds">2.20</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2014-03-11</ns2:PublicationDate><ns2:Publisher>Candlewick</ns2:Publisher><ns2:ReleaseDate>2014-03-11</ns2:ReleaseDate><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/51sCzJxpjXL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">64</ns2:Width></ns2:SmallImage><ns2:Studio>Candlewick</ns2:Studio><ns2:Title>The Story of Buildings: From the Pyramids to the Sydney Opera House and Beyond</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>8275</Rank></SalesRank><SalesRank><ProductCategoryId>2871</ProductCategoryId><Rank>3</Rank></SalesRank><SalesRank><ProductCategoryId>2872</ProductCategoryId><Rank>48</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>1592538487</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Wheeler, Dan</ns2:Author><ns2:Author>McMorrough, Julia</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:Brand>Brand: Rockport Publishers</ns2:Brand><ns2:Feature>Used Book in Good Condition</ns2:Feature><ns2:ItemDimensions><ns2:Height Units="inches">7.75</ns2:Height><ns2:Length Units="inches">5.50</ns2:Length><ns2:Width Units="inches">0.75</ns2:Width><ns2:Weight Units="pounds">1.11</ns2:Weight></ns2:ItemDimensions><ns2:IsEligibleForTradeIn>true</ns2:IsEligibleForTradeIn><ns2:Label>Rockport Publishers</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>25.00</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Rockport Publishers</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>272</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.80</ns2:Height><ns2:Length Units="inches">7.80</ns2:Length><ns2:Width Units="inches">5.40</ns2:Width><ns2:Weight Units="pounds">1.10</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2013-08-01</ns2:PublicationDate><ns2:Publisher>Rockport Publishers</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/41YtIa0uT5L._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">53</ns2:Width></ns2:SmallImage><ns2:Studio>Rockport Publishers</ns2:Studio><ns2:Title>The Architecture Reference &amp; Specification Book: Everything Architects Need to Know Every Day</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>14918</Rank></SalesRank><SalesRank><ProductCategoryId>1061</ProductCategoryId><Rank>18</Rank></SalesRank><SalesRank><ProductCategoryId>173508</ProductCategoryId><Rank>53</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>0471752169</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Ching, Francis D. K.</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:Edition>3rd</ns2:Edition><ns2:ItemDimensions><ns2:Height Units="inches">11.00</ns2:Height><ns2:Length Units="inches">8.50</ns2:Length><ns2:Width Units="inches">0.95</ns2:Width><ns2:Weight Units="pounds">2.35</ns2:Weight></ns2:ItemDimensions><ns2:IsEligibleForTradeIn>true</ns2:IsEligibleForTradeIn><ns2:Label>John Wiley &amp; Sons</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>55.00</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>John Wiley &amp; Sons</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>448</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.70</ns2:Height><ns2:Length Units="inches">10.90</ns2:Length><ns2:Width Units="inches">8.40</ns2:Width><ns2:Weight Units="pounds">2.20</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2007-06-29</ns2:PublicationDate><ns2:Publisher>John Wiley &amp; Sons</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/51eVXvViJlL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">58</ns2:Width></ns2:SmallImage><ns2:Studio>John Wiley &amp; Sons</ns2:Studio><ns2:Title>Architecture: Form, Space, and Order</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>40447</Rank></SalesRank><SalesRank><ProductCategoryId>266160</ProductCategoryId><Rank>32</Rank></SalesRank><SalesRank><ProductCategoryId>468210</ProductCategoryId><Rank>44</Rank></SalesRank><SalesRank><ProductCategoryId>1061</ProductCategoryId><Rank>45</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>1780673213</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Bowkett, Steve</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:Edition>Act Csm</ns2:Edition><ns2:ItemDimensions><ns2:Height Units="inches">10.75</ns2:Height><ns2:Length Units="inches">8.50</ns2:Length><ns2:Width Units="inches">0.75</ns2:Width><ns2:Weight Units="pounds">0.00</ns2:Weight></ns2:ItemDimensions><ns2:Label>Laurence King Publishing</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>19.95</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Laurence King Publishing</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>160</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.71</ns2:Height><ns2:Length Units="inches">10.79</ns2:Length><ns2:Width Units="inches">8.35</ns2:Width><ns2:Weight Units="pounds">1.01</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2013-10-22</ns2:PublicationDate><ns2:Publisher>Laurence King Publishing</ns2:Publisher><ns2:ReleaseDate>2013-10-22</ns2:ReleaseDate><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/51xB7L1HCYL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">58</ns2:Width></ns2:SmallImage><ns2:Studio>Laurence King Publishing</ns2:Studio><ns2:Title>Archidoodle: The Architect's Activity Book</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>68220</Rank></SalesRank><SalesRank><ProductCategoryId>266160</ProductCategoryId><Rank>59</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>0810995123</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>Borden, Daniel</ns2:Author><ns2:Author>Elzanowski, Jerzy</ns2:Author><ns2:Author>Taylor, Joni</ns2:Author><ns2:Author>Tuerk, Stephanie</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:ItemDimensions><ns2:Height Units="inches">6.63</ns2:Height><ns2:Length Units="inches">5.13</ns2:Length><ns2:Width Units="inches">1.63</ns2:Width><ns2:Weight Units="pounds">1.64</ns2:Weight></ns2:ItemDimensions><ns2:Label>Harry N. Abrams</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>24.95</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Harry N. Abrams</ns2:Manufacturer><ns2:ManufacturerMaximumAge Units="months">1188</ns2:ManufacturerMaximumAge><ns2:ManufacturerMinimumAge Units="months">156</ns2:ManufacturerMinimumAge><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>512</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">1.70</ns2:Height><ns2:Length Units="inches">6.50</ns2:Length><ns2:Width Units="inches">4.90</ns2:Width><ns2:Weight Units="pounds">1.95</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2008-05-01</ns2:PublicationDate><ns2:Publisher>Harry N. Abrams</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/51b9%2BMgeGDL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">55</ns2:Width></ns2:SmallImage><ns2:Studio>Harry N. Abrams</ns2:Studio><ns2:Title>Architecture: A World History</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>226737</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>0307277240</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>De Botton, Alain</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:Edition>Reprint</ns2:Edition><ns2:ItemDimensions><ns2:Height Units="inches">8.05</ns2:Height><ns2:Length Units="inches">6.13</ns2:Length><ns2:Width Units="inches">0.50</ns2:Width><ns2:Weight Units="pounds">0.89</ns2:Weight></ns2:ItemDimensions><ns2:Label>Vintage</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>18.00</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Vintage</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>288</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.70</ns2:Height><ns2:Length Units="inches">8.00</ns2:Length><ns2:Width Units="inches">6.00</ns2:Width><ns2:Weight Units="pounds">0.80</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2008-04-08</ns2:PublicationDate><ns2:Publisher>Vintage</ns2:Publisher><ns2:ReleaseDate>2008-04-08</ns2:ReleaseDate><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/514JdoXNi0L._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">57</ns2:Width></ns2:SmallImage><ns2:Studio>Vintage</ns2:Studio><ns2:Title>The Architecture of Happiness</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>17205</Rank></SalesRank><SalesRank><ProductCategoryId>11021</ProductCategoryId><Rank>7</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>9063693656</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>di Mari, Anthony</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:ItemDimensions><ns2:Height Units="inches">6.00</ns2:Height><ns2:Length Units="inches">0.25</ns2:Length><ns2:Width Units="inches">4.00</ns2:Width><ns2:Weight Units="pounds">0.00</ns2:Weight></ns2:ItemDimensions><ns2:IsEligibleForTradeIn>true</ns2:IsEligibleForTradeIn><ns2:Label>BIS Publishers</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>17.00</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>BIS Publishers</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>160</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.50</ns2:Height><ns2:Length Units="inches">5.80</ns2:Length><ns2:Width Units="inches">4.10</ns2:Width><ns2:Weight Units="pounds">0.25</ns2:Weight></ns2:PackageDimensions><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2014-12-16</ns2:PublicationDate><ns2:Publisher>BIS Publishers</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/41OG6vWhPdL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">53</ns2:Width></ns2:SmallImage><ns2:Studio>BIS Publishers</ns2:Studio><ns2:Title>Conditional Design: An introduction to elemental architecture</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>18848</Rank></SalesRank><SalesRank><ProductCategoryId>266160</ProductCategoryId><Rank>12</Rank></SalesRank><SalesRank><ProductCategoryId>266162</ProductCategoryId><Rank>22</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>ATVPDKIKX0DER</MarketplaceId><ASIN>1780670249</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="en-US"><ns2:Author>McLeod, Virginia</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:Brand>Brand: Laurence King Publishing</ns2:Brand><ns2:Edition>Pap/Cdr</ns2:Edition><ns2:Feature>Used Book in Good Condition</ns2:Feature><ns2:ItemDimensions><ns2:Height Units="inches">11.50</ns2:Height><ns2:Length Units="inches">10.00</ns2:Length><ns2:Width Units="inches">0.75</ns2:Width><ns2:Weight Units="pounds">2.60</ns2:Weight></ns2:ItemDimensions><ns2:IsEligibleForTradeIn>true</ns2:IsEligibleForTradeIn><ns2:Label>Laurence King Publishing</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>29.95</ns2:Amount><ns2:CurrencyCode>USD</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Laurence King Publishing</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>240</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.79</ns2:Height><ns2:Length Units="inches">11.34</ns2:Length><ns2:Width Units="inches">9.76</ns2:Width><ns2:Weight Units="pounds">2.60</ns2:Weight></ns2:PackageDimensions><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2012-09-19</ns2:PublicationDate><ns2:Publisher>Laurence King Publishing</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/51KoWlfJaNL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">62</ns2:Width></ns2:SmallImage><ns2:Studio>Laurence King Publishing</ns2:Studio><ns2:Title>Detail in Contemporary Residential Architecture</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>59368</Rank></SalesRank><SalesRank><ProductCategoryId>1007</ProductCategoryId><Rank>67</Rank></SalesRank></SalesRankings></Product></Products></ListMatchingProductsResult><ResponseMetadata><RequestId>c17efa93-c511-4b76-b9e5-5150b1e09673</RequestId></ResponseMetadata></ListMatchingProductsResponse>
     http_version: 
   recorded_at: Sat, 28 Mar 2015 18:22:05 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-10-28T13%3A23%3A30Z&Version=2011-10-01&Signature=g6ciJAcwe0vLo1u4XtHHc3umXfHXSw4L%2BtQDsMqxFhc%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.fritz.box)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 28 Oct 2015 13:23:32 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2015-10-28T14:03:00.000Z'
+      x-mws-request-id:
+      - 24786f7b-0c83-4509-ac4b-bd2c980579c1
+      x-mws-timestamp:
+      - '2015-10-28T13:23:32.023Z'
+      x-mws-response-context:
+      - u1s8XKC4NqqBoF9aA/Bh4PIqppqM23BfCRfvBEi5JcpkF951AxxvTZ1/L+a7LQbFMAUA4NN5oTy9
+        /bu0YEUBjQ==
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '1799'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A2EUQ1WTGCTBG2" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2015-10-28T05:25:21.025Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>3</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">3</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>36.04</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>29.55</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>6.49</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">1</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers/>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>24786f7b-0c83-4509-ac4b-bd2c980579c1</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Wed, 28 Oct 2015 13:23:31 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1PA6795UKMFR9&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-10-28T13%3A23%3A31Z&Version=2011-10-01&Signature=fRRPZ1FhBihoVXDE2p3JYFpoY1%2FhIIeEPXBwsNjtWXg%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.fritz.box)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 28 Oct 2015 13:23:37 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2015-10-28T14:19:00.000Z'
+      nnCoection:
+      - close
+      x-mws-request-id:
+      - ba9f25c0-f2d7-42c4-aa01-109413a911cf
+      x-mws-timestamp:
+      - '2015-10-28T13:23:32.547Z'
+      x-mws-response-context:
+      - eFIs+xDUqMdOybjGid2VJub0efoczDyVLTuyrCEhVUOEDkdbXJ06PLEFXO1k1udazS/xFrpe5Fme
+        o1z0ta7vmw==
+      Content-Type:
+      - application/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1PA6795UKMFR9" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1PA6795UKMFR9</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2015-10-28T11:34:20.735Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>67</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">4</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">62</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>25.03</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>22.03</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>3.0</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>18.95</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>18.95</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>0</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>21.81</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>18.81</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>3.0</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>18.95</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>18.95</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>0.00</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <Amount>23.34</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">3</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">57</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>18.95</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>0</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>14976</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>18.81</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>356602</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>18.81</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>328693</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>19.47</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>91.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>32402</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>20.76</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>93.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>7413</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>20.77</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>91.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>10028</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>20.78</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>100.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>590</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>20.84</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>100.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>562</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>20.93</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>596</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>21.16</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>22.45</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>143817</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>22.72</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2027</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>22.72</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>882</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>22.72</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2917</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>22.79</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>375</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>22.88</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>86.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>7</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>23.89</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>10905</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>23.90</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>21510</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>24.03</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2364</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>24.28</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>3.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>ba9f25c0-f2d7-42c4-aa01-109413a911cf</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Wed, 28 Oct 2015 13:23:36 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1VC38T7YXB528&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-10-28T13%3A23%3A36Z&Version=2011-10-01&Signature=CZG2HVh%2BOWdeNGKdcbr%2Bl%2FN9poMZKAziZ%2Ba9y6z3z%2FY%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.fritz.box)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 28 Oct 2015 13:23:40 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2015-10-28T13:47:00.000Z'
+      x-mws-request-id:
+      - dcd4a56f-b700-403a-93e7-8e31531bf8f4
+      x-mws-timestamp:
+      - '2015-10-28T13:23:40.153Z'
+      x-mws-response-context:
+      - VyhjuoFCxicf2GA/KIwxneUAf59qaR1gGNwOfaydgtFnDOW45DzB7f6t54KemEg3wBp2ZQJ22Qie
+        h7ZxFfvSsw==
+      Content-Type:
+      - application/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1VC38T7YXB528" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1VC38T7YXB528</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2015-10-28T03:53:23.083Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>9</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">8</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>3000.00</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>3000.00</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>0</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>2789.00</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>2532.00</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>257.0</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>3000.00</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>3000.00</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>0.00</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>JPY</CurrencyCode>
+                        <Amount>3248</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">8</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>51194</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>2532.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>85.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>204</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="264" maximumHours="360" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>2533.00</Amount>
+                        </ListingPrice>
+                        <Points>
+                            <PointsNumber>24</PointsNumber>
+                        </Points>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>JP</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>3000.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>0</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>572</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>2962.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>80071</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>3258.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>24961</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>3263.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>90.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>39</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>3472.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>93.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>4892</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>4222.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>5734</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>5309.00</Amount>
+                        </ListingPrice>
+                        <Points>
+                            <PointsNumber>106</PointsNumber>
+                        </Points>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>257.0</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>AT</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>dcd4a56f-b700-403a-93e7-8e31531bf8f4</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Wed, 28 Oct 2015 13:23:39 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=ATVPDKIKX0DER&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-10-28T13%3A23%3A39Z&Version=2011-10-01&Signature=4YB3OUmtkbYjwVoHYY4beRuU7SiBCRSScPZbp9feHxs%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.fritz.box)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 28 Oct 2015 13:23:40 GMT
+      Server:
+      - AmazonMWS
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2015-10-28T14:20:00.000Z'
+      x-mws-request-id:
+      - 5050b38f-d19d-47d7-a410-dd0d062f07f7
+      x-mws-timestamp:
+      - '2015-10-28T13:23:41.087Z'
+      x-mws-response-context:
+      - v+jNkU3zVJvDLGV//zTFbKqIAkx/54l+0pk9mbkIOthHd37uarF6okN+xt7h56UI8aEPkRBnxtMH
+        NRSD9+8QWQ==
+      Content-Type:
+      - application/xml
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="ATVPDKIKX0DER" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2015-10-28T11:32:09.796Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>31</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">6</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">24</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>24.99</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>21.00</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>3.99</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>27.95</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>27.95</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>0</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>22.06</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>18.07</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>3.99</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>27.95</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>27.95</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>0.00</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                        <BuyBoxPrice condition="Used">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>24.99</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>21.00</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>3.99</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <Amount>27.95</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">5</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">13</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>88.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1532</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>18.07</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>TX</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>89.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>47333</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>18.12</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>NY</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>67777</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>19.99</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>3334</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>20.00</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>FL</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>90.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>130691</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>20.70</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>691039</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>21.83</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>89.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>148824</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>21.87</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>IL</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>216046</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>22.54</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>IL</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1147</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>23.67</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>91.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>387</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="672" maximumHours="1008" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>27.95</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>0</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>17207</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>25.03</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>8782</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>25.04</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>287</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>25.32</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2931</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>27.77</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>12903</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>28.05</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>FL</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>4756</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>30.03</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>13516</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>30.73</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>298</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>31.20</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1560</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>31.20</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>92.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>6668</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="72" maximumHours="96" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>34.97</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>3.99</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>5050b38f-d19d-47d7-a410-dd0d062f07f7</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Wed, 28 Oct 2015 13:23:40 GMT
 recorded_with: VCR 2.9.3
