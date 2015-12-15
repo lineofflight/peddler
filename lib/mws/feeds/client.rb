@@ -27,7 +27,7 @@ module MWS
         run
       end
 
-      # List feed submissions
+      # Lists feed submissions
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionList.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
@@ -49,7 +49,7 @@ module MWS
         run
       end
 
-      # List the next page of feed submissions
+      # Lists the next page of feed submissions
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionListByNextToken.html
       # @param next_token [String]
@@ -80,7 +80,7 @@ module MWS
         run
       end
 
-      # Cancel one or more feed submissions
+      # Cancels one or more feed submissions
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_CancelFeedSubmissions.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
