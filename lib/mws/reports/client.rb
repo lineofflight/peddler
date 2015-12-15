@@ -170,7 +170,7 @@ module MWS
         run
       end
 
-      # List scheduled reports
+      # Lists scheduled reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleList.html
       # @param report_type_list [*Array<String>]
@@ -183,7 +183,7 @@ module MWS
         run
       end
 
-      # List next page of scheduled reports
+      # Lists next page of scheduled reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
       # @raise [NotImplementedError]
@@ -191,7 +191,7 @@ module MWS
         fail NotImplementedError
       end
 
-      # Count scheduled reports
+      # Counts scheduled reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleCount.html
       # @param report_type_list [Array<String>]
@@ -204,7 +204,7 @@ module MWS
         run
       end
 
-      # Update acknowledged status of one or more reports
+      # Updates acknowledged status of one or more reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_UpdateReportAcknowledgements.html
       # @param acknowledged [Boolean]
