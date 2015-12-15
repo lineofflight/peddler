@@ -11,7 +11,8 @@ module MWS
       # Lists orders
       #
       # @note When calling this operation, you must specify a time frame using
-      #   either created_after or last_updated_after.
+      #   either created_after or last_updated_after. When requesting orders by
+      #   "Unshipped" status you must also request "PartiallyShipped" orders.
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrders.html
       # @param opts [Hash]
       # @option opts [String, #iso8601] :created_after
