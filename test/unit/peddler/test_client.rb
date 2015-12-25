@@ -94,7 +94,7 @@ class TestPeddlerClient < MiniTest::Test
     @client.body = 'foo'
     content_type = @client.headers.fetch('Content-Type')
 
-    assert_equal 'text/tab-separated-values; charset=Shift_JIS', content_type
+    assert_equal 'text/tab-separated-values; charset=Windows-31J', content_type
   end
 
   def test_sets_content_type_header_for_xml_body

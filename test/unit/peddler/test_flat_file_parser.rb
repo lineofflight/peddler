@@ -41,18 +41,37 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     body.encode!('SHIFT_JIS')
     body.force_encoding('ASCII-8BIT')
     res = OpenStruct.new(body: body)
-    parser = Peddler::FlatFileParser.new(res, 'SHIFT_JIS')
+    parser = Peddler::FlatFileParser.new(res, 'Windows-31J')
 
     assert_equal 'こんにちは', parser.parse[0]['Foo']
   end
 
-  def test_handles_latin_1_flat_files
-    body = "Foo\n™\n"
-    body.encode!('CP1252')
+  def test_handles_japanese_curly_braces
+    body = "Foo\n〝\n"
+    body.encode!('Windows-31J')
     body.force_encoding('ASCII-8BIT')
     res = OpenStruct.new(body: body)
-    parser = Peddler::FlatFileParser.new(res, 'CP1252')
+    parser = Peddler::FlatFileParser.new(res, 'Windows-31J')
+
+    assert_equal '〝', parser.parse[0]['Foo']
+  end
+
+  def test_handles_latin_1_flat_files
+    body = "Foo\n™\n"
+    body.encode!('Cp1252')
+    body.force_encoding('ASCII-8BIT')
+    res = OpenStruct.new(body: body)
+    parser = Peddler::FlatFileParser.new(res, 'Cp1252')
 
     assert_equal '™', parser.parse['Foo'][0]
+  end
+
+  def test_handles_undefined_characters
+    body = "Foo\n\xFF\n"
+    body.force_encoding('ASCII-8BIT')
+    res = OpenStruct.new(body: body)
+    parser = Peddler::FlatFileParser.new(res, 'ASCII-8BIT')
+
+    assert_equal '?', parser.parse['Foo'][0]
   end
 end
