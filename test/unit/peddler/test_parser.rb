@@ -8,7 +8,7 @@ class TestPeddlerParser < MiniTest::Test
         headers: { 'Content-Type' => content_type },
         body: body
       )
-      parser = Peddler::Parser.new(res)
+      parser = Peddler::Parser.new(res, 'Cp1252')
 
       assert_kind_of klass, parser
     end
