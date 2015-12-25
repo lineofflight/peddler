@@ -31,7 +31,7 @@ module Peddler
       if japanese?
         # Caveat: I've had one instance in the past where Shift_JIS didn't
         # work but Windows-31J did when parsing a report.
-        'Shift_JIS'
+        'Windows-31J'
       elsif chinese?
         'UTF-16'
       else
