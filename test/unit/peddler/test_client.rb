@@ -78,7 +78,7 @@ class TestPeddlerClient < MiniTest::Test
     @client.body = 'foo'
     content_type = @client.headers.fetch('Content-Type')
 
-    assert_equal 'text/tab-separated-values; charset=ISO-8859-1', content_type
+    assert_equal 'text/tab-separated-values; charset=Cp1252', content_type
   end
 
   def test_sets_content_type_header_for_chinese_flat_file_body

@@ -45,4 +45,14 @@ class TestPeddlerFlatFileParser < MiniTest::Test
 
     assert_equal 'こんにちは', parser.parse[0]['Foo']
   end
+
+  def test_handles_latin_1_flat_files
+    body = "Foo\n™\n"
+    body.encode!('CP1252')
+    body.force_encoding('ASCII-8BIT')
+    res = OpenStruct.new(body: body)
+    parser = Peddler::FlatFileParser.new(res, 'CP1252')
+
+    assert_equal '™', parser.parse['Foo'][0]
+  end
 end

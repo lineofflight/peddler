@@ -35,7 +35,7 @@ module Peddler
       elsif chinese?
         'UTF-16'
       else
-        'ISO-8859-1'
+        'Cp1252'
       end
     end
 
