@@ -22,15 +22,22 @@ module Peddler
       private
 
       def compare_uri
-        req_1.uri == req_2.uri
+        uri_1 = URI.parse(req_1.uri)
+        uri_2 = URI.parse(req_2.uri)
+
+        uri_1.host == uri_2.host &&
+          uri_1.path == uri_2.path &&
+          extract_params(uri_1.query) == extract_params(uri_2.query)
       end
 
       def compare_body
         extract_params(req_1.body) == extract_params(req_2.body)
       end
 
-      def extract_params(body)
-        params = ::CGI.parse(body)
+      def extract_params(string)
+        return {} unless string
+
+        params = ::CGI.parse(string)
         TRANSIENT_PARAMS.each do |k|
           params.delete(k)
         end

@@ -133,7 +133,12 @@ module Peddler
 
     # @!parse attr_writer :body
     def body=(str)
-      headers['Content-Type'] = content_type(str)
+      if str
+        headers['Content-Type'] = content_type(str)
+      else
+        headers.delete('Content-Type')
+      end
+
       @body = str
     end
 
