@@ -10,10 +10,11 @@ module Peddler
     private
 
     def find_data
-      results = xml.values.first.find { |k, _| k.include?('Result') } ||
-                xml.values.first.find { |k, _| k == 'Message' }
+      payload = xml.values.first
+      found = payload.find { |k, _| k.include?('Result') } ||
+              payload.find { |k, _| k == 'Message' }
 
-      results ? results.last : nil
+      found.last if found
     end
   end
 end
