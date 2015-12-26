@@ -27,10 +27,12 @@ module Peddler
       @host ||= find_host
     end
 
+    # Caveat: We use the supersets Windows-31J and CP1252 in place of Shift_JIS
+    # and ISO 8859-1 respectively to handle edge cases where latter will not
+    # support some characters. The supersets should be safe to use as drop-in
+    # replacements.
     def encoding
       if japanese?
-        # Caveat: I've had one instance in the past where Shift_JIS didn't
-        # work but Windows-31J did when parsing a report.
         'Windows-31J'
       elsif chinese?
         'UTF-16'
