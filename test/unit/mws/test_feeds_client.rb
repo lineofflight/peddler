@@ -73,11 +73,16 @@ class TestMWSFeedsClient < MiniTest::Test
 
   def test_cancels_feed_submissions
     operation = {
-      'Action' => 'CancelFeedSubmissions'
+      'Action' => 'CancelFeedSubmissions',
+      'FeedTypeList.Type.1' => '1',
+      'FeedSubmissionIdList.Id.1' => '2'
     }
 
     @client.stub(:run, nil) do
-      @client.cancel_feed_submissions
+      @client.cancel_feed_submissions(
+        feed_type_list: '1',
+        feed_submission_id_list: '2'
+      )
     end
 
     assert_equal operation, @client.operation
