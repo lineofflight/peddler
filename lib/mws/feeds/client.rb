@@ -93,6 +93,8 @@ module MWS
       def cancel_feed_submissions(opts = {})
         operation('CancelFeedSubmissions')
           .add(opts)
+          .structure!('FeedSubmissionIdList', 'Id')
+          .structure!('FeedTypeList', 'Type')
 
         run
       end
