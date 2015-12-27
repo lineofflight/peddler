@@ -41,36 +41,38 @@ export AWS_SECRET_ACCESS_KEY=qux
 You can now instantiate a client.
 
 ```ruby
-client = MWS::Orders::Client.new
+client = MWS.orders
 ```
 
 Alternatively, you can set some or all credentials when or after creating the client.
 
 ```ruby
-client = MWS::Orders::Client.new(
+client = MWS.orders(
   primary_marketplace_id: "foo",
   merchant_id: "bar",
   aws_access_key_id: "baz",
   aws_secret_access_key: "qux"
 )
+client.primary_marketplace_id = "bar"
 ```
 
 If you are creating a client for another seller, pass the latter's `MWSAuthToken` to the client.
 
 ```ruby
+client = MWS.orders
 client.auth_token = "corge"
 ```
 
-Once you have a client with valid credentials, you should be able to make requests to the API.
+Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
 
-Peddler returns the response wrapped in a parser that handles both XML documents and flat files.
+Peddler wraps successful responses in a parser that handles both XML documents and flat files.
 
 ```ruby
 parser = client.get_service_status
 parser.parse # will return a Hash or CSV object
 ```
 
-You can swap the default parser with a purpose-built one.
+You can swap the default parser with a purpose-built abstraction.
 
 ```ruby
 MWS::Orders::Client.parser = MyParser
