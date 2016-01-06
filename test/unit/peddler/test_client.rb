@@ -52,6 +52,14 @@ class TestPeddlerClient < MiniTest::Test
     assert_equal Peddler::Client.params, @klass.params
   end
 
+  def test_inherits_parents_path
+    assert_equal @klass.path, Class.new(@klass).path
+  end
+
+  def test_inherits_parents_parser
+    assert_equal @klass.parser, Class.new(@klass).parser
+  end
+
   def test_params_include_seller_id
     assert @klass.params.key?("SellerId")
   end
