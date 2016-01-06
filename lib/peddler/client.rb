@@ -66,6 +66,8 @@ module Peddler
       private
 
       def inherited(base)
+        base.parser = parser
+        base.path(path)
         base.params(params)
         base.on_error(&@error_handler)
       end
