@@ -1,6 +1,6 @@
 require 'simplecov'
 require 'coveralls'
-require 'peddler/test/vcr_matcher'
+require 'peddler/vcr_matcher'
 
 SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
@@ -40,27 +40,30 @@ module Accounts
   end
 end
 
-# Sets up clients and bootstraps VCR for integration tests
-class IntegrationTest < MiniTest::Test
+# Bootstraps VCR
+module Recorder
   def setup
-    ENV['LIVE'] ? VCR.turn_off! : VCR.insert_cassette(api)
+    ENV['LIVE'] ? VCR.turn_off! : VCR.insert_cassette(test_name)
   end
 
   def teardown
     VCR.eject_cassette if VCR.turned_on?
   end
 
+  def test_name
+    self.class.name.sub('Test', '')
+  end
+end
+
+# Sets up clients for integration testing
+class IntegrationTest < MiniTest::Test
+  include Recorder
+
   def clients
     Accounts.map do |account|
-      klass = MWS.const_get("#{api}::Client")
+      klass = MWS.const_get("#{test_name}::Client")
       klass.new(account)
     end
-  end
-
-  private
-
-  def api
-    self.class.name.sub('Test', '')
   end
 end
 
@@ -74,7 +77,7 @@ VCR.configure do |c|
     interaction.ignore! if code >= 400 && code != 414
   end
   c.default_cassette_options = {
-    match_requests_on: [::Peddler::Test::VCRMatcher],
+    match_requests_on: [::Peddler::VCRMatcher],
     record: !ENV['RECORD'] ? :none : :new_episodes
   }
 

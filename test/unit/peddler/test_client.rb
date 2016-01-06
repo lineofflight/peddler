@@ -1,25 +1,15 @@
 require 'helper'
-require 'peddler/client'
+require 'null_client'
 
 class TestPeddlerClient < MiniTest::Test
-  module Parser
-    def self.new(res, *)
-      res
-    end
-  end
-
   def setup
     @body = 'foo'
     Excon.defaults[:mock] = true
     Excon.stub({}, body: @body, status: 200)
 
-    @klass = Class.new(Peddler::Client)
-    @klass.parser = Parser
+    @klass = Class.new(Null::Client)
     @client = @klass.new
-    @client.aws_access_key_id = 'key'
-    @client.aws_secret_access_key = 'secret'
-    @client.merchant_id = 'seller'
-    @client.primary_marketplace_id = 'ATVPDKIKX0DER' # US
+    @client.configure_with_mock_data!
     @client.operation('Foo')
   end
 
@@ -181,13 +171,9 @@ class TestPeddlerClient < MiniTest::Test
     end
     @client.run # no longer raises
 
-    klass = Class.new(Peddler::Client)
-    klass.parser = Parser
+    klass = Class.new(Null::Client)
     other_client = klass.new
-    other_client.aws_access_key_id = 'key'
-    other_client.aws_secret_access_key = 'secret'
-    other_client.merchant_id = 'seller'
-    other_client.primary_marketplace_id = 'ATVPDKIKX0DER' # US
+    other_client.configure_with_mock_data!
     other_client.operation('Foo')
     assert_raises(Excon::Errors::ServiceUnavailable) do
       other_client.run

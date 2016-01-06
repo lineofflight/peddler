@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/
+    body:
+      encoding: US-ASCII
+      string: AWSAccessKeyId=123&Action=Action&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-06T18%3A21%3A12Z&Signature=123
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers: {}
+    body:
+      encoding: UTF-8
+      string: OK
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 18:10:18 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=123&Action=Action&SellerId=123&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-06T18%3A53%3A50Z&Signature=123
+    body:
+      encoding: US-ASCII
+      string: content
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook-Pro.local)
+  response:
+    status:
+      code: 200
+      message:
+    headers: {}
+    body:
+      encoding: UTF-8
+      string: OK
+    http_version:
+  recorded_at: Sat, 28 Mar 2015 18:10:18 GMT
+recorded_with: VCR 3.0.1
