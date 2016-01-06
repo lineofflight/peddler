@@ -1,5 +1,4 @@
 require 'helper'
-require 'excon'
 require 'peddler/client'
 
 class TestPeddlerClient < MiniTest::Test

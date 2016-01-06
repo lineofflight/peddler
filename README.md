@@ -65,7 +65,7 @@ client.auth_token = "corge"
 
 Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
 
-Peddler wraps successful responses in a parser that handles both XML documents and flat files.
+Peddler wraps successful responses in a parser that handles both XML documents and flat files:
 
 ```ruby
 parser = client.get_service_status
