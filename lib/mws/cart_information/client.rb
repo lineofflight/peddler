@@ -16,7 +16,7 @@ module MWS
     # @note In addition to registering for Amazon MWS, you must also request
     #   authorization to use the Cart Information API section.
     class Client < ::Peddler::Client
-      version "2014-03-01"
+      version '2014-03-01'
       path "/CartInformation/#{version}"
 
       # Lists shopping carts

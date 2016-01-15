@@ -7,7 +7,7 @@ module MWS
     # is an actionable, timely, and personalized opportunity to increase your
     # sales and performance.
     class Client < ::Peddler::Client
-      version "2013-04-01"
+      version '2013-04-01'
       path "/Recommendations/#{version}"
 
       # Checks whether there are active recommendations for each category for

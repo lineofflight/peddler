@@ -1,4 +1,6 @@
 module Peddler
+  # A custom matcher that can be used to record MWS interactions when
+  # integration-testing
   class VCRMatcher
     TRANSIENT_PARAMS = %w(
       Signature Timestamp StartDate CreatedAfter QueryStartDateTime

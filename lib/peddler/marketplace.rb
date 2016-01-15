@@ -20,7 +20,7 @@ module Peddler
     attr_reader :id
 
     def initialize(id)
-      @id = id or fail BadId, 'missing MarketplaceId'
+      @id = id || fail(BadId, 'missing MarketplaceId')
     end
 
     def host

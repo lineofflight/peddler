@@ -1,32 +1,19 @@
 AllCops:
   Exclude:
     - 'test/helper.rb'
-AbcSize:
-  Enabled: false
 AccessorMethodName:
   Exclude:
     - 'lib/mws/**/client.rb'
-AndOr:
-  Enabled: false
 ClassLength:
   Enabled: false
-CollectionMethods:
-  PreferredMethods:
-    detect: 'find'
-DotPosition:
-  EnforcedStyle: leading
-Documentation:
-  Enabled: false
 LineLength:
-  Enabled: false
-MethodLength:
-  Enabled: false
-NestedMethodDefinition:
   Exclude:
     - 'test/**/*'
+    - 'lib/mws/**/*'
+MethodLength:
+  Exclude:
+    - 'test/**/*'
+    - 'lib/mws/**/*'
 ParameterLists:
-  Enabled: false
-PerceivedComplexity:
-  Enabled: false
-StringLiterals:
-  Enabled: false
+  Exclude:
+    - 'lib/mws/**/*'

@@ -51,11 +51,11 @@ class TestPeddlerClient < MiniTest::Test
   end
 
   def test_params_include_seller_id
-    assert @klass.params.key?("SellerId")
+    assert @klass.params.key?('SellerId')
   end
 
   def test_params_include_auth_token
-    @klass.params.key?("MWSAuthToken")
+    @klass.params.key?('MWSAuthToken')
   end
 
   def test_configures
@@ -114,9 +114,8 @@ class TestPeddlerClient < MiniTest::Test
     assert_equal @body, chunks
   end
 
-  def test_request_preserves_user_agent
-    instrumentor = Class.new
-    class << instrumentor
+  class Instrumentor
+    class << self
       attr_accessor :events
 
       def instrument(name, params = {})
@@ -124,11 +123,14 @@ class TestPeddlerClient < MiniTest::Test
         yield if block_given?
       end
     end
-    instrumentor.events = {}
 
-    @client.defaults.update(instrumentor: instrumentor)
+    @events = {}
+  end
+
+  def test_request_preserves_user_agent
+    @client.defaults.update(instrumentor: Instrumentor)
     @client.run
-    headers = instrumentor.events['excon.request'][:headers]
+    headers = Instrumentor.events['excon.request'][:headers]
 
     assert headers.key?('User-Agent')
   end
@@ -214,8 +216,8 @@ class TestPeddlerClient < MiniTest::Test
 
   def test_deprecated_marketplace_id_accessor
     refute_nil @client.marketplace_id
-    @client.marketplace_id = "123"
-    assert_equal "123", @client.marketplace_id
+    @client.marketplace_id = '123'
+    assert_equal '123', @client.marketplace_id
     assert_equal @client.primary_marketplace_id, @client.marketplace_id
   end
 end

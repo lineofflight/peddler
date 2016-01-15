@@ -15,6 +15,7 @@ require 'mws/sellers'
 require 'mws/subscriptions'
 require 'mws/webstore'
 
+# The various Amazon MWS API sections.
 module MWS
   class << self
     extend Forwardable

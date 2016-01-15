@@ -224,7 +224,7 @@ module Peddler
 
     def deprecate_error_handler_arguments(e)
       if error_handler.parameters.size == 2
-        warn "[DEPRECATION] Error handler now expects exception as argument."
+        warn '[DEPRECATION] Error handler now expects exception as argument.'
         [e.request, e.response]
       else
         [e]

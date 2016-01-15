@@ -9,7 +9,7 @@ module MWS
     # Amazon MWS service. Instead, the information is sent directly to you when
     # an event occurs to which you are subscribed.
     class Client < ::Peddler::Client
-      version "2013-07-01"
+      version '2013-07-01'
       path "/Subscriptions/#{version}"
 
       # Registers a new destination to receive notifications
