@@ -45,7 +45,7 @@ module Peddler
       self
     end
 
-    alias_method :add, :update
+    alias add update
 
     private
 

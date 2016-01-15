@@ -25,7 +25,7 @@ module Peddler
     # @return [String]
     attr_reader :body
 
-    alias_method :configure, :tap
+    alias configure tap
 
     def_delegators :marketplace, :host, :encoding
 
