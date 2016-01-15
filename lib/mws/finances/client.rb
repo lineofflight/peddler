@@ -5,7 +5,7 @@ module MWS
     # With the MWS Finances API you can retrieve financial transactions for your
     # seller account.
     class Client < ::Peddler::Client
-      version "2015-05-01"
+      version '2015-05-01'
       path "/Finances/#{version}"
 
       # Lists financial events

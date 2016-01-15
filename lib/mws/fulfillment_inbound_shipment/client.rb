@@ -7,7 +7,7 @@ module MWS
     # also request lists of inbound shipments or inbound shipment items based on
     # criteria that you specify.
     class Client < ::Peddler::Client
-      version "2010-10-01"
+      version '2010-10-01'
       path "/FulfillmentInboundShipment/#{version}"
 
       # Returns the information required to create an inbound shipment

@@ -13,7 +13,7 @@ module MWS
     # that your Webstore tracks, can help you determine how many notifications
     # were converted into sales.
     class Client < ::Peddler::Client
-      version "2014-09-01"
+      version '2014-09-01'
       path "/Webstore/#{version}/"
 
       # Lists subscription counts of subscriptions in a specified state,
