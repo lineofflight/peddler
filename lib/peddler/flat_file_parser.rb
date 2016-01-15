@@ -6,7 +6,7 @@ module Peddler
   # @api private
   class FlatFileParser < SimpleDelegator
     # http://stackoverflow.com/questions/8073920/importing-csv-quoting-error-is-driving-me-nuts
-    OPTIONS = { col_sep: "\t", quote_char: "\x00", headers: true }
+    OPTIONS = { col_sep: "\t", quote_char: "\x00", headers: true }.freeze
 
     attr_reader :content, :summary, :encoding
 

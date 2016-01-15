@@ -2,11 +2,11 @@ module Peddler
   class VCRMatcher
     TRANSIENT_PARAMS = %w(
       Signature Timestamp StartDate CreatedAfter QueryStartDateTime
-    )
+    ).freeze
 
     SELLER_PARAMS = %w(
       AWSAccessKeyId SellerId
-    )
+    ).freeze
 
     class << self
       def call(*requests)
@@ -14,7 +14,7 @@ module Peddler
       end
 
       def ignored_params
-        @ignored_params ||= TRANSIENT_PARAMS
+        @ignored_params ||= TRANSIENT_PARAMS.dup
       end
 
       def ignore_seller!

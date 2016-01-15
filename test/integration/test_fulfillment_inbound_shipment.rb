@@ -24,7 +24,7 @@ class TestFulfillmentInboundShipment < IntegrationTest
 
   def test_handles_large_requests
     address = Address.new('John', '1 Main St', 'New York', 'NY', '10001', 'US')
-    items = 100.times.map { |count| Item.new(count, 1) }
+    items = Array.new(100) { |i| Item.new(i, 1) }
     clients.each do |client|
       res = client.create_inbound_shipment_plan(address, items)
       assert_equal 200, res.status
