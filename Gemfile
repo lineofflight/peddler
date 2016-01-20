@@ -8,6 +8,7 @@ end
 
 group :test do
   gem 'coveralls'
+  gem 'dig_rb'
   gem 'minitest'
   gem 'rubocop'
   gem 'vcr'
