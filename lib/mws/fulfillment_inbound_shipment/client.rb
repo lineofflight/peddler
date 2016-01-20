@@ -217,10 +217,12 @@ module MWS
 
       def build_inbound_shipment_operation(operation_name, shipment_id, inbound_shipment_header, opts)
         operation(operation_name)
-          .add(opts.update(
-            'ShipmentId' => shipment_id,
-            'InboundShipmentHeader' => inbound_shipment_header
-          ))
+          .add(
+            opts.update(
+              'ShipmentId' => shipment_id,
+              'InboundShipmentHeader' => inbound_shipment_header
+            )
+          )
           .structure!('InboundShipmentItems', 'member')
       end
     end
