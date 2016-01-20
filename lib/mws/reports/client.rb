@@ -194,7 +194,8 @@ module MWS
       # Counts scheduled reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleCount.html
-      # @param [Array<String>] report_type_list
+      # @overload get_report_schedule_count(*report_types)
+      #   @param [String] report_type one or more report_types
       # @return [Peddler::XMLParser]
       def get_report_schedule_count(*report_type_list)
         operation('GetReportScheduleCount')
@@ -207,8 +208,9 @@ module MWS
       # Updates acknowledged status of one or more reports
       #
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_UpdateReportAcknowledgements.html
-      # @param [Boolean] acknowledged
-      # @param [Array<String>] report_id_list
+      # @overload update_report_acknowledgements(acknowledged, *report_ids)
+      #   @param [Boolean] acknowledged
+      #   @param [String] report_id one or more report_ids
       # @return [Peddler::XMLParser]
       def update_report_acknowledgements(acknowledged, *report_id_list)
         operation('UpdateReportAcknowledgements')

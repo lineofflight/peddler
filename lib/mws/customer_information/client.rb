@@ -53,8 +53,8 @@ module MWS
       # specify
       #
       # @see http://docs.developer.amazonservices.com/en_US/customer_info/CustomerInfo_GetCustomersForCustomerId.html
-      # @overload get_customers_for_customer_id(*customer_id_list, opts = {})
-      #   @param [Array<String>] customer_id_list
+      # @overload get_customers_for_customer_id(*customer_ids, opts = {})
+      #   @param [String] customer_id one or more customer_ids
       #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]

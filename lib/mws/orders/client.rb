@@ -60,7 +60,7 @@ module MWS
       # Gets one or more orders
       #
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_GetOrder.html
-      # @param [Array<String>] amazon_order_ids
+      # @param [String] amazon_order_id one or more amazon_order_ids
       # @return [Peddler::XMLParser]
       def get_order(*amazon_order_ids)
         operation('GetOrder')
