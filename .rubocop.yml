@@ -14,6 +14,8 @@ MethodLength:
   Exclude:
     - 'test/**/*'
     - 'lib/mws/**/*'
+MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 ParameterLists:
   Exclude:
     - 'lib/mws/**/*'
