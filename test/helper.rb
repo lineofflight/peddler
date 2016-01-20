@@ -84,5 +84,12 @@ VCR.configure do |c|
   Accounts.each do |account|
     c.filter_sensitive_data('MERCHANT_ID') { account['merchant_id'] }
     c.filter_sensitive_data('AWS_ACCESS_KEY_ID') { account['aws_access_key_id'] }
+    c.before_record do |interaction|
+      %w(
+        BuyerName BuyerEmail Name AddressLine1 PostalCode Phone Amount
+      ).each do |key|
+        interaction.response.body.gsub!(/<#{key}>[^<]+</, "<#{key}>FILTERED<")
+      end
+    end
   end
 end
