@@ -57,8 +57,8 @@ module Peddler
       end
 
       # Sets an error handler
-      # @yieldparam request [Excon::Request]
-      # @yieldparam response [Excon::Response]
+      # @yieldparam [Excon::Request] request
+      # @yieldparam [Excon::Response] response
       def on_error(&blk)
         @error_handler = blk
       end
@@ -155,8 +155,8 @@ module Peddler
     end
 
     # Sets an error handler
-    # @yieldparam request [Excon::Request]
-    # @yieldparam response [Excon::Response]
+    # @yieldparam [Excon::Request] request
+    # @yieldparam [Excon::Response] response
     def on_error(&blk)
       @error_handler = blk
     end
