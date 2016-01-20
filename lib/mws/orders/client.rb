@@ -14,7 +14,7 @@ module MWS
       #   either created_after or last_updated_after. When requesting orders by
       #   "Unshipped" status you must also request "PartiallyShipped" orders.
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrders.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [String, #iso8601] :created_after
       # @option opts [String, #iso8601] :created_before
       # @option opts [String, #iso8601] :last_updated_after
@@ -48,7 +48,7 @@ module MWS
       # Lists the next page of orders
       #
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrdersByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_orders_by_next_token(next_token)
         operation('ListOrdersByNextToken')
@@ -60,7 +60,7 @@ module MWS
       # Gets one or more orders
       #
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_GetOrder.html
-      # @param amazon_order_ids [Array<String>]
+      # @param [Array<String>] amazon_order_ids
       # @return [Peddler::XMLParser]
       def get_order(*amazon_order_ids)
         operation('GetOrder')
@@ -73,7 +73,7 @@ module MWS
       # Lists order items for an order
       #
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrderItems.html
-      # @param amazon_order_id [String]
+      # @param [String] amazon_order_id
       # @return [Peddler::XMLParser]
       def list_order_items(amazon_order_id)
         operation('ListOrderItems')
@@ -85,7 +85,7 @@ module MWS
       # Lists the next page of order items for an order
       #
       # @see http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrderItemsByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_order_items_by_next_token(next_token)
         operation('ListOrderItemsByNextToken')

@@ -21,8 +21,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/webstore/Webstore_ListSubscriptionsCount.html
       # @overload list_subscriptions_count(subscription_state, opts = { marketplace_id: primary_marketplace_id })
-      #   @param subscription_state [String]
-      #   @param opts [Hash]
+      #   @param [String] subscription_state
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String, #iso8601] :date_range_start
       #   @option opts [String, #iso8601] :date_range_end
@@ -43,7 +43,7 @@ module MWS
       # Lists the next page of subscription counts
       #
       # @see http://docs.developer.amazonservices.com/en_US/webstore/Webstore_ListSubscriptionsCountByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_subscriptions_count_by_next_token(next_token)
         operation('ListSubscriptionsCountByNextToken')
@@ -57,10 +57,10 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/webstore/Webstore_ListSubscriptionsCount.html
       # @overload get_subscription_details(seller_sku, subscription_state, date_range_start, opts = { marketplace_id: marketplace_id })
-      #   @param seller_sku [String]
-      #   @param subscription_state [String]
-      #   @param date_range_start [String, #iso8601]
-      #   @param opts [Hash]
+      #   @param [String] seller_sku
+      #   @param [String] subscription_state
+      #   @param [String, #iso8601] date_range_start
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String, #iso8601] :date_range_end
       # @return [Peddler::XMLParser]

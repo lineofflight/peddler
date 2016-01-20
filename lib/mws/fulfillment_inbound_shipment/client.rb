@@ -13,9 +13,9 @@ module MWS
       # Returns the information required to create an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_CreateInboundShipmentPlan.html
-      # @param ship_from_address [Struct, Hash]
-      # @param inbound_shipment_plan_request_items [Array<Struct, Hash>]
-      # @param opts [Hash]
+      # @param [Struct, Hash] ship_from_address
+      # @param [Array<Struct, Hash>] inbound_shipment_plan_request_items
+      # @param [Hash] opts
       # @option opts [String] :label_prep_preference
       # @return [Peddler::XMLParser]
       def create_inbound_shipment_plan(ship_from_address, inbound_shipment_plan_request_items, opts = {})
@@ -32,9 +32,9 @@ module MWS
       # Creates an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_CreateInboundShipment.html
-      # @param shipment_id [String]
-      # @param inbound_shipment_header [Struct, Hash]
-      # @param opts [Hash]
+      # @param [String] shipment_id
+      # @param [Struct, Hash] inbound_shipment_header
+      # @param [Hash] opts
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def create_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
@@ -51,9 +51,9 @@ module MWS
       # Updates an existing inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_UpdateInboundShipment.html
-      # @param shipment_id [String]
-      # @param inbound_shipment_header [Struct, Hash]
-      # @param opts [Hash]
+      # @param [String] shipment_id
+      # @param [Struct, Hash] inbound_shipment_header
+      # @param [Hash] opts
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def update_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
@@ -70,10 +70,10 @@ module MWS
       # Sends transportation information to Amazon about an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_PutTransportContent.html
-      # @param shipment_id [String]
-      # @param is_partnered [Boolean]
-      # @param shipment_type [String]
-      # @param transport_details [Struct, Hash]
+      # @param [String] shipment_id
+      # @param [Boolean] is_partnered
+      # @param [String] shipment_type
+      # @param [Struct, Hash] transport_details
       # @return [Peddler::XMLParser]
       def put_transport_content(shipment_id, is_partnered, shipment_type, transport_details)
         operation('PutTransportContent')
@@ -91,7 +91,7 @@ module MWS
       # Requests an estimate of the shipping cost for an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_EstimateTransportRequest.html
-      # @param shipment_id [String]
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def estimate_transport_request(shipment_id)
         operation('EstimateTransportRequest').add('ShipmentId' => shipment_id)
@@ -101,7 +101,7 @@ module MWS
       # Returns current transportation information about an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetTransportContent.html
-      # @param shipment_id [String]
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def get_transport_content(shipment_id)
         operation('GetTransportContent').add('ShipmentId' => shipment_id)
@@ -112,7 +112,7 @@ module MWS
       # request that the Amazon-partnered carrier ship your inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ConfirmTransportRequest.html
-      # @param shipment_id [String]
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def confirm_transport_request(shipment_id)
         operation('ConfirmTransportRequest').add('ShipmentId' => shipment_id)
@@ -123,7 +123,7 @@ module MWS
       # an Amazon-partnered carrier
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_VoidTransportRequest.html
-      # @param shipment_id [String]
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def void_transport_request(shipment_id)
         operation('VoidTransportRequest').add('ShipmentId' => shipment_id)
@@ -134,9 +134,9 @@ module MWS
       # shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPackageLabels.html
-      # @param shipment_id [String]
-      # @param page_type [String]
-      # @param opts [Hash]
+      # @param [String] shipment_id
+      # @param [String] page_type
+      # @param [Hash] opts
       # @option opts [Integer] :number_of_packages
       # @return [Peddler::XMLParser]
       def get_package_labels(shipment_id, page_type, opts = {})
@@ -153,7 +153,7 @@ module MWS
       # shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetBillOfLading.html
-      # @param shipment_id [String]
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def get_bill_of_lading(shipment_id)
         operation('GetBillOfLading').add('ShipmentId' => shipment_id)
@@ -163,7 +163,7 @@ module MWS
       # Returns a list of inbound shipments based on criteria that you specify
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ListInboundShipments.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [Array<String>] :shipment_status_list
       # @option opts [Array<String>] :shipment_id_list
       # @option opts [String, #iso8601] :last_updated_after
@@ -181,7 +181,7 @@ module MWS
       # Returns the next page of inbound shipments
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ListInboundShipmentsByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_inbound_shipments_by_next_token(next_token)
         operation('ListInboundShipmentsByNextToken')
@@ -194,7 +194,7 @@ module MWS
       # items that were updated within a specified time frame
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ListInboundShipmentItems.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [String] :shipment_id
       # @option opts [String, #iso8601] :last_updated_after
       # @option opts [String, #iso8601] :last_updated_before
@@ -207,7 +207,7 @@ module MWS
       # Returns the next page of inbound shipment items
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ListInboundShipmentItemsByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_inbound_shipment_items_by_next_token(next_token)
         operation('ListInboundShipmentItemsByNextToken')

@@ -77,7 +77,7 @@ module Peddler
 
     # Creates a new client instance
     #
-    # @param opts [Hash]
+    # @param [Hash] opts
     # @option opts [String] :primary_marketplace_id
     # @option opts [String] :merchant_id
     # @option opts [String] :aws_access_key_id

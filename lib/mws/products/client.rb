@@ -14,8 +14,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_ListMatchingProducts.html
       # @overload list_matching_products(query, opts = { marketplace_id: primary_marketplace_id })
-      #   @param query [String]
-      #   @param opts [Hash]
+      #   @param [String] query
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :query_context_id
       # @return [Peddler::XMLParser]
@@ -31,9 +31,9 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProduct.html
       # @overload get_matching_product_for_id(id_type, *id_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param id_type [String]
-      #   @param id_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [String] id_type
+      #   @param [Array<String>] id_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_matching_product_for_id(id_type, *id_list)
@@ -50,8 +50,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProductForId.html
       # @overload get_matching_product(*asin_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param asin_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] asin_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_matching_product(*asin_list)
@@ -68,8 +68,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForSKU.html
       # @overload get_competitive_pricing_for_sku(*seller_sku_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param seller_sku_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] seller_sku_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_competitive_pricing_for_sku(*seller_sku_list)
@@ -86,8 +86,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForASIN.html
       # @overload get_competitive_pricing_for_asin(*asin_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param asin_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] asin_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_competitive_pricing_for_asin(*asin_list)
@@ -105,8 +105,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForSKU.html
       # @overload get_lowest_offer_listings_for_sku(*seller_sku_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param seller_sku_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] seller_sku_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       #   @option opts [Boolean] :exclude_me
@@ -126,8 +126,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForASIN.html
       # @overload get_lowest_offer_listings_for_asin(*asin_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param asin_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] asin_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       #   @option opts [Boolean] :exclude_me
@@ -146,9 +146,9 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForSKU.html
       # @overload get_lowest_priced_offers_for_sku(seller_sku, item_condition, opts = { marketplace_id: primary_marketplace_id })
-      #   @param seller_sku [String]
-      #   @param item_condition [String]
-      #   @param opts [Hash]
+      #   @param [String] seller_sku
+      #   @param [String] item_condition
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_lowest_priced_offers_for_sku(seller_sku, item_condition, opts = {})
@@ -166,9 +166,9 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForASIN.html
       # @overload get_lowest_priced_offers_for_sku(asin, item_condition, opts = { marketplace_id: primary_marketplace_id })
-      #   @param asin [String]
-      #   @param item_condition [String]
-      #   @param opts [Hash]
+      #   @param [String] asin
+      #   @param [String] item_condition
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_lowest_priced_offers_for_asin(asin, item_condition, opts = {})
@@ -187,8 +187,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForSKU.html
       # @overload get_my_price_for_sku(*seller_sku_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param seller_sku_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] seller_sku_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       # @return [Peddler::XMLParser]
@@ -207,8 +207,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForASIN.html
       # @overload get_my_price_for_asin(*seller_sku_list, opts = { marketplace_id: primary_marketplace_id })
-      #   @param asin_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] asin_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :item_condition
       # @return [Peddler::XMLParser]
@@ -227,8 +227,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForSKU.html
       # @overload get_product_categories_for_sku(sku, opts = { marketplace_id: primary_marketplace_id })
-      #   @param seller_sku [String]
-      #   @param opts [Hash]
+      #   @param [String] seller_sku
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_product_categories_for_sku(seller_sku, opts = {})
@@ -242,8 +242,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForASIN.html
       # @overload get_product_categories_for_asin(asin, opts = { marketplace_id: primary_marketplace_id })
-      #   @param asin [String]
-      #   @param opts [Hash]
+      #   @param [String] asin
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_product_categories_for_asin(asin, opts = {})

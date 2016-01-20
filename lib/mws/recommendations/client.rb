@@ -15,7 +15,7 @@ module MWS
       # recommendations were last updated for each category
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
-      # @param marketplace_id [String]
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def get_last_updated_time_for_recommendations(marketplace_id = primary_marketplace_id)
         operation('GetLastUpdatedTimeForRecommendations')
@@ -29,7 +29,7 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendations.html
       # @overload list_recommendations(opts = { marketplace_id: primary_marketplace_id })
-      #   @param opts [Hash]
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :recommendation_category
       #   @option opts [Array<Struct, Hash>] :category_query_list
@@ -50,7 +50,7 @@ module MWS
       # Lists the next page of active recommendations
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendationsByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_recommendations_by_next_token(next_token)
         operation('ListRecommendationsByNextToken')
