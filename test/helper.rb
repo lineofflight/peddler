@@ -9,7 +9,6 @@ SimpleCov.formatters = [
 
 SimpleCov.start do
   add_filter '/test/'
-  minimum_coverage(99.62)
 end
 
 require 'minitest/autorun'
