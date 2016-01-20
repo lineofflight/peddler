@@ -2,6 +2,26 @@ require 'helper'
 require 'mws/orders'
 
 class TestOrders < IntegrationTest
+  def test_gets_orders
+    clients.each do |client|
+      order_ids = client
+        .list_orders(
+          created_after: Date.new(2015),
+          max_results_per_page: 5
+        )
+        .parse
+        .dig('Orders', 'Order')
+        .map { |order| order['AmazonOrderId'] }
+
+      orders = client
+        .get_order(*order_ids)
+        .parse
+        .dig('Orders', 'Order')
+
+      assert_equal order_ids.count, orders.count
+    end
+  end
+
   def test_gets_service_status
     clients.each do |client|
       res = client.get_service_status

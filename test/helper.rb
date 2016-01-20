@@ -70,6 +70,8 @@ VCR.configure do |c|
   c.hook_into :excon
   c.cassette_library_dir = 'test/vcr_cassettes'
 
+  ::Peddler::VCRMatcher.ignore_seller!
+
   # HTTP errors are not Peddler's concern, so ignore them to ease development.
   c.before_record do |interaction|
     code = interaction.response.status.code
