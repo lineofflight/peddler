@@ -38,13 +38,7 @@ module MWS
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def create_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
-        operation('CreateInboundShipment')
-          .add(opts.update(
-                 'ShipmentId' => shipment_id,
-                 'InboundShipmentHeader' => inbound_shipment_header
-          ))
-          .structure!('InboundShipmentItems', 'member')
-
+        build_inbound_shipment_operation('CreateInboundShipment', shipment_id, inbound_shipment_header, opts)
         run
       end
 
@@ -57,13 +51,7 @@ module MWS
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def update_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
-        operation('UpdateInboundShipment')
-          .add(opts.update(
-                 'ShipmentId' => shipment_id,
-                 'InboundShipmentHeader' => inbound_shipment_header
-          ))
-          .structure!('InboundShipmentItems', 'member')
-
+        build_inbound_shipment_operation('UpdateInboundShipment', shipment_id, inbound_shipment_header, opts)
         run
       end
 
@@ -223,6 +211,17 @@ module MWS
       def get_service_status
         operation('GetServiceStatus')
         run
+      end
+
+      private
+
+      def build_inbound_shipment_operation(operation_name, shipment_id, inbound_shipment_header, opts)
+        operation(operation_name)
+          .add(opts.update(
+            'ShipmentId' => shipment_id,
+            'InboundShipmentHeader' => inbound_shipment_header
+          ))
+          .structure!('InboundShipmentItems', 'member')
       end
     end
   end
