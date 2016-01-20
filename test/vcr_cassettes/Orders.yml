@@ -5,7 +5,7 @@ http_interactions:
     uri: https://mws.amazonservices.ca/Orders/2013-09-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A08Z&Version=2013-09-01&Signature=vz7mmqg2RnsQJ%2BrwBiwg75g%2BOF12oMAdEIDNKXHtZgE%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A08Z&Version=2013-09-01&Signature=vz7mmqg2RnsQJ%2BrwBiwg75g%2BOF12oMAdEIDNKXHtZgE%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -50,7 +50,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A09Z&Version=2013-09-01&Signature=WN6LYVU2IDTJ9oS91GDDvMfipVM6e1P%2F2%2BAe1AmJt9s%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A09Z&Version=2013-09-01&Signature=WN6LYVU2IDTJ9oS91GDDvMfipVM6e1P%2F2%2BAe1AmJt9s%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -95,7 +95,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Orders/2013-09-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A09Z&Version=2013-09-01&Signature=B6aZYqLZrR1rAs90PZrFQCg1WgvbUhFc3f9XTbK0iD4%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A09Z&Version=2013-09-01&Signature=B6aZYqLZrR1rAs90PZrFQCg1WgvbUhFc3f9XTbK0iD4%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -140,7 +140,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: US-ASCII
-      string: 'AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A10Z&Version=2013-09-01&Signature=6p7KAhV7pStJH%2BgqAuYHpxMQN8lK43r%2Bc1MDGrjBJhM%3D'
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A10Z&Version=2013-09-01&Signature=6p7KAhV7pStJH%2BgqAuYHpxMQN8lK43r%2Bc1MDGrjBJhM%3D
     headers:
       User-Agent:
       - Jeff/1.2.0 (Language=Ruby; Hakans-MacBook-Pro.local)
@@ -180,4 +180,1901 @@ http_interactions:
         </GetServiceStatusResponse>
     http_version: 
   recorded_at: Sat, 28 Mar 2015 18:12:11 GMT
-recorded_with: VCR 2.9.3
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListOrders&CreatedAfter=2015-01-01&MarketplaceId.Id.1=A2EUQ1WTGCTBG2&MaxResultsPerPage=5&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A11Z&Version=2013-09-01&Signature=rts5vyk%2FbzgMpA%2BHHTrb%2F7Hyginrg6mtJyUSiOjYmrI%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:10 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:11 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=BsPrkh7f/Jpkb5fMWhnrxLetl/UxQd4FcuLk8N4/mX8=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 66ca2495-9fbb-4e7e-ae11-673ff487cdc4
+      x-mws-timestamp:
+      - '2016-01-20T18:49:11.191Z'
+      x-mws-response-context:
+      - IRqMiDL2JjmiwIDRiEdl5lCd0yi8QLFSt1PyZqGIYjWLOxoxnXsvC6dtb0HziXdTEo4dsRlAS+D/
+        3eZvHSlwhQ==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '9826'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ListOrdersResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <ListOrdersResult>
+            <Orders>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:01:29Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-8212983-0622640</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Ontario</StateOrRegion>
+                  <City>Cochrane</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:34:16Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-0172976-2593811</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Manitoba</StateOrRegion>
+                  <City>Winnipeg</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:54:27Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>702-6961032-7264202</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Alberta</StateOrRegion>
+                  <City>Calgary</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T01:25:15Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-7014766-0872225</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:44Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Ontario</StateOrRegion>
+                  <City>Acton</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T01:32:08Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-5529806-6084219</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:44Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Ontario</StateOrRegion>
+                  <City>Bowmanville</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+            </Orders>
+            <CreatedBefore>2016-01-20T18:47:11Z</CreatedBefore>
+            <NextToken>NAhRezRbzK2aJqJYLDm0ZIfVkJJPpovR3bYOcqlvP25UojdU4H46trQzazHyYVyLqBXdLk4iogwgT7ZByNq5q7ke3OztunujhVyS7yV8GE0yECml8I1wDiJ0wMvlylZkWQWPqGlbsnPaEpJjLWtrc+nEqEaMFRl2OnlPu9Fd1x4K9lmOLOv9T7uZIF9n45mtnrZ4AbBdBTeicp5jJPQPcgCy5/GuGI4OLzyB960RsbIZEWUDFvtT53Osyr0hm5DpJSxQTGiYwA19sulHNE8ye7CXSaG7w7Y2U5YoG7oe20S4vAugK4inhFcNZd3QNNmFE/pUkpJfS8iIAjWdKCyXywPazVAPprUVmcoi1HxBtXhm+zLRbZiM4maYjFe1P3k5WB00Vr9QqVDa5nks50sbZLBTJM9CWItKvrI/1RFVhjMhIJWwQKfOOK06ALGDfN7B4JHWT14XEXCjowN9zQHwPaEan4sJySOJ</NextToken>
+          </ListOrdersResult>
+          <ResponseMetadata>
+            <RequestId>66ca2495-9fbb-4e7e-ae11-673ff487cdc4</RequestId>
+          </ResponseMetadata>
+        </ListOrdersResponse>
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:12 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetOrder&AmazonOrderId.Id.1=701-8212983-0622640&AmazonOrderId.Id.2=701-0172976-2593811&AmazonOrderId.Id.3=702-6961032-7264202&AmazonOrderId.Id.4=701-7014766-0872225&AmazonOrderId.Id.5=701-5529806-6084219&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A13Z&Version=2013-09-01&Signature=6LEJPgnCDMOjF5uRrl6T0lA%2Feo%2Br7%2B8z75VGilJNUKM%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:12 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:13 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=vq45cu5ZDp9y7IsvKh9wAOVX8fve3HVZw3fmj2WVslY=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 807de68c-8644-4441-b41a-dc68ba985011
+      x-mws-timestamp:
+      - '2016-01-20T18:49:13.070Z'
+      x-mws-response-context:
+      - 1pfbGqTttYJF0RN4LkLL+WhkxcKwCqjUpCHtQCVl3b0pBC21dDhHSettvdc+cyCB1iUwVKp/csht
+        lDRo17AgZg==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '9254'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetOrderResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <GetOrderResult>
+            <Orders>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:01:29Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-8212983-0622640</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Ontario</StateOrRegion>
+                  <City>Cochrane</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:34:16Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-0172976-2593811</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Manitoba</StateOrRegion>
+                  <City>Winnipeg</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:54:27Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>702-6961032-7264202</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Alberta</StateOrRegion>
+                  <City>Calgary</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T01:25:15Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-7014766-0872225</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:44Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Ontario</StateOrRegion>
+                  <City>Acton</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T01:32:08Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>701-5529806-6084219</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:44Z</LastUpdateDate>
+                <ShipServiceLevel>Std CA Domestic</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.ca</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-01-21T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-13T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>CAD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>Ontario</StateOrRegion>
+                  <City>Bowmanville</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>CA</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+            </Orders>
+          </GetOrderResult>
+          <ResponseMetadata>
+            <RequestId>807de68c-8644-4441-b41a-dc68ba985011</RequestId>
+          </ResponseMetadata>
+        </GetOrderResponse>
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:14 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListOrders&CreatedAfter=2015-01-01&MarketplaceId.Id.1=A1PA6795UKMFR9&MaxResultsPerPage=5&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A15Z&Version=2013-09-01&Signature=%2Bbn6fU3rvDlYEKStYwWUqSbPFbSVMmhaGAhutGsMVtg%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:14 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:14 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Signed=true, Encrypted=false, Signature=CiuHRxQx7sdRdH60XUXE/46dPoww+HsxJMrMuk5rRo8=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 64c519c8-afb1-470b-bb76-14e40c355e83
+      x-mws-timestamp:
+      - '2016-01-20T18:49:14.843Z'
+      x-mws-response-context:
+      - 4GpCNXN+RF0Msf+VojtPyc665Zg7q+HLpmfjDWEXSHcCoMScfGi06Fyu0qEd0RRzXFN5AJr9gPaN
+        nDeixsigow==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '9690'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0T3JkZXJzUmVzcG9uc2UgeG1s
+        bnM9Imh0dHBzOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9PcmRlcnMvMjAx
+        My0wOS0wMSI+CiAgPExpc3RPcmRlcnNSZXN1bHQ+CiAgICA8T3JkZXJzPgog
+        ICAgICA8T3JkZXI+CiAgICAgICAgPExhdGVzdFNoaXBEYXRlPjIwMTUtMDEt
+        MDVUMjI6NTk6NTlaPC9MYXRlc3RTaGlwRGF0ZT4KICAgICAgICA8T3JkZXJU
+        eXBlPlN0YW5kYXJkT3JkZXI8L09yZGVyVHlwZT4KICAgICAgICA8UHVyY2hh
+        c2VEYXRlPjIwMTUtMDEtMDFUMDA6MTk6MzBaPC9QdXJjaGFzZURhdGU+CiAg
+        ICAgICAgPEJ1eWVyRW1haWw+RklMVEVSRUQ8L0J1eWVyRW1haWw+CiAgICAg
+        ICAgPEFtYXpvbk9yZGVySWQ+MzAzLTgyMzUxNTEtOTgyMjczNDwvQW1hem9u
+        T3JkZXJJZD4KICAgICAgICA8TGFzdFVwZGF0ZURhdGU+MjAxNS0wMS0wM1Qw
+        NzoxMzo1M1o8L0xhc3RVcGRhdGVEYXRlPgogICAgICAgIDxTaGlwU2Vydmlj
+        ZUxldmVsPlN0ZCBERSBEb21lc3RpYzwvU2hpcFNlcnZpY2VMZXZlbD4KICAg
+        ICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBwZWQ+MTwvTnVtYmVyT2ZJdGVtc1No
+        aXBwZWQ+CiAgICAgICAgPE9yZGVyU3RhdHVzPlNoaXBwZWQ8L09yZGVyU3Rh
+        dHVzPgogICAgICAgIDxTYWxlc0NoYW5uZWw+QW1hem9uLmRlPC9TYWxlc0No
+        YW5uZWw+CiAgICAgICAgPFNoaXBwZWRCeUFtYXpvblRGTT5mYWxzZTwvU2hp
+        cHBlZEJ5QW1hem9uVEZNPgogICAgICAgIDxMYXRlc3REZWxpdmVyeURhdGU+
+        MjAxNS0wMS0yOVQyMjo1OTo1OVo8L0xhdGVzdERlbGl2ZXJ5RGF0ZT4KICAg
+        ICAgICA8TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4wPC9OdW1iZXJPZkl0ZW1z
+        VW5zaGlwcGVkPgogICAgICAgIDxCdXllck5hbWU+RklMVEVSRUQ8L0J1eWVy
+        TmFtZT4KICAgICAgICA8RWFybGllc3REZWxpdmVyeURhdGU+MjAxNS0wMS0w
+        OVQyMzowMDowMFo8L0VhcmxpZXN0RGVsaXZlcnlEYXRlPgogICAgICAgIDxP
+        cmRlclRvdGFsPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5FVVI8L0N1cnJl
+        bmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ftb3VudD4K
+        ICAgICAgICA8L09yZGVyVG90YWw+CiAgICAgICAgPElzUHJlbWl1bU9yZGVy
+        PmZhbHNlPC9Jc1ByZW1pdW1PcmRlcj4KICAgICAgICA8RWFybGllc3RTaGlw
+        RGF0ZT4yMDE1LTAxLTAxVDIzOjAwOjAwWjwvRWFybGllc3RTaGlwRGF0ZT4K
+        ICAgICAgICA8TWFya2V0cGxhY2VJZD5BMVBBNjc5NVVLTUZSOTwvTWFya2V0
+        cGxhY2VJZD4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1GTjwvRnVs
+        ZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxQYXltZW50TWV0aG9kPk90aGVy
+        PC9QYXltZW50TWV0aG9kPgogICAgICAgIDxTaGlwcGluZ0FkZHJlc3M+CiAg
+        ICAgICAgICA8U3RhdGVPclJlZ2lvbj5iZXJsaW48L1N0YXRlT3JSZWdpb24+
+        CiAgICAgICAgICA8Q2l0eT5iZXJsaW48L0NpdHk+CiAgICAgICAgICA8UGhv
+        bmU+RklMVEVSRUQ8L1Bob25lPgogICAgICAgICAgPENvdW50cnlDb2RlPkRF
+        PC9Db3VudHJ5Q29kZT4KICAgICAgICAgIDxQb3N0YWxDb2RlPkZJTFRFUkVE
+        PC9Qb3N0YWxDb2RlPgogICAgICAgICAgPE5hbWU+RklMVEVSRUQ8L05hbWU+
+        CiAgICAgICAgICA8QWRkcmVzc0xpbmUxPkZJTFRFUkVEPC9BZGRyZXNzTGlu
+        ZTE+CiAgICAgICAgPC9TaGlwcGluZ0FkZHJlc3M+CiAgICAgICAgPElzUHJp
+        bWU+ZmFsc2U8L0lzUHJpbWU+CiAgICAgICAgPFNoaXBtZW50U2VydmljZUxl
+        dmVsQ2F0ZWdvcnk+U3RhbmRhcmQ8L1NoaXBtZW50U2VydmljZUxldmVsQ2F0
+        ZWdvcnk+CiAgICAgIDwvT3JkZXI+CiAgICAgIDxPcmRlcj4KICAgICAgICA8
+        TGF0ZXN0U2hpcERhdGU+MjAxNS0wMS0wNVQyMjo1OTo1OVo8L0xhdGVzdFNo
+        aXBEYXRlPgogICAgICAgIDxPcmRlclR5cGU+U3RhbmRhcmRPcmRlcjwvT3Jk
+        ZXJUeXBlPgogICAgICAgIDxQdXJjaGFzZURhdGU+MjAxNS0wMS0wMVQwMDoz
+        Mjo1NFo8L1B1cmNoYXNlRGF0ZT4KICAgICAgICA8QnV5ZXJFbWFpbD5GSUxU
+        RVJFRDwvQnV5ZXJFbWFpbD4KICAgICAgICA8QW1hem9uT3JkZXJJZD4zMDIt
+        MDQzMjI3MC04NzA4MzM2PC9BbWF6b25PcmRlcklkPgogICAgICAgIDxMYXN0
+        VXBkYXRlRGF0ZT4yMDE1LTAxLTA1VDEzOjQ0OjIzWjwvTGFzdFVwZGF0ZURh
+        dGU+CiAgICAgICAgPFNoaXBTZXJ2aWNlTGV2ZWw+U3RkIERFIEVVPC9TaGlw
+        U2VydmljZUxldmVsPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4x
+        PC9OdW1iZXJPZkl0ZW1zU2hpcHBlZD4KICAgICAgICA8T3JkZXJTdGF0dXM+
+        U2hpcHBlZDwvT3JkZXJTdGF0dXM+CiAgICAgICAgPFNhbGVzQ2hhbm5lbD5B
+        bWF6b24uZGU8L1NhbGVzQ2hhbm5lbD4KICAgICAgICA8U2hpcHBlZEJ5QW1h
+        em9uVEZNPmZhbHNlPC9TaGlwcGVkQnlBbWF6b25URk0+CiAgICAgICAgPExh
+        dGVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTE5VDIyOjU5OjU5WjwvTGF0ZXN0
+        RGVsaXZlcnlEYXRlPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zVW5zaGlwcGVk
+        PjA8L051bWJlck9mSXRlbXNVbnNoaXBwZWQ+CiAgICAgICAgPEJ1eWVyTmFt
+        ZT5GSUxURVJFRDwvQnV5ZXJOYW1lPgogICAgICAgIDxFYXJsaWVzdERlbGl2
+        ZXJ5RGF0ZT4yMDE1LTAxLTA3VDIzOjAwOjAwWjwvRWFybGllc3REZWxpdmVy
+        eURhdGU+CiAgICAgICAgPE9yZGVyVG90YWw+CiAgICAgICAgICA8Q3VycmVu
+        Y3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5G
+        SUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvT3JkZXJUb3RhbD4KICAgICAg
+        ICA8SXNQcmVtaXVtT3JkZXI+ZmFsc2U8L0lzUHJlbWl1bU9yZGVyPgogICAg
+        ICAgIDxFYXJsaWVzdFNoaXBEYXRlPjIwMTUtMDEtMDFUMjM6MDA6MDBaPC9F
+        YXJsaWVzdFNoaXBEYXRlPgogICAgICAgIDxNYXJrZXRwbGFjZUlkPkExUEE2
+        Nzk1VUtNRlI5PC9NYXJrZXRwbGFjZUlkPgogICAgICAgIDxGdWxmaWxsbWVu
+        dENoYW5uZWw+TUZOPC9GdWxmaWxsbWVudENoYW5uZWw+CiAgICAgICAgPFBh
+        eW1lbnRNZXRob2Q+T3RoZXI8L1BheW1lbnRNZXRob2Q+CiAgICAgICAgPFNo
+        aXBwaW5nQWRkcmVzcz4KICAgICAgICAgIDxDaXR5PlNvZWJ5IEFlcm9lPC9D
+        aXR5PgogICAgICAgICAgPFBob25lPkZJTFRFUkVEPC9QaG9uZT4KICAgICAg
+        ICAgIDxDb3VudHJ5Q29kZT5ESzwvQ291bnRyeUNvZGU+CiAgICAgICAgICA8
+        UG9zdGFsQ29kZT5GSUxURVJFRDwvUG9zdGFsQ29kZT4KICAgICAgICAgIDxO
+        YW1lPkZJTFRFUkVEPC9OYW1lPgogICAgICAgICAgPEFkZHJlc3NMaW5lMT5G
+        SUxURVJFRDwvQWRkcmVzc0xpbmUxPgogICAgICAgICAgPEFkZHJlc3NMaW5l
+        Mj5Tb2VieWdhYXJkc21hcmtzdmVqIDM8L0FkZHJlc3NMaW5lMj4KICAgICAg
+        ICA8L1NoaXBwaW5nQWRkcmVzcz4KICAgICAgICA8SXNQcmltZT5mYWxzZTwv
+        SXNQcmltZT4KICAgICAgICA8U2hpcG1lbnRTZXJ2aWNlTGV2ZWxDYXRlZ29y
+        eT5TdGFuZGFyZDwvU2hpcG1lbnRTZXJ2aWNlTGV2ZWxDYXRlZ29yeT4KICAg
+        ICAgPC9PcmRlcj4KICAgICAgPE9yZGVyPgogICAgICAgIDxMYXRlc3RTaGlw
+        RGF0ZT4yMDE1LTAxLTA1VDIyOjU5OjU5WjwvTGF0ZXN0U2hpcERhdGU+CiAg
+        ICAgICAgPE9yZGVyVHlwZT5TdGFuZGFyZE9yZGVyPC9PcmRlclR5cGU+CiAg
+        ICAgICAgPFB1cmNoYXNlRGF0ZT4yMDE1LTAxLTAxVDAwOjM3OjMyWjwvUHVy
+        Y2hhc2VEYXRlPgogICAgICAgIDxCdXllckVtYWlsPkZJTFRFUkVEPC9CdXll
+        ckVtYWlsPgogICAgICAgIDxBbWF6b25PcmRlcklkPjMwNC05NjY0MDQ5LTUw
+        MDU5MDk8L0FtYXpvbk9yZGVySWQ+CiAgICAgICAgPExhc3RVcGRhdGVEYXRl
+        PjIwMTUtMDEtMDNUMDc6MTM6NTJaPC9MYXN0VXBkYXRlRGF0ZT4KICAgICAg
+        ICA8U2hpcFNlcnZpY2VMZXZlbD5TdGQgREUgRG9tZXN0aWM8L1NoaXBTZXJ2
+        aWNlTGV2ZWw+CiAgICAgICAgPE51bWJlck9mSXRlbXNTaGlwcGVkPjE8L051
+        bWJlck9mSXRlbXNTaGlwcGVkPgogICAgICAgIDxPcmRlclN0YXR1cz5TaGlw
+        cGVkPC9PcmRlclN0YXR1cz4KICAgICAgICA8U2FsZXNDaGFubmVsPkFtYXpv
+        bi5kZTwvU2FsZXNDaGFubmVsPgogICAgICAgIDxTaGlwcGVkQnlBbWF6b25U
+        Rk0+ZmFsc2U8L1NoaXBwZWRCeUFtYXpvblRGTT4KICAgICAgICA8TGF0ZXN0
+        RGVsaXZlcnlEYXRlPjIwMTUtMDEtMjlUMjI6NTk6NTlaPC9MYXRlc3REZWxp
+        dmVyeURhdGU+CiAgICAgICAgPE51bWJlck9mSXRlbXNVbnNoaXBwZWQ+MDwv
+        TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4KICAgICAgICA8QnV5ZXJOYW1lPkZJ
+        TFRFUkVEPC9CdXllck5hbWU+CiAgICAgICAgPEVhcmxpZXN0RGVsaXZlcnlE
+        YXRlPjIwMTUtMDEtMDlUMjM6MDA6MDBaPC9FYXJsaWVzdERlbGl2ZXJ5RGF0
+        ZT4KICAgICAgICA8T3JkZXJUb3RhbD4KICAgICAgICAgIDxDdXJyZW5jeUNv
+        ZGU+RVVSPC9DdXJyZW5jeUNvZGU+CiAgICAgICAgICA8QW1vdW50PkZJTFRF
+        UkVEPC9BbW91bnQ+CiAgICAgICAgPC9PcmRlclRvdGFsPgogICAgICAgIDxJ
+        c1ByZW1pdW1PcmRlcj5mYWxzZTwvSXNQcmVtaXVtT3JkZXI+CiAgICAgICAg
+        PEVhcmxpZXN0U2hpcERhdGU+MjAxNS0wMS0wMVQyMzowMDowMFo8L0Vhcmxp
+        ZXN0U2hpcERhdGU+CiAgICAgICAgPE1hcmtldHBsYWNlSWQ+QTFQQTY3OTVV
+        S01GUjk8L01hcmtldHBsYWNlSWQ+CiAgICAgICAgPEZ1bGZpbGxtZW50Q2hh
+        bm5lbD5NRk48L0Z1bGZpbGxtZW50Q2hhbm5lbD4KICAgICAgICA8UGF5bWVu
+        dE1ldGhvZD5PdGhlcjwvUGF5bWVudE1ldGhvZD4KICAgICAgICA8U2hpcHBp
+        bmdBZGRyZXNzPgogICAgICAgICAgPFN0YXRlT3JSZWdpb24+QmF5ZXJuPC9T
+        dGF0ZU9yUmVnaW9uPgogICAgICAgICAgPENpdHk+TcO8bmNoZW48L0NpdHk+
+        CiAgICAgICAgICA8UGhvbmU+RklMVEVSRUQ8L1Bob25lPgogICAgICAgICAg
+        PENvdW50cnlDb2RlPkRFPC9Db3VudHJ5Q29kZT4KICAgICAgICAgIDxQb3N0
+        YWxDb2RlPkZJTFRFUkVEPC9Qb3N0YWxDb2RlPgogICAgICAgICAgPE5hbWU+
+        RklMVEVSRUQ8L05hbWU+CiAgICAgICAgICA8QWRkcmVzc0xpbmUxPkZJTFRF
+        UkVEPC9BZGRyZXNzTGluZTE+CiAgICAgICAgICA8QWRkcmVzc0xpbmUyPkVy
+        aWthLU1hbm4tU3RyLiA2NjwvQWRkcmVzc0xpbmUyPgogICAgICAgIDwvU2hp
+        cHBpbmdBZGRyZXNzPgogICAgICAgIDxJc1ByaW1lPmZhbHNlPC9Jc1ByaW1l
+        PgogICAgICAgIDxTaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PlN0YW5k
+        YXJkPC9TaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PgogICAgICA8L09y
+        ZGVyPgogICAgICA8T3JkZXI+CiAgICAgICAgPExhdGVzdFNoaXBEYXRlPjIw
+        MTUtMDEtMDVUMjI6NTk6NTlaPC9MYXRlc3RTaGlwRGF0ZT4KICAgICAgICA8
+        T3JkZXJUeXBlPlN0YW5kYXJkT3JkZXI8L09yZGVyVHlwZT4KICAgICAgICA8
+        UHVyY2hhc2VEYXRlPjIwMTUtMDEtMDFUMDA6NTc6MDVaPC9QdXJjaGFzZURh
+        dGU+CiAgICAgICAgPEJ1eWVyRW1haWw+RklMVEVSRUQ8L0J1eWVyRW1haWw+
+        CiAgICAgICAgPEFtYXpvbk9yZGVySWQ+MDI4LTQ0NzgzOTYtMjc0MjczMDwv
+        QW1hem9uT3JkZXJJZD4KICAgICAgICA8TGFzdFVwZGF0ZURhdGU+MjAxNS0w
+        MS0wM1QwNzoxMzo1Mlo8L0xhc3RVcGRhdGVEYXRlPgogICAgICAgIDxTaGlw
+        U2VydmljZUxldmVsPlN0ZCBERSBEb21lc3RpYzwvU2hpcFNlcnZpY2VMZXZl
+        bD4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBwZWQ+MTwvTnVtYmVyT2ZJ
+        dGVtc1NoaXBwZWQ+CiAgICAgICAgPE9yZGVyU3RhdHVzPlNoaXBwZWQ8L09y
+        ZGVyU3RhdHVzPgogICAgICAgIDxTYWxlc0NoYW5uZWw+QW1hem9uLmRlPC9T
+        YWxlc0NoYW5uZWw+CiAgICAgICAgPFNoaXBwZWRCeUFtYXpvblRGTT5mYWxz
+        ZTwvU2hpcHBlZEJ5QW1hem9uVEZNPgogICAgICAgIDxMYXRlc3REZWxpdmVy
+        eURhdGU+MjAxNS0wMS0yOVQyMjo1OTo1OVo8L0xhdGVzdERlbGl2ZXJ5RGF0
+        ZT4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4wPC9OdW1iZXJP
+        Zkl0ZW1zVW5zaGlwcGVkPgogICAgICAgIDxCdXllck5hbWU+RklMVEVSRUQ8
+        L0J1eWVyTmFtZT4KICAgICAgICA8RWFybGllc3REZWxpdmVyeURhdGU+MjAx
+        NS0wMS0wOVQyMzowMDowMFo8L0VhcmxpZXN0RGVsaXZlcnlEYXRlPgogICAg
+        ICAgIDxPcmRlclRvdGFsPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5FVVI8
+        L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ft
+        b3VudD4KICAgICAgICA8L09yZGVyVG90YWw+CiAgICAgICAgPElzUHJlbWl1
+        bU9yZGVyPmZhbHNlPC9Jc1ByZW1pdW1PcmRlcj4KICAgICAgICA8RWFybGll
+        c3RTaGlwRGF0ZT4yMDE1LTAxLTAxVDIzOjAwOjAwWjwvRWFybGllc3RTaGlw
+        RGF0ZT4KICAgICAgICA8TWFya2V0cGxhY2VJZD5BMVBBNjc5NVVLTUZSOTwv
+        TWFya2V0cGxhY2VJZD4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1G
+        TjwvRnVsZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxQYXltZW50TWV0aG9k
+        Pk90aGVyPC9QYXltZW50TWV0aG9kPgogICAgICAgIDxTaGlwcGluZ0FkZHJl
+        c3M+CiAgICAgICAgICA8Q2l0eT5MYW5nZWxuPC9DaXR5PgogICAgICAgICAg
+        PFBob25lPkZJTFRFUkVEPC9QaG9uZT4KICAgICAgICAgIDxDb3VudHJ5Q29k
+        ZT5ERTwvQ291bnRyeUNvZGU+CiAgICAgICAgICA8UG9zdGFsQ29kZT5GSUxU
+        RVJFRDwvUG9zdGFsQ29kZT4KICAgICAgICAgIDxOYW1lPkZJTFRFUkVEPC9O
+        YW1lPgogICAgICAgICAgPEFkZHJlc3NMaW5lMj5Eb3Jmc3RyYcOfZSA2Yjwv
+        QWRkcmVzc0xpbmUyPgogICAgICAgIDwvU2hpcHBpbmdBZGRyZXNzPgogICAg
+        ICAgIDxJc1ByaW1lPmZhbHNlPC9Jc1ByaW1lPgogICAgICAgIDxTaGlwbWVu
+        dFNlcnZpY2VMZXZlbENhdGVnb3J5PlN0YW5kYXJkPC9TaGlwbWVudFNlcnZp
+        Y2VMZXZlbENhdGVnb3J5PgogICAgICA8L09yZGVyPgogICAgICA8T3JkZXI+
+        CiAgICAgICAgPExhdGVzdFNoaXBEYXRlPjIwMTUtMDEtMDVUMjI6NTk6NTla
+        PC9MYXRlc3RTaGlwRGF0ZT4KICAgICAgICA8T3JkZXJUeXBlPlN0YW5kYXJk
+        T3JkZXI8L09yZGVyVHlwZT4KICAgICAgICA8UHVyY2hhc2VEYXRlPjIwMTUt
+        MDEtMDFUMDE6MDE6MzRaPC9QdXJjaGFzZURhdGU+CiAgICAgICAgPEJ1eWVy
+        RW1haWw+RklMVEVSRUQ8L0J1eWVyRW1haWw+CiAgICAgICAgPEFtYXpvbk9y
+        ZGVySWQ+MzA0LTU3OTQwNzgtNTc1Mzk1MTwvQW1hem9uT3JkZXJJZD4KICAg
+        ICAgICA8TGFzdFVwZGF0ZURhdGU+MjAxNS0wMS0wNFQyMToxOTo1Mlo8L0xh
+        c3RVcGRhdGVEYXRlPgogICAgICAgIDxTaGlwU2VydmljZUxldmVsPlN0ZCBE
+        RSBEb21lc3RpYzwvU2hpcFNlcnZpY2VMZXZlbD4KICAgICAgICA8TnVtYmVy
+        T2ZJdGVtc1NoaXBwZWQ+MTwvTnVtYmVyT2ZJdGVtc1NoaXBwZWQ+CiAgICAg
+        ICAgPE9yZGVyU3RhdHVzPlNoaXBwZWQ8L09yZGVyU3RhdHVzPgogICAgICAg
+        IDxTYWxlc0NoYW5uZWw+QW1hem9uLmRlPC9TYWxlc0NoYW5uZWw+CiAgICAg
+        ICAgPFNoaXBwZWRCeUFtYXpvblRGTT5mYWxzZTwvU2hpcHBlZEJ5QW1hem9u
+        VEZNPgogICAgICAgIDxMYXRlc3REZWxpdmVyeURhdGU+MjAxNS0wMS0yOVQy
+        Mjo1OTo1OVo8L0xhdGVzdERlbGl2ZXJ5RGF0ZT4KICAgICAgICA8TnVtYmVy
+        T2ZJdGVtc1Vuc2hpcHBlZD4wPC9OdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPgog
+        ICAgICAgIDxCdXllck5hbWU+RklMVEVSRUQ8L0J1eWVyTmFtZT4KICAgICAg
+        ICA8RWFybGllc3REZWxpdmVyeURhdGU+MjAxNS0wMS0wOVQyMzowMDowMFo8
+        L0VhcmxpZXN0RGVsaXZlcnlEYXRlPgogICAgICAgIDxPcmRlclRvdGFsPgog
+        ICAgICAgICAgPEN1cnJlbmN5Q29kZT5FVVI8L0N1cnJlbmN5Q29kZT4KICAg
+        ICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ftb3VudD4KICAgICAgICA8L09y
+        ZGVyVG90YWw+CiAgICAgICAgPElzUHJlbWl1bU9yZGVyPmZhbHNlPC9Jc1By
+        ZW1pdW1PcmRlcj4KICAgICAgICA8RWFybGllc3RTaGlwRGF0ZT4yMDE1LTAx
+        LTAxVDIzOjAwOjAwWjwvRWFybGllc3RTaGlwRGF0ZT4KICAgICAgICA8TWFy
+        a2V0cGxhY2VJZD5BMVBBNjc5NVVLTUZSOTwvTWFya2V0cGxhY2VJZD4KICAg
+        ICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1GTjwvRnVsZmlsbG1lbnRDaGFu
+        bmVsPgogICAgICAgIDxQYXltZW50TWV0aG9kPk90aGVyPC9QYXltZW50TWV0
+        aG9kPgogICAgICAgIDxTaGlwcGluZ0FkZHJlc3M+CiAgICAgICAgICA8U3Rh
+        dGVPclJlZ2lvbj5CYXllcm48L1N0YXRlT3JSZWdpb24+CiAgICAgICAgICA8
+        Q2l0eT5Nw7xuY2hlbjwvQ2l0eT4KICAgICAgICAgIDxQaG9uZT5GSUxURVJF
+        RDwvUGhvbmU+CiAgICAgICAgICA8Q291bnRyeUNvZGU+REU8L0NvdW50cnlD
+        b2RlPgogICAgICAgICAgPFBvc3RhbENvZGU+RklMVEVSRUQ8L1Bvc3RhbENv
+        ZGU+CiAgICAgICAgICA8TmFtZT5GSUxURVJFRDwvTmFtZT4KICAgICAgICAg
+        IDxBZGRyZXNzTGluZTE+RklMVEVSRUQ8L0FkZHJlc3NMaW5lMT4KICAgICAg
+        ICAgIDxBZGRyZXNzTGluZTI+RXJpa2EtTWFubi1TdHIuIDY2PC9BZGRyZXNz
+        TGluZTI+CiAgICAgICAgPC9TaGlwcGluZ0FkZHJlc3M+CiAgICAgICAgPElz
+        UHJpbWU+ZmFsc2U8L0lzUHJpbWU+CiAgICAgICAgPFNoaXBtZW50U2Vydmlj
+        ZUxldmVsQ2F0ZWdvcnk+U3RhbmRhcmQ8L1NoaXBtZW50U2VydmljZUxldmVs
+        Q2F0ZWdvcnk+CiAgICAgIDwvT3JkZXI+CiAgICA8L09yZGVycz4KICAgIDxD
+        cmVhdGVkQmVmb3JlPjIwMTYtMDEtMjBUMTg6NDc6MTRaPC9DcmVhdGVkQmVm
+        b3JlPgogICAgPE5leHRUb2tlbj5YWEppNER6bHJoR2FKcUpZTERtMFpJZlZr
+        SkpQcG92UjNiWU9jcWx2UDI1VW9qZFU0SDQ2dHJRemF6SHlZVnlMcUJYZExr
+        NGlvZ3dnVDdaQnlOcTVxN2tlM096dHVudWpoVnlTN3lWOEdFMlRhandXdkll
+        cU55SjB3TXZseWxaa1dRV1BxR2xic25QYUVwSmpMV3RyYytuRXFFYU1GUmwy
+        RWs2bnIrNXVZb00xWlVzc1hFYkNtTHVaSUY5bjQ1bXRuclo0QWJCZEJUZWlj
+        cDVqSlBRUGNnQ3k1L0d1R0k0T0x6eUI5NjBSc2JJWkVXVURGdnRUNTBsZEZa
+        V3FBV04zbE9nOE00YWxmSU11Nm1hWElURzRwTENYU2FHN3c3WTI0eXE5QzlL
+        VFVYMlNEZlhYYlN6dU8rSTR4VVFGeXRsNEUvcFVrcEpmUzhpSUFqV2RLQ3lY
+        eXdQYXpWQVBwclVWZEVyaWFxaGdTSk5tK3pMUmJaaU00ay9MZzBSZUNsbi9B
+        cGZYUkNCRlM0WGxFMFJxMWtvL1VjNFhQOG5ERmV3Uzc0dWpqZzh5ckp1Mk53
+        SWdrdkdPcmEwNkFMR0RmTjdCNEpIV1QxNFhFWERoSHo2MnN3SWNVK2l2eExQ
+        T1ZPS288L05leHRUb2tlbj4KICA8L0xpc3RPcmRlcnNSZXN1bHQ+CiAgPFJl
+        c3BvbnNlTWV0YWRhdGE+CiAgICA8UmVxdWVzdElkPjY0YzUxOWM4LWFmYjEt
+        NDcwYi1iYjc2LTE0ZTQwYzM1NWU4MzwvUmVxdWVzdElkPgogIDwvUmVzcG9u
+        c2VNZXRhZGF0YT4KPC9MaXN0T3JkZXJzUmVzcG9uc2U+Cg==
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:15 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetOrder&AmazonOrderId.Id.1=303-8235151-9822734&AmazonOrderId.Id.2=302-0432270-8708336&AmazonOrderId.Id.3=304-9664049-5005909&AmazonOrderId.Id.4=028-4478396-2742730&AmazonOrderId.Id.5=304-5794078-5753951&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A16Z&Version=2013-09-01&Signature=xHlOyYZzo4aAuzVkjXYMfS3oED3re18l2qb4taEgLaw%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:16 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:16 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.lwigtwr3h4inoeknjer76q4tl4.Default/1,
+        Signed=true, Encrypted=false, Signature=uPsaN0O7zkEi+NHNvlNbMZkHg6VeUbeN4eVZ6VbpgqQ=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 4e432624-5208-4f14-a9b6-8077a5bba2b4
+      x-mws-timestamp:
+      - '2016-01-20T18:49:16.299Z'
+      x-mws-response-context:
+      - ujcrgfL3Cq3ZLIVLcAdGsDAu1Uf7g8IdpFWoD4+YiEctrLE199Me/AaQCLqzDkzFWjmwl+nrLTYC
+        aiHf5Ke73w==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '9118'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxHZXRPcmRlclJlc3BvbnNlIHhtbG5z
+        PSJodHRwczovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vT3JkZXJzLzIwMTMt
+        MDktMDEiPgogIDxHZXRPcmRlclJlc3VsdD4KICAgIDxPcmRlcnM+CiAgICAg
+        IDxPcmRlcj4KICAgICAgICA8TGF0ZXN0U2hpcERhdGU+MjAxNS0wMS0wNVQy
+        Mjo1OTo1OVo8L0xhdGVzdFNoaXBEYXRlPgogICAgICAgIDxPcmRlclR5cGU+
+        U3RhbmRhcmRPcmRlcjwvT3JkZXJUeXBlPgogICAgICAgIDxQdXJjaGFzZURh
+        dGU+MjAxNS0wMS0wMVQwMDoxOTozMFo8L1B1cmNoYXNlRGF0ZT4KICAgICAg
+        ICA8QnV5ZXJFbWFpbD5GSUxURVJFRDwvQnV5ZXJFbWFpbD4KICAgICAgICA8
+        QW1hem9uT3JkZXJJZD4zMDMtODIzNTE1MS05ODIyNzM0PC9BbWF6b25PcmRl
+        cklkPgogICAgICAgIDxMYXN0VXBkYXRlRGF0ZT4yMDE1LTAxLTAzVDA3OjEz
+        OjUzWjwvTGFzdFVwZGF0ZURhdGU+CiAgICAgICAgPFNoaXBTZXJ2aWNlTGV2
+        ZWw+U3RkIERFIERvbWVzdGljPC9TaGlwU2VydmljZUxldmVsPgogICAgICAg
+        IDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4xPC9OdW1iZXJPZkl0ZW1zU2hpcHBl
+        ZD4KICAgICAgICA8T3JkZXJTdGF0dXM+U2hpcHBlZDwvT3JkZXJTdGF0dXM+
+        CiAgICAgICAgPFNhbGVzQ2hhbm5lbD5BbWF6b24uZGU8L1NhbGVzQ2hhbm5l
+        bD4KICAgICAgICA8U2hpcHBlZEJ5QW1hem9uVEZNPmZhbHNlPC9TaGlwcGVk
+        QnlBbWF6b25URk0+CiAgICAgICAgPExhdGVzdERlbGl2ZXJ5RGF0ZT4yMDE1
+        LTAxLTI5VDIyOjU5OjU5WjwvTGF0ZXN0RGVsaXZlcnlEYXRlPgogICAgICAg
+        IDxOdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPjA8L051bWJlck9mSXRlbXNVbnNo
+        aXBwZWQ+CiAgICAgICAgPEJ1eWVyTmFtZT5GSUxURVJFRDwvQnV5ZXJOYW1l
+        PgogICAgICAgIDxFYXJsaWVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTA5VDIz
+        OjAwOjAwWjwvRWFybGllc3REZWxpdmVyeURhdGU+CiAgICAgICAgPE9yZGVy
+        VG90YWw+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lD
+        b2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50PgogICAg
+        ICAgIDwvT3JkZXJUb3RhbD4KICAgICAgICA8SXNQcmVtaXVtT3JkZXI+ZmFs
+        c2U8L0lzUHJlbWl1bU9yZGVyPgogICAgICAgIDxFYXJsaWVzdFNoaXBEYXRl
+        PjIwMTUtMDEtMDFUMjM6MDA6MDBaPC9FYXJsaWVzdFNoaXBEYXRlPgogICAg
+        ICAgIDxNYXJrZXRwbGFjZUlkPkExUEE2Nzk1VUtNRlI5PC9NYXJrZXRwbGFj
+        ZUlkPgogICAgICAgIDxGdWxmaWxsbWVudENoYW5uZWw+TUZOPC9GdWxmaWxs
+        bWVudENoYW5uZWw+CiAgICAgICAgPFBheW1lbnRNZXRob2Q+T3RoZXI8L1Bh
+        eW1lbnRNZXRob2Q+CiAgICAgICAgPFNoaXBwaW5nQWRkcmVzcz4KICAgICAg
+        ICAgIDxTdGF0ZU9yUmVnaW9uPmJlcmxpbjwvU3RhdGVPclJlZ2lvbj4KICAg
+        ICAgICAgIDxDaXR5PmJlcmxpbjwvQ2l0eT4KICAgICAgICAgIDxQaG9uZT5G
+        SUxURVJFRDwvUGhvbmU+CiAgICAgICAgICA8Q291bnRyeUNvZGU+REU8L0Nv
+        dW50cnlDb2RlPgogICAgICAgICAgPFBvc3RhbENvZGU+RklMVEVSRUQ8L1Bv
+        c3RhbENvZGU+CiAgICAgICAgICA8TmFtZT5GSUxURVJFRDwvTmFtZT4KICAg
+        ICAgICAgIDxBZGRyZXNzTGluZTE+RklMVEVSRUQ8L0FkZHJlc3NMaW5lMT4K
+        ICAgICAgICA8L1NoaXBwaW5nQWRkcmVzcz4KICAgICAgICA8SXNQcmltZT5m
+        YWxzZTwvSXNQcmltZT4KICAgICAgICA8U2hpcG1lbnRTZXJ2aWNlTGV2ZWxD
+        YXRlZ29yeT5TdGFuZGFyZDwvU2hpcG1lbnRTZXJ2aWNlTGV2ZWxDYXRlZ29y
+        eT4KICAgICAgPC9PcmRlcj4KICAgICAgPE9yZGVyPgogICAgICAgIDxMYXRl
+        c3RTaGlwRGF0ZT4yMDE1LTAxLTA1VDIyOjU5OjU5WjwvTGF0ZXN0U2hpcERh
+        dGU+CiAgICAgICAgPE9yZGVyVHlwZT5TdGFuZGFyZE9yZGVyPC9PcmRlclR5
+        cGU+CiAgICAgICAgPFB1cmNoYXNlRGF0ZT4yMDE1LTAxLTAxVDAwOjMyOjU0
+        WjwvUHVyY2hhc2VEYXRlPgogICAgICAgIDxCdXllckVtYWlsPkZJTFRFUkVE
+        PC9CdXllckVtYWlsPgogICAgICAgIDxBbWF6b25PcmRlcklkPjMwMi0wNDMy
+        MjcwLTg3MDgzMzY8L0FtYXpvbk9yZGVySWQ+CiAgICAgICAgPExhc3RVcGRh
+        dGVEYXRlPjIwMTUtMDEtMDVUMTM6NDQ6MjNaPC9MYXN0VXBkYXRlRGF0ZT4K
+        ICAgICAgICA8U2hpcFNlcnZpY2VMZXZlbD5TdGQgREUgRVU8L1NoaXBTZXJ2
+        aWNlTGV2ZWw+CiAgICAgICAgPE51bWJlck9mSXRlbXNTaGlwcGVkPjE8L051
+        bWJlck9mSXRlbXNTaGlwcGVkPgogICAgICAgIDxPcmRlclN0YXR1cz5TaGlw
+        cGVkPC9PcmRlclN0YXR1cz4KICAgICAgICA8U2FsZXNDaGFubmVsPkFtYXpv
+        bi5kZTwvU2FsZXNDaGFubmVsPgogICAgICAgIDxTaGlwcGVkQnlBbWF6b25U
+        Rk0+ZmFsc2U8L1NoaXBwZWRCeUFtYXpvblRGTT4KICAgICAgICA8TGF0ZXN0
+        RGVsaXZlcnlEYXRlPjIwMTUtMDEtMTlUMjI6NTk6NTlaPC9MYXRlc3REZWxp
+        dmVyeURhdGU+CiAgICAgICAgPE51bWJlck9mSXRlbXNVbnNoaXBwZWQ+MDwv
+        TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4KICAgICAgICA8QnV5ZXJOYW1lPkZJ
+        TFRFUkVEPC9CdXllck5hbWU+CiAgICAgICAgPEVhcmxpZXN0RGVsaXZlcnlE
+        YXRlPjIwMTUtMDEtMDdUMjM6MDA6MDBaPC9FYXJsaWVzdERlbGl2ZXJ5RGF0
+        ZT4KICAgICAgICA8T3JkZXJUb3RhbD4KICAgICAgICAgIDxDdXJyZW5jeUNv
+        ZGU+RVVSPC9DdXJyZW5jeUNvZGU+CiAgICAgICAgICA8QW1vdW50PkZJTFRF
+        UkVEPC9BbW91bnQ+CiAgICAgICAgPC9PcmRlclRvdGFsPgogICAgICAgIDxJ
+        c1ByZW1pdW1PcmRlcj5mYWxzZTwvSXNQcmVtaXVtT3JkZXI+CiAgICAgICAg
+        PEVhcmxpZXN0U2hpcERhdGU+MjAxNS0wMS0wMVQyMzowMDowMFo8L0Vhcmxp
+        ZXN0U2hpcERhdGU+CiAgICAgICAgPE1hcmtldHBsYWNlSWQ+QTFQQTY3OTVV
+        S01GUjk8L01hcmtldHBsYWNlSWQ+CiAgICAgICAgPEZ1bGZpbGxtZW50Q2hh
+        bm5lbD5NRk48L0Z1bGZpbGxtZW50Q2hhbm5lbD4KICAgICAgICA8UGF5bWVu
+        dE1ldGhvZD5PdGhlcjwvUGF5bWVudE1ldGhvZD4KICAgICAgICA8U2hpcHBp
+        bmdBZGRyZXNzPgogICAgICAgICAgPENpdHk+U29lYnkgQWVyb2U8L0NpdHk+
+        CiAgICAgICAgICA8UGhvbmU+RklMVEVSRUQ8L1Bob25lPgogICAgICAgICAg
+        PENvdW50cnlDb2RlPkRLPC9Db3VudHJ5Q29kZT4KICAgICAgICAgIDxQb3N0
+        YWxDb2RlPkZJTFRFUkVEPC9Qb3N0YWxDb2RlPgogICAgICAgICAgPE5hbWU+
+        RklMVEVSRUQ8L05hbWU+CiAgICAgICAgICA8QWRkcmVzc0xpbmUxPkZJTFRF
+        UkVEPC9BZGRyZXNzTGluZTE+CiAgICAgICAgICA8QWRkcmVzc0xpbmUyPlNv
+        ZWJ5Z2FhcmRzbWFya3N2ZWogMzwvQWRkcmVzc0xpbmUyPgogICAgICAgIDwv
+        U2hpcHBpbmdBZGRyZXNzPgogICAgICAgIDxJc1ByaW1lPmZhbHNlPC9Jc1By
+        aW1lPgogICAgICAgIDxTaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PlN0
+        YW5kYXJkPC9TaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PgogICAgICA8
+        L09yZGVyPgogICAgICA8T3JkZXI+CiAgICAgICAgPExhdGVzdFNoaXBEYXRl
+        PjIwMTUtMDEtMDVUMjI6NTk6NTlaPC9MYXRlc3RTaGlwRGF0ZT4KICAgICAg
+        ICA8T3JkZXJUeXBlPlN0YW5kYXJkT3JkZXI8L09yZGVyVHlwZT4KICAgICAg
+        ICA8UHVyY2hhc2VEYXRlPjIwMTUtMDEtMDFUMDA6Mzc6MzJaPC9QdXJjaGFz
+        ZURhdGU+CiAgICAgICAgPEJ1eWVyRW1haWw+RklMVEVSRUQ8L0J1eWVyRW1h
+        aWw+CiAgICAgICAgPEFtYXpvbk9yZGVySWQ+MzA0LTk2NjQwNDktNTAwNTkw
+        OTwvQW1hem9uT3JkZXJJZD4KICAgICAgICA8TGFzdFVwZGF0ZURhdGU+MjAx
+        NS0wMS0wM1QwNzoxMzo1Mlo8L0xhc3RVcGRhdGVEYXRlPgogICAgICAgIDxT
+        aGlwU2VydmljZUxldmVsPlN0ZCBERSBEb21lc3RpYzwvU2hpcFNlcnZpY2VM
+        ZXZlbD4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBwZWQ+MTwvTnVtYmVy
+        T2ZJdGVtc1NoaXBwZWQ+CiAgICAgICAgPE9yZGVyU3RhdHVzPlNoaXBwZWQ8
+        L09yZGVyU3RhdHVzPgogICAgICAgIDxTYWxlc0NoYW5uZWw+QW1hem9uLmRl
+        PC9TYWxlc0NoYW5uZWw+CiAgICAgICAgPFNoaXBwZWRCeUFtYXpvblRGTT5m
+        YWxzZTwvU2hpcHBlZEJ5QW1hem9uVEZNPgogICAgICAgIDxMYXRlc3REZWxp
+        dmVyeURhdGU+MjAxNS0wMS0yOVQyMjo1OTo1OVo8L0xhdGVzdERlbGl2ZXJ5
+        RGF0ZT4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4wPC9OdW1i
+        ZXJPZkl0ZW1zVW5zaGlwcGVkPgogICAgICAgIDxCdXllck5hbWU+RklMVEVS
+        RUQ8L0J1eWVyTmFtZT4KICAgICAgICA8RWFybGllc3REZWxpdmVyeURhdGU+
+        MjAxNS0wMS0wOVQyMzowMDowMFo8L0VhcmxpZXN0RGVsaXZlcnlEYXRlPgog
+        ICAgICAgIDxPcmRlclRvdGFsPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5F
+        VVI8L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8
+        L0Ftb3VudD4KICAgICAgICA8L09yZGVyVG90YWw+CiAgICAgICAgPElzUHJl
+        bWl1bU9yZGVyPmZhbHNlPC9Jc1ByZW1pdW1PcmRlcj4KICAgICAgICA8RWFy
+        bGllc3RTaGlwRGF0ZT4yMDE1LTAxLTAxVDIzOjAwOjAwWjwvRWFybGllc3RT
+        aGlwRGF0ZT4KICAgICAgICA8TWFya2V0cGxhY2VJZD5BMVBBNjc5NVVLTUZS
+        OTwvTWFya2V0cGxhY2VJZD4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVs
+        Pk1GTjwvRnVsZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxQYXltZW50TWV0
+        aG9kPk90aGVyPC9QYXltZW50TWV0aG9kPgogICAgICAgIDxTaGlwcGluZ0Fk
+        ZHJlc3M+CiAgICAgICAgICA8U3RhdGVPclJlZ2lvbj5CYXllcm48L1N0YXRl
+        T3JSZWdpb24+CiAgICAgICAgICA8Q2l0eT5Nw7xuY2hlbjwvQ2l0eT4KICAg
+        ICAgICAgIDxQaG9uZT5GSUxURVJFRDwvUGhvbmU+CiAgICAgICAgICA8Q291
+        bnRyeUNvZGU+REU8L0NvdW50cnlDb2RlPgogICAgICAgICAgPFBvc3RhbENv
+        ZGU+RklMVEVSRUQ8L1Bvc3RhbENvZGU+CiAgICAgICAgICA8TmFtZT5GSUxU
+        RVJFRDwvTmFtZT4KICAgICAgICAgIDxBZGRyZXNzTGluZTE+RklMVEVSRUQ8
+        L0FkZHJlc3NMaW5lMT4KICAgICAgICAgIDxBZGRyZXNzTGluZTI+RXJpa2Et
+        TWFubi1TdHIuIDY2PC9BZGRyZXNzTGluZTI+CiAgICAgICAgPC9TaGlwcGlu
+        Z0FkZHJlc3M+CiAgICAgICAgPElzUHJpbWU+ZmFsc2U8L0lzUHJpbWU+CiAg
+        ICAgICAgPFNoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+U3RhbmRhcmQ8
+        L1NoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+CiAgICAgIDwvT3JkZXI+
+        CiAgICAgIDxPcmRlcj4KICAgICAgICA8TGF0ZXN0U2hpcERhdGU+MjAxNS0w
+        MS0wNVQyMjo1OTo1OVo8L0xhdGVzdFNoaXBEYXRlPgogICAgICAgIDxPcmRl
+        clR5cGU+U3RhbmRhcmRPcmRlcjwvT3JkZXJUeXBlPgogICAgICAgIDxQdXJj
+        aGFzZURhdGU+MjAxNS0wMS0wMVQwMDo1NzowNVo8L1B1cmNoYXNlRGF0ZT4K
+        ICAgICAgICA8QnV5ZXJFbWFpbD5GSUxURVJFRDwvQnV5ZXJFbWFpbD4KICAg
+        ICAgICA8QW1hem9uT3JkZXJJZD4wMjgtNDQ3ODM5Ni0yNzQyNzMwPC9BbWF6
+        b25PcmRlcklkPgogICAgICAgIDxMYXN0VXBkYXRlRGF0ZT4yMDE1LTAxLTAz
+        VDA3OjEzOjUyWjwvTGFzdFVwZGF0ZURhdGU+CiAgICAgICAgPFNoaXBTZXJ2
+        aWNlTGV2ZWw+U3RkIERFIERvbWVzdGljPC9TaGlwU2VydmljZUxldmVsPgog
+        ICAgICAgIDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4xPC9OdW1iZXJPZkl0ZW1z
+        U2hpcHBlZD4KICAgICAgICA8T3JkZXJTdGF0dXM+U2hpcHBlZDwvT3JkZXJT
+        dGF0dXM+CiAgICAgICAgPFNhbGVzQ2hhbm5lbD5BbWF6b24uZGU8L1NhbGVz
+        Q2hhbm5lbD4KICAgICAgICA8U2hpcHBlZEJ5QW1hem9uVEZNPmZhbHNlPC9T
+        aGlwcGVkQnlBbWF6b25URk0+CiAgICAgICAgPExhdGVzdERlbGl2ZXJ5RGF0
+        ZT4yMDE1LTAxLTI5VDIyOjU5OjU5WjwvTGF0ZXN0RGVsaXZlcnlEYXRlPgog
+        ICAgICAgIDxOdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPjA8L051bWJlck9mSXRl
+        bXNVbnNoaXBwZWQ+CiAgICAgICAgPEJ1eWVyTmFtZT5GSUxURVJFRDwvQnV5
+        ZXJOYW1lPgogICAgICAgIDxFYXJsaWVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAx
+        LTA5VDIzOjAwOjAwWjwvRWFybGllc3REZWxpdmVyeURhdGU+CiAgICAgICAg
+        PE9yZGVyVG90YWw+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3Vy
+        cmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50
+        PgogICAgICAgIDwvT3JkZXJUb3RhbD4KICAgICAgICA8SXNQcmVtaXVtT3Jk
+        ZXI+ZmFsc2U8L0lzUHJlbWl1bU9yZGVyPgogICAgICAgIDxFYXJsaWVzdFNo
+        aXBEYXRlPjIwMTUtMDEtMDFUMjM6MDA6MDBaPC9FYXJsaWVzdFNoaXBEYXRl
+        PgogICAgICAgIDxNYXJrZXRwbGFjZUlkPkExUEE2Nzk1VUtNRlI5PC9NYXJr
+        ZXRwbGFjZUlkPgogICAgICAgIDxGdWxmaWxsbWVudENoYW5uZWw+TUZOPC9G
+        dWxmaWxsbWVudENoYW5uZWw+CiAgICAgICAgPFBheW1lbnRNZXRob2Q+T3Ro
+        ZXI8L1BheW1lbnRNZXRob2Q+CiAgICAgICAgPFNoaXBwaW5nQWRkcmVzcz4K
+        ICAgICAgICAgIDxDaXR5PkxhbmdlbG48L0NpdHk+CiAgICAgICAgICA8UGhv
+        bmU+RklMVEVSRUQ8L1Bob25lPgogICAgICAgICAgPENvdW50cnlDb2RlPkRF
+        PC9Db3VudHJ5Q29kZT4KICAgICAgICAgIDxQb3N0YWxDb2RlPkZJTFRFUkVE
+        PC9Qb3N0YWxDb2RlPgogICAgICAgICAgPE5hbWU+RklMVEVSRUQ8L05hbWU+
+        CiAgICAgICAgICA8QWRkcmVzc0xpbmUyPkRvcmZzdHJhw59lIDZiPC9BZGRy
+        ZXNzTGluZTI+CiAgICAgICAgPC9TaGlwcGluZ0FkZHJlc3M+CiAgICAgICAg
+        PElzUHJpbWU+ZmFsc2U8L0lzUHJpbWU+CiAgICAgICAgPFNoaXBtZW50U2Vy
+        dmljZUxldmVsQ2F0ZWdvcnk+U3RhbmRhcmQ8L1NoaXBtZW50U2VydmljZUxl
+        dmVsQ2F0ZWdvcnk+CiAgICAgIDwvT3JkZXI+CiAgICAgIDxPcmRlcj4KICAg
+        ICAgICA8TGF0ZXN0U2hpcERhdGU+MjAxNS0wMS0wNVQyMjo1OTo1OVo8L0xh
+        dGVzdFNoaXBEYXRlPgogICAgICAgIDxPcmRlclR5cGU+U3RhbmRhcmRPcmRl
+        cjwvT3JkZXJUeXBlPgogICAgICAgIDxQdXJjaGFzZURhdGU+MjAxNS0wMS0w
+        MVQwMTowMTozNFo8L1B1cmNoYXNlRGF0ZT4KICAgICAgICA8QnV5ZXJFbWFp
+        bD5GSUxURVJFRDwvQnV5ZXJFbWFpbD4KICAgICAgICA8QW1hem9uT3JkZXJJ
+        ZD4zMDQtNTc5NDA3OC01NzUzOTUxPC9BbWF6b25PcmRlcklkPgogICAgICAg
+        IDxMYXN0VXBkYXRlRGF0ZT4yMDE1LTAxLTA0VDIxOjE5OjUyWjwvTGFzdFVw
+        ZGF0ZURhdGU+CiAgICAgICAgPFNoaXBTZXJ2aWNlTGV2ZWw+U3RkIERFIERv
+        bWVzdGljPC9TaGlwU2VydmljZUxldmVsPgogICAgICAgIDxOdW1iZXJPZkl0
+        ZW1zU2hpcHBlZD4xPC9OdW1iZXJPZkl0ZW1zU2hpcHBlZD4KICAgICAgICA8
+        T3JkZXJTdGF0dXM+U2hpcHBlZDwvT3JkZXJTdGF0dXM+CiAgICAgICAgPFNh
+        bGVzQ2hhbm5lbD5BbWF6b24uZGU8L1NhbGVzQ2hhbm5lbD4KICAgICAgICA8
+        U2hpcHBlZEJ5QW1hem9uVEZNPmZhbHNlPC9TaGlwcGVkQnlBbWF6b25URk0+
+        CiAgICAgICAgPExhdGVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTI5VDIyOjU5
+        OjU5WjwvTGF0ZXN0RGVsaXZlcnlEYXRlPgogICAgICAgIDxOdW1iZXJPZkl0
+        ZW1zVW5zaGlwcGVkPjA8L051bWJlck9mSXRlbXNVbnNoaXBwZWQ+CiAgICAg
+        ICAgPEJ1eWVyTmFtZT5GSUxURVJFRDwvQnV5ZXJOYW1lPgogICAgICAgIDxF
+        YXJsaWVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTA5VDIzOjAwOjAwWjwvRWFy
+        bGllc3REZWxpdmVyeURhdGU+CiAgICAgICAgPE9yZGVyVG90YWw+CiAgICAg
+        ICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAgICAg
+        ICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvT3JkZXJU
+        b3RhbD4KICAgICAgICA8SXNQcmVtaXVtT3JkZXI+ZmFsc2U8L0lzUHJlbWl1
+        bU9yZGVyPgogICAgICAgIDxFYXJsaWVzdFNoaXBEYXRlPjIwMTUtMDEtMDFU
+        MjM6MDA6MDBaPC9FYXJsaWVzdFNoaXBEYXRlPgogICAgICAgIDxNYXJrZXRw
+        bGFjZUlkPkExUEE2Nzk1VUtNRlI5PC9NYXJrZXRwbGFjZUlkPgogICAgICAg
+        IDxGdWxmaWxsbWVudENoYW5uZWw+TUZOPC9GdWxmaWxsbWVudENoYW5uZWw+
+        CiAgICAgICAgPFBheW1lbnRNZXRob2Q+T3RoZXI8L1BheW1lbnRNZXRob2Q+
+        CiAgICAgICAgPFNoaXBwaW5nQWRkcmVzcz4KICAgICAgICAgIDxTdGF0ZU9y
+        UmVnaW9uPkJheWVybjwvU3RhdGVPclJlZ2lvbj4KICAgICAgICAgIDxDaXR5
+        Pk3DvG5jaGVuPC9DaXR5PgogICAgICAgICAgPFBob25lPkZJTFRFUkVEPC9Q
+        aG9uZT4KICAgICAgICAgIDxDb3VudHJ5Q29kZT5ERTwvQ291bnRyeUNvZGU+
+        CiAgICAgICAgICA8UG9zdGFsQ29kZT5GSUxURVJFRDwvUG9zdGFsQ29kZT4K
+        ICAgICAgICAgIDxOYW1lPkZJTFRFUkVEPC9OYW1lPgogICAgICAgICAgPEFk
+        ZHJlc3NMaW5lMT5GSUxURVJFRDwvQWRkcmVzc0xpbmUxPgogICAgICAgICAg
+        PEFkZHJlc3NMaW5lMj5FcmlrYS1NYW5uLVN0ci4gNjY8L0FkZHJlc3NMaW5l
+        Mj4KICAgICAgICA8L1NoaXBwaW5nQWRkcmVzcz4KICAgICAgICA8SXNQcmlt
+        ZT5mYWxzZTwvSXNQcmltZT4KICAgICAgICA8U2hpcG1lbnRTZXJ2aWNlTGV2
+        ZWxDYXRlZ29yeT5TdGFuZGFyZDwvU2hpcG1lbnRTZXJ2aWNlTGV2ZWxDYXRl
+        Z29yeT4KICAgICAgPC9PcmRlcj4KICAgIDwvT3JkZXJzPgogIDwvR2V0T3Jk
+        ZXJSZXN1bHQ+CiAgPFJlc3BvbnNlTWV0YWRhdGE+CiAgICA8UmVxdWVzdElk
+        PjRlNDMyNjI0LTUyMDgtNGYxNC1hOWI2LTgwNzdhNWJiYTJiNDwvUmVxdWVz
+        dElkPgogIDwvUmVzcG9uc2VNZXRhZGF0YT4KPC9HZXRPcmRlclJlc3BvbnNl
+        Pgo=
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:17 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListOrders&CreatedAfter=2015-01-01&MarketplaceId.Id.1=A1VC38T7YXB528&MaxResultsPerPage=5&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A18Z&Version=2013-09-01&Signature=VPaomAFawalDxaQOA4DRtCLZvH%2FOw6HQlVLjaNMT0h4%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:18 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:18 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=03XJHwmu5237qoIFTym/gMWmC6qDys9KWiyKPBNibNc=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - e218b627-3050-4d63-b7cc-386942359434
+      x-mws-timestamp:
+      - '2016-01-20T18:49:18.352Z'
+      x-mws-response-context:
+      - 84yfBtMOwEP0o2Kb18WnF8pYtz+WFs7LmHRynqi1BnfRfH2vhGdn0rVQqO3uU8UOqHF4ztBrxk23
+        FF7Eybw2VQ==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '8836'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0T3JkZXJzUmVzcG9uc2UgeG1s
+        bnM9Imh0dHBzOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9PcmRlcnMvMjAx
+        My0wOS0wMSI+CiAgPExpc3RPcmRlcnNSZXN1bHQ+CiAgICA8T3JkZXJzPgog
+        ICAgICA8T3JkZXI+CiAgICAgICAgPExhdGVzdFNoaXBEYXRlPjIwMTUtMDEt
+        MDVUMTQ6NTk6NTlaPC9MYXRlc3RTaGlwRGF0ZT4KICAgICAgICA8T3JkZXJU
+        eXBlPlN0YW5kYXJkT3JkZXI8L09yZGVyVHlwZT4KICAgICAgICA8UHVyY2hh
+        c2VEYXRlPjIwMTUtMDEtMDFUMDM6MzM6MTRaPC9QdXJjaGFzZURhdGU+CiAg
+        ICAgICAgPEJ1eWVyRW1haWw+RklMVEVSRUQ8L0J1eWVyRW1haWw+CiAgICAg
+        ICAgPEFtYXpvbk9yZGVySWQ+MjQ5LTkzMTk3NzUtNzQ4NzAyMDwvQW1hem9u
+        T3JkZXJJZD4KICAgICAgICA8TGFzdFVwZGF0ZURhdGU+MjAxNS0wMS0wM1Qw
+        NzoxNDowMFo8L0xhc3RVcGRhdGVEYXRlPgogICAgICAgIDxTaGlwU2Vydmlj
+        ZUxldmVsPlN0ZCBKUCBEb21lc3RpYzwvU2hpcFNlcnZpY2VMZXZlbD4KICAg
+        ICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBwZWQ+MTwvTnVtYmVyT2ZJdGVtc1No
+        aXBwZWQ+CiAgICAgICAgPE9yZGVyU3RhdHVzPlNoaXBwZWQ8L09yZGVyU3Rh
+        dHVzPgogICAgICAgIDxTYWxlc0NoYW5uZWw+QW1hem9uLmNvLmpwPC9TYWxl
+        c0NoYW5uZWw+CiAgICAgICAgPFNoaXBwZWRCeUFtYXpvblRGTT5mYWxzZTwv
+        U2hpcHBlZEJ5QW1hem9uVEZNPgogICAgICAgIDxMYXRlc3REZWxpdmVyeURh
+        dGU+MjAxNS0wMS0yMlQxNDo1OTo1OVo8L0xhdGVzdERlbGl2ZXJ5RGF0ZT4K
+        ICAgICAgICA8TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4wPC9OdW1iZXJPZkl0
+        ZW1zVW5zaGlwcGVkPgogICAgICAgIDxCdXllck5hbWU+RklMVEVSRUQ8L0J1
+        eWVyTmFtZT4KICAgICAgICA8RWFybGllc3REZWxpdmVyeURhdGU+MjAxNS0w
+        MS0xM1QxNTowMDowMFo8L0VhcmxpZXN0RGVsaXZlcnlEYXRlPgogICAgICAg
+        IDxPcmRlclRvdGFsPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5KUFk8L0N1
+        cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ftb3Vu
+        dD4KICAgICAgICA8L09yZGVyVG90YWw+CiAgICAgICAgPElzUHJlbWl1bU9y
+        ZGVyPmZhbHNlPC9Jc1ByZW1pdW1PcmRlcj4KICAgICAgICA8RWFybGllc3RT
+        aGlwRGF0ZT4yMDE1LTAxLTAxVDE1OjAwOjAwWjwvRWFybGllc3RTaGlwRGF0
+        ZT4KICAgICAgICA8TWFya2V0cGxhY2VJZD5BMVZDMzhUN1lYQjUyODwvTWFy
+        a2V0cGxhY2VJZD4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1GTjwv
+        RnVsZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxQYXltZW50TWV0aG9kPk90
+        aGVyPC9QYXltZW50TWV0aG9kPgogICAgICAgIDxTaGlwcGluZ0FkZHJlc3M+
+        CiAgICAgICAgICA8U3RhdGVPclJlZ2lvbj7lpKfpmKrlupw8L1N0YXRlT3JS
+        ZWdpb24+CiAgICAgICAgICA8UGhvbmU+RklMVEVSRUQ8L1Bob25lPgogICAg
+        ICAgICAgPENvdW50cnlDb2RlPkpQPC9Db3VudHJ5Q29kZT4KICAgICAgICAg
+        IDxQb3N0YWxDb2RlPkZJTFRFUkVEPC9Qb3N0YWxDb2RlPgogICAgICAgICAg
+        PE5hbWU+RklMVEVSRUQ8L05hbWU+CiAgICAgICAgICA8QWRkcmVzc0xpbmUx
+        PkZJTFRFUkVEPC9BZGRyZXNzTGluZTE+CiAgICAgICAgICA8QWRkcmVzc0xp
+        bmUyPjUtNC0xLTIxMzwvQWRkcmVzc0xpbmUyPgogICAgICAgIDwvU2hpcHBp
+        bmdBZGRyZXNzPgogICAgICAgIDxJc1ByaW1lPmZhbHNlPC9Jc1ByaW1lPgog
+        ICAgICAgIDxTaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PlN0YW5kYXJk
+        PC9TaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PgogICAgICA8L09yZGVy
+        PgogICAgICA8T3JkZXI+CiAgICAgICAgPExhdGVzdFNoaXBEYXRlPjIwMTUt
+        MDEtMDVUMTQ6NTk6NTlaPC9MYXRlc3RTaGlwRGF0ZT4KICAgICAgICA8T3Jk
+        ZXJUeXBlPlN0YW5kYXJkT3JkZXI8L09yZGVyVHlwZT4KICAgICAgICA8UHVy
+        Y2hhc2VEYXRlPjIwMTUtMDEtMDFUMDQ6MTc6MDZaPC9QdXJjaGFzZURhdGU+
+        CiAgICAgICAgPEJ1eWVyRW1haWw+RklMVEVSRUQ8L0J1eWVyRW1haWw+CiAg
+        ICAgICAgPEFtYXpvbk9yZGVySWQ+MjQ5LTM3NDA0OTAtMjQ3MTA1NjwvQW1h
+        em9uT3JkZXJJZD4KICAgICAgICA8TGFzdFVwZGF0ZURhdGU+MjAxNS0wMS0w
+        M1QwNzoxNDowNVo8L0xhc3RVcGRhdGVEYXRlPgogICAgICAgIDxTaGlwU2Vy
+        dmljZUxldmVsPlN0ZCBKUCBEb21lc3RpYzwvU2hpcFNlcnZpY2VMZXZlbD4K
+        ICAgICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBwZWQ+MTwvTnVtYmVyT2ZJdGVt
+        c1NoaXBwZWQ+CiAgICAgICAgPE9yZGVyU3RhdHVzPlNoaXBwZWQ8L09yZGVy
+        U3RhdHVzPgogICAgICAgIDxTYWxlc0NoYW5uZWw+QW1hem9uLmNvLmpwPC9T
+        YWxlc0NoYW5uZWw+CiAgICAgICAgPFNoaXBwZWRCeUFtYXpvblRGTT5mYWxz
+        ZTwvU2hpcHBlZEJ5QW1hem9uVEZNPgogICAgICAgIDxMYXRlc3REZWxpdmVy
+        eURhdGU+MjAxNS0wMS0yMlQxNDo1OTo1OVo8L0xhdGVzdERlbGl2ZXJ5RGF0
+        ZT4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4wPC9OdW1iZXJP
+        Zkl0ZW1zVW5zaGlwcGVkPgogICAgICAgIDxCdXllck5hbWU+RklMVEVSRUQ8
+        L0J1eWVyTmFtZT4KICAgICAgICA8RWFybGllc3REZWxpdmVyeURhdGU+MjAx
+        NS0wMS0xM1QxNTowMDowMFo8L0VhcmxpZXN0RGVsaXZlcnlEYXRlPgogICAg
+        ICAgIDxPcmRlclRvdGFsPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5KUFk8
+        L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ft
+        b3VudD4KICAgICAgICA8L09yZGVyVG90YWw+CiAgICAgICAgPElzUHJlbWl1
+        bU9yZGVyPmZhbHNlPC9Jc1ByZW1pdW1PcmRlcj4KICAgICAgICA8RWFybGll
+        c3RTaGlwRGF0ZT4yMDE1LTAxLTAxVDE1OjAwOjAwWjwvRWFybGllc3RTaGlw
+        RGF0ZT4KICAgICAgICA8TWFya2V0cGxhY2VJZD5BMVZDMzhUN1lYQjUyODwv
+        TWFya2V0cGxhY2VJZD4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1G
+        TjwvRnVsZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxQYXltZW50TWV0aG9k
+        Pk90aGVyPC9QYXltZW50TWV0aG9kPgogICAgICAgIDxTaGlwcGluZ0FkZHJl
+        c3M+CiAgICAgICAgICA8U3RhdGVPclJlZ2lvbj7mnbHkuqzpg708L1N0YXRl
+        T3JSZWdpb24+CiAgICAgICAgICA8UGhvbmU+RklMVEVSRUQ8L1Bob25lPgog
+        ICAgICAgICAgPENvdW50cnlDb2RlPkpQPC9Db3VudHJ5Q29kZT4KICAgICAg
+        ICAgIDxQb3N0YWxDb2RlPkZJTFRFUkVEPC9Qb3N0YWxDb2RlPgogICAgICAg
+        ICAgPE5hbWU+RklMVEVSRUQ8L05hbWU+CiAgICAgICAgICA8QWRkcmVzc0xp
+        bmUxPkZJTFRFUkVEPC9BZGRyZXNzTGluZTE+CiAgICAgICAgICA8QWRkcmVz
+        c0xpbmUyPuODreOCpOODpOODq+ODj+OCpOODhDIwNjwvQWRkcmVzc0xpbmUy
+        PgogICAgICAgIDwvU2hpcHBpbmdBZGRyZXNzPgogICAgICAgIDxJc1ByaW1l
+        PmZhbHNlPC9Jc1ByaW1lPgogICAgICAgIDxTaGlwbWVudFNlcnZpY2VMZXZl
+        bENhdGVnb3J5PlN0YW5kYXJkPC9TaGlwbWVudFNlcnZpY2VMZXZlbENhdGVn
+        b3J5PgogICAgICA8L09yZGVyPgogICAgICA8T3JkZXI+CiAgICAgICAgPExh
+        dGVzdFNoaXBEYXRlPjIwMTUtMDEtMDVUMTQ6NTk6NTlaPC9MYXRlc3RTaGlw
+        RGF0ZT4KICAgICAgICA8T3JkZXJUeXBlPlN0YW5kYXJkT3JkZXI8L09yZGVy
+        VHlwZT4KICAgICAgICA8UHVyY2hhc2VEYXRlPjIwMTUtMDEtMDFUMDQ6NTM6
+        MTBaPC9QdXJjaGFzZURhdGU+CiAgICAgICAgPEJ1eWVyRW1haWw+RklMVEVS
+        RUQ8L0J1eWVyRW1haWw+CiAgICAgICAgPEFtYXpvbk9yZGVySWQ+MjQ5LTg1
+        Nzk4MjUtMjU4NTQyNTwvQW1hem9uT3JkZXJJZD4KICAgICAgICA8TGFzdFVw
+        ZGF0ZURhdGU+MjAxNS0wMS0wM1QwNzoxNDowNVo8L0xhc3RVcGRhdGVEYXRl
+        PgogICAgICAgIDxTaGlwU2VydmljZUxldmVsPlN0ZCBKUCBEb21lc3RpYzwv
+        U2hpcFNlcnZpY2VMZXZlbD4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBw
+        ZWQ+MTwvTnVtYmVyT2ZJdGVtc1NoaXBwZWQ+CiAgICAgICAgPE9yZGVyU3Rh
+        dHVzPlNoaXBwZWQ8L09yZGVyU3RhdHVzPgogICAgICAgIDxTYWxlc0NoYW5u
+        ZWw+QW1hem9uLmNvLmpwPC9TYWxlc0NoYW5uZWw+CiAgICAgICAgPFNoaXBw
+        ZWRCeUFtYXpvblRGTT5mYWxzZTwvU2hpcHBlZEJ5QW1hem9uVEZNPgogICAg
+        ICAgIDxMYXRlc3REZWxpdmVyeURhdGU+MjAxNS0wMS0yMlQxNDo1OTo1OVo8
+        L0xhdGVzdERlbGl2ZXJ5RGF0ZT4KICAgICAgICA8TnVtYmVyT2ZJdGVtc1Vu
+        c2hpcHBlZD4wPC9OdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPgogICAgICAgIDxC
+        dXllck5hbWU+RklMVEVSRUQ8L0J1eWVyTmFtZT4KICAgICAgICA8RWFybGll
+        c3REZWxpdmVyeURhdGU+MjAxNS0wMS0xM1QxNTowMDowMFo8L0VhcmxpZXN0
+        RGVsaXZlcnlEYXRlPgogICAgICAgIDxPcmRlclRvdGFsPgogICAgICAgICAg
+        PEN1cnJlbmN5Q29kZT5KUFk8L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxB
+        bW91bnQ+RklMVEVSRUQ8L0Ftb3VudD4KICAgICAgICA8L09yZGVyVG90YWw+
+        CiAgICAgICAgPElzUHJlbWl1bU9yZGVyPmZhbHNlPC9Jc1ByZW1pdW1PcmRl
+        cj4KICAgICAgICA8RWFybGllc3RTaGlwRGF0ZT4yMDE1LTAxLTAxVDE1OjAw
+        OjAwWjwvRWFybGllc3RTaGlwRGF0ZT4KICAgICAgICA8TWFya2V0cGxhY2VJ
+        ZD5BMVZDMzhUN1lYQjUyODwvTWFya2V0cGxhY2VJZD4KICAgICAgICA8RnVs
+        ZmlsbG1lbnRDaGFubmVsPk1GTjwvRnVsZmlsbG1lbnRDaGFubmVsPgogICAg
+        ICAgIDxQYXltZW50TWV0aG9kPk90aGVyPC9QYXltZW50TWV0aG9kPgogICAg
+        ICAgIDxTaGlwcGluZ0FkZHJlc3M+CiAgICAgICAgICA8U3RhdGVPclJlZ2lv
+        bj7mnbHkuqzpg708L1N0YXRlT3JSZWdpb24+CiAgICAgICAgICA8UGhvbmU+
+        RklMVEVSRUQ8L1Bob25lPgogICAgICAgICAgPENvdW50cnlDb2RlPkpQPC9D
+        b3VudHJ5Q29kZT4KICAgICAgICAgIDxQb3N0YWxDb2RlPkZJTFRFUkVEPC9Q
+        b3N0YWxDb2RlPgogICAgICAgICAgPE5hbWU+RklMVEVSRUQ8L05hbWU+CiAg
+        ICAgICAgICA8QWRkcmVzc0xpbmUxPkZJTFRFUkVEPC9BZGRyZXNzTGluZTE+
+        CiAgICAgICAgPC9TaGlwcGluZ0FkZHJlc3M+CiAgICAgICAgPElzUHJpbWU+
+        ZmFsc2U8L0lzUHJpbWU+CiAgICAgICAgPFNoaXBtZW50U2VydmljZUxldmVs
+        Q2F0ZWdvcnk+U3RhbmRhcmQ8L1NoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdv
+        cnk+CiAgICAgIDwvT3JkZXI+CiAgICAgIDxPcmRlcj4KICAgICAgICA8TGF0
+        ZXN0U2hpcERhdGU+MjAxNS0wMS0wNVQxNDo1OTo1OVo8L0xhdGVzdFNoaXBE
+        YXRlPgogICAgICAgIDxPcmRlclR5cGU+U3RhbmRhcmRPcmRlcjwvT3JkZXJU
+        eXBlPgogICAgICAgIDxQdXJjaGFzZURhdGU+MjAxNS0wMS0wMVQwNDo1Nzoy
+        OVo8L1B1cmNoYXNlRGF0ZT4KICAgICAgICA8QnV5ZXJFbWFpbD5GSUxURVJF
+        RDwvQnV5ZXJFbWFpbD4KICAgICAgICA8QW1hem9uT3JkZXJJZD4yNTAtNDUy
+        NjYwOC0xNzEzNDY2PC9BbWF6b25PcmRlcklkPgogICAgICAgIDxMYXN0VXBk
+        YXRlRGF0ZT4yMDE1LTAxLTA1VDE3OjEyOjM3WjwvTGFzdFVwZGF0ZURhdGU+
+        CiAgICAgICAgPFNoaXBTZXJ2aWNlTGV2ZWw+U3RkIEpQIERvbWVzdGljPC9T
+        aGlwU2VydmljZUxldmVsPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zU2hpcHBl
+        ZD4xPC9OdW1iZXJPZkl0ZW1zU2hpcHBlZD4KICAgICAgICA8T3JkZXJTdGF0
+        dXM+U2hpcHBlZDwvT3JkZXJTdGF0dXM+CiAgICAgICAgPFNhbGVzQ2hhbm5l
+        bD5BbWF6b24uY28uanA8L1NhbGVzQ2hhbm5lbD4KICAgICAgICA8U2hpcHBl
+        ZEJ5QW1hem9uVEZNPmZhbHNlPC9TaGlwcGVkQnlBbWF6b25URk0+CiAgICAg
+        ICAgPExhdGVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTIyVDE0OjU5OjU5Wjwv
+        TGF0ZXN0RGVsaXZlcnlEYXRlPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zVW5z
+        aGlwcGVkPjA8L051bWJlck9mSXRlbXNVbnNoaXBwZWQ+CiAgICAgICAgPEJ1
+        eWVyTmFtZT5GSUxURVJFRDwvQnV5ZXJOYW1lPgogICAgICAgIDxFYXJsaWVz
+        dERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTEzVDE1OjAwOjAwWjwvRWFybGllc3RE
+        ZWxpdmVyeURhdGU+CiAgICAgICAgPE9yZGVyVG90YWw+CiAgICAgICAgICA8
+        Q3VycmVuY3lDb2RlPkpQWTwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFt
+        b3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvT3JkZXJUb3RhbD4K
+        ICAgICAgICA8SXNQcmVtaXVtT3JkZXI+ZmFsc2U8L0lzUHJlbWl1bU9yZGVy
+        PgogICAgICAgIDxFYXJsaWVzdFNoaXBEYXRlPjIwMTUtMDEtMDFUMTU6MDA6
+        MDBaPC9FYXJsaWVzdFNoaXBEYXRlPgogICAgICAgIDxNYXJrZXRwbGFjZUlk
+        PkExVkMzOFQ3WVhCNTI4PC9NYXJrZXRwbGFjZUlkPgogICAgICAgIDxGdWxm
+        aWxsbWVudENoYW5uZWw+TUZOPC9GdWxmaWxsbWVudENoYW5uZWw+CiAgICAg
+        ICAgPFBheW1lbnRNZXRob2Q+T3RoZXI8L1BheW1lbnRNZXRob2Q+CiAgICAg
+        ICAgPFNoaXBwaW5nQWRkcmVzcz4KICAgICAgICAgIDxTdGF0ZU9yUmVnaW9u
+        PuaEm+Wqm+ecjDwvU3RhdGVPclJlZ2lvbj4KICAgICAgICAgIDxQaG9uZT5G
+        SUxURVJFRDwvUGhvbmU+CiAgICAgICAgICA8Q291bnRyeUNvZGU+SlA8L0Nv
+        dW50cnlDb2RlPgogICAgICAgICAgPFBvc3RhbENvZGU+RklMVEVSRUQ8L1Bv
+        c3RhbENvZGU+CiAgICAgICAgICA8TmFtZT5GSUxURVJFRDwvTmFtZT4KICAg
+        ICAgICAgIDxBZGRyZXNzTGluZTE+RklMVEVSRUQ8L0FkZHJlc3NMaW5lMT4K
+        ICAgICAgICAgIDxBZGRyZXNzTGluZTI+NS0yMeOCouOCreODg+OCr+OCueel
+        h+WckjIwMzwvQWRkcmVzc0xpbmUyPgogICAgICAgIDwvU2hpcHBpbmdBZGRy
+        ZXNzPgogICAgICAgIDxJc1ByaW1lPmZhbHNlPC9Jc1ByaW1lPgogICAgICAg
+        IDxTaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PlN0YW5kYXJkPC9TaGlw
+        bWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PgogICAgICA8L09yZGVyPgogICAg
+        ICA8T3JkZXI+CiAgICAgICAgPExhdGVzdFNoaXBEYXRlPjIwMTUtMDEtMDVU
+        MTQ6NTk6NTlaPC9MYXRlc3RTaGlwRGF0ZT4KICAgICAgICA8T3JkZXJUeXBl
+        PlN0YW5kYXJkT3JkZXI8L09yZGVyVHlwZT4KICAgICAgICA8UHVyY2hhc2VE
+        YXRlPjIwMTUtMDEtMDFUMDU6MDA6MjVaPC9QdXJjaGFzZURhdGU+CiAgICAg
+        ICAgPEFtYXpvbk9yZGVySWQ+MjQ5LTczNzQ4NTYtMTgxOTA2MjwvQW1hem9u
+        T3JkZXJJZD4KICAgICAgICA8TGFzdFVwZGF0ZURhdGU+MjAxNS0wMS0wMVQw
+        NTowNDozMVo8L0xhc3RVcGRhdGVEYXRlPgogICAgICAgIDxTaGlwU2Vydmlj
+        ZUxldmVsPlN0ZCBKUCBEb21lc3RpYzwvU2hpcFNlcnZpY2VMZXZlbD4KICAg
+        ICAgICA8TnVtYmVyT2ZJdGVtc1NoaXBwZWQ+MDwvTnVtYmVyT2ZJdGVtc1No
+        aXBwZWQ+CiAgICAgICAgPE9yZGVyU3RhdHVzPkNhbmNlbGVkPC9PcmRlclN0
+        YXR1cz4KICAgICAgICA8U2FsZXNDaGFubmVsPkFtYXpvbi5jby5qcDwvU2Fs
+        ZXNDaGFubmVsPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPjA8
+        L051bWJlck9mSXRlbXNVbnNoaXBwZWQ+CiAgICAgICAgPElzUHJlbWl1bU9y
+        ZGVyPmZhbHNlPC9Jc1ByZW1pdW1PcmRlcj4KICAgICAgICA8RWFybGllc3RT
+        aGlwRGF0ZT4yMDE1LTAxLTAxVDE1OjAwOjAwWjwvRWFybGllc3RTaGlwRGF0
+        ZT4KICAgICAgICA8TWFya2V0cGxhY2VJZD5BMVZDMzhUN1lYQjUyODwvTWFy
+        a2V0cGxhY2VJZD4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1GTjwv
+        RnVsZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxJc1ByaW1lPmZhbHNlPC9J
+        c1ByaW1lPgogICAgICAgIDxTaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5
+        PlN0YW5kYXJkPC9TaGlwbWVudFNlcnZpY2VMZXZlbENhdGVnb3J5PgogICAg
+        ICA8L09yZGVyPgogICAgPC9PcmRlcnM+CiAgICA8Q3JlYXRlZEJlZm9yZT4y
+        MDE2LTAxLTIwVDE4OjQ3OjE4WjwvQ3JlYXRlZEJlZm9yZT4KICAgIDxOZXh0
+        VG9rZW4+NVJGUlpTNjh2TTJhSnFKWUxEbTBaSWZWa0pKUHBvdlIzYllPY3Fs
+        dlAyNVVvamRVNEg0NnRyUXphekh5WVZ5THFCWGRMazRpb2d3Z1Q3WkJ5TnE1
+        cTdrZTNPenR1bnVqaFZ5Uzd5VjhHRTFkYWkxZ2xZZlNnU0owd012bHlsWmtX
+        UVdQcUdsYnNuUGFFcEpqTFd0cmM4czBqVWNWd2FMTy9RaDhaNEM5djNrMXJq
+        QWdyejhqd2J1WklGOW40NW10bnJaNEFiQmRCVGVpY3A1akpQUVBjZ0N5NS9H
+        dUdJNE9MenlCOTYwUnNiSVpFV1VERnZ0VDU1blIrK3FKT3RhZWpHNFlIeFFL
+        ZzZDV2M0b3kzdkl4cmJDWFNhRzd3N1kyUWprcUpwS0Q1T2dqMGlJZWhtQXBT
+        UHNJeUhiL2MwbmVFL3BVa3BKZlM4aUlBaldkS0N5WHl3UGF6VkFQcHJVVmRF
+        cmlhcWhnU0pObSt6TFJiWmlNNHArb0pTcGtsMjl3MS85SG4reFordGdNWVlP
+        bVc0K05qWnZ2QjR3VVIrekZWazJwQ0R5SW81Y2Y4VEVzNXJkRVhLMDZBTEdE
+        Zk43QjRKSFdUMTRYRVhEVnVNOFVJcmp2c0Z4RTRtdGxDMzV1PC9OZXh0VG9r
+        ZW4+CiAgPC9MaXN0T3JkZXJzUmVzdWx0PgogIDxSZXNwb25zZU1ldGFkYXRh
+        PgogICAgPFJlcXVlc3RJZD5lMjE4YjYyNy0zMDUwLTRkNjMtYjdjYy0zODY5
+        NDIzNTk0MzQ8L1JlcXVlc3RJZD4KICA8L1Jlc3BvbnNlTWV0YWRhdGE+Cjwv
+        TGlzdE9yZGVyc1Jlc3BvbnNlPgo=
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:19 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetOrder&AmazonOrderId.Id.1=249-9319775-7487020&AmazonOrderId.Id.2=249-3740490-2471056&AmazonOrderId.Id.3=249-8579825-2585425&AmazonOrderId.Id.4=250-4526608-1713466&AmazonOrderId.Id.5=249-7374856-1819062&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A20Z&Version=2013-09-01&Signature=%2F1BOaGQd3JNDzHLTjIDB6bdUyvtQbiVxeXGxxXk1LbA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:20 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:20 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=SUKhFuM9S/CRBF3hiXiLPi/F4tesaUJlzwvzwMU82fM=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 4c9ff921-c960-4281-95f0-051151643141
+      x-mws-timestamp:
+      - '2016-01-20T18:49:20.680Z'
+      x-mws-response-context:
+      - zbzVqUE01I3BSWGqDcvqSLz3fmZ/nFg0kxjBbaC3uedhkIZ9WUAtIqK0CzXqNIJe8k7dHrs7e1M1
+        i2wZGJ/FAw==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '8264'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxHZXRPcmRlclJlc3BvbnNlIHhtbG5z
+        PSJodHRwczovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vT3JkZXJzLzIwMTMt
+        MDktMDEiPgogIDxHZXRPcmRlclJlc3VsdD4KICAgIDxPcmRlcnM+CiAgICAg
+        IDxPcmRlcj4KICAgICAgICA8TGF0ZXN0U2hpcERhdGU+MjAxNS0wMS0wNVQx
+        NDo1OTo1OVo8L0xhdGVzdFNoaXBEYXRlPgogICAgICAgIDxPcmRlclR5cGU+
+        U3RhbmRhcmRPcmRlcjwvT3JkZXJUeXBlPgogICAgICAgIDxQdXJjaGFzZURh
+        dGU+MjAxNS0wMS0wMVQwMzozMzoxNFo8L1B1cmNoYXNlRGF0ZT4KICAgICAg
+        ICA8QnV5ZXJFbWFpbD5GSUxURVJFRDwvQnV5ZXJFbWFpbD4KICAgICAgICA8
+        QW1hem9uT3JkZXJJZD4yNDktOTMxOTc3NS03NDg3MDIwPC9BbWF6b25PcmRl
+        cklkPgogICAgICAgIDxMYXN0VXBkYXRlRGF0ZT4yMDE1LTAxLTAzVDA3OjE0
+        OjAwWjwvTGFzdFVwZGF0ZURhdGU+CiAgICAgICAgPFNoaXBTZXJ2aWNlTGV2
+        ZWw+U3RkIEpQIERvbWVzdGljPC9TaGlwU2VydmljZUxldmVsPgogICAgICAg
+        IDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4xPC9OdW1iZXJPZkl0ZW1zU2hpcHBl
+        ZD4KICAgICAgICA8T3JkZXJTdGF0dXM+U2hpcHBlZDwvT3JkZXJTdGF0dXM+
+        CiAgICAgICAgPFNhbGVzQ2hhbm5lbD5BbWF6b24uY28uanA8L1NhbGVzQ2hh
+        bm5lbD4KICAgICAgICA8U2hpcHBlZEJ5QW1hem9uVEZNPmZhbHNlPC9TaGlw
+        cGVkQnlBbWF6b25URk0+CiAgICAgICAgPExhdGVzdERlbGl2ZXJ5RGF0ZT4y
+        MDE1LTAxLTIyVDE0OjU5OjU5WjwvTGF0ZXN0RGVsaXZlcnlEYXRlPgogICAg
+        ICAgIDxOdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPjA8L051bWJlck9mSXRlbXNV
+        bnNoaXBwZWQ+CiAgICAgICAgPEJ1eWVyTmFtZT5GSUxURVJFRDwvQnV5ZXJO
+        YW1lPgogICAgICAgIDxFYXJsaWVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTEz
+        VDE1OjAwOjAwWjwvRWFybGllc3REZWxpdmVyeURhdGU+CiAgICAgICAgPE9y
+        ZGVyVG90YWw+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkpQWTwvQ3VycmVu
+        Y3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50Pgog
+        ICAgICAgIDwvT3JkZXJUb3RhbD4KICAgICAgICA8SXNQcmVtaXVtT3JkZXI+
+        ZmFsc2U8L0lzUHJlbWl1bU9yZGVyPgogICAgICAgIDxFYXJsaWVzdFNoaXBE
+        YXRlPjIwMTUtMDEtMDFUMTU6MDA6MDBaPC9FYXJsaWVzdFNoaXBEYXRlPgog
+        ICAgICAgIDxNYXJrZXRwbGFjZUlkPkExVkMzOFQ3WVhCNTI4PC9NYXJrZXRw
+        bGFjZUlkPgogICAgICAgIDxGdWxmaWxsbWVudENoYW5uZWw+TUZOPC9GdWxm
+        aWxsbWVudENoYW5uZWw+CiAgICAgICAgPFBheW1lbnRNZXRob2Q+T3RoZXI8
+        L1BheW1lbnRNZXRob2Q+CiAgICAgICAgPFNoaXBwaW5nQWRkcmVzcz4KICAg
+        ICAgICAgIDxTdGF0ZU9yUmVnaW9uPuWkp+mYquW6nDwvU3RhdGVPclJlZ2lv
+        bj4KICAgICAgICAgIDxQaG9uZT5GSUxURVJFRDwvUGhvbmU+CiAgICAgICAg
+        ICA8Q291bnRyeUNvZGU+SlA8L0NvdW50cnlDb2RlPgogICAgICAgICAgPFBv
+        c3RhbENvZGU+RklMVEVSRUQ8L1Bvc3RhbENvZGU+CiAgICAgICAgICA8TmFt
+        ZT5GSUxURVJFRDwvTmFtZT4KICAgICAgICAgIDxBZGRyZXNzTGluZTE+RklM
+        VEVSRUQ8L0FkZHJlc3NMaW5lMT4KICAgICAgICAgIDxBZGRyZXNzTGluZTI+
+        NS00LTEtMjEzPC9BZGRyZXNzTGluZTI+CiAgICAgICAgPC9TaGlwcGluZ0Fk
+        ZHJlc3M+CiAgICAgICAgPElzUHJpbWU+ZmFsc2U8L0lzUHJpbWU+CiAgICAg
+        ICAgPFNoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+U3RhbmRhcmQ8L1No
+        aXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+CiAgICAgIDwvT3JkZXI+CiAg
+        ICAgIDxPcmRlcj4KICAgICAgICA8TGF0ZXN0U2hpcERhdGU+MjAxNS0wMS0w
+        NVQxNDo1OTo1OVo8L0xhdGVzdFNoaXBEYXRlPgogICAgICAgIDxPcmRlclR5
+        cGU+U3RhbmRhcmRPcmRlcjwvT3JkZXJUeXBlPgogICAgICAgIDxQdXJjaGFz
+        ZURhdGU+MjAxNS0wMS0wMVQwNDoxNzowNlo8L1B1cmNoYXNlRGF0ZT4KICAg
+        ICAgICA8QnV5ZXJFbWFpbD5GSUxURVJFRDwvQnV5ZXJFbWFpbD4KICAgICAg
+        ICA8QW1hem9uT3JkZXJJZD4yNDktMzc0MDQ5MC0yNDcxMDU2PC9BbWF6b25P
+        cmRlcklkPgogICAgICAgIDxMYXN0VXBkYXRlRGF0ZT4yMDE1LTAxLTAzVDA3
+        OjE0OjA1WjwvTGFzdFVwZGF0ZURhdGU+CiAgICAgICAgPFNoaXBTZXJ2aWNl
+        TGV2ZWw+U3RkIEpQIERvbWVzdGljPC9TaGlwU2VydmljZUxldmVsPgogICAg
+        ICAgIDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4xPC9OdW1iZXJPZkl0ZW1zU2hp
+        cHBlZD4KICAgICAgICA8T3JkZXJTdGF0dXM+U2hpcHBlZDwvT3JkZXJTdGF0
+        dXM+CiAgICAgICAgPFNhbGVzQ2hhbm5lbD5BbWF6b24uY28uanA8L1NhbGVz
+        Q2hhbm5lbD4KICAgICAgICA8U2hpcHBlZEJ5QW1hem9uVEZNPmZhbHNlPC9T
+        aGlwcGVkQnlBbWF6b25URk0+CiAgICAgICAgPExhdGVzdERlbGl2ZXJ5RGF0
+        ZT4yMDE1LTAxLTIyVDE0OjU5OjU5WjwvTGF0ZXN0RGVsaXZlcnlEYXRlPgog
+        ICAgICAgIDxOdW1iZXJPZkl0ZW1zVW5zaGlwcGVkPjA8L051bWJlck9mSXRl
+        bXNVbnNoaXBwZWQ+CiAgICAgICAgPEJ1eWVyTmFtZT5GSUxURVJFRDwvQnV5
+        ZXJOYW1lPgogICAgICAgIDxFYXJsaWVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAx
+        LTEzVDE1OjAwOjAwWjwvRWFybGllc3REZWxpdmVyeURhdGU+CiAgICAgICAg
+        PE9yZGVyVG90YWw+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkpQWTwvQ3Vy
+        cmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50
+        PgogICAgICAgIDwvT3JkZXJUb3RhbD4KICAgICAgICA8SXNQcmVtaXVtT3Jk
+        ZXI+ZmFsc2U8L0lzUHJlbWl1bU9yZGVyPgogICAgICAgIDxFYXJsaWVzdFNo
+        aXBEYXRlPjIwMTUtMDEtMDFUMTU6MDA6MDBaPC9FYXJsaWVzdFNoaXBEYXRl
+        PgogICAgICAgIDxNYXJrZXRwbGFjZUlkPkExVkMzOFQ3WVhCNTI4PC9NYXJr
+        ZXRwbGFjZUlkPgogICAgICAgIDxGdWxmaWxsbWVudENoYW5uZWw+TUZOPC9G
+        dWxmaWxsbWVudENoYW5uZWw+CiAgICAgICAgPFBheW1lbnRNZXRob2Q+T3Ro
+        ZXI8L1BheW1lbnRNZXRob2Q+CiAgICAgICAgPFNoaXBwaW5nQWRkcmVzcz4K
+        ICAgICAgICAgIDxTdGF0ZU9yUmVnaW9uPuadseS6rOmDvTwvU3RhdGVPclJl
+        Z2lvbj4KICAgICAgICAgIDxQaG9uZT5GSUxURVJFRDwvUGhvbmU+CiAgICAg
+        ICAgICA8Q291bnRyeUNvZGU+SlA8L0NvdW50cnlDb2RlPgogICAgICAgICAg
+        PFBvc3RhbENvZGU+RklMVEVSRUQ8L1Bvc3RhbENvZGU+CiAgICAgICAgICA8
+        TmFtZT5GSUxURVJFRDwvTmFtZT4KICAgICAgICAgIDxBZGRyZXNzTGluZTE+
+        RklMVEVSRUQ8L0FkZHJlc3NMaW5lMT4KICAgICAgICAgIDxBZGRyZXNzTGlu
+        ZTI+44Ot44Kk44Ok44Or44OP44Kk44OEMjA2PC9BZGRyZXNzTGluZTI+CiAg
+        ICAgICAgPC9TaGlwcGluZ0FkZHJlc3M+CiAgICAgICAgPElzUHJpbWU+ZmFs
+        c2U8L0lzUHJpbWU+CiAgICAgICAgPFNoaXBtZW50U2VydmljZUxldmVsQ2F0
+        ZWdvcnk+U3RhbmRhcmQ8L1NoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+
+        CiAgICAgIDwvT3JkZXI+CiAgICAgIDxPcmRlcj4KICAgICAgICA8TGF0ZXN0
+        U2hpcERhdGU+MjAxNS0wMS0wNVQxNDo1OTo1OVo8L0xhdGVzdFNoaXBEYXRl
+        PgogICAgICAgIDxPcmRlclR5cGU+U3RhbmRhcmRPcmRlcjwvT3JkZXJUeXBl
+        PgogICAgICAgIDxQdXJjaGFzZURhdGU+MjAxNS0wMS0wMVQwNDo1MzoxMFo8
+        L1B1cmNoYXNlRGF0ZT4KICAgICAgICA8QnV5ZXJFbWFpbD5GSUxURVJFRDwv
+        QnV5ZXJFbWFpbD4KICAgICAgICA8QW1hem9uT3JkZXJJZD4yNDktODU3OTgy
+        NS0yNTg1NDI1PC9BbWF6b25PcmRlcklkPgogICAgICAgIDxMYXN0VXBkYXRl
+        RGF0ZT4yMDE1LTAxLTAzVDA3OjE0OjA1WjwvTGFzdFVwZGF0ZURhdGU+CiAg
+        ICAgICAgPFNoaXBTZXJ2aWNlTGV2ZWw+U3RkIEpQIERvbWVzdGljPC9TaGlw
+        U2VydmljZUxldmVsPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4x
+        PC9OdW1iZXJPZkl0ZW1zU2hpcHBlZD4KICAgICAgICA8T3JkZXJTdGF0dXM+
+        U2hpcHBlZDwvT3JkZXJTdGF0dXM+CiAgICAgICAgPFNhbGVzQ2hhbm5lbD5B
+        bWF6b24uY28uanA8L1NhbGVzQ2hhbm5lbD4KICAgICAgICA8U2hpcHBlZEJ5
+        QW1hem9uVEZNPmZhbHNlPC9TaGlwcGVkQnlBbWF6b25URk0+CiAgICAgICAg
+        PExhdGVzdERlbGl2ZXJ5RGF0ZT4yMDE1LTAxLTIyVDE0OjU5OjU5WjwvTGF0
+        ZXN0RGVsaXZlcnlEYXRlPgogICAgICAgIDxOdW1iZXJPZkl0ZW1zVW5zaGlw
+        cGVkPjA8L051bWJlck9mSXRlbXNVbnNoaXBwZWQ+CiAgICAgICAgPEJ1eWVy
+        TmFtZT5GSUxURVJFRDwvQnV5ZXJOYW1lPgogICAgICAgIDxFYXJsaWVzdERl
+        bGl2ZXJ5RGF0ZT4yMDE1LTAxLTEzVDE1OjAwOjAwWjwvRWFybGllc3REZWxp
+        dmVyeURhdGU+CiAgICAgICAgPE9yZGVyVG90YWw+CiAgICAgICAgICA8Q3Vy
+        cmVuY3lDb2RlPkpQWTwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFtb3Vu
+        dD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvT3JkZXJUb3RhbD4KICAg
+        ICAgICA8SXNQcmVtaXVtT3JkZXI+ZmFsc2U8L0lzUHJlbWl1bU9yZGVyPgog
+        ICAgICAgIDxFYXJsaWVzdFNoaXBEYXRlPjIwMTUtMDEtMDFUMTU6MDA6MDBa
+        PC9FYXJsaWVzdFNoaXBEYXRlPgogICAgICAgIDxNYXJrZXRwbGFjZUlkPkEx
+        VkMzOFQ3WVhCNTI4PC9NYXJrZXRwbGFjZUlkPgogICAgICAgIDxGdWxmaWxs
+        bWVudENoYW5uZWw+TUZOPC9GdWxmaWxsbWVudENoYW5uZWw+CiAgICAgICAg
+        PFBheW1lbnRNZXRob2Q+T3RoZXI8L1BheW1lbnRNZXRob2Q+CiAgICAgICAg
+        PFNoaXBwaW5nQWRkcmVzcz4KICAgICAgICAgIDxTdGF0ZU9yUmVnaW9uPuad
+        seS6rOmDvTwvU3RhdGVPclJlZ2lvbj4KICAgICAgICAgIDxQaG9uZT5GSUxU
+        RVJFRDwvUGhvbmU+CiAgICAgICAgICA8Q291bnRyeUNvZGU+SlA8L0NvdW50
+        cnlDb2RlPgogICAgICAgICAgPFBvc3RhbENvZGU+RklMVEVSRUQ8L1Bvc3Rh
+        bENvZGU+CiAgICAgICAgICA8TmFtZT5GSUxURVJFRDwvTmFtZT4KICAgICAg
+        ICAgIDxBZGRyZXNzTGluZTE+RklMVEVSRUQ8L0FkZHJlc3NMaW5lMT4KICAg
+        ICAgICA8L1NoaXBwaW5nQWRkcmVzcz4KICAgICAgICA8SXNQcmltZT5mYWxz
+        ZTwvSXNQcmltZT4KICAgICAgICA8U2hpcG1lbnRTZXJ2aWNlTGV2ZWxDYXRl
+        Z29yeT5TdGFuZGFyZDwvU2hpcG1lbnRTZXJ2aWNlTGV2ZWxDYXRlZ29yeT4K
+        ICAgICAgPC9PcmRlcj4KICAgICAgPE9yZGVyPgogICAgICAgIDxMYXRlc3RT
+        aGlwRGF0ZT4yMDE1LTAxLTA1VDE0OjU5OjU5WjwvTGF0ZXN0U2hpcERhdGU+
+        CiAgICAgICAgPE9yZGVyVHlwZT5TdGFuZGFyZE9yZGVyPC9PcmRlclR5cGU+
+        CiAgICAgICAgPFB1cmNoYXNlRGF0ZT4yMDE1LTAxLTAxVDA0OjU3OjI5Wjwv
+        UHVyY2hhc2VEYXRlPgogICAgICAgIDxCdXllckVtYWlsPkZJTFRFUkVEPC9C
+        dXllckVtYWlsPgogICAgICAgIDxBbWF6b25PcmRlcklkPjI1MC00NTI2NjA4
+        LTE3MTM0NjY8L0FtYXpvbk9yZGVySWQ+CiAgICAgICAgPExhc3RVcGRhdGVE
+        YXRlPjIwMTUtMDEtMDVUMTc6MTI6MzdaPC9MYXN0VXBkYXRlRGF0ZT4KICAg
+        ICAgICA8U2hpcFNlcnZpY2VMZXZlbD5TdGQgSlAgRG9tZXN0aWM8L1NoaXBT
+        ZXJ2aWNlTGV2ZWw+CiAgICAgICAgPE51bWJlck9mSXRlbXNTaGlwcGVkPjE8
+        L051bWJlck9mSXRlbXNTaGlwcGVkPgogICAgICAgIDxPcmRlclN0YXR1cz5T
+        aGlwcGVkPC9PcmRlclN0YXR1cz4KICAgICAgICA8U2FsZXNDaGFubmVsPkFt
+        YXpvbi5jby5qcDwvU2FsZXNDaGFubmVsPgogICAgICAgIDxTaGlwcGVkQnlB
+        bWF6b25URk0+ZmFsc2U8L1NoaXBwZWRCeUFtYXpvblRGTT4KICAgICAgICA8
+        TGF0ZXN0RGVsaXZlcnlEYXRlPjIwMTUtMDEtMjJUMTQ6NTk6NTlaPC9MYXRl
+        c3REZWxpdmVyeURhdGU+CiAgICAgICAgPE51bWJlck9mSXRlbXNVbnNoaXBw
+        ZWQ+MDwvTnVtYmVyT2ZJdGVtc1Vuc2hpcHBlZD4KICAgICAgICA8QnV5ZXJO
+        YW1lPkZJTFRFUkVEPC9CdXllck5hbWU+CiAgICAgICAgPEVhcmxpZXN0RGVs
+        aXZlcnlEYXRlPjIwMTUtMDEtMTNUMTU6MDA6MDBaPC9FYXJsaWVzdERlbGl2
+        ZXJ5RGF0ZT4KICAgICAgICA8T3JkZXJUb3RhbD4KICAgICAgICAgIDxDdXJy
+        ZW5jeUNvZGU+SlBZPC9DdXJyZW5jeUNvZGU+CiAgICAgICAgICA8QW1vdW50
+        PkZJTFRFUkVEPC9BbW91bnQ+CiAgICAgICAgPC9PcmRlclRvdGFsPgogICAg
+        ICAgIDxJc1ByZW1pdW1PcmRlcj5mYWxzZTwvSXNQcmVtaXVtT3JkZXI+CiAg
+        ICAgICAgPEVhcmxpZXN0U2hpcERhdGU+MjAxNS0wMS0wMVQxNTowMDowMFo8
+        L0VhcmxpZXN0U2hpcERhdGU+CiAgICAgICAgPE1hcmtldHBsYWNlSWQ+QTFW
+        QzM4VDdZWEI1Mjg8L01hcmtldHBsYWNlSWQ+CiAgICAgICAgPEZ1bGZpbGxt
+        ZW50Q2hhbm5lbD5NRk48L0Z1bGZpbGxtZW50Q2hhbm5lbD4KICAgICAgICA8
+        UGF5bWVudE1ldGhvZD5PdGhlcjwvUGF5bWVudE1ldGhvZD4KICAgICAgICA8
+        U2hpcHBpbmdBZGRyZXNzPgogICAgICAgICAgPFN0YXRlT3JSZWdpb24+5oSb
+        5aqb55yMPC9TdGF0ZU9yUmVnaW9uPgogICAgICAgICAgPFBob25lPkZJTFRF
+        UkVEPC9QaG9uZT4KICAgICAgICAgIDxDb3VudHJ5Q29kZT5KUDwvQ291bnRy
+        eUNvZGU+CiAgICAgICAgICA8UG9zdGFsQ29kZT5GSUxURVJFRDwvUG9zdGFs
+        Q29kZT4KICAgICAgICAgIDxOYW1lPkZJTFRFUkVEPC9OYW1lPgogICAgICAg
+        ICAgPEFkZHJlc3NMaW5lMT5GSUxURVJFRDwvQWRkcmVzc0xpbmUxPgogICAg
+        ICAgICAgPEFkZHJlc3NMaW5lMj41LTIx44Ki44Kt44OD44Kv44K556WH5ZyS
+        MjAzPC9BZGRyZXNzTGluZTI+CiAgICAgICAgPC9TaGlwcGluZ0FkZHJlc3M+
+        CiAgICAgICAgPElzUHJpbWU+ZmFsc2U8L0lzUHJpbWU+CiAgICAgICAgPFNo
+        aXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+U3RhbmRhcmQ8L1NoaXBtZW50
+        U2VydmljZUxldmVsQ2F0ZWdvcnk+CiAgICAgIDwvT3JkZXI+CiAgICAgIDxP
+        cmRlcj4KICAgICAgICA8TGF0ZXN0U2hpcERhdGU+MjAxNS0wMS0wNVQxNDo1
+        OTo1OVo8L0xhdGVzdFNoaXBEYXRlPgogICAgICAgIDxPcmRlclR5cGU+U3Rh
+        bmRhcmRPcmRlcjwvT3JkZXJUeXBlPgogICAgICAgIDxQdXJjaGFzZURhdGU+
+        MjAxNS0wMS0wMVQwNTowMDoyNVo8L1B1cmNoYXNlRGF0ZT4KICAgICAgICA8
+        QW1hem9uT3JkZXJJZD4yNDktNzM3NDg1Ni0xODE5MDYyPC9BbWF6b25PcmRl
+        cklkPgogICAgICAgIDxMYXN0VXBkYXRlRGF0ZT4yMDE1LTAxLTAxVDA1OjA0
+        OjMxWjwvTGFzdFVwZGF0ZURhdGU+CiAgICAgICAgPFNoaXBTZXJ2aWNlTGV2
+        ZWw+U3RkIEpQIERvbWVzdGljPC9TaGlwU2VydmljZUxldmVsPgogICAgICAg
+        IDxOdW1iZXJPZkl0ZW1zU2hpcHBlZD4wPC9OdW1iZXJPZkl0ZW1zU2hpcHBl
+        ZD4KICAgICAgICA8T3JkZXJTdGF0dXM+Q2FuY2VsZWQ8L09yZGVyU3RhdHVz
+        PgogICAgICAgIDxTYWxlc0NoYW5uZWw+QW1hem9uLmNvLmpwPC9TYWxlc0No
+        YW5uZWw+CiAgICAgICAgPE51bWJlck9mSXRlbXNVbnNoaXBwZWQ+MDwvTnVt
+        YmVyT2ZJdGVtc1Vuc2hpcHBlZD4KICAgICAgICA8SXNQcmVtaXVtT3JkZXI+
+        ZmFsc2U8L0lzUHJlbWl1bU9yZGVyPgogICAgICAgIDxFYXJsaWVzdFNoaXBE
+        YXRlPjIwMTUtMDEtMDFUMTU6MDA6MDBaPC9FYXJsaWVzdFNoaXBEYXRlPgog
+        ICAgICAgIDxNYXJrZXRwbGFjZUlkPkExVkMzOFQ3WVhCNTI4PC9NYXJrZXRw
+        bGFjZUlkPgogICAgICAgIDxGdWxmaWxsbWVudENoYW5uZWw+TUZOPC9GdWxm
+        aWxsbWVudENoYW5uZWw+CiAgICAgICAgPElzUHJpbWU+ZmFsc2U8L0lzUHJp
+        bWU+CiAgICAgICAgPFNoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+U3Rh
+        bmRhcmQ8L1NoaXBtZW50U2VydmljZUxldmVsQ2F0ZWdvcnk+CiAgICAgIDwv
+        T3JkZXI+CiAgICA8L09yZGVycz4KICA8L0dldE9yZGVyUmVzdWx0PgogIDxS
+        ZXNwb25zZU1ldGFkYXRhPgogICAgPFJlcXVlc3RJZD40YzlmZjkyMS1jOTYw
+        LTQyODEtOTVmMC0wNTExNTE2NDMxNDE8L1JlcXVlc3RJZD4KICA8L1Jlc3Bv
+        bnNlTWV0YWRhdGE+CjwvR2V0T3JkZXJSZXNwb25zZT4K
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:21 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListOrders&CreatedAfter=2015-01-01&MarketplaceId.Id.1=ATVPDKIKX0DER&MaxResultsPerPage=5&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A23Z&Version=2013-09-01&Signature=iOLOvhcAL0h1IyRTY8dR4YZ2TRUS6ZpW5LSoHWUxfPQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:22 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:22 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=XUurVL6g0DDUfej9bHj5qhtzNFt28bZxFnwTc5YYqKk=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 658ed858-8d15-4b0c-83bb-0215e723037f
+      x-mws-timestamp:
+      - '2016-01-20T18:49:22.734Z'
+      x-mws-response-context:
+      - JcYEHC6yGncQCBYwbYwSPeOKBYambvc5ERy7GoF0e8uWkXucBYuWBbl1n2iQp4sM97SM+E92aFru
+        7xoGlb3p+g==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '9035'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ListOrdersResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <ListOrdersResult>
+            <Orders>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:03:41Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>111-7216000-6049025</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:42Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>FLORIDA</StateOrRegion>
+                  <City>MIAMI</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:06:50Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>111-9570422-3512248</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:42Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>2</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>IL</StateOrRegion>
+                  <City>Chicago</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                  <AddressLine2>130 N Jefferson St</AddressLine2>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:22:23Z</PurchaseDate>
+                <AmazonOrderId>115-4443057-9527402</AmazonOrderId>
+                <LastUpdateDate>2015-01-01T00:23:59Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>0</NumberOfItemsShipped>
+                <OrderStatus>Canceled</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:23:04Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>103-3058294-9685040</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:42Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>new york</StateOrRegion>
+                  <City>new york</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:31:20Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>108-8937701-3339428</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>MI</StateOrRegion>
+                  <City>BRIGHTON</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+            </Orders>
+            <CreatedBefore>2016-01-20T18:47:22Z</CreatedBefore>
+            <NextToken>0gjAZWffKPqaJqJYLDm0ZIfVkJJPpovR3bYOcqlvP25UojdU4H46trQzazHyYVyLqBXdLk4iogwgT7ZByNq5q7ke3OztunujhVyS7yV8GE2UrelVme04kSJ0wMvlylZkWQWPqGlbsnPaEpJjLWtrc4umrngqYB2B1iiqsTdc8HNmSxbBpWd0fbuZIF9n45mtnrZ4AbBdBTeicp5jJPQPcgCy5/GuGI4OLzyB960RsbIZEWUDFvtT52wIz6p19AjodglgTpjel+TbED07fXwVvLCXSaG7w7Y22ZC4fGUFmXZk2azcFx+lU0cPwmPe3XRJAYi8wcR8BAOn1STF1YAORddQ7OcNULY1v+8TSOcnhcEzjyvmc6HtlMFhf/qTrGAsaC4rv+QE31wa9uvjXgoB6elit+Oc1Msb6vepTqQp36ikEJPufjzSIGgYe8HoWrBOSsOIepvyYERw5n5EIz/fxOJQ+jWyCgUwHwnmAAN1mtY=</NextToken>
+          </ListOrdersResult>
+          <ResponseMetadata>
+            <RequestId>658ed858-8d15-4b0c-83bb-0215e723037f</RequestId>
+          </ResponseMetadata>
+        </ListOrdersResponse>
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:23 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetOrder&AmazonOrderId.Id.1=111-7216000-6049025&AmazonOrderId.Id.2=111-9570422-3512248&AmazonOrderId.Id.3=115-4443057-9527402&AmazonOrderId.Id.4=103-3058294-9685040&AmazonOrderId.Id.5=108-8937701-3339428&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A24Z&Version=2013-09-01&Signature=0W77CTz5kyIpGpZSxz6K5GLX%2B2o5YXlgdhOSS02iuaM%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Wed, 20 Jan 2016 18:49:23 GMT
+      Server:
+      - AmazonMWS
+      X-Amz-Date:
+      - Wed, 20 Jan 2016 18:49:24 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.MarketplaceWebServiceOrders.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Signed=true, Encrypted=false, Signature=OkU4ZzlVmzXHBPEjMfhrRHZE/JiVHRDjG9aoAzoOwL0=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - af5343aa-d297-4e76-a3ba-0c575805afed
+      x-mws-timestamp:
+      - '2016-01-20T18:49:24.008Z'
+      x-mws-response-context:
+      - aru70RGaKrRCDRVP4a4Pl56AuQdYLLPSSeWPwAOj1XCFUzW0wMNAnTmYax04Bw22iSdbv0ZBabnh
+        4g96MZuALQ==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '8451'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetOrderResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <GetOrderResult>
+            <Orders>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:03:41Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>111-7216000-6049025</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:42Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>FLORIDA</StateOrRegion>
+                  <City>MIAMI</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:06:50Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>111-9570422-3512248</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:42Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>2</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>IL</StateOrRegion>
+                  <City>Chicago</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                  <AddressLine2>130 N Jefferson St</AddressLine2>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:22:23Z</PurchaseDate>
+                <AmazonOrderId>115-4443057-9527402</AmazonOrderId>
+                <LastUpdateDate>2015-01-01T00:23:59Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>0</NumberOfItemsShipped>
+                <OrderStatus>Canceled</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:23:04Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>103-3058294-9685040</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:42Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>new york</StateOrRegion>
+                  <City>new york</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+              <Order>
+                <LatestShipDate>2015-01-06T07:59:59Z</LatestShipDate>
+                <OrderType>StandardOrder</OrderType>
+                <PurchaseDate>2015-01-01T00:31:20Z</PurchaseDate>
+                <BuyerEmail>FILTERED</BuyerEmail>
+                <AmazonOrderId>108-8937701-3339428</AmazonOrderId>
+                <LastUpdateDate>2015-01-03T07:13:43Z</LastUpdateDate>
+                <ShipServiceLevel>Std US Dom</ShipServiceLevel>
+                <NumberOfItemsShipped>1</NumberOfItemsShipped>
+                <OrderStatus>Shipped</OrderStatus>
+                <SalesChannel>Amazon.com</SalesChannel>
+                <ShippedByAmazonTFM>false</ShippedByAmazonTFM>
+                <IsBusinessOrder>false</IsBusinessOrder>
+                <LatestDeliveryDate>2015-02-11T07:59:59Z</LatestDeliveryDate>
+                <NumberOfItemsUnshipped>0</NumberOfItemsUnshipped>
+                <BuyerName>FILTERED</BuyerName>
+                <EarliestDeliveryDate>2015-01-28T08:00:00Z</EarliestDeliveryDate>
+                <OrderTotal>
+                  <CurrencyCode>USD</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </OrderTotal>
+                <IsPremiumOrder>false</IsPremiumOrder>
+                <EarliestShipDate>2015-01-02T08:00:00Z</EarliestShipDate>
+                <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <PaymentMethod>Other</PaymentMethod>
+                <ShippingAddress>
+                  <StateOrRegion>MI</StateOrRegion>
+                  <City>BRIGHTON</City>
+                  <Phone>FILTERED</Phone>
+                  <CountryCode>US</CountryCode>
+                  <PostalCode>FILTERED</PostalCode>
+                  <Name>FILTERED</Name>
+                  <AddressLine1>FILTERED</AddressLine1>
+                </ShippingAddress>
+                <IsPrime>false</IsPrime>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
+              </Order>
+            </Orders>
+          </GetOrderResult>
+          <ResponseMetadata>
+            <RequestId>af5343aa-d297-4e76-a3ba-0c575805afed</RequestId>
+          </ResponseMetadata>
+        </GetOrderResponse>
+    http_version: 
+  recorded_at: Wed, 20 Jan 2016 18:49:25 GMT
+recorded_with: VCR 3.0.1
