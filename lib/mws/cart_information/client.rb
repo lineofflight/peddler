@@ -49,8 +49,9 @@ module MWS
       # Returns shopping carts based on specified values
       #
       # @see http://docs.developer.amazonservices.com/en_US/cart_info/CartInfo_GetCarts.html
-      # @param [String] marketplace_id
-      # @param [Array<String>] cart_id_list
+      # @overload get_carts(marketplace_id, *cart_ids)
+      #   @param [String] marketplace_id
+      #   @param [String] cart_id one or more cart_ids
       # @return [Peddler::XMLParser]
       def get_carts(marketplace_id, *cart_id_list)
         operation('GetCarts')
