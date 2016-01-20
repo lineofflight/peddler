@@ -113,43 +113,43 @@ end
 
 With the MWS Cart Information API, you can retrieve shopping carts that your Amazon Webstore customers have created. The Cart Information API enables you to programmatically integrate Amazon Webstore cart information with your CRM systems, marketing applications, and other systems that require cart data.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=cartinformation&section=cartinformation)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/CartInformation/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=cartinformation&section=cartinformation)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/CartInformation/Client)
 
 ### Customer Information
 
 With the MWS Customer Information API, you can retrieve information from the customer accounts of your Amazon Webstore customers. This customer information includes customer name, contact information, customer account type, and associated Amazon Webstore marketplaces. The Customer Information API enables you to programmatically integrate Amazon Webstore customer account information with your CRM systems, marketing applications, and other systems that require customer data.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=customerinformation&section=customerinformation)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/CustomerInformation/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=customerinformation&section=customerinformation)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/CustomerInformation/Client)
 
 ### Feeds
 
 The MWS Feeds API lets you upload inventory and order data to Amazon. You can also use this API to get information about the processing of feeds.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=bde&section=feeds)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Feeds/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=bde&section=feeds)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Feeds/Client)
 
 ### Finances
 
 The MWS Finances API enables you to obtain financial information relevant to your business with Amazon. You can obtain financial events for a given order, financial event group, or date range without having to wait until a statement period closes. You can also obtain financial event groups for a given date range.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=finances&section=finances)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Finances/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=finances&section=finances)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Finances/Client)
 
 ### Fulfillment Inbound Shipment
 
 With the MWS Fulfillment Inbound Shipment API, you can create and update inbound shipments of inventory in the Amazon Fulfillment Network. You can also also request lists of inbound shipments or inbound shipment items based on criteria that you specify.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=inbound)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentInboundShipment/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=inbound)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentInboundShipment/Client)
 
 ### Fulfillment Inventory
 
 The MWS Fulfillment Inventory API can help you stay up-to-date on the availability of your inventory in the Amazon Fulfillment Network. The Fulfillment Inventory API reports real-time availability information for your Amazon Fulfillment Network inventory regardless of whether you are selling your inventory on Amazon's retail web site or through other retail channels.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=inventory)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentInventory/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=inventory)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentInventory/Client)
 
 ### Fulfillment Outbound Shipment
 
@@ -157,8 +157,8 @@ The MWS Fulfillment Outbound Shipment API enables you to fulfill orders placed t
 
 Support for creating and cancelling fulfillment orders has been implemented, but the rest of the API is not supported yet.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=outbound)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentOutboundShipment/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=outbound)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentOutboundShipment/Client)
 
 ### Off Amazon Payments
 
@@ -170,55 +170,55 @@ You can switch the client to the sandbox environment:
 client = MWS.off_amazon_payments.sandbox
 ```
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=offamazonpayments&section=offamazonpayments)
-[Official Ruby client](https://github.com/amzn/login-and-pay-with-amazon-sdk-ruby)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/OffAmazonPayments/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=offamazonpayments&section=offamazonpayments)
+- [Official Ruby client](https://github.com/amzn/login-and-pay-with-amazon-sdk-ruby)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/OffAmazonPayments/Client)
 
 ### Orders
 
 With the MWS Orders API, you can list orders created or updated during a time frame you specify or retrieve information about specific orders.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=orders&section=orders)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Orders/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=orders&section=orders)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Orders/Client)
 
 ### Products
 
 The MWS Products API helps you get information to match your products to existing product listings on Amazon Marketplace websites and to make sourcing and pricing decisions for listing those products on Amazon Marketplace websites.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=products&section=products)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Products/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=products&section=products)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Products/Client)
 
 ### Recommendations
 
 The Recommendations API enables you to programmatically retrieve Amazon Selling Coach recommendations by recommendation category. A recommendation is an actionable, timely, and personalized opportunity to increase your sales and performance.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=recommendations&section=recommendations)
-[Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Recommendations/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=recommendations&section=recommendations)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Recommendations/Client)
 
 ### Reports
 
 The Reports API lets you request reports about your inventory and orders.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=bde&section=reports)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Reports/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=bde&section=reports)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Reports/Client)
 
 ### Sellers
 
 The Sellers API lets sellers retrieve information about their seller account, such as the marketplaces they participate in.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=sellers&section=sellers)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Sellers/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=sellers&section=sellers)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Sellers/Client)
 
 ### Subscriptions
 
 The Amazon MWS Subscriptions API section enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=subscriptions&section=subscriptions)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Subscriptions/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=subscriptions&section=subscriptions)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Subscriptions/Client)
 
 ### Webstore
 
 With the Webstore API section of Amazon Marketplace Web Service (Amazon MWS), you can get “Email Me When Available” subscription information for items listed on your Amazon Webstore. The Webstore API section can help you plan your inventory replenishment cycle by enabling you to query for items that your customers subscribed to when they clicked the Email Me When Available button on your Webstore. The Webstore API section can also return information about the notifications that were sent to your customers when out-of-stock items came back in stock. This information, when combined with sales information that your Webstore tracks, can help you determine how many notifications were converted into sales.
 
-[Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=webstore&section=webstore)
-[Peddler documentation](http://www.rubydoc.info/gems/peddler/MWS/Webstore/Client)
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=webstore&section=webstore)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Webstore/Client)
