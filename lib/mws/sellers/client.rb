@@ -20,7 +20,7 @@ module MWS
       # Lists the next page of marketplaces the seller participates in
       #
       # @see http://docs.developer.amazonservices.com/en_US/sellers/Sellers_ListMarketplaceParticipationsByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_marketplace_participations_by_next_token(next_token)
         operation('ListMarketplaceParticipationsByNextToken')

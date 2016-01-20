@@ -15,7 +15,7 @@ module MWS
       # Returns information about the availability of a seller's inventory
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupply.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [Array<String>, String] :seller_skus
       # @option opts [String, #iso8601] :query_start_date_time
       # @option opts [String] :response_group
@@ -32,7 +32,7 @@ module MWS
       # seller's inventory
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupplyByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_inventory_supply_by_next_token(next_token)
         operation('ListInventorySupplyByNextToken')

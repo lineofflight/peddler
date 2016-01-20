@@ -29,9 +29,9 @@ module MWS
       # Creates an order reference for the given object
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CreateOrderReferenceForId.html
-      # @param id [String]
-      # @param id_type [String]
-      # @param opts [Hash]
+      # @param [String] id
+      # @param [String] id_type
+      # @param [Hash] opts
       # @option opts [Boolean] :inherit_shipping_address
       # @option opts [Boolean] :confirm_now
       # @return [Peddler::XMLParser]
@@ -48,8 +48,8 @@ module MWS
       # Returns details about the Billing Agreement object and its current state
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetBillingAgreementDetails.html
-      # @param amazon_billing_agreement_id [String]
-      # @param opts [Hash]
+      # @param [String] amazon_billing_agreement_id
+      # @param [Hash] opts
       # @option opts [String] :address_consent_token
       # @return [Peddler::XMLParser]
       def get_billing_agreement_details(amazon_billing_agreement_id, opts = {})
@@ -65,8 +65,8 @@ module MWS
       # and other information about the seller
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_SetBillingAgreementDetails.html
-      # @param amazon_billing_agreement_id [String]
-      # @param billing_agreement_attributes [Struct, Hash]
+      # @param [String] amazon_billing_agreement_id
+      # @param [Struct, Hash] billing_agreement_attributes
       # @return [Peddler::XMLParser]
       def set_billing_agreement_details(amazon_billing_agreement_id, billing_agreement_attributes)
         operation('SetBillingAgreementDetails')
@@ -82,7 +82,7 @@ module MWS
       # required information has been set on the billing agreement
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_ConfirmBillingAgreement.html
-      # @param amazon_billing_agreement_id [String]
+      # @param [String] amazon_billing_agreement_id
       # @return [Peddler::XMLParser]
       def confirm_billing_agreement(amazon_billing_agreement_id)
         operation('ConfirmBillingAgreement')
@@ -97,7 +97,7 @@ module MWS
       # method associated with it
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_ValidateBillingAgreement.html
-      # @param amazon_billing_agreement_id [String]
+      # @param [String] amazon_billing_agreement_id
       # @return [Peddler::XMLParser]
       def validate_billing_agreement(amazon_billing_agreement_id)
         operation('ValidateBillingAgreement')
@@ -112,10 +112,10 @@ module MWS
       # billing agreement
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_AuthorizeOnBillingAgreement.html
-      # @param amazon_billing_agreement_id [String]
-      # @param authorization_reference_id [String]
-      # @param authorization_amount [Hash, Struct]
-      # @param opts [Hash]
+      # @param [String] amazon_billing_agreement_id
+      # @param [String] authorization_reference_id
+      # @param [Hash, Struct] authorization_amount
+      # @param [Hash] opts
       # @option opts [String] :seller_authorization_note
       # @option opts [Integer] :transaction_timeout
       # @option opts [Boolean] :capture_now
@@ -141,8 +141,8 @@ module MWS
       # authorizations on this billing agreement
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CloseBillingAgreement.html
-      # @param amazon_billing_agreement_id [String]
-      # @param opts [Hash]
+      # @param [String] amazon_billing_agreement_id
+      # @param [Hash] opts
       # @option opts [String] :closure_reason
       # @return [Peddler::XMLParser]
       def close_billing_agreement(amazon_billing_agreement_id, opts = {})
@@ -158,9 +158,9 @@ module MWS
       # for the order
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_SetOrderReferenceDetails.html
-      # @param amazon_order_reference_id [String]
-      # @param order_total [Struct, Hash]
-      # @param opts [Hash]
+      # @param [String] amazon_order_reference_id
+      # @param [Struct, Hash] order_total
+      # @param [Hash] opts
       # @option opts [String] :platform_id
       # @option opts [String] :seller_note
       # @option opts [Struct, Hash] :seller_order_attributes
@@ -178,8 +178,8 @@ module MWS
       # Returns details about the Order Reference object and its current state
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetOrderReferenceDetails.html
-      # @param amazon_order_reference_id [String]
-      # @param opts [Hash]
+      # @param [String] amazon_order_reference_id
+      # @param [Hash] opts
       # @option opts [String] address_consent_token
       # @return [Peddler::XMLParser]
       def get_order_reference_details(amazon_order_reference_id, opts = {})
@@ -193,7 +193,7 @@ module MWS
       # information has been set on the order reference
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_ConfirmOrderReference.html
-      # @param amazon_order_reference_id [String]
+      # @param [String] amazon_order_reference_id
       # @return [Peddler::XMLParser]
       def confirm_order_reference(amazon_order_reference_id)
         operation('ConfirmOrderReference')
@@ -205,8 +205,8 @@ module MWS
       # Cancels a previously confirmed order reference
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CancelOrderReference.html
-      # @param amazon_order_reference_id [String]
-      # @param opts [Hash]
+      # @param [String] amazon_order_reference_id
+      # @param [Hash] opts
       # @option opts [String] cancelation_reason
       # @return [Peddler::XMLParser]
       def cancel_order_reference(amazon_order_reference_id, opts = {})
@@ -221,8 +221,8 @@ module MWS
       # order reference
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CloseOrderReference.html
-      # @param amazon_order_reference_id [String]
-      # @param opts [Hash]
+      # @param [String] amazon_order_reference_id
+      # @param [Hash] opts
       # @option opts [String] closure_reason
       # @return [Peddler::XMLParser]
       def close_order_reference(amazon_order_reference_id, opts = {})
@@ -236,10 +236,10 @@ module MWS
       # order reference
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_Authorize.html
-      # @param amazon_order_reference_id [String]
-      # @param authorization_reference_id [String]
-      # @param authorization_amount [Struct, Hash]
-      # @param opts [Hash]
+      # @param [String] amazon_order_reference_id
+      # @param [String] authorization_reference_id
+      # @param [Struct, Hash] authorization_amount
+      # @param [Hash] opts
       # @option opts [String] :seller_authorization_note
       # @option opts [Integer] :transaction_timeout
       # @option opts [Boolean] :capture_now
@@ -260,7 +260,7 @@ module MWS
       # captured on the authorization
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetAuthorizationDetails.html
-      # @param amazon_authorization_id [String]
+      # @param [String] amazon_authorization_id
       # @return [Peddler::XMLParser]
       def get_authorization_details(amazon_authorization_id)
         operation('GetAuthorizationDetails')
@@ -272,10 +272,10 @@ module MWS
       # Captures funds from an authorized payment instrument
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_Capture.html
-      # @param amazon_authorization_id [String]
-      # @param capture_reference_id [String]
-      # @param capture_amount [Struct, Hash]
-      # @param opts [Hash]
+      # @param [String] amazon_authorization_id
+      # @param [String] capture_reference_id
+      # @param [Struct, Hash] capture_amount
+      # @param [Hash] opts
       # @option opts [String] :seller_capture_note
       # @option opts [String] :soft_descriptor
       # @return [Peddler::XMLParser]
@@ -294,7 +294,7 @@ module MWS
       # on the capture
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetCaptureDetails.html
-      # @param amazon_capture_id [String]
+      # @param [String] amazon_capture_id
       # @return [Peddler::XMLParser]
       def get_capture_details(amazon_capture_id)
         operation('GetCaptureDetails')
@@ -306,8 +306,8 @@ module MWS
       # Closes an authorization
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_CloseAuthorization.html
-      # @param amazon_authorization_id [String]
-      # @param opts [Hash]
+      # @param [String] amazon_authorization_id
+      # @param [Hash] opts
       # @option opts [String] closure_reason
       # @return [Peddler::XMLParser]
       def close_authorization(amazon_authorization_id, opts = {})
@@ -320,10 +320,10 @@ module MWS
       # Refunds a previously captured amount
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_Refund.html
-      # @param amazon_capture_id [String]
-      # @param refund_reference_id [String]
-      # @param refund_amount [Struct, Hash]
-      # @param opts [Hash]
+      # @param [String] amazon_capture_id
+      # @param [String] refund_reference_id
+      # @param [Struct, Hash] refund_amount
+      # @param [Hash] opts
       # @option opts [String] :seller_refund_note
       # @option opts [String] :soft_descriptor
       # @return [Peddler::XMLParser]
@@ -341,7 +341,7 @@ module MWS
       # Returns the status of a particular refund
       #
       # @see http://docs.developer.amazonservices.com/en_US/off_amazon_payments/OffAmazonPayments_GetRefundDetails.html
-      # @param amazon_refund_id [String]
+      # @param [String] amazon_refund_id
       # @return [Peddler::XMLParser]
       def get_refund_details(amazon_refund_id)
         operation('GetRefundDetails')

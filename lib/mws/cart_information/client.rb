@@ -22,8 +22,8 @@ module MWS
       # Lists shopping carts
       #
       # @see http://docs.developer.amazonservices.com/en_US/cart_info/CartInfo_ListCarts.html
-      # @param date_range_start [String, #iso8601]
-      # @param opts [Hash]
+      # @param [String, #iso8601] date_range_start
+      # @param [Hash] opts
       # @option opts [String] :marketplace_id
       # @option opts [String, #iso8601] :date_range_end
       # @return [Peddler::XMLParser]
@@ -37,7 +37,7 @@ module MWS
       # Lists the next page of shopping carts
       #
       # @see http://docs.developer.amazonservices.com/en_US/cart_info/CartInfo_ListCartsByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_carts_by_next_token(next_token)
         operation('ListCartsByNextToken')
@@ -49,8 +49,8 @@ module MWS
       # Returns shopping carts based on specified values
       #
       # @see http://docs.developer.amazonservices.com/en_US/cart_info/CartInfo_GetCarts.html
-      # @param marketplace_id [String]
-      # @param cart_id_list [Array<String>]
+      # @param [String] marketplace_id
+      # @param [Array<String>] cart_id_list
       # @return [Peddler::XMLParser]
       def get_carts(marketplace_id, *cart_id_list)
         operation('GetCarts')

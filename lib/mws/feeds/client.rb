@@ -12,9 +12,9 @@ module MWS
       # @note Feed size is limited to 2,147,483,647 bytes (2^31 -1) per feed.
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_SubmitFeed.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
-      # @param feed_content [String] an XML or flat file feed
-      # @param feed_type [String] the feed type
-      # @param opts [Hash]
+      # @param [String] feed_content an XML or flat file feed
+      # @param [String] feed_type the feed type
+      # @param [Hash] opts
       # @option opts [Array<String>, String] :marketplace_id_list
       # @option opts [Boolean] :purge_and_replace
       # @return [Peddler::XMLParser]
@@ -31,7 +31,7 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionList.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [Array<String>, String] :feed_submission_id_list
       # @option opts [Integer] :max_count
       # @option opts [Array<String>, String] :feed_type_list
@@ -52,7 +52,7 @@ module MWS
       # Lists the next page of feed submissions
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionListByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def get_feed_submission_list_by_next_token(next_token)
         operation('GetFeedSubmissionListByNextToken')
@@ -65,7 +65,7 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionCount.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [Array<String>, String] :feed_type_list
       # @option opts [Array<String>, String] :feed_processing_status_list
       # @option opts [String, #iso8601] :submitted_from_date
@@ -84,7 +84,7 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_CancelFeedSubmissions.html
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [Array<String>, String] :feed_submission_id_list
       # @option opts [Array<String>, String] :feed_type_list
       # @option opts [String, #iso8601] :submitted_from_date
@@ -102,7 +102,7 @@ module MWS
       # Gets the processing report for a feed and its Content-MD5 header
       #
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionResult.html
-      # @param feed_submission_id [Integer, String]
+      # @param [Integer, String] feed_submission_id
       # @return [Peddler::XMLParser] if the report is in XML format
       # @return [Peddler::CSVParser] if the report is a flat file
       def get_feed_submission_result(feed_submission_id)

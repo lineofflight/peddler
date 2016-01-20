@@ -24,7 +24,7 @@ module MWS
       # Lists customer accounts based on search criteria that you specify
       #
       # @see http://docs.developer.amazonservices.com/en_US/customer_info/CustomerInfo_ListCustomers.html
-      # @param opts [Hash]
+      # @param [Hash] opts
       # @option opts [String] :marketplace_id
       # @option opts [String, #iso8601] :date_range_start
       # @option opts [String, #iso8601] :date_range_end
@@ -40,7 +40,7 @@ module MWS
       # Lists the next page of customer accounts
       #
       # @see http://docs.developer.amazonservices.com/en_US/customer_info/CustomerInfo_ListCustomersByNextToken.html
-      # @param next_token [String]
+      # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_customers_by_next_token(next_token)
         operation('ListCustomersByNextToken')
@@ -54,8 +54,8 @@ module MWS
       #
       # @see http://docs.developer.amazonservices.com/en_US/customer_info/CustomerInfo_GetCustomersForCustomerId.html
       # @overload get_customers_for_customer_id(*customer_id_list, opts = {})
-      #   @param customer_id_list [Array<String>]
-      #   @param opts [Hash]
+      #   @param [Array<String>] customer_id_list
+      #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def get_customers_for_customer_id(*customer_id_list)

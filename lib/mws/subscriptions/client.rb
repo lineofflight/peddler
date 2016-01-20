@@ -15,8 +15,8 @@ module MWS
       # Registers a new destination to receive notifications
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_RegisterDestination.html
-      # @param sqs_queue_url [String]
-      # @param marketplace_id [String]
+      # @param [String] sqs_queue_url
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def register_destination(sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('RegisterDestination')
@@ -29,8 +29,8 @@ module MWS
       # Removes an existing destination from the list of registered destinations
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeregisterDestination.html
-      # @param sqs_queue_url [String]
-      # @param marketplace_id [String]
+      # @param [String] sqs_queue_url
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def deregister_destination(sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('DeregisterDestination')
@@ -43,7 +43,7 @@ module MWS
       # Lists all registered destinations
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListRegisteredDestinations.html
-      # @param marketplace_id [String]
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def list_registered_destinations(marketplace_id = primary_marketplace_id)
         operation('ListRegisteredDestinations')
@@ -55,8 +55,8 @@ module MWS
       # Sends a test notification to an existing destination
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_SendTestNotificationToDestination.html
-      # @param sqs_queue_url [String]
-      # @param marketplace_id [String]
+      # @param [String] sqs_queue_url
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def send_test_notification_to_destination(sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('SendTestNotificationToDestination')
@@ -69,9 +69,9 @@ module MWS
       # Creates a new subscription
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_CreateSubscription.html
-      # @param notification_type [String]
-      # @param sqs_queue_url [String]
-      # @param marketplace_id [String]
+      # @param [String] notification_type
+      # @param [String] sqs_queue_url
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def create_subscription(notification_type, sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('CreateSubscription')
@@ -84,9 +84,9 @@ module MWS
       # Gets a subscription
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_GetSubscription.html
-      # @param notification_type [String]
-      # @param sqs_queue_url [String]
-      # @param marketplace_id [String]
+      # @param [String] notification_type
+      # @param [String] sqs_queue_url
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def get_subscription(notification_type, sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('GetSubscription')
@@ -102,9 +102,9 @@ module MWS
       # Deletes a subscription
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeleteSubscription.html
-      # @param notification_type [String]
-      # @param sqs_queue_url [String]
-      # @param marketplace_id [String]
+      # @param [String] notification_type
+      # @param [String] sqs_queue_url
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def delete_subscription(notification_type, sqs_queue_url, marketplace_id = primary_marketplace_id)
         operation('DeleteSubscription')
@@ -120,7 +120,7 @@ module MWS
       # Lists current subscriptions
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListSubscriptions.html
-      # @param marketplace_id [String]
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def list_subscriptions(marketplace_id = primary_marketplace_id)
         operation('ListSubscriptions')
@@ -132,10 +132,10 @@ module MWS
       # Updates a subscription
       #
       # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_UpdateSubscription.html
-      # @param notification_type [String]
-      # @param sqs_queue_url [String]
-      # @param enabled [Boolean]
-      # @param marketplace_id [String]
+      # @param [String] notification_type
+      # @param [String] sqs_queue_url
+      # @param [Boolean] enabled
+      # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def update_subscription(notification_type, sqs_queue_url, enabled, marketplace_id = primary_marketplace_id)
         operation('UpdateSubscription')
