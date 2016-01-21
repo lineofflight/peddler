@@ -1,6 +1,5 @@
 require 'simplecov'
 require 'coveralls'
-require 'peddler/vcr_matcher'
 
 SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
@@ -11,7 +10,9 @@ SimpleCov.start do
   add_filter '/test/'
 end
 
+require 'dig_rb'
 require 'minitest/autorun'
+require 'peddler/vcr_matcher'
 require 'yaml'
 require 'vcr'
 begin
