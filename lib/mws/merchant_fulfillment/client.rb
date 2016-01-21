@@ -49,7 +49,7 @@ module MWS
       # Returns an existing shipment for the ShipmentId value that you specify
       #
       # @see http://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_GetShipment.html
-      # @params [String] shipment_id
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def get_shipment(shipment_id)
         operation('GetShipment')
@@ -64,7 +64,7 @@ module MWS
       # value that you specify
       #
       # @see http://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_CancelShipment.html
-      # @params [String] shipment_id
+      # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def cancel_shipment(shipment_id)
         operation('CancelShipment')
