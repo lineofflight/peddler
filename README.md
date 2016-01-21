@@ -160,6 +160,13 @@ Support for creating and cancelling fulfillment orders has been implemented, but
 - [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=fulfillment&section=outbound)
 - [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/FulfillmentOutboundShipment/Client)
 
+### Merchant Fulfillment
+
+The Merchant Fulfillment API provides programmatic access to Amazon’s fulfillment shipping services for sellers, including competitive rates with Amazon-partnered carriers. Sellers can find out what shipping services are available by submitting information about a proposed fulfillment shipment, such as package size and weight; shipment origin and destination; and delivery date requirements. Sellers can choose from the shipping service options returned by Amazon, and then receive shipping labels for fulfilling their orders.
+
+- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=merchantfulfillment&section=merchantfulfillment)
+- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/MerchantFulfillment/Client)
+
 ### Off Amazon Payments
 
 The MWS Off-Amazon Payments API helps you to process payments for purchases made by buyers on your website using the Login and Pay with Amazon service. This API enables you to programmatically retrieve shipping and payment information provided by the buyer from their Amazon account. It allows you to authorize, capture, and refund payments, enabling a variety of payments scenarios.
