@@ -1,0 +1,195 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/MerchantFulfillment/2015-06-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A15Z&Version=2015-06-01&Signature=ogf%2BN3zCHCvfU6iuxGkAryEUyTZ5PZ5tk3tWD%2BRofGo%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Thu, 21 Jan 2016 10:37:14 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 457f82d1-fe08-40bd-b09c-39921bbb5cc3
+      x-mws-timestamp:
+      - '2016-01-21T10:37:14.656Z'
+      x-mws-response-context:
+      - j+0FAF/zxgqRKnLUYJy2VhhPw0c0r5dnDWisyxii4zmvs3nnQwieX8uBd+jtIAxlk5Wi5aMVLlCg
+        6QHwUsEQNg==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '387'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2016-01-21T10:37:14.656Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>457f82d1-fe08-40bd-b09c-39921bbb5cc3</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Thu, 21 Jan 2016 10:37:16 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/MerchantFulfillment/2015-06-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A16Z&Version=2015-06-01&Signature=lbrYDZnuZpvcIe4ySQyrLqIdO10mVr%2BN98zcatWDYpA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Thu, 21 Jan 2016 10:37:14 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - 81cc1a31-831d-433b-9b2f-7691c0ec0662
+      x-mws-timestamp:
+      - '2016-01-21T10:37:15.010Z'
+      x-mws-response-context:
+      - Ijc2LbM4WEcJ++tUag5ULgbOgtC5ap89gx9tdikrk38gW1ygrdt7vI9tqfQFL6lh8LENi6/DtNzy
+        VPv/bfnS4w==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '387'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2016-01-21T10:37:15.010Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>81cc1a31-831d-433b-9b2f-7691c0ec0662</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Thu, 21 Jan 2016 10:37:16 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/MerchantFulfillment/2015-06-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A16Z&Version=2015-06-01&Signature=l4rtSokNzOIb1H2PtnWSCpwjDLKJacXn6TztIhoLqXs%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Thu, 21 Jan 2016 10:37:15 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - b64e9590-a8be-456e-bcae-b91a4721bafe
+      x-mws-timestamp:
+      - '2016-01-21T10:37:15.904Z'
+      x-mws-response-context:
+      - 2Di+DJEizSAsrPryR5gfGRkdCDxrBNz0sGmDOjogolecJzRAfOZwRhRg0n8xX83socz3299J2IAs
+        305nzNFGeg==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '387'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2016-01-21T10:37:15.904Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>b64e9590-a8be-456e-bcae-b91a4721bafe</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Thu, 21 Jan 2016 10:37:17 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/MerchantFulfillment/2015-06-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A17Z&Version=2015-06-01&Signature=6xcWEqs7%2Benet9KUTK9l2gYnhyUJn0Mw0BhW5CG10UQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Date:
+      - Thu, 21 Jan 2016 10:37:16 GMT
+      Server:
+      - AmazonMWS
+      x-mws-request-id:
+      - ccac0c35-0436-4044-a61e-272dcd80e93f
+      x-mws-timestamp:
+      - '2016-01-21T10:37:16.533Z'
+      x-mws-response-context:
+      - p2NoFc8TfcOjodP5DF+I5WxMwfUgOLXm1y3cMQl67jOof5UbwVYL7QFXEzulbkzAfOicUeMMK17n
+        ghOKIaHqyA==
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '387'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2016-01-21T10:37:16.533Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>ccac0c35-0436-4044-a61e-272dcd80e93f</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Thu, 21 Jan 2016 10:37:18 GMT
+recorded_with: VCR 3.0.1
