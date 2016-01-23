@@ -13,6 +13,8 @@ class TestOrders < IntegrationTest
         .dig('Orders', 'Order')
         .map { |order| order['AmazonOrderId'] }
 
+      skip if order_ids.count < 2
+
       orders = client
         .get_order(*order_ids)
         .parse
