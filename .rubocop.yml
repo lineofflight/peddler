@@ -1,6 +1,9 @@
 AllCops:
   Exclude:
     - 'test/helper.rb'
+AbcSize:
+  Exclude:
+    - 'test/**/*'
 AccessorMethodName:
   Exclude:
     - 'lib/mws/**/client.rb'
@@ -9,13 +12,13 @@ ClassLength:
 LineLength:
   Exclude:
     - 'test/**/*'
-    - 'lib/mws/**/*'
+    - 'lib/mws/**/client.rb'
 MethodLength:
   Exclude:
     - 'test/**/*'
-    - 'lib/mws/**/*'
+    - 'lib/mws/**/client.rb'
 MultilineMethodCallIndentation:
   EnforcedStyle: indented
 ParameterLists:
   Exclude:
-    - 'lib/mws/**/*'
+    - 'lib/mws/**/client.rb'
