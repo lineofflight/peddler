@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'appraisal'
 gem 'coveralls'
 gem 'dig_rb'
 gem 'minitest'
