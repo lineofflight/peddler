@@ -4,5 +4,6 @@ Gemfile.lock
 bin
 coverage
 doc
+gemfiles/*.gemfile.lock
 pkg
 mws.yml

@@ -2,6 +2,12 @@ env:
   global:
     - AWS_ACCESS_KEY_ID=foo
     - AWS_SECRET_ACCESS_KEY=bar
+gemfile:
+  - gemfiles/libxml.gemfile
+  - gemfiles/nokogiri.gemfile
+  - gemfiles/oga.gemfile
+  - gemfiles/ox.gemfile
+  - gemfiles/rexml.gemfile
 language: ruby
 matrix:
   allow_failures:
