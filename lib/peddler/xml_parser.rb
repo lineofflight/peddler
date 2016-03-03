@@ -20,7 +20,7 @@ module Peddler
     private
 
     def find_data
-      fail NotImplementedError
+      raise NotImplementedError
     end
   end
 end
