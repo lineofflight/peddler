@@ -165,7 +165,7 @@ module MWS
       # Gets lowest priced offers for a single product, based on ASIN
       #
       # @see http://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForASIN.html
-      # @overload get_lowest_priced_offers_for_sku(asin, item_condition, opts = { marketplace_id: primary_marketplace_id })
+      # @overload get_lowest_priced_offers_for_asin(asin, item_condition, opts = { marketplace_id: primary_marketplace_id })
       #   @param [String] asin
       #   @param [String] item_condition
       #   @param [Hash] opts
