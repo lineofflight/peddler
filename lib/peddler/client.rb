@@ -53,7 +53,7 @@ module Peddler
 
       # @api private
       def version(version = nil)
-        version ? @version = version : @version
+        version ? @version = version : @version ||= nil
       end
 
       # Sets an error handler
@@ -163,7 +163,7 @@ module Peddler
 
     # @api private
     def error_handler
-      @error_handler || self.class.error_handler
+      (@error_handler ||= nil) || self.class.error_handler
     end
 
     # @api private
