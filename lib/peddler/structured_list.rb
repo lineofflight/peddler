@@ -7,6 +7,7 @@ module Peddler
 
     def build(vals)
       Array(vals)
+        .flatten
         .each_with_index
         .reduce({}) { |hsh, (v, i)| hsh.merge(compose_key(i + 1) => v) }
     end
