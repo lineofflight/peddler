@@ -16,6 +16,11 @@ class TestPeddlerStructuredList < MiniTest::Test
     assert_equal exp, @list.build(%w(foo bar))
   end
 
+  def test_flattens_nested_arrays_of_values
+    exp = { 'OrderStatus.Status.1' => 'foo', 'OrderStatus.Status.2' => 'bar' }
+    assert_equal exp, @list.build([%w(foo bar)])
+  end
+
   def test_handles_single_key
     list = Peddler::StructuredList.new('Foo')
     exp = { 'Foo.1' => 'bar' }
