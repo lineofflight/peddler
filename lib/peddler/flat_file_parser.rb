@@ -45,7 +45,7 @@ module Peddler
     end
 
     def summary?
-      body.start_with?('Feed Processing Summary')
+      body.include?("\n\n")
     end
 
     def summarize

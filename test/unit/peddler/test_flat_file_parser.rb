@@ -24,6 +24,12 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     parser = Peddler::FlatFileParser.new(build_mock_response(body), 'ISO-8859-1')
     refute_empty parser.records_count
   end
+
+  def test_summarises_non_english_reports
+    body = "Riepilogo elaborazione feed:\n\tNumero record elaborati\t\t1\n\tNumero record elaborati con successo\t\t1\n\n"
+    body.encode!('Cp1252')
+    parser = Peddler::FlatFileParser.new(build_mock_response(body), 'ISO-8859-1')
+    refute_empty parser.records_count
   end
 
   def test_validates
