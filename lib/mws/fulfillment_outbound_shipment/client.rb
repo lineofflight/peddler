@@ -61,8 +61,8 @@ module MWS
         end
 
         operation('CreateFulfillmentOrder')
-          .add(opts
-            .merge(
+          .add(
+            opts.merge(
               'SellerFulfillmentOrderId' => seller_fulfillment_order_id,
               'DisplayableOrderId' => displayable_order_id,
               'DisplayableOrderDateTime' => displayable_order_date_time,
@@ -71,7 +71,7 @@ module MWS
               'DestinationAddress' => destination_address,
               'Items' => items
             )
-              )
+          )
           .structure!('Items', 'member')
           .structure!('NotificationEmailList', 'member')
 
