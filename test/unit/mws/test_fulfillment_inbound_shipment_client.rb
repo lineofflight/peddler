@@ -165,7 +165,8 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     @client.stub(:run, nil) do
       @client.list_inbound_shipments(
         shipment_status_list: ['Foo'],
-        shipment_id_list: ['Bar'])
+        shipment_id_list: ['Bar']
+      )
     end
 
     assert_equal operation, @client.operation
