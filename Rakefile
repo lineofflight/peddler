@@ -5,6 +5,7 @@ require 'rubocop/rake_task'
 Rake::TestTask.new do |t|
   t.libs << 'test'
   t.pattern = 'test/**/test_*.rb'
+  t.ruby_opts += ['-W1']
 end
 
 RuboCop::RakeTask.new
