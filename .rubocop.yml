@@ -9,6 +9,9 @@ AccessorMethodName:
     - 'lib/mws/**/client.rb'
 ClassLength:
   Enabled: false
+Documentation:
+  Exclude:
+    - 'test/**/*'
 LineLength:
   Exclude:
     - 'test/**/*'

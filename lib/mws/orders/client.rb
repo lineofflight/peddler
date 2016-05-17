@@ -33,7 +33,6 @@ module MWS
         if opts.key?(:tfm_shipment_status)
           opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status)
         end
-
         operation('ListOrders')
           .add(opts)
           .structure!('OrderStatus', 'Status')
@@ -41,6 +40,7 @@ module MWS
           .structure!('MarketplaceId', 'Id')
           .structure!('PaymentMethod')
           .structure!('TFMShipmentStatus', 'Status')
+        require_start_time!
 
         run
       end
@@ -101,6 +101,14 @@ module MWS
       def get_service_status
         operation('GetServiceStatus')
         run
+      end
+
+      private
+
+      def require_start_time!
+        if operation.values_at('CreatedAfter', 'LastUpdatedAfter').compact.empty?
+          raise ArgumentError, 'specify created_after or last_updated_after'
+        end
       end
     end
   end

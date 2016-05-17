@@ -9,6 +9,7 @@ class TestMWSOrdersClient < MiniTest::Test
   def test_lists_orders
     operation = {
       'Action' => 'ListOrders',
+      'CreatedAfter' => '2016-01-01',
       'OrderStatus.Status.1' => '1',
       'MarketplaceId.Id.1' => '1',
       'PaymentMethod.1' => '1',
@@ -19,6 +20,7 @@ class TestMWSOrdersClient < MiniTest::Test
     @client.stub(:run, nil) do
       @client.list_orders(
         marketplace_id: '1',
+        created_after: '2016-01-01',
         order_status: '1',
         tfm_shipment_status: '1',
         payment_method: '1',
@@ -27,6 +29,16 @@ class TestMWSOrdersClient < MiniTest::Test
     end
 
     assert_equal operation, @client.operation
+  end
+
+  def test_requires_start_time_keyword_when_listing_orders
+    @client.stub(:run, nil) do
+      assert_raises(ArgumentError) do
+        @client.list_orders
+      end
+      @client.list_orders(created_after: '2016-01-01')
+      @client.list_orders(last_updated_after: '2016-01-01')
+    end
   end
 
   def test_lists_orders_by_next_token
