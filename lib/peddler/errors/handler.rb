@@ -20,11 +20,15 @@ module Peddler
         return exception unless exception.is_a?(Excon::Errors::HTTPStatusError)
 
         error = exception.response.parse
-        errors[error['Code']] ||= begin
-          klass = Errors.const_set error['Code'], Class.new(Error)
-          klass.send(:define_method, :cause) { exception }
-          klass.new(error['Message'])
-        end
+        klass = find_or_create_error_class(error['Code'])
+
+        klass.new(error['Message'], exception)
+      end
+
+      private
+
+      def find_or_create_error_class(name)
+        errors[name] ||= Errors.const_set name, Class.new(Error)
       end
     end
   end
