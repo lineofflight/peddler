@@ -1,5 +1,6 @@
 require 'forwardable'
 require 'jeff'
+require 'peddler/errors/parser'
 require 'peddler/marketplace'
 require 'peddler/operation'
 require 'peddler/parser'
@@ -214,12 +215,12 @@ module Peddler
       error_handler.call(*deprecate_error_handler_arguments(e))
     end
 
-    def decorate_error(e)
-      if e.is_a?(::Excon::Errors::HTTPStatusError)
-        e.instance_variable_set(:@response, ErrorParser.new(e.response))
+    def decorate_error(ex)
+      if ex.is_a?(::Excon::Errors::HTTPStatusError)
+        ex.instance_variable_set(:@response, Errors::Parser.new(ex.response))
       end
 
-      e
+      ex
     end
 
     def deprecate_error_handler_arguments(e)
