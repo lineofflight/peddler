@@ -22,6 +22,10 @@ class TestPeddlerErrorsHandler < MiniTest::Test
       assert_includes @error.class.name, @code
     end
 
+    def test_caches_custom_error
+      assert_equal @error.class, Peddler::Errors::Handler.instance.errors.fetch(@code)
+    end
+
     def test_provides_message
       assert_equal @message, @error.message
     end
