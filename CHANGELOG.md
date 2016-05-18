@@ -4,7 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- Require start time keyword when listing orders.
+- Raise error if one of two required keywords is not specified when listing
+orders.
+- Make API errors more expressive.
 
 ### Fixed
 - Parse summaries of non-English flat files.

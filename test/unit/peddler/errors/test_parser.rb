@@ -1,7 +1,7 @@
 require 'helper'
-require 'peddler/error_parser'
+require 'peddler/errors/parser'
 
-class TestPeddlerErrorParser < MiniTest::Test
+class TestPeddlerErrorsParser < MiniTest::Test
   def setup
     body = <<-XML
       <ErrorResponse>
@@ -21,7 +21,7 @@ class TestPeddlerErrorParser < MiniTest::Test
       }
     )
 
-    @parser = Peddler::ErrorParser.new(res)
+    @parser = Peddler::Errors::Parser.new(res)
   end
 
   def test_parses_data
