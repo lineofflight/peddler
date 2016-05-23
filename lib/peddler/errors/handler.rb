@@ -1,34 +1,42 @@
-require 'peddler/errors/error'
+require 'peddler/errors/builder'
 
 module Peddler
   module Errors
     # @api private
     class Handler
-      include Singleton
-
       def self.call(exception)
-        instance.call(exception)
+        new(exception).handle
       end
 
-      attr_reader :errors
-
-      def initialize
-        @errors = {}
+      def self.parameters
+        1
       end
 
-      def call(exception)
-        return exception unless exception.is_a?(Excon::Errors::HTTPStatusError)
+      attr_reader :exception
 
-        error = exception.response.parse
-        klass = find_or_create_error_class(error['Code'])
+      def initialize(exception)
+        @exception = exception
+      end
 
-        klass.new(error['Message'], exception)
+      def handle
+        if http_status_error?
+          raise error_class.new(exception.response.message, exception)
+        else
+          raise exception
+        end
       end
 
       private
 
-      def find_or_create_error_class(name)
-        errors[name] ||= Errors.const_set name, Class.new(Error)
+      def error_class
+        Errors.const_get(exception.response.code)
+      rescue NameError
+        Builder.build(exception.response.code)
+        retry
+      end
+
+      def http_status_error?
+        exception.is_a?(Excon::Errors::HTTPStatusError)
       end
     end
   end

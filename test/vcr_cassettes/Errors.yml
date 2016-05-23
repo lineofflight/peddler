@@ -1,0 +1,885 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A01Z&Version=2013-09-01&Signature=MyyiEUzErh8YiguHaNFTHIU2DckQIGmyIlx5TPsDTuM%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 00df398f-e78f-49ff-b71b-aef161edb82c
+      x-mws-timestamp:
+      - '2016-05-23T12:17:02.582Z'
+      x-mws-response-context:
+      - bUYOxpXi+PGNh8qrdEc9kNp/ooLyWO1crukK1cDkvBVJW7HEf3sp2ktciOyJT2XnnHtpcY4E7Xvj
+        NaUV/Vk0KA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>00df398f-e78f-49ff-b71b-aef161edb82c</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:02 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A02Z&Version=2013-09-01&Signature=t0LccrY3UcTag6oztJwms4YaAHN%2FRku8D339MzuREJc%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 1d076335-515f-451d-bc8f-c12c93e43874
+      x-mws-timestamp:
+      - '2016-05-23T12:17:03.527Z'
+      x-mws-response-context:
+      - wxjSPxLmtd2MjB+U8T6ibCRHp+80uxJDefc7wRqMusZsE/AWkAL2kCn098SkJSG5DllbPvgvYHWc
+        p8OKqk30ag==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>1d076335-515f-451d-bc8f-c12c93e43874</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:03 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A03Z&Version=2013-09-01&Signature=SMZmbd4bacx8bYkg6WJ198bIfkjQFLh7kWqGTqsVBg8%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 8a975a37-ae3d-420c-b294-747ece38eb15
+      x-mws-timestamp:
+      - '2016-05-23T12:17:03.768Z'
+      x-mws-response-context:
+      - nq1uY2OtVML1oMuS81LCGiEz9sUZ69g5DcrAhm/LXQd7A47ENMes/ykmT1Tj7NzcPkXGYWmgDlCJ
+        bSPOogd/bg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>8a975a37-ae3d-420c-b294-747ece38eb15</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:03 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A03Z&Version=2013-09-01&Signature=LZJLm79FpUSEEE64JxOQl%2Fv9%2B8gJundIO9GCm59ZQCI%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:04 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 627c5924-6175-40bf-98b4-502a938310a6
+      x-mws-timestamp:
+      - '2016-05-23T12:17:04.795Z'
+      x-mws-response-context:
+      - d3QEKHI7fhB64Q9lCdTzO0FMWprAU3qHDCpgP0LmNl5diGZhXojnzBTnxRv+G0P6+/wXovJJQD17
+        vuYS4GIdRg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>627c5924-6175-40bf-98b4-502a938310a6</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:04 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A04Z&Version=2013-09-01&Signature=yzJY8FrVzr3BazJSk3RZPeYseVI1qkj%2FpKi1aP%2FFPqA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:05 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 3a0e7604-1e30-4a02-bcbb-80b241aeb392
+      x-mws-timestamp:
+      - '2016-05-23T12:17:05.057Z'
+      x-mws-response-context:
+      - UH8GNaqfHirrCUobeac7hbz5u+TOqt1ha58Yrid9jNX0lNuq2k5GxwJTydwazd30B2SAlU7d+AUg
+        B3uVG+KqFQ==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>3a0e7604-1e30-4a02-bcbb-80b241aeb392</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:05 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A05Z&Version=2013-09-01&Signature=bQZQObbWut7cVRsrurA8MbM48cbX0b65hJIUxj%2FDnKU%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 336abcbc-d2e0-482e-a17c-3ebc1840702b
+      x-mws-timestamp:
+      - '2016-05-23T12:17:07.113Z'
+      x-mws-response-context:
+      - rVYRsv0Rhzc0hQs8SDAxk3PNN45ICeRqrxEpoezGCqq9dmP4+uErMDT6lUksS8uWdUdrLk5+Y2Dy
+        wf00rhdpCw==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>336abcbc-d2e0-482e-a17c-3ebc1840702b</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:07 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A07Z&Version=2013-09-01&Signature=HSnE4R93J5MFUX496b4t%2F7mWlW6k094mv0itVF3YoOE%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - fa494823-6cc9-4a16-9ec2-2d219c793f10
+      x-mws-timestamp:
+      - '2016-05-23T12:17:07.603Z'
+      x-mws-response-context:
+      - hiHNyXMVlAzfxNrBusigW/Ianmjbo/W7rQWvZKlyNwcZqxNUnNs3d2QLN8KLut2wyu3mPLOPNbKc
+        k2RLkc4S6A==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>fa494823-6cc9-4a16-9ec2-2d219c793f10</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:07 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A07Z&Version=2013-09-01&Signature=2IC%2B6asAEkPu09p7pYusA5z2mzuLhVRuprtpPLHA6ao%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - c84732da-1e06-4be4-afa7-ddbabbe2de28
+      x-mws-timestamp:
+      - '2016-05-23T12:17:07.862Z'
+      x-mws-response-context:
+      - j2hhCArf+5eJ5TDCBKz5by7w9P6My7gvAgSb3DpWacOVw+7DMtMFoVun8fde2u8KvWd0aTy5CN9b
+        o9HakS7/Aw==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>c84732da-1e06-4be4-afa7-ddbabbe2de28</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:07 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A07Z&Version=2013-09-01&Signature=fNYJaW9V0dFEkNnollJMKdsNqPX585iH0SpnghCRN%2Bg%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:17:08 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - e62e40db-56b1-426a-9931-e0ae1855ab3a
+      x-mws-timestamp:
+      - '2016-05-23T12:17:08.351Z'
+      x-mws-response-context:
+      - NK1tq0RbDyInkgO/Wv6uxNwqrVHWSip2dpUTRwLR821er9uBeB2OYFEgVAEffhUXexSTyItqpiZp
+        3453n2OBpA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>e62e40db-56b1-426a-9931-e0ae1855ab3a</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:17:08 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A25%3A16Z&Version=2013-09-01&Signature=PxxDltfEifbWVzOka2AIu%2BS4JdOtTe%2BinKYqPi1%2B2iw%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:25:16 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - c09da471-3728-45bd-b149-011107c6b222
+      x-mws-timestamp:
+      - '2016-05-23T12:25:16.616Z'
+      x-mws-response-context:
+      - NjwFjq6NP9uKH9Af1NGr1x+LsCj2WwqkWXNsTBkYiXZlNsJ8pl1i+/gTf/YxABEMxhTUNJB6UynL
+        fVn4cBVpOQ==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>c09da471-3728-45bd-b149-011107c6b222</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:25:16 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A25%3A30Z&Version=2013-09-01&Signature=2Q4itZiyhGRa1gv4WxdPXz02OraSOyuqZnyTR9QVYkA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:25:31 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 7e25a2e4-32ee-4e6f-9e55-87a7466cfa76
+      x-mws-timestamp:
+      - '2016-05-23T12:25:31.071Z'
+      x-mws-response-context:
+      - VKqFU1/KuOtUTSZ9hzO/1Tz2lAgZN6R+E1Hu9GVhDpD7QU8PSbL4SQhLAmIbrxaiElKpSnRxkhyv
+        NaM9fPte4Q==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>7e25a2e4-32ee-4e6f-9e55-87a7466cfa76</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:25:31 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A25%3A31Z&Version=2013-09-01&Signature=o%2FXv5yNJiV14RGA0gVC0QY7M9%2FU8Cx8CzvFxz36%2FIN8%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:25:31 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 46605ebf-ff3a-4413-8f10-07698078db28
+      x-mws-timestamp:
+      - '2016-05-23T12:25:31.340Z'
+      x-mws-response-context:
+      - QgEen8lhyUfFg2KboDYF5Yu8MuocS3bvS0G50Z0U1ZFnJ8G3JbKQNzx+XkxHTNeyORu1+z6efJNB
+        lHXQnDK7OQ==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>46605ebf-ff3a-4413-8f10-07698078db28</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:25:31 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A26%3A15Z&Version=2013-09-01&Signature=IZu%2FVXyk42RToI%2FBx42JvU4rcaOVydIJy5FxE06tQRg%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:26:16 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 7f0f0820-dc56-41d1-9962-580e1b92966d
+      x-mws-timestamp:
+      - '2016-05-23T12:26:16.027Z'
+      x-mws-response-context:
+      - CFLgOA9pzgjsRxjXR7bINfg1tMGVNb+3mfQZa4+The0i8HWIxM06sLRJUOt0hq426i8PIO3bFVNQ
+        JuMPU0CUzQ==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>7f0f0820-dc56-41d1-9962-580e1b92966d</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:26:16 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A26%3A36Z&Version=2013-09-01&Signature=S9d0UNtrXTA%2FL7BZB14TAVZvtIlopBhmoyHmzTPejbc%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:26:36 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 429d190c-0c4a-46c8-b9a9-5f46511b53b3
+      x-mws-timestamp:
+      - '2016-05-23T12:26:36.747Z'
+      x-mws-response-context:
+      - cfmuZjCu4F8iJQa0nKHETjvnCfAVDCAkt/Us5XzHjlsIROVZ0G6zeLPb5hhIJiCCX83im4tq9GN4
+        34itm7iJzA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>429d190c-0c4a-46c8-b9a9-5f46511b53b3</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:26:36 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A28%3A23Z&Version=2013-09-01&Signature=R%2B8ZRIBw3XDPt9F9Mfoo%2Bw%2Bot6dqahDq2BYqXTOh6Zc%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:28:24 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '278'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 759022d5-6990-4bfc-9351-7cc67d008955
+      x-mws-timestamp:
+      - '2016-05-23T12:28:24.370Z'
+      x-mws-response-context:
+      - lyk6D6bzzrWJabg2K47GU1ZWgRd9GuKznFtvfMEq8ZR/luGH+UkRBES1fTrCUabXCkaaMdOy0bKq
+        6z4ZKfQuwg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>759022d5-6990-4bfc-9351-7cc67d008955</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:28:24 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A29%3A37Z&Version=2013-09-01&Signature=7hG243Xw2rPWKYyfIKoGUA0LTRDLL6H3FJYfeG9y5kQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:29:37 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 19f0a252-96de-4a79-8052-b66fb4f441be
+      x-mws-timestamp:
+      - '2016-05-23T12:29:37.344Z'
+      x-mws-response-context:
+      - lyk6D6bzzrWJabg2K47GU1ZWgRd9GuKznFtvfMEq8ZR/luGH+UkRBES1fTrCUabXCkaaMdOy0bKq
+        6z4ZKfQuwg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>19f0a252-96de-4a79-8052-b66fb4f441be</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:29:37 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A30%3A11Z&Version=2013-09-01&Signature=%2Be9QXTopUhMUaQ0kEmtB2pEUEjt7vI7LoLVqNtV6ZCA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:30:11 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 840d7fe6-fbf4-4bc6-a7d6-018269e8e57b
+      x-mws-timestamp:
+      - '2016-05-23T12:30:11.392Z'
+      x-mws-response-context:
+      - oE6oYNMqkjV8eW/BRjuzEzjF3NARnODl8w8C4anviesEnSpZ96k17Rg+xbcBCWGmYUake7FbiO4k
+        r3+dcWKcsg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>840d7fe6-fbf4-4bc6-a7d6-018269e8e57b</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:30:11 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A33%3A44Z&Version=2013-09-01&Signature=afEobB041YouF04d%2F8460n2%2ByPiR6UVaShWiAKFuOQo%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 503
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 23 May 2016 12:33:45 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '291'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 5ca0af8a-0443-4a26-8b63-a9764863c7d8
+      x-mws-timestamp:
+      - '2016-05-23T12:33:45.154Z'
+      x-mws-response-context:
+      - ecBayQO8iftN3M2GSxDGtX4wcqNrso6pTS5SBv8W1UYGGcnV/9z023Ged2cfmM21hd96dLt8fxTW
+        mxislaXEhA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type></Type>
+            <Code>RequestThrottled</Code>
+            <Message>Request is throttled</Message>
+          </Error>
+          <RequestID>5ca0af8a-0443-4a26-8b63-a9764863c7d8</RequestID>
+        </ErrorResponse>
+    http_version: 
+  recorded_at: Mon, 23 May 2016 12:33:45 GMT
+recorded_with: VCR 3.0.1
