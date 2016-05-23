@@ -12,7 +12,8 @@ module Peddler
       end
 
       def build(name)
-        Errors.const_set name, Class.new(Error)
+        return Errors.const_get(name) if Errors.const_defined?(name)
+        Errors.const_set(name, Class.new(Error))
       end
     end
   end
