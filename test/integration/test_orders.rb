@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/orders'
 
 class TestOrders < IntegrationTest
@@ -13,7 +13,7 @@ class TestOrders < IntegrationTest
         .dig('Orders', 'Order')
         .map { |order| order['AmazonOrderId'] }
 
-      skip if order_ids.count < 2
+      next if order_ids.count < 2
 
       orders = client
         .get_order(*order_ids)

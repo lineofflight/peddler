@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/cart_information'
 
 class TestCartInformation < IntegrationTest

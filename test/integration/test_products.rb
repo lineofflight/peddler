@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/products'
 
 class TestProducts < IntegrationTest

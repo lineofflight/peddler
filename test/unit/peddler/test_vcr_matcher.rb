@@ -5,6 +5,10 @@ require 'peddler/vcr_matcher'
 class TestPeddlerVCRMatcher < MiniTest::Test
   include Recorder
 
+  def setup
+    VCR.insert_cassette(test_name, record: :none)
+  end
+
   def test_matches_recorded_post_without_body
     client.run
   end
