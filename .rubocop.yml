@@ -12,6 +12,12 @@ ClassLength:
 Documentation:
   Exclude:
     - 'test/**/*'
+GlobalVars:
+  Exclude:
+    - 'test/**/*'
+HandleExceptions:
+  Exclude:
+    - 'test/**/*'
 LineLength:
   Exclude:
     - 'test/**/*'

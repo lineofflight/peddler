@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/off_amazon_payments'
 
 class TestOffAmazonPayments < IntegrationTest

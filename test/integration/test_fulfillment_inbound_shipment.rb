@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/fulfillment_inbound_shipment'
 
 class TestFulfillmentInboundShipment < IntegrationTest

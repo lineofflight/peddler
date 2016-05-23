@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/merchant_fulfillment'
 
 class TestMerchantFulfillment < IntegrationTest

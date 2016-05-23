@@ -1,4 +1,4 @@
-require 'helper'
+require 'integration_helper'
 require 'mws/customer_information'
 
 class TestCustomerInformation < IntegrationTest
