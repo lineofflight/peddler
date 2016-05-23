@@ -8,6 +8,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 orders.
 - Make API errors more expressive.
 
+### Removed
+- Remove obsolete Webstore API.
+
 ### Fixed
 - Parse summaries of non-English flat files.
 

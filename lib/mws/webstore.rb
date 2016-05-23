@@ -1,1 +1,0 @@
-require 'mws/webstore/client'
