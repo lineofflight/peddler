@@ -14,7 +14,6 @@ require 'mws/recommendations'
 require 'mws/reports'
 require 'mws/sellers'
 require 'mws/subscriptions'
-require 'mws/webstore'
 
 # The various Amazon MWS API sections.
 module MWS
