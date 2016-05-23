@@ -32,7 +32,6 @@ module Peddler
         Errors.const_get(exception.response.code)
       rescue NameError
         Builder.build(exception.response.code)
-        retry
       end
 
       def http_status_error?
