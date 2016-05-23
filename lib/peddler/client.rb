@@ -38,14 +38,7 @@ module Peddler
 
     class << self
       # @api private
-      attr_reader :error_handler
-
-      # @api private
-      def parser
-        @parser ||= Parser
-      end
-
-      attr_writer :parser
+      attr_accessor :error_handler, :parser
 
       # @api private
       def path(path = nil)
@@ -74,7 +67,8 @@ module Peddler
       end
     end
 
-    @error_handler = proc { raise }
+    self.error_handler = proc { raise }
+    self.parser = Parser
 
     # Creates a new client instance
     #
@@ -215,12 +209,12 @@ module Peddler
       error_handler.call(*deprecate_error_handler_arguments(e))
     end
 
-    def decorate_error(ex)
-      if ex.is_a?(::Excon::Errors::HTTPStatusError)
-        ex.instance_variable_set(:@response, Errors::Parser.new(ex.response))
+    def decorate_error(e)
+      if e.is_a?(::Excon::Errors::HTTPStatusError)
+        e.instance_variable_set(:@response, Errors::Parser.new(e.response))
       end
 
-      ex
+      e
     end
 
     def deprecate_error_handler_arguments(e)
