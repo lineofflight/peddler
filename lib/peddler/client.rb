@@ -51,8 +51,7 @@ module Peddler
       end
 
       # Sets an error handler
-      # @yieldparam [Excon::Request] request
-      # @yieldparam [Excon::Response] response
+      # @yieldparam [Excon::Errors::Error] error
       def on_error(&blk)
         @error_handler = blk
       end
@@ -61,9 +60,9 @@ module Peddler
 
       def inherited(base)
         base.parser = parser
+        base.error_handler = error_handler
         base.path(path)
         base.params(params)
-        base.on_error(&@error_handler)
       end
     end
 
@@ -150,8 +149,7 @@ module Peddler
     end
 
     # Sets an error handler
-    # @yieldparam [Excon::Request] request
-    # @yieldparam [Excon::Response] response
+    # @yieldparam [Excon::Errors::Error] error
     def on_error(&blk)
       @error_handler = blk
     end
