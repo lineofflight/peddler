@@ -222,10 +222,3 @@ The Amazon MWS Subscriptions API section enables you to subscribe to receive not
 
 - [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=subscriptions&section=subscriptions)
 - [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Subscriptions/Client)
-
-### Webstore
-
-With the Webstore API section of Amazon Marketplace Web Service (Amazon MWS), you can get “Email Me When Available” subscription information for items listed on your Amazon Webstore. The Webstore API section can help you plan your inventory replenishment cycle by enabling you to query for items that your customers subscribed to when they clicked the Email Me When Available button on your Webstore. The Webstore API section can also return information about the notifications that were sent to your customers when out-of-stock items came back in stock. This information, when combined with sales information that your Webstore tracks, can help you determine how many notifications were converted into sales.
-
-- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=webstore&section=webstore)
-- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Webstore/Client)
