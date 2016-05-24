@@ -2593,11 +2593,553 @@ http_interactions:
       encoding: UTF-8
       string: |
         <ListRecommendationsResponse xmlns="https://mws.amazonservices.com/Recommendations/2013-04-01">
-          <ListRecommendationsResult/>
+          <ListRecommendationsResult>
+            <NextToken>AAAAIBcB0Yy5nlLCRaN0o5r6gFUOmvXl4xPOEjQi/L8t/puBeyJmaXJzdFJlcXVlc3QiOnsibWFya2V0cGxhY2VJZCI6IkFUVlBES0lLWDBERVIiLCJzZWxsZXJJZCI6IkEySDZOSDRTUVlGWjRNIn0sIm5leHRSZWNvbW1lbmRhdGlvbkNhdGVnb3J5IjoiU2VsZWN0aW9uIiwicGFnaW5hdGlvbk5leHRUb2tlbiI6IjAiLCJ0b2tlblZhbGlkYXRpdHlEYXRlVGltZSI6IjIwMTUtMDMtMjhUMTg6MTQ6MzkuNTA5WiJ9</NextToken>
+            <InventoryRecommendations>
+              <member>
+                <RecommendationReason>Restock these Low Inventory Items</RecommendationReason>
+                <ItemName>Pure Fat Burning Fuel: Follow This Simple, Heart Healthy Path To Total Fat Loss (The Beyond Diet) (Volume 1)</ItemName>
+                <LastUpdated>2015-03-18T00:27:07.296Z</LastUpdated>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <RecommendationId>Inventory-Restock these Low Inventory Items-1624090001-dcf3efdc-c2a0-11e4-b06c-b7ccad302e11--Pure Fat Burning Fuel: Follow This Simple, Heart Healthy Path To Total Fat Loss (The Beyond Diet) (Volume 1)</RecommendationId>
+                <DaysOutOfStockLast30Days>0</DaysOutOfStockLast30Days>
+                <InboundQuantity>0</InboundQuantity>
+                <DaysUntilStockRunsOut>1</DaysUntilStockRunsOut>
+                <ItemIdentifier>
+                  <Asin>1624090001</Asin>
+                  <Sku>dcf3efdc-c2a0-11e4-b06c-b7ccad302e11</Sku>
+                </ItemIdentifier>
+                <AvailableQuantity>1</AvailableQuantity>
+                <RecommendedInboundQuantity>0</RecommendedInboundQuantity>
+                <SalesForTheLast30Days>5</SalesForTheLast30Days>
+                <SalesForTheLast14Days>5</SalesForTheLast14Days>
+                <LostSalesInLast30Days>0</LostSalesInLast30Days>
+              </member>
+            </InventoryRecommendations>
+          </ListRecommendationsResult>
           <ResponseMetadata>
             <RequestId>373b188a-eb96-427a-aa8d-2e2f84e3e87c</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
     http_version: 
   recorded_at: Mon, 23 May 2016 13:09:48 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Recommendations/2013-04-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListRecommendations&MarketplaceId=A13V1IB3VIYZZH&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-24T13%3A46%3A01Z&Version=2013-04-01&Signature=KJbNt%2Fd%2BND9i3eS8Zsh99cbEiPDY9O%2BLZQvcZvPwsmk%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 May 2016 13:46:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2729'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - cd41ab1d-7030-40bc-a965-554c16ccf42c
+      x-mws-timestamp:
+      - '2016-05-24T13:46:02.298Z'
+      x-mws-response-context:
+      - W3EVOlHGrCEA/xmuc1KfkQr/vRGvGxjHy1mwko83A8MgmpUSK8EEbxGmK2qTzZuYOAOGspsPufDr
+        6oD0bDe/7w==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListRecommendationsResponse xmlns="https://mws.amazonservices.com/Recommendations/2013-04-01">
+          <ListRecommendationsResult>
+            <NextToken>AAAAIH5X/jRZPGMupYTs4EU3hfwz1TS5xEBUO1SmSnGCoJUReyJmaXJzdFJlcXVlc3QiOnsibWFya2V0cGxhY2VJZCI6IkExM1YxSUIzVklZWlpIIiwic2VsbGVySWQiOiJBMkRQNkdJRFlONk9USCJ9LCJuZXh0UmVjb21tZW5kYXRpb25DYXRlZ29yeSI6IlByaWNpbmciLCJwYWdpbmF0aW9uTmV4dFRva2VuIjoiMCIsInRva2VuVmFsaWRhdGl0eURhdGVUaW1lIjoiMjAxNi0wNS0yNFQxMzo0ODowMi40MTFaIn0=</NextToken>
+            <SelectionRecommendations>
+              <member>
+                <NumberOfCustomerReviews>0</NumberOfCustomerReviews>
+                <RecommendationId>Selection-Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.-1435114949---The Complete Sherlock Holmes.</RecommendationId>
+                <RecommendationReason>Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.</RecommendationReason>
+                <ProductCategory>Books</ProductCategory>
+                <LastUpdated>2016-05-22T00:00:00Z</LastUpdated>
+                <NumberOfOffers>0</NumberOfOffers>
+                <ItemName>The Complete Sherlock Holmes.</ItemName>
+                <ItemIdentifier>
+                  <Upc/>
+                  <Asin>1435114949</Asin>
+                  <Sku/>
+                </ItemIdentifier>
+                <SalesRank>27011</SalesRank>
+              </member>
+              <member>
+                <NumberOfCustomerReviews>0</NumberOfCustomerReviews>
+                <RecommendationId>Selection-Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.-0759102341---The Manual of Museum Exhibitions</RecommendationId>
+                <RecommendationReason>Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.</RecommendationReason>
+                <ProductCategory>Books</ProductCategory>
+                <LastUpdated>2016-05-22T00:00:00Z</LastUpdated>
+                <NumberOfOffers>0</NumberOfOffers>
+                <ItemName>The Manual of Museum Exhibitions</ItemName>
+                <ItemIdentifier>
+                  <Upc/>
+                  <Asin>0759102341</Asin>
+                  <Sku/>
+                </ItemIdentifier>
+                <SalesRank>497577</SalesRank>
+              </member>
+            </SelectionRecommendations>
+          </ListRecommendationsResult>
+          <ResponseMetadata>
+            <RequestId>cd41ab1d-7030-40bc-a965-554c16ccf42c</RequestId>
+          </ResponseMetadata>
+        </ListRecommendationsResponse>
+    http_version: 
+  recorded_at: Tue, 24 May 2016 13:46:02 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Recommendations/2013-04-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListRecommendations&MarketplaceId=A1RKKUPIHCS9HS&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-24T13%3A46%3A02Z&Version=2013-04-01&Signature=cMaRS9ToYeIDCSyrzGMFpFBaxtXQZ2VAmTCv9RUbRas%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 May 2016 13:46:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '8328'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 82db0270-0359-4aa2-896f-1dbe14b3c1fe
+      x-mws-timestamp:
+      - '2016-05-24T13:46:02.611Z'
+      x-mws-response-context:
+      - bT8J9hjEoSE7fqR9BQBhF71qa9UPsRxl2nna3ugOqn8YhPe7pKNF1l5oVr2y/PrrlvWl1Vt9SJa+
+        JYVw8HyVkA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PExpc3RSZWNvbW1lbmRhdGlvbnNSZXNwb25zZSB4bWxucz0iaHR0cHM6Ly9t
+        d3MuYW1hem9uc2VydmljZXMuY29tL1JlY29tbWVuZGF0aW9ucy8yMDEzLTA0
+        LTAxIj4KICA8TGlzdFJlY29tbWVuZGF0aW9uc1Jlc3VsdD4KICAgIDxQcmlj
+        aW5nUmVjb21tZW5kYXRpb25zPgogICAgICA8bWVtYmVyPgogICAgICAgIDxO
+        dW1iZXJPZk1lcmNoYW50RnVsZmlsbGVkT2ZmZXJzPjM8L051bWJlck9mTWVy
+        Y2hhbnRGdWxmaWxsZWRPZmZlcnM+CiAgICAgICAgPExvd2VzdEFtYXpvbkZ1
+        bGZpbGxlZE9mZmVyUHJpY2U+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVV
+        UjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwv
+        QW1vdW50PgogICAgICAgIDwvTG93ZXN0QW1hem9uRnVsZmlsbGVkT2ZmZXJQ
+        cmljZT4KICAgICAgICA8UmVjb21tZW5kYXRpb25JZD5QcmljaW5nLUxvdyBw
+        cmljZSBvcHBvcnR1bml0aWVzLTE1MDU1NTM4NjUtOTc4MTUwNTU1Mzg2NC0x
+        LS1FbCBqdWVnbyBkZSBXYWxsIFN0cmVldDogeSBjw7NtbyBqdWdhcmxvIGNv
+        biDDqXhpdG88L1JlY29tbWVuZGF0aW9uSWQ+CiAgICAgICAgPFJlY29tbWVu
+        ZGF0aW9uUmVhc29uPkxvdyBwcmljZSBvcHBvcnR1bml0aWVzPC9SZWNvbW1l
+        bmRhdGlvblJlYXNvbj4KICAgICAgICA8U3ViQ29uZGl0aW9uPm5ldzwvU3Vi
+        Q29uZGl0aW9uPgogICAgICAgIDxZb3VyUHJpY2VQbHVzU2hpcHBpbmc+CiAg
+        ICAgICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAg
+        ICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvWW91
+        clByaWNlUGx1c1NoaXBwaW5nPgogICAgICAgIDxMYXN0VXBkYXRlZD4yMDE2
+        LTA1LTI0VDEzOjMzOjQ0LjA5Nlo8L0xhc3RVcGRhdGVkPgogICAgICAgIDxO
+        dW1iZXJPZk9mZmVycz40PC9OdW1iZXJPZk9mZmVycz4KICAgICAgICA8Q29u
+        ZGl0aW9uPm5ldzwvQ29uZGl0aW9uPgogICAgICAgIDxJdGVtTmFtZT5FbCBq
+        dWVnbyBkZSBXYWxsIFN0cmVldDogeSBjw7NtbyBqdWdhcmxvIGNvbiDDqXhp
+        dG88L0l0ZW1OYW1lPgogICAgICAgIDxQcmljZURpZmZlcmVuY2VUb0xvd1By
+        aWNlPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5FVVI8L0N1cnJlbmN5Q29k
+        ZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ftb3VudD4KICAgICAg
+        ICA8L1ByaWNlRGlmZmVyZW5jZVRvTG93UHJpY2U+CiAgICAgICAgPEZ1bGZp
+        bGxtZW50Q2hhbm5lbD5NRk48L0Z1bGZpbGxtZW50Q2hhbm5lbD4KICAgICAg
+        ICA8TnVtYmVyT2ZBbWF6b25GdWxmaWxsZWRPZmZlcnM+MTwvTnVtYmVyT2ZB
+        bWF6b25GdWxmaWxsZWRPZmZlcnM+CiAgICAgICAgPExvd2VzdE1lcmNoYW50
+        RnVsZmlsbGVkT2ZmZXJQcmljZT4KICAgICAgICAgIDxDdXJyZW5jeUNvZGU+
+        RVVSPC9DdXJyZW5jeUNvZGU+CiAgICAgICAgICA8QW1vdW50PkZJTFRFUkVE
+        PC9BbW91bnQ+CiAgICAgICAgPC9Mb3dlc3RNZXJjaGFudEZ1bGZpbGxlZE9m
+        ZmVyUHJpY2U+CiAgICAgICAgPEl0ZW1JZGVudGlmaWVyPgogICAgICAgICAg
+        PEFzaW4+MTUwNTU1Mzg2NTwvQXNpbj4KICAgICAgICAgIDxTa3U+OTc4MTUw
+        NTU1Mzg2NC0xPC9Ta3U+CiAgICAgICAgPC9JdGVtSWRlbnRpZmllcj4KICAg
+        ICAgICA8TG93ZXN0UHJpY2VQbHVzU2hpcHBpbmc+CiAgICAgICAgICA8Q3Vy
+        cmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFtb3Vu
+        dD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvTG93ZXN0UHJpY2VQbHVz
+        U2hpcHBpbmc+CiAgICAgIDwvbWVtYmVyPgogICAgICA8bWVtYmVyPgogICAg
+        ICAgIDxOdW1iZXJPZk1lcmNoYW50RnVsZmlsbGVkT2ZmZXJzPjI8L051bWJl
+        ck9mTWVyY2hhbnRGdWxmaWxsZWRPZmZlcnM+CiAgICAgICAgPFJlY29tbWVu
+        ZGF0aW9uSWQ+UHJpY2luZy1Mb3cgcHJpY2Ugb3Bwb3J0dW5pdGllcy0wNTk2
+        MDA3MTI0LTk3ODA1OTYwMDcxMjYtMy0tSGVhZCBGaXJzdCBEZXNpZ24gUGF0
+        dGVybnM8L1JlY29tbWVuZGF0aW9uSWQ+CiAgICAgICAgPFJlY29tbWVuZGF0
+        aW9uUmVhc29uPkxvdyBwcmljZSBvcHBvcnR1bml0aWVzPC9SZWNvbW1lbmRh
+        dGlvblJlYXNvbj4KICAgICAgICA8U3ViQ29uZGl0aW9uPnZlcnlfZ29vZDwv
+        U3ViQ29uZGl0aW9uPgogICAgICAgIDxZb3VyUHJpY2VQbHVzU2hpcHBpbmc+
+        CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgog
+        ICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwv
+        WW91clByaWNlUGx1c1NoaXBwaW5nPgogICAgICAgIDxMYXN0VXBkYXRlZD4y
+        MDE2LTA1LTIzVDEzOjQ0OjM0Ljk2MVo8L0xhc3RVcGRhdGVkPgogICAgICAg
+        IDxOdW1iZXJPZk9mZmVycz4yPC9OdW1iZXJPZk9mZmVycz4KICAgICAgICA8
+        Q29uZGl0aW9uPnVzZWQ8L0NvbmRpdGlvbj4KICAgICAgICA8SXRlbU5hbWU+
+        SGVhZCBGaXJzdCBEZXNpZ24gUGF0dGVybnM8L0l0ZW1OYW1lPgogICAgICAg
+        IDxQcmljZURpZmZlcmVuY2VUb0xvd1ByaWNlPgogICAgICAgICAgPEN1cnJl
+        bmN5Q29kZT5FVVI8L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+
+        RklMVEVSRUQ8L0Ftb3VudD4KICAgICAgICA8L1ByaWNlRGlmZmVyZW5jZVRv
+        TG93UHJpY2U+CiAgICAgICAgPEZ1bGZpbGxtZW50Q2hhbm5lbD5NRk48L0Z1
+        bGZpbGxtZW50Q2hhbm5lbD4KICAgICAgICA8TnVtYmVyT2ZBbWF6b25GdWxm
+        aWxsZWRPZmZlcnM+MDwvTnVtYmVyT2ZBbWF6b25GdWxmaWxsZWRPZmZlcnM+
+        CiAgICAgICAgPExvd2VzdE1lcmNoYW50RnVsZmlsbGVkT2ZmZXJQcmljZT4K
+        ICAgICAgICAgIDxDdXJyZW5jeUNvZGU+RVVSPC9DdXJyZW5jeUNvZGU+CiAg
+        ICAgICAgICA8QW1vdW50PkZJTFRFUkVEPC9BbW91bnQ+CiAgICAgICAgPC9M
+        b3dlc3RNZXJjaGFudEZ1bGZpbGxlZE9mZmVyUHJpY2U+CiAgICAgICAgPEl0
+        ZW1JZGVudGlmaWVyPgogICAgICAgICAgPEFzaW4+MDU5NjAwNzEyNDwvQXNp
+        bj4KICAgICAgICAgIDxTa3U+OTc4MDU5NjAwNzEyNi0zPC9Ta3U+CiAgICAg
+        ICAgPC9JdGVtSWRlbnRpZmllcj4KICAgICAgICA8TG93ZXN0UHJpY2VQbHVz
+        U2hpcHBpbmc+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVu
+        Y3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50Pgog
+        ICAgICAgIDwvTG93ZXN0UHJpY2VQbHVzU2hpcHBpbmc+CiAgICAgIDwvbWVt
+        YmVyPgogICAgICA8bWVtYmVyPgogICAgICAgIDxOdW1iZXJPZk1lcmNoYW50
+        RnVsZmlsbGVkT2ZmZXJzPjI8L051bWJlck9mTWVyY2hhbnRGdWxmaWxsZWRP
+        ZmZlcnM+CiAgICAgICAgPFJlY29tbWVuZGF0aW9uSWQ+UHJpY2luZy1Mb3cg
+        cHJpY2Ugb3Bwb3J0dW5pdGllcy04NDg0ODgxNTYzLTk3ODg0ODQ4ODE1Njgt
+        Mi0tQ2FzaSAoTUlSQSBZIEFQUkVOREUpPC9SZWNvbW1lbmRhdGlvbklkPgog
+        ICAgICAgIDxSZWNvbW1lbmRhdGlvblJlYXNvbj5Mb3cgcHJpY2Ugb3Bwb3J0
+        dW5pdGllczwvUmVjb21tZW5kYXRpb25SZWFzb24+CiAgICAgICAgPFN1YkNv
+        bmRpdGlvbj5saWtlX25ldzwvU3ViQ29uZGl0aW9uPgogICAgICAgIDxZb3Vy
+        UHJpY2VQbHVzU2hpcHBpbmc+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVV
+        UjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwv
+        QW1vdW50PgogICAgICAgIDwvWW91clByaWNlUGx1c1NoaXBwaW5nPgogICAg
+        ICAgIDxMYXN0VXBkYXRlZD4yMDE2LTA1LTIxVDAwOjE2OjEyLjg0NFo8L0xh
+        c3RVcGRhdGVkPgogICAgICAgIDxOdW1iZXJPZk9mZmVycz4yPC9OdW1iZXJP
+        Zk9mZmVycz4KICAgICAgICA8Q29uZGl0aW9uPnVzZWQ8L0NvbmRpdGlvbj4K
+        ICAgICAgICA8SXRlbU5hbWU+Q2FzaSAoTUlSQSBZIEFQUkVOREUpPC9JdGVt
+        TmFtZT4KICAgICAgICA8UHJpY2VEaWZmZXJlbmNlVG9Mb3dQcmljZT4KICAg
+        ICAgICAgIDxDdXJyZW5jeUNvZGU+RVVSPC9DdXJyZW5jeUNvZGU+CiAgICAg
+        ICAgICA8QW1vdW50PkZJTFRFUkVEPC9BbW91bnQ+CiAgICAgICAgPC9Qcmlj
+        ZURpZmZlcmVuY2VUb0xvd1ByaWNlPgogICAgICAgIDxGdWxmaWxsbWVudENo
+        YW5uZWw+TUZOPC9GdWxmaWxsbWVudENoYW5uZWw+CiAgICAgICAgPE51bWJl
+        ck9mQW1hem9uRnVsZmlsbGVkT2ZmZXJzPjA8L051bWJlck9mQW1hem9uRnVs
+        ZmlsbGVkT2ZmZXJzPgogICAgICAgIDxMb3dlc3RNZXJjaGFudEZ1bGZpbGxl
+        ZE9mZmVyUHJpY2U+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3Vy
+        cmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwvQW1vdW50
+        PgogICAgICAgIDwvTG93ZXN0TWVyY2hhbnRGdWxmaWxsZWRPZmZlclByaWNl
+        PgogICAgICAgIDxJdGVtSWRlbnRpZmllcj4KICAgICAgICAgIDxBc2luPjg0
+        ODQ4ODE1NjM8L0FzaW4+CiAgICAgICAgICA8U2t1Pjk3ODg0ODQ4ODE1Njgt
+        MjwvU2t1PgogICAgICAgIDwvSXRlbUlkZW50aWZpZXI+CiAgICAgICAgPExv
+        d2VzdFByaWNlUGx1c1NoaXBwaW5nPgogICAgICAgICAgPEN1cnJlbmN5Q29k
+        ZT5FVVI8L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVS
+        RUQ8L0Ftb3VudD4KICAgICAgICA8L0xvd2VzdFByaWNlUGx1c1NoaXBwaW5n
+        PgogICAgICA8L21lbWJlcj4KICAgICAgPG1lbWJlcj4KICAgICAgICA8TnVt
+        YmVyT2ZNZXJjaGFudEZ1bGZpbGxlZE9mZmVycz40PC9OdW1iZXJPZk1lcmNo
+        YW50RnVsZmlsbGVkT2ZmZXJzPgogICAgICAgIDxMb3dlc3RBbWF6b25GdWxm
+        aWxsZWRPZmZlclByaWNlPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5FVVI8
+        L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ft
+        b3VudD4KICAgICAgICA8L0xvd2VzdEFtYXpvbkZ1bGZpbGxlZE9mZmVyUHJp
+        Y2U+CiAgICAgICAgPFJlY29tbWVuZGF0aW9uSWQ+UHJpY2luZy1Mb3cgcHJp
+        Y2Ugb3Bwb3J0dW5pdGllcy0xNDgxMTU2OTQyLTk3ODE0ODExNTY5NDMtMS0t
+        R2FuY2hpbGxvIGNvbiBiaWd1bmtpLiBQYXRyb25lcyBkZSBhbWlndXJ1bWk8
+        L1JlY29tbWVuZGF0aW9uSWQ+CiAgICAgICAgPFJlY29tbWVuZGF0aW9uUmVh
+        c29uPkxvdyBwcmljZSBvcHBvcnR1bml0aWVzPC9SZWNvbW1lbmRhdGlvblJl
+        YXNvbj4KICAgICAgICA8U3ViQ29uZGl0aW9uPm5ldzwvU3ViQ29uZGl0aW9u
+        PgogICAgICAgIDxZb3VyUHJpY2VQbHVzU2hpcHBpbmc+CiAgICAgICAgICA8
+        Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFt
+        b3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvWW91clByaWNlUGx1
+        c1NoaXBwaW5nPgogICAgICAgIDxMYXN0VXBkYXRlZD4yMDE2LTA1LTEzVDE1
+        OjAwOjM4LjgwNFo8L0xhc3RVcGRhdGVkPgogICAgICAgIDxOdW1iZXJPZk9m
+        ZmVycz41PC9OdW1iZXJPZk9mZmVycz4KICAgICAgICA8Q29uZGl0aW9uPm5l
+        dzwvQ29uZGl0aW9uPgogICAgICAgIDxJdGVtTmFtZT5HYW5jaGlsbG8gY29u
+        IGJpZ3Vua2kuIFBhdHJvbmVzIGRlIGFtaWd1cnVtaTwvSXRlbU5hbWU+CiAg
+        ICAgICAgPFByaWNlRGlmZmVyZW5jZVRvTG93UHJpY2U+CiAgICAgICAgICA8
+        Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFt
+        b3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvUHJpY2VEaWZmZXJl
+        bmNlVG9Mb3dQcmljZT4KICAgICAgICA8RnVsZmlsbG1lbnRDaGFubmVsPk1G
+        TjwvRnVsZmlsbG1lbnRDaGFubmVsPgogICAgICAgIDxOdW1iZXJPZkFtYXpv
+        bkZ1bGZpbGxlZE9mZmVycz4xPC9OdW1iZXJPZkFtYXpvbkZ1bGZpbGxlZE9m
+        ZmVycz4KICAgICAgICA8TG93ZXN0TWVyY2hhbnRGdWxmaWxsZWRPZmZlclBy
+        aWNlPgogICAgICAgICAgPEN1cnJlbmN5Q29kZT5FVVI8L0N1cnJlbmN5Q29k
+        ZT4KICAgICAgICAgIDxBbW91bnQ+RklMVEVSRUQ8L0Ftb3VudD4KICAgICAg
+        ICA8L0xvd2VzdE1lcmNoYW50RnVsZmlsbGVkT2ZmZXJQcmljZT4KICAgICAg
+        ICA8SXRlbUlkZW50aWZpZXI+CiAgICAgICAgICA8QXNpbj4xNDgxMTU2OTQy
+        PC9Bc2luPgogICAgICAgICAgPFNrdT45NzgxNDgxMTU2OTQzLTE8L1NrdT4K
+        ICAgICAgICA8L0l0ZW1JZGVudGlmaWVyPgogICAgICAgIDxMb3dlc3RQcmlj
+        ZVBsdXNTaGlwcGluZz4KICAgICAgICAgIDxDdXJyZW5jeUNvZGU+RVVSPC9D
+        dXJyZW5jeUNvZGU+CiAgICAgICAgICA8QW1vdW50PkZJTFRFUkVEPC9BbW91
+        bnQ+CiAgICAgICAgPC9Mb3dlc3RQcmljZVBsdXNTaGlwcGluZz4KICAgICAg
+        PC9tZW1iZXI+CiAgICAgIDxtZW1iZXI+CiAgICAgICAgPE51bWJlck9mTWVy
+        Y2hhbnRGdWxmaWxsZWRPZmZlcnM+MzwvTnVtYmVyT2ZNZXJjaGFudEZ1bGZp
+        bGxlZE9mZmVycz4KICAgICAgICA8TG93ZXN0QW1hem9uRnVsZmlsbGVkT2Zm
+        ZXJQcmljZT4KICAgICAgICAgIDxDdXJyZW5jeUNvZGU+RVVSPC9DdXJyZW5j
+        eUNvZGU+CiAgICAgICAgICA8QW1vdW50PkZJTFRFUkVEPC9BbW91bnQ+CiAg
+        ICAgICAgPC9Mb3dlc3RBbWF6b25GdWxmaWxsZWRPZmZlclByaWNlPgogICAg
+        ICAgIDxSZWNvbW1lbmRhdGlvbklkPlByaWNpbmctTG93IHByaWNlIG9wcG9y
+        dHVuaXRpZXMtMTUwNzg4MzcwNi05NzgxNTA3ODgzNzA5LTEtLU1lZGlvaG9t
+        YnJlOiBMYSBiYXRhbGxhIHF1ZSBJbmdsYXRlcnJhIG9jdWx0w7MgYWwgbXVu
+        ZG88L1JlY29tbWVuZGF0aW9uSWQ+CiAgICAgICAgPFJlY29tbWVuZGF0aW9u
+        UmVhc29uPkxvdyBwcmljZSBvcHBvcnR1bml0aWVzPC9SZWNvbW1lbmRhdGlv
+        blJlYXNvbj4KICAgICAgICA8U3ViQ29uZGl0aW9uPm5ldzwvU3ViQ29uZGl0
+        aW9uPgogICAgICAgIDxZb3VyUHJpY2VQbHVzU2hpcHBpbmc+CiAgICAgICAg
+        ICA8Q3VycmVuY3lDb2RlPkVVUjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAg
+        PEFtb3VudD5GSUxURVJFRDwvQW1vdW50PgogICAgICAgIDwvWW91clByaWNl
+        UGx1c1NoaXBwaW5nPgogICAgICAgIDxMYXN0VXBkYXRlZD4yMDE2LTA0LTI4
+        VDE5OjUzOjA5LjQzOFo8L0xhc3RVcGRhdGVkPgogICAgICAgIDxOdW1iZXJP
+        Zk9mZmVycz40PC9OdW1iZXJPZk9mZmVycz4KICAgICAgICA8Q29uZGl0aW9u
+        Pm5ldzwvQ29uZGl0aW9uPgogICAgICAgIDxJdGVtTmFtZT5NZWRpb2hvbWJy
+        ZTogTGEgYmF0YWxsYSBxdWUgSW5nbGF0ZXJyYSBvY3VsdMOzIGFsIG11bmRv
+        PC9JdGVtTmFtZT4KICAgICAgICA8UHJpY2VEaWZmZXJlbmNlVG9Mb3dQcmlj
+        ZT4KICAgICAgICAgIDxDdXJyZW5jeUNvZGU+RVVSPC9DdXJyZW5jeUNvZGU+
+        CiAgICAgICAgICA8QW1vdW50PkZJTFRFUkVEPC9BbW91bnQ+CiAgICAgICAg
+        PC9QcmljZURpZmZlcmVuY2VUb0xvd1ByaWNlPgogICAgICAgIDxGdWxmaWxs
+        bWVudENoYW5uZWw+TUZOPC9GdWxmaWxsbWVudENoYW5uZWw+CiAgICAgICAg
+        PE51bWJlck9mQW1hem9uRnVsZmlsbGVkT2ZmZXJzPjE8L051bWJlck9mQW1h
+        em9uRnVsZmlsbGVkT2ZmZXJzPgogICAgICAgIDxMb3dlc3RNZXJjaGFudEZ1
+        bGZpbGxlZE9mZmVyUHJpY2U+CiAgICAgICAgICA8Q3VycmVuY3lDb2RlPkVV
+        UjwvQ3VycmVuY3lDb2RlPgogICAgICAgICAgPEFtb3VudD5GSUxURVJFRDwv
+        QW1vdW50PgogICAgICAgIDwvTG93ZXN0TWVyY2hhbnRGdWxmaWxsZWRPZmZl
+        clByaWNlPgogICAgICAgIDxJdGVtSWRlbnRpZmllcj4KICAgICAgICAgIDxB
+        c2luPjE1MDc4ODM3MDY8L0FzaW4+CiAgICAgICAgICA8U2t1Pjk3ODE1MDc4
+        ODM3MDktMTwvU2t1PgogICAgICAgIDwvSXRlbUlkZW50aWZpZXI+CiAgICAg
+        ICAgPExvd2VzdFByaWNlUGx1c1NoaXBwaW5nPgogICAgICAgICAgPEN1cnJl
+        bmN5Q29kZT5FVVI8L0N1cnJlbmN5Q29kZT4KICAgICAgICAgIDxBbW91bnQ+
+        RklMVEVSRUQ8L0Ftb3VudD4KICAgICAgICA8L0xvd2VzdFByaWNlUGx1c1No
+        aXBwaW5nPgogICAgICA8L21lbWJlcj4KICAgIDwvUHJpY2luZ1JlY29tbWVu
+        ZGF0aW9ucz4KICAgIDxOZXh0VG9rZW4+QUFBQUlKR0plb3hXTGVLWUZseUtt
+        WVFSbWcvLzY5ZFdBdmtFMmFMQUJORnRoaUdpZXlKbWFYSnpkRkpsY1hWbGMz
+        UWlPbnNpYldGeWEyVjBjR3hoWTJWSlpDSTZJa0V4VWt0TFZWQkpTRU5UT1Vo
+        VElpd2ljMlZzYkdWeVNXUWlPaUpCTWs1RlZUZEhObEpIVlV0R0luMHNJbTVs
+        ZUhSU1pXTnZiVzFsYm1SaGRHbHZia05oZEdWbmIzSjVJam9pUm5Wc1ptbHNi
+        RzFsYm5RaUxDSndZV2RwYm1GMGFXOXVUbVY0ZEZSdmEyVnVJam9pTUNJc0lu
+        UnZhMlZ1Vm1Gc2FXUmhkR2wwZVVSaGRHVlVhVzFsSWpvaU1qQXhOaTB3TlMw
+        eU5GUXhNem8wT0Rvd01pNDNOekZhSW4wPTwvTmV4dFRva2VuPgogIDwvTGlz
+        dFJlY29tbWVuZGF0aW9uc1Jlc3VsdD4KICA8UmVzcG9uc2VNZXRhZGF0YT4K
+        ICAgIDxSZXF1ZXN0SWQ+ODJkYjAyNzAtMDM1OS00YWEyLTg5NmYtMWRiZTE0
+        YjNjMWZlPC9SZXF1ZXN0SWQ+CiAgPC9SZXNwb25zZU1ldGFkYXRhPgo8L0xp
+        c3RSZWNvbW1lbmRhdGlvbnNSZXNwb25zZT4K
+    http_version: 
+  recorded_at: Tue, 24 May 2016 13:46:02 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Recommendations/2013-04-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListRecommendations&MarketplaceId=APJ6JRA9NG5V4&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-24T13%3A46%3A02Z&Version=2013-04-01&Signature=4XhmgxHR3dXGX7JliRGlb4Dhjswro%2FyfYosCOqsiYYM%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 May 2016 13:46:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2255'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 086d38b8-3d0b-49bb-8afa-29947c47cf7d
+      x-mws-timestamp:
+      - '2016-05-24T13:46:02.961Z'
+      x-mws-response-context:
+      - cg2l+NBgSwta2nWyZhaS2BHsIvPyDxPOPc3r+NjXS0LmqYSMWkJpeNsIDAq4lzb8BEnzIOePBgwE
+        qx+uk59lLQ==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListRecommendationsResponse xmlns="https://mws.amazonservices.com/Recommendations/2013-04-01">
+          <ListRecommendationsResult>
+            <PricingRecommendations>
+              <member>
+                <NumberOfMerchantFulfilledOffers>3</NumberOfMerchantFulfilledOffers>
+                <LowestAmazonFulfilledOfferPrice>
+                  <CurrencyCode>EUR</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </LowestAmazonFulfilledOfferPrice>
+                <RecommendationId>Pricing-Low price opportunities-1926778898-9781926778891-1--Dark Souls: Design Works</RecommendationId>
+                <RecommendationReason>Low price opportunities</RecommendationReason>
+                <SubCondition>new</SubCondition>
+                <LastUpdated>2016-05-23T15:32:45.223Z</LastUpdated>
+                <NumberOfOffers>4</NumberOfOffers>
+                <YourPricePlusShipping>
+                  <CurrencyCode>EUR</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </YourPricePlusShipping>
+                <Condition>new</Condition>
+                <ItemName>Dark Souls: Design Works</ItemName>
+                <PriceDifferenceToLowPrice>
+                  <CurrencyCode>EUR</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </PriceDifferenceToLowPrice>
+                <FulfillmentChannel>MFN</FulfillmentChannel>
+                <NumberOfAmazonFulfilledOffers>1</NumberOfAmazonFulfilledOffers>
+                <LowestMerchantFulfilledOfferPrice>
+                  <CurrencyCode>EUR</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </LowestMerchantFulfilledOfferPrice>
+                <ItemIdentifier>
+                  <Asin>1926778898</Asin>
+                  <Sku>9781926778891-1</Sku>
+                </ItemIdentifier>
+                <LowestPricePlusShipping>
+                  <CurrencyCode>EUR</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </LowestPricePlusShipping>
+              </member>
+            </PricingRecommendations>
+            <NextToken>AAAAID7BQj5u0Sxudqvo/EWGibS/ZRE9KDothzOW6++/GWqueyJmaXJzdFJlcXVlc3QiOnsibWFya2V0cGxhY2VJZCI6IkFQSjZKUkE5Tkc1VjQiLCJzZWxsZXJJZCI6IkEyQVBRVVZEQlZXVjdFIn0sIm5leHRSZWNvbW1lbmRhdGlvbkNhdGVnb3J5IjoiRnVsZmlsbG1lbnQiLCJwYWdpbmF0aW9uTmV4dFRva2VuIjoiMCIsInRva2VuVmFsaWRhdGl0eURhdGVUaW1lIjoiMjAxNi0wNS0yNFQxMzo0ODowMy4xMjdaIn0=</NextToken>
+          </ListRecommendationsResult>
+          <ResponseMetadata>
+            <RequestId>086d38b8-3d0b-49bb-8afa-29947c47cf7d</RequestId>
+          </ResponseMetadata>
+        </ListRecommendationsResponse>
+    http_version: 
+  recorded_at: Tue, 24 May 2016 13:46:03 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Recommendations/2013-04-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListRecommendations&MarketplaceId=A1F83G8C2ARO7P&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-24T13%3A46%3A03Z&Version=2013-04-01&Signature=4W6ooqBJ8kRo%2FrGGtuog2IBDK%2BZrchwYwY6vfALr5Sk%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 May 2016 13:46:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '5379'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - ae3dedb8-382b-4e24-8b09-135be7758e38
+      x-mws-timestamp:
+      - '2016-05-24T13:46:03.478Z'
+      x-mws-response-context:
+      - "/rLwZHqlOvWmD574B2853D/s74P1bTSAvAH/uC5cRo9ekLxMwOvBjRivK0/SlDhwfeQ/JjeUHqgJ
+        QycbwkZ6BA=="
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: |
+        <ListRecommendationsResponse xmlns="https://mws.amazonservices.com/Recommendations/2013-04-01">
+          <ListRecommendationsResult>
+            <NextToken>AAAAIDqdGK4eQhaB9pBKjvW5aq1M2tCBDfj9d+MpsEcM1kh2eyJmaXJzdFJlcXVlc3QiOnsibWFya2V0cGxhY2VJZCI6IkExRjgzRzhDMkFSTzdQIiwic2VsbGVySWQiOiJBMkQ5RFozMEdFV1A2TiJ9LCJuZXh0UmVjb21tZW5kYXRpb25DYXRlZ29yeSI6IlByaWNpbmciLCJwYWdpbmF0aW9uTmV4dFRva2VuIjoiMCIsInRva2VuVmFsaWRhdGl0eURhdGVUaW1lIjoiMjAxNi0wNS0yNFQxMzo0ODowMy42NDJaIn0=</NextToken>
+            <SelectionRecommendations>
+              <member>
+                <NumberOfCustomerReviews>0</NumberOfCustomerReviews>
+                <RecommendationId>Selection-Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.-1937473007---Autism as Context Blindness</RecommendationId>
+                <RecommendationReason>Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.</RecommendationReason>
+                <ProductCategory>Books</ProductCategory>
+                <LastUpdated>2016-05-22T00:00:00Z</LastUpdated>
+                <NumberOfOffers>0</NumberOfOffers>
+                <ItemName>Autism as Context Blindness</ItemName>
+                <BuyboxPrice>
+                  <CurrencyCode>GBP</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </BuyboxPrice>
+                <ItemIdentifier>
+                  <Upc/>
+                  <Asin>1937473007</Asin>
+                  <Sku/>
+                </ItemIdentifier>
+                <SalesRank>280938</SalesRank>
+              </member>
+              <member>
+                <NumberOfCustomerReviews>0</NumberOfCustomerReviews>
+                <RecommendationId>Selection-Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.-0912986190---World without Cancer: The Story of Vitamin B17</RecommendationId>
+                <RecommendationReason>Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.</RecommendationReason>
+                <ProductCategory>Books</ProductCategory>
+                <LastUpdated>2016-05-22T00:00:00Z</LastUpdated>
+                <NumberOfOffers>0</NumberOfOffers>
+                <ItemName>World without Cancer: The Story of Vitamin B17</ItemName>
+                <BuyboxPrice>
+                  <CurrencyCode>GBP</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </BuyboxPrice>
+                <ItemIdentifier>
+                  <Upc/>
+                  <Asin>0912986190</Asin>
+                  <Sku/>
+                </ItemIdentifier>
+                <SalesRank>84436</SalesRank>
+              </member>
+              <member>
+                <NumberOfCustomerReviews>0</NumberOfCustomerReviews>
+                <RecommendationId>Selection-Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.-0912111909---The Blue Economy: 10 Years, 100 Innovations, 100 Million Jobs</RecommendationId>
+                <RecommendationReason>Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.</RecommendationReason>
+                <ProductCategory>Books</ProductCategory>
+                <LastUpdated>2016-05-22T00:00:00Z</LastUpdated>
+                <NumberOfOffers>0</NumberOfOffers>
+                <ItemName>The Blue Economy: 10 Years, 100 Innovations, 100 Million Jobs</ItemName>
+                <BuyboxPrice>
+                  <CurrencyCode>GBP</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </BuyboxPrice>
+                <ItemIdentifier>
+                  <Upc/>
+                  <Asin>0912111909</Asin>
+                  <Sku/>
+                </ItemIdentifier>
+                <SalesRank>295324</SalesRank>
+              </member>
+              <member>
+                <NumberOfCustomerReviews>0</NumberOfCustomerReviews>
+                <RecommendationId>Selection-Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.-1932394850---Test Driven: TDD and Acceptance TDD for Java Developers</RecommendationId>
+                <RecommendationReason>Your prices on these products are lower than the top-selling offers in other Amazon marketplaces, as of this report. List these products at great prices in other marketplaces to reach more EU customers.</RecommendationReason>
+                <ProductCategory>Books</ProductCategory>
+                <LastUpdated>2016-05-22T00:00:00Z</LastUpdated>
+                <NumberOfOffers>0</NumberOfOffers>
+                <ItemName>Test Driven: TDD and Acceptance TDD for Java Developers</ItemName>
+                <BuyboxPrice>
+                  <CurrencyCode>GBP</CurrencyCode>
+                  <Amount>FILTERED</Amount>
+                </BuyboxPrice>
+                <ItemIdentifier>
+                  <Upc/>
+                  <Asin>1932394850</Asin>
+                  <Sku/>
+                </ItemIdentifier>
+                <SalesRank>168559</SalesRank>
+              </member>
+            </SelectionRecommendations>
+          </ListRecommendationsResult>
+          <ResponseMetadata>
+            <RequestId>ae3dedb8-382b-4e24-8b09-135be7758e38</RequestId>
+          </ResponseMetadata>
+        </ListRecommendationsResponse>
+    http_version: 
+  recorded_at: Tue, 24 May 2016 13:46:03 GMT
+recorded_with: VCR 3.0.3
