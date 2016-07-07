@@ -147,7 +147,7 @@ module MWS
       def get_package_tracking_details(package_number)
         operation('GetPackageTrackingDetails')
           .add('PackageNumber' => package_number)
-          
+
         run
       end
 
