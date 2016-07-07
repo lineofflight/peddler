@@ -141,8 +141,14 @@ module MWS
 
       # Returns delivery tracking information for a package in an outbound
       # shipment for a Multi-Channel Fulfillment order
-      def get_package_tracking_details
-        raise NotImplementedError
+      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetPackageTrackingDetails.html
+      # @param [String] package_number
+      # @return [Peddler::XMLParser]
+      def get_package_tracking_details(package_number)
+        operation('GetPackageTrackingDetails')
+          .add('PackageNumber' => package_number)
+          
+        run
       end
 
       # Requests that Amazon stop attempting to fulfill an existing fulfillment
