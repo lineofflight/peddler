@@ -101,7 +101,7 @@ Alternatively, rescue.
 ```ruby
 begin
   client.some_method
-rescue Excon::Errors::ServiceUnavailable => e
+rescue Excon::Error::ServiceUnavailable => e
   logger.warn e.response.message
   retry
 end

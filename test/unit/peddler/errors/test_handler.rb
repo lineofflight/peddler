@@ -11,7 +11,7 @@ class TestPeddlerErrorsHandler < MiniTest::Test
     def setup
       @code = 'FeedProcessingResultNotReady'
       @message = 'Feed Submission Result is not ready for Feed 123'
-      @cause = Excon::Errors::NotFound.new(
+      @cause = Excon::Error::NotFound.new(
         'Expected(200) <=> Actual(404 Not Found)',
         nil,
         OpenStruct.new(code: @code, message: @message)

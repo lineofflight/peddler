@@ -51,7 +51,7 @@ module Peddler
       end
 
       # Sets an error handler
-      # @yieldparam [Excon::Errors::Error] error
+      # @yieldparam [Excon::Error] error
       def on_error(&blk)
         @error_handler = blk
       end
@@ -149,7 +149,7 @@ module Peddler
     end
 
     # Sets an error handler
-    # @yieldparam [Excon::Errors::Error] error
+    # @yieldparam [Excon::Error] error
     def on_error(&blk)
       @error_handler = blk
     end
@@ -171,7 +171,7 @@ module Peddler
       res = post(opts)
 
       parser.new(res, encoding)
-    rescue Excon::Errors::Error => e
+    rescue Excon::Error => e
       handle_error(e)
     end
 
@@ -208,7 +208,7 @@ module Peddler
     end
 
     def decorate_error(e)
-      if e.is_a?(::Excon::Errors::HTTPStatusError)
+      if e.is_a?(:: Excon::Error::HTTPStatus)
         e.instance_variable_set(:@response, Errors::Parser.new(e.response))
       end
 

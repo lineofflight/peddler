@@ -35,7 +35,7 @@ module Peddler
       end
 
       def http_status_error?
-        exception.is_a?(Excon::Errors::HTTPStatusError)
+        exception.is_a?(Excon::Error::HTTPStatus)
       end
     end
   end
