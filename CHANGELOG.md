@@ -3,9 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Changed
+### Added
 - Add GetPackageTrackingDetails operation to the FulfillmentOutboundShipment
 client.
+
+### Changed
 - Raise error if one of two required keywords is not specified when listing
 orders.
 - Make API errors more expressive.
@@ -15,6 +17,7 @@ orders.
 
 ### Fixed
 - Parse summaries of non-English flat files.
+- Fix Excon error handling after breaking changes in its 0.50.0 release.
 
 ## [1.3.0] - 2016-01-21
 ### Added
