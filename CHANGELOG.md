@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Add GetPackageTrackingDetails operation to the FulfillmentOutboundShipment
+client.
 - Raise error if one of two required keywords is not specified when listing
 orders.
 - Make API errors more expressive.
