@@ -12,6 +12,8 @@ ClassLength:
 Documentation:
   Exclude:
     - 'test/**/*'
+DotPosition:
+  EnforcedStyle: leading
 GlobalVars:
   Exclude:
     - 'test/**/*'
@@ -31,3 +33,5 @@ MultilineMethodCallIndentation:
 ParameterLists:
   Exclude:
     - 'lib/mws/**/client.rb'
+StringLiterals:
+  EnforcedStyle: single_quotes
