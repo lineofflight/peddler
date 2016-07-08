@@ -141,6 +141,7 @@ module MWS
 
       # Returns delivery tracking information for a package in an outbound
       # shipment for a Multi-Channel Fulfillment order
+      #
       # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetPackageTrackingDetails.html
       # @param [String] package_number
       # @return [Peddler::XMLParser]
