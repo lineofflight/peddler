@@ -112,9 +112,16 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
   end
 
   def test_gets_package_tracking_details
-    assert_raises(NotImplementedError) do
-      @client.get_package_tracking_details
+    operation = {
+      'Action' => 'GetPackageTrackingDetails',
+      'PackageNumber' => '1'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_package_tracking_details('1')
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_cancels_fulfillment_order
