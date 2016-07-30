@@ -1,6 +1,4 @@
 require 'forwardable'
-require 'mws/cart_information'
-require 'mws/customer_information'
 require 'mws/feeds'
 require 'mws/finances'
 require 'mws/fulfillment_inbound_shipment'

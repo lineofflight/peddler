@@ -109,20 +109,6 @@ end
 
 ## The APIs
 
-### Cart Information
-
-With the MWS Cart Information API, you can retrieve shopping carts that your Amazon Webstore customers have created. The Cart Information API enables you to programmatically integrate Amazon Webstore cart information with your CRM systems, marketing applications, and other systems that require cart data.
-
-- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=cartinformation&section=cartinformation)
-- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/CartInformation/Client)
-
-### Customer Information
-
-With the MWS Customer Information API, you can retrieve information from the customer accounts of your Amazon Webstore customers. This customer information includes customer name, contact information, customer account type, and associated Amazon Webstore marketplaces. The Customer Information API enables you to programmatically integrate Amazon Webstore customer account information with your CRM systems, marketing applications, and other systems that require customer data.
-
-- [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=customerinformation&section=customerinformation)
-- [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/CustomerInformation/Client)
-
 ### Feeds
 
 The MWS Feeds API lets you upload inventory and order data to Amazon. You can also use this API to get information about the processing of feeds.
