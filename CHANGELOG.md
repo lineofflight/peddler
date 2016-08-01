@@ -13,7 +13,8 @@ orders.
 - Make API errors more expressive.
 
 ### Removed
-- Remove obsolete Webstore API.
+- Remove obsolete Webstore API, Cart Information, and Customer Information
+APIs.
 
 ### Fixed
 - Parse summaries of non-English flat files.
