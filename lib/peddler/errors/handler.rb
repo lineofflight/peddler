@@ -1,3 +1,4 @@
+require 'excon'
 require 'peddler/errors/builder'
 
 module Peddler
@@ -24,6 +25,8 @@ module Peddler
         else
           raise exception
         end
+      rescue NameError
+        raise exception
       end
 
       private
@@ -35,7 +38,7 @@ module Peddler
       end
 
       def http_status_error?
-        exception.is_a?(Excon::Error::HTTPStatus)
+        exception.is_a?(::Excon::Error::HTTPStatus)
       end
     end
   end

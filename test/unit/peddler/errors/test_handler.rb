@@ -3,7 +3,7 @@ require 'peddler/errors/handler'
 
 class TestPeddlerErrorsHandler < MiniTest::Test
   def setup
-    Peddler::Errors::Handler.call(@cause)
+    @error = Peddler::Errors::Handler.call(@cause)
   rescue => @error
   end
 
@@ -43,3 +43,18 @@ class TestPeddlerErrorsHandler < MiniTest::Test
     end
   end
 end
+
+class CausedByInternalServerError < TestPeddlerErrorsHandler
+    def setup
+      @cause = Excon::Error::InternalServerError.new(
+        nil,
+        nil,
+        OpenStruct.new(code: '500', message: nil)
+      )
+      super
+    end
+
+    def test_returns_original_error
+      assert_equal @cause, @error
+    end
+  end
