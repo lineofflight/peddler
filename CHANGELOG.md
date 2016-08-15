@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.4.0] - 2016-08-15
 ### Added
 - Add GetPackageTrackingDetails operation to the FulfillmentOutboundShipment
 client.
@@ -11,7 +13,8 @@ client.
 ### Changed
 - Raise error if one of two required keywords is not specified when listing
 orders.
-- Make API errors more expressive.
+- Add optional handler that makes API errors more expressive. This will become
+default next major version bump.
 
 ### Removed
 - Remove obsolete Webstore API, Cart Information, and Customer Information
