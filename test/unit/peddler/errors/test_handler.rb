@@ -42,9 +42,8 @@ class TestPeddlerErrorsHandler < MiniTest::Test
       assert_equal @cause, @error
     end
   end
-end
 
-class CausedByInternalServerError < TestPeddlerErrorsHandler
+  class CausedByInternalServerError < TestPeddlerErrorsHandler
     def setup
       @cause = Excon::Error::InternalServerError.new(
         nil,
@@ -58,3 +57,4 @@ class CausedByInternalServerError < TestPeddlerErrorsHandler
       assert_equal @cause, @error
     end
   end
+end
