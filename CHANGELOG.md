@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add GetPackageTrackingDetails operation to the FulfillmentOutboundShipment
 client.
+- Add GetMyFeesEstimate operation to the Products client.
 
 ### Changed
 - Raise error if one of two required keywords is not specified when listing

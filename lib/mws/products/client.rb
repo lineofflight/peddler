@@ -182,6 +182,19 @@ module MWS
         run
       end
 
+      # Gets the estimated fees for a list of products.
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyFeesEstimate.html
+      # @param [Hash] fees_estimate_request one or more fees estimate requests
+      # @return [Peddler::XMLParser]
+      def get_my_fees_estimate(*fees_estimate_requests)
+        operation('GetMyFeesEstimate')
+          .add('FeesEstimateRequestList' => fees_estimate_requests)
+          .structure!('FeesEstimateRequestList', 'FeesEstimateRequest')
+
+        run
+      end
+
       # Gets pricing information for seller's own offer listings, based on
       # Seller SKU
       #

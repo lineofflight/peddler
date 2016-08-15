@@ -136,6 +136,43 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_gets_my_fees_estimate
+    operation = {
+      'Action' => 'GetMyFeesEstimate',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.MarketplaceId' => '123',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.IdType' => 'ASIN',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.IdValue' => '123',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.CurrencyCode' => 'USD',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.Amount' => 30.00,
+      'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.Shipping.CurrencyCode' => 'USD',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.Shipping.Amount' => 3.99,
+      'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.Points.PointsNumber' => 0
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_my_fees_estimate(
+        marketplace_id: '123',
+        id_type: 'ASIN',
+        id_value: '123',
+        price_to_estimate_fees: {
+          listing_price: {
+            currency_code: 'USD',
+            amount: 30.00
+          },
+          shipping: {
+            currency_code: 'USD',
+            amount: 3.99
+          },
+          points: {
+            points_number: 0
+          }
+        }
+      )
+    end
+
+    assert_equal operation, @client.operation
+  end
+
   def test_gets_my_price_for_sku
     operation = {
       'Action' => 'GetMyPriceForSKU',
