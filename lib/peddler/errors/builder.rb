@@ -11,9 +11,21 @@ module Peddler
         instance.build(name)
       end
 
+      def initialize
+        @mutex = Mutex.new
+      end
+
       def build(name)
-        return Errors.const_get(name) if Errors.const_defined?(name)
-        Errors.const_set(name, Class.new(Error))
+        with_mutex do
+          return Errors.const_get(name) if Errors.const_defined?(name)
+          Errors.const_set(name, Class.new(Error))
+        end
+      end
+
+      private
+
+      def with_mutex
+        @mutex.synchronize { yield }
       end
     end
   end
