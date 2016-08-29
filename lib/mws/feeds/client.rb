@@ -104,7 +104,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionResult.html
       # @param [Integer, String] feed_submission_id
       # @return [Peddler::XMLParser] if the report is in XML format
-      # @return [Peddler::CSVParser] if the report is a flat file
+      # @return [Peddler::FlatFileParser] if the report is a flat file
       def get_feed_submission_result(feed_submission_id)
         operation('GetFeedSubmissionResult')
           .add('FeedSubmissionId' => feed_submission_id)

@@ -147,7 +147,7 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReport.html
       # @param [String] report_id
       # @return [Peddler::XMLParser] if report is in XML format
-      # @return [Peddler::CSVParser] if report is a flat file
+      # @return [Peddler::FlatFileParser] if report is a flat file
       def get_report(report_id, &blk)
         operation('GetReport')
           .add('ReportId' => report_id)
