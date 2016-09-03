@@ -50,12 +50,12 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_puts_transport_content
+  def test_puts_transport_content_with_package_list
     transport_details = {
-      'ParcelData' => {
-        'PackageList' => [
+      parcel_data: {
+        package_list: [
           {
-            'TrackingId' => '123'
+            tracking_id: '123'
           }
         ]
       }
@@ -67,6 +67,32 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       'IsPartnered' => true,
       'ShipmentType' => 'Foo',
       'TransportDetails.ParcelData.PackageList.member.1.TrackingId' => '123'
+    }
+
+    @client.stub(:run, nil) do
+      @client.put_transport_content('1', true, 'Foo', transport_details)
+    end
+
+    assert_equal operation, @client.operation
+  end
+
+  def test_puts_transport_content_with_pallet_list
+    transport_details = {
+      parcel_data: {
+        pallet_list: [
+          {
+            tracking_id: '123'
+          }
+        ]
+      }
+    }
+
+    operation = {
+      'Action' => 'PutTransportContent',
+      'ShipmentId' => '1',
+      'IsPartnered' => true,
+      'ShipmentType' => 'Foo',
+      'TransportDetails.ParcelData.PalletList.member.1.TrackingId' => '123'
     }
 
     @client.stub(:run, nil) do

@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Make Errors::Builder thread-safe.
 
+### Fixed
+- Support pallet lists in the FullfillmentInboundShipment/PutTransportContent
+operation.
+
 ## [1.4.0] - 2016-08-15
 ### Added
 - Add GetPackageTrackingDetails operation to the FulfillmentOutboundShipment
