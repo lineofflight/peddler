@@ -3,7 +3,6 @@
 source "https://rubygems.org"
 
 gem "appraisal"
-gem "coveralls"
 gem "dig_rb"
 gem "minitest"
 gem "rake"
@@ -14,6 +13,10 @@ gem "oga"
 group :development do
   gem "pry"
   gem "yard"
+end
+
+platforms :mri do
+  gem "coveralls"
 end
 
 gemspec :path => "../"

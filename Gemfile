@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'appraisal'
-gem 'coveralls'
 gem 'dig_rb'
 gem 'minitest'
 gem 'rake'
@@ -11,6 +10,10 @@ gem 'vcr'
 group :development do
   gem 'pry'
   gem 'yard'
+end
+
+platform :mri do
+  gem 'coveralls'
 end
 
 gemspec
