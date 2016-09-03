@@ -1,5 +1,4 @@
 appraise 'libxml' do
-  gem 'ox'
 end
 
 appraise 'oga' do

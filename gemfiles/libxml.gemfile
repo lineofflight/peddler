@@ -9,7 +9,6 @@ gem "minitest"
 gem "rake"
 gem "rubocop"
 gem "vcr"
-gem "ox"
 
 group :development do
   gem "pry"
