@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.version     = Peddler::VERSION
   gem.platform    = Gem::Platform::RUBY
   gem.authors     = ['Hakan Ensari']
-  gem.email       = ['hakanensari@me.com']
+  gem.email       = ['me@hakanensari.com']
   gem.homepage    = 'https://github.com/hakanensari/peddler'
   gem.summary     = 'Wraps the Amazon MWS APIs'
   gem.description = 'A Ruby interface to the Amazon MWS API'
