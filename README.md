@@ -71,6 +71,8 @@ client = MWS.orders(
 
 Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
 
+### Parser
+
 Peddler wraps successful responses in a parser that handles both XML documents and flat files:
 
 ```ruby
@@ -86,7 +88,13 @@ MWS::Orders::Client.parser = MyParser
 
 For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/mws-orders) library.
 
-Finally, you can handle network errors caused by throttling or other transient issues by defining an error handler.
+### Debugging
+
+To introspect requests, set the `EXCON_DEBUG` environment value to a truthy value.
+
+### Errors
+
+Handle network errors caused by throttling or other transient issues by defining an error handler.
 
 ```ruby
 MWS::Orders::Client.on_error do |e|
