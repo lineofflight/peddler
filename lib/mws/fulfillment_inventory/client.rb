@@ -19,6 +19,7 @@ module MWS
       # @option opts [Array<String>, String] :seller_skus
       # @option opts [String, #iso8601] :query_start_date_time
       # @option opts [String] :response_group
+      # @option opts [String] :marketplace_id
       # @return [Peddler::XMLParser]
       def list_inventory_supply(opts = {})
         operation('ListInventorySupply')
