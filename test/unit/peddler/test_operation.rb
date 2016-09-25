@@ -21,10 +21,21 @@ class TestPeddlerOperation < MiniTest::Test
     assert_equal 1, @operation['Foo.Status.Bar.1']
   end
 
-  def test_store_camelizes_key
+  def test_store_camelizes_symbol_key
     @operation.store(:foo_bar, 'baz')
     assert @operation.key?('FooBar')
     refute @operation.key?(:foo_bar)
+  end
+
+  def test_store_wont_camelize_string_key
+    @operation.store('foo_bar', 'baz')
+    assert @operation.key?('foo_bar')
+    refute @operation.key?('FooBar')
+  end
+
+  def test_store_wont_camelize_symbol_key_with_capital_letter
+    @operation.store('MarketplaceId'.to_sym, '1')
+    assert @operation.key?('MarketplaceId')
   end
 
   def test_store_upcases_sku

@@ -5,6 +5,8 @@ require 'peddler/structured_list'
 module Peddler
   # @api private
   class Operation < SimpleDelegator
+    CAPITAL_LETTERS = /[A-Z]/
+
     def initialize(action)
       super('Action' => action)
     end
@@ -45,6 +47,8 @@ module Peddler
     private
 
     def camelize(sym)
+      return sym.to_s if sym =~ CAPITAL_LETTERS
+
       sym
         .to_s
         .split('_')

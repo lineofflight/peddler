@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Don't camelise symbol keys with capital letters.
 
 ## [1.4.1] - 2016-09-03
 ### Changed
