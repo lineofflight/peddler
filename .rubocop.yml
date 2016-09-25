@@ -20,6 +20,8 @@ GlobalVars:
 HandleExceptions:
   Exclude:
     - 'test/**/*'
+GuardClause:
+  Enabled: false
 LineLength:
   Exclude:
     - 'test/**/*'
