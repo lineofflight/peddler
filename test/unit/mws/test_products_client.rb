@@ -141,7 +141,9 @@ class TestMWSProductsClient < MiniTest::Test
       'Action' => 'GetMyFeesEstimate',
       'FeesEstimateRequestList.FeesEstimateRequest.1.MarketplaceId' => '123',
       'FeesEstimateRequestList.FeesEstimateRequest.1.IdType' => 'ASIN',
-      'FeesEstimateRequestList.FeesEstimateRequest.1.IdValue' => '123',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.IdValue' => '1234567890',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.Identifier' => 'foo',
+      'FeesEstimateRequestList.FeesEstimateRequest.1.IsAmazonFulfilled' => true,
       'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.CurrencyCode' => 'USD',
       'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.Amount' => 30.00,
       'FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.Shipping.CurrencyCode' => 'USD',
@@ -153,7 +155,9 @@ class TestMWSProductsClient < MiniTest::Test
       @client.get_my_fees_estimate(
         marketplace_id: '123',
         id_type: 'ASIN',
-        id_value: '123',
+        id_value: '1234567890',
+        identifier: 'foo',
+        is_amazon_fulfilled: true,
         price_to_estimate_fees: {
           listing_price: {
             currency_code: 'USD',
