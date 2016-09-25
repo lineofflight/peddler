@@ -90,7 +90,7 @@ For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/
 
 ### Debugging
 
-To introspect requests, set the `EXCON_DEBUG` environment value to a truthy value.
+To introspect requests, set the `EXCON_DEBUG` environment variable to a truthy value.
 
 ### Errors
 
