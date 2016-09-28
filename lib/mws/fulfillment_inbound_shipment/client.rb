@@ -55,6 +55,38 @@ module MWS
         run
       end
 
+      # Returns pre-order information, including dates
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPreorderInfo.html
+      # @raise [NotImplementedError]
+      def get_preorder_info
+        raise NotImplementedError
+      end
+
+      # Confirms a shipment for pre-order
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ConfirmPreorder.html
+      # @raise [NotImplementedError]
+      def confirm_preorder
+        raise NotImplementedError
+      end
+
+      # Returns labeling requirements and item preparation instructions to help you prepare items for an inbound shipment
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForSKU.html
+      # @raise [NotImplementedError]
+      def get_prep_instructions_for_sku
+        raise NotImplementedError
+      end
+
+      # Returns item preparation instructions to help with item sourcing decisions
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForASIN.html
+      # @raise [NotImplementedError]
+      def get_prep_instructions_for_asin
+        raise NotImplementedError
+      end
+
       # Sends transportation information to Amazon about an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_PutTransportContent.html
@@ -136,6 +168,22 @@ module MWS
           ))
 
         run
+      end
+
+      # Returns unique package labels for faster and more accurate shipment processing at the Amazon fulfillment centre
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetUniquePackageLabels.html
+      # @raise [NotImplementedError]
+      def get_unique_package_labels
+        raise NotImplementedError
+      end
+
+      # Returns pallet labels
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPalletLabels.html
+      # @raise [NotImplementedError]
+      def get_pallet_labels
+        raise NotImplementedError
       end
 
       # Returns PDF document data for printing a bill of lading for an inbound

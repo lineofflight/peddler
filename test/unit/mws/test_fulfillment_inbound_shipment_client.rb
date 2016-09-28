@@ -50,6 +50,30 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_gets_preorder_info
+    assert_raises(NotImplementedError) do
+      @client.get_preorder_info
+    end
+  end
+
+  def test_confirms_preorder
+    assert_raises(NotImplementedError) do
+      @client.confirm_preorder
+    end
+  end
+
+  def test_gets_prep_instructions_for_sku
+    assert_raises(NotImplementedError) do
+      @client.get_prep_instructions_for_sku
+    end
+  end
+
+  def test_gets_prep_instructions_for_asin
+    assert_raises(NotImplementedError) do
+      @client.get_prep_instructions_for_asin
+    end
+  end
+
   def test_puts_transport_content_with_package_list
     transport_details = {
       parcel_data: {
@@ -166,6 +190,18 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     end
 
     assert_equal operation, @client.operation
+  end
+
+  def test_gets_unique_package_labels
+    assert_raises NotImplementedError do
+      @client.get_unique_package_labels
+    end
+  end
+
+  def test_gets_pallet_labels
+    assert_raises NotImplementedError do
+      @client.get_pallet_labels
+    end
   end
 
   def test_gets_bill_of_lading
