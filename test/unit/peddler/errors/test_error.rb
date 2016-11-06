@@ -13,4 +13,10 @@ class TestPeddlerErrorsError < MiniTest::Test
   def test_sets_cause
     assert_equal 'cause', @error.cause
   end
+
+  def test_defines_common_errors
+    Peddler::Errors::KNOWN.each do |name|
+      assert ::Peddler::Errors.const_defined?(name)
+    end
+  end
 end
