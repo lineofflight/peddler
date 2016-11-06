@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add GetInboundGuidanceForSKU, GetInboundGuidanceForASIN, GetPreorderInfo,
+ConfirmPreorder, GetPrepInstructionsForSKU, GetPrepInstructionsForASIN,
+GetUniquePackageLabels, and GetPalletLabels operations to the
+FullfillmentInboundShipment client.
+
 ### Fixed
 - Don't camelise symbol keys with capital letters.
 

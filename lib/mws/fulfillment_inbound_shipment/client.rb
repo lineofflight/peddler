@@ -10,6 +10,40 @@ module MWS
       version '2010-10-01'
       path "/FulfillmentInboundShipment/#{version}"
 
+      # Returns inbound guidance for a list of items by Seller SKU
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetInboundGuidanceForSKU.html
+      # @param [String] marketplace_id
+      # @param [String] one or more seller_skus
+      # @return [Peddler::XMLParser]
+      def get_inbound_guidance_for_sku(marketplace_id, *seller_skus)
+        operation('GetInboundGuidanceForSKU')
+          .add(
+            'MarketplaceId' => marketplace_id,
+            'SellerSKUList' => seller_skus
+          )
+          .structure!('SellerSKUList', 'Id')
+
+        run
+      end
+
+      # Returns inbound guidance for a list of items by ASIN
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetInboundGuidanceForASIN.html
+      # @param [String] marketplace_id
+      # @param [String] one or more asins
+      # @return [Peddler::XMLParser]
+      def get_inbound_guidance_for_asin(marketplace_id, *asins)
+        operation('GetInboundGuidanceForASIN')
+          .add(
+            'MarketplaceId' => marketplace_id,
+            'ASINList' => asins
+          )
+          .structure!('ASINList', 'Id')
+
+        run
+      end
+
       # Returns the information required to create an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_CreateInboundShipmentPlan.html
@@ -20,10 +54,12 @@ module MWS
       # @return [Peddler::XMLParser]
       def create_inbound_shipment_plan(ship_from_address, inbound_shipment_plan_request_items, opts = {})
         operation('CreateInboundShipmentPlan')
-          .add(opts.update(
-                 'ShipFromAddress' => ship_from_address,
-                 'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
-          ))
+          .add(
+            opts.update(
+              'ShipFromAddress' => ship_from_address,
+              'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
+            )
+          )
           .structure!('InboundShipmentPlanRequestItems', 'member')
 
         run
@@ -38,7 +74,13 @@ module MWS
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def create_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
-        build_inbound_shipment_operation('CreateInboundShipment', shipment_id, inbound_shipment_header, opts)
+        build_inbound_shipment_operation(
+          'CreateInboundShipment',
+          shipment_id,
+          inbound_shipment_header,
+          opts
+        )
+
         run
       end
 
@@ -51,40 +93,78 @@ module MWS
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def update_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
-        build_inbound_shipment_operation('UpdateInboundShipment', shipment_id, inbound_shipment_header, opts)
+        build_inbound_shipment_operation(
+          'UpdateInboundShipment',
+          shipment_id,
+          inbound_shipment_header,
+          opts
+        )
+
         run
       end
 
       # Returns pre-order information, including dates
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPreorderInfo.html
-      # @raise [NotImplementedError]
-      def get_preorder_info
-        raise NotImplementedError
+      # @param [String] shipment_id
+      # @return [Peddler::XMLParser]
+      def get_preorder_info(shipment_id)
+        operation('GetPreorderInfo')
+          .add(
+            'ShipmentId' => shipment_id
+          )
+
+        run
       end
 
       # Confirms a shipment for pre-order
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_ConfirmPreorder.html
-      # @raise [NotImplementedError]
-      def confirm_preorder
-        raise NotImplementedError
+      # @param [String] shipment_id
+      # @param [#iso8601] need_by_date
+      # @return [Peddler::XMLParser]
+      def confirm_preorder(shipment_id, need_by_date)
+        operation('ConfirmPreorder')
+          .add(
+            'ShipmentId' => shipment_id,
+            'NeedByDate' => need_by_date
+          )
+
+        run
       end
 
       # Returns labeling requirements and item preparation instructions to help you prepare items for an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForSKU.html
-      # @raise [NotImplementedError]
-      def get_prep_instructions_for_sku
-        raise NotImplementedError
+      # @param [String] ship_to_country_code
+      # @param [String] one or more seller_skus
+      # @return [Peddler::XMLParser]
+      def get_prep_instructions_for_sku(ship_to_country_code, *seller_skus)
+        operation('GetPrepInstructionsForSKU')
+          .add(
+            'SellerSKUList' => seller_skus,
+            'ShipToCountryCode' => ship_to_country_code
+          )
+          .structure!('SellerSKUList', 'Id')
+
+        run
       end
 
       # Returns item preparation instructions to help with item sourcing decisions
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForASIN.html
-      # @raise [NotImplementedError]
-      def get_prep_instructions_for_asin
-        raise NotImplementedError
+      # @param [String] ship_to_country_code
+      # @param [String] one or more asins
+      # @return [Peddler::XMLParser]
+      def get_prep_instructions_for_asin(ship_to_country_code, *asins)
+        operation('GetPrepInstructionsForASIN')
+          .add(
+            'ASINList' => asins,
+            'ShipToCountryCode' => ship_to_country_code
+          )
+          .structure!('ASINList', 'Id')
+
+        run
       end
 
       # Sends transportation information to Amazon about an inbound shipment
@@ -173,17 +253,38 @@ module MWS
       # Returns unique package labels for faster and more accurate shipment processing at the Amazon fulfillment centre
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetUniquePackageLabels.html
-      # @raise [NotImplementedError]
-      def get_unique_package_labels
-        raise NotImplementedError
+      # @param [String] shipment_id
+      # @param [String] page_type
+      # @param [Array<String>] package_labels_to_print
+      # @return [Peddler::XMLParser]
+      def get_unique_package_labels(shipment_id, page_type, package_labels_to_print)
+        operation('GetUniquePackageLabels')
+          .add(
+            'ShipmentId' => shipment_id,
+            'PageType' => page_type,
+            'PackageLabelsToPrint' => package_labels_to_print
+          )
+          .structure!('PackageLabelsToPrint', 'member')
+
+        run
       end
 
       # Returns pallet labels
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPalletLabels.html
-      # @raise [NotImplementedError]
-      def get_pallet_labels
-        raise NotImplementedError
+      # @param [String] shipment_id
+      # @param [String] page_type
+      # @param [Integer] number_of_pallets
+      # @return [Peddler::XMLParser]
+      def get_pallet_labels(shipment_id, page_type, number_of_pallets)
+        operation('GetPalletLabels')
+          .add(
+            'ShipmentId' => shipment_id,
+            'PageType' => page_type,
+            'NumberOfPallets' => number_of_pallets
+          )
+
+        run
       end
 
       # Returns PDF document data for printing a bill of lading for an inbound

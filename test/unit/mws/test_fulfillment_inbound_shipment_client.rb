@@ -6,6 +6,34 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     @client = MWS::FulfillmentInboundShipment::Client.new
   end
 
+  def test_gets_inbound_guidance_for_sku
+    operation = {
+      'Action' => 'GetInboundGuidanceForSKU',
+      'MarketplaceId' => 'ATVPDKIKX0DER',
+      'SellerSKUList.Id.1' => 'us001'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_inbound_guidance_for_sku('ATVPDKIKX0DER', 'us001')
+    end
+
+    assert_equal operation, @client.operation
+  end
+
+  def test_gets_inbound_guidance_for_asin
+    operation = {
+      'Action' => 'GetInboundGuidanceForASIN',
+      'MarketplaceId' => 'ATVPDKIKX0DER',
+      'ASINList.Id.1' => 'B00005N5PF'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_inbound_guidance_for_asin('ATVPDKIKX0DER', 'B00005N5PF')
+    end
+
+    assert_equal operation, @client.operation
+  end
+
   def test_creates_inbound_shipment_plan
     operation = {
       'Action' => 'CreateInboundShipmentPlan',
@@ -51,27 +79,59 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   end
 
   def test_gets_preorder_info
-    assert_raises(NotImplementedError) do
-      @client.get_preorder_info
+    operation = {
+      'Action' => 'GetPreorderInfo',
+      'ShipmentId' => '1'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_preorder_info('1')
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_confirms_preorder
-    assert_raises(NotImplementedError) do
-      @client.confirm_preorder
+    operation = {
+      'Action' => 'ConfirmPreorder',
+      'ShipmentId' => '1',
+      'NeedByDate' => '2015-12-27'
+    }
+
+    @client.stub(:run, nil) do
+      @client.confirm_preorder('1', Date.new(2015, 12, 27))
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_gets_prep_instructions_for_sku
-    assert_raises(NotImplementedError) do
-      @client.get_prep_instructions_for_sku
+    operation = {
+      'Action' => 'GetPrepInstructionsForSKU',
+      'ShipToCountryCode' => 'US',
+      'SellerSKUList.Id.1' => 'ca_001'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_prep_instructions_for_sku('US', 'ca_001')
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_gets_prep_instructions_for_asin
-    assert_raises(NotImplementedError) do
-      @client.get_prep_instructions_for_asin
+    operation = {
+      'Action' => 'GetPrepInstructionsForASIN',
+      'ShipToCountryCode' => 'US',
+      'ASINList.Id.1' => 'B00005N5PF',
+      'ASINList.Id.2' => 'B0INVALIDF'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_prep_instructions_for_asin('US', 'B00005N5PF', 'B0INVALIDF')
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_puts_transport_content_with_package_list
@@ -193,15 +253,40 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   end
 
   def test_gets_unique_package_labels
-    assert_raises NotImplementedError do
-      @client.get_unique_package_labels
+    operation = {
+      'Action' => 'GetUniquePackageLabels',
+      'ShipmentId' => 'FBAQFGQZ',
+      'PageType' => 'PackageLabel_Letter_6',
+      'PackageLabelsToPrint.member.1' => 'CartonA',
+      'PackageLabelsToPrint.member.2' => 'CartonB',
+      'PackageLabelsToPrint.member.3' => 'CartonC',
+      'PackageLabelsToPrint.member.4' => 'CartonD'
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_unique_package_labels(
+        'FBAQFGQZ',
+        'PackageLabel_Letter_6',
+        %w(CartonA CartonB CartonC CartonD)
+      )
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_gets_pallet_labels
-    assert_raises NotImplementedError do
-      @client.get_pallet_labels
+    operation = {
+      'Action' => 'GetPalletLabels',
+      'ShipmentId' => 'FBAQFGQZ',
+      'PageType' => 'PackageLabel_Letter_4',
+      'NumberOfPallets' => 4
+    }
+
+    @client.stub(:run, nil) do
+      @client.get_pallet_labels('FBAQFGQZ', 'PackageLabel_Letter_4', 4)
     end
+
+    assert_equal operation, @client.operation
   end
 
   def test_gets_bill_of_lading
