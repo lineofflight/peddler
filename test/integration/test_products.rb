@@ -52,7 +52,7 @@ class TestProducts < IntegrationTest
   end
 
   def test_gets_my_fees_estimate
-    clients.each_with_index do |client, index|
+    clients.each do |client|
       res = client.get_my_fees_estimate(
         marketplace_id: client.primary_marketplace_id,
         id_type: 'ASIN',
@@ -63,7 +63,7 @@ class TestProducts < IntegrationTest
             amount: 100
           }
         },
-        identifier: index,
+        identifier: '123',
         is_amazon_fulfilled: false
       )
       assert res
