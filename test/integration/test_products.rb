@@ -68,9 +68,7 @@ class TestProducts < IntegrationTest
       )
       assert res
         .parse
-        .fetch('FeesEstimateResultList')
-        .fetch('FeesEstimateResult')
-        .fetch('FeesEstimate')
+        .dig('FeesEstimateResultList', 'FeesEstimateResult', 'FeesEstimate')
     end
   end
 
