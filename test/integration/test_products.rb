@@ -51,10 +51,49 @@ class TestProducts < IntegrationTest
     end
   end
 
+  def test_gets_my_fees_estimate
+    clients.each_with_index do |client, index|
+      res = client.get_my_fees_estimate(
+        marketplace_id: client.primary_marketplace_id,
+        id_type: 'ASIN',
+        id_value: '1780935374',
+        price_to_estimate_fees: {
+          listing_price: {
+            currency_code: currency_code_for(client.primary_marketplace_id),
+            amount: 100
+          }
+        },
+        identifier: index,
+        is_amazon_fulfilled: false
+      )
+      assert res
+        .parse
+        .fetch('FeesEstimateResultList')
+        .fetch('FeesEstimateResult')
+        .fetch('FeesEstimate')
+    end
+  end
+
   def test_gets_service_status
     clients.each do |client|
       res = client.get_service_status
       refute_empty res.parse
     end
+  end
+
+  private
+
+  CURRENCY_CODES = {
+    'A2EUQ1WTGCTBG2' => 'CAD',
+    'AAHKV2X7AFYLW'  => 'CNY',
+    'A1F83G8C2ARO7P' => 'GBP',
+    'A21TJRUUN4KGV'  => 'INR',
+    'A1VC38T7YXB528' => 'JPY',
+    'A1AM78C64UM0Y8' => 'MXN',
+    'ATVPDKIKX0DER'  => 'USD'
+  }.freeze
+
+  def currency_code_for(marketplace_id)
+    CURRENCY_CODES.fetch(marketplace_id, 'EUR')
   end
 end
