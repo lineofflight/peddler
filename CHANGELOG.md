@@ -12,6 +12,7 @@ FullfillmentInboundShipment client.
 
 ### Fixed
 - Don't camelise symbol keys with capital letters.
+- Parse XML reports.
 
 ## [1.4.1] - 2016-09-03
 ### Changed
