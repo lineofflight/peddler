@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.5.0] - 2017-01-13
 ### Added
 - Add GetInboundGuidanceForSKU, GetInboundGuidanceForASIN, GetPreorderInfo,
 ConfirmPreorder, GetPrepInstructionsForSKU, GetPrepInstructionsForASIN,
