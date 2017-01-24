@@ -1,0 +1,437 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A2EUQ1WTGCTBG2&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A52Z&Version=2011-10-01&Signature=DSHxap5qc5qTI6er49ZWR1zu224eQa6k8o2WdVcjrR4%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:09:53 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '5760.0'
+      x-mws-quota-remaining:
+      - '5760.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T21:03:00.000Z'
+      x-mws-response-context:
+      - pvHOiEsRcEJKwAM7u6CyGxRtEYhuRfJjADe8zQkL5WprSx7n+BkeHF+zLUSylTsK2SL4jXc0UXR1
+        LOYlfQUAkQ==, A3jlROE3EG0/l5keMxUYMUD2q+fV86/8Dn2WSfSmX1WB3NNDFzfYHEkSsOU4GJFWaT5yoBqTrVUj
+        iC4NAv/pZg==
+      x-amz-request-id:
+      - df01be1f-e0d7-4f9b-8f10-8e0c0bf742b8
+      x-mws-request-id:
+      - df01be1f-e0d7-4f9b-8f10-8e0c0bf742b8
+      x-mws-timestamp:
+      - '2017-01-24T20:09:53.368Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkEyRVVRMVdUR0NUQkcyPC9NYXJrZXRwbGFjZUlkPjxBU0lOPjE5Mzc1NjEyMDg8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlbi1DQSI+PG5zMjpBdXRob3I+R3VhdHRhcmksIEbDqWxpeDwvbnMyOkF1dGhvcj48bnMyOkJpbmRpbmc+UGFwZXJiYWNrPC9uczI6QmluZGluZz48bnMyOkNyZWF0b3IgUm9sZT0iRWRpdG9yIj5HZW5vc2tvLCBHYXJ5PC9uczI6Q3JlYXRvcj48bnMyOkNyZWF0b3IgUm9sZT0iRWRpdG9yIj5IZXRyaWNrLCBKYXk8L25zMjpDcmVhdG9yPjxuczI6SXRlbURpbWVuc2lvbnM+PG5zMjpIZWlnaHQgVW5pdHM9ImluY2hlcyI+OC4wMDwvbnMyOkhlaWdodD48bnMyOkxlbmd0aCBVbml0cz0iaW5jaGVzIj41LjAwPC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+MC40MDwvbnMyOldpZHRoPjxuczI6V2VpZ2h0IFVuaXRzPSJwb3VuZHMiPjAuMDA8L25zMjpXZWlnaHQ+PC9uczI6SXRlbURpbWVuc2lvbnM+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPk9yaWdpbmFsIExhbmd1YWdlPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48bnMyOkxhbmd1YWdlPjxuczI6TmFtZT5lbmdsaXNoPC9uczI6TmFtZT48bnMyOlR5cGU+VW5rbm93bjwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TGlzdFByaWNlPjxuczI6QW1vdW50PjMyLjM1PC9uczI6QW1vdW50PjxuczI6Q3VycmVuY3lDb2RlPkNBRDwvbnMyOkN1cnJlbmN5Q29kZT48L25zMjpMaXN0UHJpY2U+PG5zMjpNYW51ZmFjdHVyZXI+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOk51bWJlck9mSXRlbXM+MTwvbnMyOk51bWJlck9mSXRlbXM+PG5zMjpOdW1iZXJPZlBhZ2VzPjE1NDwvbnMyOk51bWJlck9mUGFnZXM+PG5zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4wLjQwPC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjguMDA8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj41LjAwPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC40NTwvbnMyOldlaWdodD48L25zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOlBhY2thZ2VRdWFudGl0eT4xPC9uczI6UGFja2FnZVF1YW50aXR5PjxuczI6UGFydE51bWJlcj4zPC9uczI6UGFydE51bWJlcj48bnMyOlByb2R1Y3RHcm91cD5Cb29rPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkFCSVNfQk9PSzwvbnMyOlByb2R1Y3RUeXBlTmFtZT48bnMyOlB1YmxpY2F0aW9uRGF0ZT4yMDE1LTAyLTAxPC9uczI6UHVibGljYXRpb25EYXRlPjxuczI6UHVibGlzaGVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHA6Ly9lY3guaW1hZ2VzLWFtYXpvbi5jb20vaW1hZ2VzL0kvNDFtcnplb2p1N0wuX1NMNzVfLmpwZzwvbnMyOlVSTD48bnMyOkhlaWdodCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOkhlaWdodD48bnMyOldpZHRoIFVuaXRzPSJwaXhlbHMiPjQ3PC9uczI6V2lkdGg+PC9uczI6U21hbGxJbWFnZT48bnMyOlN0dWRpbz5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+TWFjaGluaWMgRXJvczogV3JpdGluZ3Mgb24gSmFwYW48L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHMvPjxTYWxlc1JhbmtpbmdzPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPmJvb2tfZGlzcGxheV9vbl93ZWJzaXRlPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz41MTQzMDI8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+OTMwMDQwPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz4yMDUzOTwvUmFuaz48L1NhbGVzUmFuaz48U2FsZXNSYW5rPjxQcm9kdWN0Q2F0ZWdvcnlJZD45MzM0ODQ8L1Byb2R1Y3RDYXRlZ29yeUlkPjxSYW5rPjM3MDA1PC9SYW5rPjwvU2FsZXNSYW5rPjwvU2FsZXNSYW5raW5ncz48L1Byb2R1Y3Q+PC9Qcm9kdWN0cz48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxSZXNwb25zZU1ldGFkYXRhPjxSZXF1ZXN0SWQ+ZGYwMWJlMWYtZTBkNy00ZjliLThmMTAtOGUwYzBiZjc0MmI4PC9SZXF1ZXN0SWQ+PC9SZXNwb25zZU1ldGFkYXRhPjwvTGlzdE1hdGNoaW5nUHJvZHVjdHNSZXNwb25zZT4=
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:09:53 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1AM78C64UM0Y8&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A53Z&Version=2011-10-01&Signature=eSGu7rbu2wGjApxr7JmGSxcx2%2F9jZ7qWVKcrHVq9YQQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:09:54 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '720.0'
+      x-mws-quota-remaining:
+      - '719.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:15:00.000Z'
+      x-mws-response-context:
+      - 9iyGqGUG2PhOphwrMz8KZ+t9trAL/sBDXGoLjZlvEAJ/ogQZvlRZNynvAEX8Kxn7GjuMDnHrW46k
+        jPz7Ym1nJg==, AmZOgXATQMM5IqV7zS+lhFitdMTpEyytTjQ2osIMuXXo1YtvxL6L+gioXlN2KVSVd4f3ovPJaNFk
+        n9peJVX7dw==
+      x-amz-request-id:
+      - 01b46ba3-86f2-421b-b00b-dd15fb553b78
+      x-mws-request-id:
+      - 01b46ba3-86f2-421b-b00b-dd15fb553b78
+      x-mws-timestamp:
+      - '2017-01-24T20:09:54.513Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExQU03OEM2NFVNMFk4PC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwMTZWTkRYSlk8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlcy1NWCI+PG5zMjpCaW5kaW5nPkVkaWNpw7NuIEtpbmRsZTwvbnMyOkJpbmRpbmc+PG5zMjpDcmVhdG9yIFJvbGU9IkF1dG9yIj5HdWF0dGFyaSwgRsOpbGl4PC9uczI6Q3JlYXRvcj48bnMyOkNyZWF0b3IgUm9sZT0iUmVkYWN0b3IiPkdlbm9za28sIEdhcnk8L25zMjpDcmVhdG9yPjxuczI6Q3JlYXRvciBSb2xlPSJSZWRhY3RvciI+SGV0cmljaywgSmF5PC9uczI6Q3JlYXRvcj48bnMyOkZvcm1hdD5lQm9vayBLaW5kbGU8L25zMjpGb3JtYXQ+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpNYW51ZmFjdHVyZXI+PG5zMjpOdW1iZXJPZlBhZ2VzPjE1NDwvbnMyOk51bWJlck9mUGFnZXM+PG5zMjpQcm9kdWN0R3JvdXA+ZUJvb2tzPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkFCSVNfRUJPT0tTPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMTEtMDE8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOlB1Ymxpc2hlcj48bnMyOlJlbGVhc2VEYXRlPjIwMTUtMTEtMDE8L25zMjpSZWxlYXNlRGF0ZT48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cDovL2VjeC5pbWFnZXMtYW1hem9uLmNvbS9pbWFnZXMvSS8zMVFRWEpSdEp6TC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NDc8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5NYWNoaW5pYyBFcm9zOiBXcml0aW5ncyBvbiBKYXBhbiAoVW5pdm9jYWwpPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjwvUHJvZHVjdHM+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3VsdD48UmVzcG9uc2VNZXRhZGF0YT48UmVxdWVzdElkPjAxYjQ2YmEzLTg2ZjItNDIxYi1iMDBiLWRkMTVmYjU1M2I3ODwvUmVxdWVzdElkPjwvUmVzcG9uc2VNZXRhZGF0YT48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2U+
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:09:56 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A13V1IB3VIYZZH&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A56Z&Version=2011-10-01&Signature=In8kAHee9I3%2FeMsmtwWEn5zjZlnWtw20l7GvUXG2Wb8%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:11 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '5760.0'
+      x-mws-quota-remaining:
+      - '5759.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:47:00.000Z'
+      x-mws-response-context:
+      - q/Rb6SP5wy4HyBKvpw2UzpcrG6eYDSENfVEqreFefe7j6F94/3NxC8x9EK+n0V/A4X8aqE+Kuz4A
+        N8Jqa/CRFA==, K/UEOg739gvtzmNvadOlu4TZuo0QF+/g4AgMkChwfbxX5aoLK0QiJpqfBb94RDNlBdaJPsH4Eu+N
+        YZQ6W3Vw8A==
+      x-amz-request-id:
+      - 0fcdb93b-00d2-4849-a0f3-0c7902fd20ad
+      x-mws-request-id:
+      - 0fcdb93b-00d2-4849-a0f3-0c7902fd20ad
+      x-mws-timestamp:
+      - '2017-01-24T20:10:11.451Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExM1YxSUIzVklZWlpIPC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwMTZWTkRYSlk8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJmci1GUiI+PG5zMjpCaW5kaW5nPkZvcm1hdCBLaW5kbGU8L25zMjpCaW5kaW5nPjxuczI6Q3JlYXRvciBSb2xlPSJBdXRldXIiPkd1YXR0YXJpLCBGw6lsaXg8L25zMjpDcmVhdG9yPjxuczI6Q3JlYXRvciBSb2xlPSJTb3VzIGxhIGRpcmVjdGlvbiBkZSI+R2Vub3NrbywgR2FyeTwvbnMyOkNyZWF0b3I+PG5zMjpDcmVhdG9yIFJvbGU9IlNvdXMgbGEgZGlyZWN0aW9uIGRlIj5IZXRyaWNrLCBKYXk8L25zMjpDcmVhdG9yPjxuczI6Rm9ybWF0PkVib29rIEtpbmRsZTwvbnMyOkZvcm1hdD48bnMyOkxhYmVsPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpMYWJlbD48bnMyOkxhbmd1YWdlcz48bnMyOkxhbmd1YWdlPjxuczI6TmFtZT5lbmdsaXNoPC9uczI6TmFtZT48bnMyOlR5cGU+UHVibGlzaGVkPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48L25zMjpMYW5ndWFnZXM+PG5zMjpNYW51ZmFjdHVyZXI+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOk51bWJlck9mUGFnZXM+MTU0PC9uczI6TnVtYmVyT2ZQYWdlcz48bnMyOlByb2R1Y3RHcm91cD5lQm9va3M8L25zMjpQcm9kdWN0R3JvdXA+PG5zMjpQcm9kdWN0VHlwZU5hbWU+QUJJU19FQk9PS1M8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaWNhdGlvbkRhdGU+MjAxNS0xMS0wMTwvbnMyOlB1YmxpY2F0aW9uRGF0ZT48bnMyOlB1Ymxpc2hlcj5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6UHVibGlzaGVyPjxuczI6UmVsZWFzZURhdGU+MjAxNS0xMS0wMTwvbnMyOlJlbGVhc2VEYXRlPjxuczI6U21hbGxJbWFnZT48bnMyOlVSTD5odHRwOi8vZWN4LmltYWdlcy1hbWF6b24uY29tL2ltYWdlcy9JLzMxUVFYSlJ0SnpMLl9TTDc1Xy5qcGc8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj40NzwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOlN0dWRpbz48bnMyOlRpdGxlPk1hY2hpbmljIEVyb3M6IFdyaXRpbmdzIG9uIEphcGFuPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExM1YxSUIzVklZWlpIPC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwMFhWNkNGVTg8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJmci1GUiI+PG5zMjpCaW5kaW5nPkJyb2Now6k8L25zMjpCaW5kaW5nPjxuczI6Q3JlYXRvciBSb2xlPSJBdXRldXIiPkZlbGl4IEd1YXR0YXJpPC9uczI6Q3JlYXRvcj48bnMyOkxhYmVsPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlVua25vd248L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjwvbnMyOkxhbmd1YWdlcz48bnMyOk1hbnVmYWN0dXJlcj5Vbml2b2NhbCBQdWJsaXNoaW5nIExMQzwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOlByb2R1Y3RHcm91cD5Cb29rPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkJPT0tTXzE5NzNfQU5EX0xBVEVSPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMDItMDE8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZyBMTEM8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHA6Ly9lY3guaW1hZ2VzLWFtYXpvbi5jb20vaW1hZ2VzL0kvMzE2ZUFsJTJCZFpPTC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NzA8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+WyhNYWNoaW5pYyBFcm9zOiAzOiBXcml0aW5ncyBvbiBKYXBhbildIFtBdXRob3I6IEZlbGl4IEd1YXR0YXJpXSBwdWJsaXNoZWQgb24gKEZlYnJ1YXJ5LCAyMDE1KTwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3MvPjwvUHJvZHVjdD48L1Byb2R1Y3RzPjwvTGlzdE1hdGNoaW5nUHJvZHVjdHNSZXN1bHQ+PFJlc3BvbnNlTWV0YWRhdGE+PFJlcXVlc3RJZD4wZmNkYjkzYi0wMGQyLTQ4NDktYTBmMy0wYzc5MDJmZDIwYWQ8L1JlcXVlc3RJZD48L1Jlc3BvbnNlTWV0YWRhdGE+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlPg==
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:14 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=APJ6JRA9NG5V4&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A14Z&Version=2011-10-01&Signature=kawicDJtJjLVJVjiyyK6Ib6k2LmjsrMeq1LSjZ4vKqc%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:16 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '2880.0'
+      x-mws-quota-remaining:
+      - '2879.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:54:00.000Z'
+      x-mws-response-context:
+      - hds7bzPb8i+U2G+Rc38pyvPD96PXYAcc9BqJP/UZcteNqIpozZtvfP1MOjtggqL4xYUZAMT3OTNZ
+        16SEKleEDA==, EaJI7QkGhrYwSbv+wq1DvsABZMXln8TDDq1XYhbiAn2Qd4vTZhz/ZYEq3g4A00OoIqtCDpuU1rAW
+        DFSQcd5THg==
+      x-amz-request-id:
+      - f34c9a84-337e-4757-ad5d-4f2ac231f575
+      x-mws-request-id:
+      - f34c9a84-337e-4757-ad5d-4f2ac231f575
+      x-mws-timestamp:
+      - '2017-01-24T20:10:16.186Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?>
+        <ListMatchingProductsResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><ListMatchingProductsResult><Products xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Product><Identifiers><MarketplaceASIN><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><ASIN>1937561208</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="it-IT"><ns2:Binding>Copertina flessibile</ns2:Binding><ns2:Creator Role="Autore">Guattari, Felix</ns2:Creator><ns2:Creator Role="a cura di">Genosko, Gary</ns2:Creator><ns2:Creator Role="a cura di">Hetrick, Jay</ns2:Creator><ns2:ItemDimensions><ns2:Height Units="inches">8.00</ns2:Height><ns2:Length Units="inches">5.00</ns2:Length><ns2:Width Units="inches">0.40</ns2:Width><ns2:Weight Units="pounds">0.00</ns2:Weight></ns2:ItemDimensions><ns2:Label>Univocal</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Pubblicato</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Lingua originale</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Sconosciuto</ns2:Type></ns2:Language></ns2:Languages><ns2:Manufacturer>Univocal</ns2:Manufacturer><ns2:NumberOfPages>154</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.40</ns2:Height><ns2:Length Units="inches">8.00</ns2:Length><ns2:Width Units="inches">5.00</ns2:Width><ns2:Weight Units="pounds">0.45</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:PartNumber>3</ns2:PartNumber><ns2:ProductGroup>Libro</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2015-02-01</ns2:PublicationDate><ns2:Publisher>Univocal</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/41mrzeoju7L._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">47</ns2:Width></ns2:SmallImage><ns2:Studio>Univocal</ns2:Studio><ns2:Title>Machinic Eros: Writings on Japan</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>english_book_display_on_website</ProductCategoryId><Rank>265351</Rank></SalesRank><SalesRank><ProductCategoryId>509208031</ProductCategoryId><Rank>6660</Rank></SalesRank><SalesRank><ProductCategoryId>509332031</ProductCategoryId><Rank>8624</Rank></SalesRank><SalesRank><ProductCategoryId>451122031</ProductCategoryId><Rank>335358</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>APJ6JRA9NG5V4</MarketplaceId><ASIN>B00XV6CFU8</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="it-IT"><ns2:Binding>Copertina flessibile</ns2:Binding><ns2:Creator Role="Autore">Felix Guattari</ns2:Creator><ns2:Label>Univocal Publishing LLC</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Pubblicato</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Sconosciuto</ns2:Type></ns2:Language></ns2:Languages><ns2:Manufacturer>Univocal Publishing LLC</ns2:Manufacturer><ns2:ProductGroup>Libro</ns2:ProductGroup><ns2:ProductTypeName>BOOKS_1973_AND_LATER</ns2:ProductTypeName><ns2:PublicationDate>2015-02-01</ns2:PublicationDate><ns2:Publisher>Univocal Publishing LLC</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/316eAl%2BdZOL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">70</ns2:Width></ns2:SmallImage><ns2:Studio>Univocal Publishing LLC</ns2:Studio><ns2:Title>[(Machinic Eros: 3: Writings on Japan)] [Author: Felix Guattari] published on (February, 2015)</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings/></Product></Products></ListMatchingProductsResult><ResponseMetadata><RequestId>f34c9a84-337e-4757-ad5d-4f2ac231f575</RequestId></ResponseMetadata></ListMatchingProductsResponse>
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:17 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1RKKUPIHCS9HS&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A17Z&Version=2011-10-01&Signature=VMEIj2K%2Firj%2BKoGIFrZh8C8rGBVLemJQq7QvQUmLhKQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:18 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '2880.0'
+      x-mws-quota-remaining:
+      - '2879.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:11:00.000Z'
+      x-mws-response-context:
+      - hds7bzPb8i+U2G+Rc38pyvPD96PXYAcc9BqJP/UZcteNqIpozZtvfP1MOjtggqL4xYUZAMT3OTNZ
+        16SEKleEDA==, EhyHUaYp2cYgtayL733PlMi6RfXFHCUjGYjhFi3EE6uir7hv2U4/xAEE3vfI7OJcpwgNTLy4DkgR
+        0HOhvRnExQ==
+      x-amz-request-id:
+      - 4fe81f90-bab9-4590-822f-1b31caf2cdc9
+      x-mws-request-id:
+      - 4fe81f90-bab9-4590-822f-1b31caf2cdc9
+      x-mws-timestamp:
+      - '2017-01-24T20:10:18.306Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExUktLVVBJSENTOUhTPC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwMTZWTkRYSlk8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlcy1FUyI+PG5zMjpCaW5kaW5nPlZlcnNpw7NuIEtpbmRsZTwvbnMyOkJpbmRpbmc+PG5zMjpDcmVhdG9yIFJvbGU9IkF1dG9yIj5HdWF0dGFyaSwgRsOpbGl4PC9uczI6Q3JlYXRvcj48bnMyOkNyZWF0b3IgUm9sZT0iUmVkYWN0b3IiPkdlbm9za28sIEdhcnk8L25zMjpDcmVhdG9yPjxuczI6Q3JlYXRvciBSb2xlPSJSZWRhY3RvciI+SGV0cmljaywgSmF5PC9uczI6Q3JlYXRvcj48bnMyOkZvcm1hdD5lQm9vayBLaW5kbGU8L25zMjpGb3JtYXQ+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1YmxpY2FkbzwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpNYW51ZmFjdHVyZXI+PG5zMjpOdW1iZXJPZlBhZ2VzPjE1NDwvbnMyOk51bWJlck9mUGFnZXM+PG5zMjpQcm9kdWN0R3JvdXA+TGlicm8gZGlnaXRhbDwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5BQklTX0VCT09LUzwvbnMyOlByb2R1Y3RUeXBlTmFtZT48bnMyOlB1YmxpY2F0aW9uRGF0ZT4yMDE1LTExLTAxPC9uczI6UHVibGljYXRpb25EYXRlPjxuczI6UHVibGlzaGVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpQdWJsaXNoZXI+PG5zMjpSZWxlYXNlRGF0ZT4yMDE1LTExLTAxPC9uczI6UmVsZWFzZURhdGU+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHA6Ly9lY3guaW1hZ2VzLWFtYXpvbi5jb20vaW1hZ2VzL0kvMzFRUVhKUnRKekwuX1NMNzVfLmpwZzwvbnMyOlVSTD48bnMyOkhlaWdodCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOkhlaWdodD48bnMyOldpZHRoIFVuaXRzPSJwaXhlbHMiPjQ3PC9uczI6V2lkdGg+PC9uczI6U21hbGxJbWFnZT48bnMyOlN0dWRpbz5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+TWFjaGluaWMgRXJvczogV3JpdGluZ3Mgb24gSmFwYW4gKFVuaXZvY2FsKTwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3MvPjwvUHJvZHVjdD48UHJvZHVjdD48SWRlbnRpZmllcnM+PE1hcmtldHBsYWNlQVNJTj48TWFya2V0cGxhY2VJZD5BMVJLS1VQSUhDUzlIUzwvTWFya2V0cGxhY2VJZD48QVNJTj5CMDBYVjZDRlU4PC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PEF0dHJpYnV0ZVNldHM+PG5zMjpJdGVtQXR0cmlidXRlcyB4bWw6bGFuZz0iZXMtRVMiPjxuczI6QmluZGluZz5UYXBhIGJsYW5kYTwvbnMyOkJpbmRpbmc+PG5zMjpDcmVhdG9yIFJvbGU9IkF1dG9yIj5GZWxpeCBHdWF0dGFyaTwvbnMyOkNyZWF0b3I+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nIExMQzwvbnMyOkxhYmVsPjxuczI6TGFuZ3VhZ2VzPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5QdWJsaWNhZG88L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5EZXNjb25vY2lkbzwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6TWFudWZhY3R1cmVyPjxuczI6UHJvZHVjdEdyb3VwPkxpYnJvPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkJPT0tTXzE5NzNfQU5EX0xBVEVSPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMDItMDE8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZyBMTEM8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHA6Ly9lY3guaW1hZ2VzLWFtYXpvbi5jb20vaW1hZ2VzL0kvMzE2ZUFsJTJCZFpPTC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NzA8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+WyhNYWNoaW5pYyBFcm9zOiAzOiBXcml0aW5ncyBvbiBKYXBhbildIFtBdXRob3I6IEZlbGl4IEd1YXR0YXJpXSBwdWJsaXNoZWQgb24gKEZlYnJ1YXJ5LCAyMDE1KTwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3MvPjwvUHJvZHVjdD48L1Byb2R1Y3RzPjwvTGlzdE1hdGNoaW5nUHJvZHVjdHNSZXN1bHQ+PFJlc3BvbnNlTWV0YWRhdGE+PFJlcXVlc3RJZD40ZmU4MWY5MC1iYWI5LTQ1OTAtODIyZi0xYjMxY2FmMmNkYzk8L1JlcXVlc3RJZD48L1Jlc3BvbnNlTWV0YWRhdGE+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlPg==
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:18 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1F83G8C2ARO7P&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A18Z&Version=2011-10-01&Signature=L9tKV%2BHiskVVuxS2CvR1m31PnYIZCnSSaggYAi%2F%2B4ys%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:18 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '5760.0'
+      x-mws-quota-remaining:
+      - '5760.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T21:07:00.000Z'
+      x-mws-response-context:
+      - XwJQWr2IMJod9zMacDxbcZ9YqUIPvmo7DCgaNt2NqdE6Rto374EYnnDBcNOPFWpvfanHdWwhL2Wl
+        C/5DW5uunw==, myARUo2Ge+yroFCiPkYF+9GePmR+ChxX5j3g/CgHOLdkYjma9ZRvcGeO4+oTjwWBNT/06Z7B+29I
+        +6axZNwUmQ==
+      x-amz-request-id:
+      - 32aa93e0-bd34-4561-a687-dca4021b72b2
+      x-mws-request-id:
+      - 32aa93e0-bd34-4561-a687-dca4021b72b2
+      x-mws-timestamp:
+      - '2017-01-24T20:10:18.730Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExRjgzRzhDMkFSTzdQPC9NYXJrZXRwbGFjZUlkPjxBU0lOPjE5Mzc1NjEyMDg8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlbi1HQiI+PG5zMjpBdXRob3I+R3VhdHRhcmksIEZlbGl4PC9uczI6QXV0aG9yPjxuczI6QmluZGluZz5QYXBlcmJhY2s8L25zMjpCaW5kaW5nPjxuczI6QnJhbmQ+VW5pdm9jYWwgUHVibGlzaGluZyBMTEM8L25zMjpCcmFuZD48bnMyOkNyZWF0b3IgUm9sZT0iRWRpdG9yIj5HZW5vc2tvLCBHYXJ5PC9uczI6Q3JlYXRvcj48bnMyOkNyZWF0b3IgUm9sZT0iRWRpdG9yIj5IZXRyaWNrLCBKYXk8L25zMjpDcmVhdG9yPjxuczI6SXRlbURpbWVuc2lvbnM+PG5zMjpIZWlnaHQgVW5pdHM9ImluY2hlcyI+OC4wMDwvbnMyOkhlaWdodD48bnMyOkxlbmd0aCBVbml0cz0iaW5jaGVzIj41LjAwPC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+MC40MDwvbnMyOldpZHRoPjxuczI6V2VpZ2h0IFVuaXRzPSJwb3VuZHMiPjAuMDA8L25zMjpXZWlnaHQ+PC9uczI6SXRlbURpbWVuc2lvbnM+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nIExMQzwvbnMyOkxhYmVsPjxuczI6TGFuZ3VhZ2VzPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5QdWJsaXNoZWQ8L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5PcmlnaW5hbCBMYW5ndWFnZTwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlVua25vd248L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjwvbnMyOkxhbmd1YWdlcz48bnMyOkxpc3RQcmljZT48bnMyOkFtb3VudD4yMC4zMTwvbnMyOkFtb3VudD48bnMyOkN1cnJlbmN5Q29kZT5HQlA8L25zMjpDdXJyZW5jeUNvZGU+PC9uczI6TGlzdFByaWNlPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6TWFudWZhY3R1cmVyPjxuczI6TnVtYmVyT2ZJdGVtcz4xPC9uczI6TnVtYmVyT2ZJdGVtcz48bnMyOk51bWJlck9mUGFnZXM+MTUwPC9uczI6TnVtYmVyT2ZQYWdlcz48bnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjAuNDA8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+OC4wMDwvbnMyOkxlbmd0aD48bnMyOldpZHRoIFVuaXRzPSJpbmNoZXMiPjUuMDA8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4wLjQ1PC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPjM8L25zMjpQYXJ0TnVtYmVyPjxuczI6UHJvZHVjdEdyb3VwPkJvb2s8L25zMjpQcm9kdWN0R3JvdXA+PG5zMjpQcm9kdWN0VHlwZU5hbWU+QUJJU19CT09LPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMDEtMDk8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZyBMTEM8L25zMjpQdWJsaXNoZXI+PG5zMjpSZWxlYXNlRGF0ZT4yMDE1LTAxLTA5PC9uczI6UmVsZWFzZURhdGU+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHA6Ly9lY3guaW1hZ2VzLWFtYXpvbi5jb20vaW1hZ2VzL0kvNDFtcnplb2p1N0wuX1NMNzVfLmpwZzwvbnMyOlVSTD48bnMyOkhlaWdodCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOkhlaWdodD48bnMyOldpZHRoIFVuaXRzPSJwaXhlbHMiPjQ3PC9uczI6V2lkdGg+PC9uczI6U21hbGxJbWFnZT48bnMyOlN0dWRpbz5Vbml2b2NhbCBQdWJsaXNoaW5nIExMQzwvbnMyOlN0dWRpbz48bnMyOlRpdGxlPk1hY2hpbmljIEVyb3M6IDM6IFdyaXRpbmdzIG9uIEphcGFuIChVbml2b2NhbCk8L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHMvPjxTYWxlc1JhbmtpbmdzPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPmJvb2tfZGlzcGxheV9vbl93ZWJzaXRlPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz4xMzY3MTk8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+MjY2Nzg4PC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz42Mzk8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+Mjc2MzE1PC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz4zODg5PC9SYW5rPjwvU2FsZXNSYW5rPjwvU2FsZXNSYW5raW5ncz48L1Byb2R1Y3Q+PFByb2R1Y3Q+PElkZW50aWZpZXJzPjxNYXJrZXRwbGFjZUFTSU4+PE1hcmtldHBsYWNlSWQ+QTFGODNHOEMyQVJPN1A8L01hcmtldHBsYWNlSWQ+PEFTSU4+QjAwWFY2Q0ZVODwvQVNJTj48L01hcmtldHBsYWNlQVNJTj48L0lkZW50aWZpZXJzPjxBdHRyaWJ1dGVTZXRzPjxuczI6SXRlbUF0dHJpYnV0ZXMgeG1sOmxhbmc9ImVuLUdCIj48bnMyOkF1dGhvcj5GZWxpeCBHdWF0dGFyaTwvbnMyOkF1dGhvcj48bnMyOkJpbmRpbmc+UGFwZXJiYWNrPC9uczI6QmluZGluZz48bnMyOkxhYmVsPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlVua25vd248L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjwvbnMyOkxhbmd1YWdlcz48bnMyOk1hbnVmYWN0dXJlcj5Vbml2b2NhbCBQdWJsaXNoaW5nIExMQzwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOlByb2R1Y3RHcm91cD5Cb29rPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkJPT0tTXzE5NzNfQU5EX0xBVEVSPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMDItMDE8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZyBMTEM8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHA6Ly9lY3guaW1hZ2VzLWFtYXpvbi5jb20vaW1hZ2VzL0kvMzE2ZUFsJTJCZFpPTC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NzA8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmcgTExDPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+WyhNYWNoaW5pYyBFcm9zOiAzOiBXcml0aW5ncyBvbiBKYXBhbildIFtBdXRob3I6IEZlbGl4IEd1YXR0YXJpXSBwdWJsaXNoZWQgb24gKEZlYnJ1YXJ5LCAyMDE1KTwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3MvPjwvUHJvZHVjdD48UHJvZHVjdD48SWRlbnRpZmllcnM+PE1hcmtldHBsYWNlQVNJTj48TWFya2V0cGxhY2VJZD5BMUY4M0c4QzJBUk83UDwvTWFya2V0cGxhY2VJZD48QVNJTj5CMDFBMEJWVjkyPC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PEF0dHJpYnV0ZVNldHM+PG5zMjpJdGVtQXR0cmlidXRlcyB4bWw6bGFuZz0iZW4tR0IiPjxuczI6QmluZGluZz5QYXBlcmJhY2s8L25zMjpCaW5kaW5nPjxuczI6UHJvZHVjdEdyb3VwPkJvb2s8L25zMjpQcm9kdWN0R3JvdXA+PG5zMjpQcm9kdWN0VHlwZU5hbWU+Qk9PS1NfMTk3M19BTkRfTEFURVI8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaWNhdGlvbkRhdGU+MTY1Ni0wMS0wMTwvbnMyOlB1YmxpY2F0aW9uRGF0ZT48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cDovL2VjeC5pbWFnZXMtYW1hem9uLmNvbS9pbWFnZXMvSS80MXBrc0ZlNnA3TC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NDc8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6VGl0bGU+TWFjaGluaWMgRXJvczogV3JpdGluZ3Mgb24gSmFwYW4gKFVuaXZvY2FsKSBieSBGw6lsaXggR3VhdHRhcmkgKDIwMTUtMDItMDEpPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjwvUHJvZHVjdHM+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3VsdD48UmVzcG9uc2VNZXRhZGF0YT48UmVxdWVzdElkPjMyYWE5M2UwLWJkMzQtNDU2MS1hNjg3LWRjYTQwMjFiNzJiMjwvUmVxdWVzdElkPjwvUmVzcG9uc2VNZXRhZGF0YT48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2U+
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:19 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1VC38T7YXB528&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A19Z&Version=2011-10-01&Signature=FqsE5bRYGhSB2lgsqMHyjCidgw2s9oF7jQyR4gb8pfA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:21 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '11520.0'
+      x-mws-quota-remaining:
+      - '11519.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:47:00.000Z'
+      x-mws-response-context:
+      - GEPOmeeh3IjU3wBB3lzwevZQoJnGBwkdnvz4ZTAF1Ctw3+kOaU1J69QDIt27CMUqXrV61xsO296W
+        OfPb2DBSrA==, hefYpW3FnPHSThLhgITiCfm2/CvtBVYn6t4xMgbM1YE8AkKQsJkK3elosLakBp7Ikno3YwplYmJy
+        pQUPP6dO8A==
+      x-amz-request-id:
+      - 99ec68da-77e1-4302-8a6a-3accc7b1ade0
+      x-mws-request-id:
+      - 99ec68da-77e1-4302-8a6a-3accc7b1ade0
+      x-mws-timestamp:
+      - '2017-01-24T20:10:20.846Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExVkMzOFQ3WVhCNTI4PC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwMTZWTkRYSlk8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJqYS1KUCI+PG5zMjpCaW5kaW5nPktpbmRsZeeJiDwvbnMyOkJpbmRpbmc+PG5zMjpDcmVhdG9yIFJvbGU9IuiRlyI+R3VhdHRhcmksIEbDqWxpeDwvbnMyOkNyZWF0b3I+PG5zMjpDcmVhdG9yIFJvbGU9Iue3qOmbhiI+R2Vub3NrbywgR2FyeTwvbnMyOkNyZWF0b3I+PG5zMjpDcmVhdG9yIFJvbGU9Iue3qOmbhiI+SGV0cmljaywgSmF5PC9uczI6Q3JlYXRvcj48bnMyOkZvcm1hdD5LaW5kbGXmnKw8L25zMjpGb3JtYXQ+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpNYW51ZmFjdHVyZXI+PG5zMjpOdW1iZXJPZlBhZ2VzPjE1NDwvbnMyOk51bWJlck9mUGFnZXM+PG5zMjpQcm9kdWN0R3JvdXA+ZUJvb2tzPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkFCSVNfRUJPT0tTPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMTEtMDE8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOlB1Ymxpc2hlcj48bnMyOlJlbGVhc2VEYXRlPjIwMTUtMTEtMDE8L25zMjpSZWxlYXNlRGF0ZT48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cDovL2VjeC5pbWFnZXMtYW1hem9uLmNvbS9pbWFnZXMvSS8zMVFRWEpSdEp6TC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NDc8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5NYWNoaW5pYyBFcm9zOiBXcml0aW5ncyBvbiBKYXBhbiAoVW5pdm9jYWwpPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncz48U2FsZXNSYW5rPjxQcm9kdWN0Q2F0ZWdvcnlJZD4yMzEyNzA1MDUxPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz43MzY1PC9SYW5rPjwvU2FsZXNSYW5rPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPjI2Mzc5NjAwNTE8L1Byb2R1Y3RDYXRlZ29yeUlkPjxSYW5rPjMzNzY4PC9SYW5rPjwvU2FsZXNSYW5rPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPjk3MTgyMDExPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz4zNzYwNzwvUmFuaz48L1NhbGVzUmFuaz48L1NhbGVzUmFua2luZ3M+PC9Qcm9kdWN0PjwvUHJvZHVjdHM+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3VsdD48UmVzcG9uc2VNZXRhZGF0YT48UmVxdWVzdElkPjk5ZWM2OGRhLTc3ZTEtNDMwMi04YTZhLTNhY2NjN2IxYWRlMDwvUmVxdWVzdElkPjwvUmVzcG9uc2VNZXRhZGF0YT48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2U+
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:21 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1PA6795UKMFR9&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A21Z&Version=2011-10-01&Signature=ZxSoTRqzV6HzHjrnXlAVO5KNGK7NqymB7YD4yEaFK%2BA%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:26 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '5760.0'
+      x-mws-quota-remaining:
+      - '5759.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:19:00.000Z'
+      x-mws-response-context:
+      - fgrM39hYD+21L7zIteu3lrR3n71g27cggsKS94KzvZILURPY61XTJ+LiRdPx/da12B1EgB6SQGB4
+        et7/bYoVhw==, Mf0k5mMSTTV7GhL1VTgUuL6ZGiSMtNnkUKBj7JxVjwx4EG6eHDgFesrP8LIE+kaWpOCsCvNC/huP
+        ezy/RNwp6w==
+      x-amz-request-id:
+      - 95c47bd4-1e9b-48a0-b0dd-c1cc5dc84dfd
+      x-mws-request-id:
+      - 95c47bd4-1e9b-48a0-b0dd-c1cc5dc84dfd
+      x-mws-timestamp:
+      - '2017-01-24T20:10:25.952Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?>
+        <ListMatchingProductsResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><ListMatchingProductsResult><Products xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01" xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Product><Identifiers><MarketplaceASIN><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><ASIN>1937561208</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="de-DE"><ns2:Binding>Taschenbuch</ns2:Binding><ns2:Creator Role="Autor">Guattari, Felix</ns2:Creator><ns2:ItemDimensions><ns2:Height Units="inches">8.00</ns2:Height><ns2:Length Units="inches">5.00</ns2:Length><ns2:Width Units="inches">0.40</ns2:Width><ns2:Weight Units="pounds">0.00</ns2:Weight></ns2:ItemDimensions><ns2:Label>Univocal</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unbekannt</ns2:Type></ns2:Language></ns2:Languages><ns2:ListPrice><ns2:Amount>25.49</ns2:Amount><ns2:CurrencyCode>EUR</ns2:CurrencyCode></ns2:ListPrice><ns2:Manufacturer>Univocal</ns2:Manufacturer><ns2:NumberOfPages>150</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height Units="inches">0.40</ns2:Height><ns2:Length Units="inches">8.00</ns2:Length><ns2:Width Units="inches">5.00</ns2:Width><ns2:Weight Units="pounds">0.45</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:PartNumber>3</ns2:PartNumber><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2015-02-01</ns2:PublicationDate><ns2:Publisher>Univocal</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/41mrzeoju7L._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">47</ns2:Width></ns2:SmallImage><ns2:Studio>Univocal</ns2:Studio><ns2:Title>Machinic Eros: Writings on Japan (Univocal)</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings><SalesRank><ProductCategoryId>us_display_on_website</ProductCategoryId><Rank>350400</Rank></SalesRank><SalesRank><ProductCategoryId>book_display_on_website</ProductCategoryId><Rank>1352579</Rank></SalesRank><SalesRank><ProductCategoryId>69029011</ProductCategoryId><Rank>11231</Rank></SalesRank><SalesRank><ProductCategoryId>59670011</ProductCategoryId><Rank>35327</Rank></SalesRank></SalesRankings></Product><Product><Identifiers><MarketplaceASIN><MarketplaceId>A1PA6795UKMFR9</MarketplaceId><ASIN>B00XV6CFU8</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes xml:lang="de-DE"><ns2:Binding>Taschenbuch</ns2:Binding><ns2:Creator Role="Autor">Felix Guattari</ns2:Creator><ns2:Label>Univocal Publishing LLC</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unbekannt</ns2:Type></ns2:Language></ns2:Languages><ns2:Manufacturer>Univocal Publishing LLC</ns2:Manufacturer><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>BOOKS_1973_AND_LATER</ns2:ProductTypeName><ns2:PublicationDate>2015-02-01</ns2:PublicationDate><ns2:Publisher>Univocal Publishing LLC</ns2:Publisher><ns2:SmallImage><ns2:URL>http://ecx.images-amazon.com/images/I/316eAl%2BdZOL._SL75_.jpg</ns2:URL><ns2:Height Units="pixels">75</ns2:Height><ns2:Width Units="pixels">70</ns2:Width></ns2:SmallImage><ns2:Studio>Univocal Publishing LLC</ns2:Studio><ns2:Title>[(Machinic Eros: 3: Writings on Japan)] [Author: Felix Guattari] published on (February, 2015)</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings/></Product></Products></ListMatchingProductsResult><ResponseMetadata><RequestId>95c47bd4-1e9b-48a0-b0dd-c1cc5dc84dfd</RequestId></ResponseMetadata></ListMatchingProductsResponse>
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:26 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=ATVPDKIKX0DER&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A26Z&Version=2011-10-01&Signature=xIW45qezW37Ds6zoMZwEU3dM8vaBkdcZO35SPLy9cPY%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 24 Jan 2017 20:10:30 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '5760.0'
+      x-mws-quota-remaining:
+      - '5759.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-24T20:20:00.000Z'
+      x-mws-response-context:
+      - pvHOiEsRcEJKwAM7u6CyGxRtEYhuRfJjADe8zQkL5WprSx7n+BkeHF+zLUSylTsK2SL4jXc0UXR1
+        LOYlfQUAkQ==, s5Ir6NHxxzxB+iF6rltd/FfViJd8+c5QzAcZqAnXG12ZNBXnI8DCb+mm7juL3TalKfkx4qxjm8lz
+        O87SAF2c8Q==
+      x-amz-request-id:
+      - 17830cc7-93e0-4937-8d92-5d567d7bd6f8
+      x-mws-request-id:
+      - 17830cc7-93e0-4937-8d92-5d567d7bd6f8
+      x-mws-timestamp:
+      - '2017-01-24T20:10:30.388Z'
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxMaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vbXdzLmFtYXpvbnNlcnZpY2VzLmNvbS9zY2hlbWEvUHJvZHVjdHMvMjAxMS0xMC0wMSI+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxQcm9kdWN0cyB4bWxucz0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEiIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkFUVlBES0lLWDBERVI8L01hcmtldHBsYWNlSWQ+PEFTSU4+MTkzNzU2MTIwODwvQVNJTj48L01hcmtldHBsYWNlQVNJTj48L0lkZW50aWZpZXJzPjxBdHRyaWJ1dGVTZXRzPjxuczI6SXRlbUF0dHJpYnV0ZXMgeG1sOmxhbmc9ImVuLVVTIj48bnMyOkF1dGhvcj5HdWF0dGFyaSwgRsOpbGl4PC9uczI6QXV0aG9yPjxuczI6QmluZGluZz5QYXBlcmJhY2s8L25zMjpCaW5kaW5nPjxuczI6Q3JlYXRvciBSb2xlPSJFZGl0b3IiPkdlbm9za28sIEdhcnk8L25zMjpDcmVhdG9yPjxuczI6Q3JlYXRvciBSb2xlPSJFZGl0b3IiPkhldHJpY2ssIEpheTwvbnMyOkNyZWF0b3I+PG5zMjpJdGVtRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj44LjAwPC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjUuMDA8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj4wLjQwPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC4wMDwvbnMyOldlaWdodD48L25zMjpJdGVtRGltZW5zaW9ucz48bnMyOkxhYmVsPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpMYWJlbD48bnMyOkxhbmd1YWdlcz48bnMyOkxhbmd1YWdlPjxuczI6TmFtZT5lbmdsaXNoPC9uczI6TmFtZT48bnMyOlR5cGU+UHVibGlzaGVkPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48bnMyOkxhbmd1YWdlPjxuczI6TmFtZT5lbmdsaXNoPC9uczI6TmFtZT48bnMyOlR5cGU+T3JpZ2luYWwgTGFuZ3VhZ2U8L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5Vbmtub3duPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48L25zMjpMYW5ndWFnZXM+PG5zMjpMaXN0UHJpY2U+PG5zMjpBbW91bnQ+MjQuOTU8L25zMjpBbW91bnQ+PG5zMjpDdXJyZW5jeUNvZGU+VVNEPC9uczI6Q3VycmVuY3lDb2RlPjwvbnMyOkxpc3RQcmljZT48bnMyOk1hbnVmYWN0dXJlcj5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6TWFudWZhY3R1cmVyPjxuczI6TnVtYmVyT2ZJdGVtcz4xPC9uczI6TnVtYmVyT2ZJdGVtcz48bnMyOk51bWJlck9mUGFnZXM+MTU0PC9uczI6TnVtYmVyT2ZQYWdlcz48bnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjAuNDA8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+OC4wMDwvbnMyOkxlbmd0aD48bnMyOldpZHRoIFVuaXRzPSJpbmNoZXMiPjUuMDA8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4wLjQ1PC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPjM8L25zMjpQYXJ0TnVtYmVyPjxuczI6UHJvZHVjdEdyb3VwPkJvb2s8L25zMjpQcm9kdWN0R3JvdXA+PG5zMjpQcm9kdWN0VHlwZU5hbWU+QUJJU19CT09LPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGljYXRpb25EYXRlPjIwMTUtMDItMDE8L25zMjpQdWJsaWNhdGlvbkRhdGU+PG5zMjpQdWJsaXNoZXI+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOlB1Ymxpc2hlcj48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cDovL2VjeC5pbWFnZXMtYW1hem9uLmNvbS9pbWFnZXMvSS80MW1yemVvanU3TC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NDc8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5NYWNoaW5pYyBFcm9zOiBXcml0aW5ncyBvbiBKYXBhbiAoVW5pdm9jYWwpPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncz48U2FsZXNSYW5rPjxQcm9kdWN0Q2F0ZWdvcnlJZD5ib29rX2Rpc3BsYXlfb25fd2Vic2l0ZTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+MTUxMzQ4NDwvUmFuaz48L1NhbGVzUmFuaz48U2FsZXNSYW5rPjxQcm9kdWN0Q2F0ZWdvcnlJZD4xMTAxOTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+NDY1ODY8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+MTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+MTYyMzUzPC9SYW5rPjwvU2FsZXNSYW5rPjwvU2FsZXNSYW5raW5ncz48L1Byb2R1Y3Q+PFByb2R1Y3Q+PElkZW50aWZpZXJzPjxNYXJrZXRwbGFjZUFTSU4+PE1hcmtldHBsYWNlSWQ+QVRWUERLSUtYMERFUjwvTWFya2V0cGxhY2VJZD48QVNJTj5CMDFBMEJWVjkyPC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PEF0dHJpYnV0ZVNldHM+PG5zMjpJdGVtQXR0cmlidXRlcyB4bWw6bGFuZz0iZW4tVVMiPjxuczI6QXV0aG9yPkbDqWxpeCBHdWF0dGFyaTs8L25zMjpBdXRob3I+PG5zMjpCaW5kaW5nPlBhcGVyYmFjazwvbnMyOkJpbmRpbmc+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nICgyMDE1LTAyLTAxKTwvbnMyOkxhYmVsPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmcgKDIwMTUtMDItMDEpPC9uczI6TWFudWZhY3R1cmVyPjxuczI6UHJvZHVjdEdyb3VwPkJvb2s8L25zMjpQcm9kdWN0R3JvdXA+PG5zMjpQcm9kdWN0VHlwZU5hbWU+Qk9PS1NfMTk3M19BTkRfTEFURVI8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaWNhdGlvbkRhdGU+MTY1Ni0wMS0wMTwvbnMyOlB1YmxpY2F0aW9uRGF0ZT48bnMyOlB1Ymxpc2hlcj5Vbml2b2NhbCBQdWJsaXNoaW5nICgyMDE1LTAyLTAxKTwvbnMyOlB1Ymxpc2hlcj48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cDovL2VjeC5pbWFnZXMtYW1hem9uLmNvbS9pbWFnZXMvSS80MXBrc0ZlNnA3TC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NDc8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPlVuaXZvY2FsIFB1Ymxpc2hpbmcgKDIwMTUtMDItMDEpPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+TWFjaGluaWMgRXJvczogV3JpdGluZ3Mgb24gSmFwYW4gKFVuaXZvY2FsKSBieSBGw6lsaXggR3VhdHRhcmkgKDIwMTUtMDItMDEpPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjwvUHJvZHVjdHM+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3VsdD48UmVzcG9uc2VNZXRhZGF0YT48UmVxdWVzdElkPjE3ODMwY2M3LTkzZTAtNDkzNy04ZDkyLTVkNTY3ZDdiZDZmODwvUmVxdWVzdElkPjwvUmVzcG9uc2VNZXRhZGF0YT48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2U+
+    http_version: 
+  recorded_at: Tue, 24 Jan 2017 20:10:31 GMT
+recorded_with: VCR 3.0.3

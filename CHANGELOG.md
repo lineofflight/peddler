@@ -6,6 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Delegate to Hash#dig in Peddler::XMLParser.
 
+### Fixed
+- Post multibyte characters correctly.
+
 ## [1.5.0] - 2017-01-13
 ### Added
 - Add GetInboundGuidanceForSKU, GetInboundGuidanceForASIN, GetPreorderInfo,
