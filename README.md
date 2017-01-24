@@ -44,6 +44,8 @@ You can now instantiate a client.
 client = MWS.orders
 ```
 
+The client will pick up credentials automatically from the environment.
+
 Alternatively, if you do not rely on environment variables, you can set some or all credentials when or after creating the client.
 
 ```ruby
@@ -63,8 +65,6 @@ If you are creating a [client for another seller](https://developer.amazonservic
 client = MWS.orders(
   primary_marketplace_id: "Seller's Marketplace ID",
   merchant_id: "Seller's Merchant or Seller ID",
-  aws_access_key_id: "Your AWS Access Key ID",
-  aws_secret_access_key: "Your AWS Secret Access Key",
   auth_token: "Seller's MWS Authorisation Token"
 )
 ```
@@ -77,7 +77,7 @@ Peddler wraps successful responses in a parser that handles both XML documents a
 
 ```ruby
 parser = client.get_service_status
-parser.parse # will return a Hash or CSV object
+parser.parse # will return a Hash object
 parser.dig('Status') # delegates to Hash#dig for convenience
 ```
 
@@ -91,7 +91,7 @@ For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/
 
 ### Debugging
 
-To introspect requests, set the `EXCON_DEBUG` environment variable to a truthy value.
+To introspect requests, set the `EXCON_DEBUG` environment variable to a truthy value when making requests.
 
 ### Errors
 
