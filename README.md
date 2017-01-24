@@ -78,6 +78,7 @@ Peddler wraps successful responses in a parser that handles both XML documents a
 ```ruby
 parser = client.get_service_status
 parser.parse # will return a Hash or CSV object
+parser.dig('Status') # delegates to Hash#dig for convenience
 ```
 
 You can swap the default parser with a purpose-built abstraction.

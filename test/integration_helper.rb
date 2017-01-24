@@ -1,6 +1,5 @@
 require 'helper'
 require 'recorder'
-require 'dig_rb'
 
 %w(mws.yml mws.yml.example).each do |path|
   file = File.expand_path("../#{path}", __FILE__)

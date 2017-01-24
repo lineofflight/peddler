@@ -9,7 +9,6 @@ class TestOrders < IntegrationTest
           created_after: Date.new(2015),
           max_results_per_page: 5
         )
-        .parse
         .dig('Orders', 'Order')
         .map { |order| order['AmazonOrderId'] }
 
@@ -17,7 +16,6 @@ class TestOrders < IntegrationTest
 
       orders = client
         .get_order(*order_ids)
-        .parse
         .dig('Orders', 'Order')
 
       assert_equal order_ids.count, orders.count

@@ -1,9 +1,15 @@
 require 'delegate'
+require 'dig_rb'
+require 'forwardable'
 require 'multi_xml'
 
 module Peddler
   # @api private
   class XMLParser < SimpleDelegator
+    extend Forwardable
+
+    def_delegator :parse, :dig
+
     def parse
       @data ||= find_data
     end

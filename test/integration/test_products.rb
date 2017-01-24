@@ -66,9 +66,7 @@ class TestProducts < IntegrationTest
         identifier: '123',
         is_amazon_fulfilled: false
       )
-      assert res
-        .parse
-        .dig('FeesEstimateResultList', 'FeesEstimateResult', 'FeesEstimate')
+      assert res.dig('FeesEstimateResultList', 'FeesEstimateResult', 'FeesEstimate')
     end
   end
 
