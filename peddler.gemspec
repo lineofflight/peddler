@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'dig_rb', '~> 1.0'
   gem.add_dependency 'excon', '>= 0.50.0'
-  gem.add_dependency 'multi_xml', '~> 0.5.0'
   gem.add_dependency 'jeff', '~> 1.5.2'
+  gem.add_dependency 'multi_xml', '>= 0.5.0'
   gem.required_ruby_version = '>= 2.0'
 end
