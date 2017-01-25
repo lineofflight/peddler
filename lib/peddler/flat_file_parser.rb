@@ -41,7 +41,7 @@ module Peddler
     def scrub_content
       content
         .force_encoding(encoding)
-        .encode('UTF-8', undef: :replace, replace: '?')
+        .encode('UTF-8', invalid: :replace, undef: :replace, replace: '?')
     end
 
     def summary?
