@@ -83,7 +83,10 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/hakanensari/peddler/compare/v1.4.1...v1.5.0
+[1.4.1]: https://github.com/hakanensari/peddler/compare/v1.4.0...v1.4.1
+[1.4.0]: https://github.com/hakanensari/peddler/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/hakanensari/peddler/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/hakanensari/peddler/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/hakanensari/peddler/compare/v1.1.0...v1.1.1
