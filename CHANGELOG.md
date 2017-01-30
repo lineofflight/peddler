@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Delegate to Hash#dig in Peddler::XMLParser.
+- Parse MWS headers.
 
 ### Fixed
 - Post multibyte characters correctly.

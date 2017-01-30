@@ -1,0 +1,2964 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A25Z&Version=2011-10-01&Signature=H7X%2BMTLCIcVYxR0WamedUEDgxfNqL9llzZQlFSLxGVE%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:25 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:03:00.000Z'
+      x-mws-request-id:
+      - 408ccd3b-7fe0-4a9d-a998-af75cb2a396e
+      x-mws-timestamp:
+      - '2017-01-29T23:55:25.356Z'
+      x-mws-response-context:
+      - SaHAU/jW5vZVmM0RSfRb6Ez6EHjAzHKKyHCiQISPEtJS/Ftnv5EE2mxzsi4bi7z3862KmU4Cex79
+        PE0mhthtVA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A2EUQ1WTGCTBG2" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A2EUQ1WTGCTBG2</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-29T23:40:45.695Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>10</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">3</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">7</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>CAD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">2</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">1</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>3255</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>464</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>17286</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>100.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>32</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>43</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>CAD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>408ccd3b-7fe0-4a9d-a998-af75cb2a396e</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:25 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A25Z&Version=2011-10-01&Signature=d%2FQR7okNPKpJC6iph%2B%2FlBvyyzaek5XUz69XUvyNMe5E%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:25 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '3615'
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:15:00.000Z'
+      x-mws-request-id:
+      - 12fc4adb-e3a3-4b84-afb6-0c78d3d3bf31
+      x-mws-timestamp:
+      - '2017-01-29T23:55:25.891Z'
+      x-mws-response-context:
+      - ZagpR2nyolS2ha3yQooYvK1C55oyNZ9qD9jHqwRqHI5c76CcvGrHH/HZZaei8HJxj3Q7ecdSy0qa
+        a2NZY4g+fA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1AM78C64UM0Y8" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1AM78C64UM0Y8</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-28T17:12:52.330Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>2</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">2</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>MXN</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>MXN</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>MXN</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <ListPrice>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">2</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="672" maximumHours="1008" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>MXN</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>MXN</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>MXN</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>MXN</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>12fc4adb-e3a3-4b84-afb6-0c78d3d3bf31</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A13V1IB3VIYZZH&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A26Z&Version=2011-10-01&Signature=2X6DAb8dBXo4tik0R2rC6ETsB135RLpUfjxESnHvJBo%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:26 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:47:00.000Z'
+      x-mws-request-id:
+      - 4e4ab75b-e3b6-4ef8-a98b-da4da3bb1748
+      x-mws-timestamp:
+      - '2017-01-29T23:55:26.381Z'
+      x-mws-response-context:
+      - PwmFmPptKhGDLv0NDKimK2LM9F04v6kc+Vr3OtBxKAh3izKQmfX+CdPBF7MKwdV0bZZBW1//xMMF
+        SklxK/abPw==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A13V1IB3VIYZZH" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A13V1IB3VIYZZH</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-29T02:40:30.216Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>9</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">2</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">6</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">3</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>92.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2330</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>5552</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>89.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>979</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>92.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>12625</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>4e4ab75b-e3b6-4ef8-a98b-da4da3bb1748</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=APJ6JRA9NG5V4&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A26Z&Version=2011-10-01&Signature=xm2RDsPkOny8978d9XG0%2BgK455HgOMjyan%2FavtSP%2BqQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:26 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:54:00.000Z'
+      x-mws-request-id:
+      - 28b495b8-e3ef-4c9e-898f-93e63434ccfa
+      x-mws-timestamp:
+      - '2017-01-29T23:55:26.583Z'
+      x-mws-response-context:
+      - UGUxwOCA5UJm6J0pAoRXrvYoZX8GEJRRi/hHNlFi7cW2RYCrLGQnWnlBhgZv4M42qRjwF7CsPb+L
+        5Dq63FL4Tg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="APJ6JRA9NG5V4" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>APJ6JRA9NG5V4</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-28T07:04:12.045Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>5</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">4</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">2</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2537</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>91.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>960</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>28b495b8-e3ef-4c9e-898f-93e63434ccfa</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1RKKUPIHCS9HS&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A26Z&Version=2011-10-01&Signature=i7l1doNEaqf58fLz2Cdz1E70vCxtaCROLtOS8C99jDg%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:26 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:11:00.000Z'
+      x-mws-request-id:
+      - 593ab553-7add-4ec4-8b0e-312315da4d03
+      x-mws-timestamp:
+      - '2017-01-29T23:55:26.804Z'
+      x-mws-response-context:
+      - 7ylDsnfOXxoWEbdE0cRXM5esKMOe8uATZht0KXDpsbZRf41vnXk9ej6N+cmpIOml/IPjADlMw7in
+        UYGWXR/QHQ==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1RKKUPIHCS9HS" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1RKKUPIHCS9HS</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-29T21:22:20.734Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>6</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">4</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">0</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">1</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>87.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>442</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>88.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>493</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>593ab553-7add-4ec4-8b0e-312315da4d03</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:27 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1F83G8C2ARO7P&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A27Z&Version=2011-10-01&Signature=gMdMhRhNYOzNr8k1j7nc0N%2Bdm3DBppHMVod2I22A48g%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:27 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:07:00.000Z'
+      x-mws-request-id:
+      - b25ccae3-98f0-47e2-9d27-980fc47d4758
+      x-mws-timestamp:
+      - '2017-01-29T23:55:26.984Z'
+      x-mws-response-context:
+      - ebtc2eRXFFT221lPDSNbhwNEqCwW6tLndfBaFCK7owOv4xoFrh88sJL/HJaXTxIB7Tx6TgsCHO0J
+        sf874skPIA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1F83G8C2ARO7P" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1F83G8C2ARO7P</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-29T23:14:31.585Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>27</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">5</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">21</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>GBP</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>GBP</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">3</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">7</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>150968</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>254073</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>173539</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>4841</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>91.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>4354</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>97744</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2567</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>23641</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>92.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>24453</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>21019</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>3405</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>34</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>125136</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>13884</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>90.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>662</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1921</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>2555</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>GBP</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>b25ccae3-98f0-47e2-9d27-980fc47d4758</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:27 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1VC38T7YXB528&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A27Z&Version=2011-10-01&Signature=UaahepgMwkrScQBAurjnn8M9N2VKiIgqNoz18PGW6cQ%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:28 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '7192'
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:47:00.000Z'
+      x-mws-request-id:
+      - 608a6fb0-5815-4d8a-8ae8-9b68d23513f3
+      x-mws-timestamp:
+      - '2017-01-29T23:55:28.161Z'
+      x-mws-response-context:
+      - Y0Z6e1EWx+M8aFbYgYL5ULdEhQBDdpCmolRxVQoAfXb/fhrZlVKByYpMaaMr+t53RMiyg2v3n5Dq
+        NIbJUoN0wg==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1VC38T7YXB528" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1VC38T7YXB528</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-28T02:24:29.094Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>4</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">2</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>JPY</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>JPY</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">2</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>176</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>8397</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Points>
+                            <PointsNumber>113</PointsNumber>
+                        </Points>
+                        <Shipping>
+                            <CurrencyCode>JPY</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>AT</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>608a6fb0-5815-4d8a-8ae8-9b68d23513f3</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:28 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1PA6795UKMFR9&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A28Z&Version=2011-10-01&Signature=hty1wQJHasp6bveR009ayVlpcnzD2fwBqpL8qsVgZdY%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:28 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:19:00.000Z'
+      x-mws-request-id:
+      - db909c69-263e-4a95-be68-ee4c9aca61a4
+      x-mws-timestamp:
+      - '2017-01-29T23:55:28.737Z'
+      x-mws-response-context:
+      - qvi1zXM/Xdewz9jdRhaXv9rCFSGlVQTjwkL+uN10/G31vIv7MnFYPhjol6E6ahdchZuEUaA/lEcy
+        tKiJd9hS8Q==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1PA6795UKMFR9" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1PA6795UKMFR9</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-29T19:13:40.141Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>26</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">2</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">23</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">20</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1861</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>349</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1327</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>9635</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>33550</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>94.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>3581</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>3699</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1370</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>4272</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>477</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>343</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>3099</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1457</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>937</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>65259</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>49590</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>100.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>151355</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1749</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>511</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>db909c69-263e-4a95-be68-ee4c9aca61a4</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:29 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=ATVPDKIKX0DER&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A29Z&Version=2011-10-01&Signature=y7VIYln%2BjIJFEDukZY0v3b1%2FwLAJCrGVNb%2BFfoxy2xg%3D
+    headers:
+      User-Agent:
+      - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 29 Jan 2017 23:55:29 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2017-01-30T00:20:00.000Z'
+      x-mws-request-id:
+      - f0f3d790-1642-458d-88e5-baead9088283
+      x-mws-timestamp:
+      - '2017-01-29T23:55:29.196Z'
+      x-mws-response-context:
+      - vQbslqXCRZXoiIpAxluQ6sM7q3kDeSmOet8WJtOJk/M9EuDJT/NjgbLerUcxm9j+eq/fKSVk2ZDm
+        KstzlPC0kA==
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="ATVPDKIKX0DER" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>ATVPDKIKX0DER</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                    <TimeOfOfferChange>2017-01-29T22:41:05.613Z</TimeOfOfferChange>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>23</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">8</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">14</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="used" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="New">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                        <BuyBoxPrice condition="Used">
+                            <LandedPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>USD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>USD</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="used" fulfillmentChannel="Merchant">2</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">4</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>89.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>178204</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>90.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>175727</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>91.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>387</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>86.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>308</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>NY</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>93.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>10772</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>6466</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>88.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>106647</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>96.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>59917</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>OR</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>0.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>0</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>IN</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>99.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>649</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="96" maximumHours="120" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>95.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>1918</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>DE</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>97.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>783</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="96" maximumHours="120" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>NC</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>90.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>13017</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <State>PA</State>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>100.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>5</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>false</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>f0f3d790-1642-458d-88e5-baead9088283</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+    http_version: 
+  recorded_at: Sun, 29 Jan 2017 23:55:29 GMT
+recorded_with: VCR 3.0.3
