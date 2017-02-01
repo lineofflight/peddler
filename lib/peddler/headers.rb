@@ -1,5 +1,5 @@
 module Peddler
-  # Parses MWS-specifix headers
+  # Parses MWS-specific headers
   module Headers
     Quota = Struct.new(:max, :remaining, :resets_on)
 
