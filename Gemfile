@@ -12,7 +12,8 @@ group :development do
 end
 
 platform :mri do
-  gem 'coveralls'
+  gem 'codeclimate-test-reporter', '~> 1.0'
+  gem 'simplecov'
 end
 
 gemspec
