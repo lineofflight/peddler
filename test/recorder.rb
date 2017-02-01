@@ -2,6 +2,9 @@ require 'peddler/vcr_matcher'
 require 'yaml'
 require 'vcr'
 
+# So we can continue testing against old Content-MD5 header
+::Peddler::VCRMatcher.ignored_params << 'ContentMD5Value'
+
 VCR.configure do |c|
   c.hook_into :excon
   c.cassette_library_dir = 'test/vcr_cassettes'

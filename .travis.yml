@@ -12,10 +12,12 @@ env:
     - AWS_SECRET_ACCESS_KEY=bar
 gemfile:
   - gemfiles/libxml.gemfile
-  - gemfiles/nokogiri.gemfile
   - gemfiles/oga.gemfile
   - gemfiles/ox.gemfile
+  - gemfiles/nokogiri.gemfile
   - gemfiles/rexml.gemfile
+  - gemfiles/jeff_1.gemfile
+  - gemfiles/jeff_2.gemfile
 language: ruby
 matrix:
   allow_failures:

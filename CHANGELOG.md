@@ -4,8 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Delegate to Hash#dig in Peddler::XMLParser.
+- Use ContentMD5Value parameter instead of Content-MD5 header.
 - Parse MWS headers.
+- Delegate to Hash#dig in Peddler::XMLParser.
 - Add InvalidRequest and MalformedInput to known error codes.
 
 ### Fixed
