@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Delegate to Hash#dig in Peddler::XMLParser.
 - Parse MWS headers.
+- Add InvalidRequest and MalformedInput to known error codes.
 
 ### Fixed
 - Post multibyte characters correctly.

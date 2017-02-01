@@ -15,7 +15,7 @@ class TestPeddlerErrorsError < MiniTest::Test
   end
 
   def test_defines_common_errors
-    Peddler::Errors::KNOWN.each do |name|
+    Peddler::Errors::CODES.each do |name|
       assert ::Peddler::Errors.const_defined?(name)
     end
   end
