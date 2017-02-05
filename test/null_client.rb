@@ -1,8 +1,6 @@
 require 'peddler/client'
 require 'securerandom'
 
-::Peddler::VCRMatcher.ignore_seller!
-
 module Null
   class Client < ::Peddler::Client
     def configure_with_mock_data!
