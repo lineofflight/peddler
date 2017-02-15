@@ -9,7 +9,7 @@ class TestPeddlerXMLResponseParser < MiniTest::Test
   end
 
   def test_parses_messages
-    body = '<Response><Message><Foo>Bar</Foo></Message></Response>'
+    body = '<Response><MessageType>ProcessingReport</MessageType><Message><Foo>Bar</Foo></Message></Response>'
     parser = Peddler::XMLResponseParser.new(response(body))
     assert_equal 'Bar', parser.parse['Foo']
   end

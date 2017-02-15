@@ -3,7 +3,7 @@ require 'peddler/xml_parser'
 module Peddler
   # @api private
   class XMLResponseParser < XMLParser
-    MATCHER = /Message|Report|Result/
+    MATCHER = /^Message$|Report|Result/
     private_constant :MATCHER
 
     def next_token

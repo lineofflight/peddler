@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Post multibyte characters correctly.
+- Fix parsing XML with 'Message'.
 
 ## [1.5.0] - 2017-01-13
 ### Added
