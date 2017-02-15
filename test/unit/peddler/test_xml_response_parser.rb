@@ -31,7 +31,7 @@ class TestPeddlerXMLResponseParser < MiniTest::Test
   def response(body)
     OpenStruct.new(
       body: body,
-      headers: { 'Content-Type' => 'text/xml', 'Content-Length' => '78' }
+      headers: { 'Content-Type' => 'text/xml', 'Content-Length' => body.size }
     )
   end
 end
