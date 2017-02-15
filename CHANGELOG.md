@@ -3,13 +3,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.6.0] - 2017-02-15
 ### Added
 - Parse MWS headers.
 - Delegate to Hash#dig in Peddler::XMLParser.
 - Add InvalidRequest and MalformedInput to known error codes.
 
 ### Changed
-- Use ContentMD5Value parameter instead of Content-MD5 header.
+- Use ContentMD5Value parameter instead of Content-MD5 header. To retain old
+behaviour, peg version of the Jeff gem to ~> 1.5.
 
 ### Fixed
 - Post multibyte characters correctly.
