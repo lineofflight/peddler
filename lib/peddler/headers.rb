@@ -4,6 +4,8 @@ module Peddler
     Quota = Struct.new(:max, :remaining, :resets_on)
 
     def quota
+      return if headers.keys.none? { |key| key.include?('quota') }
+
       Quota.new(
         headers['x-mws-quota-max'].to_i,
         headers['x-mws-quota-remaining'].to_i,

@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Handle when headers have no quota metadata.
 
 ## [1.6.0] - 2017-02-15
 ### Added

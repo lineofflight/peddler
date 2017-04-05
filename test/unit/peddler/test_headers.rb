@@ -35,4 +35,9 @@ class TestPeddlerHeaders < MiniTest::Test
   def test_response_context
     assert response_context
   end
+
+  def test_handles_no_quota
+    @headers = {}
+    assert_nil quota
+  end
 end
