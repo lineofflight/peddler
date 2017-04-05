@@ -2,7 +2,7 @@ module Peddler
   # @api private
   module Errors
     # Known codes
-    CODES = %w(
+    CODES = %w[
       AccessDenied
       InvalidMarketplace
       InvalidParameterValue
@@ -10,7 +10,7 @@ module Peddler
       MalformedInput
       QuotaExceeded
       RequestThrottled
-    ).freeze
+    ].freeze
 
     # @api private
     class Error < StandardError

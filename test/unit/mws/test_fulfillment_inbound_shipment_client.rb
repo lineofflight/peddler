@@ -267,7 +267,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       @client.get_unique_package_labels(
         'FBAQFGQZ',
         'PackageLabel_Letter_6',
-        %w(CartonA CartonB CartonC CartonD)
+        %w[CartonA CartonB CartonC CartonD]
       )
     end
 

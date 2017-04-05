@@ -2,13 +2,13 @@ module Peddler
   # A custom matcher that can be used to record MWS interactions when
   # integration-testing
   class VCRMatcher
-    TRANSIENT_PARAMS = %w(
+    TRANSIENT_PARAMS = %w[
       Signature Timestamp StartDate CreatedAfter QueryStartDateTime
-    ).freeze
+    ].freeze
 
-    SELLER_PARAMS = %w(
+    SELLER_PARAMS = %w[
       AWSAccessKeyId SellerId
-    ).freeze
+    ].freeze
 
     class << self
       def call(*requests)

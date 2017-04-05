@@ -13,12 +13,12 @@ class TestPeddlerStructuredList < MiniTest::Test
 
   def test_builds_a_structured_list_for_an_array_of_values
     exp = { 'OrderStatus.Status.1' => 'foo', 'OrderStatus.Status.2' => 'bar' }
-    assert_equal exp, @list.build(%w(foo bar))
+    assert_equal exp, @list.build(%w[foo bar])
   end
 
   def test_flattens_nested_arrays_of_values
     exp = { 'OrderStatus.Status.1' => 'foo', 'OrderStatus.Status.2' => 'bar' }
-    assert_equal exp, @list.build([%w(foo bar)])
+    assert_equal exp, @list.build([%w[foo bar]])
   end
 
   def test_handles_single_key
