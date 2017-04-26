@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Scrub body of flat file response.
 - Encode flat file request bodies.
 - Clear request body after posting successfully.
 

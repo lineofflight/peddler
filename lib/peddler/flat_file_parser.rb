@@ -11,16 +11,16 @@ module Peddler
     # http://stackoverflow.com/questions/8073920/importing-csv-quoting-error-is-driving-me-nuts
     OPTIONS = { col_sep: "\t", quote_char: "\x00", headers: true }.freeze
 
-    attr_reader :content, :summary, :encoding
+    attr_reader :content, :summary
 
     def initialize(res, encoding)
       super(res)
-      @encoding = encoding
+      scrub_body!(encoding)
       extract_content
     end
 
     def parse(&blk)
-      CSV.parse(scrub_content, OPTIONS, &blk) if content
+      CSV.parse(content, OPTIONS, &blk) if content
     end
 
     def records_count
@@ -33,18 +33,18 @@ module Peddler
 
     private
 
+    def scrub_body!(encoding)
+      body
+        .force_encoding(encoding)
+        .encode!('UTF-8', invalid: :replace, undef: :replace, replace: '?')
+    end
+
     def extract_content
       if summary?
         @summary, @content = body.split("\n\n")
       else
         @content = body.dup
       end
-    end
-
-    def scrub_content
-      content
-        .force_encoding(encoding)
-        .encode('UTF-8', invalid: :replace, undef: :replace, replace: '?')
     end
 
     def summary?
