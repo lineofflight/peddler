@@ -169,6 +169,7 @@ module Peddler
       opts = build_options
       opts.store(:response_block, Proc.new) if block_given?
       res = post(opts)
+      self.body = nil if res.status == 200
 
       parser.new(res, encoding)
     rescue Excon::Error => e

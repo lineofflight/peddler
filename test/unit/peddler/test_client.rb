@@ -3,9 +3,9 @@ require 'null_client'
 
 class TestPeddlerClient < MiniTest::Test
   def setup
-    @body = 'foo'
+    @response_body = 'foo'
     Excon.defaults[:mock] = true
-    Excon.stub({}, body: @body, status: 200)
+    Excon.stub({}, body: @response_body, status: 200)
 
     @klass = Class.new(Null::Client)
     @client = @klass.new
@@ -103,7 +103,20 @@ class TestPeddlerClient < MiniTest::Test
 
   def test_runs_a_request
     res = @client.run
-    assert_equal @body, res.body
+    assert_equal @response_body, res.body
+  end
+
+  def test_clears_body_when_run_succeeds
+    @client.body = 'foo'
+    @client.run
+    assert_nil @client.body
+  end
+
+  def test_does_not_clear_body_when_run_fails
+    Excon.stub({}, status: 503)
+    @client.body = 'foo'
+    assert_raises { @client.run }
+    refute_nil @client.body
   end
 
   def test_streams_response
@@ -111,7 +124,7 @@ class TestPeddlerClient < MiniTest::Test
     streamer = ->(chunk, _, _) { chunks << chunk }
     @client.run(&streamer)
 
-    assert_equal @body, chunks
+    assert_equal @response_body, chunks
   end
 
   class Instrumentor
