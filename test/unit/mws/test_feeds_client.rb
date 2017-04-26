@@ -19,7 +19,6 @@ class TestMWSFeedsClient < MiniTest::Test
     end
 
     assert_equal operation, @client.operation
-    assert_equal 'content', @client.body
   end
 
   def test_gets_feed_submission_list

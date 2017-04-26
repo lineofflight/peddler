@@ -129,13 +129,7 @@ module Peddler
 
     # @!parse attr_writer :body
     def body=(str)
-      if str
-        headers['Content-Type'] = content_type(str)
-      else
-        headers.delete('Content-Type')
-      end
-
-      @body = str
+      str ? add_content(str) : clear_content!
     end
 
     # @api private
@@ -182,11 +176,19 @@ module Peddler
       Marketplace.new(primary_marketplace_id)
     end
 
-    def content_type(str)
-      if str.start_with?('<?xml')
-        'text/xml'
+    def clear_content!
+      headers.delete('Content-Type')
+      @body = nil
+    end
+
+    def add_content(content)
+      if content.start_with?('<?xml')
+        headers['Content-Type'] = 'text/xml'
+        @body = content
       else
-        "text/tab-separated-values; charset=#{encoding}"
+        headers['Content-Type'] =
+          "text/tab-separated-values; charset=#{encoding}"
+        @body = content.encode(encoding)
       end
     end
 

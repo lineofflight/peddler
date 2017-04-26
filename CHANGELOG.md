@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Encode flat file request bodies.
 - Clear request body after posting successfully.
 
 ### Fixed
