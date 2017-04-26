@@ -19,9 +19,7 @@ module Peddler
       private
 
       def find_data
-        xml
-          .fetch('ErrorResponse', {})
-          .fetch('Error', {})
+        xml.dig('ErrorResponse', 'Error')
       end
     end
   end
