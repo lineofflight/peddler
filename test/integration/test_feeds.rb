@@ -17,19 +17,21 @@ class TestFeeds < IntegrationTest
   end
 
   def test_submits_feeds
-    content = "sku\tprice\tquantity\nwidget\t\t0\n"
-    type = '_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_'
+    feed_content = "sku\tprice\tquantity\nwidget\t\t0\n"
+    feed_type = '_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_'
 
     clients.each do |client|
-      res = client.submit_feed(content, type)
-      id = res.parse['FeedSubmissionInfo']['FeedSubmissionId']
-      refute_nil id
+      res = client.submit_feed(feed_content, feed_type)
+      feed_submission_id = res.dig('FeedSubmissionInfo', 'FeedSubmissionId')
+      assert feed_submission_id
+
+      res = client.get_feed_submission_result(feed_submission_id)
+      assert res.records_count
 
       # Clean up
-      client.body = nil
       client.cancel_feed_submissions(
-        feed_submission_id: id,
-        feed_type_list: type
+        feed_submission_id: feed_submission_id,
+        feed_type_list: feed_type
       )
     end
   end
