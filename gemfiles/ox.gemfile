@@ -7,7 +7,7 @@ gem "minitest"
 gem "rake"
 gem "rubocop"
 gem "vcr"
-gem "ox", "= 2.4.11"
+gem "ox"
 
 group :development do
   gem "pry"
