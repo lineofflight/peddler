@@ -70,7 +70,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     body = "Foo\n\xFF\n"
     body.force_encoding('ASCII-8BIT')
     parser = Peddler::FlatFileParser.new(build_mock_response(body), 'ASCII-8BIT')
-    assert_equal '?', parser.parse['Foo'][0]
+    assert_equal '�', parser.parse['Foo'][0]
   end
 
   private

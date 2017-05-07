@@ -37,18 +37,12 @@ class TestReports < IntegrationTest
     end
   end
 
-  def test_gets_report_list
-    clients.each do |client|
-      res = client.get_report_list
-      refute_empty res.parse
-    end
-  end
-
   def test_gets_report
     clients.each do |client|
       res = client.get_report_list(max_count: 1)
       id = res.parse['ReportInfo']['ReportId']
       res = client.get_report(id)
+      assert res.valid?
       refute_empty res.parse || res.records_count
     end
   end

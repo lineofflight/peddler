@@ -16,7 +16,7 @@ module Peddler
     def initialize(res, encoding)
       super(res)
       scrub_body!(encoding)
-      extract_content
+      extract_content_and_summary
     end
 
     def parse(&blk)
@@ -24,7 +24,7 @@ module Peddler
     end
 
     def records_count
-      summarize if summary?
+      summarize if summary
     end
 
     def valid?
@@ -34,21 +34,12 @@ module Peddler
     private
 
     def scrub_body!(encoding)
-      body
-        .force_encoding(encoding)
-        .encode!('UTF-8', invalid: :replace, undef: :replace, replace: '?')
+      body.force_encoding(encoding) unless body.encoding == 'UTF-8'
     end
 
-    def extract_content
-      if summary?
-        @summary, @content = body.split("\n\n")
-      else
-        @content = body.dup
-      end
-    end
-
-    def summary?
-      body.include?("\n\n")
+    def extract_content_and_summary
+      @content = body.encode('UTF-8', invalid: :replace, undef: :replace)
+      @summary, @content = @content.split("\n\n") if @content.include?("\n\n")
     end
 
     def summarize
