@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.6.1] - 2017-05-24
 ### Changed
 - Scrub body of flat file response.
 - Encode flat file request bodies.
@@ -10,7 +12,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Handle when headers have no quota metadata.
-- Format item lists correctly in MerchantFulfillment operations
 
 ## [1.6.0] - 2017-02-15
 ### Added
@@ -101,6 +102,7 @@ to the Products client.
 ## 1.0.0 - 2015-08-25
 
 [Unreleased]: https://github.com/hakanensari/peddler/compare/v1.5.0...HEAD
+[1.6.1]: https://github.com/hakanensari/peddler/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/hakanensari/peddler/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/hakanensari/peddler/compare/v1.4.1...v1.5.0
 [1.4.1]: https://github.com/hakanensari/peddler/compare/v1.4.0...v1.4.1
