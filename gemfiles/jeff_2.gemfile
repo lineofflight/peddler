@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 gem "appraisal"
 gem "minitest"
+gem "minitest-focus"
 gem "rake"
 gem "rubocop"
 gem "vcr"
