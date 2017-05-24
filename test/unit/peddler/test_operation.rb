@@ -15,10 +15,10 @@ class TestPeddlerOperation < MiniTest::Test
   end
 
   def test_converts_nested_key_to_structured_list
-    @operation.store('Foo.Status', [1])
+    @operation.store('Foo.Status', [{ 'Baz' => 1 }])
     @operation.structure!('Status', 'Bar')
     refute @operation.key?('FooStatus')
-    assert_equal 1, @operation['Foo.Status.Bar.1']
+    assert_equal 1, @operation['Foo.Status.Bar.1.Baz']
   end
 
   def test_store_camelizes_symbol_key
