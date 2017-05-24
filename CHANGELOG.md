@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Handle when headers have no quota metadata.
+- Format item lists correctly in MerchantFulfillment operations
 
 ## [1.6.0] - 2017-02-15
 ### Added

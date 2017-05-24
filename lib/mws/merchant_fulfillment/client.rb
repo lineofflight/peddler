@@ -22,6 +22,7 @@ module MWS
       def get_eligible_shipping_services(shipment_request_details)
         operation('GetEligibleShippingServices')
           .add('ShipmentRequestDetails' => shipment_request_details)
+          .structure!('ItemList', 'Item')
 
         run
       end
@@ -42,6 +43,7 @@ module MWS
             'ShippingServiceId' => shipping_service_id
           )
           .add(opts)
+          .structure!('ItemList', 'Item')
 
         run
       end

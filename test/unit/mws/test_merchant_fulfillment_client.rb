@@ -9,14 +9,26 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
   def test_gets_eligible_shipping_services
     operation = {
       'Action' => 'GetEligibleShippingServices',
-      'ShipmentRequestDetails.Id' => '123',
-      'ShipmentRequestDetails.Foo.Bar' => 'baz'
+      'ShipmentRequestDetails.AmazonOrderId' => '123',
+      'ShipmentRequestDetails.Weight.Value' => '10',
+      'ShipmentRequestDetails.Weight.Unit' => 'ounces',
+      'ShipmentRequestDetails.ItemList.Item.1.OrderItemId' => '123',
+      'ShipmentRequestDetails.ItemList.Item.1.Quantity' => '1'
     }
 
     @client.stub(:run, nil) do
       shipment_request_details = {
-        id: '123',
-        foo: { bar: 'baz' }
+        amazon_order_id: '123',
+        weight: {
+          value: '10',
+          unit: 'ounces'
+        },
+        item_list: [
+          {
+            order_item_id: '123',
+            quantity: '1'
+          }
+        ]
       }
       @client.get_eligible_shipping_services(shipment_request_details)
     end
@@ -27,15 +39,27 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
   def test_creates_shipment
     operation = {
       'Action' => 'CreateShipment',
-      'ShipmentRequestDetails.Id' => '123',
-      'ShipmentRequestDetails.Foo.Bar' => 'baz',
+      'ShipmentRequestDetails.AmazonOrderId' => '123',
+      'ShipmentRequestDetails.Weight.Value' => '10',
+      'ShipmentRequestDetails.Weight.Unit' => 'ounces',
+      'ShipmentRequestDetails.ItemList.Item.1.OrderItemId' => '123',
+      'ShipmentRequestDetails.ItemList.Item.1.Quantity' => '1',
       'ShippingServiceId' => 'FOO'
     }
 
     @client.stub(:run, nil) do
       shipment_request_details = {
-        id: '123',
-        foo: { bar: 'baz' }
+        amazon_order_id: '123',
+        weight: {
+          value: '10',
+          unit: 'ounces'
+        },
+        item_list: [
+          {
+            order_item_id: '123',
+            quantity: '1'
+          }
+        ]
       }
       @client.create_shipment(shipment_request_details, 'FOO')
     end
