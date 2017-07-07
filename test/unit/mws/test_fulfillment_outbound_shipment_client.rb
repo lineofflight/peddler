@@ -137,6 +137,21 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_lists_return_reason_codes
+    seller_sku = 'ABC123'
+
+    operation = {
+      'Action' => 'ListReturnReasonCodes',
+      'SellerSKU' => seller_sku
+    }
+
+    @client.stub(:run, nil) do
+      @client.list_return_reason_codes(seller_sku)
+    end
+
+    assert_equal operation, @client.operation
+  end
+
   def test_gets_service_status
     operation = {
       'Action' => 'GetServiceStatus'

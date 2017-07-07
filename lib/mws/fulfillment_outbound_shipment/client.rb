@@ -165,6 +165,34 @@ module MWS
         run
       end
 
+      # Returns a list of return reason codes for a seller SKU in a given marketplace.
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListReturnReasonCodes.html
+      # @param [String] seller_sku
+      # @param [Hash] opts
+      # @option opts [String] :marketplace_id
+      # @option opts [String] :seller_fulfillment_order_id
+      # @option opts [String] :language
+      # @return [Peddler::XMLParser]
+      def list_return_reason_codes(seller_sku, opts = {})
+        opts['MarketplaceId'] = opts.delete(:marketplace_id) if
+          opts.key?(:marketplace_id)
+        opts['SellerFulfillmentOrderId'] = opts.delete(:seller_fulfillment_order_id) if
+          opts.key?(:seller_fulfillment_order_id)
+        opts['Languagel'] = opts.delete(:language) if
+          opts.key?(:language)
+
+        operation('ListReturnReasonCodes')
+          .add(
+            opts.merge(
+              'SellerSKU' => seller_sku
+            )
+          )
+          .structure!('List', 'member')
+
+        run
+      end
+
       # Gets the operational status of the API
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/MWS_GetServiceStatus.html
