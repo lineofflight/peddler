@@ -193,6 +193,21 @@ module MWS
         run
       end
 
+      # Creates a fulfillment return.
+      #
+      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentReturn.html
+      # @param [String] seller_fulfillment_order_id
+      # @param [Array] items
+      # @return [Peddler::XMLParser]
+      def create_fulfillment_return(seller_fulfillment_order_id, items)
+        operation('CreateFulfillmentReturn')
+          .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id)
+          .add('Items' => items)
+          .structure!('Items', 'member')
+
+        run
+      end
+
       # Gets the operational status of the API
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/MWS_GetServiceStatus.html
