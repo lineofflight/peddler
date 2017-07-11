@@ -3,8 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Add ListReturnReasonCodes and CreateFulfillmentReturn operations to the
+FulfillmentOutboundShipment client, by [@samacs].
 
-## [1.6.1] - 2017-05-24
+## [1.6.1] - 2017-05-24
 ### Changed
 - Scrub body of flat file response.
 - Encode flat file request bodies.
@@ -101,7 +103,7 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.1...HEAD
 [1.6.1]: https://github.com/hakanensari/peddler/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/hakanensari/peddler/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/hakanensari/peddler/compare/v1.4.1...v1.5.0
@@ -113,3 +115,5 @@ to the Products client.
 [1.1.0]: https://github.com/hakanensari/peddler/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/hakanensari/peddler/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/hakanensari/peddler/compare/v1.0.0...v1.0.1
+
+[@samacs]: https://github.com/samacs
