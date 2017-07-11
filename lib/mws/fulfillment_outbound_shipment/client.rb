@@ -175,13 +175,6 @@ module MWS
       # @option opts [String] :language
       # @return [Peddler::XMLParser]
       def list_return_reason_codes(seller_sku, opts = {})
-        opts['MarketplaceId'] = opts.delete(:marketplace_id) if
-          opts.key?(:marketplace_id)
-        opts['SellerFulfillmentOrderId'] = opts.delete(:seller_fulfillment_order_id) if
-          opts.key?(:seller_fulfillment_order_id)
-        opts['Languagel'] = opts.delete(:language) if
-          opts.key?(:language)
-
         operation('ListReturnReasonCodes')
           .add(
             opts.merge(

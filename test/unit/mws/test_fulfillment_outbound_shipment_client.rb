@@ -139,14 +139,19 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
 
   def test_lists_return_reason_codes
     seller_sku = 'ABC123'
+    seller_fulfillment_order_id = '123ABC'
 
     operation = {
       'Action' => 'ListReturnReasonCodes',
-      'SellerSKU' => seller_sku
+      'SellerSKU' => seller_sku,
+      'SellerFulfillmentOrderId' => seller_fulfillment_order_id
     }
 
     @client.stub(:run, nil) do
-      @client.list_return_reason_codes(seller_sku)
+      @client.list_return_reason_codes(
+        seller_sku,
+        seller_fulfillment_order_id: seller_fulfillment_order_id
+      )
     end
 
     assert_equal operation, @client.operation
