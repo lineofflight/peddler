@@ -3,8 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
 - Add ListReturnReasonCodes and CreateFulfillmentReturn operations to the
 FulfillmentOutboundShipment client, by [@samacs].
+
+### Fixed
+- Parse UTF8-encoded flat files correctly, thanks [@alexfalkowski].
 
 ## [1.6.1] - 2017-05-24
 ### Changed
@@ -117,3 +121,4 @@ to the Products client.
 [1.0.1]: https://github.com/hakanensari/peddler/compare/v1.0.0...v1.0.1
 
 [@samacs]: https://github.com/samacs
+[@alexfalkowski]: https:/github.com/alexfalkowski

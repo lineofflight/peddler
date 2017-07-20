@@ -73,10 +73,16 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     assert_equal '�', parser.parse['Foo'][0]
   end
 
+  def test_handles_utf8_flat_files
+    body = "Foo\nfür\n"
+    parser = Peddler::FlatFileParser.new(build_mock_response(body, ascii: false), 'CP1252')
+    assert_equal 'für', parser.parse['Foo'][0]
+  end
+
   private
 
-  def build_mock_response(body)
-    body.force_encoding('ASCII-8BIT')
+  def build_mock_response(body, ascii: true)
+    body.force_encoding('ASCII-8BIT') if ascii
     headers = {
       'Content-MD5' => Digest::MD5.base64digest(body)
     }
