@@ -12,7 +12,8 @@ module Peddler
       'APJ6JRA9NG5V4'  => 'mws-eu.amazonservices.com',
       'A1VC38T7YXB528' => 'mws.amazonservices.jp',
       'A1AM78C64UM0Y8' => 'mws.amazonservices.com.mx',
-      'ATVPDKIKX0DER'  => 'mws.amazonservices.com'
+      'ATVPDKIKX0DER'  => 'mws.amazonservices.com',
+      'A39IBJ37TRP1C6' => 'mws.amazonservices.com.au'
     }.freeze
 
     BadId = Class.new(StandardError)
