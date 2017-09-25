@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetProductCategoriesForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A38Z&Version=2011-10-01&Signature=u%2F8nv2Nv3y4gloWKD1nn1G0Qb6%2Ba4RzbQcwPFhNZQfw%3D
@@ -177,7 +177,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:21:42 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A42Z&Version=2011-10-01&Signature=G04pjcHGrT3qFkGup0NUmXPxr8JGFAlxpHVMoMRPFtE%3D
@@ -357,7 +357,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:21:45 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=FILTERED&Action=GetMatchingProduct&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A45Z&Version=2011-10-01&Signature=dDeqXErn6dwKj6cinQFRrpXJ91%2BwsaDV%2BSfgiWohz9w%3D
@@ -532,7 +532,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:21:48 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A48Z&Version=2011-10-01&Signature=wJcHJ8%2BBuiWvTdBGlBDUO%2BaWeDH75OrGWGQM43RT1QA%3D
@@ -707,7 +707,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:21:52 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=FILTERED&Action=GetCompetitivePricingForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A52Z&Version=2011-10-01&Signature=EbJsj7TaI91FrRsHlFCm5Ii912FIsnaaWh7U%2FaC6K7c%3D
@@ -883,7 +883,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:21:55 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestOfferListingsForASIN&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A21%3A55Z&Version=2011-10-01&Signature=DMiF2nILCl9wUR8CoJIapgoPjpvM9ZUOrrqamjvYSH8%3D
@@ -1059,7 +1059,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:22:00 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A2EUQ1WTGCTBG2&Query=architecture&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A22%3A00Z&Version=2011-10-01&Signature=DwQ1gekKilnTQsozhKeaC%2BfqTmBah3THJswIPur5eUA%3D
@@ -1232,7 +1232,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:22:05 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-10-28T13%3A23%3A30Z&Version=2011-10-01&Signature=g6ciJAcwe0vLo1u4XtHHc3umXfHXSw4L%2BtQDsMqxFhc%3D
@@ -2798,7 +2798,7 @@ http_interactions:
   recorded_at: Wed, 28 Oct 2015 13:23:40 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=FILTERED&Action=GetMatchingProduct&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A56%3A45Z&Version=2011-10-01&Signature=WN22iBfVyAJHeku%2Blw%2F6Adpo%2BThLScQs57g1wHLLguw%3D
@@ -3042,7 +3042,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:56:48 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetProductCategoriesForASIN&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A56%3A48Z&Version=2011-10-01&Signature=7V3JNQqSJzaNTmuaCdcF2IwtOkhebUWiEH9oWHVMAac%3D
@@ -3284,7 +3284,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:56:51 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A56%3A51Z&Version=2011-10-01&Signature=kaUv6Hpf3QPhKT6yl7T9T5blnrD58MXQwVT58jNUHko%3D
@@ -4755,7 +4755,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:56:53 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A56%3A54Z&Version=2011-10-01&Signature=zOUUzEamdMqUfYMLvhz50lGcZKva8S5r8YmeDtGqAQs%3D
@@ -5005,7 +5005,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:56:56 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A56%3A57Z&Version=2011-10-01&Signature=u6sjW65ckExfCHqfzOz%2BrXgnaODfkxgQPokrCJ2xXtc%3D
@@ -5249,7 +5249,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:57:00 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1AM78C64UM0Y8&Query=architecture&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A57%3A00Z&Version=2011-10-01&Signature=epDhmSQ8Hk%2BmTJmkSy%2FxmmDwzkykOxIElvr2JaCfr8o%3D
@@ -5490,7 +5490,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:57:05 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=FILTERED&Action=GetCompetitivePricingForASIN&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A57%3A05Z&Version=2011-10-01&Signature=oqIFwld6cS7CbNa0mIbDDoF37E09hbaECguMjV3eETo%3D
@@ -5735,7 +5735,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 12:57:08 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestOfferListingsForASIN&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T13%3A08%3A24Z&Version=2011-10-01&Signature=tF7Nbr9Rv3XilEOZVkEza4xV56C5LL9GgEUoRygIb8Q%3D
@@ -5980,7 +5980,7 @@ http_interactions:
   recorded_at: Mon, 23 May 2016 13:08:29 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetMyFeesEstimate&FeesEstimateRequestList.FeesEstimateRequest.1.IdType=ASIN&FeesEstimateRequestList.FeesEstimateRequest.1.IdValue=1780935374&FeesEstimateRequestList.FeesEstimateRequest.1.Identifier=123&FeesEstimateRequestList.FeesEstimateRequest.1.IsAmazonFulfilled=false&FeesEstimateRequestList.FeesEstimateRequest.1.MarketplaceId=A2EUQ1WTGCTBG2&FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.Amount=100&FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.CurrencyCode=CAD&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-12-29T01%3A23%3A57Z&Version=2011-10-01&Signature=Wvf2sBU3lWyLSSEhIPJgBucuOPUut2glybpb4tXDwHY%3D
@@ -6112,7 +6112,7 @@ http_interactions:
   recorded_at: Thu, 29 Dec 2016 01:23:58 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetMyFeesEstimate&FeesEstimateRequestList.FeesEstimateRequest.1.IdType=ASIN&FeesEstimateRequestList.FeesEstimateRequest.1.IdValue=1780935374&FeesEstimateRequestList.FeesEstimateRequest.1.Identifier=123&FeesEstimateRequestList.FeesEstimateRequest.1.IsAmazonFulfilled=false&FeesEstimateRequestList.FeesEstimateRequest.1.MarketplaceId=A1AM78C64UM0Y8&FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.Amount=100&FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.CurrencyCode=MXN&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-12-29T01%3A23%3A58Z&Version=2011-10-01&Signature=wNxdlHlUzpBJwGV6KL5q71aFJRXM9J7qqEFYBfQ1eTk%3D

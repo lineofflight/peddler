@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A20%3A04Z&Version=2009-01-01&Signature=0dP2%2BYaFsQKpw59PURBBghwUNRNaEZqHfwbOGa08AnE%3D
@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -58,11 +58,11 @@ http_interactions:
             <RequestId>3bc98dd1-fe4f-4072-913c-9e0afaf84bf1</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:05 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A20%3A05Z&Version=2009-01-01&Signature=e7l58NJ2I89S81zimjog80%2FFTSPjqy7i2DGH4kldA2A%3D
@@ -74,7 +74,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -118,7 +118,7 @@ http_interactions:
             <RequestId>1c7cb52e-a70e-4e80-8592-adfbaa77c72f</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:06 GMT
 - request:
     method: post
@@ -134,7 +134,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -178,7 +178,7 @@ http_interactions:
             <RequestId>934b31d2-7d8f-4a1e-a8c7-bb3dad5c2d54</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:06 GMT
 - request:
     method: post
@@ -194,7 +194,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -238,7 +238,7 @@ http_interactions:
             <RequestId>15b0f4dc-107c-4e9e-8fa2-b86661a0991a</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:07 GMT
 - request:
     method: post
@@ -254,7 +254,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -298,7 +298,7 @@ http_interactions:
             <RequestId>5de52a2f-d6a6-4ed3-afbc-a1ed78d96d1e</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:07 GMT
 - request:
     method: post
@@ -314,7 +314,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -358,7 +358,7 @@ http_interactions:
             <RequestId>8ed98411-22a4-43b7-9772-ee226763788b</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:07 GMT
 - request:
     method: post
@@ -374,7 +374,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -418,7 +418,7 @@ http_interactions:
             <RequestId>bde5c345-1656-4963-8626-aa086a56a710</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:08 GMT
 - request:
     method: post
@@ -434,7 +434,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -478,7 +478,7 @@ http_interactions:
             <RequestId>96105c0b-e344-42d6-a108-7f2594cb401d</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:08 GMT
 - request:
     method: post
@@ -494,7 +494,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -538,11 +538,11 @@ http_interactions:
             <RequestId>8da99ea2-a3e0-4760-90d4-8286d28161b9</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:09 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A20%3A09Z&Version=2009-01-01&Signature=eGLGpoE1utuZ0xR%2BohSLVX6Uo3jQN6J376GT9By%2BhZU%3D
@@ -554,7 +554,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -673,11 +673,11 @@ http_interactions:
             <RequestId>7540f938-f1cd-4f24-837d-730faba83edc</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:09 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A20%3A09Z&Version=2009-01-01&Signature=I2rCt2JZq3kk1JosiHkZnhIAbgo0o9j6LI9JBJNUzYg%3D
@@ -689,7 +689,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -807,7 +807,7 @@ http_interactions:
             <RequestId>fc8e2eb1-dcb5-4cf4-8109-e071a7825988</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:10 GMT
 - request:
     method: post
@@ -823,7 +823,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -942,7 +942,7 @@ http_interactions:
             <RequestId>dcc013bd-1597-4b22-81c3-234098638150</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:10 GMT
 - request:
     method: post
@@ -958,7 +958,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1075,7 +1075,7 @@ http_interactions:
             <RequestId>72250858-21dc-40bd-8462-483b8cb78577</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:10 GMT
 - request:
     method: post
@@ -1091,7 +1091,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1210,7 +1210,7 @@ http_interactions:
             <RequestId>ac8695d1-f7b3-48b8-8063-f2c9b96c5033</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:11 GMT
 - request:
     method: post
@@ -1226,7 +1226,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1346,7 +1346,7 @@ http_interactions:
             <RequestId>5c64dabe-b2a3-4032-bd79-f061eaefcc14</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:11 GMT
 - request:
     method: post
@@ -1362,7 +1362,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1483,7 +1483,7 @@ http_interactions:
             <RequestId>6420696f-50ad-4b47-a29f-f56a011088ca</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:12 GMT
 - request:
     method: post
@@ -1499,7 +1499,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1624,7 +1624,7 @@ http_interactions:
             <RequestId>cb448739-36bc-43da-a43a-de4e9fa3428b</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:12 GMT
 - request:
     method: post
@@ -1640,7 +1640,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1765,11 +1765,11 @@ http_interactions:
             <RequestId>6a8949f6-9588-4f4c-b01c-3f2c98b599ff</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:12 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A20%3A12Z&Version=2009-01-01&Signature=kEKSQAae3VwIXJ9QgSPQ09fVW9jO4Vcb0Q65ypxhQTY%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A20%3A12Z&Version=2009-01-01&Signature=kEKSQAae3VwIXJ9QgSPQ09fVW9jO4Vcb0Q65ypxhQTY%3D
     body:
       encoding: UTF-8
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -1781,7 +1781,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1813,11 +1813,11 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>469726017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:20:13+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>0ffe1503-f621-4bb3-b62e-f79f321cba9f</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:20:13 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A26%3A06Z&Version=2009-01-01&Signature=v%2FUqEC26Un%2F0ccw78cXEBAMSowZLYeFuLiGfuzU8yMU%3D
+    uri: https://mws.amazonservices.com/?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A26%3A06Z&Version=2009-01-01&Signature=v%2FUqEC26Un%2F0ccw78cXEBAMSowZLYeFuLiGfuzU8yMU%3D
     body:
       encoding: UTF-8
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -1829,7 +1829,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1861,7 +1861,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>401894017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:06+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>c9b69649-bfa9-4c60-ad9a-05ca73bd3976</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:06 GMT
 - request:
     method: post
@@ -1877,7 +1877,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1909,7 +1909,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>354182017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:07+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>3ffc6e3a-b009-4f16-a445-1e0ddefeccd4</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:07 GMT
 - request:
     method: post
@@ -1925,7 +1925,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1957,7 +1957,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>178285017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:07+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>7fead397-1da6-46dc-a5d2-4b55a4aa92a2</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:07 GMT
 - request:
     method: post
@@ -1973,7 +1973,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2005,7 +2005,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>360005017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:08+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>906b494e-813b-4f4b-89f8-865428fd2df3</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:08 GMT
 - request:
     method: post
@@ -2021,7 +2021,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2053,7 +2053,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>341835017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:09+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>c58be5cc-d802-496e-8b30-1ea3e872ec3f</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:09 GMT
 - request:
     method: post
@@ -2069,7 +2069,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2101,7 +2101,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>215645017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:10+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>4490f136-7a38-462a-8550-fe271dc2d70c</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:10 GMT
 - request:
     method: post
@@ -2117,7 +2117,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2149,7 +2149,7 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>368256017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:10+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>ae2f9620-9b74-4222-af5c-04159c525c86</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:10 GMT
 - request:
     method: post
@@ -2165,7 +2165,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2197,11 +2197,11 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>272834017282</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2017-04-26T01:26:11+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>91b01d74-b546-4d33-bdbf-0f2a295abf6b</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:26:11 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionResult&FeedSubmissionId=469726017282&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A30%3A11Z&Version=2009-01-01&Signature=6wUPGOzzbupl%2Fq0%2FTYxJrUH35javkwMzUxtyK%2BSPe7s%3D
@@ -2213,7 +2213,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2248,11 +2248,11 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:30:12 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=469726017282&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A31%3A41Z&Version=2009-01-01&Signature=vvEp7UOxuamjeTHNANRpQHVxJ1lv6DHq6xl3dHEAe%2FY%3D
@@ -2264,7 +2264,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3107,11 +3107,11 @@ http_interactions:
             <RequestId>abceaf34-e649-4572-b052-555404d9eb5e</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:31:42 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionResult&FeedSubmissionId=401894017282&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A33%3A37Z&Version=2009-01-01&Signature=%2FtraF4Sbwrf9ge1ONQwj0T8jffdNvQ7fI1WXmNsuav4%3D
@@ -3123,7 +3123,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3158,11 +3158,11 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:37 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=401894017282&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-04-26T01%3A33%3A37Z&Version=2009-01-01&Signature=Nv4UQna0rV5tzMvMKjbvXdwLSaJ0sas%2FOD%2Bl6U%2BbKok%3D
@@ -3174,7 +3174,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4015,7 +4015,7 @@ http_interactions:
             <RequestId>1ca18156-b84f-4919-b67d-5cd2c59e7331</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:38 GMT
 - request:
     method: post
@@ -4031,7 +4031,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4066,7 +4066,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:38 GMT
 - request:
     method: post
@@ -4082,7 +4082,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4922,7 +4922,7 @@ http_interactions:
             <RequestId>95a8dd15-476f-432c-99d4-862b6ae83a3f</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:39 GMT
 - request:
     method: post
@@ -4938,7 +4938,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4973,7 +4973,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:39 GMT
 - request:
     method: post
@@ -4989,7 +4989,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5827,7 +5827,7 @@ http_interactions:
             <RequestId>b5135c86-3557-4619-a8e2-130a49cb0748</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:41 GMT
 - request:
     method: post
@@ -5843,7 +5843,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5878,7 +5878,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:41 GMT
 - request:
     method: post
@@ -5894,7 +5894,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -6733,7 +6733,7 @@ http_interactions:
             <RequestId>417c8518-90ac-4eaa-ad31-a0fdadd2d707</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:43 GMT
 - request:
     method: post
@@ -6749,7 +6749,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -6784,7 +6784,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:43 GMT
 - request:
     method: post
@@ -6800,7 +6800,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -7640,7 +7640,7 @@ http_interactions:
             <RequestId>3911a07b-4a6c-4292-8c9d-0f1eecc27681</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:43 GMT
 - request:
     method: post
@@ -7656,7 +7656,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -7691,7 +7691,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: !binary |-
         g3SDQoFbg2iPiJedjIuJyoFGCgmPiJedgrOC6oK9jI+QlAkJMQoJkKyM94K1gr2Mj5CUCQkxCgo=
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:45 GMT
 - request:
     method: post
@@ -7707,7 +7707,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -8548,7 +8548,7 @@ http_interactions:
             <RequestId>926f929a-31f6-4ad0-9f57-dc15179f948d</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:46 GMT
 - request:
     method: post
@@ -8564,7 +8564,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -8599,7 +8599,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:46 GMT
 - request:
     method: post
@@ -8615,7 +8615,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -9455,7 +9455,7 @@ http_interactions:
             <RequestId>4cbcd0a4-d6cb-4841-954a-8f45db320f12</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:46 GMT
 - request:
     method: post
@@ -9471,7 +9471,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -9506,7 +9506,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:47 GMT
 - request:
     method: post
@@ -9522,7 +9522,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -10360,6 +10360,6 @@ http_interactions:
             <RequestId>7d4f6ed0-43a2-49cd-a03f-449fb38432fd</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Wed, 26 Apr 2017 01:33:49 GMT
 recorded_with: VCR 3.0.3

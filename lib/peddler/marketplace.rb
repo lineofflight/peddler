@@ -1,20 +1,37 @@
 module Peddler
   # @api private
+  # @see https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html
   class Marketplace
+    IDS = {
+      'CA' => 'A2EUQ1WTGCTBG2',
+      'MX' => 'A1AM78C64UM0Y8',
+      'US' => 'ATVPDKIKX0DER',
+      'BR' => 'A2Q3Y263D00KWC',
+      'DE' => 'A1PA6795UKMFR9',
+      'ES' => 'A1RKKUPIHCS9HS',
+      'FR' => 'A13V1IB3VIYZZH',
+      'IT' => 'APJ6JRA9NG5V4',
+      'UK' => 'A1F83G8C2ARO7P',
+      'IN' => 'A21TJRUUN4KGV',
+      'AU' => 'A39IBJ37TRP1C6',
+      'JP' => 'A1VC38T7YXB528',
+      'CN' => 'AAHKV2X7AFYLW'
+    }.freeze
+
     HOSTS = {
-      'A2EUQ1WTGCTBG2' => 'mws.amazonservices.ca',
-      'AAHKV2X7AFYLW'  => 'mws.amazonservices.com.cn',
-      'A1PA6795UKMFR9' => 'mws-eu.amazonservices.com',
-      'A1RKKUPIHCS9HS' => 'mws-eu.amazonservices.com',
-      'A13V1IB3VIYZZH' => 'mws-eu.amazonservices.com',
-      'A1F83G8C2ARO7P' => 'mws-eu.amazonservices.com',
-      'A21TJRUUN4KGV'  => 'mws.amazonservices.in',
-      'APJ6JRA9NG5V4'  => 'mws-eu.amazonservices.com',
-      'A1VC38T7YXB528' => 'mws.amazonservices.jp',
-      'A1AM78C64UM0Y8' => 'mws.amazonservices.com.mx',
-      'ATVPDKIKX0DER'  => 'mws.amazonservices.com',
-      'A39IBJ37TRP1C6' => 'mws.amazonservices.com.au',
-      'A2Q3Y263D00KWC' => 'mws.amazonservices.com'
+      'CA' => 'mws.amazonservices.com',
+      'MX' => 'mws.amazonservices.com',
+      'US' => 'mws.amazonservices.com',
+      'BR' => 'mws.amazonservices.com',
+      'DE' => 'mws-eu.amazonservices.com',
+      'ES' => 'mws-eu.amazonservices.com',
+      'FR' => 'mws-eu.amazonservices.com',
+      'IT' => 'mws-eu.amazonservices.com',
+      'UK' => 'mws-eu.amazonservices.com',
+      'IN' => 'mws.amazonservices.in',
+      'AU' => 'mws.amazonservices.com.au',
+      'JP' => 'mws.amazonservices.jp',
+      'CN' => 'mws.amazonservices.com.cn'
     }.freeze
 
     BadId = Class.new(StandardError)
@@ -23,6 +40,10 @@ module Peddler
 
     def initialize(id)
       @id = id || raise(BadId, 'missing MarketplaceId')
+    end
+
+    def country_code
+      @country_code ||= find_country_code
     end
 
     def host
@@ -34,9 +55,10 @@ module Peddler
     # support some characters. The supersets should be safe to use as drop-in
     # replacements.
     def encoding
-      if japanese?
+      case country_code
+      when 'JP'
         'Windows-31J'
-      elsif chinese?
+      when 'CN'
         'UTF-16'
       else
         'CP1252'
@@ -45,16 +67,12 @@ module Peddler
 
     private
 
+    def find_country_code
+      IDS.key(id) || raise(BadId, %("#{id}" is not a valid MarketplaceId))
+    end
+
     def find_host
-      HOSTS.fetch(id) { raise BadId, %("#{id}" is not a valid MarketplaceId) }
-    end
-
-    def japanese?
-      host.end_with?('jp')
-    end
-
-    def chinese?
-      host.end_with?('cn')
+      HOSTS[country_code]
     end
   end
 end

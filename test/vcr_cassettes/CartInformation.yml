@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/CartInformation/2014-03-01
+    uri: https://mws.amazonservices.com/CartInformation/2014-03-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A10%3A17Z&Version=2014-03-01&Signature=Ld91dAS8OXCk9NNcjb9d4AyEerTSfVMGDAdp7EHmCWU%3D
@@ -182,7 +182,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:10:20 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/CartInformation/2014-03-01
+    uri: https://mws.amazonservices.com/CartInformation/2014-03-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A36%3A40Z&Version=2014-03-01&Signature=Tk7nFqDn9DB4%2B9%2FiJRdY6NZXW2PFdxWSmMcNOFpUWTg%3D

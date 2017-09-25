@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A25Z&Version=2011-10-01&Signature=H7X%2BMTLCIcVYxR0WamedUEDgxfNqL9llzZQlFSLxGVE%3D
@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -245,11 +245,11 @@ http_interactions:
                 <RequestId>408ccd3b-7fe0-4a9d-a998-af75cb2a396e</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Products/2011-10-01
+    uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
       string: ASIN=1780935374&AWSAccessKeyId=FILTERED&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-29T23%3A55%3A25Z&Version=2011-10-01&Signature=d%2FQR7okNPKpJC6iph%2B%2FlBvyyzaek5XUz69XUvyNMe5E%3D
@@ -261,7 +261,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -371,7 +371,7 @@ http_interactions:
                 <RequestId>12fc4adb-e3a3-4b84-afb6-0c78d3d3bf31</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
 - request:
     method: post
@@ -387,7 +387,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -658,7 +658,7 @@ http_interactions:
                 <RequestId>4e4ab75b-e3b6-4ef8-a98b-da4da3bb1748</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
 - request:
     method: post
@@ -674,7 +674,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -885,7 +885,7 @@ http_interactions:
                 <RequestId>28b495b8-e3ef-4c9e-898f-93e63434ccfa</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
 - request:
     method: post
@@ -901,7 +901,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1128,7 +1128,7 @@ http_interactions:
                 <RequestId>593ab553-7add-4ec4-8b0e-312315da4d03</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:27 GMT
 - request:
     method: post
@@ -1144,7 +1144,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1701,7 +1701,7 @@ http_interactions:
                 <RequestId>b25ccae3-98f0-47e2-9d27-980fc47d4758</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:27 GMT
 - request:
     method: post
@@ -1717,7 +1717,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1905,7 +1905,7 @@ http_interactions:
                 <RequestId>608a6fb0-5815-4d8a-8ae8-9b68d23513f3</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:28 GMT
 - request:
     method: post
@@ -1921,7 +1921,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2478,7 +2478,7 @@ http_interactions:
                 <RequestId>db909c69-263e-4a95-be68-ee4c9aca61a4</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:29 GMT
 - request:
     method: post
@@ -2494,7 +2494,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2959,6 +2959,6 @@ http_interactions:
                 <RequestId>f0f3d790-1642-458d-88e5-baead9088283</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:29 GMT
 recorded_with: VCR 3.0.3

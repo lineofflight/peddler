@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Recommendations/2013-04-01
+    uri: https://mws.amazonservices.com/Recommendations/2013-04-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=ListRecommendations&MarketplaceId=A2EUQ1WTGCTBG2&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A34Z&Version=2013-04-01&Signature=Wc8XL52V%2BBzN1gZ50fwpLz0v3ur8MmQrWKE4ykwA6%2Bc%3D
@@ -12,7 +12,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:35 GMT
@@ -64,7 +64,7 @@ http_interactions:
             <RequestId>ccad8c6b-e550-46bf-9eb8-d262c132ef3f</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:35 GMT
 - request:
     method: post
@@ -78,7 +78,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:36 GMT
@@ -1990,7 +1990,7 @@ http_interactions:
         ZXNwb25zZU1ldGFkYXRhPgogICAgPFJlcXVlc3RJZD5iNWUzZDUwNi1mZmZh
         LTQ3NmUtOGE4Ny0xNDA4NjJhMDJmOTE8L1JlcXVlc3RJZD4KICA8L1Jlc3Bv
         bnNlTWV0YWRhdGE+CjwvTGlzdFJlY29tbWVuZGF0aW9uc1Jlc3BvbnNlPgo=
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:37 GMT
 - request:
     method: post
@@ -2004,7 +2004,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:38 GMT
@@ -2056,7 +2056,7 @@ http_interactions:
             <RequestId>3c856461-1e47-4e45-808f-cfa6c1a336b4</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:38 GMT
 - request:
     method: post
@@ -2070,7 +2070,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:39 GMT
@@ -2122,11 +2122,11 @@ http_interactions:
             <RequestId>6805c69e-eb0e-414b-bf88-7e735c391657</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:39 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Recommendations/2013-04-01
+    uri: https://mws.amazonservices.com/Recommendations/2013-04-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A39Z&Version=2013-04-01&Signature=%2FLSn2LGjbFhqnsMD6vN%2Fog%2FwqNyby4X9Ln9FAZPDnss%3D
@@ -2136,7 +2136,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:39 GMT
@@ -2167,7 +2167,7 @@ http_interactions:
             <RequestId>c1f58380-5d10-40fd-88e5-7f639988a8ce</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:40 GMT
 - request:
     method: post
@@ -2181,7 +2181,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:40 GMT
@@ -2212,7 +2212,7 @@ http_interactions:
             <RequestId>8512cee1-dbad-4a09-b116-74f09fa011ff</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:40 GMT
 - request:
     method: post
@@ -2226,7 +2226,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:42 GMT
@@ -2257,7 +2257,7 @@ http_interactions:
             <RequestId>39bbabfa-1fa6-4532-997e-683e94732c17</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:43 GMT
 - request:
     method: post
@@ -2271,7 +2271,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:44 GMT
@@ -2302,11 +2302,11 @@ http_interactions:
             <RequestId>601604ef-21dc-4468-87a6-cd91c080e9f7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:44 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Recommendations/2013-04-01
+    uri: https://mws.amazonservices.com/Recommendations/2013-04-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T13%3A09%3A43Z&Version=2013-04-01&Signature=lpg6E%2Bu6EgSwSieMLzHFWq62vxhDWbtSQ%2BJMG8tbN1E%3D
@@ -2318,7 +2318,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2352,7 +2352,7 @@ http_interactions:
             <RequestId>e51be1cc-5be0-43db-a4ef-48ba05aa510c</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:09:45 GMT
 - request:
     method: post
@@ -2368,7 +2368,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2402,7 +2402,7 @@ http_interactions:
             <RequestId>42bf24f4-028c-40d5-8200-d6884e90b71e</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:09:46 GMT
 - request:
     method: post
@@ -2418,7 +2418,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2452,7 +2452,7 @@ http_interactions:
             <RequestId>8d1cdb8c-6aa0-4c38-accb-80bedf001fc4</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:09:46 GMT
 - request:
     method: post
@@ -2468,7 +2468,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2502,7 +2502,7 @@ http_interactions:
             <RequestId>40839c7f-6a95-4ad2-b3cc-306e40dbf29d</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:09:46 GMT
 - request:
     method: post
@@ -2518,7 +2518,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2552,11 +2552,11 @@ http_interactions:
             <RequestId>ac79364c-a228-4e3b-9cfe-3c934c8452d1</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:09:47 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Recommendations/2013-04-01
+    uri: https://mws.amazonservices.com/Recommendations/2013-04-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=ListRecommendations&MarketplaceId=A1AM78C64UM0Y8&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T13%3A09%3A47Z&Version=2013-04-01&Signature=xLOZRHVy%2FGUG7UDmSzUhtnB9Q7juoMgB%2BY0bZP6%2FBjE%3D
@@ -2568,7 +2568,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2621,7 +2621,7 @@ http_interactions:
             <RequestId>373b188a-eb96-427a-aa8d-2e2f84e3e87c</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:09:48 GMT
 - request:
     method: post
@@ -2637,7 +2637,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2701,7 +2701,7 @@ http_interactions:
             <RequestId>cd41ab1d-7030-40bc-a965-554c16ccf42c</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Tue, 24 May 2016 13:46:02 GMT
 - request:
     method: post
@@ -2717,7 +2717,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2928,7 +2928,7 @@ http_interactions:
         ICAgIDxSZXF1ZXN0SWQ+ODJkYjAyNzAtMDM1OS00YWEyLTg5NmYtMWRiZTE0
         YjNjMWZlPC9SZXF1ZXN0SWQ+CiAgPC9SZXNwb25zZU1ldGFkYXRhPgo8L0xp
         c3RSZWNvbW1lbmRhdGlvbnNSZXNwb25zZT4K
-    http_version: 
+    http_version:
   recorded_at: Tue, 24 May 2016 13:46:02 GMT
 - request:
     method: post
@@ -2944,7 +2944,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3014,7 +3014,7 @@ http_interactions:
             <RequestId>086d38b8-3d0b-49bb-8afa-29947c47cf7d</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Tue, 24 May 2016 13:46:03 GMT
 - request:
     method: post
@@ -3030,7 +3030,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3140,6 +3140,6 @@ http_interactions:
             <RequestId>ae3dedb8-382b-4e24-8b09-135be7758e38</RequestId>
           </ResponseMetadata>
         </ListRecommendationsResponse>
-    http_version: 
+    http_version:
   recorded_at: Tue, 24 May 2016 13:46:03 GMT
 recorded_with: VCR 3.0.3

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A01Z&Version=2013-09-01&Signature=MyyiEUzErh8YiguHaNFTHIU2DckQIGmyIlx5TPsDTuM%3D
@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -47,7 +47,7 @@ http_interactions:
           </Error>
           <RequestID>00df398f-e78f-49ff-b71b-aef161edb82c</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:02 GMT
 - request:
     method: post
@@ -63,7 +63,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -96,7 +96,7 @@ http_interactions:
           </Error>
           <RequestID>1d076335-515f-451d-bc8f-c12c93e43874</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:03 GMT
 - request:
     method: post
@@ -112,7 +112,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -145,11 +145,11 @@ http_interactions:
           </Error>
           <RequestID>8a975a37-ae3d-420c-b294-747ece38eb15</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:03 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A17%3A03Z&Version=2013-09-01&Signature=LZJLm79FpUSEEE64JxOQl%2Fv9%2B8gJundIO9GCm59ZQCI%3D
@@ -161,7 +161,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -194,7 +194,7 @@ http_interactions:
           </Error>
           <RequestID>627c5924-6175-40bf-98b4-502a938310a6</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:04 GMT
 - request:
     method: post
@@ -210,7 +210,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -243,7 +243,7 @@ http_interactions:
           </Error>
           <RequestID>3a0e7604-1e30-4a02-bcbb-80b241aeb392</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:05 GMT
 - request:
     method: post
@@ -259,7 +259,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -292,7 +292,7 @@ http_interactions:
           </Error>
           <RequestID>336abcbc-d2e0-482e-a17c-3ebc1840702b</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:07 GMT
 - request:
     method: post
@@ -308,7 +308,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -341,7 +341,7 @@ http_interactions:
           </Error>
           <RequestID>fa494823-6cc9-4a16-9ec2-2d219c793f10</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:07 GMT
 - request:
     method: post
@@ -357,7 +357,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -390,7 +390,7 @@ http_interactions:
           </Error>
           <RequestID>c84732da-1e06-4be4-afa7-ddbabbe2de28</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:07 GMT
 - request:
     method: post
@@ -406,7 +406,7 @@ http_interactions:
   response:
     status:
       code: 403
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -439,11 +439,11 @@ http_interactions:
           </Error>
           <RequestID>e62e40db-56b1-426a-9931-e0ae1855ab3a</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:17:08 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A25%3A16Z&Version=2013-09-01&Signature=PxxDltfEifbWVzOka2AIu%2BS4JdOtTe%2BinKYqPi1%2B2iw%3D
@@ -455,7 +455,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -488,7 +488,7 @@ http_interactions:
           </Error>
           <RequestID>c09da471-3728-45bd-b149-011107c6b222</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:25:16 GMT
 - request:
     method: post
@@ -504,7 +504,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -537,7 +537,7 @@ http_interactions:
           </Error>
           <RequestID>7e25a2e4-32ee-4e6f-9e55-87a7466cfa76</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:25:31 GMT
 - request:
     method: post
@@ -553,7 +553,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -586,11 +586,11 @@ http_interactions:
           </Error>
           <RequestID>46605ebf-ff3a-4413-8f10-07698078db28</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:25:31 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=foo&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A26%3A15Z&Version=2013-09-01&Signature=IZu%2FVXyk42RToI%2FBx42JvU4rcaOVydIJy5FxE06tQRg%3D
@@ -602,7 +602,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -635,7 +635,7 @@ http_interactions:
           </Error>
           <RequestID>7f0f0820-dc56-41d1-9962-580e1b92966d</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:26:16 GMT
 - request:
     method: post
@@ -651,7 +651,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -684,7 +684,7 @@ http_interactions:
           </Error>
           <RequestID>429d190c-0c4a-46c8-b9a9-5f46511b53b3</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:26:36 GMT
 - request:
     method: post
@@ -700,7 +700,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -733,7 +733,7 @@ http_interactions:
           </Error>
           <RequestID>759022d5-6990-4bfc-9351-7cc67d008955</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:28:24 GMT
 - request:
     method: post
@@ -749,7 +749,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -782,7 +782,7 @@ http_interactions:
           </Error>
           <RequestID>19f0a252-96de-4a79-8052-b66fb4f441be</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:29:37 GMT
 - request:
     method: post
@@ -798,7 +798,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -831,7 +831,7 @@ http_interactions:
           </Error>
           <RequestID>840d7fe6-fbf4-4bc6-a7d6-018269e8e57b</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:30:11 GMT
 - request:
     method: post
@@ -847,7 +847,7 @@ http_interactions:
   response:
     status:
       code: 503
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -880,6 +880,6 @@ http_interactions:
           </Error>
           <RequestID>5ca0af8a-0443-4a26-8b63-a9764863c7d8</RequestID>
         </ErrorResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:33:45 GMT
 recorded_with: VCR 3.0.1
