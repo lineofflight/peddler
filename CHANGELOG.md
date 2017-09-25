@@ -4,14 +4,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.3] - 2017-09-25
+### Added
+- Add Amazon Brazil marketplace.
+
+### Changed
+- Updated hostnames for MWS endpoints.
+
 ## [1.6.2] - 2017-09-13
 ### Added
-- Add Amazon Australia marketplace, by [@ranjeetkumarkanaily].
+- Add Amazon Australia marketplace.
 - Add ListReturnReasonCodes and CreateFulfillmentReturn operations to the
-FulfillmentOutboundShipment client, by [@samacs].
+FulfillmentOutboundShipment client.
 
 ### Fixed
-- Parse UTF8-encoded flat files correctly, thanks [@alexfalkowski].
+- Parse UTF8-encoded flat files correctly.
 
 ## [1.6.1] - 2017-05-24
 ### Changed
@@ -110,7 +117,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.2...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.3...HEAD
+[1.6.3]: https://github.com/hakanensari/peddler/compare/v1.6.2...v1.6.3
 [1.6.2]: https://github.com/hakanensari/peddler/compare/v1.6.1...v1.6.2
 [1.6.1]: https://github.com/hakanensari/peddler/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/hakanensari/peddler/compare/v1.5.0...v1.6.0
@@ -123,7 +131,3 @@ to the Products client.
 [1.1.0]: https://github.com/hakanensari/peddler/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/hakanensari/peddler/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/hakanensari/peddler/compare/v1.0.0...v1.0.1
-
-[@alexfalkowski]: https:/github.com/alexfalkowski
-[@ranjeetkumarkanaily]: https://github.com/ranjeetkumarkanaily
-[@samacs]: https://github.com/samacs
