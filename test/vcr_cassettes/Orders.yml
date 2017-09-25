@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A12%3A08Z&Version=2013-09-01&Signature=vz7mmqg2RnsQJ%2BrwBiwg75g%2BOF12oMAdEIDNKXHtZgE%3D
@@ -182,7 +182,7 @@ http_interactions:
   recorded_at: Sat, 28 Mar 2015 18:12:11 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=ListOrders&CreatedAfter=2015-01-01&MarketplaceId.Id.1=A2EUQ1WTGCTBG2&MaxResultsPerPage=5&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A11Z&Version=2013-09-01&Signature=rts5vyk%2FbzgMpA%2BHHTrb%2F7Hyginrg6mtJyUSiOjYmrI%3D
@@ -428,7 +428,7 @@ http_interactions:
   recorded_at: Wed, 20 Jan 2016 18:49:12 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=701-8212983-0622640&AmazonOrderId.Id.2=701-0172976-2593811&AmazonOrderId.Id.3=702-6961032-7264202&AmazonOrderId.Id.4=701-7014766-0872225&AmazonOrderId.Id.5=701-5529806-6084219&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A13Z&Version=2013-09-01&Signature=6LEJPgnCDMOjF5uRrl6T0lA%2Feo%2Br7%2B8z75VGilJNUKM%3D
@@ -2079,7 +2079,7 @@ http_interactions:
   recorded_at: Wed, 20 Jan 2016 18:49:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=ListOrders&CreatedAfter=2015-01-01&MarketplaceId.Id.1=A1AM78C64UM0Y8&MaxResultsPerPage=5&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A11Z&Version=2013-09-01&Signature=rts5vyk%2FbzgMpA%2BHHTrb%2F7Hyginrg6mtJyUSiOjYmrI%3D
@@ -2325,7 +2325,7 @@ http_interactions:
   recorded_at: Wed, 20 Jan 2016 18:49:12 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetOrder&AmazonOrderId.Id.1=701-8212983-0622640&AmazonOrderId.Id.2=701-0172976-2593811&AmazonOrderId.Id.3=702-6961032-7264202&AmazonOrderId.Id.4=701-7014766-0872225&AmazonOrderId.Id.5=701-5529806-6084219&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-20T18%3A49%3A13Z&Version=2013-09-01&Signature=6LEJPgnCDMOjF5uRrl6T0lA%2Feo%2Br7%2B8z75VGilJNUKM%3D
@@ -2569,7 +2569,7 @@ http_interactions:
   recorded_at: Wed, 20 Jan 2016 18:49:14 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Orders/2013-09-01
+    uri: https://mws.amazonservices.com/Orders/2013-09-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A54%3A13Z&Version=2013-09-01&Signature=yTkGS%2BvUT4FGw79m1y%2BjgsBoA5%2BFzAVHO9CnuVfmUS8%3D

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/FulfillmentInventory/2010-10-01
+    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A55Z&Version=2010-10-01&Signature=ZEeblTUtUphDbyLQawEUzzNnWzu0wodcKpUReSPQYL4%3D
@@ -12,7 +12,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:11:55 GMT
@@ -43,7 +43,7 @@ http_interactions:
             <RequestId>eb331337-63db-481f-807d-7f7e7cb66c28</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:56 GMT
 - request:
     method: post
@@ -57,7 +57,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:11:56 GMT
@@ -88,7 +88,7 @@ http_interactions:
             <RequestId>f08a8ecf-a2ba-4478-b855-b5d85ec96091</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:56 GMT
 - request:
     method: post
@@ -102,7 +102,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:11:57 GMT
@@ -133,7 +133,7 @@ http_interactions:
             <RequestId>ae1985bc-e95e-49e8-a162-054fbd642fe7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:57 GMT
 - request:
     method: post
@@ -147,7 +147,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:11:57 GMT
@@ -178,11 +178,11 @@ http_interactions:
             <RequestId>8dc7807a-426e-4401-b1b8-63affb69eb44</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:58 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/FulfillmentInventory/2010-10-01
+    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=ListInventorySupply&QueryStartDateTime=2015-02-26&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A11%3A58Z&Version=2010-10-01&Signature=xR8K4uc9X%2FtmmaOQtVwpD7hx0V1y8NsP6BTBc6SOCaQ%3D
@@ -192,7 +192,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:11:59 GMT
@@ -221,7 +221,7 @@ http_interactions:
             <RequestId>7077489c-8c8b-4620-aefa-493b53aa39da</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:00 GMT
 - request:
     method: post
@@ -235,7 +235,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:11:59 GMT
@@ -264,7 +264,7 @@ http_interactions:
             <RequestId>0bce4c49-3217-4b86-9ad1-0295818b91fe</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:00 GMT
 - request:
     method: post
@@ -278,7 +278,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:01 GMT
@@ -307,7 +307,7 @@ http_interactions:
             <RequestId>ac3c3c0a-2694-47dc-bf25-bd54de8e21f4</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:01 GMT
 - request:
     method: post
@@ -321,7 +321,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:12:02 GMT
@@ -350,11 +350,11 @@ http_interactions:
             <RequestId>32c50063-f3b5-4aef-8d2a-eb8ad14b2fc7</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:02 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/FulfillmentInventory/2010-10-01
+    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A51%3A32Z&Version=2010-10-01&Signature=keUWO4YND5nkrxbEbDbkdQrjHAF4qwLjoG5mfMYoXYo%3D
@@ -366,7 +366,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -400,7 +400,7 @@ http_interactions:
             <RequestId>db2b8880-c5ff-4a52-bcdd-a9935cb53057</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:33 GMT
 - request:
     method: post
@@ -416,7 +416,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -450,7 +450,7 @@ http_interactions:
             <RequestId>335ec53c-8b88-4442-83d3-6f65b6f45e91</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:34 GMT
 - request:
     method: post
@@ -466,7 +466,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -500,7 +500,7 @@ http_interactions:
             <RequestId>ea5da71b-4ad9-4829-b4b4-69925f56f7a7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:34 GMT
 - request:
     method: post
@@ -516,7 +516,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -550,7 +550,7 @@ http_interactions:
             <RequestId>e03cfe4f-e26c-418d-9e8b-d713c05695b7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:34 GMT
 - request:
     method: post
@@ -566,7 +566,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -600,11 +600,11 @@ http_interactions:
             <RequestId>46ed8a41-b281-4325-8b91-50e1d11b00e1</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:35 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/FulfillmentInventory/2010-10-01
+    uri: https://mws.amazonservices.com/FulfillmentInventory/2010-10-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=ListInventorySupply&QueryStartDateTime=2016-04-23&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A51%3A35Z&Version=2010-10-01&Signature=vjmwf9iTZGLGg3N7CeixY%2FTAEPVM1FlmAO4UH9jNa%2F8%3D
@@ -616,7 +616,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -649,7 +649,7 @@ http_interactions:
             <RequestId>9554073a-bc1a-485a-a6f0-40a6b4f0b83c</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:35 GMT
 - request:
     method: post
@@ -665,7 +665,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -698,7 +698,7 @@ http_interactions:
             <RequestId>087c8066-532d-4872-a2a2-0960c3940e98</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:36 GMT
 - request:
     method: post
@@ -714,7 +714,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -747,7 +747,7 @@ http_interactions:
             <RequestId>9cf16e74-d5de-446c-bfc5-30837e4969f1</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:36 GMT
 - request:
     method: post
@@ -763,7 +763,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -796,7 +796,7 @@ http_interactions:
             <RequestId>4fb5edd7-4d07-4fee-a6d4-2940908ac8fd</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:36 GMT
 - request:
     method: post
@@ -812,7 +812,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -845,6 +845,6 @@ http_interactions:
             <RequestId>b962c75b-5543-4284-95bf-dd0c875609da</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 12:51:37 GMT
 recorded_with: VCR 3.0.1

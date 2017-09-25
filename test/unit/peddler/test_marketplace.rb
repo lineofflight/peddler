@@ -6,6 +6,10 @@ class TestPeddlerMarketplace < MiniTest::Test
     @marketplace = Peddler::Marketplace.new('ATVPDKIKX0DER')
   end
 
+  def test_has_a_country_code
+    assert @marketplace.country_code
+  end
+
   def test_has_a_host
     assert @marketplace.host
   end

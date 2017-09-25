@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/Sellers/2011-07-01
+    uri: https://mws.amazonservices.com/Sellers/2011-07-01
     body:
       encoding: US-ASCII
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2015-03-28T18%3A13%3A57Z&Version=2011-07-01&Signature=Gdxv8jDoYOJ1GDoNkxiVe5EIgECrTrTkUaEBg%2FqE%2BXI%3D
@@ -12,7 +12,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:13:57 GMT
@@ -43,7 +43,7 @@ http_interactions:
             <RequestId>f411b1c5-b93d-4b4c-8100-7be17c46c019</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:13:58 GMT
 - request:
     method: post
@@ -57,7 +57,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:13:57 GMT
@@ -88,7 +88,7 @@ http_interactions:
             <RequestId>833c2568-5881-4d47-b67d-9914ffa9d4b7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:13:58 GMT
 - request:
     method: post
@@ -102,7 +102,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:13:58 GMT
@@ -133,7 +133,7 @@ http_interactions:
             <RequestId>43baca03-7ebc-45c6-8412-93f46e6d2897</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:13:59 GMT
 - request:
     method: post
@@ -147,7 +147,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Date:
       - Sat, 28 Mar 2015 18:14:00 GMT
@@ -178,11 +178,11 @@ http_interactions:
             <RequestId>c2fd8334-3458-4b18-b1aa-492aa87c0439</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:00 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/Sellers/2011-07-01
+    uri: https://mws.amazonservices.com/Sellers/2011-07-01
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T13%3A12%3A43Z&Version=2011-07-01&Signature=mVuk25QB72luLdacYy6vRfw7xR7WIYrDOziweaU62QA%3D
@@ -194,7 +194,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -228,7 +228,7 @@ http_interactions:
             <RequestId>aea4ad79-b8dd-4f07-9a73-844aaf429adb</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:12:44 GMT
 - request:
     method: post
@@ -244,7 +244,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -278,7 +278,7 @@ http_interactions:
             <RequestId>c9981132-2d74-44c6-b36c-0744d50d2c68</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:12:44 GMT
 - request:
     method: post
@@ -294,7 +294,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -328,7 +328,7 @@ http_interactions:
             <RequestId>3989d301-ce9a-49a7-aaad-f926f83375fd</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:12:44 GMT
 - request:
     method: post
@@ -344,7 +344,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -378,7 +378,7 @@ http_interactions:
             <RequestId>cb651f0b-1105-4a5b-a129-49f6465e12ed</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:12:45 GMT
 - request:
     method: post
@@ -394,7 +394,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -428,6 +428,6 @@ http_interactions:
             <RequestId>ad86e223-80c1-4f56-bec6-14a26c164a58</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version: 
+    http_version:
   recorded_at: Mon, 23 May 2016 13:12:45 GMT
 recorded_with: VCR 3.0.1

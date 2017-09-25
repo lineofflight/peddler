@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A16Z&Version=2009-01-01&Signature=OANGMQYZHGCbdYqXgjE01VtaZQ1ePoGBy3k8ghLbah4%3D
@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -58,11 +58,11 @@ http_interactions:
             <RequestId>62be79b2-19cb-46ed-a64b-08bdde64a8da</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:18 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A18Z&Version=2009-01-01&Signature=bTB6dGp9Z8aWNFjMw4MgcLZf9GgelEU93tQRkqMBraw%3D
@@ -74,7 +74,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -118,7 +118,7 @@ http_interactions:
             <RequestId>4a3eb943-5777-4e12-ac46-3ea95d1d0bdd</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:20 GMT
 - request:
     method: post
@@ -134,7 +134,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -178,7 +178,7 @@ http_interactions:
             <RequestId>180b9de9-f186-47e2-a404-9b57cbd23788</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:21 GMT
 - request:
     method: post
@@ -194,7 +194,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -238,7 +238,7 @@ http_interactions:
             <RequestId>dc6cd878-5293-4ca1-ba31-e9e458d45764</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:22 GMT
 - request:
     method: post
@@ -254,7 +254,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -298,7 +298,7 @@ http_interactions:
             <RequestId>c85ff8d0-b9e3-4578-a4e7-399e469707d5</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:22 GMT
 - request:
     method: post
@@ -314,7 +314,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -358,7 +358,7 @@ http_interactions:
             <RequestId>a4f5a060-def3-458b-9dc6-24f9824043a6</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:23 GMT
 - request:
     method: post
@@ -374,7 +374,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -418,7 +418,7 @@ http_interactions:
             <RequestId>401aed62-229e-44a5-b8af-0444e9e03046</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:24 GMT
 - request:
     method: post
@@ -434,7 +434,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -478,7 +478,7 @@ http_interactions:
             <RequestId>6af9e17d-583f-4a61-9785-f4f1ef8269bf</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:25 GMT
 - request:
     method: post
@@ -494,7 +494,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -538,11 +538,11 @@ http_interactions:
             <RequestId>bf99558f-0f42-4163-bc32-44261cd6e570</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:26 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A28Z&Version=2009-01-01&Signature=j5XCIoGBhlWg%2BInTwsn8upb%2F4ndb0b1hi%2BetDkrIylE%3D
@@ -554,7 +554,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -598,11 +598,11 @@ http_interactions:
             <RequestId>d90748ed-a73f-47c2-8d53-92695c8de8e1</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:30 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A30Z&Version=2009-01-01&Signature=ML4CUr4cYYYegmAGTbVtLbQ2MVlG2pf1DtxE3ThfOgc%3D
@@ -614,7 +614,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -658,7 +658,7 @@ http_interactions:
             <RequestId>8a004087-f212-4c53-8bcd-0b41bb144b46</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:31 GMT
 - request:
     method: post
@@ -674,7 +674,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -718,7 +718,7 @@ http_interactions:
             <RequestId>d050375b-6c0b-4c7f-881e-b2bd5485a736</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:31 GMT
 - request:
     method: post
@@ -734,7 +734,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -783,7 +783,7 @@ http_interactions:
             <RequestId>53a8917f-b4ce-4440-9ad7-47efc9188082</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:32 GMT
 - request:
     method: post
@@ -799,7 +799,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -843,7 +843,7 @@ http_interactions:
             <RequestId>3ee30ef7-9a6d-4c1e-8932-b725a8911b13</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:33 GMT
 - request:
     method: post
@@ -859,7 +859,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -903,7 +903,7 @@ http_interactions:
             <RequestId>9b05e9e1-4d8c-4bd9-aced-5edb60af8944</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:33 GMT
 - request:
     method: post
@@ -919,7 +919,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -968,7 +968,7 @@ http_interactions:
             <RequestId>6998e853-9fa0-4c7a-bdf0-2ccdd552f08c</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:37 GMT
 - request:
     method: post
@@ -984,7 +984,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1028,7 +1028,7 @@ http_interactions:
             <RequestId>f8f5797d-5ddf-495e-8148-16ac591044ec</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:37 GMT
 - request:
     method: post
@@ -1044,7 +1044,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1093,11 +1093,11 @@ http_interactions:
             <RequestId>e3dc7e41-66d9-4976-b155-1e4240e7c013</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:39 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A39Z&Version=2009-01-01&Signature=6fZpXmE7TJLB69KBzbMoLdswBC430zLtiyg317bY6V4%3D
@@ -1109,7 +1109,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1153,11 +1153,11 @@ http_interactions:
             <RequestId>adfb40d6-80b8-4c00-bbd9-496450d361ab</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:41 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A41Z&Version=2009-01-01&Signature=ys4dBSKKj0YB%2FuMyNYGmw9tI9DcEQ%2BmFSiilwPZiTfE%3D
@@ -1169,7 +1169,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1213,7 +1213,7 @@ http_interactions:
             <RequestId>a6e3c2cf-3a12-49ce-a563-4a02168aa8cc</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:42 GMT
 - request:
     method: post
@@ -1229,7 +1229,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1273,7 +1273,7 @@ http_interactions:
             <RequestId>5e2806d9-90de-4fef-b8b6-336cbb965d7a</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:43 GMT
 - request:
     method: post
@@ -1289,7 +1289,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1333,7 +1333,7 @@ http_interactions:
             <RequestId>46a0713a-f4f9-4210-aabd-4801d46d1e1b</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:44 GMT
 - request:
     method: post
@@ -1349,7 +1349,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1393,7 +1393,7 @@ http_interactions:
             <RequestId>75a4aa0d-e4ef-4d6a-b6e4-12018760aa49</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:44 GMT
 - request:
     method: post
@@ -1409,7 +1409,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1453,7 +1453,7 @@ http_interactions:
             <RequestId>56e9fd96-92b2-4a69-bcb8-4214f268d4b8</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:45 GMT
 - request:
     method: post
@@ -1469,7 +1469,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1513,7 +1513,7 @@ http_interactions:
             <RequestId>a424f206-662d-4fcc-9c8e-87ebb4ac94ba</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:46 GMT
 - request:
     method: post
@@ -1529,7 +1529,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1573,7 +1573,7 @@ http_interactions:
             <RequestId>8e0900cc-b96d-4bbe-ad58-cdd9fba2630b</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:47 GMT
 - request:
     method: post
@@ -1589,7 +1589,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1633,11 +1633,11 @@ http_interactions:
             <RequestId>6a06098d-6c76-4d88-a3a4-f1065621e2f0</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:48 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A48Z&Version=2009-01-01&Signature=kDATAWWjpNAypWvbDuWqDZXIWluiydXGke4j5%2FlF%2FAI%3D
@@ -1649,7 +1649,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1693,11 +1693,11 @@ http_interactions:
             <RequestId>0c562ac7-4508-4af6-beeb-711e2c040f71</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:50 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A50Z&Version=2009-01-01&Signature=a9iXDFrjg2hF0KadYfcfaj%2Fpy46TIszfc3I%2F7JgDk6w%3D
@@ -1709,7 +1709,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1753,7 +1753,7 @@ http_interactions:
             <RequestId>06493e87-0003-4493-af67-80f87e5c3c4e</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:51 GMT
 - request:
     method: post
@@ -1769,7 +1769,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1813,7 +1813,7 @@ http_interactions:
             <RequestId>424cb659-2112-46e9-a020-0b4557aa1e9d</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:52 GMT
 - request:
     method: post
@@ -1829,7 +1829,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1873,7 +1873,7 @@ http_interactions:
             <RequestId>af53fa59-bfb4-4833-bbdb-1465f072ceba</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:52 GMT
 - request:
     method: post
@@ -1889,7 +1889,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1933,7 +1933,7 @@ http_interactions:
             <RequestId>9d9ed84c-45b0-4c1c-aeda-d37bf3291142</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:53 GMT
 - request:
     method: post
@@ -1949,7 +1949,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1993,7 +1993,7 @@ http_interactions:
             <RequestId>f46d7a96-2573-476c-a9bb-a8d512f6889e</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:54 GMT
 - request:
     method: post
@@ -2009,7 +2009,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2053,7 +2053,7 @@ http_interactions:
             <RequestId>c6addf03-5dc0-4b84-9aaa-6b08cdc43279</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:55 GMT
 - request:
     method: post
@@ -2069,7 +2069,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2113,7 +2113,7 @@ http_interactions:
             <RequestId>4d2b59b4-cd10-472c-9e7b-48f596fd5f42</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:56 GMT
 - request:
     method: post
@@ -2129,7 +2129,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2173,11 +2173,11 @@ http_interactions:
             <RequestId>391be47a-e6da-4713-a9f6-5263a48858e7</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:57 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A57Z&Version=2009-01-01&Signature=tlD4tnpO4K4b%2ByTljUTRx4rkfKaQx2SfWt8tM%2FL6LuU%3D
@@ -2189,7 +2189,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2354,11 +2354,11 @@ http_interactions:
             <RequestId>8d73d28a-df73-4940-9ac7-7fe2ee7b3e02</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:00:58 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A00%3A58Z&Version=2009-01-01&Signature=Zl1mH6g398mIm4xQPLERbrGVyd5hykojmrOD%2BsdLQag%3D
@@ -2370,7 +2370,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2532,7 +2532,7 @@ http_interactions:
             <RequestId>ce1443c5-549d-4a2c-a013-f6f94b26f283</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:00 GMT
 - request:
     method: post
@@ -2548,7 +2548,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2713,7 +2713,7 @@ http_interactions:
             <RequestId>726f03ff-42df-49de-aaff-b9f30b2eafea</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:01 GMT
 - request:
     method: post
@@ -2729,7 +2729,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2894,7 +2894,7 @@ http_interactions:
             <RequestId>789bb2a0-40aa-4be1-8698-fa7429042d0e</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:02 GMT
 - request:
     method: post
@@ -2910,7 +2910,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3075,7 +3075,7 @@ http_interactions:
             <RequestId>7f7c9a4d-2cd9-49bf-80e0-9b791a9cfe29</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:02 GMT
 - request:
     method: post
@@ -3091,7 +3091,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3256,7 +3256,7 @@ http_interactions:
             <RequestId>a187c1e3-30e0-43d7-b9f9-749ea4271227</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:03 GMT
 - request:
     method: post
@@ -3272,7 +3272,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3437,7 +3437,7 @@ http_interactions:
             <RequestId>ac3145fd-86cb-493b-9429-512b71e81144</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:05 GMT
 - request:
     method: post
@@ -3453,7 +3453,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3618,7 +3618,7 @@ http_interactions:
             <RequestId>2a2128db-fc7a-42ce-af6e-bf7398965a14</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:07 GMT
 - request:
     method: post
@@ -3634,7 +3634,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3799,11 +3799,11 @@ http_interactions:
             <RequestId>7480bad5-e797-4796-acfd-5b85e841bbbf</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:01:09 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A03%3A00Z&Version=2009-01-01&Signature=LjQ5OnvH1SnGwnPHfcjL47zVm2m9GZ5hYInt4k0HeTY%3D
@@ -3815,7 +3815,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3867,11 +3867,11 @@ http_interactions:
             <RequestId>4a72045f-7bc9-4aba-9864-7fc79c15dedd</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:03:02 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.ca/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=5051232139017293&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A03%3A02Z&Version=2009-01-01&Signature=0WTps2Vd0CnFiiNWrquyNnDyHEhy1uLWDHpx0X7%2FqE0%3D
@@ -3883,7 +3883,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3918,7 +3918,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t32\n\tNumber
         of records successful\t\t32\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:03:03 GMT
 - request:
     method: post
@@ -3934,7 +3934,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3986,7 +3986,7 @@ http_interactions:
             <RequestId>4d7ffe93-0b7c-47c9-9d85-5b1884e895a3</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:12:43 GMT
 - request:
     method: post
@@ -4002,7 +4002,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4037,7 +4037,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: !binary |-
         g3SDQoFbg2iPiJedjIuJyoFGCgmPiJedgrOC6oK9jI+QlAkJMTM5CgmQrIz3grWCvYyPkJQJCTEzNwoKj4iXnYKzguqCvYN0g0CDQ4OLgsyNc5TUjYYJU0tVCYNHg4mBW4NSgVuDaAmDR4OJgVuDXoNDg3YJg0eDiYFbg4GDYoNagVuDVwowCQk5MDA2MQmMeI2QCWV4cGVkaXRlZC1zaGlwcGluZyCX8YKqlrOM+ILFgreBQoKxgsyX8YLMkmyCzZazjouCs4LqgtyCt4FCgrGCzINHg4mBW4Lwj0OQs4K3gumCyYLNgUGNxJN4g2WDk4N2g4yBW4NngvCDX4NFg5ODjYFbg2iCtYLEkFaCtYKtg3SDQINDg4uC8I3skKyCt4LpgUGC3IK9gs2K+ZG2g3SDQINDg4uCyYKggumWs4z4gsiX8YLMjKmPb4K1gvCPQ5CzgrWCxIKtgr6Cs4KigUIuCjY4CTk3ODA4NzA3NDQxODEtMwkxMzAxMwmDR4OJgVsJVGhpcyBTS1UgZG9lcyBub3QgZXhpc3QgaW4geW91ciBBbWF6b24gaW52ZW50b3J5IHNvIHdlIGNvdWxkIG5vdCBwcm9jZXNzIHRoaXMgcmVjb3JkLiBUbyBjb3JyZWN0IHRoaXMgZXJyb3IgZm9yIGZ1dHVyZSBmZWVkcywgYWRkIHRoZSBTS1UgdG8geW91ciBBbWF6b24gYWNjb3VudC4gRm9yIG1vcmUgaW5mb3JtYXRpb24sIHNlZSBodHRwOi8vc2VsbGVyY2VudHJhbC5hbWF6b24uY28uanAvZ3AvZXJyb3Jjb2RlLzEzMDEzLgo3OQk5NzgwODcwMjE1OTcxLTEJMTMwMTMJg0eDiYFbCVRoaXMgU0tVIGRvZXMgbm90IGV4aXN0IGluIHlvdXIgQW1hem9uIGludmVudG9yeSBzbyB3ZSBjb3VsZCBub3QgcHJvY2VzcyB0aGlzIHJlY29yZC4gVG8gY29ycmVjdCB0aGlzIGVycm9yIGZvciBmdXR1cmUgZmVlZHMsIGFkZCB0aGUgU0tVIHRvIHlvdXIgQW1hem9uIGFjY291bnQuIEZvciBtb3JlIGluZm9ybWF0aW9uLCBzZWUgaHR0cDovL3NlbGxlcmNlbnRyYWwuYW1hem9uLmNvLmpwL2dwL2Vycm9yY29kZS8xMzAxMy4K
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:12:44 GMT
 - request:
     method: post
@@ -4053,7 +4053,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4105,7 +4105,7 @@ http_interactions:
             <RequestId>3b8c68d0-a958-41b6-af68-dcbf339b3cd4</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:20:28 GMT
 - request:
     method: post
@@ -4121,7 +4121,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4156,7 +4156,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t26\n\tNumber
         of records successful\t\t26\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:20:29 GMT
 - request:
     method: post
@@ -4172,7 +4172,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4224,7 +4224,7 @@ http_interactions:
             <RequestId>bdaf3793-0515-446b-98e4-ea82f20f8de9</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:20:53 GMT
 - request:
     method: post
@@ -4240,7 +4240,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4292,7 +4292,7 @@ http_interactions:
             <RequestId>fca18a88-7eb0-4d81-95e4-d2891d54ce4b</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:05 GMT
 - request:
     method: post
@@ -4308,7 +4308,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4343,11 +4343,11 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t92\n\tNumber
         of records successful\t\t92\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:06 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A21%3A06Z&Version=2009-01-01&Signature=AIjtOAItw9ZIuzR3ILqvw7xtWZl4BxMeEdYqldxPlng%3D
@@ -4359,7 +4359,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4411,11 +4411,11 @@ http_interactions:
             <RequestId>05142b3b-e6cd-4475-a095-8b99fa1a489f</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:08 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com.mx/
+    uri: https://mws.amazonservices.com/
     body:
       encoding: UTF-8
       string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=5053040694017293&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-07T19%3A21%3A08Z&Version=2009-01-01&Signature=j2gciaGgTq%2BViJdvFaSR%2FsK5i4FkrlbWogGwjft48bI%3D
@@ -4427,7 +4427,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4462,7 +4462,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t10638\n\tNumber
         of records successful\t\t10638\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:08 GMT
 - request:
     method: post
@@ -4478,7 +4478,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4530,7 +4530,7 @@ http_interactions:
             <RequestId>22e27113-1c5d-427a-ae11-3d099bf219e6</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:09 GMT
 - request:
     method: post
@@ -4546,7 +4546,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4581,7 +4581,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t29999\n\tNumber
         of records successful\t\t29999\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:10 GMT
 - request:
     method: post
@@ -4597,7 +4597,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4649,7 +4649,7 @@ http_interactions:
             <RequestId>c5cee0bf-8a4e-4fc8-b46f-f9328c76b481</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:10 GMT
 - request:
     method: post
@@ -4665,7 +4665,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4700,7 +4700,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t4455\n\tNumber
         of records successful\t\t4455\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:11 GMT
 - request:
     method: post
@@ -4716,7 +4716,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4768,7 +4768,7 @@ http_interactions:
             <RequestId>d9b51e64-ada3-4a28-a0cc-f228a5eed6f1</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:52 GMT
 - request:
     method: post
@@ -4784,7 +4784,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4819,7 +4819,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t29999\n\tNumber
         of records successful\t\t29999\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:53 GMT
 - request:
     method: post
@@ -4835,7 +4835,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4870,6 +4870,6 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t137\n\tNumber
         of records successful\t\t137\n\n"
-    http_version: 
+    http_version:
   recorded_at: Sun, 07 May 2017 19:21:59 GMT
 recorded_with: VCR 3.0.3
