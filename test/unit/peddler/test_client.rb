@@ -224,7 +224,7 @@ class TestPeddlerClient < MiniTest::Test
 
     begin
       @client.run
-    rescue => e
+    rescue StandardError => e
       assert e.response.parse
     end
 
