@@ -4,7 +4,7 @@ require 'peddler/errors/handler'
 class TestPeddlerErrorsHandler < MiniTest::Test
   def setup
     @error = Peddler::Errors::Handler.call(@cause)
-  rescue => @error
+  rescue StandardError => @error
   end
 
   class CausedByHTTPStatusError < TestPeddlerErrorsHandler
