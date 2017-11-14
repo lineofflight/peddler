@@ -29,7 +29,7 @@ client = MWS::Orders::Client.new
 client = MWS.orders
 ```
 
-Each client requires valid MWS credentials. You can set these globally in the shell.
+Each client requires valid MWS credentials. Set these globally in the shell.
 
 ```bash
 export MWS_MARKETPLACE_ID=YOUR_MARKETPLACE_ID
@@ -38,25 +38,10 @@ export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
-You can now instantiate a client.
+You can now instantiate a client. The client will pick up credentials automatically from the environment.
 
 ```ruby
 client = MWS.orders
-```
-
-The client will pick up credentials automatically from the environment.
-
-Alternatively, if you do not rely on environment variables, you can set some or all credentials when or after creating the client.
-
-```ruby
-client = MWS.orders(
-  primary_marketplace_id: "Your Marketplace ID",
-  merchant_id: "Your Merchant or Seller ID",
-  aws_access_key_id: "Your AWS Access Key ID",
-  aws_secret_access_key: "Your AWS Secret Access Key",
-)
-
-client.primary_marketplace_id = "Another Marketplace ID"
 ```
 
 If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass the latter's Merchant (Seller) ID and Marketplace ID along with the `MWSAuthToken` they obtained for you.
@@ -67,6 +52,19 @@ client = MWS.orders(
   merchant_id: "Seller's Merchant or Seller ID",
   auth_token: "Seller's MWS Authorisation Token"
 )
+```
+
+Finally, if you do not want to use environment variables at all, you can set all credentials when or after creating the client.
+
+```ruby
+client = MWS.orders(
+  primary_marketplace_id: "Your Marketplace ID",
+  merchant_id: "Your Merchant or Seller ID",
+  aws_access_key_id: "Your AWS Access Key ID",
+  aws_secret_access_key: "Your AWS Secret Access Key",
+)
+
+client.primary_marketplace_id = "Another Marketplace ID"
 ```
 
 Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
