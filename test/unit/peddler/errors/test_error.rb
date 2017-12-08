@@ -21,4 +21,8 @@ class TestPeddlerErrorsError < MiniTest::Test
       assert ::Peddler::Errors.const_defined?(name)
     end
   end
+
+  def test_allows_nil_arguments
+    Peddler::Errors::Error.new
+  end
 end
