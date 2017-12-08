@@ -4,6 +4,7 @@ module Peddler
     # Known codes
     CODES = %w[
       AccessDenied
+      InternalError
       InvalidMarketplace
       InvalidParameterValue
       InvalidRequest
