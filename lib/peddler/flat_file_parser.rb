@@ -37,7 +37,7 @@ module Peddler
 
     def scrub_body!(encoding)
       return if body.encoding == Encoding::UTF_8
-      self.body = +body.force_encoding(encoding)
+      self.body = body.dup.force_encoding(encoding)
     end
 
     def extract_content_and_summary
