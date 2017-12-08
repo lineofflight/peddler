@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.4] - 2017-12-08
+### Added
+- Add InternalError and InvalidAccessKeyId error codes.
+
 ## [1.6.3] - 2017-09-25
 ### Added
 - Add Amazon Brazil marketplace.
@@ -117,7 +121,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.3...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.4...HEAD
+[1.6.3]: https://github.com/hakanensari/peddler/compare/v1.6.3...v1.6.4
 [1.6.3]: https://github.com/hakanensari/peddler/compare/v1.6.2...v1.6.3
 [1.6.2]: https://github.com/hakanensari/peddler/compare/v1.6.1...v1.6.2
 [1.6.1]: https://github.com/hakanensari/peddler/compare/v1.6.0...v1.6.1
