@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Peddler
   # A custom matcher that can be used to record MWS interactions when
   # integration-testing

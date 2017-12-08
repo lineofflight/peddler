@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/vcr_matcher'
 require 'yaml'
 require 'vcr'

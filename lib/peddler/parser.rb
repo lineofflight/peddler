@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/flat_file_parser'
 require 'peddler/xml_response_parser'
 

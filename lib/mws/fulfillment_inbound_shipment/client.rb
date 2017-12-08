@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 
 module MWS
@@ -52,12 +54,15 @@ module MWS
       # @param [Hash] opts
       # @option opts [String] :label_prep_preference
       # @return [Peddler::XMLParser]
-      def create_inbound_shipment_plan(ship_from_address, inbound_shipment_plan_request_items, opts = {})
+      def create_inbound_shipment_plan(ship_from_address,
+                                       inbound_shipment_plan_request_items,
+                                       opts = {})
         operation('CreateInboundShipmentPlan')
           .add(
             opts.update(
               'ShipFromAddress' => ship_from_address,
-              'InboundShipmentPlanRequestItems' => inbound_shipment_plan_request_items
+              'InboundShipmentPlanRequestItems' =>
+                inbound_shipment_plan_request_items
             )
           )
           .structure!('InboundShipmentPlanRequestItems', 'member')
@@ -73,7 +78,8 @@ module MWS
       # @param [Hash] opts
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
-      def create_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
+      def create_inbound_shipment(shipment_id, inbound_shipment_header,
+                                  opts = {})
         build_inbound_shipment_operation(
           'CreateInboundShipment',
           shipment_id,
@@ -92,7 +98,8 @@ module MWS
       # @param [Hash] opts
       # @option opts [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
-      def update_inbound_shipment(shipment_id, inbound_shipment_header, opts = {})
+      def update_inbound_shipment(shipment_id, inbound_shipment_header,
+                                  opts = {})
         build_inbound_shipment_operation(
           'UpdateInboundShipment',
           shipment_id,
@@ -133,7 +140,8 @@ module MWS
         run
       end
 
-      # Returns labeling requirements and item preparation instructions to help you prepare items for an inbound shipment
+      # Returns labeling requirements and item preparation instructions to help
+      # you prepare items for an inbound shipment
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForSKU.html
       # @param [String] ship_to_country_code
@@ -150,7 +158,8 @@ module MWS
         run
       end
 
-      # Returns item preparation instructions to help with item sourcing decisions
+      # Returns item preparation instructions to help with item sourcing
+      # decisions
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForASIN.html
       # @param [String] ship_to_country_code
@@ -175,7 +184,8 @@ module MWS
       # @param [String] shipment_type
       # @param [Struct, Hash] transport_details
       # @return [Peddler::XMLParser]
-      def put_transport_content(shipment_id, is_partnered, shipment_type, transport_details)
+      def put_transport_content(shipment_id, is_partnered, shipment_type,
+                                transport_details)
         operation('PutTransportContent')
           .add(
             'ShipmentId' => shipment_id,
@@ -250,14 +260,16 @@ module MWS
         run
       end
 
-      # Returns unique package labels for faster and more accurate shipment processing at the Amazon fulfillment centre
+      # Returns unique package labels for faster and more accurate shipment
+      # processing at the Amazon fulfillment centre
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetUniquePackageLabels.html
       # @param [String] shipment_id
       # @param [String] page_type
       # @param [Array<String>] package_labels_to_print
       # @return [Peddler::XMLParser]
-      def get_unique_package_labels(shipment_id, page_type, package_labels_to_print)
+      def get_unique_package_labels(shipment_id, page_type,
+                                    package_labels_to_print)
         operation('GetUniquePackageLabels')
           .add(
             'ShipmentId' => shipment_id,
@@ -365,7 +377,8 @@ module MWS
 
       private
 
-      def build_inbound_shipment_operation(operation_name, shipment_id, inbound_shipment_header, opts)
+      def build_inbound_shipment_operation(operation_name, shipment_id,
+                                           inbound_shipment_header, opts)
         operation(operation_name)
           .add(
             opts.update(

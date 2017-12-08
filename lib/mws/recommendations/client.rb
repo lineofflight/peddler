@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 
 module MWS
@@ -17,7 +19,8 @@ module MWS
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_GetLastUpdatedTimeForRecommendations.html
       # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
-      def get_last_updated_time_for_recommendations(marketplace_id = primary_marketplace_id)
+      def get_last_updated_time_for_recommendations(marketplace_id =
+                                                      primary_marketplace_id)
         operation('GetLastUpdatedTimeForRecommendations')
           .add('MarketplaceId' => marketplace_id)
 
@@ -28,7 +31,8 @@ module MWS
       # categories for a specific marketplace
       #
       # @see http://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendations.html
-      # @overload list_recommendations(opts = { marketplace_id: primary_marketplace_id })
+      # @overload list_recommendations(opts = { marketplace_id:
+      #   primary_marketplace_id })
       #   @param [Hash] opts
       #   @option opts [String] :marketplace_id
       #   @option opts [String] :recommendation_category

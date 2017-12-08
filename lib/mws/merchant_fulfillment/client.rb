@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 
 module MWS
@@ -36,7 +38,8 @@ module MWS
       # @param [Hash] opts
       # @option opts [String] :shipping_service_offer_id
       # @return [Peddler::XMLParser]
-      def create_shipment(shipment_request_details, shipping_service_id, opts = {})
+      def create_shipment(shipment_request_details, shipping_service_id,
+                          opts = {})
         operation('CreateShipment')
           .add(
             'ShipmentRequestDetails' => shipment_request_details,

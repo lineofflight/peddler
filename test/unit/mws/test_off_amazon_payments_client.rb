@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'helper'
 require 'mws/off_amazon_payments/client'
 

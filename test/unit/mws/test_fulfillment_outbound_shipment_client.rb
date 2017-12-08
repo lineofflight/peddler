@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'helper'
 require 'mws/fulfillment_outbound_shipment/client'
 
@@ -87,12 +89,15 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
   end
 
   def test_lists_all_fulfillment_orders
+    started_at = Time.now
+
     operation = {
-      'Action' => 'ListAllFulfillmentOrders'
+      'Action' => 'ListAllFulfillmentOrders',
+      'QueryStartDateTime' => started_at.iso8601
     }
 
     @client.stub(:run, nil) do
-      @client.list_all_fulfillment_orders
+      @client.list_all_fulfillment_orders(started_at)
     end
 
     assert_equal operation, @client.operation

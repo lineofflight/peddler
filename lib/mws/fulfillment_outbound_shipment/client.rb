@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 require 'excon'
 
@@ -27,7 +29,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_fulfillment_preview(address, items, opts = {})
         if opts.key?(:include_cod_fulfillment_preview)
-          opts['IncludeCODFulfillmentPreview'] = opts.delete(:include_cod_fulfillment_preview)
+          opts['IncludeCODFulfillmentPreview'] =
+            opts.delete(:include_cod_fulfillment_preview)
         end
 
         operation('GetFulfillmentPreview')
@@ -55,7 +58,12 @@ module MWS
       # @option opts [Array<String>] :notification_email_list
       # @option opts [Struct, Hash] :cod_settings
       # @return [Peddler::XMLParser]
-      def create_fulfillment_order(seller_fulfillment_order_id, displayable_order_id, displayable_order_date_time, displayable_order_comment, shipping_speed_category, destination_address, items, opts = {})
+      def create_fulfillment_order(seller_fulfillment_order_id,
+                                   displayable_order_id,
+                                   displayable_order_date_time,
+                                   displayable_order_comment,
+                                   shipping_speed_category,
+                                   destination_address, items, opts = {})
         if opts.key?(:cod_settings)
           opts['CODSettings'] = opts.delete(:cod_settings)
         end
@@ -96,7 +104,11 @@ module MWS
       # @return [Peddler::XMLParser]
       def update_fulfillment_order(seller_fulfillment_order_id, opts = {})
         operation('UpdateFulfillmentOrder')
-          .add(opts.update('SellerFulfillmentOrderId' => seller_fulfillment_order_id))
+          .add(
+            opts.update(
+              'SellerFulfillmentOrderId' => seller_fulfillment_order_id
+            )
+          )
           .structure!('NotificationEmailList', 'member')
           .structure!('Items', 'member')
 
@@ -121,7 +133,10 @@ module MWS
       # @param [String, #iso8601] query_start_date_time
       # @return [Peddler::XMLParser]
       def list_all_fulfillment_orders(query_start_date_time = nil)
-        opts = query_start_date_time ? { 'QueryStartDateTime' => query_start_date_time } : {}
+        opts = {}
+        if query_start_date_time
+          opts.update('QueryStartDateTime' => query_start_date_time)
+        end
         operation('ListAllFulfillmentOrders').add(opts)
 
         run
@@ -165,7 +180,8 @@ module MWS
         run
       end
 
-      # Returns a list of return reason codes for a seller SKU in a given marketplace.
+      # Returns a list of return reason codes for a seller SKU in a given
+      # marketplace.
       #
       # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListReturnReasonCodes.html
       # @param [String] seller_sku

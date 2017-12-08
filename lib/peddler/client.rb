@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 require 'jeff'
 require 'peddler/errors/parser'

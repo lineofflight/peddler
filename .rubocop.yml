@@ -1,42 +1,36 @@
 AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+Metrics/AbcSize:
   Exclude:
-    - 'test/helper.rb'
-AbcSize:
+    - test/**/*
+Metrics/ClassLength:
   Exclude:
-    - 'test/**/*'
-AccessorMethodName:
+    - lib/peddler/client.rb
+    - lib/mws/**/client.rb
+    - test/**/*
+Lint/HandleExceptions:
   Exclude:
-    - 'lib/mws/**/client.rb'
-ClassLength:
+    - test/**/*
+Metrics/LineLength:
+  Exclude:
+    - test/**/*
+Metrics/MethodLength:
+  Exclude:
+    - test/**/*
+    - lib/mws/**/client.rb
+Metrics/ParameterLists:
+  Exclude:
+    - lib/mws/**/client.rb
+Naming/AccessorMethodName:
+  Exclude:
+    - lib/mws/**/client.rb
+Performance/RegexpMatch:
   Enabled: false
-Documentation:
+Style/Documentation:
   Exclude:
-    - 'test/**/*'
-DotPosition:
-  EnforcedStyle: leading
-FileName:
-  Exclude:
-    - Appraisals
-GlobalVars:
-  Exclude:
-    - 'test/**/*'
-HandleExceptions:
-  Exclude:
-    - 'test/**/*'
-GuardClause:
+    - test/**/*
+Style/NumericPredicate:
   Enabled: false
-LineLength:
-  Exclude:
-    - 'test/**/*'
-    - 'lib/mws/**/client.rb'
-MethodLength:
-  Exclude:
-    - 'test/**/*'
-    - 'lib/mws/**/client.rb'
-MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-ParameterLists:
-  Exclude:
-    - 'lib/mws/**/client.rb'
-StringLiterals:
-  EnforcedStyle: single_quotes
+Style/SafeNavigation:
+  Enabled: false

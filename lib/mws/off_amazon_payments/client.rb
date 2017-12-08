@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 
 module MWS
@@ -39,7 +41,8 @@ module MWS
       # @option opts [Boolean] :capture_now
       # @option opts [String] :soft_descriptor
       # @return [Peddler::XMLParser]
-      def authorize(amazon_order_reference_id, authorization_reference_id, authorization_amount, opts = {})
+      def authorize(amazon_order_reference_id, authorization_reference_id,
+                    authorization_amount, opts = {})
         operation('Authorize')
           .add(opts.update(
                  'AmazonOrderReferenceId' => amazon_order_reference_id,
@@ -59,7 +62,11 @@ module MWS
       # @return [Peddler::XMLParser]
       def cancel_order_reference(amazon_order_reference_id, opts = {})
         operation('CancelOrderReference')
-          .add(opts.update('AmazonOrderReferenceId' => amazon_order_reference_id))
+          .add(
+            opts.update(
+              'AmazonOrderReferenceId' => amazon_order_reference_id
+            )
+          )
 
         run
       end
@@ -74,7 +81,8 @@ module MWS
       # @option opts [String] :seller_capture_note
       # @option opts [String] :soft_descriptor
       # @return [Peddler::XMLParser]
-      def capture(amazon_authorization_id, capture_reference_id, capture_amount, opts = {})
+      def capture(amazon_authorization_id, capture_reference_id, capture_amount,
+                  opts = {})
         operation('Capture')
           .add(opts.update(
                  'AmazonAuthorizationId' => amazon_authorization_id,
@@ -110,13 +118,17 @@ module MWS
       # @return [Peddler::XMLParser]
       def close_order_reference(amazon_order_reference_id, opts = {})
         operation('CloseOrderReference')
-          .add(opts.update('AmazonOrderReferenceId' => amazon_order_reference_id))
+          .add(
+            opts.update(
+              'AmazonOrderReferenceId' => amazon_order_reference_id
+            )
+          )
 
         run
       end
 
-      # Confirms that the order reference is free of constraints and all required
-      # information has been set on the order reference
+      # Confirms that the order reference is free of constraints and all
+      # required information has been set on the order reference
       #
       # @see https://payments.amazon.com/documentation/apireference/201751980
       # @param [String] amazon_order_reference_id
@@ -183,7 +195,11 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_order_reference_details(amazon_order_reference_id, opts = {})
         operation('GetOrderReferenceDetails')
-          .add(opts.update('AmazonOrderReferenceId' => amazon_order_reference_id))
+          .add(
+            opts.update(
+              'AmazonOrderReferenceId' => amazon_order_reference_id
+            )
+          )
 
         run
       end
@@ -219,7 +235,8 @@ module MWS
       # @option opts [String] :seller_refund_note
       # @option opts [String] :soft_descriptor
       # @return [Peddler::XMLParser]
-      def refund(amazon_capture_id, refund_reference_id, refund_amount, opts = {})
+      def refund(amazon_capture_id, refund_reference_id, refund_amount,
+                 opts = {})
         operation('Refund')
           .add(opts.update(
                  'AmazonCaptureId' => amazon_capture_id,
@@ -241,11 +258,13 @@ module MWS
       # @option opts [String] :seller_note
       # @option opts [Struct, Hash] :seller_order_attributes
       # @return [Peddler::XMLParser]
-      def set_order_reference_details(amazon_order_reference_id, order_total, opts = {})
+      def set_order_reference_details(amazon_order_reference_id, order_total,
+                                      opts = {})
+        order_reference_attributes = opts.update('OrderTotal' => order_total)
         operation('SetOrderReferenceDetails')
           .add(
             'AmazonOrderReferenceId' => amazon_order_reference_id,
-            'OrderReferenceAttributes' => opts.update('OrderTotal' => order_total)
+            'OrderReferenceAttributes' => order_reference_attributes
           )
 
         run
@@ -268,13 +287,17 @@ module MWS
       # @option opts [Hash, Struct] :seller_order_attributes
       # @option opts [Boolean] :inherit_shipping_address
       # @return [Peddler::XMLParser]
-      def authorize_on_billing_agreement(amazon_billing_agreement_id, authorization_reference_id, authorization_amount, opts = {})
+      def authorize_on_billing_agreement(amazon_billing_agreement_id,
+                                         authorization_reference_id,
+                                         authorization_amount, opts = {})
         operation('AuthorizeOnBillingAgreement')
-          .add(opts.update(
-                 'AmazonBillingAgreementId' => amazon_billing_agreement_id,
-                 'AuthorizationReferenceId' => authorization_reference_id,
-                 'AuthorizationAmount' => authorization_amount
-          ))
+          .add(
+            opts.update(
+              'AmazonBillingAgreementId' => amazon_billing_agreement_id,
+              'AuthorizationReferenceId' => authorization_reference_id,
+              'AuthorizationAmount' => authorization_amount
+            )
+          )
 
         run
       end
@@ -290,9 +313,11 @@ module MWS
       # @return [Peddler::XMLParser]
       def close_billing_agreement(amazon_billing_agreement_id, opts = {})
         operation('CloseBillingAgreement')
-          .add(opts.update(
-                 'AmazonBillingAgreementId' => amazon_billing_agreement_id
-          ))
+          .add(
+            opts.update(
+              'AmazonBillingAgreementId' => amazon_billing_agreement_id
+            )
+          )
 
         run
       end
@@ -321,9 +346,11 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_billing_agreement_details(amazon_billing_agreement_id, opts = {})
         operation('GetBillingAgreementDetails')
-          .add(opts.update(
-                 'AmazonBillingAgreementId' => amazon_billing_agreement_id
-          ))
+          .add(
+            opts.update(
+              'AmazonBillingAgreementId' => amazon_billing_agreement_id
+            )
+          )
 
         run
       end
@@ -335,7 +362,8 @@ module MWS
       # @param [String] amazon_billing_agreement_id
       # @param [Struct, Hash] billing_agreement_attributes
       # @return [Peddler::XMLParser]
-      def set_billing_agreement_details(amazon_billing_agreement_id, billing_agreement_attributes)
+      def set_billing_agreement_details(amazon_billing_agreement_id,
+                                        billing_agreement_attributes)
         operation('SetBillingAgreementDetails')
           .add(
             'AmazonBillingAgreementId' => amazon_billing_agreement_id,
