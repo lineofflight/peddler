@@ -20,7 +20,7 @@ module Peddler
     class Error < StandardError
       attr_reader :cause
 
-      def initialize(msg, cause)
+      def initialize(msg = nil, cause = nil)
         @cause = cause
         super msg
       end
