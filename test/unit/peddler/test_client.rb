@@ -134,7 +134,9 @@ class TestPeddlerClient < MiniTest::Test
   def test_does_not_clear_body_when_run_fails
     Excon.stub({}, status: 503)
     @client.body = 'foo'
-    assert_raises { @client.run }
+    assert_raises(Excon::Error::ServiceUnavailable) do
+      @client.run
+    end
     refute_nil @client.body
   end
 
