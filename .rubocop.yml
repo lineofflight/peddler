@@ -27,6 +27,8 @@ Naming/AccessorMethodName:
     - lib/mws/**/client.rb
 Performance/RegexpMatch:
   Enabled: false
+Performance/UnfreezeString:
+  Enabled: false
 Style/Documentation:
   Exclude:
     - test/**/*

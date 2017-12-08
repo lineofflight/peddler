@@ -66,7 +66,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
   end
 
   def test_handles_undefined_characters
-    body = +"Foo\n\xFF\n"
+    body = "Foo\n\xFF\n".dup
     body.force_encoding(Encoding::ASCII_8BIT)
     parser = Peddler::FlatFileParser.new(build_mock_response(body), Encoding::ASCII_8BIT)
     assert_equal '�', parser.parse['Foo'][0]
@@ -81,7 +81,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
   private
 
   def build_body(str, encoding:)
-    +str.encode(encoding)
+    str.dup.encode(encoding)
   end
 
   def build_mock_response(body, ascii: true)
