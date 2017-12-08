@@ -5,10 +5,11 @@ require 'mws/orders'
 require 'peddler/errors/handler'
 
 class TestErrors < IntegrationTest
+  use 'Orders'
+
   def setup
     @previous_error_handler = MWS::Orders::Client.error_handler
     MWS::Orders::Client.error_handler = Peddler::Errors::Handler
-    @api = 'Orders'
     super
   end
 

@@ -21,7 +21,7 @@ class TestPeddlerXMLParser < MiniTest::Test
   end
 
   def test_does_not_implement_parsing
-    assert_raises NotImplementedError do
+    assert_raises(NotImplementedError) do
       @parser.parse
     end
   end

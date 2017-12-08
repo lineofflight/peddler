@@ -4,10 +4,7 @@ require 'integration_helper'
 require 'mws/products'
 
 class TestMWSHeaders < IntegrationTest
-  def setup
-    @api = 'Products'
-    super
-  end
+  use 'Products'
 
   def test_parses_headers
     clients.each do |client|

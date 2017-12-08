@@ -4,10 +4,7 @@ require 'integration_helper'
 require 'mws/products'
 
 class TestMultibyteQueries < IntegrationTest
-  def setup
-    @api = 'Products'
-    super
-  end
+  use 'Products'
 
   def test_posts_multibyte_queries_properly
     ret = clients.map do |client|
