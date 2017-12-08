@@ -7,11 +7,29 @@ require 'recorder'
 class IntegrationTest < MiniTest::Test
   include Recorder
 
-  private
+  class << self
+    def use(endpoint)
+      @current_endpoint = endpoint
+    end
+
+    def clients
+      @clients ||= build_clients
+    end
+
+    private
+
+    def build_clients
+      klass = MWS.const_get("#{current_endpoint}::Client")
+      ::Credentials.map { |credentials| klass.new(credentials) }.shuffle
+    end
+
+    def current_endpoint
+      @current_endpoint || name.sub('Test', '')
+    end
+  end
 
   def clients
-    api = @api || test_name
-    ::Credentials.map { |credentials| MWS.const_get("#{api}::Client").new(credentials) }.shuffle
+    self.class.clients
   end
 end
 
