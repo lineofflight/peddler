@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'delegate'
 require 'csv'
 require 'digest/md5'
@@ -34,7 +36,8 @@ module Peddler
     private
 
     def scrub_body!(encoding)
-      body.force_encoding(encoding) unless body.encoding == Encoding::UTF_8
+      return if body.encoding == Encoding::UTF_8
+      self.body = +body.force_encoding(encoding)
     end
 
     def extract_content_and_summary

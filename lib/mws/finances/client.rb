@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 
 module MWS
@@ -43,9 +45,11 @@ module MWS
       # @option opts [Integer] :max_results_per_page
       # @option opts [String, #iso8601] :financial_event_group_started_before
       # @return [Peddler::XMLParser]
-      def list_financial_event_groups(financial_event_group_started_after, opts = {})
+      def list_financial_event_groups(financial_event_group_started_after,
+                                      opts = {})
         operation('ListFinancialEventGroups')
-          .add('FinancialEventGroupStartedAfter' => financial_event_group_started_after)
+          .add('FinancialEventGroupStartedAfter' =>
+            financial_event_group_started_after)
           .add(opts)
 
         run

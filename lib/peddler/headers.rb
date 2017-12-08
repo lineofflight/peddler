@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Peddler
   # Parses MWS-specific headers
   module Headers

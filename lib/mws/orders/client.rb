@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'peddler/client'
 
 module MWS
@@ -106,9 +108,10 @@ module MWS
       private
 
       def require_start_time!
-        if operation.values_at('CreatedAfter', 'LastUpdatedAfter').compact.empty?
-          raise ArgumentError, 'specify created_after or last_updated_after'
-        end
+        return if operation.key?('CreatedAfter')
+        return if operation.key?('LastUpdatedAfter')
+
+        raise ArgumentError, 'specify created_after or last_updated_after'
       end
     end
   end

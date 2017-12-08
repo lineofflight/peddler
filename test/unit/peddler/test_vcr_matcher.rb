@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'helper'
 require 'null_client'
 require 'peddler/vcr_matcher'
