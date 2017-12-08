@@ -1,15 +1,17 @@
-addons:
-  code_climate:
-    repo_token: 738ee95086106a9011b10dd006ac5e0d74541774c8bb6d9e5ceb705c01115afa
-after_success:
-  - bundle exec codeclimate-test-reporter
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 before_install:
   - gem update --system
   - gem install bundler
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 env:
   global:
     - AWS_ACCESS_KEY_ID=foo
     - AWS_SECRET_ACCESS_KEY=bar
+    - CC_TEST_REPORTER_ID=738ee95086106a9011b10dd006ac5e0d74541774c8bb6d9e5ceb705c01115afa
 gemfile:
   - gemfiles/libxml.gemfile
   - gemfiles/oga.gemfile

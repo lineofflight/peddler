@@ -15,7 +15,6 @@ group :development do
 end
 
 platform :mri do
-  gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'simplecov'
 end
 
