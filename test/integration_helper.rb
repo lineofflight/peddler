@@ -1,13 +1,6 @@
+require 'credentials'
 require 'helper'
 require 'recorder'
-
-%w[mws.yml mws.yml.example].each do |path|
-  file = File.expand_path("../#{path}", __FILE__)
-  if File.exist?(file)
-    $mws = YAML.load_file(file)
-    break
-  end
-end
 
 class IntegrationTest < MiniTest::Test
   include Recorder
@@ -16,7 +9,7 @@ class IntegrationTest < MiniTest::Test
 
   def clients
     api = @api || test_name
-    $mws.map { |record| MWS.const_get("#{api}::Client").new(record) }.shuffle
+    ::Credentials.map { |credentials| MWS.const_get("#{api}::Client").new(credentials) }.shuffle
   end
 end
 
@@ -31,7 +24,7 @@ VCR.configure do |c|
     end
   end
 
-  $mws.each do |record|
+  Credentials.each do |record|
     c.filter_sensitive_data('FILTERED') { record['merchant_id'] }
     c.filter_sensitive_data('FILTERED') { record['aws_access_key_id'] }
   end
