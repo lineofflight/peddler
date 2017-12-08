@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.5] - 2017-12-08
+### Changed
+- Optional arguments when instantiating errors for more legible tests.
+
 ## [1.6.4] - 2017-12-08
 ### Added
 - Add InternalError and InvalidAccessKeyId error codes.
@@ -121,8 +125,9 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.4...HEAD
-[1.6.3]: https://github.com/hakanensari/peddler/compare/v1.6.3...v1.6.4
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.5...HEAD
+[1.6.5]: https://github.com/hakanensari/peddler/compare/v1.6.4...v1.6.5
+[1.6.4]: https://github.com/hakanensari/peddler/compare/v1.6.3...v1.6.4
 [1.6.3]: https://github.com/hakanensari/peddler/compare/v1.6.2...v1.6.3
 [1.6.2]: https://github.com/hakanensari/peddler/compare/v1.6.1...v1.6.2
 [1.6.1]: https://github.com/hakanensari/peddler/compare/v1.6.0...v1.6.1
