@@ -7,17 +7,13 @@ gem "minitest"
 gem "minitest-focus"
 gem "rake"
 gem "rubocop"
+gem "simplecov"
 gem "vcr"
 gem "nokogiri"
 
 group :development do
   gem "pry"
   gem "yard"
-end
-
-platforms :mri do
-  gem "codeclimate-test-reporter", "~> 1.0"
-  gem "simplecov"
 end
 
 gemspec path: "../"

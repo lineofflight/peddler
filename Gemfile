@@ -7,15 +7,12 @@ gem 'minitest'
 gem 'minitest-focus'
 gem 'rake'
 gem 'rubocop'
+gem 'simplecov'
 gem 'vcr'
 
 group :development do
   gem 'pry'
   gem 'yard'
-end
-
-platform :mri do
-  gem 'simplecov'
 end
 
 gemspec

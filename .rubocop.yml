@@ -26,13 +26,13 @@ Naming/AccessorMethodName:
   Exclude:
     - lib/mws/**/client.rb
 Performance/RegexpMatch:
-  Enabled: false
+  Enabled: false # doesn't work below 2.4
 Performance/UnfreezeString:
-  Enabled: false
+  Enabled: false # doesn't work below 2.3
 Style/Documentation:
   Exclude:
     - test/**/*
 Style/NumericPredicate:
-  Enabled: false
+  Enabled: false # doesn't work below 2.3
 Style/SafeNavigation:
-  Enabled: false
+  Enabled: false # doesn't work below 2.3
