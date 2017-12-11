@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Remove errors there's no value in creating up front.
 
 ## [1.6.5] - 2017-12-08
 ### Changed

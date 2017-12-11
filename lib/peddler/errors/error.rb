@@ -3,15 +3,13 @@
 module Peddler
   # @api private
   module Errors
-    # Known codes
+    # Here I curate error classes I see value in creating up front so we can use
+    # them for control flow. All other errors will be created at runtime.
     CODES = %w[
       AccessDenied
       InternalError
       InvalidAccessKeyId
       InvalidMarketplace
-      InvalidParameterValue
-      InvalidRequest
-      MalformedInput
       QuotaExceeded
       RequestThrottled
     ].freeze
