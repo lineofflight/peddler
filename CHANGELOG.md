@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Leave it up to user to use Hash#dig polyfill.
 - Remove errors there's no value in creating up front.
 
 ## [1.6.5] - 2017-12-08

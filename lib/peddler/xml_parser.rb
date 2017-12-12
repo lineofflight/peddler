@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'delegate'
-require 'dig_rb'
 require 'forwardable'
 require 'peddler/headers'
 require 'multi_xml'
@@ -12,7 +11,7 @@ module Peddler
     extend Forwardable
     include Headers
 
-    def_delegator :parse, :dig
+    def_delegator :parse, :dig if Hash.method_defined?(:dig)
 
     def parse
       @data ||= find_data
