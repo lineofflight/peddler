@@ -1,6 +1,8 @@
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.4
+Gemspec/RequiredRubyVersion:
+  Enabled: false
 Metrics/AbcSize:
   Exclude:
     - test/**/*
