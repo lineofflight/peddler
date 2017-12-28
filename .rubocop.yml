@@ -4,6 +4,9 @@ AllCops:
 Metrics/AbcSize:
   Exclude:
     - test/**/*
+Metrics/BlockLength:
+  Exclude:
+    - lib/peddler/marketplace.rb
 Metrics/ClassLength:
   Exclude:
     - lib/peddler/client.rb

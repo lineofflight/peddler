@@ -175,7 +175,7 @@ module Peddler
     private
 
     def find_marketplace
-      Marketplace.new(primary_marketplace_id)
+      Marketplace.find(primary_marketplace_id)
     end
 
     def clear_content!

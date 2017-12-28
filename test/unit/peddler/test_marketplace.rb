@@ -5,31 +5,30 @@ require 'peddler/marketplace'
 
 class TestPeddlerMarketplace < MiniTest::Test
   def setup
-    @marketplace = Peddler::Marketplace.new('ATVPDKIKX0DER')
+    @marketplace = Peddler::Marketplace.find('ATVPDKIKX0DER')
   end
 
-  def test_has_a_country_code
+  def test_country_code
     assert @marketplace.country_code
   end
 
-  def test_has_a_host
+  def test_host
     assert @marketplace.host
   end
 
-  def test_has_an_encoding
+  def test_encoding
     assert @marketplace.encoding
   end
 
   def test_guard_against_missing_marketplace_id
-    assert_raises(Peddler::Marketplace::BadId, 'missing MarketplaceId') do
-      Peddler::Marketplace.new(nil)
+    assert_raises(ArgumentError, 'missing ID') do
+      Peddler::Marketplace.find(nil)
     end
   end
 
-  def test_guard_against_bad_marketplace_id
-    assert_raises(Peddler::Marketplace::BadId, '"123" is not a valid MarketplaceId') do
-      marketplace = Peddler::Marketplace.new('123')
-      marketplace.host
+  def test_guard_against_invalid_marketplace_id
+    assert_raises(ArgumentError, '"123" is not a valid ID') do
+      Peddler::Marketplace.find('123')
     end
   end
 end
