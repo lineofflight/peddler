@@ -34,6 +34,4 @@ gemfile:
   - gemfiles/ox.gemfile
   - gemfiles/nokogiri.gemfile
   - gemfiles/rexml.gemfile
-  - gemfiles/jeff_1.gemfile
-  - gemfiles/jeff_2.gemfile
 sudo: false

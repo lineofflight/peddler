@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Bump mininum version of Jeff dependency because Amazon no longer supports the
+deprecated Content-MD5 header.
 - Leave it up to user to use Hash#dig polyfill.
 - Remove errors there's no value in creating up front.
 
