@@ -3,9 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Do not support Ruby 2.1.
 
 ## [1.6.6] - 2018-02-22
-### Changed
+### Changed
 - Bump mininum version of Jeff dependency because Amazon no longer supports the
 deprecated Content-MD5 header.
 - Leave it up to user to use Hash#dig polyfill.
