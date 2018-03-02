@@ -18,7 +18,7 @@ module Peddler
       payload = xml.values.first
       found = payload.find { |k, _| k.match(MATCHER) }
 
-      found.last if found
+      found&.last
     end
   end
 end

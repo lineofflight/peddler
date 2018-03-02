@@ -32,12 +32,6 @@ Naming/AccessorMethodName:
     - lib/mws/**/client.rb
 Performance/RegexpMatch:
   Enabled: false # doesn't work below 2.4
-Performance/UnfreezeString:
-  Enabled: false # doesn't work below 2.3
 Style/Documentation:
   Exclude:
     - test/**/*
-Style/NumericPredicate:
-  Enabled: false # doesn't work below 2.3
-Style/SafeNavigation:
-  Enabled: false # doesn't work below 2.3

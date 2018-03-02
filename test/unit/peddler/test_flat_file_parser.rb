@@ -17,7 +17,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     parser = Peddler::FlatFileParser.new(build_mock_response(body), 'ISO-8859-1')
     counter = 0
     parser.parse { counter += 1 }
-    assert counter > 0
+    assert counter.positive?
   end
 
   def test_summarises
@@ -66,7 +66,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
   end
 
   def test_handles_undefined_characters
-    body = "Foo\n\xFF\n".dup
+    body = +"Foo\n\xFF\n"
     body.force_encoding(Encoding::ASCII_8BIT)
     parser = Peddler::FlatFileParser.new(build_mock_response(body), Encoding::ASCII_8BIT)
     assert_equal '�', parser.parse['Foo'][0]
