@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Improve enabling new error handler.
+
 ### Changed
 - Do not support Ruby 2.1.
 
