@@ -87,9 +87,27 @@ MWS::Orders::Client.parser = MyParser
 
 For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/mws-orders) library.
 
+### Throttling
+
+Amazon limits the number of requests you can submit to a given operation in a given amount of time.
+
+Peddler exposes header values showing the hourly quota of the current operation:
+
+```ruby
+res = client.some_method
+puts res.quota
+#<struct Quota max=200, remaining=150, resets_on=2017-01-01 00:12:00 UTC>
+```
+
+Read [Amazon's tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
+
 ### Debugging
 
-To introspect requests, set the `EXCON_DEBUG` environment variable to a truthy value when making requests.
+If you are having trouble with a request, read the [Amazon documentation](https://developer.amazonservices.com/gp/mws/docs.html). Also, Peddler's source links individual operations to their corresponding entries in the Amazon docs.
+
+Note that some optional keywords have default values.
+
+To introspect requests, set the `EXCON_DEBUG` environment variable to `1` or similar truthy value. Peddler will then log request and response internals to stdout.
 
 ### Errors
 
@@ -112,6 +130,14 @@ rescue Excon::Error::ServiceUnavailable => e
   logger.warn e.response.message
   retry
 end
+```
+
+Peddler has an optional new error handler that raises more descriptive errors: for instance, `Peddler::Errors::RequestThrottled` instead of `Excon::Error::ServiceUnavailable`. This error handler will become the default in the next major version.
+
+To start using this now:
+
+```ruby
+require 'peddler/errors'
 ```
 
 ## The APIs
