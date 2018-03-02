@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.6.7] - 2018-03-02
 ### Added
 - Improve enabling new error handler.
 
@@ -137,7 +139,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.6...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.7...HEAD
+[1.6.7]: https://github.com/hakanensari/peddler/compare/v1.6.6...v1.6.7
 [1.6.6]: https://github.com/hakanensari/peddler/compare/v1.6.5...v1.6.6
 [1.6.5]: https://github.com/hakanensari/peddler/compare/v1.6.4...v1.6.5
 [1.6.4]: https://github.com/hakanensari/peddler/compare/v1.6.3...v1.6.4
