@@ -27,7 +27,7 @@ module MWS
 
       # Lists the next page of financial events
       #
-      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroupsByNextToken.html
+      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventsByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_financial_events_by_next_token(next_token)
