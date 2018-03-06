@@ -13,9 +13,11 @@ module Peddler
 
     def_delegator :parse, :dig if Hash.method_defined?(:dig)
 
-    def parse
+    def data
       @data ||= find_data
     end
+
+    alias parse data
 
     def xml
       MultiXml.parse(body)
