@@ -168,8 +168,8 @@ module Peddler
       self.body = nil if res.status == 200
 
       parser.new(res, encoding)
-    rescue Excon::Error => e
-      handle_error(e)
+    rescue Excon::Error => error
+      handle_error(error)
     end
 
     private
@@ -207,25 +207,26 @@ module Peddler
       body ? opts.update(body: body) : opts
     end
 
-    def handle_error(e)
-      e = decorate_error(e)
-      error_handler.call(*deprecate_error_handler_arguments(e))
+    def handle_error(error)
+      error = decorate_error(error)
+      error_handler.call(*deprecate_error_handler_arguments(error))
     end
 
-    def decorate_error(e)
-      if e.is_a?(:: Excon::Error::HTTPStatus)
-        e.instance_variable_set(:@response, Errors::Parser.new(e.response))
+    def decorate_error(error)
+      if error.is_a?(:: Excon::Error::HTTPStatus)
+        error.instance_variable_set(:@response,
+                                    Errors::Parser.new(error.response))
       end
 
-      e
+      error
     end
 
-    def deprecate_error_handler_arguments(e)
+    def deprecate_error_handler_arguments(error)
       if error_handler.parameters.size == 2
         warn '[DEPRECATION] Error handler now expects exception as argument.'
-        [e.request, e.response]
+        [error.request, error.response]
       else
-        [e]
+        [error]
       end
     end
   end
