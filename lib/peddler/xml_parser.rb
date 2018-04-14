@@ -11,7 +11,7 @@ module Peddler
     extend Forwardable
     include Headers
 
-    def_delegator :parse, :dig if Hash.method_defined?(:dig)
+    def_delegator :parse, :dig
 
     def data
       @data ||= find_data
