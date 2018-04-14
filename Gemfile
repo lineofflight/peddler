@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'appraisal'
-gem 'backports'
 gem 'minitest'
 gem 'minitest-focus'
 gem 'rake'
