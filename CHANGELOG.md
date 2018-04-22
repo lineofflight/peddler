@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Update list of error codes created up front.
 - Do not support Ruby 2.2.
 
 ## [1.6.7] - 2018-03-02

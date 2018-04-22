@@ -3,15 +3,19 @@
 module Peddler
   # @api private
   module Errors
-    # Here I curate error classes I see value in creating up front so we can use
-    # them for control flow. All other errors will be created at runtime.
+    # These error codes are common to all Amazon MWS API sections.
+    #
+    # @see https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Errors.html
     CODES = %w[
       AccessDenied
+      InputStreamDisconnected
       InternalError
       InvalidAccessKeyId
-      InvalidMarketplace
+      InvalidAddress
+      InvalidParameterValue
       QuotaExceeded
       RequestThrottled
+      SignatureDoesNotMatch
     ].freeze
 
     # @api private
