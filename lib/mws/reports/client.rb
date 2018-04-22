@@ -10,7 +10,7 @@ module MWS
 
       # Creates a report request
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_RequestReport.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_RequestReport.html
       # @param [String] report_type
       # @param [Hash] opts
       # @option opts [String, #iso8601] :start_date
@@ -28,7 +28,7 @@ module MWS
 
       # Lists report requests
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestList.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestList.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_request_id_list
       # @option opts [Array<String>, String] :report_type_list
@@ -49,7 +49,7 @@ module MWS
 
       # Lists the next page of the report requests
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestListByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestListByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def get_report_request_list_by_next_token(next_token)
@@ -61,7 +61,7 @@ module MWS
 
       # Counts requested reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestCount.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestCount.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_type_list
       # @option opts [Array<String>, String] :report_processing_status_list
@@ -79,7 +79,7 @@ module MWS
 
       # Cancels one or more report requests
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_CancelReportRequests.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_CancelReportRequests.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_type_list
       # @option opts [Array<String>, String] :report_processing_status_list
@@ -97,7 +97,7 @@ module MWS
 
       # Lists reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportList.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportList.html
       # @param [Hash] opts
       # @option opts [Integer] :max_count
       # @option opts [Array<String>, String] :report_type_list
@@ -117,7 +117,7 @@ module MWS
 
       # Lists the next page of reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportListByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportListByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def get_report_list_by_next_token(next_token)
@@ -129,7 +129,7 @@ module MWS
 
       # Counts reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportCount.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportCount.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_type_list
       # @option opts [Boolean] :acknowledged
@@ -146,7 +146,7 @@ module MWS
 
       # Gets a report and its Content-MD5 header
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReport.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReport.html
       # @param [String] report_id
       # @return [Peddler::XMLParser] if report is in XML format
       # @return [Peddler::FlatFileParser] if report is a flat file
@@ -159,7 +159,7 @@ module MWS
 
       # Creates, updates, or deletes a report request schedule
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_ManageReportSchedule.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ManageReportSchedule.html
       # @param [String] report_type
       # @param [String] schedule
       # @param [Hash] opts
@@ -174,7 +174,7 @@ module MWS
 
       # Lists scheduled reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleList.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleList.html
       # @param [*Array<String>] report_type_list
       # @return [Peddler::XMLParser]
       def get_report_schedule_list(*report_type_list)
@@ -187,7 +187,7 @@ module MWS
 
       # Lists next page of scheduled reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleListByNextToken.html
       # @raise [NotImplementedError]
       def get_report_schedule_list_by_next_token(*)
         raise NotImplementedError
@@ -195,7 +195,7 @@ module MWS
 
       # Counts scheduled reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleCount.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleCount.html
       # @overload get_report_schedule_count(*report_types)
       #   @param [String] report_type one or more report_types
       # @return [Peddler::XMLParser]
@@ -209,7 +209,7 @@ module MWS
 
       # Updates acknowledged status of one or more reports
       #
-      # @see http://docs.developer.amazonservices.com/en_US/reports/Reports_UpdateReportAcknowledgements.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_UpdateReportAcknowledgements.html
       # @overload update_report_acknowledgements(acknowledged, *report_ids)
       #   @param [Boolean] acknowledged
       #   @param [String] report_id one or more report_ids

@@ -14,7 +14,7 @@ module MWS
 
       # Lists products and their attributes, based on a search query
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_ListMatchingProducts.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_ListMatchingProducts.html
       # @overload list_matching_products(query, opts = { marketplace_id:
       #   primary_marketplace_id })
       #   @param [String] query
@@ -32,7 +32,7 @@ module MWS
       # Lists products and their attributes, based on a list of ASIN, GCID,
       #   SellerSKU, UPC, EAN, ISBN, and JAN values
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProduct.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProduct.html
       # @overload get_matching_product_for_id(id_type, *ids, opts = {
       #   marketplace_id: primary_marketplace_id })
       #   @param [String] id_type
@@ -52,7 +52,7 @@ module MWS
 
       # Lists products and their attributes, based on a list of ASIN values
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProductForId.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetMatchingProductForId.html
       # @overload get_matching_product(*asins, opts = { marketplace_id:
       #   primary_marketplace_id })
       #   @param [String] asin one or more asins
@@ -71,7 +71,7 @@ module MWS
 
       # Gets the current competitive price of a product, based on Seller SKU
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForSKU.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForSKU.html
       # @overload get_competitive_pricing_for_sku(*seller_skus, opts = {
       #   marketplace_id: primary_marketplace_id })
       #   @param [String] seller_sku one or more seller_skus
@@ -90,7 +90,7 @@ module MWS
 
       # Gets the current competitive price of a product, identified by its ASIN
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForASIN.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetCompetitivePricingForASIN.html
       # @overload get_competitive_pricing_for_asin(*asins, opts = {
       #   marketplace_id: primary_marketplace_id })
       #   @param [String] asin one or more asins
@@ -110,7 +110,7 @@ module MWS
       # Gets pricing information for the lowest-price active offer listings for
       # a product, based on Seller SKU
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForSKU.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForSKU.html
       # @overload get_lowest_offer_listings_for_sku(*seller_skus, opts = {
       #   marketplace_id: primary_marketplace_id })
       #   @param [String] seller_sku one or more seller_skus
@@ -132,7 +132,7 @@ module MWS
       # Gets pricing information for the lowest-price active offer listings for
       # a product, identified by its ASIN
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForASIN.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetLowestOfferListingsForASIN.html
       # @overload get_lowest_offer_listings_for_asin(*asins, opts = {
       #   marketplace_id: primary_marketplace_id })
       #   @param [String] asin one or more asins
@@ -153,7 +153,7 @@ module MWS
 
       # Gets lowest priced offers for a single product, based on SellerSKU
       #
-      # @see http://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForSKU.html
+      # @see https://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForSKU.html
       # @overload get_lowest_priced_offers_for_sku(seller_sku, item_condition,
       #   opts = { marketplace_id: primary_marketplace_id })
       #   @param [String] seller_sku
@@ -175,7 +175,7 @@ module MWS
 
       # Gets lowest priced offers for a single product, based on ASIN
       #
-      # @see http://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForASIN.html
+      # @see https://docs.developer.amazonservices.com/en_MX/products/Products_GetLowestPricedOffersForASIN.html
       # @overload get_lowest_priced_offers_for_asin(asin, item_condition, opts =
       #   { marketplace_id: primary_marketplace_id })
       #   @param [String] asin
@@ -196,8 +196,8 @@ module MWS
 
       # Gets the estimated fees for a list of products.
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyFeesEstimate.html
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_Datatypes.html#FeesEstimateRequest
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetMyFeesEstimate.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_Datatypes.html#FeesEstimateRequest
       # @param [Hash] fees_estimate_request one or more fees estimate requests
       # @return [Peddler::XMLParser]
       def get_my_fees_estimate(*fees_estimate_requests)
@@ -211,7 +211,7 @@ module MWS
       # Gets pricing information for seller's own offer listings, based on
       # Seller SKU
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForSKU.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForSKU.html
       # @overload get_my_price_for_sku(*seller_skus, opts = { marketplace_id:
       #   primary_marketplace_id })
       #   @param [String] seller_sku one or more seller_skus
@@ -232,7 +232,7 @@ module MWS
       # Gets pricing information for seller's own offer listings, identified by
       # its ASIN
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForASIN.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetMyPriceForASIN.html
       # @overload get_my_price_for_asin(*asins, opts = { marketplace_id:
       #   primary_marketplace_id })
       #   @param [String] asin one or more asins
@@ -253,7 +253,7 @@ module MWS
       # Gets parent product categories that a product belongs to, based on
       # Seller`SKU
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForSKU.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForSKU.html
       # @overload get_product_categories_for_sku(sku, opts = { marketplace_id:
       #   primary_marketplace_id })
       #   @param [String] seller_sku
@@ -269,7 +269,7 @@ module MWS
 
       # Gets parent product categories that a product belongs to, based on ASIN
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForASIN.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetProductCategoriesForASIN.html
       # @overload get_product_categories_for_asin(asin, opts = { marketplace_id:
       #   primary_marketplace_id })
       #   @param [String] asin
@@ -285,7 +285,7 @@ module MWS
 
       # Gets the service status of the API
       #
-      # @see http://docs.developer.amazonservices.com/en_US/products/Products_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/products/Products_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')

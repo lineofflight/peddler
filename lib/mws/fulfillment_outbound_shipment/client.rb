@@ -20,7 +20,7 @@ module MWS
 
       # Lists fulfillment order previews
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetFulfillmentPreview.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetFulfillmentPreview.html
       # @param [Struct, Hash] address
       # @param [Array<Struct, Hash>] items
       # @param [Hash] opts
@@ -44,7 +44,7 @@ module MWS
       # Requests that Amazon ship items from the seller's Amazon Fulfillment
       # Network inventory to a destination address
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentOrder.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentOrder.html
       # @param [String] seller_fulfillment_order_id
       # @param [String] displayable_order_id
       # @param [String, #iso8601] displayable_order_date_time
@@ -89,7 +89,7 @@ module MWS
       # Updates and/or requests shipment for a fulfillment order with an order
       # hold on it
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_UpdateFulfillmentOrder.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_UpdateFulfillmentOrder.html
       # @param [String] seller_fulfillment_order_id
       # @param [Hash] opts
       # @option opts [String] :fulfillment_action
@@ -117,7 +117,7 @@ module MWS
 
       # Gets a fulfillment order
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetFulfillmentOrder.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetFulfillmentOrder.html
       # @param [String] seller_fulfillment_order_id
       # @return [Peddler::XMLParser]
       def get_fulfillment_order(seller_fulfillment_order_id)
@@ -129,7 +129,7 @@ module MWS
 
       # Returns a list of fulfillment orders fulfilled on or after a date
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrders.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrders.html
       # @param [String, #iso8601] query_start_date_time
       # @return [Peddler::XMLParser]
       def list_all_fulfillment_orders(query_start_date_time = nil)
@@ -144,7 +144,7 @@ module MWS
 
       # Returns the next page of fulfillment orders
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrdersByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrdersByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_all_fulfillment_orders_by_next_token(next_token)
@@ -157,7 +157,7 @@ module MWS
       # Returns delivery tracking information for a package in an outbound
       # shipment for a Multi-Channel Fulfillment order
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetPackageTrackingDetails.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_GetPackageTrackingDetails.html
       # @param [String] package_number
       # @return [Peddler::XMLParser]
       def get_package_tracking_details(package_number)
@@ -170,7 +170,7 @@ module MWS
       # Requests that Amazon stop attempting to fulfill an existing fulfillment
       # order
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CancelFulfillmentOrder.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CancelFulfillmentOrder.html
       # @param [String] seller_fulfillment_order_id
       # @return [Peddler::XMLParser]
       def cancel_fulfillment_order(seller_fulfillment_order_id)
@@ -183,7 +183,7 @@ module MWS
       # Returns a list of return reason codes for a seller SKU in a given
       # marketplace.
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListReturnReasonCodes.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListReturnReasonCodes.html
       # @param [String] seller_sku
       # @param [Hash] opts
       # @option opts [String] :marketplace_id
@@ -204,7 +204,7 @@ module MWS
 
       # Creates a fulfillment return.
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentReturn.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_CreateFulfillmentReturn.html
       # @param [String] seller_fulfillment_order_id
       # @param [Array] items
       # @return [Peddler::XMLParser]
@@ -219,7 +219,7 @@ module MWS
 
       # Gets the operational status of the API
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_outbound/MWS_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/MWS_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')

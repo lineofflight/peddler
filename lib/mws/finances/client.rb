@@ -12,7 +12,7 @@ module MWS
 
       # Lists financial events
       #
-      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEvents.html
+      # @see https://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEvents.html
       # @param [Hash] opts
       # @option opts [Integer] :max_results_per_page
       # @option opts [String] :amazon_order_id
@@ -27,7 +27,7 @@ module MWS
 
       # Lists the next page of financial events
       #
-      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventsByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventsByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_financial_events_by_next_token(next_token)
@@ -39,7 +39,7 @@ module MWS
 
       # Lists financial event groups
       #
-      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroups.html
+      # @see https://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroups.html
       # @param [String, #iso8601] financial_event_group_started_after
       # @param [Hash] opts
       # @option opts [Integer] :max_results_per_page
@@ -57,7 +57,7 @@ module MWS
 
       # Lists the next page of financial event groups
       #
-      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroupsByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/finances/Finances_ListFinancialEventGroupsByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_financial_event_groups_by_next_token(next_token)
@@ -69,7 +69,7 @@ module MWS
 
       # Gets API status
       #
-      # @see http://docs.developer.amazonservices.com/en_US/finances/Finances_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/finances/Finances_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')

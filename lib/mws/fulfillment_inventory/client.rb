@@ -16,7 +16,7 @@ module MWS
 
       # Returns information about the availability of a seller's inventory
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupply.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupply.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :seller_skus
       # @option opts [String, #iso8601] :query_start_date_time
@@ -34,7 +34,7 @@ module MWS
       # Returns the next page of information about the availability of a
       # seller's inventory
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupplyByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_ListInventorySupplyByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_inventory_supply_by_next_token(next_token)
@@ -46,7 +46,7 @@ module MWS
 
       # Gets the operational status of the API
       #
-      # @see http://docs.developer.amazonservices.com/en_US/fba_inventory/MWS_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/fba_inventory/MWS_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')

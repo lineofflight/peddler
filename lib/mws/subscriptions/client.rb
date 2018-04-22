@@ -16,7 +16,7 @@ module MWS
 
       # Registers a new destination to receive notifications
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_RegisterDestination.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_RegisterDestination.html
       # @param [String] sqs_queue_url
       # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
@@ -31,7 +31,7 @@ module MWS
 
       # Removes an existing destination from the list of registered destinations
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeregisterDestination.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeregisterDestination.html
       # @param [String] sqs_queue_url
       # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
@@ -46,7 +46,7 @@ module MWS
 
       # Lists all registered destinations
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListRegisteredDestinations.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListRegisteredDestinations.html
       # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def list_registered_destinations(marketplace_id = primary_marketplace_id)
@@ -58,7 +58,7 @@ module MWS
 
       # Sends a test notification to an existing destination
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_SendTestNotificationToDestination.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_SendTestNotificationToDestination.html
       # @param [String] sqs_queue_url
       # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
@@ -74,7 +74,7 @@ module MWS
 
       # Creates a new subscription
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_CreateSubscription.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_CreateSubscription.html
       # @param [String] notification_type
       # @param [String] sqs_queue_url
       # @param [String] marketplace_id
@@ -90,7 +90,7 @@ module MWS
 
       # Gets a subscription
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_GetSubscription.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_GetSubscription.html
       # @param [String] notification_type
       # @param [String] sqs_queue_url
       # @param [String] marketplace_id
@@ -109,7 +109,7 @@ module MWS
 
       # Deletes a subscription
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeleteSubscription.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_DeleteSubscription.html
       # @param [String] notification_type
       # @param [String] sqs_queue_url
       # @param [String] marketplace_id
@@ -128,7 +128,7 @@ module MWS
 
       # Lists current subscriptions
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListSubscriptions.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_ListSubscriptions.html
       # @param [String] marketplace_id
       # @return [Peddler::XMLParser]
       def list_subscriptions(marketplace_id = primary_marketplace_id)
@@ -140,7 +140,7 @@ module MWS
 
       # Updates a subscription
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_UpdateSubscription.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_UpdateSubscription.html
       # @param [String] notification_type
       # @param [String] sqs_queue_url
       # @param [Boolean] enabled
@@ -157,7 +157,7 @@ module MWS
 
       # Gets the service status of the API
       #
-      # @see http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')
