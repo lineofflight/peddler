@@ -12,7 +12,7 @@ module MWS
 
       # Lists the marketplaces the seller participates in
       #
-      # @see http://docs.developer.amazonservices.com/en_US/sellers/Sellers_ListMarketplaceParticipations.html
+      # @see https://docs.developer.amazonservices.com/en_US/sellers/Sellers_ListMarketplaceParticipations.html
       # @return [Peddler::XMLParser]
       def list_marketplace_participations
         operation('ListMarketplaceParticipations')
@@ -21,7 +21,7 @@ module MWS
 
       # Lists the next page of marketplaces the seller participates in
       #
-      # @see http://docs.developer.amazonservices.com/en_US/sellers/Sellers_ListMarketplaceParticipationsByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/sellers/Sellers_ListMarketplaceParticipationsByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_marketplace_participations_by_next_token(next_token)
@@ -33,7 +33,7 @@ module MWS
 
       # Gets the service status of the API
       #
-      # @see http://docs.developer.amazonservices.com/en_US/sellers/Sellers_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/sellers/Sellers_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')
