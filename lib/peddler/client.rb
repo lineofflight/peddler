@@ -30,7 +30,7 @@ module Peddler
 
     alias configure tap
 
-    def_delegators :marketplace, :host, :encoding
+    def_delegators :primary_marketplace, :host, :encoding
 
     params(
       'SellerId' => -> { merchant_id },
@@ -113,8 +113,8 @@ module Peddler
     end
 
     # @api private
-    def marketplace
-      @marketplace ||= find_marketplace
+    def primary_marketplace
+      @primary_marketplace ||= find_primary_marketplace
     end
 
     # The HTTP path of the API
@@ -174,7 +174,7 @@ module Peddler
 
     private
 
-    def find_marketplace
+    def find_primary_marketplace
       Marketplace.find(primary_marketplace_id)
     end
 
