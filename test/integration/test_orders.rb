@@ -6,7 +6,8 @@ require 'mws/orders'
 class TestOrders < IntegrationTest
   def test_gets_orders
     clients.each do |client|
-      order_ids = client.list_orders(created_after: Date.new(2015),
+      order_ids = client.list_orders(client.primary_marketplace_id,
+                                     created_after: Date.new(2015),
                                      max_results_per_page: 5)
                         .dig('Orders', 'Order')
                         .map { |order| order['AmazonOrderId'] }

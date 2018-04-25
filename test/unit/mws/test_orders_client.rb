@@ -13,7 +13,7 @@ class TestMWSOrdersClient < MiniTest::Test
       'Action' => 'ListOrders',
       'CreatedAfter' => '2016-01-01',
       'OrderStatus.Status.1' => '1',
-      'MarketplaceId.Id.1' => '1',
+      'MarketplaceId.Id.1' => '123',
       'PaymentMethod.1' => '1',
       'TFMShipmentStatus.Status.1' => '1',
       'FulfillmentChannel.Channel.1' => 'MFN'
@@ -21,7 +21,7 @@ class TestMWSOrdersClient < MiniTest::Test
 
     @client.stub(:run, nil) do
       @client.list_orders(
-        marketplace_id: '1',
+        '123',
         created_after: '2016-01-01',
         order_status: '1',
         tfm_shipment_status: '1',
@@ -35,11 +35,12 @@ class TestMWSOrdersClient < MiniTest::Test
 
   def test_requires_start_time_keyword_when_listing_orders
     @client.stub(:run, nil) do
-      assert_raises(ArgumentError) do
-        @client.list_orders
+      error = assert_raises(ArgumentError) do
+        @client.list_orders('123')
       end
-      @client.list_orders(created_after: '2016-01-01')
-      @client.list_orders(last_updated_after: '2016-01-01')
+      assert_equal 'specify created_after or last_updated_after', error.message
+      @client.list_orders('123', created_after: '2016-01-01')
+      @client.list_orders('123', last_updated_after: '2016-01-01')
     end
   end
 

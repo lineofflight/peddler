@@ -6,7 +6,7 @@ require 'mws/recommendations'
 class TestRecommendations < IntegrationTest
   def test_lists_recommendations
     clients.each do |client|
-      res = client.list_recommendations
+      res = client.list_recommendations(client.primary_marketplace_id)
       refute_empty res.parse
     end
   end

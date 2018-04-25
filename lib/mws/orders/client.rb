@@ -16,13 +16,13 @@ module MWS
       #   either created_after or last_updated_after. When requesting orders by
       #   "Unshipped" status you must also request "PartiallyShipped" orders.
       # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrders.html
+      # @param [Array<String>, String] :marketplace_id
       # @param [Hash] opts
       # @option opts [String, #iso8601] :created_after
       # @option opts [String, #iso8601] :created_before
       # @option opts [String, #iso8601] :last_updated_after
       # @option opts [String, #iso8601] :last_updated_before
       # @option opts [Array<String>, String] :order_status
-      # @option opts [Array<String>, String] :marketplace_id
       # @option opts [Array<String>, String] :fulfillment_channel
       # @option opts [Array<String>, String] :payment_method
       # @option opts [String] :buyer_email
@@ -30,13 +30,13 @@ module MWS
       # @option opts [String] :max_results_per_page
       # @option opts [String] :tfm_shipment_status
       # @return [Peddler::XMLParser]
-      def list_orders(opts = {})
-        opts[:marketplace_id] ||= primary_marketplace_id
+      def list_orders(marketplace_id, opts = {})
         if opts.key?(:tfm_shipment_status)
           opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status)
         end
+
         operation('ListOrders')
-          .add(opts)
+          .add(opts.update('MarketplaceId' => marketplace_id))
           .structure!('OrderStatus', 'Status')
           .structure!('FulfillmentChannel', 'Channel')
           .structure!('MarketplaceId', 'Id')
