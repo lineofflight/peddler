@@ -20,49 +20,39 @@ Require the library.
 require "peddler"
 ```
 
-Create a client. Peddler provides one for each MWS API under an eponymous namespace.
-
-```ruby
-client = MWS::Orders::Client.new
-
-# or the shorthand
-client = MWS.orders
-```
-
-Each client requires valid MWS credentials. Set these globally in the shell.
+A client requires valid AWS credentials. Set these globally in your shell.
 
 ```bash
 export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
-You can now instantiate a client. The client will pick up credentials automatically from the environment.
+Create a client. Peddler provides one for each API section under an eponymous namespace.
 
 ```ruby
-client = MWS.orders
+client = MWS::Orders::Client.new(primary_marketplace_id: "Your Marketplace ID",
+                                 merchant_id: "Your Merchant ID")
+
+# or the shorthand
+client = MWS.orders(primary_marketplace_id: "Your Marketplace ID",
+                    merchant_id: "Your Merchant ID")
 ```
 
-If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass the latter's Merchant (Seller) ID and Marketplace ID along with the `MWSAuthToken` they obtained for you.
+If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass the seller's Merchant ID and Marketplace ID along with the MWS Auth Token they obtained for you.
 
 ```ruby
-client = MWS.orders(
-  primary_marketplace_id: "Seller's Marketplace ID",
-  merchant_id: "Seller's Merchant or Seller ID",
-  auth_token: "Seller's MWS Authorisation Token"
-)
+client = MWS.orders(primary_marketplace_id: "Seller's Marketplace ID",
+                    merchant_id: "Seller's Merchant ID",
+                    auth_token: "Seller's MWS Auth Token")
 ```
 
-Finally, if you do not want to use environment variables at all, you can set all credentials when or after creating the client.
+Finally, if you do not want to use environment variables at all, you can set AWS credentials as well when creating a client.
 
 ```ruby
-client = MWS.orders(
-  primary_marketplace_id: "Your Marketplace ID",
-  merchant_id: "Your Merchant or Seller ID",
-  aws_access_key_id: "Your AWS Access Key ID",
-  aws_secret_access_key: "Your AWS Secret Access Key",
-)
-
-client.primary_marketplace_id = "Another Marketplace ID"
+client = MWS.orders(primary_marketplace_id: "Your Marketplace ID",
+                    merchant_id: "Your Merchant ID",
+                    aws_access_key_id: "Your AWS Access Key ID",
+                    aws_secret_access_key: "Your AWS Secret Access Key")
 ```
 
 Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
@@ -97,7 +87,7 @@ puts res.quota
 #<struct Quota max=200, remaining=150, resets_on=2017-01-01 00:12:00 UTC>
 ```
 
-Read [Amazon's tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
+[Read Amazon's tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
 
 ### Debugging
 
