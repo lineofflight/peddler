@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
+- Remove deprecated methods in Client.
 - Update list of error codes created up front.
 - Do not support Ruby 2.2.
 
