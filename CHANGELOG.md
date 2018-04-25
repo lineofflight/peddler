@@ -3,10 +3,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.0] - 2018-03-02
 ### Changed
-- Remove deprecated methods in Client.
 - Do not default to primary marketplace.
 - Update list of error codes created up front.
+
+### Removed
+- Remove deprecated methods in Client.
+- Remove ENV var for Client#primary_marketplace_id.
+- Remove ENV var for Client#merchant_id.
 - Do not support Ruby 2.2.
 
 ## [1.6.7] - 2018-03-02

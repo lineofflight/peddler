@@ -19,7 +19,16 @@ module Peddler
     # @return [String]
     attr_accessor :auth_token
 
-    attr_writer :merchant_id, :primary_marketplace_id, :path
+    # The merchant's Seller ID
+    # @return [String]
+    attr_accessor :merchant_id
+
+    # The Marketplace ID where merchant is signed up on
+    # @return [String]
+    attr_accessor :primary_marketplace_id
+
+    # @api private
+    attr_writer :path
 
     # @api private
     attr_writer :version
@@ -86,20 +95,6 @@ module Peddler
     # @api private
     def aws_endpoint
       "https://#{host}#{path}"
-    end
-
-    # The merchant's Marketplace ID
-    # @!parse attr_reader :primary_marketplace_id
-    # @return [String]
-    def primary_marketplace_id
-      @primary_marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
-    end
-
-    # The merchant's Seller ID
-    # @!parse attr_reader :merchant_id
-    # @return [String]
-    def merchant_id
-      @merchant_id ||= ENV['MWS_MERCHANT_ID']
     end
 
     # @api private
