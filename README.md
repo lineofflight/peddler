@@ -32,8 +32,6 @@ client = MWS.orders
 Each client requires valid MWS credentials. Set these globally in the shell.
 
 ```bash
-export MWS_MARKETPLACE_ID=YOUR_MARKETPLACE_ID
-export MWS_MERCHANT_ID=YOUR_MERCHANT_OR_SELLER_ID
 export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
