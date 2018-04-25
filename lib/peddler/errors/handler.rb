@@ -14,10 +14,6 @@ module Peddler
         new(exception).handle
       end
 
-      def self.parameters
-        1
-      end
-
       attr_reader :exception
 
       def initialize(exception)

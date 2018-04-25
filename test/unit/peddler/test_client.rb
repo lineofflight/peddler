@@ -234,24 +234,4 @@ class TestPeddlerClient < MiniTest::Test
 
     assert e
   end
-
-  def test_deprecated_error_callback
-    Excon.stub({}, status: 503)
-
-    @client.on_error do |_, res|
-      assert_equal 503, res.status
-    end
-    assert_output nil, /DEPRECATION/ do
-      @client.run
-    end
-
-    Excon.stubs.clear
-  end
-
-  def test_deprecated_marketplace_id_accessor
-    refute_nil @client.marketplace_id
-    @client.marketplace_id = '123'
-    assert_equal '123', @client.marketplace_id
-    assert_equal @client.primary_marketplace_id, @client.marketplace_id
-  end
 end

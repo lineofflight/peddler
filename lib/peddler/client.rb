@@ -95,16 +95,6 @@ module Peddler
       @primary_marketplace_id ||= ENV['MWS_MARKETPLACE_ID']
     end
 
-    # @deprecated Use {#primary_marketplace_id}.
-    def marketplace_id
-      @primary_marketplace_id
-    end
-
-    # @deprecated Use {#primary_marketplace_id=}.
-    def marketplace_id=(marketplace_id)
-      @primary_marketplace_id = marketplace_id
-    end
-
     # The merchant's Seller ID
     # @!parse attr_reader :merchant_id
     # @return [String]
@@ -209,7 +199,7 @@ module Peddler
 
     def handle_error(error)
       error = decorate_error(error)
-      error_handler.call(*deprecate_error_handler_arguments(error))
+      error_handler.call(error)
     end
 
     def decorate_error(error)
@@ -219,15 +209,6 @@ module Peddler
       end
 
       error
-    end
-
-    def deprecate_error_handler_arguments(error)
-      if error_handler.parameters.size == 2
-        warn '[DEPRECATION] Error handler now expects exception as argument.'
-        [error.request, error.response]
-      else
-        [error]
-      end
     end
   end
 end
