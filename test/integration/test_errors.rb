@@ -2,21 +2,9 @@
 
 require 'integration_helper'
 require 'mws/orders'
-require 'peddler/errors/handler'
 
 class TestErrors < IntegrationTest
   use 'Orders'
-
-  def setup
-    @previous_error_handler = MWS::Orders::Client.error_handler
-    MWS::Orders::Client.error_handler = Peddler::Errors::Handler
-    super
-  end
-
-  def teardown
-    MWS::Orders::Client.error_handler = @previous_error_handler
-    super
-  end
 
   def test_invalid_key
     clients.each do |client|

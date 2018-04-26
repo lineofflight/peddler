@@ -1,33 +1,59 @@
 # frozen_string_literal: true
 
-require 'singleton'
-require 'peddler/errors/error'
+require 'excon'
+require 'forwardable'
+require 'peddler/errors/class_generator'
+require 'peddler/errors/parser'
 
 module Peddler
   module Errors
     # @api private
     class Builder
-      include Singleton
+      extend Forwardable
 
-      def self.build(name)
-        instance.build(name)
+      DIGIT_AS_FIRST_CHAR = /^\d/
+      private_constant :DIGIT_AS_FIRST_CHAR
+
+      def_delegator :error, :response
+
+      def self.call(error)
+        new(error).build
       end
 
-      def initialize
-        @mutex = Mutex.new
+      attr_reader :error
+
+      def initialize(error)
+        @error = error
       end
 
-      def build(name)
-        with_mutex do
-          return Errors.const_get(name) if Errors.const_defined?(name)
-          Errors.const_set(name, Class.new(Error))
-        end
+      def build
+        parse_original_response
+        return if bad_class_name?
+        error_class.new(error_message, error)
       end
 
       private
 
-      def with_mutex
-        @mutex.synchronize { yield }
+      def bad_class_name?
+        error_name =~ DIGIT_AS_FIRST_CHAR
+      end
+
+      def error_class
+        Errors.const_get(error_name)
+      rescue NameError
+        ClassGenerator.call(error_name)
+      end
+
+      def error_name
+        response.code
+      end
+
+      def error_message
+        response.message
+      end
+
+      def parse_original_response
+        error.instance_variable_set :@response, Parser.new(error.response)
       end
     end
   end

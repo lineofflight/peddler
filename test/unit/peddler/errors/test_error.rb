@@ -5,7 +5,8 @@ require 'peddler/errors/error'
 
 class TestPeddlerErrorsError < MiniTest::Test
   def setup
-    @error = Peddler::Errors::Error.new('message', 'cause')
+    @cause = OpenStruct.new(response: 'response')
+    @error = Peddler::Errors::Error.new('message', @cause)
   end
 
   def test_sets_message
@@ -13,7 +14,7 @@ class TestPeddlerErrorsError < MiniTest::Test
   end
 
   def test_sets_cause
-    assert_equal 'cause', @error.cause
+    assert_equal @cause, @error.cause
   end
 
   def test_defines_common_errors
@@ -24,5 +25,9 @@ class TestPeddlerErrorsError < MiniTest::Test
 
   def test_allows_nil_arguments
     Peddler::Errors::Error.new
+  end
+
+  def test_delegates_response_to_cause
+    assert_equal @cause.response, @error.response
   end
 end

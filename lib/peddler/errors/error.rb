@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 module Peddler
   # @api private
   module Errors
@@ -20,12 +22,16 @@ module Peddler
 
     # @api private
     class Error < StandardError
+      extend Forwardable
+
       attr_reader :cause
 
       def initialize(msg = nil, cause = nil)
         @cause = cause
         super msg
       end
+
+      def_delegator :cause, :response
     end
 
     CODES.each do |name|

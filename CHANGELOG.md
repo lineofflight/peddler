@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.0.0] - 2018-03-02
 ### Changed
 - Do not default to primary marketplace.
+- Use custom errors for MWS specific errors.
 - Update list of error codes created up front.
 - Add mws prefix to MWS header accessors.
 

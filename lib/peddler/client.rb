@@ -2,7 +2,7 @@
 
 require 'forwardable'
 require 'jeff'
-require 'peddler/errors/parser'
+require 'peddler/errors/builder'
 require 'peddler/marketplace'
 require 'peddler/operation'
 require 'peddler/parser'
@@ -77,7 +77,7 @@ module Peddler
       end
     end
 
-    self.error_handler = proc { raise }
+    self.error_handler = ->(error) { raise error }
     self.parser = Parser
 
     # Creates a new client instance
@@ -153,8 +153,8 @@ module Peddler
       self.body = nil if res.status == 200
 
       parser.new(res, encoding)
-    rescue Excon::Error => error
-      handle_error(error)
+    rescue ::Excon::Error::HTTPStatus => error
+      handle_http_status_error(error)
     end
 
     private
@@ -192,18 +192,9 @@ module Peddler
       body ? opts.update(body: body) : opts
     end
 
-    def handle_error(error)
-      error = decorate_error(error)
-      error_handler.call(error)
-    end
-
-    def decorate_error(error)
-      if error.is_a?(::Excon::Error::HTTPStatus)
-        error.instance_variable_set(:@response,
-                                    Errors::Parser.new(error.response))
-      end
-
-      error
+    def handle_http_status_error(error)
+      new_error = Errors::Builder.call(error)
+      new_error ? error_handler.call(new_error) : raise
     end
   end
 end
