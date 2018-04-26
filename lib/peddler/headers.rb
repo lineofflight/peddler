@@ -26,7 +26,7 @@ module Peddler
     # The timestamp of the MWS HTTP response
     # @return [String]
     def mws_timestamp
-      Time.parse(headers['x-mws-timestamp'])
+      Time.parse(headers['x-mws-timestamp']) if headers['x-mws-timestamp']
     end
 
     # The context of the MWS HTTP response
