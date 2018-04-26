@@ -5,7 +5,9 @@ module Peddler
   module Headers
     Quota = Struct.new(:max, :remaining, :resets_on)
 
-    def quota
+    # The present quota, if available, for the requested MWS operation
+    # @return [Struct, nil]
+    def mws_quota
       return if headers.keys.none? { |key| key.include?('quota') }
 
       Quota.new(
@@ -15,15 +17,21 @@ module Peddler
       )
     end
 
-    def request_id
+    # The ID assigned by MWS to the HTTP request
+    # @return [String]
+    def mws_request_id
       headers['x-mws-request-id']
     end
 
-    def timestamp
+    # The timestamp of the MWS HTTP response
+    # @return [String]
+    def mws_timestamp
       Time.parse(headers['x-mws-timestamp'])
     end
 
-    def response_context
+    # The context of the MWS HTTP response
+    # @return [String]
+    def mws_response_context
       headers['x-mws-response-context']
     end
   end
