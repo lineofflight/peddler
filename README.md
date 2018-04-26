@@ -38,7 +38,7 @@ client = MWS.orders(primary_marketplace_id: "Your Marketplace ID",
                     merchant_id: "Your Merchant ID")
 ```
 
-If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass the seller's Merchant ID and Marketplace ID along with the MWS Auth Token they obtained for you.
+If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass the seller's MWS Auth Token they obtained for you as well.
 
 ```ruby
 client = MWS.orders(primary_marketplace_id: "Seller's Marketplace ID",
@@ -46,7 +46,7 @@ client = MWS.orders(primary_marketplace_id: "Seller's Marketplace ID",
                     auth_token: "Seller's MWS Auth Token")
 ```
 
-Finally, if you do not want to use environment variables at all, you can set AWS credentials as well when creating a client.
+If you do not want to use environment variables at all, you can set AWS credentials as well when creating a client.
 
 ```ruby
 client = MWS.orders(primary_marketplace_id: "Your Marketplace ID",
@@ -77,55 +77,68 @@ For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/
 
 ### Throttling
 
-Amazon limits the number of requests you can submit to a given operation in a given amount of time.
+Amazon limits the number of requests you can submit to some operations in a given amount of time. When you hit a limit, your request throws a `Peddler::Errors::RequestThrottled` error.
 
-Peddler exposes header values showing the hourly quota of the current operation:
+Some API sections also have an hourly request quota in addition to the numerical request quota. When you hit this quota, your request throws a `Peddler::Errors::QuotaExceeded` error.
+
+You can introspect your quota usage on the parsed response:
 
 ```ruby
-res = client.some_method
-puts res.quota
+response = client.method_with_quota
+puts response.mws_quota
 #<struct Quota max=200, remaining=150, resets_on=2017-01-01 00:12:00 UTC>
+
+begin
+  client.method_with_quota
+rescue Peddler::Errors::QuotaExceeded => error
+  puts error.response.mws_quota
+  #<struct Quota max=200, remaining=0, resets_on=2017-01-01 00:12:00 UTC>
+end
 ```
 
 [Read Amazon's tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
 
 ### Debugging
 
-If you are having trouble with a request, read the [Amazon documentation](https://developer.amazonservices.com/gp/mws/docs.html). Also, Peddler's source links individual operations to their corresponding entries in the Amazon docs.
+If you are having trouble with a request, read the [Amazon documentation](https://developer.amazonservices.com/gp/mws/docs.html). [Peddler's source](http://www.rubydoc.info/github/hakanensari/peddler) also links individual operations to their corresponding entries in the Amazon docs.
 
 Note that some optional keywords have default values.
 
 To introspect requests, set the `EXCON_DEBUG` environment variable to `1` or similar truthy value. Peddler will then log request and response internals to stdout.
 
-### Errors
-
-Handle network errors caused by throttling or other transient issues by defining an error handler.
+If you contact Amazon MWS support, they will ask you for the **RequestId** and **Timestamp** of affected requests.
 
 ```ruby
-MWS::Orders::Client.on_error do |e|
-  if e.response.status == 503
-    logger.warn e.response.message
-  end
-end
+response = client.problem_method
+puts response.mws_request_id
+puts response.mws_timestamp
 ```
 
-Alternatively, rescue.
+You can access the same attributes on `error.response`. See example in <a href="#throttling">above</a>.
+
+### Errors
+
+You can manually handle MWS generated errors.
 
 ```ruby
 begin
-  client.some_method
-rescue Excon::Error::ServiceUnavailable => e
-  logger.warn e.response.message
+  client.throttled_method
+rescue Peddler::Errors::RequestThrottled
+  back_off_exponentially
   retry
 end
 ```
 
-Peddler has an optional new error handler that raises more descriptive errors: for instance, `Peddler::Errors::RequestThrottled` instead of `Excon::Error::ServiceUnavailable`. This error handler will become the default in the next major version.
+Alternatively, you can handle these by defining a custom error handler on the client instance or class level.
 
-To start using this now:
-
-```ruby
-require 'peddler/errors'
+```
+MWS::Products::Client.on_error do |error|
+  if error.is_a?(Peddler::Errors::RequestThrottled)
+    logger.warn #{error.response.mws_request_id} #{error.message}"
+    back_off_exponentially
+    retry
+  end
+end
 ```
 
 ## The APIs
