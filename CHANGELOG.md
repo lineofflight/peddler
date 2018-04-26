@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Do not default to primary marketplace.
 - Update list of error codes created up front.
+- Add mws prefix to MWS header accessors.
 
 ### Removed
 - Remove deprecated methods in Client.
