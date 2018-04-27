@@ -11,15 +11,19 @@ module Peddler
         country_code = 'GB' if country_code == 'UK'
 
         all.find { |marketplace| marketplace.country_code == country_code } ||
-          begin
-            message = if country_code
-                        %("#{country_code}" is not a valid country code)
-                      else
-                        'missing country code'
-                      end
+          not_found!(country_code)
+      end
 
-            raise ArgumentError, message
-          end
+      private
+
+      def not_found!(country_code)
+        message = if country_code
+                    %("#{country_code}" is not a valid country code)
+                  else
+                    'missing country code'
+                  end
+
+        raise ArgumentError, message
       end
     end
 
