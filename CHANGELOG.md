@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Use custom errors for MWS specific errors.
 - Update list of error codes created up front.
 - Add mws prefix to MWS header accessors.
+- Fix parameters of FulfillmentOutboundShipment#list_all_fulfillment_orders.
 
 ### Removed
 - Remove deprecated methods in Client.

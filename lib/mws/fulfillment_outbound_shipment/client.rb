@@ -130,14 +130,12 @@ module MWS
       # Returns a list of fulfillment orders fulfilled on or after a date
       #
       # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrders.html
-      # @param [String, #iso8601] query_start_date_time
+      # @param [Hash] opts
+      # @options opts [String, #iso8601] :query_start_date_time
       # @return [Peddler::XMLParser]
-      def list_all_fulfillment_orders(query_start_date_time = nil)
-        opts = {}
-        if query_start_date_time
-          opts.update('QueryStartDateTime' => query_start_date_time)
-        end
-        operation('ListAllFulfillmentOrders').add(opts)
+      def list_all_fulfillment_orders(opts = {})
+        operation('ListAllFulfillmentOrders')
+          .add(opts)
 
         run
       end

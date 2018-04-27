@@ -97,7 +97,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.list_all_fulfillment_orders(started_at)
+      @client.list_all_fulfillment_orders(query_start_date_time: started_at)
     end
 
     assert_equal operation, @client.operation
