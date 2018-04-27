@@ -8,7 +8,7 @@ class TestMultibyteQueries < IntegrationTest
 
   def test_posts_multibyte_queries_properly
     ret = clients.map do |client|
-      res = client.list_matching_products('félix guattari machinic eros')
+      res = client.list_matching_products(client.marketplace.id, 'félix guattari machinic eros')
       res.body.force_encoding 'UTF-8' if defined? Ox # Ox workaround
       res.parse
     end

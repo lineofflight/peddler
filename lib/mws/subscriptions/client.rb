@@ -11,8 +11,8 @@ module MWS
     # Amazon MWS service. Instead, the information is sent directly to you when
     # an event occurs to which you are subscribed.
     class Client < ::Peddler::Client
-      version '2013-07-01'
-      path "/Subscriptions/#{version}"
+      self.version = '2013-07-01'
+      self.path = "/Subscriptions/#{version}"
 
       # Registers a new destination to receive notifications
       #
@@ -92,10 +92,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_subscription(notification_type, sqs_queue_url, marketplace_id)
         operation('GetSubscription')
-          .add(
-            'MarketplaceId' => marketplace_id,
-            'NotificationType' => notification_type
-          )
+          .add('MarketplaceId' => marketplace_id,
+               'NotificationType' => notification_type)
           .add(build_destination(sqs_queue_url))
 
         run
@@ -110,10 +108,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def delete_subscription(notification_type, sqs_queue_url, marketplace_id)
         operation('DeleteSubscription')
-          .add(
-            'MarketplaceId' => marketplace_id,
-            'NotificationType' => notification_type
-          )
+          .add('MarketplaceId' => marketplace_id,
+               'NotificationType' => notification_type)
           .add(build_destination(sqs_queue_url))
 
         run

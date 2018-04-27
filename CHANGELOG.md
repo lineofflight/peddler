@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.0.0] - 2018-03-02
 ### Changed
+- Use country code instead of ID when setting app developer's marketplace.
 - Do not default to primary marketplace.
 - Use custom errors for MWS specific errors.
 - Update list of error codes created up front.
@@ -13,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix parameters of FulfillmentOutboundShipment#list_all_fulfillment_orders.
 
 ### Removed
+- Remove custom error callbacks.
 - Remove deprecated methods in Client.
 - Remove ENV var for Client#primary_marketplace_id.
 - Remove ENV var for Client#merchant_id.

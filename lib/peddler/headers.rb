@@ -3,34 +3,42 @@
 module Peddler
   # Parses MWS-specific headers
   module Headers
-    Quota = Struct.new(:max, :remaining, :resets_on)
-
-    # The present quota, if available, for the requested MWS operation
-    # @return [Struct, nil]
-    def mws_quota
-      return if headers.keys.none? { |key| key.include?('quota') }
-
-      Quota.new(
-        headers['x-mws-quota-max'].to_i,
-        headers['x-mws-quota-remaining'].to_i,
-        Time.parse(headers['x-mws-quota-resetsOn'])
-      )
+    # The max hourly request quota for the requested operation
+    # @return [Integer, nil]
+    def mws_quota_max
+      return unless headers['x-mws-quota-max']
+      headers['x-mws-quota-max'].to_i
     end
 
-    # The ID assigned by MWS to the HTTP request
-    # @return [String]
+    # The remaining hourly request quota for the requested operation
+    # @return [Integer, nil]
+    def mws_quota_remaining
+      return unless headers['x-mws-quota-remaining']
+      headers['x-mws-quota-remaining'].to_i
+    end
+
+    # When the hourly request quota for the requested operation resets
+    # @return [Time, nil]
+    def mws_quota_resets_on
+      return unless headers['x-mws-quota-resetsOn']
+      Time.parse(headers['x-mws-quota-resetsOn'])
+    end
+
+    # The ID of the request
+    # @return [String, nil]
     def mws_request_id
       headers['x-mws-request-id']
     end
 
-    # The timestamp of the MWS HTTP response
-    # @return [String]
+    # The timestamp of the request
+    # @return [Time, nil]
     def mws_timestamp
-      Time.parse(headers['x-mws-timestamp']) if headers['x-mws-timestamp']
+      return unless headers['x-mws-timestamp']
+      Time.parse(headers['x-mws-timestamp'])
     end
 
-    # The context of the MWS HTTP response
-    # @return [String]
+    # The context of the response
+    # @return [String, nil]
     def mws_response_context
       headers['x-mws-response-context']
     end

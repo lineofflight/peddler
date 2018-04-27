@@ -3,12 +3,14 @@
 require 'helper'
 require 'null_client'
 require 'peddler/vcr_matcher'
+require 'recorder'
 
 class TestPeddlerVCRMatcher < MiniTest::Test
   include Recorder
+  ::Peddler::VCRMatcher.ignore_seller!
 
   def setup
-    VCR.insert_cassette(test_name, record: :none)
+    VCR.insert_cassette(test_name)
   end
 
   def test_matches_recorded_post_without_body

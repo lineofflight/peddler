@@ -7,8 +7,8 @@ module MWS
     # With the MWS Finances API you can retrieve financial transactions for your
     # seller account.
     class Client < ::Peddler::Client
-      version '2015-05-01'
-      path "/Finances/#{version}"
+      self.version = '2015-05-01'
+      self.path = "/Finances/#{version}"
 
       # Lists financial events
       #
@@ -21,7 +21,9 @@ module MWS
       # @option opts [String, #iso8601] :posted_before
       # @return [Peddler::XMLParser]
       def list_financial_events(opts = {})
-        operation('ListFinancialEvents').add(opts)
+        operation('ListFinancialEvents')
+          .add(opts)
+
         run
       end
 
@@ -48,9 +50,9 @@ module MWS
       def list_financial_event_groups(financial_event_group_started_after,
                                       opts = {})
         operation('ListFinancialEventGroups')
-          .add('FinancialEventGroupStartedAfter' =>
-            financial_event_group_started_after)
           .add(opts)
+          .add('FinancialEventGroupStartedAfter' =>
+                 financial_event_group_started_after)
 
         run
       end
@@ -73,7 +75,6 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')
-
         run
       end
     end

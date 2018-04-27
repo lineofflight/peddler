@@ -9,21 +9,19 @@ module MWS
     # also request lists of inbound shipments or inbound shipment items based on
     # criteria that you specify.
     class Client < ::Peddler::Client
-      version '2010-10-01'
-      path "/FulfillmentInboundShipment/#{version}"
+      self.version = '2010-10-01'
+      self.path = "/FulfillmentInboundShipment/#{version}"
 
       # Returns inbound guidance for a list of items by Seller SKU
       #
       # @see https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetInboundGuidanceForSKU.html
       # @param [String] marketplace_id
-      # @param [String] one or more seller_skus
+      # @param [Array<String>] seller_sku_list
       # @return [Peddler::XMLParser]
-      def get_inbound_guidance_for_sku(marketplace_id, *seller_skus)
+      def get_inbound_guidance_for_sku(marketplace_id, *seller_sku_list)
         operation('GetInboundGuidanceForSKU')
-          .add(
-            'MarketplaceId' => marketplace_id,
-            'SellerSKUList' => seller_skus
-          )
+          .add('MarketplaceId' => marketplace_id,
+               'SellerSKUList' => seller_sku_list)
           .structure!('SellerSKUList', 'Id')
 
         run
@@ -33,14 +31,11 @@ module MWS
       #
       # @see https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetInboundGuidanceForASIN.html
       # @param [String] marketplace_id
-      # @param [String] one or more asins
+      # @param [Array<String>] asin_list
       # @return [Peddler::XMLParser]
-      def get_inbound_guidance_for_asin(marketplace_id, *asins)
+      def get_inbound_guidance_for_asin(marketplace_id, *asin_list)
         operation('GetInboundGuidanceForASIN')
-          .add(
-            'MarketplaceId' => marketplace_id,
-            'ASINList' => asins
-          )
+          .add('MarketplaceId' => marketplace_id, 'ASINList' => asin_list)
           .structure!('ASINList', 'Id')
 
         run
@@ -58,13 +53,10 @@ module MWS
                                        inbound_shipment_plan_request_items,
                                        opts = {})
         operation('CreateInboundShipmentPlan')
-          .add(
-            opts.update(
-              'ShipFromAddress' => ship_from_address,
-              'InboundShipmentPlanRequestItems' =>
-                inbound_shipment_plan_request_items
-            )
-          )
+          .add(opts)
+          .add('ShipFromAddress' => ship_from_address,
+               'InboundShipmentPlanRequestItems' =>
+                 inbound_shipment_plan_request_items)
           .structure!('InboundShipmentPlanRequestItems', 'member')
 
         run
@@ -80,12 +72,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def create_inbound_shipment(shipment_id, inbound_shipment_header,
                                   opts = {})
-        build_inbound_shipment_operation(
-          'CreateInboundShipment',
-          shipment_id,
-          inbound_shipment_header,
-          opts
-        )
+        build_inbound_shipment_operation('CreateInboundShipment', shipment_id,
+                                         inbound_shipment_header, opts)
 
         run
       end
@@ -100,12 +88,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def update_inbound_shipment(shipment_id, inbound_shipment_header,
                                   opts = {})
-        build_inbound_shipment_operation(
-          'UpdateInboundShipment',
-          shipment_id,
-          inbound_shipment_header,
-          opts
-        )
+        build_inbound_shipment_operation('UpdateInboundShipment', shipment_id,
+                                         inbound_shipment_header, opts)
 
         run
       end
@@ -117,9 +101,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_preorder_info(shipment_id)
         operation('GetPreorderInfo')
-          .add(
-            'ShipmentId' => shipment_id
-          )
+          .add('ShipmentId' => shipment_id)
 
         run
       end
@@ -132,10 +114,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def confirm_preorder(shipment_id, need_by_date)
         operation('ConfirmPreorder')
-          .add(
-            'ShipmentId' => shipment_id,
-            'NeedByDate' => need_by_date
-          )
+          .add('ShipmentId' => shipment_id, 'NeedByDate' => need_by_date)
 
         run
       end
@@ -145,14 +124,12 @@ module MWS
       #
       # @see https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForSKU.html
       # @param [String] ship_to_country_code
-      # @param [String] one or more seller_skus
+      # @param [Array<String>] seller_sku_list
       # @return [Peddler::XMLParser]
-      def get_prep_instructions_for_sku(ship_to_country_code, *seller_skus)
+      def get_prep_instructions_for_sku(ship_to_country_code, *seller_sku_list)
         operation('GetPrepInstructionsForSKU')
-          .add(
-            'SellerSKUList' => seller_skus,
-            'ShipToCountryCode' => ship_to_country_code
-          )
+          .add('SellerSKUList' => seller_sku_list,
+               'ShipToCountryCode' => ship_to_country_code)
           .structure!('SellerSKUList', 'Id')
 
         run
@@ -163,14 +140,12 @@ module MWS
       #
       # @see https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_GetPrepInstructionsForASIN.html
       # @param [String] ship_to_country_code
-      # @param [String] one or more asins
+      # @param [Array<String>] asin_list
       # @return [Peddler::XMLParser]
-      def get_prep_instructions_for_asin(ship_to_country_code, *asins)
+      def get_prep_instructions_for_asin(ship_to_country_code, *asin_list)
         operation('GetPrepInstructionsForASIN')
-          .add(
-            'ASINList' => asins,
-            'ShipToCountryCode' => ship_to_country_code
-          )
+          .add('ASINList' => asin_list,
+               'ShipToCountryCode' => ship_to_country_code)
           .structure!('ASINList', 'Id')
 
         run
@@ -187,12 +162,9 @@ module MWS
       def put_transport_content(shipment_id, is_partnered, shipment_type,
                                 transport_details)
         operation('PutTransportContent')
-          .add(
-            'ShipmentId' => shipment_id,
-            'IsPartnered' => is_partnered,
-            'ShipmentType' => shipment_type,
-            'TransportDetails' => transport_details
-          )
+          .add('ShipmentId' => shipment_id, 'IsPartnered' => is_partnered,
+               'ShipmentType' => shipment_type,
+               'TransportDetails' => transport_details)
           .structure!('PackageList', 'member')
           .structure!('PalletList', 'member')
 
@@ -205,7 +177,9 @@ module MWS
       # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def estimate_transport_request(shipment_id)
-        operation('EstimateTransportRequest').add('ShipmentId' => shipment_id)
+        operation('EstimateTransportRequest')
+          .add('ShipmentId' => shipment_id)
+
         run
       end
 
@@ -215,7 +189,9 @@ module MWS
       # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def get_transport_content(shipment_id)
-        operation('GetTransportContent').add('ShipmentId' => shipment_id)
+        operation('GetTransportContent')
+          .add('ShipmentId' => shipment_id)
+
         run
       end
 
@@ -226,7 +202,9 @@ module MWS
       # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def confirm_transport_request(shipment_id)
-        operation('ConfirmTransportRequest').add('ShipmentId' => shipment_id)
+        operation('ConfirmTransportRequest')
+          .add('ShipmentId' => shipment_id)
+
         run
       end
 
@@ -237,7 +215,9 @@ module MWS
       # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def void_transport_request(shipment_id)
-        operation('VoidTransportRequest').add('ShipmentId' => shipment_id)
+        operation('VoidTransportRequest')
+          .add('ShipmentId' => shipment_id)
+
         run
       end
 
@@ -252,10 +232,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_package_labels(shipment_id, page_type, opts = {})
         operation('GetPackageLabels')
-          .add(opts.update(
-                 'ShipmentId' => shipment_id,
-                 'PageType' => page_type
-          ))
+          .add(opts)
+          .add('ShipmentId' => shipment_id, 'PageType' => page_type)
 
         run
       end
@@ -271,11 +249,8 @@ module MWS
       def get_unique_package_labels(shipment_id, page_type,
                                     package_labels_to_print)
         operation('GetUniquePackageLabels')
-          .add(
-            'ShipmentId' => shipment_id,
-            'PageType' => page_type,
-            'PackageLabelsToPrint' => package_labels_to_print
-          )
+          .add('ShipmentId' => shipment_id, 'PageType' => page_type,
+               'PackageLabelsToPrint' => package_labels_to_print)
           .structure!('PackageLabelsToPrint', 'member')
 
         run
@@ -290,11 +265,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_pallet_labels(shipment_id, page_type, number_of_pallets)
         operation('GetPalletLabels')
-          .add(
-            'ShipmentId' => shipment_id,
-            'PageType' => page_type,
-            'NumberOfPallets' => number_of_pallets
-          )
+          .add('ShipmentId' => shipment_id, 'PageType' => page_type,
+               'NumberOfPallets' => number_of_pallets)
 
         run
       end
@@ -306,7 +278,8 @@ module MWS
       # @param [String] shipment_id
       # @return [Peddler::XMLParser]
       def get_bill_of_lading(shipment_id)
-        operation('GetBillOfLading').add('ShipmentId' => shipment_id)
+        operation('GetBillOfLading')
+          .add('ShipmentId' => shipment_id)
         run
       end
 
@@ -350,7 +323,9 @@ module MWS
       # @option opts [String, #iso8601] :last_updated_before
       # @return [Peddler::XMLParser]
       def list_inbound_shipment_items(opts = {})
-        operation('ListInboundShipmentItems').add(opts)
+        operation('ListInboundShipmentItems')
+          .add(opts)
+
         run
       end
 
@@ -380,12 +355,9 @@ module MWS
       def build_inbound_shipment_operation(operation_name, shipment_id,
                                            inbound_shipment_header, opts)
         operation(operation_name)
-          .add(
-            opts.update(
-              'ShipmentId' => shipment_id,
-              'InboundShipmentHeader' => inbound_shipment_header
-            )
-          )
+          .add(opts)
+          .add('ShipmentId' => shipment_id,
+               'InboundShipmentHeader' => inbound_shipment_header)
           .structure!('InboundShipmentItems', 'member')
       end
     end

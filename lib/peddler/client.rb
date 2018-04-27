@@ -10,113 +10,82 @@ require 'peddler/parser'
 module Peddler
   # An abstract client
   #
-  # Subclass to implement an MWS API section.
+  # Subclass this to implement an MWS API section.
   class Client
     extend Forwardable
     include Jeff
 
-    # The MWSAuthToken used to access another seller's account
-    # @return [String]
-    attr_accessor :auth_token
-
-    # The merchant's Seller ID
-    # @return [String]
-    attr_accessor :merchant_id
-
-    # The Marketplace ID where merchant is signed up on
-    # @return [String]
-    attr_accessor :primary_marketplace_id
-
-    # @api private
-    attr_writer :path
-
-    # @api private
-    attr_writer :version
-
-    # The body of the HTTP request
-    # @return [String]
-    attr_reader :body
-
-    alias configure tap
-
-    def_delegators :primary_marketplace, :host, :encoding
-
-    params(
-      'SellerId' => -> { merchant_id },
-      'MWSAuthToken' => -> { auth_token },
-      'Version' => -> { version }
-    )
-
     class << self
       # @api private
-      attr_accessor :error_handler, :parser
-
-      # @api private
-      def path(path = nil)
-        path ? @path = path : @path ||= '/'
-      end
-
-      # @api private
-      def version(version = nil)
-        version ? @version = version : @version ||= nil
-      end
-
-      # Sets an error handler
-      # @yieldparam [Excon::Error] error
-      def on_error(&blk)
-        @error_handler = blk
-      end
+      attr_accessor :parser, :path, :version
 
       private
 
       def inherited(base)
         base.parser = parser
-        base.error_handler = error_handler
-        base.path(path)
-        base.params(params)
+        base.params params
       end
     end
 
-    self.error_handler = ->(error) { raise error }
+    params 'SellerId' => -> { merchant_id },
+           'MWSAuthToken' => -> { auth_token },
+           'Version' => -> { version }
     self.parser = Parser
 
-    # Creates a new client instance
-    #
+    def_delegators :marketplace, :host, :encoding
+    def_delegators :'self.class', :parser, :version
+
+    # Creates a new client
     # @param [Hash] opts
-    # @option opts [String] :primary_marketplace_id
-    # @option opts [String] :merchant_id
     # @option opts [String] :aws_access_key_id
     # @option opts [String] :aws_secret_access_key
+    # @option opts [String, Peddler::Marketplace] :marketplace
+    # @option opts [String] :merchant_id
     # @option opts [String] :auth_token
     def initialize(opts = {})
       opts.each { |k, v| send("#{k}=", v) }
     end
 
-    # @api private
-    def aws_endpoint
-      "https://#{host}#{path}"
-    end
-
-    # @api private
-    def primary_marketplace
-      @primary_marketplace ||= find_primary_marketplace
-    end
-
-    # The HTTP path of the API
-    # @!parse attr_reader :path
+    # The MWS Auth Token for a seller's account
+    # @note You can omit this if you are accessing your own seller account
     # @return [String]
-    def path
-      @path ||= self.class.path
+    attr_accessor :auth_token
+
+    # The seller's Merchant ID
+    # @return [String]
+    attr_accessor :merchant_id
+
+    # The marketplace where you signed up as application developer
+    # @note You can pass the two-letter country code of the marketplace as
+    #   shorthand when setting
+    # @return [Peddler::Marketplace]
+    attr_reader :marketplace
+
+    # @!parse attr_writer :marketplace
+    def marketplace=(marketplace)
+      @marketplace =
+        if marketplace.is_a?(Marketplace)
+          marketplace
+        else
+          Marketplace.find(marketplace)
+        end
     end
 
-    # @api private
-    def version
-      @version ||= self.class.version
-    end
+    # The body of the HTTP request
+    # @return [String]
+    attr_reader :body
 
     # @!parse attr_writer :body
     def body=(str)
       str ? add_content(str) : clear_content!
+    end
+
+    # @api private
+    attr_writer :path
+
+    # @api private
+    def path
+      @path || self.class.path
     end
 
     # @api private
@@ -129,15 +98,9 @@ module Peddler
       @headers ||= {}
     end
 
-    # Sets an error handler
-    # @yieldparam [Excon::Error] error
-    def on_error(&blk)
-      @error_handler = blk
-    end
-
     # @api private
-    def error_handler
-      (@error_handler ||= nil) || self.class.error_handler
+    def aws_endpoint
+      "https://#{host}#{path}"
     end
 
     # @api private
@@ -159,10 +122,6 @@ module Peddler
 
     private
 
-    def find_primary_marketplace
-      Marketplace.find(primary_marketplace_id)
-    end
-
     def clear_content!
       headers.delete('Content-Type')
       @body = nil
@@ -183,10 +142,6 @@ module Peddler
       args.last.is_a?(Hash) ? args.pop : {}
     end
 
-    def parser
-      self.class.parser
-    end
-
     def build_options
       opts = defaults.merge(query: operation, headers: headers)
       body ? opts.update(body: body) : opts
@@ -194,7 +149,7 @@ module Peddler
 
     def handle_http_status_error(error)
       new_error = Errors::Builder.call(error)
-      new_error ? error_handler.call(new_error) : raise
+      raise new_error || error
     end
   end
 end

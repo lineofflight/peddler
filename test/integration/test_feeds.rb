@@ -27,9 +27,6 @@ class TestFeeds < IntegrationTest
       feed_submission_id = res.dig('FeedSubmissionInfo', 'FeedSubmissionId')
       assert feed_submission_id
 
-      res = client.get_feed_submission_result(feed_submission_id)
-      assert res.records_count
-
       # Clean up
       client.cancel_feed_submissions(
         feed_submission_id: feed_submission_id,

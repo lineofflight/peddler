@@ -11,8 +11,8 @@ module MWS
     # selling your inventory on Amazon's retail web site or through other retail
     # channels.
     class Client < ::Peddler::Client
-      version '2010-10-01'
-      path "/FulfillmentInventory/#{version}"
+      self.version = '2010-10-01'
+      self.path = "/FulfillmentInventory/#{version}"
 
       # Returns information about the availability of a seller's inventory
       #

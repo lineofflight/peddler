@@ -7,16 +7,19 @@ module Peddler
     class << self
       attr_reader :all
 
-      def find(id)
-        all.find { |marketplace| marketplace.id == id } || begin
-          message = if id
-                      %("#{id}" is not a valid MarketplaceId)
-                    else
-                      'missing MarketplaceId'
-                    end
+      def find(country_code)
+        country_code = 'GB' if country_code == 'UK'
 
-          raise ArgumentError, message
-        end
+        all.find { |marketplace| marketplace.country_code == country_code } ||
+          begin
+            message = if country_code
+                        %("#{country_code}" is not a valid country code)
+                      else
+                        'missing country code'
+                      end
+
+            raise ArgumentError, message
+          end
       end
     end
 
@@ -44,7 +47,7 @@ module Peddler
       ['A1RKKUPIHCS9HS', 'ES', 'mws-eu.amazonservices.com'],
       ['A13V1IB3VIYZZH', 'FR', 'mws-eu.amazonservices.com'],
       ['APJ6JRA9NG5V4', 'IT', 'mws-eu.amazonservices.com'],
-      ['A1F83G8C2ARO7P', 'UK', 'mws-eu.amazonservices.com'],
+      ['A1F83G8C2ARO7P', 'GB', 'mws-eu.amazonservices.com'],
       ['A21TJRUUN4KGV', 'IN', 'mws.amazonservices.in'],
       ['A39IBJ37TRP1C6', 'AU', 'mws.amazonservices.com.au'],
       ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp'],

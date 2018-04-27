@@ -7,8 +7,8 @@ module MWS
     # With the MWS Orders API, you can list orders created or updated during a
     # time frame you specify or retrieve information about specific orders.
     class Client < ::Peddler::Client
-      version '2013-09-01'
-      path "/Orders/#{version}"
+      self.version = '2013-09-01'
+      self.path = "/Orders/#{version}"
 
       # Lists orders
       #
@@ -16,27 +16,31 @@ module MWS
       #   either created_after or last_updated_after. When requesting orders by
       #   "Unshipped" status you must also request "PartiallyShipped" orders.
       # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrders.html
-      # @param [Array<String>, String] :marketplace_id
-      # @param [Hash] opts
-      # @option opts [String, #iso8601] :created_after
-      # @option opts [String, #iso8601] :created_before
-      # @option opts [String, #iso8601] :last_updated_after
-      # @option opts [String, #iso8601] :last_updated_before
-      # @option opts [Array<String>, String] :order_status
-      # @option opts [Array<String>, String] :fulfillment_channel
-      # @option opts [Array<String>, String] :payment_method
-      # @option opts [String] :buyer_email
-      # @option opts [String] :seller_order_id
-      # @option opts [String] :max_results_per_page
-      # @option opts [String] :tfm_shipment_status
+      # @overload list_orders(*marketplace_id, opts = {})
+      #   @param [Array<String>] marketplace_id
+      #   @param [Hash] opts
+      #   @option opts [String, #iso8601] :created_after
+      #   @option opts [String, #iso8601] :created_before
+      #   @option opts [String, #iso8601] :last_updated_after
+      #   @option opts [String, #iso8601] :last_updated_before
+      #   @option opts [Array<String>, String] :order_status
+      #   @option opts [Array<String>, String] :fulfillment_channel
+      #   @option opts [Array<String>, String] :payment_method
+      #   @option opts [String] :buyer_email
+      #   @option opts [String] :seller_order_id
+      #   @option opts [String] :max_results_per_page
+      #   @option opts [String] :tfm_shipment_status
       # @return [Peddler::XMLParser]
-      def list_orders(marketplace_id, opts = {})
+      def list_orders(*marketplace_id)
+        marketplace_id = marketplace_id.dup
+        opts = extract_options(marketplace_id)
         if opts.key?(:tfm_shipment_status)
           opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status)
         end
 
         operation('ListOrders')
-          .add(opts.update('MarketplaceId' => marketplace_id))
+          .add(opts)
+          .add('MarketplaceId' => marketplace_id)
           .structure!('OrderStatus', 'Status')
           .structure!('FulfillmentChannel', 'Channel')
           .structure!('MarketplaceId', 'Id')
@@ -62,7 +66,7 @@ module MWS
       # Gets one or more orders
       #
       # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_GetOrder.html
-      # @param [String] amazon_order_id one or more amazon_order_ids
+      # @param [Array<String>] amazon_order_ids
       # @return [Peddler::XMLParser]
       def get_order(*amazon_order_ids)
         operation('GetOrder')

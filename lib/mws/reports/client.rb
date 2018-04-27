@@ -6,7 +6,8 @@ module MWS
   module Reports
     # The Reports API lets you request reports about your inventory and orders.
     class Client < ::Peddler::Client
-      version '2009-01-01'
+      self.version = '2009-01-01'
+      self.path = "/Reports/#{version}"
 
       # Creates a report request
       #
@@ -20,7 +21,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def request_report(report_type, opts = {})
         operation('RequestReport')
-          .add(opts.update('ReportType' => report_type))
+          .add(opts)
+          .add('ReportType' => report_type)
           .structure!('MarketplaceIdList', 'Id')
 
         run
@@ -167,7 +169,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def manage_report_schedule(report_type, schedule, opts = {})
         operation('ManageReportSchedule')
-          .add(opts.update('ReportType' => report_type, 'Schedule' => schedule))
+          .add(opts)
+          .add('ReportType' => report_type, 'Schedule' => schedule)
 
         run
       end
@@ -175,7 +178,7 @@ module MWS
       # Lists scheduled reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleList.html
-      # @param [*Array<String>] report_type_list
+      # @param [Array<String>] report_type_list
       # @return [Peddler::XMLParser]
       def get_report_schedule_list(*report_type_list)
         operation('GetReportScheduleList')
@@ -196,8 +199,7 @@ module MWS
       # Counts scheduled reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleCount.html
-      # @overload get_report_schedule_count(*report_types)
-      #   @param [String] report_type one or more report_types
+      # @param [Array<String>] report_type_list
       # @return [Peddler::XMLParser]
       def get_report_schedule_count(*report_type_list)
         operation('GetReportScheduleCount')
@@ -210,9 +212,8 @@ module MWS
       # Updates acknowledged status of one or more reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_UpdateReportAcknowledgements.html
-      # @overload update_report_acknowledgements(acknowledged, *report_ids)
-      #   @param [Boolean] acknowledged
-      #   @param [String] report_id one or more report_ids
+      # @param [Boolean] acknowledged
+      # @param [Array<String>] report_id_list
       # @return [Peddler::XMLParser]
       def update_report_acknowledgements(acknowledged, *report_id_list)
         operation('UpdateReportAcknowledgements')

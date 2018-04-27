@@ -9,8 +9,8 @@ module MWS
     # is an actionable, timely, and personalized opportunity to increase your
     # sales and performance.
     class Client < ::Peddler::Client
-      version '2013-04-01'
-      path "/Recommendations/#{version}"
+      self.version = '2013-04-01'
+      self.path = "/Recommendations/#{version}"
 
       # Checks whether there are active recommendations for each category for
       # the given marketplace, and if there are, returns the time when
@@ -30,15 +30,15 @@ module MWS
       # categories for a specific marketplace
       #
       # @see https://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_ListRecommendations.html
-      # @overload list_recommendations(marketplace_id, opts = {})
-      #   @param [Hash] opts
-      #   @option opts [String] :marketplace_id
-      #   @option opts [String] :recommendation_category
-      #   @option opts [Array<Struct, Hash>] :category_query_list
+      # @param [String] marketplace_id
+      # @param [Hash] opts
+      # @option opts [String] :recommendation_category
+      # @option opts [Array<Struct, Hash>] :category_query_list
       # @return [Peddler::XMLParser]
       def list_recommendations(marketplace_id, opts = {})
         operation('ListRecommendations')
-          .add(opts.update('MarketplaceId' => marketplace_id))
+          .add(opts)
+          .add('MarketplaceId' => marketplace_id)
           .structure!(
             'CategoryQueryList', 'CategoryQuery', '1', 'FilterOptions',
             'FilterOption'

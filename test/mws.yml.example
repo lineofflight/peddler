@@ -1,36 +1,48 @@
-- primary_marketplace_id: A1AM78C64UM0Y8
+- marketplace: US
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: A13V1IB3VIYZZH
+- marketplace: GB
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: A1RKKUPIHCS9HS
+- marketplace: DE
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: A2EUQ1WTGCTBG2
+- marketplace: CA
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: APJ6JRA9NG5V4
+- marketplace: FR
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: A1VC38T7YXB528
+- marketplace: JP
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: A1F83G8C2ARO7P
+- marketplace: ES
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: A1PA6795UKMFR9
+- marketplace: IT
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- primary_marketplace_id: ATVPDKIKX0DER
+- marketplace: CN
+  aws_access_key_id: AWS_ACCESS_KEY_ID
+  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+  merchant_id: MERCHANT_ID
+- marketplace: IN
+  aws_access_key_id: AWS_ACCESS_KEY_ID
+  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+  merchant_id: MERCHANT_ID
+- marketplace: BR
+  aws_access_key_id: AWS_ACCESS_KEY_ID
+  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+  merchant_id: MERCHANT_ID
+- marketplace: AU
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID

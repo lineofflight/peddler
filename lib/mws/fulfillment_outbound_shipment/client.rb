@@ -15,8 +15,8 @@ module MWS
     # on when they were fulfilled and by the fulfillment method associated with
     # them.
     class Client < ::Peddler::Client
-      version '2010-10-01'
-      path "/FulfillmentOutboundShipment/#{version}"
+      self.version = '2010-10-01'
+      self.path = "/FulfillmentOutboundShipment/#{version}"
 
       # Lists fulfillment order previews
       #
@@ -28,13 +28,15 @@ module MWS
       # @option opts [Boolean] :include_cod_fulfillment_preview
       # @return [Peddler::XMLParser]
       def get_fulfillment_preview(address, items, opts = {})
+        opts = opts.dup
         if opts.key?(:include_cod_fulfillment_preview)
           opts['IncludeCODFulfillmentPreview'] =
             opts.delete(:include_cod_fulfillment_preview)
         end
 
         operation('GetFulfillmentPreview')
-          .add(opts.update('Address' => address, 'Items' => items))
+          .add(opts)
+          .add('Address' => address, 'Items' => items)
           .structure!('Items', 'member')
           .structure!('ShippingSpeedCategories')
 
@@ -64,22 +66,20 @@ module MWS
                                    displayable_order_comment,
                                    shipping_speed_category,
                                    destination_address, items, opts = {})
+        opts = opts.dup
         if opts.key?(:cod_settings)
           opts['CODSettings'] = opts.delete(:cod_settings)
         end
 
         operation('CreateFulfillmentOrder')
-          .add(
-            opts.merge(
-              'SellerFulfillmentOrderId' => seller_fulfillment_order_id,
-              'DisplayableOrderId' => displayable_order_id,
-              'DisplayableOrderDateTime' => displayable_order_date_time,
-              'DisplayableOrderComment' => displayable_order_comment,
-              'ShippingSpeedCategory' => shipping_speed_category,
-              'DestinationAddress' => destination_address,
-              'Items' => items
-            )
-          )
+          .add(opts)
+          .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id,
+               'DisplayableOrderId' => displayable_order_id,
+               'DisplayableOrderDateTime' => displayable_order_date_time,
+               'DisplayableOrderComment' => displayable_order_comment,
+               'ShippingSpeedCategory' => shipping_speed_category,
+               'DestinationAddress' => destination_address,
+               'Items' => items)
           .structure!('Items', 'member')
           .structure!('NotificationEmailList', 'member')
 
@@ -104,11 +104,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def update_fulfillment_order(seller_fulfillment_order_id, opts = {})
         operation('UpdateFulfillmentOrder')
-          .add(
-            opts.update(
-              'SellerFulfillmentOrderId' => seller_fulfillment_order_id
-            )
-          )
+          .add(opts)
+          .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id)
           .structure!('NotificationEmailList', 'member')
           .structure!('Items', 'member')
 
@@ -131,7 +128,7 @@ module MWS
       #
       # @see https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_ListAllFulfillmentOrders.html
       # @param [Hash] opts
-      # @options opts [String, #iso8601] :query_start_date_time
+      # @option opts [String, #iso8601] :query_start_date_time
       # @return [Peddler::XMLParser]
       def list_all_fulfillment_orders(opts = {})
         operation('ListAllFulfillmentOrders')
@@ -190,11 +187,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def list_return_reason_codes(seller_sku, opts = {})
         operation('ListReturnReasonCodes')
-          .add(
-            opts.merge(
-              'SellerSKU' => seller_sku
-            )
-          )
+          .add(opts)
+          .add('SellerSKU' => seller_sku)
           .structure!('List', 'member')
 
         run
@@ -208,8 +202,8 @@ module MWS
       # @return [Peddler::XMLParser]
       def create_fulfillment_return(seller_fulfillment_order_id, items)
         operation('CreateFulfillmentReturn')
-          .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id)
-          .add('Items' => items)
+          .add('SellerFulfillmentOrderId' => seller_fulfillment_order_id,
+               'Items' => items)
           .structure!('Items', 'member')
 
         run

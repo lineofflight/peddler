@@ -7,7 +7,8 @@ module MWS
     # The MWS Feeds API lets you upload inventory and order data to Amazon. You
     # can also use this API to get information about the processing of feeds.
     class Client < ::Peddler::Client
-      version '2009-01-01'
+      self.version = '2009-01-01'
+      self.path = "/Feeds/#{version}"
 
       # Uploads a feed
       #
@@ -22,8 +23,10 @@ module MWS
       # @return [Peddler::XMLParser]
       def submit_feed(feed_content, feed_type, opts = {})
         self.body = feed_content
+
         operation('SubmitFeed')
-          .add(opts.update('FeedType' => feed_type))
+          .add(opts)
+          .add('FeedType' => feed_type)
           .structure!('MarketplaceIdList', 'Id')
 
         run

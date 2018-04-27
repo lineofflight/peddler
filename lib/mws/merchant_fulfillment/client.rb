@@ -12,8 +12,8 @@ module MWS
     # requirements. Sellers can choose from the shipping service offers returned
     # by Amazon, and then purchase shipping labels for fulfilling their orders.
     class Client < ::Peddler::Client
-      version '2015-06-01'
-      path "/MerchantFulfillment/#{version}"
+      self.version = '2015-06-01'
+      self.path = "/MerchantFulfillment/#{version}"
 
       # Returns a list of shipping service offers that satisfy the shipment
       # request details that you specify
@@ -41,11 +41,9 @@ module MWS
       def create_shipment(shipment_request_details, shipping_service_id,
                           opts = {})
         operation('CreateShipment')
-          .add(
-            'ShipmentRequestDetails' => shipment_request_details,
-            'ShippingServiceId' => shipping_service_id
-          )
           .add(opts)
+          .add('ShipmentRequestDetails' => shipment_request_details,
+               'ShippingServiceId' => shipping_service_id)
           .structure!('ItemList', 'Item')
 
         run
@@ -58,9 +56,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def get_shipment(shipment_id)
         operation('GetShipment')
-          .add(
-            'ShipmentId' => shipment_id
-          )
+          .add('ShipmentId' => shipment_id)
 
         run
       end
@@ -73,9 +69,7 @@ module MWS
       # @return [Peddler::XMLParser]
       def cancel_shipment(shipment_id)
         operation('CancelShipment')
-          .add(
-            'ShipmentId' => shipment_id
-          )
+          .add('ShipmentId' => shipment_id)
 
         run
       end

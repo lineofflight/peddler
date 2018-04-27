@@ -8,8 +8,9 @@ class TestMWSHeaders < IntegrationTest
 
   def test_parses_headers
     clients.each do |client|
-      res = client.get_lowest_priced_offers_for_asin('1780935374', 'New')
-      refute_nil res.mws_quota
+      res = client.get_lowest_priced_offers_for_asin(client.marketplace.id,
+                                                     '1780935374', 'New')
+      refute_nil res.mws_quota_max
     end
   end
 end

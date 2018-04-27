@@ -20,6 +20,7 @@ Lint/HandleExceptions:
 Metrics/LineLength:
   Exclude:
     - test/**/*
+  IgnoredPatterns: ['\A\s*#']
 Metrics/MethodLength:
   Exclude:
     - test/**/*

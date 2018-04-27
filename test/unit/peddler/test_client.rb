@@ -24,36 +24,12 @@ class TestPeddlerClient < MiniTest::Test
       super
     end
 
-    def test_configures_path
-      @klass.path('/Foo')
-      assert @client.aws_endpoint.match(%r{/Foo$})
-    end
-
-    def test_instance_path_overrides_class_path
-      @klass.path('/Foo')
-
-      @client.path = '/Foo/Bar'
-      assert @client.aws_endpoint.match(%r{/Foo/Bar$})
-    end
-
-    def test_default_path
-      assert_equal '/', @klass.path
-    end
-
     def test_has_user_agent
       assert @client.connection.data[:headers].key?('User-Agent')
     end
 
     def test_inherits_parents_params
       assert_equal Peddler::Client.params, @klass.params
-    end
-
-    def test_inherits_parents_path
-      assert_equal @klass.path, Class.new(@klass).path
-    end
-
-    def test_inherits_parents_parser
-      assert_equal @klass.parser, Class.new(@klass).parser
     end
 
     def test_params_include_seller_id
@@ -64,12 +40,8 @@ class TestPeddlerClient < MiniTest::Test
       @klass.params.key?('MWSAuthToken')
     end
 
-    def test_configures
-      @client.configure do |config|
-        config.aws_access_key_id = '123'
-      end
-
-      assert_equal '123', @client.aws_access_key_id
+    def test_inherits_parents_parser
+      assert_equal @klass.parser, Class.new(@klass).parser
     end
 
     def test_configures_when_initialising
@@ -85,7 +57,7 @@ class TestPeddlerClient < MiniTest::Test
     end
 
     def test_sets_content_type_header_for_chinese_flat_file
-      @client.primary_marketplace_id = 'AAHKV2X7AFYLW'
+      @client.marketplace = 'CN'
       @client.body = 'foo'
       content_type = @client.headers.fetch('Content-Type')
 
@@ -93,7 +65,7 @@ class TestPeddlerClient < MiniTest::Test
     end
 
     def test_sets_content_type_header_for_japanese_flat_file
-      @client.primary_marketplace_id = 'A1VC38T7YXB528'
+      @client.marketplace = 'JP'
       @client.body = 'foo'
       content_type = @client.headers.fetch('Content-Type')
 
@@ -113,13 +85,13 @@ class TestPeddlerClient < MiniTest::Test
     end
 
     def test_encodes_body_for_chinese_flat_file
-      @client.primary_marketplace_id = 'AAHKV2X7AFYLW'
+      @client.marketplace = 'CN'
       @client.body = 'foo'
       assert_equal 'UTF-16', @client.body.encoding.to_s
     end
 
     def test_encodes_body_for_japanese_flat_file
-      @client.primary_marketplace_id = 'A1VC38T7YXB528'
+      @client.marketplace = 'JP'
       @client.body = 'foo'
       assert_equal 'Windows-31J', @client.body.encoding.to_s
     end
@@ -190,47 +162,6 @@ class TestPeddlerClient < MiniTest::Test
         @client.run
       end
       refute_nil @client.body
-    end
-
-    def test_setting_error_handler_on_class
-      assert_raises(Peddler::Errors::RequestThrottled) do
-        @client.run
-      end
-
-      @klass.on_error do |e|
-        assert_equal 503, e.response.status
-      end
-      @client.run # no longer raises
-    end
-
-    def test_setting_error_handler_on_instance
-      assert_raises(Peddler::Errors::RequestThrottled) do
-        @client.run
-      end
-
-      @client.on_error do |e|
-        assert_equal 503, e.response.status
-      end
-      @client.run # no longer raises
-    end
-
-    def test_setting_error_handler_on_client_ancestor
-      assert_raises(Peddler::Errors::RequestThrottled) do
-        @client.run
-      end
-
-      @klass.on_error do |e|
-        assert_equal 503, e.response.status
-      end
-      @client.run # no longer raises
-
-      klass = Class.new(Null::Client)
-      other_client = klass.new
-      other_client.configure_with_mock_data!
-      other_client.operation('Foo')
-      assert_raises(Peddler::Errors::RequestThrottled) do
-        other_client.run
-      end
     end
   end
 

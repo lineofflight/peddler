@@ -19,11 +19,16 @@ class TestPeddlerHeaders < MiniTest::Test
     }
   end
 
-  def test_quota
-    assert mws_quota
-    assert_kind_of Integer, mws_quota.max
-    assert_kind_of Integer, mws_quota.remaining
-    assert_kind_of Time, mws_quota.resets_on
+  def test_mws_quota_max
+    assert_kind_of Integer, mws_quota_max
+  end
+
+  def test_mws_quota_remaining
+    assert_kind_of Integer, mws_quota_remaining
+  end
+
+  def test_mws_quota_resets_on
+    assert_kind_of Time, mws_quota_resets_on
   end
 
   def test_request_id
@@ -40,6 +45,11 @@ class TestPeddlerHeaders < MiniTest::Test
 
   def test_handles_no_quota
     @headers = {}
-    assert_nil mws_quota
+    assert_nil mws_quota_max
+    assert_nil mws_quota_remaining
+    assert_nil mws_quota_resets_on
+    assert_nil mws_request_id
+    assert_nil mws_timestamp
+    assert_nil mws_response_context
   end
 end

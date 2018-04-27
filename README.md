@@ -6,7 +6,9 @@
 
 **Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
-To use Amazon MWS, you must have an eligible seller account and register for MWS. This applies to developers as well.
+To use Amazon MWS, you must have an eligible seller account and [register as an application developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper).
+
+Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually.
 
 Some MWS API sections may require additional authorisation from Amazon.
 
@@ -20,39 +22,42 @@ Require the library.
 require "peddler"
 ```
 
-A client requires valid AWS credentials. Set these globally in your shell.
+A client requires the AWS credentials of the application developer. If you are working within a single MWS region, you can set these globally in your shell.
+
 
 ```bash
 export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
-Create a client. Peddler provides one for each API section under an eponymous namespace.
+Create a client with the Amazon marketplace you signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
 
 ```ruby
-client = MWS::Orders::Client.new(primary_marketplace_id: "Your Marketplace ID",
-                                 merchant_id: "Your Merchant ID")
+client = MWS::Orders::Client.new(marketplace: "US",
+                                 merchant_id: "123")
 
 # or the shorthand
-client = MWS.orders(primary_marketplace_id: "Your Marketplace ID",
-                    merchant_id: "Your Merchant ID")
+client = MWS.orders(marketplace: "US",
+                    merchant_id: "123")
 ```
 
-If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass the seller's MWS Auth Token they obtained for you as well.
+If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass an MWS Auth Token as well.
 
 ```ruby
-client = MWS.orders(primary_marketplace_id: "Seller's Marketplace ID",
-                    merchant_id: "Seller's Merchant ID",
-                    auth_token: "Seller's MWS Auth Token")
+client = MWS.orders(marketplace: "US",
+                    merchant_id: "123",
+                    auth_token: "123")
 ```
 
-If you do not want to use environment variables at all, you can set AWS credentials as well when creating a client.
+You won't be able to create a client for another seller if you are in different regions.
+
+If you do not want to use environment variables at all, you can set AWS credentials as well when creating a client. This is what you want to do if you are working across multiple regions as a single set of credentials will not be enough.
 
 ```ruby
-client = MWS.orders(primary_marketplace_id: "Your Marketplace ID",
-                    merchant_id: "Your Merchant ID",
-                    aws_access_key_id: "Your AWS Access Key ID",
-                    aws_secret_access_key: "Your AWS Secret Access Key")
+client = MWS.orders(marketplace: "US",
+                    merchant_id: "123",
+                    aws_access_key_id: "123",
+                    aws_secret_access_key: "123")
 ```
 
 Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
@@ -79,20 +84,31 @@ For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/
 
 Amazon limits the number of requests you can submit to some operations in a given amount of time. When you hit a limit, your request throws a `Peddler::Errors::RequestThrottled` error.
 
+You will want to exit or back off exponentially and retry if you hit this error.
+
+```ruby
+begin
+  client.throttled_method
+rescue Peddler::Errors::RequestThrottled
+  back_off_exponentially
+  retry
+end
+```
+
 Some API sections also have an hourly request quota in addition to the numerical request quota. When you hit this quota, your request throws a `Peddler::Errors::QuotaExceeded` error.
 
 You can introspect your quota usage on the parsed response:
 
 ```ruby
 response = client.method_with_quota
-puts response.mws_quota
-#<struct Quota max=200, remaining=150, resets_on=2017-01-01 00:12:00 UTC>
+puts response.mws_quota_remaining
+# 150
 
 begin
   client.method_with_quota
 rescue Peddler::Errors::QuotaExceeded => error
-  puts error.response.mws_quota
-  #<struct Quota max=200, remaining=0, resets_on=2017-01-01 00:12:00 UTC>
+  puts error.response.mws_quota_remaining
+  # 0
 end
 ```
 
@@ -115,31 +131,6 @@ puts response.mws_timestamp
 ```
 
 You can access the same attributes on `error.response`. See example in <a href="#throttling">above</a>.
-
-### Errors
-
-You can manually handle MWS generated errors.
-
-```ruby
-begin
-  client.throttled_method
-rescue Peddler::Errors::RequestThrottled
-  back_off_exponentially
-  retry
-end
-```
-
-Alternatively, you can handle these by defining a custom error handler on the client instance or class level.
-
-```
-MWS::Products::Client.on_error do |error|
-  if error.is_a?(Peddler::Errors::RequestThrottled)
-    logger.warn #{error.response.mws_request_id} #{error.message}"
-    back_off_exponentially
-    retry
-  end
-end
-```
 
 ## The APIs
 

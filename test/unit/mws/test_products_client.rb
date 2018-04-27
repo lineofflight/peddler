@@ -6,7 +6,6 @@ require 'mws/products/client'
 class TestMWSProductsClient < MiniTest::Test
   def setup
     @client = MWS::Products::Client.new
-    @client.primary_marketplace_id = '123'
   end
 
   def test_lists_matching_products
@@ -17,7 +16,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.list_matching_products('foo')
+      @client.list_matching_products('123', 'foo')
     end
 
     assert_equal operation, @client.operation
@@ -32,7 +31,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_matching_product_for_id('foo', '1')
+      @client.get_matching_product_for_id('123', 'foo', '1')
     end
 
     assert_equal operation, @client.operation
@@ -46,7 +45,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_matching_product('1')
+      @client.get_matching_product('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -60,7 +59,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_competitive_pricing_for_sku('1')
+      @client.get_competitive_pricing_for_sku('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -74,7 +73,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_competitive_pricing_for_asin('1')
+      @client.get_competitive_pricing_for_asin('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -88,7 +87,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_lowest_offer_listings_for_sku('1')
+      @client.get_lowest_offer_listings_for_sku('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -103,7 +102,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_lowest_priced_offers_for_sku('1', 'New')
+      @client.get_lowest_priced_offers_for_sku('123', '1', 'New')
     end
 
     assert_equal operation, @client.operation
@@ -118,7 +117,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_lowest_priced_offers_for_asin('1', 'New')
+      @client.get_lowest_priced_offers_for_asin('123', '1', 'New')
     end
 
     assert_equal operation, @client.operation
@@ -132,7 +131,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_lowest_offer_listings_for_asin('1')
+      @client.get_lowest_offer_listings_for_asin('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -187,7 +186,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_my_price_for_sku('1')
+      @client.get_my_price_for_sku('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -201,7 +200,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_my_price_for_asin('1')
+      @client.get_my_price_for_asin('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -215,7 +214,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_product_categories_for_sku('1')
+      @client.get_product_categories_for_sku('123', '1')
     end
 
     assert_equal operation, @client.operation
@@ -229,21 +228,7 @@ class TestMWSProductsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.get_product_categories_for_asin('1')
-    end
-
-    assert_equal operation, @client.operation
-  end
-
-  def test_queries_nonprimary_marketplaces
-    operation = {
-      'Action' => 'GetProductCategoriesForASIN',
-      'MarketplaceId' => '321',
-      'ASIN' => '1'
-    }
-
-    @client.stub(:run, nil) do
-      @client.get_product_categories_for_asin('1', marketplace_id: '321')
+      @client.get_product_categories_for_asin('123', '1')
     end
 
     assert_equal operation, @client.operation

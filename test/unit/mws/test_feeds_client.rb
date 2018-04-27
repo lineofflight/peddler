@@ -5,7 +5,7 @@ require 'mws/feeds/client'
 
 class TestMWSFeedsClient < MiniTest::Test
   def setup
-    @client = MWS::Feeds::Client.new
+    @client = MWS::Feeds::Client.new(marketplace: 'GB')
   end
 
   def test_submits_feed
@@ -16,7 +16,6 @@ class TestMWSFeedsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.primary_marketplace_id = 'A1F83G8C2ARO7P'
       @client.submit_feed('content', 'type', marketplace_id_list: '1')
     end
 
