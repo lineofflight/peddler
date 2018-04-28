@@ -22,7 +22,7 @@ Require the library.
 require "peddler"
 ```
 
-A client requires the AWS credentials of the application developer. If you are working within a single MWS region, you can set these globally in your shell.
+A client requires the AWS credentials of the application developer. If you are working within a single MWS region, you can set them globally in your shell.
 
 
 ```bash
@@ -30,7 +30,7 @@ export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
-Create a client with the Amazon marketplace you signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
+Now, you can create a client with the Amazon marketplace you as application developer signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
 
 ```ruby
 MWS::Orders::Client.new(marketplace: "ATVPDKIKX0DER",
@@ -55,7 +55,7 @@ client = MWS.orders(marketplace: "ATVPDKIKX0DER",
 
 You won't be able to create a client for another seller if you are in different regions.
 
-If you do not want to use environment variables at all, you can set AWS credentials as well when creating a client. This is what you want to do if you are working across multiple regions as a single set of credentials will not be enough.
+If you are working with sellers across multiple regions, a single set of credentials will not be enough. In that case, you can skip using global environment variables and pass your AWS credentials when creating the client.
 
 ```ruby
 client = MWS.orders(marketplace: "ATVPDKIKX0DER",
@@ -66,17 +66,23 @@ client = MWS.orders(marketplace: "ATVPDKIKX0DER",
 
 Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
 
-### Parser
-
-Peddler wraps successful responses in a parser that handles both XML documents and flat files:
+For instance, using the above MWS Orders client:
 
 ```ruby
-parser = client.get_service_status
-parser.parse # will return a Hash object
-parser.dig('Status') # delegates to Hash#dig
+response = client.list_orders('ATVPDKIKX0DER')
 ```
 
-You can swap the default parser with a purpose-built abstraction.
+### Parser
+
+Peddler wraps successful responses in a generic parser that handles both XML documents and flat files:
+
+```ruby
+response = client.get_service_status
+response.parse # will return a Hash object
+response.dig('Status') # delegates to Hash#dig
+```
+
+You can swap this with a purpose-built parser.
 
 ```ruby
 MWS::Orders::Client.parser = MyParser

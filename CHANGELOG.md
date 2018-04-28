@@ -9,7 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Allow using country code instead of ID when setting marketplace in a client.
 
 ### Changed
-- Do not default to primary marketplace.
+- Do not default to primary marketplace in any operation.
+- Shorten #primary_marketplace_id to #marketplace in client.
 - Use custom errors for MWS specific errors.
 - Update list of error codes created up front.
 - Add mws prefix to MWS header accessors.
@@ -157,7 +158,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v1.6.7...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/hakanensari/peddler/compare/v1.6.7...v2.0.0
 [1.6.7]: https://github.com/hakanensari/peddler/compare/v1.6.6...v1.6.7
 [1.6.6]: https://github.com/hakanensari/peddler/compare/v1.6.5...v1.6.6
 [1.6.5]: https://github.com/hakanensari/peddler/compare/v1.6.4...v1.6.5
