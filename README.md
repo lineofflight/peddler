@@ -150,6 +150,7 @@ The MWS Feeds API lets you upload inventory and order data to Amazon. You can al
 
 - [Amazon references](https://developer.amazonservices.com/gp/mws/api.html?group=bde&section=feeds)
 - [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Feeds/Client)
+- [XML schema docs](https://sellercentral.amazon.com/gp/help/help-page.html?itemID=1611)
 
 ### Finances
 

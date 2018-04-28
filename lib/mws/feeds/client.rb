@@ -6,6 +6,7 @@ module MWS
   module Feeds
     # The MWS Feeds API lets you upload inventory and order data to Amazon. You
     # can also use this API to get information about the processing of feeds.
+    # @see https://sellercentral.amazon.com/gp/help/help-page.html?itemID=1611
     class Client < ::Peddler::Client
       self.version = '2009-01-01'
       self.path = "/Feeds/#{version}"
