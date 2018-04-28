@@ -7,23 +7,35 @@ module Peddler
     class << self
       attr_reader :all
 
-      def find(country_code)
-        country_code = 'GB' if country_code == 'UK'
+      def find(key)
+        marketplace = if key.nil?
+                        missing_key!
+                      elsif key.size == 2
+                        find_by_country_code(key)
+                      else
+                        find_by_id(key)
+                      end
 
-        all.find { |marketplace| marketplace.country_code == country_code } ||
-          not_found!(country_code)
+        marketplace || not_found!(key)
       end
 
       private
 
-      def not_found!(country_code)
-        message = if country_code
-                    %("#{country_code}" is not a valid country code)
-                  else
-                    'missing country code'
-                  end
+      def find_by_country_code(country_code)
+        country_code = 'GB' if country_code == 'UK'
+        all.find { |marketplace| marketplace.country_code == country_code }
+      end
 
-        raise ArgumentError, message
+      def find_by_id(id)
+        all.find { |marketplace| marketplace.id == id }
+      end
+
+      def missing_key!
+        raise ArgumentError, 'missing marketplace'
+      end
+
+      def not_found!(country_code)
+        raise ArgumentError, %("#{country_code}" is not a valid marketplace)
       end
     end
 

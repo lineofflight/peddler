@@ -5,8 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ## [2.0.0] - 2018-03-02
+### Added
+- Allow using country code instead of ID when setting marketplace in a client.
+
 ### Changed
-- Use country code instead of ID when setting app developer's marketplace.
 - Do not default to primary marketplace.
 - Use custom errors for MWS specific errors.
 - Update list of error codes created up front.

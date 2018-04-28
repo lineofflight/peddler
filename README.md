@@ -33,18 +33,22 @@ export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 Create a client with the Amazon marketplace you signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
 
 ```ruby
-client = MWS::Orders::Client.new(marketplace: "US",
-                                 merchant_id: "123")
+MWS::Orders::Client.new(marketplace: "ATVPDKIKX0DER",
+                        merchant_id: "123")
 
 # or the shorthand
-client = MWS.orders(marketplace: "US",
-                    merchant_id: "123")
+MWS.orders(marketplace: "ATVPDKIKX0DER",
+           merchant_id: "123")
+
+# another shortcut
+MWS.orders(marketplace: "US",
+           merchant_id: "123")
 ```
 
 If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass an MWS Auth Token as well.
 
 ```ruby
-client = MWS.orders(marketplace: "US",
+client = MWS.orders(marketplace: "ATVPDKIKX0DER",
                     merchant_id: "123",
                     auth_token: "123")
 ```
@@ -54,7 +58,7 @@ You won't be able to create a client for another seller if you are in different 
 If you do not want to use environment variables at all, you can set AWS credentials as well when creating a client. This is what you want to do if you are working across multiple regions as a single set of credentials will not be enough.
 
 ```ruby
-client = MWS.orders(marketplace: "US",
+client = MWS.orders(marketplace: "ATVPDKIKX0DER",
                     merchant_id: "123",
                     aws_access_key_id: "123",
                     aws_secret_access_key: "123")
