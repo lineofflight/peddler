@@ -166,7 +166,7 @@ class TestPeddlerClient < MiniTest::Test
 
     def test_does_not_clear_body_when_run_fails
       @client.body = 'foo'
-      assert_raises do
+      assert_raises Peddler::Errors::RequestThrottled do
         @client.run
       end
       refute_nil @client.body
@@ -194,7 +194,7 @@ class TestPeddlerClient < MiniTest::Test
 
     def test_does_not_clear_body_when_run_fails
       @client.body = 'foo'
-      assert_raises do
+      assert_raises Excon::Error::InternalServerError do
         @client.run
       end
       refute_nil @client.body
