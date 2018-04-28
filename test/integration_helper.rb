@@ -24,7 +24,7 @@ class IntegrationTest < MiniTest::Test
     end
 
     def current_endpoint
-      @current_endpoint || name.sub('Test', '')
+      @current_endpoint ||= name.sub('Test', '')
     end
   end
 

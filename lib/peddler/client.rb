@@ -85,7 +85,7 @@ module Peddler
 
     # @api private
     def path
-      @path || self.class.path
+      @path ||= self.class.path
     end
 
     # @api private

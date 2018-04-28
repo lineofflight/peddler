@@ -44,6 +44,14 @@ class TestPeddlerClient < MiniTest::Test
       assert_equal @klass.parser, Class.new(@klass).parser
     end
 
+    def test_sets_marketplace
+      marketplace = Peddler::Marketplace.find('US')
+      @client.marketplace = 'US'
+      assert_equal marketplace, @client.marketplace
+      @client.marketplace = marketplace
+      assert_equal marketplace, @client.marketplace
+    end
+
     def test_configures_when_initialising
       client = @klass.new(aws_access_key_id: '123')
       assert_equal '123', client.aws_access_key_id

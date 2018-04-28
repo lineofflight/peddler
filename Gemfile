@@ -9,10 +9,10 @@ gem 'rake'
 gem 'rubocop'
 gem 'simplecov'
 gem 'vcr'
+gem 'yard'
 
 group :development do
   gem 'pry'
-  gem 'yard'
 end
 
 gemspec

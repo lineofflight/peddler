@@ -340,7 +340,7 @@ module MWS
                                         billing_agreement_attributes)
         operation('SetBillingAgreementDetails')
           .add('AmazonBillingAgreementId' => amazon_billing_agreement_id,
-              'BillingAgreementAttributes' => billing_agreement_attributes)
+               'BillingAgreementAttributes' => billing_agreement_attributes)
 
         run
       end

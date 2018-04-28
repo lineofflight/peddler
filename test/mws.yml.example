@@ -30,19 +30,3 @@
   aws_access_key_id: AWS_ACCESS_KEY_ID
   aws_secret_access_key: AWS_SECRET_ACCESS_KEY
   merchant_id: MERCHANT_ID
-- marketplace: CN
-  aws_access_key_id: AWS_ACCESS_KEY_ID
-  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-  merchant_id: MERCHANT_ID
-- marketplace: IN
-  aws_access_key_id: AWS_ACCESS_KEY_ID
-  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-  merchant_id: MERCHANT_ID
-- marketplace: BR
-  aws_access_key_id: AWS_ACCESS_KEY_ID
-  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-  merchant_id: MERCHANT_ID
-- marketplace: AU
-  aws_access_key_id: AWS_ACCESS_KEY_ID
-  aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-  merchant_id: MERCHANT_ID
