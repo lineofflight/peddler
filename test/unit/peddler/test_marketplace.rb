@@ -21,14 +21,14 @@ class TestPeddlerMarketplace < MiniTest::Test
   end
 
   def test_guard_against_missing_country_code
-    error = assert_raises(ArgumentError) do
+    error = assert_raises ArgumentError do
       Peddler::Marketplace.find(nil)
     end
     assert_equal 'missing country code', error.message
   end
 
   def test_guard_against_invalid_country_code
-    error = assert_raises(ArgumentError) do
+    error = assert_raises ArgumentError do
       Peddler::Marketplace.find('FOO')
     end
     assert_equal '"FOO" is not a valid country code', error.message

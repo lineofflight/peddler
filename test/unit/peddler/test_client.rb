@@ -159,7 +159,7 @@ class TestPeddlerClient < MiniTest::Test
     end
 
     def test_default_error_handling
-      assert_raises(Peddler::Errors::RequestThrottled) do
+      assert_raises Peddler::Errors::RequestThrottled do
         @client.run
       end
     end
@@ -187,7 +187,7 @@ class TestPeddlerClient < MiniTest::Test
     end
 
     def test_error_handling
-      assert_raises(Excon::Error::InternalServerError) do
+      assert_raises Excon::Error::InternalServerError do
         @client.run
       end
     end

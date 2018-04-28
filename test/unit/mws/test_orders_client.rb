@@ -35,7 +35,7 @@ class TestMWSOrdersClient < MiniTest::Test
 
   def test_requires_start_time_keyword_when_listing_orders
     @client.stub(:run, nil) do
-      error = assert_raises(ArgumentError) do
+      error = assert_raises ArgumentError do
         @client.list_orders('123')
       end
       assert_equal 'specify created_after or last_updated_after', error.message

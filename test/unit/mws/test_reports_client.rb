@@ -175,7 +175,7 @@ class TestMWSReportsClient < MiniTest::Test
   end
 
   def test_gets_report_schedule_list_by_next_token
-    assert_raises(NotImplementedError) do
+    assert_raises NotImplementedError do
       @client.get_report_schedule_list_by_next_token
     end
   end

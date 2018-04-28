@@ -8,7 +8,7 @@ class TestErrors < IntegrationTest
 
   def test_invalid_key
     clients.each do |client|
-      assert_raises(Peddler::Errors::InvalidAccessKeyId) do
+      assert_raises Peddler::Errors::InvalidAccessKeyId do
         client.aws_access_key_id = 'foo'
         client.get_order('bar')
       end
@@ -17,7 +17,7 @@ class TestErrors < IntegrationTest
 
   def test_request_throttled
     clients.each do |client|
-      assert_raises(Peddler::Errors::RequestThrottled) do
+      assert_raises Peddler::Errors::RequestThrottled do
         client.get_order('foo')
       end
     end
