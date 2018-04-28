@@ -6,7 +6,7 @@
 
 **Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
-To use Amazon MWS, you must have an eligible seller account and [register as an application developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper).
+To use Amazon MWS, you must have an eligible seller account and register as an [application developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper).
 
 Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually.
 
@@ -48,9 +48,9 @@ MWS.orders(marketplace: "US",
 If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass an MWS Auth Token as well.
 
 ```ruby
-client = MWS.orders(marketplace: "ATVPDKIKX0DER",
-                    merchant_id: "123",
-                    auth_token: "123")
+MWS.orders(marketplace: "ATVPDKIKX0DER",
+           merchant_id: "123",
+           auth_token: "123")
 ```
 
 You won't be able to create a client for another seller if you are in different regions.
@@ -122,7 +122,7 @@ rescue Peddler::Errors::QuotaExceeded => error
 end
 ```
 
-[Read Amazon's tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
+Read [tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
 
 ### Debugging
 
@@ -140,7 +140,7 @@ puts response.mws_request_id
 puts response.mws_timestamp
 ```
 
-You can access the same attributes on `error.response`. See example in <a href="#throttling">above</a>.
+You can access the same attributes on `error.response`. See <a href="#throttling">above example</a>.
 
 ## The APIs
 
