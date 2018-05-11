@@ -39,8 +39,6 @@ module Peddler
       end
 
       def error_class
-        Errors.const_get(error_name)
-      rescue NameError
         ClassGenerator.call(error_name)
       end
 
