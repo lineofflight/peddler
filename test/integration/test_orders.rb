@@ -14,8 +14,8 @@ class TestOrders < IntegrationTest
 
       next if order_ids.count < 2
 
-      orders = client.get_order(*order_ids)
-                     .dig('Orders', 'Order')
+      res = client.get_order(*order_ids)
+      orders = res.dig('Orders', 'Order')
 
       assert_equal order_ids.count, orders.count
     end
