@@ -5,7 +5,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A15Z&Version=2015-06-01&Signature=ogf%2BN3zCHCvfU6iuxGkAryEUyTZ5PZ5tk3tWD%2BRofGo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A15Z&Version=2015-06-01&Signature=ogf%2BN3zCHCvfU6iuxGkAryEUyTZ5PZ5tk3tWD%2BRofGo%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
@@ -53,7 +53,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A16Z&Version=2015-06-01&Signature=lbrYDZnuZpvcIe4ySQyrLqIdO10mVr%2BN98zcatWDYpA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A16Z&Version=2015-06-01&Signature=lbrYDZnuZpvcIe4ySQyrLqIdO10mVr%2BN98zcatWDYpA%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
@@ -101,7 +101,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A16Z&Version=2015-06-01&Signature=l4rtSokNzOIb1H2PtnWSCpwjDLKJacXn6TztIhoLqXs%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A16Z&Version=2015-06-01&Signature=l4rtSokNzOIb1H2PtnWSCpwjDLKJacXn6TztIhoLqXs%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
@@ -149,7 +149,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A17Z&Version=2015-06-01&Signature=6xcWEqs7%2Benet9KUTK9l2gYnhyUJn0Mw0BhW5CG10UQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-01-21T10%3A37%3A17Z&Version=2015-06-01&Signature=6xcWEqs7%2Benet9KUTK9l2gYnhyUJn0Mw0BhW5CG10UQ%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.local)
@@ -197,7 +197,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A56Z&Version=2015-06-01&Signature=06cSAQE5PGKOFhRWvtM1yT9l2FpYBHAaxq2LgJq5yjg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A56Z&Version=2015-06-01&Signature=06cSAQE5PGKOFhRWvtM1yT9l2FpYBHAaxq2LgJq5yjg%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
@@ -247,7 +247,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A57Z&Version=2015-06-01&Signature=vtz4j7UXLnDknquS5v46C7vGY8QSobeN5LHA2MIVjJ8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A57Z&Version=2015-06-01&Signature=vtz4j7UXLnDknquS5v46C7vGY8QSobeN5LHA2MIVjJ8%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
@@ -297,7 +297,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A58Z&Version=2015-06-01&Signature=ix%2FFYDLNkUtYN9hFTUAoG2ykZ21hsOQHlzK9Im2gPTU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A58Z&Version=2015-06-01&Signature=ix%2FFYDLNkUtYN9hFTUAoG2ykZ21hsOQHlzK9Im2gPTU%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
@@ -347,7 +347,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A58Z&Version=2015-06-01&Signature=3O8HFTL0aon8vUICxJdMM7rmxTKoTrG64icG5oGwwes%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A58Z&Version=2015-06-01&Signature=3O8HFTL0aon8vUICxJdMM7rmxTKoTrG64icG5oGwwes%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)
@@ -397,7 +397,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/MerchantFulfillment/2015-06-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetServiceStatus&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A58Z&Version=2015-06-01&Signature=yZhS%2B9eIpmKXLEDd89TyUNjf7mTWW25VaiGo%2BXXwuQs%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-23T12%3A53%3A58Z&Version=2015-06-01&Signature=yZhS%2B9eIpmKXLEDd89TyUNjf7mTWW25VaiGo%2BXXwuQs%3D
     headers:
       User-Agent:
       - Jeff/1.5.1 (Language=Ruby; Hakans-MacBook.home)

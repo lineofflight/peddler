@@ -5,7 +5,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=92V68GFwbHs9Ga%2BZM2hz5MMIpA9Rdc88LC8TykuTOoE%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=92V68GFwbHs9Ga%2BZM2hz5MMIpA9Rdc88LC8TykuTOoE%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -58,14 +58,14 @@ http_interactions:
             <RequestId>4a8a7f2a-9d6a-44da-a63f-985a191597b4</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:49:58 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=lCh3izl%2FIFluiNSzznohtpwTH5n77Y%2F2lY4gu5QnE%2BI%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=lCh3izl%2FIFluiNSzznohtpwTH5n77Y%2F2lY4gu5QnE%2BI%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -74,7 +74,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -118,14 +118,14 @@ http_interactions:
             <RequestId>ef5bc661-e23c-4410-a9f3-2f752a624620</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:49:58 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=slOD9kLBlwtVskuDw6YJBwYi%2FCxC%2B3whZhGYW598ouA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=slOD9kLBlwtVskuDw6YJBwYi%2FCxC%2B3whZhGYW598ouA%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -134,7 +134,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -178,14 +178,14 @@ http_interactions:
             <RequestId>97114256-8821-4302-b07f-a4e005f414f5</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:49:58 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=SzwAEzqEEkwsaf4uwNJSRhJfS7hEZFlywy2aVHAbSPo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A58Z&Version=2009-01-01&Signature=SzwAEzqEEkwsaf4uwNJSRhJfS7hEZFlywy2aVHAbSPo%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -194,7 +194,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -238,14 +238,14 @@ http_interactions:
             <RequestId>9ce26b96-7d09-4497-846d-972e48d6e05e</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:49:59 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A59Z&Version=2009-01-01&Signature=0wzN0rEH1dPLu6Xnvqr7x%2FyTFD0KxfJfYk9uCW3titY%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A59Z&Version=2009-01-01&Signature=0wzN0rEH1dPLu6Xnvqr7x%2FyTFD0KxfJfYk9uCW3titY%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -254,7 +254,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -298,14 +298,14 @@ http_interactions:
             <RequestId>5621a994-04fd-4d03-9710-3f5f9973d540</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:49:59 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A59Z&Version=2009-01-01&Signature=sKors2rF1IQ2dxq1cLHgqv79c16avYUAAuCx0PTm2lw%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A59Z&Version=2009-01-01&Signature=sKors2rF1IQ2dxq1cLHgqv79c16avYUAAuCx0PTm2lw%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -314,7 +314,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -358,14 +358,14 @@ http_interactions:
             <RequestId>92ab6ab4-b62a-4cf2-ae82-0cee15d2949c</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:49:59 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A59Z&Version=2009-01-01&Signature=sIK%2FjNX7%2BAhxEf55DsclH6ISiJRrLACGFV2xB%2FWwYTg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A49%3A59Z&Version=2009-01-01&Signature=sIK%2FjNX7%2BAhxEf55DsclH6ISiJRrLACGFV2xB%2FWwYTg%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -374,7 +374,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -418,14 +418,14 @@ http_interactions:
             <RequestId>244ff268-507f-4a30-8950-c5d505676240</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:00 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A00Z&Version=2009-01-01&Signature=jaGahzuSkh2wea20RHwUVHWwB7g%2BEedrIeeRc9cvFLU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A00Z&Version=2009-01-01&Signature=jaGahzuSkh2wea20RHwUVHWwB7g%2BEedrIeeRc9cvFLU%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -434,7 +434,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -478,14 +478,14 @@ http_interactions:
             <RequestId>78a7cee1-46fb-4245-8c34-1677a0d776cf</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:00 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A00Z&Version=2009-01-01&Signature=mcT0WbYAIfhGbNGW%2Bl9CiLDc4GoKwswBOtoY2YJ55q8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A00Z&Version=2009-01-01&Signature=mcT0WbYAIfhGbNGW%2Bl9CiLDc4GoKwswBOtoY2YJ55q8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -494,7 +494,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -538,14 +538,14 @@ http_interactions:
             <RequestId>00648548-b602-4cfe-9e0c-28db406abf46</RequestId>
           </ResponseMetadata>
         </GetReportCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:01 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A01Z&Version=2009-01-01&Signature=w10CZH6iiluBXsgJ2FeI8AJo6yRlURXCx3g5i1EeBgo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A01Z&Version=2009-01-01&Signature=w10CZH6iiluBXsgJ2FeI8AJo6yRlURXCx3g5i1EeBgo%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -554,7 +554,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -598,14 +598,14 @@ http_interactions:
             <RequestId>6e0c5473-eeda-4102-b04d-ca8354eab4fc</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:01 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A01Z&Version=2009-01-01&Signature=YG0zpLPlxtgk1M%2FOvxUR7qKD%2F0rD2F4bkZS24spZBmI%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A01Z&Version=2009-01-01&Signature=YG0zpLPlxtgk1M%2FOvxUR7qKD%2F0rD2F4bkZS24spZBmI%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -614,7 +614,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -658,14 +658,14 @@ http_interactions:
             <RequestId>26a49262-2db0-4695-b161-befe45e04c37</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:01 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A01Z&Version=2009-01-01&Signature=Oi%2BDT0Yah%2BMte%2Btqs0IwJuCnVIoLUSMpPLr4xIGgv4k%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A01Z&Version=2009-01-01&Signature=Oi%2BDT0Yah%2BMte%2Btqs0IwJuCnVIoLUSMpPLr4xIGgv4k%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -674,7 +674,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -718,14 +718,14 @@ http_interactions:
             <RequestId>2d04a735-1c71-4f71-82e4-cc0e19c622c6</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:02 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A02Z&Version=2009-01-01&Signature=wtVIhTjUJVAXb0nOFqaUrYAVa%2Bfoc8e7qlfoskAJwHQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A02Z&Version=2009-01-01&Signature=wtVIhTjUJVAXb0nOFqaUrYAVa%2Bfoc8e7qlfoskAJwHQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -734,7 +734,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -778,14 +778,14 @@ http_interactions:
             <RequestId>64f552dc-34e5-4f41-aef3-4de59d021965</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:02 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A02Z&Version=2009-01-01&Signature=OgAexqs%2Bn0b%2FoOhaYhI6kJVraSPB0N0J4W38oDaDO6c%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A02Z&Version=2009-01-01&Signature=OgAexqs%2Bn0b%2FoOhaYhI6kJVraSPB0N0J4W38oDaDO6c%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -794,7 +794,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -838,14 +838,14 @@ http_interactions:
             <RequestId>68d83fe5-16a5-4d45-9898-362828c714a4</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:02 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A02Z&Version=2009-01-01&Signature=ob3i33gXalHiQG36oXj%2FuWAmhR7miroT%2FVzGjY7%2Btlw%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A02Z&Version=2009-01-01&Signature=ob3i33gXalHiQG36oXj%2FuWAmhR7miroT%2FVzGjY7%2Btlw%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -854,7 +854,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -898,14 +898,14 @@ http_interactions:
             <RequestId>b6b94988-4dc2-4d13-8d18-69870b040c5a</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:03 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A03Z&Version=2009-01-01&Signature=Ko7XIo2R2jtUJS%2BEde%2BObyYE0FL4XdGpaX7aL4ApNLo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A03Z&Version=2009-01-01&Signature=Ko7XIo2R2jtUJS%2BEde%2BObyYE0FL4XdGpaX7aL4ApNLo%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -914,7 +914,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -958,14 +958,14 @@ http_interactions:
             <RequestId>aa7133e4-8c8c-4330-abc7-a31c65b59d25</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:03 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A03Z&Version=2009-01-01&Signature=QQ0FtbmvgCpWNDrwz2rei%2F4K3XHjF%2FZVPN1cU3gg1Hc%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A03Z&Version=2009-01-01&Signature=QQ0FtbmvgCpWNDrwz2rei%2F4K3XHjF%2FZVPN1cU3gg1Hc%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -974,7 +974,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1018,14 +1018,14 @@ http_interactions:
             <RequestId>0d787948-42f7-44c4-a936-1c8cad828e5c</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:04 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A04Z&Version=2009-01-01&Signature=ww6NN9h70dzxodBmLivEo3zBbLcyzLibGNEL37u%2Bmuc%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A04Z&Version=2009-01-01&Signature=ww6NN9h70dzxodBmLivEo3zBbLcyzLibGNEL37u%2Bmuc%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1034,7 +1034,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1078,14 +1078,14 @@ http_interactions:
             <RequestId>c9cca012-39c6-443c-b7a6-2e485ebcf78b</RequestId>
           </ResponseMetadata>
         </GetReportRequestCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:04 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A04Z&Version=2009-01-01&Signature=ybM2WuO%2FqY4b2oWblNMx2m9Bd6%2FUaFbnxMLNxSRBwGQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A04Z&Version=2009-01-01&Signature=ybM2WuO%2FqY4b2oWblNMx2m9Bd6%2FUaFbnxMLNxSRBwGQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1094,7 +1094,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1252,14 +1252,14 @@ http_interactions:
             <RequestId>d5844347-d522-4e8b-ba39-40f3ee839034</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:05 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=4HrD0oQgHbJ6vz2CsyKMHIAcaMnXbJQyaQ8uFXT6nZ0%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=4HrD0oQgHbJ6vz2CsyKMHIAcaMnXbJQyaQ8uFXT6nZ0%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1268,7 +1268,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1433,14 +1433,14 @@ http_interactions:
             <RequestId>997009d0-70c7-4bcf-a8d2-d9681d1589ed</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:05 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=FiIf3Q3XHgwET%2FR1HKqur7ei7YqnWPNad%2BxQpGuCbTc%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=FiIf3Q3XHgwET%2FR1HKqur7ei7YqnWPNad%2BxQpGuCbTc%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1449,7 +1449,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1614,14 +1614,14 @@ http_interactions:
             <RequestId>ea7c24c4-29d2-4592-ba20-f3ddb7eef183</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:05 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=KTA%2Fta3LmoGyy4FAIYUa4aQhFP%2Bc305sWZAUy%2F2yp5o%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=KTA%2Fta3LmoGyy4FAIYUa4aQhFP%2Bc305sWZAUy%2F2yp5o%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1630,7 +1630,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1795,14 +1795,14 @@ http_interactions:
             <RequestId>b55aab8c-79bf-4245-a971-194db303552c</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:05 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=dqJa7ZahwQo%2FBVMIXDk5d0T4oRdkE5s%2FdgcIqS3Bwuo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A05Z&Version=2009-01-01&Signature=dqJa7ZahwQo%2FBVMIXDk5d0T4oRdkE5s%2FdgcIqS3Bwuo%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1811,7 +1811,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1976,14 +1976,14 @@ http_interactions:
             <RequestId>db227149-68f1-4b4f-aa9b-a3de4277d354</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:06 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A06Z&Version=2009-01-01&Signature=OCyiUKCwvZDL5PZstQSIiOQzjFf%2BJmBvSILA2Y8GYe8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A06Z&Version=2009-01-01&Signature=OCyiUKCwvZDL5PZstQSIiOQzjFf%2BJmBvSILA2Y8GYe8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1992,7 +1992,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2157,14 +2157,14 @@ http_interactions:
             <RequestId>9d275d21-6640-4582-9aaa-f08f39c95d8d</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:06 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A06Z&Version=2009-01-01&Signature=jRiL0RkuMAhfMW7HsRXxK6OSIwNRrsU8hpPloitmbHE%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A06Z&Version=2009-01-01&Signature=jRiL0RkuMAhfMW7HsRXxK6OSIwNRrsU8hpPloitmbHE%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2173,7 +2173,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2338,14 +2338,14 @@ http_interactions:
             <RequestId>9f3d5a7a-d9be-422a-9d19-98cfb211b907</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:07 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A07Z&Version=2009-01-01&Signature=xMeYF7il3b8bNAaQQvnJJuN8a0zJXYpwY7yvmXmdnhU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A07Z&Version=2009-01-01&Signature=xMeYF7il3b8bNAaQQvnJJuN8a0zJXYpwY7yvmXmdnhU%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2354,7 +2354,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2511,14 +2511,14 @@ http_interactions:
             <RequestId>cf4a106e-2d1d-4af6-ad81-027103ba34e7</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:08 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportRequestList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A08Z&Version=2009-01-01&Signature=RaArR9ySCzR%2B%2Fp5jaAZqxs2duXPh3C6WWa4XLClp%2BNg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A08Z&Version=2009-01-01&Signature=RaArR9ySCzR%2B%2Fp5jaAZqxs2duXPh3C6WWa4XLClp%2BNg%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2527,7 +2527,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2692,14 +2692,14 @@ http_interactions:
             <RequestId>1a201efd-dd38-4b22-8f2a-535b01d669c8</RequestId>
           </ResponseMetadata>
         </GetReportRequestListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:08 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A08Z&Version=2009-01-01&Signature=zBVaN6mx2wMC4Ir%2Fh0vx2vtaiXn%2BKWCWCP%2Fekf2UZOk%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A08Z&Version=2009-01-01&Signature=zBVaN6mx2wMC4Ir%2Fh0vx2vtaiXn%2BKWCWCP%2Fekf2UZOk%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2708,7 +2708,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2752,14 +2752,14 @@ http_interactions:
             <RequestId>669408b2-081c-4cbf-8c76-aa024496147e</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:08 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A08Z&Version=2009-01-01&Signature=4a0g9v84K4WtR7%2FchUOro2tShFPW8fuo84ljk9uKkAQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A08Z&Version=2009-01-01&Signature=4a0g9v84K4WtR7%2FchUOro2tShFPW8fuo84ljk9uKkAQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2768,7 +2768,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2812,14 +2812,14 @@ http_interactions:
             <RequestId>4f21bf73-f39d-4abe-a4e3-d07e0848975f</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:09 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=JqsTfgRg9rhpZtI0s8gobeKap9KW9CMHIIvbtN33%2Bi8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=JqsTfgRg9rhpZtI0s8gobeKap9KW9CMHIIvbtN33%2Bi8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2828,7 +2828,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2872,14 +2872,14 @@ http_interactions:
             <RequestId>7abb8acc-ae5c-404a-8eb0-e98f37e71dfb</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:09 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=MLh0s4qhuxmADNO%2BSIcEPcd52isb8HStL0ygJQ28TF8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=MLh0s4qhuxmADNO%2BSIcEPcd52isb8HStL0ygJQ28TF8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2888,7 +2888,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2932,14 +2932,14 @@ http_interactions:
             <RequestId>a19721e2-fd56-4a58-a589-4889bedab502</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:09 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=swBV8FwSBQJHHljaR10xKvcDLiE5dtdmsSutaBUe1J8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=swBV8FwSBQJHHljaR10xKvcDLiE5dtdmsSutaBUe1J8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2948,7 +2948,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2992,14 +2992,14 @@ http_interactions:
             <RequestId>66237d40-c783-4651-8751-f63ea571f500</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:09 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=9L43Vm9O10DNlYsmGtAtYRebG0ZJtTlTaDyJWIx7jMU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A09Z&Version=2009-01-01&Signature=9L43Vm9O10DNlYsmGtAtYRebG0ZJtTlTaDyJWIx7jMU%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3008,7 +3008,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3052,14 +3052,14 @@ http_interactions:
             <RequestId>988f4a23-6364-4b47-8df2-a4d238d5e9f9</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:10 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A10Z&Version=2009-01-01&Signature=IpD1H8pCf38rNoH6DHBwp%2Fxn1Ciod9RbFqWb2bcIjnQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A10Z&Version=2009-01-01&Signature=IpD1H8pCf38rNoH6DHBwp%2Fxn1Ciod9RbFqWb2bcIjnQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3068,7 +3068,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3112,14 +3112,14 @@ http_interactions:
             <RequestId>c3d8f124-fdc0-42ca-913d-048c55e1760d</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:10 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A10Z&Version=2009-01-01&Signature=Dw0FTMPrUdSLO4p4V2Bn6k0my0RP7y4KYEPKJhrA2RQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A10Z&Version=2009-01-01&Signature=Dw0FTMPrUdSLO4p4V2Bn6k0my0RP7y4KYEPKJhrA2RQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3128,7 +3128,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3172,14 +3172,14 @@ http_interactions:
             <RequestId>d3497644-bbe1-4e01-a5ac-b3f2483afa59</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:11 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A11Z&Version=2009-01-01&Signature=rL1pLtM7cEzYw%2FVPasKi4Jrj2ekWj9QCeo8Lhg3ACsM%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A11Z&Version=2009-01-01&Signature=rL1pLtM7cEzYw%2FVPasKi4Jrj2ekWj9QCeo8Lhg3ACsM%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3188,7 +3188,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3232,14 +3232,14 @@ http_interactions:
             <RequestId>22f2d759-9e0c-4c38-9e26-d729d52c1e4d</RequestId>
           </ResponseMetadata>
         </GetReportScheduleCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:11 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=DMKDvCI9IyRsA9Kn6SNoDwCJ9zYWFtCDuOxJI5pvoRw%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=DMKDvCI9IyRsA9Kn6SNoDwCJ9zYWFtCDuOxJI5pvoRw%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3248,7 +3248,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3300,14 +3300,14 @@ http_interactions:
             <RequestId>a100273d-3c31-45a7-9637-de58ca6dc06d</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:12 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=10516502317017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=yfbVL4y3PrWGvaaNRU36BQTxnXaontBuWQxwGV07PWg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=10516502317017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=yfbVL4y3PrWGvaaNRU36BQTxnXaontBuWQxwGV07PWg%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3316,7 +3316,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3351,14 +3351,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:12 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=Awr5dbVEDtJQW6gNOE8sLPhGy%2FOHY4d4L4uZMoARykM%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=Awr5dbVEDtJQW6gNOE8sLPhGy%2FOHY4d4L4uZMoARykM%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3367,7 +3367,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3419,14 +3419,14 @@ http_interactions:
             <RequestId>76af9cde-6c89-454e-9e9e-8363ecdf5960</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:12 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=10512005938017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=5gXcwlesm8FwEmHBgK4edSaEMf5txpaQ0CP%2B8qkPhwQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=10512005938017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=5gXcwlesm8FwEmHBgK4edSaEMf5txpaQ0CP%2B8qkPhwQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3435,7 +3435,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3470,14 +3470,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t20784\n\tNumber
         of records successful\t\t20784\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:12 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=4E4LMtskGR9qlvIl1rH%2FZBg8dPHixpaKb51w3Pwoy%2FE%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A12Z&Version=2009-01-01&Signature=4E4LMtskGR9qlvIl1rH%2FZBg8dPHixpaKb51w3Pwoy%2FE%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3486,7 +3486,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3538,14 +3538,14 @@ http_interactions:
             <RequestId>5cda9ca8-4d29-40de-a003-e4d1c308a76d</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:13 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=10518578585017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=D%2FzsIKVbv1fT3ItNyaL4O7JfH5g6ImBBlkvlq5I9cRE%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=10518578585017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=D%2FzsIKVbv1fT3ItNyaL4O7JfH5g6ImBBlkvlq5I9cRE%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3554,7 +3554,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3589,14 +3589,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t20176\n\tNumber
         of records successful\t\t20176\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:13 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=pXetaItGz0erQHiYBH82eCNZZGXCT3LQQ0OyHUdifSQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=pXetaItGz0erQHiYBH82eCNZZGXCT3LQQ0OyHUdifSQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3605,7 +3605,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3657,14 +3657,14 @@ http_interactions:
             <RequestId>97da18e4-49e8-4c1a-a16f-c068fa7bf100</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:13 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=10511947291017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=R%2BAfx3Gf09tsWhuGvpTTvkURL3n%2BIYR9y%2Fca2pdefHY%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=10511947291017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=R%2BAfx3Gf09tsWhuGvpTTvkURL3n%2BIYR9y%2Fca2pdefHY%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3673,7 +3673,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3708,14 +3708,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t22259\n\tNumber
         of records successful\t\t22259\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:13 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=pihWKC36elW%2FZkARorRwaizrYWtMfTHAMnrQvaFP2is%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A13Z&Version=2009-01-01&Signature=pihWKC36elW%2FZkARorRwaizrYWtMfTHAMnrQvaFP2is%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3724,7 +3724,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3776,14 +3776,14 @@ http_interactions:
             <RequestId>a1ad1407-88a7-4bd2-8c10-88889a4a1af9</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:14 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=9330157676017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A14Z&Version=2009-01-01&Signature=Me1TZrElytJkq2NCpWrRXIaKuGG5ksnTXh9tRObwClE%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=9330157676017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A14Z&Version=2009-01-01&Signature=Me1TZrElytJkq2NCpWrRXIaKuGG5ksnTXh9tRObwClE%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3792,7 +3792,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4513,14 +4513,14 @@ http_interactions:
         in feed '577398017648'.\n9962\t9780961645601-2\t5000\tWarning\tThe update
         for Sku '9780961645601-2' was skipped because it is identical to the update
         in feed '577398017648'.\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:14 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A14Z&Version=2009-01-01&Signature=0%2FY%2FwzbBOnjvjODmYvurUNdOf%2BAzXbzevXXpg7Od86Q%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A14Z&Version=2009-01-01&Signature=0%2FY%2FwzbBOnjvjODmYvurUNdOf%2BAzXbzevXXpg7Od86Q%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4529,7 +4529,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4581,14 +4581,14 @@ http_interactions:
             <RequestId>72e218b0-c48a-414c-956e-89b007481ab6</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:15 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=10513273464017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A15Z&Version=2009-01-01&Signature=YdUsvuLbhX1w5RBGcDiFSIafkK7TE1Qbwgg6e2zG5DA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=10513273464017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A15Z&Version=2009-01-01&Signature=YdUsvuLbhX1w5RBGcDiFSIafkK7TE1Qbwgg6e2zG5DA%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4597,7 +4597,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4632,14 +4632,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:15 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A15Z&Version=2009-01-01&Signature=hmlR9GqaMyj07JheQDhekQzXNHqqnprJHjbSA7j7tY4%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A15Z&Version=2009-01-01&Signature=hmlR9GqaMyj07JheQDhekQzXNHqqnprJHjbSA7j7tY4%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4648,7 +4648,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4700,14 +4700,14 @@ http_interactions:
             <RequestId>1d8c213e-8ef4-4f87-914e-d39dfed58aba</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:15 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=1553515271017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A15Z&Version=2009-01-01&Signature=tx%2F60jhF%2B7tUBXZdb70vd%2Bo4PJC%2BNCo3%2FkHC4FbVd4k%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=1553515271017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A15Z&Version=2009-01-01&Signature=tx%2F60jhF%2B7tUBXZdb70vd%2Bo4PJC%2BNCo3%2FkHC4FbVd4k%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4716,7 +4716,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4751,14 +4751,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: !binary |-
         g3SDQoFbg2iPiJedjIuJyoFGCgmPiJedgrOC6oK9jI+QlAkJMQoJkKyM94K1gr2Mj5CUCQkxCgo=
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:16 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A16Z&Version=2009-01-01&Signature=bwUih1Fwbak3g4of6%2FKjZFNWZhQ4pRlPivMcPDl7%2FK8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A16Z&Version=2009-01-01&Signature=bwUih1Fwbak3g4of6%2FKjZFNWZhQ4pRlPivMcPDl7%2FK8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4767,7 +4767,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4819,14 +4819,14 @@ http_interactions:
             <RequestId>d2329f10-6340-4913-b85a-31d30dcbe657</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:17 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=9323539536017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A17Z&Version=2009-01-01&Signature=rLKFZ%2BiS80YmRJKLw%2FdQefVakMJLDDUMK4CpQpo6qJo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=9323539536017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A17Z&Version=2009-01-01&Signature=rLKFZ%2BiS80YmRJKLw%2FdQefVakMJLDDUMK4CpQpo6qJo%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4835,7 +4835,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4870,14 +4870,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
         of records successful\t\t1\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:17 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportList&MaxCount=1&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A17Z&Version=2009-01-01&Signature=dPgMqqYO%2Bf%2FRK0%2BhdG9T%2B73GpoTjcQl1nheehAbB%2BR4%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A17Z&Version=2009-01-01&Signature=dPgMqqYO%2Bf%2FRK0%2BhdG9T%2B73GpoTjcQl1nheehAbB%2BR4%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4886,7 +4886,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4938,14 +4938,14 @@ http_interactions:
             <RequestId>defe9e54-86a5-4d0d-b7f6-3787be8b2ffb</RequestId>
           </ResponseMetadata>
         </GetReportListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:18 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReport&ReportId=9325640021017648&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A18Z&Version=2009-01-01&Signature=udd8qPINNA6nTvyfN%2FKIAiN2v5HI1ORI4wyK2wZVGCA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=9325640021017648&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A18Z&Version=2009-01-01&Signature=udd8qPINNA6nTvyfN%2FKIAiN2v5HI1ORI4wyK2wZVGCA%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4954,7 +4954,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4989,14 +4989,14 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "Feed Processing Summary:\n\tNumber of records processed\t\t20007\n\tNumber
         of records successful\t\t20007\n\n"
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:18 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=2xkDrzw9zUajKl8mZ7wl%2FK3iVqAd%2FsBsDiVsAU3OjSU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=2xkDrzw9zUajKl8mZ7wl%2FK3iVqAd%2FsBsDiVsAU3OjSU%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5005,7 +5005,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5054,14 +5054,14 @@ http_interactions:
             <RequestId>564ee7cd-e4f2-40fb-9872-3bf3eb0bfdbd</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:19 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=JhGKtrqHCAYN7f9JBuegr5IqqlXtA%2BEwB5O3jscgIcg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=JhGKtrqHCAYN7f9JBuegr5IqqlXtA%2BEwB5O3jscgIcg%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5070,7 +5070,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5114,14 +5114,14 @@ http_interactions:
             <RequestId>086d7f3d-9060-4620-ace3-11583fb62a2f</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:19 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=Z6JlAKHk29eRWVM8BMd%2BrjDX1crRdGkLFDXhpJ4Lrtk%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=Z6JlAKHk29eRWVM8BMd%2BrjDX1crRdGkLFDXhpJ4Lrtk%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5130,7 +5130,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5174,14 +5174,14 @@ http_interactions:
             <RequestId>212bc10c-2f88-4598-a848-101151e51451</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:19 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=kZmmVg78RxkrZPa58V1aVceNG1%2FPEyZdwWpIge9YMMY%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=kZmmVg78RxkrZPa58V1aVceNG1%2FPEyZdwWpIge9YMMY%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5190,7 +5190,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5234,14 +5234,14 @@ http_interactions:
             <RequestId>1c9170fd-7e19-41b1-a29e-5b8766765dd1</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:19 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=nQAZhgUDrSWJ47o%2FB0KGwNPjdO51qMAWIdZd%2BZ3dYlM%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A19Z&Version=2009-01-01&Signature=nQAZhgUDrSWJ47o%2FB0KGwNPjdO51qMAWIdZd%2BZ3dYlM%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5250,7 +5250,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5294,14 +5294,14 @@ http_interactions:
             <RequestId>1e01eb88-3d94-40e3-ac1c-7a953367e9c9</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:20 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A20Z&Version=2009-01-01&Signature=Htwj3LkC46IzEqBezggunyzCn2Mvweu3x8mkJ1ygX%2FA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A20Z&Version=2009-01-01&Signature=Htwj3LkC46IzEqBezggunyzCn2Mvweu3x8mkJ1ygX%2FA%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5310,7 +5310,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5354,14 +5354,14 @@ http_interactions:
             <RequestId>948a79b0-408a-422b-a75e-14b2aacca9fc</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:20 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A20Z&Version=2009-01-01&Signature=Trn2y21azoxKdVXslsjeukj8aRE6U0ma74Sv2pNzchQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A20Z&Version=2009-01-01&Signature=Trn2y21azoxKdVXslsjeukj8aRE6U0ma74Sv2pNzchQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5370,7 +5370,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5419,14 +5419,14 @@ http_interactions:
             <RequestId>884f7585-5dd4-4536-8fb2-79076047641d</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:21 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A21Z&Version=2009-01-01&Signature=ExODRmclXgb4moI6biyPq8Q4Zp%2F6msqZTulBoZor9Rs%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A21Z&Version=2009-01-01&Signature=ExODRmclXgb4moI6biyPq8Q4Zp%2F6msqZTulBoZor9Rs%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5435,7 +5435,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5479,14 +5479,14 @@ http_interactions:
             <RequestId>900a9306-ef2c-47be-8557-9aed4f1a2d4c</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:21 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Reports/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetReportScheduleList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A21Z&Version=2009-01-01&Signature=fDg%2BGydcIh%2B7Y8ZKa%2BiXzoP0sgleudkxnL%2BQlxrkbRQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A50%3A21Z&Version=2009-01-01&Signature=fDg%2BGydcIh%2B7Y8ZKa%2BiXzoP0sgleudkxnL%2BQlxrkbRQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5495,7 +5495,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5544,6 +5544,6 @@ http_interactions:
             <RequestId>dc481308-a27a-4d26-bad3-8a5ef768681a</RequestId>
           </ResponseMetadata>
         </GetReportScheduleListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:50:22 GMT
 recorded_with: VCR 4.0.0

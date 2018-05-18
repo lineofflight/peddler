@@ -5,7 +5,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A2EUQ1WTGCTBG2&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A52Z&Version=2011-10-01&Signature=DSHxap5qc5qTI6er49ZWR1zu224eQa6k8o2WdVcjrR4%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A2EUQ1WTGCTBG2&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A52Z&Version=2011-10-01&Signature=DSHxap5qc5qTI6er49ZWR1zu224eQa6k8o2WdVcjrR4%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -53,7 +53,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1AM78C64UM0Y8&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A53Z&Version=2011-10-01&Signature=eSGu7rbu2wGjApxr7JmGSxcx2%2F9jZ7qWVKcrHVq9YQQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1AM78C64UM0Y8&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A53Z&Version=2011-10-01&Signature=eSGu7rbu2wGjApxr7JmGSxcx2%2F9jZ7qWVKcrHVq9YQQ%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -101,7 +101,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A13V1IB3VIYZZH&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A56Z&Version=2011-10-01&Signature=In8kAHee9I3%2FeMsmtwWEn5zjZlnWtw20l7GvUXG2Wb8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A13V1IB3VIYZZH&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A09%3A56Z&Version=2011-10-01&Signature=In8kAHee9I3%2FeMsmtwWEn5zjZlnWtw20l7GvUXG2Wb8%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -149,7 +149,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=APJ6JRA9NG5V4&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A14Z&Version=2011-10-01&Signature=kawicDJtJjLVJVjiyyK6Ib6k2LmjsrMeq1LSjZ4vKqc%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=APJ6JRA9NG5V4&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A14Z&Version=2011-10-01&Signature=kawicDJtJjLVJVjiyyK6Ib6k2LmjsrMeq1LSjZ4vKqc%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -198,7 +198,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1RKKUPIHCS9HS&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A17Z&Version=2011-10-01&Signature=VMEIj2K%2Firj%2BKoGIFrZh8C8rGBVLemJQq7QvQUmLhKQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1RKKUPIHCS9HS&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A17Z&Version=2011-10-01&Signature=VMEIj2K%2Firj%2BKoGIFrZh8C8rGBVLemJQq7QvQUmLhKQ%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -246,7 +246,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1F83G8C2ARO7P&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A18Z&Version=2011-10-01&Signature=L9tKV%2BHiskVVuxS2CvR1m31PnYIZCnSSaggYAi%2F%2B4ys%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1F83G8C2ARO7P&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A18Z&Version=2011-10-01&Signature=L9tKV%2BHiskVVuxS2CvR1m31PnYIZCnSSaggYAi%2F%2B4ys%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -294,7 +294,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1VC38T7YXB528&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A19Z&Version=2011-10-01&Signature=FqsE5bRYGhSB2lgsqMHyjCidgw2s9oF7jQyR4gb8pfA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1VC38T7YXB528&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A19Z&Version=2011-10-01&Signature=FqsE5bRYGhSB2lgsqMHyjCidgw2s9oF7jQyR4gb8pfA%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -342,7 +342,7 @@ http_interactions:
     uri: https://mws-eu.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=A1PA6795UKMFR9&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A21Z&Version=2011-10-01&Signature=ZxSoTRqzV6HzHjrnXlAVO5KNGK7NqymB7YD4yEaFK%2BA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A1PA6795UKMFR9&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A21Z&Version=2011-10-01&Signature=ZxSoTRqzV6HzHjrnXlAVO5KNGK7NqymB7YD4yEaFK%2BA%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)
@@ -391,7 +391,7 @@ http_interactions:
     uri: https://mws.amazonservices.com/Products/2011-10-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=ListMatchingProducts&MarketplaceId=ATVPDKIKX0DER&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A26Z&Version=2011-10-01&Signature=xIW45qezW37Ds6zoMZwEU3dM8vaBkdcZO35SPLy9cPY%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=ATVPDKIKX0DER&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-01-24T20%3A10%3A26Z&Version=2011-10-01&Signature=xIW45qezW37Ds6zoMZwEU3dM8vaBkdcZO35SPLy9cPY%3D
     headers:
       User-Agent:
       - Jeff/1.5.2 (Language=Ruby; Hakans-MacBook.home)

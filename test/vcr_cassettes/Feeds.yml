@@ -5,7 +5,7 @@ http_interactions:
     uri: https://mws.amazonservices.jp/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A14Z&Version=2009-01-01&Signature=%2FlEaSrygg%2B9YGWyqdLTisVHAFRoy4k1J%2FWXZpFR3nkc%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A14Z&Version=2009-01-01&Signature=%2FlEaSrygg%2B9YGWyqdLTisVHAFRoy4k1J%2FWXZpFR3nkc%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -137,14 +137,14 @@ http_interactions:
             <RequestId>187c7c9e-4dc4-422b-a417-0fd6f52c0753</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:15 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A15Z&Version=2009-01-01&Signature=8rYZ5%2F%2F0wO2M%2FFnsboVIxP1ksCfTHm1MDU7zBr0FMP0%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A15Z&Version=2009-01-01&Signature=8rYZ5%2F%2F0wO2M%2FFnsboVIxP1ksCfTHm1MDU7zBr0FMP0%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -153,7 +153,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -278,14 +278,14 @@ http_interactions:
             <RequestId>46614ee7-ca4f-409d-8086-c5ae23090f80</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:15 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A15Z&Version=2009-01-01&Signature=CksTyvNB0PzArcPGSBLhkIYNq16nBpLiOnM16JLNn6I%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A15Z&Version=2009-01-01&Signature=CksTyvNB0PzArcPGSBLhkIYNq16nBpLiOnM16JLNn6I%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -294,7 +294,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -418,14 +418,14 @@ http_interactions:
             <RequestId>644e242d-14f4-46e2-8f53-d7f8bab3daf7</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:16 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=%2BVVQ8OmDvEUqXczsZ1PNkub%2F7eAzhjW6Y8cv7P71wPY%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=%2BVVQ8OmDvEUqXczsZ1PNkub%2F7eAzhjW6Y8cv7P71wPY%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -434,7 +434,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -559,14 +559,14 @@ http_interactions:
             <RequestId>86aeb5a2-2aef-4147-b156-65652fecfe09</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:16 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=%2Fe0snd5dMQtDjfSVLTHJmK1zl3Ktp3uNarmGJcAjQEo%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=%2Fe0snd5dMQtDjfSVLTHJmK1zl3Ktp3uNarmGJcAjQEo%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -575,7 +575,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -698,14 +698,14 @@ http_interactions:
             <RequestId>7c09f803-54b7-4db3-88bf-a7b73331048d</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:16 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=%2Fjv4AlYf372BiOFcmdaUjjdHZcj1Cr%2F%2F4R5g25uIf9I%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=%2Fjv4AlYf372BiOFcmdaUjjdHZcj1Cr%2F%2F4R5g25uIf9I%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -714,7 +714,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -837,14 +837,14 @@ http_interactions:
             <RequestId>f4f166b7-9126-4d80-bf6e-259453fc1b12</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:16 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=aivqZ4RGPgztzSwkuCaxBnoxHA%2BeBCn57mGQ4iDRGAU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A16Z&Version=2009-01-01&Signature=aivqZ4RGPgztzSwkuCaxBnoxHA%2BeBCn57mGQ4iDRGAU%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -853,7 +853,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -978,14 +978,14 @@ http_interactions:
             <RequestId>1520a1b4-fd69-49f7-a2d6-bd8b3c27d164</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:17 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A17Z&Version=2009-01-01&Signature=ZvJerbeeyu746u1XXYQccDmNHgvtFHtukJRK8gMoM5g%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A17Z&Version=2009-01-01&Signature=ZvJerbeeyu746u1XXYQccDmNHgvtFHtukJRK8gMoM5g%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -994,7 +994,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1116,14 +1116,14 @@ http_interactions:
             <RequestId>32fa6be3-b601-4b9d-81b4-f43d1f094c90</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:17 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionList&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A17Z&Version=2009-01-01&Signature=69eFlAeU89NqD%2Fmz5s7PHIdx5JR3A7SYhwQG%2FZN9D%2B8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A17Z&Version=2009-01-01&Signature=69eFlAeU89NqD%2Fmz5s7PHIdx5JR3A7SYhwQG%2FZN9D%2B8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1132,7 +1132,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1257,14 +1257,14 @@ http_interactions:
             <RequestId>2c225dbb-c726-4cf2-b4ae-3dfbddf8b8e6</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:17 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A17Z&Version=2009-01-01&Signature=4QOIxS5k2sLQaHOKJoOZoamp34JkZsKjue6CFXbRegA%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A17Z&Version=2009-01-01&Signature=4QOIxS5k2sLQaHOKJoOZoamp34JkZsKjue6CFXbRegA%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1273,7 +1273,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1317,14 +1317,14 @@ http_interactions:
             <RequestId>73e2fbd7-c160-423e-8593-31a98a9e0636</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:18 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A18Z&Version=2009-01-01&Signature=hFGpRYoMwlWiCc0bEfVk68f0FvGkXgTIrz0BQdF0M88%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A18Z&Version=2009-01-01&Signature=hFGpRYoMwlWiCc0bEfVk68f0FvGkXgTIrz0BQdF0M88%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1333,7 +1333,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1377,14 +1377,14 @@ http_interactions:
             <RequestId>8172c558-6eef-405b-890c-fae21621443e</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:18 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A18Z&Version=2009-01-01&Signature=68C5jMXYQuMyC2%2BYS9u17U8Kz5NY0dbaBzQa6%2FL8eME%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A18Z&Version=2009-01-01&Signature=68C5jMXYQuMyC2%2BYS9u17U8Kz5NY0dbaBzQa6%2FL8eME%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1393,7 +1393,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1437,14 +1437,14 @@ http_interactions:
             <RequestId>dfbe7e42-3f90-4665-a952-e0de7f11f52c</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:20 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=nIQsa%2FCficjaJYnyn%2BGbmbFKlOCxvaSy5sa5boFJKx0%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=nIQsa%2FCficjaJYnyn%2BGbmbFKlOCxvaSy5sa5boFJKx0%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1453,7 +1453,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1497,14 +1497,14 @@ http_interactions:
             <RequestId>561303b6-9a93-4904-9cc6-5584c0b74076</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:20 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=ipHxW3fPA33bjkcAfQAMN1lH96ANWHHGrCYJpnfNsr8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=ipHxW3fPA33bjkcAfQAMN1lH96ANWHHGrCYJpnfNsr8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1513,7 +1513,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1557,14 +1557,14 @@ http_interactions:
             <RequestId>76e210d6-8cac-482d-bfc5-d30e90efa6dd</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:20 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=hFV2GMFjh3mji72opoDR8AY0zfE9LbWewQJq79ybKJU%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=hFV2GMFjh3mji72opoDR8AY0zfE9LbWewQJq79ybKJU%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1573,7 +1573,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1617,14 +1617,14 @@ http_interactions:
             <RequestId>d5f7541c-7e00-4c9c-a42a-7d17d30379ae</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:20 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=cQC%2Ftc75LlDARzOeKrKFCNltQouL4TINBrGNe%2F4CLA8%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A20Z&Version=2009-01-01&Signature=cQC%2Ftc75LlDARzOeKrKFCNltQouL4TINBrGNe%2F4CLA8%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1633,7 +1633,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1677,14 +1677,14 @@ http_interactions:
             <RequestId>0200b882-8d49-44a1-8de8-f4687bde5583</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:21 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A21Z&Version=2009-01-01&Signature=KzudnpqwCYwY86ZoqW23181srPG82tnfFnDVd7AXPPg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A21Z&Version=2009-01-01&Signature=KzudnpqwCYwY86ZoqW23181srPG82tnfFnDVd7AXPPg%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1693,7 +1693,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1737,14 +1737,14 @@ http_interactions:
             <RequestId>59f28c45-4677-4677-93f8-6eb6824f9108</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:21 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=GetFeedSubmissionCount&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A21Z&Version=2009-01-01&Signature=iuTm7TJRl5u0VU6zrjvindghXhAUQw8ZSGirelR1G%2Bw%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A21Z&Version=2009-01-01&Signature=iuTm7TJRl5u0VU6zrjvindghXhAUQw8ZSGirelR1G%2Bw%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1753,7 +1753,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1797,11 +1797,11 @@ http_interactions:
             <RequestId>6910e31e-ae58-42c1-8bf4-722abe93ab10</RequestId>
           </ResponseMetadata>
         </GetFeedSubmissionCountResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:21 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.jp/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A21Z&Version=2009-01-01&Signature=eHwMTSK5Yy6TtD8M2pEXRPjHHoKa%2FhKdotbZG6dE%2B3g%3D
+    uri: https://mws.amazonservices.jp/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A21Z&Version=2009-01-01&Signature=eHwMTSK5Yy6TtD8M2pEXRPjHHoKa%2FhKdotbZG6dE%2B3g%3D
     body:
       encoding: Windows-31J
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -1813,7 +1813,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -1845,14 +1845,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>355372017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:22+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>fd68f973-b956-4be6-b289-6223eb7125be</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:22 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.jp/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=355372017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A22Z&Version=2009-01-01&Signature=hoH0XxGFeS8M2IEGKi%2Fk9%2B5trvuzfRZpuMslNFV8qwY%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=355372017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A22Z&Version=2009-01-01&Signature=hoH0XxGFeS8M2IEGKi%2Fk9%2B5trvuzfRZpuMslNFV8qwY%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -1861,7 +1861,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2703,11 +2703,11 @@ http_interactions:
             <RequestId>13376934-5878-4cb0-afbd-0d83c05deaec</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:24 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A24Z&Version=2009-01-01&Signature=ThMOB9nUD1VVIsvO73PkOhxyI96XmAUVlrXdqH5DWOY%3D
+    uri: https://mws.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A24Z&Version=2009-01-01&Signature=ThMOB9nUD1VVIsvO73PkOhxyI96XmAUVlrXdqH5DWOY%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -2719,7 +2719,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -2751,14 +2751,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>475873017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:24+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>0083f33b-89eb-4da9-a840-1f22c4d480d1</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:25 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=475873017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A25Z&Version=2009-01-01&Signature=jOoVcYjdsS9YNKLhgXz764kXKj6aMQ84E2I1OzN8Boc%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=475873017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A25Z&Version=2009-01-01&Signature=jOoVcYjdsS9YNKLhgXz764kXKj6aMQ84E2I1OzN8Boc%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -2767,7 +2767,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3611,11 +3611,11 @@ http_interactions:
             <RequestId>425d69c8-c3ab-4d50-ad3a-90a31107e641</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:25 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A25Z&Version=2009-01-01&Signature=acM5C0t6Z6s3Tv5f8n0EDGONKboVL8vMROxtpZutfUM%3D
+    uri: https://mws.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A25Z&Version=2009-01-01&Signature=acM5C0t6Z6s3Tv5f8n0EDGONKboVL8vMROxtpZutfUM%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -3627,7 +3627,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -3659,14 +3659,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>577400017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:26+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>634c6975-6e4d-4f83-a4aa-eb446f00f1cb</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:26 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=577400017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A26Z&Version=2009-01-01&Signature=DlvbsI8A%2Fyw2VCK8TfQ3pWiDx5CZJjIt8MTlfQ7KqAg%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=577400017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A26Z&Version=2009-01-01&Signature=DlvbsI8A%2Fyw2VCK8TfQ3pWiDx5CZJjIt8MTlfQ7KqAg%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -3675,7 +3675,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4516,11 +4516,11 @@ http_interactions:
             <RequestId>fb0d90ea-f3a3-4542-b0c6-6261a1251515</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:27 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A27Z&Version=2009-01-01&Signature=V0%2FW%2BCFKx96CtvShgJEpD1hUd4yRFiA8lqY%2Fgq3q2lQ%3D
+    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A27Z&Version=2009-01-01&Signature=V0%2FW%2BCFKx96CtvShgJEpD1hUd4yRFiA8lqY%2Fgq3q2lQ%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -4532,7 +4532,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -4564,14 +4564,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>475514017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:27+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>188fef80-2e42-451c-80f0-1d035788d9ef</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:27 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=475514017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A27Z&Version=2009-01-01&Signature=D%2BdaSESD6Z9gS7U2LaR5GlGLCcqZQgQIEnSKXf4gsAQ%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=475514017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A27Z&Version=2009-01-01&Signature=D%2BdaSESD6Z9gS7U2LaR5GlGLCcqZQgQIEnSKXf4gsAQ%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -4580,7 +4580,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5422,11 +5422,11 @@ http_interactions:
             <RequestId>e6f74f11-a4f2-46f5-9efc-853a723d9f8c</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:28 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A28Z&Version=2009-01-01&Signature=QUdPfUfn%2BByn3oRdQfO2qoLjdByVjKWBCyW2jyYg8W0%3D
+    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A28Z&Version=2009-01-01&Signature=QUdPfUfn%2BByn3oRdQfO2qoLjdByVjKWBCyW2jyYg8W0%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -5438,7 +5438,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -5470,14 +5470,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>281605017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:28+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>f1d93fd1-db2d-41b4-99f3-e428b2dca03a</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:28 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=281605017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A28Z&Version=2009-01-01&Signature=wd62jLB3KV3UAeKJgfkFeb%2FTxpzoMQXtoafbfMKi6bI%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=281605017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A28Z&Version=2009-01-01&Signature=wd62jLB3KV3UAeKJgfkFeb%2FTxpzoMQXtoafbfMKi6bI%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -5486,7 +5486,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -6329,11 +6329,11 @@ http_interactions:
             <RequestId>5adbffd5-04fa-458b-8826-f7cef6970856</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:29 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A29Z&Version=2009-01-01&Signature=UzUrvNA5vZKa0tW28yyLg04yUJq0hxnVFnyMXYwaWbk%3D
+    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A29Z&Version=2009-01-01&Signature=UzUrvNA5vZKa0tW28yyLg04yUJq0hxnVFnyMXYwaWbk%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -6345,7 +6345,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -6377,14 +6377,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>492492017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:29+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>b5f78089-1d54-494a-9802-602446d75309</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:29 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=492492017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A29Z&Version=2009-01-01&Signature=xZFnDXBDgpSUFSiN4j6ag0A%2BIDSLjkflDuKKR8zgGsI%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=492492017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A29Z&Version=2009-01-01&Signature=xZFnDXBDgpSUFSiN4j6ag0A%2BIDSLjkflDuKKR8zgGsI%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -6393,7 +6393,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -7233,11 +7233,11 @@ http_interactions:
             <RequestId>0e5ac354-6239-4c83-af46-0b1c57b4438b</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:31 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A31Z&Version=2009-01-01&Signature=xTCC%2FPs3%2Fa2r0lUzh5sUnunQ7pGC7l3E5AhqC%2FP0RJE%3D
+    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A31Z&Version=2009-01-01&Signature=xTCC%2FPs3%2Fa2r0lUzh5sUnunQ7pGC7l3E5AhqC%2FP0RJE%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -7249,7 +7249,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -7281,14 +7281,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>507379017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:32+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>e01698d0-3898-4505-85d3-cda5c81a56ad</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:32 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=507379017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A32Z&Version=2009-01-01&Signature=zpmTR%2B7xOWcq7tl8Xcl5zI5SJNUx2bv1egixTyGg%2FmE%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=507379017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A32Z&Version=2009-01-01&Signature=zpmTR%2B7xOWcq7tl8Xcl5zI5SJNUx2bv1egixTyGg%2FmE%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -7297,7 +7297,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -8141,11 +8141,11 @@ http_interactions:
             <RequestId>998b3499-07a7-4c26-a754-f3cbe02f4dfe</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:32 GMT
 - request:
     method: post
-    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A32Z&Version=2009-01-01&Signature=udV3T9gnxdVSEY0CECM38p%2Btg%2BlOR90EELowhomxJjc%3D
+    uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A32Z&Version=2009-01-01&Signature=udV3T9gnxdVSEY0CECM38p%2Btg%2BlOR90EELowhomxJjc%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -8157,7 +8157,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -8189,14 +8189,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>464227017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:32+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>c6e75b27-1d2d-46b5-9a64-b4be574f0c7e</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:32 GMT
 - request:
     method: post
     uri: https://mws-eu.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=464227017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A33Z&Version=2009-01-01&Signature=ozwD2gdFYu89ddt57ncm4JPhFXab0ozq%2FqXeeGmkc0c%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=464227017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A33Z&Version=2009-01-01&Signature=ozwD2gdFYu89ddt57ncm4JPhFXab0ozq%2FqXeeGmkc0c%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -8205,7 +8205,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -9046,11 +9046,11 @@ http_interactions:
             <RequestId>e9442b15-bccd-410a-94f4-c8ddd6d5562c</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:33 GMT
 - request:
     method: post
-    uri: https://mws.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=FILTERED&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A33Z&Version=2009-01-01&Signature=O0ZnqJaV8Z1uq3VLuLKwd0znns%2BMQxU7q7688eq5Z40%3D
+    uri: https://mws.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A33Z&Version=2009-01-01&Signature=O0ZnqJaV8Z1uq3VLuLKwd0znns%2BMQxU7q7688eq5Z40%3D
     body:
       encoding: Windows-1252
       string: "sku\tprice\tquantity\nwidget\t\t0\n"
@@ -9062,7 +9062,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -9094,14 +9094,14 @@ http_interactions:
       string: |-
         <?xml version="1.0"?>
         <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>352910017648</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2018-04-27T14:47:34+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>8beaf600-3bb8-40e7-acee-6e2ef61ac5c5</RequestId></ResponseMetadata></SubmitFeedResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:34 GMT
 - request:
     method: post
     uri: https://mws.amazonservices.com/Feeds/2009-01-01
     body:
       encoding: UTF-8
-      string: AWSAccessKeyId=FILTERED&Action=CancelFeedSubmissions&FeedSubmissionId=352910017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=FILTERED&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A34Z&Version=2009-01-01&Signature=Ss8rkCxb8pHFfgoTmYx5xa2Mbf6I9xwyh%2Fsb0J5JA6A%3D
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=352910017648&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-04-27T14%3A47%3A34Z&Version=2009-01-01&Signature=Ss8rkCxb8pHFfgoTmYx5xa2Mbf6I9xwyh%2Fsb0J5JA6A%3D
     headers:
       User-Agent:
       - Jeff/2.0.0 (Language=Ruby; Hakan-Ensaris-MacBook-Pro.local)
@@ -9110,7 +9110,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - Server
@@ -9952,6 +9952,6 @@ http_interactions:
             <RequestId>5a25014f-51f6-4350-b9d7-6e41c7661610</RequestId>
           </ResponseMetadata>
         </CancelFeedSubmissionsResponse>
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Apr 2018 14:47:35 GMT
 recorded_with: VCR 4.0.0

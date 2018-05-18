@@ -45,7 +45,7 @@ VCR.configure do |c|
   end
 
   Credentials.each do |record|
-    c.filter_sensitive_data('FILTERED') { record['merchant_id'] }
-    c.filter_sensitive_data('FILTERED') { record['aws_access_key_id'] }
+    c.filter_sensitive_data('MERCHANT_ID') { record['merchant_id'] }
+    c.filter_sensitive_data('AWS_ACCESS_KEY_ID') { record['aws_access_key_id'] }
   end
 end
