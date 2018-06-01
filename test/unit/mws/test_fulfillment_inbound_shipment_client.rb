@@ -39,12 +39,31 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
   def test_creates_inbound_shipment_plan
     operation = {
       'Action' => 'CreateInboundShipmentPlan',
-      'ShipFromAddress.Foo' => '1',
-      'InboundShipmentPlanRequestItems.member.1.Bar' => '2'
+      'LabelPrepPreference' => 'SELLER_LABEL',
+      'ShipFromAddress.Name' => 'test1',
+      'ShipFromAddress.City' => 'Seattle',
+      'ShipFromAddress.CountryCode' => 'US',
+      'InboundShipmentPlanRequestItems.member.1.SellerSKU' => 'SKU00001',
+      'InboundShipmentPlanRequestItems.member.1.Quantity' => '1',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepInstruction' => 'Taping',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepOwner' => 'AMAZON'
     }
 
     @client.stub(:run, nil) do
-      @client.create_inbound_shipment_plan({ 'Foo' => '1' }, [{ 'Bar' => '2' }])
+      address = {
+        'Name' => 'test1',
+        'City' => 'Seattle',
+        'CountryCode' => 'US'
+      }
+      request_items = [
+        {
+          'SellerSKU' => 'SKU00001',
+          'Quantity' => '1',
+          'PrepDetailsList' => [{ 'PrepInstruction' => 'Taping', 'PrepOwner' => 'AMAZON' }]
+        }
+      ]
+      @client.create_inbound_shipment_plan(address, request_items,
+                                           label_prep_preference: 'SELLER_LABEL')
     end
 
     assert_equal operation, @client.operation

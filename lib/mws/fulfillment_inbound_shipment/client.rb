@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require 'peddler/client'
@@ -47,6 +48,8 @@ module MWS
       # @param [Struct, Hash] ship_from_address
       # @param [Array<Struct, Hash>] inbound_shipment_plan_request_items
       # @param [Hash] opts
+      # @option opts [String] :ship_to_country_code
+      # @option opts [String] :ship_to_country_subdivision_code
       # @option opts [String] :label_prep_preference
       # @return [Peddler::XMLParser]
       def create_inbound_shipment_plan(ship_from_address,
@@ -58,6 +61,7 @@ module MWS
                'InboundShipmentPlanRequestItems' =>
                  inbound_shipment_plan_request_items)
           .structure!('InboundShipmentPlanRequestItems', 'member')
+          .structure!('PrepDetailsList', 'member')
 
         run
       end
