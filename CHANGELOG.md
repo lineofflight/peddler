@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.1] - 2018-06-01
+### Fixed
+- Fix FulfillmentInboundShipment#create_inbound_shipment_plan.
+
 ## [2.0.0] - 2018-03-02
 ### Added
 - Allow using country code instead of ID when setting marketplace in a client.
@@ -158,7 +162,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/hakanensari/peddler/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/hakanensari/peddler/compare/v1.6.7...v2.0.0
 [1.6.7]: https://github.com/hakanensari/peddler/compare/v1.6.6...v1.6.7
 [1.6.6]: https://github.com/hakanensari/peddler/compare/v1.6.5...v1.6.6
