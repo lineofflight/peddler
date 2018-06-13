@@ -45,7 +45,7 @@ class TestReports < IntegrationTest
       id = res.parse['ReportInfo']['ReportId']
       res = client.get_report(id)
       assert res.valid?
-      refute_empty res.parse || res.records_count
+      assert res.records_count || res.parse
     end
   end
 end
