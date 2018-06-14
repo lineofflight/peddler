@@ -7,8 +7,8 @@ module Peddler
   # @api private
   module Parser
     class << self
-      # The inevitable-seeming messiness of massaging data produced by a motley
-      # army of Amazon developers
+      # We're massaging data produced by a motley army of developers. It's
+      # messy.
       def new(res, encoding)
         # Don't parse if there's no body
         return res unless res.body
@@ -16,9 +16,8 @@ module Peddler
         if xml?(res)
           XMLResponseParser.new(res)
         else
-          # Amazon returns a variety of content types for flat files, so we
-          # simply assume that anything not XML is a flat file rather than code
-          # defensively and check content type again.
+          # Amazon returns a variety of content types for flat files. I simply
+          # assume anything not XML is a flat file.
           FlatFileParser.new(res, encoding)
         end
       end

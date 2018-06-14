@@ -39,10 +39,9 @@ module Peddler
       end
     end
 
-    # Caveat: We use the supersets Windows-31J and CP1252 in place of Shift_JIS
-    # and ISO 8859-1 respectively to handle edge cases where latter will not
-    # support some characters. The supersets should be safe to use as drop-in
-    # replacements.
+    # Caveat: We use supersets Windows-31J and CP1252 in place of Shift_JIS and
+    # ISO 8859-1 respectively to handle some edge cases. These should be safe to
+    # drop in as replacements.
     def encoding
       case country_code
       when 'JP'
