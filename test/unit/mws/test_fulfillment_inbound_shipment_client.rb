@@ -46,7 +46,9 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       'InboundShipmentPlanRequestItems.member.1.SellerSKU' => 'SKU00001',
       'InboundShipmentPlanRequestItems.member.1.Quantity' => '1',
       'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepInstruction' => 'Taping',
-      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepOwner' => 'AMAZON'
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepOwner' => 'AMAZON',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepInstruction' => 'BubbleWrapping',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepOwner' => 'AMAZON'
     }
 
     @client.stub(:run, nil) do
@@ -59,7 +61,10 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
         {
           'SellerSKU' => 'SKU00001',
           'Quantity' => '1',
-          'PrepDetailsList' => [{ 'PrepInstruction' => 'Taping', 'PrepOwner' => 'AMAZON' }]
+          'PrepDetailsList' => [
+            { 'PrepInstruction' => 'Taping', 'PrepOwner' => 'AMAZON' },
+            { 'PrepInstruction' => 'BubbleWrapping', 'PrepOwner' => 'AMAZON' }
+          ]
         }
       ]
       @client.create_inbound_shipment_plan(address, request_items,
