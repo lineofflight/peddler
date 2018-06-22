@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.2] - 2018-06-22
 ### Fixed
 - Parse flat files with blank rows.
 
@@ -11,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix FulfillmentInboundShipment#create_inbound_shipment_plan.
 
 ## [2.0.0] - 2018-03-02
-### Added
+### Added
 - Allow using country code instead of ID when setting marketplace in a client.
 
 ### Changed
@@ -164,7 +166,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/hakanensari/peddler/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/hakanensari/peddler/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/hakanensari/peddler/compare/v1.6.7...v2.0.0
 [1.6.7]: https://github.com/hakanensari/peddler/compare/v1.6.6...v1.6.7
