@@ -48,7 +48,13 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepInstruction' => 'Taping',
       'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepOwner' => 'AMAZON',
       'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepInstruction' => 'BubbleWrapping',
-      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepOwner' => 'AMAZON'
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepOwner' => 'AMAZON',
+      'InboundShipmentPlanRequestItems.member.2.SellerSKU' => 'SKU00002',
+      'InboundShipmentPlanRequestItems.member.2.Quantity' => '1',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.1.PrepInstruction' => 'Taping',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.1.PrepOwner' => 'AMAZON',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.2.PrepInstruction' => 'BubbleWrapping',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.2.PrepOwner' => 'AMAZON'
     }
 
     @client.stub(:run, nil) do
@@ -60,6 +66,13 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       request_items = [
         {
           'SellerSKU' => 'SKU00001',
+          'Quantity' => '1',
+          'PrepDetailsList' => [
+            { 'PrepInstruction' => 'Taping', 'PrepOwner' => 'AMAZON' },
+            { 'PrepInstruction' => 'BubbleWrapping', 'PrepOwner' => 'AMAZON' }
+          ]
+        }, {
+          'SellerSKU' => 'SKU00002',
           'Quantity' => '1',
           'PrepDetailsList' => [
             { 'PrepInstruction' => 'Taping', 'PrepOwner' => 'AMAZON' },
