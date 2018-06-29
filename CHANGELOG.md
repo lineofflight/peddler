@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- Structure nested structured lists.
 ## [2.0.2] - 2018-06-22
 ### Fixed
 - Parse flat files with blank rows.

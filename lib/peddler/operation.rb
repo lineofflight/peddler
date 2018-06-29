@@ -15,12 +15,13 @@ module Peddler
 
     def structure!(*list_keys)
       list_key = list_keys.shift
-      found_key = keys.find { |key| key.end_with?(list_key) }
-      if found_key
-        builder = StructuredList.new(found_key, *list_keys)
-        vals = delete(found_key)
-        update(builder.build(vals))
-      end
+      keys
+        .find_all { |key| key.end_with?(list_key) }
+        .each do |found_key|
+          builder = StructuredList.new(found_key, *list_keys)
+          vals = delete(found_key)
+          update(builder.build(vals))
+        end
 
       self
     end
