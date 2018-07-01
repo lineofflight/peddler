@@ -96,7 +96,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.create_inbound_shipment('1', { 'Foo' => '1' }, inbound_shipment_items: [{ 'Bar' => '2' }])
+      @client.create_inbound_shipment('1', { 'Foo' => '1' }, [{ 'Bar' => '2' }])
     end
 
     assert_equal operation, @client.operation
@@ -111,7 +111,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      @client.update_inbound_shipment('1', { 'Foo' => '1' }, inbound_shipment_items: [{ 'Bar' => '2' }])
+      @client.update_inbound_shipment('1', { 'Foo' => '1' }, [{ 'Bar' => '2' }])
     end
 
     assert_equal operation, @client.operation

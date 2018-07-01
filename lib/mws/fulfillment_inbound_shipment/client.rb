@@ -70,13 +70,13 @@ module MWS
       # @see https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_CreateInboundShipment.html
       # @param [String] shipment_id
       # @param [Struct, Hash] inbound_shipment_header
-      # @param [Hash] opts
-      # @option opts [Array<Struct, Hash>] :inbound_shipment_items
+      # @param [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def create_inbound_shipment(shipment_id, inbound_shipment_header,
-                                  opts = {})
+                                  inbound_shipment_items)
         build_inbound_shipment_operation('CreateInboundShipment', shipment_id,
-                                         inbound_shipment_header, opts)
+                                         inbound_shipment_header,
+                                         inbound_shipment_items)
 
         run
       end
@@ -86,13 +86,13 @@ module MWS
       # @see https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_UpdateInboundShipment.html
       # @param [String] shipment_id
       # @param [Struct, Hash] inbound_shipment_header
-      # @param [Hash] opts
-      # @option opts [Array<Struct, Hash>] :inbound_shipment_items
+      # @param [Array<Struct, Hash>] :inbound_shipment_items
       # @return [Peddler::XMLParser]
       def update_inbound_shipment(shipment_id, inbound_shipment_header,
-                                  opts = {})
+                                  inbound_shipment_items)
         build_inbound_shipment_operation('UpdateInboundShipment', shipment_id,
-                                         inbound_shipment_header, opts)
+                                         inbound_shipment_header,
+                                         inbound_shipment_items)
 
         run
       end
@@ -356,11 +356,12 @@ module MWS
       private
 
       def build_inbound_shipment_operation(operation_name, shipment_id,
-                                           inbound_shipment_header, opts)
+                                           inbound_shipment_header,
+                                           inbound_shipment_items)
         operation(operation_name)
-          .add(opts)
           .add('ShipmentId' => shipment_id,
-               'InboundShipmentHeader' => inbound_shipment_header)
+               'InboundShipmentHeader' => inbound_shipment_header,
+               'InboundShipmentItems' => inbound_shipment_items)
           .structure!('InboundShipmentItems', 'member')
           .structure!('PrepDetailsList', 'member')
       end
