@@ -362,6 +362,7 @@ module MWS
           .add('ShipmentId' => shipment_id,
                'InboundShipmentHeader' => inbound_shipment_header)
           .structure!('InboundShipmentItems', 'member')
+          .structure!('PrepDetailsList', 'member')
       end
     end
   end
