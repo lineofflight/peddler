@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.4] - 2018-07-02
 ### Fixed
 - Properly massage inbound shipment items in FulfillmentInboundShipment#create_inbound_shipment and FulfillmentInboundShipment#update_inbound_shipment_plan.
 - Require inbound shipment items argument.
@@ -173,7 +175,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/hakanensari/peddler/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/hakanensari/peddler/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/hakanensari/peddler/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/hakanensari/peddler/compare/v2.0.0...v2.0.1
