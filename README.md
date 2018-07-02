@@ -8,9 +8,7 @@
 
 To use Amazon MWS, you must have an eligible seller account and register as an [application developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper).
 
-Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually.
-
-Some MWS API sections may require additional authorisation from Amazon.
+Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually. Some MWS API sections may require additional authorisation from Amazon.
 
 ![Peddler](http://f.cl.ly/items/1G1N0A0a0v3a3h241c1Q/peddler.jpg)
 
@@ -22,7 +20,7 @@ Require the library.
 require "peddler"
 ```
 
-A client requires the AWS credentials of the application developer. If you are working within a single MWS region, you can set them globally in your shell.
+A client requires the AWS credentials of the application developer. If you are working in a single MWS region, you can set them globally.
 
 
 ```bash
@@ -30,32 +28,28 @@ export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 ```
 
-Now, you can create a client with the Amazon marketplace you as application developer signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
+Now, create a client with the Amazon marketplace you signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
 
 ```ruby
-MWS::Orders::Client.new(marketplace: "ATVPDKIKX0DER",
-                        merchant_id: "123")
+client = MWS.orders(marketplace: "ATVPDKIKX0DER",
+                    merchant_id: "123")
 
-# or the shorthand
-MWS.orders(marketplace: "ATVPDKIKX0DER",
-           merchant_id: "123")
-
-# another shortcut
-MWS.orders(marketplace: "US",
-           merchant_id: "123")
+# or a shorthand
+client = MWS.orders(marketplace: "US",
+                    merchant_id: "123")
 ```
 
 If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass an MWS Auth Token as well.
 
 ```ruby
-MWS.orders(marketplace: "ATVPDKIKX0DER",
-           merchant_id: "123",
-           auth_token: "123")
+client = MWS.orders(marketplace: "ATVPDKIKX0DER",
+                    merchant_id: "123",
+                    auth_token: "123")
 ```
 
 You won't be able to create a client for another seller if you are in different regions.
 
-If you are working with sellers across multiple regions, a single set of credentials will not be enough. In that case, you can skip using global environment variables and pass your AWS credentials when creating the client.
+If you are working with sellers across multiple regions, a single set of credentials will not be enough. In that case, do not use global environment variables and pass your AWS credentials when creating the client.
 
 ```ruby
 client = MWS.orders(marketplace: "ATVPDKIKX0DER",
