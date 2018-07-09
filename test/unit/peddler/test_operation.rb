@@ -44,9 +44,15 @@ class TestPeddlerOperation < MiniTest::Test
   end
 
   def test_store_upcases_sku
-    @operation.store(:seller_sku, 'baz')
+    @operation.store(:seller_sku, 'foo')
     assert @operation.key?('SellerSKU')
     refute @operation.key?(:seller_sku)
+  end
+
+  def test_store_upcases_cod
+    @operation.store(:include_cod_fulfillment_preview, 'foo')
+    assert @operation.key?('IncludeCODFulfillmentPreview')
+    refute @operation.key?(:include_cod_fulfillment_preview)
   end
 
   def test_store_timestamps_time_values

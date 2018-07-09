@@ -8,6 +8,8 @@ module Peddler
   # @api private
   class Operation < SimpleDelegator
     CAPITAL_LETTERS = /[A-Z]/
+    ALL_CAPS = %w[sku cod].freeze
+    private_constant :CAPITAL_LETTERS, :ALL_CAPS
 
     def initialize(action)
       super('Action' => action)
@@ -55,8 +57,16 @@ module Peddler
       sym
         .to_s
         .split('_')
-        .map { |token| token == 'sku' ? 'SKU' : token.capitalize }
+        .map { |token| capitalize(token) }
         .join
+    end
+
+    def capitalize(word)
+      if ALL_CAPS.any? { |val| val == word }
+        word.upcase
+      else
+        word.capitalize
+      end
     end
   end
 end
