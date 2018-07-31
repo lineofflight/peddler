@@ -22,7 +22,6 @@ rvm:
   - ruby-head
 matrix:
   allow_failures:
-    - rvm: jruby-9000
     - rvm: ruby-head
   exclude:
     - rvm: jruby-9000
