@@ -63,6 +63,7 @@ module Peddler
       ['A13V1IB3VIYZZH', 'FR', 'mws-eu.amazonservices.com'],
       ['APJ6JRA9NG5V4', 'IT', 'mws-eu.amazonservices.com'],
       ['A1F83G8C2ARO7P', 'GB', 'mws-eu.amazonservices.com'],
+      ['A33AVAJ2PDY3EV', 'TR', 'mws-eu.amazonservices.com'],
       ['A21TJRUUN4KGV', 'IN', 'mws.amazonservices.in'],
       ['A39IBJ37TRP1C6', 'AU', 'mws.amazonservices.com.au'],
       ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp'],
