@@ -25,6 +25,7 @@ module Peddler
 
     def valid?
       return unless headers['Content-Length']
+
       headers['Content-Length'].to_i == body.size
     end
 

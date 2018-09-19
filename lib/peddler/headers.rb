@@ -7,6 +7,7 @@ module Peddler
     # @return [Integer, nil]
     def mws_quota_max
       return unless headers['x-mws-quota-max']
+
       headers['x-mws-quota-max'].to_i
     end
 
@@ -14,6 +15,7 @@ module Peddler
     # @return [Integer, nil]
     def mws_quota_remaining
       return unless headers['x-mws-quota-remaining']
+
       headers['x-mws-quota-remaining'].to_i
     end
 
@@ -21,6 +23,7 @@ module Peddler
     # @return [Time, nil]
     def mws_quota_resets_on
       return unless headers['x-mws-quota-resetsOn']
+
       Time.parse(headers['x-mws-quota-resetsOn'])
     end
 
@@ -34,6 +37,7 @@ module Peddler
     # @return [Time, nil]
     def mws_timestamp
       return unless headers['x-mws-timestamp']
+
       Time.parse(headers['x-mws-timestamp'])
     end
 

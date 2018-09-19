@@ -29,6 +29,7 @@ module Peddler
       def build
         parse_original_response
         return if bad_class_name?
+
         error_class.new(error_message, error)
       end
 

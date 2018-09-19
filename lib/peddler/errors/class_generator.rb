@@ -20,6 +20,7 @@ module Peddler
       def generate(name)
         with_mutex do
           return Errors.const_get(name) if Errors.const_defined?(name)
+
           Errors.const_set(name, Class.new(Error))
         end
       end
