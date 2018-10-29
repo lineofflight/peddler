@@ -1,8 +1,6 @@
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.4
-Gemspec/RequiredRubyVersion:
-  Enabled: false
+  TargetRubyVersion: 2.3
 Metrics/AbcSize:
   Exclude:
     - test/**/*
@@ -13,9 +11,6 @@ Metrics/ClassLength:
   Exclude:
     - lib/peddler/client.rb
     - lib/mws/**/client.rb
-    - test/**/*
-Lint/HandleExceptions:
-  Exclude:
     - test/**/*
 Metrics/LineLength:
   Exclude:
@@ -31,8 +26,3 @@ Metrics/ParameterLists:
 Naming/AccessorMethodName:
   Exclude:
     - lib/mws/**/client.rb
-Performance/RegexpMatch:
-  Enabled: false # doesn't work below 2.4
-Style/Documentation:
-  Exclude:
-    - test/**/*

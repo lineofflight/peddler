@@ -83,12 +83,12 @@ class TestProducts < IntegrationTest
 
   CURRENCY_CODES = {
     'A2EUQ1WTGCTBG2' => 'CAD',
-    'AAHKV2X7AFYLW'  => 'CNY',
+    'AAHKV2X7AFYLW' => 'CNY',
     'A1F83G8C2ARO7P' => 'GBP',
-    'A21TJRUUN4KGV'  => 'INR',
+    'A21TJRUUN4KGV' => 'INR',
     'A1VC38T7YXB528' => 'JPY',
     'A1AM78C64UM0Y8' => 'MXN',
-    'ATVPDKIKX0DER'  => 'USD'
+    'ATVPDKIKX0DER' => 'USD'
   }.freeze
 
   def currency_code_for(marketplace_id)

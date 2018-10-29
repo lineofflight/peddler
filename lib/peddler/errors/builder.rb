@@ -11,7 +11,7 @@ module Peddler
     class Builder
       extend Forwardable
 
-      DIGIT_AS_FIRST_CHAR = /^\d/
+      DIGIT_AS_FIRST_CHAR = /^\d/.freeze
       private_constant :DIGIT_AS_FIRST_CHAR
 
       def_delegator :error, :response

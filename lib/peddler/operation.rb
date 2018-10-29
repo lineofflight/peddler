@@ -7,7 +7,7 @@ require 'peddler/structured_list'
 module Peddler
   # @api private
   class Operation < SimpleDelegator
-    CAPITAL_LETTERS = /[A-Z]/
+    CAPITAL_LETTERS = /[A-Z]/.freeze
     ALL_CAPS = %w[sku cod].freeze
     private_constant :CAPITAL_LETTERS, :ALL_CAPS
 
