@@ -9,25 +9,25 @@ class TestPeddlerErrorsError < MiniTest::Test
     @error = Peddler::Errors::Error.new('message', @cause)
   end
 
-  def test_sets_message
+  def test_message
     assert_equal 'message', @error.message
   end
 
-  def test_sets_cause
+  def test_cause
     assert_equal @cause, @error.cause
   end
 
-  def test_defines_common_errors
+  def test_that_it_defines_common_errors
     Peddler::Errors::CODES.each do |name|
       assert ::Peddler::Errors.const_defined?(name)
     end
   end
 
-  def test_allows_nil_arguments
+  def test_that_it_allows_nil_arguments
     Peddler::Errors::Error.new
   end
 
-  def test_delegates_response_to_cause
+  def test_that_it_delegates_response_to_cause
     assert_equal @cause.response, @error.response
   end
 end

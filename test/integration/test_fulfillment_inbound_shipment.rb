@@ -8,7 +8,7 @@ class TestFulfillmentInboundShipment < IntegrationTest
                        :postal_code, :country_code)
   Item = Struct.new(:seller_sku, :quantity)
 
-  def test_creates_inbound_shipment_plan
+  def test_creating_inbound_shipment_plan
     address = Address.new('John', '1 Main St', 'New York', 'NY', '10001', 'US')
     item = Item.new('123', 1)
     clients.each do |client|
@@ -17,14 +17,14 @@ class TestFulfillmentInboundShipment < IntegrationTest
     end
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     clients.each do |client|
       res = client.get_service_status
       refute_empty res.parse
     end
   end
 
-  def test_handles_large_requests
+  def test_handling_large_requests
     address = Address.new('John', '1 Main St', 'New York', 'NY', '10001', 'US')
     items = Array.new(100) { |i| Item.new(i, 1) }
     clients.each do |client|

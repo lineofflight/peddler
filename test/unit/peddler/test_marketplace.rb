@@ -39,7 +39,7 @@ class TestPeddlerMarketplace < MiniTest::Test
       @marketplace = Peddler::Marketplace.find('US')
     end
 
-    def test_translates_uk
+    def test_translation_of_uk_to_gb
       marketplace = Peddler::Marketplace.find('UK')
       assert_equal 'GB', marketplace.country_code
     end

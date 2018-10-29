@@ -4,7 +4,7 @@ require 'integration_helper'
 require 'mws/orders'
 
 class TestOrders < IntegrationTest
-  def test_gets_orders
+  def test_getting_orders
     clients.each do |client|
       order_ids = client.list_orders(client.marketplace.id,
                                      created_after: Date.new(2015),
@@ -21,7 +21,7 @@ class TestOrders < IntegrationTest
     end
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     clients.each do |client|
       res = client.get_service_status
       refute_empty res.parse

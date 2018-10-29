@@ -16,19 +16,19 @@ class TestPeddlerParser < MiniTest::Test
     end
   end
 
-  def test_parses_xml
+  def test_parsing_xml
     assert_parser Peddler::XMLParser,
                   'text/xml',
                   'text/xml; charset=UTF-8'
   end
 
-  def test_parses_incorrect_content_type
+  def test_parsing_incorrect_content_type
     assert_parser Peddler::XMLParser,
                   'xml; charset=UTF-8',
                   body: '<?xml version="1.0"?><GetLowestOfferListingsForASINResponse>...'
   end
 
-  def test_parses_flat_files
+  def test_parsing_flat_files
     assert_parser Peddler::FlatFileParser,
                   'text/plain',
                   'application/octet-stream'

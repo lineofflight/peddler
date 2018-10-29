@@ -8,7 +8,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     @client = MWS::FulfillmentOutboundShipment::Client.new
   end
 
-  def test_gets_fulfillment_preview
+  def test_getting_fulfillment_preview
     operation = {
       'Action' => 'GetFulfillmentPreview',
       'Address.Foo' => '1',
@@ -29,7 +29,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_creates_fulfillment_order
+  def test_creating_fulfillment_order
     operation = {
       'Action' => 'CreateFulfillmentOrder',
       'SellerFulfillmentOrderId' => '1',
@@ -56,7 +56,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_updates_fulfillment_order
+  def test_updating_fulfillment_order
     operation = {
       'Action' => 'UpdateFulfillmentOrder',
       'SellerFulfillmentOrderId' => '1',
@@ -75,7 +75,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_fulfillment_order
+  def test_getting_fulfillment_order
     operation = {
       'Action' => 'GetFulfillmentOrder',
       'SellerFulfillmentOrderId' => '1'
@@ -88,7 +88,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_all_fulfillment_orders
+  def test_listing_all_fulfillment_orders
     started_at = Time.now
 
     operation = {
@@ -103,7 +103,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_all_fulfillment_orders_by_next_token
+  def test_listing_all_fulfillment_orders_by_next_token
     operation = {
       'Action' => 'ListAllFulfillmentOrdersByNextToken',
       'NextToken' => '1'
@@ -116,7 +116,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_package_tracking_details
+  def test_getting_package_tracking_details
     operation = {
       'Action' => 'GetPackageTrackingDetails',
       'PackageNumber' => '1'
@@ -129,7 +129,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_cancels_fulfillment_order
+  def test_canceling_fulfillment_order
     operation = {
       'Action' => 'CancelFulfillmentOrder',
       'SellerFulfillmentOrderId' => '1'
@@ -142,7 +142,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_return_reason_codes
+  def test_listing_return_reason_codes
     seller_sku = 'ABC123'
     seller_fulfillment_order_id = '123ABC'
 
@@ -162,7 +162,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_creates_fulfillment_return
+  def test_creating_fulfillment_return
     seller_fulfillment_order_id = 'ABC123'
 
     item = { seller_return_item_id: 'ABC123',
@@ -188,7 +188,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

@@ -8,7 +8,7 @@ class TestMWSSellersClient < MiniTest::Test
     @client = MWS::Sellers::Client.new
   end
 
-  def test_lists_marketplace_participations
+  def test_listing_marketplace_participations
     operation = {
       'Action' => 'ListMarketplaceParticipations'
     }
@@ -20,7 +20,7 @@ class TestMWSSellersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_marketplace_participations_by_next_token
+  def test_listing_marketplace_participations_by_next_token
     operation = {
       'Action' => 'ListMarketplaceParticipationsByNextToken',
       'NextToken' => '1'
@@ -33,7 +33,7 @@ class TestMWSSellersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

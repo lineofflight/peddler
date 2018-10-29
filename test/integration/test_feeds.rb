@@ -4,21 +4,21 @@ require 'integration_helper'
 require 'mws/feeds'
 
 class TestFeeds < IntegrationTest
-  def test_gets_feed_submission_count
+  def test_getting_feed_submission_count
     clients.each do |client|
       res = client.get_feed_submission_count
       refute_empty res.parse
     end
   end
 
-  def test_gets_feed_submission_list
+  def test_getting_feed_submission_list
     clients.each do |client|
       res = client.get_feed_submission_list
       refute_empty res.parse
     end
   end
 
-  def test_submits_feeds
+  def test_submitting_feeds
     feed_content = "sku\tprice\tquantity\nwidget\t\t0\n"
     feed_type = '_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_'
 

@@ -14,7 +14,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_includes @client.sandbox.aws_endpoint, 'Sandbox'
   end
 
-  def test_creates_order_reference_for_id
+  def test_creating_order_reference_for_id
     operation = {
       'Action' => 'CreateOrderReferenceForId',
       'Id' => '1',
@@ -28,7 +28,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_billing_agreement_details
+  def test_getting_billing_agreement_details
     operation = {
       'Action' => 'GetBillingAgreementDetails',
       'AmazonBillingAgreementId' => '1'
@@ -41,7 +41,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_sets_billing_agreement_details
+  def test_setting_billing_agreement_details
     operation = {
       'Action' => 'SetBillingAgreementDetails',
       'AmazonBillingAgreementId' => '1',
@@ -55,7 +55,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_confirms_billing_agreement
+  def test_confirming_billing_agreement
     operation = {
       'Action' => 'ConfirmBillingAgreement',
       'AmazonBillingAgreementId' => '1'
@@ -68,7 +68,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_validates_billing_agreement
+  def test_validating_billing_agreement
     operation = {
       'Action' => 'ValidateBillingAgreement',
       'AmazonBillingAgreementId' => '1'
@@ -81,7 +81,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_authorizes_on_billing_agreement
+  def test_authorizing_on_billing_agreement
     operation = {
       'Action' => 'AuthorizeOnBillingAgreement',
       'AmazonBillingAgreementId' => '1',
@@ -96,7 +96,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_closes_billing_agreement
+  def test_closing_billing_agreement
     operation = {
       'Action' => 'CloseBillingAgreement',
       'AmazonBillingAgreementId' => '1'
@@ -109,7 +109,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_sets_order_reference_details
+  def test_setting_order_reference_details
     operation = {
       'Action' => 'SetOrderReferenceDetails',
       'AmazonOrderReferenceId' => '1',
@@ -123,7 +123,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_order_reference_details
+  def test_getting_order_reference_details
     operation = {
       'Action' => 'GetOrderReferenceDetails',
       'AmazonOrderReferenceId' => '1'
@@ -136,7 +136,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_confirms_order_reference
+  def test_confirming_order_reference
     operation = {
       'Action' => 'ConfirmOrderReference',
       'AmazonOrderReferenceId' => '1'
@@ -149,7 +149,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_cancels_order_reference
+  def test_canceling_order_reference
     operation = {
       'Action' => 'CancelOrderReference',
       'AmazonOrderReferenceId' => '1'
@@ -162,7 +162,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_closes_order_reference
+  def test_closing_order_reference
     operation = {
       'Action' => 'CloseOrderReference',
       'AmazonOrderReferenceId' => '1'
@@ -190,7 +190,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_authorization_details
+  def test_getting_authorization_details
     operation = {
       'Action' => 'GetAuthorizationDetails',
       'AmazonAuthorizationId' => '1'
@@ -218,7 +218,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_capture_details
+  def test_getting_capture_details
     operation = {
       'Action' => 'GetCaptureDetails',
       'AmazonCaptureId' => '1'
@@ -231,7 +231,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_closes_authorization
+  def test_closing_authorization
     operation = {
       'Action' => 'CloseAuthorization',
       'AmazonAuthorizationId' => '1'
@@ -259,7 +259,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_refund_details
+  def test_getting_refund_details
     operation = {
       'Action' => 'GetRefundDetails',
       'AmazonRefundId' => '1'
@@ -272,7 +272,7 @@ class TestMWSOffAmazonPaymentsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

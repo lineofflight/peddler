@@ -8,7 +8,7 @@ class TestMWSRecommendationsClient < MiniTest::Test
     @client = MWS::Recommendations::Client.new
   end
 
-  def test_gets_last_updated_time_for_recommendations
+  def test_getting_last_updated_time_for_recommendations
     operation = {
       'Action' => 'GetLastUpdatedTimeForRecommendations',
       'MarketplaceId' => '1'
@@ -21,7 +21,7 @@ class TestMWSRecommendationsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_recommendations
+  def test_listing_recommendations
     operation = {
       'Action' => 'ListRecommendations',
       'CategoryQueryList.CategoryQuery.1.FilterOptions.FilterOption.1.Foo' => '1',
@@ -35,7 +35,7 @@ class TestMWSRecommendationsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_recommendations_by_next_token
+  def test_listing_recommendations_by_next_token
     operation = {
       'Action' => 'ListRecommendationsByNextToken',
       'NextToken' => '1'
@@ -48,7 +48,7 @@ class TestMWSRecommendationsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

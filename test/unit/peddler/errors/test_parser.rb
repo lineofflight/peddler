@@ -26,19 +26,19 @@ class TestPeddlerErrorsParser < MiniTest::Test
     @parser = Peddler::Errors::Parser.new(res)
   end
 
-  def test_parses_data
+  def test_parsing_data
     assert @parser.parse
   end
 
-  def test_has_a_message
+  def test_message
     assert @parser.message
   end
 
-  def test_has_code
+  def test_code
     assert @parser.code
   end
 
-  def test_has_type
+  def test_type
     assert @parser.type
   end
 end

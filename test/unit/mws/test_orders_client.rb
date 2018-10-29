@@ -8,7 +8,7 @@ class TestMWSOrdersClient < MiniTest::Test
     @client = MWS::Orders::Client.new
   end
 
-  def test_lists_orders
+  def test_listing_orders
     operation = {
       'Action' => 'ListOrders',
       'CreatedAfter' => '2016-01-01',
@@ -33,7 +33,7 @@ class TestMWSOrdersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_requires_start_time_keyword_when_listing_orders
+  def test_that_listing_orders_requires_start_time_keyword
     @client.stub(:run, nil) do
       error = assert_raises ArgumentError do
         @client.list_orders('123')
@@ -44,7 +44,7 @@ class TestMWSOrdersClient < MiniTest::Test
     end
   end
 
-  def test_lists_orders_by_next_token
+  def test_listing_orders_by_next_token
     operation = {
       'Action' => 'ListOrdersByNextToken',
       'NextToken' => '1'
@@ -57,7 +57,7 @@ class TestMWSOrdersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_order
+  def test_getting_order
     operation = {
       'Action' => 'GetOrder',
       'AmazonOrderId.Id.1' => '1',
@@ -71,7 +71,7 @@ class TestMWSOrdersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_order_items
+  def test_listing_order_items
     operation = {
       'Action' => 'ListOrderItems',
       'AmazonOrderId' => '1'
@@ -84,7 +84,7 @@ class TestMWSOrdersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_order_items_by_next_token
+  def test_listing_order_items_by_next_token
     operation = {
       'Action' => 'ListOrderItemsByNextToken',
       'NextToken' => '1'
@@ -97,7 +97,7 @@ class TestMWSOrdersClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

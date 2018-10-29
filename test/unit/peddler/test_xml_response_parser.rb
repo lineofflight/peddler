@@ -4,25 +4,25 @@ require 'helper'
 require 'peddler/xml_response_parser'
 
 class TestPeddlerXMLResponseParser < MiniTest::Test
-  def test_parses_responses
+  def test_parsing_responses
     body = '<Response><Result><Foo>Bar</Foo></Result></Response>'
     parser = Peddler::XMLResponseParser.new(response(body))
     assert_equal 'Bar', parser.parse['Foo']
   end
 
-  def test_parses_messages
+  def test_parsing_messages
     body = '<Response><MessageType>ProcessingReport</MessageType><Message><Foo>Bar</Foo></Message></Response>'
     parser = Peddler::XMLResponseParser.new(response(body))
     assert_equal 'Bar', parser.parse['Foo']
   end
 
-  def test_parses_reports
+  def test_parsing_reports
     body = '<fooReports><fooReport><foo>Bar</foo></fooReport></fooReports>'
     parser = Peddler::XMLResponseParser.new(response(body))
     assert_equal 'Bar', parser.parse['foo']
   end
 
-  def test_parses_next_token
+  def test_parsing_next_token
     body = '<Response><Result><NextToken>123</NextToken></Result></Response>'
     parser = Peddler::XMLResponseParser.new(response(body))
     assert_equal '123', parser.next_token

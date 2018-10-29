@@ -8,7 +8,7 @@ class TestMWSProductsClient < MiniTest::Test
     @client = MWS::Products::Client.new
   end
 
-  def test_lists_matching_products
+  def test_listing_matching_products
     operation = {
       'Action' => 'ListMatchingProducts',
       'MarketplaceId' => '123',
@@ -22,7 +22,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_matching_product_for_id
+  def test_getting_matching_product_for_id
     operation = {
       'Action' => 'GetMatchingProductForId',
       'MarketplaceId' => '123',
@@ -37,7 +37,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_matching_product
+  def test_getting_matching_product
     operation = {
       'Action' => 'GetMatchingProduct',
       'MarketplaceId' => '123',
@@ -51,7 +51,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_competitive_pricing_for_sku
+  def test_getting_competitive_pricing_for_sku
     operation = {
       'Action' => 'GetCompetitivePricingForSKU',
       'MarketplaceId' => '123',
@@ -65,7 +65,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_competitive_pricing_for_asin
+  def test_getting_competitive_pricing_for_asin
     operation = {
       'Action' => 'GetCompetitivePricingForASIN',
       'MarketplaceId' => '123',
@@ -79,7 +79,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_lowest_offer_listings_for_sku
+  def test_getting_lowest_offer_listings_for_sku
     operation = {
       'Action' => 'GetLowestOfferListingsForSKU',
       'MarketplaceId' => '123',
@@ -93,7 +93,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_lowest_priced_offers_for_sku
+  def test_getting_lowest_priced_offers_for_sku
     operation = {
       'Action' => 'GetLowestPricedOffersForSKU',
       'MarketplaceId' => '123',
@@ -108,7 +108,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_lowest_priced_offers_for_asin
+  def test_getting_lowest_priced_offers_for_asin
     operation = {
       'Action' => 'GetLowestPricedOffersForASIN',
       'MarketplaceId' => '123',
@@ -123,7 +123,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_lowest_offer_listings_for_asin
+  def test_getting_lowest_offer_listings_for_asin
     operation = {
       'Action' => 'GetLowestOfferListingsForASIN',
       'MarketplaceId' => '123',
@@ -137,7 +137,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_my_fees_estimate
+  def test_getting_my_fees_estimate
     operation = {
       'Action' => 'GetMyFeesEstimate',
       'FeesEstimateRequestList.FeesEstimateRequest.1.MarketplaceId' => '123',
@@ -178,7 +178,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_my_price_for_sku
+  def test_getting_my_price_for_sku
     operation = {
       'Action' => 'GetMyPriceForSKU',
       'MarketplaceId' => '123',
@@ -192,7 +192,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_my_price_for_asin
+  def test_getting_my_price_for_asin
     operation = {
       'Action' => 'GetMyPriceForASIN',
       'MarketplaceId' => '123',
@@ -206,7 +206,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_product_categories_for_sku
+  def test_getting_product_categories_for_sku
     operation = {
       'Action' => 'GetProductCategoriesForSKU',
       'MarketplaceId' => '123',
@@ -220,7 +220,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_product_categories_for_asin
+  def test_getting_product_categories_for_asin
     operation = {
       'Action' => 'GetProductCategoriesForASIN',
       'MarketplaceId' => '123',
@@ -234,7 +234,7 @@ class TestMWSProductsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

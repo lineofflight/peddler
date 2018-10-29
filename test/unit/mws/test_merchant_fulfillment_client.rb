@@ -8,7 +8,7 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
     @client = MWS::MerchantFulfillment::Client.new
   end
 
-  def test_gets_eligible_shipping_services
+  def test_getting_eligible_shipping_services
     operation = {
       'Action' => 'GetEligibleShippingServices',
       'ShipmentRequestDetails.AmazonOrderId' => '123',
@@ -38,7 +38,7 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_creates_shipment
+  def test_creating_shipment
     operation = {
       'Action' => 'CreateShipment',
       'ShipmentRequestDetails.AmazonOrderId' => '123',
@@ -69,7 +69,7 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_shipment
+  def test_getting_shipment
     operation = {
       'Action' => 'GetShipment',
       'ShipmentId' => '123'
@@ -82,7 +82,7 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_cancels_shipment
+  def test_canceling_shipment
     operation = {
       'Action' => 'CancelShipment',
       'ShipmentId' => '123'
@@ -95,7 +95,7 @@ class TestMWSMerchantFulfillmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

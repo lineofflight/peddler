@@ -4,7 +4,7 @@ require 'helper'
 require 'peddler/errors/class_generator'
 
 class TestPeddlerErrorsClassGenerator < MiniTest::Test
-  def test_builds_error_class
+  def test_building_an_error_class
     Peddler::Errors::ClassGenerator.call('Foo')
     assert Peddler::Errors::Foo
   end

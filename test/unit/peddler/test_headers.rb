@@ -43,7 +43,7 @@ class TestPeddlerHeaders < MiniTest::Test
     assert mws_response_context
   end
 
-  def test_handles_no_quota
+  def test_handling_no_quota
     @headers = {}
     assert_nil mws_quota_max
     assert_nil mws_quota_remaining

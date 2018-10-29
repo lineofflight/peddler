@@ -28,15 +28,15 @@ class TestPeddlerErrorsBuilder < MiniTest::Test
       super
     end
 
-    def test_generates_custom_error
+    def test_custom_error
       assert_includes @error.class.name, @code
     end
 
-    def test_provides_message
+    def test_message
       assert_equal @message, @error.message
     end
 
-    def test_provides_cause
+    def test_cause
       assert_equal @cause, @error.cause
     end
   end
@@ -58,7 +58,7 @@ class TestPeddlerErrorsBuilder < MiniTest::Test
       super
     end
 
-    def test_returns_nothing
+    def test_that_it_returns_nothing
       assert_nil @error
     end
   end

@@ -8,7 +8,7 @@ class TestMWSFinancesClient < MiniTest::Test
     @client = MWS::Finances::Client.new
   end
 
-  def test_lists_financial_event_groups
+  def test_listing_financial_event_groups
     operation = {
       'Action' => 'ListFinancialEventGroups',
       'FinancialEventGroupStartedAfter' => '2015-01-01'
@@ -21,7 +21,7 @@ class TestMWSFinancesClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_financial_event_groups_by_next_token
+  def test_listing_financial_event_groups_by_next_token
     operation = {
       'Action' => 'ListFinancialEventGroupsByNextToken',
       'NextToken' => '1'
@@ -34,7 +34,7 @@ class TestMWSFinancesClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_financial_events
+  def test_listing_financial_events
     operation = {
       'Action' => 'ListFinancialEvents',
       'AmazonOrderId' => '123'
@@ -47,7 +47,7 @@ class TestMWSFinancesClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_financial_events_by_next_token
+  def test_listing_financial_events_by_next_token
     operation = {
       'Action' => 'ListFinancialEventsByNextToken',
       'NextToken' => '1'
@@ -60,7 +60,7 @@ class TestMWSFinancesClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

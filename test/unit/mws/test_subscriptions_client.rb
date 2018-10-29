@@ -8,7 +8,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     @client = MWS::Subscriptions::Client.new
   end
 
-  def test_registers_destination
+  def test_registering_destination
     operation = {
       'Action' => 'RegisterDestination',
       'MarketplaceId' => '321',
@@ -24,7 +24,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_deregisters_destination
+  def test_deregistering_destination
     operation = {
       'Action' => 'DeregisterDestination',
       'MarketplaceId' => '123',
@@ -40,7 +40,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_deregisters_destination_with_alternate_marketplace
+  def test_deregistering_destination_with_alternate_marketplace
     operation = {
       'Action' => 'DeregisterDestination',
       'MarketplaceId' => '321',
@@ -56,7 +56,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_registered_destinations
+  def test_listing_registered_destinations
     operation = {
       'Action' => 'ListRegisteredDestinations',
       'MarketplaceId' => '321'
@@ -69,7 +69,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_sends_test_notification_to_destination
+  def test_sending_test_notification_to_destination
     operation = {
       'Action' => 'SendTestNotificationToDestination',
       'MarketplaceId' => '321',
@@ -85,7 +85,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_creates_subscription
+  def test_creating_subscription
     operation = {
       'Action' => 'CreateSubscription',
       'MarketplaceId' => '321',
@@ -103,7 +103,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_subscription
+  def test_getting_subscription
     operation = {
       'Action' => 'GetSubscription',
       'MarketplaceId' => '321',
@@ -120,7 +120,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_deletes_subscription
+  def test_deleting_subscription
     operation = {
       'Action' => 'DeleteSubscription',
       'MarketplaceId' => '321',
@@ -137,7 +137,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_subscriptions
+  def test_listing_subscriptions
     operation = {
       'Action' => 'ListSubscriptions',
       'MarketplaceId' => '321'
@@ -150,7 +150,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_updates_subscription
+  def test_updating_subscription
     operation = {
       'Action' => 'UpdateSubscription',
       'MarketplaceId' => '321',
@@ -168,7 +168,7 @@ class TestMWSSubscriptionsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

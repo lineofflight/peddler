@@ -8,7 +8,7 @@ class TestMWSFulfillmentInventoryClient < MiniTest::Test
     @client = MWS::FulfillmentInventory::Client.new
   end
 
-  def test_lists_inventory_supply
+  def test_listing_inventory_supply
     operation = {
       'Action' => 'ListInventorySupply',
       'SellerSkus.member.1' => '1'
@@ -21,7 +21,7 @@ class TestMWSFulfillmentInventoryClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_inventory_supply_by_next_token
+  def test_listing_inventory_supply_by_next_token
     operation = {
       'Action' => 'ListInventorySupplyByNextToken',
       'NextToken' => '1'
@@ -34,7 +34,7 @@ class TestMWSFulfillmentInventoryClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

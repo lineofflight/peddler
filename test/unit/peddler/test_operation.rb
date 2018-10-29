@@ -8,7 +8,7 @@ class TestPeddlerOperation < MiniTest::Test
     @operation = Peddler::Operation.new('Foo')
   end
 
-  def test_converts_key_to_structured_list
+  def test_that_it_converts_key_to_structured_list
     @operation.store('FooStatus', [1, 2])
     @operation.structure!('FooStatus', 'Foo')
     refute @operation.key?('FooStatus')
@@ -16,7 +16,7 @@ class TestPeddlerOperation < MiniTest::Test
     assert_equal 2, @operation['FooStatus.Foo.2']
   end
 
-  def test_converts_nested_keys_to_structured_list
+  def test_that_it_converts_nested_keys_to_structured_list
     @operation.store('Foo.1.Status', [{ 'Baz' => 1 }])
     @operation.store('Foo.2.Status', [{ 'Baz' => 2 }])
     @operation.structure!('Status', 'Bar')
@@ -26,36 +26,36 @@ class TestPeddlerOperation < MiniTest::Test
     assert_equal 2, @operation['Foo.2.Status.Bar.1.Baz']
   end
 
-  def test_store_camelizes_symbol_key
+  def test_that_store_camelizes_symbol_key
     @operation.store(:foo_bar, 'baz')
     assert @operation.key?('FooBar')
     refute @operation.key?(:foo_bar)
   end
 
-  def test_store_wont_camelize_string_key
+  def test_that_store_wont_camelize_string_key
     @operation.store('foo_bar', 'baz')
     assert @operation.key?('foo_bar')
     refute @operation.key?('FooBar')
   end
 
-  def test_store_wont_camelize_symbol_key_with_capital_letter
+  def test_that_store_wont_camelize_symbol_key_with_capital_letter
     @operation.store('MarketplaceId'.to_sym, '1')
     assert @operation.key?('MarketplaceId')
   end
 
-  def test_store_upcases_sku
+  def test_that_store_upcases_sku
     @operation.store(:seller_sku, 'foo')
     assert @operation.key?('SellerSKU')
     refute @operation.key?(:seller_sku)
   end
 
-  def test_store_upcases_cod
+  def test_that_store_upcases_cod
     @operation.store(:include_cod_fulfillment_preview, 'foo')
     assert @operation.key?('IncludeCODFulfillmentPreview')
     refute @operation.key?(:include_cod_fulfillment_preview)
   end
 
-  def test_store_timestamps_time_values
+  def test_that_store_timestamps_time_values
     ts = Minitest::Mock.new
     ts.expect(:iso8601, 'foo')
     @operation.store('time', ts)
@@ -63,25 +63,25 @@ class TestPeddlerOperation < MiniTest::Test
     assert_equal 'foo', @operation.fetch('time')
   end
 
-  def test_stringifies_hash_values
+  def test_stringifying_hash_values
     @operation.store('Foo', bar: 1)
     assert_equal 1, @operation.fetch('Foo.Bar')
     refute @operation.key?('Foo')
   end
 
-  def test_stringifies_nested_hash_values
+  def test_stringifying_nested_hash_values
     @operation.store('Foo', bar: { baz: 1 })
     assert_equal 1, @operation.fetch('Foo.Bar.Baz')
     refute @operation.key?('Foo')
   end
 
-  def test_stringifies_struct_values
+  def test_stringifying_struct_values
     @operation.store('Foo', Struct.new(:bar, :baz).new(1, 2))
     assert_equal 1, @operation.fetch('Foo.Bar')
     assert_equal 2, @operation.fetch('Foo.Baz')
   end
 
-  def test_update_returns_delegator
+  def test_that_update_returns_delegator
     assert_kind_of Peddler::Operation, @operation.add(foo: 'bar')
   end
 end

@@ -8,7 +8,7 @@ class TestMWSFeedsClient < MiniTest::Test
     @client = MWS::Feeds::Client.new(marketplace: 'GB')
   end
 
-  def test_submits_feed
+  def test_submitting_feed
     operation = {
       'Action' => 'SubmitFeed',
       'FeedType' => 'type',
@@ -22,7 +22,7 @@ class TestMWSFeedsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_feed_submission_list
+  def test_getting_feed_submission_list
     operation = {
       'Action' => 'GetFeedSubmissionList',
       'FeedSubmissionIdList.Id.1' => '1',
@@ -41,7 +41,7 @@ class TestMWSFeedsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_feed_submission_list_by_next_token
+  def test_getting_feed_submission_list_by_next_token
     operation = {
       'Action' => 'GetFeedSubmissionListByNextToken',
       'NextToken' => '1'
@@ -54,7 +54,7 @@ class TestMWSFeedsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_feed_submission_count
+  def test_getting_feed_submission_count
     operation = {
       'Action' => 'GetFeedSubmissionCount',
       'FeedTypeList.Type.1' => '1',
@@ -71,7 +71,7 @@ class TestMWSFeedsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_cancels_feed_submissions
+  def test_canceling_feed_submissions
     operation = {
       'Action' => 'CancelFeedSubmissions',
       'FeedTypeList.Type.1' => '1',
@@ -88,7 +88,7 @@ class TestMWSFeedsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_feed_submission_result
+  def test_getting_feed_submission_result
     operation = {
       'Action' => 'GetFeedSubmissionResult',
       'FeedSubmissionId' => '1'

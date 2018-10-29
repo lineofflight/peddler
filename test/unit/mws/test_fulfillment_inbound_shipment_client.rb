@@ -8,7 +8,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     @client = MWS::FulfillmentInboundShipment::Client.new
   end
 
-  def test_gets_inbound_guidance_for_sku
+  def test_getting_inbound_guidance_for_sku
     operation = {
       'Action' => 'GetInboundGuidanceForSKU',
       'MarketplaceId' => 'ATVPDKIKX0DER',
@@ -22,7 +22,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_inbound_guidance_for_asin
+  def test_getting_inbound_guidance_for_asin
     operation = {
       'Action' => 'GetInboundGuidanceForASIN',
       'MarketplaceId' => 'ATVPDKIKX0DER',
@@ -36,7 +36,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_creates_inbound_shipment_plan
+  def test_creating_inbound_shipment_plan
     operation = {
       'Action' => 'CreateInboundShipmentPlan',
       'LabelPrepPreference' => 'SELLER_LABEL',
@@ -87,7 +87,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_creates_inbound_shipment
+  def test_creating_inbound_shipment
     operation = {
       'Action' => 'CreateInboundShipment',
       'ShipmentId' => '1',
@@ -102,7 +102,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_updates_inbound_shipment
+  def test_updating_inbound_shipment
     operation = {
       'Action' => 'UpdateInboundShipment',
       'ShipmentId' => '1',
@@ -117,7 +117,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_preorder_info
+  def test_getting_preorder_info
     operation = {
       'Action' => 'GetPreorderInfo',
       'ShipmentId' => '1'
@@ -130,7 +130,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_confirms_preorder
+  def test_confirming_preorder
     operation = {
       'Action' => 'ConfirmPreorder',
       'ShipmentId' => '1',
@@ -144,7 +144,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_prep_instructions_for_sku
+  def test_getting_prep_instructions_for_sku
     operation = {
       'Action' => 'GetPrepInstructionsForSKU',
       'ShipToCountryCode' => 'US',
@@ -158,7 +158,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_prep_instructions_for_asin
+  def test_getting_prep_instructions_for_asin
     operation = {
       'Action' => 'GetPrepInstructionsForASIN',
       'ShipToCountryCode' => 'US',
@@ -173,7 +173,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_puts_transport_content_with_package_list
+  def test_putting_transport_content_with_package_list
     transport_details = {
       parcel_data: {
         package_list: [
@@ -199,7 +199,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_puts_transport_content_with_pallet_list
+  def test_putting_transport_content_with_pallet_list
     transport_details = {
       parcel_data: {
         pallet_list: [
@@ -225,7 +225,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_estimates_transport_request
+  def test_estimating_transport_request
     operation = {
       'Action' => 'EstimateTransportRequest',
       'ShipmentId' => '1'
@@ -238,7 +238,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_transport_request
+  def test_getting_transport_request
     operation = {
       'Action' => 'GetTransportContent',
       'ShipmentId' => '1'
@@ -251,7 +251,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_confirms_transport_request
+  def test_confirming_transport_request
     operation = {
       'Action' => 'ConfirmTransportRequest',
       'ShipmentId' => '1'
@@ -264,7 +264,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_voids_transport_request
+  def test_voiding_transport_request
     operation = {
       'Action' => 'VoidTransportRequest',
       'ShipmentId' => '1'
@@ -277,7 +277,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_package_labels
+  def test_getting_package_labels
     operation = {
       'Action' => 'GetPackageLabels',
       'ShipmentId' => '1',
@@ -291,7 +291,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_unique_package_labels
+  def test_getting_unique_package_labels
     operation = {
       'Action' => 'GetUniquePackageLabels',
       'ShipmentId' => 'FBAQFGQZ',
@@ -313,7 +313,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_pallet_labels
+  def test_getting_pallet_labels
     operation = {
       'Action' => 'GetPalletLabels',
       'ShipmentId' => 'FBAQFGQZ',
@@ -328,7 +328,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_bill_of_lading
+  def test_getting_bill_of_lading
     operation = {
       'Action' => 'GetBillOfLading',
       'ShipmentId' => '1'
@@ -341,7 +341,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_inbound_shipments
+  def test_listing_inbound_shipments
     operation = {
       'Action' => 'ListInboundShipments',
       'ShipmentStatusList.member.1' => 'Foo',
@@ -358,7 +358,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_inbound_shipments_by_next_token
+  def test_listing_inbound_shipments_by_next_token
     operation = {
       'Action' => 'ListInboundShipmentsByNextToken',
       'NextToken' => '1'
@@ -371,7 +371,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_inbound_shipment_items
+  def test_listing_inbound_shipment_items
     operation = {
       'Action' => 'ListInboundShipmentItems'
     }
@@ -383,7 +383,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_lists_inbound_shipment_items_by_next_token
+  def test_listing_inbound_shipment_items_by_next_token
     operation = {
       'Action' => 'ListInboundShipmentItemsByNextToken',
       'NextToken' => '1'
@@ -396,7 +396,7 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_service_status
+  def test_getting_service_status
     operation = {
       'Action' => 'GetServiceStatus'
     }

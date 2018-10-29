@@ -6,7 +6,7 @@ require 'mws/products'
 class TestMWSHeaders < IntegrationTest
   use 'Products'
 
-  def test_parses_headers
+  def test_parsing_headers
     clients.each do |client|
       res = client.get_lowest_priced_offers_for_asin(client.marketplace.id,
                                                      '1780935374', 'New')

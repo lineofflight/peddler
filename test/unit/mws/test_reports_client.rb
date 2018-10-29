@@ -8,7 +8,7 @@ class TestMWSReportsClient < MiniTest::Test
     @client = MWS::Reports::Client.new
   end
 
-  def test_requests_report
+  def test_requesting_report
     operation = {
       'Action' => 'RequestReport',
       'ReportType' => 'foo',
@@ -22,7 +22,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_request_list
+  def test_getting_report_request_list
     operation = {
       'Action' => 'GetReportRequestList',
       'ReportRequestIdList.Id.1' => '1',
@@ -41,7 +41,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_request_list_by_next_token
+  def test_getting_report_request_list_by_next_token
     operation = {
       'Action' => 'GetReportRequestListByNextToken',
       'NextToken' => '1'
@@ -54,7 +54,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_request_count
+  def test_getting_report_request_count
     operation = {
       'Action' => 'GetReportRequestCount',
       'ReportTypeList.Type.1' => '1',
@@ -71,7 +71,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_cancels_report_requests
+  def test_canceling_report_requests
     operation = {
       'Action' => 'CancelReportRequests',
       'ReportTypeList.Type.1' => '1',
@@ -88,7 +88,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_list
+  def test_getting_report_list
     operation = {
       'Action' => 'GetReportList',
       'ReportTypeList.Type.1' => '1',
@@ -105,7 +105,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_list_by_next_token
+  def test_getting_report_list_by_next_token
     operation = {
       'Action' => 'GetReportListByNextToken',
       'NextToken' => '1'
@@ -118,7 +118,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_count
+  def test_getting_report_count
     operation = {
       'Action' => 'GetReportCount',
       'ReportTypeList.Type.1' => '1'
@@ -133,7 +133,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report
+  def test_getting_report
     operation = {
       'Action' => 'GetReport',
       'ReportId' => '1'
@@ -146,7 +146,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_manages_report_schedule
+  def test_managing_report_schedule
     operation = {
       'Action' => 'ManageReportSchedule',
       'ReportType' => '1',
@@ -160,7 +160,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_schedule_list
+  def test_getting_report_schedule_list
     operation = {
       'Action' => 'GetReportScheduleList',
       'ReportTypeList.Type.1' => '1',
@@ -174,13 +174,13 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_gets_report_schedule_list_by_next_token
+  def test_getting_report_schedule_list_by_next_token
     assert_raises NotImplementedError do
       @client.get_report_schedule_list_by_next_token
     end
   end
 
-  def test_gets_report_schedule_count
+  def test_getting_report_schedule_count
     operation = {
       'Action' => 'GetReportScheduleCount',
       'ReportTypeList.Type.1' => '1'
@@ -193,7 +193,7 @@ class TestMWSReportsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
-  def test_updates_report_acknowledgements
+  def test_updating_report_acknowledgements
     operation = {
       'Action' => 'UpdateReportAcknowledgements',
       'Acknowledged' => true,
