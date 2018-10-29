@@ -13,15 +13,16 @@ class IntegrationTest < MiniTest::Test
     end
 
     def clients
-      @clients ||= build_clients
+      klass = MWS.const_get("#{current_endpoint}::Client")
+      ::Credentials.to_a.shuffle.each_with_object([]) do |credentials, memo|
+        client = klass.new(credentials)
+        country_code = client.marketplace.country_code
+        memo.define_singleton_method(country_code.downcase) { client }
+        memo << client
+      end
     end
 
     private
-
-    def build_clients
-      klass = MWS.const_get("#{current_endpoint}::Client")
-      ::Credentials.map { |credentials| klass.new(credentials) }.shuffle
-    end
 
     def current_endpoint
       @current_endpoint ||= name.sub('Test', '')
@@ -38,7 +39,8 @@ end
 VCR.configure do |c|
   c.before_record do |interaction|
     %w[
-      BuyerName BuyerEmail Name AddressLine1 PostalCode Phone Amount
+      BuyerName BuyerEmail Name AddressLine1 City StateOrProvinceCode PostalCode
+      Phone Amount AmazonOrderId SellerOrderId
     ].each do |key|
       interaction.response.body.gsub!(/<#{key}>[^<]+</, "<#{key}>FILTERED<")
     end
