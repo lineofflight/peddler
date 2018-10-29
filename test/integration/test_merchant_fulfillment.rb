@@ -15,7 +15,8 @@ class TestMerchantFulfillment < IntegrationTest
     res = client.create_shipment(shipment_request_details, 'UPS_PTP_GND')
     label = res.dig('Shipment', 'Label')
     data_compressed = Base64.decode64(label['FileContents']['Contents'])
-    data = Zlib.gunzip(data_compressed)
+    # data = Zlib.gunzip(data_compressed)
+    data = Zlib::GzipReader.new(StringIO.new(data_compressed)).read
     assert_equal label['FileContents']['Checksum'], Digest::MD5.base64digest(data)
     res = client.cancel_shipment(res.dig('Shipment', 'ShipmentId'))
     assert_equal 'RefundPending', res.dig('Shipment', 'Status')
