@@ -45,16 +45,16 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
       'ShipFromAddress.CountryCode' => 'US',
       'InboundShipmentPlanRequestItems.member.1.SellerSKU' => 'SKU00001',
       'InboundShipmentPlanRequestItems.member.1.Quantity' => '1',
-      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepInstruction' => 'Taping',
-      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.1.PrepOwner' => 'AMAZON',
-      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepInstruction' => 'BubbleWrapping',
-      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.member.2.PrepOwner' => 'AMAZON',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.PrepDetails.1.PrepInstruction' => 'Taping',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.PrepDetails.1.PrepOwner' => 'AMAZON',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.PrepDetails.2.PrepInstruction' => 'BubbleWrapping',
+      'InboundShipmentPlanRequestItems.member.1.PrepDetailsList.PrepDetails.2.PrepOwner' => 'AMAZON',
       'InboundShipmentPlanRequestItems.member.2.SellerSKU' => 'SKU00002',
       'InboundShipmentPlanRequestItems.member.2.Quantity' => '1',
-      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.1.PrepInstruction' => 'Taping',
-      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.1.PrepOwner' => 'AMAZON',
-      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.2.PrepInstruction' => 'BubbleWrapping',
-      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.member.2.PrepOwner' => 'AMAZON'
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.PrepDetails.1.PrepInstruction' => 'Taping',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.PrepDetails.1.PrepOwner' => 'AMAZON',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.PrepDetails.2.PrepInstruction' => 'BubbleWrapping',
+      'InboundShipmentPlanRequestItems.member.2.PrepDetailsList.PrepDetails.2.PrepOwner' => 'AMAZON'
     }
 
     @client.stub(:run, nil) do
