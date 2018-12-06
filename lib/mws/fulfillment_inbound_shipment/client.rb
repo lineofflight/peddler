@@ -60,7 +60,7 @@ module MWS
                'InboundShipmentPlanRequestItems' =>
                  inbound_shipment_plan_request_items)
           .structure!('InboundShipmentPlanRequestItems', 'member')
-          .structure!('PrepDetailsList', 'PrepDetails')
+          .structure!('PrepDetailsList', 'member')
 
         run
       end
