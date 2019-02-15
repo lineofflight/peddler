@@ -152,6 +152,14 @@ module MWS
           .structure!('ASINList', 'Id')
 
         run
+      # Work around a bug upstream
+      #
+      # @see https://github.com/hakanensari/peddler/issues/122
+      rescue Peddler::Errors::Error => error
+        raise unless error.message.include?("Value null at 'asinList'")
+
+        get_prep_instructions_for_asin_with_bad_params(ship_to_country_code,
+                                                       *asin_list)
       end
 
       # Sends transportation information to Amazon about an inbound shipment
@@ -364,6 +372,16 @@ module MWS
                'InboundShipmentItems' => inbound_shipment_items)
           .structure!('InboundShipmentItems', 'member')
           .structure!('PrepDetailsList', 'member')
+      end
+
+      def get_prep_instructions_for_asin_with_bad_params(_ship_to_country_code,
+                                                         *asin_list)
+        operation
+          .add('AsinList' => asin_list)
+          .structure!('AsinList', 'Id')
+          .delete_if { |key, _val| key.include?('ASINList') }
+
+        run
       end
     end
   end

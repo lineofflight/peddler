@@ -173,6 +173,22 @@ class TestMWSFulfillmentInboundShipmentClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_handling_bug_when_getting_prep_instructions_for_asin
+    first_run = true
+    callable = lambda {
+      if first_run
+        first_run = false
+        raise Peddler::Errors::Error, "Value null at 'asinList'"
+      end
+    }
+    @client.stub(:run, callable) do
+      @client.get_prep_instructions_for_asin('US', 'B00005N5PF')
+    end
+
+    refute @client.operation.key?('ASINList.Id.1')
+    assert @client.operation.key?('AsinList.Id.1')
+  end
+
   def test_putting_transport_content_with_package_list
     transport_details = {
       parcel_data: {

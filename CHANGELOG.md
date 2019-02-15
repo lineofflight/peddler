@@ -6,6 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add Amazon Turkey to marketplaces.
 
+### Fixed
+- Work around upstream bug in FulfillmentInboundShipment#get_prep_instructions_for_asin.
+
 ## [2.0.4] - 2018-07-02
 ### Fixed
 - Properly massage inbound shipment items in FulfillmentInboundShipment#create_inbound_shipment and FulfillmentInboundShipment#update_inbound_shipment_plan.
