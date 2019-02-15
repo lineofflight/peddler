@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.1.0] - 2019-02-15
 ### Added
 - Add Amazon Turkey to marketplaces.
 
@@ -180,7 +182,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/hakanensari/peddler/compare/v2.0.4...v2.1.0
 [2.0.4]: https://github.com/hakanensari/peddler/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/hakanensari/peddler/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/hakanensari/peddler/compare/v2.0.1...v2.0.2
