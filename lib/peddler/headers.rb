@@ -1,8 +1,55 @@
 # frozen_string_literal: true
 
 module Peddler
-  # Parses MWS-specific headers
+  # Parses useful metadata returned in response headers
   module Headers
+    # The size of the response body in bytes
+    # @return [String, nil]
+    def content_length
+      return unless headers['Content-Length']
+
+      headers['Content-Length'].to_i
+    end
+
+    # The MD5 digest of the response body
+    # @return [String, nil]
+    def content_md5
+      headers['Content-MD5']
+    end
+
+    # The MIME type of the response
+    # @return [String, nil]
+    def content_media_type
+      return unless headers['Content-Type']
+
+      headers['Content-Type'].split(';').first
+    end
+
+    # The general category into which the MIME type falls
+    # @return [String, nil]
+    def content_type
+      return unless content_media_type
+
+      content_media_type.split('/').first
+    end
+
+    # The exact kind of data of the specified type the MIME type represents
+    # @return [String, nil]
+    def content_subtype
+      return unless content_media_type
+
+      content_media_type.split('/').last
+    end
+
+    # The character encoding of the response
+    # @return [Encoding, nil]
+    def content_charset
+      match_data = headers['Content-Type']&.match(/charset=(.*);?/)
+      return unless match_data
+
+      Encoding.find(match_data[1])
+    end
+
     # The max hourly request quota for the requested operation
     # @return [Integer, nil]
     def mws_quota_max
