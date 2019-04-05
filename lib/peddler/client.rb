@@ -116,8 +116,8 @@ module Peddler
       self.body = nil if res.status == 200
 
       parser.new(res, encoding)
-    rescue ::Excon::Error::HTTPStatus => error
-      handle_http_status_error(error)
+    rescue ::Excon::Error::HTTPStatus => e
+      handle_http_status_error(e)
     end
 
     private

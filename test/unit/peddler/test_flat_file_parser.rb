@@ -104,9 +104,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     headers = {
       'Content-MD5' => Digest::MD5.base64digest(body)
     }
-    if charset
-      headers['Content-Type'] = "text/plain;charset=#{charset}"
-    end
+    headers['Content-Type'] = "text/plain;charset=#{charset}" if charset
 
     OpenStruct.new(body: body, headers: headers)
   end

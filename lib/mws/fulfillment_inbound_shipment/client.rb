@@ -155,8 +155,8 @@ module MWS
       # Work around a bug upstream
       #
       # @see https://github.com/hakanensari/peddler/issues/122
-      rescue Peddler::Errors::Error => error
-        raise unless error.message.include?("Value null at 'asinList'")
+      rescue Peddler::Errors::Error => e
+        raise unless e.message.include?("Value null at 'asinList'")
 
         get_prep_instructions_for_asin_with_bad_params(ship_to_country_code,
                                                        *asin_list)
