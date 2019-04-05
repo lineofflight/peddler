@@ -12,6 +12,7 @@ module MWS
       # Creates a report request
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_RequestReport.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [String] report_type
       # @param [Hash] opts
       # @option opts [String, #iso8601] :start_date
@@ -31,6 +32,7 @@ module MWS
       # Lists report requests
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestList.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_request_id_list
       # @option opts [Array<String>, String] :report_type_list
@@ -64,6 +66,7 @@ module MWS
       # Counts requested reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportRequestCount.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_type_list
       # @option opts [Array<String>, String] :report_processing_status_list
@@ -82,6 +85,7 @@ module MWS
       # Cancels one or more report requests
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_CancelReportRequests.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_type_list
       # @option opts [Array<String>, String] :report_processing_status_list
@@ -100,6 +104,7 @@ module MWS
       # Lists reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportList.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Hash] opts
       # @option opts [Integer] :max_count
       # @option opts [Array<String>, String] :report_type_list
@@ -132,6 +137,7 @@ module MWS
       # Counts reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportCount.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Hash] opts
       # @option opts [Array<String>, String] :report_type_list
       # @option opts [Boolean] :acknowledged
@@ -162,6 +168,7 @@ module MWS
       # Creates, updates, or deletes a report request schedule
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ManageReportSchedule.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [String] report_type
       # @param [String] schedule
       # @param [Hash] opts
@@ -178,6 +185,7 @@ module MWS
       # Lists scheduled reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleList.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Array<String>] report_type_list
       # @return [Peddler::XMLParser]
       def get_report_schedule_list(*report_type_list)
@@ -199,6 +207,7 @@ module MWS
       # Counts scheduled reports
       #
       # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_GetReportScheduleCount.html
+      # @see https://docs.developer.amazonservices.com/en_US/reports/Reports_ReportType.html
       # @param [Array<String>] report_type_list
       # @return [Peddler::XMLParser]
       def get_report_schedule_count(*report_type_list)
