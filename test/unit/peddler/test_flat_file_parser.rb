@@ -54,6 +54,14 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     refute_empty parser.content
   end
 
+  def test_encoding_if_passed_in_header
+    body = build_body("Foo\nfür\n", encoding: Encoding::UTF_8)
+    parser = Peddler::FlatFileParser.new(build_mock_response(body,
+                                                             charset: 'UTF-8'),
+                                         Encoding::CP1252)
+    assert_equal 'für', parser.parse[0]['Foo']
+  end
+
   def test_handling_japanese_flat_files
     body = build_body("Foo\nこんにちは\n", encoding: Encoding::SHIFT_JIS)
     parser = Peddler::FlatFileParser.new(build_mock_response(body), Encoding::WINDOWS_31J)
@@ -91,11 +99,14 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     str.dup.encode(encoding)
   end
 
-  def build_mock_response(body, ascii: true)
+  def build_mock_response(body, ascii: true, charset: nil)
     body.force_encoding(Encoding::ASCII_8BIT) if ascii
     headers = {
       'Content-MD5' => Digest::MD5.base64digest(body)
     }
+    if charset
+      headers['Content-Type'] = "text/plain;charset=#{charset}"
+    end
 
     OpenStruct.new(body: body, headers: headers)
   end
