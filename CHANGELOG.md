@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.1.1] - 2019-04-05
 ### Fixed
 - Parse flat files correctly if charset passed in response header
 
@@ -184,7 +186,8 @@ to the Products client.
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/hakanensari/peddler/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/hakanensari/peddler/compare/v2.0.4...v2.1.0
 [2.0.4]: https://github.com/hakanensari/peddler/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/hakanensari/peddler/compare/v2.0.2...v2.0.3
