@@ -28,10 +28,8 @@ module Peddler
       self
     end
 
-    def store(key, val, parent: '')
-      key = camelize(key) if key.is_a?(Symbol)
-      key = "#{parent}.#{key}" unless parent.empty?
-
+    def store(key, val, parent: nil)
+      key = [parent, camelize(key)].compact.join('.')
       val = val.iso8601 if val.respond_to?(:iso8601)
       val = val.to_h if val.is_a?(Struct)
 
@@ -51,10 +49,11 @@ module Peddler
 
     private
 
-    def camelize(sym)
-      return sym.to_s if sym =~ CAPITAL_LETTERS
+    def camelize(key)
+      return key unless key.is_a?(Symbol)
+      return key.to_s if key =~ CAPITAL_LETTERS
 
-      sym
+      key
         .to_s
         .split('_')
         .map { |token| capitalize(token) }
