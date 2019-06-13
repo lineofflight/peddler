@@ -32,7 +32,7 @@ module MWS
           .add(opts)
           .add('Address' => address, 'Items' => items)
           .structure!('Items', 'member')
-          .structure!('ShippingSpeedCategories')
+          .structure!('ShippingSpeedCategories', 'member')
 
         run
       end
