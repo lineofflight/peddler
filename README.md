@@ -6,7 +6,7 @@
 
 **Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
-To use Amazon MWS, you must have an eligible seller account and register as an [application developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper).
+To use Amazon MWS, you must have an eligible seller account and [register as a developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper). You can then access your own selling account using its merchant ID—note that Amazon also refers to this as seller ID or merchant token in different places.
 
 Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually. Some MWS API sections may require additional authorisation from Amazon.
 

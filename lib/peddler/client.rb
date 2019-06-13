@@ -52,6 +52,7 @@ module Peddler
     attr_accessor :auth_token
 
     # The seller's Merchant ID
+    # @note Amazon also refers to this as Seller ID or Merchant Token
     # @return [String]
     attr_accessor :merchant_id
 
