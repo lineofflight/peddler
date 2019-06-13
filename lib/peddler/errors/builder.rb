@@ -36,7 +36,7 @@ module Peddler
       private
 
       def bad_class_name?
-        error_name =~ DIGIT_AS_FIRST_CHAR
+        error_name.match?(DIGIT_AS_FIRST_CHAR)
       end
 
       def error_class

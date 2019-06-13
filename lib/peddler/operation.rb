@@ -51,7 +51,7 @@ module Peddler
 
     def camelize(key)
       return key unless key.is_a?(Symbol)
-      return key.to_s if key =~ CAPITAL_LETTERS
+      return key.to_s if key.match?(CAPITAL_LETTERS)
 
       key
         .to_s

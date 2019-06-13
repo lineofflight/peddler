@@ -44,7 +44,9 @@ module Peddler
 
     def extract_content_and_summary
       @content = body.encode('UTF-8', invalid: :replace, undef: :replace)
-      @summary, @content = @content.split("\n\n", 2) if @content =~ /\t\t.*\n\n/
+      return unless @content.match?(/\t\t.*\n\n/)
+
+      @summary, @content = @content.split("\n\n", 2)
     end
 
     def summarize
