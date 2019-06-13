@@ -13,7 +13,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
       'Action' => 'GetFulfillmentPreview',
       'Address.Foo' => '1',
       'Items.member.1.Bar' => '2',
-      'ShippingSpeedCategories.1' => '3',
+      'ShippingSpeedCategories.member.1' => '3',
       'IncludeCODFulfillmentPreview' => true
     }
 
