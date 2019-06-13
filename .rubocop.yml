@@ -1,6 +1,8 @@
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.4
+  Exclude:
+    - 'gemfiles/**/*'
 Metrics/AbcSize:
   Exclude:
     - test/**/*
