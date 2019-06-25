@@ -4,11 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Fix query format in FulfillmentOutboundShipment#GetFulfillmentPreview
+- Fix query format in FulfillmentOutboundShipment#GetFulfillmentPreview.
 
 ## [2.1.1] - 2019-04-05
 ### Fixed
-- Parse flat files correctly if charset passed in response header
+- Parse flat files correctly if charset passed in response header.
 
 ## [2.1.0] - 2019-02-15
 ### Added
