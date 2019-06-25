@@ -55,6 +55,7 @@ module Peddler
       ['A1AM78C64UM0Y8', 'MX', 'mws.amazonservices.com'],
       ['ATVPDKIKX0DER', 'US', 'mws.amazonservices.com'],
       ['A2Q3Y263D00KWC', 'BR', 'mws.amazonservices.com'],
+      ['A2VIGQ35RCS4UG', 'AE', 'mws.amazonservices.ae'],
       ['A1PA6795UKMFR9', 'DE', 'mws-eu.amazonservices.com'],
       ['A1RKKUPIHCS9HS', 'ES', 'mws-eu.amazonservices.com'],
       ['A13V1IB3VIYZZH', 'FR', 'mws-eu.amazonservices.com'],
