@@ -15,6 +15,7 @@ module Peddler
       InvalidAccessKeyId
       InvalidAddress
       InvalidParameterValue
+      InvalidRequestException
       QuotaExceeded
       RequestThrottled
       SignatureDoesNotMatch
