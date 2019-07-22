@@ -13,6 +13,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Parse flat files correctly if charset passed in response header.
 
+### Removed
+- Do not support Ruby 2.3.
+
 ## [2.1.0] - 2019-02-15
 ### Added
 - Add Amazon Turkey to marketplaces.
