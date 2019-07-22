@@ -8,6 +8,10 @@ module Peddler
     # These error codes are common to all Amazon MWS API sections.
     #
     # @see https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Errors.html
+    #
+    # There are quite a few other error types they do not explicitly document
+    # above. I decided not to define any for the sake of consistency and future
+    # maintenance.
     CODES = %w[
       AccessDenied
       InputStreamDisconnected
