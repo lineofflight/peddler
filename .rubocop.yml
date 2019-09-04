@@ -1,28 +1,6 @@
+inherit_from: ".rubocop_todo.yml"
+
 AllCops:
+  Exclude:
+    - "gemfiles/**/*"
   TargetRubyVersion: 2.4
-  Exclude:
-    - 'gemfiles/**/*'
-Metrics/AbcSize:
-  Exclude:
-    - test/**/*
-Metrics/BlockLength:
-  ExcludedMethods:
-    - Struct.new
-Metrics/ClassLength:
-  Exclude:
-    - lib/mws/**/client.rb
-    - test/**/*
-Metrics/LineLength:
-  Exclude:
-    - test/**/*
-  IgnoredPatterns: ['\A\s*#']
-Metrics/MethodLength:
-  Exclude:
-    - test/**/*
-    - lib/mws/**/client.rb
-Metrics/ParameterLists:
-  Exclude:
-    - lib/mws/**/client.rb
-Naming/AccessorMethodName:
-  Exclude:
-    - lib/mws/**/client.rb

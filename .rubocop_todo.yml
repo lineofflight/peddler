@@ -1,0 +1,24 @@
+Metrics/AbcSize:
+  Exclude:
+    - "test/**/*"
+Metrics/BlockLength:
+  ExcludedMethods:
+    - "Struct.new"
+Metrics/ClassLength:
+  Exclude:
+    - "lib/mws/**/client.rb"
+    - "test/**/*"
+Metrics/LineLength:
+  Exclude:
+    - "test/**/*"
+  IgnoredPatterns: ['\A\s*#']
+Metrics/MethodLength:
+  Exclude:
+    - "lib/mws/**/client.rb"
+    - "test/**/*"
+Metrics/ParameterLists:
+  Exclude:
+    - "lib/mws/**/client.rb"
+Naming/AccessorMethodName:
+  Exclude:
+    - "lib/mws/**/client.rb"
