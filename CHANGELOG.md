@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Fix query format in FulfillmentOutboundShipment#GetFulfillmentPreview.
+- Handle missing error response in HTTP status error
 
 ## [2.1.1] - 2019-04-05
 ### Fixed

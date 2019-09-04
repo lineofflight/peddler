@@ -62,4 +62,17 @@ class TestPeddlerErrorsBuilder < MiniTest::Test
       assert_nil @error
     end
   end
+
+  class CausedByErrorWithNoErrorResponse < TestPeddlerErrorsBuilder
+    def setup
+      @cause = Excon::Error::HTTPStatus.new(nil,
+                                            nil,
+                                            OpenStruct.new(body: nil))
+      super
+    end
+
+    def test_that_it_returns_nothing
+      assert_nil @error
+    end
+  end
 end
