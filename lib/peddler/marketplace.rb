@@ -43,8 +43,6 @@ module Peddler
       case country_code
       when 'JP'
         'Windows-31J'
-      when 'CN'
-        'UTF-16'
       else
         'CP1252'
       end
@@ -64,8 +62,7 @@ module Peddler
       ['A33AVAJ2PDY3EV', 'TR', 'mws-eu.amazonservices.com'],
       ['A21TJRUUN4KGV', 'IN', 'mws.amazonservices.in'],
       ['A39IBJ37TRP1C6', 'AU', 'mws.amazonservices.com.au'],
-      ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp'],
-      ['AAHKV2X7AFYLW', 'CN', 'mws.amazonservices.com.cn']
+      ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp']
     ].map do |values|
       new(*values)
     end

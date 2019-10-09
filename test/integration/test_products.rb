@@ -83,7 +83,6 @@ class TestProducts < IntegrationTest
 
   CURRENCY_CODES = {
     'A2EUQ1WTGCTBG2' => 'CAD',
-    'AAHKV2X7AFYLW' => 'CNY',
     'A1F83G8C2ARO7P' => 'GBP',
     'A21TJRUUN4KGV' => 'INR',
     'A1VC38T7YXB528' => 'JPY',

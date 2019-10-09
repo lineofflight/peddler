@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Removed
+- Remove China. It is no longer supported starting 1st October 2019.
 
 ## [2.2.0] - 2019-09-04
 ### Added

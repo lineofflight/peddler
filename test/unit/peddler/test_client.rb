@@ -64,14 +64,6 @@ class TestPeddlerClient < MiniTest::Test
       assert_equal 'text/tab-separated-values; charset=CP1252', content_type
     end
 
-    def test_setting_content_type_header_for_chinese_flat_file
-      @client.marketplace = 'CN'
-      @client.body = 'foo'
-      content_type = @client.headers.fetch('Content-Type')
-
-      assert_equal 'text/tab-separated-values; charset=UTF-16', content_type
-    end
-
     def test_setting_content_type_header_for_japanese_flat_file
       @client.marketplace = 'JP'
       @client.body = 'foo'
@@ -90,12 +82,6 @@ class TestPeddlerClient < MiniTest::Test
     def test_encoding_body_for_latin_flat_file
       @client.body = 'foo'
       assert_equal 'Windows-1252', @client.body.encoding.to_s
-    end
-
-    def test_encoding_body_for_chinese_flat_file
-      @client.marketplace = 'CN'
-      @client.body = 'foo'
-      assert_equal 'UTF-16', @client.body.encoding.to_s
     end
 
     def test_encoding_body_for_japanese_flat_file
