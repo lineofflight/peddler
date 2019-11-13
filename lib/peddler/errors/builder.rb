@@ -7,7 +7,7 @@ require 'peddler/errors/parser'
 
 module Peddler
   module Errors
-    # @api private
+    # @!visibility private
     class Builder
       extend Forwardable
 

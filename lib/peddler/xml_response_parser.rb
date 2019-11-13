@@ -3,7 +3,7 @@
 require 'peddler/xml_parser'
 
 module Peddler
-  # @api private
+  # @!visibility private
   class XMLResponseParser < XMLParser
     MATCHER = /^Message$|Report|Result/.freeze
     private_constant :MATCHER

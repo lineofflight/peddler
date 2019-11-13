@@ -5,7 +5,7 @@ require 'time'
 require 'peddler/structured_list'
 
 module Peddler
-  # @api private
+  # @!visibility private
   class Operation < SimpleDelegator
     CAPITAL_LETTERS = /[A-Z]/.freeze
     ALL_CAPS = %w[sku cod].freeze

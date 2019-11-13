@@ -4,7 +4,7 @@ require 'peddler/flat_file_parser'
 require 'peddler/xml_response_parser'
 
 module Peddler
-  # @api private
+  # @!visibility private
   module Parser
     class << self
       # We're massaging data produced by a motley army of developers. It's

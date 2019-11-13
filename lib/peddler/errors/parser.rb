@@ -4,7 +4,7 @@ require 'peddler/xml_parser'
 
 module Peddler
   module Errors
-    # @api private
+    # @!visibility private
     class Parser < XMLParser
       def message
         parse['Message']

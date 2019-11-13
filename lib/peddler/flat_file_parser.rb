@@ -6,7 +6,7 @@ require 'digest/md5'
 require 'peddler/headers'
 
 module Peddler
-  # @api private
+  # @!visibility private
   class FlatFileParser < SimpleDelegator
     include Headers
 

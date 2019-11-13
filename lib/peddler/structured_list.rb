@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Peddler
-  # @api private
+  # @!visibility private
   class StructuredList
     def initialize(*keys)
       @keys = keys

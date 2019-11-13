@@ -4,23 +4,23 @@ module Peddler
   # A custom matcher that can be used to record MWS interactions when
   # writing integration tests
   class VCRMatcher
-    # @api private
+    # @!visibility private
     TRANSIENT_PARAMS = %w[
       Signature Timestamp StartDate CreatedAfter QueryStartDateTime
     ].freeze
 
-    # @api private
+    # @!visibility private
     SELLER_PARAMS = %w[
       AWSAccessKeyId SellerId
     ].freeze
 
     class << self
-      # @api private
+      # @!visibility private
       def call(*requests)
         new(*requests).compare
       end
 
-      # @api private
+      # @!visibility private
       def ignored_params
         @ignored_params ||= TRANSIENT_PARAMS.dup
       end
@@ -33,15 +33,15 @@ module Peddler
       end
     end
 
-    # @api private
+    # @!visibility private
     attr_reader :requests
 
-    # @api private
+    # @!visibility private
     def initialize(*requests)
       @requests = requests
     end
 
-    # @api private
+    # @!visibility private
     def compare
       compare_uris && compare_bodies
     end

@@ -3,10 +3,10 @@
 module Peddler
   # Parses MWS metadata provided in the headers of a response
   class MWS
-    # @api private
+    # @!visibility private
     attr_reader :headers
 
-    # @api private
+    # @!visibility private
     def initialize(headers)
       @headers = headers.select { |key| key.start_with?('x-mws') }
     end

@@ -3,7 +3,7 @@
 require 'forwardable'
 
 module Peddler
-  # @api private
+  # @!visibility private
   module Errors
     # These error codes are common to all Amazon MWS API sections.
     #
@@ -24,7 +24,7 @@ module Peddler
       SignatureDoesNotMatch
     ].freeze
 
-    # @api private
+    # @!visibility private
     class Error < StandardError
       extend Forwardable
 

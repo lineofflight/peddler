@@ -16,7 +16,7 @@ module Peddler
     include Jeff
 
     class << self
-      # @api private
+      # @!visibility private
       attr_accessor :parser, :path, :version
 
       private
@@ -81,35 +81,35 @@ module Peddler
       str ? add_content(str) : clear_content!
     end
 
-    # @api private
+    # @!visibility private
     attr_writer :path
 
-    # @api private
+    # @!visibility private
     def path
       @path ||= self.class.path
     end
 
-    # @api private
+    # @!visibility private
     def defaults
       @defaults ||= { expects: 200 }
     end
 
-    # @api private
+    # @!visibility private
     def headers
       @headers ||= {}
     end
 
-    # @api private
+    # @!visibility private
     def aws_endpoint
       "https://#{host}#{path}"
     end
 
-    # @api private
+    # @!visibility private
     def operation(action = nil)
       action ? @operation = Operation.new(action) : @operation
     end
 
-    # @api private
+    # @!visibility private
     def run
       opts = build_options
       opts.store(:response_block, Proc.new) if block_given?

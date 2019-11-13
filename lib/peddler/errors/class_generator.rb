@@ -5,7 +5,7 @@ require 'peddler/errors/error'
 
 module Peddler
   module Errors
-    # @api private
+    # @!visibility private
     class ClassGenerator
       include Singleton
 

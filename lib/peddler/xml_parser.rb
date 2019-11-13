@@ -6,7 +6,7 @@ require 'peddler/headers'
 require 'multi_xml'
 
 module Peddler
-  # @api private
+  # @!visibility private
   class XMLParser < SimpleDelegator
     extend Forwardable
     include Headers

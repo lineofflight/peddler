@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Peddler
-  # @api private
+  # @!visibility private
   # @see https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html
   Marketplace = Struct.new(:id, :country_code, :host) do
     class << self

@@ -3,10 +3,10 @@
 module Peddler
   # Parses content metadata provided in the headers of a response
   class Content
-    # @api private
+    # @!visibility private
     attr_reader :headers
 
-    # @api private
+    # @!visibility private
     def initialize(headers)
       @headers = headers.select { |key| key.start_with?('Content') }
     end
