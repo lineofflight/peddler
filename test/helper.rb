@@ -8,8 +8,3 @@ end
 
 require 'minitest/autorun'
 require 'minitest/focus'
-begin
-  require 'pry'
-rescue LoadError
-  nil
-end

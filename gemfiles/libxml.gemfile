@@ -12,8 +12,4 @@ gem "simplecov"
 gem "vcr"
 gem "yard"
 
-group :development do
-  gem "pry"
-end
-
 gemspec path: "../"

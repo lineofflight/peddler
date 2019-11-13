@@ -13,8 +13,4 @@ gem "vcr"
 gem "yard"
 gem "ox"
 
-group :development do
-  gem "pry"
-end
-
 gemspec path: "../"
