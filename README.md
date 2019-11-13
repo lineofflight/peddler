@@ -1,6 +1,6 @@
 # Peddler
 
-[![Build Status](https://travis-ci.org/hakanensari/peddler.svg)](https://travis-ci.org/hakanensari/peddler)
+[![Build](https://github.com/hakanensari/peddler/workflows/build/badge.svg)](https://github.com/hakanensari/peddler/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)](https://codeclimate.com/github/hakanensari/peddler/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)](https://codeclimate.com/github/hakanensari/peddler/test_coverage)
 
