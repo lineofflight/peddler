@@ -9,9 +9,7 @@ Rake::TestTask.new do |t|
   t.libs << 'test'
   t.pattern = 'test/**/test_*.rb'
 end
-RuboCop::RakeTask.new do |task|
-  task.requires << 'rubocop-performance'
-end
+RuboCop::RakeTask.new
 YARD::Rake::YardocTask.new
 
 task default: %i[test rubocop]
