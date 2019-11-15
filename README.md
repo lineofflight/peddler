@@ -232,6 +232,15 @@ The Sellers API lets sellers retrieve information about their seller account, su
 - [Amazon references](http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_Overview.html)
 - [Peddler API docs](http://www.rubydoc.info/gems/peddler/MWS/Sellers/Client)
 
+### Shipment Invoicing
+
+With the Shipment Invoicing API section (in conjunction with the FBAOutboundShipmentStatus notification), you can integrate invoicing into Amazon’s shipping process for a seller’s Fulfillment by Amazon (FBA) orders.
+
+This functionality is available only in the Brazil marketplace.
+
+- [Amazon references](https://docs.developer.amazonservices.com/en_US/shipment_invoicing/ShipmentInvoicing_Overview.html)
+- [Peddler API docs](https://www.rubydoc.info/gems/peddler/MWS/ShipmentInvoicing/Client)
+
 ### Subscriptions
 
 The Amazon MWS Subscriptions API section enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.

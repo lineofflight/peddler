@@ -1,0 +1,930 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A01Z&Version=2018-09-01&Signature=WWashDWStI32Um2wSl75hc5nHuze3k5W1C2JK6PF%2FQg%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:01 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 0e2f4fa6-a3a7-4244-ab6d-9b10b7c12103
+      x-mws-timestamp:
+      - '2019-11-13T14:44:01.911Z'
+      x-mws-response-context:
+      - qpYe9t/9tv9VtXImRuDMqnjO0H1lMPlBXqWicDNSQDuvD0oS4a5w0vWkwYB9BlbvIbRRL+E8tow=
+      x-amz-rid:
+      - B21P8AGR0AFAF58WDPSR
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:01.911Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>0e2f4fa6-a3a7-4244-ab6d-9b10b7c12103</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:01 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A01Z&Version=2018-09-01&Signature=stE5928Wt3cBGxcoRGnKG%2B2%2FwHTfwQS1GD2G4m6KzU0%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - fab85135-34f0-43c5-b6f4-98eafe8182c8
+      x-mws-timestamp:
+      - '2019-11-13T14:44:02.042Z'
+      x-mws-response-context:
+      - VqE4fxauRNheGzwwf9RD081aNi73K8nA8Tp4btYzHr3veN0TqssVHD9KRVm2nahQqwDJSKjLN2o=
+      x-amz-rid:
+      - SSQ4YG9W7GTMKQQX6FJH
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:02.042Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>fab85135-34f0-43c5-b6f4-98eafe8182c8</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:02 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A02Z&Version=2018-09-01&Signature=c3k158cq2%2BZGVNLkZ8iFQQOabAtGmNgCK%2BQY8Cq797c%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 2e055194-420c-470a-b6d5-2e8083f8fc51
+      x-mws-timestamp:
+      - '2019-11-13T14:44:02.562Z'
+      x-mws-response-context:
+      - qWt0hkNpwY8AJ95nHudMptwEO19AP4/w3/HS/YPCZWhUtNoYQIQifqWa7ziYrY5JV1NezD9yoJk=
+      x-amz-rid:
+      - ZG6HZ14NM5A1WC12QZHE
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:02.562Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>2e055194-420c-470a-b6d5-2e8083f8fc51</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:02 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A02Z&Version=2018-09-01&Signature=fccfBfbM4JhKeWfiyhjiFOejYlWrvb7EAL06zt81X20%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - cf6d2977-4d0b-4954-bbd8-124c929b969f
+      x-mws-timestamp:
+      - '2019-11-13T14:44:02.738Z'
+      x-mws-response-context:
+      - t6h6GMh4gteXchoJlYY43msA1qXF3bKcbmS6IdLHY++X8VtOck0ME249GNaIt2/3J3hvMVoIvmY=
+      x-amz-rid:
+      - J8Y2GRK8V32V1F97EKHQ
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:02.738Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>cf6d2977-4d0b-4954-bbd8-124c929b969f</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:02 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A02Z&Version=2018-09-01&Signature=F%2BBUv3JkQgP%2Bk%2BL3dI6yGKSAN5cY8Wa4iUf%2BhXPYYrA%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - c272345c-fcc0-4578-b702-74d4a72b8b3c
+      x-mws-timestamp:
+      - '2019-11-13T14:44:02.851Z'
+      x-mws-response-context:
+      - Q2T7IND7XtlyJWj7933JzcIUTBA16Hknetv8ue6XSfYoCEqluDroxAUiK2+m2GIuGzCeEQGZBcU=
+      x-amz-rid:
+      - XCM7RE18HGRHJ2DS05EK
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:02.851Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>c272345c-fcc0-4578-b702-74d4a72b8b3c</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:02 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A02Z&Version=2018-09-01&Signature=Xtb9gGhhMPI%2FHgURM0uX09ScVImWlTe9MTG00HMhuDw%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - de79ec31-75f3-4904-857d-a1da23232914
+      x-mws-timestamp:
+      - '2019-11-13T14:44:03.195Z'
+      x-mws-response-context:
+      - 57lKE4Xgm8omXoDNffMJ0TlgDNWk2GQYAqbr8123zNsuBDk0XV9L8thgJpUsST5IF/r5vlV/Zx8=
+      x-amz-rid:
+      - EM1ZJBMC3MJZGZ1YWNXW
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:03.195Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>de79ec31-75f3-4904-857d-a1da23232914</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:03 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A03Z&Version=2018-09-01&Signature=U4T7kg7BRjn3b%2B%2Bu%2BpwjOsqw7hDAcJEXBj2b0oLubM8%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 972256a2-950c-49c2-ad3e-baf17a5523f1
+      x-mws-timestamp:
+      - '2019-11-13T14:44:03.319Z'
+      x-mws-response-context:
+      - 80fi8BgS0WXw58Tyfi1mQJwW3Ea7Ft1S3QG7SX4NyXYjkigdRbUiVuzh9oVj+I5zmobAX1cd8WY=
+      x-amz-rid:
+      - NWTKFBGMBS72TMVPHDAG
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:03.319Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>972256a2-950c-49c2-ad3e-baf17a5523f1</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:03 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A03Z&Version=2018-09-01&Signature=hUWMZi8Av1F6hx%2B%2Fo9YDLpx2RntnhKPFJLZP98%2FZ8yQ%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - ed370098-e0cb-4050-8679-9afdb7b39bed
+      x-mws-timestamp:
+      - '2019-11-13T14:44:03.623Z'
+      x-mws-response-context:
+      - vn22RCvYf6HsNeNd02wnXxGXrSWqNtd+5AJtgYNEUmZuQphr7nPNmdCrX3YFDuHIhUJI4VgsyMw=
+      x-amz-rid:
+      - SVQQZ5NJ3SRWDMF92KA2
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:03.623Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>ed370098-e0cb-4050-8679-9afdb7b39bed</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:03 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-13T14%3A44%3A03Z&Version=2018-09-01&Signature=sg05diIQv6aSKCkZ%2FHZNHxaI5Rf6RI%2BzwznfOFmOg0k%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 13 Nov 2019 14:44:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 557e7a33-edfd-4c9c-9a2d-dd184edb2819
+      x-mws-timestamp:
+      - '2019-11-13T14:44:03.957Z'
+      x-mws-response-context:
+      - c/qXJRP3vVdrNBsvxQKxOxtRsOw+SbJnL9Dcke+T6rOp4/KInPr2oMMDHPZMxUbcS+GHWq9idzU=
+      x-amz-rid:
+      - Z0W6CYSAR92BXNBEQW1K
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-13T14:44:03.957Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>557e7a33-edfd-4c9c-9a2d-dd184edb2819</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version:
+  recorded_at: Wed, 13 Nov 2019 14:44:04 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A41%3A07Z&Version=2018-09-01&Signature=mtfuhFsPYtSaQIkQxNQo2kQJ9KvCsrsAg0Qepk%2BlWqI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:41:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '382'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 8e8d74ed-e87f-4210-8236-b20ce9fd6afc
+      x-mws-timestamp:
+      - '2019-11-15T14:41:07.900Z'
+      x-mws-response-context:
+      - CoVJGgpRo6LTB9KlCVLKYOMbHMwJZQTX6P2SIoC4VfLkFBD8vith0guJpHepkugji+Hqg3nLWfc=
+      x-amz-rid:
+      - KARYJYQVR8MEWTV3Q9YC
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAddress</Code>
+            <Message>Operation GetFBAOutboundShipmentDetail is not available for section ShipmentInvoicing/2018-09-01</Message>
+          </Error>
+          <RequestID>8e8d74ed-e87f-4210-8236-b20ce9fd6afc</RequestID>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:41:07 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A53Z&Version=2018-09-01&Signature=22O4DC8OyfZOznp3rEfYJI%2Fagvg57cyfcGdaJ4BRQps%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 400
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:54 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '257'
+      Connection:
+      - keep-alive
+      X-Amz-Date:
+      - Fri, 15 Nov 2019 14:43:54 GMT
+      nnCoection:
+      - close
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MerchantInvoiceService.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Operation=GetFBAOutboundShipmentDetail, Service=MerchantInvoiceService, Encrypted=true,
+        SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true, Signature=YRWYGgxRIFcQEjQqQRVmGvOkpor1gFpHdFaj0ZV/hKc=,RelationshipVersion=0
+      x-mws-request-id:
+      - a12de213-20d4-4edd-b336-570aad907cc5
+      x-mws-timestamp:
+      - '2019-11-15T14:43:54.277Z'
+      x-mws-response-context:
+      - PCKAYpgqw1uW9Pu9/BNSlsELRqgm1Xtlr8MJecpdQ2N/VIaGTpqntvMGol/LYN3wEryXuqetHn8=
+      x-amz-rid:
+      - MNA850Y5PEBEPJAP3FF7
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ErrorResponse xmlns="http://mws.amazonservices.com/schema/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>ShipmentNotFoundException</Code>
+          </Error>
+          <RequestId>a12de213-20d4-4edd-b336-570aad907cc5</RequestId>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:54 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A54Z&Version=2018-09-01&Signature=3VjqGfbCgyx5XUzNKrV%2FH69EjVQOCMrdDztu7e%2BQB0Y%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:54 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '382'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 923331cb-510c-4e57-b191-38291fa0f16e
+      x-mws-timestamp:
+      - '2019-11-15T14:43:54.529Z'
+      x-mws-response-context:
+      - SdhuVOB3cOL/ajO9GHPH56gNjBvJKGa3bwN/IKu5WCA6n0nRNm43YlEvTJoMedsso/ECgf2jdQg=
+      x-amz-rid:
+      - YTZHWVEQDGM4YDFWE39P
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAddress</Code>
+            <Message>Operation GetFBAOutboundShipmentDetail is not available for section ShipmentInvoicing/2018-09-01</Message>
+          </Error>
+          <RequestID>923331cb-510c-4e57-b191-38291fa0f16e</RequestID>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:54 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A54Z&Version=2018-09-01&Signature=K%2FAPZp1OQsoOX%2FIrEuuzI3uP5SzdkSIsfqIUxO7qBdQ%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:54 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '382'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 8e90a7a8-660c-4f0a-a781-d0ba17b1c233
+      x-mws-timestamp:
+      - '2019-11-15T14:43:54.648Z'
+      x-mws-response-context:
+      - "+7GVre76aKOwCxaL5qsY0LVck3syaW2Utq1r4cQjSXbfWyM1cOYCT4u8OORDT3SuKG3jLOx9E3Y="
+      x-amz-rid:
+      - YB9488GY3TK5RYKH5QFP
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAddress</Code>
+            <Message>Operation GetFBAOutboundShipmentDetail is not available for section ShipmentInvoicing/2018-09-01</Message>
+          </Error>
+          <RequestID>8e90a7a8-660c-4f0a-a781-d0ba17b1c233</RequestID>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:54 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A54Z&Version=2018-09-01&Signature=pavu4YRy1dXts%2FrjWD2p%2BfbVhuS6ZbuU4BzAeSkdeII%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 400
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:55 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '257'
+      Connection:
+      - keep-alive
+      X-Amz-Date:
+      - Fri, 15 Nov 2019 14:43:55 GMT
+      nnCoection:
+      - close
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MerchantInvoiceService.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Operation=GetFBAOutboundShipmentDetail, Service=MerchantInvoiceService, Encrypted=true,
+        SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true, Signature=KU4UuvS6UaWITevofLv3AN0e12mxOn9XocpK2s9lVCU=,RelationshipVersion=0
+      x-mws-request-id:
+      - f8811acb-e6fd-4866-bb7c-8f7d5c336ba4
+      x-mws-timestamp:
+      - '2019-11-15T14:43:54.977Z'
+      x-mws-response-context:
+      - TM44WLkIqhaJ9oPCDJe1wrNwe2ZDHlaVdJ/czcYaETilSLhmPu7fwnDcm33qVQ9GsxCSVVTCv3k=
+      x-amz-rid:
+      - NHHQ2GS4JRXM0SJAN3Y8
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ErrorResponse xmlns="http://mws.amazonservices.com/schema/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>ShipmentNotFoundException</Code>
+          </Error>
+          <RequestId>f8811acb-e6fd-4866-bb7c-8f7d5c336ba4</RequestId>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:55 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A55Z&Version=2018-09-01&Signature=M1Y6%2F%2FPAu0sSUUmCycSeASkheB6OJue4SXCMuWdl8KA%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 400
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:55 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '257'
+      Connection:
+      - keep-alive
+      X-Amz-Date:
+      - Fri, 15 Nov 2019 14:43:55 GMT
+      nnCoection:
+      - close
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MerchantInvoiceService.AndromedaControlService.amzn1.aaa.id.qhz3ylg755gkejyk5sh44qm3wy.Default/1,
+        Operation=GetFBAOutboundShipmentDetail, Service=MerchantInvoiceService, Encrypted=true,
+        SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true, Signature=Dz9/W9p8SLM4eM56vZpQ/t0V37qEEbX+4/mApwHWYI8=,RelationshipVersion=0
+      x-mws-request-id:
+      - 5586a6b2-c200-4d7f-8bcd-9357467e6b95
+      x-mws-timestamp:
+      - '2019-11-15T14:43:55.411Z'
+      x-mws-response-context:
+      - M9a6uTSeQsgWKsXgEzYp1PLIP9bCi1bq6yIxFb8CxhIQTGaCX+u2hLZPk1hy0Ag+sMcEuIJ6ulE=
+      x-amz-rid:
+      - 0JXD2HR394M5HXCTR03Y
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ErrorResponse xmlns="http://mws.amazonservices.com/schema/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>ShipmentNotFoundException</Code>
+          </Error>
+          <RequestId>5586a6b2-c200-4d7f-8bcd-9357467e6b95</RequestId>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:55 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A55Z&Version=2018-09-01&Signature=FDMLPJdhRfO4F2BZ0Au9ue5iuWM9qxT3%2BlwACJLmQOI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:56 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '382'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - c8bced8f-e84a-4917-981f-21e2d1d774f4
+      x-mws-timestamp:
+      - '2019-11-15T14:43:56.148Z'
+      x-mws-response-context:
+      - 7uE7jf6CEc/r6rnAU/FHVRRp9MKUmkQSXAoujhf7L3hxqiU/++4Bo5PWYhAPyYWz3RqAOene6QU=
+      x-amz-rid:
+      - EAYC1E06X8PRH7KWY5CZ
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAddress</Code>
+            <Message>Operation GetFBAOutboundShipmentDetail is not available for section ShipmentInvoicing/2018-09-01</Message>
+          </Error>
+          <RequestID>c8bced8f-e84a-4917-981f-21e2d1d774f4</RequestID>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:56 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A56Z&Version=2018-09-01&Signature=yAoAz9jANv5HBLAm%2B4VYxyWyx5we8Y0PL92V5pcVUOI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:56 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '382'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - b2b10f50-f43a-4b79-8b63-2b9b979306b8
+      x-mws-timestamp:
+      - '2019-11-15T14:43:56.316Z'
+      x-mws-response-context:
+      - KGsriFF1rEIfMoVcfxG3cB3VKiQ9le36QKZSo5zkZpw6OBrm7BJefg5MxXfLGrnmvdYaWtBgRg0=
+      x-amz-rid:
+      - WX88ZZSZDF6SX4GSXNJW
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAddress</Code>
+            <Message>Operation GetFBAOutboundShipmentDetail is not available for section ShipmentInvoicing/2018-09-01</Message>
+          </Error>
+          <RequestID>b2b10f50-f43a-4b79-8b63-2b9b979306b8</RequestID>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:56 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/ShipmentInvoicing/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFBAOutboundShipmentDetail&AmazonShipmentId=456&MarketplaceId=A2Q3Y263D00KWC&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-15T14%3A43%3A56Z&Version=2018-09-01&Signature=BUm91p%2ByuPBUE5G5FSA1sYqvMYjng9NjWQK3X4dFZS4%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 404
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 15 Nov 2019 14:43:56 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '382'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - e5aa2aa2-2025-4cd8-a585-b953fb1ea354
+      x-mws-timestamp:
+      - '2019-11-15T14:43:56.404Z'
+      x-mws-response-context:
+      - QQOxu33pSj4xM/DRjeFhlt4TzBn7wrWQHOfzX2OdvwwjJecxNLYiOtaL4eWRGwMNJT7RBZ+gETA=
+      x-amz-rid:
+      - JQFE5D5W6MKA3Z9WR9PR
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/ShipmentInvoicing/2018-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAddress</Code>
+            <Message>Operation GetFBAOutboundShipmentDetail is not available for section ShipmentInvoicing/2018-09-01</Message>
+          </Error>
+          <RequestID>e5aa2aa2-2025-4cd8-a585-b953fb1ea354</RequestID>
+        </ErrorResponse>
+    http_version:
+  recorded_at: Fri, 15 Nov 2019 14:43:56 GMT
+recorded_with: VCR 5.0.0

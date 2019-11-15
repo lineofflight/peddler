@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Add Shipment Invoicing API
+
 ### Removed
 - Remove China. It is no longer supported starting 1st October 2019.
 
