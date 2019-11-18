@@ -13,6 +13,7 @@ require 'mws/products'
 require 'mws/recommendations'
 require 'mws/reports'
 require 'mws/sellers'
+require 'mws/shipment_invoicing'
 require 'mws/subscriptions'
 
 # The various Amazon MWS API sections.
