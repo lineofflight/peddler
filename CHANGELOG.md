@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Add Easy Ship API
 - Add Shipment Invoicing API
 
 ### Removed

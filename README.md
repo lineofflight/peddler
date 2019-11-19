@@ -138,6 +138,17 @@ You can access the same attributes on `error.response`. See <a href="#throttling
 
 ## The APIs
 
+### Easy Ship
+
+With the Easy Ship API, you can build applications that help sellers in India manage and ship their Amazon Easy Ship orders. Your Amazon Easy Ship applications can:
+
+* Get available pickup slots.
+* Schedule, reschedule, and cancel pickups.
+* Print labels, invoices, and warranties.
+
+- [Amazon references](https://docs.developer.amazonservices.com/en_US/easy_ship/EasyShip_Overview.html)
+- [Peddler API docs](https://www.rubydoc.info/gems/peddler/MWS/EasyShip/Client)
+
 ### Feeds
 
 The MWS Feeds API lets you upload inventory and order data to Amazon. You can also use this API to get information about the processing of feeds.

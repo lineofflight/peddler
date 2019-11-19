@@ -1,0 +1,462 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A32Z&Version=2018-09-01&Signature=YN%2Fl8UsiwAl2RWVIjO4iAQ5gcfz6ObnSWx3bxPQe9ZY%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:32 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 43db5896-225a-46ad-831f-7a34430b8cc3
+      x-mws-timestamp:
+      - '2019-11-19T09:50:32.814Z'
+      x-mws-response-context:
+      - jStBHdm7XYN79q+42cziKtjleg4jplX38bgaKQmwEP/oMuzoSzlhQ5AXnf7J4h248m3UMAJ7XV8=
+      x-amz-rid:
+      - G8G0K7ECCX5NQNPQKMPK
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:32.814Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>43db5896-225a-46ad-831f-7a34430b8cc3</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:32 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A32Z&Version=2018-09-01&Signature=LbT9DefeoIEHzg%2Br8hs%2BFySk1QRbwjgfNW4%2B9jbs3EM%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:33 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - e49f564e-7ea9-418e-99d0-20a2922f3068
+      x-mws-timestamp:
+      - '2019-11-19T09:50:33.204Z'
+      x-mws-response-context:
+      - a8NDplnUTTUyPP2qmgCgkEjCrRIFFjWYndJQS+18haEnLgNRgphtF/z6pRVwn7TZbKyG+5KxwTY=
+      x-amz-rid:
+      - AYYXWS2V8P1VKYNRZKWR
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:33.204Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>e49f564e-7ea9-418e-99d0-20a2922f3068</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:33 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A33Z&Version=2018-09-01&Signature=IYUyk4%2B4PyEh9Vd7LPndGJpS3oRP6YOAsBd%2FIaZqzkg%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:33 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 3e284670-93fc-4cfd-8dd4-b015f7a0aa87
+      x-mws-timestamp:
+      - '2019-11-19T09:50:33.385Z'
+      x-mws-response-context:
+      - 8tYzY6Spyu3vcAu/1ga1tC3RR85P5JfPj1hzxKC1CEMHZm00zmW098ul/qDWZA/EBepHpjOOKt0=
+      x-amz-rid:
+      - 7J7YPG7NHB1RFE2CG7VK
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:33.385Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>3e284670-93fc-4cfd-8dd4-b015f7a0aa87</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:33 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A33Z&Version=2018-09-01&Signature=xCiqrIrnLSvXlaHdM%2Bq5yEGMuYyXO8jQCXnVAVurKQw%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:33 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 66dacb6e-64ef-4959-91be-460a16b222e1
+      x-mws-timestamp:
+      - '2019-11-19T09:50:33.696Z'
+      x-mws-response-context:
+      - Iqej0loR1xb6EtkoExcbvIPEmq6vrAz0ElUxN+9XhljTENYG2V7EGss9ZFz13BhbH0S3yez3GIQ=
+      x-amz-rid:
+      - JC7TJ1QEGW3TTRYEZRE5
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:33.696Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>66dacb6e-64ef-4959-91be-460a16b222e1</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:33 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A33Z&Version=2018-09-01&Signature=fSj2UKvXS4%2FMYW2LKYeOaq5DhwMXOFKVPKdJ3Ai%2FMLQ%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:33 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 6a407eec-ca33-4eb7-bb71-779c717073d1
+      x-mws-timestamp:
+      - '2019-11-19T09:50:33.854Z'
+      x-mws-response-context:
+      - jPywLDrM5RLt0dpq8HpGWSchg8gaKc4DDc+ezW6PsKTKdwwWgo+Adf7z3wt4+A+N1PLRl7HGJFM=
+      x-amz-rid:
+      - 0W4ZQEG23KE2YTGW62SE
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:33.854Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>6a407eec-ca33-4eb7-bb71-779c717073d1</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:33 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A33Z&Version=2018-09-01&Signature=6BjU1i5sNcZ%2Fm9sbM3IrrirtsBJvv6fclYu7DNQYUDw%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:33 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 9f6ec8bb-b53e-48ac-8a26-7ffab4189462
+      x-mws-timestamp:
+      - '2019-11-19T09:50:33.955Z'
+      x-mws-response-context:
+      - Lvp07y468vbkIrWOHD22lCbHeHT6WfeuMK5NVGleaNCBMF02C/KXXbEE5O9ceqxeEaLhraPMYRY=
+      x-amz-rid:
+      - 9TZZRM9ED64HJPFV60MN
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:33.955Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>9f6ec8bb-b53e-48ac-8a26-7ffab4189462</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:33 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.jp/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A33Z&Version=2018-09-01&Signature=7G0omlcJLP62Zqv%2BgnJH7MH9TdR7GPWJydcyGdDBGwA%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:34 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - a679311b-0fa5-4f71-b59e-1459553cdcaa
+      x-mws-timestamp:
+      - '2019-11-19T09:50:34.476Z'
+      x-mws-response-context:
+      - 4E6B6pBXgrFaKSlAOdm7QaL2mog6imKqwKOa3evZYqaISgH0+Cm5BYFUJWOiL94ekPQ2S6FJDeM=
+      x-amz-rid:
+      - MQQD8G86P37VKZ4H42TN
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:34.476Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>a679311b-0fa5-4f71-b59e-1459553cdcaa</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:34 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A34Z&Version=2018-09-01&Signature=x1FsMHz87%2B4jqgXclIxj9MC3qo3gSPC%2FKeXvxAjU9f8%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:34 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - a44e077d-07cc-45c3-b72b-5d2c4cdf5c13
+      x-mws-timestamp:
+      - '2019-11-19T09:50:34.658Z'
+      x-mws-response-context:
+      - AdZe4ssLXitA2u7f3oaM6jKgw5EsbeYZWFUzonJDZrMChNbPycm2K3/+KXhb3NetKvpEhe5vGWQ=
+      x-amz-rid:
+      - D2W4P1XW0AVSK905VVW2
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:34.658Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>a44e077d-07cc-45c3-b72b-5d2c4cdf5c13</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:34 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/EasyShip/2018-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-19T09%3A50%3A34Z&Version=2018-09-01&Signature=oeadQlFaKGwN%2FrgohPholxchicAZ%2BYvnMeFsu59PSWA%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.0 (Language=Ruby; Hakans-iMac)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 19 Nov 2019 09:50:34 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      x-mws-request-id:
+      - 249c224a-edca-4169-89a4-3381ce496dd8
+      x-mws-timestamp:
+      - '2019-11-19T09:50:34.746Z'
+      x-mws-response-context:
+      - G+XVX5N0Qwfa3StqYqKXKgTuhRmDohOQdCA3nx24IJxN9domlWWdi0RmExhm8MUlHXJO3VHDvz4=
+      x-amz-rid:
+      - 3EYTV6E85TGGVGAW03JH
+      Vary:
+      - Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/EasyShip/2018-09-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2019-11-19T09:50:34.746Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>249c224a-edca-4169-89a4-3381ce496dd8</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+    http_version: 
+  recorded_at: Tue, 19 Nov 2019 09:50:34 GMT
+recorded_with: VCR 5.0.0

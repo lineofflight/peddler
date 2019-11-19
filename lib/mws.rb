@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'forwardable'
+require 'mws/easy_ship'
 require 'mws/feeds'
 require 'mws/finances'
 require 'mws/fulfillment_inbound_shipment'
