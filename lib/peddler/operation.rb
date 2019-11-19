@@ -30,8 +30,7 @@ module Peddler
 
     def store(key, val, parent: nil)
       key = [parent, camelize(key)].compact.join('.')
-      val = val.iso8601 if val.respond_to?(:iso8601)
-      val = val.to_h if val.is_a?(Struct)
+      val = format_known_types(val)
 
       if val.is_a?(Hash)
         val.each { |keyval| store(*keyval, parent: key) }
@@ -66,6 +65,14 @@ module Peddler
       else
         word.capitalize
       end
+    end
+
+    def format_known_types(val)
+      val = val.utc.iso8601(2) if val.is_a?(Time)
+      val = val.iso8601 if val.is_a?(Date)
+      val = val.to_h if val.is_a?(Struct)
+
+      val
     end
   end
 end

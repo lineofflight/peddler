@@ -93,7 +93,7 @@ class TestMWSFulfillmentOutboundShipmentClient < MiniTest::Test
 
     operation = {
       'Action' => 'ListAllFulfillmentOrders',
-      'QueryStartDateTime' => started_at.iso8601
+      'QueryStartDateTime' => started_at.utc.iso8601(2)
     }
 
     @client.stub(:run, nil) do

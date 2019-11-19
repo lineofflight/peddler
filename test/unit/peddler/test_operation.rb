@@ -55,12 +55,16 @@ class TestPeddlerOperation < MiniTest::Test
     refute @operation.key?(:include_cod_fulfillment_preview)
   end
 
-  def test_that_store_timestamps_time_values
-    ts = Minitest::Mock.new
-    ts.expect(:iso8601, 'foo')
-    @operation.store('time', ts)
+  def test_that_store_formats_time_values
+    time = Time.new(2018, 1, 1)
+    @operation.store('time', time)
+    assert_equal '2018-01-01T00:00:00.00Z', @operation.fetch('time')
+  end
 
-    assert_equal 'foo', @operation.fetch('time')
+  def test_that_store_formats_date_values
+    date = Date.new(2018, 1, 1)
+    @operation.store('date', date)
+    assert_equal '2018-01-01', @operation.fetch('date')
   end
 
   def test_stringifying_hash_values
