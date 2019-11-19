@@ -10,7 +10,7 @@ class TestPeddlerVCRMatcher < MiniTest::Test
   ::Peddler::VCRMatcher.ignore_seller!
 
   def setup
-    VCR.insert_cassette(test_name)
+    VCR.insert_cassette(test_name, record: :none)
   end
 
   def test_matching_recorded_post_without_body
