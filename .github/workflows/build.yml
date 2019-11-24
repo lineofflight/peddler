@@ -4,13 +4,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-    env:
-      AWS_ACCESS_KEY_ID: secret
-      AWS_SECRET_ACCESS_KEY: secret
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      GIT_COMMIT_SHA: ${{ github.sha }}
-      GIT_BRANCH: ${{ github.ref }}
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -37,8 +30,14 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rake
+      env:
+        AWS_ACCESS_KEY_ID: secret
+        AWS_SECRET_ACCESS_KEY: secret
 
     - name: Report
       continue-on-error: true
       if: success() && matrix.ruby == '2.6.x'
-      run: ./cc-test-reporter after-build --exit-code $?
+      run: GIT_BRANCH="${GITHUB_REF/refs\/heads\//}" ./cc-test-reporter after-build --exit-code $?
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        GIT_COMMIT_SHA: ${{ github.sha }}
