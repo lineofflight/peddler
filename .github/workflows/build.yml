@@ -34,6 +34,9 @@ jobs:
         AWS_ACCESS_KEY_ID: secret
         AWS_SECRET_ACCESS_KEY: secret
 
+    - name: Check documentation links
+      run: ruby ./scripts/documentation_crawler.rb
+
     - name: Report
       continue-on-error: true
       if: success() && matrix.ruby == '2.6.x'
