@@ -15,7 +15,7 @@ module MWS
       # @note When calling this operation, you must specify a time frame using
       #   either created_after or last_updated_after. When requesting orders by
       #   "Unshipped" status you must also request "PartiallyShipped" orders.
-      # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrders.html
+      # @see https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrders.html
       # @overload list_orders(*marketplace_id, opts = {})
       #   @param [Array<String>] marketplace_id
       #   @param [Hash] opts
@@ -53,7 +53,7 @@ module MWS
 
       # Lists the next page of orders
       #
-      # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrdersByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrdersByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_orders_by_next_token(next_token)
@@ -65,7 +65,7 @@ module MWS
 
       # Gets one or more orders
       #
-      # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_GetOrder.html
+      # @see https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_GetOrder.html
       # @param [Array<String>] amazon_order_ids
       # @return [Peddler::XMLParser]
       def get_order(*amazon_order_ids)
@@ -78,7 +78,7 @@ module MWS
 
       # Lists order items for an order
       #
-      # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrderItems.html
+      # @see https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrderItems.html
       # @param [String] amazon_order_id
       # @return [Peddler::XMLParser]
       def list_order_items(amazon_order_id)
@@ -90,7 +90,7 @@ module MWS
 
       # Lists the next page of order items for an order
       #
-      # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrderItemsByNextToken.html
+      # @see https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrderItemsByNextToken.html
       # @param [String] next_token
       # @return [Peddler::XMLParser]
       def list_order_items_by_next_token(next_token)
@@ -102,7 +102,7 @@ module MWS
 
       # Gets the service status of the API
       #
-      # @see https://docs.developer.amazonservices.com/en_US/orders/2013-09-01/MWS_GetServiceStatus.html
+      # @see https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/MWS_GetServiceStatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')
