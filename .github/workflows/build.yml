@@ -35,7 +35,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: secret
 
     - name: Check documentation links
-      run: ruby ./scripts/documentation_crawler.rb
+      run: ./scripts/documentation_crawler.rb
 
     - name: Report
       continue-on-error: true

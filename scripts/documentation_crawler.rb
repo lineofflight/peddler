@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
 require 'open3'
@@ -12,20 +13,22 @@ matches = output.split("\n")
 
 failed = false
 
-matches.each do |line|
-  url = line.match(/http.*/)[0]
-  logger.info "Fetching #{url} ..."
-
-  response = Net::HTTP.get_response(URI(url))
-
-  case response
-  when Net::HTTPSuccess, Net::HTTPRedirection
-    logger.info 'Success.'
-  else
-    failed = true
-    logger.error 'Failed.'
+threads = matches.map do |line|
+  Thread.new do
+    url = line.match(/http.*/)[0]
+    response = Net::HTTP.get_response(URI(url))
+    case response
+    when Net::HTTPSuccess
+      logger.info "✅ #{response.code} #{url}"
+    when Net::HTTPFound
+      logger.warn "👀 #{response.code} #{url}"
+    else
+      failed = true
+      logger.error "❌ #{response.code} #{url}"
+    end
   end
 end
+threads.each(&:join)
 
 if failed
   logger.warn 'Please fix broken documentation links.'
