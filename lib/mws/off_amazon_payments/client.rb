@@ -21,7 +21,6 @@ module MWS
 
       # Switches the client to the sandbox environment
       #
-      # @see https://payments.amazon.com/help/Checkout-by-Amazon/Using-the-Checkout-by-Amazon-Sandbox/Overview-of-the-Sandbox
       # @return [self]
       def sandbox
         self.path = "/OffAmazonPayments_Sandbox/#{version}/"
@@ -31,7 +30,7 @@ module MWS
       # Reserves a specified amount against the payment method(s) stored in the
       # order reference
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752010
+      # @see https://developer.amazon.com/docs/amazon-pay-api/authorize.html
       # @param [String] amazon_order_reference_id
       # @param [String] authorization_reference_id
       # @param [Struct, Hash] authorization_amount
@@ -54,7 +53,7 @@ module MWS
 
       # Cancels a previously confirmed order reference
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751990
+      # @see https://developer.amazon.com/docs/amazon-pay-api/cancelorderreference.html
       # @param [String] amazon_order_reference_id
       # @param [Hash] opts
       # @option opts [String] cancelation_reason
@@ -69,7 +68,7 @@ module MWS
 
       # Captures funds from an authorized payment instrument
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752040
+      # @see https://developer.amazon.com/docs/amazon-pay-api/capture.html
       # @param [String] amazon_authorization_id
       # @param [String] capture_reference_id
       # @param [Struct, Hash] capture_amount
@@ -90,7 +89,7 @@ module MWS
 
       # Closes an authorization
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752070
+      # @see https://developer.amazon.com/docs/amazon-pay-api/closeauthorization.html
       # @param [String] amazon_authorization_id
       # @param [Hash] opts
       # @option opts [String] closure_reason
@@ -107,7 +106,7 @@ module MWS
       # and that you do not expect to create any new authorizations on this
       # order reference
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752000
+      # @see https://developer.amazon.com/docs/amazon-pay-api/closeorderreference.html
       # @param [String] amazon_order_reference_id
       # @param [Hash] opts
       # @option opts [String] closure_reason
@@ -123,7 +122,7 @@ module MWS
       # Confirms that the order reference is free of constraints and all
       # required information has been set on the order reference
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751980
+      # @see https://developer.amazon.com/docs/amazon-pay-api/confirmorderreference.html
       # @param [String] amazon_order_reference_id
       # @return [Peddler::XMLParser]
       def confirm_order_reference(amazon_order_reference_id)
@@ -135,7 +134,7 @@ module MWS
 
       # Creates an order reference for the given object
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751670
+      # @see https://developer.amazon.com/docs/amazon-pay-api/createorderreferenceforid.html
       # @param [String] id
       # @param [String] id_type
       # @param [Hash] opts
@@ -154,7 +153,7 @@ module MWS
       # Returns the status of a particular authorization and the total amount
       # captured on the authorization
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752030
+      # @see https://developer.amazon.com/docs/amazon-pay-api/getauthorizationdetails.html
       # @param [String] amazon_authorization_id
       # @return [Peddler::XMLParser]
       def get_authorization_details(amazon_authorization_id)
@@ -167,7 +166,7 @@ module MWS
       # Returns the status of a particular capture and the total amount refunded
       # on the capture
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752060
+      # @see https://developer.amazon.com/docs/amazon-pay-api/getcapturedetails.html
       # @param [String] amazon_capture_id
       # @return [Peddler::XMLParser]
       def get_capture_details(amazon_capture_id)
@@ -179,7 +178,7 @@ module MWS
 
       # Returns details about the Order Reference object and its current state
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751970
+      # @see https://developer.amazon.com/docs/amazon-pay-api/getorderreferencedetails.html
       # @param [String] amazon_order_reference_id
       # @param [Hash] opts
       # @option opts [String] address_consent_token
@@ -194,7 +193,7 @@ module MWS
 
       # Returns the status of a particular refund
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752100
+      # @see https://developer.amazon.com/docs/amazon-pay-api/getrefunddetails.html
       # @param [String] amazon_refund_id
       # @return [Peddler::XMLParser]
       def get_refund_details(amazon_refund_id)
@@ -206,7 +205,7 @@ module MWS
 
       # Gets the operational status of the API
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752110
+      # @see https://developer.amazon.com/docs/amazon-pay-api/getservicestatus.html
       # @return [Peddler::XMLParser]
       def get_service_status
         operation('GetServiceStatus')
@@ -215,7 +214,7 @@ module MWS
 
       # Refunds a previously captured amount
       #
-      # @see https://payments.amazon.com/documentation/apireference/201752080
+      # @see https://developer.amazon.com/docs/amazon-pay-api/refund.html
       # @param [String] amazon_capture_id
       # @param [String] refund_reference_id
       # @param [Struct, Hash] refund_amount
@@ -237,7 +236,7 @@ module MWS
       # Sets order reference details such as the order total and a description
       # for the order
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751960
+      # @see https://developer.amazon.com/docs/amazon-pay-api/setorderreferencedetails.html
       # @param [String] amazon_order_reference_id
       # @param [Struct, Hash] order_total
       # @param [Hash] opts
@@ -258,7 +257,7 @@ module MWS
       # Reserves a specified amount against the payment method(s) stored in the
       # billing agreement
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751940
+      # @see https://developer.amazon.com/docs/amazon-pay-api/authorizeonbillingagreement.html
       # @param [String] amazon_billing_agreement_id
       # @param [String] authorization_reference_id
       # @param [Hash, Struct] authorization_amount
@@ -288,7 +287,7 @@ module MWS
       # and that you do not expect to create any new order references or
       # authorizations on this billing agreement
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751950
+      # @see https://developer.amazon.com/docs/amazon-pay-api/closebillingagreement.html
       # @param [String] amazon_billing_agreement_id
       # @param [Hash] opts
       # @option opts [String] :closure_reason
@@ -304,7 +303,7 @@ module MWS
       # Confirms that the billing agreement is free of constraints and all
       # required information has been set on the billing agreement
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751710
+      # @see https://developer.amazon.com/docs/amazon-pay-api/confirmbillingagreement.html
       # @param [String] amazon_billing_agreement_id
       # @return [Peddler::XMLParser]
       def confirm_billing_agreement(amazon_billing_agreement_id)
@@ -316,7 +315,7 @@ module MWS
 
       # Returns details about the Billing Agreement object and its current state
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751690
+      # @see https://developer.amazon.com/docs/amazon-pay-api/getbillingagreementdetails.html
       # @param [String] amazon_billing_agreement_id
       # @param [Hash] opts
       # @option opts [String] :address_consent_token
@@ -332,7 +331,7 @@ module MWS
       # Sets billing agreement details such as a description of the agreement
       # and other information about the seller
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751700
+      # @see https://developer.amazon.com/docs/amazon-pay-api/setbillingagreementdetails.html
       # @param [String] amazon_billing_agreement_id
       # @param [Struct, Hash] billing_agreement_attributes
       # @return [Peddler::XMLParser]
@@ -348,7 +347,7 @@ module MWS
       # Validates the status of the BillingAgreement object and the payment
       # method associated with it
       #
-      # @see https://payments.amazon.com/documentation/apireference/201751720
+      # @see https://developer.amazon.com/docs/amazon-pay-api/validatebillingagreement.html
       # @param [String] amazon_billing_agreement_id
       # @return [Peddler::XMLParser]
       def validate_billing_agreement(amazon_billing_agreement_id)
