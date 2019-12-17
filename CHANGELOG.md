@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 - Remove China. It is no longer supported starting 1st October 2019.
+- Remove Off-Amazon Payments. This is no longer under the MWS umbrella and has its own official Ruby client.
 
 ## [2.2.0] - 2019-09-04
 ### Added

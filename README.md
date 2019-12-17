@@ -190,20 +190,6 @@ The Merchant Fulfillment API provides programmatic access to Amazon’s fulfillm
 - [Amazon references](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html)
 - [Peddler API docs](https://www.rubydoc.info/gems/peddler/MWS/MerchantFulfillment/Client)
 
-### Off Amazon Payments
-
-The MWS Off-Amazon Payments API helps you to process payments for purchases made by buyers on your website using the Login and Pay with Amazon service. This API enables you to programmatically retrieve shipping and payment information provided by the buyer from their Amazon account. It allows you to authorize, capture, and refund payments, enabling a variety of payments scenarios.
-
-You can switch the client to the sandbox environment:
-
-```ruby
-client = MWS.off_amazon_payments.sandbox
-```
-
-- [Amazon references](https://developer.amazon.com/docs/amazon-pay-api/intro.html)
-- [Official Ruby client](https://github.com/amzn/login-and-pay-with-amazon-sdk-ruby)
-- [Peddler API docs](https://www.rubydoc.info/gems/peddler/MWS/OffAmazonPayments/Client)
-
 ### Orders
 
 With the MWS Orders API, you can list orders created or updated during a time frame you specify or retrieve information about specific orders.
