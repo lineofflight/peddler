@@ -28,12 +28,12 @@ module Peddler
       self
     end
 
-    def store(key, val, parent: nil)
+    def store(key, val, parent = nil)
       key = [parent, camelize(key)].compact.join('.')
       val = format_known_types(val)
 
       if val.is_a?(Hash)
-        val.each { |keyval| store(*keyval, parent: key) }
+        val.each { |keyval| store(*keyval, key) }
       else
         __getobj__.store(key, val)
       end

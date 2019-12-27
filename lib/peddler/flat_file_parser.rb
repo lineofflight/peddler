@@ -23,7 +23,7 @@ module Peddler
     end
 
     def parse(&blk)
-      CSV.parse(content, OPTIONS, &blk) unless content.empty?
+      CSV.parse(content, **OPTIONS, &blk) unless content.empty?
     end
 
     def records_count

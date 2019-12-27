@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add Easy Ship API
 - Add Shipment Invoicing API
+- Support Ruby 2.7
 
 ### Removed
 - Remove China. It is no longer supported starting 1st October 2019.

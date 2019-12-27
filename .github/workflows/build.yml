@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.4.x, 2.5.x, 2.6.x]
+        ruby: [2.4.x, 2.5.x, 2.6.x, 2.7.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -19,7 +19,7 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
 
     - name: Set up reporter
-      if: matrix.ruby == '2.6.x'
+      if: success() && matrix.ruby == '2.7.x'
       run: |
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         chmod +x ./cc-test-reporter
@@ -39,7 +39,7 @@ jobs:
 
     - name: Report
       continue-on-error: true
-      if: success() && matrix.ruby == '2.6.x'
+      if: success() && matrix.ruby == '2.7.x'
       run: GIT_BRANCH="${GITHUB_REF/refs\/heads\//}" ./cc-test-reporter after-build --exit-code $?
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
