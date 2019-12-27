@@ -1,3 +1,7 @@
+Layout/LineLength:
+  Exclude:
+    - "test/**/*"
+  IgnoredPatterns: ['\A\s*#']
 Metrics/AbcSize:
   Exclude:
     - "test/**/*"
@@ -8,10 +12,6 @@ Metrics/ClassLength:
   Exclude:
     - "lib/mws/**/client.rb"
     - "test/**/*"
-Metrics/LineLength:
-  Exclude:
-    - "test/**/*"
-  IgnoredPatterns: ['\A\s*#']
 Metrics/MethodLength:
   Exclude:
     - "lib/mws/**/client.rb"
