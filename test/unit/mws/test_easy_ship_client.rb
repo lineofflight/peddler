@@ -12,8 +12,8 @@ class TestMWSEasyShipClient < MiniTest::Test
     @dimensions = PackageDimensions.new(12, 12, 12, 'cm')
     @weight = PackageWeight.new(23, 'g')
     @pickup_slot = PackagePickupSlot.new('Xyt123bbdg=',
-                                         Time.new(2018, 2, 21, 7, 30).utc,
-                                         Time.new(2018, 2, 21, 10, 30).utc)
+                                         Time.new(2018, 2, 21, 7, 30, 0, 0),
+                                         Time.new(2018, 2, 21, 10, 30, 0, 0))
     @scheduled_id = ScheduledPackageId.new('903-1713775-3598252',
                                            '1ab0f06a-9149-87e0-aba9-7098117872d6')
   end

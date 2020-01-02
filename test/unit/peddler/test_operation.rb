@@ -56,7 +56,7 @@ class TestPeddlerOperation < MiniTest::Test
   end
 
   def test_that_store_formats_time_values
-    time = Time.new(2018, 1, 1)
+    time = Time.new(2018, 1, 1, 0, 0, 0, 0)
     @operation.store('time', time)
     assert_equal '2018-01-01T00:00:00.00Z', @operation.fetch('time')
   end
