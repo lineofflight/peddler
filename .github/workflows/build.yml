@@ -3,43 +3,54 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  build:
+  rubocop:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    container:
+      image: ruby:2.7
+    steps:
+    - uses: actions/checkout@v2
+    - run: gem install bundler
+    - run: bundle config set without 'test'
+    - run: bundle install
+    - run: bundle exec rake rubocop
 
+  test:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         ruby: [2.4, 2.5, 2.6, 2.7]
-
+        gemfile: [libxml, nokogiri, ox, rexml]
     container:
       image: ruby:${{ matrix.ruby }}
-
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+    - run: gem install bundler
+    - run: bundle install
+    - run: bundle exec appraisal ${{ matrix.gemfile }} bundle install
+    - run: bundle exec appraisal ${{ matrix.gemfile }} rake test
 
-    - name: Set up reporter
-      continue-on-error: true
-      if: success() && github.event_name == 'push' && matrix.ruby == '2.7'
-      run: |
-        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-        chmod +x ./cc-test-reporter
-        ./cc-test-reporter before-build
+  documentation:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.7
+    steps:
+    - uses: actions/checkout@v2
+    - run: ./scripts/documentation_crawler.rb
 
-    - name: Run tests
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec rake
-      env:
-        AWS_ACCESS_KEY_ID: secret
-        AWS_SECRET_ACCESS_KEY: secret
-
-    - name: Check documentation links
-      run: ./scripts/documentation_crawler.rb
-
-    - name: Report
-      continue-on-error: true
-      if: success() && github.event_name == 'push' && matrix.ruby == '2.7'
-      run: GIT_BRANCH="${GITHUB_REF/refs\/heads\//}" ./cc-test-reporter after-build --exit-code $?
+  coverage:
+    if: github.event_name == 'push'
+    needs: [rubocop, test, documentation]
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.7
+    steps:
+    - uses: actions/checkout@v2
+    - run: gem install bundler
+    - run: bundle install --jobs 4 --retry 3
+    - uses: paambaati/codeclimate-action@v2.4.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        GIT_COMMIT_SHA: ${{ github.sha }}
+        COVERAGE: true
+      with:
+        coverageCommand: bundle exec rake test
