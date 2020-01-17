@@ -2,14 +2,17 @@
 
 source 'https://rubygems.org'
 
-gem 'appraisal'
-gem 'minitest'
-gem 'minitest-focus'
+group :test do
+  gem 'appraisal'
+  gem 'minitest'
+  gem 'minitest-focus'
+  gem 'simplecov'
+  gem 'vcr'
+end
+
 gem 'rake'
 gem 'rubocop'
 gem 'rubocop-performance'
-gem 'simplecov'
-gem 'vcr'
 gem 'yard'
 
 gemspec
