@@ -29,6 +29,8 @@ jobs:
     - run: bundle install
     - run: bundle exec appraisal ${{ matrix.gemfile }} bundle install
     - run: bundle exec appraisal ${{ matrix.gemfile }} rake test
+      env:
+        LC_ALL: C.UTF-8
 
   documentation:
     runs-on: ubuntu-latest
@@ -51,6 +53,7 @@ jobs:
     - uses: paambaati/codeclimate-action@v2.4.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        LC_ALL: C.UTF-8
         COVERAGE: true
       with:
         coverageCommand: bundle exec rake test
