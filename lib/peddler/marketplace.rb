@@ -8,22 +8,17 @@ module Peddler
       attr_reader :all
 
       def find(key)
-        marketplace = if key.nil?
-                        missing_key!
-                      elsif key.size == 2
-                        find_by_country_code(key)
-                      else
-                        find_by_id(key)
-                      end
+        missing_key! unless key
+        marketplace = key.size == 2 ? find_by_country(key) : find_by_id(key)
 
         marketplace || not_found!(key)
       end
 
       private
 
-      def find_by_country_code(country_code)
-        country_code = 'GB' if country_code == 'UK'
-        all.find { |marketplace| marketplace.country_code == country_code }
+      def find_by_country(code)
+        code = 'GB' if code == 'UK'
+        all.find { |marketplace| marketplace.country_code == code }
       end
 
       def find_by_id(id)
