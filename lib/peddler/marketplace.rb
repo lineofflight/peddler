@@ -3,7 +3,7 @@
 module Peddler
   # @!visibility private
   # @see https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html
-  Marketplace = Struct.new(:id, :country_code, :host) do
+  class Marketplace
     class << self
       attr_reader :all
 
@@ -37,6 +37,14 @@ module Peddler
       def not_found!(country_code)
         raise ArgumentError, %("#{country_code}" is not a valid marketplace)
       end
+    end
+
+    attr_reader :id, :country_code, :host
+
+    def initialize(id, country_code, host)
+      @id = id
+      @country_code = country_code
+      @host = host
     end
 
     def encoding

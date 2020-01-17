@@ -5,9 +5,6 @@ Layout/LineLength:
 Metrics/AbcSize:
   Exclude:
     - "test/**/*"
-Metrics/BlockLength:
-  ExcludedMethods:
-    - "Struct.new"
 Metrics/ClassLength:
   Exclude:
     - "lib/mws/**/client.rb"
