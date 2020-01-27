@@ -58,12 +58,15 @@ module Peddler
       ['ATVPDKIKX0DER', 'US', 'mws.amazonservices.com'],
       ['A2VIGQ35RCS4UG', 'AE', 'mws.amazonservices.ae'],
       ['A1PA6795UKMFR9', 'DE', 'mws-eu.amazonservices.com'],
+      ['ARBP9OOSHTCHU', 'EG', 'mws-eu.amazonservices.com'],
       ['A1RKKUPIHCS9HS', 'ES', 'mws-eu.amazonservices.com'],
       ['A13V1IB3VIYZZH', 'FR', 'mws-eu.amazonservices.com'],
       ['A1F83G8C2ARO7P', 'GB', 'mws-eu.amazonservices.com'],
       ['A21TJRUUN4KGV', 'IN', 'mws.amazonservices.in'],
       ['APJ6JRA9NG5V4', 'IT', 'mws-eu.amazonservices.com'],
+      ['A17E79C6D8DWNP', 'SA', 'mws-eu.amazonservices.com'],
       ['A33AVAJ2PDY3EV', 'TR', 'mws-eu.amazonservices.com'],
+      ['A19VAU5U5O7RUS', 'SG', 'mws-fe.amazonservices.com'],
       ['A39IBJ37TRP1C6', 'AU', 'mws.amazonservices.com.au'],
       ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp']
     ].map do |values|

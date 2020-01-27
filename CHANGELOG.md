@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Add Egypt, Saudi Arabia, and Singapore endpoints
 - Add Easy Ship API
 - Add Shipment Invoicing API
 - Support Ruby 2.7
