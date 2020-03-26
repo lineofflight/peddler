@@ -19,3 +19,9 @@ Metrics/ParameterLists:
 Naming/AccessorMethodName:
   Exclude:
     - "lib/mws/**/client.rb"
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
