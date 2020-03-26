@@ -6,6 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add Netherlands endpoint
 
+### Fixed
+- Work around bad charset name
+
 ## [2.3.0] - 2020-01-27
 ### Added
 - Add Egypt, Saudi Arabia, and Singapore endpoints

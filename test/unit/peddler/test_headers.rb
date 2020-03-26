@@ -67,6 +67,11 @@ class TestPeddlerHeaders < MiniTest::Test
     assert_nil content_charset
   end
 
+  def test_utf8_content_charset
+    @headers['Content-Type'] = 'text/plain;charset=UTF8'
+    assert_equal Encoding::UTF_8, content_charset
+  end
+
   def test_mws_quota_max
     assert_kind_of Integer, mws_quota_max
   end
