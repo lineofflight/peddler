@@ -2,6 +2,12 @@ Layout/LineLength:
   Exclude:
     - "test/**/*"
   IgnoredPatterns: ['\A\s*#']
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+  Exclude:
+    - "test/**/*"
 Metrics/AbcSize:
   Exclude:
     - "test/**/*"
