@@ -19,7 +19,12 @@ module Peddler
 
       def generate(name)
         with_mutex do
-          return Errors.const_get(name) if Errors.const_defined?(name)
+          if Errors.const_defined?(name)
+            error = Errors.const_get(name)
+            return error if error.ancestors.include?(Error)
+
+            raise TypeError, "#{name} must be a Peddler::Errors::Error"
+          end
 
           Errors.const_set(name, Class.new(Error))
         end
