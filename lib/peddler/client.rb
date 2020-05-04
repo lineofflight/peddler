@@ -81,6 +81,11 @@ module Peddler
       str ? add_content(str) : clear_content!
     end
 
+    def binary_body=(binary)
+      headers['Content-Type'] = 'application/octet-stream'
+      @body = binary
+    end
+
     # @!visibility private
     attr_writer :path
 
