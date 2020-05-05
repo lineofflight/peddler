@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.4.1] - 2020-05-05
+### Added
+- Support for binary files in the Feeds API
+
 ## [2.4.0] - 2020-04-13
 ### Added
 - Add Netherlands endpoint
