@@ -31,7 +31,7 @@ class TestMWSFeedsClient < MiniTest::Test
 
     @client.stub(:run, nil) do
       random_byte_stream = Random.bytes(32)
-      @client.submit_feed(random_byte_stream, 'type', marketplace_id_list: '1', binary: true)
+      @client.submit_feed(random_byte_stream, 'type', marketplace_id_list: '1')
     end
 
     assert_equal operation, @client.operation
