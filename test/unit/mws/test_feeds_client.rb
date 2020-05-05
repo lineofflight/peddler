@@ -22,6 +22,21 @@ class TestMWSFeedsClient < MiniTest::Test
     assert_equal operation, @client.operation
   end
 
+  def test_submitting_binary_file_feed
+    operation = {
+      'Action' => 'SubmitFeed',
+      'FeedType' => 'type',
+      'MarketplaceIdList.Id.1' => '1'
+    }
+
+    @client.stub(:run, nil) do
+      random_byte_stream = Random.bytes(32)
+      @client.submit_feed(random_byte_stream, 'type', marketplace_id_list: '1', binary: true)
+    end
+
+    assert_equal operation, @client.operation
+  end
+
   def test_getting_feed_submission_list
     operation = {
       'Action' => 'GetFeedSubmissionList',
