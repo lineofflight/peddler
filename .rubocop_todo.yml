@@ -2,10 +2,7 @@ Layout/LineLength:
   Exclude:
     - "test/**/*"
   IgnoredPatterns: ['\A\s*#']
-Lint/RaiseException:
-  Enabled: true
 Lint/StructNewOverride:
-  Enabled: true
   Exclude:
     - "test/**/*"
 Metrics/AbcSize:
@@ -25,9 +22,3 @@ Metrics/ParameterLists:
 Naming/AccessorMethodName:
   Exclude:
     - "lib/mws/**/client.rb"
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true

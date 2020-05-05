@@ -5,4 +5,5 @@ require: rubocop-performance
 AllCops:
   Exclude:
     - "gemfiles/**/*"
+  NewCops: enable
   TargetRubyVersion: 2.4
