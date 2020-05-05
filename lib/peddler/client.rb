@@ -81,11 +81,6 @@ module Peddler
       str ? add_content(str) : clear_content!
     end
 
-    def binary_body=(binary)
-      headers['Content-Type'] = 'application/octet-stream'
-      @body = binary
-    end
-
     # @!visibility private
     attr_writer :path
 
@@ -134,6 +129,11 @@ module Peddler
     end
 
     def add_content(content)
+      if content.encoding.names.include?('BINARY')
+        headers['Content-Type'] = 'application/octet-stream'
+        @body = content
+        return
+      end
       if content.start_with?('<?xml')
         headers['Content-Type'] = 'text/xml'
         @body = content
