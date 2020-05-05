@@ -9,5 +9,6 @@ if ENV['COVERAGE']
   end
 end
 
+require 'ostruct'
 require 'minitest/autorun'
 require 'minitest/focus'

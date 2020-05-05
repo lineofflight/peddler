@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'helper'
-require 'ostruct'
 require 'peddler/errors/builder'
 
 class TestPeddlerErrorsBuilder < MiniTest::Test
