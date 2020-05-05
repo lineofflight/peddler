@@ -30,7 +30,7 @@ class TestMWSFeedsClient < MiniTest::Test
     }
 
     @client.stub(:run, nil) do
-      random_byte_stream = "\xB1\x9E\xFC\x80\xDBK\xCC\xC7F\x95}\v\x99O\xD9\x04\xB4\xE4V\xC9\x81\xF0\xEB\"\xCDJ\n\x9BM\xFA\x16\x95".b
+      random_byte_stream = Random.new.bytes(32)
       @client.submit_feed(random_byte_stream, 'type', marketplace_id_list: '1')
     end
 
