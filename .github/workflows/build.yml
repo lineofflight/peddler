@@ -4,16 +4,15 @@ on: [push, pull_request]
 
 jobs:
   rubocop:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     container:
       image: ruby:2.7
     steps:
-    - uses: actions/checkout@v2
-    - run: gem install bundler
-    - run: bundle config set without 'test'
-    - run: bundle install
-    - run: bundle exec rake rubocop
+      - uses: actions/checkout@v2
+      - run: gem install bundler
+      - run: bundle config set without 'test'
+      - run: bundle install
+      - run: bundle exec rake rubocop
 
   test:
     runs-on: ubuntu-latest
@@ -24,21 +23,21 @@ jobs:
     container:
       image: ruby:${{ matrix.ruby }}
     steps:
-    - uses: actions/checkout@v2
-    - run: gem install bundler
-    - run: bundle install
-    - run: bundle exec appraisal ${{ matrix.gemfile }} bundle install
-    - run: bundle exec appraisal ${{ matrix.gemfile }} rake test
-      env:
-        LC_ALL: C.UTF-8
+      - uses: actions/checkout@v2
+      - run: gem install bundler
+      - run: bundle install
+      - run: bundle exec appraisal ${{ matrix.gemfile }} bundle install
+      - run: bundle exec appraisal ${{ matrix.gemfile }} rake test
+        env:
+          LC_ALL: C.UTF-8
 
   documentation:
     runs-on: ubuntu-latest
     container:
       image: ruby:2.7
     steps:
-    - uses: actions/checkout@v2
-    - run: ./scripts/documentation_crawler.rb
+      - uses: actions/checkout@v2
+      - run: ./scripts/documentation_crawler.rb
 
   coverage:
     if: github.event_name == 'push'
@@ -47,13 +46,13 @@ jobs:
     container:
       image: ruby:2.7
     steps:
-    - uses: actions/checkout@v2
-    - run: gem install bundler
-    - run: bundle install --jobs 4 --retry 3
-    - uses: paambaati/codeclimate-action@v2.4.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        LC_ALL: C.UTF-8
-        COVERAGE: true
-      with:
-        coverageCommand: bundle exec rake test
+      - uses: actions/checkout@v2
+      - run: gem install bundler
+      - run: bundle install --jobs 4 --retry 3
+      - uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          LC_ALL: C.UTF-8
+          COVERAGE: true
+        with:
+          coverageCommand: bundle exec rake test
