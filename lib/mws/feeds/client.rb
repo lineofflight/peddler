@@ -24,12 +24,13 @@ module MWS
       # @return [Peddler::XMLParser]
       def submit_feed(feed_content, feed_type, opts = {})
         if opts[:binary]
-          self.binary_body=(feed_content)
-          opts.delete(:binary) # not needed past this stage
+          self.binary_body = feed_content
+          # not needed past this stage
+          opts = opts.reject { |k| k == :binary }
         else
-          self.body=(feed_content)
+          self.body = feed_content
         end
-        
+
         operation('SubmitFeed')
           .add(opts)
           .add('FeedType' => feed_type)
