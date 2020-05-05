@@ -129,18 +129,15 @@ module Peddler
     end
 
     def add_content(content)
+      @body = content
       if content.encoding.names.include?('BINARY')
         headers['Content-Type'] = 'application/octet-stream'
-        @body = content
-        return
-      end
-      if content.start_with?('<?xml')
+      elsif content.start_with?('<?xml')
         headers['Content-Type'] = 'text/xml'
-        @body = content
       else
         headers['Content-Type'] =
           "text/tab-separated-values; charset=#{encoding}"
-        @body = content.encode(encoding)
+        @body = @body.encode(encoding)
       end
     end
 
