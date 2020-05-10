@@ -68,7 +68,7 @@ class TestPeddlerHeaders < MiniTest::Test
   end
 
   def test_utf8_content_charset
-    @headers['Content-Type'] = 'text/plain;charset=UTF8'
+    @headers['Content-Type'] = 'text/plain;charset=utf8'
     assert_equal Encoding::UTF_8, content_charset
   end
 

@@ -8,31 +8,41 @@ class TestStringEncodings < IntegrationTest
 
   def setup
     skip unless ENV['LIVE']
+    super
   end
 
-  def test_flat_file_responses
-    get_report('_GET_SELLER_FEEDBACK_DATA_') do |res|
+  def test_seller_feedback_data
+    report_type = '_GET_SELLER_FEEDBACK_DATA_'
+
+    # clients.each do |client|
+    #   client.request_report(report_type, start_date: Date.today - 30)
+    # end
+
+    clients.each do |client|
+      res = client.get_report_list(report_type_list: report_type, max_count: 1)
+      id = res.dig('ReportInfo', 'ReportId')
+      next unless id
+
+      res = client.get_report(id)
       assert_equal res.content_charset, res.body.encoding
     end
   end
 
-  private
+  # https://github.com/hakanensari/peddler/issues/147
+  def test_merchant_listings_data
+    report_type = '_GET_MERCHANT_LISTINGS_DATA_'
 
-  def get_report(report_type, start_date: Date.today - 30)
+    # clients.each do |client|
+    #   client.request_report(report_type)
+    # end
+
     clients.each do |client|
-      res = client.request_report(report_type, start_date: start_date)
-      report_request_id = res.dig('ReportRequestInfo', 'ReportRequestId')
-      loop do
-        sleep 15
-        res = client.get_report_request_list(report_request_id_list:
-                                             report_request_id)
-        status = res.dig('ReportRequestInfo', 'ReportProcessingStatus')
-        next unless status.include?('_DONE_')
+      res = client.get_report_list(report_type_list: report_type, max_count: 1)
+      id = res.dig('ReportInfo', 'ReportId')
+      next unless id
 
-        report_id = res.dig('ReportRequestInfo', 'GeneratedReportId')
-        yield client.get_report(report_id)
-        break
-      end
+      res = client.get_report(id)
+      assert_equal res.content_charset, res.body.encoding
     end
   end
 end

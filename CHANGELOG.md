@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Work around another bad charset name?
+
 ## [2.4.1] - 2020-05-05
 
 ### Added
