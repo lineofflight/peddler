@@ -6,4 +6,4 @@ AllCops:
   Exclude:
     - "gemfiles/**/*"
   NewCops: enable
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5

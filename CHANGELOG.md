@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Work around another bad charset name?
 
+### Removed
+
+- Do not support Ruby 2.4
+
 ## [2.4.1] - 2020-05-05
 
 ### Added
