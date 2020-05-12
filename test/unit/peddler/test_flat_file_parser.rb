@@ -93,6 +93,14 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     assert_equal 'für', parser.parse['Foo'][0]
   end
 
+  def test_chinese_headers
+    body = "商品名称	商品描述	商品编码	卖家 SKU	价格	数量	开售日期	不适用项目	是否为商城中的商品	商品编码类型	不适用项目	商品备注	商品状况	不适用项目	不适用项目	不适用项目	ASIN1	不适用项目	不适用项目	国际配送	加急配送	不适用项目	商品编码	不适用项目	添加-删除	等待购买数量	配送渠道	企业商品价格	数量折扣价格类型	数量下限 1	数量折扣价格 1	数量下限 2	数量折扣价格 2	数量下限 3	数量折扣价格 3	数量下限 4	数量折扣价格 4	数量下限 5	数量折扣价格 5	卖家配送组
+    Waterproof Sunshade Cover (180 * 180, Blue)	Material: Waterproof and UV resistant Oxford cloth <br><br> Color: green black blue <br><br> Product Size: <br> <br> 120 * 120CM weight 210g <br> <br> 150 * 150CM weight 290g <br><br> 180 * 180CM weight 380g <br><br> 200 * 200CM weight 460g	0645YNJ5NZ9	04-AFWM-8QDS	20.32	10	15/04/2020 15:15:46 BST		y	4			11				B2884WQWZY						4716528214404			0	DEFAULT				Migrated Template
+    Cover Rain And Snow Cover (242 * 160 * 100)	Color: green can be customized <br><br> Fabric main component content: waterproof 210D Oxford cloth <br><br> Dimensions: length * width * height cm <br><br> size and weight: <br><br> 242 * 162 * 100cm weight 950g <br><br> 308 * 138 * 89cm weight 950g <br><br> 213 * 132 * 70cm weight 590g <br><br> 180 * 120 * 70cm weight 500g <br><br> 126 * 126 * 74cm weight 430g <br><br> 123 * 61 * 72cm weight 280g <br><br> 115 * 115 * 70cm weight 280g <br><br> 315 * 160 * 70cm weight 910g <br><br> 230 * 165 * 70cm weight 720g <br><br> 210 * 140 * 70cm weight 600g <br><br> 210 * 110 * 70cm weight 540g <br><br> 205 * 104 * 71cm weight 510g <br><br> 170 * 71 * 94cm weight 450g <br><br> 160 * 160 * 70cm weight 560g <br><br> 150 * 150 * 70cm weight 510g <br><br> 152 * 104 * 71cm weight 420g <br><br> 250 * 250 * 90cm weight 1190g	0416XWWK0U5	02-5QLY-0EFL	35.29	10	16/04/2020 15:01:43 BST		y	4			11				B0234CWWCC						4714528214534			0	DEFAULT													Migrated Template"
+    parser = Peddler::FlatFileParser.new(build_mock_response(body, ascii: false, charset: 'utf8'), Encoding::CP1252)
+    assert parser[0]['卖家 SKU']
+  end
+
   private
 
   def build_body(str, encoding:)
