@@ -23,7 +23,7 @@ class TestPeddlerXMLResponseParser < MiniTest::Test
   end
 
   def test_parsing_browse_nodes
-    body = '<?xml version=\"1.0\"?><Result><Node><browseNodeId>1</browseNodeId></Node></Result>'
+    body = '<Result><Node><browseNodeId>1</browseNodeId></Node></Result>'
     parser = Peddler::XMLResponseParser.new(response(body))
 
     assert parser.parse
