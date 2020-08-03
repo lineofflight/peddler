@@ -22,6 +22,13 @@ class TestPeddlerXMLResponseParser < MiniTest::Test
     assert_equal 'Bar', parser.parse['foo']
   end
 
+  def test_parsing_browse_nodes
+    body = '<?xml version=\"1.0\"?><Result><Node><browseNodeId>1</browseNodeId></Node></Result>'
+    parser = Peddler::XMLResponseParser.new(response(body))
+
+    assert parser.parse
+  end
+
   def test_parsing_next_token
     body = '<Response><Result><NextToken>123</NextToken></Result></Response>'
     parser = Peddler::XMLResponseParser.new(response(body))

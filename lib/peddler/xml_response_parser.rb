@@ -5,7 +5,7 @@ require 'peddler/xml_parser'
 module Peddler
   # @!visibility private
   class XMLResponseParser < XMLParser
-    MATCHER = /^Message$|Report|Result/.freeze
+    MATCHER = /^Message$|^Node$|Report|Result/.freeze
     private_constant :MATCHER
 
     def next_token
@@ -14,6 +14,7 @@ module Peddler
 
     private
 
+    # FIXME: In next major version bump, stop assuming we know report internals.
     def find_data
       payload = xml.values.first
       found = payload.find { |k, _| k.match(MATCHER) }
