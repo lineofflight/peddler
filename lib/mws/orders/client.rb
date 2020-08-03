@@ -34,9 +34,7 @@ module MWS
       def list_orders(*marketplace_id)
         marketplace_id = marketplace_id.dup
         opts = extract_options(marketplace_id)
-        if opts.key?(:tfm_shipment_status)
-          opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status)
-        end
+        opts['TFMShipmentStatus'] = opts.delete(:tfm_shipment_status) if opts.key?(:tfm_shipment_status)
 
         operation('ListOrders')
           .add(opts)

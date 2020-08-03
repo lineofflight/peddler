@@ -21,7 +21,7 @@ module Peddler
         with_mutex do
           if Errors.const_defined?(name)
             error = Errors.const_get(name)
-            return error if error.ancestors.include?(Error)
+            return error if error <= Error
 
             raise TypeError, "#{name} must be a Peddler::Errors::Error"
           end
