@@ -5,7 +5,7 @@ require 'open3'
 require 'net/http'
 require 'logger'
 
-logger = Logger.new(STDOUT)
+logger = Logger.new($stdout)
 
 search_command = 'grep -R @see ./lib'
 output, = Open3.capture3(search_command)

@@ -22,6 +22,7 @@ module Peddler
       private
 
       def inherited(base)
+        super
         base.parser = parser
         base.params params
       end

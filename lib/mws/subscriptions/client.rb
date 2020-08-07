@@ -139,7 +139,7 @@ module MWS
                               marketplace_id)
         operation('UpdateSubscription')
           .add('MarketplaceId' => marketplace_id)
-          .add(build_subscription(notification_type, sqs_queue_url, enabled))
+          .add(build_subscription(notification_type, sqs_queue_url, enabled: enabled))
 
         run
       end
@@ -163,7 +163,7 @@ module MWS
         }
       end
 
-      def build_subscription(notification_type, sqs_queue_url, enabled = true)
+      def build_subscription(notification_type, sqs_queue_url, enabled: true)
         {
           'Subscription.IsEnabled' => enabled,
           'Subscription.NotificationType' => notification_type,

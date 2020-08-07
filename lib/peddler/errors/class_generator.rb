@@ -32,8 +32,8 @@ module Peddler
 
       private
 
-      def with_mutex
-        @mutex.synchronize { yield }
+      def with_mutex(&block)
+        @mutex.synchronize(&block)
       end
     end
   end
