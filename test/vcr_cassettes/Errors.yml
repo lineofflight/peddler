@@ -47,7 +47,6 @@ http_interactions:
           </Error>
           <RequestID>00df398f-e78f-49ff-b71b-aef161edb82c</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:02 GMT
 - request:
     method: post
@@ -96,7 +95,6 @@ http_interactions:
           </Error>
           <RequestID>1d076335-515f-451d-bc8f-c12c93e43874</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:03 GMT
 - request:
     method: post
@@ -145,7 +143,6 @@ http_interactions:
           </Error>
           <RequestID>8a975a37-ae3d-420c-b294-747ece38eb15</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:03 GMT
 - request:
     method: post
@@ -194,7 +191,6 @@ http_interactions:
           </Error>
           <RequestID>627c5924-6175-40bf-98b4-502a938310a6</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:04 GMT
 - request:
     method: post
@@ -243,7 +239,6 @@ http_interactions:
           </Error>
           <RequestID>3a0e7604-1e30-4a02-bcbb-80b241aeb392</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:05 GMT
 - request:
     method: post
@@ -292,7 +287,6 @@ http_interactions:
           </Error>
           <RequestID>336abcbc-d2e0-482e-a17c-3ebc1840702b</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:07 GMT
 - request:
     method: post
@@ -341,7 +335,6 @@ http_interactions:
           </Error>
           <RequestID>fa494823-6cc9-4a16-9ec2-2d219c793f10</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:07 GMT
 - request:
     method: post
@@ -390,7 +383,6 @@ http_interactions:
           </Error>
           <RequestID>c84732da-1e06-4be4-afa7-ddbabbe2de28</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:07 GMT
 - request:
     method: post
@@ -439,6 +431,103 @@ http_interactions:
           </Error>
           <RequestID>e62e40db-56b1-426a-9931-e0ae1855ab3a</RequestID>
         </ErrorResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:17:08 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A44Z&Version=2013-09-01&Signature=YAzjHMQpijkQPrxE%2BNWc77gwBupQAw%2B9xLiLMHQG%2FMw%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 403
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:44 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - ZEAVQY0SPYDABJFBFVBP
+      x-mws-request-id:
+      - 70ff696e-c213-4d3b-9a32-719309c26b37
+      x-mws-timestamp:
+      - '2020-10-12T11:32:44.601Z'
+      x-mws-response-context:
+      - 7ub3C1jnHymTwzAgZRg33u0fZZFftZj3PCdM3ZkuEenBQXIuOAvJOlYjIjyXpIh7PapRYyrEx7I=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>70ff696e-c213-4d3b-9a32-719309c26b37</RequestID>
+        </ErrorResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:44 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/Orders/2013-09-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=foo&Action=GetOrder&AmazonOrderId.Id.1=bar&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A44Z&Version=2013-09-01&Signature=LaDzgxEwqZTjKMG6cGLoo6EfyIa%2F33rRkwcNRX5IEj4%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 403
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:45 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '344'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - Y7ZB6V0WEYR9HGH2GKQT
+      x-mws-request-id:
+      - 557d74ef-3612-41d3-b83b-fd7ae65ef357
+      x-mws-timestamp:
+      - '2020-10-12T11:32:45.126Z'
+      x-mws-response-context:
+      - C9U4V6HeRSp0PoiHIjiPcYS8errRQag+NF/g1clfMN2shosd64PQYOGy+kJZrQf/EQ7GX94qEmI=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <ErrorResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01">
+          <Error>
+            <Type>Sender</Type>
+            <Code>InvalidAccessKeyId</Code>
+            <Message>The AWS Access Key Id you provided does not exist in our records.</Message>
+          </Error>
+          <RequestID>557d74ef-3612-41d3-b83b-fd7ae65ef357</RequestID>
+        </ErrorResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:45 GMT
+recorded_with: VCR 6.0.0

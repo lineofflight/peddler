@@ -43,7 +43,6 @@ http_interactions:
             <RequestId>eb331337-63db-481f-807d-7f7e7cb66c28</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:56 GMT
 - request:
     method: post
@@ -88,7 +87,6 @@ http_interactions:
             <RequestId>f08a8ecf-a2ba-4478-b855-b5d85ec96091</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:56 GMT
 - request:
     method: post
@@ -133,7 +131,6 @@ http_interactions:
             <RequestId>ae1985bc-e95e-49e8-a162-054fbd642fe7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:57 GMT
 - request:
     method: post
@@ -178,7 +175,6 @@ http_interactions:
             <RequestId>8dc7807a-426e-4401-b1b8-63affb69eb44</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:11:58 GMT
 - request:
     method: post
@@ -221,7 +217,6 @@ http_interactions:
             <RequestId>7077489c-8c8b-4620-aefa-493b53aa39da</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:00 GMT
 - request:
     method: post
@@ -264,7 +259,6 @@ http_interactions:
             <RequestId>0bce4c49-3217-4b86-9ad1-0295818b91fe</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:00 GMT
 - request:
     method: post
@@ -307,7 +301,6 @@ http_interactions:
             <RequestId>ac3c3c0a-2694-47dc-bf25-bd54de8e21f4</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:01 GMT
 - request:
     method: post
@@ -350,7 +343,6 @@ http_interactions:
             <RequestId>32c50063-f3b5-4aef-8d2a-eb8ad14b2fc7</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:12:02 GMT
 - request:
     method: post
@@ -400,7 +392,6 @@ http_interactions:
             <RequestId>db2b8880-c5ff-4a52-bcdd-a9935cb53057</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:33 GMT
 - request:
     method: post
@@ -450,7 +441,6 @@ http_interactions:
             <RequestId>335ec53c-8b88-4442-83d3-6f65b6f45e91</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:34 GMT
 - request:
     method: post
@@ -500,7 +490,6 @@ http_interactions:
             <RequestId>ea5da71b-4ad9-4829-b4b4-69925f56f7a7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:34 GMT
 - request:
     method: post
@@ -550,7 +539,6 @@ http_interactions:
             <RequestId>e03cfe4f-e26c-418d-9e8b-d713c05695b7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:34 GMT
 - request:
     method: post
@@ -600,7 +588,6 @@ http_interactions:
             <RequestId>46ed8a41-b281-4325-8b91-50e1d11b00e1</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:35 GMT
 - request:
     method: post
@@ -649,7 +636,6 @@ http_interactions:
             <RequestId>9554073a-bc1a-485a-a6f0-40a6b4f0b83c</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:35 GMT
 - request:
     method: post
@@ -678,7 +664,7 @@ http_interactions:
       Connection:
       - keep-alive
       x-mws-request-id:
-      - 087c8066-532d-4872-a2a2-0960c3940e98
+      - '087c8066-532d-4872-a2a2-0960c3940e98'
       x-mws-timestamp:
       - '2016-05-23T12:51:35.949Z'
       x-mws-response-context:
@@ -698,7 +684,6 @@ http_interactions:
             <RequestId>087c8066-532d-4872-a2a2-0960c3940e98</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:36 GMT
 - request:
     method: post
@@ -747,7 +732,6 @@ http_interactions:
             <RequestId>9cf16e74-d5de-446c-bfc5-30837e4969f1</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:36 GMT
 - request:
     method: post
@@ -796,7 +780,6 @@ http_interactions:
             <RequestId>4fb5edd7-4d07-4fee-a6d4-2940908ac8fd</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:36 GMT
 - request:
     method: post
@@ -845,6 +828,203 @@ http_interactions:
             <RequestId>b962c75b-5543-4284-95bf-dd0c875609da</RequestId>
           </ResponseMetadata>
         </ListInventorySupplyResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 12:51:37 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/FulfillmentInventory/2010-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A56Z&Version=2010-10-01&Signature=c5UEX9qQmg3%2BOoi8yKZwr6iJKKwpyhUMlqhXigvio%2B0%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:57 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '384'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - MMTKCWVP4MZD9EM7J0CX
+      x-mws-request-id:
+      - fefcc5c1-99e4-4b0a-80f9-7e925754947a
+      x-mws-timestamp:
+      - '2020-10-12T11:32:57.489Z'
+      x-mws-response-context:
+      - JKw1izbDCcNm8QOm2mkggfbAbrhKLnh5GO9ngB8LvGKdwcJTwfcVecp6C1oJSRhIRrLB4evYDzE=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInventory/2010-10-01/">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-12T11:32:57.489Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>fefcc5c1-99e4-4b0a-80f9-7e925754947a</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:57 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/FulfillmentInventory/2010-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A57Z&Version=2010-10-01&Signature=AhpD4y9xAqVrHzPTE6ps3QJIXLOWRLg3u9R8PpmjZJo%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:57 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '384'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - ER92KNAY8FWYW74HGY3H
+      x-mws-request-id:
+      - 50a22e2d-1d49-4007-9ad0-044a2aa47bfd
+      x-mws-timestamp:
+      - '2020-10-12T11:32:57.639Z'
+      x-mws-response-context:
+      - zfusLBJUOyVvH604aXPFA1ilyk3QEYH/m3Ikmn/1yjGdpWm8h+3l8oZlobUy2g0EdHJ5FhImP08=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonaws.com/FulfillmentInventory/2010-10-01/">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-12T11:32:57.639Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>50a22e2d-1d49-4007-9ad0-044a2aa47bfd</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:57 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/FulfillmentInventory/2010-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2020-09-12&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A57Z&Version=2010-10-01&Signature=bxL5kep1orq2CDKndaEKy%2B4N2e%2B9CoyyhPJSlZD%2B%2FDk%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:58 GMT
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '372'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - NBG2BDCV4BD75465Y4Q8
+      x-mws-request-id:
+      - 84333dd9-a467-49d6-8b36-33d3bb9e1cb4
+      x-mws-timestamp:
+      - '2020-10-12T11:32:58.183Z'
+      x-mws-response-context:
+      - 6vmb7ILWtdQZuG1WhbrP2OolC8v5C294aT0uePOsM2fC8bnXJZKTV4bs1S8xTsYgHBq0hDzbXDc=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListInventorySupplyResponse xmlns="http://mws.amazonaws.com/FulfillmentInventory/2010-10-01/">
+          <ListInventorySupplyResult>
+            <MarketplaceId>A39IBJ37TRP1C6</MarketplaceId>
+            <InventorySupplyList/>
+          </ListInventorySupplyResult>
+          <ResponseMetadata>
+            <RequestId>84333dd9-a467-49d6-8b36-33d3bb9e1cb4</RequestId>
+          </ResponseMetadata>
+        </ListInventorySupplyResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:58 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/FulfillmentInventory/2010-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListInventorySupply&QueryStartDateTime=2020-09-12&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A58Z&Version=2010-10-01&Signature=Mi%2B7RShybK2r2Nk5UZSwTS5918UnHASdPcoPKWqfICs%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:58 GMT
+      Content-Type:
+      - text/xml;charset=utf-8
+      Content-Length:
+      - '372'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - ZR21WJAPAVQZEFWCZP73
+      x-mws-request-id:
+      - 181c34ad-7efe-4a2a-82a7-095bc25dddf9
+      x-mws-timestamp:
+      - '2020-10-12T11:32:58.384Z'
+      x-mws-response-context:
+      - soqa+xAvAdo0AH6F+jp3qDfMJlDkqh3kpQJPyoSVF2ce3KhH35f7SHDt8F4eHnyQhzoH/kaQ5Jk=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListInventorySupplyResponse xmlns="http://mws.amazonaws.com/FulfillmentInventory/2010-10-01/">
+          <ListInventorySupplyResult>
+            <MarketplaceId>A1F83G8C2ARO7P</MarketplaceId>
+            <InventorySupplyList/>
+          </ListInventorySupplyResult>
+          <ResponseMetadata>
+            <RequestId>181c34ad-7efe-4a2a-82a7-095bc25dddf9</RequestId>
+          </ResponseMetadata>
+        </ListInventorySupplyResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:58 GMT
+recorded_with: VCR 6.0.0

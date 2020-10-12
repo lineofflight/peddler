@@ -43,7 +43,6 @@ http_interactions:
             <RequestId>f411b1c5-b93d-4b4c-8100-7be17c46c019</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:13:58 GMT
 - request:
     method: post
@@ -88,7 +87,6 @@ http_interactions:
             <RequestId>833c2568-5881-4d47-b67d-9914ffa9d4b7</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:13:58 GMT
 - request:
     method: post
@@ -133,7 +131,6 @@ http_interactions:
             <RequestId>43baca03-7ebc-45c6-8412-93f46e6d2897</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:13:59 GMT
 - request:
     method: post
@@ -178,7 +175,6 @@ http_interactions:
             <RequestId>c2fd8334-3458-4b18-b1aa-492aa87c0439</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:00 GMT
 - request:
     method: post
@@ -228,7 +224,6 @@ http_interactions:
             <RequestId>aea4ad79-b8dd-4f07-9a73-844aaf429adb</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:44 GMT
 - request:
     method: post
@@ -278,7 +273,6 @@ http_interactions:
             <RequestId>c9981132-2d74-44c6-b36c-0744d50d2c68</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:44 GMT
 - request:
     method: post
@@ -328,7 +322,6 @@ http_interactions:
             <RequestId>3989d301-ce9a-49a7-aaad-f926f83375fd</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:44 GMT
 - request:
     method: post
@@ -378,7 +371,6 @@ http_interactions:
             <RequestId>cb651f0b-1105-4a5b-a129-49f6465e12ed</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:45 GMT
 - request:
     method: post
@@ -428,6 +420,105 @@ http_interactions:
             <RequestId>ad86e223-80c1-4f56-bec6-14a26c164a58</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:45 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/Sellers/2011-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A45Z&Version=2011-07-01&Signature=qk7w2c7T79FEMaONYrFTLSaxy6aUH1KrE4rxhf%2ByncE%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:45 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 8HJ7BBSK7Z899BNGDAGT
+      x-mws-request-id:
+      - 44545af7-e4f2-4be1-8b0e-b8134ea3b686
+      x-mws-timestamp:
+      - '2020-10-12T11:32:45.732Z'
+      x-mws-response-context:
+      - Ko6uP6CA6mW/X6ehjrcw012Q1uX6HdSid/wlkhFWy4QmiO0gHCFX2LOirWoV0pv90NH5WL8pY/M=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-12T11:32:45.732Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>44545af7-e4f2-4be1-8b0e-b8134ea3b686</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:45 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Sellers/2011-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A45Z&Version=2011-07-01&Signature=OYFC9HQKlhkegy3I%2FvcQG%2BXnSVJnKxEcJ6P60s5tS%2BY%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:45 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - GHY8BYHBMBRNCYVTV2F3
+      x-mws-request-id:
+      - 02dc8757-d70e-411e-b341-518d7d39f0a9
+      x-mws-timestamp:
+      - '2020-10-12T11:32:45.887Z'
+      x-mws-response-context:
+      - 8o4wI+64JcFyIqAsOx9IMPO2eUgYKOtcNnaOPrMK8AoSqfCK1I6Mn0k5svmRk+WH1z5Sn72p9U0=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-12T11:32:45.887Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>02dc8757-d70e-411e-b341-518d7d39f0a9</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:45 GMT
+recorded_with: VCR 6.0.0

@@ -43,7 +43,6 @@ http_interactions:
             <RequestId>f682fe2e-803c-4a33-a60a-1cc987939035</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:07 GMT
 - request:
     method: post
@@ -88,7 +87,6 @@ http_interactions:
             <RequestId>9860138e-6d7d-4dad-bf69-e4a0350ea07d</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:08 GMT
 - request:
     method: post
@@ -133,7 +131,6 @@ http_interactions:
             <RequestId>6ecd42f7-889b-4df1-a630-81d96981ef09</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:09 GMT
 - request:
     method: post
@@ -178,7 +175,6 @@ http_interactions:
             <RequestId>41e4eb29-5010-4242-88e5-b7ab2ec07bee</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:10 GMT
 - request:
     method: post
@@ -240,7 +236,6 @@ http_interactions:
             <RequestId>4d01dc9f-37d9-4fc9-b720-762ddf7bc853</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:11 GMT
 - request:
     method: post
@@ -304,7 +299,6 @@ http_interactions:
             <RequestId>b282d3e3-7297-4be3-910d-f165d13901f1</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:11 GMT
 - request:
     method: post
@@ -368,7 +362,6 @@ http_interactions:
             <RequestId>6b4609fe-0d58-40ef-a3cc-6bf48f272c35</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:12 GMT
 - request:
     method: post
@@ -432,7 +425,6 @@ http_interactions:
             <RequestId>4c55775d-5a57-4ae5-8fa6-348f6a0933c1</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:13 GMT
 - request:
     method: post
@@ -489,7 +481,6 @@ http_interactions:
             <RequestId>f59a0e06-154f-4d6f-8817-eac31f706a4d</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:14 GMT
 - request:
     method: post
@@ -546,7 +537,6 @@ http_interactions:
             <RequestId>817372fb-9a0e-4126-97d6-c5481f8a0e88</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:14 GMT
 - request:
     method: post
@@ -605,7 +595,6 @@ http_interactions:
             <RequestId>67489315-fa27-46ec-8226-b15e4e710f40</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:15 GMT
 - request:
     method: post
@@ -662,7 +651,6 @@ http_interactions:
             <RequestId>5b700336-bdd2-40b8-b9f6-70883ce4081a</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Sat, 28 Mar 2015 18:14:16 GMT
 - request:
     method: post
@@ -712,7 +700,6 @@ http_interactions:
             <RequestId>79319381-431a-49c7-984d-eb55c80ff114</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:51 GMT
 - request:
     method: post
@@ -741,7 +728,7 @@ http_interactions:
       Connection:
       - keep-alive
       x-mws-request-id:
-      - 09e28a8d-f84d-4162-ad0a-919141515f51
+      - '09e28a8d-f84d-4162-ad0a-919141515f51'
       x-mws-timestamp:
       - '2016-05-23T13:12:51.281Z'
       x-mws-response-context:
@@ -762,7 +749,6 @@ http_interactions:
             <RequestId>09e28a8d-f84d-4162-ad0a-919141515f51</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:51 GMT
 - request:
     method: post
@@ -812,7 +798,6 @@ http_interactions:
             <RequestId>26613e61-aeba-4efb-be57-0356b2385701</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:51 GMT
 - request:
     method: post
@@ -862,7 +847,6 @@ http_interactions:
             <RequestId>0a49b562-96ab-4716-a8d0-076449b409f0</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:52 GMT
 - request:
     method: post
@@ -912,7 +896,6 @@ http_interactions:
             <RequestId>2963f32e-2b96-4428-a033-43cc77d6642d</RequestId>
           </ResponseMetadata>
         </GetServiceStatusResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:52 GMT
 - request:
     method: post
@@ -960,7 +943,6 @@ http_interactions:
             <RequestId>45131593-a222-45f4-8bf2-420b58e6434f</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:53 GMT
 - request:
     method: post
@@ -1022,7 +1004,6 @@ http_interactions:
             <RequestId>daf99154-405d-473f-9a7e-0fa908b9ca20</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:53 GMT
 - request:
     method: post
@@ -1084,7 +1065,6 @@ http_interactions:
             <RequestId>cda76851-7bd7-4684-99a0-e52fee1b5419</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:54 GMT
 - request:
     method: post
@@ -1146,7 +1126,6 @@ http_interactions:
             <RequestId>7a865e8e-1b11-4a5e-91c0-edcf66a942b9</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:54 GMT
 - request:
     method: post
@@ -1208,7 +1187,6 @@ http_interactions:
             <RequestId>7e4a999f-1576-4bfe-9901-b685b77b87a9</RequestId>
           </ResponseMetadata>
         </ListSubscriptionsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:54 GMT
 - request:
     method: post
@@ -1256,7 +1234,6 @@ http_interactions:
             <RequestId>9307c3bc-042b-4a6f-a6ec-e953e7282e3d</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:55 GMT
 - request:
     method: post
@@ -1323,7 +1300,6 @@ http_interactions:
             <RequestId>a039202b-e2ba-465e-94b5-6187669efd5c</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:56 GMT
 - request:
     method: post
@@ -1390,7 +1366,6 @@ http_interactions:
             <RequestId>a86d6cea-d6a0-4e49-92bb-96c16f90b461</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:56 GMT
 - request:
     method: post
@@ -1457,7 +1432,6 @@ http_interactions:
             <RequestId>1a342b5d-9f70-4c5b-a021-fd54827f4ab2</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:56 GMT
 - request:
     method: post
@@ -1524,6 +1498,297 @@ http_interactions:
             <RequestId>7ff0e535-7fbd-4b68-ac06-388fc7190cda</RequestId>
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
-    http_version:
   recorded_at: Mon, 23 May 2016 13:12:56 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A58Z&Version=2013-07-01&Signature=%2F4YGCz1NUEPvorZzJPEWJ4fPlqYn%2B2MaBMQLsgl4QCs%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:59 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '388'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 0YZ7FAARPXAP2ZXXXGTN
+      x-mws-request-id:
+      - 4280de48-f50c-4299-b523-63a5632c9e0b
+      x-mws-timestamp:
+      - '2020-10-12T11:32:58.995Z'
+      x-mws-response-context:
+      - ohq/sgbAamkZmsE2s8Q/YrorM++sA5vu0NYPaqEz+bENufreh3RDDotVzPriXCWLuW8Iq6SPSh4=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-12T11:32:58.995Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>4280de48-f50c-4299-b523-63a5632c9e0b</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:59 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A59Z&Version=2013-07-01&Signature=y4IlpBuU42qUpFKi1VvzP7%2FAxWy2c7%2F2APbTzy88rx4%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:59 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '388'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - WFXRTG9WNQDAYAV9B4AX
+      x-mws-request-id:
+      - 918b3e20-2b4c-4ca2-a3fd-34055e825757
+      x-mws-timestamp:
+      - '2020-10-12T11:32:59.156Z'
+      x-mws-response-context:
+      - Kg9tlxldv9YYrgmAt4TVjuMovS9Jqt1okcSQLUFqDg30ACBlfrcx47pnq+Njrg3ooLGM9PoRW10=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-12T11:32:59.156Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>918b3e20-2b4c-4ca2-a3fd-34055e825757</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:59 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A1805IZSGTT6HS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A59Z&Version=2013-07-01&Signature=%2Fw7iKmZxIpxtjzbWKGNZe59mJJMtsyRnOrY72ttIZJc%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:59 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '315'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - QPGCMCAP7ERQT3BEABW4
+      x-mws-request-id:
+      - 05a26c3b-12ad-43a2-893c-ba6ef3387a8c
+      x-mws-timestamp:
+      - '2020-10-12T11:32:59.315Z'
+      x-mws-response-context:
+      - BfSovB2qwAePaFchB58/KSpIXQwlA4nCat+TuGKis65zh41UGflJGJ9Mx3O42EO7Vzp2JeQxdOw=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList/>
+          </ListSubscriptionsResult>
+          <ResponseMetadata>
+            <RequestId>05a26c3b-12ad-43a2-893c-ba6ef3387a8c</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:59 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A39IBJ37TRP1C6&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A59Z&Version=2013-07-01&Signature=k9Lhr%2BKHW2z8b2XhhLhS%2BYHMKMhJuhT0iicvNMtif%2FI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:59 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '315'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - BPE3MMFQ2KBYQDSGG830
+      x-mws-request-id:
+      - 643be0e5-40f6-4232-b506-e24dcd240d19
+      x-mws-timestamp:
+      - '2020-10-12T11:32:59.877Z'
+      x-mws-response-context:
+      - ImBYerQcUvxnIqUDdKPmRJZJ5taGqdHtqef8x9wVNtvo8JCvI46n94D4BbJWCpJNbnpdKRV0Pho=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList/>
+          </ListSubscriptionsResult>
+          <ResponseMetadata>
+            <RequestId>643be0e5-40f6-4232-b506-e24dcd240d19</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:59 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A1805IZSGTT6HS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A33%3A00Z&Version=2013-07-01&Signature=JD2z4cvFLrac0i677htUazqB5BCYthHZvm%2BqvEsrh0E%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:33:00 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '350'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 63K5QZGFRZWDNQ5AEAT5
+      x-mws-request-id:
+      - 3bed2612-010b-473f-b006-43e4f8464513
+      x-mws-timestamp:
+      - '2020-10-12T11:33:00.184Z'
+      x-mws-response-context:
+      - zBwul6EHbonCDwdAVlSlcAKQMB0fIFTQh/p4tY9nMpv73IGw8T5ReIX7XO9EInsrn8m5YX+uQfE=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListRegisteredDestinationsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListRegisteredDestinationsResult>
+            <DestinationList/>
+          </ListRegisteredDestinationsResult>
+          <ResponseMetadata>
+            <RequestId>3bed2612-010b-473f-b006-43e4f8464513</RequestId>
+          </ResponseMetadata>
+        </ListRegisteredDestinationsResponse>
+  recorded_at: Mon, 12 Oct 2020 11:33:00 GMT
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A39IBJ37TRP1C6&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A33%3A00Z&Version=2013-07-01&Signature=FMFbUu9bYmd9TwyV6L33sqUK2VCwKd6sRHyTJkAjTaQ%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:33:00 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '350'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 99G58ZD82RYMWST0BDZ2
+      x-mws-request-id:
+      - caaba7e7-d963-4014-962e-89d6e38fcb0a
+      x-mws-timestamp:
+      - '2020-10-12T11:33:00.723Z'
+      x-mws-response-context:
+      - pTWcNVlLScsSsOupEROId4Bx2tEvTtMFrMMogiC8o+RrrXquFIe6aVXonrOJriqFzZRQV4/gvuk=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListRegisteredDestinationsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListRegisteredDestinationsResult>
+            <DestinationList/>
+          </ListRegisteredDestinationsResult>
+          <ResponseMetadata>
+            <RequestId>caaba7e7-d963-4014-962e-89d6e38fcb0a</RequestId>
+          </ResponseMetadata>
+        </ListRegisteredDestinationsResponse>
+  recorded_at: Mon, 12 Oct 2020 11:33:00 GMT
+recorded_with: VCR 6.0.0

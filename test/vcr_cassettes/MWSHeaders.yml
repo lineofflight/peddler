@@ -245,7 +245,6 @@ http_interactions:
                 <RequestId>408ccd3b-7fe0-4a9d-a998-af75cb2a396e</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:25 GMT
 - request:
     method: post
@@ -371,7 +370,6 @@ http_interactions:
                 <RequestId>12fc4adb-e3a3-4b84-afb6-0c78d3d3bf31</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
 - request:
     method: post
@@ -658,7 +656,6 @@ http_interactions:
                 <RequestId>4e4ab75b-e3b6-4ef8-a98b-da4da3bb1748</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
 - request:
     method: post
@@ -885,7 +882,6 @@ http_interactions:
                 <RequestId>28b495b8-e3ef-4c9e-898f-93e63434ccfa</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:26 GMT
 - request:
     method: post
@@ -1128,7 +1124,6 @@ http_interactions:
                 <RequestId>593ab553-7add-4ec4-8b0e-312315da4d03</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:27 GMT
 - request:
     method: post
@@ -1701,7 +1696,6 @@ http_interactions:
                 <RequestId>b25ccae3-98f0-47e2-9d27-980fc47d4758</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:27 GMT
 - request:
     method: post
@@ -1905,7 +1899,6 @@ http_interactions:
                 <RequestId>608a6fb0-5815-4d8a-8ae8-9b68d23513f3</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:28 GMT
 - request:
     method: post
@@ -2478,7 +2471,6 @@ http_interactions:
                 <RequestId>db909c69-263e-4a95-be68-ee4c9aca61a4</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:29 GMT
 - request:
     method: post
@@ -2959,6 +2951,387 @@ http_interactions:
                 <RequestId>f0f3d790-1642-458d-88e5-baead9088283</RequestId>
             </ResponseMetadata>
         </GetLowestPricedOffersForASINResponse>
-    http_version:
   recorded_at: Sun, 29 Jan 2017 23:55:29 GMT
-recorded_with: VCR 3.0.3
+- request:
+    method: post
+    uri: https://mws.amazonservices.com.au/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A39IBJ37TRP1C6&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A45Z&Version=2011-10-01&Signature=vdICPhdMxh5IQAy15XxfduEc06s4Huh4zrjL8g8i2ZM%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:46 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '7992'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - BZ1WY7ABA3QRB43GX57H
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-12T11:36:00.000Z'
+      x-mws-request-id:
+      - 507fa892-8301-4f29-879f-38b3946c66ee
+      x-mws-timestamp:
+      - '2020-10-12T11:32:46.434Z'
+      x-mws-response-context:
+      - ImBYerQcUvxnIqUDdKPmRJZJ5taGqdHtqef8x9wVNtvo8JCvI46n94D4BbJWCpJNbnpdKRV0Pho=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A39IBJ37TRP1C6" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A39IBJ37TRP1C6</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>6</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">6</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>AUD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>AUD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>AUD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <ListPrice>
+                        <CurrencyCode>AUD</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <SuggestedLowerPricePlusShipping>
+                        <CurrencyCode>AUD</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </SuggestedLowerPricePlusShipping>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">6</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>86.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>119</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="144" maximumHours="240" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>85.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>385</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="96" maximumHours="120" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>70.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>14044</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="72" maximumHours="96" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>47.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>81</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>85.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>247</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="72" maximumHours="96" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>98.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>46</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>AUD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>507fa892-8301-4f29-879f-38b3946c66ee</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:46 GMT
+- request:
+    method: post
+    uri: https://mws-eu.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A1805IZSGTT6HS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-12T11%3A32%3A46Z&Version=2011-10-01&Signature=9mUodkXIdhQ4WvEUeQ4CHpYHIMjt9aTI0PKMvcsGBiw%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 12 Oct 2020 11:32:46 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '4850'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - B3YNKSMR5JSAM2QZVN6F
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-12T12:32:00.000Z'
+      x-mws-request-id:
+      - d2b6e6ef-d793-47c4-ac63-8d157a132e54
+      x-mws-timestamp:
+      - '2020-10-12T11:32:46.669Z'
+      x-mws-response-context:
+      - HMtSu3yFd00+b5M7g1RkREEe11tJtx2cGjBkL0VIvw5Oh3XX7n0yroSu1tUUe1qqL7nD6G1Io4Q=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A1805IZSGTT6HS" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A1805IZSGTT6HS</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>2</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">1</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="new" fulfillmentChannel="Amazon">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="new">
+                            <LandedPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>EUR</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice>
+                        <CurrencyCode>EUR</CurrencyCode>
+                        <Amount>FILTERED</Amount>
+                    </ListPrice>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Amazon">1</OfferCount>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">1</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <ShippingTime minimumHours="0" maximumHours="0" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country></Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>true</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <ShippingTime minimumHours="96" maximumHours="120" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>EUR</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>JP</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>d2b6e6ef-d793-47c4-ac63-8d157a132e54</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+  recorded_at: Mon, 12 Oct 2020 11:32:46 GMT
+recorded_with: VCR 6.0.0
