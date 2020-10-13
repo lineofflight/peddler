@@ -521,4 +521,54 @@ http_interactions:
           </ResponseMetadata>
         </GetServiceStatusResponse>
   recorded_at: Mon, 12 Oct 2020 11:32:45 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Sellers/2011-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A14Z&Version=2011-07-01&Signature=gerk9WAJ96KE7hpvGCsS7jhKEAMWgomNB%2FEGitqwyzI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:15 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '376'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - RZHW7P0C5J5WHTK0ZT6C
+      x-mws-request-id:
+      - 181a6518-4302-4260-bee1-56b84b3e89d6
+      x-mws-timestamp:
+      - '2020-10-13T10:58:15.358Z'
+      x-mws-response-context:
+      - sBsh7VCvv8L28S7PMNhr5du1fJaO2FleeeprUbuL+E+9zT54nCTl9AmpiYlALNkBeqgwlLG1vpo=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="https://mws.amazonservices.com/Sellers/2011-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-13T10:58:15.358Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>181a6518-4302-4260-bee1-56b84b3e89d6</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:15 GMT
 recorded_with: VCR 6.0.0

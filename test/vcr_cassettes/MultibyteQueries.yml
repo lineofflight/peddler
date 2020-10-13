@@ -523,4 +523,66 @@ http_interactions:
       string: !binary |-
         PD94bWwgdmVyc2lvbj0iMS4wIj8+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2UgeG1sbnM9Imh0dHA6Ly9td3MuYW1hem9uc2VydmljZXMuY29tL3NjaGVtYS9Qcm9kdWN0cy8yMDExLTEwLTAxIj48TGlzdE1hdGNoaW5nUHJvZHVjdHNSZXN1bHQ+PFByb2R1Y3RzIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExODA1SVpTR1RUNkhTPC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwMTZWTkRYSlk8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJubC1OTCI+PG5zMjpCaW5kaW5nPktpbmRsZS1lZGl0aWU8L25zMjpCaW5kaW5nPjxuczI6Q3JlYXRvciBSb2xlPSJhdXRldXIiPkd1YXR0YXJpLCBGw6lsaXg8L25zMjpDcmVhdG9yPjxuczI6Q3JlYXRvciBSb2xlPSJyZWRhY3RldXIiPkdlbm9za28sIEdhcnk8L25zMjpDcmVhdG9yPjxuczI6Q3JlYXRvciBSb2xlPSJyZWRhY3RldXIiPkhldHJpY2ssIEpheTwvbnMyOkNyZWF0b3I+PG5zMjpGb3JtYXQ+TW9iaXBvY2tldCBlLWJvb2s8L25zMjpGb3JtYXQ+PG5zMjpMYWJlbD5Vbml2b2NhbCBQdWJsaXNoaW5nPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPkdlcHVibGljZWVyZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TWFudWZhY3R1cmVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpNYW51ZmFjdHVyZXI+PG5zMjpOdW1iZXJPZlBhZ2VzPjE1NDwvbnMyOk51bWJlck9mUGFnZXM+PG5zMjpQcm9kdWN0R3JvdXA+RS1ib29rczwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5BQklTX0VCT09LUzwvbnMyOlByb2R1Y3RUeXBlTmFtZT48bnMyOlB1YmxpY2F0aW9uRGF0ZT4yMDE1LTExLTAxPC9uczI6UHVibGljYXRpb25EYXRlPjxuczI6UHVibGlzaGVyPlVuaXZvY2FsIFB1Ymxpc2hpbmc8L25zMjpQdWJsaXNoZXI+PG5zMjpSZWxlYXNlRGF0ZT4yMDE1LTExLTAxPC9uczI6UmVsZWFzZURhdGU+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHBzOi8vbS5tZWRpYS1hbWF6b24uY29tL2ltYWdlcy9JLzMxUVFYSlJ0SnpMLl9TTDc1Xy5qcGc8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj40NzwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+VW5pdm9jYWwgUHVibGlzaGluZzwvbnMyOlN0dWRpbz48bnMyOlRpdGxlPk1hY2hpbmljIEVyb3M6IFdyaXRpbmdzIG9uIEphcGFuIChVbml2b2NhbCkgKEVuZ2xpc2ggRWRpdGlvbik8L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHMvPjxTYWxlc1JhbmtpbmdzLz48L1Byb2R1Y3Q+PC9Qcm9kdWN0cz48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzdWx0PjxSZXNwb25zZU1ldGFkYXRhPjxSZXF1ZXN0SWQ+ZTIxM2Q4M2UtNDE5My00M2Y3LWFhN2MtMzI2ZWQyMTM4Y2RjPC9SZXF1ZXN0SWQ+PC9SZXNwb25zZU1ldGFkYXRhPjwvTGlzdE1hdGNoaW5nUHJvZHVjdHNSZXNwb25zZT4=
   recorded_at: Mon, 12 Oct 2020 11:32:47 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A19VAU5U5O7RUS&Query=f%C3%A9lix%20guattari%20machinic%20eros&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A13Z&Version=2011-10-01&Signature=1E0jYvsLgtzXX2YvKOK5s5%2FNemuchgkd%2FxAlHYzmrLI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:13 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2445'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 4Z97SV3RK20GQRW9WRW0
+      x-mws-quota-max:
+      - '720.0'
+      x-mws-quota-remaining:
+      - '720.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:58:13 GMT
+      x-mws-request-id:
+      - 5f75d1a6-04bd-45c5-8d42-23b09fcc9bfa
+      x-mws-timestamp:
+      - '2020-10-13T10:58:13.606Z'
+      x-mws-response-context:
+      - 8KddZx8NvRZnHrHo8srLXtAIfgVHX1ugJuSUrODhaIe8Lx+YTAr8+r29+I4daWvlx+m2LL7gBYo=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: '<?xml version="1.0"?><ListMatchingProductsResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><ListMatchingProductsResult><Products
+        xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Product><Identifiers><MarketplaceASIN><MarketplaceId>A19VAU5U5O7RUS</MarketplaceId><ASIN>1937561208</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes
+        xml:lang="en-SG"><ns2:Author>Guattari, Felix</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:Brand>Univocal
+        Publishing</ns2:Brand><ns2:Creator Role="Editor">Genosko, Gary</ns2:Creator><ns2:Creator
+        Role="Editor">Hetrick, Jay</ns2:Creator><ns2:Genre>Philosophy</ns2:Genre><ns2:ItemDimensions><ns2:Height
+        Units="inches">8</ns2:Height><ns2:Length Units="inches">5</ns2:Length><ns2:Width
+        Units="inches">0.4</ns2:Width><ns2:Weight Units="pounds">0.44</ns2:Weight></ns2:ItemDimensions><ns2:Label>Univocal
+        Publishing LLC</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original
+        Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language></ns2:Languages><ns2:Manufacturer>Univocal
+        Publishing LLC</ns2:Manufacturer><ns2:NumberOfItems>1</ns2:NumberOfItems><ns2:NumberOfPages>154</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height
+        Units="inches">0.399999999592</ns2:Height><ns2:Length Units="inches">7.99999999184</ns2:Length><ns2:Width
+        Units="inches">4.9999999949</ns2:Width><ns2:Weight Units="pounds">0.45</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>1</ns2:PackageQuantity><ns2:PartNumber>3</ns2:PartNumber><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2015-02-01</ns2:PublicationDate><ns2:Publisher>Univocal
+        Publishing LLC</ns2:Publisher><ns2:SmallImage><ns2:URL>https://m.media-amazon.com/images/I/41mrzeoju7L._SL75_.jpg</ns2:URL><ns2:Height
+        Units="pixels">75</ns2:Height><ns2:Width Units="pixels">47</ns2:Width></ns2:SmallImage><ns2:Studio>Univocal
+        Publishing LLC</ns2:Studio><ns2:Title>Machinic Eros: Writings on Japan</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings/></Product></Products></ListMatchingProductsResult><ResponseMetadata><RequestId>5f75d1a6-04bd-45c5-8d42-23b09fcc9bfa</RequestId></ResponseMetadata></ListMatchingProductsResponse>'
+  recorded_at: Tue, 13 Oct 2020 10:58:13 GMT
 recorded_with: VCR 6.0.0

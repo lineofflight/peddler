@@ -6387,4 +6387,544 @@ http_interactions:
           </ResponseMetadata>
         </GetReportCountResponse>
   recorded_at: Mon, 12 Oct 2020 11:33:20 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A03Z&Version=2009-01-01&Signature=QMO%2BXAE3VZPAkfwXq%2Few3aaxpzRHe3mgsTL4M08xlgI%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:04 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '337'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - P3SB84MPDDVFMEG52R3B
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:04 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=nzzhi9aPnOfo2py7pmtC7a/8ONElifjoMhlGtFJb+/c=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 317c71e9-9760-4e91-ba4a-30e22965617c
+      x-mws-timestamp:
+      - '2020-10-13T10:53:04.129Z'
+      x-mws-response-context:
+      - qv3qy6/kpwR+pdNyw2ekKV8SsBSFqxo8dRF/i3Yu2lSb5qCmEc/Q9noRcNwYmcawLcV04Mgrjbc=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetReportScheduleListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleListResult>
+            <HasNext>false</HasNext>
+          </GetReportScheduleListResult>
+          <ResponseMetadata>
+            <RequestId>317c71e9-9760-4e91-ba4a-30e22965617c</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleListResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:04 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A04Z&Version=2009-01-01&Signature=hAVbgHM8X5pN6EIrHHQjmm911Jow6ZwcfSPTuqPKVYA%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:05 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - EG3Y1GJ279HXD9BFV66H
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:05 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=hJ6Jc+v+tV449mghOATy6+YiOsTmNn06KP7WrgqbdMY=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 97441da2-7d71-4661-b5ea-f9d5b09558a8
+      x-mws-timestamp:
+      - '2020-10-13T10:53:04.977Z'
+      x-mws-response-context:
+      - pTWcNVlLScsSsOupEROId4Bx2tEvTtMFrMMogiC8o+RrrXquFIe6aVXonrOJriqFzZRQV4/gvuk=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetReportRequestCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestCountResult>
+            <Count>994</Count>
+          </GetReportRequestCountResult>
+          <ResponseMetadata>
+            <RequestId>97441da2-7d71-4661-b5ea-f9d5b09558a8</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestCountResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:05 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportRequestList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A05Z&Version=2009-01-01&Signature=tlMZrN5SlA21CqSjiTRZu8aMtn5%2B2tqEHvcSSAbA%2FTg%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:06 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '6746'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 1D3Q2906M5PG28CBSCZJ
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:06 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=iVXHNfaP+hULpjXptiiloDK6NqIgB4iC5wN5kNjq6ic=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - dc84db08-6bec-4c24-b9f0-d4798419a696
+      x-mws-timestamp:
+      - '2020-10-13T10:53:05.914Z'
+      x-mws-response-context:
+      - JKw1izbDCcNm8QOm2mkggfbAbrhKLnh5GO9ngB8LvGKdwcJTwfcVecp6C1oJSRhIRrLB4evYDzE=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetReportRequestListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportRequestListResult>
+            <NextToken>GQmVtuUaFNH2jpZedg0wbVuY6vtoszFELLC/dRQXacLhT+dkKeInJzUT8XYz+v8TlVxEeInSTKZxrBy2GCH8wRdMWDtmovakeoTmSw6LS4yefuZnsq7OcSzQI2gzDbteQlkLIqS+26raHiVEYMmqpnjbitbNQgdHVwrHjELkHcJRMdAjeo1d90wuPLxFSWjwrFhvd4Ov2VRetoY4qbaMvgM3Ak2EcoTpiz6IlERWn587+3otyJBmL0mAY1AppHMSoBwy/AEkUppCQHu0SmgqWuMi8OIeJ2J5UhSkZXymYqdLcRMZzstNqUPTCvG/E5O1n0P4EZP95e13HawTZPrYzdbxlYGG1GACw1bZimV9jJdx4H0YmkGPKXvHR6SoCoQ/xbb1n7iOe4brDUCP5Q55hG0zqRRXi83DpxwViK1sUh5jXfr50nk0MQ==</NextToken>
+            <HasNext>true</HasNext>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <EndDate>2020-10-13T09:00:26+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59188018548</ReportRequestId>
+              <SubmittedDate>2020-10-13T09:00:26+00:00</SubmittedDate>
+              <CompletedDate>2020-10-13T09:00:36+00:00</CompletedDate>
+              <GeneratedReportId>4578185748018548</GeneratedReportId>
+              <ReportType>_GET_V1_SELLER_PERFORMANCE_REPORT_</ReportType>
+              <StartedProcessingDate>2020-10-13T09:00:31+00:00</StartedProcessingDate>
+              <StartDate>2020-10-13T09:00:26+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-13T08:19:48+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59186018548</ReportRequestId>
+              <SubmittedDate>2020-10-13T08:19:48+00:00</SubmittedDate>
+              <CompletedDate>2020-10-13T08:20:00+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-13T08:19:53+00:00</StartedProcessingDate>
+              <StartDate>2020-09-13T08:19:48+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-13T05:18:22+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59176018548</ReportRequestId>
+              <SubmittedDate>2020-10-13T05:18:22+00:00</SubmittedDate>
+              <CompletedDate>2020-10-13T05:18:34+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-13T05:18:28+00:00</StartedProcessingDate>
+              <StartDate>2020-09-13T05:18:22+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-13T02:18:52+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59168018548</ReportRequestId>
+              <SubmittedDate>2020-10-13T02:18:52+00:00</SubmittedDate>
+              <CompletedDate>2020-10-13T02:19:05+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-13T02:18:58+00:00</StartedProcessingDate>
+              <StartDate>2020-09-13T02:18:51+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-12T23:18:34+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59149018547</ReportRequestId>
+              <SubmittedDate>2020-10-12T23:18:34+00:00</SubmittedDate>
+              <CompletedDate>2020-10-12T23:18:45+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-12T23:18:38+00:00</StartedProcessingDate>
+              <StartDate>2020-09-12T23:18:33+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-12T20:18:52+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59140018547</ReportRequestId>
+              <SubmittedDate>2020-10-12T20:18:52+00:00</SubmittedDate>
+              <CompletedDate>2020-10-12T20:19:03+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-12T20:18:56+00:00</StartedProcessingDate>
+              <StartDate>2020-09-12T20:18:51+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-12T17:18:45+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59133018547</ReportRequestId>
+              <SubmittedDate>2020-10-12T17:18:45+00:00</SubmittedDate>
+              <CompletedDate>2020-10-12T17:18:55+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-12T17:18:50+00:00</StartedProcessingDate>
+              <StartDate>2020-09-12T17:18:45+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <EndDate>2020-10-12T15:00:42+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59127018547</ReportRequestId>
+              <SubmittedDate>2020-10-12T15:00:42+00:00</SubmittedDate>
+              <CompletedDate>2020-10-12T15:00:54+00:00</CompletedDate>
+              <GeneratedReportId>4571362199018547</GeneratedReportId>
+              <ReportType>_GET_V1_SELLER_PERFORMANCE_REPORT_</ReportType>
+              <StartedProcessingDate>2020-10-12T15:00:48+00:00</StartedProcessingDate>
+              <StartDate>2020-10-12T15:00:42+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_NO_DATA_</ReportProcessingStatus>
+              <EndDate>2020-10-12T14:19:00+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59125018547</ReportRequestId>
+              <SubmittedDate>2020-10-12T14:19:00+00:00</SubmittedDate>
+              <CompletedDate>2020-10-12T14:19:12+00:00</CompletedDate>
+              <ReportType>_GET_SELLER_FEEDBACK_DATA_</ReportType>
+              <StartedProcessingDate>2020-10-12T14:19:05+00:00</StartedProcessingDate>
+              <StartDate>2020-09-12T14:18:59+00:00</StartDate>
+            </ReportRequestInfo>
+            <ReportRequestInfo>
+              <ReportProcessingStatus>_DONE_</ReportProcessingStatus>
+              <EndDate>2020-10-12T12:00:04+00:00</EndDate>
+              <Scheduled>false</Scheduled>
+              <ReportRequestId>59117018547</ReportRequestId>
+              <SubmittedDate>2020-10-12T12:00:04+00:00</SubmittedDate>
+              <CompletedDate>2020-10-12T12:00:14+00:00</CompletedDate>
+              <GeneratedReportId>4572059863018547</GeneratedReportId>
+              <ReportType>_GET_V1_SELLER_PERFORMANCE_REPORT_</ReportType>
+              <StartedProcessingDate>2020-10-12T12:00:09+00:00</StartedProcessingDate>
+              <StartDate>2020-10-12T12:00:04+00:00</StartDate>
+            </ReportRequestInfo>
+          </GetReportRequestListResult>
+          <ResponseMetadata>
+            <RequestId>dc84db08-6bec-4c24-b9f0-d4798419a696</RequestId>
+          </ResponseMetadata>
+        </GetReportRequestListResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:06 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportScheduleCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A06Z&Version=2009-01-01&Signature=4sL7bhDgnCJEgl4%2F5MrXFOvfOIry9Ak2TMVPU%2B2jNio%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '333'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - T8GMZZBE21QRV6MM8DPJ
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:07 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=QOOlOuQbB7bT2ASnyhXwAeGpemrjaKGdGNY5sF+T2R8=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 5bf89b59-1965-4b7f-8e2a-eb8800de0292
+      x-mws-timestamp:
+      - '2020-10-13T10:53:07.071Z'
+      x-mws-response-context:
+      - kx4BkXVoTYDDyAnU0sDqoy2DTIDN9L492cp48XsP0XauvmFwnJYLzsqW8C/sNk8rnd87Tby3Qwo=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetReportScheduleCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportScheduleCountResult>
+            <Count>0</Count>
+          </GetReportScheduleCountResult>
+          <ResponseMetadata>
+            <RequestId>5bf89b59-1965-4b7f-8e2a-eb8800de0292</RequestId>
+          </ResponseMetadata>
+        </GetReportScheduleCountResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:07 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportList&MaxCount=1&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A07Z&Version=2009-01-01&Signature=GvBB0u5SScaeNRDSU64R6xDuKq02D27j37gdPfgd13k%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '1001'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - S05GS76VNPJQEQ9V64SX
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '60.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:07 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=GOCxzEvmJl36dunCu//aK+XUNZiIjrlPv9ILd4xcQfU=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - b1d4fe76-0743-46f2-a748-385e7f5662c0
+      x-mws-timestamp:
+      - '2020-10-13T10:53:07.908Z'
+      x-mws-response-context:
+      - cY/gHuW0sgb0s3BR3oPVprNwHHIPafb8U5tOPgWs1fQjZSHpq92PtJwK1untP2pl1e5CmN+3+kM=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetReportListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportListResult>
+            <NextToken>+0JzXZTULCL2jpZedg0wbepZIBgCTJgscbvgoO6C5wtcWDy+NRwhc2jy77UM6wnQs+4PysuXzULPkQhI8bR2NPG+KPrNga/z2ggM7ILXc1lJL7DSBJ19ShloUYvyDUb+Fgxw3ERLFWx3gBGT5I3qvKc5H4D1KoNtPxuuVZAjoAG5Hd34Twm1igafEPREmauvQPEfQK/OReJ9wNJ/XIY3rAvjRfjTJJa5YKoSylcR8gttj983g7esDh0iKhZLTnnE/AWEcUeF0gs8TJQzBRDCaycOXm78tthKIVaaXTEZau9uRLzjXFQ4oCSFqJVi/GPLkpv2u9heTKhxnO7towBN/I0IQ+tHSW5a8fZDa7meN5Jn3f4+YkxbIRVh5GPvX0CE</NextToken>
+            <HasNext>true</HasNext>
+            <ReportInfo>
+              <ReportType>FeedSummaryReport</ReportType>
+              <Acknowledged>false</Acknowledged>
+              <ReportId>4574527614018548</ReportId>
+              <ReportRequestId>59196018548</ReportRequestId>
+              <AvailableDate>2020-10-13T10:47:41+00:00</AvailableDate>
+            </ReportInfo>
+          </GetReportListResult>
+          <ResponseMetadata>
+            <RequestId>b1d4fe76-0743-46f2-a748-385e7f5662c0</RequestId>
+          </ResponseMetadata>
+        </GetReportListResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:08 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReport&ReportId=4574527614018548&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A08Z&Version=2009-01-01&Signature=JJ1nMRUuQlsRUk3J%2ByiDoyuZXEh%2F5cwYhRYb6O%2Bj5aE%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:08 GMT
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Content-Length:
+      - '91'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 7BNDBYS85KMCTRR33YNY
+      x-mws-quota-max:
+      - '60.0'
+      x-mws-quota-remaining:
+      - '60.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      Content-MD5:
+      - rkkx1Xv/k56/onrN0m7E/Q==
+      x-mws-response-context:
+      - d61qKT1XpaDI86HfWQ/7guZ1aB6AvH07DF3CV+eFkMBRQSQRA+M4STolNwOl8dSYf6xkLoPli4I=,
+        XxYqb141ZCwP6+CTglIwSXcUY65hKId8/SNBvw5uo6l4K2p5NvtwU/w755iSizVMTCrrN+fjTNw=
+      x-amz-request-id:
+      - 49316e5d-49fe-4c8d-8373-29d6a8d4a4cc
+      x-mws-request-id:
+      - 49316e5d-49fe-4c8d-8373-29d6a8d4a4cc
+      x-mws-timestamp:
+      - '2020-10-13T10:53:08.513Z'
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: "Feed Processing Summary:\n\tNumber of records processed\t\t1\n\tNumber
+        of records successful\t\t1\n\n"
+  recorded_at: Tue, 13 Oct 2020 10:53:08 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Reports/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetReportCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A08Z&Version=2009-01-01&Signature=wDhXJNdIq1KFhfZSf9ieh6qQCKz7yOQkMrF8rK%2F73WE%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:09 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '304'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 1ZZJNAX52X8KTXZQ6T03
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:09 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaReportsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=hwhAIf8+3FOySHdfo18EapkDtC2LErGaP7RBRXHUfdA=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - b60b55f6-0d28-4aab-a3f5-42038da22ce2
+      x-mws-timestamp:
+      - '2020-10-13T10:53:09.455Z'
+      x-mws-response-context:
+      - kx4BkXVoTYDDyAnU0sDqoy2DTIDN9L492cp48XsP0XauvmFwnJYLzsqW8C/sNk8rnd87Tby3Qwo=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetReportCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetReportCountResult>
+            <Count>8357</Count>
+          </GetReportCountResult>
+          <ResponseMetadata>
+            <RequestId>b60b55f6-0d28-4aab-a3f5-42038da22ce2</RequestId>
+          </ResponseMetadata>
+        </GetReportCountResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:09 GMT
 recorded_with: VCR 6.0.0

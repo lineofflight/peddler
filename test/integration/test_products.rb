@@ -68,7 +68,7 @@ class TestProducts < IntegrationTest
         identifier: '123',
         is_amazon_fulfilled: false
       )
-      assert res.dig('FeesEstimateResultList', 'FeesEstimateResult', 'FeesEstimate')
+      assert res.dig('FeesEstimateResultList', 'FeesEstimateResult')
     end
   end
 
@@ -88,7 +88,8 @@ class TestProducts < IntegrationTest
     'A1VC38T7YXB528' => 'JPY',
     'A1AM78C64UM0Y8' => 'MXN',
     'ATVPDKIKX0DER' => 'USD',
-    'A39IBJ37TRP1C6' => 'AUD'
+    'A39IBJ37TRP1C6' => 'AUD',
+    'A19VAU5U5O7RUS' => 'SGD'
   }.freeze
 
   def currency_code_for(marketplace_id)

@@ -8024,4 +8024,643 @@ http_interactions:
         days</Max></ShippingTime><SellerPositiveFeedbackRating>80-89%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>202</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>FILTERED</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>FILTERED</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>FILTERED</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>Used</ItemCondition><ItemSubcondition>VeryGood</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2
         days</Max></ShippingTime><SellerPositiveFeedbackRating>95-97%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>111</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>EUR</CurrencyCode><Amount>FILTERED</Amount></LandedPrice><ListingPrice><CurrencyCode>EUR</CurrencyCode><Amount>FILTERED</Amount></ListingPrice><Shipping><CurrencyCode>EUR</CurrencyCode><Amount>FILTERED</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>c92c9041-96e6-4753-bc62-f0573f474ba8</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
   recorded_at: Mon, 12 Oct 2020 12:23:21 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetProductCategoriesForASIN&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A10Z&Version=2011-10-01&Signature=%2B4iARV9nyarN3ALCUmeJPIWJLCwkX60Y4ueZdl1G%2BxM%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:10 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '1427'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - HBW72BCYF7JBB2EVYEAP
+      x-mws-quota-max:
+      - '720.0'
+      x-mws-quota-remaining:
+      - '720.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:10 GMT
+      x-mws-request-id:
+      - e14a1e00-5e4a-4b63-bee3-2a28822ad6a4
+      x-mws-timestamp:
+      - '2020-10-13T10:53:10.967Z'
+      x-mws-response-context:
+      - sBsh7VCvv8L28S7PMNhr5du1fJaO2FleeeprUbuL+E+9zT54nCTl9AmpiYlALNkBeqgwlLG1vpo=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0"?><GetProductCategoriesForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetProductCategoriesForASINResult><Self><ProductCategoryId>6401471051</ProductCategoryId><ProductCategoryName>Philosophy</ProductCategoryName><Parent><ProductCategoryId>6401289051</ProductCategoryId><ProductCategoryName>Society,
+        Politics &amp; Philosophy</ProductCategoryName><Parent><ProductCategoryId>6314389051</ProductCategoryId><ProductCategoryName>Categories</ProductCategoryName><Parent><ProductCategoryId>6314388051</ProductCategoryId><ProductCategoryName>Books</ProductCategoryName></Parent></Parent></Parent></Self><Self><ProductCategoryId>6402523051</ProductCategoryId><ProductCategoryName>Criticism
+        &amp; Theory</ProductCategoryName><Parent><ProductCategoryId>6401453051</ProductCategoryId><ProductCategoryName>History
+        &amp; Criticism</ProductCategoryName><Parent><ProductCategoryId>6401286051</ProductCategoryId><ProductCategoryName>Fiction</ProductCategoryName><Parent><ProductCategoryId>6314389051</ProductCategoryId><ProductCategoryName>Categories</ProductCategoryName><Parent><ProductCategoryId>6314388051</ProductCategoryId><ProductCategoryName>Books</ProductCategoryName></Parent></Parent></Parent></Parent></Self></GetProductCategoriesForASINResult><ResponseMetadata><RequestId>e14a1e00-5e4a-4b63-bee3-2a28822ad6a4</RequestId></ResponseMetadata></GetProductCategoriesForASINResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:11 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProductForId&IdList.Id.1=9781780935379&IdType=ISBN&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A11Z&Version=2011-10-01&Signature=v06w3kUzcBU1hXqGSQKHNarWubHtZWzV1QagO7MFX1o%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:11 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '535'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - GKPMHPXZDKBHQ3NG3SF1
+      x-mws-quota-max:
+      - '18000.0'
+      x-mws-quota-remaining:
+      - '18000.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:11 GMT
+      x-mws-request-id:
+      - 2363e387-29ad-4798-94a0-1d50b8559110
+      x-mws-timestamp:
+      - '2020-10-13T10:53:11.959Z'
+      x-mws-response-context:
+      - dq8F3sE4FevCc4wyN0S01IUgc37nkgcM4sqc+k6krgmHn7xFaQpr/vaSY/bxgB5eVH4VmOPRN2s=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0"?><GetMatchingProductForIdResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetMatchingProductForIdResult
+        Id="9781780935379" IdType="ISBN" status="ServerError"><Error><Type>Receiver</Type><Code>InternalError</Code><Message>We
+        encountered an internal error.  Please contact the MWS team if this problem
+        persists.</Message></Error></GetMatchingProductForIdResult><ResponseMetadata><RequestId>2363e387-29ad-4798-94a0-1d50b8559110</RequestId></ResponseMetadata></GetMatchingProductForIdResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:12 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMyFeesEstimate&FeesEstimateRequestList.FeesEstimateRequest.1.IdType=ASIN&FeesEstimateRequestList.FeesEstimateRequest.1.IdValue=0439136369&FeesEstimateRequestList.FeesEstimateRequest.1.Identifier=123&FeesEstimateRequestList.FeesEstimateRequest.1.IsAmazonFulfilled=false&FeesEstimateRequestList.FeesEstimateRequest.1.MarketplaceId=A19VAU5U5O7RUS&FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.Amount=100&FeesEstimateRequestList.FeesEstimateRequest.1.PriceToEstimateFees.ListingPrice.CurrencyCode=SGD&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A04Z&Version=2011-10-01&Signature=I8ytnXXKf2Lohd7GVjzRfGUrcVvtozlUVoby7eYymp8%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:04 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '1187'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - Q7PN6YP0G6703GZWHJAN
+      x-mws-quota-max:
+      - '36000.0'
+      x-mws-quota-remaining:
+      - '35998.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:58:04 GMT
+      x-amzn-Authorization:
+      - AAA identity=com.amazon.aaa.MWSFeesBackendService.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Operation=GetMyFeesEstimate, Service=MWSFeesBackendService, Encrypted=true,
+        SignedHeaders=X-Amz-Date, Algorithm=HmacSHA256, Signed=true, Signature=wL9R9EpdfZnazU5/8Hfu7XXiyJm0ticcPOli0vy/AdA=,RelationshipVersion=0
+      x-mws-request-id:
+      - fb68f64c-b91d-4090-ba20-63b3c409ddd7
+      x-mws-timestamp:
+      - '2020-10-13T10:58:04.757Z'
+      x-mws-response-context:
+      - f61GEDg9FRwqERpOJ4d31sibKAswhurFQdPrf7+xO8owQyyS6OfsiMVI/UMHzO6eGBjSZlVzMS4=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <GetMyFeesEstimateResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+          <GetMyFeesEstimateResult>
+            <FeesEstimateResultList>
+              <FeesEstimateResult>
+                <FeesEstimateIdentifier>
+                  <MarketplaceId>A19VAU5U5O7RUS</MarketplaceId>
+                  <IdType>ASIN</IdType>
+                  <SellerId>MERCHANT_ID</SellerId>
+                  <IsAmazonFulfilled>false</IsAmazonFulfilled>
+                  <SellerInputIdentifier>123</SellerInputIdentifier>
+                  <IdValue>0439136369</IdValue>
+                  <PriceToEstimateFees>
+                    <ListingPrice>
+                      <Amount>FILTERED</Amount>
+                      <CurrencyCode>SGD</CurrencyCode>
+                    </ListingPrice>
+                  </PriceToEstimateFees>
+                </FeesEstimateIdentifier>
+                <Error>
+                  <Code>InvalidParameterValue</Code>
+                  <Message>No marketplace found for unobfuscated ID ='104444012'.</Message>
+                  <Type>Sender</Type>
+                </Error>
+                <Status>ClientError</Status>
+              </FeesEstimateResult>
+            </FeesEstimateResultList>
+          </GetMyFeesEstimateResult>
+          <ResponseMetadata>
+            <RequestId>fb68f64c-b91d-4090-ba20-63b3c409ddd7</RequestId>
+          </ResponseMetadata>
+        </GetMyFeesEstimateResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:04 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetCompetitivePricingForASIN&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A05Z&Version=2011-10-01&Signature=0fI0FM%2BF2l1IhXC0Fa3837O3YrBkQk0S%2Bk5E%2Ba6CRvQ%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:06 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '1246'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 6SVZ8HHTBW13PZQQJB6W
+      x-mws-quota-max:
+      - '36000.0'
+      x-mws-quota-remaining:
+      - '36000.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:58:06 GMT
+      x-mws-request-id:
+      - b8d5e361-1dea-4064-9048-292931e54521
+      x-mws-timestamp:
+      - '2020-10-13T10:58:05.959Z'
+      x-mws-response-context:
+      - qv3qy6/kpwR+pdNyw2ekKV8SsBSFqxo8dRF/i3Yu2lSb5qCmEc/Q9noRcNwYmcawLcV04Mgrjbc=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0"?><GetCompetitivePricingForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetCompetitivePricingForASINResult
+        ASIN="1780935374" status="Success"><Product xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A19VAU5U5O7RUS</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><CompetitivePricing><CompetitivePrices><CompetitivePrice
+        belongsToRequester="false" condition="New" subcondition="New"><CompetitivePriceId>1</CompetitivePriceId><Price><LandedPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></LandedPrice><ListingPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></ListingPrice><Shipping><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></Shipping></Price></CompetitivePrice></CompetitivePrices><NumberOfOfferListings><OfferListingCount
+        condition="New">4</OfferListingCount><OfferListingCount condition="Any">4</OfferListingCount></NumberOfOfferListings></CompetitivePricing><SalesRankings/></Product></GetCompetitivePricingForASINResult><ResponseMetadata><RequestId>b8d5e361-1dea-4064-9048-292931e54521</RequestId></ResponseMetadata></GetCompetitivePricingForASINResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:06 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestOfferListingsForASIN&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A06Z&Version=2011-10-01&Signature=1W2bjdSA1f1tX%2FpHuZM27vkPOf0%2BVerk8QHUFpxMXu0%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '3053'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - WC25Q4REZTZ5BWNJZXAN
+      x-mws-quota-max:
+      - '36000.0'
+      x-mws-quota-remaining:
+      - '35751.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:58:07 GMT
+      x-mws-request-id:
+      - 21709547-5c67-4093-a478-9e05329f2835
+      x-mws-timestamp:
+      - '2020-10-13T10:58:06.991Z'
+      x-mws-response-context:
+      - 8KddZx8NvRZnHrHo8srLXtAIfgVHX1ugJuSUrODhaIe8Lx+YTAr8+r29+I4daWvlx+m2LL7gBYo=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0"?><GetLowestOfferListingsForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetLowestOfferListingsForASINResult
+        ASIN="1780935374" status="Success"><AllOfferListingsConsidered>true</AllOfferListingsConsidered><Product
+        xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A19VAU5U5O7RUS</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><LowestOfferListings><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>3-7
+        days</Max></ShippingTime><SellerPositiveFeedbackRating>Less than 70%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>2</NumberOfOfferListingsConsidered><SellerFeedbackCount>478</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></LandedPrice><ListingPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></ListingPrice><Shipping><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>True</ShipsDomestically><ShippingTime><Max>0-2
+        days</Max></ShippingTime><SellerPositiveFeedbackRating>98-100%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>5</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></LandedPrice><ListingPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></ListingPrice><Shipping><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing><LowestOfferListing><Qualifiers><ItemCondition>New</ItemCondition><ItemSubcondition>New</ItemSubcondition><FulfillmentChannel>Merchant</FulfillmentChannel><ShipsDomestically>False</ShipsDomestically><ShippingTime><Max>0-2
+        days</Max></ShippingTime><SellerPositiveFeedbackRating>Less than 70%</SellerPositiveFeedbackRating></Qualifiers><NumberOfOfferListingsConsidered>1</NumberOfOfferListingsConsidered><SellerFeedbackCount>92</SellerFeedbackCount><Price><LandedPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></LandedPrice><ListingPrice><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></ListingPrice><Shipping><CurrencyCode>SGD</CurrencyCode><Amount>FILTERED</Amount></Shipping></Price><MultipleOffersAtLowestPrice>False</MultipleOffersAtLowestPrice></LowestOfferListing></LowestOfferListings></Product></GetLowestOfferListingsForASINResult><ResponseMetadata><RequestId>21709547-5c67-4093-a478-9e05329f2835</RequestId></ResponseMetadata></GetLowestOfferListingsForASINResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:07 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A07Z&Version=2011-10-01&Signature=Y4kjLwER%2F0lUyi14sExwg%2F12pGKPNiFhPHbByL32u2E%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:07 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '383'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 9DQZB561EAG21J4DY2C1
+      x-mws-request-id:
+      - 6fdec09c-5fd8-4914-a506-315ac8971cd7
+      x-mws-timestamp:
+      - '2020-10-13T10:58:07.970Z'
+      x-mws-response-context:
+      - kx4BkXVoTYDDyAnU0sDqoy2DTIDN9L492cp48XsP0XauvmFwnJYLzsqW8C/sNk8rnd87Tby3Qwo=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-13T10:58:07.970Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>6fdec09c-5fd8-4914-a506-315ac8971cd7</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:08 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASIN=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetLowestPricedOffersForASIN&ItemCondition=New&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A08Z&Version=2011-10-01&Signature=57GKsCFgVcSJC%2F%2FsXfD4g7%2FUWogCXlYOhWvffInckXc%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:09 GMT
+      Content-Type:
+      - application/xml
+      Content-Length:
+      - '6369'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 5SZ9CK6J12Z5PEBDZF7T
+      x-mws-quota-max:
+      - '200.0'
+      x-mws-quota-remaining:
+      - '200.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      x-mws-request-id:
+      - 5e6df086-1ffe-45e9-80ed-341607d0b3c2
+      x-mws-timestamp:
+      - '2020-10-13T10:58:08.990Z'
+      x-mws-response-context:
+      - ImBYerQcUvxnIqUDdKPmRJZJ5taGqdHtqef8x9wVNtvo8JCvI46n94D4BbJWCpJNbnpdKRV0Pho=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?><GetLowestPricedOffersForASINResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+            <GetLowestPricedOffersForASINResult MarketplaceID="A19VAU5U5O7RUS" ItemCondition="New" ASIN="1780935374" status="Success">
+                <Identifier>
+                    <MarketplaceId>A19VAU5U5O7RUS</MarketplaceId>
+                    <ASIN>1780935374</ASIN>
+                    <ItemCondition>New</ItemCondition>
+                </Identifier>
+                <Summary>
+                    <TotalOfferCount>4</TotalOfferCount>
+                    <NumberOfOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">4</OfferCount>
+                    </NumberOfOffers>
+                    <LowestPrices>
+                        <LowestPrice condition="new" fulfillmentChannel="Merchant">
+                            <LandedPrice>
+                                <CurrencyCode>SGD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>SGD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>SGD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </LowestPrice>
+                    </LowestPrices>
+                    <BuyBoxPrices>
+                        <BuyBoxPrice condition="new">
+                            <LandedPrice>
+                                <CurrencyCode>SGD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </LandedPrice>
+                            <ListingPrice>
+                                <CurrencyCode>SGD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </ListingPrice>
+                            <Shipping>
+                                <CurrencyCode>SGD</CurrencyCode>
+                                <Amount>FILTERED</Amount>
+                            </Shipping>
+                        </BuyBoxPrice>
+                    </BuyBoxPrices>
+                    <ListPrice/>
+                    <BuyBoxEligibleOffers>
+                        <OfferCount condition="new" fulfillmentChannel="Merchant">4</OfferCount>
+                    </BuyBoxEligibleOffers>
+                </Summary>
+                <Offers>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>56.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>478</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="48" maximumHours="72" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>100.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>5</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>SG</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>true</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>56.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>478</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="72" maximumHours="96" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>GB</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                    <Offer>
+                        <SubCondition>new</SubCondition>
+                        <SellerFeedbackRating>
+                            <SellerPositiveFeedbackRating>32.0</SellerPositiveFeedbackRating>
+                            <FeedbackCount>92</FeedbackCount>
+                        </SellerFeedbackRating>
+                        <ShippingTime minimumHours="24" maximumHours="48" availabilityType="NOW"/>
+                        <ListingPrice>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </ListingPrice>
+                        <Shipping>
+                            <CurrencyCode>SGD</CurrencyCode>
+                            <Amount>FILTERED</Amount>
+                        </Shipping>
+                        <ShipsFrom>
+                            <Country>US</Country>
+                        </ShipsFrom>
+                        <IsFulfilledByAmazon>false</IsFulfilledByAmazon>
+                        <IsBuyBoxWinner>false</IsBuyBoxWinner>
+                        <IsFeaturedMerchant>true</IsFeaturedMerchant>
+                    </Offer>
+                </Offers>
+            </GetLowestPricedOffersForASINResult>
+            <ResponseMetadata>
+                <RequestId>5e6df086-1ffe-45e9-80ed-341607d0b3c2</RequestId>
+            </ResponseMetadata>
+        </GetLowestPricedOffersForASINResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:09 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: ASINList.ASIN.1=1780935374&AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetMatchingProduct&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A09Z&Version=2011-10-01&Signature=5EbOiHq%2BSbhq3OCjyGOehXqrQi7vEwzXbNtSzPN8Vks%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:10 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2333'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - SRFNTEJZP51RXS4GQQW3
+      x-mws-quota-max:
+      - '7200.0'
+      x-mws-quota-remaining:
+      - '7200.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:58:10 GMT
+      x-mws-request-id:
+      - e6d7ffee-2a5f-4151-b94f-b3618fea2659
+      x-mws-timestamp:
+      - '2020-10-13T10:58:10.254Z'
+      x-mws-response-context:
+      - kx4BkXVoTYDDyAnU0sDqoy2DTIDN9L492cp48XsP0XauvmFwnJYLzsqW8C/sNk8rnd87Tby3Qwo=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0"?><GetMatchingProductResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01"><GetMatchingProductResult
+        ASIN="1780935374" status="Success"><Product xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd"><Identifiers><MarketplaceASIN><MarketplaceId>A19VAU5U5O7RUS</MarketplaceId><ASIN>1780935374</ASIN></MarketplaceASIN></Identifiers><AttributeSets><ns2:ItemAttributes
+        xml:lang="en-SG"><ns2:Author>Deleuze, Gilles</ns2:Author><ns2:Author>Guattari,
+        Felix</ns2:Author><ns2:Binding>Paperback</ns2:Binding><ns2:ItemDimensions><ns2:Height
+        Units="inches">8.50392</ns2:Height><ns2:Length Units="inches">5.51180</ns2:Length><ns2:Width
+        Units="inches">1.45669</ns2:Width><ns2:Weight Units="pounds">1.97534186752</ns2:Weight></ns2:ItemDimensions><ns2:IsAdultProduct>false</ns2:IsAdultProduct><ns2:Label>Bloomsbury
+        Academic</ns2:Label><ns2:Languages><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Published</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Original
+        Language</ns2:Type></ns2:Language><ns2:Language><ns2:Name>english</ns2:Name><ns2:Type>Unknown</ns2:Type></ns2:Language></ns2:Languages><ns2:Manufacturer>Bloomsbury
+        Academic</ns2:Manufacturer><ns2:NumberOfPages>744</ns2:NumberOfPages><ns2:PackageDimensions><ns2:Height
+        Units="inches">1.8897637776</ns2:Height><ns2:Length Units="inches">8.4251968418</ns2:Length><ns2:Width
+        Units="inches">5.5118110180</ns2:Width><ns2:Weight Units="pounds">1.984140106746738</ns2:Weight></ns2:PackageDimensions><ns2:PackageQuantity>2</ns2:PackageQuantity><ns2:PartNumber>9781780935379</ns2:PartNumber><ns2:ProductGroup>Book</ns2:ProductGroup><ns2:ProductTypeName>ABIS_BOOK</ns2:ProductTypeName><ns2:PublicationDate>2013-04-25</ns2:PublicationDate><ns2:Publisher>Bloomsbury
+        Academic</ns2:Publisher><ns2:SmallImage><ns2:URL>https://m.media-amazon.com/images/I/41Ehbk3zhmL._SL75_.jpg</ns2:URL><ns2:Height
+        Units="pixels">75</ns2:Height><ns2:Width Units="pixels">49</ns2:Width></ns2:SmallImage><ns2:Studio>Bloomsbury
+        Academic</ns2:Studio><ns2:Title>A Thousand Plateaus</ns2:Title></ns2:ItemAttributes></AttributeSets><Relationships/><SalesRankings/></Product></GetMatchingProductResult><ResponseMetadata><RequestId>e6d7ffee-2a5f-4151-b94f-b3618fea2659</RequestId></ResponseMetadata></GetMatchingProductResponse>
+  recorded_at: Tue, 13 Oct 2020 10:58:10 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Products/2011-10-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListMatchingProducts&MarketplaceId=A19VAU5U5O7RUS&Query=architecture&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A58%3A10Z&Version=2011-10-01&Signature=ADsZgAcxKmMHQtUcGYhmcA%2F7Ibnuv6Y76TfpVbkaLm8%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:58:11 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '18423'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - YMWDFPAZMMF5HAVB9HNJ
+      x-mws-quota-max:
+      - '720.0'
+      x-mws-quota-remaining:
+      - '720.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:58:11 GMT
+      x-mws-request-id:
+      - 604e136a-ed55-4f6a-9dff-6a25e7096e7f
+      x-mws-timestamp:
+      - '2020-10-13T10:58:11.281Z'
+      x-mws-response-context:
+      - 6vmb7ILWtdQZuG1WhbrP2OolC8v5C294aT0uePOsM2fC8bnXJZKTV4bs1S8xTsYgHBq0hDzbXDc=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIj8+PExpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2UgeG1sbnM9Imh0dHA6Ly9td3MuYW1hem9uc2VydmljZXMuY29tL3NjaGVtYS9Qcm9kdWN0cy8yMDExLTEwLTAxIj48TGlzdE1hdGNoaW5nUHJvZHVjdHNSZXN1bHQ+PFByb2R1Y3RzIHhtbG5zOm5zMj0iaHR0cDovL213cy5hbWF6b25zZXJ2aWNlcy5jb20vc2NoZW1hL1Byb2R1Y3RzLzIwMTEtMTAtMDEvZGVmYXVsdC54c2QiPjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExOVZBVTVVNU83UlVTPC9NYXJrZXRwbGFjZUlkPjxBU0lOPjExMTg3NDUwODY8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlbi1TRyI+PG5zMjpBdXRob3I+Q2hpbmcsIEZyYW5jaXMgRC4gSy48L25zMjpBdXRob3I+PG5zMjpCaW5kaW5nPlBhcGVyYmFjazwvbnMyOkJpbmRpbmc+PG5zMjpCcmFuZD5XaWxleTwvbnMyOkJyYW5kPjxuczI6RWRpdGlvbj40dGg8L25zMjpFZGl0aW9uPjxuczI6R2VucmU+QXJjaGl0ZWN0dXJlPC9uczI6R2VucmU+PG5zMjpJdGVtRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4xMC43OTkxOTE8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+OC40MDE1NTg8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj4wLjkwMTU3MzwvbnMyOldpZHRoPjxuczI6V2VpZ2h0IFVuaXRzPSJwb3VuZHMiPjIuNzM4MTQxMjk0MDQ8L25zMjpXZWlnaHQ+PC9uczI6SXRlbURpbWVuc2lvbnM+PG5zMjpJc0FkdWx0UHJvZHVjdD5mYWxzZTwvbnMyOklzQWR1bHRQcm9kdWN0PjxuczI6TGFiZWw+Sm9obiBXaWxleSAmYW1wOyBTb25zIEluYzwvbnMyOkxhYmVsPjxuczI6TGFuZ3VhZ2VzPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5QdWJsaXNoZWQ8L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5PcmlnaW5hbCBMYW5ndWFnZTwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPk1lbnU8L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5Vbmtub3duPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48L25zMjpMYW5ndWFnZXM+PG5zMjpMaXN0UHJpY2U+PG5zMjpBbW91bnQ+ODIuMzQ8L25zMjpBbW91bnQ+PG5zMjpDdXJyZW5jeUNvZGU+U0dEPC9uczI6Q3VycmVuY3lDb2RlPjwvbnMyOkxpc3RQcmljZT48bnMyOk1hbnVmYWN0dXJlcj5Kb2huIFdpbGV5ICZhbXA7IFNvbnMgSW5jPC9uczI6TWFudWZhY3R1cmVyPjxuczI6TnVtYmVyT2ZJdGVtcz4xPC9uczI6TnVtYmVyT2ZJdGVtcz48bnMyOk51bWJlck9mUGFnZXM+NDY0PC9uczI6TnVtYmVyT2ZQYWdlcz48bnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjAuODk5OTk5OTk5MDgyPC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjExLjQ5OTk5OTk4ODI3PC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+OC4zOTk5OTk5OTE0MzI8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4yLjc0MDM0NTkxNjY2PC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPjQzMTcxLTU5NTcwODwvbnMyOlBhcnROdW1iZXI+PG5zMjpQcm9kdWN0R3JvdXA+Qm9vazwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5BQklTX0JPT0s8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaWNhdGlvbkRhdGU+MjAxNC0wOS0yNjwvbnMyOlB1YmxpY2F0aW9uRGF0ZT48bnMyOlB1Ymxpc2hlcj5Kb2huIFdpbGV5ICZhbXA7IFNvbnMgSW5jPC9uczI6UHVibGlzaGVyPjxuczI6U21hbGxJbWFnZT48bnMyOlVSTD5odHRwczovL20ubWVkaWEtYW1hem9uLmNvbS9pbWFnZXMvSS80MXhNejBZeGlXTC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NTk8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPkpvaG4gV2lsZXkgJmFtcDsgU29ucyBJbmM8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5BcmNoaXRlY3R1cmU6IEZvcm0sIFNwYWNlLCAmYW1wOyBPcmRlcjwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3M+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+Ym9va19kaXNwbGF5X29uX3dlYnNpdGU8L1Byb2R1Y3RDYXRlZ29yeUlkPjxSYW5rPjEzMTgyPC9SYW5rPjwvU2FsZXNSYW5rPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPjY0MDE1NjAwNTE8L1Byb2R1Y3RDYXRlZ29yeUlkPjxSYW5rPjY8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+NjQwMTU2MjA1MTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+MTI8L1Jhbms+PC9TYWxlc1Jhbms+PC9TYWxlc1JhbmtpbmdzPjwvUHJvZHVjdD48UHJvZHVjdD48SWRlbnRpZmllcnM+PE1hcmtldHBsYWNlQVNJTj48TWFya2V0cGxhY2VJZD5BMTlWQVU1VTVPN1JVUzwvTWFya2V0cGxhY2VJZD48QVNJTj5CMDAwMDdMWjJVPC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PEF0dHJpYnV0ZVNldHM+PG5zMjpJdGVtQXR0cmlidXRlcyB4bWw6bGFuZz0iZW4tU0ciPjxuczI6QmluZGluZz5BdWRpbyBDRDwvbnMyOkJpbmRpbmc+PG5zMjpCcmFuZD5FTUkgRXVyb3BlIEdlbmVyaWM8L25zMjpCcmFuZD48bnMyOkdlbnJlPm5ldy13YXZlLW11c2ljPC9uczI6R2VucmU+PG5zMjpJdGVtRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4wLjM5PC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjUuNjc8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj41LjEyPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC4yMDc1MDA8L25zMjpXZWlnaHQ+PC9uczI6SXRlbURpbWVuc2lvbnM+PG5zMjpJc0FkdWx0UHJvZHVjdD5mYWxzZTwvbnMyOklzQWR1bHRQcm9kdWN0PjxuczI6TGFiZWw+U291cmNlIEludGVybGluayoqKjwvbnMyOkxhYmVsPjxuczI6TGFuZ3VhZ2VzPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5QdWJsaXNoZWQ8L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjxuczI6TGFuZ3VhZ2U+PG5zMjpOYW1lPmVuZ2xpc2g8L25zMjpOYW1lPjxuczI6VHlwZT5Vbmtub3duPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48L25zMjpMYW5ndWFnZXM+PG5zMjpNYW51ZmFjdHVyZXI+U291cmNlIEludGVybGluayoqKjwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOk51bWJlck9mRGlzY3M+MTwvbnMyOk51bWJlck9mRGlzY3M+PG5zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4wLjUzOTM3MDA3ODE5PC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjUuNTQ3MjQ0MDg4ODM8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj40Ljk3MjQ0MDkzOTgxPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC4xNzcwNzUyODg4MzgzOTk5Nzc5NTM3NzM4PC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPkRJRENEUjEyPC9uczI6UGFydE51bWJlcj48bnMyOlByb2R1Y3RHcm91cD5NdXNpYzwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5BQklTX01VU0lDPC9uczI6UHJvZHVjdFR5cGVOYW1lPjxuczI6UHVibGlzaGVyPlNvdXJjZSBJbnRlcmxpbmsqKio8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHBzOi8vbS5tZWRpYS1hbWF6b24uY29tL2ltYWdlcy9JLzQxbEh5clQwTVFMLl9TTDc1Xy5qcGc8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+U291cmNlIEludGVybGluayoqKjwvbnMyOlN0dWRpbz48bnMyOlRpdGxlPkFyY2hpdGVjdHVyZSAmYW1wOyBNb3JhbGl0eTwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3MvPjwvUHJvZHVjdD48UHJvZHVjdD48SWRlbnRpZmllcnM+PE1hcmtldHBsYWNlQVNJTj48TWFya2V0cGxhY2VJZD5BMTlWQVU1VTVPN1JVUzwvTWFya2V0cGxhY2VJZD48QVNJTj5CMDFGSjRZNTZRPC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PEF0dHJpYnV0ZVNldHM+PG5zMjpJdGVtQXR0cmlidXRlcyB4bWw6bGFuZz0iZW4tU0ciPjxuczI6QmluZGluZz5EVkQ8L25zMjpCaW5kaW5nPjxuczI6QnJhbmQ+QW1pY2kgRmlsbXM8L25zMjpCcmFuZD48bnMyOkVkaXRpb24+MTwvbnMyOkVkaXRpb24+PG5zMjpGb3JtYXQ+TlRTQzwvbnMyOkZvcm1hdD48bnMyOkxhYmVsPkFtaWNpIEZpbG1zPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlVua25vd248L25zMjpUeXBlPjwvbnMyOkxhbmd1YWdlPjwvbnMyOkxhbmd1YWdlcz48bnMyOk1hbnVmYWN0dXJlcj5BbWljaSBGaWxtczwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOk51bWJlck9mRGlzY3M+MTwvbnMyOk51bWJlck9mRGlzY3M+PG5zMjpOdW1iZXJPZkl0ZW1zPjE8L25zMjpOdW1iZXJPZkl0ZW1zPjxuczI6UGFja2FnZURpbWVuc2lvbnM+PG5zMjpIZWlnaHQgVW5pdHM9ImluY2hlcyI+MC43ODc0MDE1NzQwPC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjcuNjc3MTY1MzQ2NTwvbnMyOkxlbmd0aD48bnMyOldpZHRoIFVuaXRzPSJpbmNoZXMiPjMuMTQ5NjA2Mjk2MDwvbnMyOldpZHRoPjxuczI6V2VpZ2h0IFVuaXRzPSJwb3VuZHMiPjAuMTc2MzY5ODA5NjwvbnMyOldlaWdodD48L25zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOlBhY2thZ2VRdWFudGl0eT4xPC9uczI6UGFja2FnZVF1YW50aXR5PjxuczI6UHJvZHVjdEdyb3VwPkRWRDwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5BQklTX0RWRDwvbnMyOlByb2R1Y3RUeXBlTmFtZT48bnMyOlB1Ymxpc2hlcj5BbWljaSBGaWxtczwvbnMyOlB1Ymxpc2hlcj48bnMyOlJlZ2lvbkNvZGU+MTwvbnMyOlJlZ2lvbkNvZGU+PG5zMjpSZWxlYXNlRGF0ZT4yMDE0LTA5LTAxPC9uczI6UmVsZWFzZURhdGU+PG5zMjpSdW5uaW5nVGltZSBVbml0cz0ibWludXRlcyI+NTA8L25zMjpSdW5uaW5nVGltZT48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNTFZVDdseG1pbEwuX1NMNzVfLmpwZzwvbnMyOlVSTD48bnMyOkhlaWdodCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOkhlaWdodD48bnMyOldpZHRoIFVuaXRzPSJwaXhlbHMiPjU2PC9uczI6V2lkdGg+PC9uczI6U21hbGxJbWFnZT48bnMyOlN0dWRpbz5BbWljaSBGaWxtczwvbnMyOlN0dWRpbz48bnMyOlRpdGxlPk1ha2luZyBTcGFjZTo1IFdvbWVuIENoYW5naW5nIFRoZSBGYWNlIE9mIEFyY2hpdGVjdHVyZTwvbnMyOlRpdGxlPjwvbnMyOkl0ZW1BdHRyaWJ1dGVzPjwvQXR0cmlidXRlU2V0cz48UmVsYXRpb25zaGlwcy8+PFNhbGVzUmFua2luZ3MvPjwvUHJvZHVjdD48UHJvZHVjdD48SWRlbnRpZmllcnM+PE1hcmtldHBsYWNlQVNJTj48TWFya2V0cGxhY2VJZD5BMTlWQVU1VTVPN1JVUzwvTWFya2V0cGxhY2VJZD48QVNJTj4wMzIxMTI3NDIwPC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PEF0dHJpYnV0ZVNldHM+PG5zMjpJdGVtQXR0cmlidXRlcyB4bWw6bGFuZz0iZW4tU0ciPjxuczI6QXV0aG9yPkZvd2xlciwgTWFydGluPC9uczI6QXV0aG9yPjxuczI6QmluZGluZz5IYXJkY292ZXI8L25zMjpCaW5kaW5nPjxuczI6QnJhbmQ+QWRkaXNvbi1XZXNsZXkgUHJvZmVzc2lvbmFsPC9uczI6QnJhbmQ+PG5zMjpFZGl0aW9uPjE8L25zMjpFZGl0aW9uPjxuczI6R2VucmU+Q29tcHV0ZXJzPC9uczI6R2VucmU+PG5zMjpJdGVtRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj45LjU1PC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjcuNzwvbnMyOkxlbmd0aD48bnMyOldpZHRoIFVuaXRzPSJpbmNoZXMiPjEuNDU8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4yLjQzODMxMjYxNzcyPC9uczI6V2VpZ2h0PjwvbnMyOkl0ZW1EaW1lbnNpb25zPjxuczI6SXNBZHVsdFByb2R1Y3Q+ZmFsc2U8L25zMjpJc0FkdWx0UHJvZHVjdD48bnMyOkxhYmVsPkFkZGlzb24tV2VzbGV5IEVkdWNhdGlvbmFsIFB1Ymxpc2hlcnMgSW5jPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPk9yaWdpbmFsIExhbmd1YWdlPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48bnMyOkxhbmd1YWdlPjxuczI6TmFtZT5lbmdsaXNoPC9uczI6TmFtZT48bnMyOlR5cGU+VW5rbm93bjwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TGlzdFByaWNlPjxuczI6QW1vdW50PjEwOS40MDwvbnMyOkFtb3VudD48bnMyOkN1cnJlbmN5Q29kZT5TR0Q8L25zMjpDdXJyZW5jeUNvZGU+PC9uczI6TGlzdFByaWNlPjxuczI6TWFudWZhY3R1cmVyPkFkZGlzb24tV2VzbGV5IEVkdWNhdGlvbmFsIFB1Ymxpc2hlcnMgSW5jPC9uczI6TWFudWZhY3R1cmVyPjxuczI6TnVtYmVyT2ZJdGVtcz4xPC9uczI6TnVtYmVyT2ZJdGVtcz48bnMyOk51bWJlck9mUGFnZXM+NTYwPC9uczI6TnVtYmVyT2ZQYWdlcz48bnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjEuMzk5OTk5OTk4NTcyMDAwPC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjkuNDk5OTk5OTkwMzEwMDAwPC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+Ny4zOTk5OTk5OTI0NTIwMDA8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4yLjUwMDAwPC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPjk3OC0wLTMyMTEtMjc0Mi02PC9uczI6UGFydE51bWJlcj48bnMyOlByb2R1Y3RHcm91cD5Cb29rPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkFCSVNfQk9PSzwvbnMyOlByb2R1Y3RUeXBlTmFtZT48bnMyOlB1YmxpY2F0aW9uRGF0ZT4yMDAyLTExLTA1PC9uczI6UHVibGljYXRpb25EYXRlPjxuczI6UHVibGlzaGVyPkFkZGlzb24tV2VzbGV5IEVkdWNhdGlvbmFsIFB1Ymxpc2hlcnMgSW5jPC9uczI6UHVibGlzaGVyPjxuczI6U21hbGxJbWFnZT48bnMyOlVSTD5odHRwczovL20ubWVkaWEtYW1hem9uLmNvbS9pbWFnZXMvSS81MUl1RHZBVTFDTC5fU0w3NV8uanBnPC9uczI6VVJMPjxuczI6SGVpZ2h0IFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6SGVpZ2h0PjxuczI6V2lkdGggVW5pdHM9InBpeGVscyI+NTg8L25zMjpXaWR0aD48L25zMjpTbWFsbEltYWdlPjxuczI6U3R1ZGlvPkFkZGlzb24tV2VzbGV5IEVkdWNhdGlvbmFsIFB1Ymxpc2hlcnMgSW5jPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+UGF0dGVybnMgb2YgRW50ZXJwcmlzZSBBcHBsaWNhdGlvbiBBcmNoaXRlY3R1cmU8L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHMvPjxTYWxlc1JhbmtpbmdzPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPmJvb2tfZGlzcGxheV9vbl93ZWJzaXRlPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz4zMDUxNTwvUmFuaz48L1NhbGVzUmFuaz48U2FsZXNSYW5rPjxQcm9kdWN0Q2F0ZWdvcnlJZD42NDAxMzc0MDUxPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz41MzwvUmFuaz48L1NhbGVzUmFuaz48U2FsZXNSYW5rPjxQcm9kdWN0Q2F0ZWdvcnlJZD42NDAxODAxMDUxPC9Qcm9kdWN0Q2F0ZWdvcnlJZD48UmFuaz4xMjk8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+NjQwMTM3NzA1MTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+MTQyPC9SYW5rPjwvU2FsZXNSYW5rPjwvU2FsZXNSYW5raW5ncz48L1Byb2R1Y3Q+PFByb2R1Y3Q+PElkZW50aWZpZXJzPjxNYXJrZXRwbGFjZUFTSU4+PE1hcmtldHBsYWNlSWQ+QTE5VkFVNVU1TzdSVVM8L01hcmtldHBsYWNlSWQ+PEFTSU4+QjA3UzM3NUZYVjwvQVNJTj48L01hcmtldHBsYWNlQVNJTj48L0lkZW50aWZpZXJzPjxBdHRyaWJ1dGVTZXRzPjxuczI6SXRlbUF0dHJpYnV0ZXMgeG1sOmxhbmc9ImVuLVNHIj48bnMyOkJpbmRpbmc+T2ZmaWNlIFByb2R1Y3Q8L25zMjpCaW5kaW5nPjxuczI6QnJhbmQ+U29vZXo8L25zMjpCcmFuZD48bnMyOkNvbG9yPkJsYWNrPC9uczI6Q29sb3I+PG5zMjpMYWJlbD5Tb29lejwvbnMyOkxhYmVsPjxuczI6TWFudWZhY3R1cmVyPlNvb2V6PC9uczI6TWFudWZhY3R1cmVyPjxuczI6UGFja2FnZURpbWVuc2lvbnM+PG5zMjpIZWlnaHQgVW5pdHM9ImluY2hlcyI+MC4yOTk5OTk5OTk2OTQ8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+MTMuMTk5OTk5OTg2NTM2PC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+MC42OTk5OTk5OTkyODY8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4wLjIwMDYyMDY1ODQyPC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPlNaLTA1PC9uczI6UGFydE51bWJlcj48bnMyOlByb2R1Y3RHcm91cD5PZmZpY2UgUHJvZHVjdDwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5PRkZJQ0VfUFJPRFVDVFM8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaXNoZXI+U29vZXo8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHBzOi8vbS5tZWRpYS1hbWF6b24uY29tL2ltYWdlcy9JLzUxbGNGajl0UTRMLl9TTDc1Xy5qcGc8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+U29vZXo8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5Tb29leiAxMiZxdW90OyBBcmNoaXRlY3R1cmFsIFNjYWxlIFJ1bGVyLCBBbHVtaW51bSBDb2xvci1Db2RlZCBHcm9vdmVzIFRyaWFuZ3VsYXIgU2NhbGUgTGFzZXIgRXRjaGVkIE1ldGFsIFRyaWFuZ3VsYXIgQXJjaGl0ZWN0IFNjYWxlIFJ1bGVyIFNvbGlkIEFyY2hpdGVjdHVyZSBSdWxlciwgQmxhY2s8L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHM+PFZhcmlhdGlvblBhcmVudD48SWRlbnRpZmllcnM+PE1hcmtldHBsYWNlQVNJTj48TWFya2V0cGxhY2VJZD5BMTlWQVU1VTVPN1JVUzwvTWFya2V0cGxhY2VJZD48QVNJTj5CMDgyWURNUzdOPC9BU0lOPjwvTWFya2V0cGxhY2VBU0lOPjwvSWRlbnRpZmllcnM+PC9WYXJpYXRpb25QYXJlbnQ+PC9SZWxhdGlvbnNoaXBzPjxTYWxlc1JhbmtpbmdzPjxTYWxlc1Jhbms+PFByb2R1Y3RDYXRlZ29yeUlkPm9mZmljZV9wcm9kdWN0X2Rpc3BsYXlfb25fd2Vic2l0ZTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+MTQ0MzE8L1Jhbms+PC9TYWxlc1Jhbms+PFNhbGVzUmFuaz48UHJvZHVjdENhdGVnb3J5SWQ+NjM4NTAwODA1MTwvUHJvZHVjdENhdGVnb3J5SWQ+PFJhbms+MjMxPC9SYW5rPjwvU2FsZXNSYW5rPjwvU2FsZXNSYW5raW5ncz48L1Byb2R1Y3Q+PFByb2R1Y3Q+PElkZW50aWZpZXJzPjxNYXJrZXRwbGFjZUFTSU4+PE1hcmtldHBsYWNlSWQ+QTE5VkFVNVU1TzdSVVM8L01hcmtldHBsYWNlSWQ+PEFTSU4+QjA4N0cyNzVORzwvQVNJTj48L01hcmtldHBsYWNlQVNJTj48L0lkZW50aWZpZXJzPjxBdHRyaWJ1dGVTZXRzPjxuczI6SXRlbUF0dHJpYnV0ZXMgeG1sOmxhbmc9ImVuLVNHIj48bnMyOkJpbmRpbmc+RFZELVJPTTwvbnMyOkJpbmRpbmc+PG5zMjpCcmFuZD5NYXJrdCArIFRlY2huaWs8L25zMjpCcmFuZD48bnMyOkZvcm1hdD5EVkQtUk9NPC9uczI6Rm9ybWF0PjxuczI6TGFiZWw+TWFya3QrVGVjaG5pazwvbnMyOkxhYmVsPjxuczI6TWFudWZhY3R1cmVyPk1hcmt0K1RlY2huaWs8L25zMjpNYW51ZmFjdHVyZXI+PG5zMjpPcGVyYXRpbmdTeXN0ZW0+V2luZG93cyA3PC9uczI6T3BlcmF0aW5nU3lzdGVtPjxuczI6T3BlcmF0aW5nU3lzdGVtPldpbmRvd3MgMTA8L25zMjpPcGVyYXRpbmdTeXN0ZW0+PG5zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4wLjU1MTE4MTEwMTg8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+Ny41NTkwNTUxMTA0PC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+NS4zNTQzMzA3MDMyPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC4xODA3NzkwNTQ4Mzk5OTk5Nzc5NTM3NzM4PC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGVnaVJhdGluZz5ub3RfcGVnaV9yYXRlZDwvbnMyOlBlZ2lSYXRpbmc+PG5zMjpQcm9kdWN0R3JvdXA+U29mdHdhcmU8L25zMjpQcm9kdWN0R3JvdXA+PG5zMjpQcm9kdWN0VHlwZU5hbWU+U09GVFdBUkU8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaXNoZXI+TWFya3QrVGVjaG5pazwvbnMyOlB1Ymxpc2hlcj48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNTE0SEhCclpNS0wuX1NMNzVfLmpwZzwvbnMyOlVSTD48bnMyOkhlaWdodCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOkhlaWdodD48bnMyOldpZHRoIFVuaXRzPSJwaXhlbHMiPjYyPC9uczI6V2lkdGg+PC9uczI6U21hbGxJbWFnZT48bnMyOlN0dWRpbz5NYXJrdCtUZWNobmlrPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+M0QgQ0FEIDcgQXJjaGl0ZWN0dXJlIC0gUGxhbiAmYW1wOyBkZXNpZ24gYnVpbGRpbmdzIGZyb20gaW5pdGlhbCByb3VnaCBza2V0Y2hlcyB0byB0aGUgZmluaXNoZWQgYmx1ZXByaW50cyAtIENBRCBhbmQgYXJjaGl0ZWN0dXJlIHNvZnR3YXJlIGZvciBXaW5kb3dzIDEwLCA4LjEsIDc8L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHMvPjxTYWxlc1JhbmtpbmdzLz48L1Byb2R1Y3Q+PFByb2R1Y3Q+PElkZW50aWZpZXJzPjxNYXJrZXRwbGFjZUFTSU4+PE1hcmtldHBsYWNlSWQ+QTE5VkFVNVU1TzdSVVM8L01hcmtldHBsYWNlSWQ+PEFTSU4+QjA3M0o3UzJINzwvQVNJTj48L01hcmtldHBsYWNlQVNJTj48L0lkZW50aWZpZXJzPjxBdHRyaWJ1dGVTZXRzPjxuczI6SXRlbUF0dHJpYnV0ZXMgeG1sOmxhbmc9ImVuLVNHIj48bnMyOkJyYW5kPlRhY2h5b27CoExpZ2h0PC9uczI6QnJhbmQ+PG5zMjpDb2xvcj5TaWx2ZXI8L25zMjpDb2xvcj48bnMyOkl0ZW1EaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjguNTA8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+MTEuODE8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj44Ljg2PC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MTIuMzU8L25zMjpXZWlnaHQ+PC9uczI6SXRlbURpbWVuc2lvbnM+PG5zMjpMYWJlbD5UYWNoeW9uwqBMaWdodDwvbnMyOkxhYmVsPjxuczI6TWFudWZhY3R1cmVyPlRhY2h5b27CoExpZ2h0PC9uczI6TWFudWZhY3R1cmVyPjxuczI6TWF0ZXJpYWxUeXBlPkFsdW1pbml1bStQQzwvbnMyOk1hdGVyaWFsVHlwZT48bnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjEyLjAwNzg3NDAwMzU8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+MTUuNTExODExMDA3ODwvbnMyOkxlbmd0aD48bnMyOldpZHRoIFVuaXRzPSJpbmNoZXMiPjEyLjUxOTY4NTAyNjY8L25zMjpXaWR0aD48bnMyOldlaWdodCBVbml0cz0icG91bmRzIj4xNC4xNDkyNjc5NzUxNjwvbnMyOldlaWdodD48L25zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOlByb2R1Y3RHcm91cD5Ib21lPC9uczI6UHJvZHVjdEdyb3VwPjxuczI6UHJvZHVjdFR5cGVOYW1lPkxJR0hUX0ZJWFRVUkU8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaXNoZXI+VGFjaHlvbsKgTGlnaHQ8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHBzOi8vbS5tZWRpYS1hbWF6b24uY29tL2ltYWdlcy9JLzUxNFgtWFpXamJMLl9TTDc1Xy5qcGc8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+VGFjaHlvbsKgTGlnaHQ8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5MRURTTUFTVEVSIDE1MFcgTEVEIEhpZ2ggQmF5IExpZ2h0LCAyMjUwMGxtLCBMUy1IQk4xNTAsIERheWxpZ2h0IFdoaXRlIDU1MDBLLCBJUDY2IFdhdGVycHJvb2YsIENhciBQYXJrcywgU2VjdXJpdHksIEFyY2hpdGVjdHVyZSwgU3BvcnQgRmFjaWxpdHksIFVMIDE1OTggMjAwOC8wOS8xNyBDb25mb3JtZWQ8L25zMjpUaXRsZT48L25zMjpJdGVtQXR0cmlidXRlcz48L0F0dHJpYnV0ZVNldHM+PFJlbGF0aW9uc2hpcHMvPjxTYWxlc1JhbmtpbmdzLz48L1Byb2R1Y3Q+PFByb2R1Y3Q+PElkZW50aWZpZXJzPjxNYXJrZXRwbGFjZUFTSU4+PE1hcmtldHBsYWNlSWQ+QTE5VkFVNVU1TzdSVVM8L01hcmtldHBsYWNlSWQ+PEFTSU4+QjA4TDUzVFE3WDwvQVNJTj48L01hcmtldHBsYWNlQVNJTj48L0lkZW50aWZpZXJzPjxBdHRyaWJ1dGVTZXRzPjxuczI6SXRlbUF0dHJpYnV0ZXMgeG1sOmxhbmc9ImVuLVNHIj48bnMyOkJyYW5kPnNvY2lhbG1lPC9uczI6QnJhbmQ+PG5zMjpJdGVtRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4wLjM5MzcwMDc4NzAwPC9uczI6SGVpZ2h0PjxuczI6TGVuZ3RoIFVuaXRzPSJpbmNoZXMiPjAuMzkzNzAwNzg3MDA8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj4wLjM5MzcwMDc4NzAwPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC4xMDE0MTI2NDA1MjAwPC9uczI6V2VpZ2h0PjwvbnMyOkl0ZW1EaW1lbnNpb25zPjxuczI6TGFiZWw+c29jaWFsbWU8L25zMjpMYWJlbD48bnMyOk1hbnVmYWN0dXJlcj5zb2NpYWxtZTwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjAuMzkzNzAwNzg3MDA8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+MTAuNjI5OTIxMjQ5MDA8L25zMjpMZW5ndGg+PG5zMjpXaWR0aCBVbml0cz0iaW5jaGVzIj41LjUxMTgxMTAxODAwPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MC4xMTAyMzExMzEwMDAwPC9uczI6V2VpZ2h0PjwvbnMyOlBhY2thZ2VEaW1lbnNpb25zPjxuczI6UGFja2FnZVF1YW50aXR5PjE8L25zMjpQYWNrYWdlUXVhbnRpdHk+PG5zMjpQYXJ0TnVtYmVyPnNvY2lhbG1la291YTI4YjF0cTwvbnMyOlBhcnROdW1iZXI+PG5zMjpQcm9kdWN0R3JvdXA+SG9tZTwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5IT01FX0JFRF9BTkRfQkFUSDwvbnMyOlByb2R1Y3RUeXBlTmFtZT48bnMyOlB1Ymxpc2hlcj5zb2NpYWxtZTwvbnMyOlB1Ymxpc2hlcj48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cHM6Ly9pbWFnZXMtbmEuc3NsLWltYWdlcy1hbWF6b24uY29tL2ltYWdlcy9JLzAxUm1LK0o0cEpMLl9TTDc1Xy5naWY8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+c29jaWFsbWU8L25zMjpTdHVkaW8+PG5zMjpUaXRsZT5BcmNoaXRlY3R1cmUgVGVtcGxhdGUsIHByYWN0aWNhbCBzb2Z0IE1lYXN1cmluZyBSdWxlciwgcGFpbnRpbmcgZm9yIGhvbWUgbWVhc3VyZW1lbnQgY2hlbWljYWwgZW5naW5lZXJpbmcgZWxlY3RyaWNhbCBkZXNpZ24gYXJjaGl0ZWN0dXJlPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExOVZBVTVVNU83UlVTPC9NYXJrZXRwbGFjZUlkPjxBU0lOPkIwOEYzVEsxTkc8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlbi1TRyI+PG5zMjpCaW5kaW5nPkRWRDwvbnMyOkJpbmRpbmc+PG5zMjpCcmFuZD5QVE5SMDFBOTk4V1hZPC9uczI6QnJhbmQ+PG5zMjpGb3JtYXQ+RFZELVJPTTwvbnMyOkZvcm1hdD48bnMyOkxhYmVsPlBUTlIwMUE5OThXWFk8L25zMjpMYWJlbD48bnMyOk1hbnVmYWN0dXJlcj5QVE5SMDFBOTk4V1hZPC9uczI6TWFudWZhY3R1cmVyPjxuczI6T3BlcmF0aW5nU3lzdGVtPkxpbnV4PC9uczI6T3BlcmF0aW5nU3lzdGVtPjxuczI6T3BlcmF0aW5nU3lzdGVtPk1hYyBPUyA5IGFuZCBCZWxvdzwvbnMyOk9wZXJhdGluZ1N5c3RlbT48bnMyOk9wZXJhdGluZ1N5c3RlbT5XaW5kb3dzIDggUHJvPC9uczI6T3BlcmF0aW5nU3lzdGVtPjxuczI6UGFydE51bWJlcj5QTlRMNDg8L25zMjpQYXJ0TnVtYmVyPjxuczI6UGVnaVJhdGluZz51bmtub3duPC9uczI6UGVnaVJhdGluZz48bnMyOlByb2R1Y3RHcm91cD5WaWRlbyBHYW1lczwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5WSURFT19EVkQ8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaXNoZXI+UFROUjAxQTk5OFdYWTwvbnMyOlB1Ymxpc2hlcj48bnMyOlNtYWxsSW1hZ2U+PG5zMjpVUkw+aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNTF5N0ZXTXkrdkwuX1NMNzVfLmpwZzwvbnMyOlVSTD48bnMyOkhlaWdodCBVbml0cz0icGl4ZWxzIj43NTwvbnMyOkhlaWdodD48bnMyOldpZHRoIFVuaXRzPSJwaXhlbHMiPjc1PC9uczI6V2lkdGg+PC9uczI6U21hbGxJbWFnZT48bnMyOlN0dWRpbz5QVE5SMDFBOTk4V1hZPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+UFROUjAxQTk5OFdYWSBJU0FRQiBTb2Z0d2FyZSBBcmNoaXRlY3R1cmUgLSBGb3VuZGF0aW9uIExldmVsIElTQVFCIFNvZnR3YXJlIEFyY2hpdGVjdHVyZSAtIEZvdW5kYXRpb24gTGV2ZWwgT25saW5lIENlcnRpZmljYXRpb24gVmlkZW8gTGVhcm5pbmcgTWFkZSBFYXN5PC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjxQcm9kdWN0PjxJZGVudGlmaWVycz48TWFya2V0cGxhY2VBU0lOPjxNYXJrZXRwbGFjZUlkPkExOVZBVTVVNU83UlVTPC9NYXJrZXRwbGFjZUlkPjxBU0lOPjE2MzE1OTkzM1g8L0FTSU4+PC9NYXJrZXRwbGFjZUFTSU4+PC9JZGVudGlmaWVycz48QXR0cmlidXRlU2V0cz48bnMyOkl0ZW1BdHRyaWJ1dGVzIHhtbDpsYW5nPSJlbi1TRyI+PG5zMjpBdXRob3I+QmxhdWtvcGYsIFNoYXJpPC9uczI6QXV0aG9yPjxuczI6QXV0aG9yPkJvd2VyLCBTdGVwaGFuaWU8L25zMjpBdXRob3I+PG5zMjpBdXRob3I+Q2FtcGFuYXJpbywgR2FicmllbDwvbnMyOkF1dGhvcj48bnMyOkJpbmRpbmc+UGFwZXJiYWNrPC9uczI6QmluZGluZz48bnMyOkJyYW5kPlF1YXJyeSBCb29rczwvbnMyOkJyYW5kPjxuczI6RWRpdGlvbj5JbGx1c3RyYXRlZDwvbnMyOkVkaXRpb24+PG5zMjpGb3JtYXQ+SWxsdXN0cmF0ZWQ8L25zMjpGb3JtYXQ+PG5zMjpHZW5yZT5BcnQ8L25zMjpHZW5yZT48bnMyOkl0ZW1EaW1lbnNpb25zPjxuczI6SGVpZ2h0IFVuaXRzPSJpbmNoZXMiPjguMDU8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+NS4xPC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+MC44NTwvbnMyOldpZHRoPjwvbnMyOkl0ZW1EaW1lbnNpb25zPjxuczI6TGFiZWw+UXVhcnJ5IEJvb2tzPC9uczI6TGFiZWw+PG5zMjpMYW5ndWFnZXM+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPlB1Ymxpc2hlZDwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PG5zMjpMYW5ndWFnZT48bnMyOk5hbWU+ZW5nbGlzaDwvbnMyOk5hbWU+PG5zMjpUeXBlPk9yaWdpbmFsIExhbmd1YWdlPC9uczI6VHlwZT48L25zMjpMYW5ndWFnZT48bnMyOkxhbmd1YWdlPjxuczI6TmFtZT5lbmdsaXNoPC9uczI6TmFtZT48bnMyOlR5cGU+VW5rbm93bjwvbnMyOlR5cGU+PC9uczI6TGFuZ3VhZ2U+PC9uczI6TGFuZ3VhZ2VzPjxuczI6TWFudWZhY3R1cmVyPlF1YXJyeSBCb29rczwvbnMyOk1hbnVmYWN0dXJlcj48bnMyOk51bWJlck9mSXRlbXM+MTwvbnMyOk51bWJlck9mSXRlbXM+PG5zMjpOdW1iZXJPZlBhZ2VzPjI1NjwvbnMyOk51bWJlck9mUGFnZXM+PG5zMjpQYWNrYWdlRGltZW5zaW9ucz48bnMyOkhlaWdodCBVbml0cz0iaW5jaGVzIj4wLjc4NzQwMTU3NDA8L25zMjpIZWlnaHQ+PG5zMjpMZW5ndGggVW5pdHM9ImluY2hlcyI+Ny44NzQwMTU3NDAwPC9uczI6TGVuZ3RoPjxuczI6V2lkdGggVW5pdHM9ImluY2hlcyI+NC45NjA2Mjk5MTYyPC9uczI6V2lkdGg+PG5zMjpXZWlnaHQgVW5pdHM9InBvdW5kcyI+MS4xMDIzMTEzMTA8L25zMjpXZWlnaHQ+PC9uczI6UGFja2FnZURpbWVuc2lvbnM+PG5zMjpQcm9kdWN0R3JvdXA+Qm9vazwvbnMyOlByb2R1Y3RHcm91cD48bnMyOlByb2R1Y3RUeXBlTmFtZT5BQklTX0JPT0s8L25zMjpQcm9kdWN0VHlwZU5hbWU+PG5zMjpQdWJsaWNhdGlvbkRhdGU+MjAyMC0wOC0xODwvbnMyOlB1YmxpY2F0aW9uRGF0ZT48bnMyOlB1Ymxpc2hlcj5RdWFycnkgQm9va3M8L25zMjpQdWJsaXNoZXI+PG5zMjpTbWFsbEltYWdlPjxuczI6VVJMPmh0dHBzOi8vbS5tZWRpYS1hbWF6b24uY29tL2ltYWdlcy9JLzUxMlNXQUczUEFMLl9TTDc1Xy5qcGc8L25zMjpVUkw+PG5zMjpIZWlnaHQgVW5pdHM9InBpeGVscyI+NzU8L25zMjpIZWlnaHQ+PG5zMjpXaWR0aCBVbml0cz0icGl4ZWxzIj40NzwvbnMyOldpZHRoPjwvbnMyOlNtYWxsSW1hZ2U+PG5zMjpTdHVkaW8+UXVhcnJ5IEJvb2tzPC9uczI6U3R1ZGlvPjxuczI6VGl0bGU+VGhlIENvbXBsZXRlIFVyYmFuIFNrZXRjaGluZyBDb21wYW5pb246IEVzc2VudGlhbCBDb25jZXB0cyBhbmQgVGVjaG5pcXVlcyBmcm9tIFRoZSBVcmJhbiBTa2V0Y2hpbmcgSGFuZGJvb2tzLS1BcmNoaXRlY3R1cmUgYW5kIENpdHlzY2FwZXMsIC4uLiBQZW9wbGUgYW5kIE1vdGlvbiwgV29ya2luZyB3aXRoIENvbG9yPC9uczI6VGl0bGU+PC9uczI6SXRlbUF0dHJpYnV0ZXM+PC9BdHRyaWJ1dGVTZXRzPjxSZWxhdGlvbnNoaXBzLz48U2FsZXNSYW5raW5ncy8+PC9Qcm9kdWN0PjwvUHJvZHVjdHM+PC9MaXN0TWF0Y2hpbmdQcm9kdWN0c1Jlc3VsdD48UmVzcG9uc2VNZXRhZGF0YT48UmVxdWVzdElkPjYwNGUxMzZhLWVkNTUtNGY2YS05ZGZmLTZhMjVlNzA5NmU3ZjwvUmVxdWVzdElkPjwvUmVzcG9uc2VNZXRhZGF0YT48L0xpc3RNYXRjaGluZ1Byb2R1Y3RzUmVzcG9uc2U+
+  recorded_at: Tue, 13 Oct 2020 10:58:11 GMT
 recorded_with: VCR 6.0.0

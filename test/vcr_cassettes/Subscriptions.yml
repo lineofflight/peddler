@@ -1791,4 +1791,174 @@ http_interactions:
           </ResponseMetadata>
         </ListRegisteredDestinationsResponse>
   recorded_at: Mon, 12 Oct 2020 11:33:00 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListRegisteredDestinations&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A52%3A56Z&Version=2013-07-01&Signature=VFCizC9JIsqlkJwqzBb67lcE81kcKwXulDbIicIO8AU%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:52:57 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '655'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - YKB9V7VHY1BH0S99A2NH
+      x-mws-request-id:
+      - d9e21b0e-7241-4dd7-943b-39e27ce9b3da
+      x-mws-timestamp:
+      - '2020-10-13T10:52:57.492Z'
+      x-mws-response-context:
+      - kx4BkXVoTYDDyAnU0sDqoy2DTIDN9L492cp48XsP0XauvmFwnJYLzsqW8C/sNk8rnd87Tby3Qwo=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListRegisteredDestinationsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListRegisteredDestinationsResult>
+            <DestinationList>
+              <member>
+                <DeliveryChannel>SQS</DeliveryChannel>
+                <AttributeList>
+                  <member>
+                    <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
+                    <Key>sqsQueueUrl</Key>
+                  </member>
+                </AttributeList>
+              </member>
+            </DestinationList>
+          </ListRegisteredDestinationsResult>
+          <ResponseMetadata>
+            <RequestId>d9e21b0e-7241-4dd7-943b-39e27ce9b3da</RequestId>
+          </ResponseMetadata>
+        </ListRegisteredDestinationsResponse>
+  recorded_at: Tue, 13 Oct 2020 10:52:57 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetServiceStatus&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A52%3A57Z&Version=2013-07-01&Signature=GC2GxdklSXzZGLxgxsjnE8PewIHgGp0xUJGOKAwLdZU%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:52:58 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '388'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - K0TC1YG9DSVYFSDBAD3B
+      x-mws-request-id:
+      - e06aaa31-a5b8-42a1-85e8-5769c5e5a1be
+      x-mws-timestamp:
+      - '2020-10-13T10:52:58.211Z'
+      x-mws-response-context:
+      - C9U4V6HeRSp0PoiHIjiPcYS8errRQag+NF/g1clfMN2shosd64PQYOGy+kJZrQf/EQ7GX94qEmI=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetServiceStatusResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <GetServiceStatusResult>
+            <Status>GREEN</Status>
+            <Timestamp>2020-10-13T10:52:58.211Z</Timestamp>
+          </GetServiceStatusResult>
+          <ResponseMetadata>
+            <RequestId>e06aaa31-a5b8-42a1-85e8-5769c5e5a1be</RequestId>
+          </ResponseMetadata>
+        </GetServiceStatusResponse>
+  recorded_at: Tue, 13 Oct 2020 10:52:58 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Subscriptions/2013-07-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=ListSubscriptions&MarketplaceId=A19VAU5U5O7RUS&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A52%3A58Z&Version=2013-07-01&Signature=t9v6y5dzSBWKm0PgeZZoqJ7ndOyZ22g4G%2FekgE%2Fmo0M%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:52:58 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '777'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - JXJ0XASFNN4ZMNBHWQ56
+      x-mws-request-id:
+      - cc358eb0-d43c-4ee0-b726-eb129c87c212
+      x-mws-timestamp:
+      - '2020-10-13T10:52:58.870Z'
+      x-mws-response-context:
+      - v9WT201NIycFgdBtOMDsO6az/slntzbH2nAzDEEZsDZJd9FZbRBvd3vM/Y6wOj6UVVdfWKuK1PU=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <ListSubscriptionsResponse xmlns="http://mws.amazonservices.com/schema/Subscriptions/2013-07-01">
+          <ListSubscriptionsResult>
+            <SubscriptionList>
+              <member>
+                <Destination>
+                  <DeliveryChannel>SQS</DeliveryChannel>
+                  <AttributeList>
+                    <member>
+                      <Value>https://sqs.us-east-1.amazonaws.com/337281144291/bezos</Value>
+                      <Key>sqsQueueUrl</Key>
+                    </member>
+                  </AttributeList>
+                </Destination>
+                <NotificationType>AnyOfferChanged</NotificationType>
+                <IsEnabled>true</IsEnabled>
+              </member>
+            </SubscriptionList>
+          </ListSubscriptionsResult>
+          <ResponseMetadata>
+            <RequestId>cc358eb0-d43c-4ee0-b726-eb129c87c212</RequestId>
+          </ResponseMetadata>
+        </ListSubscriptionsResponse>
+  recorded_at: Tue, 13 Oct 2020 10:52:58 GMT
 recorded_with: VCR 6.0.0

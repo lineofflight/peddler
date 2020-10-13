@@ -11274,4 +11274,1115 @@ http_interactions:
           </ResponseMetadata>
         </GetFeedSubmissionListResponse>
   recorded_at: Mon, 12 Oct 2020 11:32:56 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Feeds/2009-01-01?AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=SubmitFeed&ContentMD5Value=iUI5qlSDSrZOHRgvj4amUQ%3D%3D&FeedType=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A52%3A59Z&Version=2009-01-01&Signature=oChM%2BSVaw7ETG69AXbNZNzDhEWqNVBejeF1Wpt%2F9lY8%3D
+    body:
+      encoding: Windows-1252
+      string: "sku\tprice\tquantity\nwidget\t\t0\n"
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - text/tab-separated-values; charset=CP1252
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:00 GMT
+      Content-Type:
+      - text/xml
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 59723C8XWPPA9WDV0BJ5
+      x-mws-quota-max:
+      - '30.0'
+      x-mws-quota-remaining:
+      - '30.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      x-mws-response-context:
+      - d61qKT1XpaDI86HfWQ/7guZ1aB6AvH07DF3CV+eFkMBRQSQRA+M4STolNwOl8dSYf6xkLoPli4I=,
+        qv3qy6/kpwR+pdNyw2ekKV8SsBSFqxo8dRF/i3Yu2lSb5qCmEc/Q9noRcNwYmcawLcV04Mgrjbc=
+      x-amz-request-id:
+      - 498f6095-d12d-4f0c-8ce0-47343ee343a6
+      x-mws-request-id:
+      - 498f6095-d12d-4f0c-8ce0-47343ee343a6
+      x-mws-timestamp:
+      - '2020-10-13T10:53:00.201Z'
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0"?>
+        <SubmitFeedResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/"><SubmitFeedResult><FeedSubmissionInfo><FeedSubmissionId>59197018548</FeedSubmissionId><FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType><SubmittedDate>2020-10-13T10:53:00+00:00</SubmittedDate><FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus></FeedSubmissionInfo></SubmitFeedResult><ResponseMetadata><RequestId>498f6095-d12d-4f0c-8ce0-47343ee343a6</RequestId></ResponseMetadata></SubmitFeedResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:00 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Feeds/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=CancelFeedSubmissions&FeedSubmissionId=59197018548&FeedTypeList.Type.1=_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A00Z&Version=2009-01-01&Signature=XDyvdYX0I2IvO5%2BLRHuyiSGCs79jitHCqH08OXN1m0o%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:01 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '46931'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 8CEGSK233N6XYTZFESBW
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:01 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=V2ry0rgENaKszTMUnPQYvEAHcF2Ii+63oSWKDxPJ2tI=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - a5fd0930-1c8c-4a7a-91dc-8a63f95d57ae
+      x-mws-timestamp:
+      - '2020-10-13T10:53:00.956Z'
+      x-mws-response-context:
+      - 3y0q7SLQJm5VsFtGNvKn5SOy6Qie3zd1pI1Ui4lC6csMPh19zMy/sbjIzAKpbF0k2VAp7G/Y13I=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <CancelFeedSubmissionsResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <CancelFeedSubmissionsResult>
+            <Count>100</Count>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59196018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:46:52+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:46:46+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:47:41+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59195018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:35:46+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:35:41+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:38:26+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59190018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T09:22:55+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T09:22:50+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T09:25:15+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59185018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T08:09:56+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T08:09:52+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T08:13:34+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59181018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T06:28:07+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T06:28:02+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T06:31:05+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59178018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T05:32:15+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T05:32:10+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T05:35:09+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59174018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T04:52:35+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T04:52:31+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T04:54:58+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59173018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T04:08:53+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T04:08:49+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T04:11:41+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59171018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T03:17:40+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T03:17:36+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T03:21:21+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59169018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T02:48:35+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T02:48:31+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T02:50:55+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59167018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T02:06:51+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T02:06:45+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T02:09:55+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59165018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T01:18:47+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T01:18:42+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T01:21:28+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59164018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T00:37:13+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T00:37:07+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T00:40:04+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59163018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T00:32:51+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T00:32:45+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T00:35:54+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59162018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T00:28:38+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T00:28:33+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T00:31:47+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59161018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T00:24:13+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T00:24:08+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T00:27:51+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59159018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T00:01:36+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T00:01:30+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T00:05:57+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59158018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:57:10+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:57:05+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T00:00:37+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59157018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:52:56+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:52:52+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:56:01+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59156018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:48:35+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:48:28+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:51:59+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59155018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:44:39+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:44:33+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:47:50+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59154018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:39:54+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:39:50+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:43:34+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59153018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:35:41+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:35:36+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:39:09+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59152018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:31:17+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:31:12+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:34:53+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59151018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:27:04+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:26:59+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:30:27+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59150018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T23:22:41+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T23:22:35+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T23:26:03+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59147018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T22:54:31+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T22:54:26+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T22:58:02+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59146018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T22:50:26+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T22:50:21+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T22:53:56+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59145018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T22:41:28+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T22:41:23+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T22:42:31+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59143018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T21:40:12+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T21:40:06+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T21:41:26+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59141018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T21:01:57+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T21:01:53+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T21:03:01+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59139018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T20:14:15+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T20:14:10+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T20:15:07+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59138018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T19:21:24+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T19:21:19+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T19:22:39+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59136018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T18:21:50+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T18:21:44+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T18:22:53+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59134018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T17:41:14+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T17:41:09+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T17:42:16+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59130018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T17:06:56+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T17:06:51+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T17:08:21+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59129018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T16:33:16+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T16:33:12+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T16:34:15+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59128018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T15:56:59+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T15:56:54+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T16:01:05+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59123018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T14:05:40+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T14:05:35+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T14:09:21+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59119018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T12:22:08+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T12:22:04+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T12:25:02+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59114018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T10:54:20+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T10:54:13+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T10:56:59+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59112018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T09:38:49+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T09:38:44+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T09:41:27+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59109018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T08:36:57+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T08:36:53+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T08:39:28+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59105018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T07:39:53+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T07:39:48+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T07:42:25+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59101018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T06:28:45+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T06:28:39+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T06:32:32+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59098018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T05:43:55+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T05:43:49+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T05:46:45+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59095018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T04:47:17+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T04:47:12+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T04:49:53+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59093018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T03:20:45+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T03:20:40+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T03:23:26+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59090018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T02:24:21+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T02:24:16+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T02:27:10+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59086018547</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-12T00:01:37+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-12T00:01:32+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-12T00:03:59+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59081018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T22:37:20+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T22:37:15+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T22:40:09+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59080018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T22:33:20+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T22:33:15+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T22:36:56+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59079018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T22:23:46+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T22:23:41+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T22:24:54+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59078018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T21:02:13+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T21:02:08+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T21:03:55+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59076018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T19:52:49+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T19:52:44+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T19:53:48+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59075018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T18:32:16+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T18:32:10+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T18:33:32+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59074018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T17:38:58+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T17:38:52+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T17:40:17+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59072018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T16:24:25+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T16:24:19+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T16:25:35+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59070018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T14:55:58+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T14:55:53+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T14:58:45+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59065018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T12:23:06+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T12:23:01+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T12:26:16+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59060018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T09:32:56+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T09:32:52+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T09:35:49+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59048018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T07:28:41+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T07:28:37+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T07:31:22+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59045018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T07:05:34+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T07:05:29+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T07:08:01+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59038018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T05:46:31+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T05:46:25+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T05:49:12+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59032018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T04:27:06+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T04:27:01+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T04:29:40+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59026018546</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-11T01:47:27+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-11T01:47:22+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-11T01:49:44+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59019018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T23:00:08+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T23:00:02+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T23:02:30+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59018018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T22:52:13+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T22:52:09+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T22:55:42+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59016018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T22:44:20+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T22:44:15+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T22:47:22+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59015018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T22:14:53+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T22:14:48+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T22:16:10+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59011018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T19:35:53+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T19:35:48+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T19:36:40+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59001018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T17:41:30+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T17:41:25+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T17:42:26+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58997018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T15:16:14+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T15:16:09+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T15:18:56+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58992018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T14:22:10+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T14:22:04+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T14:25:40+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58987018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T13:14:55+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T13:14:50+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T13:17:58+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58985018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T12:34:33+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T12:34:27+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T12:37:35+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58982018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T11:55:43+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T11:55:37+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T11:58:21+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58979018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T10:14:53+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T10:14:48+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T10:17:37+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58976018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T09:32:29+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T09:32:24+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T09:36:01+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58969018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T08:19:11+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T08:19:06+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T08:21:50+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58960018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T06:51:10+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T06:51:06+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T06:54:45+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58956018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T05:21:22+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T05:21:17+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T05:24:06+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58952018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T03:41:13+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T03:41:07+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T03:43:52+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58948018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T02:02:22+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T02:02:16+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T02:05:30+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58946018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T01:55:50+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T01:55:45+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T01:59:03+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58945018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T01:51:40+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T01:51:34+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T01:54:43+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58944018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T01:48:30+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T01:47:11+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T01:50:55+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58942018545</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-10T00:13:59+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-10T00:13:54+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T00:16:46+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58940018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:57:24+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:57:18+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-10T00:00:39+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58939018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:40:46+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:40:42+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:43:46+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58938018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:36:22+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:36:18+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:39:55+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58937018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:32:11+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:32:05+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:35:16+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58936018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:27:56+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:27:51+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:30:59+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58935018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:23:21+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:23:16+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:26:31+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58934018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:17:58+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:17:52+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:22:36+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58933018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:13:45+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:13:39+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:17:06+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58931018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:09:31+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:09:26+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:12:56+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58930018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T23:05:05+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T23:05:00+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:08:30+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58928018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T22:57:23+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T22:57:18+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T23:01:50+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>58927018544</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-09T21:51:28+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-09T21:51:24+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-09T21:52:19+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+          </CancelFeedSubmissionsResult>
+          <ResponseMetadata>
+            <RequestId>a5fd0930-1c8c-4a7a-91dc-8a63f95d57ae</RequestId>
+          </ResponseMetadata>
+        </CancelFeedSubmissionsResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:01 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Feeds/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionCount&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A01Z&Version=2009-01-01&Signature=b8KR1gsxPo8QTDqmNoktdsehPk%2BhCNWpRTMsyzmpiUY%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:02 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '336'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - RQD69CPZGT8TVHHQ3G67
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '75.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:02 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=TiQ2mgouONj3p9Xt+8wU7/+efxqIz/Os1nIfj2p7zRQ=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - 46adbaab-7c1f-48f5-a650-2d13f7a3ce14
+      x-mws-timestamp:
+      - '2020-10-13T10:53:02.363Z'
+      x-mws-response-context:
+      - YXSkmnH2KsfOF2xvHTGbhFyAyuTTW885/i6SrPUHFb4Vxsw87JLxexaU8QR2HLQdhGF9zpkyL9Y=
+      Vary:
+      - Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetFeedSubmissionCountResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionCountResult>
+            <Count>8074</Count>
+          </GetFeedSubmissionCountResult>
+          <ResponseMetadata>
+            <RequestId>46adbaab-7c1f-48f5-a650-2d13f7a3ce14</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionCountResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:02 GMT
+- request:
+    method: post
+    uri: https://mws-fe.amazonservices.com/Feeds/2009-01-01
+    body:
+      encoding: UTF-8
+      string: AWSAccessKeyId=AWS_ACCESS_KEY_ID&Action=GetFeedSubmissionList&SellerId=MERCHANT_ID&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2020-10-13T10%3A53%3A02Z&Version=2009-01-01&Signature=c4Ckp7albcWs8yLNYCiIxN3qb3nhovx%2BqdLFLDjDB1Y%3D
+    headers:
+      User-Agent:
+      - Jeff/2.0.2 (Language=Ruby; Hakans-iMac.local)
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=UTF-8
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 13 Oct 2020 10:53:03 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '5195'
+      Connection:
+      - keep-alive
+      x-amz-rid:
+      - 1PN4P1GA51KR8804EQB8
+      x-mws-quota-max:
+      - '80.0'
+      x-mws-quota-remaining:
+      - '80.0'
+      x-mws-quota-resetsOn:
+      - '2020-10-13T11:49:00.000Z'
+      X-Amz-Date:
+      - Tue, 13 Oct 2020 10:53:03 GMT
+      x-amzn-Authorization:
+      - AAA SignedHeaders=X-Amz-Date, identity=com.amazon.aaa.FrpAndromedaFeedsPlugin.AndromedaControlService.amzn1.aaa.id.zd2w7nq4skwm34cwmcwnsku4xy.Default/1,
+        Signed=true, Encrypted=false, Signature=GZaZ40JVbQ8i/t2OcjB7p+zSZkehPn5quzFCeMOBu8s=,
+        Algorithm=HmacSHA256
+      x-mws-request-id:
+      - fdd7d1d4-730d-421e-ad7e-0ace0e965b5c
+      x-mws-timestamp:
+      - '2020-10-13T10:53:03.261Z'
+      x-mws-response-context:
+      - 3y0q7SLQJm5VsFtGNvKn5SOy6Qie3zd1pI1Ui4lC6csMPh19zMy/sbjIzAKpbF0k2VAp7G/Y13I=
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0"?>
+        <GetFeedSubmissionListResponse xmlns="http://mws.amazonaws.com/doc/2009-01-01/">
+          <GetFeedSubmissionListResult>
+            <NextToken>L2p60vJqlIz2jpZedg0wbVuY6vtoszFELLC/dRQXacLhT+dkKeInJzUT8XYz+v8T5ELq2JSNx39xrBy2GCH8waxIWyMFx4D2yWO2Kyos8xdJrWRy31mekgGGiZBo4n/8wzlLuhgRTj/oyEGTkXHuVni4i7WQRRqiPMG4jNqghnnjqr69Gld8Ma/8MKFZNzPPpyEvTTIbWgn5CxRAxRv5sSfDhecfk9+oI7DC7b2BOEYlIyQN8z5HO0KHfIApKuB85guC6NMITj52bCS8flTkonIe9ukYzXe0olW5TRdYlBg0OUg4YGB0DZ3s4wCCNb13979N3FlKQ92wlpCTKeY+ofMYhXtcHwdHAVEFVGx1LDajiQctEAMv/h5s+4DxkUBUfUI+gdLD4hZGg+ZQs7BjrLORcWiga3Zol1iclcKk0Y+yJuN6B/0AGw==</NextToken>
+            <HasNext>true</HasNext>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_SUBMITTED_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59197018548</FeedSubmissionId>
+              <SubmittedDate>2020-10-13T10:53:00+00:00</SubmittedDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59196018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:46:52+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:46:46+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:47:41+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59195018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:35:46+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:35:41+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:38:26+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedSubmissionId>59194018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:33:38+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:33:33+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:35:30+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_ORDER_FULFILLMENT_DATA_</FeedType>
+              <FeedSubmissionId>59193018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:06:18+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:06:14+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:06:40+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedSubmissionId>59192018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T10:01:57+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T10:01:52+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T10:04:00+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedSubmissionId>59191018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T09:25:36+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T09:25:31+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T09:30:30+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_PRICEANDQUANTITYONLY_UPDATE_DATA_</FeedType>
+              <FeedSubmissionId>59190018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T09:22:55+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T09:22:50+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T09:25:15+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_ORDER_FULFILLMENT_DATA_</FeedType>
+              <FeedSubmissionId>59189018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T09:05:44+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T09:05:01+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T09:06:07+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+            <FeedSubmissionInfo>
+              <FeedProcessingStatus>_DONE_</FeedProcessingStatus>
+              <FeedType>_POST_FLAT_FILE_INVLOADER_DATA_</FeedType>
+              <FeedSubmissionId>59187018548</FeedSubmissionId>
+              <StartedProcessingDate>2020-10-13T08:48:03+00:00</StartedProcessingDate>
+              <SubmittedDate>2020-10-13T08:47:57+00:00</SubmittedDate>
+              <CompletedProcessingDate>2020-10-13T08:51:34+00:00</CompletedProcessingDate>
+            </FeedSubmissionInfo>
+          </GetFeedSubmissionListResult>
+          <ResponseMetadata>
+            <RequestId>fdd7d1d4-730d-421e-ad7e-0ace0e965b5c</RequestId>
+          </ResponseMetadata>
+        </GetFeedSubmissionListResponse>
+  recorded_at: Tue, 13 Oct 2020 10:53:03 GMT
 recorded_with: VCR 6.0.0
