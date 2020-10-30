@@ -2,6 +2,9 @@ Layout/LineLength:
   Exclude:
     - "test/**/*"
   IgnoredPatterns: ['\A\s*#']
+Lint/EmptyBlock:
+  Exclude:
+    - "Appraisals"
 Lint/StructNewOverride:
   Exclude:
     - "test/**/*"
