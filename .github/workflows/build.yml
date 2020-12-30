@@ -6,7 +6,7 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.7
+      image: ruby:3.0
     steps:
       - uses: actions/checkout@v2
       - run: gem install bundler
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: [2.5, 2.6, 2.7, 3.0]
         gemfile: [libxml, nokogiri, ox, rexml]
     container:
       image: ruby:${{ matrix.ruby }}
@@ -34,7 +34,7 @@ jobs:
   documentation:
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.7
+      image: ruby:3.0
     steps:
       - uses: actions/checkout@v2
       - run: ./scripts/documentation_crawler.rb
@@ -44,7 +44,7 @@ jobs:
     needs: [rubocop, test, documentation]
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.7
+      image: ruby:3.0
     steps:
       - uses: actions/checkout@v2
       - run: gem install bundler
