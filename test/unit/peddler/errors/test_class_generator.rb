@@ -20,7 +20,7 @@ module Peddler
 
     def test_thread_safety
       Errors::ClassGenerator.call(@error_name)
-      assert_output '', '' do
+      assert_silent do
         Peddler::Errors::ClassGenerator.call(@error_name)
       end
     end

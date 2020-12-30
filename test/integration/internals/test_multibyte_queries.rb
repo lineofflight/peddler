@@ -12,6 +12,6 @@ class TestMultibyteQueries < IntegrationTest
       res.body.force_encoding 'UTF-8' if defined? Ox # Ox workaround
       res.parse
     end
-    assert ret.map(&:to_s).join.include?('Félix')
+    assert_includes ret.map(&:to_s).join, 'Félix'
   end
 end

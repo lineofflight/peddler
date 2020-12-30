@@ -113,7 +113,7 @@ module Peddler
     # @!visibility private
     def run(&block)
       opts = build_options
-      opts.store(:response_block, block) if block_given?
+      opts.store(:response_block, block) if block
       res = post(opts)
       self.body = nil if res.status == 200
 

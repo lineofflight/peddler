@@ -2,6 +2,15 @@
 
 source 'https://rubygems.org'
 
+gemspec
+
+gem 'rake'
+gem 'rubocop'
+gem 'rubocop-minitest'
+gem 'rubocop-performance'
+gem 'rubocop-rake'
+gem 'yard'
+
 group :test do
   gem 'appraisal'
   gem 'minitest'
@@ -9,10 +18,3 @@ group :test do
   gem 'simplecov', '0.17.1'
   gem 'vcr'
 end
-
-gem 'rake'
-gem 'rubocop'
-gem 'rubocop-performance'
-gem 'yard'
-
-gemspec
