@@ -15,6 +15,6 @@ group :test do
   gem 'appraisal'
   gem 'minitest'
   gem 'minitest-focus'
-  gem 'simplecov', '0.17.1'
+  gem 'simplecov'
   gem 'vcr'
 end
