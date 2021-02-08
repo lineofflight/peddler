@@ -6,6 +6,8 @@
 
 > :boom: Amazon is migrating to the newly-launched Selling Partner API (SP-API). There is no date yet for when MWS APIs will be deprecated. I will add support in Peddler in due course.
 
+> :boom: Amazon is not granting new users access to the MWS APIs. If you do not already have access, you will have to use SP-API.
+
 **Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
 To use Amazon MWS, you must have an eligible seller account and [register as a developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper). You can then access your own selling account using its merchant ID—note that Amazon also refers to this as seller ID or merchant token in different places.
