@@ -39,7 +39,7 @@ class TestPeddlerOperation < MiniTest::Test
   end
 
   def test_that_store_wont_camelize_symbol_key_with_capital_letter
-    @operation.store('MarketplaceId'.to_sym, '1')
+    @operation.store(:MarketplaceId, '1')
     assert @operation.key?('MarketplaceId')
   end
 
