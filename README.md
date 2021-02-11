@@ -4,9 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)](https://codeclimate.com/github/hakanensari/peddler/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)](https://codeclimate.com/github/hakanensari/peddler/test_coverage)
 
-> :boom: Amazon is migrating to the newly-launched Selling Partner API (SP-API). There is no date yet for when MWS APIs will be deprecated. I will add support in Peddler in due course.
-
-> :boom: Amazon is not granting new users access to the MWS APIs. If you do not already have access, you will have to use SP-API.
+> :boom: Amazon is migrating to the newly-launched Selling Partner API (SP-API) and is no longer granting new users access to the MWS APIs. I hope to add support in Peddler in due course.
 
 **Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
 
