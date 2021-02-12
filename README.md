@@ -12,7 +12,7 @@ To use Amazon MWS, you must have an eligible seller account and [register as a d
 
 Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually. Some MWS API sections may require additional authorisation from Amazon.
 
-![Peddler](https://github.com/hakanensari/peddler/blob/master/images/peddler.jpg?raw=true)
+![Peddler](https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true)
 
 ## Usage
 
