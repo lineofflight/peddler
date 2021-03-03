@@ -70,7 +70,8 @@ module Peddler
       ['A2NODRKZP88ZB9', 'SE', 'mws-eu.amazonservices.com'],
       ['A19VAU5U5O7RUS', 'SG', 'mws-fe.amazonservices.com'],
       ['A39IBJ37TRP1C6', 'AU', 'mws.amazonservices.com.au'],
-      ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp']
+      ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp'],
+      ['A1C3SOZRARQ6R3', 'PL', 'mws-eu.amazonservices.com']
     ].map do |values|
       new(*values)
     end
