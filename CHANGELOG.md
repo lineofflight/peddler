@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Add Poland endpoint
+
 ## [2.4.4] - 2020-10-30
 
 ### Added
