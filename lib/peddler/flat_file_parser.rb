@@ -50,7 +50,7 @@ module Peddler
     end
 
     def summarize
-      Hash[summary.split("\n\t")[1, 2].map { |line| line.split("\t\t") }]
+      summary.split("\n\t")[1, 2].map { |line| line.split("\t\t") }.to_h
     end
   end
 end

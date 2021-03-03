@@ -60,7 +60,7 @@ module Peddler
     end
 
     def capitalize(word)
-      if ALL_CAPS.any? { |val| val == word }
+      if ALL_CAPS.any?(word)
         word.upcase
       else
         word.capitalize

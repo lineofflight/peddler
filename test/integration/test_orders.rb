@@ -17,7 +17,7 @@ class TestOrders < IntegrationTest
 
       res = client.get_order(*order_ids)
       orders = res.dig('Orders', 'Order')
-      next if order_ids.any? { |id| id == 'FILTERED' }
+      next if order_ids.any?('FILTERED')
 
       assert_equal order_ids.count, orders.count
     end
