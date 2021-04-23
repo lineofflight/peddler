@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.4.5] - 2021-04-23
+
 ### Added
 
 - Add Poland endpoint
@@ -322,7 +324,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[unreleased]: https://github.com/hakanensari/peddler/compare/v2.4.4...HEAD
+[unreleased]: https://github.com/hakanensari/peddler/compare/v2.4.5...HEAD
+[2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.3...v2.4.4
 [2.4.3]: https://github.com/hakanensari/peddler/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/hakanensari/peddler/compare/v2.4.1...v2.4.2
