@@ -4,7 +4,7 @@ require 'forwardable'
 require 'yaml'
 
 module Credentials
-  class <<self
+  class << self
     extend Forwardable
     include Enumerable
 

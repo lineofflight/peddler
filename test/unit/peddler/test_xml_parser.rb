@@ -32,6 +32,6 @@ class TestPeddlerXMLParser < MiniTest::Test
   end
 
   def test_validation
-    assert @parser.valid?
+    assert_predicate @parser, :valid?
   end
 end

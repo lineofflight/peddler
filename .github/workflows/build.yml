@@ -6,11 +6,10 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     container:
-      image: ruby:3.0
+      image: ruby:3.1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: gem install bundler
-      - run: bundle config set without 'test'
       - run: bundle install
       - run: bundle exec rake rubocop
 
@@ -18,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7, 3.0]
+        ruby: [2.7, 3.0, 3.1]
         gemfile: [libxml, nokogiri, ox, rexml]
     container:
       image: ruby:${{ matrix.ruby }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: gem install bundler
       - run: bundle install
       - run: bundle exec appraisal ${{ matrix.gemfile }} bundle install
@@ -34,9 +33,9 @@ jobs:
   documentation:
     runs-on: ubuntu-latest
     container:
-      image: ruby:3.0
+      image: ruby:3.1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: ./scripts/documentation_crawler.rb
 
   coverage:
@@ -46,10 +45,10 @@ jobs:
     container:
       image: ruby:3.0
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: gem install bundler
-      - run: bundle install --jobs 4 --retry 3
-      - uses: paambaati/codeclimate-action@v2.7.5
+      - run: bundle install
+      - uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           LC_ALL: C.UTF-8

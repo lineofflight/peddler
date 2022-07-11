@@ -1,7 +1,7 @@
 Layout/LineLength:
   Exclude:
     - "test/**/*"
-  IgnoredPatterns: ['\A\s*#']
+  AllowedPatterns: ['\A\s*#']
 Lint/EmptyBlock:
   Exclude:
     - "Appraisals"
@@ -26,5 +26,8 @@ Naming/AccessorMethodName:
   Exclude:
     - "lib/mws/**/client.rb"
 Naming/VariableNumber:
+  Exclude:
+    - "test/**/*"
+Style/OpenStructUse:
   Exclude:
     - "test/**/*"

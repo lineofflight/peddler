@@ -44,7 +44,7 @@ class TestReports < IntegrationTest
       res = client.get_report_list(max_count: 1)
       id = res.parse['ReportInfo']['ReportId']
       res = client.get_report(id)
-      assert res.valid?
+      assert_predicate res, :valid?
       assert res.records_count || res.parse
     end
   end

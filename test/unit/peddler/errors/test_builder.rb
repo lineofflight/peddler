@@ -79,7 +79,7 @@ class TestPeddlerErrorsBuilder < MiniTest::Test
   # https://github.com/hakanensari/peddler/issues/145
   class Issue145 < TestPeddlerErrorsBuilder
     def setup
-      Peddler::Errors.const_set('InvalidMarketplace', StandardError)
+      Peddler::Errors.const_set(:InvalidMarketplace, StandardError)
       body = <<-XML
         <ErrorResponse>
           <Error>

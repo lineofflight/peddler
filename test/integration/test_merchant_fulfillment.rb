@@ -7,7 +7,7 @@ class TestMerchantFulfillment < IntegrationTest
   def test_getting_eligible_shipments_in_the_us
     client = clients.us
     res = client.get_eligible_shipping_services(shipment_request_details)
-    refute res.dig('ShippingServiceList', 'ShippingService').count.zero?
+    refute_predicate res.dig('ShippingServiceList', 'ShippingService').count, :zero?
   end
 
   def test_shipping_in_the_us

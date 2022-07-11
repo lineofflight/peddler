@@ -17,7 +17,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     parser = Peddler::FlatFileParser.new(build_mock_response(body), 'ISO-8859-1')
     counter = 0
     parser.parse { counter += 1 }
-    assert counter.positive?
+    assert_predicate counter, :positive?
   end
 
   def test_the_work_around_empty_rows
@@ -45,7 +45,7 @@ class TestPeddlerFlatFileParser < MiniTest::Test
     body = build_body("Feed Processing Summary:\n\tNumber of records processed\t\t11006\n\tNumber of records successful\t\t11006\n\noriginal-record-number\tsku\terror-code\terror-type\terror-message\n1822\t85da472e-ba6c-11e3-95af-002590a74356\t5000\tWarning\tThe update for Sku '85da472e-ba6c-11e3-95af-002590a74356' was skipped because it is identical to the update in feed '9518995390'.\n",
                       encoding: Encoding::ASCII_8BIT)
     parser = Peddler::FlatFileParser.new(build_mock_response(body), 'ISO-8859-1')
-    assert parser.valid?
+    assert_predicate parser, :valid?
   end
 
   def test_handling_reports_without_a_summary
