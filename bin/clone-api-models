@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -rf selling-partner-api-models
+git clone git@github.com:amzn/selling-partner-api-models.git

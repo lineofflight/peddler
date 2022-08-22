@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gemspec
-
-gem 'rake'
-gem 'rubocop'
-gem 'rubocop-minitest'
-gem 'rubocop-performance'
-gem 'rubocop-rake'
-gem 'yard'
-
-group :test do
-  gem 'appraisal'
-  gem 'minitest'
-  gem 'minitest-focus'
-  gem 'simplecov'
-  gem 'vcr'
-end
+gem "minitest"
+gem "rake"
+gem "rubocop", require: false
+gem "rubocop-minitest", require: false
+gem "rubocop-performance", require: false
+gem "rubocop-rake", require: false
+gem "rubocop-shopify", require: false
+gem "simplecov"
+gem "vcr"
+gem "webmock"
+gem "yard"

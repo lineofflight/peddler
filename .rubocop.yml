@@ -1,12 +1,13 @@
-inherit_from: ".rubocop_todo.yml"
-
 require:
   - rubocop-minitest
   - rubocop-performance
   - rubocop-rake
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+inherit_from: ".rubocop_todo.yml"
 
 AllCops:
   Exclude:
     - "gemfiles/**/*"
   NewCops: enable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.2

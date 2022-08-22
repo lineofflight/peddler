@@ -1,9 +1,8 @@
 .bundle
 Gemfile.lock
 .yardoc
-bin
 coverage
 doc
-gemfiles/*.gemfile.lock
 pkg
-mws.yml
+selling-partner-api-models
+test/config.json

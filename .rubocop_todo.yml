@@ -1,33 +1,6 @@
 Layout/LineLength:
-  Exclude:
-    - "test/**/*"
-  AllowedPatterns: ['\A\s*#']
-Lint/EmptyBlock:
-  Exclude:
-    - "Appraisals"
-Lint/StructNewOverride:
-  Exclude:
-    - "test/**/*"
-Metrics/AbcSize:
-  Exclude:
-    - "test/**/*"
-Metrics/ClassLength:
-  Exclude:
-    - "lib/mws/**/client.rb"
-    - "test/**/*"
-Metrics/MethodLength:
-  Exclude:
-    - "lib/mws/**/client.rb"
-    - "test/**/*"
-Metrics/ParameterLists:
-  Exclude:
-    - "lib/mws/**/client.rb"
+  AllowedPatterns:
+    - ^\s*\w+ = ".*"$
 Naming/AccessorMethodName:
   Exclude:
-    - "lib/mws/**/client.rb"
-Naming/VariableNumber:
-  Exclude:
-    - "test/**/*"
-Style/OpenStructUse:
-  Exclude:
-    - "test/**/*"
+    - "lib/peddler/api/*.rb"

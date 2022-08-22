@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+<% apis.each do |api| -%>
+    require "peddler/api/<%= api[:file_name] %>"
+<% end %>

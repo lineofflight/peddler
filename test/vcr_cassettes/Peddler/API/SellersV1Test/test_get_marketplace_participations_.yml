@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 09 Sep 2024 20:34:39 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 55A55AV7MB7C4D8QMV1K
+      X-Amzn-Requestid:
+      - e1a97ddf-2e6e-4be7-8aaa-58e2c1db9a19
+      X-Amz-Date:
+      - Mon, 09 Sep 2024 20:34:39 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Mon, 09 Sep 2024 20:34:34 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/sellers/v1/marketplaceParticipations
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token: FILTERED
+      X-Amz-Date:
+      - 20240909T203434Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 09 Sep 2024 20:34:39 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2752'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 42H9SSNS71A7WBK9AVFH
+      X-Amzn-Ratelimit-Limit:
+      - '0.016'
+      X-Amzn-Requestid:
+      - 24ed02d3-bac3-4350-b617-89fe20df5025
+      X-Amz-Apigw-Id:
+      - OPF24ed02d3bac3
+      X-Amzn-Trace-Id:
+      - Root=1-66df5bdf-24ed02d3bac34350
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":[{"marketplace":{"id":"A13V1IB3VIYZZH","countryCode":"FR","name":"Amazon.fr","defaultCurrencyCode":"EUR","defaultLanguageCode":"fr_FR","domainName":"www.amazon.fr"},"participation":{"isParticipating":true,"hasSuspendedListings":false}},{"marketplace":{"id":"A1805IZSGTT6HS","countryCode":"NL","name":"Amazon.nl","defaultCurrencyCode":"EUR","defaultLanguageCode":"nl_NL","domainName":"www.amazon.nl"},"participation":{"isParticipating":true,"hasSuspendedListings":false}},{"marketplace":{"id":"A1F83G8C2ARO7P","countryCode":"GB","name":"Amazon.co.uk","defaultCurrencyCode":"GBP","defaultLanguageCode":"en_GB","domainName":"www.amazon.co.uk"},"participation":{"isParticipating":true,"hasSuspendedListings":false}},{"marketplace":{"id":"A1PA6795UKMFR9","countryCode":"DE","name":"Amazon.de","defaultCurrencyCode":"EUR","defaultLanguageCode":"de_DE","domainName":"www.amazon.de"},"participation":{"isParticipating":true,"hasSuspendedListings":false}},{"marketplace":{"id":"A1RKKUPIHCS9HS","countryCode":"ES","name":"Amazon.es","defaultCurrencyCode":"EUR","defaultLanguageCode":"es_ES","domainName":"www.amazon.es"},"participation":{"isParticipating":true,"hasSuspendedListings":false}},{"marketplace":{"id":"AMEN7PMS3EDWL","countryCode":"BE","name":"Amazon.com.be","defaultCurrencyCode":"EUR","defaultLanguageCode":"fr_BE","domainName":"www.amazon.com.be"},"participation":{"isParticipating":true,"hasSuspendedListings":false}},{"marketplace":{"id":"APJ6JRA9NG5V4","countryCode":"IT","name":"Amazon.it","defaultCurrencyCode":"EUR","defaultLanguageCode":"it_IT","domainName":"www.amazon.it"},"participation":{"isParticipating":true,"hasSuspendedListings":false}}]}'
+  recorded_at: Mon, 09 Sep 2024 20:34:35 GMT
+recorded_with: VCR 6.3.1

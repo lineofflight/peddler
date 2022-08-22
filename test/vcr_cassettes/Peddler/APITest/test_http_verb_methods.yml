@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20240911T122315Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Wed, 11 Sep 2024 12:23:17 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '41'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - W6TC3JYADV39DAGXWC2P
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"timestamp": "2024-09-11T12:23:17.017Z"}'
+  recorded_at: Wed, 11 Sep 2024 12:23:15 GMT
+recorded_with: VCR 6.3.1

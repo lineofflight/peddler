@@ -36,7 +36,7 @@ jobs:
       image: ruby:3.1
     steps:
       - uses: actions/checkout@v3
-      - run: ./scripts/documentation_crawler.rb
+      - run: ./bin/crawl-documentation.rb
 
   coverage:
     if: github.event_name == 'push'

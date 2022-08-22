@@ -1,0 +1,169 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 12 Sep 2024 08:56:34 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - VR3WA4YY10VS4H267RJW
+      X-Amzn-Requestid:
+      - 7e303526-2e9d-4aae-aa01-7208e16984b4
+      X-Amz-Date:
+      - Thu, 12 Sep 2024 08:56:34 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 12 Sep 2024 08:56:31 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/products/pricing/v0/items/B0CHXFCYCR/offers?ItemCondition=New&MarketplaceId=A1F83G8C2ARO7P
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20240912T085631Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 12 Sep 2024 08:56:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '5908'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - XY6JT7VF10MG34V1Q357
+      X-Amzn-Ratelimit-Limit:
+      - '0.5'
+      X-Amzn-Requestid:
+      - a14e27af-eb72-4c4c-b0a0-9984faf8679e
+      X-Amz-Apigw-Id:
+      - OPFa14e27afeb72
+      X-Amzn-Trace-Id:
+      - Root=1-66e2acc2-a14e27afeb724c4c
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: "{\n  \"payload\":{\n        \"ASIN\": \"B0CHXFCYCR\",\n                \"status\":
+        \"Success\",\n            \"ItemCondition\": \"New\",\n            \"Identifier\":
+        {\n    \"MarketplaceId\": \"A1F83G8C2ARO7P\",\n    \"ItemCondition\": \"New\"\n
+        \           ,\"ASIN\": \"B0CHXFCYCR\"\n                      },\n            \"Summary\":
+        {\n\n                  \"LowestPrices\": [\n                            {\n
+        \         \"condition\": \"new\",\n          \"fulfillmentChannel\": \"Amazon\",\n
+        \                                                         \"LandedPrice\":
+        {\n                        \"CurrencyCode\": \"GBP\",\n            \"Amount\":
+        681.00\n                      },\n                      \"ListingPrice\":
+        {\n                        \"CurrencyCode\": \"GBP\",\n            \"Amount\":
+        681.00\n                      }\n                                  , \"Shipping\":
+        {\n                        \"CurrencyCode\": \"GBP\",\n            \"Amount\":
+        0.00\n                      }\n                                  }\n            ,
+        \                   {\n          \"condition\": \"used\",\n          \"fulfillmentChannel\":
+        \"Amazon\",\n                                                          \"LandedPrice\":
+        {\n                        \"CurrencyCode\": \"GBP\",\n            \"Amount\":
+        638.74\n                      },\n                      \"ListingPrice\":
+        {\n                        \"CurrencyCode\": \"GBP\",\n            \"Amount\":
+        638.74\n                      }\n                                  , \"Shipping\":
+        {\n                        \"CurrencyCode\": \"GBP\",\n            \"Amount\":
+        0.00\n                      }\n                                  }\n                                    ],\n
+        \     \n                        \"BuyBoxPrices\": [\n                                            {\n
+        \                   \"condition\": \"New\"\n                                                                                                    ,\"LandedPrice\":
+        {\n                                        \"CurrencyCode\": \"GBP\",\n                    \"Amount\":
+        681.00\n                                        }\n                                        ,\"ListingPrice\":
+        {\n                                        \"CurrencyCode\": \"GBP\",\n                    \"Amount\":
+        681.00\n                                        }\n                                                            ,\"Shipping\":
+        {\n                                        \"CurrencyCode\": \"GBP\",\n                    \"Amount\":
+        0.00\n                                        }\n                                                                            },
+        \                       {\n                    \"condition\": \"Used\"\n                                                                                                    ,\"LandedPrice\":
+        {\n                                        \"CurrencyCode\": \"GBP\",\n                    \"Amount\":
+        638.74\n                                        }\n                                        ,\"ListingPrice\":
+        {\n                                        \"CurrencyCode\": \"GBP\",\n                    \"Amount\":
+        638.74\n                                        }\n                                                            ,\"Shipping\":
+        {\n                                        \"CurrencyCode\": \"GBP\",\n                    \"Amount\":
+        0\n                                        }\n                                                                            }
+        \                    ],\n      \n                  \"NumberOfOffers\": [\n
+        \                                   {\n          \"condition\": \"new\",\n
+        \         \"fulfillmentChannel\": \"Amazon\"\n                        ,\"OfferCount\":
+        1\n                      }\n            ,                    {\n          \"condition\":
+        \"used\",\n          \"fulfillmentChannel\": \"Amazon\"\n                        ,\"OfferCount\":
+        4\n                      }\n                                    ],\n      \n
+        \                 \"BuyBoxEligibleOffers\": [\n                            {\n
+        \         \"condition\": \"new\",\n          \"fulfillmentChannel\": \"Amazon\"\n
+        \                       ,\"OfferCount\": 1\n                  }\n            ,
+        \                   {\n          \"condition\": \"used\",\n          \"fulfillmentChannel\":
+        \"Amazon\"\n                        ,\"OfferCount\": 4\n                  }\n
+        \                                   ],\n      \n                  \"SalesRankings\":
+        [\n                {\n        \"ProductCategoryId\": \"ce_display_on_website\",\n
+        \       \"Rank\": 497\n        }\n          ,                {\n        \"ProductCategoryId\":
+        \"356496011\",\n        \"Rank\": 11\n        }\n                        ],\n
+        \     \n                            \"ListPrice\": {\n        \"CurrencyCode\":
+        \"GBP\",\n        \"Amount\": 582.50\n        },\n              \n                            \"CompetitivePriceThreshold\":
+        {\n        \"CurrencyCode\": \"GBP\",\n        \"Amount\": 685.00\n        },\n
+        \             \n            \n            \n            \"TotalOfferCount\":
+        5\n\n    },\n    \n    \"Offers\": [\n                {\n                            \"Shipping\":
+        {\n          \"CurrencyCode\": \"GBP\",\n          \"Amount\": 0.00\n          },\n
+        \                                   \"ListingPrice\": {\n              \"CurrencyCode\":
+        \"GBP\",\n              \"Amount\": 681.00\n          },\n                                \"ShippingTime\":
+        {\n                    \"maximumHours\": 0,\n          \n                    \"minimumHours\":
+        0,\n          \n          \n        \"availabilityType\": \"NOW\"\n        },\n
+        \                       \"SellerFeedbackRating\": {\n        \"FeedbackCount\":
+        0\n                    ,\"SellerPositiveFeedbackRating\": 0.0\n                  },\n
+        \                               \"PrimeInformation\": {\n        \"IsPrime\":
+        true,\n        \"IsNationalPrime\": true\n        },\n                                \"SubCondition\":
+        \"new\",\n                        \"SellerId\": \"A3P5ROKL5A1OLE\",\n                                \"IsFeaturedMerchant\":
+        true,\n                        \"IsBuyBoxWinner\": true,\n                                      \"IsFulfilledByAmazon\":
+        true\n      }\n                      ],\n        \"marketplaceId\": \"A1F83G8C2ARO7P\"\n
+        \ }\n}\n"
+  recorded_at: Thu, 12 Sep 2024 08:56:32 GMT
+recorded_with: VCR 6.3.1

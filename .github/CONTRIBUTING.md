@@ -1,46 +1,7 @@
-## Contributing
-
-In the spirit of [free software][free-sw], everyone is encouraged to help
-improve this project. Here are some ways you can contribute:
-
-[free-sw]: http://www.fsf.org/licensing/essays/free-sw.html
-
-* Report bugs.
-* Suggest new features.
-* Write or edit documentation.
-* Write code (**no patch is too small**: fix typos, add comments, clean up
-  inconsistent whitespace).
-* [Fix issues.][issues]
-
-[issues]: https://github.com/hakanensari/peddler/issues
-
 ## Submitting an Issue
 
-We use the [GitHub issue tracker][issues] to track bugs and features. Before
-submitting a bug report or feature request, check to make sure it hasn't
-already been submitted. When submitting a bug report, please include a [Gist][]
-that includes a stack trace and any details that may be necessary to reproduce
-the bug.
+Only submit issues that are specific to Peddler. Otherwise, reach out to Amazon [Developer Support][] or find help on
+their [GitHub Discussions][].
 
-Do not submit issues that are not specific to Peddler. Instead, find help on the
-[Amazon seller forum][forum].
-
-[gist]: https://gist.github.com/
-[forum]: https://sellercentral.amazon.com/forums/c/amazon-marketplace-web-service-mws/
-
-## Submitting a Pull Request
-
-1. [Fork the repository.][fork]
-2. [Create a topic branch.][branch]
-3. Add tests for your unimplemented feature or bug fix.
-4. Run `bundle exec rake`. If your tests pass, return to step 3.
-5. Implement your feature or bug fix.
-6. Run `bundle exec rake`. If your tests fail, return to step 5.
-7. Run `open coverage/index.html`. If your changes are not completely covered
-   by your tests, return to step 3.
-8. Commit and push your changes.
-9. [Submit a pull request.][pr]
-
-[fork]: http://help.github.com/fork-a-repo/
-[branch]: http://learn.github.com/p/branching.html
-[pr]: http://help.github.com/send-pull-requests/
+[Developer Support]: https://developer.amazonservices.com/support
+[GitHub Discussions]: https://github.com/amzn/selling-partner-api-models/discussions

@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 10 Sep 2024 11:23:47 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - KEXQV96YBQM922RSJ5P2
+      X-Amzn-Requestid:
+      - dea73c14-e267-4aa3-8748-b34a66ca5a28
+      X-Amz-Date:
+      - Tue, 10 Sep 2024 11:23:47 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Tue, 10 Sep 2024 11:23:44 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/products/pricing/v0/price?Asins=188864544X&ItemType=Asin&MarketplaceId=A1F83G8C2ARO7P
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token: FILTERED
+      X-Amz-Date:
+      - 20240910T112344Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 10 Sep 2024 11:23:47 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1163'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 1Y43GE8F8FTP7X99ZK18
+      X-Amzn-Ratelimit-Limit:
+      - '0.5'
+      X-Amzn-Requestid:
+      - 9a9bfdbf-3a02-49ad-ac9d-9f9d1465d85a
+      X-Amz-Apigw-Id:
+      - OPF9a9bfdbf3a02
+      X-Amzn-Trace-Id:
+      - Root=1-66e02c43-9a9bfdbf3a0249ad
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":[{"status":"Success","ASIN":"188864544X","Product":{"Identifiers":{"MarketplaceASIN":{"MarketplaceId":"A1F83G8C2ARO7P","ASIN":"188864544X"}},"Offers":[{"BuyingPrice":{"ListingPrice":{"CurrencyCode":"GBP","Amount":399.94},"LandedPrice":{"CurrencyCode":"GBP","Amount":399.94},"Shipping":{"CurrencyCode":"GBP","Amount":0.0}},"RegularPrice":{"CurrencyCode":"GBP","Amount":399.94},"FulfillmentChannel":"MERCHANT","ItemCondition":"New","ItemSubCondition":"New","SellerSKU":"TSY-IBT-IL2"}]}}]}'
+  recorded_at: Tue, 10 Sep 2024 11:23:45 GMT
+recorded_with: VCR 6.3.1
