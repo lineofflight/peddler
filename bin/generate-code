@@ -29,6 +29,9 @@ module Generator
 
     api_models_glob = File.expand_path("selling-partner-api-models/models/**/*.json", __dir__)
     Dir.glob(api_models_glob).each do |file|
+      # This API is no longer available.
+      next if file.include?("reports_2020-09-04")
+
       model = JSON.parse(File.read(file))
       api_data = extract_api_data(file, model)
       generate_api_file(api_data, model)
