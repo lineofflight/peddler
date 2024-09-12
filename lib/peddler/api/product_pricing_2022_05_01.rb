@@ -24,7 +24,7 @@ module Peddler
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
 
-        retriable(delay: proc { |i| 0.033 * i }).post(path, body:)
+        rate_limit(30.0).post(path, body:)
       end
 
       # Returns the competitive summary response including featured buying options for the ASIN and `marketplaceId`
@@ -36,7 +36,7 @@ module Peddler
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
 
-        retriable(delay: proc { |i| 0.033 * i }).post(path, body:)
+        rate_limit(30.0).post(path, body:)
       end
     end
   end

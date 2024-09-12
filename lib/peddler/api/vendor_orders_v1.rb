@@ -61,7 +61,7 @@ module Peddler
           "orderingVendorCode" => ordering_vendor_code,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
@@ -72,7 +72,7 @@ module Peddler
       def get_purchase_order(purchase_order_number)
         path = "/vendor/orders/v1/purchaseOrders/#{purchase_order_number}"
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path)
+        rate_limit(0.1).get(path)
       end
 
       # Submits acknowledgements for one or more purchase orders.
@@ -83,7 +83,7 @@ module Peddler
         path = "/vendor/orders/v1/acknowledgements"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
@@ -142,7 +142,7 @@ module Peddler
           "shipToPartyId" => ship_to_party_id,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
     end
   end

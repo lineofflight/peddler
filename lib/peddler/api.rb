@@ -44,6 +44,16 @@ module Peddler
       )
     end
 
+    # Retries with a rate limit when the API returns a 429
+    #
+    # @param [Float] delay The delay in seconds before retrying
+    # @return [self]
+    def rate_limit(delay)
+      # TODO: Remove when HTTP 6.0 is released
+      @http = @http.retriable(delay: delay, retry_statuses: [429]) if @http.respond_to?(:retriable)
+      self
+    end
+
     # @!method use(*features)
     #   Turn on [HTTP](https://github.com/httprb/http) features
     #
@@ -58,15 +68,12 @@ module Peddler
     #   @return [self]
     #
     # @!method retriable(**options)
-    #   Retries requests if they fail due to socket or `5xx` errors.
+    #   Retries requests if they fail due to socket or `5xx` errors
     #
     #   @param (see Performer#initialize)
     #   @return [self]
     [:via, :use, :retriable].each do |method|
       define_method(method) do |*args, &block|
-        # TODO: Remove when HTTP 6.0 is released
-        return self if method == :retriable
-
         @http = http.send(method, *args, &block)
         self
       end

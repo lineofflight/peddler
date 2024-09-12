@@ -17,7 +17,7 @@ module Peddler
         path = "/mfn/v0/eligibleShippingServices"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Returns the shipment information for an existing shipment.
@@ -27,7 +27,7 @@ module Peddler
       def get_shipment(shipment_id)
         path = "/mfn/v0/shipments/#{shipment_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
 
       # Cancel the shipment indicated by the specified shipment identifier.
@@ -37,7 +37,7 @@ module Peddler
       def cancel_shipment(shipment_id)
         path = "/mfn/v0/shipments/##{shipment_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).delete(path)
+        rate_limit(1.0).delete(path)
       end
 
       # Create a shipment with the information provided.
@@ -48,7 +48,7 @@ module Peddler
         path = "/mfn/v0/shipments"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
@@ -60,7 +60,7 @@ module Peddler
         path = "/mfn/v0/additionalSellerInputs"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
     end
   end

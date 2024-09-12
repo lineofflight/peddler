@@ -36,7 +36,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 0.5 * i }).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to
@@ -68,7 +68,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 0.5 * i }).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your
@@ -86,7 +86,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 0.5 * i }).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your
@@ -114,7 +114,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 0.5 * i }).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
     end
   end

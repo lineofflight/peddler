@@ -17,7 +17,7 @@ module Peddler
       def get_transaction_status(transaction_id)
         path = "/vendor/directFulfillment/transactions/v1/transactions/#{transaction_id}"
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path)
+        rate_limit(0.1).get(path)
       end
     end
   end

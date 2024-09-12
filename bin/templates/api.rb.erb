@@ -27,8 +27,8 @@ module Peddler
           <% method_args << "body:" if operation["body_param"] %>
           <% method_args << "params:" if operation["query_params"]&.any? %>
 
-          <% if operation["rate_limit"] %>
-            retriable(delay: proc { |i| <%= operation["rate_limit"] %> * i }).<%= http_method %>(<%= method_args.join(", ") %>)
+          <% if operation["retriable_delay"] %>
+            rate_limit(<%= operation["retriable_delay"] %>).<%= http_method %>(<%= method_args.join(", ") %>)
           <% else %>
             <%= http_method %>(<%= method_args.join(", ") %>)
           <% end %>

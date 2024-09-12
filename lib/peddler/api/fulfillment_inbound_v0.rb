@@ -22,7 +22,7 @@ module Peddler
         path = "/fba/inbound/v0/plans"
         body = body
 
-        retriable(delay: proc { |i| 2.0 * i }).post(path, body:)
+        rate_limit(0.5).post(path, body:)
       end
 
       # Returns a new inbound shipment based on the specified shipmentId that was returned by the
@@ -36,7 +36,7 @@ module Peddler
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
         body = body
 
-        retriable(delay: proc { |i| 2.0 * i }).post(path, body:)
+        rate_limit(0.5).post(path, body:)
       end
 
       # Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new
@@ -50,7 +50,7 @@ module Peddler
         path = "/fba/inbound/v0/shipments/##{shipment_id}"
         body = body
 
-        retriable(delay: proc { |i| 2.0 * i }).put(path, body:)
+        rate_limit(0.5).put(path, body:)
       end
 
       # Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order.
@@ -65,7 +65,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns information needed to confirm a shipment for pre-order. Call this operation after calling the
@@ -85,7 +85,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).put(path, params:)
+        rate_limit(0.5).put(path, params:)
       end
 
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
@@ -114,7 +114,7 @@ module Peddler
           "ASINList" => asin_list,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns current transportation information about an inbound shipment.
@@ -125,7 +125,7 @@ module Peddler
       def get_transport_details(shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Sends transportation information to Amazon about an inbound shipment.
@@ -138,7 +138,7 @@ module Peddler
         path = "/fba/inbound/v0/shipments/##{shipment_id}/transport"
         body = body
 
-        retriable(delay: proc { |i| 2.0 * i }).put(path, body:)
+        rate_limit(0.5).put(path, body:)
       end
 
       # Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier. To be
@@ -154,7 +154,7 @@ module Peddler
       def void_transport(shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/void"
 
-        retriable(delay: proc { |i| 2.0 * i }).post(path)
+        rate_limit(0.5).post(path)
       end
 
       # Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
@@ -167,7 +167,7 @@ module Peddler
       def estimate_transport(shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/estimate"
 
-        retriable(delay: proc { |i| 2.0 * i }).post(path)
+        rate_limit(0.5).post(path)
       end
 
       # Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their
@@ -186,7 +186,7 @@ module Peddler
       def confirm_transport(shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/confirm"
 
-        retriable(delay: proc { |i| 2.0 * i }).post(path)
+        rate_limit(0.5).post(path)
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -220,7 +220,7 @@ module Peddler
           "PageStartIndex" => page_start_index,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading
@@ -233,7 +233,7 @@ module Peddler
       def get_bill_of_lading(shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/billOfLading"
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
@@ -268,7 +268,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns a list of items in a specified inbound shipment.
@@ -283,7 +283,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
@@ -311,7 +311,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
     end
   end

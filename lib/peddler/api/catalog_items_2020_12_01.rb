@@ -42,7 +42,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -63,7 +63,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
     end
   end

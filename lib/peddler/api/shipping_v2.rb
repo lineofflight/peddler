@@ -20,7 +20,7 @@ module Peddler
         path = "/shipping/v2/shipments/rates"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).post(path, body:)
+        rate_limit(0.0).post(path, body:)
       end
 
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
@@ -39,7 +39,7 @@ module Peddler
         path = "/shipping/v2/shipments/directPurchase"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).post(path, body:)
+        rate_limit(0.0).post(path, body:)
       end
 
       # Purchases a shipping service and returns purchase related details and documents. Note: You must complete the
@@ -57,7 +57,7 @@ module Peddler
         path = "/shipping/v2/shipments"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).post(path, body:)
+        rate_limit(0.0).post(path, body:)
       end
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
@@ -70,7 +70,7 @@ module Peddler
         path = "/shipping/v2/oneClickShipment"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).post(path, body:)
+        rate_limit(0.0).post(path, body:)
       end
 
       # Returns tracking information for a purchased shipment.
@@ -89,7 +89,7 @@ module Peddler
           "carrierId" => carrier_id,
         }.compact
 
-        retriable(delay: proc { |i| 80.0 * i }).get(path, params:)
+        rate_limit(0.0).get(path, params:)
       end
 
       # Returns the shipping documents associated with a package in a shipment.
@@ -113,7 +113,7 @@ module Peddler
           "dpi" => dpi,
         }.compact
 
-        retriable(delay: proc { |i| 80.0 * i }).get(path, params:)
+        rate_limit(0.0).get(path, params:)
       end
 
       # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
@@ -125,7 +125,7 @@ module Peddler
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/shipments/#{shipment_id}/cancel"
 
-        retriable(delay: proc { |i| 80.0 * i }).put(path)
+        rate_limit(0.0).put(path)
       end
 
       # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
@@ -145,7 +145,7 @@ module Peddler
           "rateId" => rate_id,
         }.compact
 
-        retriable(delay: proc { |i| 80.0 * i }).get(path, params:)
+        rate_limit(0.0).get(path, params:)
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
@@ -156,7 +156,7 @@ module Peddler
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/carrierAccountFormInputs"
 
-        retriable(delay: proc { |i| 80.0 * i }).get(path)
+        rate_limit(0.0).get(path)
       end
 
       # This API will return Get all carrier accounts for a merchant.
@@ -169,7 +169,7 @@ module Peddler
         path = "/shipping/v2/carrierAccounts"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).put(path, body:)
+        rate_limit(0.0).put(path, body:)
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -183,7 +183,7 @@ module Peddler
         path = "/shipping/v2/carrierAccounts/#{carrier_id}"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).put(path, body:)
+        rate_limit(0.0).put(path, body:)
       end
 
       # This API Unlink the specified carrier account with the merchant.
@@ -197,7 +197,7 @@ module Peddler
         path = "/shipping/v2/carrierAccounts/#{carrier_id}/unlink"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).put(path, body:)
+        rate_limit(0.0).put(path, body:)
       end
 
       # This API Call to generate the collection form.
@@ -212,7 +212,7 @@ module Peddler
         path = "/shipping/v2/collectionForms"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).post(path, body:)
+        rate_limit(0.0).post(path, body:)
       end
 
       # This API Call to get the history of the previously generated collection forms.
@@ -225,7 +225,7 @@ module Peddler
         path = "/shipping/v2/collectionForms/history"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).put(path, body:)
+        rate_limit(0.0).put(path, body:)
       end
 
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
@@ -239,7 +239,7 @@ module Peddler
         path = "/shipping/v2/unmanifestedShipments"
         body = body
 
-        retriable(delay: proc { |i| 80.0 * i }).put(path, body:)
+        rate_limit(0.0).put(path, body:)
       end
 
       # This API reprint a collection form.
@@ -251,7 +251,7 @@ module Peddler
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/collectionForms/#{collection_form_id}"
 
-        retriable(delay: proc { |i| 80.0 * i }).get(path)
+        rate_limit(0.0).get(path)
       end
 
       # Returns a list of access points in proximity of input postal code.
@@ -270,7 +270,7 @@ module Peddler
           "postalCode" => postal_code,
         }.compact
 
-        retriable(delay: proc { |i| 80.0 * i }).get(path, params:)
+        rate_limit(0.0).get(path, params:)
       end
     end
   end

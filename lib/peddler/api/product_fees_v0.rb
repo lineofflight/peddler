@@ -32,7 +32,7 @@ module Peddler
         path = "/products/fees/v0/listings/#{seller_sku}/feesEstimate"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the
@@ -54,7 +54,7 @@ module Peddler
         path = "/products/fees/v0/items/#{asin}/feesEstimate"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns the estimated fees for a list of products.
@@ -65,7 +65,7 @@ module Peddler
         path = "/products/fees/v0/feesEstimate"
         body = body
 
-        retriable(delay: proc { |i| 0.5 * i }).post(path, body:)
+        rate_limit(2.0).post(path, body:)
       end
     end
   end

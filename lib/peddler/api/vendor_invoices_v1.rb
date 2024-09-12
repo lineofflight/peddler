@@ -16,7 +16,7 @@ module Peddler
         path = "/vendor/payments/v1/invoices"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
     end
   end

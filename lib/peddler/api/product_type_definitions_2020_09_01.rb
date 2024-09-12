@@ -35,7 +35,7 @@ module Peddler
           "searchLocale" => search_locale,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path, params:)
+        rate_limit(0.2).get(path, params:)
       end
 
       # Retrieve an Amazon product type definition.
@@ -68,7 +68,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path, params:)
+        rate_limit(0.2).get(path, params:)
       end
     end
   end

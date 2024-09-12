@@ -18,7 +18,7 @@ module Peddler
       def get_shipment_details(shipment_id)
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}"
 
-        retriable(delay: proc { |i| 1.133 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
 
       # Submits a shipment invoice document for a given shipment.
@@ -30,7 +30,7 @@ module Peddler
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice"
         body = body
 
-        retriable(delay: proc { |i| 1.133 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns the invoice status for the shipment you specify.
@@ -40,7 +40,7 @@ module Peddler
       def get_invoice_status(shipment_id)
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice/status"
 
-        retriable(delay: proc { |i| 1.133 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
     end
   end

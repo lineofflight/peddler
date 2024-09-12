@@ -24,7 +24,7 @@ module Peddler
         path = "/tokens/2021-03-01/restrictedDataToken"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
     end
   end

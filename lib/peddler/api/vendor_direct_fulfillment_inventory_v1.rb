@@ -18,7 +18,7 @@ module Peddler
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{warehouse_id}/items"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
     end
   end

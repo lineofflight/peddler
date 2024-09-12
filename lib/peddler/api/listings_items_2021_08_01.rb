@@ -31,7 +31,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).delete(path, params:)
+        rate_limit(0.2).delete(path, params:)
       end
 
       # Returns details about a listings item for a selling partner.
@@ -56,7 +56,7 @@ module Peddler
           "includedData" => included_data,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path, params:)
+        rate_limit(0.2).get(path, params:)
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -87,7 +87,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).patch(path, body:, params:)
+        rate_limit(0.2).patch(path, body:, params:)
       end
 
       # Creates or fully updates an existing listings item for a selling partner.
@@ -117,7 +117,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).put(path, body:, params:)
+        rate_limit(0.2).put(path, body:, params:)
       end
     end
   end

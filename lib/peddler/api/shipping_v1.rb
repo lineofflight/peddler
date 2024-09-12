@@ -20,7 +20,7 @@ module Peddler
         path = "/shipping/v1/shipments"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Return the entire shipment object for the shipmentId.
@@ -30,7 +30,7 @@ module Peddler
       def get_shipment(shipment_id)
         path = "/shipping/v1/shipments/#{shipment_id}"
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path)
+        rate_limit(0.2).get(path)
       end
 
       # Cancel a shipment by the given shipmentId.
@@ -40,7 +40,7 @@ module Peddler
       def cancel_shipment(shipment_id)
         path = "/shipping/v1/shipments/#{shipment_id}/cancel"
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path)
+        rate_limit(0.2).post(path)
       end
 
       # Purchase shipping labels based on a given rate.
@@ -52,7 +52,7 @@ module Peddler
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Retrieve shipping label based on the shipment id and tracking id.
@@ -65,7 +65,7 @@ module Peddler
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Purchase shipping labels.
@@ -76,7 +76,7 @@ module Peddler
         path = "/shipping/v1/purchaseShipment"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Get service rates.
@@ -87,7 +87,7 @@ module Peddler
         path = "/shipping/v1/rates"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Verify if the current account is valid.
@@ -95,7 +95,7 @@ module Peddler
       def get_account
         path = "/shipping/v1/account"
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path)
+        rate_limit(0.2).get(path)
       end
 
       # Return the tracking information of a shipment.
@@ -105,7 +105,7 @@ module Peddler
       def get_tracking_information(tracking_id)
         path = "/shipping/v1/tracking/#{tracking_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
     end
   end

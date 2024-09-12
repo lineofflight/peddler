@@ -21,7 +21,7 @@ module Peddler
           "skuQuantities" => sku_quantities,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -51,7 +51,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path, params:)
+        rate_limit(1.0).get(path, params:)
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
@@ -73,7 +73,7 @@ module Peddler
           "maxResults" => max_results,
         }.compact
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
     end
   end

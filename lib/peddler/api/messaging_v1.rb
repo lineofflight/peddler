@@ -26,7 +26,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path, params:)
+        rate_limit(1.0).get(path, params:)
       end
 
       # Sends a message asking a buyer to provide or verify customization details such as name spelling, images,
@@ -45,7 +45,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
@@ -63,7 +63,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
@@ -82,7 +82,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be
@@ -99,7 +99,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, params:)
+        rate_limit(1.0).post(path, params:)
       end
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
@@ -117,7 +117,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
@@ -136,7 +136,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by
@@ -155,7 +155,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
@@ -173,7 +173,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
@@ -189,7 +189,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path, params:)
+        rate_limit(1.0).get(path, params:)
       end
 
       # Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
@@ -207,7 +207,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
@@ -226,7 +226,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:, params:)
+        rate_limit(1.0).post(path, body:, params:)
       end
 
       # Sends a message providing the buyer an invoice

@@ -19,7 +19,7 @@ module Peddler
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
@@ -30,7 +30,7 @@ module Peddler
         path = "/replenishment/2022-11-07/offers/metrics/search"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns the details of a selling partner's replenishment program offers.
@@ -41,7 +41,7 @@ module Peddler
         path = "/replenishment/2022-11-07/offers/search"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
     end
   end

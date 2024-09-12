@@ -29,7 +29,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path, params:)
+        rate_limit(1.0).get(path, params:)
       end
 
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
@@ -46,7 +46,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, params:)
+        rate_limit(1.0).post(path, params:)
       end
     end
   end

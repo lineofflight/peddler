@@ -29,7 +29,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Creates a new A+ Content document.
@@ -44,7 +44,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:, params:)
+        rate_limit(0.1).post(path, body:, params:)
       end
 
       # Returns an A+ Content document, if available.
@@ -62,7 +62,7 @@ module Peddler
           "includedDataSet" => included_data_set,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Updates an existing A+ Content document.
@@ -80,7 +80,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:, params:)
+        rate_limit(0.1).post(path, body:, params:)
       end
 
       # Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the
@@ -109,7 +109,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs,
@@ -130,7 +130,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:, params:)
+        rate_limit(0.1).post(path, body:, params:)
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
@@ -147,7 +147,7 @@ module Peddler
           "asinSet" => asin_set,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:, params:)
+        rate_limit(0.1).post(path, body:, params:)
       end
 
       # Searches for A+ Content publishing records, if available.
@@ -168,7 +168,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Submits an A+ Content document for review, approval, and publishing.
@@ -184,7 +184,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, params:)
+        rate_limit(0.1).post(path, params:)
       end
 
       # Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN
@@ -201,7 +201,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, params:)
+        rate_limit(0.1).post(path, params:)
       end
     end
   end

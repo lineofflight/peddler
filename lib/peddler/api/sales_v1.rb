@@ -62,7 +62,7 @@ module Peddler
           "sku" => sku,
         }.compact
 
-        retriable(delay: proc { |i| 0.5 * i }).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
     end
   end

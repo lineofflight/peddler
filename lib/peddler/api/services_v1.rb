@@ -16,7 +16,7 @@ module Peddler
       def get_service_job_by_service_job_id(service_job_id)
         path = "/service/v1/serviceJobs/#{service_job_id}"
 
-        retriable(delay: proc { |i| 20.0 * i }).get(path)
+        rate_limit(0.05).get(path)
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -31,7 +31,7 @@ module Peddler
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).put(path, params:)
+        rate_limit(0.2).put(path, params:)
       end
 
       # Completes the service job indicated by the service job identifier specified.
@@ -41,7 +41,7 @@ module Peddler
       def complete_service_job_by_service_job_id(service_job_id)
         path = "/service/v1/serviceJobs/#{service_job_id}/completions"
 
-        retriable(delay: proc { |i| 5.0 * i }).put(path)
+        rate_limit(0.2).put(path)
       end
 
       # Gets service job details for the specified filter query.
@@ -103,7 +103,7 @@ module Peddler
           "storeIds" => store_ids,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
@@ -115,7 +115,7 @@ module Peddler
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
@@ -128,7 +128,7 @@ module Peddler
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -142,7 +142,7 @@ module Peddler
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/resources"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).put(path, body:)
+        rate_limit(1.0).put(path, body:)
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -156,7 +156,7 @@ module Peddler
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/fulfillment"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).put(path, body:)
+        rate_limit(0.2).put(path, body:)
       end
 
       # Provides capacity slots in a format similar to availability records.
@@ -174,7 +174,7 @@ module Peddler
           "nextPageToken" => next_page_token,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:, params:)
+        rate_limit(0.2).post(path, body:, params:)
       end
 
       # Provides capacity in fixed-size slots.
@@ -192,7 +192,7 @@ module Peddler
           "nextPageToken" => next_page_token,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:, params:)
+        rate_limit(0.2).post(path, body:, params:)
       end
 
       # Update the schedule of the given resource.
@@ -208,7 +208,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).put(path, body:, params:)
+        rate_limit(0.2).put(path, body:, params:)
       end
 
       # Create a reservation.
@@ -223,7 +223,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:, params:)
+        rate_limit(0.2).post(path, body:, params:)
       end
 
       # Update a reservation.
@@ -239,7 +239,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).put(path, body:, params:)
+        rate_limit(0.2).put(path, body:, params:)
       end
 
       # Cancel a reservation.
@@ -253,7 +253,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).delete(path, params:)
+        rate_limit(0.2).delete(path, params:)
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -275,7 +275,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path, params:)
+        rate_limit(0.2).get(path, params:)
       end
 
       # Gets appointment slots as per the service context specified.
@@ -300,7 +300,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
 
-        retriable(delay: proc { |i| 20.0 * i }).get(path, params:)
+        rate_limit(0.05).get(path, params:)
       end
 
       # Creates an upload destination.
@@ -311,7 +311,7 @@ module Peddler
         path = "/service/v1/documents"
         body = body
 
-        retriable(delay: proc { |i| 5.0 * i }).post(path, body:)
+        rate_limit(0.2).post(path, body:)
       end
     end
   end

@@ -44,7 +44,7 @@ module Peddler
           "includeDetails" => include_details,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
@@ -55,7 +55,7 @@ module Peddler
       def get_order(purchase_order_number)
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{purchase_order_number}"
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path)
+        rate_limit(0.1).get(path)
       end
 
       # Submits acknowledgements for one or more purchase orders.
@@ -66,7 +66,7 @@ module Peddler
         path = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
     end
   end

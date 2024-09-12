@@ -30,7 +30,7 @@ module Peddler
           "reasonLocale" => reason_locale,
         }.compact
 
-        retriable(delay: proc { |i| 5.0 * i }).get(path, params:)
+        rate_limit(0.2).get(path, params:)
       end
     end
   end

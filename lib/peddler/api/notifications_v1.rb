@@ -24,7 +24,7 @@ module Peddler
           "payloadVersion" => payload_version,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path, params:)
+        rate_limit(1.0).get(path, params:)
       end
 
       # Creates a subscription for the specified notification type to be delivered to the specified destination. Before
@@ -38,7 +38,7 @@ module Peddler
         path = "/notifications/v1/subscriptions/##{notification_type}"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns information about a subscription for the specified notification type. The `getSubscriptionById`
@@ -50,7 +50,7 @@ module Peddler
       def get_subscription_by_id(subscription_id)
         path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
 
       # Deletes the subscription indicated by the subscription identifier and notification type that you specify. The
@@ -64,7 +64,7 @@ module Peddler
       def delete_subscription_by_id(subscription_id)
         path = "/notifications/v1/subscriptions/##{notification_type}/##{subscription_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).delete(path)
+        rate_limit(1.0).delete(path)
       end
 
       # Returns information about all destinations. The `getDestinations` operation is grantless. For more information,
@@ -73,7 +73,7 @@ module Peddler
       def get_destinations
         path = "/notifications/v1/destinations"
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
 
       # Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For
@@ -86,7 +86,7 @@ module Peddler
         path = "/notifications/v1/destinations"
         body = body
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns information about the destination that you specify. The `getDestination` operation is grantless. For
@@ -98,7 +98,7 @@ module Peddler
       def get_destination(destination_id)
         path = "/notifications/v1/destinations/#{destination_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path)
+        rate_limit(1.0).get(path)
       end
 
       # Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information,
@@ -109,7 +109,7 @@ module Peddler
       def delete_destination(destination_id)
         path = "/notifications/v1/destinations/##{destination_id}"
 
-        retriable(delay: proc { |i| 1.0 * i }).delete(path)
+        rate_limit(1.0).delete(path)
       end
     end
   end

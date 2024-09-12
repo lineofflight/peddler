@@ -17,7 +17,7 @@ module Peddler
         path = "/vendor/shipping/v1/shipmentConfirmations"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Submits one or more shipment request for vendor Orders.
@@ -28,7 +28,7 @@ module Peddler
         path = "/vendor/shipping/v1/shipments"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
@@ -115,7 +115,7 @@ module Peddler
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
     end
   end

@@ -25,7 +25,7 @@ module Peddler
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -42,7 +42,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        retriable(delay: proc { |i| 1.0 * i }).get(path, params:)
+        rate_limit(1.0).get(path, params:)
       end
 
       # Schedules an Easy Ship order and returns the scheduled package information. This operation does the following: *
@@ -62,7 +62,7 @@ module Peddler
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -77,7 +77,7 @@ module Peddler
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
 
-        retriable(delay: proc { |i| 1.0 * i }).patch(path, body:)
+        rate_limit(1.0).patch(path, body:)
       end
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
@@ -101,7 +101,7 @@ module Peddler
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
 
-        retriable(delay: proc { |i| 1.0 * i }).post(path, body:)
+        rate_limit(1.0).post(path, body:)
       end
     end
   end

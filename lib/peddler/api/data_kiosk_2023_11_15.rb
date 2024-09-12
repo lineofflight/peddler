@@ -35,7 +35,7 @@ module Peddler
           "paginationToken" => pagination_token,
         }.compact
 
-        retriable(delay: proc { |i| 0.0222 * i }).get(path, params:)
+        rate_limit(45.0).get(path, params:)
       end
 
       # Creates a Data Kiosk query request.
@@ -50,7 +50,7 @@ module Peddler
         path = "/dataKiosk/2023-11-15/queries"
         body = body
 
-        retriable(delay: proc { |i| 0.0167 * i }).post(path, body:)
+        rate_limit(60.0).post(path, body:)
       end
 
       # Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus`
@@ -64,7 +64,7 @@ module Peddler
       def cancel_query(query_id)
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
-        retriable(delay: proc { |i| 0.0222 * i }).delete(path)
+        rate_limit(45.0).delete(path)
       end
 
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
@@ -75,7 +75,7 @@ module Peddler
       def get_query(query_id)
         path = "/dataKiosk/2023-11-15/queries/##{query_id}"
 
-        retriable(delay: proc { |i| 2.0 * i }).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
@@ -86,7 +86,7 @@ module Peddler
       def get_document(document_id)
         path = "/dataKiosk/2023-11-15/documents/#{document_id}"
 
-        retriable(delay: proc { |i| 0.0167 * i }).get(path)
+        rate_limit(60.0).get(path)
       end
     end
   end

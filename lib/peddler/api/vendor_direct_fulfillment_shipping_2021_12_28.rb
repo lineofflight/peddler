@@ -36,7 +36,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
@@ -47,7 +47,7 @@ module Peddler
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -58,7 +58,7 @@ module Peddler
       def get_shipping_label(purchase_order_number)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{purchase_order_number}"
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path)
+        rate_limit(0.1).get(path)
       end
 
       # Creates shipping labels for a purchase order and returns the labels.
@@ -71,7 +71,7 @@ module Peddler
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/##{purchase_order_number}"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Submits one or more shipment confirmations for vendor orders.
@@ -82,7 +82,7 @@ module Peddler
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment
@@ -95,7 +95,7 @@ module Peddler
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
         body = body
 
-        retriable(delay: proc { |i| 10.0 * i }).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -125,7 +125,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
@@ -135,7 +135,7 @@ module Peddler
       def get_customer_invoice(purchase_order_number)
         path = "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/#{purchase_order_number}"
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path)
+        rate_limit(0.1).get(path)
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -164,7 +164,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path, params:)
+        rate_limit(0.1).get(path, params:)
       end
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
@@ -174,7 +174,7 @@ module Peddler
       def get_packing_slip(purchase_order_number)
         path = "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/#{purchase_order_number}"
 
-        retriable(delay: proc { |i| 10.0 * i }).get(path)
+        rate_limit(0.1).get(path)
       end
     end
   end

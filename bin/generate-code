@@ -87,7 +87,7 @@ module Generator
         operation.merge(
           "path" => path,
           "method" => method.upcase,
-          "rate_limit" => extract_rate_limit(operation),
+          "retriable_delay" => extract_retriable_delay(operation),
           "parameters" => parameters,
           "body_param" => parameters&.find { |p| p["in"] == "body" },
           "query_params" => parameters&.select { |p| p["in"] == "query" },
@@ -219,7 +219,7 @@ module Generator
     end.join("\n")
   end
 
-  def extract_rate_limit(operation)
+  def extract_retriable_delay(operation)
     description = operation["description"]
     return unless description
 
@@ -227,8 +227,17 @@ module Generator
     # Format 1: | Plan type | Rate (requests per second) | Burst |
     # Format 2: | Rate (requests per second) | Burst |
     table_match = description.match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
+    return unless table_match
 
-    table_match[1].to_f if table_match
+    rate_limit = table_match[1].to_f
+    retriable_delay = 1.0 / rate_limit
+
+    # Round to nearest integer if more than 3 decimal places
+    if (retriable_delay * 1000).round != (retriable_delay * 1000)
+      retriable_delay.round.to_f
+    else
+      retriable_delay
+    end
   end
 end
 
