@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 12 Sep 2024 19:57:33 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - RRDKVWGM5DDFAA5RDXV3
+      X-Amzn-Requestid:
+      - 8e73f2b7-037d-4732-90e1-c21a7046ad97
+      X-Amz-Date:
+      - Thu, 12 Sep 2024 19:57:33 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 12 Sep 2024 19:57:33 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/reports/2021-06-30/reports/292248019978
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20240912T195733Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 12 Sep 2024 19:57:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '460'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - FVNFTSVVK3KES8YZ4ZJM
+      X-Amzn-Ratelimit-Limit:
+      - '2.0'
+      X-Amzn-Requestid:
+      - 838973d3-c682-4ab4-b88c-afbd19d32bb5
+      X-Amz-Apigw-Id:
+      - OPF838973d3c682
+      X-Amzn-Trace-Id:
+      - Root=1-66e347ad-838973d3c6824ab4
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"reportType":"GET_MERCHANTS_LISTINGS_FYP_REPORT","processingEndTime":"2024-09-12T19:41:13+00:00","processingStatus":"DONE","marketplaceIds":["A1F83G8C2ARO7P"],"reportDocumentId":"amzn1.spdoc.1.4.eu.00051127-bd5b-48ff-ab6a-6d76c9061260.TXVRX1WISIZWM.5900","reportId":"292248019978","dataEndTime":"2024-09-12T19:40:59+00:00","createdTime":"2024-09-12T19:40:59+00:00","processingStartTime":"2024-09-12T19:41:02+00:00","dataStartTime":"2024-09-12T19:40:59+00:00"}'
+  recorded_at: Thu, 12 Sep 2024 19:57:33 GMT
+recorded_with: VCR 6.3.1
