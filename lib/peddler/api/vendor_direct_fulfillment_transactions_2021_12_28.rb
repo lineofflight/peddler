@@ -17,7 +17,7 @@ module Peddler
       def get_transaction_status(transaction_id)
         path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{transaction_id}"
 
-        rate_limit(0.1).get(path)
+        rate_limit(10.0).get(path)
       end
     end
   end

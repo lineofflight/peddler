@@ -18,7 +18,7 @@ module Peddler
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         body = body
 
-        rate_limit(0.5).post(path, body:)
+        rate_limit(2.0).post(path, body:)
       end
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -30,7 +30,7 @@ module Peddler
         path = "/fba/outbound/2020-07-01/deliveryOffers"
         body = body
 
-        rate_limit(0.2).post(path, body:)
+        rate_limit(5.0).post(path, body:)
       end
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next
@@ -48,7 +48,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -60,7 +60,7 @@ module Peddler
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
         body = body
 
-        rate_limit(0.5).post(path, body:)
+        rate_limit(2.0).post(path, body:)
       end
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
@@ -75,7 +75,7 @@ module Peddler
           "packageNumber" => package_number,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
@@ -99,7 +99,7 @@ module Peddler
           "language" => language,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Creates a fulfillment return.
@@ -113,7 +113,7 @@ module Peddler
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/return"
         body = body
 
-        rate_limit(0.5).put(path, body:)
+        rate_limit(2.0).put(path, body:)
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
@@ -124,7 +124,7 @@ module Peddler
       def get_fulfillment_order(seller_fulfillment_order_id)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
 
-        rate_limit(0.5).get(path)
+        rate_limit(2.0).get(path)
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -137,7 +137,7 @@ module Peddler
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
         body = body
 
-        rate_limit(0.5).put(path, body:)
+        rate_limit(2.0).put(path, body:)
       end
 
       # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
@@ -149,7 +149,7 @@ module Peddler
       def cancel_fulfillment_order(seller_fulfillment_order_id)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/cancel"
 
-        rate_limit(0.5).put(path)
+        rate_limit(2.0).put(path)
       end
 
       # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -180,7 +180,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -198,7 +198,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified
@@ -217,7 +217,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
     end
   end

@@ -18,7 +18,7 @@ module Peddler
       def get_marketplace_participations
         path = "/sellers/v1/marketplaceParticipations"
 
-        rate_limit(62.5).get(path)
+        rate_limit(0.016).get(path)
       end
 
       # Returns information about a seller account and its marketplaces.
@@ -26,7 +26,7 @@ module Peddler
       def get_account
         path = "/sellers/v1/account"
 
-        rate_limit(62.5).get(path)
+        rate_limit(0.016).get(path)
       end
     end
   end

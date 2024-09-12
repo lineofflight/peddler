@@ -55,7 +55,7 @@ module Peddler
           "keywordsLocale" => keywords_locale,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -76,7 +76,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
     end
   end

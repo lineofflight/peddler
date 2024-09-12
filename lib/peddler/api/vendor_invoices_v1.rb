@@ -16,7 +16,7 @@ module Peddler
         path = "/vendor/payments/v1/invoices"
         body = body
 
-        rate_limit(0.1).post(path, body:)
+        rate_limit(10.0).post(path, body:)
       end
     end
   end

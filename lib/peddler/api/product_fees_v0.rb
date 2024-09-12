@@ -65,7 +65,7 @@ module Peddler
         path = "/products/fees/v0/feesEstimate"
         body = body
 
-        rate_limit(2.0).post(path, body:)
+        rate_limit(0.5).post(path, body:)
       end
     end
   end

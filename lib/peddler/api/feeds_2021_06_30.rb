@@ -39,7 +39,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(45.0).get(path, params:)
+        rate_limit(0.0222).get(path, params:)
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
@@ -50,7 +50,7 @@ module Peddler
         path = "/feeds/2021-06-30/feeds"
         body = body
 
-        rate_limit(120.0).post(path, body:)
+        rate_limit(0.0083).post(path, body:)
       end
 
       # Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds
@@ -64,7 +64,7 @@ module Peddler
       def cancel_feed(feed_id)
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
-        rate_limit(0.5).delete(path)
+        rate_limit(2.0).delete(path)
       end
 
       # Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
@@ -75,7 +75,7 @@ module Peddler
       def get_feed(feed_id)
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
-        rate_limit(0.5).get(path)
+        rate_limit(2.0).get(path)
       end
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
@@ -89,7 +89,7 @@ module Peddler
         path = "/feeds/2021-06-30/documents"
         body = body
 
-        rate_limit(2.0).post(path, body:)
+        rate_limit(0.5).post(path, body:)
       end
 
       # Returns the information required for retrieving a feed document's contents.
@@ -99,7 +99,7 @@ module Peddler
       def get_feed_document(feed_document_id)
         path = "/feeds/2021-06-30/documents/#{feed_document_id}"
 
-        rate_limit(45.0).get(path)
+        rate_limit(0.0222).get(path)
       end
     end
   end

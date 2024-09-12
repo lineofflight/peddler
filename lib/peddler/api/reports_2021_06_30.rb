@@ -42,7 +42,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(45.0).get(path, params:)
+        rate_limit(0.0222).get(path, params:)
       end
 
       # Creates a report.
@@ -53,7 +53,7 @@ module Peddler
         path = "/reports/2021-06-30/reports"
         body = body
 
-        rate_limit(60.0).post(path, body:)
+        rate_limit(0.0167).post(path, body:)
       end
 
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
@@ -65,7 +65,7 @@ module Peddler
       def cancel_report(report_id)
         path = "/reports/2021-06-30/reports/#{report_id}"
 
-        rate_limit(45.0).delete(path)
+        rate_limit(0.0222).delete(path)
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
@@ -76,7 +76,7 @@ module Peddler
       def get_report(report_id)
         path = "/reports/2021-06-30/reports/#{report_id}"
 
-        rate_limit(0.5).get(path)
+        rate_limit(2.0).get(path)
       end
 
       # Returns report schedule details that match the filters that you specify.
@@ -90,7 +90,7 @@ module Peddler
           "reportTypes" => report_types,
         }.compact
 
-        rate_limit(45.0).get(path, params:)
+        rate_limit(0.0222).get(path, params:)
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
@@ -102,7 +102,7 @@ module Peddler
         path = "/reports/2021-06-30/schedules"
         body = body
 
-        rate_limit(45.0).post(path, body:)
+        rate_limit(0.0222).post(path, body:)
       end
 
       # Cancels the report schedule that you specify.
@@ -113,7 +113,7 @@ module Peddler
       def cancel_report_schedule(report_schedule_id)
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
-        rate_limit(45.0).delete(path)
+        rate_limit(0.0222).delete(path)
       end
 
       # Returns report schedule details for the report schedule that you specify.
@@ -124,7 +124,7 @@ module Peddler
       def get_report_schedule(report_schedule_id)
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
-        rate_limit(45.0).get(path)
+        rate_limit(0.0222).get(path)
       end
 
       # Returns the information required for retrieving a report document's contents.
@@ -134,7 +134,7 @@ module Peddler
       def get_report_document(report_document_id)
         path = "/reports/2021-06-30/documents/#{report_document_id}"
 
-        rate_limit(60.0).get(path)
+        rate_limit(0.0167).get(path)
       end
     end
   end

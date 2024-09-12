@@ -21,7 +21,7 @@ module Peddler
           "skuQuantities" => sku_quantities,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -73,7 +73,7 @@ module Peddler
           "maxResults" => max_results,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
     end
   end

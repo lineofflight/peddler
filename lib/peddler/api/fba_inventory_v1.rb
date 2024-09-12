@@ -55,7 +55,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        rate_limit(2.0).get(path, params:)
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a

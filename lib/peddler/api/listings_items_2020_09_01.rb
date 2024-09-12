@@ -30,7 +30,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(0.2).delete(path, params:)
+        rate_limit(5.0).delete(path, params:)
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -55,7 +55,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(0.2).patch(path, body:, params:)
+        rate_limit(5.0).patch(path, body:, params:)
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -79,7 +79,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(0.2).put(path, body:, params:)
+        rate_limit(5.0).put(path, body:, params:)
       end
     end
   end

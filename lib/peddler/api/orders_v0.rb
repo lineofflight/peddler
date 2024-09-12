@@ -138,7 +138,7 @@ module Peddler
           "LatestDeliveryDateAfter" => latest_delivery_date_after,
         }.compact
 
-        rate_limit(60.0).get(path, params:)
+        rate_limit(0.0167).get(path, params:)
       end
 
       # Returns the order that you specify.
@@ -148,7 +148,7 @@ module Peddler
       def get_order(order_id)
         path = "/orders/v0/orders/#{order_id}"
 
-        rate_limit(2.0).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Returns buyer information for the order that you specify.
@@ -158,7 +158,7 @@ module Peddler
       def get_order_buyer_info(order_id)
         path = "/orders/v0/orders/#{order_id}/buyerInfo"
 
-        rate_limit(2.0).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Returns the shipping address for the order that you specify.
@@ -168,7 +168,7 @@ module Peddler
       def get_order_address(order_id)
         path = "/orders/v0/orders/#{order_id}/address"
 
-        rate_limit(2.0).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -188,7 +188,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns buyer information for the order items in the order that you specify.
@@ -202,7 +202,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Update the shipment status for an order that you specify.
@@ -214,7 +214,7 @@ module Peddler
         path = "/orders/v0/orders/#{order_id}/shipment"
         body = payload
 
-        rate_limit(0.2).post(path, body:)
+        rate_limit(5.0).post(path, body:)
       end
 
       # Returns regulated information for the order that you specify.
@@ -224,7 +224,7 @@ module Peddler
       def get_order_regulated_info(order_id)
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
 
-        rate_limit(2.0).get(path)
+        rate_limit(0.5).get(path)
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -236,7 +236,7 @@ module Peddler
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
 
-        rate_limit(2.0).patch(path, body:)
+        rate_limit(0.5).patch(path, body:)
       end
 
       # Updates the shipment confirmation status for a specified order.
@@ -248,7 +248,7 @@ module Peddler
         path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
         body = payload
 
-        rate_limit(0.5).post(path, body:)
+        rate_limit(2.0).post(path, body:)
       end
     end
   end

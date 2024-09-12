@@ -18,7 +18,7 @@ module Peddler
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{warehouse_id}/items"
         body = body
 
-        rate_limit(0.1).post(path, body:)
+        rate_limit(10.0).post(path, body:)
       end
     end
   end

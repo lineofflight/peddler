@@ -33,7 +33,7 @@ module Peddler
           "contentType" => content_type,
         }.compact
 
-        rate_limit(0.1).post(path, params:)
+        rate_limit(10.0).post(path, params:)
       end
     end
   end

@@ -17,7 +17,7 @@ module Peddler
         path = "/mfn/v0/eligibleShippingServices"
         body = body
 
-        rate_limit(0.2).post(path, body:)
+        rate_limit(5.0).post(path, body:)
       end
 
       # Returns the shipment information for an existing shipment.

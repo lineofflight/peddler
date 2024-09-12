@@ -40,7 +40,7 @@ module Peddler
           "OfferType" => offer_type,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -71,7 +71,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns the lowest priced offers for a single SKU listing.
@@ -115,7 +115,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
@@ -126,7 +126,7 @@ module Peddler
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
 
-        rate_limit(10.0).post(path, body:)
+        rate_limit(0.1).post(path, body:)
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
@@ -137,7 +137,7 @@ module Peddler
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
 
-        rate_limit(2.0).post(path, body:)
+        rate_limit(0.5).post(path, body:)
       end
     end
   end

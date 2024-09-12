@@ -44,7 +44,7 @@ module Peddler
           "includeDetails" => include_details,
         }.compact
 
-        rate_limit(0.1).get(path, params:)
+        rate_limit(10.0).get(path, params:)
       end
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
@@ -55,7 +55,7 @@ module Peddler
       def get_order(purchase_order_number)
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders/#{purchase_order_number}"
 
-        rate_limit(0.1).get(path)
+        rate_limit(10.0).get(path)
       end
 
       # Submits acknowledgements for one or more purchase orders.
@@ -66,7 +66,7 @@ module Peddler
         path = "/vendor/directFulfillment/orders/v1/acknowledgements"
         body = body
 
-        rate_limit(0.1).post(path, body:)
+        rate_limit(10.0).post(path, body:)
       end
     end
   end

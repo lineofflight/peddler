@@ -62,7 +62,7 @@ module Peddler
           "sku" => sku,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        rate_limit(0.5).get(path, params:)
       end
     end
   end

@@ -18,7 +18,7 @@ module Peddler
       def rotate_application_client_secret
         path = "/applications/2023-11-30/clientSecret"
 
-        rate_limit(60.0).post(path)
+        rate_limit(0.0167).post(path)
       end
     end
   end
