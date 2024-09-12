@@ -35,7 +35,7 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_subscription(body)
-        path = "/notifications/v1/subscriptions/##{notification_type}"
+        path = "/notifications/v1/subscriptions/#{notification_type}"
         body = body
 
         rate_limit(1.0).post(path, body:)
@@ -62,7 +62,7 @@ module Peddler
       # @param [String] subscription_id The identifier for the subscription that you want to delete.
       # @return [Hash] The API response
       def delete_subscription_by_id(subscription_id)
-        path = "/notifications/v1/subscriptions/##{notification_type}/##{subscription_id}"
+        path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
 
         rate_limit(1.0).delete(path)
       end
@@ -107,7 +107,7 @@ module Peddler
       # @param [String] destination_id The identifier for the destination that you want to delete.
       # @return [Hash] The API response
       def delete_destination(destination_id)
-        path = "/notifications/v1/destinations/##{destination_id}"
+        path = "/notifications/v1/destinations/#{destination_id}"
 
         rate_limit(1.0).delete(path)
       end

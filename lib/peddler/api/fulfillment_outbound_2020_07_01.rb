@@ -134,7 +134,7 @@ module Peddler
       #   fulfillment order was created.
       # @return [Hash] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id)
-        path = "/fba/outbound/2020-07-01/fulfillmentOrders/##{seller_fulfillment_order_id}"
+        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
         body = body
 
         rate_limit(0.5).put(path, body:)

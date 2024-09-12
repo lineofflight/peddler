@@ -74,6 +74,11 @@ module Generator
 
   def extract_operations(model)
     model["paths"].flat_map do |path, methods|
+      # Massage the path to use Ruby-style interpolation
+      path = path.gsub(/\{([^}]+)\}/) do
+        "\#{#{snakecase(Regexp.last_match(1))}}"
+      end
+
       shared_parameters = methods.delete("parameters") || []
       skipped_methods = ["x-amzn-api-sandbox", "x-amzn-api-sandbox-only"]
       methods.map do |method, operation|
@@ -81,11 +86,6 @@ module Generator
 
         operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
         parameters = operation_parameters.select { |p| p["name"] }
-
-        # Massage the path to use Ruby-style interpolation
-        path = path.gsub(/\{([^}]+)\}/) do
-          "\#{#{snakecase(Regexp.last_match(1))}}"
-        end
 
         operation.merge(
           "path" => path,

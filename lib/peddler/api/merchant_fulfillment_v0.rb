@@ -35,7 +35,7 @@ module Peddler
       # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment to cancel.
       # @return [Hash] The API response
       def cancel_shipment(shipment_id)
-        path = "/mfn/v0/shipments/##{shipment_id}"
+        path = "/mfn/v0/shipments/#{shipment_id}"
 
         rate_limit(1.0).delete(path)
       end

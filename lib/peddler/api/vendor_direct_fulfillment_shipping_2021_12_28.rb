@@ -68,7 +68,7 @@ module Peddler
       # @param [Hash] body The request payload that contains parameters for creating shipping labels.
       # @return [Hash] The API response
       def create_shipping_labels(purchase_order_number, body)
-        path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/##{purchase_order_number}"
+        path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{purchase_order_number}"
         body = body
 
         rate_limit(0.1).post(path, body:)

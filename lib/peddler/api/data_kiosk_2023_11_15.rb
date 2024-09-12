@@ -73,7 +73,7 @@ module Peddler
       # @param [String] query_id The query identifier.
       # @return [Hash] The API response
       def get_query(query_id)
-        path = "/dataKiosk/2023-11-15/queries/##{query_id}"
+        path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
         rate_limit(0.5).get(path)
       end

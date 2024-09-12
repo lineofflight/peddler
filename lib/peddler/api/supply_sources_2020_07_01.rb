@@ -50,7 +50,7 @@ module Peddler
       # @param [Hash] payload
       # @return [Hash] The API response
       def update_supply_source(supply_source_id, payload: nil)
-        path = "/supplySources/2020-07-01/supplySources/##{supply_source_id}"
+        path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
         body = payload
 
         put(path, body:)
@@ -61,7 +61,7 @@ module Peddler
       # @param [String] supply_source_id The unique identifier of a supply source.
       # @return [Hash] The API response
       def archive_supply_source(supply_source_id)
-        path = "/supplySources/2020-07-01/supplySources/###{supply_source_id}"
+        path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
 
         delete(path)
       end

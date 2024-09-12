@@ -49,7 +49,7 @@ module Peddler
       #   `summaries`.
       # @return [Hash] The API response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: nil)
-        path = "/listings/2021-08-01/items/##{seller_id}/##{sku}"
+        path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,
@@ -78,7 +78,7 @@ module Peddler
       # @param [Hash] body The request body schema for the `patchListingsItem` operation.
       # @return [Hash] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: nil, mode: nil, issue_locale: nil)
-        path = "/listings/2021-08-01/items/###{seller_id}/###{sku}"
+        path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         body = body
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -108,7 +108,7 @@ module Peddler
       # @param [Hash] body The request body schema for the `putListingsItem` operation.
       # @return [Hash] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: nil, mode: nil, issue_locale: nil)
-        path = "/listings/2021-08-01/items/####{seller_id}/####{sku}"
+        path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         body = body
         params = {
           "marketplaceIds" => marketplace_ids,

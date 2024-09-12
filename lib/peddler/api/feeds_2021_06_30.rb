@@ -73,7 +73,7 @@ module Peddler
       #   ID.
       # @return [Hash] The API response
       def get_feed(feed_id)
-        path = "/feeds/2021-06-30/feeds/##{feed_id}"
+        path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
         rate_limit(0.5).get(path)
       end

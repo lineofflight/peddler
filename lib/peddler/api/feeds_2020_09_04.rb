@@ -85,7 +85,7 @@ module Peddler
       #   ID.
       # @return [Hash] The API response
       def cancel_feed(feed_id)
-        path = "/feeds/2020-09-04/feeds/##{feed_id}"
+        path = "/feeds/2020-09-04/feeds/#{feed_id}"
 
         delete(path)
       end

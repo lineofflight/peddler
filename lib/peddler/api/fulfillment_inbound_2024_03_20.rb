@@ -193,7 +193,7 @@ module Peddler
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @return [Hash] The API response
       def generate_packing_options(inbound_plan_id)
-        path = "/inbound/fba/2024-03-20/inboundPlans/##{inbound_plan_id}/packingOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
 
         rate_limit(0.5).post(path)
       end
@@ -253,7 +253,7 @@ module Peddler
       # @param [Hash] body The body of the request to `generatePlacementOptions`.
       # @return [Hash] The API response
       def generate_placement_options(inbound_plan_id, body)
-        path = "/inbound/fba/2024-03-20/inboundPlans/##{inbound_plan_id}/placementOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
         body = body
 
         rate_limit(0.5).post(path, body:)
@@ -332,7 +332,7 @@ module Peddler
       # @param [Hash] body The body of the request to `generateShipmentContentUpdatePreviews`.
       # @return [Hash] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
-        path = "/inbound/fba/2024-03-20/inboundPlans/##{inbound_plan_id}/shipments/##{shipment_id}/contentUpdatePreviews"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
         body = body
 
         rate_limit(0.5).post(path, body:)
@@ -402,7 +402,7 @@ module Peddler
       # @param [String] shipment_id The shipment to generate delivery window options for.
       # @return [Hash] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id)
-        path = "/inbound/fba/2024-03-20/inboundPlans/##{inbound_plan_id}/shipments/##{shipment_id}/deliveryWindowOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
 
         rate_limit(0.5).post(path)
       end
@@ -516,7 +516,7 @@ module Peddler
       # @param [Hash] body The body of the request to `generateSelfShipAppointmentSlots`.
       # @return [Hash] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
-        path = "/inbound/fba/2024-03-20/inboundPlans/##{inbound_plan_id}/shipments/##{shipment_id}/selfShipAppointmentSlots"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
         body = body
 
         rate_limit(0.5).post(path, body:)
@@ -598,7 +598,7 @@ module Peddler
       # @param [Hash] body The body of the request to `generateTransportationOptions`.
       # @return [Hash] The API response
       def generate_transportation_options(inbound_plan_id, body)
-        path = "/inbound/fba/2024-03-20/inboundPlans/##{inbound_plan_id}/transportationOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
         body = body
 
         rate_limit(0.5).post(path, body:)

@@ -47,7 +47,7 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def update_inbound_shipment(body, shipment_id)
-        path = "/fba/inbound/v0/shipments/##{shipment_id}"
+        path = "/fba/inbound/v0/shipments/#{shipment_id}"
         body = body
 
         rate_limit(0.5).put(path, body:)
@@ -135,7 +135,7 @@ module Peddler
       # @param [Hash] body The request schema for the PutTransportDetailsRequest operation.
       # @return [Hash] The API response
       def put_transport_details(shipment_id, body)
-        path = "/fba/inbound/v0/shipments/##{shipment_id}/transport"
+        path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
         body = body
 
         rate_limit(0.5).put(path, body:)

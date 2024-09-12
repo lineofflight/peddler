@@ -74,7 +74,7 @@ module Peddler
       #   seller ID.
       # @return [Hash] The API response
       def get_report(report_id)
-        path = "/reports/2021-06-30/reports/##{report_id}"
+        path = "/reports/2021-06-30/reports/#{report_id}"
 
         rate_limit(0.5).get(path)
       end
@@ -122,7 +122,7 @@ module Peddler
       #   combination with a seller ID.
       # @return [Hash] The API response
       def get_report_schedule(report_schedule_id)
-        path = "/reports/2021-06-30/schedules/##{report_schedule_id}"
+        path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
         rate_limit(45.0).get(path)
       end

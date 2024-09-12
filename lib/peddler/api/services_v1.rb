@@ -248,7 +248,7 @@ module Peddler
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @return [Hash] The API response
       def cancel_reservation(reservation_id, marketplace_ids)
-        path = "/service/v1/reservation/##{reservation_id}"
+        path = "/service/v1/reservation/#{reservation_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact

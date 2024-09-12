@@ -74,7 +74,7 @@ module Peddler
       # @param [Hash] post_content_document_request The content document request details.
       # @return [Hash] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request)
-        path = "/aplus/2020-11-01/contentDocuments/##{content_reference_key}"
+        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
         body = post_content_document_request
         params = {
           "marketplaceId" => marketplace_id,
@@ -124,7 +124,7 @@ module Peddler
       # @return [Hash] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
         post_content_document_asin_relations_request)
-        path = "/aplus/2020-11-01/contentDocuments/##{content_reference_key}/asins"
+        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
         body = post_content_document_asin_relations_request
         params = {
           "marketplaceId" => marketplace_id,

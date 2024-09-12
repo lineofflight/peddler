@@ -233,7 +233,7 @@ module Peddler
       # @param [Hash] payload The request body for the `updateVerificationStatus` operation.
       # @return [Hash] The API response
       def update_verification_status(order_id, payload)
-        path = "/orders/v0/orders/##{order_id}/regulatedInfo"
+        path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
 
         rate_limit(2.0).patch(path, body:)
