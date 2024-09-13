@@ -1,0 +1,103 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://api.amazon.com/auth/o2/token
+      body:
+        encoding: ASCII-8BIT
+        string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+      headers:
+        Connection:
+          - close
+        Content-Type:
+          - application/x-www-form-urlencoded
+        Host:
+          - api.amazon.com
+        User-Agent:
+          - http.rb/5.2.0
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Server:
+          - Server
+        Date:
+          - Fri, 13 Sep 2024 16:40:52 GMT
+        Content-Type:
+          - application/json;charset=UTF-8
+        Content-Length:
+          - "806"
+        Connection:
+          - close
+        X-Amz-Rid:
+          - M14TJPARQ658A7HFD89X
+        X-Amzn-Requestid:
+          - 787be9eb-bb6e-4f40-907a-7103e60dff38
+        X-Amz-Date:
+          - Fri, 13 Sep 2024 16:40:52 GMT
+        Cache-Control:
+          - no-cache, no-store, must-revalidate
+        Pragma:
+          - no-cache
+        Vary:
+          - Content-Type,Accept-Encoding,User-Agent
+        Strict-Transport-Security:
+          - max-age=47474747; includeSubDomains; preload
+      body:
+        encoding: UTF-8
+        string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+    recorded_at: Fri, 13 Sep 2024 16:40:48 GMT
+  - request:
+      method: delete
+      uri: https://sellingpartnerapi-eu.amazon.com/listings/2021-08-01/items/A34PPN1ZLYCOGT/SKU123?marketplaceIds=A1F83G8C2ARO7P
+      body:
+        encoding: ASCII-8BIT
+        string: ""
+      headers:
+        Host:
+          - sellingpartnerapi-eu.amazon.com
+        User-Agent:
+          - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+        X-Amz-Access-Token:
+          - FILTERED
+        X-Amz-Date:
+          - 20240913T164048Z
+        Connection:
+          - close
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Server:
+          - Server
+        Date:
+          - Fri, 13 Sep 2024 16:40:52 GMT
+        Content-Type:
+          - application/json
+        Content-Length:
+          - "102"
+        Connection:
+          - close
+        X-Amz-Rid:
+          - NQNQS0M7K8SBAXH2M6HY
+        X-Amzn-Ratelimit-Limit:
+          - "5.0"
+        X-Amzn-Requestid:
+          - e45feee1-f28c-481a-ba40-b27e9ab09498
+        X-Amz-Apigw-Id:
+          - OPFe45feee1f28c
+        X-Amzn-Trace-Id:
+          - Root=1-66e46b14-e45feee1f28c481a
+        Vary:
+          - Content-Type,Accept-Encoding,User-Agent
+        Strict-Transport-Security:
+          - max-age=47474747; includeSubDomains; preload
+      body:
+        encoding: UTF-8
+        string: |2
+
+          {"sku":"SKU123","status":"ACCEPTED","submissionId":"75b5fdf524a7404a9ae086e04b5d561e","issues":[]}
+    recorded_at: Fri, 13 Sep 2024 16:40:48 GMT
+recorded_with: VCR 6.3.1

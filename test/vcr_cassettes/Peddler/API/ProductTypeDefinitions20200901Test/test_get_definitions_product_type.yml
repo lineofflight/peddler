@@ -1,0 +1,504 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 13 Sep 2024 18:15:07 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 1ERE83ZQ4K9VZZ5ECWJS
+      X-Amzn-Requestid:
+      - 5260fd81-9b05-477c-a9ef-2d14540cee94
+      X-Amz-Date:
+      - Fri, 13 Sep 2024 18:15:07 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Fri, 13 Sep 2024 18:15:07 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/definitions/2020-09-01/productTypes/PRODUCT?marketplaceIds=A1F83G8C2ARO7P&requirements=LISTING_OFFER_ONLY
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20240913T181507Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 13 Sep 2024 18:15:07 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '5052'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - X8QKKHNJAG1A2Q70DA52
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 6d3966bf-a21c-4099-ba41-03bf6de079f6
+      X-Amz-Apigw-Id:
+      - OPF6d3966bfa21c
+      X-Amzn-Trace-Id:
+      - Root=1-66e4812b-6d3966bfa21c4099
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |2
+
+          {"metaSchema":{"link":{"resource":"https://selling-partner-definitions-prod-dub.s3.eu-west-1.amazonaws.com/schema/amazon-product-type-definition-meta-schema-v1.json/rZ%252F2Yep0np022S38ZdEiNQ%253D%253D?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJIMEYCIQD2bFpgBzk6mpuGuL%2BEYe5eoHN5d0keeuRVr3aVEz%2FZiwIhAKcB1v8ewE%2BcSEQeuz7SMO5tX04%2Fz1t3xEl7mnln2UZqKtIECML%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQAxoMNTM1Nzg5ODIzODA4IgzB9nD0SakkGB1kbIMqpgTfp65mJrHOBhJvqoboVyitR9BBOXPrUouHI9PQaGlwvI1bdhHkkQJ51ubkh1nHvwWZU87LINh%2FTrRPD%2FQsyXoZ5eq7zQYN134Tq7wgaoVZEZGIyKvHDPnA7j5Cjt69acuBzl0YbPoShgsOhLrbV6mDoHCcp82bOtMP1ZJHBOBpgsP7%2BZJL63Un6M7DfxsBc%2FRzlxzdQekDvDo0R44nF7a91h%2F%2FvC87vwUqMUJE8kuT5N47djeSLwezRaHU3Z7XnOMznS%2BHEJ%2BSm1Rl8YlOeJhcHllWUOD93j56YAXsLUs3d0NyJqlNNuLebGB0LPpwoZMgiWJDFSohTZ7%2FyVy6vcJCRgTyYy2UiqaEU9QX8UD5T4a0speFDXo%2Fmo4JFKkszm7hpA5uoJnXfgKFOQKKfHJVIW%2BLFZXV3DIAAuRKa6Wp2xQycVD8qzzesWtqgf1WhOb%2FkMO%2BtEU7jUgw1hoaXJT5UDNcY%2BvAhUrMRhWfO3HwTyBUu%2F4d43K8ao%2BhSR%2F5fMm5HoILGjr7zf5lpRRvDsSu0wJ55Q6Tqu0yeSqLILF5dIQT23yVP4UPawaHIxH4WqbaxTJ7VRN%2B%2FzV4%2BSqqxUYPpkbUzbLpIInyH30uaPXVUTJT7HYmNO8C9BpCpF8U6fjUGXlnu99wbsxl9M1VS3lRCuFgJN8XTr7z4nBrG8AmiOvpy5icU3Tyg%2BRqdjG6NYDdSp%2FzdtqqAWy8Yo%2BIoSZOajrth19fMN%2FmkbcGOqYBSaahUBGkvKm4RBgEI8BiWs9JDJLEQEcKsp36npnMdEZYIMSd1jnb3VMop536C8DBPxLO9LmxrevfFg62DS8VWf9qzb8O2MgrZMIFPlg4Km3T30eRdY3Cazfgd4I9EGkARsdqXsic4vrh%2FIdKg%2BnV7a4cD%2ByHxLBhBPh4jKF8ignLFkUwbCeElCX3d2k0aZJNpNTuFzKQ2tc1iJnqa9wJke5WmT9AZg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240913T181507Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAXZP4P45AKIPFCLKW%2F20240913%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=63e01a6e24afc72a9c091d3bf10cc17b65e44fb07d84400012fcd3a6c45a88d2","verb":"GET"},"checksum":"rZ/2Yep0np022S38ZdEiNQ=="},"schema":{"link":{"resource":"https://selling-partner-definitions-prod-dub.s3.eu-west-1.amazonaws.com/schema/PRODUCT.json/WvIsJwSkxhFEi3ZMEH0ukQ%253D%253D?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJIMEYCIQD2bFpgBzk6mpuGuL%2BEYe5eoHN5d0keeuRVr3aVEz%2FZiwIhAKcB1v8ewE%2BcSEQeuz7SMO5tX04%2Fz1t3xEl7mnln2UZqKtIECML%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQAxoMNTM1Nzg5ODIzODA4IgzB9nD0SakkGB1kbIMqpgTfp65mJrHOBhJvqoboVyitR9BBOXPrUouHI9PQaGlwvI1bdhHkkQJ51ubkh1nHvwWZU87LINh%2FTrRPD%2FQsyXoZ5eq7zQYN134Tq7wgaoVZEZGIyKvHDPnA7j5Cjt69acuBzl0YbPoShgsOhLrbV6mDoHCcp82bOtMP1ZJHBOBpgsP7%2BZJL63Un6M7DfxsBc%2FRzlxzdQekDvDo0R44nF7a91h%2F%2FvC87vwUqMUJE8kuT5N47djeSLwezRaHU3Z7XnOMznS%2BHEJ%2BSm1Rl8YlOeJhcHllWUOD93j56YAXsLUs3d0NyJqlNNuLebGB0LPpwoZMgiWJDFSohTZ7%2FyVy6vcJCRgTyYy2UiqaEU9QX8UD5T4a0speFDXo%2Fmo4JFKkszm7hpA5uoJnXfgKFOQKKfHJVIW%2BLFZXV3DIAAuRKa6Wp2xQycVD8qzzesWtqgf1WhOb%2FkMO%2BtEU7jUgw1hoaXJT5UDNcY%2BvAhUrMRhWfO3HwTyBUu%2F4d43K8ao%2BhSR%2F5fMm5HoILGjr7zf5lpRRvDsSu0wJ55Q6Tqu0yeSqLILF5dIQT23yVP4UPawaHIxH4WqbaxTJ7VRN%2B%2FzV4%2BSqqxUYPpkbUzbLpIInyH30uaPXVUTJT7HYmNO8C9BpCpF8U6fjUGXlnu99wbsxl9M1VS3lRCuFgJN8XTr7z4nBrG8AmiOvpy5icU3Tyg%2BRqdjG6NYDdSp%2FzdtqqAWy8Yo%2BIoSZOajrth19fMN%2FmkbcGOqYBSaahUBGkvKm4RBgEI8BiWs9JDJLEQEcKsp36npnMdEZYIMSd1jnb3VMop536C8DBPxLO9LmxrevfFg62DS8VWf9qzb8O2MgrZMIFPlg4Km3T30eRdY3Cazfgd4I9EGkARsdqXsic4vrh%2FIdKg%2BnV7a4cD%2ByHxLBhBPh4jKF8ignLFkUwbCeElCX3d2k0aZJNpNTuFzKQ2tc1iJnqa9wJke5WmT9AZg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240913T181507Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAXZP4P45AKIPFCLKW%2F20240913%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=d18f7c8161b7570c934423ea3a35a1aad5ec129099b94cf1af5fd6a982e10dc3","verb":"GET"},"checksum":"WvIsJwSkxhFEi3ZMEH0ukQ=="},"requirements":"LISTING_OFFER_ONLY","requirementsEnforced":"ENFORCED","propertyGroups":{"offer":{"title":"Offer","description":"","propertyNames":["skip_offer","fulfillment_availability","map_policy","purchasable_offer","condition_type","condition_note","product_tax_code","merchant_release_date","merchant_shipping_group","max_order_quantity","gift_options","main_offer_image_locator","other_offer_image_locator_1","other_offer_image_locator_2","other_offer_image_locator_3","other_offer_image_locator_4","other_offer_image_locator_5"]},"shipping":{"title":"Shipping","description":"Shipping","propertyNames":["item_dimensions","item_package_dimensions","item_package_weight"]},"safety_and_compliance":{"title":"Safety & Compliance","description":"Safety and compliance","propertyNames":["country_of_origin","batteries_required","batteries_included","battery","num_batteries","number_of_lithium_metal_cells","number_of_lithium_ion_cells","lithium_battery","supplier_declared_dg_hz_regulation","ghs","hazmat","safety_data_sheet_url","item_weight"]},"product_identity":{"title":"Product Identity","description":"Product identity","propertyNames":["externally_assigned_product_identifier","merchant_suggested_asin"]}},"locale":"en_GB","marketplaceIds":["A1F83G8C2ARO7P"],"productType":"PRODUCT","displayName":"PRODUCT","productTypeVersion":{"version":"UAAAAAAAAAAAAAAAAlYD0vo6680PHaadJWMWTUlER4WE=","latest":true,"releaseCandidate":false}}
+  recorded_at: Fri, 13 Sep 2024 18:15:07 GMT
+- request:
+    method: get
+    uri: https://selling-partner-definitions-prod-dub.s3.eu-west-1.amazonaws.com/schema/PRODUCT.json/WvIsJwSkxhFEi3ZMEH0ukQ%253D%253D?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAXZP4P45AKIPFCLKW/20240913/eu-west-1/s3/aws4_request&X-Amz-Date=20240913T181507Z&X-Amz-Expires=604800&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJr//////////wEaCWV1LXdlc3QtMSJIMEYCIQD2bFpgBzk6mpuGuL%2BEYe5eoHN5d0keeuRVr3aVEz/ZiwIhAKcB1v8ewE%2BcSEQeuz7SMO5tX04/z1t3xEl7mnln2UZqKtIECML//////////wEQAxoMNTM1Nzg5ODIzODA4IgzB9nD0SakkGB1kbIMqpgTfp65mJrHOBhJvqoboVyitR9BBOXPrUouHI9PQaGlwvI1bdhHkkQJ51ubkh1nHvwWZU87LINh/TrRPD/QsyXoZ5eq7zQYN134Tq7wgaoVZEZGIyKvHDPnA7j5Cjt69acuBzl0YbPoShgsOhLrbV6mDoHCcp82bOtMP1ZJHBOBpgsP7%2BZJL63Un6M7DfxsBc/RzlxzdQekDvDo0R44nF7a91h//vC87vwUqMUJE8kuT5N47djeSLwezRaHU3Z7XnOMznS%2BHEJ%2BSm1Rl8YlOeJhcHllWUOD93j56YAXsLUs3d0NyJqlNNuLebGB0LPpwoZMgiWJDFSohTZ7/yVy6vcJCRgTyYy2UiqaEU9QX8UD5T4a0speFDXo/mo4JFKkszm7hpA5uoJnXfgKFOQKKfHJVIW%2BLFZXV3DIAAuRKa6Wp2xQycVD8qzzesWtqgf1WhOb/kMO%2BtEU7jUgw1hoaXJT5UDNcY%2BvAhUrMRhWfO3HwTyBUu/4d43K8ao%2BhSR/5fMm5HoILGjr7zf5lpRRvDsSu0wJ55Q6Tqu0yeSqLILF5dIQT23yVP4UPawaHIxH4WqbaxTJ7VRN%2B/zV4%2BSqqxUYPpkbUzbLpIInyH30uaPXVUTJT7HYmNO8C9BpCpF8U6fjUGXlnu99wbsxl9M1VS3lRCuFgJN8XTr7z4nBrG8AmiOvpy5icU3Tyg%2BRqdjG6NYDdSp/zdtqqAWy8Yo%2BIoSZOajrth19fMN/mkbcGOqYBSaahUBGkvKm4RBgEI8BiWs9JDJLEQEcKsp36npnMdEZYIMSd1jnb3VMop536C8DBPxLO9LmxrevfFg62DS8VWf9qzb8O2MgrZMIFPlg4Km3T30eRdY3Cazfgd4I9EGkARsdqXsic4vrh/IdKg%2BnV7a4cD%2ByHxLBhBPh4jKF8ignLFkUwbCeElCX3d2k0aZJNpNTuFzKQ2tc1iJnqa9wJke5WmT9AZg==&X-Amz-Signature=d18f7c8161b7570c934423ea3a35a1aad5ec129099b94cf1af5fd6a982e10dc3&X-Amz-SignedHeaders=host
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - selling-partner-definitions-prod-dub.s3.eu-west-1.amazonaws.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - pWUKFaEF5nCzR4p0GjkUJqJJElrfD53xqcuQsPKOWxF/is9oa1wmNztOyjeJ+9+6wAtxmApwmoM=
+      X-Amz-Request-Id:
+      - VBPK73A6DQPRE3BZ
+      Date:
+      - Fri, 13 Sep 2024 18:15:08 GMT
+      Last-Modified:
+      - Sat, 07 Sep 2024 02:32:52 GMT
+      X-Amz-Expiration:
+      - expiry-date="Sat, 07 Dec 2024 00:00:00 GMT", rule-id="Schema Expiration -
+        90 Days"
+      Etag:
+      - '"5af22c2704a4c611448b764c107d2e91"'
+      X-Amz-Server-Side-Encryption:
+      - AES256
+      X-Amz-Version-Id:
+      - Vq_FrCqwkNNmQ8Homr6s1s5bO56Y3xBg
+      Accept-Ranges:
+      - bytes
+      Content-Type:
+      - application/schema+json
+      Server:
+      - AmazonS3
+      Content-Length:
+      - '62300'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"$schema":"https://schemas.amazon.com/selling-partners/definitions/product-types/meta-schema/v1","$id":"https://schemas.amazon.com/selling-partners/definitions/product-types/schema/v1/PRODUCT","$comment":"Amazon
+        product type definition for PRODUCT product type","$defs":{"marketplace_id":{"default":"A1F83G8C2ARO7P","editable":false,"hidden":true,"examples":["Amazon.co.uk"],"type":"string","anyOf":[{"type":"string"},{"type":"string","enum":["A1F83G8C2ARO7P"],"enumNames":["Amazon.co.uk"]}]},"language_tag":{"default":"en_GB","editable":false,"hidden":true,"examples":["English
+        (United Kingdom)"],"type":"string","anyOf":[{"type":"string"},{"type":"string","enum":["en_GB"],"enumNames":["English
+        (United Kingdom)"]}]}},"type":"object","required":[],"properties":{"externally_assigned_product_identifier":{"title":"External
+        Product ID","description":"Provide the external ID (barcode) type and corresponding
+        value that is being used to identify the product","examples":["714532191586"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id","type"],"items":{"type":"object","required":["type","value"],"properties":{"type":{"title":"External
+        Product ID Type","description":"Select the type of external ID (barcode) that
+        is being used to identify this product","editable":false,"hidden":false,"examples":["UPC"],"type":"string","enum":["ean","gtin","upc"],"enumNames":["EAN","GTIN","UPC"]},"value":{"title":"External
+        Product ID","description":"Provide the corresponding external product id value
+        based on the type that was selected","editable":false,"hidden":false,"examples":["714532191586"],"type":"string"},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"merchant_suggested_asin":{"title":"Merchant
+        Suggested ASIN","description":"Provide an ASIN for your product if one exists.
+        If a value is not provided, the system will attempt a match based on the External
+        Product ID.","examples":["B007KQBXN0"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id","value"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Merchant
+        Suggested ASIN","description":"Provide an ASIN for your product if one exists.
+        If a value is not provided, the system will attempt a match based on the External
+        Product ID.","editable":false,"hidden":false,"examples":["B007KQBXN0"],"type":"string","minLength":10,"maxLength":10,"maxUtf8ByteLength":40},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"skip_offer":{"title":"Skip
+        Offer","description":"Please indicate whether the offer should be skipped
+        and a buyable offer should not be created.  A value of \"true\", means no
+        offer will be created.","examples":["True"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Skip
+        Offer","description":"Please indicate whether the offer should be skipped
+        and a buyable offer should not be created.  A value of \"true\", means no
+        offer will be created.","editable":true,"hidden":false,"examples":["True"],"type":"boolean","enum":[false,true],"enumNames":["No","Yes"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"fulfillment_availability":{"title":"Fulfillment
+        Availability","description":"For those merchants using Amazon fulfillment
+        services, please provide associated logistical information.","type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["fulfillment_channel_code"],"items":{"type":"object","required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"title":"Fulfillment
+        Channel Code","description":"For those merchants using Amazon fulfillment
+        services, this designates which fulfillment network will be used. Specifying
+        a value other than DEFAULT will cancel the Merchant-fulfilled offering.","editable":true,"hidden":false,"examples":["AMAZON_NA"],"type":"string","enum":["AMAZON_EU","DEFAULT"],"enumNames":["AMAZON_EU","DEFAULT"]},"quantity":{"title":"Quantity","description":"Enter
+        the quantity of the item you are making available for sale. This is your current
+        inventory commitment (as a whole number)","editable":true,"hidden":false,"examples":["152"],"type":"integer","minimum":0},"lead_time_to_ship_max_days":{"title":"Handling
+        Time","description":"Provide the time, in days, between when you receive an
+        order for an item and when you can ship the item","editable":true,"hidden":false,"examples":["5"],"type":"integer","minimum":0,"maximum":30},"restock_date":{"title":"Restock
+        Date","description":"Date that product will be restocked","editable":true,"hidden":false,"examples":["2020-05-05"],"type":"string","oneOf":[{"type":"string","format":"date"},{"type":"string","format":"date-time"}]},"is_inventory_available":{"title":"Inventory
+        Always Available","description":"Always available inventory is an alternative
+        to quantity that allows inventory to never deplete. Enabling or disabling
+        will toggle this feature on or off. Note that a quantity cannot be specified
+        when provided.","editable":true,"hidden":false,"examples":["Enabled"],"type":"boolean","enum":[false,true],"enumNames":["Disabled","Enabled"]}},"additionalProperties":false}},"map_policy":{"title":"Minimum
+        Advertised Price Display","description":"Select one.","examples":["Policy
+        9"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Minimum
+        Advertised Price Display","description":"Select one.","editable":true,"hidden":false,"examples":["Policy
+        9"],"type":"string","enum":["policy_1","policy_10","policy_11","policy_2","policy_3","policy_4","policy_5","policy_6","policy_7","policy_8","policy_9"],"enumNames":["Policy
+        1","Policy 10","Policy 11","Policy 2","Policy 3","Policy 4","Policy 5","Policy
+        6","Policy 7","Policy 8","Policy 9"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"purchasable_offer":{"title":"Purchasable
+        Offer","description":"The attribute indicates the Purchasable Offer of the
+        product","examples":["EUR"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id","currency","audience"],"items":{"type":"object","required":[],"properties":{"map_price":{"title":"Purchasable
+        Offer Map Price","description":"The attribute indicates the Purchasable Offer
+        Map Price of the product","type":"array","minItems":1,"items":{"type":"object","required":[],"properties":{"schedule":{"title":"Purchasable
+        Offer Map Price Schedule","description":"The attribute indicates the Purchasable
+        Offer Map Price Schedule of the product","type":"array","minItems":1,"items":{"type":"object","required":[],"properties":{"value_with_tax":{"title":"Minimum
+        Advertised Price","description":"Provide the minimum advertised price","editable":true,"hidden":false,"examples":["259.99"],"type":"number"}},"additionalProperties":false}}},"additionalProperties":false}},"currency":{"title":"Currency","description":"Select
+        the corresponding currency","default":"GBP","editable":true,"hidden":false,"examples":["GBP"],"type":"string","anyOf":[{"type":"string"},{"type":"string","enum":["GBP"],"enumNames":["GBP"]}]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"our_price":{"title":"Purchasable
+        Offer Our Price","description":"The attribute indicates the Purchasable Offer
+        Our Price of the product","type":"array","minItems":1,"items":{"type":"object","required":["schedule"],"properties":{"schedule":{"title":"Purchasable
+        Offer Our Price Schedule","description":"The attribute indicates the Purchasable
+        Offer Our Price Schedule of the product","type":"array","minItems":1,"items":{"type":"object","required":["value_with_tax"],"properties":{"value_with_tax":{"title":"Your
+        Price","description":"Provide the base price of an item","editable":true,"hidden":false,"examples":["249.99"],"type":"number"}},"additionalProperties":false}}},"additionalProperties":false}},"minimum_seller_allowed_price":{"title":"Purchasable
+        Offer Minimum Seller Allowed Price","description":"The attribute indicates
+        the Purchasable Offer Minimum Seller Allowed Price of the product","type":"array","minItems":1,"items":{"type":"object","required":[],"properties":{"schedule":{"title":"Purchasable
+        Offer Minimum Seller Allowed Price Schedule","description":"The attribute
+        indicates the Purchasable Offer Minimum Seller Allowed Price Schedule of the
+        product","type":"array","minItems":1,"items":{"type":"object","required":[],"properties":{"value_with_tax":{"title":"Minimum
+        Seller Alllowed Price","description":"Provide the minimum seller allowed price","editable":true,"hidden":false,"examples":["259.99"],"type":"number"}},"additionalProperties":false}}},"additionalProperties":false}},"maximum_seller_allowed_price":{"title":"Purchasable
+        Offer Maximum Seller Allowed Price","description":"The attribute indicates
+        the Purchasable Offer Maximum Seller Allowed Price of the product","type":"array","minItems":1,"items":{"type":"object","required":[],"properties":{"schedule":{"title":"Purchasable
+        Offer Maximum Seller Allowed Price Schedule","description":"The attribute
+        indicates the Purchasable Offer Maximum Seller Allowed Price Schedule of the
+        product","type":"array","minItems":1,"items":{"type":"object","required":[],"properties":{"value_with_tax":{"title":"Maximum
+        Seller Allowed Price","description":"Provide the maximum seller allowed price","editable":true,"hidden":false,"examples":["259.99"],"type":"number"}},"additionalProperties":false}}},"additionalProperties":false}},"discounted_price":{"title":"Purchasable
+        Offer Discounted Price","description":"The attribute indicates the Purchasable
+        Offer Discounted Price of the product","type":"array","minItems":1,"items":{"type":"object","required":["schedule"],"properties":{"schedule":{"title":"Purchasable
+        Offer Discounted Price Schedule","description":"The attribute indicates the
+        Purchasable Offer Discounted Price Schedule of the product","type":"array","minItems":1,"items":{"type":"object","required":["end_at","start_at","value_with_tax"],"properties":{"value_with_tax":{"title":"Sale
+        Price","description":"The price at which you offer the product for sale.","editable":true,"hidden":false,"examples":["219.99"],"type":"number"},"start_at":{"title":"Sale
+        Start Date","description":"The date that the sale price will begin to override
+        the product''s standard price; the sale price will be displayed after 0:00AM
+        of Sale From Date.","editable":true,"hidden":false,"examples":["2017-06-30"],"type":"string","oneOf":[{"type":"string","format":"date"},{"type":"string","format":"date-time"}]},"end_at":{"title":"Sale
+        End Date","description":"The last date that the sale price will override the
+        item''s standard price; the product''s standard price will be displayed after
+        0:00AM of Sale End Date.","editable":true,"hidden":false,"examples":["2017-07-01"],"type":"string","oneOf":[{"type":"string","format":"date"},{"type":"string","format":"date-time"}]}},"additionalProperties":false}}},"additionalProperties":false}},"start_at":{"title":"Purchasable
+        Offer Start At","description":"The attribute indicates the Purchasable Offer
+        Start At of the product","type":"object","required":[],"properties":{"value":{"title":"Offering
+        Release Date","description":"Your price start date","editable":true,"hidden":false,"examples":["2017-06-30"],"type":"string","oneOf":[{"type":"string","format":"date"},{"type":"string","format":"date-time"}]}},"additionalProperties":false},"end_at":{"title":"Purchasable
+        Offer End At","description":"The attribute indicates the Purchasable Offer
+        End At of the product","type":"object","required":[],"properties":{"value":{"title":"Stop
+        Selling Date","description":"Your price end date","editable":true,"hidden":false,"examples":["2017-07-01"],"type":"string","oneOf":[{"type":"string","format":"date"},{"type":"string","format":"date-time"}]}},"additionalProperties":false},"audience":{"title":"Audience","description":"Provide
+        the intended buyer segment or program that this purchasable offer is applicable
+        to.","editable":false,"hidden":true,"examples":["B2B"],"type":"string","enum":["ALL"],"enumNames":["Sell
+        on Amazon"]},"quantity_discount_plan":{"title":"Purchasable Business Offer
+        Quantity Discount Plan","description":"Provide and define the quantity discount
+        plan for your business price.","examples":["Schedule Quantity Price Type:
+        Fixed; Schedule Levels Quantity Lower Bound: 5; Schedule Levels Quantity Price:
+        10"],"type":"array","minItems":1,"maxItems":0,"items":{"type":"object","required":["schedule"],"properties":{"schedule":{"title":"Schedule","description":"Provide
+        the details, such as dates, pricing type that define your scheduled quantity
+        discount plan.","examples":["Quantity price start date: 06/30/2024; Quantity
+        price end date: 07/01/2024"],"type":"array","minItems":1,"items":{"type":"object","required":["discount_type","levels"],"properties":{"discount_type":{"title":"Quantity
+        Price Type","description":"Provide weather the quantity price type is fixed,
+        a price set in local currency for each quantity threshold, or a percentage
+        of business price.","editable":true,"hidden":false,"examples":["Fixed, Percent"],"type":"string","enum":["fixed","percent"],"enumNames":["Fixed","Percent"]},"levels":{"title":"Levels","description":"Quantity
+        Discount Plan Schedule Levels","examples":["Quantity Discount Plan Schedule
+        Levels"],"type":"array","minItems":1,"maxItems":5,"items":{"type":"object","required":["lower_bound","value"],"properties":{"lower_bound":{"title":"Quantity
+        Threshold (Lower Bound)","description":"Provide the minimum purchase quantity
+        necessary to receive the discount. It will apply to all units if the quantity
+        threshold is met.","editable":true,"hidden":false,"examples":["5, 10"],"type":"integer"},"value":{"title":"Quantity
+        Price (Fixed Price/Percentage Discount)","description":"Provide the quantity
+        price for each quantity threshold or the discount percentage offered on the
+        business price for each quantity threshold.","editable":true,"hidden":false,"examples":["10,
+        20"],"type":"number"}},"additionalProperties":false}}},"additionalProperties":false}}},"additionalProperties":false}}},"additionalProperties":false}},"condition_type":{"title":"Offering
+        Condition Type","description":"Provide the actual condition type of the product","examples":["New"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Offering
+        Condition Type","description":"Provide the actual condition type of the product","editable":false,"hidden":false,"examples":["New"],"type":"string","enum":["club_club","collectible_acceptable","collectible_good","collectible_like_new","collectible_very_good","new_new","new_oem","new_open_box","refurbished_refurbished","used_acceptable","used_good","used_like_new","used_very_good"],"enumNames":["Club","Collectible
+        - Acceptable","Collectible - Good","Collectible - Like New","Collectible -
+        Very Good","New","New - OEM","New - Open Box","Refurbished","Used - Acceptable","Used
+        - Good","Used - Like New","Used - Very Good"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"condition_note":{"title":"Offer
+        Condition Note","description":"Provide descriptive text explaining the actual
+        condition of the item","type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id","language_tag"],"items":{"type":"object","required":["language_tag","value"],"properties":{"value":{"title":"Offer
+        Condition Note","description":"Provide descriptive text explaining the actual
+        condition of the item","editable":true,"hidden":false,"examples":["Small dent
+        in left side panel."],"type":"string","maxLength":2204},"language_tag":{"$ref":"#/$defs/language_tag"},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"product_tax_code":{"title":"Product
+        Tax Code","description":"Enter the product tax code supplied to you by Amazon.com","examples":["A_GEN_NOTAX"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Product
+        Tax Code","description":"Enter the product tax code supplied to you by Amazon.com","editable":true,"hidden":false,"examples":["A_GEN_NOTAX"],"type":"string","maxLength":949},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"merchant_release_date":{"title":"Release
+        Date","description":"Provide the merchant release date using YYYY-MM-DD format","type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"value":{"title":"Release
+        Date","description":"Provide the merchant release date using YYYY-MM-DD format","editable":true,"hidden":false,"examples":["2017-07-20"],"type":"string","oneOf":[{"type":"string","format":"date"},{"type":"string","format":"date-time"}]}},"additionalProperties":false}},"merchant_shipping_group":{"title":"Merchant
+        Shipping Group","description":"The ship configuration group for an offer.
+        The ship configuration group is created and managed by the seller through
+        the ship setting UI.","examples":["\"Heavy Bulky Products\", \"CN ShunFeng
+        Delivery\""],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Merchant
+        Shipping Group","description":"The ship configuration group for an offer.
+        The ship configuration group is created and managed by the seller through
+        the ship setting UI.","editable":true,"hidden":false,"examples":["\"Heavy
+        Bulky Products\", \"CN ShunFeng Delivery\""],"type":"string","maxLength":100},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"max_order_quantity":{"title":"Maximum
+        Order Quantity","description":"Max order quantity.","type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Maximum
+        Order Quantity","description":"Max order quantity.","editable":true,"hidden":false,"examples":["3"],"type":"integer","minimum":1},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"gift_options":{"title":"Gift
+        Options","description":"Provide gift card options","examples":["Yes"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":[],"properties":{"can_be_messaged":{"title":"Offering
+        Can Be Gift Messaged","description":"If you can print a gift message with
+        the item indicate that here.  If left blank, defaults to ''false''","editable":true,"hidden":false,"examples":["TRUE"],"type":"boolean","enum":[false,true],"enumNames":["No","Yes"]},"can_be_wrapped":{"title":"Is
+        Gift Wrap Available","description":"If you can gift wrap an item indicate
+        that here.  If left blank, defaults to ''false''","editable":true,"hidden":false,"examples":["TRUE"],"type":"boolean","enum":[false,true],"enumNames":["No","Yes"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"main_offer_image_locator":{"title":"Main
+        Offer Image Locator","description":"Provide the location of the image","examples":["Feed"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["media_location"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"media_location":{"title":"Main
+        Image Location","description":"The URL where the main offer-specific image
+        of the product is located","editable":true,"hidden":false,"examples":["http://www.companyname.com/images/1250.offer.jpg"],"type":"string","format":"uri","pattern":"^(https?|s3)://"}},"additionalProperties":false}},"other_offer_image_locator_1":{"title":"Other
+        Offer Image Locator","description":"Provide the location of the image","examples":["Feed"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["media_location"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"media_location":{"title":"Other
+        Image Location","description":"The URL for additional images of your product.
+        These images will be shown on the detail page when the customer clicks through
+        to see other views associated with the product.","editable":true,"hidden":false,"examples":["http://www.companyname.com/images/1250.other1.jpg"],"type":"string","format":"uri","pattern":"^(https?|s3)://"}},"additionalProperties":false}},"other_offer_image_locator_2":{"title":"Other
+        Offer Image Locator","description":"Provide the location of the image","examples":["Feed"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["media_location"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"media_location":{"title":"Other
+        Image Location","description":"The URL for additional images of your product.
+        These images will be shown on the detail page when the customer clicks through
+        to see other views associated with the product.","editable":true,"hidden":false,"examples":["http://www.companyname.com/images/1250.other1.jpg"],"type":"string","format":"uri","pattern":"^(https?|s3)://"}},"additionalProperties":false}},"other_offer_image_locator_3":{"title":"Other
+        Offer Image Locator","description":"Provide the location of the image","examples":["Feed"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["media_location"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"media_location":{"title":"Other
+        Image Location","description":"The URL for additional images of your product.
+        These images will be shown on the detail page when the customer clicks through
+        to see other views associated with the product.","editable":true,"hidden":false,"examples":["http://www.companyname.com/images/1250.other1.jpg"],"type":"string","format":"uri","pattern":"^(https?|s3)://"}},"additionalProperties":false}},"other_offer_image_locator_4":{"title":"Other
+        Offer Image Locator","description":"Provide the location of the image","examples":["Feed"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["media_location"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"media_location":{"title":"Other
+        Image Location","description":"The URL for additional images of your product.
+        These images will be shown on the detail page when the customer clicks through
+        to see other views associated with the product.","editable":true,"hidden":false,"examples":["http://www.companyname.com/images/1250.other1.jpg"],"type":"string","format":"uri","pattern":"^(https?|s3)://"}},"additionalProperties":false}},"other_offer_image_locator_5":{"title":"Other
+        Offer Image Locator","description":"Provide the location and source of the
+        image","examples":["Feed"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["media_location"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"media_location":{"title":"Other
+        Image Location","description":"The URL for additional images of your product.
+        These images will be shown on the detail page when the customer clicks through
+        to see other views associated with the product.","editable":true,"hidden":false,"examples":["http://www.companyname.com/images/1250.other1.jpg"],"type":"string","format":"uri","pattern":"^(https?|s3)://"}},"additionalProperties":false}},"country_of_origin":{"title":"Country
+        of Origin","description":"Select the product''s country of origin","examples":["China,
+        Japan, United States"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Country
+        of Origin","description":"Select the product''s country of origin","editable":true,"hidden":false,"examples":["China,
+        Japan, United States"],"type":"string","enum":["AF","AX","AL","DZ","AS","AD","AO","AI","AQ","AG","AR","AM","AW","AC","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT","BO","BQ","BA","BW","BV","BR","IO","VG","BN","BG","BF","BI","KH","CM","CA","IC","CV","KY","CF","TD","CL","CN","CX","CC","CO","KM","CG","CK","CR","HR","CU","CW","CY","CZ","KP","CD","DK","DJ","DM","DO","TP","EC","EG","SV","GQ","ER","EE","ET","FK","FO","FM","FJ","FI","FR","GF","PF","TF","GA","GM","GE","DE","GH","GI","GB","GR","GL","GD","GP","GU","GT","GG","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","ID","IR","IE","IQ","IM","IL","IT","CI","JM","JP","JE","JO","KZ","KE","KI","KW","KG","LA","LV","LB","LS","LR","LY","LI","LT","LU","MO","MK","MG","MW","MY","MV","ML","MT","MH","MQ","MR","MU","YT","MX","MC","MN","ME","MS","MA","MZ","MM","NA","NR","NP","NL","AN","NC","NZ","NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PS","PA","PG","PY","PE","PH","PN","PL","PT","PR","QA","KR","MD","RE","RO","RU","RW","BL","SH","KN","LC","MF","PM","VC","WS","SM","ST","SA","SN","RS","CS","SC","SL","SG","SX","SK","SI","SB","SO","ZA","GS","SS","ES","LK","SD","SR","SJ","SZ","SE","CH","SY","TW","TJ","TH","TL","TG","TK","TO","TT","TA","TN","TR","TM","TC","TV","VI","UG","UA","AE","UK","TZ","US","UM","unknown","UY","UZ","VU","VE","VN","WF","WD","EH","WZ","XB","XC","XE","XK","XM","XN","XY","YE","YU","ZR","ZM","ZW"],"enumNames":["Afghanistan","Aland
+        Islands","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua
+        and Barbuda","Argentina","Armenia","Aruba","Ascension Island","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bonaire,
+        Saint Eustatius and Saba","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British
+        Indian Ocean Territory","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina
+        Faso","Burundi","Cambodia","Cameroon","Canada","Canary Islands","Cape Verde","Cayman
+        Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos
+        (Keeling) Islands","Colombia","Comoros","Congo","Cook Islands","Costa Rica","Croatia","Cuba","Curaçao","Cyprus","Czech
+        Republic","Democratic People''s Republic of Korea","Democratic Republic of
+        the Congo","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El
+        Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands
+        (Malvinas)","Faroe Islands","Federated States of Micronesia","Fiji","Finland","France","French
+        Guiana","French Polynesia","French Southern Territories","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Great
+        Britain","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana","Haiti","Heard
+        Island and the McDonald Islands","Holy See","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Ireland","Islamic
+        Republic of Iraq","Isle of Man","Israel","Italy","Ivory Coast","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Lao
+        People''s Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macao","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall
+        Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","Netherlands
+        Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk
+        Island","Northern Mariana Islands","Norway","Oman","Pakistan","Palau","Palestinian
+        Territories","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn","Poland","Portugal","Puerto
+        Rico","Qatar","Republic of Korea","Republic of Moldova","Reunion","Romania","Russian
+        Federation","Rwanda","Saint Barthelemy","Saint Helena, Ascension and Tristan
+        da Cunha","Saint Kitts and Nevis","Saint Lucia","Saint Martin","Saint Pierre
+        and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao
+        Tome and Principe","Saudi Arabia","Senegal","Serbia","Serbia and Montenegro","Seychelles","Sierra
+        Leone","Singapore","Sint Maarten","Slovakia","Slovenia","Solomon Islands","Somalia","South
+        Africa","South Georgia and the South Sandwich Islands","South Sudan","Spain","Sri
+        Lanka","Sudan","Suriname","Svalbard and Jan Mayen","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Thailand","Timor-Leste","Togo","Tokelau","Tonga","Trinidad
+        and Tobago","Tristan da Cunha","Tunisia","Turkey","Turkmenistan","Turks and
+        Caicos Islands","Tuvalu","U.S. Virgin Islands","Uganda","Ukraine","United
+        Arab Emirates","United Kingdom","United Republic of Tanzania","United States","United
+        States Minor Outlying Islands","Unknown","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Wallis
+        and Futuna","WD","Western Sahara","WZ","XB","XC","XE","XK","XM","XN","XY","Yemen","Yugoslavia","Zaire","Zambia","Zimbabwe"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"batteries_required":{"title":"Are
+        batteries required?","description":"Select \"yes\" if batteries are required
+        to power the item (or if the item is a battery) or no if they are not. Please
+        note that an internal rechargeable battery is also considered a battery","examples":["Yes,
+        No"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Are
+        batteries required?","description":"Select \"yes\" if batteries are required
+        to power the item (or if the item is a battery) or \"no\" if they are not.
+        Please note that an internal rechargeable battery is also considered a battery","editable":true,"hidden":false,"examples":["Yes,
+        No"],"type":"boolean","enum":[false,true],"enumNames":["No","Yes"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"batteries_included":{"title":"Are
+        batteries included?","description":"Select \"yes\" if batteries are contained
+        in the product (e.g. batteries inside a pair of Bluetooth headphones) and/or
+        included with the product (e.g. batteries packed separately with a camera),
+        otherwise select \"no\"","examples":["Yes"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Are
+        batteries included?","description":"Select \"yes\" if batteries are contained
+        in the product (e.g. batteries inside a pair of Bluetooth headphones) and/or
+        included with the product (e.g. batteries packed separately with a camera),
+        otherwise select \"no\"","editable":true,"hidden":false,"examples":["Yes"],"type":"boolean","enum":[false,true],"enumNames":["No","Yes"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"battery":{"title":"Battery","description":"Provide
+        battery information","examples":["Alkaline"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":[],"properties":{"cell_composition":{"title":"Battery
+        Cell Composition","description":"Select the chemical composition of the battery
+        cell","examples":["NiMh"],"type":"array","minItems":1,"maxItems":1,"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Battery
+        Cell Composition","description":"Select the chemical composition of the battery
+        cell","editable":true,"hidden":false,"examples":["NiMh"],"type":"string","enum":["alkaline","aluminum_oxygen","lead_acid","lead_calcium","lead_acid_agm","lithium","lithium_ion","lithium_manganese_dioxide","lithium_metal","lithium_polymer","lithium_air","lithium_cobalt","lithium_nickel_cobalt_aluminum","lithium_nickel_manganese_cobalt","lithium_phosphate","lithium_thionyl_chloride","lithium_titanate","manganese","mercury_oxide","NiCAD","nickel_oxyhydroxide","nickel_iron","nickel_zinc","NiMh","polymer","sealed_lead_acid","silver_oxide","silver_calcium","silver_zinc","zinc","zinc_carbon","zinc_chloride","zinc_air"],"enumNames":["Alkaline","Aluminium
+        Oxygen","Lead Acid","Lead Calcium","Lead-Acid, AGM","Lithium","Lithium Ion","Lithium
+        Manganese Dioxide","Lithium Metal","Lithium Polymer","Lithium-Air","Lithium-Cobalt","Lithium-Nickel
+        Cobalt Aluminium (NCA)","Lithium-Nickel Manganese Cobalt (NMC)","Lithium-Phosphate","Lithium-Thionyl
+        Chloride (Li-SOCL2)","Lithium-Titanate","Manganese","Mercury Oxide","NiCAD","Nickel
+        Oxyhydroxide","Nickel-Iron","Nickel-Zinc","NiMH","Polymer","Sealed Lead Acid","Silver
+        Oxide","Silver-Calcium","Silver-Zinc","Zinc","Zinc Carbon","Zinc Chloride","Zinc-Air"]}},"additionalProperties":false}},"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"weight":{"title":"Battery
+        Weight","description":"Provide the total net weight of the batteries included.
+        This is the weight of the standalone batteries not including packaging or
+        the device it may be used in","examples":["2.5 Grams"],"type":"array","minItems":1,"maxItems":1,"items":{"type":"object","required":["unit","value"],"properties":{"value":{"title":"Battery
+        Weight","description":"Provide the total net weight (numeric value) of the
+        batteries included. This is the weight of the standalone batteries not including
+        packaging or the device it may be used in.","editable":true,"hidden":false,"examples":["2.5"],"type":"number","minimum":0,"maxLength":5000},"unit":{"title":"Battery
+        Weight Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Grams"],"type":"string","enum":["grams","hundredths_pounds","kilograms","milligrams","ounces","pounds","tons"],"enumNames":["Grams","Hundredths
+        Pounds","Kilograms","Milligrams","Ounces","Pounds","Tons"]}},"additionalProperties":false}}},"additionalProperties":false}},"num_batteries":{"title":"Number
+        of Batteries","description":"Provide the quantity and type of batteries needed
+        to power the item.  If batteries are included with the item be sure to account
+        for spare batteries provided","examples":["1 AA, 2 AAA"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1000,"selectors":["marketplace_id","type"],"items":{"type":"object","required":["quantity","type"],"properties":{"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"quantity":{"title":"Number
+        of Batteries","description":"Specify the number of batteries needed to power
+        the item.  If batteries are included with the item be sure to account for
+        spare batteries provided","editable":true,"hidden":false,"examples":["1, 4"],"type":"integer","minimum":0},"type":{"title":"Battery
+        Type","description":"Specify the type of batteries needed to power the item","editable":true,"hidden":false,"examples":["A,
+        AA, Lithium Ion"],"type":"string","enum":["12v","9v","a","aa","aaa","aaaa","c","cr123a","cr2","cr2032","cr2430","cr5","d","lithium_ion","lithium_metal","lithium_polymer","lr41","lr43","lr44","nonstandard_battery","p76","product_specific","unknown"],"enumNames":["12V","9V","A","AA","AAA","AAAA","C","CR123A","CR2","CR2032","CR2430","CR5","D","Lithium
+        Ion","Lithium Metal","Lithium Polymer","LR41","LR43","LR44","Nonstandard Battery","P76","Product
+        Specific","Unknown"]}},"additionalProperties":false}},"number_of_lithium_metal_cells":{"title":"Number
+        of Lithium Metal Cells","description":"Specify the total number of Lithium
+        Metal cells in the product where the cell isn''t contained in an encased battery
+        (e.g. coin cells)","examples":["7"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Number
+        of Lithium Metal Cells","description":"Specify the total number of Lithium
+        Metal cells in the product where the cell isn''t contained in an encased battery
+        (e.g. coin cells)","editable":true,"hidden":false,"examples":["7"],"type":"integer","minimum":0},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"number_of_lithium_ion_cells":{"title":"Number
+        of Lithium-ion Cells","description":"Specify the total number of Lithium-ion
+        cells in the product where the cell isn''t contained in an encased battery.
+        For example, an AA battery is considered a cell","examples":["7"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Number
+        of Lithium-ion Cells","description":"Specify the total number of Lithium-ion
+        cells in the product where the cell isn''t contained in an encased battery.
+        For example, an AA battery is considered a cell","editable":true,"hidden":false,"examples":["7"],"type":"integer","minimum":0},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"lithium_battery":{"title":"Lithium
+        Battery","description":"The attribute indicates the Lithium Battery of the
+        product","examples":["Milligrams"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":[],"properties":{"energy_content":{"title":"Lithium
+        Battery Energy Content","description":"Provide the total amount of energy
+        stored in the Lithium batteries","examples":["2.6 Watt Hours"],"type":"array","minItems":1,"maxItems":1,"items":{"type":"object","required":["unit","value"],"properties":{"value":{"title":"Lithium
+        Battery Energy Content","description":"Provide the lithium battery energy
+        content (numeric value)","editable":false,"hidden":false,"examples":["2.6"],"type":"number","minimum":0,"maxLength":5000},"unit":{"title":"Lithium
+        Battery Energy Content Unit","description":"Select the corresponding unit","editable":false,"hidden":false,"examples":["Watt
+        Hours"],"type":"string","enum":["btus","cubic_feet","cubic_meters","joules","kilowatt_hours","milliamp_hours","milliampere_hour","milliampere_second","watt_hours"],"enumNames":["British
+        Thermal Units (BTUs)","Cubic Feet","Cubic Meters","Joules","Kilowatt Hours","Milliamp
+        Hours (mAh)","Milliampere Hour (mAh)","Milliampere Second (mAs)","Watt Hours"]}},"additionalProperties":false}},"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"packaging":{"title":"Lithium
+        Battery Packaging","description":"Select “in equipment” if the battery is
+        contained in the item         . Select “with equipment” if the battery is packed separately with the device
+        it is meant to power. Select “only” if the product is a battery sold alone
+        or with items it is not meant to power.","examples":["Batteries Contained
+        in Equipment, Batteries Only, Batteries Packed with Equipment"],"type":"array","minItems":1,"maxItems":1,"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Lithium
+        Battery Packaging","description":"Select “in equipment” if the battery is
+        contained in the item         . Select “with equipment” if the battery is packed separately with the device
+        it is meant to power. Select “only” if the product is a battery sold alone
+        or with items it is not meant to power.","editable":true,"hidden":false,"examples":["Batteries
+        contained in equipment, Batteries packed with equipment, Batteries only"],"type":"string","enum":["batteries_contained_in_equipment","batteries_only","batteries_packed_with_equipment"],"enumNames":["Batteries
+        contained in equipment","Batteries only","Batteries packed with equipment"]}},"additionalProperties":false}},"weight":{"title":"Lithium
+        Battery Weight","description":"Provide the weight in gms of lithium contained
+        in each \"metal\" cell or battery or in the case of rechargeable batteries
+        the \"equivalent lithium content\" expressed in grams, in each ion cell or
+        battery","examples":["2"],"type":"array","minItems":1,"maxItems":1,"items":{"type":"object","required":["unit","value"],"properties":{"value":{"title":"Lithium
+        Battery Weight","description":"Provide the weight in gms of lithium contained
+        in each \"metal\" cell or battery or in the case of rechargeable batteries
+        the \"equivalent lithium content\" expressed in grams, in each ion cell or
+        battery","editable":true,"hidden":false,"examples":["2"],"type":"number","minimum":0,"maxLength":12},"unit":{"title":"Lithium
+        Battery Weight Unit","description":"Select the corresponding weight unit","editable":true,"hidden":false,"examples":["Grams"],"type":"string","enum":["cubic_centimeters","cubic_feet","cubic_inches","fluid_ounces","gallons","grams","grams_per_square_meter","hundredths_pounds","kilograms","liters","microliters","milligrams","milliliters","ounces","pints","pounds","quarts","tons"],"enumNames":["Cubic
+        Centimeters","Cubic Feet","Cubic Inches","Fluid Ounces","Gallons","Grams","Grams
+        per Square Meter","Hundredths Pounds","Kilograms","Liters","Microliters","Milligrams","Milliliters","ounces","Pints","Pounds","Quarts","Tons"]}},"additionalProperties":false}}},"additionalProperties":false}},"supplier_declared_dg_hz_regulation":{"title":"Dangerous
+        Goods Regulations","description":"If the product is a Dangerous Good or Hazardous
+        Material, Substance or Waste that is regulated for transportation, storage,
+        and/or waste select from the list of valid values","examples":["GHS, Storage,
+        Transportation"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1000,"selectors":["marketplace_id"],"items":{"type":"object","required":["value"],"properties":{"value":{"title":"Dangerous
+        Goods Regulations","description":"If the product is a Dangerous Good or Hazardous
+        Material, Substance or Waste that is regulated for transportation, storage,
+        and/or waste select from the list of valid values","editable":true,"hidden":false,"examples":["GHS,
+        Storage, Transportation"],"type":"string","enum":["ghs","not_applicable","other","storage","transportation","unknown","waste"],"enumNames":["GHS","Not
+        Applicable","Other","Storage","Transportation","Unknown","Waste"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"ghs":{"title":"GHS","description":"Provide
+        the Global Harmonized System (GHS) information","examples":["NGK"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":[],"properties":{"classification":{"title":"GHS
+        Classification","description":"Provide the Global Harmonised System (GHS)
+        CLP classification for the product","examples":["Class: Explosive, Subcategory:
+        Liquid"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1000,"selectors":["class"],"items":{"type":"object","required":["class"],"properties":{"class":{"title":"GHS
+        Class","description":"Select the GHS Class of the product from the list of
+        valid values if GHS is selected as the Dangerous Goods Regulation. GHS Class
+        indicates the warning statement assigned by the GHS classification system.","editable":true,"hidden":false,"examples":["Explosive"],"type":"string","enum":["amzn_specific_no_label_with_warning","compressed_gas","corrosive","environmentally_damaging","explosive","flammable","health_hazard","irritant","oxidizing","toxic"],"enumNames":["Amazon
+        Specific No Label With Warning","Compressed Gas","Corrosive","Environmentally
+        Damaging","Explosive","Flammable","Health Hazard","Irritant","Oxidising","Toxic"]}},"additionalProperties":false}},"marketplace_id":{"$ref":"#/$defs/marketplace_id"},"statement":{"title":"GHS
+        Statement","description":"Global Harmonize System (GHS) CLP warning statement","examples":["EUH001"],"type":"array","minItems":1,"maxItems":1000,"items":{"type":"object","required":["value"],"properties":{"value":{"title":"GHS
+        Statement","description":"Global Harmonize System (GHS) CLP warning statement","editable":true,"hidden":false,"examples":["EUH001"],"type":"string","enum":["ah222a","ah223a","ah227a","ah227b","ah227c","ah227d","ah229a","ah314a","ah314b","ah314c","ah318a","ah318b","ah318c","ah415","ah416","ah417","ah500","auh001","auh006","auh014","auh018","auh019","auh029","auh031","auh032","auh044","auh066","auh070","auh071","c00","c01","c02","c03","c04","c05","c06","c07","c08","c09","c10","c11","c12","c13","c14","c15","c16","euh001","euh006","euh014","euh018","euh019","euh029","euh031","euh032","euh044","euh059","euh066","euh070","euh071","euh201","euh201a","euh202","euh203","euh204","euh205","euh206","euh207","euh208","euh208a","euh208b","euh208c","euh208d","euh208e","euh208f","euh208g","euh208h","euh208i","euh208j","euh208k","euh208l","euh208m","euh208n","euh208o","euh208p","euh208q","euh208r","euh208s","euh208t","euh208x","euh209","euh209a","euh210","euh211","euh212","euh380","euh381","euh401","euh430","euh431","euh440","euh441","euh450","euh451","h200","h201","h202","h203","h204","h205","h206","h207","h208","h209","h210","h211","h220","h221","h222","h223","h224","h225","h226","h227","h228","h229","h230","h231","h232","h240","h241","h242","h250","h251","h252","h260","h261","h270","h271","h272","h280","h281","h282","h283","h284","h290","h300","h301","h302","h303","h304","h305","h310","h311","h312","h313","h314","h315","h316","h317","h318","h319","h320","h330","h331","h332","h333","h334","h335","h336","h340","h341","h350","h350i","h351","h360","h360d","h360df","h360f","h360fd","h361","h361d","h361f","h361fd","h362","h370","h371","h372","h373","h400","h401","h402","h410","h411","h412","h413","h420","ngk","seh200","seh220","seh222","seh224","seh228","seh229","seh240","seh250","seh251","seh260","seh270","seh271","seh280","seh290","seh300","seh304","seh314","seh317","seh318","seh334","seh340","seh350","seh360","seh370","seh372","seh400","seh410","seh420","wgk1","wgk2","wgk3"],"enumNames":["AH222A","AH223A","AH227A","AH227B","AH227C","AH227D","AH229A","AH314A","AH314B","AH314C","AH318A","AH318B","AH318C","AH415","AH416","AH417","AH500","AUH001","AUH006","AUH014","AUH018","AUH019","AUH029","AUH031","AUH032","AUH044","AUH066","AUH070","AUH071","C00","C01","C02","C03","C04","C05","C06","C07","C08","C09","C10","C11","C12","C13","C14","C15","C16","EUH001","EUH006","EUH014","EUH018","EUH019","EUH029","EUH031","EUH032","EUH044","EUH059","EUH066","EUH070","EUH071","EUH201","EUH201A","EUH202","EUH203","EUH204","EUH205","EUH206","EUH207","EUH208","EUH208A","EUH208B","EUH208C","EUH208D","EUH208E","EUH208F","EUH208G","EUH208H","EUH208I","EUH208J","EUH208K","EUH208L","EUH208M","EUH208N","EUH208O","EUH208P","EUH208Q","EUH208R","EUH208S","EUH208T","EUH208X","EUH209","EUH209A","EUH210","EUH211","EUH212","EUH380","EUH381","EUH401","EUH430","EUH431","EUH440","EUH441","EUH450","EUH451","H200","H201","H202","H203","H204","H205","H206","H207","H208","H209","H210","H211","H220","H221","H222","H223","H224","H225","H226","H227","H228","H229","H230","H231","H232","H240","H241","H242","H250","H251","H252","H260","H261","H270","H271","H272","H280","H281","H282","H283","H284","H290","H300","H301","H302","H303","H304","H305","H310","H311","H312","H313","H314","H315","H316","H317","H318","H319","H320","H330","H331","H332","H333","H334","H335","H336","H340","H341","H350","H350I","H351","H360","H360D","H360DF","H360F","H360FD","H361","H361D","H361F","H361FD","H362","H370","H371","H372","H373","H400","H401","H402","H410","H411","H412","H413","H420","NGK","SEH200","SEH220","SEH222","SEH224","SEH228","SEH229","SEH240","SEH250","SEH251","SEH260","SEH270","SEH271","SEH280","SEH290","SEH300","SEH304","SEH314","SEH317","SEH318","SEH334","SEH340","SEH350","SEH360","SEH370","SEH372","SEH400","SEH410","SEH420","WGK1","WGK2","WGK3"]}},"additionalProperties":false}}},"additionalProperties":false}},"hazmat":{"title":"Hazmat
+        Information","description":"Provide the hazardous product information relevant
+        to the product","examples":["UN1993"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id","aspect"],"items":{"type":"object","required":["aspect","value"],"properties":{"aspect":{"title":"Hazmat
+        Aspect","description":"Select the aspect or regulatory body used for the hazardous
+        product information","editable":false,"hidden":false,"examples":["UN Regulatory
+        Id"],"type":"string","enum":["united_nations_regulatory_id"],"enumNames":["UN
+        Regulatory Id"]},"value":{"title":"Hazmat Information","description":"Provide
+        the hazardous product information relevant to the product","editable":false,"hidden":false,"examples":["UN1993"],"type":"string","maxLength":2197},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"safety_data_sheet_url":{"title":"Safety
+        Data Sheet (SDS or MSDS) URL","description":"Provide the SDS/MSDS URL. Required
+        for Hazardous material SDS/MSDS provides information such as physical data
+        (flashpoint, pH, etc.), health concerns, storage, and transportation information
+        for potentially dangerous substances.","examples":["www.safetysheetsRus.com/hazardous_substance/msds.pdf"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id","language_tag"],"items":{"type":"object","required":["language_tag","value"],"properties":{"value":{"title":"Safety
+        Data Sheet (SDS or MSDS) URL","description":"Provide the SDS/MSDS URL if any
+        value other than Not Applicable or Unknown is selected in the Dangerous Goods
+        Regulation column.","editable":true,"hidden":false,"examples":["www.safetysheetsRus.com/hazardous_substance/msds.pdf"],"type":"string","maxLength":23397},"language_tag":{"$ref":"#/$defs/language_tag"},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"item_weight":{"title":"Item
+        Weight","description":"Provide the weight of the item (not including the packaging)","examples":["30.0
+        Pounds, 1.5 Kilograms"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Weight","description":"Provide the item weight numeric value (not including
+        the packaging)","editable":true,"hidden":false,"examples":["10"],"type":"number","minimum":0,"maxLength":5000},"unit":{"title":"Item
+        Weight Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Grams,
+        Kilograms"],"type":"string","enum":["grams","hundredths_pounds","kilograms","milligrams","ounces","pounds","tons"],"enumNames":["Grams","Hundredths
+        Pounds","Kilograms","Milligrams","Ounces","Pounds","Tons"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"item_dimensions":{"title":"Item
+        Dimensions","description":"Provide the item''s dimensions","examples":["10
+        x 2 x 2.7 inches"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["height","length","width"],"properties":{"length":{"title":"Item
+        Length","description":"Provide the length of the item","examples":["10"],"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Length","description":"Provide the item length numeric value","editable":true,"hidden":false,"examples":["10"],"type":"number","maximum":1E+9},"unit":{"title":"Item
+        Length Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Inches"],"type":"string","enum":["angstrom","centimeters","decimeters","feet","hundredths_inches","inches","kilometers","meters","micrometer","miles","millimeters","mils","nanometer","picometer","yards"],"enumNames":["Angstrom","Centimetres","Decimetres","Feet","Hundredths-Inches","Inches","Kilometres","Metres","Micron","Miles","Millimetres","Mils","Nanometre","Picometre","Yards"]}},"additionalProperties":false},"width":{"title":"Item
+        Width","description":"Provide the width of the item","examples":["2"],"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Width","description":"Provide the item width numeric value","editable":true,"hidden":false,"examples":["2"],"type":"number","maximum":1E+9},"unit":{"title":"Item
+        Width Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Inches"],"type":"string","enum":["angstrom","centimeters","decimeters","feet","hundredths_inches","inches","kilometers","meters","micrometer","miles","millimeters","mils","nanometer","picometer","yards"],"enumNames":["Angstrom","Centimetres","Decimetres","Feet","Hundredths-Inches","Inches","Kilometres","Metres","Micron","Miles","Millimetres","Mils","Nanometre","Picometre","Yards"]}},"additionalProperties":false},"height":{"title":"Item
+        Height","description":"Provide the height of the item","examples":["2.7 Inches"],"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Height","description":"Provide the item height numeric value","editable":true,"hidden":false,"examples":["2.7"],"type":"number","maximum":1E+9},"unit":{"title":"Item
+        Height Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Inches"],"type":"string","enum":["angstrom","centimeters","decimeters","feet","hundredths_inches","inches","kilometers","meters","micrometer","miles","millimeters","mils","nanometer","picometer","yards"],"enumNames":["Angstrom","Centimetres","Decimetres","Feet","Hundredths-Inches","Inches","Kilometres","Metres","Micron","Miles","Millimetres","Mils","Nanometre","Picometre","Yards"]}},"additionalProperties":false},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"item_package_dimensions":{"title":"Item
+        Package Dimensions","description":"Provide the item''s package dimensions","examples":["10
+        x 2 x 2.7 inches"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["height","length","width"],"properties":{"length":{"title":"Package
+        Length","description":"Provide the package length","examples":["10"],"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Package Length","description":"Provide the package length value (numeric)","editable":true,"hidden":false,"examples":["10"],"type":"number","maximum":1E+9},"unit":{"title":"Package
+        Length Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Inches"],"type":"string","enum":["angstrom","centimeters","decimeters","feet","hundredths_inches","inches","kilometers","meters","micrometer","miles","millimeters","mils","nanometer","picometer","yards"],"enumNames":["Angstrom","Centimetres","Decimetres","Feet","Hundredths-Inches","Inches","Kilometres","Metres","Micron","Miles","Millimetres","Mils","Nanometre","Picometre","Yards"]}},"additionalProperties":false},"width":{"title":"Package
+        Width","description":"Provide the package width","examples":["2"],"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Package Width","description":"Provide the package width value (numeric)","editable":true,"hidden":false,"examples":["2"],"type":"number","maximum":1E+9},"unit":{"title":"Package
+        Width Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Inches"],"type":"string","enum":["angstrom","centimeters","decimeters","feet","hundredths_inches","inches","kilometers","meters","micrometer","miles","millimeters","mils","nanometer","picometer","yards"],"enumNames":["Angstrom","Centimetres","Decimetres","Feet","Hundredths-Inches","Inches","Kilometres","Metres","Micron","Miles","Millimetres","Mils","Nanometre","Picometre","Yards"]}},"additionalProperties":false},"height":{"title":"Package
+        Height","description":"Provide the package height","examples":["2.7"],"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Package Height","description":"Provide the package height value (numeric)","editable":true,"hidden":false,"examples":["2.7"],"type":"number","maximum":1E+9},"unit":{"title":"Package
+        Height Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Inches"],"type":"string","enum":["angstrom","centimeters","decimeters","feet","hundredths_inches","inches","kilometers","meters","micrometer","miles","millimeters","mils","nanometer","picometer","yards"],"enumNames":["Angstrom","Centimetres","Decimetres","Feet","Hundredths-Inches","Inches","Kilometres","Metres","Micron","Miles","Millimetres","Mils","Nanometre","Picometre","Yards"]}},"additionalProperties":false},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}},"item_package_weight":{"title":"Item
+        Package Weight","description":"Provide the weight of the item plus the packaging","examples":["0.65
+        pounds, 24 kilogrammes"],"type":"array","minItems":1,"minUniqueItems":1,"maxUniqueItems":1,"selectors":["marketplace_id"],"items":{"type":"object","required":["unit","value"],"properties":{"value":{"title":"Item
+        Package Weight","description":"Provide the item package weight (numeric)","editable":true,"hidden":false,"examples":["24"],"type":"number","exclusiveMinimum":0,"minimum":0,"maximum":1E+9},"unit":{"title":"Item
+        Package Weight Unit","description":"Select the corresponding unit","editable":true,"hidden":false,"examples":["Pounds"],"type":"string","enum":["grams","hundredths_pounds","kilograms","milligrams","ounces","pounds","tons"],"enumNames":["Grams","Hundredths
+        Pounds","Kilograms","Milligrams","Ounces","Pounds","Tons"]},"marketplace_id":{"$ref":"#/$defs/marketplace_id"}},"additionalProperties":false}}},"additionalProperties":false,"allOf":[{"if":{"not":{"required":["merchant_suggested_asin"],"properties":{"merchant_suggested_asin":{"items":{"required":["value"]}}}}},"then":{"required":["externally_assigned_product_identifier"]}},{"if":{"not":{"required":["externally_assigned_product_identifier"],"properties":{"externally_assigned_product_identifier":{"items":{"required":["value"]}}}}},"then":{"required":["merchant_suggested_asin"]}},{"properties":{"fulfillment_availability":{"items":{"if":{"allOf":[{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}},{"not":{"required":["is_inventory_available"]}}]},"then":{"required":["quantity"]}}}}},{"properties":{"fulfillment_availability":{"items":{"if":{"not":{"allOf":[{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}},{"not":{"required":["is_inventory_available"]}}]}},"then":{"not":{"required":["quantity"]}}}}}},{"properties":{"fulfillment_availability":{"items":{"if":{"not":{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}}},"then":{"not":{"required":["lead_time_to_ship_max_days"]}}}}}},{"properties":{"fulfillment_availability":{"items":{"if":{"not":{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}}},"then":{"not":{"required":["restock_date"]}}}}}},{"properties":{"fulfillment_availability":{"items":{"if":{"allOf":[{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}},{"not":{"required":["quantity"]}}]},"then":{"required":["is_inventory_available"]}}}}},{"properties":{"fulfillment_availability":{"items":{"if":{"not":{"allOf":[{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}},{"not":{"required":["quantity"]}}]}},"then":{"not":{"required":["is_inventory_available"]}}}}}},{"if":{"not":{"required":["skip_offer"],"properties":{"skip_offer":{"contains":{"required":["value"],"properties":{"value":{"enum":[true]}}}}}}},"then":{"required":["condition_type","fulfillment_availability"]}},{"properties":{"purchasable_offer":{"items":{"if":{"anyOf":[{"required":["audience"],"properties":{"audience":{"enum":["ALL"]}}},{"not":{"required":["audience"]}}]},"then":{"properties":{"map_price":{"maxItems":1}}},"else":{"not":{"required":["map_price"]}}}}}},{"properties":{"purchasable_offer":{"items":{"if":{"required":["discounted_price"],"properties":{"discounted_price":{"items":{"required":["schedule"],"properties":{"schedule":{"items":{"required":["value_with_tax"]}}}}}}},"then":{"required":["our_price"],"properties":{"our_price":{"minItems":1}}}}}}},{"properties":{"purchasable_offer":{"items":{"if":{"anyOf":[{"required":["audience"],"properties":{"audience":{"enum":["ALL"]}}},{"not":{"required":["audience"]}}]},"then":{"properties":{"minimum_seller_allowed_price":{"maxItems":1}}},"else":{"not":{"required":["minimum_seller_allowed_price"]}}}}}},{"properties":{"purchasable_offer":{"items":{"if":{"anyOf":[{"required":["audience"],"properties":{"audience":{"enum":["ALL"]}}},{"not":{"required":["audience"]}}]},"then":{"properties":{"maximum_seller_allowed_price":{"maxItems":1}}},"else":{"not":{"required":["maximum_seller_allowed_price"]}}}}}},{"properties":{"purchasable_offer":{"items":{"if":{"anyOf":[{"required":["audience"],"properties":{"audience":{"enum":["ALL"]}}},{"not":{"required":["audience"]}}]},"then":{"properties":{"discounted_price":{"maxItems":1}}},"else":{"not":{"required":["discounted_price"]}}}}}},{"if":{"allOf":[{"required":["fulfillment_availability"],"properties":{"fulfillment_availability":{"contains":{"required":["fulfillment_channel_code"],"properties":{"fulfillment_channel_code":{"enum":["DEFAULT"]}}}}}},{"not":{"required":["skip_offer"],"properties":{"skip_offer":{"contains":{"required":["value"],"properties":{"value":{"enum":[true]}}}}}}}]},"then":{"required":["merchant_shipping_group"]}},{"if":{"required":["supplier_declared_dg_hz_regulation"],"properties":{"supplier_declared_dg_hz_regulation":{"contains":{"required":["value"],"properties":{"value":{"enum":["not_applicable"]}}}}}},"then":{"properties":{"supplier_declared_dg_hz_regulation":{"items":{"properties":{"value":{"not":{"enum":["other","storage","transportation","waste"]}}}}}}}}]}'
+  recorded_at: Fri, 13 Sep 2024 18:15:07 GMT
+recorded_with: VCR 6.3.1
