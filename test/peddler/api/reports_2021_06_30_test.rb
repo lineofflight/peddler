@@ -28,13 +28,13 @@ module Peddler
       end
 
       def test_get_report
-        res = @api.get_report("292248019978")
+        res = @api.get_report("123")
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_report_document
-        res = @api.get_report_document("amzn1.spdoc.1.4.eu.00051127-bd5b-48ff-ab6a-6d76c9061260.TXVRX1WISIZWM.5900")
+        res = @api.get_report_document("amzn1.spdoc.123")
 
         assert_predicate(res.status, :ok?)
       end
