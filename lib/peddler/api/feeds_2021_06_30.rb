@@ -48,7 +48,6 @@ module Peddler
       # @return [Hash] The API response
       def create_feed(body)
         path = "/feeds/2021-06-30/feeds"
-        body = body
 
         rate_limit(0.0083).post(path, body:)
       end
@@ -87,7 +86,6 @@ module Peddler
       # @return [Hash] The API response
       def create_feed_document(body)
         path = "/feeds/2021-06-30/documents"
-        body = body
 
         rate_limit(0.5).post(path, body:)
       end

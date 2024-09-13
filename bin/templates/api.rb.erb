@@ -13,7 +13,7 @@ module Peddler
         # @return [Hash] The API response
         def <%= snakecase(operation["operationId"]) %><%= generate_parameters(operation["parameters"], snakecase(operation["operationId"]), 6) %>
           path = "<%= operation["path"] %>"
-          <% if operation["body_param"] -%>
+          <% if operation["body_param"] && operation["body_param"]["name"] != "body" -%>
             body = <%= snakecase(operation["body_param"]["name"]) %>
           <% end -%>
           <% if operation["query_params"]&.any? -%>

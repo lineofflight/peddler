@@ -17,7 +17,6 @@ module Peddler
       # @return [Hash] The API response
       def get_selling_partner_metrics(body: nil)
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end
@@ -28,7 +27,6 @@ module Peddler
       # @return [Hash] The API response
       def list_offer_metrics(body: nil)
         path = "/replenishment/2022-11-07/offers/metrics/search"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end
@@ -39,7 +37,6 @@ module Peddler
       # @return [Hash] The API response
       def list_offers(body: nil)
         path = "/replenishment/2022-11-07/offers/search"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end

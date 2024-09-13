@@ -15,7 +15,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_shipment_confirmations(body)
         path = "/vendor/shipping/v1/shipmentConfirmations"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end
@@ -26,7 +25,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_shipments(body)
         path = "/vendor/shipping/v1/shipments"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end

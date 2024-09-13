@@ -51,7 +51,6 @@ module Peddler
       # @return [Hash] The API response
       def create_report(body)
         path = "/reports/2021-06-30/reports"
-        body = body
 
         rate_limit(0.0167).post(path, body:)
       end
@@ -100,7 +99,6 @@ module Peddler
       # @return [Hash] The API response
       def create_report_schedule(body)
         path = "/reports/2021-06-30/schedules"
-        body = body
 
         rate_limit(0.0222).post(path, body:)
       end

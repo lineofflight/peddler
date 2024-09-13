@@ -45,7 +45,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_shipping_label_request(body)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end
@@ -69,7 +68,6 @@ module Peddler
       # @return [Hash] The API response
       def create_shipping_labels(purchase_order_number, body)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{purchase_order_number}"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end
@@ -80,7 +78,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_shipment_confirmations(body)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end
@@ -93,7 +90,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_shipment_status_updates(body)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end

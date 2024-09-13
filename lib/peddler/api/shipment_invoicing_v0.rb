@@ -28,7 +28,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_invoice(shipment_id, body)
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice"
-        body = body
 
         rate_limit(1.133).post(path, body:)
       end

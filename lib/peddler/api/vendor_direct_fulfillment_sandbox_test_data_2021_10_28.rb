@@ -15,7 +15,6 @@ module Peddler
       # @return [Hash] The API response
       def generate_order_scenarios(body)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
-        body = body
 
         post(path, body:)
       end

@@ -40,7 +40,6 @@ module Peddler
       # @return [Hash] The API response
       def confirm_customization_details(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmCustomizationDetails"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -58,7 +57,6 @@ module Peddler
       # @return [Hash] The API response
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmDeliveryDetails"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -77,7 +75,6 @@ module Peddler
       # @return [Hash] The API response
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/legalDisclosure"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -112,7 +109,6 @@ module Peddler
       # @return [Hash] The API response
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmOrderDetails"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -131,7 +127,6 @@ module Peddler
       # @return [Hash] The API response
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmServiceDetails"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -150,7 +145,6 @@ module Peddler
       # @return [Hash] The API response
       def create_amazon_motors(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/amazonMotors"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -168,7 +162,6 @@ module Peddler
       # @return [Hash] The API response
       def create_warranty(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/warranty"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -202,7 +195,6 @@ module Peddler
       # @return [Hash] The API response
       def create_digital_access_key(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/digitalAccessKey"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -221,7 +213,6 @@ module Peddler
       # @return [Hash] The API response
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/unexpectedProblem"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -239,7 +230,6 @@ module Peddler
       # @return [Hash] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/invoice"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact

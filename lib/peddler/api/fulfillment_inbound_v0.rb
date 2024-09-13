@@ -20,7 +20,6 @@ module Peddler
       # @return [Hash] The API response
       def create_inbound_shipment_plan(body)
         path = "/fba/inbound/v0/plans"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -34,7 +33,6 @@ module Peddler
       # @return [Hash] The API response
       def create_inbound_shipment(body, shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -48,7 +46,6 @@ module Peddler
       # @return [Hash] The API response
       def update_inbound_shipment(body, shipment_id)
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -136,7 +133,6 @@ module Peddler
       # @return [Hash] The API response
       def put_transport_details(shipment_id, body)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end

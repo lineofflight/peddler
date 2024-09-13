@@ -48,7 +48,6 @@ module Peddler
       # @return [Hash] The API response
       def create_query(body)
         path = "/dataKiosk/2023-11-15/queries"
-        body = body
 
         rate_limit(0.0167).post(path, body:)
       end

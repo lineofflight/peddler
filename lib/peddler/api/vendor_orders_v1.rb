@@ -81,7 +81,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_acknowledgement(body)
         path = "/vendor/orders/v1/acknowledgements"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end

@@ -30,7 +30,6 @@ module Peddler
       # @return [Hash] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku)
         path = "/products/fees/v0/listings/#{seller_sku}/feesEstimate"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end
@@ -52,7 +51,6 @@ module Peddler
       # @return [Hash] The API response
       def get_my_fees_estimate_for_asin(body, asin)
         path = "/products/fees/v0/items/#{asin}/feesEstimate"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end
@@ -63,7 +61,6 @@ module Peddler
       # @return [Hash] The API response
       def get_my_fees_estimates(body)
         path = "/products/fees/v0/feesEstimate"
-        body = body
 
         rate_limit(0.5).post(path, body:)
       end

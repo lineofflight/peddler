@@ -36,7 +36,6 @@ module Peddler
       # @return [Hash] The API response
       def create_subscription(body)
         path = "/notifications/v1/subscriptions/#{notification_type}"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end
@@ -84,7 +83,6 @@ module Peddler
       # @return [Hash] The API response
       def create_destination(body)
         path = "/notifications/v1/destinations"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end

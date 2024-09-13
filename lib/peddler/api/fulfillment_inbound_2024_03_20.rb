@@ -40,7 +40,6 @@ module Peddler
       # @return [Hash] The API response
       def create_inbound_plan(body)
         path = "/inbound/fba/2024-03-20/inboundPlans"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -110,7 +109,6 @@ module Peddler
       # @return [Hash] The API response
       def update_inbound_plan_name(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/name"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -164,7 +162,6 @@ module Peddler
       # @return [Hash] The API response
       def set_packing_information(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingInformation"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -254,7 +251,6 @@ module Peddler
       # @return [Hash] The API response
       def generate_placement_options(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -333,7 +329,6 @@ module Peddler
       # @return [Hash] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -451,7 +446,6 @@ module Peddler
       # @return [Hash] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/name"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -484,7 +478,6 @@ module Peddler
       # @return [Hash] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentCancellation"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -517,7 +510,6 @@ module Peddler
       # @return [Hash] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -531,7 +523,6 @@ module Peddler
       # @return [Hash] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots/#{slot_id}/schedule"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -547,7 +538,6 @@ module Peddler
       # @return [Hash] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/sourceAddress"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -560,7 +550,6 @@ module Peddler
       # @return [Hash] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/trackingDetails"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -599,7 +588,6 @@ module Peddler
       # @return [Hash] The API response
       def generate_transportation_options(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -612,7 +600,6 @@ module Peddler
       # @return [Hash] The API response
       def confirm_transportation_options(inbound_plan_id, body)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions/confirmation"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -642,7 +629,6 @@ module Peddler
       # @return [Hash] The API response
       def update_item_compliance_details(marketplace_id, body)
         path = "/inbound/fba/2024-03-20/items/compliance"
-        body = body
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
@@ -656,7 +642,6 @@ module Peddler
       # @return [Hash] The API response
       def create_marketplace_item_labels(body)
         path = "/inbound/fba/2024-03-20/items/labels"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end

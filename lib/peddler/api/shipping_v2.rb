@@ -18,7 +18,6 @@ module Peddler
       # @return [Hash] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/shipments/rates"
-        body = body
 
         rate_limit(80.0).post(path, body:)
       end
@@ -37,7 +36,6 @@ module Peddler
       # @return [Hash] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/shipments/directPurchase"
-        body = body
 
         rate_limit(80.0).post(path, body:)
       end
@@ -55,7 +53,6 @@ module Peddler
       # @return [Hash] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/shipments"
-        body = body
 
         rate_limit(80.0).post(path, body:)
       end
@@ -68,7 +65,6 @@ module Peddler
       # @return [Hash] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/oneClickShipment"
-        body = body
 
         rate_limit(80.0).post(path, body:)
       end
@@ -167,7 +163,6 @@ module Peddler
       # @return [Hash] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/carrierAccounts"
-        body = body
 
         rate_limit(80.0).put(path, body:)
       end
@@ -181,7 +176,6 @@ module Peddler
       # @return [Hash] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/carrierAccounts/#{carrier_id}"
-        body = body
 
         rate_limit(80.0).put(path, body:)
       end
@@ -195,7 +189,6 @@ module Peddler
       # @return [Hash] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/carrierAccounts/#{carrier_id}/unlink"
-        body = body
 
         rate_limit(80.0).put(path, body:)
       end
@@ -210,7 +203,6 @@ module Peddler
       # @return [Hash] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/collectionForms"
-        body = body
 
         rate_limit(80.0).post(path, body:)
       end
@@ -223,7 +215,6 @@ module Peddler
       # @return [Hash] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/collectionForms/history"
-        body = body
 
         rate_limit(80.0).put(path, body:)
       end
@@ -237,7 +228,6 @@ module Peddler
       # @return [Hash] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil)
         path = "/shipping/v2/unmanifestedShipments"
-        body = body
 
         rate_limit(80.0).put(path, body:)
       end

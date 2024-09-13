@@ -16,7 +16,6 @@ module Peddler
       # @return [Hash] The API response
       def get_fulfillment_preview(body)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -28,7 +27,6 @@ module Peddler
       # @return [Hash] The API response
       def delivery_offers(body)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -58,7 +56,6 @@ module Peddler
       # @return [Hash] The API response
       def create_fulfillment_order(body)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
-        body = body
 
         rate_limit(2.0).post(path, body:)
       end
@@ -111,7 +108,6 @@ module Peddler
       # @return [Hash] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/return"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -135,7 +131,6 @@ module Peddler
       # @return [Hash] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
-        body = body
 
         rate_limit(2.0).put(path, body:)
       end
@@ -164,7 +159,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/status"
-        body = body
 
         put(path, body:)
       end

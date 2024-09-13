@@ -18,7 +18,6 @@ module Peddler
       # @return [Hash] The API response
       def create_shipment(body)
         path = "/shipping/v1/shipments"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -50,7 +49,6 @@ module Peddler
       # @return [Hash] The API response
       def purchase_labels(shipment_id, body)
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -63,7 +61,6 @@ module Peddler
       # @return [Hash] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body)
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -74,7 +71,6 @@ module Peddler
       # @return [Hash] The API response
       def purchase_shipment(body)
         path = "/shipping/v1/purchaseShipment"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -85,7 +81,6 @@ module Peddler
       # @return [Hash] The API response
       def get_rates(body)
         path = "/shipping/v1/rates"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end

@@ -14,7 +14,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_invoices(body)
         path = "/vendor/payments/v1/invoices"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end

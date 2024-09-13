@@ -15,7 +15,6 @@ module Peddler
       # @return [Hash] The API response
       def get_eligible_shipment_services(body)
         path = "/mfn/v0/eligibleShippingServices"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -46,7 +45,6 @@ module Peddler
       # @return [Hash] The API response
       def create_shipment(body)
         path = "/mfn/v0/shipments"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end
@@ -58,7 +56,6 @@ module Peddler
       # @return [Hash] The API response
       def get_additional_seller_inputs(body)
         path = "/mfn/v0/additionalSellerInputs"
-        body = body
 
         rate_limit(1.0).post(path, body:)
       end

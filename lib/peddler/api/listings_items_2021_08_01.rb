@@ -79,7 +79,6 @@ module Peddler
       # @return [Hash] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: nil, mode: nil, issue_locale: nil)
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
           "includedData" => included_data,
@@ -109,7 +108,6 @@ module Peddler
       # @return [Hash] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: nil, mode: nil, issue_locale: nil)
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
           "includedData" => included_data,

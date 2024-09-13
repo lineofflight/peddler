@@ -113,7 +113,6 @@ module Peddler
       # @return [Hash] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -126,7 +125,6 @@ module Peddler
       # @return [Hash] The API response
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end
@@ -140,7 +138,6 @@ module Peddler
       # @return [Hash] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/resources"
-        body = body
 
         rate_limit(1.0).put(path, body:)
       end
@@ -154,7 +151,6 @@ module Peddler
       # @return [Hash] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/fulfillment"
-        body = body
 
         rate_limit(5.0).put(path, body:)
       end
@@ -168,7 +164,6 @@ module Peddler
       # @return [Hash] The API response
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
         path = "/service/v1/serviceResources/#{resource_id}/capacity/range"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
           "nextPageToken" => next_page_token,
@@ -186,7 +181,6 @@ module Peddler
       # @return [Hash] The API response
       def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
         path = "/service/v1/serviceResources/#{resource_id}/capacity/fixed"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
           "nextPageToken" => next_page_token,
@@ -203,7 +197,6 @@ module Peddler
       # @return [Hash] The API response
       def update_schedule(resource_id, body, marketplace_ids)
         path = "/service/v1/serviceResources/#{resource_id}/schedules"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -218,7 +211,6 @@ module Peddler
       # @return [Hash] The API response
       def create_reservation(body, marketplace_ids)
         path = "/service/v1/reservation"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -234,7 +226,6 @@ module Peddler
       # @return [Hash] The API response
       def update_reservation(reservation_id, body, marketplace_ids)
         path = "/service/v1/reservation/#{reservation_id}"
-        body = body
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -309,7 +300,6 @@ module Peddler
       # @return [Hash] The API response
       def create_service_document_upload_destination(body)
         path = "/service/v1/documents"
-        body = body
 
         rate_limit(5.0).post(path, body:)
       end

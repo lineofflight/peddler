@@ -16,7 +16,6 @@ module Peddler
       # @return [Hash] The API response
       def submit_inventory_update(body, warehouse_id)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{warehouse_id}/items"
-        body = body
 
         rate_limit(10.0).post(path, body:)
       end
