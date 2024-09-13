@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
 
   gem.files = Dir.glob("lib/**/*") + ["LICENSE", "README.md"]
 
-  gem.add_dependency("http", "~> 5.0")
+  gem.add_dependency("http", ">= 5.0", "< 7.0")
 
   gem.required_ruby_version = ">= 3.2"
   gem.metadata["rubygems_mfa_required"] = "true"

@@ -49,7 +49,9 @@ module Peddler
     # @param [Float] delay The delay in seconds before retrying
     # @return [self]
     def rate_limit(rate)
-      # TODO: Remove guard when HTTP 6.0 is released
+      # HTTP v6.0 implements retriable
+      #
+      # https://github.com/httprb/http/pull/790
       retriable(delay: 1.0 / rate, retry_statuses: [429]) if @http.respond_to?(:retriable)
       self
     end
