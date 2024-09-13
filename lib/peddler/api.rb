@@ -80,7 +80,7 @@ module Peddler
     end
     alias_method :through, :via
 
-    [:get, :post, :put, :delete].each do |method|
+    [:get, :post, :put, :delete, :patch].each do |method|
       define_method(method) do |path, **options|
         if options[:body] && !options[:body].is_a?(String)
           options[:body] = JSON.dump(options[:body])

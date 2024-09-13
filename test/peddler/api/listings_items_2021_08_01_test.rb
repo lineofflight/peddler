@@ -63,6 +63,30 @@ module Peddler
         assert_predicate(res.status, :ok?)
       end
 
+      def test_patch_listings_item
+        body = {
+          productType: "PRODUCT",
+          patches: [
+            {
+              op: 1,
+              path: "/attributes/purchasable_offer",
+              value: [{
+                currency: "GBP",
+                our_price: [{
+                  schedule: [{
+                    value_with_tax: 399.99,
+                  }],
+                }],
+              }],
+            },
+          ],
+        }
+
+        res = @api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
+
+        assert_predicate(res.status, :ok?)
+      end
+
       def test_get_listings_item
         res = @api.get_listings_item(
           "A34PPN1ZLYCOGT",
