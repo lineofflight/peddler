@@ -85,7 +85,7 @@ module Peddler
     [:get, :post, :put, :delete, :patch].each do |method|
       define_method(method) do |path, **options|
         if options[:body] && !options[:body].is_a?(String)
-          options[:body] = JSON.dump(options[:body])
+          options[:json] = options.delete(:body)
         end
 
         response = http.send(method, [endpoint, path].join, **options)
