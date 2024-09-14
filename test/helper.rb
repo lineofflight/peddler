@@ -81,4 +81,9 @@ VCR.configure do |c|
   c.filter_sensitive_data("FILTERED") do |interaction|
     interaction.request.headers["X-Amz-Access-Token"]&.first
   end
+
+  c.preserve_exact_body_bytes do |http_message|
+    http_message.body.encoding.name == "ASCII-8BIT" ||
+      !http_message.body.valid_encoding?
+  end
 end
