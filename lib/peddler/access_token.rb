@@ -27,9 +27,7 @@ module Peddler
 
     def request
       response = HTTP.post(URL, form: params)
-      payload = JSON.parse(response)
-
-      payload.fetch("access_token")
+      response.parse.fetch("access_token")
     end
 
     private

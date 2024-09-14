@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "peddler/access_token"
 <% apis.each do |api| -%>
     require "peddler/api/<%= api[:file_name] %>"
 <% end %>

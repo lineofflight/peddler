@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "peddler/access_token"
 require "peddler/api/amazon_warehousing_and_distribution_2024_05_09.rb"
 require "peddler/api/aplus_content_2020_11_01.rb"
 require "peddler/api/application_management_2023_11_30.rb"
