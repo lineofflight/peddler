@@ -44,6 +44,14 @@ module Peddler
       refute_empty(@api.http.default_options.features)
     end
 
+    def test_rate_limit
+      skip("HTTP v6.0 not released yet")
+    end
+
+    def test_custom_rate_limit
+      skip("HTTP v6.0 not released yet")
+    end
+
     def test_client_error
       assert_raises(Peddler::Error) do
         @api.post("/")

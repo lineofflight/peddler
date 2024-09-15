@@ -69,6 +69,24 @@ access_token = Peddler::AccessToken.request(
 )
 ```
 
+### Throttling
+
+Amazon’s Selling Partner API (SP-API) imposes standard rate limits on most operations. Peddler respects these limits and automatically backs off when throttled to ensure compliance with Amazon’s policies.
+
+**Note:** This functionality requires version 6 of the underlying [HTTP library][httprb]. As of writing, this is not released yet. To use rate limiting, point to the main branch of their GitHub repo:
+
+```ruby
+gem "http", github: "httprb/http"
+```
+
+If you have custom rate limits (e.g., Amazon has granted you higher quotas), you can override the standard rate limit using the rate_limit method.
+
+```ruby
+@api.rate_limit(5).get_item_offers_batch(...)
+```
+
+This sets a custom rate limit of 5 requests per second for the requested operation.
+
 ### The APIs
 
 Peddler provides a class for each API version under an eponymous namespace. Below is a list of the more important APIs, along with brief descriptions and code examples to help you get started.
@@ -495,3 +513,4 @@ participations = response.parse["payload"]
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
+[httprb]: https://github.com/httprb/http
