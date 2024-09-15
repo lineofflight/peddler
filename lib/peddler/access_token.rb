@@ -12,17 +12,32 @@ module Peddler
 
     attr_reader :client_id, :client_secret, :refresh_token, :scope
 
+    class << self
+      # Requests an access token
+      #
+      # @param client_id [String]
+      # @param client_secret [String]
+      # @param refresh_token [String]
+      # @param scope [String]
+      def request(client_id: ENV["LWA_CLIENT_ID"], client_secret: ENV["LWA_CLIENT_SECRET"], refresh_token: nil,
+        scope: nil)
+        new(client_id: client_id, client_secret: client_secret, refresh_token: refresh_token, scope: scope).request
+      end
+    end
+
     # @param client_id [String]
     # @param client_secret [String]
     # @param refresh_token [String]
     # @param scope [String]
-    def initialize(client_id, client_secret, refresh_token: nil, scope: nil)
+    def initialize(client_id: ENV["LWA_CLIENT_ID"], client_secret: ENV["LWA_CLIENT_SECRET"], refresh_token: nil,
+      scope: nil)
       @client_id = client_id
       @client_secret = client_secret
       @refresh_token = refresh_token
       @scope = scope
 
-      validate_exclusive_token_or_scope
+      validate_lwa_credentials!
+      validate_exclusive_token_or_scope!
     end
 
     def request
@@ -32,7 +47,13 @@ module Peddler
 
     private
 
-    def validate_exclusive_token_or_scope
+    def validate_lwa_credentials!
+      if client_id.nil? || client_secret.nil?
+        raise ArgumentError, "Provide client_id and client_secret."
+      end
+    end
+
+    def validate_exclusive_token_or_scope!
       if @refresh_token.nil? == @scope.nil?
         raise ArgumentError, "Provide either refresh_token or scope, not both."
       end

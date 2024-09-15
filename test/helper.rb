@@ -55,7 +55,7 @@ module Minitest
 
     def request_access_token
       require "peddler/access_token"
-      Peddler::AccessToken.new(client_id, client_secret, refresh_token: refresh_token).request
+      Peddler::AccessToken.request(client_id:, client_secret:, refresh_token:)
     end
   end
 end
