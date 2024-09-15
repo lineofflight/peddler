@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## Unreleased
+
+## [3.0.0.beta1] - 2024-09-15
+
+### Changed
+
+- Complete rewrite—now wraps the Selling Partner API (SP-API)
 
 ## [2.4.5] - 2021-04-23
 
@@ -20,6 +26,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.4.3] - 2020-08-07
 
 ### Fixed
+
 - Fix file permission issue in published gem
 
 ## [2.4.2] - 2020-08-03 [YANKED]
