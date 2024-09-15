@@ -117,6 +117,38 @@ module Peddler
 
         rate_limit(5.0).put(path, body:, params:)
       end
+
+      # Search for and return list of listings items and respective details for a selling partner.
+      #
+      # @param [String] seller_id A selling partner identifier, such as a merchant account or vendor code.
+      # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param [Array<String>] identifiers A comma-delimited list of product identifiers to search for listings items
+      #   by. **Note**: 1. Required when `identifiersType` is provided.
+      # @param [String] identifiers_type Type of product identifiers to search for listings items by. **Note**: 1.
+      #   Required when `identifiers` is provided.
+      # @param [Integer] page_size Number of results to be returned per page.
+      # @param [String] page_token A token to fetch a certain page when there are multiple pages worth of results.
+      # @param [Array<String>] included_data A comma-delimited list of data sets to include in the response. Default:
+      #   summaries.
+      # @param [String] issue_locale A locale for localization of issues. When not provided, the default language code
+      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
+      #   when a localization is not available in the specified locale.
+      # @return [Hash] The API response
+      def search_listings_items(seller_id, marketplace_ids, identifiers: nil, identifiers_type: nil, page_size: nil,
+        page_token: nil, included_data: nil, issue_locale: nil)
+        path = "/listings/2021-08-01/items/#{seller_id}"
+        params = {
+          "marketplaceIds" => marketplace_ids,
+          "identifiers" => identifiers,
+          "identifiersType" => identifiers_type,
+          "pageSize" => page_size,
+          "pageToken" => page_token,
+          "includedData" => included_data,
+          "issueLocale" => issue_locale,
+        }.compact
+
+        rate_limit(5.0).get(path, params:)
+      end
     end
   end
 end

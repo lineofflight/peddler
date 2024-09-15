@@ -184,12 +184,16 @@ module Peddler
       # @param [String] feature_name The name of the feature for which to return a list of eligible inventory.
       # @param [String] next_token A string token returned in the response to your previous request that is used to
       #   return the next response page. A value of null will return the first page.
+      # @param [String] query_start_date A date that you can use to select inventory that has been updated since a
+      #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
+      #   in the format yyyy-MM-ddTHH:mm:ss.sssZ
       # @return [Hash] The API response
-      def get_feature_inventory(marketplace_id, feature_name, next_token: nil)
+      def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil)
         path = "/fba/outbound/2020-07-01/features/inventory/#{feature_name}"
         params = {
           "marketplaceId" => marketplace_id,
           "nextToken" => next_token,
+          "queryStartDate" => query_start_date,
         }.compact
 
         rate_limit(2.0).get(path, params:)
