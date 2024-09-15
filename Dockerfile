@@ -1,6 +1,4 @@
-FROM ruby:3.5
-
-ENV LC_ALL C.UTF-8
+FROM ruby:3.3
 
 RUN mkdir gem
 WORKDIR /gem
