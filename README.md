@@ -69,10 +69,6 @@ access_token = Peddler::AccessToken.request(
 )
 ```
 
-Understood! I've updated the code examples to use `response.parse` instead of `response.body` for more efficient data access.
-
----
-
 ### The APIs
 
 Peddler provides a class for each API version under an eponymous namespace. Below is a list of the more important APIs, along with brief descriptions and code examples to help you get started.
