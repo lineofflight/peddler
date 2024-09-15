@@ -1,20 +1,37 @@
 # Peddler
 
-[![Build](https://github.com/hakanensari/peddler/workflows/build/badge.svg)](https://github.com/hakanensari/peddler/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)](https://codeclimate.com/github/hakanensari/peddler/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)](https://codeclimate.com/github/hakanensari/peddler/test_coverage)
+[![Build](https://github.com/hakanensari/peddler/workflows/build/badge.svg)][build]
+[![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)][maintainability]
+[![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)][test-coverage]
 
-> :boom: I'm currently working on the [Selling Partner API (SP-API)](https://developer.amazonservices.com/sp-api-docs/overview). The README below describes the latest release for the obsolete MWS API.
+**Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
-**Peddler** is a Ruby interface to the [Amazon MWS API](https://developer.amazonservices.com/), a collection of web services that help Amazon sellers programmatically exchange data on their listings, orders, payments, reports, and more.
-
-To use Amazon MWS, you must have an eligible seller account and [register as a developer](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Registering.html#DG_Registering__RegisteringAsADeveloper). You can then access your own selling account using its merchant ID—note that Amazon also refers to this as seller ID or merchant token in different places.
-
-Amazon has [multiple regions](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html). Each region requires application developers to register individually. Some MWS API sections may require additional authorisation from Amazon.
+To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials on Amazon][view-credentials]. You'll use these to access data for your own seller account or retrieve data on behalf of others.
 
 ![Peddler](https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true)
 
+## Installation
+
+Add this line to your Gemfile.
+
+```ruby
+gem "peddler", "3.0.0.beta1"
+```
+
+And then execute:
+
+```shell
+bundle install
+```
+
 ## Usage
+
+Set your LWA credentials in your environment.
+
+```shell
+export LWA_CLIENT_ID=<YOUR_CLIENT_ID>
+export LWA_CLIENT_SECRET=<YOUR_CLIENT_SECRET>
+```
 
 Require the library.
 
@@ -22,222 +39,463 @@ Require the library.
 require "peddler"
 ```
 
-A client requires the AWS credentials of the application developer. If you are working in a single MWS region, you can set them globally.
+### Authentication
 
-```bash
-export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
-```
-
-Now, create a client with the Amazon marketplace you signed up on and a merchant ID. Peddler provides a class for each API section under an eponymous namespace.
+A seller or vendor will [provide a refresh token][authorization] to access their data on Amazon. You'll use this to generate temporary access tokens to authenticate individual API requests. Here’s how you can request one in Peddler.
 
 ```ruby
-client = MWS.orders(marketplace: "ATVPDKIKX0DER",
-                    merchant_id: "123")
-
-# or a shorthand
-client = MWS.orders(marketplace: "US",
-                    merchant_id: "123")
+access_token = Peddler::AccessToken.request(
+  refresh_token: "<REFRESH_TOKEN>",
+)
 ```
 
-If you are creating a [client for another seller](https://developer.amazonservices.com/gp/mws/faq.html#developForSeller), pass an MWS Auth Token as well.
+You can also request a token for grantless operations.
 
 ```ruby
-client = MWS.orders(marketplace: "ATVPDKIKX0DER",
-                    merchant_id: "123",
-                    auth_token: "123")
+access_token = Peddler::AccessToken.request(
+  scope: "sellingpartnerapi::notifications",
+)
 ```
 
-You won't be able to create a client for another seller if you are in different regions.
+Access tokens are valid for one hour. To optimize performance, cache the token and reuse it across calls instead of generating a new one each time.
 
-If you are working with sellers across multiple regions, a single set of credentials will not be enough. In that case, do not use global environment variables and pass your AWS credentials when creating the client.
+If you haven’t set your LWA credentials as environment variables, you can pass them directly when requesting an access token:
 
 ```ruby
-client = MWS.orders(marketplace: "ATVPDKIKX0DER",
-                    merchant_id: "123",
-                    aws_access_key_id: "123",
-                    aws_secret_access_key: "123")
+access_token = Peddler::AccessToken.request(
+  client_id: "<YOUR_CLIENT_ID>",
+  client_secret: "<YOUR_CLIENT_SECRET>",
+  refresh_token: "<REFRESH_TOKEN>",
+)
 ```
 
-Once you have a client with valid credentials, you should be able to make requests to the API. Clients map operation names in a flat structure. Methods have positional arguments for required input and keyword arguments for optional parameters. Both method and argument names are underscored but otherwise identical to the names of the corresponding operations and parameters documented in the API.
+Understood! I've updated the code examples to use `response.parse` instead of `response.body` for more efficient data access.
 
-For instance, using the above MWS Orders client:
+---
+
+### The APIs
+
+Peddler provides a class for each API version under an eponymous namespace. Below is a list of the more important APIs, along with brief descriptions and code examples to help you get started.
+
+#### Catalog Items API (2022-04-01)
+
+Provides programmatic access to Amazon's catalog data, such as item titles, descriptions, and other product details.
+
+**Example:**
 
 ```ruby
-response = client.list_orders('ATVPDKIKX0DER')
+client = Peddler::API::CatalogItems20220401.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_catalog_item(
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  asin: "B08N5WRWNW"
+)
+items = response.parse.dig("items")
 ```
 
-### Parser
+#### Orders API (v0)
 
-Peddler wraps successful responses in a generic parser that handles both XML documents and flat files:
+Allows you to retrieve order information, including order details, buyer information, and order items.
+
+**Example:**
 
 ```ruby
-response = client.get_service_status
-response.parse # will return a Hash object
-response.dig('Status') # delegates to Hash#dig
+client = Peddler::API::OrdersV0.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_orders(
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  createdAfter: "2023-01-01T00:00:00Z"
+)
+orders = response.parse.dig("orders")
 ```
 
-You can swap this with a purpose-built parser.
+#### Feeds API (2021-06-30)
+
+Enables you to upload data to Amazon for updating listings, prices, inventory, and more.
+
+**Example:**
 
 ```ruby
-MWS::Orders::Client.parser = MyParser
+client = Peddler::API::Feeds20210630.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+# Create a feed document to get an upload URL
+response = client.create_feed_document(
+  contentType: "text/xml; charset=UTF-8"
+)
+feed_document_id = response.parse["feedDocumentId"]
+upload_url = response.parse["url"]
+
+# Upload the feed content to the provided URL
+feed_content = File.read("inventory_update.xml")
+client.upload_feed_document(upload_url, feed_content)
+
+# Create the feed
+response = client.create_feed(
+  feedType: "POST_INVENTORY_AVAILABILITY_DATA",
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  inputFeedDocumentId: feed_document_id
+)
+feed_id = response.parse["feedId"]
 ```
 
-For a sample implementation, see my [MWS Orders](https://github.com/hakanensari/mws-orders) library.
+#### Reports API (2021-06-30)
 
-### Throttling
+Allows you to request and download various reports, such as order and inventory reports.
 
-Amazon limits the number of requests you can submit to some operations in a given amount of time. When you hit a limit, your request throws a `Peddler::Errors::RequestThrottled` error.
-
-You will want to exit or back off exponentially and retry if you hit this error.
+**Example:**
 
 ```ruby
-begin
-  client.throttled_method
-rescue Peddler::Errors::RequestThrottled
-  back_off_exponentially
-  retry
-end
+client = Peddler::API::Reports20210630.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.create_report(
+  reportType: "GET_FLAT_FILE_OPEN_LISTINGS_DATA",
+  marketplaceIds: ["ATVPDKIKX0DER"]
+)
+report_id = response.parse["reportId"]
 ```
 
-Some API sections also have an hourly request quota in addition to the numerical request quota. When you hit this quota, your request throws a `Peddler::Errors::QuotaExceeded` error.
+#### Listings Items API (2021-08-01)
 
-You can introspect your quota usage on the parsed response:
+Enables you to manage your product listings on Amazon, including creating, updating, and deleting listings.
+
+**Example:**
 
 ```ruby
-response = client.method_with_quota
-puts response.mws_quota_remaining
-# 150
-
-begin
-  client.method_with_quota
-rescue Peddler::Errors::QuotaExceeded => error
-  puts error.response.mws_quota_remaining
-  # 0
-end
+client = Peddler::API::ListingsItems20210801.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.put_listings_item(
+  "<SELLER_ID>",
+  "SKU123",
+  "ATVPDKIKX0DER",
+  body: {
+    productType: "PRODUCT",
+    requirements: "LISTING",
+    attributes: {
+      title: [{ value: "New Product Title" }],
+      description: [{ value: "Product description goes here." }],
+      bullet_point: [{ value: "Feature 1" }, { value: "Feature 2" }],
+      manufacturer: [{ value: "Your Brand" }]
+    }
+  }
+)
+result = response.parse
 ```
 
-Read [tips on how to avoid throttling](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html).
+#### Notifications API (v1)
 
-### Debugging
+Allows you to subscribe to notifications for specific events like order status updates or feed processing statuses.
 
-If you are having trouble with a request, read the [Amazon documentation](https://developer.amazonservices.com/gp/mws/docs.html). [Peddler's source](https://www.rubydoc.info/github/hakanensari/peddler) also links individual operations to their corresponding entries in the Amazon docs.
-
-Note that some optional keywords have default values.
-
-To introspect requests, set the `EXCON_DEBUG` environment variable to `1` or similar truthy value. Peddler will then log request and response internals to stdout.
-
-If you contact Amazon MWS support, they will ask you for the **RequestId** and **Timestamp** of affected requests.
+**Example:**
 
 ```ruby
-response = client.problem_method
-puts response.mws_request_id
-puts response.mws_timestamp
+client = Peddler::API::NotificationsV1.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+# Create a destination
+response = client.create_destination(
+  name: "MySQSQueue",
+  resourceSpecification: {
+    sqs: {
+      arn: "arn:aws:sqs:us-east-1:123456789012:MyQueue"
+    }
+  }
+)
+destination_id = response.parse["destinationId"]
+
+# Create a subscription
+response = client.create_subscription(
+  notificationType: "ANY_OFFER_CHANGED",
+  destinationId: destination_id
+)
+subscription = response.parse
 ```
 
-You can access the same attributes on `error.response`. See <a href="#throttling">above example</a>.
+#### Product Fees API (v0)
 
-## The APIs
+Provides information about fees that may be charged for selling products on Amazon.
 
-### Easy Ship
+**Example:**
 
-With the Easy Ship API, you can build applications that help sellers in India manage and ship their Amazon Easy Ship orders. Your Amazon Easy Ship applications can get available pickup slots; schedule, reschedule, and cancel pickups; and print labels, invoices, and warranties.
+```ruby
+client = Peddler::API::ProductFeesV0.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_my_fees_estimate_for_sku(
+  sellerId: "<YOUR_SELLER_ID>",
+  sku: "SKU123",
+  body: {
+    FeesEstimateRequest: {
+      MarketplaceId: "ATVPDKIKX0DER",
+      IsAmazonFulfilled: true,
+      PriceToEstimateFees: {
+        ListingPrice: {
+          CurrencyCode: "USD",
+          Amount: 25.00
+        }
+      }
+    }
+  }
+)
+fees_estimate = response.parse
+```
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/easy_ship/EasyShip_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/EasyShip/Client)
+#### Fulfillment Outbound API (2020-07-01)
 
-### Feeds
+Allows you to create and manage fulfillment orders using Amazon's fulfillment network.
 
-The MWS Feeds API lets you upload inventory and order data to Amazon. You can also use this API to get information about the processing of feeds.
+**Example:**
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Feeds/Client)
-- [XML schema docs](https://sellercentral.amazon.com/gp/help/help-page.html?itemID=1611)
+```ruby
+client = Peddler::API::FulfillmentOutbound20200701.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.create_fulfillment_order(
+  body: {
+    sellerFulfillmentOrderId: "ORDER123",
+    displayableOrderId: "ORDER123",
+    displayableOrderDate: Time.now.iso8601,
+    displayableOrderComment: "Thank you for your order!",
+    shippingSpeedCategory: "Standard",
+    destinationAddress: {
+      name: "John Doe",
+      addressLine1: "123 Main St",
+      city: "Anytown",
+      stateOrRegion: "NY",
+      postalCode: "12345",
+      countryCode: "US"
+    },
+    items: [
+      {
+        sellerSku: "SKU123",
+        sellerFulfillmentOrderItemId: "ITEM123",
+        quantity: 1
+      }
+    ]
+  }
+)
+result = response.parse
+```
 
-### Finances
+#### Merchant Fulfillment API (v0)
 
-The MWS Finances API enables you to obtain financial information relevant to your business with Amazon. You can obtain financial events for a given order, financial event group, or date range without having to wait until a statement period closes. You can also obtain financial event groups for a given date range.
+Allows you to create shipping labels for orders using Amazon's negotiated shipping rates.
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/finances/Finances_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Finances/Client)
+**Example:**
 
-### Fulfillment Inbound Shipment
+```ruby
+client = Peddler::API::MerchantFulfillmentV0.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_eligible_shipping_services(
+  body: {
+    shipmentRequestDetails: {
+      amazonOrderId: "ORDER123",
+      itemList: [
+        {
+          orderItemId: "ITEM123",
+          quantity: 1
+        }
+      ],
+      shipFromAddress: {
+        name: "Your Company",
+        addressLine1: "123 Warehouse Ave",
+        city: "Anytown",
+        stateOrRegion: "NY",
+        postalCode: "12345",
+        countryCode: "US"
+      },
+      packageDimensions: {
+        length: 10,
+        width: 5,
+        height: 8,
+        unit: "INCHES"
+      },
+      weight: {
+        value: 2,
+        unit: "POUNDS"
+      },
+      shippingServiceOptions: {
+        deliveryExperience: "DELIVERY_CONFIRMATION_WITHOUT_SIGNATURE",
+        carrierWillPickUp: false
+      }
+    }
+  }
+)
+shipping_services = response.parse["shippingServiceList"]
+```
 
-With the MWS Fulfillment Inbound Shipment API, you can create and update inbound shipments of inventory in the Amazon Fulfillment Network. You can also also request lists of inbound shipments or inbound shipment items based on criteria that you specify.
+#### Vendor Orders API (2021-12-29)
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentInboundShipment/Client)
+Allows vendors to retrieve purchase orders and order details from Amazon.
 
-### Fulfillment Inventory
+**Example:**
 
-The MWS Fulfillment Inventory API can help you stay up-to-date on the availability of your inventory in the Amazon Fulfillment Network. The Fulfillment Inventory API reports real-time availability information for your Amazon Fulfillment Network inventory regardless of whether you are selling your inventory on Amazon's retail web site or through other retail channels.
+```ruby
+client = Peddler::API::VendorOrders20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_purchase_orders(
+  shipToPartyId: "<PARTY_ID>",
+  limit: 10,
+  createdAfter: "2023-01-01T00:00:00Z"
+)
+purchase_orders = response.parse["purchaseOrders"]
+```
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentInventory/Client)
+#### Vendor Direct Fulfillment Shipping API (2021-12-28)
 
-### Fulfillment Outbound Shipment
+Enables vendors to manage shipping labels and shipping information for direct fulfillment orders.
 
-The MWS Fulfillment Outbound Shipment API enables you to fulfill orders placed through channels other than Amazon's retail web site, using your inventory in the Amazon Fulfillment Network. You can request previews of potential fulfillment orders that return estimated shipping fees and shipping dates based on shipping speed. You can get detailed item-level, shipment-level, and order-level information for any existing fulfillment order that you specify. You can also request lists of existing fulfillment orders based on when they were fulfilled and by the fulfillment method associated with them.
+**Example:**
 
-Support for creating and cancelling fulfillment orders has been implemented, but the rest of the API is not supported yet.
+```ruby
+client = Peddler::API::VendorDirectFulfillmentShipping20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_packing_slip(
+  purchaseOrderNumber: "PO123456789"
+)
+packing_slip = response.parse
+```
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/FulfillmentOutboundShipment/Client)
+#### Vendor Direct Fulfillment Orders API (2021-12-28)
 
-### Merchant Fulfillment
+Allows vendors to receive orders for direct fulfillment and provide shipment confirmations.
 
-The Merchant Fulfillment API provides programmatic access to Amazon’s fulfillment shipping services for sellers, including competitive rates with Amazon-partnered carriers. Sellers can find out what shipping services are available by submitting information about a proposed fulfillment shipment, such as package size and weight; shipment origin and destination; and delivery date requirements. Sellers can choose from the shipping service options returned by Amazon, and then receive shipping labels for fulfilling their orders.
+**Example:**
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/MerchantFulfillment/Client)
+```ruby
+client = Peddler::API::VendorDirectFulfillmentOrders20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.get_orders(
+  createdAfter: "2023-01-01T00:00:00Z",
+  limit: 10
+)
+orders = response.parse["orders"]
+```
 
-### Orders
+#### Vendor Direct Fulfillment Inventory API (2021-12-28)
 
-With the MWS Orders API, you can list orders created or updated during a time frame you specify or retrieve information about specific orders.
+Enables vendors to update inventory levels for direct fulfillment items.
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Orders/Client)
+**Example:**
 
-### Products
+```ruby
+client = Peddler::API::VendorDirectFulfillmentInventory20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.submit_inventory_update(
+  body: {
+    inventory: [
+      {
+        sellingParty: {
+          partyId: "<PARTY_ID>"
+        },
+        warehouseId: "<WAREHOUSE_ID>",
+        items: [
+          {
+            buyerProductIdentifier: "B08N5WRWNW",
+            availableQuantity: {
+              amount: 100,
+              unitOfMeasure: "Each"
+            }
+          }
+        ]
+      }
+    ]
+  }
+)
+result = response.parse
+```
 
-The MWS Products API helps you get information to match your products to existing product listings on Amazon Marketplace websites and to make sourcing and pricing decisions for listing those products on Amazon Marketplace websites.
+#### Shipping API (v2)
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/products/Products_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Products/Client)
+Provides functionalities for purchasing shipping labels and tracking shipments.
 
-### Recommendations
+**Example:**
 
-The Recommendations API enables you to programmatically retrieve Amazon Selling Coach recommendations by recommendation category. A recommendation is an actionable, timely, and personalized opportunity to increase your sales and performance.
+```ruby
+client = Peddler::API::ShippingV2.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.purchase_shipment(
+  body: {
+    clientReferenceId: "CLIENT_REF_123",
+    shipTo: {
+      name: "John Doe",
+      addressLine1: "123 Main St",
+      city: "Anytown",
+      stateOrRegion: "NY",
+      postalCode: "12345",
+      countryCode: "US"
+    },
+    shipFrom: {
+      name: "Your Company",
+      addressLine1: "123 Warehouse Ave",
+      city: "Anytown",
+      stateOrRegion: "NY",
+      postalCode: "12345",
+      countryCode: "US"
+    },
+    packages: [
+      {
+        dimensions: {
+          length: 10,
+          width: 5,
+          height: 8,
+          unit: "IN"
+        },
+        weight: {
+          value: 2,
+          unit: "LB"
+        }
+      }
+    ],
+    serviceType: "Standard"
+  }
+)
+shipment = response.parse
+```
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Recommendations/Client)
+#### Token API (2021-03-01)
 
-### Reports
+Allows you to create restricted data tokens to access personally identifiable information (PII) in specific API calls.
 
-The Reports API lets you request reports about your inventory and orders.
+**Example:**
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/reports/Reports_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Reports/Client)
+```ruby
+client = Peddler::API::Tokens20210301.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+response = client.create_restricted_data_token(
+  body: {
+    restrictedResources: [
+      {
+        method: "GET",
+        path: "/orders/v0/orders/123-1234567-1234567",
+        dataElements: ["buyerInfo", "shippingAddress"]
+      }
+    ]
+  }
+)
+restricted_data_token = response.parse["restrictedDataToken"]
 
-### Sellers
+# Use the token in subsequent API calls
+orders_client = Peddler::API::Orders20211201.new("<AWS_REGION>", restricted_data_token)
+response = orders_client.get_order(
+  orderId: "123-1234567-1234567"
+)
+order_details = response.parse
+```
 
-The Sellers API lets sellers retrieve information about their seller account, such as the marketplaces they participate in.
+#### Finances API (v0)
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Sellers/Client)
+Provides information about financial events for your seller account, such as order payments, refunds, and fees.
 
-### Shipment Invoicing
+**Example:**
 
-With the Shipment Invoicing API section (in conjunction with the FBAOutboundShipmentStatus notification), you can integrate invoicing into Amazon’s shipping process for a seller’s Fulfillment by Amazon (FBA) orders.
+```ruby
+client = Peddler::API::FinancesV0.new
+response = client.list_financial_events(
+  postedAfter: "2023-01-01T00:00:00Z",
+  maxResultsPerPage: 100
+)
+financial_events = response.parse["FinancialEvents"]
+```
 
-This functionality is available only in the Brazil marketplace.
+#### Sellers API (V1)
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/shipment_invoicing/ShipmentInvoicing_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/ShipmentInvoicing/Client)
+Provides information about seller's marketplaces and participation status.
 
-### Subscriptions
+**Example:**
 
-The Amazon MWS Subscriptions API section enables you to subscribe to receive notifications that are relevant to your business with Amazon. With the operations in the Subscriptions API section, you can register to receive important information from Amazon without having to poll the Amazon MWS service. Instead, the information is sent directly to you when an event occurs to which you are subscribed.
+```ruby
+client = Peddler::API::SellersV1.new
+response = client.get_marketplace_participations
+participations = response.parse["payload"]
+```
 
-- [Amazon references](https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_Overview.html)
-- [Peddler API docs](https://www.rubydoc.info/github/hakanensari/peddler/MWS/Subscriptions/Client)
+[build]: https://github.com/hakanensari/peddler/actions
+[maintainability]: https://codeclimate.com/github/hakanensari/peddler/maintainability
+[test-coverage]: https://codeclimate.com/github/hakanensari/peddler/test_coverage
+[docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
+[register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
+[register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
+[view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
+[authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
