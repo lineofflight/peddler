@@ -31,7 +31,7 @@ module Peddler
       end
 
       def test_get_item_offers_batch
-        request_batch = {
+        batch = {
           "requests" => [
             {
               "uri" => "/products/pricing/v0/items/B0CHXFCYCR/offers",
@@ -48,7 +48,7 @@ module Peddler
 
           ],
         }
-        res = @api.get_item_offers_batch(request_batch)
+        res = @api.get_item_offers_batch(batch)
 
         assert_predicate(res.status, :ok?)
       end
