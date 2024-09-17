@@ -39,22 +39,30 @@ Require the library.
 require "peddler"
 ```
 
-### Authentication
+### Authorization
 
-A seller or vendor will [provide a refresh token][authorization] to access their data on Amazon. You'll use this to generate temporary access tokens to authenticate individual API requests. Here’s how you can request one in Peddler.
+A seller or vendor [provides you a refresh token][authorization] to access their data on Amazon.
 
 ```ruby
-access_token = Peddler::AccessToken.request(
+refresh_token = Peddled::Token.request(
+  code: "<AUTHORIZATION_CODE>"
+).parse["refresh_token"]
+```
+
+You'll use this to generate temporary access tokens to authenticate individual API requests. Here’s how you can request one in Peddler.
+
+```ruby
+access_token = Peddler::Token.request(
   refresh_token: "<REFRESH_TOKEN>",
-)
+).parse["access_token"]
 ```
 
 You can also request a token for grantless operations.
 
 ```ruby
-access_token = Peddler::AccessToken.request(
+access_token = Peddler::Token.request(
   scope: "sellingpartnerapi::notifications",
-)
+).parse["access_token"]
 ```
 
 Access tokens are valid for one hour. To optimize performance, cache the token and reuse it across calls instead of generating a new one each time.
@@ -62,11 +70,11 @@ Access tokens are valid for one hour. To optimize performance, cache the token a
 If you haven’t set your LWA credentials as environment variables, you can pass them directly when requesting an access token:
 
 ```ruby
-access_token = Peddler::AccessToken.request(
+access_token = Peddler::Token.request(
   client_id: "<YOUR_CLIENT_ID>",
   client_secret: "<YOUR_CLIENT_SECRET>",
   refresh_token: "<REFRESH_TOKEN>",
-)
+).parse["access_token"]
 ```
 
 ### Throttling
