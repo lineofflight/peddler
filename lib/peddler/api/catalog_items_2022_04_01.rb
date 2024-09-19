@@ -39,6 +39,8 @@ module Peddler
         marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: nil, locale: nil, seller_id: nil,
         keywords: nil, brand_names: nil, classification_ids: nil, page_size: nil, page_token: nil, keywords_locale: nil
       )
+        cannot_sandbox!
+
         path = "/catalog/2022-04-01/items"
         params = {
           "identifiers" => identifiers,
@@ -69,6 +71,8 @@ module Peddler
       #   marketplace.
       # @return [Hash] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: nil, locale: nil)
+        cannot_sandbox!
+
         path = "/catalog/2022-04-01/items/#{asin}"
         params = {
           "marketplaceIds" => marketplace_ids,

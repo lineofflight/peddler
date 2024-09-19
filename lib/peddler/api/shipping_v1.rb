@@ -17,6 +17,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_shipment(body)
+        cannot_sandbox!
+
         path = "/shipping/v1/shipments"
 
         rate_limit(5.0).post(path, body:)
@@ -27,6 +29,8 @@ module Peddler
       # @param [String] shipment_id
       # @return [Hash] The API response
       def get_shipment(shipment_id)
+        cannot_sandbox!
+
         path = "/shipping/v1/shipments/#{shipment_id}"
 
         rate_limit(5.0).get(path)
@@ -37,6 +41,8 @@ module Peddler
       # @param [String] shipment_id
       # @return [Hash] The API response
       def cancel_shipment(shipment_id)
+        cannot_sandbox!
+
         path = "/shipping/v1/shipments/#{shipment_id}/cancel"
 
         rate_limit(5.0).post(path)
@@ -48,6 +54,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def purchase_labels(shipment_id, body)
+        cannot_sandbox!
+
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
 
         rate_limit(5.0).post(path, body:)
@@ -60,6 +68,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body)
+        cannot_sandbox!
+
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
 
         rate_limit(5.0).post(path, body:)
@@ -70,6 +80,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def purchase_shipment(body)
+        cannot_sandbox!
+
         path = "/shipping/v1/purchaseShipment"
 
         rate_limit(5.0).post(path, body:)
@@ -80,6 +92,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def get_rates(body)
+        cannot_sandbox!
+
         path = "/shipping/v1/rates"
 
         rate_limit(5.0).post(path, body:)
@@ -88,6 +102,8 @@ module Peddler
       # Verify if the current account is valid.
       # @return [Hash] The API response
       def get_account
+        cannot_sandbox!
+
         path = "/shipping/v1/account"
 
         rate_limit(5.0).get(path)
@@ -98,6 +114,8 @@ module Peddler
       # @param [String] tracking_id
       # @return [Hash] The API response
       def get_tracking_information(tracking_id)
+        cannot_sandbox!
+
         path = "/shipping/v1/tracking/#{tracking_id}"
 
         rate_limit(1.0).get(path)

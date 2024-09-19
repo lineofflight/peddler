@@ -14,6 +14,8 @@ module Peddler
       # @param [Hash] body The request body that contains one or more invoices for vendor orders.
       # @return [Hash] The API response
       def submit_invoice(body)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/payments/v1/invoices"
 
         rate_limit(10.0).post(path, body:)

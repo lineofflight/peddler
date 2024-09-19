@@ -24,6 +24,8 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @return [Hash] The API response
       def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids)
+        cannot_sandbox!
+
         path = "/solicitations/v1/orders/#{amazon_order_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -41,6 +43,8 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @return [Hash] The API response
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids)
+        cannot_sandbox!
+
         path = "/solicitations/v1/orders/#{amazon_order_id}/solicitations/productReviewAndSellerFeedback"
         params = {
           "marketplaceIds" => marketplace_ids,

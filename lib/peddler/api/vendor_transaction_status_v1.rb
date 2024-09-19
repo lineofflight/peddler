@@ -15,6 +15,8 @@ module Peddler
       #   request of a specific transaction.
       # @return [Hash] The API response
       def get_transaction(transaction_id)
+        cannot_sandbox!
+
         path = "/vendor/transactions/v1/transactions/#{transaction_id}"
 
         rate_limit(10.0).get(path)

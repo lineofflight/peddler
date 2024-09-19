@@ -27,8 +27,10 @@ module Peddler
       # @param [String] locale Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
       # @return [Hash] The API response
-      def search_catalog_items(keywords, marketplace_ids, included_data: nil, brand_names: nil,
-        classification_ids: nil, page_size: nil, page_token: nil, keywords_locale: nil, locale: nil)
+      def search_catalog_items(keywords, marketplace_ids, included_data: nil, brand_names: nil, classification_ids: nil,
+        page_size: nil, page_token: nil, keywords_locale: nil, locale: nil)
+        cannot_sandbox!
+
         path = "/catalog/2020-12-01/items"
         params = {
           "keywords" => keywords,
@@ -56,6 +58,8 @@ module Peddler
       #   marketplace.
       # @return [Hash] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: nil, locale: nil)
+        cannot_sandbox!
+
         path = "/catalog/2020-12-01/items/#{asin}"
         params = {
           "marketplaceIds" => marketplace_ids,

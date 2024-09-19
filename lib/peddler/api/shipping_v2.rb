@@ -35,6 +35,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/shipments/directPurchase"
 
         rate_limit(80.0).post(path, body:)
@@ -102,6 +104,7 @@ module Peddler
       # @return [Hash] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil,
         x_amzn_shipping_business_id: nil)
+
         path = "/shipping/v2/shipments/#{shipment_id}/documents"
         params = {
           "packageClientReferenceId" => package_client_reference_id,
@@ -135,6 +138,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/shipments/additionalInputs/schema"
         params = {
           "requestToken" => request_token,
@@ -150,6 +155,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccountFormInputs"
 
         rate_limit(80.0).get(path)
@@ -162,6 +169,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccounts"
 
         rate_limit(80.0).put(path, body:)
@@ -175,6 +184,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccounts/#{carrier_id}"
 
         rate_limit(80.0).put(path, body:)
@@ -188,6 +199,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccounts/#{carrier_id}/unlink"
 
         rate_limit(80.0).put(path, body:)
@@ -202,6 +215,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/collectionForms"
 
         rate_limit(80.0).post(path, body:)
@@ -214,6 +229,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/collectionForms/history"
 
         rate_limit(80.0).put(path, body:)
@@ -227,6 +244,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/unmanifestedShipments"
 
         rate_limit(80.0).put(path, body:)
@@ -239,6 +258,8 @@ module Peddler
       #   AmazonShipping_UK.
       # @return [Hash] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil)
+        cannot_sandbox!
+
         path = "/shipping/v2/collectionForms/#{collection_form_id}"
 
         rate_limit(80.0).get(path)

@@ -14,6 +14,12 @@ module Peddler
       end
     end
 
+    def test_sandbox_endpoint
+      region = Region.new("us-east-1")
+
+      assert_includes(region.sandbox_endpoint, "sandbox")
+    end
+
     def test_unknown_region
       assert_raises(Region::UnknownRegion) do
         Region.new("invalid").endpoint

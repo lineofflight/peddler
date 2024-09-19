@@ -19,6 +19,8 @@ module Peddler
       # @param [String] payload_version The version of the payload object to be used in the notification.
       # @return [Hash] The API response
       def get_subscription(payload_version: nil)
+        cannot_sandbox!
+
         path = "/notifications/v1/subscriptions/#{notification_type}"
         params = {
           "payloadVersion" => payload_version,
@@ -35,6 +37,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_subscription(body)
+        cannot_sandbox!
+
         path = "/notifications/v1/subscriptions/#{notification_type}"
 
         rate_limit(1.0).post(path, body:)
@@ -47,6 +51,8 @@ module Peddler
       # @param [String] subscription_id The identifier for the subscription that you want to get.
       # @return [Hash] The API response
       def get_subscription_by_id(subscription_id)
+        cannot_sandbox!
+
         path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
 
         rate_limit(1.0).get(path)
@@ -61,6 +67,8 @@ module Peddler
       # @param [String] subscription_id The identifier for the subscription that you want to delete.
       # @return [Hash] The API response
       def delete_subscription_by_id(subscription_id)
+        cannot_sandbox!
+
         path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
 
         rate_limit(1.0).delete(path)
@@ -70,6 +78,8 @@ module Peddler
       # refer to [Grantless operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       # @return [Hash] The API response
       def get_destinations
+        cannot_sandbox!
+
         path = "/notifications/v1/destinations"
 
         rate_limit(1.0).get(path)
@@ -82,6 +92,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_destination(body)
+        cannot_sandbox!
+
         path = "/notifications/v1/destinations"
 
         rate_limit(1.0).post(path, body:)
@@ -94,6 +106,8 @@ module Peddler
       # @param [String] destination_id The identifier generated when you created the destination.
       # @return [Hash] The API response
       def get_destination(destination_id)
+        cannot_sandbox!
+
         path = "/notifications/v1/destinations/#{destination_id}"
 
         rate_limit(1.0).get(path)
@@ -105,6 +119,8 @@ module Peddler
       # @param [String] destination_id The identifier for the destination that you want to delete.
       # @return [Hash] The API response
       def delete_destination(destination_id)
+        cannot_sandbox!
+
         path = "/notifications/v1/destinations/#{destination_id}"
 
         rate_limit(1.0).delete(path)

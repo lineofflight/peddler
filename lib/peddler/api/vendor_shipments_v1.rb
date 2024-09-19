@@ -14,6 +14,8 @@ module Peddler
       # @param [Hash] body A request to submit shipment confirmation.
       # @return [Hash] The API response
       def submit_shipment_confirmations(body)
+        cannot_sandbox!
+
         path = "/vendor/shipping/v1/shipmentConfirmations"
 
         rate_limit(10.0).post(path, body:)
@@ -24,6 +26,8 @@ module Peddler
       # @param [Hash] body A request to submit shipment request.
       # @return [Hash] The API response
       def submit_shipments(body)
+        cannot_sandbox!
+
         path = "/vendor/shipping/v1/shipments"
 
         rate_limit(10.0).post(path, body:)
@@ -85,6 +89,8 @@ module Peddler
         scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
         buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil
       )
+        cannot_sandbox!
+
         path = "/vendor/shipping/v1/shipments"
         params = {
           "limit" => limit,

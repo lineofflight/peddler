@@ -30,6 +30,8 @@ module Peddler
       #   Default is B2C.
       # @return [Hash] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil)
+        cannot_sandbox!
+
         path = "/products/pricing/v0/price"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -62,6 +64,8 @@ module Peddler
       #   Consumer or Business buyers. Default is Consumer.
       # @return [Hash] The API response
       def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil)
+        cannot_sandbox!
+
         path = "/products/pricing/v0/competitivePrice"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -88,6 +92,8 @@ module Peddler
       # @param [String] customer_type Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @return [Hash] The API response
       def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil)
+        cannot_sandbox!
+
         path = "/products/pricing/v0/listings/#{seller_sku}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -108,6 +114,8 @@ module Peddler
       # @param [String] customer_type Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @return [Hash] The API response
       def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil)
+        cannot_sandbox!
+
         path = "/products/pricing/v0/items/#{asin}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -123,6 +131,8 @@ module Peddler
       # @param [Hash] get_item_offers_batch_request_body
       # @return [Hash] The API response
       def get_item_offers_batch(get_item_offers_batch_request_body)
+        cannot_sandbox!
+
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
 
@@ -134,6 +144,8 @@ module Peddler
       # @param [Hash] get_listing_offers_batch_request_body
       # @return [Hash] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body)
+        cannot_sandbox!
+
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
 

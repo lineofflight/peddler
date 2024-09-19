@@ -15,6 +15,8 @@ module Peddler
       #   transaction.
       # @return [Hash] The API response
       def get_transaction_status(transaction_id)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/transactions/v1/transactions/#{transaction_id}"
 
         rate_limit(10.0).get(path)

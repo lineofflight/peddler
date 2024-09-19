@@ -14,6 +14,8 @@ module Peddler
       # @param [String] service_job_id A service job identifier.
       # @return [Hash] The API response
       def get_service_job_by_service_job_id(service_job_id)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}"
 
         rate_limit(20.0).get(path)
@@ -26,6 +28,8 @@ module Peddler
       #   job.
       # @return [Hash] The API response
       def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/cancellations"
         params = {
           "cancellationReasonCode" => cancellation_reason_code,
@@ -39,6 +43,8 @@ module Peddler
       # @param [String] service_job_id An Amazon defined service job identifier.
       # @return [Hash] The API response
       def complete_service_job_by_service_job_id(service_job_id)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/completions"
 
         rate_limit(5.0).put(path)
@@ -83,6 +89,8 @@ module Peddler
         last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil,
         store_ids: nil
       )
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs"
         params = {
           "serviceOrderIds" => service_order_ids,
@@ -112,6 +120,8 @@ module Peddler
       # @param [Hash] body Add appointment operation input details.
       # @return [Hash] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments"
 
         rate_limit(5.0).post(path, body:)
@@ -124,6 +134,8 @@ module Peddler
       # @param [Hash] body Reschedule appointment operation input details.
       # @return [Hash] The API response
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}"
 
         rate_limit(5.0).post(path, body:)
@@ -137,6 +149,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/resources"
 
         rate_limit(1.0).put(path, body:)
@@ -150,6 +164,8 @@ module Peddler
       # @param [Hash] body Appointment fulfillment data collection details.
       # @return [Hash] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/fulfillment"
 
         rate_limit(5.0).put(path, body:)
@@ -163,6 +179,8 @@ module Peddler
       # @param [String] next_page_token Next page token returned in the response of your previous request.
       # @return [Hash] The API response
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
+        cannot_sandbox!
+
         path = "/service/v1/serviceResources/#{resource_id}/capacity/range"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -180,6 +198,8 @@ module Peddler
       # @param [String] next_page_token Next page token returned in the response of your previous request.
       # @return [Hash] The API response
       def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
+        cannot_sandbox!
+
         path = "/service/v1/serviceResources/#{resource_id}/capacity/fixed"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -196,6 +216,8 @@ module Peddler
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @return [Hash] The API response
       def update_schedule(resource_id, body, marketplace_ids)
+        cannot_sandbox!
+
         path = "/service/v1/serviceResources/#{resource_id}/schedules"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -210,6 +232,8 @@ module Peddler
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @return [Hash] The API response
       def create_reservation(body, marketplace_ids)
+        cannot_sandbox!
+
         path = "/service/v1/reservation"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -225,6 +249,8 @@ module Peddler
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @return [Hash] The API response
       def update_reservation(reservation_id, body, marketplace_ids)
+        cannot_sandbox!
+
         path = "/service/v1/reservation/#{reservation_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -239,6 +265,8 @@ module Peddler
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @return [Hash] The API response
       def cancel_reservation(reservation_id, marketplace_ids)
+        cannot_sandbox!
+
         path = "/service/v1/reservation/#{reservation_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -259,6 +287,8 @@ module Peddler
       #   business configuration. Maximum range of appointment slots can be 90 days.
       # @return [Hash] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil)
+        cannot_sandbox!
+
         path = "/service/v1/serviceJobs/#{service_job_id}/appointmentSlots"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -282,6 +312,8 @@ module Peddler
       #   business configuration. Maximum range of appointment slots can be 90 days.
       # @return [Hash] The API response
       def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil)
+        cannot_sandbox!
+
         path = "/service/v1/appointmentSlots"
         params = {
           "asin" => asin,
@@ -299,6 +331,8 @@ module Peddler
       # @param [Hash] body Upload document operation input details.
       # @return [Hash] The API response
       def create_service_document_upload_destination(body)
+        cannot_sandbox!
+
         path = "/service/v1/documents"
 
         rate_limit(5.0).post(path, body:)

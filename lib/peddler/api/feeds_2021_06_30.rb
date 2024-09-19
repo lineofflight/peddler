@@ -26,8 +26,10 @@ module Peddler
       #   call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
       #   parameters will cause the request to fail.
       # @return [Hash] The API response
-      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: nil, processing_statuses: nil,
-        created_since: nil, created_until: nil, next_token: nil)
+      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: nil, processing_statuses: nil, created_since: nil,
+        created_until: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/feeds/2021-06-30/feeds"
         params = {
           "feedTypes" => feed_types,
@@ -47,6 +49,8 @@ module Peddler
       # @param [Hash] body Information required to create the feed.
       # @return [Hash] The API response
       def create_feed(body)
+        cannot_sandbox!
+
         path = "/feeds/2021-06-30/feeds"
 
         rate_limit(0.0083).post(path, body:)
@@ -61,6 +65,8 @@ module Peddler
       #   ID.
       # @return [Hash] The API response
       def cancel_feed(feed_id)
+        cannot_sandbox!
+
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
         rate_limit(2.0).delete(path)
@@ -72,6 +78,8 @@ module Peddler
       #   ID.
       # @return [Hash] The API response
       def get_feed(feed_id)
+        cannot_sandbox!
+
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
         rate_limit(2.0).get(path)
@@ -85,6 +93,8 @@ module Peddler
       # @param [Hash] body Specifies the content type for the createFeedDocument operation.
       # @return [Hash] The API response
       def create_feed_document(body)
+        cannot_sandbox!
+
         path = "/feeds/2021-06-30/documents"
 
         rate_limit(0.5).post(path, body:)
@@ -95,6 +105,8 @@ module Peddler
       # @param [String] feed_document_id The identifier of the feed document.
       # @return [Hash] The API response
       def get_feed_document(feed_document_id)
+        cannot_sandbox!
+
         path = "/feeds/2021-06-30/documents/#{feed_document_id}"
 
         rate_limit(0.0222).get(path)

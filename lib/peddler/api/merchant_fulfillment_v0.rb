@@ -14,6 +14,8 @@ module Peddler
       # @param [Hash] body Request schema for GetEligibleShipmentServices operation.
       # @return [Hash] The API response
       def get_eligible_shipment_services(body)
+        cannot_sandbox!
+
         path = "/mfn/v0/eligibleShippingServices"
 
         rate_limit(5.0).post(path, body:)
@@ -24,6 +26,8 @@ module Peddler
       # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment.
       # @return [Hash] The API response
       def get_shipment(shipment_id)
+        cannot_sandbox!
+
         path = "/mfn/v0/shipments/#{shipment_id}"
 
         rate_limit(1.0).get(path)
@@ -34,6 +38,8 @@ module Peddler
       # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment to cancel.
       # @return [Hash] The API response
       def cancel_shipment(shipment_id)
+        cannot_sandbox!
+
         path = "/mfn/v0/shipments/#{shipment_id}"
 
         rate_limit(1.0).delete(path)
@@ -44,6 +50,8 @@ module Peddler
       # @param [Hash] body Request schema for CreateShipment operation.
       # @return [Hash] The API response
       def create_shipment(body)
+        cannot_sandbox!
+
         path = "/mfn/v0/shipments"
 
         rate_limit(1.0).post(path, body:)
@@ -55,6 +63,8 @@ module Peddler
       # @param [Hash] body Request schema for GetAdditionalSellerInputs operation.
       # @return [Hash] The API response
       def get_additional_seller_inputs(body)
+        cannot_sandbox!
+
         path = "/mfn/v0/additionalSellerInputs"
 
         rate_limit(1.0).post(path, body:)

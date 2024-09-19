@@ -28,6 +28,8 @@ module Peddler
       # @return [Hash] The API response
       def list_financial_event_groups(max_results_per_page: nil, financial_event_group_started_before: nil,
         financial_event_group_started_after: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/finances/v0/financialEventGroups"
         params = {
           "MaxResultsPerPage" => max_results_per_page,
@@ -60,6 +62,8 @@ module Peddler
       # @return [Hash] The API response
       def list_financial_events_by_group_id(event_group_id, max_results_per_page: nil, posted_after: nil,
         posted_before: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/finances/v0/financialEventGroups/#{event_group_id}/financialEvents"
         params = {
           "MaxResultsPerPage" => max_results_per_page,
@@ -80,6 +84,8 @@ module Peddler
       # @param [String] next_token A string token returned in the response of your previous request.
       # @return [Hash] The API response
       def list_financial_events_by_order_id(order_id, max_results_per_page: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/finances/v0/orders/#{order_id}/financialEvents"
         params = {
           "MaxResultsPerPage" => max_results_per_page,
@@ -106,6 +112,8 @@ module Peddler
       # @param [String] next_token A string token returned in the response of your previous request.
       # @return [Hash] The API response
       def list_financial_events(max_results_per_page: nil, posted_after: nil, posted_before: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/finances/v0/financialEvents"
         params = {
           "MaxResultsPerPage" => max_results_per_page,

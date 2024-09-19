@@ -11,11 +11,17 @@ module Peddler
     end
 
     def test_endpoint
-      assert(@api.endpoint)
+      assert_kind_of(URI, @api.endpoint)
     end
 
     def test_sandbox
-      assert_includes(@api.sandbox.endpoint, "sandbox")
+      assert_includes(@api.sandbox.endpoint.host, "sandbox")
+    end
+
+    def test_cannot_sandbox
+      assert_raises(API::CannotSandbox) do
+        @api.sandbox.cannot_sandbox!
+      end
     end
 
     def test_host_header

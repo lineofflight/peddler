@@ -49,6 +49,8 @@ module Peddler
       # @return [Hash] The API response
       def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: nil,
         fulfillment_network: nil, first_day_of_week: nil, asin: nil, sku: nil)
+        cannot_sandbox!
+
         path = "/sales/v1/orderMetrics"
         params = {
           "marketplaceIds" => marketplace_ids,

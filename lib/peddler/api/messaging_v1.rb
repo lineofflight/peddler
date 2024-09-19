@@ -21,6 +21,8 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @return [Hash] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -39,6 +41,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def confirm_customization_details(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmCustomizationDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -56,6 +60,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmDeliveryDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -74,6 +80,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/legalDisclosure"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -91,6 +99,8 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @return [Hash] The API response
       def create_negative_feedback_removal(amazon_order_id, marketplace_ids)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/negativeFeedbackRemoval"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -108,6 +118,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmOrderDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -126,6 +138,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmServiceDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -144,6 +158,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_amazon_motors(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/amazonMotors"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -161,6 +177,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_warranty(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/warranty"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -177,6 +195,8 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @return [Hash] The API response
       def get_attributes(amazon_order_id, marketplace_ids)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/attributes"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -194,6 +214,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_digital_access_key(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/digitalAccessKey"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -212,6 +234,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/unexpectedProblem"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -229,6 +253,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)
+        cannot_sandbox!
+
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/invoice"
         params = {
           "marketplaceIds" => marketplace_ids,

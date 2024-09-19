@@ -34,6 +34,8 @@ module Peddler
       # @return [Hash] The API response
       def list_catalog_items(marketplace_id, query: nil, query_context_id: nil, seller_sku: nil, upc: nil, ean: nil,
         isbn: nil, jan: nil)
+        cannot_sandbox!
+
         path = "/catalog/v0/items"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -60,6 +62,8 @@ module Peddler
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @return [Hash] The API response
       def get_catalog_item(marketplace_id, asin)
+        cannot_sandbox!
+
         path = "/catalog/v0/items/#{asin}"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -76,6 +80,8 @@ module Peddler
       #   seller's SellerId, which is included with every operation that you submit.
       # @return [Hash] The API response
       def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil)
+        cannot_sandbox!
+
         path = "/catalog/v0/categories"
         params = {
           "MarketplaceId" => marketplace_id,

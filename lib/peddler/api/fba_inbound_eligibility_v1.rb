@@ -22,6 +22,8 @@ module Peddler
       # @param [String] program The program that you want to check eligibility against.
       # @return [Hash] The API response
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil)
+        cannot_sandbox!
+
         path = "/fba/inbound/v1/eligibility/itemPreview"
         params = {
           "marketplaceIds" => marketplace_ids,

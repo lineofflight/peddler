@@ -29,6 +29,8 @@ module Peddler
       #   seller's SellerId, which is included with every operation that you submit.
       # @return [Hash] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku)
+        cannot_sandbox!
+
         path = "/products/fees/v0/listings/#{seller_sku}/feesEstimate"
 
         rate_limit(1.0).post(path, body:)
@@ -50,6 +52,8 @@ module Peddler
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @return [Hash] The API response
       def get_my_fees_estimate_for_asin(body, asin)
+        cannot_sandbox!
+
         path = "/products/fees/v0/items/#{asin}/feesEstimate"
 
         rate_limit(1.0).post(path, body:)
@@ -60,6 +64,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def get_my_fees_estimates(body)
+        cannot_sandbox!
+
         path = "/products/fees/v0/feesEstimate"
 
         rate_limit(0.5).post(path, body:)

@@ -26,5 +26,10 @@ module Peddler
         raise UnknownRegion, "#{name} not found"
       end
     end
+
+    # @return [String]
+    def sandbox_endpoint
+      endpoint.sub("sellingpartnerapi", "sandbox.sellingpartnerapi")
+    end
   end
 end

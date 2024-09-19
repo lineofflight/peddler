@@ -13,6 +13,8 @@ module Peddler
       # @param [Hash] body The request body containing the invoice data to submit.
       # @return [Hash] The API response
       def submit_invoices(body)
+        cannot_sandbox!
+
         path = "/vendor/payments/v1/invoices"
 
         rate_limit(10.0).post(path, body:)

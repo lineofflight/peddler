@@ -26,6 +26,8 @@ module Peddler
       # @return [Hash] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -44,6 +46,8 @@ module Peddler
       # @param [Hash] body Request body containing one or more shipping labels data.
       # @return [Hash] The API response
       def submit_shipping_label_request(body)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
 
         rate_limit(10.0).post(path, body:)
@@ -55,6 +59,8 @@ module Peddler
       #   It should be the same `purchaseOrderNumber` as received in the order.
       # @return [Hash] The API response
       def get_shipping_label(purchase_order_number)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{purchase_order_number}"
 
         rate_limit(10.0).get(path)
@@ -65,6 +71,8 @@ module Peddler
       # @param [Hash] body Request body containing the shipment confirmations data.
       # @return [Hash] The API response
       def submit_shipment_confirmations(body)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
 
         rate_limit(10.0).post(path, body:)
@@ -77,6 +85,8 @@ module Peddler
       # @param [Hash] body Request body containing the shipment status update data.
       # @return [Hash] The API response
       def submit_shipment_status_updates(body)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
 
         rate_limit(10.0).post(path, body:)
@@ -99,6 +109,8 @@ module Peddler
       # @return [Hash] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -117,6 +129,8 @@ module Peddler
       # @param [String] purchase_order_number Purchase order number of the shipment for which to return the invoice.
       # @return [Hash] The API response
       def get_customer_invoice(purchase_order_number)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{purchase_order_number}"
 
         rate_limit(10.0).get(path)
@@ -138,6 +152,8 @@ module Peddler
       # @return [Hash] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/packingSlips"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -156,6 +172,8 @@ module Peddler
       # @param [String] purchase_order_number The `purchaseOrderNumber` for the packing slip you want.
       # @return [Hash] The API response
       def get_packing_slip(purchase_order_number)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{purchase_order_number}"
 
         rate_limit(10.0).get(path)

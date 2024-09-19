@@ -21,6 +21,8 @@ module Peddler
       #   "en_US" when a localization is not available in the specified locale.
       # @return [Hash] The API response
       def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil)
+        cannot_sandbox!
+
         path = "/listings/2021-08-01/restrictions"
         params = {
           "asin" => asin,

@@ -30,8 +30,9 @@ module Peddler
       # @param [String] include_details When true, returns the complete purchase order details. Otherwise, only purchase
       #   order numbers are returned.
       # @return [Hash] The API response
-      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil,
-        sort_order: nil, next_token: nil, include_details: nil)
+      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
+        next_token: nil, include_details: nil)
+
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
         params = {
           "shipFromPartyId" => ship_from_party_id,

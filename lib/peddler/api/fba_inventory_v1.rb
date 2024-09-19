@@ -41,8 +41,9 @@ module Peddler
       # @param [Array<String>] marketplace_ids The marketplace ID for the marketplace for which to return inventory
       #   summaries.
       # @return [Hash] The API response
-      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil,
-        start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil)
+      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
+        seller_skus: nil, seller_sku: nil, next_token: nil)
+
         path = "/fba/inventory/v1/summaries"
         params = {
           "details" => details,

@@ -21,6 +21,8 @@ module Peddler
       # @param [String] sort_order The sort order.
       # @return [Hash] The API response
       def list_inbound_plans(page_size: nil, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans"
         params = {
           "pageSize" => page_size,
@@ -39,6 +41,8 @@ module Peddler
       # @param [Hash] body The body of the request to `createInboundPlan`.
       # @return [Hash] The API response
       def create_inbound_plan(body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans"
 
         rate_limit(2.0).post(path, body:)
@@ -49,6 +53,8 @@ module Peddler
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @return [Hash] The API response
       def get_inbound_plan(inbound_plan_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}"
 
         rate_limit(2.0).get(path)
@@ -63,6 +69,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/boxes"
         params = {
           "pageSize" => page_size,
@@ -79,6 +87,8 @@ module Peddler
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @return [Hash] The API response
       def cancel_inbound_plan(inbound_plan_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/cancellation"
 
         rate_limit(2.0).put(path)
@@ -93,6 +103,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/items"
         params = {
           "pageSize" => page_size,
@@ -108,6 +120,8 @@ module Peddler
       # @param [Hash] body The body of the request to `updateInboundPlanName`.
       # @return [Hash] The API response
       def update_inbound_plan_name(inbound_plan_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/name"
 
         rate_limit(2.0).put(path, body:)
@@ -125,6 +139,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingGroups/#{packing_group_id}/boxes"
         params = {
           "pageSize" => page_size,
@@ -145,6 +161,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingGroups/#{packing_group_id}/items"
         params = {
           "pageSize" => page_size,
@@ -161,6 +179,8 @@ module Peddler
       # @param [Hash] body The body of the request to `setPackingInformation`.
       # @return [Hash] The API response
       def set_packing_information(inbound_plan_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingInformation"
 
         rate_limit(2.0).post(path, body:)
@@ -176,6 +196,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_packing_options(inbound_plan_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
         params = {
           "pageSize" => page_size,
@@ -190,6 +212,8 @@ module Peddler
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @return [Hash] The API response
       def generate_packing_options(inbound_plan_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
 
         rate_limit(2.0).post(path)
@@ -201,6 +225,8 @@ module Peddler
       # @param [String] packing_option_id Identifier of a packing option.
       # @return [Hash] The API response
       def confirm_packing_option(inbound_plan_id, packing_option_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions/#{packing_option_id}/confirmation"
 
         rate_limit(2.0).post(path)
@@ -216,6 +242,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/pallets"
         params = {
           "pageSize" => page_size,
@@ -235,6 +263,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_placement_options(inbound_plan_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
         params = {
           "pageSize" => page_size,
@@ -250,6 +280,8 @@ module Peddler
       # @param [Hash] body The body of the request to `generatePlacementOptions`.
       # @return [Hash] The API response
       def generate_placement_options(inbound_plan_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
 
         rate_limit(2.0).post(path, body:)
@@ -262,6 +294,8 @@ module Peddler
       #   shipment splits and destinations of SKUs.
       # @return [Hash] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions/#{placement_option_id}/confirmation"
 
         rate_limit(2.0).post(path)
@@ -274,6 +308,8 @@ module Peddler
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @return [Hash] The API response
       def get_shipment(inbound_plan_id, shipment_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}"
 
         rate_limit(2.0).get(path)
@@ -289,6 +325,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/boxes"
         params = {
           "pageSize" => page_size,
@@ -310,6 +348,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
         params = {
           "pageSize" => page_size,
@@ -328,6 +368,8 @@ module Peddler
       # @param [Hash] body The body of the request to `generateShipmentContentUpdatePreviews`.
       # @return [Hash] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
 
         rate_limit(2.0).post(path, body:)
@@ -342,6 +384,8 @@ module Peddler
       # @param [String] content_update_preview_id Identifier of a content update preview.
       # @return [Hash] The API response
       def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews/#{content_update_preview_id}"
 
         rate_limit(2.0).get(path)
@@ -354,6 +398,8 @@ module Peddler
       # @param [String] content_update_preview_id Identifier of a content update preview.
       # @return [Hash] The API response
       def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews/#{content_update_preview_id}/confirmation"
 
         rate_limit(2.0).post(path)
@@ -365,6 +411,8 @@ module Peddler
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @return [Hash] The API response
       def get_delivery_challan_document(inbound_plan_id, shipment_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryChallanDocument"
 
         rate_limit(2.0).get(path)
@@ -382,6 +430,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
         params = {
           "pageSize" => page_size,
@@ -397,6 +447,8 @@ module Peddler
       # @param [String] shipment_id The shipment to generate delivery window options for.
       # @return [Hash] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
 
         rate_limit(2.0).post(path)
@@ -414,6 +466,8 @@ module Peddler
       # @param [String] delivery_window_option_id The id of the delivery window option to be confirmed.
       # @return [Hash] The API response
       def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions/#{delivery_window_option_id}/confirmation"
 
         rate_limit(2.0).post(path)
@@ -429,6 +483,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/items"
         params = {
           "pageSize" => page_size,
@@ -445,6 +501,8 @@ module Peddler
       # @param [Hash] body The body of the request to `updateShipmentName`.
       # @return [Hash] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/name"
 
         rate_limit(2.0).put(path, body:)
@@ -461,6 +519,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/pallets"
         params = {
           "pageSize" => page_size,
@@ -477,6 +537,8 @@ module Peddler
       # @param [Hash] body The body of the request to `cancelSelfShipAppointment`.
       # @return [Hash] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentCancellation"
 
         rate_limit(2.0).put(path, body:)
@@ -493,6 +555,8 @@ module Peddler
       #   token value from the query parameter the API returns the first page of the result.
       # @return [Hash] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: nil, pagination_token: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
         params = {
           "pageSize" => page_size,
@@ -509,6 +573,8 @@ module Peddler
       # @param [Hash] body The body of the request to `generateSelfShipAppointmentSlots`.
       # @return [Hash] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
 
         rate_limit(2.0).post(path, body:)
@@ -522,6 +588,8 @@ module Peddler
       # @param [Hash] body The body of the request to `scheduleSelfShipAppointment`.
       # @return [Hash] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots/#{slot_id}/schedule"
 
         rate_limit(2.0).post(path, body:)
@@ -537,6 +605,8 @@ module Peddler
       # @param [Hash] body The body of the request to `updateShipmentSourceAddress`.
       # @return [Hash] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/sourceAddress"
 
         rate_limit(2.0).put(path, body:)
@@ -549,6 +619,8 @@ module Peddler
       # @param [Hash] body The body of the request to `updateShipmentTrackingDetails`.
       # @return [Hash] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/trackingDetails"
 
         rate_limit(2.0).put(path, body:)
@@ -568,8 +640,10 @@ module Peddler
       # @param [String] shipment_id The shipment to get transportation options for. Either `placementOptionId` or
       #   `shipmentId` must be specified.
       # @return [Hash] The API response
-      def list_transportation_options(inbound_plan_id, page_size: nil, pagination_token: nil,
-        placement_option_id: nil, shipment_id: nil)
+      def list_transportation_options(inbound_plan_id, page_size: nil, pagination_token: nil, placement_option_id: nil,
+        shipment_id: nil)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
         params = {
           "pageSize" => page_size,
@@ -587,6 +661,8 @@ module Peddler
       # @param [Hash] body The body of the request to `generateTransportationOptions`.
       # @return [Hash] The API response
       def generate_transportation_options(inbound_plan_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
 
         rate_limit(2.0).post(path, body:)
@@ -599,6 +675,8 @@ module Peddler
       # @param [Hash] body The body of the request to `confirmTransportationOptions`.
       # @return [Hash] The API response
       def confirm_transportation_options(inbound_plan_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions/confirmation"
 
         rate_limit(2.0).post(path, body:)
@@ -611,6 +689,8 @@ module Peddler
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a list of possible values.
       # @return [Hash] The API response
       def list_item_compliance_details(mskus, marketplace_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "mskus" => mskus,
@@ -628,6 +708,8 @@ module Peddler
       # @param [Hash] body The body of the request to `updateItemComplianceDetails`.
       # @return [Hash] The API response
       def update_item_compliance_details(marketplace_id, body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "marketplaceId" => marketplace_id,
@@ -641,6 +723,8 @@ module Peddler
       # @param [Hash] body The body of the request to `createMarketplaceItemLabels`.
       # @return [Hash] The API response
       def create_marketplace_item_labels(body)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/items/labels"
 
         rate_limit(2.0).post(path, body:)
@@ -651,6 +735,8 @@ module Peddler
       # @param [String] operation_id Identifier of an asynchronous operation.
       # @return [Hash] The API response
       def get_inbound_operation_status(operation_id)
+        cannot_sandbox!
+
         path = "/inbound/fba/2024-03-20/operations/#{operation_id}"
 
         rate_limit(2.0).get(path)

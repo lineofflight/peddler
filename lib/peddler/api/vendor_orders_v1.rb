@@ -45,6 +45,8 @@ module Peddler
         changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil,
         ordering_vendor_code: nil
       )
+        cannot_sandbox!
+
         path = "/vendor/orders/v1/purchaseOrders"
         params = {
           "limit" => limit,
@@ -70,6 +72,8 @@ module Peddler
       #   Notes: 8-character alpha-numeric code.
       # @return [Hash] The API response
       def get_purchase_order(purchase_order_number)
+        cannot_sandbox!
+
         path = "/vendor/orders/v1/purchaseOrders/#{purchase_order_number}"
 
         rate_limit(10.0).get(path)
@@ -80,6 +84,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def submit_acknowledgement(body)
+        cannot_sandbox!
+
         path = "/vendor/orders/v1/acknowledgements"
 
         rate_limit(10.0).post(path, body:)
@@ -124,6 +130,8 @@ module Peddler
         updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil,
         item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil
       )
+        cannot_sandbox!
+
         path = "/vendor/orders/v1/purchaseOrdersStatus"
         params = {
           "limit" => limit,

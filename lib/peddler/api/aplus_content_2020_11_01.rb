@@ -23,6 +23,8 @@ module Peddler
       #   pages to return. A pageToken value is not usable across different operations.
       # @return [Hash] The API response
       def search_content_documents(marketplace_id, page_token: nil)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments"
         params = {
           "marketplaceId" => marketplace_id,
@@ -38,6 +40,8 @@ module Peddler
       # @param [Hash] post_content_document_request The content document request details.
       # @return [Hash] The API response
       def create_content_document(marketplace_id, post_content_document_request)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments"
         body = post_content_document_request
         params = {
@@ -56,6 +60,8 @@ module Peddler
       # @param [Array<String>] included_data_set The set of A+ Content data types to include in the response.
       # @return [Hash] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -74,6 +80,8 @@ module Peddler
       # @param [Hash] post_content_document_request The content document request details.
       # @return [Hash] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
         body = post_content_document_request
         params = {
@@ -101,6 +109,8 @@ module Peddler
       # @return [Hash] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
         asin_set: nil, page_token: nil)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
         params = {
           "marketplaceId" => marketplace_id,
@@ -124,6 +134,8 @@ module Peddler
       # @return [Hash] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
         post_content_document_asin_relations_request)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
         body = post_content_document_asin_relations_request
         params = {
@@ -140,6 +152,8 @@ module Peddler
       # @param [Hash] post_content_document_request The content document request details.
       # @return [Hash] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentAsinValidations"
         body = post_content_document_request
         params = {
@@ -161,6 +175,8 @@ module Peddler
       #   pages to return. A pageToken value is not usable across different operations.
       # @return [Hash] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentPublishRecords"
         params = {
           "marketplaceId" => marketplace_id,
@@ -179,6 +195,8 @@ module Peddler
       # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
       # @return [Hash] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/approvalSubmissions"
         params = {
           "marketplaceId" => marketplace_id,
@@ -196,6 +214,8 @@ module Peddler
       # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
       # @return [Hash] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/suspendSubmissions"
         params = {
           "marketplaceId" => marketplace_id,

@@ -111,6 +111,8 @@ module Peddler
         earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
         latest_delivery_date_after: nil
       )
+        cannot_sandbox!
+
         path = "/orders/v0/orders"
         params = {
           "CreatedAfter" => created_after,
@@ -145,6 +147,8 @@ module Peddler
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @return [Hash] The API response
       def get_order(order_id)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}"
 
         rate_limit(0.5).get(path)
@@ -155,6 +159,8 @@ module Peddler
       # @param [String] order_id An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @return [Hash] The API response
       def get_order_buyer_info(order_id)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/buyerInfo"
 
         rate_limit(0.5).get(path)
@@ -165,6 +171,8 @@ module Peddler
       # @param [String] order_id An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @return [Hash] The API response
       def get_order_address(order_id)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/address"
 
         rate_limit(0.5).get(path)
@@ -175,6 +183,8 @@ module Peddler
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @return [Hash] The API response
       def get_order_fulfillment_instructions(order_id)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/fulfillmentInstructions"
 
         rate_limit(0.5).get(path)
@@ -192,6 +202,8 @@ module Peddler
       # @param [String] next_token A string token returned in the response of your previous request.
       # @return [Hash] The API response
       def get_order_items(order_id, next_token: nil)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/orderItems"
         params = {
           "NextToken" => next_token,
@@ -206,6 +218,8 @@ module Peddler
       # @param [String] next_token A string token returned in the response of your previous request.
       # @return [Hash] The API response
       def get_order_items_buyer_info(order_id, next_token: nil)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/orderItems/buyerInfo"
         params = {
           "NextToken" => next_token,
@@ -220,6 +234,8 @@ module Peddler
       # @param [Hash] payload The request body for the `updateShipmentStatus` operation.
       # @return [Hash] The API response
       def update_shipment_status(order_id, payload)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/shipment"
         body = payload
 
@@ -231,6 +247,8 @@ module Peddler
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @return [Hash] The API response
       def get_order_regulated_info(order_id)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
 
         rate_limit(0.5).get(path)
@@ -242,6 +260,8 @@ module Peddler
       # @param [Hash] payload The request body for the `updateVerificationStatus` operation.
       # @return [Hash] The API response
       def update_verification_status(order_id, payload)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
 
@@ -254,6 +274,8 @@ module Peddler
       # @param [Hash] payload Request body of `confirmShipment`.
       # @return [Hash] The API response
       def confirm_shipment(order_id, payload)
+        cannot_sandbox!
+
         path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
         body = payload
 

@@ -21,6 +21,8 @@ module Peddler
       # @param [Hash] body The restricted data token request details.
       # @return [Hash] The API response
       def create_restricted_data_token(body)
+        cannot_sandbox!
+
         path = "/tokens/2021-03-01/restrictedDataToken"
 
         rate_limit(1.0).post(path, body:)

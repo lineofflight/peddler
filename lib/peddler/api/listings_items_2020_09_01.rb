@@ -24,6 +24,8 @@ module Peddler
       #   when a localization is not available in the specified locale.
       # @return [Hash] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
+        cannot_sandbox!
+
         path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -48,6 +50,8 @@ module Peddler
       # @param [Hash] body The request body schema for the patchListingsItem operation.
       # @return [Hash] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
+        cannot_sandbox!
+
         path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -71,6 +75,8 @@ module Peddler
       # @param [Hash] body The request body schema for the putListingsItem operation.
       # @return [Hash] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil)
+        cannot_sandbox!
+
         path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
         params = {
           "marketplaceIds" => marketplace_ids,

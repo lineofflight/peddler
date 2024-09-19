@@ -19,6 +19,8 @@ module Peddler
       # @param [Hash] body The request schema for the CreateInboundShipmentPlanRequest operation.
       # @return [Hash] The API response
       def create_inbound_shipment_plan(body)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/plans"
 
         rate_limit(2.0).post(path, body:)
@@ -32,6 +34,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def create_inbound_shipment(body, shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
 
         rate_limit(2.0).post(path, body:)
@@ -45,6 +49,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def update_inbound_shipment(body, shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
 
         rate_limit(2.0).put(path, body:)
@@ -57,6 +63,8 @@ module Peddler
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace the shipment is tied to.
       # @return [Hash] The API response
       def get_preorder_info(shipment_id, marketplace_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/preorder"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -76,6 +84,8 @@ module Peddler
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace the shipment is tied to.
       # @return [Hash] The API response
       def confirm_preorder(shipment_id, need_by_date, marketplace_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/preorder/confirm"
         params = {
           "NeedByDate" => need_by_date,
@@ -104,6 +114,8 @@ module Peddler
       #   calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
       # @return [Hash] The API response
       def get_prep_instructions(ship_to_country_code, seller_sku_list: nil, asin_list: nil)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/prepInstructions"
         params = {
           "ShipToCountryCode" => ship_to_country_code,
@@ -120,6 +132,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def get_transport_details(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
 
         rate_limit(2.0).get(path)
@@ -132,6 +146,8 @@ module Peddler
       # @param [Hash] body The request schema for the PutTransportDetailsRequest operation.
       # @return [Hash] The API response
       def put_transport_details(shipment_id, body)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
 
         rate_limit(2.0).put(path, body:)
@@ -148,6 +164,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def void_transport(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/void"
 
         rate_limit(2.0).post(path)
@@ -161,6 +179,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def estimate_transport(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/estimate"
 
         rate_limit(2.0).post(path)
@@ -180,6 +200,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def confirm_transport(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/confirm"
 
         rate_limit(2.0).post(path)
@@ -205,6 +227,8 @@ module Peddler
       # @return [Hash] The API response
       def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil,
         number_of_pallets: nil, page_size: nil, page_start_index: nil)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/labels"
         params = {
           "PageType" => page_type,
@@ -227,6 +251,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def get_bill_of_lading(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/billOfLading"
 
         rate_limit(2.0).get(path)
@@ -253,6 +279,8 @@ module Peddler
       # @return [Hash] The API response
       def get_shipments(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil,
         last_updated_after: nil, last_updated_before: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments"
         params = {
           "ShipmentStatusList" => shipment_status_list,
@@ -274,6 +302,8 @@ module Peddler
       #   stored.
       # @return [Hash] The API response
       def get_shipment_items_by_shipment_id(shipment_id, marketplace_id)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipments/#{shipment_id}/items"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -298,6 +328,8 @@ module Peddler
       # @return [Hash] The API response
       def get_shipment_items(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil,
         next_token: nil)
+        cannot_sandbox!
+
         path = "/fba/inbound/v0/shipmentItems"
         params = {
           "LastUpdatedAfter" => last_updated_after,

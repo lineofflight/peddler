@@ -22,6 +22,8 @@ module Peddler
       # @param [Hash] list_handover_slots_request The request schema for the `listHandoverSlots` operation.
       # @return [Hash] The API response
       def list_handover_slots(list_handover_slots_request: nil)
+        cannot_sandbox!
+
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
 
@@ -36,6 +38,8 @@ module Peddler
       # @param [String] marketplace_id An identifier for the marketplace in which the seller is selling.
       # @return [Hash] The API response
       def get_scheduled_package(amazon_order_id, marketplace_id)
+        cannot_sandbox!
+
         path = "/easyShip/2022-03-23/package"
         params = {
           "amazonOrderId" => amazon_order_id,
@@ -59,6 +63,8 @@ module Peddler
       # @param [Hash] create_scheduled_package_request The request schema for the `createScheduledPackage` operation.
       # @return [Hash] The API response
       def create_scheduled_package(create_scheduled_package_request)
+        cannot_sandbox!
+
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
 
@@ -74,6 +80,8 @@ module Peddler
       # @param [Hash] update_scheduled_packages_request The request schema for the `updateScheduledPackages` operation.
       # @return [Hash] The API response
       def update_scheduled_packages(update_scheduled_packages_request: nil)
+        cannot_sandbox!
+
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
 
@@ -98,6 +106,8 @@ module Peddler
       #   operation.
       # @return [Hash] The API response
       def create_scheduled_package_bulk(create_scheduled_packages_request)
+        cannot_sandbox!
+
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
 

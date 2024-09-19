@@ -81,9 +81,23 @@ module Generator
       end
 
       shared_parameters = methods.delete("parameters") || []
-      skipped_methods = ["x-amzn-api-sandbox", "x-amzn-api-sandbox-only"]
+      sandbox = methods.delete("x-amzn-api-sandbox")
+      path_has_dynamic_sandbox = sandbox&.key?("dynamic")
+
+      # Should never raise
+      raise if sandbox && !sandbox.key?("dynamic")
+
+      sandbox_only = methods.delete("x-amzn-api-sandbox-only")
+
       methods.map do |method, operation|
-        next if skipped_methods.include?(method)
+        sandbox = operation.delete("x-amzn-api-sandbox")
+        operation_has_dynamic_sandbox = sandbox&.key?("dynamic")
+
+        # Should never raise
+        raise if sandbox && !sandbox.key?("dynamic")
+
+        code = operation["responses"].keys.find { |code| code.start_with?("2") }
+        static_sandbox = operation["responses"][code]&.delete("x-amzn-api-sandbox")&.fetch("static")
 
         operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
         parameters = operation_parameters.select { |p| p["name"] }
@@ -95,6 +109,9 @@ module Generator
           "parameters" => parameters,
           "body_param" => parameters&.find { |p| p["in"] == "body" },
           "query_params" => parameters&.select { |p| p["in"] == "query" },
+          "dynamic_sandbox" => !!(path_has_dynamic_sandbox || operation_has_dynamic_sandbox),
+          "static_sandbox" => static_sandbox,
+          "sandbox_only" => sandbox_only,
         )
       end
     end.compact

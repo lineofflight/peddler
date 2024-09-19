@@ -16,6 +16,8 @@ module Peddler
       # @param [Hash] body The request body for the `getSellingPartnerMetrics` operation.
       # @return [Hash] The API response
       def get_selling_partner_metrics(body: nil)
+        cannot_sandbox!
+
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
 
         rate_limit(1.0).post(path, body:)
@@ -26,6 +28,8 @@ module Peddler
       # @param [Hash] body The request body for the `listOfferMetrics` operation.
       # @return [Hash] The API response
       def list_offer_metrics(body: nil)
+        cannot_sandbox!
+
         path = "/replenishment/2022-11-07/offers/metrics/search"
 
         rate_limit(1.0).post(path, body:)
@@ -36,6 +40,8 @@ module Peddler
       # @param [Hash] body The request body for the `listOffers` operation.
       # @return [Hash] The API response
       def list_offers(body: nil)
+        cannot_sandbox!
+
         path = "/replenishment/2022-11-07/offers/search"
 
         rate_limit(1.0).post(path, body:)

@@ -8,6 +8,8 @@ require "peddler/region"
 module Peddler
   # Wraps an Amazon Selling Partner API (SP-API)
   class API
+    class CannotSandbox < StandardError; end
+
     # @return [Peddler::Region]
     attr_reader :region
 
@@ -19,17 +21,29 @@ module Peddler
     def initialize(aws_region, access_token)
       @region = Region.new(aws_region)
       @access_token = access_token
+      @sandbox = false
     end
 
+    # @return [URI]
     def endpoint
-      @endpoint ||= region.endpoint
+      URI(sandbox? ? region.sandbox_endpoint : region.endpoint)
     end
 
     # @see https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
     # @return [self]
     def sandbox
-      @endpoint = endpoint.sub(/(?:sandbox.)?sellingpartnerapi/, "sandbox.sellingpartnerapi")
+      @sandbox = true
       self
+    end
+
+    # @return [Boolean]
+    def sandbox?
+      @sandbox
+    end
+
+    # @raise [CannotSandbox] if in sandbox environment
+    def cannot_sandbox!
+      raise CannotSandbox, "cannot run in sandbox" if sandbox?
     end
 
     # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
@@ -89,7 +103,11 @@ module Peddler
           options[:json] = options.delete(:body)
         end
 
-        response = http.send(method, [endpoint, path].join, **options)
+        uri = endpoint.tap do |uri|
+          uri.path = path
+        end
+
+        response = http.send(method, uri, **options)
 
         if response.status.client_error?
           error = Error.build(response)

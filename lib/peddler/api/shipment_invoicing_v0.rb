@@ -16,6 +16,8 @@ module Peddler
       #   Guide](doc:notifications-api-v1-use-case-guide).
       # @return [Hash] The API response
       def get_shipment_details(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}"
 
         rate_limit(1.133).get(path)
@@ -27,6 +29,8 @@ module Peddler
       # @param [Hash] body
       # @return [Hash] The API response
       def submit_invoice(shipment_id, body)
+        cannot_sandbox!
+
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice"
 
         rate_limit(1.133).post(path, body:)
@@ -37,6 +41,8 @@ module Peddler
       # @param [String] shipment_id The shipment identifier for the shipment.
       # @return [Hash] The API response
       def get_invoice_status(shipment_id)
+        cannot_sandbox!
+
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice/status"
 
         rate_limit(1.133).get(path)

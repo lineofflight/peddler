@@ -30,8 +30,10 @@ module Peddler
       # @param [String] include_details When true, returns the complete purchase order details. Otherwise, only purchase
       #   order numbers are returned.
       # @return [Hash] The API response
-      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil,
-        sort_order: nil, next_token: nil, include_details: nil)
+      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
+        next_token: nil, include_details: nil)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -53,6 +55,8 @@ module Peddler
       #   Notes: alpha-numeric code.
       # @return [Hash] The API response
       def get_order(purchase_order_number)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders/#{purchase_order_number}"
 
         rate_limit(10.0).get(path)
@@ -63,6 +67,8 @@ module Peddler
       # @param [Hash] body The request body that contains the order acknowledgement.
       # @return [Hash] The API response
       def submit_acknowledgement(body)
+        cannot_sandbox!
+
         path = "/vendor/directFulfillment/orders/v1/acknowledgements"
 
         rate_limit(10.0).post(path, body:)

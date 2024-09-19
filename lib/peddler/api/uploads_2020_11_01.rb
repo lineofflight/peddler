@@ -26,6 +26,8 @@ module Peddler
       # @param [String] content_type The content type of the file to be uploaded.
       # @return [Hash] The API response
       def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil)
+        cannot_sandbox!
+
         path = "/uploads/2020-11-01/uploadDestinations/#{resource}"
         params = {
           "marketplaceIds" => marketplace_ids,

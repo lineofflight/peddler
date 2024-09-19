@@ -16,6 +16,8 @@ module Peddler
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
       # @return [Hash] The API response
       def get_inbound_shipment(shipment_id, sku_quantities: nil)
+        cannot_sandbox!
+
         path = "/awd/2024-05-09/inboundShipments/#{shipment_id}"
         params = {
           "skuQuantities" => sku_quantities,
@@ -40,6 +42,8 @@ module Peddler
       # @return [Hash] The API response
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil,
         updated_before: nil, max_results: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/awd/2024-05-09/inboundShipments"
         params = {
           "sortBy" => sort_by,
@@ -64,6 +68,8 @@ module Peddler
       # @param [Integer] max_results Maximum number of results to return.
       # @return [Hash] The API response
       def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: nil)
+        cannot_sandbox!
+
         path = "/awd/2024-05-09/inventory"
         params = {
           "sku" => sku,

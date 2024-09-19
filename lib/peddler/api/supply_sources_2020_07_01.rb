@@ -14,6 +14,8 @@ module Peddler
       # @param [Number] page_size The number of supply sources to return per paginated request.
       # @return [Hash] The API response
       def get_supply_sources(next_page_token: nil, page_size: nil)
+        cannot_sandbox!
+
         path = "/supplySources/2020-07-01/supplySources"
         params = {
           "nextPageToken" => next_page_token,
@@ -28,6 +30,8 @@ module Peddler
       # @param [Hash] payload A request to create a supply source.
       # @return [Hash] The API response
       def create_supply_source(payload)
+        cannot_sandbox!
+
         path = "/supplySources/2020-07-01/supplySources"
         body = payload
 
@@ -39,6 +43,8 @@ module Peddler
       # @param [String] supply_source_id The unique identifier of a supply source.
       # @return [Hash] The API response
       def get_supply_source(supply_source_id)
+        cannot_sandbox!
+
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
 
         get(path)
@@ -50,6 +56,8 @@ module Peddler
       # @param [Hash] payload
       # @return [Hash] The API response
       def update_supply_source(supply_source_id, payload: nil)
+        cannot_sandbox!
+
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
         body = payload
 
@@ -61,6 +69,8 @@ module Peddler
       # @param [String] supply_source_id The unique identifier of a supply source.
       # @return [Hash] The API response
       def archive_supply_source(supply_source_id)
+        cannot_sandbox!
+
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
 
         delete(path)
@@ -72,6 +82,8 @@ module Peddler
       # @param [Hash] payload
       # @return [Hash] The API response
       def update_supply_source_status(supply_source_id, payload: nil)
+        cannot_sandbox!
+
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}/status"
         body = payload
 

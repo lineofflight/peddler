@@ -16,6 +16,8 @@ module Peddler
       # in those marketplaces.
       # @return [Hash] The API response
       def get_marketplace_participations
+        cannot_sandbox!
+
         path = "/sellers/v1/marketplaceParticipations"
 
         rate_limit(0.016).get(path)
@@ -24,6 +26,8 @@ module Peddler
       # Returns information about a seller account and its marketplaces.
       # @return [Hash] The API response
       def get_account
+        cannot_sandbox!
+
         path = "/sellers/v1/account"
 
         rate_limit(0.016).get(path)

@@ -21,6 +21,8 @@ module Peddler
       #   requests.
       # @return [Hash] The API response
       def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body)
+        cannot_sandbox!
+
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
 
@@ -33,6 +35,8 @@ module Peddler
       # @param [Hash] requests The batch of `getCompetitiveSummary` requests.
       # @return [Hash] The API response
       def get_competitive_summary(requests)
+        cannot_sandbox!
+
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
 

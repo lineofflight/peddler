@@ -26,6 +26,8 @@ module Peddler
       # @return [Hash] The API response
       def get_queries(processing_statuses: nil, page_size: nil, created_since: nil, created_until: nil,
         pagination_token: nil)
+        cannot_sandbox!
+
         path = "/dataKiosk/2023-11-15/queries"
         params = {
           "processingStatuses" => processing_statuses,
@@ -47,6 +49,8 @@ module Peddler
       # @param [Hash] body The body of the request.
       # @return [Hash] The API response
       def create_query(body)
+        cannot_sandbox!
+
         path = "/dataKiosk/2023-11-15/queries"
 
         rate_limit(0.0167).post(path, body:)
@@ -61,6 +65,8 @@ module Peddler
       #   selling partner account ID.
       # @return [Hash] The API response
       def cancel_query(query_id)
+        cannot_sandbox!
+
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
         rate_limit(0.0222).delete(path)
@@ -72,6 +78,8 @@ module Peddler
       # @param [String] query_id The query identifier.
       # @return [Hash] The API response
       def get_query(query_id)
+        cannot_sandbox!
+
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
         rate_limit(2.0).get(path)
@@ -83,6 +91,8 @@ module Peddler
       # @param [String] document_id The identifier for the Data Kiosk document.
       # @return [Hash] The API response
       def get_document(document_id)
+        cannot_sandbox!
+
         path = "/dataKiosk/2023-11-15/documents/#{document_id}"
 
         rate_limit(0.0167).get(path)

@@ -26,6 +26,8 @@ module Peddler
       # @return [Hash] The API response
       def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil,
         search_locale: nil)
+        cannot_sandbox!
+
         path = "/definitions/2020-09-01/productTypes"
         params = {
           "keywords" => keywords,
@@ -58,6 +60,8 @@ module Peddler
       # @return [Hash] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: nil,
         requirements: nil, requirements_enforced: nil, locale: nil)
+        cannot_sandbox!
+
         path = "/definitions/2020-09-01/productTypes/#{product_type}"
         params = {
           "sellerId" => seller_id,

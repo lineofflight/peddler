@@ -31,6 +31,8 @@ module Peddler
       # @return [Hash] The API response
       def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: nil,
         created_since: nil, created_until: nil, next_token: nil)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/reports"
         params = {
           "reportTypes" => report_types,
@@ -50,6 +52,8 @@ module Peddler
       # @param [Hash] body Information required to create the report.
       # @return [Hash] The API response
       def create_report(body)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/reports"
 
         rate_limit(0.0167).post(path, body:)
@@ -62,6 +66,8 @@ module Peddler
       #   seller ID.
       # @return [Hash] The API response
       def cancel_report(report_id)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/reports/#{report_id}"
 
         rate_limit(0.0222).delete(path)
@@ -73,6 +79,8 @@ module Peddler
       #   seller ID.
       # @return [Hash] The API response
       def get_report(report_id)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/reports/#{report_id}"
 
         rate_limit(2.0).get(path)
@@ -84,6 +92,8 @@ module Peddler
       #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
       # @return [Hash] The API response
       def get_report_schedules(report_types)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/schedules"
         params = {
           "reportTypes" => report_types,
@@ -98,6 +108,8 @@ module Peddler
       # @param [Hash] body Information required to create the report schedule.
       # @return [Hash] The API response
       def create_report_schedule(body)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/schedules"
 
         rate_limit(0.0222).post(path, body:)
@@ -109,6 +121,8 @@ module Peddler
       #   combination with a seller ID.
       # @return [Hash] The API response
       def cancel_report_schedule(report_schedule_id)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
         rate_limit(0.0222).delete(path)
@@ -120,6 +134,8 @@ module Peddler
       #   combination with a seller ID.
       # @return [Hash] The API response
       def get_report_schedule(report_schedule_id)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
         rate_limit(0.0222).get(path)
@@ -130,6 +146,8 @@ module Peddler
       # @param [String] report_document_id The identifier for the report document.
       # @return [Hash] The API response
       def get_report_document(report_document_id)
+        cannot_sandbox!
+
         path = "/reports/2021-06-30/documents/#{report_document_id}"
 
         rate_limit(0.0167).get(path)

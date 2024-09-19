@@ -26,6 +26,7 @@ module Peddler
       # @return [Hash] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil)
+
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -111,6 +112,7 @@ module Peddler
       # @return [Hash] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil)
+
         path = "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -150,6 +152,7 @@ module Peddler
       # @return [Hash] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil)
+
         path = "/vendor/directFulfillment/shipping/2021-12-28/packingSlips"
         params = {
           "shipFromPartyId" => ship_from_party_id,
