@@ -51,7 +51,7 @@ module Peddler
     # @return [HTTP::Client]
     def http
       @http ||= HTTP.headers(
-        "Host" => endpoint_host,
+        "Host" => endpoint.host,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
         "X-Amz-Date" => timestamp,
@@ -119,10 +119,6 @@ module Peddler
     end
 
     private
-
-    def endpoint_host
-      URI.parse(endpoint).host
-    end
 
     def user_agent
       "Peddler/#{Peddler::VERSION} (Language=Ruby; #{Socket.gethostname})"
