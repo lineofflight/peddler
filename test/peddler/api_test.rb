@@ -52,6 +52,10 @@ module Peddler
       skip("HTTP v6.0 not released yet")
     end
 
+    def test_sandbox_rate_limit
+      skip("HTTP v6.0 not released yet")
+    end
+
     def test_client_error
       assert_raises(Peddler::Error) do
         @api.post("/")
