@@ -23,9 +23,10 @@ module Peddler
       #   marketplace.
       # @param [String] search_locale The locale used for the `keywords` and `itemName` parameters. Defaults to the
       #   primary locale of the marketplace.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil,
-        search_locale: nil)
+        search_locale: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/definitions/2020-09-01/productTypes"
@@ -37,7 +38,7 @@ module Peddler
           "searchLocale" => search_locale,
         }.compact
 
-        rate_limit(5.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieve an Amazon product type definition.
@@ -57,9 +58,10 @@ module Peddler
       #   attributes without all the required attributes being present (such as for partial updates).
       # @param [String] locale Locale for retrieving display labels and other presentation details. Defaults to the
       #   default language of the first marketplace in the request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: nil,
-        requirements: nil, requirements_enforced: nil, locale: nil)
+      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: LATEST,
+        requirements: LISTING, requirements_enforced: ENFORCED, locale: DEFAULT, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/definitions/2020-09-01/productTypes/#{product_type}"
@@ -72,7 +74,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        rate_limit(5.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

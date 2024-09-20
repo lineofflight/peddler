@@ -12,8 +12,9 @@ module Peddler
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
       #
       # @param [Hash] body The request payload that contain parameters to generate test order data scenarios.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def generate_order_scenarios(body)
+      def generate_order_scenarios(body, rate_limit: nil)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
 
         post(path, body:)
@@ -24,8 +25,9 @@ module Peddler
       #
       # @param [String] transaction_id The transaction identifier returned in the response for the
       #   `generateOrderScenarios` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_scenarios(transaction_id)
+      def get_order_scenarios(transaction_id, rate_limit: nil)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{transaction_id}"
 
         get(path)

@@ -29,9 +29,10 @@ module Peddler
       #   The token value is returned in the previous API call.
       # @param [String] include_details When true, returns the complete purchase order details. Otherwise, only purchase
       #   order numbers are returned.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
-        next_token: nil, include_details: nil)
+        next_token: nil, include_details: true, rate_limit: 10.0)
 
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
         params = {
@@ -45,28 +46,30 @@ module Peddler
           "includeDetails" => include_details,
         }.compact
 
-        rate_limit(10.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
       #
       # @param [String] purchase_order_number The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order(purchase_order_number)
+      def get_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{purchase_order_number}"
 
-        rate_limit(10.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Submits acknowledgements for one or more purchase orders.
       #
       # @param [Hash] body The request body containing the acknowledgement to an order
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def submit_acknowledgement(body)
+      def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
 
-        rate_limit(10.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

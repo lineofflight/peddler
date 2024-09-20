@@ -19,8 +19,10 @@ module Peddler
       # @param [String] reason_locale A locale for reason text localization. When not provided, the default language
       #   code of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to
       #   "en_US" when a localization is not available in the specified locale.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil)
+      def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil,
+        rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/listings/2021-08-01/restrictions"
@@ -32,7 +34,7 @@ module Peddler
           "reasonLocale" => reason_locale,
         }.compact
 
-        rate_limit(5.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

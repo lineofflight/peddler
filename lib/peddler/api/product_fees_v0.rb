@@ -27,13 +27,14 @@ module Peddler
       # @param [Hash] body
       # @param [String] seller_sku Used to identify an item in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_my_fees_estimate_for_sku(body, seller_sku)
+      def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/products/fees/v0/listings/#{seller_sku}/feesEstimate"
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the
@@ -50,25 +51,27 @@ module Peddler
       #
       # @param [Hash] body
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_my_fees_estimate_for_asin(body, asin)
+      def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/products/fees/v0/items/#{asin}/feesEstimate"
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns the estimated fees for a list of products.
       #
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_my_fees_estimates(body)
+      def get_my_fees_estimates(body, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/products/fees/v0/feesEstimate"
 
-        rate_limit(0.5).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

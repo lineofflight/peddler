@@ -11,13 +11,14 @@ module Peddler
       # Submit new invoices to Amazon.
       #
       # @param [Hash] body The request body containing the invoice data to submit.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def submit_invoices(body)
+      def submit_invoices(body, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/payments/v1/invoices"
 
-        rate_limit(10.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

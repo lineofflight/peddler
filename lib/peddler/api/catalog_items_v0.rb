@@ -31,9 +31,10 @@ module Peddler
       # @param [String] isbn The unique commercial book identifier used to identify books internationally.
       # @param [String] jan A Japanese article number that uniquely identifies the product, manufacturer, and its
       #   attributes.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_catalog_items(marketplace_id, query: nil, query_context_id: nil, seller_sku: nil, upc: nil, ean: nil,
-        isbn: nil, jan: nil)
+        isbn: nil, jan: nil, rate_limit: nil)
         cannot_sandbox!
 
         path = "/catalog/v0/items"
@@ -60,8 +61,9 @@ module Peddler
       #
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for the item.
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_catalog_item(marketplace_id, asin)
+      def get_catalog_item(marketplace_id, asin, rate_limit: nil)
         cannot_sandbox!
 
         path = "/catalog/v0/items/#{asin}"
@@ -78,8 +80,9 @@ module Peddler
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @param [String] seller_sku Used to identify items in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil)
+      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/catalog/v0/categories"
@@ -89,7 +92,7 @@ module Peddler
           "SellerSKU" => seller_sku,
         }.compact
 
-        rate_limit(1.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

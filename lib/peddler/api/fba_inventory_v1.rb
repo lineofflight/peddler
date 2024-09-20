@@ -40,9 +40,10 @@ module Peddler
       #   expire 30 seconds after being created.
       # @param [Array<String>] marketplace_ids The marketplace ID for the marketplace for which to return inventory
       #   summaries.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
-        seller_skus: nil, seller_sku: nil, next_token: nil)
+        seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
 
         path = "/fba/inventory/v1/summaries"
         params = {
@@ -56,7 +57,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a
@@ -64,8 +65,9 @@ module Peddler
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
       # @param [Hash] create_inventory_item_request_body CreateInventoryItem Request Body Parameter.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_inventory_item(create_inventory_item_request_body)
+      def create_inventory_item(create_inventory_item_request_body, rate_limit: nil)
         path = "/fba/inventory/v1/items"
         body = create_inventory_item_request_body
 
@@ -78,8 +80,9 @@ module Peddler
       #
       # @param [String] seller_sku A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param [String] marketplace_id The marketplace ID for the marketplace for which the sellerSku is to be deleted.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def delete_inventory_item(seller_sku, marketplace_id)
+      def delete_inventory_item(seller_sku, marketplace_id, rate_limit: nil)
         path = "/fba/inventory/v1/items/#{seller_sku}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -95,8 +98,9 @@ module Peddler
       #
       # @param [String] x_amzn_idempotency_token A unique token/requestId provided with each call to ensure idempotency.
       # @param [Hash] add_inventory_request_body List of items to add to Sandbox inventory.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def add_inventory(x_amzn_idempotency_token, add_inventory_request_body)
+      def add_inventory(x_amzn_idempotency_token, add_inventory_request_body, rate_limit: nil)
         path = "/fba/inventory/v1/items/inventory"
         body = add_inventory_request_body
 

@@ -14,8 +14,9 @@ module Peddler
       # @param [String] shipment_id ID for the shipment. A shipment contains the cases being inbounded.
       # @param [String] sku_quantities If equal to `SHOW`, the response includes the shipment SKU quantity details.
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_inbound_shipment(shipment_id, sku_quantities: nil)
+      def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/awd/2024-05-09/inboundShipments/#{shipment_id}"
@@ -23,7 +24,7 @@ module Peddler
           "skuQuantities" => sku_quantities,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -39,9 +40,10 @@ module Peddler
       #   The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
       # @param [Integer] max_results Maximum number of results to return.
       # @param [String] next_token Token to retrieve the next set of paginated results.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil,
-        updated_before: nil, max_results: nil, next_token: nil)
+        updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/awd/2024-05-09/inboundShipments"
@@ -55,7 +57,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(1.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
@@ -66,8 +68,9 @@ module Peddler
       #   which returns only inventory summary totals.
       # @param [String] next_token Token to retrieve the next set of paginated results.
       # @param [Integer] max_results Maximum number of results to return.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: nil)
+      def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/awd/2024-05-09/inventory"
@@ -79,7 +82,7 @@ module Peddler
           "maxResults" => max_results,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

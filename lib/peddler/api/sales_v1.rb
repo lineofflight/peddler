@@ -46,9 +46,10 @@ module Peddler
       # @param [String] sku Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an
       #   error. Do not include this filter if you want the response to include order metrics for all SKUs. Example:
       #   TestSKU, if you want the response to include order metrics for only SKU TestSKU.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: nil,
-        fulfillment_network: nil, first_day_of_week: nil, asin: nil, sku: nil)
+      def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: All,
+        fulfillment_network: nil, first_day_of_week: Monday, asin: nil, sku: nil, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/sales/v1/orderMetrics"
@@ -64,7 +65,7 @@ module Peddler
           "sku" => sku,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

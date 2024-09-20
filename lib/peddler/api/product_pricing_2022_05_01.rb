@@ -19,28 +19,31 @@ module Peddler
       #
       # @param [Hash] get_featured_offer_expected_price_batch_request_body The batch of `getFeaturedOfferExpectedPrice`
       #   requests.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body)
+      def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body,
+        rate_limit: 0.033)
         cannot_sandbox!
 
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
 
-        rate_limit(0.033).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns the competitive summary response including featured buying options for the ASIN and `marketplaceId`
       # combination.
       #
       # @param [Hash] requests The batch of `getCompetitiveSummary` requests.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_competitive_summary(requests)
+      def get_competitive_summary(requests, rate_limit: 0.033)
         cannot_sandbox!
 
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
 
-        rate_limit(0.033).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

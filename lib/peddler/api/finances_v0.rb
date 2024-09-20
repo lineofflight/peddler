@@ -25,9 +25,10 @@ module Peddler
       #   after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
       #   format. The date-time must be no later than two minutes before the request was submitted.
       # @param [String] next_token A string token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_financial_event_groups(max_results_per_page: nil, financial_event_group_started_before: nil,
-        financial_event_group_started_after: nil, next_token: nil)
+      def list_financial_event_groups(max_results_per_page: 100, financial_event_group_started_before: nil,
+        financial_event_group_started_after: nil, next_token: nil, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/finances/v0/financialEventGroups"
@@ -38,7 +39,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to
@@ -59,9 +60,10 @@ module Peddler
       #   minutes.
       # @param [String] event_group_id The identifier of the financial event group to which the events belong.
       # @param [String] next_token A string token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_financial_events_by_group_id(event_group_id, max_results_per_page: nil, posted_after: nil,
-        posted_before: nil, next_token: nil)
+      def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil,
+        posted_before: nil, next_token: nil, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/finances/v0/financialEventGroups/#{event_group_id}/financialEvents"
@@ -72,7 +74,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your
@@ -82,8 +84,9 @@ module Peddler
       # @param [Integer] max_results_per_page The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param [String] next_token A string token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_financial_events_by_order_id(order_id, max_results_per_page: nil, next_token: nil)
+      def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/finances/v0/orders/#{order_id}/financialEvents"
@@ -92,7 +95,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your
@@ -110,8 +113,10 @@ module Peddler
       #   PostedAfter and PostedBefore are more than 180 days apart, no financial events are returned. You must specify
       #   the PostedAfter parameter if you specify the PostedBefore parameter. Default: Now minus two minutes.
       # @param [String] next_token A string token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_financial_events(max_results_per_page: nil, posted_after: nil, posted_before: nil, next_token: nil)
+      def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil,
+        rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/finances/v0/financialEvents"
@@ -122,7 +127,7 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

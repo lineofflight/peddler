@@ -102,6 +102,7 @@ module Peddler
       # @param [String] latest_delivery_date_after Use this date to select orders with a latest delivery date after (or
       #   at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
       #   format.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_orders(
         marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
@@ -109,7 +110,7 @@ module Peddler
         max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil,
         amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
         earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
-        latest_delivery_date_after: nil
+        latest_delivery_date_after: nil, rate_limit: 0.0167
       )
         cannot_sandbox!
 
@@ -139,55 +140,59 @@ module Peddler
           "LatestDeliveryDateAfter" => latest_delivery_date_after,
         }.compact
 
-        rate_limit(0.0167).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns the order that you specify.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order(order_id)
+      def get_order(order_id, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}"
 
-        rate_limit(0.5).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns buyer information for the order that you specify.
       #
       # @param [String] order_id An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_buyer_info(order_id)
+      def get_order_buyer_info(order_id, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/buyerInfo"
 
-        rate_limit(0.5).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the shipping address for the order that you specify.
       #
       # @param [String] order_id An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_address(order_id)
+      def get_order_address(order_id, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/address"
 
-        rate_limit(0.5).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the fulfillment instructions for the order that you specify.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_fulfillment_instructions(order_id)
+      def get_order_fulfillment_instructions(order_id, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/fulfillmentInstructions"
 
-        rate_limit(0.5).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -200,8 +205,9 @@ module Peddler
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [String] next_token A string token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_items(order_id, next_token: nil)
+      def get_order_items(order_id, next_token: nil, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/orderItems"
@@ -209,15 +215,16 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns buyer information for the order items in the order that you specify.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [String] next_token A string token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_items_buyer_info(order_id, next_token: nil)
+      def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/orderItems/buyerInfo"
@@ -225,61 +232,65 @@ module Peddler
           "NextToken" => next_token,
         }.compact
 
-        rate_limit(0.5).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Update the shipment status for an order that you specify.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Hash] payload The request body for the `updateShipmentStatus` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def update_shipment_status(order_id, payload)
+      def update_shipment_status(order_id, payload, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/shipment"
         body = payload
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns regulated information for the order that you specify.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_order_regulated_info(order_id)
+      def get_order_regulated_info(order_id, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
 
-        rate_limit(0.5).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Hash] payload The request body for the `updateVerificationStatus` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def update_verification_status(order_id, payload)
+      def update_verification_status(order_id, payload, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
 
-        rate_limit(0.5).patch(path, body:)
+        meter(rate_limit).patch(path, body:)
       end
 
       # Updates the shipment confirmation status for a specified order.
       #
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Hash] payload Request body of `confirmShipment`.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def confirm_shipment(order_id, payload)
+      def confirm_shipment(order_id, payload, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
         body = payload
 
-        rate_limit(2.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

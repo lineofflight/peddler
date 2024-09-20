@@ -12,13 +12,14 @@ module Peddler
       # Gets details of service job indicated by the provided `serviceJobID`.
       #
       # @param [String] service_job_id A service job identifier.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_service_job_by_service_job_id(service_job_id)
+      def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}"
 
-        rate_limit(20.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -26,8 +27,9 @@ module Peddler
       # @param [String] service_job_id An Amazon defined service job identifier.
       # @param [String] cancellation_reason_code A cancel reason code that specifies the reason for cancelling a service
       #   job.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code)
+      def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/cancellations"
@@ -35,19 +37,20 @@ module Peddler
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
 
-        rate_limit(5.0).put(path, params:)
+        meter(rate_limit).put(path, params:)
       end
 
       # Completes the service job indicated by the service job identifier specified.
       #
       # @param [String] service_job_id An Amazon defined service job identifier.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def complete_service_job_by_service_job_id(service_job_id)
+      def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/completions"
 
-        rate_limit(5.0).put(path)
+        meter(rate_limit).put(path)
       end
 
       # Gets service job details for the specified filter query.
@@ -82,12 +85,13 @@ module Peddler
       #   supported is 20.
       # @param [Array<String>] store_ids List of Amazon-defined identifiers for the region scope. Max values supported
       #   is 50.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_service_jobs(
-        marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil, page_size: nil,
+        marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil, page_size: 20,
         sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil,
         last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil,
-        store_ids: nil
+        store_ids: nil, rate_limit: 10.0
       )
         cannot_sandbox!
 
@@ -111,20 +115,21 @@ module Peddler
           "storeIds" => store_ids,
         }.compact
 
-        rate_limit(10.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
       #
       # @param [String] service_job_id An Amazon defined service job identifier.
       # @param [Hash] body Add appointment operation input details.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def add_appointment_for_service_job_by_service_job_id(service_job_id, body)
+      def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
@@ -132,13 +137,15 @@ module Peddler
       # @param [String] service_job_id An Amazon defined service job identifier.
       # @param [String] appointment_id An existing appointment identifier for the Service Job.
       # @param [Hash] body Reschedule appointment operation input details.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body)
+      def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body,
+        rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -147,13 +154,14 @@ module Peddler
       #   `getServiceJobs` operation of the Services API.
       # @param [String] appointment_id An Amazon-defined identifier of active service job appointment.
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def assign_appointment_resources(service_job_id, appointment_id, body)
+      def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/resources"
 
-        rate_limit(1.0).put(path, body:)
+        meter(rate_limit).put(path, body:)
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -162,13 +170,14 @@ module Peddler
       #   `getServiceJobs` operation of the Services API.
       # @param [String] appointment_id An Amazon-defined identifier of active service job appointment.
       # @param [Hash] body Appointment fulfillment data collection details.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def set_appointment_fulfillment_data(service_job_id, appointment_id, body)
+      def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/fulfillment"
 
-        rate_limit(5.0).put(path, body:)
+        meter(rate_limit).put(path, body:)
       end
 
       # Provides capacity slots in a format similar to availability records.
@@ -177,8 +186,9 @@ module Peddler
       # @param [Hash] body Request body.
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @param [String] next_page_token Next page token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
+      def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceResources/#{resource_id}/capacity/range"
@@ -187,7 +197,7 @@ module Peddler
           "nextPageToken" => next_page_token,
         }.compact
 
-        rate_limit(5.0).post(path, body:, params:)
+        meter(rate_limit).post(path, body:, params:)
       end
 
       # Provides capacity in fixed-size slots.
@@ -196,8 +206,9 @@ module Peddler
       # @param [Hash] body Request body.
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
       # @param [String] next_page_token Next page token returned in the response of your previous request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil)
+      def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceResources/#{resource_id}/capacity/fixed"
@@ -206,7 +217,7 @@ module Peddler
           "nextPageToken" => next_page_token,
         }.compact
 
-        rate_limit(5.0).post(path, body:, params:)
+        meter(rate_limit).post(path, body:, params:)
       end
 
       # Update the schedule of the given resource.
@@ -214,8 +225,9 @@ module Peddler
       # @param [String] resource_id Resource (store) Identifier
       # @param [Hash] body Schedule details
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def update_schedule(resource_id, body, marketplace_ids)
+      def update_schedule(resource_id, body, marketplace_ids, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceResources/#{resource_id}/schedules"
@@ -223,15 +235,16 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(5.0).put(path, body:, params:)
+        meter(rate_limit).put(path, body:, params:)
       end
 
       # Create a reservation.
       #
       # @param [Hash] body Reservation details
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_reservation(body, marketplace_ids)
+      def create_reservation(body, marketplace_ids, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/reservation"
@@ -239,7 +252,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(5.0).post(path, body:, params:)
+        meter(rate_limit).post(path, body:, params:)
       end
 
       # Update a reservation.
@@ -247,8 +260,9 @@ module Peddler
       # @param [String] reservation_id Reservation Identifier
       # @param [Hash] body Reservation details
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def update_reservation(reservation_id, body, marketplace_ids)
+      def update_reservation(reservation_id, body, marketplace_ids, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/reservation/#{reservation_id}"
@@ -256,15 +270,16 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(5.0).put(path, body:, params:)
+        meter(rate_limit).put(path, body:, params:)
       end
 
       # Cancel a reservation.
       #
       # @param [String] reservation_id Reservation Identifier
       # @param [Array<String>] marketplace_ids An identifier for the marketplace in which the resource operates.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_reservation(reservation_id, marketplace_ids)
+      def cancel_reservation(reservation_id, marketplace_ids, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/reservation/#{reservation_id}"
@@ -272,7 +287,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(5.0).delete(path, params:)
+        meter(rate_limit).delete(path, params:)
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -285,8 +300,10 @@ module Peddler
       # @param [String] end_time A time up to which the appointment slots will be retrieved. The specified time must be
       #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
       #   business configuration. Maximum range of appointment slots can be 90 days.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil)
+      def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil,
+        rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/serviceJobs/#{service_job_id}/appointmentSlots"
@@ -296,7 +313,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
 
-        rate_limit(5.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Gets appointment slots as per the service context specified.
@@ -310,8 +327,9 @@ module Peddler
       # @param [String] end_time A time up to which the appointment slots will be retrieved. The specified time must be
       #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
       #   business configuration. Maximum range of appointment slots can be 90 days.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil)
+      def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 20.0)
         cannot_sandbox!
 
         path = "/service/v1/appointmentSlots"
@@ -323,19 +341,20 @@ module Peddler
           "endTime" => end_time,
         }.compact
 
-        rate_limit(20.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates an upload destination.
       #
       # @param [Hash] body Upload document operation input details.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_service_document_upload_destination(body)
+      def create_service_document_upload_destination(body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/service/v1/documents"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

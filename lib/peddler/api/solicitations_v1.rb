@@ -22,8 +22,9 @@ module Peddler
       #   of available solicitation types.
       # @param [Array<String>] marketplace_ids A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids)
+      def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/solicitations/v1/orders/#{amazon_order_id}"
@@ -31,7 +32,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(1.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
@@ -41,8 +42,9 @@ module Peddler
       #   sent.
       # @param [Array<String>] marketplace_ids A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids)
+      def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/solicitations/v1/orders/#{amazon_order_id}/solicitations/productReviewAndSellerFeedback"
@@ -50,7 +52,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        rate_limit(1.0).post(path, params:)
+        meter(rate_limit).post(path, params:)
       end
     end
   end

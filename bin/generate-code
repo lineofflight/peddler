@@ -101,11 +101,18 @@ module Generator
 
         operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
         parameters = operation_parameters.select { |p| p["name"] }
+        parameters << {
+          "name" => "rate_limit",
+          "type" => "Float",
+          "required" => false,
+          "description" => "Requests per second",
+          "default" => (rate_limit = extract_rate_limit(operation)),
+        }
 
         operation.merge(
           "path" => path,
           "method" => method.upcase,
-          "rate_limit" => extract_rate_limit(operation),
+          "rate_limit" => rate_limit,
           "parameters" => parameters,
           "body_param" => parameters&.find { |p| p["in"] == "body" },
           "query_params" => parameters&.select { |p| p["in"] == "query" },
@@ -165,9 +172,11 @@ module Generator
     return "()" if parameters.nil? || parameters.empty?
 
     required_params = parameters.select { |p| p["required"] }&.map { |p| snakecase(p["name"]) } || []
-    optional_params = parameters.reject { |p| p["required"] }&.map { |p| "#{snakecase(p["name"])}: nil" } || []
-
+    optional_params = parameters.reject do |p|
+      p["required"]
+    end&.map { |p| "#{snakecase(p["name"])}: #{p["default"] ? p["default"] : "nil"}" } || []
     params = required_params + optional_params
+
     single_line = "def #{method_name}(#{params.join(", ")})"
 
     if single_line.length <= (MAX_LINE_LENGTH - base_indent) * 2 - 2

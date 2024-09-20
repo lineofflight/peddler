@@ -25,9 +25,10 @@ module Peddler
       #   returned when the number of results exceeds the specified pageSize value. To get the next page of results,
       #   call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
       #   parameters will cause the request to fail.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: nil, processing_statuses: nil, created_since: nil,
-        created_until: nil, next_token: nil)
+      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil,
+        created_until: nil, next_token: nil, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/feeds/2021-06-30/feeds"
@@ -41,19 +42,20 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(0.0222).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
       #
       # @param [Hash] body Information required to create the feed.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_feed(body)
+      def create_feed(body, rate_limit: 0.0083)
         cannot_sandbox!
 
         path = "/feeds/2021-06-30/feeds"
 
-        rate_limit(0.0083).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds
@@ -63,26 +65,28 @@ module Peddler
       #
       # @param [String] feed_id The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_feed(feed_id)
+      def cancel_feed(feed_id, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
-        rate_limit(2.0).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
       #
       # @param [String] feed_id The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_feed(feed_id)
+      def get_feed(feed_id, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
-        rate_limit(2.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
@@ -91,25 +95,27 @@ module Peddler
       # operation.
       #
       # @param [Hash] body Specifies the content type for the createFeedDocument operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_feed_document(body)
+      def create_feed_document(body, rate_limit: 0.5)
         cannot_sandbox!
 
         path = "/feeds/2021-06-30/documents"
 
-        rate_limit(0.5).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns the information required for retrieving a feed document's contents.
       #
       # @param [String] feed_document_id The identifier of the feed document.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_feed_document(feed_document_id)
+      def get_feed_document(feed_document_id, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/feeds/2021-06-30/documents/#{feed_document_id}"
 
-        rate_limit(0.0222).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

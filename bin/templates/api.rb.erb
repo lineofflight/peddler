@@ -27,7 +27,7 @@ class <%= api_data[:class_name] %> < API
       <% method_args << "body:" if operation["body_param"] %>
       <% method_args << "params:" if operation["query_params"]&.any? %>
       <% if operation["rate_limit"] %>
-        rate_limit(<%= operation["rate_limit"] %>).<%= http_method %>(<%= method_args.join(", ") %>)
+        meter(rate_limit).<%= http_method %>(<%= method_args.join(", ") %>)
       <% else %>
         <%= http_method %>(<%= method_args.join(", ") %>)
       <% end %>

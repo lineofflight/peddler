@@ -20,14 +20,15 @@ module Peddler
       # [Marketplace Support Table](doc:easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
       #
       # @param [Hash] list_handover_slots_request The request schema for the `listHandoverSlots` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_handover_slots(list_handover_slots_request: nil)
+      def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -36,8 +37,9 @@ module Peddler
       # @param [String] amazon_order_id An Amazon-defined order identifier. Identifies the order that the seller wants
       #   to deliver using Amazon Easy Ship.
       # @param [String] marketplace_id An identifier for the marketplace in which the seller is selling.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_scheduled_package(amazon_order_id, marketplace_id)
+      def get_scheduled_package(amazon_order_id, marketplace_id, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/easyShip/2022-03-23/package"
@@ -46,7 +48,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        rate_limit(1.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Schedules an Easy Ship order and returns the scheduled package information. This operation does the following: *
@@ -61,14 +63,15 @@ module Peddler
       # supported in each marketplace.
       #
       # @param [Hash] create_scheduled_package_request The request schema for the `createScheduledPackage` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_scheduled_package(create_scheduled_package_request)
+      def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -78,14 +81,15 @@ module Peddler
       # operation is supported in.
       #
       # @param [Hash] update_scheduled_packages_request The request schema for the `updateScheduledPackages` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def update_scheduled_packages(update_scheduled_packages_request: nil)
+      def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
 
-        rate_limit(1.0).patch(path, body:)
+        meter(rate_limit).patch(path, body:)
       end
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
@@ -104,14 +108,15 @@ module Peddler
       #
       # @param [Hash] create_scheduled_packages_request The request schema for the `createScheduledPackageBulk`
       #   operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_scheduled_package_bulk(create_scheduled_packages_request)
+      def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

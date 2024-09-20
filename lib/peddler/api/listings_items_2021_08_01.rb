@@ -23,8 +23,9 @@ module Peddler
       # @param [String] issue_locale A locale for localization of issues. When not provided, the default language code
       #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when a localization is not available in the specified locale.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil)
+      def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
@@ -33,7 +34,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(5.0).delete(path, params:)
+        meter(rate_limit).delete(path, params:)
       end
 
       # Returns details about a listings item for a selling partner.
@@ -49,8 +50,10 @@ module Peddler
       #   when a localization is not available in the specified locale.
       # @param [Array<String>] included_data A comma-delimited list of data sets to include in the response. Default:
       #   `summaries`.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: nil)
+      def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"],
+        rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
@@ -60,7 +63,7 @@ module Peddler
           "includedData" => included_data,
         }.compact
 
-        rate_limit(5.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -80,8 +83,10 @@ module Peddler
       #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when a localization is not available in the specified locale.
       # @param [Hash] body The request body schema for the `patchListingsItem` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: nil, mode: nil, issue_locale: nil)
+      def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil,
+        issue_locale: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
@@ -92,7 +97,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(5.0).patch(path, body:, params:)
+        meter(rate_limit).patch(path, body:, params:)
       end
 
       # Creates or fully updates an existing listings item for a selling partner.
@@ -111,8 +116,10 @@ module Peddler
       #   of the first marketplace is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US`
       #   when a localization is not available in the specified locale.
       # @param [Hash] body The request body schema for the `putListingsItem` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: nil, mode: nil, issue_locale: nil)
+      def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil,
+        issue_locale: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
@@ -123,7 +130,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(5.0).put(path, body:, params:)
+        meter(rate_limit).put(path, body:, params:)
       end
 
       # Search for and return list of listings items and respective details for a selling partner.
@@ -141,9 +148,10 @@ module Peddler
       # @param [String] issue_locale A locale for localization of issues. When not provided, the default language code
       #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
       #   when a localization is not available in the specified locale.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def search_listings_items(seller_id, marketplace_ids, identifiers: nil, identifiers_type: nil, page_size: nil,
-        page_token: nil, included_data: nil, issue_locale: nil)
+      def search_listings_items(seller_id, marketplace_ids, identifiers: nil, identifiers_type: nil, page_size: 10,
+        page_token: nil, included_data: ["summaries"], issue_locale: nil, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}"
@@ -157,7 +165,7 @@ module Peddler
           "issueLocale" => issue_locale,
         }.compact
 
-        rate_limit(5.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

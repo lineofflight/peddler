@@ -28,9 +28,10 @@ module Peddler
       #   returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
       #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
       #   other parameters will cause the request to fail.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: nil,
-        created_since: nil, created_until: nil, next_token: nil)
+      def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10,
+        created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/reports"
@@ -44,19 +45,20 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        rate_limit(0.0222).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a report.
       #
       # @param [Hash] body Information required to create the report.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_report(body)
+      def create_report(body, rate_limit: 0.0167)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/reports"
 
-        rate_limit(0.0167).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
@@ -64,34 +66,37 @@ module Peddler
       #
       # @param [String] report_id The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_report(report_id)
+      def cancel_report(report_id, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/reports/#{report_id}"
 
-        rate_limit(0.0222).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
       #
       # @param [String] report_id The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_report(report_id)
+      def get_report(report_id, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/reports/#{report_id}"
 
-        rate_limit(2.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns report schedule details that match the filters that you specify.
       #
       # @param [Array<String>] report_types A list of report types used to filter report schedules. Refer to [Report
       #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_report_schedules(report_types)
+      def get_report_schedules(report_types, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/schedules"
@@ -99,58 +104,62 @@ module Peddler
           "reportTypes" => report_types,
         }.compact
 
-        rate_limit(0.0222).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
       # will be cancelled and replaced with this one.
       #
       # @param [Hash] body Information required to create the report schedule.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_report_schedule(body)
+      def create_report_schedule(body, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/schedules"
 
-        rate_limit(0.0222).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the report schedule that you specify.
       #
       # @param [String] report_schedule_id The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_report_schedule(report_schedule_id)
+      def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
-        rate_limit(0.0222).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns report schedule details for the report schedule that you specify.
       #
       # @param [String] report_schedule_id The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_report_schedule(report_schedule_id)
+      def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
-        rate_limit(0.0222).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the information required for retrieving a report document's contents.
       #
       # @param [String] report_document_id The identifier for the report document.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_report_document(report_document_id)
+      def get_report_document(report_document_id, rate_limit: 0.0167)
         cannot_sandbox!
 
         path = "/reports/2021-06-30/documents/#{report_document_id}"
 
-        rate_limit(0.0167).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

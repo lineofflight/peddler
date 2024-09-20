@@ -39,11 +39,12 @@ module Peddler
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all
       #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
       #   application are returned.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_purchase_orders(
         limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil, include_details: nil,
         changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil,
-        ordering_vendor_code: nil
+        ordering_vendor_code: nil, rate_limit: 10.0
       )
         cannot_sandbox!
 
@@ -63,32 +64,34 @@ module Peddler
           "orderingVendorCode" => ordering_vendor_code,
         }.compact
 
-        rate_limit(10.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
       #
       # @param [String] purchase_order_number The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_purchase_order(purchase_order_number)
+      def get_purchase_order(purchase_order_number, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/orders/v1/purchaseOrders/#{purchase_order_number}"
 
-        rate_limit(10.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Submits acknowledgements for one or more purchase orders.
       #
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def submit_acknowledgement(body)
+      def submit_acknowledgement(body, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/orders/v1/acknowledgements"
 
-        rate_limit(10.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
@@ -124,11 +127,12 @@ module Peddler
       #   providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order.
       #   If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor
       #   group purchase orders.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_purchase_orders_status(
         limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil, updated_after: nil,
         updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil,
-        item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil
+        item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, rate_limit: 10.0
       )
         cannot_sandbox!
 
@@ -149,7 +153,7 @@ module Peddler
           "shipToPartyId" => ship_to_party_id,
         }.compact
 
-        rate_limit(10.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

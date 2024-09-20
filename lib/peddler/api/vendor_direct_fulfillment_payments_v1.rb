@@ -12,13 +12,14 @@ module Peddler
       # Submits one or more invoices for a vendor's direct fulfillment orders.
       #
       # @param [Hash] body The request body that contains one or more invoices for vendor orders.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def submit_invoice(body)
+      def submit_invoice(body, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/directFulfillment/payments/v1/invoices"
 
-        rate_limit(10.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

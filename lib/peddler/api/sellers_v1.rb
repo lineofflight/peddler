@@ -14,23 +14,27 @@ module Peddler
     class SellersV1 < API
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
+      #
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_marketplace_participations
+      def get_marketplace_participations(rate_limit: 0.016)
         cannot_sandbox!
 
         path = "/sellers/v1/marketplaceParticipations"
 
-        rate_limit(0.016).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns information about a seller account and its marketplaces.
+      #
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_account
+      def get_account(rate_limit: 0.016)
         cannot_sandbox!
 
         path = "/sellers/v1/account"
 
-        rate_limit(0.016).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

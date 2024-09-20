@@ -34,10 +34,12 @@ module Peddler
       # @param [String] page_token A token to fetch a certain page when there are multiple pages worth of results.
       # @param [String] keywords_locale The language of the keywords provided for `keywords`-based queries. Defaults to
       #   the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def search_catalog_items(
-        marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: nil, locale: nil, seller_id: nil,
-        keywords: nil, brand_names: nil, classification_ids: nil, page_size: nil, page_token: nil, keywords_locale: nil
+        marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil,
+        seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil,
+        keywords_locale: nil, rate_limit: 2.0
       )
         cannot_sandbox!
 
@@ -57,7 +59,7 @@ module Peddler
           "keywordsLocale" => keywords_locale,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -69,8 +71,9 @@ module Peddler
       #   `summaries`.
       # @param [String] locale Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_catalog_item(asin, marketplace_ids, included_data: nil, locale: nil)
+      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/catalog/2022-04-01/items/#{asin}"
@@ -80,7 +83,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        rate_limit(2.0).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

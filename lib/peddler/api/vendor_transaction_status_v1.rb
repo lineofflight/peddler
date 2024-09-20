@@ -13,13 +13,14 @@ module Peddler
       #
       # @param [String] transaction_id The GUID provided by Amazon in the 'transactionId' field in response to the post
       #   request of a specific transaction.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_transaction(transaction_id)
+      def get_transaction(transaction_id, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/transactions/v1/transactions/#{transaction_id}"
 
-        rate_limit(10.0).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

@@ -13,13 +13,14 @@ module Peddler
       #
       # @param [String] transaction_id Previously returned in the response to the POST request of a specific
       #   transaction.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_transaction_status(transaction_id)
+      def get_transaction_status(transaction_id, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/directFulfillment/transactions/v1/transactions/#{transaction_id}"
 
-        rate_limit(10.0).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

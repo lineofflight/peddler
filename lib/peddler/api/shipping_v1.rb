@@ -15,50 +15,54 @@ module Peddler
       # Create a new shipment.
       #
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_shipment(body)
+      def create_shipment(body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/shipments"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Return the entire shipment object for the shipmentId.
       #
       # @param [String] shipment_id
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_shipment(shipment_id)
+      def get_shipment(shipment_id, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/shipments/#{shipment_id}"
 
-        rate_limit(5.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Cancel a shipment by the given shipmentId.
       #
       # @param [String] shipment_id
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_shipment(shipment_id)
+      def cancel_shipment(shipment_id, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/shipments/#{shipment_id}/cancel"
 
-        rate_limit(5.0).post(path)
+        meter(rate_limit).post(path)
       end
 
       # Purchase shipping labels based on a given rate.
       #
       # @param [String] shipment_id
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def purchase_labels(shipment_id, body)
+      def purchase_labels(shipment_id, body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Retrieve shipping label based on the shipment id and tracking id.
@@ -66,59 +70,65 @@ module Peddler
       # @param [String] shipment_id
       # @param [String] tracking_id
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def retrieve_shipping_label(shipment_id, tracking_id, body)
+      def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Purchase shipping labels.
       #
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def purchase_shipment(body)
+      def purchase_shipment(body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/purchaseShipment"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Get service rates.
       #
       # @param [Hash] body
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_rates(body)
+      def get_rates(body, rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/rates"
 
-        rate_limit(5.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Verify if the current account is valid.
+      #
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_account
+      def get_account(rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/shipping/v1/account"
 
-        rate_limit(5.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Return the tracking information of a shipment.
       #
       # @param [String] tracking_id
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_tracking_information(tracking_id)
+      def get_tracking_information(tracking_id, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/shipping/v1/tracking/#{tracking_id}"
 
-        rate_limit(1.0).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

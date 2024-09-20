@@ -14,37 +14,40 @@ module Peddler
       # Returns aggregated replenishment program metrics for a selling partner.
       #
       # @param [Hash] body The request body for the `getSellingPartnerMetrics` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_selling_partner_metrics(body: nil)
+      def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
       #
       # @param [Hash] body The request body for the `listOfferMetrics` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_offer_metrics(body: nil)
+      def list_offer_metrics(body: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/replenishment/2022-11-07/offers/metrics/search"
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns the details of a selling partner's replenishment program offers.
       #
       # @param [Hash] body The request body for the `listOffers` operation.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_offers(body: nil)
+      def list_offers(body: nil, rate_limit: 1.0)
         cannot_sandbox!
 
         path = "/replenishment/2022-11-07/offers/search"
 
-        rate_limit(1.0).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

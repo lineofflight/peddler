@@ -23,9 +23,10 @@ module Peddler
       #   `GetQueriesResponse` object. All other parameters must be provided with the same values that were provided
       #   with the request that generated this token, with the exception of `pageSize` which can be modified between
       #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_queries(processing_statuses: nil, page_size: nil, created_since: nil, created_until: nil,
-        pagination_token: nil)
+      def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil,
+        pagination_token: nil, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/dataKiosk/2023-11-15/queries"
@@ -37,7 +38,7 @@ module Peddler
           "paginationToken" => pagination_token,
         }.compact
 
-        rate_limit(0.0222).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a Data Kiosk query request.
@@ -47,13 +48,14 @@ module Peddler
       #   retention of a query's resulting documents always matches the retention of the query.
       #
       # @param [Hash] body The body of the request.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def create_query(body)
+      def create_query(body, rate_limit: 0.0167)
         cannot_sandbox!
 
         path = "/dataKiosk/2023-11-15/queries"
 
-        rate_limit(0.0167).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus`
@@ -63,39 +65,42 @@ module Peddler
       #
       # @param [String] query_id The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def cancel_query(query_id)
+      def cancel_query(query_id, rate_limit: 0.0222)
         cannot_sandbox!
 
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
-        rate_limit(0.0222).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
       # details about query retention.
       #
       # @param [String] query_id The query identifier.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_query(query_id)
+      def get_query(query_id, rate_limit: 2.0)
         cannot_sandbox!
 
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
-        rate_limit(2.0).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
       # operation for details about document retention.
       #
       # @param [String] document_id The identifier for the Data Kiosk document.
+      # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_document(document_id)
+      def get_document(document_id, rate_limit: 0.0167)
         cannot_sandbox!
 
         path = "/dataKiosk/2023-11-15/documents/#{document_id}"
 
-        rate_limit(0.0167).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end
