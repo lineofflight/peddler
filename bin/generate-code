@@ -110,6 +110,15 @@ module Generator
           "description" => "Requests per second",
           "default" => rate_limit,
         }
+        if operation["parameters"].find { |el| el.key?("$ref") && !el.key?("name") }
+          parameters << {
+            "name" => "notification_type",
+            "type" => "string",
+            "required" => true,
+            "description" => "The type of notification. For more information about notification types, refer to " \
+              "[Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).",
+          }
+        end
         operation.merge(
           "description" => clean_description(operation["description"]),
           "path" => path,

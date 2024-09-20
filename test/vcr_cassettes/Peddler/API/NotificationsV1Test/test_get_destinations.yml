@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1jbGllbnRfY3JlZGVudGlhbHMmY2xpZW50X2lkPUZJTFRF
+        UkVEJmNsaWVudF9zZWNyZXQ9RklMVEVSRUQmc2NvcGU9c2VsbGluZ3BhcnRu
+        ZXJhcGklM0ElM0Fub3RpZmljYXRpb25z
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 20 Sep 2024 21:32:43 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '454'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - FG94KBM0T0P0E13YXB70
+      X-Amzn-Requestid:
+      - acaaf6bd-5346-41c0-a77b-d77b9193c3bd
+      X-Amz-Date:
+      - Fri, 20 Sep 2024 21:32:43 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","scope":"sellingpartnerapi::notifications","token_type":"bearer","expires_in":3600}'
+  recorded_at: Fri, 20 Sep 2024 21:32:41 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/notifications/v1/destinations
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0.beta1 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20240920T213241Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 20 Sep 2024 21:32:44 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '143'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 5FH10V460SCHR2T9ERV6
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 3be7aa60-faa8-4d6c-9a51-48e80f4ae2b9
+      X-Amz-Apigw-Id:
+      - OPF3be7aa60faa8
+      X-Amzn-Trace-Id:
+      - Root=1-66ede9fc-3be7aa60faa84d6c
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":[{"destinationId":"TEST_CASE_200","resource":{"sqs":{"arn":"arn:aws:sqs:us-east-2:444455556666:queue1"}},"name":"SQSDestination"}]}
+
+        '
+  recorded_at: Fri, 20 Sep 2024 21:32:42 GMT
+recorded_with: VCR 6.3.1

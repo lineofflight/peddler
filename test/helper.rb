@@ -53,9 +53,17 @@ module Minitest
       location.split(/::|#/).join("/")
     end
 
-    def request_access_token
+    def request_access_token(grantless: false)
       require "peddler/token"
-      Peddler::Token.request(client_id:, client_secret:, refresh_token:).parse["access_token"]
+
+      payload = if grantless
+        scope = "sellingpartnerapi::notifications"
+        Peddler::Token.request(client_id:, client_secret:, scope:)
+      else
+        Peddler::Token.request(client_id:, client_secret:, refresh_token:)
+      end
+
+      payload.parse["access_token"]
     end
   end
 end
