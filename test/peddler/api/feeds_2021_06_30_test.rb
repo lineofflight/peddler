@@ -14,7 +14,7 @@ module Peddler
 
       def test_create_feed_document
         res = @api.create_feed_document(
-          "contentType" => "application/json; charset=UTF-8",
+          { "contentType" => "application/json; charset=UTF-8" },
         )
 
         assert_predicate(res.status, :created?)

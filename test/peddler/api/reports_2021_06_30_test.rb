@@ -14,8 +14,10 @@ module Peddler
 
       def test_create_report
         res = @api.create_report(
-          "reportType" => "GET_MERCHANTS_LISTINGS_FYP_REPORT",
-          "marketplaceIds" => ["A1F83G8C2ARO7P"],
+          {
+            "reportType" => "GET_MERCHANTS_LISTINGS_FYP_REPORT",
+            "marketplaceIds" => ["A1F83G8C2ARO7P"],
+          },
         )
 
         assert_predicate(res.status, :accepted?)

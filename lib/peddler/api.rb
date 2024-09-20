@@ -65,7 +65,7 @@ module Peddler
     def meter(rate_limit)
       # HTTP v6.0 will implement retriable. Until then, point to their GitHub repo, or it's a no-op.
       # https://github.com/httprb/http/pull/790
-      delay = sandbox? ? 0.2 : 1.0 / rate
+      delay = sandbox? ? 0.2 : 1.0 / rate_limit
       retriable(delay: delay, retry_statuses: [429]) if @http.respond_to?(:retriable)
 
       self

@@ -25,7 +25,7 @@ module Peddler
       #   limit. The token value is returned in the previous API call.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: ASC,
+      def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
         next_token: nil, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -158,7 +158,7 @@ module Peddler
       #   limit. The token value is returned in the previous API call.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: ASC,
+      def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
         next_token: nil, rate_limit: 10.0)
         cannot_sandbox!
 

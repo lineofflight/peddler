@@ -1,103 +1,103 @@
 ---
 http_interactions:
-- request:
-    method: post
-    uri: https://api.amazon.com/auth/o2/token
-    body:
-      encoding: ASCII-8BIT
-      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
-    headers:
-      Connection:
-      - close
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Host:
-      - api.amazon.com
-      User-Agent:
-      - http.rb/5.2.0
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Server
-      Date:
-      - Fri, 13 Sep 2024 17:58:53 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Content-Length:
-      - '806'
-      Connection:
-      - close
-      X-Amz-Rid:
-      - 5Y5TPBTBMP4FB13CBT3V
-      X-Amzn-Requestid:
-      - 93045b0b-e6a5-46c8-9140-69930b1350c6
-      X-Amz-Date:
-      - Fri, 13 Sep 2024 17:58:53 GMT
-      Cache-Control:
-      - no-cache, no-store, must-revalidate
-      Pragma:
-      - no-cache
-      Vary:
-      - Content-Type,Accept-Encoding,User-Agent
-      Strict-Transport-Security:
-      - max-age=47474747; includeSubDomains; preload
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
-  recorded_at: Fri, 13 Sep 2024 17:58:53 GMT
-- request:
-    method: put
-    uri: https://sellingpartnerapi-eu.amazon.com/listings/2021-08-01/items/A34PPN1ZLYCOGT/SKU123?marketplaceIds=A1F83G8C2ARO7P
-    body:
-      encoding: UTF-8
-      string: '{"productType":"PRODUCT","requirements":"LISTING_OFFER_ONLY","attributes":{"merchant_suggested_asin":[{"value":"188864544X","marketplace_id":"A1F83G8C2ARO7P"}],"condition_type":[{"value":"new_new","marketplace_id":"A1F83G8C2ARO7P"}],"merchant_shipping_group":[{"value":"legacy-template-id","marketplace_id":"A1F83G8C2ARO7P"}],"fulfillment_availability":[{"fulfillment_channel_code":"DEFAULT","quantity":1,"lead_time_to_ship_max_days":3}],"purchasable_offer":[{"currency":"GBP","our_price":[{"schedule":[{"value_with_tax":400}]}],"minimum_seller_allowed_price":[{"schedule":[{"value_with_tax":350}]}],"maximum_seller_allowed_price":[{"schedule":[{"value_with_tax":450}]}],"marketplace_id":"A1F83G8C2ARO7P"}]}}'
-    headers:
-      Host:
-      - sellingpartnerapi-eu.amazon.com
-      User-Agent:
-      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
-      X-Amz-Access-Token:
-      - FILTERED
-      X-Amz-Date:
-      - 20240913T175853Z
-      Connection:
-      - close
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Server
-      Date:
-      - Fri, 13 Sep 2024 17:58:54 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '102'
-      Connection:
-      - close
-      X-Amz-Rid:
-      - 6XNZJGD28M6GVQH6HGPZ
-      X-Amzn-Ratelimit-Limit:
-      - '5.0'
-      X-Amzn-Requestid:
-      - 49f7554f-2e18-49fe-8c94-1047346f29f0
-      X-Amz-Apigw-Id:
-      - OPF49f7554f2e18
-      X-Amzn-Trace-Id:
-      - Root=1-66e47d5e-49f7554f2e1849fe
-      Vary:
-      - Content-Type,Accept-Encoding,User-Agent
-      Strict-Transport-Security:
-      - max-age=47474747; includeSubDomains; preload
-    body:
-      encoding: UTF-8
-      string: |2
+  - request:
+      method: post
+      uri: https://api.amazon.com/auth/o2/token
+      body:
+        encoding: ASCII-8BIT
+        string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+      headers:
+        Connection:
+          - close
+        Content-Type:
+          - application/x-www-form-urlencoded
+        Host:
+          - api.amazon.com
+        User-Agent:
+          - http.rb/5.2.0
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Server:
+          - Server
+        Date:
+          - Fri, 13 Sep 2024 17:58:53 GMT
+        Content-Type:
+          - application/json;charset=UTF-8
+        Content-Length:
+          - "806"
+        Connection:
+          - close
+        X-Amz-Rid:
+          - 5Y5TPBTBMP4FB13CBT3V
+        X-Amzn-Requestid:
+          - 93045b0b-e6a5-46c8-9140-69930b1350c6
+        X-Amz-Date:
+          - Fri, 13 Sep 2024 17:58:53 GMT
+        Cache-Control:
+          - no-cache, no-store, must-revalidate
+        Pragma:
+          - no-cache
+        Vary:
+          - Content-Type,Accept-Encoding,User-Agent
+        Strict-Transport-Security:
+          - max-age=47474747; includeSubDomains; preload
+      body:
+        encoding: UTF-8
+        string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+    recorded_at: Fri, 13 Sep 2024 17:58:53 GMT
+  - request:
+      method: put
+      uri: https://sellingpartnerapi-eu.amazon.com/listings/2021-08-01/items/A34PPN1ZLYCOGT/SKU123?includedData=issues&marketplaceIds=A1F83G8C2ARO7P
+      body:
+        encoding: UTF-8
+        string: '{"productType":"PRODUCT","requirements":"LISTING_OFFER_ONLY","attributes":{"merchant_suggested_asin":[{"value":"188864544X","marketplace_id":"A1F83G8C2ARO7P"}],"condition_type":[{"value":"new_new","marketplace_id":"A1F83G8C2ARO7P"}],"merchant_shipping_group":[{"value":"legacy-template-id","marketplace_id":"A1F83G8C2ARO7P"}],"fulfillment_availability":[{"fulfillment_channel_code":"DEFAULT","quantity":1,"lead_time_to_ship_max_days":3}],"purchasable_offer":[{"currency":"GBP","our_price":[{"schedule":[{"value_with_tax":400}]}],"minimum_seller_allowed_price":[{"schedule":[{"value_with_tax":350}]}],"maximum_seller_allowed_price":[{"schedule":[{"value_with_tax":450}]}],"marketplace_id":"A1F83G8C2ARO7P"}]}}'
+      headers:
+        Host:
+          - sellingpartnerapi-eu.amazon.com
+        User-Agent:
+          - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+        X-Amz-Access-Token:
+          - FILTERED
+        X-Amz-Date:
+          - 20240913T175853Z
+        Connection:
+          - close
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Server:
+          - Server
+        Date:
+          - Fri, 13 Sep 2024 17:58:54 GMT
+        Content-Type:
+          - application/json
+        Content-Length:
+          - "102"
+        Connection:
+          - close
+        X-Amz-Rid:
+          - 6XNZJGD28M6GVQH6HGPZ
+        X-Amzn-Ratelimit-Limit:
+          - "5.0"
+        X-Amzn-Requestid:
+          - 49f7554f-2e18-49fe-8c94-1047346f29f0
+        X-Amz-Apigw-Id:
+          - OPF49f7554f2e18
+        X-Amzn-Trace-Id:
+          - Root=1-66e47d5e-49f7554f2e1849fe
+        Vary:
+          - Content-Type,Accept-Encoding,User-Agent
+        Strict-Transport-Security:
+          - max-age=47474747; includeSubDomains; preload
+      body:
+        encoding: UTF-8
+        string: |2
 
           {"sku":"SKU123","status":"ACCEPTED","submissionId":"0e0e8c23402f4013bc0ef1bbed0788a5","issues":[]}
-  recorded_at: Fri, 13 Sep 2024 17:58:54 GMT
+    recorded_at: Fri, 13 Sep 2024 17:58:54 GMT
 recorded_with: VCR 6.3.1

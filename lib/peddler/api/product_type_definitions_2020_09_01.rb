@@ -60,8 +60,8 @@ module Peddler
       #   default language of the first marketplace in the request.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: LATEST,
-        requirements: LISTING, requirements_enforced: ENFORCED, locale: DEFAULT, rate_limit: 5.0)
+      def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
+        requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", rate_limit: 5.0)
         cannot_sandbox!
 
         path = "/definitions/2020-09-01/productTypes/#{product_type}"

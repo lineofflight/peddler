@@ -174,7 +174,11 @@ module Generator
     required_params = parameters.select { |p| p["required"] }&.map { |p| snakecase(p["name"]) } || []
     optional_params = parameters.reject do |p|
       p["required"]
-    end&.map { |p| "#{snakecase(p["name"])}: #{p["default"] ? p["default"] : "nil"}" } || []
+    end&.map do |p|
+      default_value = p["default"]
+      formatted_default = default_value.is_a?(String) ? "\"#{default_value}\"" : default_value
+      "#{snakecase(p["name"])}: #{formatted_default ? formatted_default : "nil"}"
+    end || []
     params = required_params + optional_params
 
     single_line = "def #{method_name}(#{params.join(", ")})"
