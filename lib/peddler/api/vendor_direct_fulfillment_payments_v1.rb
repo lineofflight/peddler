@@ -11,12 +11,11 @@ module Peddler
     class VendorDirectFulfillmentPaymentsV1 < API
       # Submits one or more invoices for a vendor's direct fulfillment orders.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The request body that contains one or more invoices for vendor orders.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_invoice(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/payments/v1/invoices"
 
         meter(rate_limit).post(path, body:)

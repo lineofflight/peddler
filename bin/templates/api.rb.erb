@@ -7,10 +7,10 @@ class API
 <%= format_text(model["info"]["description"], 4) %>
 class <%= api_data[:class_name] %> < API
   <% operations.each do |operation| %>
-    <%= generate_method_docs(operation["description"], operation["parameters"]) %>
+    <%= generate_method_docs(operation) %>
     # @return [Hash] The API response
     def <%= snakecase(operation["operationId"]) %><%= generate_parameters(operation["parameters"], snakecase(operation["operationId"]), 6) %>
-    <% unless operation["dynamic_sandbox"] -%>
+    <% if !operation["static_sandbox"] && !operation["dynamic_sandbox"] -%>
         cannot_sandbox!
       <% end %>
       path = "<%= operation["path"] %>"

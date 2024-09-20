@@ -12,6 +12,7 @@ module Peddler
     class ShippingV2 < API
       # Returns the available shipping service offerings.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body
       # @param [String] x_amzn_shipping_business_id Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -50,6 +51,7 @@ module Peddler
       # 10 minutes have expired, you will receive an error response with the error code equal to "TOKEN_EXPIRED". If you
       # receive this error response, you must get the rates for the shipment again.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body
       # @param [String] x_amzn_idempotency_key A unique value which the server uses to recognize subsequent retries of
       #   the same request.
@@ -65,6 +67,7 @@ module Peddler
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body
       # @param [String] x_amzn_shipping_business_id Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -78,6 +81,7 @@ module Peddler
 
       # Returns tracking information for a purchased shipment.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] tracking_id A carrier-generated tracking identifier originally returned by the purchaseShipment
       #   operation.
       # @param [String] carrier_id A carrier identifier originally returned by the getRates operation for the selected
@@ -98,6 +102,7 @@ module Peddler
 
       # Returns the shipping documents associated with a package in a shipment.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] shipment_id The shipment identifier originally returned by the purchaseShipment operation.
       # @param [String] package_client_reference_id The package client reference identifier originally provided in the
       #   request body parameter for the getRates operation.
@@ -124,6 +129,7 @@ module Peddler
 
       # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] shipment_id The shipment identifier originally returned by the purchaseShipment operation.
       # @param [String] x_amzn_shipping_business_id Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -139,6 +145,7 @@ module Peddler
       # the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that
       # additional inputs are required for the rate (shipping offering) that you want to purchase.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] request_token The request token returned in the response to the getRates operation.
       # @param [String] rate_id The rate identifier for the shipping offering (rate) returned in the response to the
       #   getRates operation.
@@ -147,8 +154,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/shipments/additionalInputs/schema"
         params = {
           "requestToken" => request_token,
@@ -285,6 +290,7 @@ module Peddler
 
       # Returns a list of access points in proximity of input postal code.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Array<String>] access_point_types
       # @param [String] country_code
       # @param [String] postal_code

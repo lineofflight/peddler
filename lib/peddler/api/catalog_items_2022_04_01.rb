@@ -13,6 +13,7 @@ module Peddler
       # Search for and return a list of Amazon catalog items and associated information either by identifier or by
       # keywords.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] identifiers A comma-delimited list of product identifiers to search the Amazon catalog
       #   for. **Note:** Cannot be used with `keywords`.
       # @param [String] identifiers_type Type of product identifiers to search the Amazon catalog for. **Note:**
@@ -41,7 +42,6 @@ module Peddler
         seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil,
         keywords_locale: nil, rate_limit: 2.0
       )
-        cannot_sandbox!
 
         path = "/catalog/2022-04-01/items"
         params = {
@@ -64,6 +64,7 @@ module Peddler
 
       # Retrieves details for an item in the Amazon catalog.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers. Data sets in
       #   the response contain data only for the specified marketplaces.
@@ -74,8 +75,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/catalog/2022-04-01/items/#{asin}"
         params = {
           "marketplaceIds" => marketplace_ids,

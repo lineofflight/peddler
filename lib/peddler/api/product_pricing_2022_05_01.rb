@@ -17,13 +17,13 @@ module Peddler
       # change, and different offers may be featured based on other factors, including fulfillment capabilities to a
       # specific customer. The response to an unsuccessful request includes the available error text.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] get_featured_offer_expected_price_batch_request_body The batch of `getFeaturedOfferExpectedPrice`
       #   requests.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body,
         rate_limit: 0.033)
-        cannot_sandbox!
 
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
@@ -34,12 +34,11 @@ module Peddler
       # Returns the competitive summary response including featured buying options for the ASIN and `marketplaceId`
       # combination.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] requests The batch of `getCompetitiveSummary` requests.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_competitive_summary(requests, rate_limit: 0.033)
-        cannot_sandbox!
-
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
 

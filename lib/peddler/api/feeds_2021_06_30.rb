@@ -10,6 +10,7 @@ module Peddler
     class Feeds20210630 < API
       # Returns feed details for the feeds that match the filters that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] feed_types A list of feed types used to filter feeds. When feedTypes is provided, the
       #   other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also
       #   be provided. Either feedTypes or nextToken is required.
@@ -29,7 +30,6 @@ module Peddler
       # @return [Hash] The API response
       def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil,
         created_until: nil, next_token: nil, rate_limit: 0.0222)
-        cannot_sandbox!
 
         path = "/feeds/2021-06-30/feeds"
         params = {
@@ -47,12 +47,11 @@ module Peddler
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Information required to create the feed.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_feed(body, rate_limit: 0.0083)
-        cannot_sandbox!
-
         path = "/feeds/2021-06-30/feeds"
 
         meter(rate_limit).post(path, body:)
@@ -63,13 +62,12 @@ module Peddler
       # [`getFeed`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#getfeed) and
       # [`getFeeds`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#getfeeds) operations.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] feed_id The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def cancel_feed(feed_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
         meter(rate_limit).delete(path)
@@ -77,13 +75,12 @@ module Peddler
 
       # Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] feed_id The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_feed(feed_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
         meter(rate_limit).get(path)
@@ -94,12 +91,11 @@ module Peddler
       # to the [`createFeed`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#createfeed)
       # operation.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Specifies the content type for the createFeedDocument operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_feed_document(body, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/feeds/2021-06-30/documents"
 
         meter(rate_limit).post(path, body:)
@@ -107,12 +103,11 @@ module Peddler
 
       # Returns the information required for retrieving a feed document's contents.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] feed_document_id The identifier of the feed document.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
-        cannot_sandbox!
-
         path = "/feeds/2021-06-30/documents/#{feed_document_id}"
 
         meter(rate_limit).get(path)

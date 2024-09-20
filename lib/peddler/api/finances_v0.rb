@@ -13,6 +13,7 @@ module Peddler
       # Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your
       # financial events.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Integer] max_results_per_page The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param [String] financial_event_group_started_before A date used for selecting financial event groups that
@@ -29,7 +30,6 @@ module Peddler
       # @return [Hash] The API response
       def list_financial_event_groups(max_results_per_page: 100, financial_event_group_started_before: nil,
         financial_event_group_started_after: nil, next_token: nil, rate_limit: 0.5)
-        cannot_sandbox!
 
         path = "/finances/v0/financialEventGroups"
         params = {
@@ -47,6 +47,7 @@ module Peddler
       # @note This operation will only retrieve group's data for the past two years. If a request is submitted for data
       #   spanning more than two years, an empty response is returned.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Integer] max_results_per_page The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param [String] posted_after A date used for selecting financial events posted after (or at) a specified time.
@@ -64,7 +65,6 @@ module Peddler
       # @return [Hash] The API response
       def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil,
         posted_before: nil, next_token: nil, rate_limit: 0.5)
-        cannot_sandbox!
 
         path = "/finances/v0/financialEventGroups/#{event_group_id}/financialEvents"
         params = {
@@ -80,6 +80,7 @@ module Peddler
       # Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your
       # financial events.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Integer] max_results_per_page The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
@@ -87,8 +88,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/finances/v0/orders/#{order_id}/financialEvents"
         params = {
           "MaxResultsPerPage" => max_results_per_page,
@@ -102,6 +101,7 @@ module Peddler
       # financial events.
       # @note in `ListFinancialEvents`, deferred events don't show up in responses until in they are released.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Integer] max_results_per_page The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
       # @param [String] posted_after A date used for selecting financial events posted after (or at) a specified time.
@@ -117,7 +117,6 @@ module Peddler
       # @return [Hash] The API response
       def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil,
         rate_limit: 0.5)
-        cannot_sandbox!
 
         path = "/finances/v0/financialEvents"
         params = {

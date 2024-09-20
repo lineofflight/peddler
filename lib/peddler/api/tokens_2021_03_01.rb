@@ -18,12 +18,11 @@ module Peddler
       # Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent
       # calls to the corresponding restricted operations.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The restricted data token request details.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_restricted_data_token(body, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/tokens/2021-03-01/restrictedDataToken"
 
         meter(rate_limit).post(path, body:)

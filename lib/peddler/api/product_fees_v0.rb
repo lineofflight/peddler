@@ -24,14 +24,13 @@ module Peddler
       # @note When sellers use the `getMyFeesEstimateForSKU` operation with their `SellerSKU`, they get accurate fees
       #   based on real item measurements, but only after they've sent their items to Amazon.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body
       # @param [String] seller_sku Used to identify an item in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/products/fees/v0/listings/#{seller_sku}/feesEstimate"
 
         meter(rate_limit).post(path, body:)
@@ -49,13 +48,12 @@ module Peddler
       #   This is because these estimates use the item's catalog size, which might not always match the actual size of
       #   the item sent to Amazon.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/products/fees/v0/items/#{asin}/feesEstimate"
 
         meter(rate_limit).post(path, body:)
@@ -63,12 +61,11 @@ module Peddler
 
       # Returns the estimated fees for a list of products.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_my_fees_estimates(body, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/products/fees/v0/feesEstimate"
 
         meter(rate_limit).post(path, body:)

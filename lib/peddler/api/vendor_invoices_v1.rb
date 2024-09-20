@@ -10,12 +10,11 @@ module Peddler
     class VendorInvoicesV1 < API
       # Submit new invoices to Amazon.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The request body containing the invoice data to submit.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_invoices(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/payments/v1/invoices"
 
         meter(rate_limit).post(path, body:)

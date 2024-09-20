@@ -16,6 +16,7 @@ module Peddler
       # to avoid service disruption. _Note:_ The [`listCatalogCategories`](#get-catalogv0categories) operation is not
       # being deprecated and you can continue to make calls to it.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which items are returned.
       # @param [String] query Keyword(s) to use to search for items in the catalog. Example: 'harry potter books'.
       # @param [String] query_context_id An identifier for the context within which the given search will be performed.
@@ -35,7 +36,6 @@ module Peddler
       # @return [Hash] The API response
       def list_catalog_items(marketplace_id, query: nil, query_context_id: nil, seller_sku: nil, upc: nil, ean: nil,
         isbn: nil, jan: nil, rate_limit: nil)
-        cannot_sandbox!
 
         path = "/catalog/v0/items"
         params = {
@@ -59,13 +59,12 @@ module Peddler
       # [`listCatalogCategories`](#get-catalogv0categories) operation is not being deprecated and you can continue to
       # make calls to it.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for the item.
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_catalog_item(marketplace_id, asin, rate_limit: nil)
-        cannot_sandbox!
-
         path = "/catalog/v0/items/#{asin}"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -76,6 +75,7 @@ module Peddler
 
       # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for the item.
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @param [String] seller_sku Used to identify items in the given marketplace. SellerSKU is qualified by the
@@ -83,8 +83,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/catalog/v0/categories"
         params = {
           "MarketplaceId" => marketplace_id,

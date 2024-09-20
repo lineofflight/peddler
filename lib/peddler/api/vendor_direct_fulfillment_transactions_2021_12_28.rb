@@ -11,6 +11,7 @@ module Peddler
     class VendorDirectFulfillmentTransactions20211228 < API
       # Returns the status of the transaction indicated by the specified `transactionId`.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] transaction_id Previously returned in the response to the POST request of a specific
       #   transaction.
       # @param [Float] rate_limit Requests per second

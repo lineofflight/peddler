@@ -13,6 +13,7 @@ module Peddler
       # using the `createdAfter` and `createdBefore` parameters. You must use both of these parameters. The date range
       # to search must not be more than 7 days.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] ship_from_party_id The vendor `warehouseId` for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @param [Integer] limit The limit to the number of records returned.
@@ -27,7 +28,6 @@ module Peddler
       # @return [Hash] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
         next_token: nil, rate_limit: 10.0)
-        cannot_sandbox!
 
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
         params = {
@@ -44,12 +44,11 @@ module Peddler
 
       # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Request body containing one or more shipping labels data.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
 
         meter(rate_limit).post(path, body:)
@@ -57,13 +56,12 @@ module Peddler
 
       # Returns a shipping label for the `purchaseOrderNumber` that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] purchase_order_number The purchase order number for which you want to return the shipping label.
       #   It should be the same `purchaseOrderNumber` as received in the order.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{purchase_order_number}"
 
         meter(rate_limit).get(path)
@@ -71,12 +69,11 @@ module Peddler
 
       # Submits one or more shipment confirmations for vendor orders.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Request body containing the shipment confirmations data.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
 
         meter(rate_limit).post(path, body:)
@@ -86,12 +83,11 @@ module Peddler
       # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
       # order, when the package is outside of Amazon Network visibility.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Request body containing the shipment status update data.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
 
         meter(rate_limit).post(path, body:)
@@ -101,6 +97,7 @@ module Peddler
       # using the `createdAfter` and `createdBefore` parameters. You must use both of these parameters. The date range
       # to search must be no more than 7 days.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] ship_from_party_id The vendor `warehouseId` for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @param [Integer] limit The limit to the number of records returned
@@ -115,7 +112,6 @@ module Peddler
       # @return [Hash] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil, rate_limit: 10.0)
-        cannot_sandbox!
 
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices"
         params = {
@@ -132,12 +128,11 @@ module Peddler
 
       # Returns a customer invoice based on the `purchaseOrderNumber` that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] purchase_order_number Purchase order number of the shipment for which to return the invoice.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{purchase_order_number}"
 
         meter(rate_limit).get(path)
@@ -146,6 +141,7 @@ module Peddler
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
       # must not be more than 7 days.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] ship_from_party_id The vendor `warehouseId` for order fulfillment. If not specified the result
       #   will contain orders for all warehouses.
       # @param [Integer] limit The limit to the number of records returned
@@ -160,7 +156,6 @@ module Peddler
       # @return [Hash] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
         next_token: nil, rate_limit: 10.0)
-        cannot_sandbox!
 
         path = "/vendor/directFulfillment/shipping/v1/packingSlips"
         params = {
@@ -177,12 +172,11 @@ module Peddler
 
       # Returns a packing slip based on the `purchaseOrderNumber` that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] purchase_order_number The `purchaseOrderNumber` for the packing slip you want.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{purchase_order_number}"
 
         meter(rate_limit).get(path)

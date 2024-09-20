@@ -16,6 +16,7 @@ module Peddler
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
       # in your request; it only impacts the pagination for the filtered orders response.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] created_after Use this date to select orders created after (or at) a specified time. Only orders
       #   placed after the specified time are returned. The date must be in [ISO
       #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. **Note**: Either the `CreatedAfter`
@@ -112,7 +113,6 @@ module Peddler
         earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
         latest_delivery_date_after: nil, rate_limit: 0.0167
       )
-        cannot_sandbox!
 
         path = "/orders/v0/orders"
         params = {
@@ -145,12 +145,11 @@ module Peddler
 
       # Returns the order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order(order_id, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}"
 
         meter(rate_limit).get(path)
@@ -158,12 +157,11 @@ module Peddler
 
       # Returns buyer information for the order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order_buyer_info(order_id, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/buyerInfo"
 
         meter(rate_limit).get(path)
@@ -171,12 +169,11 @@ module Peddler
 
       # Returns the shipping address for the order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order_address(order_id, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/address"
 
         meter(rate_limit).get(path)
@@ -184,12 +181,11 @@ module Peddler
 
       # Returns the fulfillment instructions for the order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order_fulfillment_instructions(order_id, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/fulfillmentInstructions"
 
         meter(rate_limit).get(path)
@@ -203,13 +199,12 @@ module Peddler
       # Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping
       # charges, gift status and promotions for the order items in the order.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [String] next_token A string token returned in the response of your previous request.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order_items(order_id, next_token: nil, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/orderItems"
         params = {
           "NextToken" => next_token,
@@ -220,13 +215,12 @@ module Peddler
 
       # Returns buyer information for the order items in the order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [String] next_token A string token returned in the response of your previous request.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/orderItems/buyerInfo"
         params = {
           "NextToken" => next_token,
@@ -237,13 +231,12 @@ module Peddler
 
       # Update the shipment status for an order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Hash] payload The request body for the `updateShipmentStatus` operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_shipment_status(order_id, payload, rate_limit: 5.0)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/shipment"
         body = payload
 
@@ -252,12 +245,11 @@ module Peddler
 
       # Returns regulated information for the order that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order_regulated_info(order_id, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
 
         meter(rate_limit).get(path)
@@ -265,13 +257,12 @@ module Peddler
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Hash] payload The request body for the `updateVerificationStatus` operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_verification_status(order_id, payload, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
 
@@ -280,13 +271,12 @@ module Peddler
 
       # Updates the shipment confirmation status for a specified order.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] order_id An Amazon-defined order identifier, in 3-7-7 format.
       # @param [Hash] payload Request body of `confirmShipment`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def confirm_shipment(order_id, payload, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
         body = payload
 

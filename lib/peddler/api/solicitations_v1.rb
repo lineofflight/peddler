@@ -18,6 +18,7 @@ module Peddler
       # parameter(s) to call an operation that sends a solicitation. Currently only the
       # productReviewAndSellerFeedbackSolicitation solicitation type is available.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] amazon_order_id An Amazon order identifier. This specifies the order for which you want a list
       #   of available solicitation types.
       # @param [Array<String>] marketplace_ids A marketplace identifier. This specifies the marketplace in which the
@@ -25,8 +26,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/solicitations/v1/orders/#{amazon_order_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -38,6 +37,7 @@ module Peddler
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
       # only one productReviewAndSellerFeedback or free form proactive message per order.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] amazon_order_id An Amazon order identifier. This specifies the order for which a solicitation is
       #   sent.
       # @param [Array<String>] marketplace_ids A marketplace identifier. This specifies the marketplace in which the
@@ -45,8 +45,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/solicitations/v1/orders/#{amazon_order_id}/solicitations/productReviewAndSellerFeedback"
         params = {
           "marketplaceIds" => marketplace_ids,

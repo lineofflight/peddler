@@ -14,6 +14,7 @@ module Peddler
     class ProductTypeDefinitions20200901 < API
       # Search for and return a list of Amazon product types that have definitions available.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] keywords A comma-delimited list of keywords to search product types. **Note:** Cannot be
       #   used with `itemName`.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -27,7 +28,6 @@ module Peddler
       # @return [Hash] The API response
       def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil,
         search_locale: nil, rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/definitions/2020-09-01/productTypes"
         params = {
@@ -43,6 +43,7 @@ module Peddler
 
       # Retrieve an Amazon product type definition.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] product_type The Amazon product type name.
       # @param [String] seller_id A selling partner identifier. When provided, seller-specific requirements and values
       #   are populated within the product type definition schema, such as brand names associated with the selling
@@ -62,7 +63,6 @@ module Peddler
       # @return [Hash] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
         requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/definitions/2020-09-01/productTypes/#{product_type}"
         params = {

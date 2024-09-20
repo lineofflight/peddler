@@ -13,6 +13,7 @@ module Peddler
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must not be more than 7 days.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] ship_from_party_id The vendor warehouseId for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @param [Integer] limit The limit to the number of records returned.
@@ -43,6 +44,7 @@ module Peddler
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body Request body that contains the shipping labels data.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -54,6 +56,7 @@ module Peddler
 
       # Returns a shipping label for the purchaseOrderNumber that you specify.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] purchase_order_number The purchase order number for which you want to return the shipping label.
       #   Should be the same `purchaseOrderNumber` as received in the order.
       # @param [Float] rate_limit Requests per second
@@ -66,6 +69,7 @@ module Peddler
 
       # Creates shipping labels for a purchase order and returns the labels.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] purchase_order_number The purchase order number for which you want to return the shipping
       #   labels. It should be the same purchaseOrderNumber as received in the order.
       # @param [Hash] body The request payload that contains parameters for creating shipping labels.
@@ -79,6 +83,7 @@ module Peddler
 
       # Submits one or more shipment confirmations for vendor orders.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body Request body containing the shipment confirmations data.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -92,6 +97,7 @@ module Peddler
       # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
       # order, when the package is outside of Amazon Network visibility.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body Request body that contains the shipment status update data.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -105,6 +111,7 @@ module Peddler
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must be no more than 7 days.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] ship_from_party_id The vendor warehouseId for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
       # @param [Integer] limit The limit to the number of records returned
@@ -135,6 +142,7 @@ module Peddler
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] purchase_order_number Purchase order number of the shipment for which to return the invoice.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -147,6 +155,7 @@ module Peddler
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
       # must not be more than 7 days.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] ship_from_party_id The vendor warehouseId for order fulfillment. If not specified the result
       #   will contain orders for all warehouses.
       # @param [Integer] limit The limit to the number of records returned
@@ -177,6 +186,7 @@ module Peddler
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] purchase_order_number The purchaseOrderNumber for the packing slip you want.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response

@@ -25,6 +25,7 @@ module Peddler
       # operation. Selling partners whose business demands require higher throughput may see higher rate and burst
       # values than those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Boolean] details true to return inventory summaries with additional summarized inventory details and
       #   quantities. Otherwise, returns inventory summaries only (default value).
       # @param [String] granularity_type The granularity type for the inventory aggregation level.
@@ -64,6 +65,8 @@ module Peddler
       # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
+      # @note This operation can make a dynamic sandbox call.
+      # @note This operation is sandbox-only.
       # @param [Hash] create_inventory_item_request_body CreateInventoryItem Request Body Parameter.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -78,6 +81,8 @@ module Peddler
       # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
+      # @note This operation can make a dynamic sandbox call.
+      # @note This operation is sandbox-only.
       # @param [String] seller_sku A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param [String] marketplace_id The marketplace ID for the marketplace for which the sellerSku is to be deleted.
       # @param [Float] rate_limit Requests per second
@@ -96,6 +101,8 @@ module Peddler
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
       #
+      # @note This operation can make a dynamic sandbox call.
+      # @note This operation is sandbox-only.
       # @param [String] x_amzn_idempotency_token A unique token/requestId provided with each call to ensure idempotency.
       # @param [Hash] add_inventory_request_body List of items to add to Sandbox inventory.
       # @param [Float] rate_limit Requests per second

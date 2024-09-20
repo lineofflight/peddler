@@ -14,6 +14,7 @@ module Peddler
       # `includeDetails` to false. You can then use the `getPurchaseOrder` operation to receive details for a specific
       # purchase order.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Integer] limit The limit to the number of records returned. Default value is 100 records.
       # @param [String] created_after Purchase orders that became available after this time will be included in the
       #   result. Must be in ISO-8601 date/time format.
@@ -46,7 +47,6 @@ module Peddler
         changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil, purchase_order_state: nil,
         ordering_vendor_code: nil, rate_limit: 10.0
       )
-        cannot_sandbox!
 
         path = "/vendor/orders/v1/purchaseOrders"
         params = {
@@ -69,13 +69,12 @@ module Peddler
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] purchase_order_number The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_purchase_order(purchase_order_number, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/orders/v1/purchaseOrders/#{purchase_order_number}"
 
         meter(rate_limit).get(path)
@@ -83,12 +82,11 @@ module Peddler
 
       # Submits acknowledgements for one or more purchase orders.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/orders/v1/acknowledgements"
 
         meter(rate_limit).post(path, body:)
@@ -98,6 +96,7 @@ module Peddler
       # than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase
       # order status by providing the purchase order number.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Integer] limit The limit to the number of records returned. Default value is 100 records.
       # @param [String] sort_order Sort in ascending or descending order by purchase order creation date.
       # @param [String] next_token Used for pagination when there are more purchase orders than the specified result
@@ -134,7 +133,6 @@ module Peddler
         updated_before: nil, purchase_order_number: nil, purchase_order_status: nil, item_confirmation_status: nil,
         item_receive_status: nil, ordering_vendor_code: nil, ship_to_party_id: nil, rate_limit: 10.0
       )
-        cannot_sandbox!
 
         path = "/vendor/orders/v1/purchaseOrdersStatus"
         params = {

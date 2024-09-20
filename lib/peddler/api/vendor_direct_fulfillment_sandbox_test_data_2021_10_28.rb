@@ -11,6 +11,7 @@ module Peddler
     class VendorDirectFulfillmentSandboxTestData20211028 < API
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body The request payload that contain parameters to generate test order data scenarios.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -23,6 +24,7 @@ module Peddler
       # Retrieves the transaction status identified by the specified `transactionId`, and returns the requested test
       # order data if the transaction is successful.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] transaction_id The transaction identifier returned in the response for the
       #   `generateOrderScenarios` operation.
       # @param [Float] rate_limit Requests per second

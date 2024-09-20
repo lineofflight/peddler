@@ -15,6 +15,7 @@ module Peddler
       # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
       # order.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] ship_from_party_id The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @param [String] status Returns only the purchase orders that match the specified status. If not specified, the
@@ -33,7 +34,6 @@ module Peddler
       # @return [Hash] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
         next_token: nil, include_details: "true", rate_limit: 10.0)
-        cannot_sandbox!
 
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders"
         params = {
@@ -52,13 +52,12 @@ module Peddler
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] purchase_order_number The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_order(purchase_order_number, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders/#{purchase_order_number}"
 
         meter(rate_limit).get(path)
@@ -66,12 +65,11 @@ module Peddler
 
       # Submits acknowledgements for one or more purchase orders.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The request body that contains the order acknowledgement.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/orders/v1/acknowledgements"
 
         meter(rate_limit).post(path, body:)

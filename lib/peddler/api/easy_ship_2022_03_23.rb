@@ -19,12 +19,11 @@ module Peddler
       # slots that have either pickup or drop-off handover methods - see **Supported Handover Methods** in the
       # [Marketplace Support Table](doc:easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] list_handover_slots_request The request schema for the `listHandoverSlots` operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
 
@@ -34,14 +33,13 @@ module Peddler
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
       # and item information, and status.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] amazon_order_id An Amazon-defined order identifier. Identifies the order that the seller wants
       #   to deliver using Amazon Easy Ship.
       # @param [String] marketplace_id An identifier for the marketplace in which the seller is selling.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_scheduled_package(amazon_order_id, marketplace_id, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/easyShip/2022-03-23/package"
         params = {
           "amazonOrderId" => amazon_order_id,
@@ -62,12 +60,11 @@ module Peddler
       # Table](doc:easyship-api-v2022-03-23-use-case-guide#marketplace-support-table) to see which documents are
       # supported in each marketplace.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] create_scheduled_package_request The request schema for the `createScheduledPackage` operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
 
@@ -80,12 +77,11 @@ module Peddler
       # Table](doc:easyship-api-v2022-03-23-use-case-guide#marketplace-support-table) to see which marketplaces this
       # operation is supported in.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] update_scheduled_packages_request The request schema for the `updateScheduledPackages` operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
 
@@ -106,13 +102,12 @@ module Peddler
       # we couldn't process. Each entry is composed of an error message describing the reason of the failure, so that
       # sellers can take action. The table below displays the supported request and burst maximum rates:
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] create_scheduled_packages_request The request schema for the `createScheduledPackageBulk`
       #   operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
 

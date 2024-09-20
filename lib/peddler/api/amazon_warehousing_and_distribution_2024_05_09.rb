@@ -11,14 +11,13 @@ module Peddler
     class AmazonWarehousingAndDistribution20240509 < API
       # Retrieves an AWD inbound shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] shipment_id ID for the shipment. A shipment contains the cases being inbounded.
       # @param [String] sku_quantities If equal to `SHOW`, the response includes the shipment SKU quantity details.
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/awd/2024-05-09/inboundShipments/#{shipment_id}"
         params = {
           "skuQuantities" => sku_quantities,
@@ -30,6 +29,7 @@ module Peddler
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
       # optional filters.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] sort_by Field to sort results by. By default, the response will be sorted by UPDATED_AT.
       # @param [String] sort_order Sort the response in ASCENDING or DESCENDING order. By default, the response will be
       #   sorted in DESCENDING order.
@@ -44,7 +44,6 @@ module Peddler
       # @return [Hash] The API response
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil,
         updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
-        cannot_sandbox!
 
         path = "/awd/2024-05-09/inboundShipments"
         params = {
@@ -62,6 +61,7 @@ module Peddler
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] sku Filter by seller or merchant SKU for the item.
       # @param [String] sort_order Sort the response in `ASCENDING` or `DESCENDING` order.
       # @param [String] details Set to `SHOW` to return summaries with additional inventory details. Defaults to `HIDE,`
@@ -71,8 +71,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/awd/2024-05-09/inventory"
         params = {
           "sku" => sku,

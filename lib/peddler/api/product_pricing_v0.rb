@@ -14,6 +14,7 @@ module Peddler
       #   call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @param [Array<String>] asins A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
@@ -32,7 +33,6 @@ module Peddler
       # @return [Hash] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil,
         rate_limit: 0.5)
-        cannot_sandbox!
 
         path = "/products/pricing/v0/price"
         params = {
@@ -52,6 +52,7 @@ module Peddler
       #   call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @param [Array<String>] asins A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
@@ -68,7 +69,6 @@ module Peddler
       # @return [Hash] The API response
       def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil,
         rate_limit: 0.5)
-        cannot_sandbox!
 
         path = "/products/pricing/v0/competitivePrice"
         params = {
@@ -87,6 +87,7 @@ module Peddler
       #   call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @param [String] item_condition Filters the offer listings based on item condition. Possible values: New, Used,
@@ -97,8 +98,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/products/pricing/v0/listings/#{seller_sku}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -111,6 +110,7 @@ module Peddler
 
       # Returns the lowest priced offers for a single item based on ASIN.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
       # @param [String] item_condition Filters the offer listings to be considered based on item condition. Possible
@@ -120,8 +120,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/products/pricing/v0/items/#{asin}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -134,12 +132,11 @@ module Peddler
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] get_item_offers_batch_request_body
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
-        cannot_sandbox!
-
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
 
@@ -148,12 +145,11 @@ module Peddler
 
       # Returns the lowest priced offers for a batch of listings by SKU.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] get_listing_offers_batch_request_body
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
-        cannot_sandbox!
-
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
 

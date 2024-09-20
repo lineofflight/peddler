@@ -11,13 +11,12 @@ module Peddler
     class VendorDirectFulfillmentTransactionsV1 < API
       # Returns the status of the transaction indicated by the specified `transactionId`.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] transaction_id Previously returned in the response to the POST request of a specific
       #   transaction.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/directFulfillment/transactions/v1/transactions/#{transaction_id}"
 
         meter(rate_limit).get(path)

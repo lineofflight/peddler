@@ -12,6 +12,7 @@ module Peddler
     class FulfillmentInbound20240320 < API
       # Provides a list of inbound plans with minimal information.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Integer] page_size The number of inbound plans to return in the response matching the given query.
       # @param [String] pagination_token A token to fetch a certain page when there are multiple pages worth of results.
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
@@ -23,7 +24,6 @@ module Peddler
       # @return [Hash] The API response
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans"
         params = {
@@ -40,12 +40,11 @@ module Peddler
       # Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's
       # fufillment network.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The body of the request to `createInboundPlan`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_inbound_plan(body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans"
 
         meter(rate_limit).post(path, body:)
@@ -53,12 +52,11 @@ module Peddler
 
       # Fetches the top level information about an inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_inbound_plan(inbound_plan_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}"
 
         meter(rate_limit).get(path)
@@ -66,6 +64,7 @@ module Peddler
 
       # Provides a paginated list of box packages in an inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Integer] page_size The number of boxes to return in the response matching the given query.
       # @param [String] pagination_token A token to fetch a certain page when there are multiple pages worth of results.
@@ -74,8 +73,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/boxes"
         params = {
           "pageSize" => page_size,
@@ -89,12 +86,11 @@ module Peddler
       # for Amazon Partnered Carriers is 24 hours for Small Parcel Delivery (SPD) and one hour for Less-Than-Truckload
       # (LTL) carrier shipments.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def cancel_inbound_plan(inbound_plan_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/cancellation"
 
         meter(rate_limit).put(path)
@@ -102,6 +98,7 @@ module Peddler
 
       # Provides a paginated list of item packages in an inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Integer] page_size The number of items to return in the response matching the given query.
       # @param [String] pagination_token A token to fetch a certain page when there are multiple pages worth of results.
@@ -110,8 +107,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/items"
         params = {
           "pageSize" => page_size,
@@ -123,13 +118,12 @@ module Peddler
 
       # Updates the name of an existing inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Hash] body The body of the request to `updateInboundPlanName`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_inbound_plan_name(inbound_plan_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/name"
 
         meter(rate_limit).put(path, body:)
@@ -139,6 +133,7 @@ module Peddler
       # `setPackingInformation` operation. This API is used for workflows where boxes are packed before Amazon
       # determines shipment splits.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] packing_group_id Identifier of a packing group.
       # @param [Integer] page_size The number of packing group boxes to return in the response matching the given query.
@@ -149,7 +144,6 @@ module Peddler
       # @return [Hash] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingGroups/#{packing_group_id}/boxes"
         params = {
@@ -163,6 +157,7 @@ module Peddler
       # Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding
       # operation before packing group items can be listed.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] packing_group_id Identifier of a packing group.
       # @param [Integer] page_size The number of packing group items to return in the response matching the given query.
@@ -173,7 +168,6 @@ module Peddler
       # @return [Hash] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingGroups/#{packing_group_id}/items"
         params = {
@@ -187,13 +181,12 @@ module Peddler
       # Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate
       # the box level information required for planning and transportation estimates.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Hash] body The body of the request to `setPackingInformation`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def set_packing_information(inbound_plan_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingInformation"
 
         meter(rate_limit).post(path, body:)
@@ -202,6 +195,7 @@ module Peddler
       # Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the
       # corresponding operation before becoming available.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Integer] page_size The number of packing options to return in the response matching the given query.
       # @param [String] pagination_token A token to fetch a certain page when there are multiple pages worth of results.
@@ -210,8 +204,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
         params = {
           "pageSize" => page_size,
@@ -223,12 +215,11 @@ module Peddler
 
       # Generates available packing options for the inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def generate_packing_options(inbound_plan_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
 
         meter(rate_limit).post(path)
@@ -236,13 +227,12 @@ module Peddler
 
       # Confirms the packing option for an inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] packing_option_id Identifier of a packing option.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def confirm_packing_option(inbound_plan_id, packing_option_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions/#{packing_option_id}/confirmation"
 
         meter(rate_limit).post(path)
@@ -251,6 +241,7 @@ module Peddler
       # Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the
       # related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Integer] page_size The number of pallets to return in the response matching the given query.
       # @param [String] pagination_token A token to fetch a certain page when there are multiple pages worth of results.
@@ -259,8 +250,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/pallets"
         params = {
           "pageSize" => page_size,
@@ -273,6 +262,7 @@ module Peddler
       # Provides a list of all placement options for an inbound plan. Placement options must first be generated by the
       # corresponding operation before becoming available.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Integer] page_size The number of placement options to return in the response matching the given query.
       # @param [String] pagination_token A token to fetch a certain page when there are multiple pages worth of results.
@@ -281,8 +271,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
         params = {
           "pageSize" => page_size,
@@ -294,13 +282,12 @@ module Peddler
 
       # Generates placement options for the inbound plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Hash] body The body of the request to `generatePlacementOptions`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def generate_placement_options(inbound_plan_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
 
         meter(rate_limit).post(path, body:)
@@ -308,14 +295,13 @@ module Peddler
 
       # Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] placement_option_id The identifier of a placement option. A placement option represents the
       #   shipment splits and destinations of SKUs.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions/#{placement_option_id}/confirmation"
 
         meter(rate_limit).post(path)
@@ -324,13 +310,12 @@ module Peddler
       # Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside
       # `acceptedTransportationSelection` can be used to retrieve the transportation details for the shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_shipment(inbound_plan_id, shipment_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}"
 
         meter(rate_limit).get(path)
@@ -338,6 +323,7 @@ module Peddler
 
       # Provides a paginated list of box packages in a shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Integer] page_size The number of boxes to return in the response matching the given query.
@@ -347,8 +333,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/boxes"
         params = {
           "pageSize" => page_size,
@@ -362,6 +346,7 @@ module Peddler
       # preview is a summary of the requested shipment content changes along with the transportation cost implications
       # of the change that can only be confirmed prior to the expiry date specified.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Integer] page_size The number of content update previews to return.
@@ -372,7 +357,6 @@ module Peddler
       # @return [Hash] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
         params = {
@@ -387,14 +371,13 @@ module Peddler
       # confirmed carrier. The shipment content update preview will be viewable with the updated costs and contents
       # prior to confirmation.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Hash] body The body of the request to `generateShipmentContentUpdatePreviews`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
 
         meter(rate_limit).post(path, body:)
@@ -404,6 +387,7 @@ module Peddler
       # along with the transportation cost implications of the change that can only be confirmed prior to the expiry
       # date specified.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [String] content_update_preview_id Identifier of a content update preview.
@@ -411,7 +395,6 @@ module Peddler
       # @return [Hash] The API response
       def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews/#{content_update_preview_id}"
 
@@ -420,6 +403,7 @@ module Peddler
 
       # Confirm a shipment content update preview and accept the changes in transportation cost.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [String] content_update_preview_id Identifier of a content update preview.
@@ -427,7 +411,6 @@ module Peddler
       # @return [Hash] The API response
       def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews/#{content_update_preview_id}/confirmation"
 
@@ -436,13 +419,12 @@ module Peddler
 
       # Provide delivery challan document for PCP transportation in IN marketplace.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_delivery_challan_document(inbound_plan_id, shipment_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryChallanDocument"
 
         meter(rate_limit).get(path)
@@ -451,6 +433,7 @@ module Peddler
       # Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the
       # `generateDeliveryWindowOptions` operation before becoming available.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id The shipment to get delivery window options for.
       # @param [Integer] page_size The number of delivery window options to return in the response matching the given
@@ -462,7 +445,6 @@ module Peddler
       # @return [Hash] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
         params = {
@@ -475,13 +457,12 @@ module Peddler
 
       # Generates available delivery window options for a given shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id The shipment to generate delivery window options for.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
 
         meter(rate_limit).post(path)
@@ -494,14 +475,13 @@ module Peddler
       # `CONFIRMED_DELIVERY_WINDOW` require a delivery window to be confirmed prior to transportation option
       # confirmation.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id The shipment to confirm the delivery window option for.
       # @param [String] delivery_window_option_id The id of the delivery window option to be confirmed.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions/#{delivery_window_option_id}/confirmation"
 
         meter(rate_limit).post(path)
@@ -509,6 +489,7 @@ module Peddler
 
       # Provides a paginated list of item packages in a shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Integer] page_size The number of items to return in the response matching the given query.
@@ -518,8 +499,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/items"
         params = {
           "pageSize" => page_size,
@@ -531,14 +510,13 @@ module Peddler
 
       # Updates the name of an existing shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Hash] body The body of the request to `updateShipmentName`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/name"
 
         meter(rate_limit).put(path, body:)
@@ -547,6 +525,7 @@ module Peddler
       # Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the
       # related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Integer] page_size The number of pallets to return in the response matching the given query.
@@ -556,8 +535,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/pallets"
         params = {
           "pageSize" => page_size,
@@ -569,14 +546,13 @@ module Peddler
 
       # Cancels a self-ship appointment slot against a shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Hash] body The body of the request to `cancelSelfShipAppointment`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentCancellation"
 
         meter(rate_limit).put(path, body:)
@@ -584,6 +560,7 @@ module Peddler
 
       # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Integer] page_size The number of self ship appointment slots to return in the response matching the
@@ -595,7 +572,6 @@ module Peddler
       # @return [Hash] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
         params = {
@@ -608,14 +584,13 @@ module Peddler
 
       # Initiates the process of generating the appointment slots list.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Hash] body The body of the request to `generateSelfShipAppointmentSlots`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
 
         meter(rate_limit).post(path, body:)
@@ -623,6 +598,7 @@ module Peddler
 
       # Confirms or reschedules a self-ship appointment slot against a shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [String] slot_id An identifier to a self-ship appointment slot.
@@ -630,8 +606,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots/#{slot_id}/schedule"
 
         meter(rate_limit).post(path, body:)
@@ -642,14 +616,13 @@ module Peddler
       # options will be invalidated and will need to be regenerated to capture the potential difference in
       # transportation options and quotes due to the new source address.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Hash] body The body of the request to `updateShipmentSourceAddress`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/sourceAddress"
 
         meter(rate_limit).put(path, body:)
@@ -657,14 +630,13 @@ module Peddler
 
       # Updates a shipment's tracking details.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [String] shipment_id Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param [Hash] body The body of the request to `updateShipmentTrackingDetails`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/trackingDetails"
 
         meter(rate_limit).put(path, body:)
@@ -673,6 +645,7 @@ module Peddler
       # Retrieves all transportation options for a shipment. Transportation options must first be generated by the
       # `generateTransportationOptions` operation before becoming available.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Integer] page_size The number of transportation options to return in the response matching the given
       #   query.
@@ -687,7 +660,6 @@ module Peddler
       # @return [Hash] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil,
         shipment_id: nil, rate_limit: 2.0)
-        cannot_sandbox!
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
         params = {
@@ -702,13 +674,12 @@ module Peddler
 
       # Generates available transportation options for a given placement option.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Hash] body The body of the request to `generateTransportationOptions`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def generate_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
 
         meter(rate_limit).post(path, body:)
@@ -717,13 +688,12 @@ module Peddler
       # Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use
       # of this API. Once confirmed, new transportation options can not be generated or confirmed for the Inbound Plan.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] inbound_plan_id Identifier of an inbound plan.
       # @param [Hash] body The body of the request to `confirmTransportationOptions`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def confirm_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions/confirmation"
 
         meter(rate_limit).post(path, body:)
@@ -731,14 +701,13 @@ module Peddler
 
       # List the inbound compliance details for MSKUs in a given marketplace.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] mskus List of merchant SKUs - a merchant-supplied identifier for a specific SKU.
       # @param [String] marketplace_id The Marketplace ID. Refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a list of possible values.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def list_item_compliance_details(mskus, marketplace_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "mskus" => mskus,
@@ -751,14 +720,13 @@ module Peddler
       # Update compliance details for list of MSKUs. The details provided here are only used for the IN marketplace
       # compliance validation.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id The Marketplace ID. Refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a list of possible values.
       # @param [Hash] body The body of the request to `updateItemComplianceDetails`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def update_item_compliance_details(marketplace_id, body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "marketplaceId" => marketplace_id,
@@ -769,12 +737,11 @@ module Peddler
 
       # For a given marketplace - creates labels for a list of mskus.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The body of the request to `createMarketplaceItemLabels`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_marketplace_item_labels(body, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/items/labels"
 
         meter(rate_limit).post(path, body:)
@@ -782,12 +749,11 @@ module Peddler
 
       # Gets the status of the processing of an asynchronous API call.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] operation_id Identifier of an asynchronous operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_inbound_operation_status(operation_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/inbound/fba/2024-03-20/operations/#{operation_id}"
 
         meter(rate_limit).get(path)

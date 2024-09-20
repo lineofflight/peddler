@@ -10,6 +10,7 @@ module Peddler
     class SalesV1 < API
       # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] marketplace_ids A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified. For example, ATVPDKIKX0DER indicates the US
       #   marketplace.
@@ -50,7 +51,6 @@ module Peddler
       # @return [Hash] The API response
       def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All",
         fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, rate_limit: 0.5)
-        cannot_sandbox!
 
         path = "/sales/v1/orderMetrics"
         params = {

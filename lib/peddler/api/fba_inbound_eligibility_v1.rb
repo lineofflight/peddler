@@ -16,6 +16,7 @@ module Peddler
       # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
       # you want to determine the item's eligibility.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] marketplace_ids The identifier for the marketplace in which you want to determine
       #   eligibility. Required only when program=INBOUND.
       # @param [String] asin The ASIN of the item for which you want an eligibility preview.
@@ -23,8 +24,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/fba/inbound/v1/eligibility/itemPreview"
         params = {
           "marketplaceIds" => marketplace_ids,

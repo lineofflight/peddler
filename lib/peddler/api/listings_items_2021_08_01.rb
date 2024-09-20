@@ -17,6 +17,7 @@ module Peddler
       #   successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] seller_id A selling partner identifier, such as a merchant account or vendor code.
       # @param [String] sku A selling partner provided identifier for an Amazon listing.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -26,8 +27,6 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
-        cannot_sandbox!
-
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -42,6 +41,7 @@ module Peddler
       #   successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] seller_id A selling partner identifier, such as a merchant account or vendor code.
       # @param [String] sku A selling partner provided identifier for an Amazon listing.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -54,7 +54,6 @@ module Peddler
       # @return [Hash] The API response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"],
         rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         params = {
@@ -73,6 +72,7 @@ module Peddler
       #   successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] seller_id A selling partner identifier, such as a merchant account or vendor code.
       # @param [String] sku A selling partner provided identifier for an Amazon listing.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -87,7 +87,6 @@ module Peddler
       # @return [Hash] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil,
         issue_locale: nil, rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         params = {
@@ -106,6 +105,7 @@ module Peddler
       #   successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] seller_id A selling partner identifier, such as a merchant account or vendor code.
       # @param [String] sku A selling partner provided identifier for an Amazon listing.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
@@ -120,7 +120,6 @@ module Peddler
       # @return [Hash] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil,
         issue_locale: nil, rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}/#{sku}"
         params = {
@@ -135,6 +134,7 @@ module Peddler
 
       # Search for and return list of listings items and respective details for a selling partner.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] seller_id A selling partner identifier, such as a merchant account or vendor code.
       # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
       # @param [Array<String>] identifiers A comma-delimited list of product identifiers to search for listings items
@@ -152,7 +152,6 @@ module Peddler
       # @return [Hash] The API response
       def search_listings_items(seller_id, marketplace_ids, identifiers: nil, identifiers_type: nil, page_size: 10,
         page_token: nil, included_data: ["summaries"], issue_locale: nil, rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/listings/2021-08-01/items/#{seller_id}"
         params = {

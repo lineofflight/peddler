@@ -11,12 +11,11 @@ module Peddler
     class MerchantFulfillmentV0 < API
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Request schema for GetEligibleShipmentServices operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_eligible_shipment_services(body, rate_limit: 5.0)
-        cannot_sandbox!
-
         path = "/mfn/v0/eligibleShippingServices"
 
         meter(rate_limit).post(path, body:)
@@ -24,12 +23,11 @@ module Peddler
 
       # Returns the shipment information for an existing shipment.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_shipment(shipment_id, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/mfn/v0/shipments/#{shipment_id}"
 
         meter(rate_limit).get(path)
@@ -37,12 +35,11 @@ module Peddler
 
       # Cancel the shipment indicated by the specified shipment identifier.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment to cancel.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def cancel_shipment(shipment_id, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/mfn/v0/shipments/#{shipment_id}"
 
         meter(rate_limit).delete(path)
@@ -50,12 +47,11 @@ module Peddler
 
       # Create a shipment with the information provided.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Request schema for CreateShipment operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_shipment(body, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/mfn/v0/shipments"
 
         meter(rate_limit).post(path, body:)
@@ -64,12 +60,11 @@ module Peddler
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
       # shipping.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body Request schema for GetAdditionalSellerInputs operation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_additional_seller_inputs(body, rate_limit: 1.0)
-        cannot_sandbox!
-
         path = "/mfn/v0/additionalSellerInputs"
 
         meter(rate_limit).post(path, body:)

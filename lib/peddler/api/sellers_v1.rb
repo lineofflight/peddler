@@ -15,11 +15,10 @@ module Peddler
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_marketplace_participations(rate_limit: 0.016)
-        cannot_sandbox!
-
         path = "/sellers/v1/marketplaceParticipations"
 
         meter(rate_limit).get(path)
@@ -27,11 +26,10 @@ module Peddler
 
       # Returns information about a seller account and its marketplaces.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_account(rate_limit: 0.016)
-        cannot_sandbox!
-
         path = "/sellers/v1/account"
 
         meter(rate_limit).get(path)

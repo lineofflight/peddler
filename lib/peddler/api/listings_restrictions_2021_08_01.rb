@@ -12,6 +12,7 @@ module Peddler
     class ListingsRestrictions20210801 < API
       # Returns listing restrictions for an item in the Amazon Catalog.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
       # @param [String] condition_type The condition used to filter restrictions.
       # @param [String] seller_id A selling partner identifier, such as a merchant account.
@@ -23,7 +24,6 @@ module Peddler
       # @return [Hash] The API response
       def get_listings_restrictions(asin, seller_id, marketplace_ids, condition_type: nil, reason_locale: nil,
         rate_limit: 5.0)
-        cannot_sandbox!
 
         path = "/listings/2021-08-01/restrictions"
         params = {

@@ -12,6 +12,7 @@ module Peddler
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
       # details about query retention.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Array<String>] processing_statuses A list of processing statuses used to filter queries.
       # @param [Integer] page_size The maximum number of queries to return in a single call.
       # @param [String] created_since The earliest query creation date and time for queries to include in the response,
@@ -27,7 +28,6 @@ module Peddler
       # @return [Hash] The API response
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil,
         pagination_token: nil, rate_limit: 0.0222)
-        cannot_sandbox!
 
         path = "/dataKiosk/2023-11-15/queries"
         params = {
@@ -47,12 +47,11 @@ module Peddler
       #   a query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The
       #   retention of a query's resulting documents always matches the retention of the query.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body The body of the request.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_query(body, rate_limit: 0.0167)
-        cannot_sandbox!
-
         path = "/dataKiosk/2023-11-15/queries"
 
         meter(rate_limit).post(path, body:)
@@ -63,13 +62,12 @@ module Peddler
       # `CANCELLED` will no-op. Cancelled queries are returned in subsequent calls to the `getQuery` and `getQueries`
       # operations.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] query_id The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def cancel_query(query_id, rate_limit: 0.0222)
-        cannot_sandbox!
-
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
         meter(rate_limit).delete(path)
@@ -78,12 +76,11 @@ module Peddler
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
       # details about query retention.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] query_id The query identifier.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_query(query_id, rate_limit: 2.0)
-        cannot_sandbox!
-
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
         meter(rate_limit).get(path)
@@ -92,12 +89,11 @@ module Peddler
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
       # operation for details about document retention.
       #
+      # @note This operation can make a static sandbox call.
       # @param [String] document_id The identifier for the Data Kiosk document.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def get_document(document_id, rate_limit: 0.0167)
-        cannot_sandbox!
-
         path = "/dataKiosk/2023-11-15/documents/#{document_id}"
 
         meter(rate_limit).get(path)

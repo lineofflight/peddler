@@ -15,6 +15,7 @@ module Peddler
       # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
       # order.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] ship_from_party_id The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
       # @param [String] status Returns only the purchase orders that match the specified status. If not specified, the
@@ -51,6 +52,7 @@ module Peddler
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [String] purchase_order_number The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
       # @param [Float] rate_limit Requests per second
@@ -63,6 +65,7 @@ module Peddler
 
       # Submits acknowledgements for one or more purchase orders.
       #
+      # @note This operation can make a dynamic sandbox call.
       # @param [Hash] body The request body containing the acknowledgement to an order
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response

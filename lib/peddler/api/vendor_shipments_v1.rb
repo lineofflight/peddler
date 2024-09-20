@@ -11,12 +11,11 @@ module Peddler
     class VendorShipmentsV1 < API
       # Submits one or more shipment confirmations for vendor orders.
       #
+      # @note This operation can make a static sandbox call.
       # @param [Hash] body A request to submit shipment confirmation.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/shipping/v1/shipmentConfirmations"
 
         meter(rate_limit).post(path, body:)
