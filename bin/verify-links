@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "open3"
+require "net/http"
+require "logger"
+
+logger = Logger.new($stdout)
+
+# Search for URLs in the README file
+search_command = "grep -Eo 'https?://[^ ]+' README"
+output, = Open3.capture3(search_command)
+readme_matches = output.split("\n")
+
+# Search for URLs in comments in other files
+search_command = "grep -EoR '#.*https?://[^ ]+' lib"
+output, = Open3.capture3(search_command)
+lib_matches = output.split("\n")
+
+# Extract only the URLs
+matches = (readme_matches + lib_matches).map do |line|
+  line.match(%r{https?://[^ )>,\"]+})[0]
+end
+
+matches.uniq!
+
+failed = false
+
+threads = matches.map do |url|
+  Thread.new do
+    response = Net::HTTP.get_response(URI(url))
+    case response
+    when Net::HTTPSuccess
+      logger.info("✅ #{response.code} #{url}")
+    when Net::HTTPFound, Net::HTTPMovedPermanently
+      logger.warn("👀 #{response.code} #{url}")
+    else
+      failed = true
+      logger.error("❌ #{response.code} #{url}")
+    end
+  rescue URI::InvalidURIError => e
+    logger.error("❌ Invalid URL #{url}: #{e.message}")
+  end
+end
+threads.each(&:join)
+
+if failed
+  logger.warn("Please fix broken documentation links.")
+  exit 1
+end
