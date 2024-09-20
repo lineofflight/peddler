@@ -221,7 +221,7 @@ module Generator
     description = description.gsub("**Note:**", "@note")
     description = convert_links_to_markdown(description)
     lines = description.split("\n")
-    usage_plan_index = lines.find_index { |line| line.include?("**Usage Plan") }
+    usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
     lines = lines[0...usage_plan_index] if usage_plan_index
     lines.reject! { |line| line.strip == "" }
     lines.join("\n").strip
