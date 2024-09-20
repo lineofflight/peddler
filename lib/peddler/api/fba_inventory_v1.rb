@@ -62,7 +62,6 @@ module Peddler
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @note This operation is sandbox-only.
       # @param [Hash] create_inventory_item_request_body CreateInventoryItem Request Body Parameter.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
@@ -80,7 +79,6 @@ module Peddler
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @note This operation is sandbox-only.
       # @param [String] seller_sku A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param [String] marketplace_id The marketplace ID for the marketplace for which the sellerSku is to be deleted.
       # @param [Float] rate_limit Requests per second
@@ -102,7 +100,6 @@ module Peddler
       # information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @note This operation is sandbox-only.
       # @param [String] x_amzn_idempotency_token A unique token/requestId provided with each call to ensure idempotency.
       # @param [Hash] add_inventory_request_body List of items to add to Sandbox inventory.
       # @param [Float] rate_limit Requests per second

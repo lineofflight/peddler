@@ -249,9 +249,6 @@ module Generator
       format_text("@param [#{param_type}] #{snakecase(param["name"])} #{param_description}", 6)
     end
 
-    if operation["sandbox_only"]
-      output.unshift(format_text("@note This operation is sandbox-only.", 6))
-    end
     if operation["static_sandbox"]
       output.unshift(format_text("@note This operation can make a static sandbox call.", 6))
     elsif operation["dynamic_sandbox"]

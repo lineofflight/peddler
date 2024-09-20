@@ -176,7 +176,6 @@ module Peddler
       # information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @note This operation is sandbox-only.
       # @param [String] seller_fulfillment_order_id The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param [Hash] body The identifier assigned to the item by the seller when the fulfillment order was created.
