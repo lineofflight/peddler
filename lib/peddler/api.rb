@@ -9,6 +9,7 @@ module Peddler
   # Wraps an Amazon Selling Partner API (SP-API)
   class API
     class CannotSandbox < StandardError; end
+    class MustSandbox < StandardError; end
 
     # @return [Peddler::Region]
     attr_reader :region
@@ -41,9 +42,14 @@ module Peddler
       @sandbox
     end
 
-    # @raise [CannotSandbox] if in sandbox environment
+    # @raise [CannotSandbox] if in a sandbox environment
     def cannot_sandbox!
-      raise CannotSandbox, "cannot run in sandbox" if sandbox?
+      raise CannotSandbox, "cannot run in a sandbox" if sandbox?
+    end
+
+    # @raise [MustSandbox] unless in a sandbox environment
+    def must_sandbox!
+      raise MustSandbox, "must run in a sandbox" unless sandbox?
     end
 
     # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests

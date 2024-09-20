@@ -71,6 +71,8 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def create_inventory_item(create_inventory_item_request_body, rate_limit: nil)
+        must_sandbox!
+
         path = "/fba/inventory/v1/items"
         body = create_inventory_item_request_body
 
@@ -88,6 +90,8 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def delete_inventory_item(seller_sku, marketplace_id, rate_limit: nil)
+        must_sandbox!
+
         path = "/fba/inventory/v1/items/#{seller_sku}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -108,6 +112,8 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def add_inventory(x_amzn_idempotency_token, add_inventory_request_body, rate_limit: nil)
+        must_sandbox!
+
         path = "/fba/inventory/v1/items/inventory"
         body = add_inventory_request_body
 

@@ -24,6 +24,12 @@ module Peddler
       end
     end
 
+    def test_must_sandbox
+      assert_raises(API::MustSandbox) do
+        @api.must_sandbox!
+      end
+    end
+
     def test_host_header
       assert(@api.http.default_options.headers["Host"])
     end

@@ -183,6 +183,8 @@ module Peddler
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body, rate_limit: nil)
+        must_sandbox!
+
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/status"
 
         put(path, body:)
