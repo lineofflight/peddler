@@ -6,275 +6,341 @@ require "fileutils"
 require "json"
 
 module Generator
-  # Make helper methods available to ERB templates
-  extend self
-
-  BASE_PATH = File.expand_path("../lib/peddler", __dir__)
+  BASE_PATH = File.expand_path("..", __dir__)
   MAX_LINE_LENGTH = 120
 
-  def generate_api
-    initialize_apis_directory
-    process_api_models
-  ensure
-    run_rubocop
-  end
-
-  def initialize_apis_directory
-    FileUtils.rm_rf(File.join(BASE_PATH, "api"))
-    FileUtils.mkdir_p(File.join(BASE_PATH, "api"))
-  end
-
-  def process_api_models
-    apis = []
-
-    api_models_glob = File.expand_path("selling-partner-api-models/models/**/*.json", __dir__)
-    Dir.glob(api_models_glob).each do |file|
-      # These APIs are no longer available.
-      next if file.include?("reports_2020-09-04")
-      next if file.include?("feeds_2020-09-04")
-
-      model = JSON.parse(File.read(file))
-      api_data = extract_api_data(file, model)
-      generate_api_file(api_data, model)
-      apis << api_data
+  class << self
+    def generate_api
+      initialize_directory
+      generate_api_files
+      generate_entry_point
+      run_rubocop
     end
 
-    generate_root_file(apis)
-  end
+    def initialize_directory
+      api_path = File.join(BASE_PATH, "lib/peddler/api")
 
-  def run_rubocop
-    %x(rubocop --format simple --autocorrect #{File.join(BASE_PATH, "..")} 2>&1)
-  end
+      FileUtils.rm_rf(api_path)
+      FileUtils.mkdir(api_path)
+    end
 
-  def extract_api_data(file, model)
-    api_name = file.split("/")[-2].tr("-", "_").sub(/(?:_api)?_model$/, "")
-    version = model["info"]["version"].tr("-", "")
-    class_name = pascalcase(api_name, acronyms: ["FBA"]) + version.capitalize
-    file_name = snakecase(class_name) + ".rb"
+    def generate_api_files
+      api_files.each(&:generate)
+    end
 
-    {
-      api_name: api_name,
-      version: version,
-      class_name: class_name,
-      file_name: file_name,
-      file_path: File.join(BASE_PATH, "api", file_name),
-    }
-  end
+    def generate_entry_point
+      library_names = api_files.map(&:library_name)
+      Entrypoint.new(library_names).generate
+    end
 
-  def generate_api_file(api_data, model)
-    operations = extract_operations(model)
-    api_content = generate_api_content(api_data, model, operations)
-    File.write(api_data[:file_path], api_content)
-  end
+    def run_rubocop
+      %x(rubocop --format simple --autocorrect #{File.join(BASE_PATH, "lib")} 2>&1)
+    end
 
-  def generate_root_file(apis)
-    template = File.read(File.expand_path("templates/root.rb.erb", __dir__))
-    content = ERB.new(template, trim_mode: "-").result(binding)
-    File.write(File.join(BASE_PATH, "..", "peddler.rb"), content)
-  end
+    private
 
-  def extract_operations(model)
-    model["paths"].flat_map do |path, methods|
-      # Massage the path to use Ruby-style interpolation
-      path = path.gsub(/\{([^}]+)\}/) do
-        "\#{#{snakecase(Regexp.last_match(1))}}"
+    def api_files
+      sp_api_models.map do |file|
+        API.new(file)
       end
+    end
 
-      shared_parameters = methods.delete("parameters") || []
-      sandbox = methods.delete("x-amzn-api-sandbox")
-      path_has_dynamic_sandbox = sandbox&.key?("dynamic")
+    def sp_api_models
+      Dir.glob(File.join(BASE_PATH, "bin/selling-partner-api-models/models/**/*.json"))
+    end
+  end
 
-      # Should never raise
-      raise if sandbox && !sandbox.key?("dynamic")
+  class API
+    attr_reader :file
 
-      sandbox_only = methods.delete("x-amzn-api-sandbox-only")
+    def initialize(file)
+      @file = file
+    end
 
-      methods.map do |method, operation|
-        sandbox = operation.delete("x-amzn-api-sandbox")
-        operation_has_dynamic_sandbox = sandbox&.key?("dynamic")
+    def generate
+      return if obsolete?
 
-        # Should never raise
-        raise if sandbox && !sandbox.key?("dynamic")
+      File.write(file_path, file_content)
+    end
 
-        code = operation["responses"].keys.find { |code| code.start_with?("2") }
-        static_sandbox = operation["responses"][code]&.delete("x-amzn-api-sandbox")&.fetch("static")
-
-        rate_limit = extract_rate_limit(operation["description"])
-
-        operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
-        parameters = operation_parameters.select { |p| p["name"] }
-        parameters << {
-          "name" => "rate_limit",
-          "type" => "Float",
-          "required" => false,
-          "description" => "Requests per second",
-          "default" => rate_limit,
-        }
-        if operation["parameters"].find { |el| el.key?("$ref") && !el.key?("name") }
-          parameters << {
-            "name" => "notification_type",
-            "type" => "string",
-            "required" => true,
-            "description" => "The type of notification. For more information about notification types, refer to " \
-              "[Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).",
-          }
+    # FIXME: Still messy below. Could break it up into paths and operations and move indentation logic elsewhere.
+    def operations
+      payload["paths"].flat_map do |path, methods|
+        # Massage the path to use Ruby-style interpolation
+        path = path.gsub(/\{([^}]+)\}/) do
+          "\#{#{snakecase(Regexp.last_match(1))}}"
         end
-        operation.merge(
-          "description" => clean_description(operation["description"]),
-          "path" => path,
-          "method" => method.upcase,
-          "rate_limit" => rate_limit,
-          "parameters" => parameters,
-          "body_param" => parameters&.find { |p| p["in"] == "body" },
-          "query_params" => parameters&.select { |p| p["in"] == "query" },
-          "dynamic_sandbox" => !!(path_has_dynamic_sandbox || operation_has_dynamic_sandbox),
-          "static_sandbox" => static_sandbox,
-          "sandbox_only" => sandbox_only,
-        )
-      end
-    end.compact
-  end
 
-  def generate_api_content(api_data, model, operations)
-    template = File.read(File.expand_path("templates/api.rb.erb", __dir__))
-    ERB.new(template, trim_mode: "-").result(binding)
-  end
+        shared_parameters = methods.delete("parameters") || []
+        sandbox = methods.delete("x-amzn-api-sandbox")
+        path_has_dynamic_sandbox = sandbox&.key?("dynamic")
 
-  def snakecase(string)
-    string.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-      .gsub(/([a-z\d])([A-Z])/, '\1_\2')
-      .gsub(/(\d{4})(\d{2})(\d{2})/, '_\1_\2_\3') # Format date-like sequences
-      .tr("-", "_")
-      .downcase
-  end
+        sandbox_only = methods.delete("x-amzn-api-sandbox-only")
 
-  def pascalcase(string, acronyms: [])
-    s = string.split(/[_\s-]/).map(&:capitalize).join
-    acronyms.each { |a| s.gsub!(/#{a.capitalize}/, a.upcase) }
-    s
-  end
+        methods.map do |method, operation|
+          operation["name"] = snakecase(operation.delete("operationId"))
+          sandbox = operation.delete("x-amzn-api-sandbox")
+          operation_has_dynamic_sandbox = sandbox&.key?("dynamic")
 
-  def format_text(text, base_indent, wrap_indent = 2)
-    max_width = MAX_LINE_LENGTH - base_indent
-    words = text.split
-    lines = []
-    current_line = []
-    is_tag_line = false
+          code = operation["responses"].keys.find { |code| code.start_with?("2") }
+          static_sandbox = operation["responses"][code]&.delete("x-amzn-api-sandbox")&.fetch("static")
 
-    words.each do |word|
-      if word.start_with?("@")
-        # Start a new line for tags
-        lines << "# " + current_line.join(" ") unless current_line.empty?
-        current_line = [word]
-        is_tag_line = true
-      elsif (current_line + [word]).join(" ").length <= (max_width - 2) # -2 for "# "
-        current_line << word
-      else
-        lines << "# " + current_line.join(" ")
-        current_line = is_tag_line ? [" " * wrap_indent + word] : [word]
-      end
+          rate_limit = extract_rate_limit(operation["description"])
+
+          operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
+          parameters = operation_parameters.select { |p| p["name"] }
+          parameters << {
+            "name" => "rate_limit",
+            "type" => "Float",
+            "required" => false,
+            "description" => "Requests per second",
+            "default" => rate_limit,
+          }
+          if operation["parameters"].find { |el| el.key?("$ref") && !el.key?("name") }
+            parameters << {
+              "name" => "notification_type",
+              "type" => "string",
+              "required" => true,
+              "description" => "The type of notification. For more information about notification types, refer to " \
+                "[Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).",
+            }
+          end
+          operation.merge(
+            "description" => clean_description(operation["description"]),
+            "path" => path,
+            "method" => method.upcase,
+            "rate_limit" => rate_limit,
+            "parameters" => parameters,
+            "body_param" => parameters&.find { |p| p["in"] == "body" },
+            "query_params" => parameters&.select { |p| p["in"] == "query" },
+            "dynamic_sandbox" => !!(path_has_dynamic_sandbox || operation_has_dynamic_sandbox),
+            "static_sandbox" => static_sandbox,
+            "sandbox_only" => sandbox_only,
+          )
+        end
+      end.compact
     end
 
-    lines << "# " + current_line.join(" ") unless current_line.empty?
-    lines.join("\n")
-  end
+    def snakecase(string)
+      string.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+        .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+        .gsub(/(\d{4})(\d{2})(\d{2})/, '_\1_\2_\3') # Format date-like sequences
+        .tr("-", "_")
+        .downcase
+    end
 
-  def generate_parameters(parameters, method_name, base_indent)
-    return "()" if parameters.nil? || parameters.empty?
+    def pascalcase(string, acronyms: [])
+      s = string.split(/[_\s-]/).map(&:capitalize).join
+      acronyms.each { |a| s.gsub!(/#{a.capitalize}/, a.upcase) }
+      s
+    end
 
-    required_params = parameters.select { |p| p["required"] }&.map { |p| snakecase(p["name"]) } || []
-    optional_params = parameters.reject do |p|
-      p["required"]
-    end&.map do |p|
-      default_value = p["default"]
-      formatted_default = default_value.is_a?(String) ? "\"#{default_value}\"" : default_value
-      "#{snakecase(p["name"])}: #{formatted_default ? formatted_default : "nil"}"
-    end || []
-    params = required_params + optional_params
-
-    single_line = "def #{method_name}(#{params.join(", ")})"
-
-    if single_line.length <= (MAX_LINE_LENGTH - base_indent) * 2 - 2
-      "(#{params.join(", ")})"
-    else
-      max_width = MAX_LINE_LENGTH - base_indent - 2
-
+    def format_text(text, base_indent, wrap_indent = 2)
+      max_width = MAX_LINE_LENGTH - base_indent
+      words = text.split
       lines = []
       current_line = []
-      params.each do |param|
-        if (current_line + [param]).join(", ").length > max_width
-          lines << current_line
-          current_line = [param]
+      is_tag_line = false
+
+      words.each do |word|
+        if word.start_with?("@")
+          # Start a new line for tags
+          lines << "# " + current_line.join(" ") unless current_line.empty?
+          current_line = [word]
+          is_tag_line = true
+        elsif (current_line + [word]).join(" ").length <= (max_width - 2) # -2 for "# "
+          current_line << word
         else
-          current_line << param
+          lines << "# " + current_line.join(" ")
+          current_line = is_tag_line ? [" " * wrap_indent + word] : [word]
         end
       end
-      lines << current_line unless current_line.empty?
 
-      formatted_params = lines.map { |line| "#{" " * (base_indent + 2)}#{line.join(", ")}" }.join(",\n")
-      "(\n#{formatted_params}\n#{" " * base_indent})"
+      lines << "# " + current_line.join(" ") unless current_line.empty?
+      lines.join("\n")
     end
-  end
 
-  def convert_links_to_markdown(text)
-    text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
-      url = Regexp.last_match(1)
-      link_text = Regexp.last_match(2)
-      "[#{link_text}](#{url})"
-    end
-  end
+    def generate_parameters(parameters, method_name, base_indent)
+      return "()" if parameters.nil? || parameters.empty?
 
-  def clean_description(description)
-    return "" unless description
+      required_params = parameters.select { |p| p["required"] }&.map { |p| snakecase(p["name"]) } || []
+      optional_params = parameters.reject do |p|
+        p["required"]
+      end&.map do |p|
+        default_value = p["default"]
+        formatted_default = default_value.is_a?(String) ? "\"#{default_value}\"" : default_value
+        "#{snakecase(p["name"])}: #{formatted_default ? formatted_default : "nil"}"
+      end || []
+      params = required_params + optional_params
 
-    description = description.gsub("**Note:**", "@note")
-    description = convert_links_to_markdown(description)
-    lines = description.split("\n")
-    usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
-    lines = lines[0...usage_plan_index] if usage_plan_index
-    lines.reject! { |line| line.strip == "" }
-    lines.join("\n").strip
-  end
+      single_line = "def #{method_name}(#{params.join(", ")})"
 
-  def generate_method_docs(operation)
-    formatted_description = format_text(operation["description"], 6)
+      if single_line.length <= (MAX_LINE_LENGTH - base_indent) * 2 - 2
+        "(#{params.join(", ")})"
+      else
+        max_width = MAX_LINE_LENGTH - base_indent - 2
 
-    param_docs = generate_parameter_docs(operation)
-    "#{formatted_description}\n#\n#{param_docs}"
-  end
+        lines = []
+        current_line = []
+        params.each do |param|
+          if (current_line + [param]).join(", ").length > max_width
+            lines << current_line
+            current_line = [param]
+          else
+            current_line << param
+          end
+        end
+        lines << current_line unless current_line.empty?
 
-  def generate_parameter_docs(operation)
-    output = operation["parameters"].map do |param|
-      param_type = param["type"] ? param["type"].capitalize : "Object"
-      param_type = "Hash" if param["schema"]
-      if param_type == "Array"
-        items_type = param.dig("items", "type")
-        param_type = items_type ? "Array<#{items_type.capitalize}>" : "Array"
+        formatted_params = lines.map { |line| "#{" " * (base_indent + 2)}#{line.join(", ")}" }.join(",\n")
+        "(\n#{formatted_params}\n#{" " * base_indent})"
       end
-      param_description = param["description"]&.gsub(/\s+/, " ")
-      if param_description
-        param_description = convert_links_to_markdown(param_description)
+    end
+
+    def convert_links_to_markdown(text)
+      text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
+        url = Regexp.last_match(1)
+        link_text = Regexp.last_match(2)
+        "[#{link_text}](#{url})"
       end
-      format_text("@param [#{param_type}] #{snakecase(param["name"])} #{param_description}", 6)
     end
 
-    if operation["static_sandbox"]
-      output.unshift(format_text("@note This operation can make a static sandbox call.", 6))
-    elsif operation["dynamic_sandbox"]
-      output.unshift(format_text("@note This operation can make a dynamic sandbox call.", 6))
+    def clean_description(description)
+      return "" unless description
+
+      description = description.gsub("**Note:**", "@note")
+      description = convert_links_to_markdown(description)
+      lines = description.split("\n")
+      usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
+      lines = lines[0...usage_plan_index] if usage_plan_index
+      lines.reject! { |line| line.strip == "" }
+      lines.join("\n").strip
     end
 
-    output.join("\n")
+    def generate_method_docs(operation)
+      formatted_description = format_text(operation["description"], 6)
+
+      param_docs = generate_parameter_docs(operation)
+      "#{formatted_description}\n#\n#{param_docs}\n# @return [Hash] The API response"
+    end
+
+    def generate_parameter_docs(operation)
+      output = operation["parameters"].map do |param|
+        param_type = param["type"] ? param["type"].capitalize : "Object"
+        param_type = "Hash" if param["schema"]
+        if param_type == "Array"
+          items_type = param.dig("items", "type")
+          param_type = items_type ? "Array<#{items_type.capitalize}>" : "Array"
+        end
+        param_description = param["description"]&.gsub(/\s+/, " ")
+        if param_description
+          param_description = convert_links_to_markdown(param_description)
+        end
+        format_text("@param [#{param_type}] #{snakecase(param["name"])} #{param_description}", 6)
+      end
+
+      if operation["static_sandbox"]
+        output.unshift(format_text("@note This operation can make a static sandbox call.", 6))
+      elsif operation["dynamic_sandbox"]
+        output.unshift(format_text("@note This operation can make a dynamic sandbox call.", 6))
+      end
+
+      output.join("\n")
+    end
+
+    def extract_rate_limit(description)
+      return unless description
+
+      # Match rate limit from tables with or without "Plan type" column
+      # Format 1: | Plan type | Rate (requests per second) | Burst |
+      # Format 2: | Rate (requests per second) | Burst |
+      table_match = description.match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
+      table_match[1].to_f if table_match
+    end
+
+    def title
+      payload["info"]["title"]
+    end
+
+    def description
+      payload["info"]["description"]
+    end
+
+    def library_name
+      "peddler/api/#{name_with_version}"
+    end
+
+    def class_name
+      pascalcase(name_with_version, acronyms: ["FBA"])
+    end
+
+    def payload
+      JSON.load_file(file)
+    end
+
+    private
+
+    def obsolete?
+      name_with_version.include?("reports_2020_09_04") || name_with_version.include?("feeds_2020_09_04")
+    end
+
+    def file_content
+      ERB.new(template, trim_mode: "-").result(binding)
+    end
+
+    def file_path
+      File.join(BASE_PATH, "lib/#{library_name}.rb")
+    end
+
+    def template
+      File.read(template_path)
+    end
+
+    def template_path
+      File.join(BASE_PATH, "bin/templates/api.rb.erb")
+    end
+
+    def name_with_version
+      [name, version].join("_")
+    end
+
+    def name
+      file.split("/")[-2].tr("-", "_").sub(/(?:_api)?_model$/, "")
+    end
+
+    def version
+      payload["info"]["version"].tr("-", "_")
+    end
   end
 
-  def extract_rate_limit(description)
-    return unless description
+  class Entrypoint
+    attr_reader :library_names
 
-    # Match rate limit from tables with or without "Plan type" column
-    # Format 1: | Plan type | Rate (requests per second) | Burst |
-    # Format 2: | Rate (requests per second) | Burst |
-    table_match = description.match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
-    table_match[1].to_f if table_match
+    def initialize(library_names)
+      @library_names = library_names
+    end
+
+    def generate
+      File.write(file_path, file_content)
+    end
+
+    private
+
+    def file_content
+      ERB.new(template, trim_mode: "-").result(binding)
+    end
+
+    def file_path
+      File.join(BASE_PATH, "lib/peddler.rb")
+    end
+
+    def template
+      File.read(template_path)
+    end
+
+    def template_path
+      File.join(BASE_PATH, "bin/templates/entrypoint.rb.erb")
+    end
   end
 end
 
