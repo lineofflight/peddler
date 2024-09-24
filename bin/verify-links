@@ -1,50 +1,58 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
+#!/usr/bin/env bash
 
-require "open3"
-require "net/http"
-require "logger"
+# Enable strict error handling
+set -euo pipefail
 
-logger = Logger.new($stdout)
+# Logger function
+log_info() {
+  echo -e "\e[32m✅ $1\e[0m"
+}
 
-# Search for URLs in the README file
-search_command = "grep -Eo 'https?://[^ ]+' README"
-output, = Open3.capture3(search_command)
-readme_matches = output.split("\n")
+log_warn() {
+  echo -e "\e[33m👀 $1\e[0m"
+}
 
-# Search for URLs in comments in other files
-search_command = "grep -EoR '#.*https?://[^ ]+' lib"
-output, = Open3.capture3(search_command)
-lib_matches = output.split("\n")
+log_error() {
+  echo -e "\e[31m❌ $1\e[0m" >&2
+}
 
-# Extract only the URLs
-matches = (readme_matches + lib_matches).map do |line|
-  line.match(%r{https?://[^ )>,\"]+})[0]
-end
+matches=$(
+  {
+    # Output README.md
+    cat README.md
+    # Find comments in the lib directory
+    grep -EhoR '# .*' lib
+  } |
+  # Extract URLs from the combined output
+  grep -Eo 'https?://[^ )>,"]+' |
+  uniq
+)
 
-matches.uniq!
+failed=false
 
-failed = false
+# Check each URL
+while IFS= read -r url; do
+  {
+    response=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+    case $response in
+      200)
+        log_info "$response $url"
+        ;;
+      301|302)
+        log_warn "$response $url"
+        ;;
+      *)
+        failed=true
+        log_error "$response $url"
+        ;;
+    esac
+  } &
+done <<< "$matches"
 
-threads = matches.map do |url|
-  Thread.new do
-    response = Net::HTTP.get_response(URI(url))
-    case response
-    when Net::HTTPSuccess
-      logger.info("✅ #{response.code} #{url}")
-    when Net::HTTPFound, Net::HTTPMovedPermanently
-      logger.warn("👀 #{response.code} #{url}")
-    else
-      failed = true
-      logger.error("❌ #{response.code} #{url}")
-    end
-  rescue URI::InvalidURIError => e
-    logger.error("❌ Invalid URL #{url}: #{e.message}")
-  end
-end
-threads.each(&:join)
+# Wait for all background jobs to finish
+wait
 
-if failed
-  logger.warn("Please fix broken documentation links.")
+if $failed; then
+  log_warn "Please fix broken documentation links."
   exit 1
-end
+fi
