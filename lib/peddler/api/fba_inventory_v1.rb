@@ -39,8 +39,8 @@ module Peddler
       #   summaries.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
-        seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
+      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil,
+        start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
 
         path = "/fba/inventory/v1/summaries"
         params = {

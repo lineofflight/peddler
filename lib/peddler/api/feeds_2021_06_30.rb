@@ -28,8 +28,8 @@ module Peddler
       #   parameters will cause the request to fail.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil,
-        created_until: nil, next_token: nil, rate_limit: 0.0222)
+      def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil,
+        created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
 
         path = "/feeds/2021-06-30/feeds"
         params = {

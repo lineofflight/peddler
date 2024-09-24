@@ -32,8 +32,8 @@ module Peddler
       #   order numbers are returned.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
-        next_token: nil, include_details: "true", rate_limit: 10.0)
+      def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil,
+        sort_order: nil, next_token: nil, include_details: "true", rate_limit: 10.0)
 
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders"
         params = {

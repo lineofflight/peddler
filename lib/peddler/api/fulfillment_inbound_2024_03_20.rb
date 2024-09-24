@@ -658,8 +658,8 @@ module Peddler
       #   `shipmentId` must be specified.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil,
-        shipment_id: nil, rate_limit: 2.0)
+      def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil,
+        placement_option_id: nil, shipment_id: nil, rate_limit: 2.0)
 
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
         params = {
