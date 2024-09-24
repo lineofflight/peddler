@@ -4,6 +4,7 @@ require "http"
 
 require "peddler/error"
 require "peddler/region"
+require "peddler/version"
 
 module Peddler
   # Wraps an Amazon Selling Partner API (SP-API)
