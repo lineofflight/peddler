@@ -11,7 +11,8 @@ module Peddler
     class CatalogItemsV0 < API
       # Effective September 30, 2022, the `listCatalogItems` operation will no longer be available in the Selling
       # Partner API for Catalog Items v0. As an alternative, `searchCatalogItems` is available in the latest version of
-      # the [Selling Partner API for Catalog Items v2022-04-01](doc:catalog-items-api-v2022-04-01-reference).
+      # the [Selling Partner API for Catalog Items
+      # v2022-04-01](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference).
       # Integrations that rely on the `listCatalogItems` operation should migrate to the `searchCatalogItems`operation
       # to avoid service disruption. _Note:_ The [`listCatalogCategories`](#get-catalogv0categories) operation is not
       # being deprecated and you can continue to make calls to it.
@@ -54,10 +55,11 @@ module Peddler
 
       # Effective September 30, 2022, the `getCatalogItem` operation will no longer be available in the Selling Partner
       # API for Catalog Items v0. This operation is available in the latest version of the [Selling Partner API for
-      # Catalog Items v2022-04-01](doc:catalog-items-api-v2022-04-01-reference). Integrations that rely on this
-      # operation should migrate to the latest version to avoid service disruption. _Note:_ The
-      # [`listCatalogCategories`](#get-catalogv0categories) operation is not being deprecated and you can continue to
-      # make calls to it.
+      # Catalog Items
+      # v2022-04-01](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference).
+      # Integrations that rely on this operation should migrate to the latest version to avoid service disruption.
+      # _Note:_ The [`listCatalogCategories`](#get-catalogv0categories) operation is not being deprecated and you can
+      # continue to make calls to it.
       #
       # @note This operation can make a static sandbox call.
       # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for the item.

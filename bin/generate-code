@@ -201,7 +201,17 @@ module Generator
       text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
         url = Regexp.last_match(1)
         link_text = Regexp.last_match(2)
+
         "[#{link_text}](#{url})"
+      end
+    end
+
+    def convert_doc_links_to_full_url(text)
+      text.gsub(/\[([^\]]+)\]\(doc:([^\)]+)\)/) do
+        link_text = Regexp.last_match(1)
+        path = Regexp.last_match(2)
+
+        "[#{link_text}](https://developer-docs.amazon.com/sp-api/docs/#{path})"
       end
     end
 
@@ -210,6 +220,7 @@ module Generator
 
       description = description.gsub("**Note:**", "@note")
       description = convert_links_to_markdown(description)
+      description = convert_doc_links_to_full_url(description)
       lines = description.split("\n")
       usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
       lines = lines[0...usage_plan_index] if usage_plan_index
