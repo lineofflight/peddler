@@ -41,21 +41,9 @@ module Peddler
       end
     end
 
-    # @return [String]
-    def aws_region
-      case selling_region
-      when "North America"
-        "us-east-1"
-      when "Europe"
-        "eu-west-1"
-      when "Far East"
-        "us-west-2"
-      end
-    end
-
     # @return [Peddler::Endpoint]
     def endpoint
-      Endpoint.find(aws_region)
+      Endpoint.find_by_selling_region(selling_region)
     end
   end
 end
