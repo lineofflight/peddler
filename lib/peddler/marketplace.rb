@@ -1,79 +1,61 @@
 # frozen_string_literal: true
 
+require "peddler/endpoint"
+
 module Peddler
-  # @!visibility private
-  # @see https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html
-  class Marketplace
+  # @see https://developer-docs.amazon.com/sp-api/docs/marketplace-ids
+  MARKETPLACE_IDS = {
+    "CA" => { id: "A2EUQ1WTGCTBG2", country_name: "Canada", selling_region: "North America" },
+    "US" => { id: "ATVPDKIKX0DER", country_name: "United States", selling_region: "North America" },
+    "MX" => { id: "A1AM78C64UM0Y8", country_name: "Mexico", selling_region: "North America" },
+    "BR" => { id: "A2Q3Y263D00KWC", country_name: "Brazil", selling_region: "North America" },
+    "ES" => { id: "A1RKKUPIHCS9HS", country_name: "Spain", selling_region: "Europe" },
+    "UK" => { id: "A1F83G8C2ARO7P", country_name: "United Kingdom", selling_region: "Europe" },
+    "FR" => { id: "A13V1IB3VIYZZH", country_name: "France", selling_region: "Europe" },
+    "BE" => { id: "AMEN7PMS3EDWL", country_name: "Belgium", selling_region: "Europe" },
+    "NL" => { id: "A1805IZSGTT6HS", country_name: "Netherlands", selling_region: "Europe" },
+    "DE" => { id: "A1PA6795UKMFR9", country_name: "Germany", selling_region: "Europe" },
+    "IT" => { id: "APJ6JRA9NG5V4", country_name: "Italy", selling_region: "Europe" },
+    "SE" => { id: "A2NODRKZP88ZB9", country_name: "Sweden", selling_region: "Europe" },
+    "ZA" => { id: "AE08WJ6YKNBMC", country_name: "South Africa", selling_region: "Europe" },
+    "PL" => { id: "A1C3SOZRARQ6R3", country_name: "Poland", selling_region: "Europe" },
+    "EG" => { id: "ARBP9OOSHTCHU", country_name: "Egypt", selling_region: "Europe" },
+    "TR" => { id: "A33AVAJ2PDY3EV", country_name: "Turkey", selling_region: "Europe" },
+    "SA" => { id: "A17E79C6D8DWNP", country_name: "Saudi Arabia", selling_region: "Europe" },
+    "AE" => { id: "A2VIGQ35RCS4UG", country_name: "United Arab Emirates", selling_region: "Europe" },
+    "IN" => { id: "A21TJRUUN4KGV", country_name: "India", selling_region: "Europe" },
+    "SG" => { id: "A19VAU5U5O7RUS", country_name: "Singapore", selling_region: "Far East" },
+    "AU" => { id: "A39IBJ37TRP1C6", country_name: "Australia", selling_region: "Far East" },
+    "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
+  }
+
+  Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) do
     class << self
-      attr_reader :all
+      # @param [String] country_code
+      def find(country_code)
+        values = MARKETPLACE_IDS.fetch(country_code) do
+          raise ArgumentError, "#{country_code} not found"
+        end
 
-      def find(key)
-        missing_key! unless key
-        marketplace = key.size == 2 ? find_by_country(key) : find_by_id(key)
-
-        marketplace || not_found!(key)
-      end
-
-      private
-
-      def find_by_country(code)
-        code = 'GB' if code == 'UK'
-        all.find { |marketplace| marketplace.country_code == code }
-      end
-
-      def find_by_id(id)
-        all.find { |marketplace| marketplace.id == id }
-      end
-
-      def missing_key!
-        raise ArgumentError, 'missing marketplace'
-      end
-
-      def not_found!(country_code)
-        raise ArgumentError, %("#{country_code}" is not a valid marketplace)
+        new(**values.merge(country_code: country_code))
       end
     end
 
-    attr_reader :id, :country_code, :host
-
-    def initialize(id, country_code, host)
-      @id = id
-      @country_code = country_code
-      @host = host
-    end
-
-    def encoding
-      case country_code
-      when 'JP'
-        'Windows-31J'
-      else
-        'CP1252'
+    # @return [String]
+    def aws_region
+      case selling_region
+      when "North America"
+        "us-east-1"
+      when "Europe"
+        "eu-west-1"
+      when "Far East"
+        "us-west-2"
       end
     end
 
-    @all = [
-      ['A2Q3Y263D00KWC', 'BR', 'mws.amazonservices.com'],
-      ['A2EUQ1WTGCTBG2', 'CA', 'mws.amazonservices.com'],
-      ['A1AM78C64UM0Y8', 'MX', 'mws.amazonservices.com'],
-      ['ATVPDKIKX0DER', 'US', 'mws.amazonservices.com'],
-      ['A2VIGQ35RCS4UG', 'AE', 'mws.amazonservices.ae'],
-      ['A1PA6795UKMFR9', 'DE', 'mws-eu.amazonservices.com'],
-      ['ARBP9OOSHTCHU', 'EG', 'mws-eu.amazonservices.com'],
-      ['A1RKKUPIHCS9HS', 'ES', 'mws-eu.amazonservices.com'],
-      ['A13V1IB3VIYZZH', 'FR', 'mws-eu.amazonservices.com'],
-      ['A1F83G8C2ARO7P', 'GB', 'mws-eu.amazonservices.com'],
-      ['A21TJRUUN4KGV', 'IN', 'mws.amazonservices.in'],
-      ['APJ6JRA9NG5V4', 'IT', 'mws-eu.amazonservices.com'],
-      ['A1805IZSGTT6HS', 'NL', 'mws-eu.amazonservices.com'],
-      ['A17E79C6D8DWNP', 'SA', 'mws-eu.amazonservices.com'],
-      ['A33AVAJ2PDY3EV', 'TR', 'mws-eu.amazonservices.com'],
-      ['A2NODRKZP88ZB9', 'SE', 'mws-eu.amazonservices.com'],
-      ['A19VAU5U5O7RUS', 'SG', 'mws-fe.amazonservices.com'],
-      ['A39IBJ37TRP1C6', 'AU', 'mws.amazonservices.com.au'],
-      ['A1VC38T7YXB528', 'JP', 'mws.amazonservices.jp'],
-      ['A1C3SOZRARQ6R3', 'PL', 'mws-eu.amazonservices.com']
-    ].map do |values|
-      new(*values)
+    # @return [Peddler::Endpoint]
+    def endpoint
+      Endpoint.find(aws_region)
     end
   end
 end
