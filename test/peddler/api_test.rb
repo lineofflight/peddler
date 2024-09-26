@@ -12,12 +12,12 @@ module Peddler
       super
     end
 
-    def test_endpoint
-      assert_kind_of(URI, @api.endpoint)
+    def test_endpoint_uri
+      assert_kind_of(URI::HTTPS, @api.endpoint_uri)
     end
 
     def test_sandbox
-      assert_includes(@api.sandbox.endpoint.host, "sandbox")
+      assert_includes(@api.sandbox.endpoint_uri.host, "sandbox")
     end
 
     def test_cannot_sandbox

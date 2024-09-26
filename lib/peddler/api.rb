@@ -2,8 +2,8 @@
 
 require "http"
 
+require "peddler/endpoint"
 require "peddler/error"
-require "peddler/region"
 require "peddler/version"
 
 module Peddler
@@ -12,8 +12,8 @@ module Peddler
     class CannotSandbox < StandardError; end
     class MustSandbox < StandardError; end
 
-    # @return [Peddler::Region]
-    attr_reader :region
+    # @return [Peddler::Endpoint]
+    attr_reader :endpoint
 
     # @return [String]
     attr_reader :access_token
@@ -21,14 +21,14 @@ module Peddler
     # @param [String] aws_region
     # @param [String] access_token
     def initialize(aws_region, access_token)
-      @region = Region.new(aws_region)
+      @endpoint = Endpoint.find(aws_region)
       @access_token = access_token
       @sandbox = false
     end
 
-    # @return [URI]
-    def endpoint
-      URI(sandbox? ? region.sandbox_endpoint : region.endpoint)
+    # @return [URI::HTTPS]
+    def endpoint_uri
+      sandbox? ? endpoint.sandbox : endpoint.production
     end
 
     # @see https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
@@ -58,7 +58,7 @@ module Peddler
     # @return [HTTP::Client]
     def http
       @http ||= HTTP.headers(
-        "Host" => endpoint.host,
+        "Host" => endpoint_uri.host,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
         "X-Amz-Date" => timestamp,
@@ -110,7 +110,7 @@ module Peddler
           options[:json] = options.delete(:body)
         end
 
-        uri = endpoint.tap do |uri|
+        uri = endpoint_uri.tap do |uri|
           uri.path = path
         end
 
