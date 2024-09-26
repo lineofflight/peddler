@@ -7,13 +7,10 @@ require "peddler/api/feeds_2021_06_30"
 module Peddler
   class API
     class Feeds20210630Test < Minitest::Test
-      def setup
-        super
-        @api = Feeds20210630.new(aws_region, request_access_token)
-      end
+      include FeatureHelpers
 
       def test_create_feed_document
-        res = @api.create_feed_document(
+        res = api.create_feed_document(
           { "contentType" => "application/json; charset=UTF-8" },
         )
 
@@ -89,21 +86,21 @@ module Peddler
           "marketplaceIds" => ["A1F83G8C2ARO7P"],
           "inputFeedDocumentId" => feed_document_id,
         }
-        res = @api.create_feed(payload)
+        res = api.create_feed(payload)
 
         assert_predicate(res.status, :accepted?)
       end
 
       def test_get_feed
         feed_id = "123"
-        res = @api.get_feed(feed_id)
+        res = api.get_feed(feed_id)
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_feed_document
         feed_document_id = "amzn1.tortuga.4.eu.123"
-        res = @api.get_feed_document(feed_document_id)
+        res = api.get_feed_document(feed_document_id)
 
         assert_predicate(res.status, :ok?)
 

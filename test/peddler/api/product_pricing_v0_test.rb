@@ -7,25 +7,22 @@ require "peddler/api/product_pricing_v0"
 module Peddler
   class API
     class ProductPricingV0Test < Minitest::Test
-      def setup
-        super
-        @api = ProductPricingV0.new(aws_region, request_access_token)
-      end
+      include FeatureHelpers
 
       def test_get_pricing
-        res = @api.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
+        res = api.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_competitive_pricing
-        res = @api.get_competitive_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
+        res = api.get_competitive_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_item_offers
-        res = @api.get_item_offers("A1F83G8C2ARO7P", "New", "B0CHXFCYCR")
+        res = api.get_item_offers("A1F83G8C2ARO7P", "New", "B0CHXFCYCR")
 
         assert_predicate(res.status, :ok?)
       end
@@ -48,7 +45,7 @@ module Peddler
 
           ],
         }
-        res = @api.get_item_offers_batch(batch)
+        res = api.get_item_offers_batch(batch)
 
         assert_predicate(res.status, :ok?)
       end

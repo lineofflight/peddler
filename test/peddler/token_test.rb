@@ -5,6 +5,8 @@ require "peddler/token"
 
 module Peddler
   class TokenTest < Minitest::Test
+    include Configurable, Recordable
+
     def test_request
       response = Token.request(client_id:, client_secret:, refresh_token: refresh_token)
       access_token = response.parse["access_token"]

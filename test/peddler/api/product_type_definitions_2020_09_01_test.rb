@@ -7,13 +7,10 @@ require "peddler/api/product_type_definitions_2020_09_01"
 module Peddler
   class API
     class ProductTypeDefinitions20200901Test < Minitest::Test
-      def setup
-        super
-        @api = ProductTypeDefinitions20200901.new(aws_region, request_access_token)
-      end
+      include FeatureHelpers
 
       def test_get_definitions_product_type
-        res = @api.get_definitions_product_type(
+        res = api.get_definitions_product_type(
           "PRODUCT",
           "A1F83G8C2ARO7P",
           requirements: "LISTING_OFFER_ONLY",

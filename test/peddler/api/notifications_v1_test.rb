@@ -7,12 +7,10 @@ require "peddler/api/notifications_v1"
 module Peddler
   class API
     class NotificationsV1Test < Minitest::Test
-      def api(token = request_access_token)
-        NotificationsV1.new(aws_region, token)
-      end
+      include FeatureHelpers
 
       def test_get_destinations
-        res = api(request_access_token(grantless: true)).sandbox.get_destinations
+        res = api(grantless: true).sandbox.get_destinations
 
         assert_predicate(res.status, :ok?)
       end

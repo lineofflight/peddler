@@ -5,8 +5,10 @@ require "peddler/api"
 
 module Peddler
   class APITest < Minitest::Test
+    include Recordable
+
     def setup
-      @api = API.new(aws_region, "access_token")
+      @api = API.new("eu-west-1", "access_token")
       super
     end
 

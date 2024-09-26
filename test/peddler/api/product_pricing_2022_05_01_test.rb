@@ -7,10 +7,7 @@ require "peddler/api/product_pricing_2022_05_01"
 module Peddler
   class API
     class ProductPricing20220501Test < Minitest::Test
-      def setup
-        super
-        @api = ProductPricing20220501.new(aws_region, request_access_token)
-      end
+      include FeatureHelpers
 
       def test_get_featured_offer_expected_price_batch
         batch = {
@@ -41,7 +38,7 @@ module Peddler
             },
           ],
         }
-        res = @api.get_featured_offer_expected_price_batch(batch)
+        res = api.get_featured_offer_expected_price_batch(batch)
 
         assert_predicate(res.status, :ok?)
       end
@@ -79,7 +76,7 @@ module Peddler
             },
           ],
         }
-        res = @api.get_competitive_summary(batch)
+        res = api.get_competitive_summary(batch)
 
         assert_predicate(res.status, :ok?)
       end

@@ -7,10 +7,7 @@ require "peddler/api/listings_items_2021_08_01"
 module Peddler
   class API
     class ListingsItems20210801Test < Minitest::Test
-      def setup
-        super
-        @api = ListingsItems20210801.new(aws_region, request_access_token)
-      end
+      include FeatureHelpers
 
       def test_put_listings_item
         body = {
@@ -58,7 +55,7 @@ module Peddler
           },
         }
 
-        res = @api.put_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
+        res = api.put_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
 
         assert_predicate(res.status, :ok?)
       end
@@ -82,13 +79,13 @@ module Peddler
           ],
         }
 
-        res = @api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
+        res = api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_listings_item
-        res = @api.get_listings_item(
+        res = api.get_listings_item(
           "A34PPN1ZLYCOGT",
           "SKU123",
           "A1F83G8C2ARO7P",
@@ -99,7 +96,7 @@ module Peddler
       end
 
       def test_delete_listings_item
-        res = @api.delete_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P")
+        res = api.delete_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P")
 
         assert_predicate(res.status, :ok?)
       end
