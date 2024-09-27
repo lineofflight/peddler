@@ -29,7 +29,7 @@ module Generator
     end
 
     def generate_entry_point
-      library_names = api_files.map(&:library_name)
+      library_names = api_files.reject(&:obsolete?).map(&:library_name)
       Entrypoint.new(library_names).generate
     end
 
@@ -66,58 +66,7 @@ module Generator
     # FIXME: Still messy below. Could break it up into paths and operations and move indentation logic elsewhere.
     def operations
       payload["paths"].flat_map do |path, methods|
-        # Massage the path to use Ruby-style interpolation
-        path = path.gsub(/\{([^}]+)\}/) do
-          "\#{#{snakecase(Regexp.last_match(1))}}"
-        end
-
-        shared_parameters = methods.delete("parameters") || []
-        sandbox = methods.delete("x-amzn-api-sandbox")
-        path_has_dynamic_sandbox = sandbox&.key?("dynamic")
-
-        sandbox_only = methods.delete("x-amzn-api-sandbox-only")
-
-        methods.map do |method, operation|
-          operation["name"] = snakecase(operation.delete("operationId"))
-          sandbox = operation.delete("x-amzn-api-sandbox")
-          operation_has_dynamic_sandbox = sandbox&.key?("dynamic")
-
-          code = operation["responses"].keys.find { |code| code.start_with?("2") }
-          static_sandbox = operation["responses"][code]&.delete("x-amzn-api-sandbox")&.fetch("static")
-
-          rate_limit = extract_rate_limit(operation["description"])
-
-          operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
-          parameters = operation_parameters.select { |p| p["name"] }
-          parameters << {
-            "name" => "rate_limit",
-            "type" => "Float",
-            "required" => false,
-            "description" => "Requests per second",
-            "default" => rate_limit,
-          }
-          if operation["parameters"].find { |el| el.key?("$ref") && !el.key?("name") }
-            parameters << {
-              "name" => "notification_type",
-              "type" => "string",
-              "required" => true,
-              "description" => "The type of notification. For more information about notification types, refer to " \
-                "[Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).",
-            }
-          end
-          operation.merge(
-            "description" => clean_description(operation["description"]),
-            "path" => path,
-            "method" => method.upcase,
-            "rate_limit" => rate_limit,
-            "parameters" => parameters,
-            "body_param" => parameters&.find { |p| p["in"] == "body" },
-            "query_params" => parameters&.select { |p| p["in"] == "query" },
-            "dynamic_sandbox" => !!(path_has_dynamic_sandbox || operation_has_dynamic_sandbox),
-            "static_sandbox" => static_sandbox,
-            "sandbox_only" => sandbox_only,
-          )
-        end
+        Path.new(path, methods).operations
       end.compact
     end
 
@@ -197,24 +146,6 @@ module Generator
       end
     end
 
-    def convert_links_to_markdown(text)
-      text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
-        url = Regexp.last_match(1)
-        link_text = Regexp.last_match(2)
-
-        "[#{link_text}](#{url})"
-      end
-    end
-
-    def convert_doc_links_to_full_url(text)
-      text.gsub(/\[([^\]]+)\]\(doc:([^\)]+)\)/) do
-        link_text = Regexp.last_match(1)
-        path = Regexp.last_match(2)
-
-        "[#{link_text}](https://developer-docs.amazon.com/sp-api/docs/#{path})"
-      end
-    end
-
     def clean_description(description)
       return "" unless description
 
@@ -259,14 +190,13 @@ module Generator
       output.join("\n")
     end
 
-    def extract_rate_limit(description)
-      return unless description
+    def convert_links_to_markdown(text)
+      text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
+        url = Regexp.last_match(1)
+        link_text = Regexp.last_match(2)
 
-      # Match rate limit from tables with or without "Plan type" column
-      # Format 1: | Plan type | Rate (requests per second) | Burst |
-      # Format 2: | Rate (requests per second) | Burst |
-      table_match = description.match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
-      table_match[1].to_f if table_match
+        "[#{link_text}](#{url})"
+      end
     end
 
     def title
@@ -289,11 +219,11 @@ module Generator
       JSON.load_file(file)
     end
 
-    private
-
     def obsolete?
       name_with_version.include?("reports_2020_09_04") || name_with_version.include?("feeds_2020_09_04")
     end
+
+    private
 
     def file_content
       ERB.new(template, trim_mode: "-").result(binding)
@@ -351,6 +281,124 @@ module Generator
 
     def template_path
       File.join(BASE_PATH, "bin/templates/entrypoint.rb.erb")
+    end
+  end
+
+  class Path
+    METHODS = ["delete", "get", "patch", "post", "put"].freeze
+
+    attr_reader :path, :methods
+
+    def initialize(path, methods)
+      # Massage the path to use Ruby-style interpolation
+      @path = path.gsub(/\{([^}]+)\}/) do
+        "\#{#{snakecase(Regexp.last_match(1))}}"
+      end
+      @methods = methods
+    end
+
+    def operations
+      methods.select { |k, _| METHODS.include?(k) }.map do |method, operation|
+        operation["name"] = snakecase(operation.delete("operationId"))
+        sandbox = operation.delete("x-amzn-api-sandbox")
+        operation_has_dynamic_sandbox = sandbox&.key?("dynamic")
+        code = operation["responses"].keys.find { |code| code.start_with?("2") }
+        static_sandbox = operation["responses"][code]&.delete("x-amzn-api-sandbox")&.fetch("static")
+        rate_limit = extract_rate_limit(operation["description"])
+        operation_parameters = (shared_parameters + (operation["parameters"] || [])).uniq { |p| p["name"] }
+        parameters = operation_parameters.select { |p| p["name"] }
+        parameters << {
+          "name" => "rate_limit",
+          "type" => "Float",
+          "required" => false,
+          "description" => "Requests per second",
+          "default" => rate_limit,
+        }
+        if operation["parameters"].find { |el| el.key?("$ref") && !el.key?("name") }
+          parameters << {
+            "name" => "notification_type",
+            "type" => "string",
+            "required" => true,
+            "description" => "The type of notification. For more information about notification types, refer to " \
+              "[Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).",
+          }
+        end
+        operation.merge(
+          "description" => clean_description(operation["description"]),
+          "path" => path,
+          "method" => method.upcase,
+          "rate_limit" => rate_limit,
+          "parameters" => parameters,
+          "body_param" => parameters&.find { |p| p["in"] == "body" },
+          "query_params" => parameters&.select { |p| p["in"] == "query" },
+          "dynamic_sandbox" => !!(path_has_dynamic_sandbox? || operation_has_dynamic_sandbox),
+          "static_sandbox" => static_sandbox,
+          "sandbox_only" => sandbox_only?,
+        )
+      end
+    end
+
+    def shared_parameters
+      methods.fetch("parameters", [])
+    end
+
+    def path_has_dynamic_sandbox?
+      !!methods.dig("x-amzn-api-sandbox", "dynamic")
+    end
+
+    def sandbox_only?
+      methods.key?("x-amzn-api-sandbox-only")
+    end
+
+    private
+
+    def convert_links_to_markdown(text)
+      text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
+        url = Regexp.last_match(1)
+        link_text = Regexp.last_match(2)
+
+        "[#{link_text}](#{url})"
+      end
+    end
+
+    def convert_doc_links_to_full_url(text)
+      text.gsub(/\[([^\]]+)\]\(doc:([^\)]+)\)/) do
+        link_text = Regexp.last_match(1)
+        path = Regexp.last_match(2)
+
+        "[#{link_text}](https://developer-docs.amazon.com/sp-api/docs/#{path})"
+      end
+    end
+
+    def extract_rate_limit(description)
+      return unless description
+
+      # Match rate limit from tables with or without "Plan type" column
+      # Format 1: | Plan type | Rate (requests per second) | Burst |
+      # Format 2: | Rate (requests per second) | Burst |
+      table_match = description.match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
+      table_match[1].to_f if table_match
+    end
+
+    def clean_description(description)
+      return "" unless description
+
+      description = description.gsub("**Note:**", "@note")
+      description = convert_links_to_markdown(description)
+      description = convert_doc_links_to_full_url(description)
+      lines = description.split("\n")
+      usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
+      lines = lines[0...usage_plan_index] if usage_plan_index
+      lines.reject! { |line| line.strip == "" }
+      lines.join("\n").strip
+    end
+
+    def snakecase(string)
+      string.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+        .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+        .gsub(/(\d{4})(\d{2})(\d{2})/, '_\1_\2_\3') # Format date-like sequences
+        .tr("-", "_")
+        .downcase
     end
   end
 end
