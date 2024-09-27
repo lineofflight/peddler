@@ -83,7 +83,7 @@ In Rails, if you're storing a refresh token in a model representing a selling pa
 def access_token
   Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
     Peddler::Token.request(
-      refresh_token: refresh_token,
+      refresh_token:,
     ).parse["access_token"]
   end
 end
