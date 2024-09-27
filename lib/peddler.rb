@@ -53,3 +53,19 @@ require "peddler/api/vendor_shipments_v1"
 require "peddler/api/vendor_transaction_status_v1"
 require "peddler/marketplace"
 require "peddler/token"
+
+module Peddler
+  class << self
+    # Define convenience methods for instantiating the API classes
+    Peddler::API.constants.each do |const_name|
+      method_name = const_name.to_s
+        .gsub("FBA", "Fba")
+        .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+        .gsub(/(\d{4})(\d{2})(\d{2})/, '_\1_\2_\3')
+        .downcase
+      define_method(method_name) do |*args|
+        Peddler::API.const_get(const_name).new(*args)
+      end
+    end
+  end
+end

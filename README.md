@@ -94,7 +94,7 @@ Provides programmatic access to Amazon's catalog data, such as item titles, desc
 **Example:**
 
 ```ruby
-client = Peddler::API::CatalogItems20220401.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.catalog_items_20220401("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
@@ -109,7 +109,7 @@ Allows you to retrieve order information, including order details, buyer informa
 **Example:**
 
 ```ruby
-client = Peddler::API::OrdersV0.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.orders_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
@@ -124,7 +124,7 @@ Enables you to upload data to Amazon for updating listings, prices, inventory, a
 **Example:**
 
 ```ruby
-client = Peddler::API::Feeds20210630.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.feeds_20210630("<AWS_REGION>", "<ACCESS_TOKEN>")
 # Create a feed document to get an upload URL
 response = client.create_feed_document(
   contentType: "text/xml; charset=UTF-8"
@@ -152,7 +152,7 @@ Allows you to request and download various reports, such as order and inventory 
 **Example:**
 
 ```ruby
-client = Peddler::API::Reports20210630.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.reports_20210630("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.create_report(
   reportType: "GET_FLAT_FILE_OPEN_LISTINGS_DATA",
   marketplaceIds: ["ATVPDKIKX0DER"]
@@ -167,7 +167,7 @@ Enables you to manage your product listings on Amazon, including creating, updat
 **Example:**
 
 ```ruby
-client = Peddler::API::ListingsItems20210801.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.listings_items_20210801("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.put_listings_item(
   "<SELLER_ID>",
   "SKU123",
@@ -193,7 +193,7 @@ Allows you to subscribe to notifications for specific events like order status u
 **Example:**
 
 ```ruby
-client = Peddler::API::NotificationsV1.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.notifications_v1("<AWS_REGION>", "<ACCESS_TOKEN>")
 # Create a destination
 response = client.create_destination(
   name: "MySQSQueue",
@@ -220,7 +220,7 @@ Provides information about fees that may be charged for selling products on Amaz
 **Example:**
 
 ```ruby
-client = Peddler::API::ProductFeesV0.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.product_fees_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_my_fees_estimate_for_sku(
   sellerId: "<YOUR_SELLER_ID>",
   sku: "SKU123",
@@ -247,7 +247,7 @@ Allows you to create and manage fulfillment orders using Amazon's fulfillment ne
 **Example:**
 
 ```ruby
-client = Peddler::API::FulfillmentOutbound20200701.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.fulfillment_outbound_20200701("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.create_fulfillment_order(
   body: {
     sellerFulfillmentOrderId: "ORDER123",
@@ -282,7 +282,7 @@ Allows you to create shipping labels for orders using Amazon's negotiated shippi
 **Example:**
 
 ```ruby
-client = Peddler::API::MerchantFulfillmentV0.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.merchant_fulfillment_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_eligible_shipping_services(
   body: {
     shipmentRequestDetails: {
@@ -328,7 +328,7 @@ Allows vendors to retrieve purchase orders and order details from Amazon.
 **Example:**
 
 ```ruby
-client = Peddler::API::VendorOrders20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.vendor_orders_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_purchase_orders(
   shipToPartyId: "<PARTY_ID>",
   limit: 10,
@@ -344,7 +344,7 @@ Enables vendors to manage shipping labels and shipping information for direct fu
 **Example:**
 
 ```ruby
-client = Peddler::API::VendorDirectFulfillmentShipping20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.vendor_direct_fulfillment_shipping_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_packing_slip(
   purchaseOrderNumber: "PO123456789"
 )
@@ -358,7 +358,7 @@ Allows vendors to receive orders for direct fulfillment and provide shipment con
 **Example:**
 
 ```ruby
-client = Peddler::API::VendorDirectFulfillmentOrders20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.vendor_direct_fulfillment_orders_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_orders(
   createdAfter: "2023-01-01T00:00:00Z",
   limit: 10
@@ -373,7 +373,7 @@ Enables vendors to update inventory levels for direct fulfillment items.
 **Example:**
 
 ```ruby
-client = Peddler::API::VendorDirectFulfillmentInventory20211228.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.vendor_direct_fulfillment_inventory_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.submit_inventory_update(
   body: {
     inventory: [
@@ -405,7 +405,7 @@ Provides functionalities for purchasing shipping labels and tracking shipments.
 **Example:**
 
 ```ruby
-client = Peddler::API::ShippingV2.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.shipping_v2("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.purchase_shipment(
   body: {
     clientReferenceId: "CLIENT_REF_123",
@@ -452,7 +452,7 @@ Allows you to create restricted data tokens to access personally identifiable in
 **Example:**
 
 ```ruby
-client = Peddler::API::Tokens20210301.new("<AWS_REGION>", "<ACCESS_TOKEN>")
+client = Peddler.tokens_20210301("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.create_restricted_data_token(
   body: {
     restrictedResources: [
@@ -467,7 +467,7 @@ response = client.create_restricted_data_token(
 restricted_data_token = response.parse["restrictedDataToken"]
 
 # Use the token in subsequent API calls
-orders_client = Peddler::API::Orders20211201.new("<AWS_REGION>", restricted_data_token)
+orders_client = Peddler.orders_20211201("<AWS_REGION>", restricted_data_token)
 response = orders_client.get_order(
   orderId: "123-1234567-1234567"
 )
@@ -481,7 +481,7 @@ Provides information about financial events for your seller account, such as ord
 **Example:**
 
 ```ruby
-client = Peddler::API::FinancesV0.new
+client = Peddler.finances_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.list_financial_events(
   postedAfter: "2023-01-01T00:00:00Z",
   maxResultsPerPage: 100
@@ -496,7 +496,7 @@ Provides information about seller's marketplaces and participation status.
 **Example:**
 
 ```ruby
-client = Peddler::API::SellersV1.new
+client = Peddler.sellers_v1("<AWS_REGION>", "<ACCESS_TOKEN>")
 response = client.get_marketplace_participations
 participations = response.parse["payload"]
 ```
