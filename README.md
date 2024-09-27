@@ -65,8 +65,6 @@ access_token = Peddler::Token.request(
 ).parse["access_token"]
 ```
 
-Access tokens are valid for one hour. To optimize performance, cache the token and reuse it across calls instead of generating a new one each time.
-
 If you haven’t set your LWA credentials as environment variables, you can pass them directly when requesting an access token:
 
 ```ruby
@@ -75,6 +73,20 @@ access_token = Peddler::Token.request(
   client_secret: "<YOUR_CLIENT_SECRET>",
   refresh_token: "<REFRESH_TOKEN>",
 ).parse["access_token"]
+```
+
+Access tokens are valid for one hour. To optimize performance, cache the token and reuse it across calls instead of generating a new one each time.
+
+In Rails, if you're storing a refresh token in a model representing a selling partner, you can implement a method like this to cache access tokens:
+
+```ruby
+def access_token
+  Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
+    Peddler::Token.request(
+      refresh_token: refresh_token,
+    ).parse["access_token"]
+  end
+end
 ```
 
 ### Rate limiting
