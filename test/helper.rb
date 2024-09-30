@@ -87,8 +87,10 @@ module FeatureHelpers
   include Configurable, Recordable
 
   def api(grantless: false)
-    access_token = request_access_token(grantless:)
-    @api ||= api_class.new(aws_region, access_token)
+    @api ||= begin
+      access_token = request_access_token(grantless:)
+      api_class.new(aws_region, access_token)
+    end
   end
 
   def api_class
