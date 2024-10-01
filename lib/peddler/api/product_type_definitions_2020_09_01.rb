@@ -10,7 +10,8 @@ module Peddler
     # requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type
     # that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the
     # Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds). For
-    # more information, see the [Product Type Definitions API Use Case Guide](doc:product-type-api-use-case-guide).
+    # more information, see the [Product Type Definitions API Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide).
     class ProductTypeDefinitions20200901 < API
       # Search for and return a list of Amazon product types that have definitions available.
       #

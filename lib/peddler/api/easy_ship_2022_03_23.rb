@@ -9,8 +9,9 @@ module Peddler
     # The Selling Partner API for Easy Ship helps you build applications that help sellers manage and ship Amazon Easy
     # Ship orders. Your Easy Ship applications can: * Get available time slots for packages to be scheduled for
     # delivery. * Schedule, reschedule, and cancel Easy Ship orders. * Print labels, invoices, and warranties. See the
-    # [Marketplace Support Table](doc:easyship-api-v2022-03-23-use-case-guide#marketplace-support-table) for the
-    # differences in Easy Ship operations by marketplace.
+    # [Marketplace Support
+    # Table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table)
+    # for the differences in Easy Ship operations by marketplace.
     class EasyShip20220323 < API
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
       # that the seller specifies. This operation is available for scheduled and unscheduled orders based on marketplace

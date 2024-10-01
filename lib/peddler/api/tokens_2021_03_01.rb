@@ -10,7 +10,7 @@ module Peddler
     # Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted
     # resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the
     # restricted resources that you specified. For more information, see the [Tokens API Use Case
-    # Guide](doc:tokens-api-use-case-guide).
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide).
     class Tokens20210301 < API
       # Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted
       # resource is the HTTP method and path from a restricted operation that returns Personally Identifiable

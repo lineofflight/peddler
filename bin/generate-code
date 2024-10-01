@@ -85,6 +85,8 @@ module Generator
     end
 
     def format_text(text, base_indent, wrap_indent = 2)
+      text = convert_doc_links_to_full_url(text)
+
       max_width = MAX_LINE_LENGTH - base_indent
       words = text.split
       lines = []
@@ -107,6 +109,16 @@ module Generator
 
       lines << "# " + current_line.join(" ") unless current_line.empty?
       lines.join("\n")
+    end
+
+    # FIXME: I just duplicated this method from the Path class.
+    def convert_doc_links_to_full_url(text)
+      text.gsub(/\[([^\]]+)\]\(doc:([^\)]+)\)/) do
+        link_text = Regexp.last_match(1)
+        path = Regexp.last_match(2)
+
+        "[#{link_text}](https://developer-docs.amazon.com/sp-api/docs/#{path})"
+      end
     end
 
     def generate_parameters(parameters, method_name, base_indent)

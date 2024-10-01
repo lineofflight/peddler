@@ -8,7 +8,7 @@ module Peddler
     #
     # The Selling Partner API for Listings Restrictions provides programmatic access to restrictions on Amazon catalog
     # listings. For more information, see the [Listings Restrictions API Use Case
-    # Guide](doc:listings-restrictions-api-v2021-08-01-use-case-guide).
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-restrictions-api-v2021-08-01-use-case-guide).
     class ListingsRestrictions20210801 < API
       # Returns listing restrictions for an item in the Amazon Catalog.
       #
