@@ -50,7 +50,7 @@ http_interactions:
     recorded_at: Thu, 12 Sep 2024 19:57:33 GMT
   - request:
       method: get
-      uri: https://sellingpartnerapi-eu.amazon.com/reports/2021-06-30/reports/123
+      uri: https://sellingpartnerapi-eu.amazon.com/reports/2021-06-30/reports/1234567
       body:
         encoding: ASCII-8BIT
         string: ""

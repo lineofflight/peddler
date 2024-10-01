@@ -27,7 +27,7 @@ module Peddler
       end
 
       def test_get_report
-        res = api.get_report("123")
+        res = api.get_report("1234567")
 
         assert_predicate(res.status, :ok?)
       end
