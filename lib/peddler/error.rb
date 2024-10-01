@@ -3,6 +3,7 @@
 module Peddler
   class Error < StandardError
     class InvalidInput < Error; end
+    class NotFound < Error; end
     class QuotaExceeded < Error; end
     class Unauthorized < Error; end
 

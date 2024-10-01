@@ -12,6 +12,13 @@ module Peddler
       assert_kind_of(Error::InvalidInput, error)
     end
 
+    def test_not_found
+      response = '{"errors":[{"code":"NotFound","message":"NotFound"}]}'
+      error = Error.build(response)
+
+      assert_kind_of(Error::NotFound, error)
+    end
+
     def test_quota_exceeded
       response = '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota for the requested resource."}]}'
       error = Error.build(response)
