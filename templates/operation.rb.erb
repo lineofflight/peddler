@@ -1,0 +1,25 @@
+<%= generate_method_docs %>
+<%= method_definition %>
+  <% if !static_sandbox? && !dynamic_sandbox? -%>
+  cannot_sandbox!
+  <% elsif path.sandbox_only? %>
+  must_sandbox!
+  <% end %>
+  path = "<%= path.path %>"
+  <% if body_param && body_param["name"] != "body" -%>
+  body = <%= snakecase(body_param["name"]) %>
+  <% end -%>
+  <% if query_params&.any? -%>
+  params = {
+    <%= query_params.map { |p| %("#{p["name"]}" => #{snakecase(p["name"])}) }.join(",\n    ") %>
+  }.compact
+  <% end -%>
+  <% method_args = ["path"] %>
+  <% method_args << "body:" if body_param %>
+  <% method_args << "params:" if query_params&.any? %>
+  <% if rate_limit %>
+  meter(rate_limit).<%= method %>(<%= method_args.join(", ") %>)
+  <% else %>
+  <%= method %>(<%= method_args.join(", ") %>)
+  <% end %>
+end
