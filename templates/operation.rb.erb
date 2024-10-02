@@ -1,25 +1,25 @@
-<%= generate_method_docs %>
+<%= description %>
+#
+<% tags.each do |tag| -%>
+  <%= tag %>
+<% end -%>
 <%= method_definition %>
-  <% if !static_sandbox? && !dynamic_sandbox? -%>
-  cannot_sandbox!
-  <% elsif path.sandbox_only? %>
-  must_sandbox!
-  <% end %>
-  path = "<%= path.path %>"
-  <% if body_param && body_param["name"] != "body" -%>
-  body = <%= snakecase(body_param["name"]) %>
+  <%= sandbox_rule -%>
+  path = "<%= path %>"
+  <% if body_param_name && body_param_name != "body" -%>
+    body = <%= body_param_name %>
   <% end -%>
-  <% if query_params&.any? -%>
-  params = {
-    <%= query_params.map { |p| %("#{p["name"]}" => #{snakecase(p["name"])}) }.join(",\n    ") %>
-  }.compact
+  <% if query_params.any? -%>
+    params = {
+      <% query_params.each do |k, v| -%>
+          "<%= k %>" => <%= v %>,
+      <% end -%>
+    }.compact
   <% end -%>
-  <% method_args = ["path"] %>
-  <% method_args << "body:" if body_param %>
-  <% method_args << "params:" if query_params&.any? %>
+
   <% if rate_limit %>
-  meter(rate_limit).<%= method %>(<%= method_args.join(", ") %>)
+    meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %>)
   <% else %>
-  <%= method %>(<%= method_args.join(", ") %>)
+    <%= verb %>(<%= request_args.join(", ") %>)
   <% end %>
 end

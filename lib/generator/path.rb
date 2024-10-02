@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-require "generator/config"
 require "generator/utils"
 require "generator/operation"
 
 module Generator
   class Path
     include Utils
+
+    HTTP_METHODS = ["delete", "get", "patch", "post", "put"].freeze
 
     attr_reader :methods
 
@@ -16,9 +17,13 @@ module Generator
     end
 
     def operations
-      methods.select { |k, _| Config::HTTP_METHODS.include?(k) }.map do |method, operation|
+      methods.select { |k, _| HTTP_METHODS.include?(k) }.map do |method, operation|
         Operation.new(self, method, operation)
       end
+    end
+
+    def to_s
+      path
     end
 
     def path

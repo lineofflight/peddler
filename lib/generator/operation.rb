@@ -2,18 +2,20 @@
 
 require "erb"
 require "generator/config"
+require "generator/formatter"
 require "generator/utils"
 require "generator/parameter_builder"
 
 module Generator
   class Operation
+    include Formatter
     include Utils
 
-    attr_reader :path, :method, :operation
+    attr_reader :path, :verb, :operation
 
-    def initialize(path, method, operation)
+    def initialize(path, verb, operation)
       @path = path
-      @method = method
+      @verb = verb
       @operation = operation
     end
 
@@ -21,14 +23,23 @@ module Generator
       ERB.new(template, trim_mode: "-").result(binding)
     end
 
-    def generate_method_docs
-      formatted_description = format_text(description, 6)
-      param_docs = generate_parameter_docs
+    def description
+      description = operation["description"]
 
-      "#{formatted_description}\n#\n#{param_docs}\n# @return [Hash] The API response"
+      # Remove usage plan details
+      lines = description.split("\n")
+      usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
+      lines = lines[0...usage_plan_index] if usage_plan_index
+      lines.reject! { |line| line.strip == "" }
+      description = lines.join("\n").strip
+
+      description = convert_http_links_to_yard(description)
+      description = convert_doc_links_to_full_url(description)
+
+      split_long_comment_line(description, 6)
     end
 
-    def generate_parameter_docs
+    def tags
       output = parameters.map do |param|
         param_type = param["type"] ? param["type"].capitalize : "Object"
         param_type = "Hash" if param["schema"]
@@ -36,129 +47,93 @@ module Generator
           items_type = param.dig("items", "type")
           param_type = items_type ? "Array<#{items_type.capitalize}>" : "Array"
         end
+        param_name = snakecase(param["name"])
         param_description = param["description"]&.gsub(/\s+/, " ")
-        if param_description
-          param_description = convert_links_to_markdown(param_description)
-        end
-        format_text("@param [#{param_type}] #{snakecase(param["name"])} #{param_description}", 6)
+
+        "@param #{param_name} [#{param_type}] #{param_description}"
       end
 
       if static_sandbox?
-        output.unshift(format_text("@note This operation can make a static sandbox call.", 6))
+        output.unshift("@note This operation can make a static sandbox call.")
       elsif dynamic_sandbox?
-        output.unshift(format_text("@note This operation can make a dynamic sandbox call.", 6))
+        output.unshift("@note This operation can make a dynamic sandbox call.")
       end
+      output << "@return [Hash] The API response"
 
-      output.join("\n")
+      output.map do |line|
+        line = convert_http_links_to_yard(line)
+        line = convert_doc_links_to_full_url(line)
+        split_long_comment_line(line, 6, 2)
+      end
     end
 
-    def method_definition(base_indent = 6)
-      return if parameters.empty?
+    def method_definition
+      method_name = snakecase(operation.delete("operationId"))
 
       required_params = parameters.select { |p| p["required"] }&.map { |p| snakecase(p["name"]) } || []
       optional_params = parameters.reject do |p|
         p["required"]
-      end&.map do |p|
+      end.map do |p|
         default_value = p["default"]
         formatted_default = default_value.is_a?(String) ? "\"#{default_value}\"" : default_value
+
         "#{snakecase(p["name"])}: #{formatted_default ? formatted_default : "nil"}"
-      end || []
+      end
       params = required_params + optional_params
 
-      prefix = "def #{method_name}("
-      suffix = ")"
-      max_width = Config::MAX_LINE_LENGTH - base_indent - 2
+      build_method_definition(method_name, params, 6)
+    end
 
-      lines = []
-      current_line = prefix
-      params.each do |param|
-        if current_line.length + param.length + 3 > max_width
-          lines << current_line + ","
-          current_line = param
-        else
-          current_line += current_line == prefix ? param : ", #{param}"
-        end
+    def sandbox_rule
+      if !static_sandbox? && !dynamic_sandbox?
+        "cannot_sandbox!\n\n"
+      elsif path.sandbox_only?
+        "must_sandbox!\n\n"
       end
-      lines << current_line + suffix
-
-      lines.join("\n")
     end
 
-    def description
-      clean_description(operation["description"])
+    def body_param_name
+      body_param = parameters.find { |p| p["in"] == "body" }
+      snakecase(body_param["name"]) if body_param
     end
+
+    def query_params
+      parameters.select do |p|
+        p["in"] == "query"
+      end.reduce({}) { |hash, p| hash.merge(p["name"] => snakecase(p["name"])) }
+    end
+
+    def request_args
+      args = ["path"]
+      args << "body:" if body_param_name
+      args << "params:" if query_params.any?
+
+      args
+    end
+
+    private
 
     def parameters
       @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build
     end
 
-    def method_name
-      @name ||= snakecase(operation.delete("operationId"))
-    end
-
-    def body_param
-      find_body_param
-    end
-
-    def query_params
-      find_query_params
-    end
-
-    def static_sandbox?
-      return @static_sandbox if defined?(@static_sandbox)
-
-      @static_sandbox = begin
-        code = operation["responses"].keys.find { |code| code.start_with?("2") }
-        operation["responses"][code]&.delete("x-amzn-api-sandbox")&.fetch("static")
-      end
-    end
-
-    private
-
-    def template
-      File.read(Config.template_path("operation"))
-    end
-
     def rate_limit
-      @rate_limit ||= extract_rate_limit(operation["description"])
+      match = operation["description"].match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
+      match[1].to_f if match
     end
 
     def dynamic_sandbox?
-      path.has_dynamic_sandbox? || operation_has_dynamic_sandbox?
+      path.has_dynamic_sandbox? || !!operation.dig("x-amzn-api-sandbox", "dynamic")
     end
 
-    def operation_has_dynamic_sandbox?
-      return @operation_has_dynamic_sandbox if defined?(@operation_has_dynamic_sandbox)
+    def static_sandbox?
+      code = operation["responses"].keys.find { |code| code.start_with?("2") }
 
-      @operation_has_dynamic_sandbox = !!operation.delete("x-amzn-api-sandbox")&.key?("dynamic")
+      !!operation["responses"][code]&.dig("x-amzn-api-sandbox", "static")
     end
 
-    def find_body_param
-      operation["parameters"]&.find { |p| p["in"] == "body" }
-    end
-
-    def find_query_params
-      operation["parameters"]&.select { |p| p["in"] == "query" }
-    end
-
-    def extract_rate_limit(description)
-      return unless description
-
-      table_match = description.match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
-      table_match[1].to_f if table_match
-    end
-
-    def clean_description(description)
-      return "" unless description
-
-      description = description.gsub("**Note:**", "@note")
-      description = convert_links_to_markdown(description)
-      description = convert_doc_links_to_full_url(description)
-      lines = description.split("\n")
-      usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
-      lines = lines[0...usage_plan_index] if usage_plan_index
-      lines.reject! { |line| line.strip == "" }
-      lines.join("\n").strip
+    def template
+      File.read(Config.template_path("operation"))
     end
   end
 end

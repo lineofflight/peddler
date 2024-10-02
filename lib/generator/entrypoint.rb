@@ -19,6 +19,10 @@ module Generator
       File.write(file_path, render_template)
     end
 
+    def required_libraries
+      apis.map(&:library_name).append("peddler/marketplace", "peddler/token").sort
+    end
+
     private
 
     def render_template
@@ -31,10 +35,6 @@ module Generator
 
     def template
       File.read(Config.template_path("entrypoint"))
-    end
-
-    def generate_require_statements
-      apis.map { |api| "require \"#{api.library_name}\"" }.join("\n")
     end
   end
 end

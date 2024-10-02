@@ -4,12 +4,16 @@ require "json"
 require "erb"
 
 require "generator/config"
+require "generator/formatter"
 require "generator/utils"
 require "generator/path"
 
 module Generator
   class API
+    include Formatter
     include Utils
+
+    OBSOLETE_APIS = ["reports_2020_09_04", "feeds_2020_09_04"]
 
     attr_reader :file
 
@@ -20,21 +24,18 @@ module Generator
     def generate
       return if obsolete?
 
-      File.write(output_file_path, render_template)
-    end
-
-    def operations
-      @operations ||= payload["paths"].flat_map do |path, methods|
-        Path.new(path, methods).operations
-      end.compact
+      File.write(file_path, render)
     end
 
     def title
-      payload["info"]["title"]
+      split_long_comment_line(model["info"]["title"], 4)
     end
 
     def description
-      payload["info"]["description"]
+      description = model["info"]["description"]
+      description = convert_doc_links_to_full_url(description)
+
+      split_long_comment_line(description, 4)
     end
 
     def library_name
@@ -49,22 +50,26 @@ module Generator
       [name, version].join("_")
     end
 
-    def payload
-      @payload ||= JSON.parse(File.read(file))
+    def obsolete?
+      OBSOLETE_APIS.any? { |api| name_with_version.include?(api) }
     end
 
-    def obsolete?
-      Config.obsolete?(name_with_version)
+    def operations
+      paths.flat_map(&:operations).compact
+    end
+
+    def paths
+      model["paths"].map { |path, methods| Path.new(path, methods) }
+    end
+
+    def file_path
+      File.join(Config::BASE_PATH, "lib/#{library_name}.rb")
     end
 
     private
 
-    def render_template
+    def render
       ERB.new(template, trim_mode: "-").result(binding)
-    end
-
-    def output_file_path
-      File.join(Config::BASE_PATH, "lib/#{library_name}.rb")
     end
 
     def template
@@ -76,7 +81,11 @@ module Generator
     end
 
     def version
-      payload["info"]["version"].tr("-", "_")
+      model["info"]["version"].tr("-", "_")
+    end
+
+    def model
+      @model ||= JSON.parse(File.read(file))
     end
   end
 end

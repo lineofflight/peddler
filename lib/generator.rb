@@ -18,8 +18,9 @@ module Generator
     private
 
     def initialize_directory
-      FileUtils.rm_rf(Config::OUTPUT_DIR)
-      FileUtils.mkdir_p(Config::OUTPUT_DIR)
+      output_dir = File.join(Config::BASE_PATH, "lib/peddler/api")
+      FileUtils.rm_rf(output_dir)
+      FileUtils.mkdir_p(output_dir)
     end
 
     def generate_apis
@@ -35,7 +36,11 @@ module Generator
     end
 
     def apis
-      @apis ||= Config.api_model_files.map { |file| API.new(file) }.reject(&:obsolete?)
+      api_model_files.map { |file| API.new(file) }.reject(&:obsolete?)
+    end
+
+    def api_model_files
+      Dir.glob(File.join(Config::BASE_PATH, "bin/selling-partner-api-models/models/**/*.json"))
     end
   end
 end

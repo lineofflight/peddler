@@ -13,6 +13,7 @@ module Generator
       parameters = parameters.select { |p| p["name"] }
       parameters << build_rate_limit_param
       parameters << build_notification_type_param if needs_notification_type?
+
       parameters
     end
 

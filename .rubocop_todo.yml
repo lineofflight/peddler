@@ -1,3 +1,6 @@
+Layout/EmptyComment:
+  Exclude:
+    - "lib/peddler/api/*.rb"
 Layout/LineLength:
   AllowedPatterns:
     - ^\s*\w+ = ".*"$

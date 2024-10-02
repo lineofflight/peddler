@@ -3,19 +3,18 @@ require "peddler/api"
 
 module Peddler
   class << self
-      def <%= name_with_version %>(...)
+    def <%= name_with_version %>(...)
       API::<%= class_name %>.new(...)
     end
   end
 
   class API
-    <%= format_text(title, 4) %>
+    <%= title %>
     #
-    <%= format_text(description, 4) %>
+    <%= description %>
     class <%= class_name %> < API
       <% operations.each do |operation| %>
         <%= operation.render %>
-
       <% end %>
     end
   end
