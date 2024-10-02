@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def fba_inventory_v1(...)
+      API::FBAInventoryV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for FBA Inventory
     #

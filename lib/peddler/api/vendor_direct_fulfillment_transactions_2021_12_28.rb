@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def vendor_direct_fulfillment_transactions_2021_12_28(...)
+      API::VendorDirectFulfillmentTransactions20211228.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Direct Fulfillment Transaction Status
     #

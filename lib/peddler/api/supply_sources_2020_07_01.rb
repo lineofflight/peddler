@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def supply_sources_2020_07_01(...)
+      API::SupplySources20200701.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Supply Sources
     #

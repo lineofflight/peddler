@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def feeds_2021_06_30(...)
+      API::Feeds20210630.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Feeds
     #

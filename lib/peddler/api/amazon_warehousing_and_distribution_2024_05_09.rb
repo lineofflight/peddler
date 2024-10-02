@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def amazon_warehousing_and_distribution_2024_05_09(...)
+      API::AmazonWarehousingAndDistribution20240509.new(...)
+    end
+  end
+
   class API
     # The Selling Partner API for Amazon Warehousing and Distribution
     #

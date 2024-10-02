@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def data_kiosk_2023_11_15(...)
+      API::DataKiosk20231115.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Data Kiosk
     #

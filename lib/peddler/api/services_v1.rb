@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def services_v1(...)
+      API::ServicesV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Services
     #
@@ -85,12 +91,10 @@ module Peddler
       #   is 50.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_service_jobs(
-        marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil, page_size: 20,
-        sort_field: nil, sort_order: nil, created_after: nil, created_before: nil, last_updated_after: nil,
-        last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil, required_skills: nil,
-        store_ids: nil, rate_limit: 10.0
-      )
+      def get_service_jobs(marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil,
+        page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil,
+        last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil,
+        required_skills: nil, store_ids: nil, rate_limit: 10.0)
 
         path = "/service/v1/serviceJobs"
         params = {

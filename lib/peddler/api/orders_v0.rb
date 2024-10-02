@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def orders_v0(...)
+      API::OrdersV0.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Orders
     #
@@ -105,14 +111,13 @@ module Peddler
       #   format.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_orders(
-        marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
-        order_statuses: nil, fulfillment_channels: nil, payment_methods: nil, buyer_email: nil, seller_order_id: nil,
-        max_results_per_page: nil, easy_ship_shipment_statuses: nil, electronic_invoice_statuses: nil, next_token: nil,
-        amazon_order_ids: nil, actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
+      def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil,
+        last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil,
+        buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil,
+        electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil,
+        actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
         earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
-        latest_delivery_date_after: nil, rate_limit: 0.0167
-      )
+        latest_delivery_date_after: nil, rate_limit: 0.0167)
 
         path = "/orders/v0/orders"
         params = {

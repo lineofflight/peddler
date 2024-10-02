@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def product_type_definitions_2020_09_01(...)
+      API::ProductTypeDefinitions20200901.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Product Type Definitions
     #

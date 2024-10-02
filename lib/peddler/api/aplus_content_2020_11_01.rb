@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def aplus_content_2020_11_01(...)
+      API::AplusContent20201101.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for A+ Content Management
     #

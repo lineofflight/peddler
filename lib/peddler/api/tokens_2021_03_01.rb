@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def tokens_2021_03_01(...)
+      API::Tokens20210301.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Tokens
     #

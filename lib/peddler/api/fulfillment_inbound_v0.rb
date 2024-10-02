@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def fulfillment_inbound_v0(...)
+      API::FulfillmentInboundV0.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Fulfillment Inbound
     #

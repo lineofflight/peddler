@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def catalog_items_v0(...)
+      API::CatalogItemsV0.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Catalog Items
     #

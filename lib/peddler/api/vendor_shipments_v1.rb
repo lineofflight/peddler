@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def vendor_shipments_v1(...)
+      API::VendorShipmentsV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Retail Procurement Shipments
     #
@@ -82,15 +88,13 @@ module Peddler
       #   same as 'sellingParty.partyId' in the Shipment.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def get_shipment_details(
-        limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
+      def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
         shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil,
         package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil,
         estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil,
         requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil,
         scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
-        buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0
-      )
+        buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
         cannot_sandbox!
 
         path = "/vendor/shipping/v1/shipments"

@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def product_fees_v0(...)
+      API::ProductFeesV0.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Product Fees
     #

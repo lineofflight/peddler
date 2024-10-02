@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def catalog_items_2022_04_01(...)
+      API::CatalogItems20220401.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Catalog Items
     #
@@ -37,11 +43,9 @@ module Peddler
       #   the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
       # @param [Float] rate_limit Requests per second
       # @return [Hash] The API response
-      def search_catalog_items(
-        marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"], locale: nil,
-        seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10, page_token: nil,
-        keywords_locale: nil, rate_limit: 2.0
-      )
+      def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"],
+        locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10,
+        page_token: nil, keywords_locale: nil, rate_limit: 2.0)
 
         path = "/catalog/2022-04-01/items"
         params = {

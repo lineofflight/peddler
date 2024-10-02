@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def replenishment_2022_11_07(...)
+      API::Replenishment20221107.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Replenishment
     #

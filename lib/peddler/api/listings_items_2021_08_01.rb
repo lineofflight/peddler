@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def listings_items_2021_08_01(...)
+      API::ListingsItems20210801.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Listings Items
     #

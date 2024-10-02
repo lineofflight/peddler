@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def fba_inbound_eligibility_v1(...)
+      API::FBAInboundEligibilityV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for FBA Inbound Eligibilty
     #

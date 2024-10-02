@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def shipping_v2(...)
+      API::ShippingV2.new(...)
+    end
+  end
+
   class API
     # Amazon Shipping API
     #

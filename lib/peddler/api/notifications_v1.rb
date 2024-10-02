@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def notifications_v1(...)
+      API::NotificationsV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Notifications
     #

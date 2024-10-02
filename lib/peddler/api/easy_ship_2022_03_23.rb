@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def easy_ship_2022_03_23(...)
+      API::EasyShip20220323.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Easy Ship
     #

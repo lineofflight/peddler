@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def application_management_2023_11_30(...)
+      API::ApplicationManagement20231130.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Application Management
     #

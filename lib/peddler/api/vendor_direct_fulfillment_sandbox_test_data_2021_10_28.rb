@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def vendor_direct_fulfillment_sandbox_test_data_2021_10_28(...)
+      API::VendorDirectFulfillmentSandboxTestData20211028.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data
     #

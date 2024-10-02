@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def vendor_transaction_status_v1(...)
+      API::VendorTransactionStatusV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Retail Procurement Transaction Status
     #

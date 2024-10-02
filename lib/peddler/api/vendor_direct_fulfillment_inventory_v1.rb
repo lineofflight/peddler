@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def vendor_direct_fulfillment_inventory_v1(...)
+      API::VendorDirectFulfillmentInventoryV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Direct Fulfillment Inventory Updates
     #

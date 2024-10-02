@@ -3,6 +3,12 @@
 require "peddler/api"
 
 module Peddler
+  class << self
+    def sales_v1(...)
+      API::SalesV1.new(...)
+    end
+  end
+
   class API
     # Selling Partner API for Sales
     #
