@@ -33,7 +33,7 @@ module Generator
       lines.reject! { |line| line.strip == "" }
       description = lines.join("\n").strip
 
-      description = convert_http_links_to_yard(description)
+      description = convert_html_links_to_yard(description)
       description = convert_doc_links_to_full_url(description)
 
       split_long_comment_line(description, 6)
@@ -61,7 +61,7 @@ module Generator
       output << "@return [Hash] The API response"
 
       output.map do |line|
-        line = convert_http_links_to_yard(line)
+        line = convert_html_links_to_yard(line)
         line = convert_doc_links_to_full_url(line)
         split_long_comment_line(line, 6, 2)
       end

@@ -54,7 +54,7 @@ module Generator
       end
     end
 
-    def convert_http_links_to_yard(text)
+    def convert_html_links_to_yard(text)
       text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
         url = Regexp.last_match(1)
         link_text = Regexp.last_match(2)
