@@ -36,7 +36,7 @@ module Generator
       description = convert_html_links_to_yard(description)
       description = convert_doc_links_to_full_url(description)
 
-      split_long_comment_line(description, 6)
+      split_long_comment_line(description, base_indent: 6)
     end
 
     def tags
@@ -63,7 +63,7 @@ module Generator
       output.map do |line|
         line = convert_html_links_to_yard(line)
         line = convert_doc_links_to_full_url(line)
-        split_long_comment_line(line, 6, 2)
+        split_long_comment_line(line, base_indent: 6, wrap_indent: 2)
       end
     end
 
@@ -81,7 +81,7 @@ module Generator
       end
       params = required_params + optional_params
 
-      build_method_definition(method_name, params, 6)
+      format_method_definition(method_name, params, base_indent: 6)
     end
 
     def sandbox_rule

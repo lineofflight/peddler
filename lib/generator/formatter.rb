@@ -4,8 +4,8 @@ module Generator
   module Formatter
     MAX_LINE_LENGTH = 120
 
-    def split_long_comment_line(line, base_indent, wrap_indent = 0)
-      max_width = MAX_LINE_LENGTH - base_indent - 2 # Account for the space and `#`
+    def split_long_comment_line(line, base_indent: 0, wrap_indent: 0, max_line_length: MAX_LINE_LENGTH)
+      max_width = max_line_length - base_indent - 2 # Account for the space and `#`
 
       current_line = []
       lines = []
@@ -23,11 +23,11 @@ module Generator
         lines << " " * base_indent + "# " + " " * (lines.empty? ? 0 : wrap_indent) + current_line.join(" ")
       end
 
-      lines.empty? ? " " * base_indent + "#\n" : lines.join("\n")
+      lines.empty? ? " " * base_indent + "#" : lines.join("\n")
     end
 
-    def build_method_definition(method_name, params, base_indent)
-      max_width = MAX_LINE_LENGTH - base_indent
+    def format_method_definition(method_name, params, base_indent: 0, max_line_length: MAX_LINE_LENGTH)
+      max_width = max_line_length - base_indent
 
       current_line = ["def #{method_name}("]
       lines = []

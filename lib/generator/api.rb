@@ -28,14 +28,14 @@ module Generator
     end
 
     def title
-      split_long_comment_line(model["info"]["title"], 4)
+      split_long_comment_line(model["info"]["title"], base_indent: 4)
     end
 
     def description
       description = model["info"]["description"]
       description = convert_doc_links_to_full_url(description)
 
-      split_long_comment_line(description, 4)
+      split_long_comment_line(description, base_indent: 4)
     end
 
     def library_name
