@@ -28,26 +28,25 @@ module Peddler
       # SKUs when encoding URLs, refer to URL Encoding.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param [Boolean] details true to return inventory summaries with additional summarized inventory details and
+      # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and
       #   quantities. Otherwise, returns inventory summaries only (default value).
-      # @param [String] granularity_type The granularity type for the inventory aggregation level.
-      # @param [String] granularity_id The granularity ID for the inventory aggregation level.
-      # @param [String] start_date_time A start date and time in ISO8601 format. If specified, all inventory summaries
+      # @param granularity_type [String] The granularity type for the inventory aggregation level.
+      # @param granularity_id [String] The granularity ID for the inventory aggregation level.
+      # @param start_date_time [String] A start date and time in ISO8601 format. If specified, all inventory summaries
       #   that have changed since then are returned. You must specify a date and time that is no earlier than 18 months
       #   prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity,
       #   inboundShippedQuantity and inboundReceivingQuantity are not detected.
-      # @param [Array<String>] seller_skus A list of seller SKUs for which to return inventory summaries. You may
+      # @param seller_skus [Array<String>] A list of seller SKUs for which to return inventory summaries. You may
       #   specify up to 50 SKUs.
-      # @param [String] seller_sku A single seller SKU used for querying the specified seller SKU inventory summaries.
-      # @param [String] next_token String token returned in the response of your previous request. The string token will
+      # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
+      # @param next_token [String] String token returned in the response of your previous request. The string token will
       #   expire 30 seconds after being created.
-      # @param [Array<String>] marketplace_ids The marketplace ID for the marketplace for which to return inventory
+      # @param marketplace_ids [Array<String>] The marketplace ID for the marketplace for which to return inventory
       #   summaries.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
-      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil,
-        start_date_time: nil, seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
-
+      def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
+        seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
         path = "/fba/inventory/v1/summaries"
         params = {
           "details" => details,
@@ -68,8 +67,8 @@ module Peddler
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param [Hash] create_inventory_item_request_body CreateInventoryItem Request Body Parameter.
-      # @param [Float] rate_limit Requests per second
+      # @param create_inventory_item_request_body [Hash] CreateInventoryItem Request Body Parameter.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def create_inventory_item(create_inventory_item_request_body, rate_limit: nil)
         must_sandbox!
@@ -85,9 +84,9 @@ module Peddler
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param [String] seller_sku A single seller SKU used for querying the specified seller SKU inventory summaries.
-      # @param [String] marketplace_id The marketplace ID for the marketplace for which the sellerSku is to be deleted.
-      # @param [Float] rate_limit Requests per second
+      # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
+      # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def delete_inventory_item(seller_sku, marketplace_id, rate_limit: nil)
         must_sandbox!
@@ -106,9 +105,9 @@ module Peddler
       # information.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param [String] x_amzn_idempotency_token A unique token/requestId provided with each call to ensure idempotency.
-      # @param [Hash] add_inventory_request_body List of items to add to Sandbox inventory.
-      # @param [Float] rate_limit Requests per second
+      # @param x_amzn_idempotency_token [String] A unique token/requestId provided with each call to ensure idempotency.
+      # @param add_inventory_request_body [Hash] List of items to add to Sandbox inventory.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def add_inventory(x_amzn_idempotency_token, add_inventory_request_body, rate_limit: nil)
         must_sandbox!

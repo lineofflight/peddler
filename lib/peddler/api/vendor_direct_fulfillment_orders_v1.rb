@@ -22,25 +22,24 @@ module Peddler
       # order.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] ship_from_party_id The vendor warehouse identifier for the fulfillment warehouse. If not
+      # @param ship_from_party_id [String] The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
-      # @param [String] status Returns only the purchase orders that match the specified status. If not specified, the
+      # @param status [String] Returns only the purchase orders that match the specified status. If not specified, the
       #   result will contain orders that match any status.
-      # @param [Integer] limit The limit to the number of purchase orders returned.
-      # @param [String] created_after Purchase orders that became available after this date and time will be included in
+      # @param limit [Integer] The limit to the number of purchase orders returned.
+      # @param created_after [String] Purchase orders that became available after this date and time will be included in
       #   the result. Must be in ISO-8601 date/time format.
-      # @param [String] created_before Purchase orders that became available before this date and time will be included
+      # @param created_before [String] Purchase orders that became available before this date and time will be included
       #   in the result. Must be in ISO-8601 date/time format.
-      # @param [String] sort_order Sort the list in ascending or descending order by order creation date.
-      # @param [String] next_token Used for pagination when there are more orders than the specified result size limit.
+      # @param sort_order [String] Sort the list in ascending or descending order by order creation date.
+      # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
-      # @param [String] include_details When true, returns the complete purchase order details. Otherwise, only purchase
+      # @param include_details [String] When true, returns the complete purchase order details. Otherwise, only purchase
       #   order numbers are returned.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
         next_token: nil, include_details: "true", rate_limit: 10.0)
-
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders"
         params = {
           "shipFromPartyId" => ship_from_party_id,
@@ -59,9 +58,9 @@ module Peddler
       # Returns purchase order information for the purchaseOrderNumber that you specify.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] purchase_order_number The order identifier for the purchase order that you want. Formatting
+      # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/v1/purchaseOrders/#{purchase_order_number}"
@@ -72,8 +71,8 @@ module Peddler
       # Submits acknowledgements for one or more purchase orders.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body The request body that contains the order acknowledgement.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] The request body that contains the order acknowledgement.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/v1/acknowledgements"

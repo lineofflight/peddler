@@ -20,8 +20,8 @@ module Peddler
       # Returns aggregated replenishment program metrics for a selling partner.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body The request body for the `getSellingPartnerMetrics` operation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] The request body for the `getSellingPartnerMetrics` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
@@ -32,8 +32,8 @@ module Peddler
       # Returns aggregated replenishment program metrics for a selling partner's offers.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body The request body for the `listOfferMetrics` operation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] The request body for the `listOfferMetrics` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def list_offer_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/metrics/search"
@@ -44,8 +44,8 @@ module Peddler
       # Returns the details of a selling partner's replenishment program offers.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body The request body for the `listOffers` operation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] The request body for the `listOffers` operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def list_offers(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/search"

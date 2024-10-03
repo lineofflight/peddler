@@ -18,8 +18,8 @@ module Peddler
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body Request schema for GetEligibleShipmentServices operation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] Request schema for GetEligibleShipmentServices operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_eligible_shipment_services(body, rate_limit: 5.0)
         path = "/mfn/v0/eligibleShippingServices"
@@ -30,8 +30,8 @@ module Peddler
       # Returns the shipment information for an existing shipment.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment.
-      # @param [Float] rate_limit Requests per second
+      # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{shipment_id}"
@@ -42,8 +42,8 @@ module Peddler
       # Cancel the shipment indicated by the specified shipment identifier.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] shipment_id The Amazon-defined shipment identifier for the shipment to cancel.
-      # @param [Float] rate_limit Requests per second
+      # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment to cancel.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def cancel_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{shipment_id}"
@@ -54,8 +54,8 @@ module Peddler
       # Create a shipment with the information provided.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body Request schema for CreateShipment operation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] Request schema for CreateShipment operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def create_shipment(body, rate_limit: 1.0)
         path = "/mfn/v0/shipments"
@@ -67,8 +67,8 @@ module Peddler
       # shipping.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body Request schema for GetAdditionalSellerInputs operation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] Request schema for GetAdditionalSellerInputs operation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_additional_seller_inputs(body, rate_limit: 1.0)
         path = "/mfn/v0/additionalSellerInputs"

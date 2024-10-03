@@ -21,8 +21,8 @@ module Peddler
       # Create a new shipment.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def create_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/shipments"
@@ -33,8 +33,8 @@ module Peddler
       # Return the entire shipment object for the shipmentId.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] shipment_id
-      # @param [Float] rate_limit Requests per second
+      # @param shipment_id [String]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}"
@@ -45,8 +45,8 @@ module Peddler
       # Cancel a shipment by the given shipmentId.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] shipment_id
-      # @param [Float] rate_limit Requests per second
+      # @param shipment_id [String]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def cancel_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/cancel"
@@ -57,9 +57,9 @@ module Peddler
       # Purchase shipping labels based on a given rate.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] shipment_id
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param shipment_id [String]
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def purchase_labels(shipment_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
@@ -70,10 +70,10 @@ module Peddler
       # Retrieve shipping label based on the shipment id and tracking id.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] shipment_id
-      # @param [String] tracking_id
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param shipment_id [String]
+      # @param tracking_id [String]
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
@@ -84,8 +84,8 @@ module Peddler
       # Purchase shipping labels.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def purchase_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/purchaseShipment"
@@ -96,8 +96,8 @@ module Peddler
       # Get service rates.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_rates(body, rate_limit: 5.0)
         path = "/shipping/v1/rates"
@@ -108,7 +108,7 @@ module Peddler
       # Verify if the current account is valid.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_account(rate_limit: 5.0)
         path = "/shipping/v1/account"
@@ -119,8 +119,8 @@ module Peddler
       # Return the tracking information of a shipment.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] tracking_id
-      # @param [Float] rate_limit Requests per second
+      # @param tracking_id [String]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_tracking_information(tracking_id, rate_limit: 1.0)
         path = "/shipping/v1/tracking/#{tracking_id}"

@@ -23,9 +23,9 @@ module Peddler
       # subscription identifier.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] payload_version The version of the payload object to be used in the notification.
-      # @param [Float] rate_limit Requests per second
-      # @param [String] notification_type The type of notification. For more information about notification types, refer
+      # @param payload_version [String] The version of the payload object to be used in the notification.
+      # @param rate_limit [Float] Requests per second
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Hash] The API response
       def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
@@ -43,9 +43,9 @@ module Peddler
       # to a different payload version if you already have an existing subscription for a different payload version.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
-      # @param [String] notification_type The type of notification. For more information about notification types, refer
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Hash] The API response
       def create_subscription(body, notification_type, rate_limit: 1.0)
@@ -59,9 +59,9 @@ module Peddler
       # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] subscription_id The identifier for the subscription that you want to get.
-      # @param [Float] rate_limit Requests per second
-      # @param [String] notification_type The type of notification. For more information about notification types, refer
+      # @param subscription_id [String] The identifier for the subscription that you want to get.
+      # @param rate_limit [Float] Requests per second
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Hash] The API response
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
@@ -77,9 +77,9 @@ module Peddler
       # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] subscription_id The identifier for the subscription that you want to delete.
-      # @param [Float] rate_limit Requests per second
-      # @param [String] notification_type The type of notification. For more information about notification types, refer
+      # @param subscription_id [String] The identifier for the subscription that you want to delete.
+      # @param rate_limit [Float] Requests per second
+      # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Hash] The API response
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
@@ -92,7 +92,7 @@ module Peddler
       # refer to [Grantless operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       #
       # @note This operation can make a static sandbox call.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_destinations(rate_limit: 1.0)
         path = "/notifications/v1/destinations"
@@ -105,8 +105,8 @@ module Peddler
       # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def create_destination(body, rate_limit: 1.0)
         path = "/notifications/v1/destinations"
@@ -119,8 +119,8 @@ module Peddler
       # operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] destination_id The identifier generated when you created the destination.
-      # @param [Float] rate_limit Requests per second
+      # @param destination_id [String] The identifier generated when you created the destination.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{destination_id}"
@@ -132,8 +132,8 @@ module Peddler
       # refer to [Grantless operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] destination_id The identifier for the destination that you want to delete.
-      # @param [Float] rate_limit Requests per second
+      # @param destination_id [String] The identifier for the destination that you want to delete.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def delete_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{destination_id}"

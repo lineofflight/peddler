@@ -15,31 +15,30 @@ module Peddler
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
     class ProductPricingV0 < API
-      # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
-      # @note The parameters associated with this operation may contain special characters that require URL encoding to
-      #   call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
-      #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Returns pricing information for a seller's offer listings based on seller SKU or ASIN. **Note:** The parameters
+      # associated with this operation may contain special characters that require URL encoding to call the API. To
+      # avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
-      # @param [Array<String>] asins A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
+      # @param asins [Array<String>] A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
       #   identify items in the given marketplace.
-      # @param [Array<String>] skus A list of up to twenty seller SKU values used to identify items in the given
+      # @param skus [Array<String>] A list of up to twenty seller SKU values used to identify items in the given
       #   marketplace.
-      # @param [String] item_type Indicates whether ASIN values or seller SKU values are used to identify items. If you
+      # @param item_type [String] Indicates whether ASIN values or seller SKU values are used to identify items. If you
       #   specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
       #   parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you
       #   provide in the Skus parameter.
-      # @param [String] item_condition Filters the offer listings based on item condition. Possible values: New, Used,
+      # @param item_condition [String] Filters the offer listings based on item condition. Possible values: New, Used,
       #   Collectible, Refurbished, Club.
-      # @param [String] offer_type Indicates whether to request pricing information for the seller's B2C or B2B offers.
+      # @param offer_type [String] Indicates whether to request pricing information for the seller's B2C or B2B offers.
       #   Default is B2C.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil,
         rate_limit: 0.5)
-
         path = "/products/pricing/v0/price"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -53,29 +52,27 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
-      # @note The parameters associated with this operation may contain special characters that require URL encoding to
-      #   call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
-      #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN. **Note:** The
+      # parameters associated with this operation may contain special characters that require URL encoding to call the
+      # API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
-      # @param [Array<String>] asins A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
+      # @param asins [Array<String>] A list of up to twenty Amazon Standard Identification Number (ASIN) values used to
       #   identify items in the given marketplace.
-      # @param [Array<String>] skus A list of up to twenty seller SKU values used to identify items in the given
+      # @param skus [Array<String>] A list of up to twenty seller SKU values used to identify items in the given
       #   marketplace.
-      # @param [String] item_type Indicates whether ASIN values or seller SKU values are used to identify items. If you
+      # @param item_type [String] Indicates whether ASIN values or seller SKU values are used to identify items. If you
       #   specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins
       #   parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you
       #   provide in the Skus parameter. Possible values: Asin, Sku.
-      # @param [String] customer_type Indicates whether to request pricing information from the point of view of
+      # @param customer_type [String] Indicates whether to request pricing information from the point of view of
       #   Consumer or Business buyers. Default is Consumer.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
-      def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil,
-        rate_limit: 0.5)
-
+      def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil, rate_limit: 0.5)
         path = "/products/pricing/v0/competitivePrice"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -88,20 +85,19 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Returns the lowest priced offers for a single SKU listing.
-      # @note The parameters associated with this operation may contain special characters that require URL encoding to
-      #   call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
-      #   Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Returns the lowest priced offers for a single SKU listing. **Note:** The parameters associated with this
+      # operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs
+      # when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
-      # @param [String] item_condition Filters the offer listings based on item condition. Possible values: New, Used,
+      # @param item_condition [String] Filters the offer listings based on item condition. Possible values: New, Used,
       #   Collectible, Refurbished, Club.
-      # @param [String] seller_sku Identifies an item in the given marketplace. SellerSKU is qualified by the seller's
+      # @param seller_sku [String] Identifies an item in the given marketplace. SellerSKU is qualified by the seller's
       #   SellerId, which is included with every operation that you submit.
-      # @param [String] customer_type Indicates whether to request Consumer or Business offers. Default is Consumer.
-      # @param [Float] rate_limit Requests per second
+      # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0)
         path = "/products/pricing/v0/listings/#{seller_sku}/offers"
@@ -117,13 +113,13 @@ module Peddler
       # Returns the lowest priced offers for a single item based on ASIN.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] marketplace_id A marketplace identifier. Specifies the marketplace for which prices are
+      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
-      # @param [String] item_condition Filters the offer listings to be considered based on item condition. Possible
+      # @param item_condition [String] Filters the offer listings to be considered based on item condition. Possible
       #   values: New, Used, Collectible, Refurbished, Club.
-      # @param [String] asin The Amazon Standard Identification Number (ASIN) of the item.
-      # @param [String] customer_type Indicates whether to request Consumer or Business offers. Default is Consumer.
-      # @param [Float] rate_limit Requests per second
+      # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
+      # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5)
         path = "/products/pricing/v0/items/#{asin}/offers"
@@ -139,8 +135,8 @@ module Peddler
       # Returns the lowest priced offers for a batch of items based on ASIN.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] get_item_offers_batch_request_body
-      # @param [Float] rate_limit Requests per second
+      # @param get_item_offers_batch_request_body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
         path = "/batches/products/pricing/v0/itemOffers"
@@ -152,8 +148,8 @@ module Peddler
       # Returns the lowest priced offers for a batch of listings by SKU.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] get_listing_offers_batch_request_body
-      # @param [Float] rate_limit Requests per second
+      # @param get_listing_offers_batch_request_body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
         path = "/batches/products/pricing/v0/listingOffers"

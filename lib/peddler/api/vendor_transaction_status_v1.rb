@@ -17,9 +17,9 @@ module Peddler
     class VendorTransactionStatusV1 < API
       # Returns the status of the transaction that you specify.
       #
-      # @param [String] transaction_id The GUID provided by Amazon in the 'transactionId' field in response to the post
+      # @param transaction_id [String] The GUID provided by Amazon in the 'transactionId' field in response to the post
       #   request of a specific transaction.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_transaction(transaction_id, rate_limit: 10.0)
         cannot_sandbox!

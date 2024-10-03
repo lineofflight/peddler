@@ -18,9 +18,9 @@ module Peddler
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body The request body that contains the inventory update data to submit.
-      # @param [String] warehouse_id Identifier for the warehouse for which to update inventory.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] The request body that contains the inventory update data to submit.
+      # @param warehouse_id [String] Identifier for the warehouse for which to update inventory.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{warehouse_id}/items"

@@ -18,8 +18,8 @@ module Peddler
       # Submits one or more shipment confirmations for vendor orders.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body A request to submit shipment confirmation.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] A request to submit shipment confirmation.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmations"
@@ -29,8 +29,8 @@ module Peddler
 
       # Submits one or more shipment request for vendor Orders.
       #
-      # @param [Hash] body A request to submit shipment request.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] A request to submit shipment request.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def submit_shipments(body, rate_limit: 10.0)
         cannot_sandbox!
@@ -43,50 +43,50 @@ module Peddler
       # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
       # related to shipment based on the filter parameters value that you specify.
       #
-      # @param [Integer] limit The limit to the number of records returned. Default value is 50 records.
-      # @param [String] sort_order Sort in ascending or descending order by purchase order creation date.
-      # @param [String] next_token Used for pagination when there are more shipments than the specified result size
+      # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param next_token [String] Used for pagination when there are more shipments than the specified result size
       #   limit.
-      # @param [String] created_after Get Shipment Details that became available after this timestamp will be included
-      #   in the result. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] created_before Get Shipment Details that became available before this timestamp will be included
-      #   in the result. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] shipment_confirmed_before Get Shipment Details by passing Shipment confirmed create Date Before.
-      #   Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] shipment_confirmed_after Get Shipment Details by passing Shipment confirmed create Date After.
-      #   Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] package_label_created_before Get Shipment Details by passing Package label create Date by buyer.
-      #   Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] package_label_created_after Get Shipment Details by passing Package label create Date After by
-      #   buyer. Must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] shipped_before Get Shipment Details by passing Shipped Date Before. Must be in [ISO
-      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] shipped_after Get Shipment Details by passing Shipped Date After. Must be in [ISO
-      #   8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] estimated_delivery_before Get Shipment Details by passing Estimated Delivery Date Before. Must
-      #   be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] estimated_delivery_after Get Shipment Details by passing Estimated Delivery Date Before. Must be
-      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] shipment_delivery_before Get Shipment Details by passing Shipment Delivery Date Before. Must be
-      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] shipment_delivery_after Get Shipment Details by passing Shipment Delivery Date After. Must be in
-      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] requested_pick_up_before Get Shipment Details by passing Before Requested pickup date. Must be
-      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] requested_pick_up_after Get Shipment Details by passing After Requested pickup date. Must be in
-      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] scheduled_pick_up_before Get Shipment Details by passing Before scheduled pickup date. Must be
-      #   in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] scheduled_pick_up_after Get Shipment Details by passing After Scheduled pickup date. Must be in
-      #   [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-      # @param [String] current_shipment_status Get Shipment Details by passing Current shipment status.
-      # @param [String] vendor_shipment_identifier Get Shipment Details by passing Vendor Shipment ID
-      # @param [String] buyer_reference_number Get Shipment Details by passing buyer Reference ID
-      # @param [String] buyer_warehouse_code Get Shipping Details based on buyer warehouse code. This value should be
+      # @param created_after [String] Get Shipment Details that became available after this timestamp will be included
+      #   in the result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param created_before [String] Get Shipment Details that became available before this timestamp will be included
+      #   in the result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param shipment_confirmed_before [String] Get Shipment Details by passing Shipment confirmed create Date Before.
+      #   Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param shipment_confirmed_after [String] Get Shipment Details by passing Shipment confirmed create Date After.
+      #   Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param package_label_created_before [String] Get Shipment Details by passing Package label create Date by buyer.
+      #   Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param package_label_created_after [String] Get Shipment Details by passing Package label create Date After by
+      #   buyer. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param shipped_before [String] Get Shipment Details by passing Shipped Date Before. Must be in {ISO 8601
+      #   https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param shipped_after [String] Get Shipment Details by passing Shipped Date After. Must be in {ISO 8601
+      #   https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param estimated_delivery_before [String] Get Shipment Details by passing Estimated Delivery Date Before. Must
+      #   be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param estimated_delivery_after [String] Get Shipment Details by passing Estimated Delivery Date Before. Must be
+      #   in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param shipment_delivery_before [String] Get Shipment Details by passing Shipment Delivery Date Before. Must be
+      #   in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param shipment_delivery_after [String] Get Shipment Details by passing Shipment Delivery Date After. Must be in
+      #   {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param requested_pick_up_before [String] Get Shipment Details by passing Before Requested pickup date. Must be
+      #   in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param requested_pick_up_after [String] Get Shipment Details by passing After Requested pickup date. Must be in
+      #   {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param scheduled_pick_up_before [String] Get Shipment Details by passing Before scheduled pickup date. Must be
+      #   in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param scheduled_pick_up_after [String] Get Shipment Details by passing After Scheduled pickup date. Must be in
+      #   {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      # @param current_shipment_status [String] Get Shipment Details by passing Current shipment status.
+      # @param vendor_shipment_identifier [String] Get Shipment Details by passing Vendor Shipment ID
+      # @param buyer_reference_number [String] Get Shipment Details by passing buyer Reference ID
+      # @param buyer_warehouse_code [String] Get Shipping Details based on buyer warehouse code. This value should be
       #   same as 'shipToParty.partyId' in the Shipment.
-      # @param [String] seller_warehouse_code Get Shipping Details based on vendor warehouse code. This value should be
+      # @param seller_warehouse_code [String] Get Shipping Details based on vendor warehouse code. This value should be
       #   same as 'sellingParty.partyId' in the Shipment.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
         shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil,

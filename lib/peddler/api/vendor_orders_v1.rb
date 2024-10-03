@@ -21,37 +21,36 @@ module Peddler
       # purchase order.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Integer] limit The limit to the number of records returned. Default value is 100 records.
-      # @param [String] created_after Purchase orders that became available after this time will be included in the
+      # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
+      # @param created_after [String] Purchase orders that became available after this time will be included in the
       #   result. Must be in ISO-8601 date/time format.
-      # @param [String] created_before Purchase orders that became available before this time will be included in the
+      # @param created_before [String] Purchase orders that became available before this time will be included in the
       #   result. Must be in ISO-8601 date/time format.
-      # @param [String] sort_order Sort in ascending or descending order by purchase order creation date.
-      # @param [String] next_token Used for pagination when there is more purchase orders than the specified result size
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param next_token [String] Used for pagination when there is more purchase orders than the specified result size
       #   limit. The token value is returned in the previous API call
-      # @param [String] include_details When true, returns purchase orders with complete details. Otherwise, only
+      # @param include_details [String] When true, returns purchase orders with complete details. Otherwise, only
       #   purchase order numbers are returned. Default value is true.
-      # @param [String] changed_after Purchase orders that changed after this timestamp will be included in the result.
+      # @param changed_after [String] Purchase orders that changed after this timestamp will be included in the result.
       #   Must be in ISO-8601 date/time format.
-      # @param [String] changed_before Purchase orders that changed before this timestamp will be included in the
+      # @param changed_before [String] Purchase orders that changed before this timestamp will be included in the
       #   result. Must be in ISO-8601 date/time format.
-      # @param [String] po_item_state Current state of the purchase order item. If this value is Cancelled, this API
+      # @param po_item_state [String] Current state of the purchase order item. If this value is Cancelled, this API
       #   will return purchase orders which have one or more items cancelled by Amazon with updated item quantity as
       #   zero.
-      # @param [String] is_po_changed When true, returns purchase orders which were modified after the order was placed.
+      # @param is_po_changed [String] When true, returns purchase orders which were modified after the order was placed.
       #   Vendors are required to pull the changed purchase order and fulfill the updated purchase order and not the
       #   original one. Default value is false.
-      # @param [String] purchase_order_state Filters purchase orders based on the purchase order state.
-      # @param [String] ordering_vendor_code Filters purchase orders based on the specified ordering vendor code. This
+      # @param purchase_order_state [String] Filters purchase orders based on the purchase order state.
+      # @param ordering_vendor_code [String] Filters purchase orders based on the specified ordering vendor code. This
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in the filter, all
       #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
       #   application are returned.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_purchase_orders(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil,
         include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil,
         purchase_order_state: nil, ordering_vendor_code: nil, rate_limit: 10.0)
-
         path = "/vendor/orders/v1/purchaseOrders"
         params = {
           "limit" => limit,
@@ -74,9 +73,9 @@ module Peddler
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] purchase_order_number The purchase order identifier for the order that you want. Formatting
+      # @param purchase_order_number [String] The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_purchase_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/orders/v1/purchaseOrders/#{purchase_order_number}"
@@ -87,8 +86,8 @@ module Peddler
       # Submits acknowledgements for one or more purchase orders.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash]
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/orders/v1/acknowledgements"
@@ -101,42 +100,41 @@ module Peddler
       # order status by providing the purchase order number.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Integer] limit The limit to the number of records returned. Default value is 100 records.
-      # @param [String] sort_order Sort in ascending or descending order by purchase order creation date.
-      # @param [String] next_token Used for pagination when there are more purchase orders than the specified result
+      # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
+      # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
+      # @param next_token [String] Used for pagination when there are more purchase orders than the specified result
       #   size limit.
-      # @param [String] created_after Purchase orders that became available after this timestamp will be included in the
+      # @param created_after [String] Purchase orders that became available after this timestamp will be included in the
       #   result. Must be in ISO-8601 date/time format.
-      # @param [String] created_before Purchase orders that became available before this timestamp will be included in
+      # @param created_before [String] Purchase orders that became available before this timestamp will be included in
       #   the result. Must be in ISO-8601 date/time format.
-      # @param [String] updated_after Purchase orders for which the last purchase order update happened after this
+      # @param updated_after [String] Purchase orders for which the last purchase order update happened after this
       #   timestamp will be included in the result. Must be in ISO-8601 date/time format.
-      # @param [String] updated_before Purchase orders for which the last purchase order update happened before this
+      # @param updated_before [String] Purchase orders for which the last purchase order update happened before this
       #   timestamp will be included in the result. Must be in ISO-8601 date/time format.
-      # @param [String] purchase_order_number Provides purchase order status for the specified purchase order number.
-      # @param [String] purchase_order_status Filters purchase orders based on the specified purchase order status. If
+      # @param purchase_order_number [String] Provides purchase order status for the specified purchase order number.
+      # @param purchase_order_status [String] Filters purchase orders based on the specified purchase order status. If
       #   not included in filter, this will return purchase orders for all statuses.
-      # @param [String] item_confirmation_status Filters purchase orders based on their item confirmation status. If the
+      # @param item_confirmation_status [String] Filters purchase orders based on their item confirmation status. If the
       #   item confirmation status is not included in the filter, purchase orders for all confirmation statuses are
       #   included.
-      # @param [String] item_receive_status Filters purchase orders based on the purchase order's item receive status.
+      # @param item_receive_status [String] Filters purchase orders based on the purchase order's item receive status.
       #   If the item receive status is not included in the filter, purchase orders for all receive statuses are
       #   included.
-      # @param [String] ordering_vendor_code Filters purchase orders based on the specified ordering vendor code. This
+      # @param ordering_vendor_code [String] Filters purchase orders based on the specified ordering vendor code. This
       #   value should be same as 'sellingParty.partyId' in the purchase order. If not included in filter, all purchase
       #   orders for all the vendor codes that exist in the vendor group used to authorize API client application are
       #   returned.
-      # @param [String] ship_to_party_id Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by
+      # @param ship_to_party_id [String] Filters purchase orders for a specific buyer's Fulfillment Center/warehouse by
       #   providing ship to location id here. This value should be same as 'shipToParty.partyId' in the purchase order.
       #   If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor
       #   group purchase orders.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil,
         created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil,
         purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil,
         ship_to_party_id: nil, rate_limit: 10.0)
-
         path = "/vendor/orders/v1/purchaseOrdersStatus"
         params = {
           "limit" => limit,

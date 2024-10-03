@@ -15,8 +15,8 @@ module Peddler
     # The Selling Partner API for Tokens provides a secure way to access a customer's PII (Personally Identifiable
     # Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted
     # resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the
-    # restricted resources that you specified. For more information, see the [Tokens API Use Case
-    # Guide](https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide).
+    # restricted resources that you specified. For more information, see the {Tokens API Use Case Guide
+    # https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide}.
     class Tokens20210301 < API
       # Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted
       # resource is the HTTP method and path from a restricted operation that returns Personally Identifiable
@@ -25,8 +25,8 @@ module Peddler
       # calls to the corresponding restricted operations.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Hash] body The restricted data token request details.
-      # @param [Float] rate_limit Requests per second
+      # @param body [Hash] The restricted data token request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def create_restricted_data_token(body, rate_limit: 1.0)
         path = "/tokens/2021-03-01/restrictedDataToken"

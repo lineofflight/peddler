@@ -23,11 +23,11 @@ module Peddler
       # you want to determine the item's eligibility.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Array<String>] marketplace_ids The identifier for the marketplace in which you want to determine
+      # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
       #   eligibility. Required only when program=INBOUND.
-      # @param [String] asin The ASIN of the item for which you want an eligibility preview.
-      # @param [String] program The program that you want to check eligibility against.
-      # @param [Float] rate_limit Requests per second
+      # @param asin [String] The ASIN of the item for which you want an eligibility preview.
+      # @param program [String] The program that you want to check eligibility against.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
         path = "/fba/inbound/v1/eligibility/itemPreview"

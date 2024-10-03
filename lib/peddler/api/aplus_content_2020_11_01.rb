@@ -21,13 +21,13 @@ module Peddler
       # metadata of the A+ Content documents. Call the getContentDocument operation to get the actual contents of the A+
       # Content documents.
       #
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [String] page_token A page token from the nextPageToken response element returned by your previous call
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param page_token [String] A page token from the nextPageToken response element returned by your previous call
       #   to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next
       #   page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
         cannot_sandbox!
@@ -43,9 +43,9 @@ module Peddler
 
       # Creates a new A+ Content document.
       #
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Hash] post_content_document_request The content document request details.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param post_content_document_request [Hash] The content document request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0)
         cannot_sandbox!
@@ -61,12 +61,12 @@ module Peddler
 
       # Returns an A+ Content document, if available.
       #
-      # @param [String] content_reference_key The unique reference key for the A+ Content document. A content reference
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Array<String>] included_data_set The set of A+ Content data types to include in the response.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
         cannot_sandbox!
@@ -82,12 +82,12 @@ module Peddler
 
       # Updates an existing A+ Content document.
       #
-      # @param [String] content_reference_key The unique reference key for the A+ Content document. A content reference
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Hash] post_content_document_request The content document request details.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param post_content_document_request [Hash] The content document request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request,
         rate_limit: 10.0)
@@ -105,19 +105,19 @@ module Peddler
       # Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the
       # asinSet parameter, the operation returns all ASINs related to the content document.
       #
-      # @param [String] content_reference_key The unique reference key for the A+ Content document. A content reference
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Array<String>] included_data_set The set of A+ Content data types to include in the response. If you do
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response. If you do
       #   not include this parameter, the operation returns the related ASINs without metadata.
-      # @param [Array<String>] asin_set The set of ASINs.
-      # @param [String] page_token A page token from the nextPageToken response element returned by your previous call
+      # @param asin_set [Array<String>] The set of ASINs.
+      # @param page_token [String] A page token from the nextPageToken response element returned by your previous call
       #   to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next
       #   page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
         asin_set: nil, page_token: nil, rate_limit: 10.0)
@@ -138,12 +138,12 @@ module Peddler
       # depending on the current set of related ASINs. Removing an ASIN has the side effect of suspending the content
       # document from that ASIN.
       #
-      # @param [String] content_reference_key The unique reference key for the A+ Content document. A content reference
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ content identifier.
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Hash] post_content_document_asin_relations_request The content document ASIN relations request details.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param post_content_document_asin_relations_request [Hash] The content document ASIN relations request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
         post_content_document_asin_relations_request, rate_limit: 10.0)
@@ -160,10 +160,10 @@ module Peddler
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
       #
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Array<String>] asin_set The set of ASINs.
-      # @param [Hash] post_content_document_request The content document request details.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param asin_set [Array<String>] The set of ASINs.
+      # @param post_content_document_request [Hash] The content document request details.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil,
         rate_limit: 10.0)
@@ -181,14 +181,14 @@ module Peddler
 
       # Searches for A+ Content publishing records, if available.
       #
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [String] asin The Amazon Standard Identification Number (ASIN).
-      # @param [String] page_token A page token from the nextPageToken response element returned by your previous call
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param asin [String] The Amazon Standard Identification Number (ASIN).
+      # @param page_token [String] A page token from the nextPageToken response element returned by your previous call
       #   to this operation. nextPageToken is returned when the results of a call exceed the page size. To get the next
       #   page of results, call the operation and include pageToken as the only parameter. Specifying pageToken with any
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
         cannot_sandbox!
@@ -205,11 +205,11 @@ module Peddler
 
       # Submits an A+ Content document for review, approval, and publishing.
       #
-      # @param [String] content_reference_key The unique reference key for the A+ Content document. A content reference
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ content identifier.
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         cannot_sandbox!
@@ -225,11 +225,11 @@ module Peddler
       # Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN
       # relations.
       #
-      # @param [String] content_reference_key The unique reference key for the A+ Content document. A content reference
+      # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and may change in the future. A content reference key is not guaranteed to match
       #   any A+ content identifier.
-      # @param [String] marketplace_id The identifier for the marketplace where the A+ Content is published.
-      # @param [Float] rate_limit Requests per second
+      # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         cannot_sandbox!

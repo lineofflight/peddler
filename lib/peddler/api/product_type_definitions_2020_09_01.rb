@@ -16,26 +16,25 @@ module Peddler
     # requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type
     # that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the
     # Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds). For
-    # more information, see the [Product Type Definitions API Use Case
-    # Guide](https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide).
+    # more information, see the {Product Type Definitions API Use Case Guide
+    # https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide}.
     class ProductTypeDefinitions20200901 < API
       # Search for and return a list of Amazon product types that have definitions available.
       #
       # @note This operation can make a static sandbox call.
-      # @param [Array<String>] keywords A comma-delimited list of keywords to search product types. **Note:** Cannot be
+      # @param keywords [Array<String>] A comma-delimited list of keywords to search product types. **Note:** Cannot be
       #   used with `itemName`.
-      # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
-      # @param [String] item_name The title of the ASIN to get the product type recommendation. **Note:** Cannot be used
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param item_name [String] The title of the ASIN to get the product type recommendation. **Note:** Cannot be used
       #   with `keywords`.
-      # @param [String] locale The locale for the display names in the response. Defaults to the primary locale of the
+      # @param locale [String] The locale for the display names in the response. Defaults to the primary locale of the
       #   marketplace.
-      # @param [String] search_locale The locale used for the `keywords` and `itemName` parameters. Defaults to the
+      # @param search_locale [String] The locale used for the `keywords` and `itemName` parameters. Defaults to the
       #   primary locale of the marketplace.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil,
         search_locale: nil, rate_limit: 5.0)
-
         path = "/definitions/2020-09-01/productTypes"
         params = {
           "keywords" => keywords,
@@ -51,26 +50,25 @@ module Peddler
       # Retrieve an Amazon product type definition.
       #
       # @note This operation can make a static sandbox call.
-      # @param [String] product_type The Amazon product type name.
-      # @param [String] seller_id A selling partner identifier. When provided, seller-specific requirements and values
+      # @param product_type [String] The Amazon product type name.
+      # @param seller_id [String] A selling partner identifier. When provided, seller-specific requirements and values
       #   are populated within the product type definition schema, such as brand names associated with the selling
       #   partner.
-      # @param [Array<String>] marketplace_ids A comma-delimited list of Amazon marketplace identifiers for the request.
+      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
       #   Note: This parameter is limited to one marketplaceId at this time.
-      # @param [String] product_type_version The version of the Amazon product type to retrieve. Defaults to "LATEST",.
+      # @param product_type_version [String] The version of the Amazon product type to retrieve. Defaults to "LATEST",.
       #   Prerelease versions of product type definitions may be retrieved with "RELEASE_CANDIDATE". If no prerelease
       #   version is currently available, the "LATEST" live version will be provided.
-      # @param [String] requirements The name of the requirements set to retrieve requirements for.
-      # @param [String] requirements_enforced Identifies if the required attributes for a requirements set are enforced
+      # @param requirements [String] The name of the requirements set to retrieve requirements for.
+      # @param requirements_enforced [String] Identifies if the required attributes for a requirements set are enforced
       #   by the product type definition schema. Non-enforced requirements enable structural validation of individual
       #   attributes without all the required attributes being present (such as for partial updates).
-      # @param [String] locale Locale for retrieving display labels and other presentation details. Defaults to the
+      # @param locale [String] Locale for retrieving display labels and other presentation details. Defaults to the
       #   default language of the first marketplace in the request.
-      # @param [Float] rate_limit Requests per second
+      # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
         requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", rate_limit: 5.0)
-
         path = "/definitions/2020-09-01/productTypes/#{product_type}"
         params = {
           "sellerId" => seller_id,
