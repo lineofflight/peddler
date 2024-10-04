@@ -25,7 +25,7 @@ module Peddler
       # sellerSkus. The sellerSku parameter is ignored. - When the sellerSku parameter is provided, the operation
       # returns inventory summaries for only the specified sellerSku. Note: The parameters associated with this
       # operation may contain special characters that must be encoded to successfully call the API. To avoid errors with
-      # SKUs when encoding URLs, refer to URL Encoding.
+      # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a dynamic sandbox call.
       # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and

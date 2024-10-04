@@ -183,18 +183,6 @@ module Peddler
         meter(rate_limit).get(path)
       end
 
-      # Returns the fulfillment instructions for the order that you specify.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
-      # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
-      def get_order_fulfillment_instructions(order_id, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/fulfillmentInstructions"
-
-        meter(rate_limit).get(path)
-      end
-
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
       # retrieve the next page of order items. __Note__: When an order is in the Pending state (the order has been
       # placed but payment has not been authorized), the getOrderItems operation does not return information about
