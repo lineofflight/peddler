@@ -27,10 +27,10 @@ module Peddler
       #   returned will match at least one of the marketplaces that you specify.
       # @param page_size [Integer] The maximum number of reports to return in a single call.
       # @param created_since [String] The earliest report creation date and time for reports to include in the response,
-      #   in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date time format. The default is 90 days
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is 90 days
       #   ago. Reports are retained for a maximum of 90 days.
       # @param created_until [String] The latest report creation date and time for reports to include in the response,
-      #   in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date time format. The default is now.
+      #   in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format. The default is now.
       # @param next_token [String] A string token returned in the response to your previous request. `nextToken` is
       #   returned when the number of results exceeds the specified `pageSize` value. To get the next page of results,
       #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any

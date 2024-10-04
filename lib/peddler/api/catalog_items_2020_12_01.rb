@@ -13,8 +13,9 @@ module Peddler
     # Selling Partner API for Catalog Items
     #
     # The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon
-    # catalog. For more information, see the {Catalog Items API Use Case Guide
-    # https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide}.
+    # catalog. For more information, see the
+    # {https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide Catalog Items API Use
+    # Case Guide}.
     class CatalogItems20201201 < API
       # Search for and return a list of Amazon catalog items and associated information.
       #

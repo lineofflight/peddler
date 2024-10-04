@@ -41,9 +41,9 @@ module Peddler
       #   sorted in DESCENDING order.
       # @param shipment_status [String] Filter by inbound shipment status.
       # @param updated_after [String] List the inbound shipments that were updated after a certain time (inclusive). The
-      #   date must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      #   date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param updated_before [String] List the inbound shipments that were updated before a certain time (inclusive).
-      #   The date must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} format.
+      #   The date must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
       # @param max_results [Integer] Maximum number of results to return.
       # @param next_token [String] Token to retrieve the next set of paginated results.
       # @param rate_limit [Float] Requests per second

@@ -24,9 +24,9 @@ module Peddler
       #   will contain orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned.
       # @param created_after [String] Shipping labels that became available after this date and time will be included in
-      #   the result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date/time format.
+      #   the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
       # @param created_before [String] Shipping labels that became available before this date and time will be included
-      #   in the result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date/time format.
+      #   in the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
       #   limit. The token value is returned in the previous API call.
@@ -107,9 +107,9 @@ module Peddler
       #   will contain orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned
       # @param created_after [String] Orders that became available after this date and time will be included in the
-      #   result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date/time format.
+      #   result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
       # @param created_before [String] Orders that became available before this date and time will be included in the
-      #   result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date/time format.
+      #   result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
@@ -150,9 +150,9 @@ module Peddler
       #   will contain orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned
       # @param created_after [String] Packing slips that became available after this date and time will be included in
-      #   the result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date/time format.
+      #   the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
       # @param created_before [String] Packing slips that became available before this date and time will be included in
-      #   the result. Must be in {ISO 8601 https://developer-docs.amazon.com/sp-api/docs/iso-8601} date/time format.
+      #   the result. Must be in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
       # @param sort_order [String] Sort ASC or DESC by packing slip creation date.
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.

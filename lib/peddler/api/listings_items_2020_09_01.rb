@@ -15,8 +15,8 @@ module Peddler
     # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
     # you use to retrieve the information about Amazon product types needed to use the Listings Items API. For more
-    # information, see the {Listing Items API Use Case Guide
-    # https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide}.
+    # information, see the {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide
+    # Listing Items API Use Case Guide}.
     class ListingsItems20200901 < API
       # Delete a listings item for a selling partner. **Note:** The parameters associated with this operation may
       # contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when

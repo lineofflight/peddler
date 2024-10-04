@@ -50,7 +50,7 @@ module Generator
         path = Regexp.last_match(2)
         url = "https://developer-docs.amazon.com/sp-api/docs/#{path}"
 
-        "{#{link_text} #{url}}"
+        "{#{url} #{link_text}}"
       end
     end
 
@@ -59,7 +59,7 @@ module Generator
         url = Regexp.last_match(1)
         link_text = Regexp.last_match(2)
 
-        "{#{link_text} #{url}}"
+        "{#{url} #{link_text}}"
       end
     end
   end
