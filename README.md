@@ -6,7 +6,7 @@
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
-To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials on Amazon][view-credentials]. You'll use these to access data for your own seller account or retrieve data on behalf of others.
+To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
 
 ![Peddler](https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true)
 
@@ -49,7 +49,7 @@ refresh_token = Peddled::Token.request(
 ).parse["refresh_token"]
 ```
 
-You'll use this to generate temporary access tokens to authenticate individual API requests. Here’s how you can request one in Peddler.
+You use this to generate a temporary access token to authenticate individual API requests.
 
 ```ruby
 access_token = Peddler::Token.request(
@@ -57,7 +57,7 @@ access_token = Peddler::Token.request(
 ).parse["access_token"]
 ```
 
-You can also request a token for grantless operations.
+Similarly, you can request a token for grantless operations.
 
 ```ruby
 access_token = Peddler::Token.request(
@@ -65,7 +65,7 @@ access_token = Peddler::Token.request(
 ).parse["access_token"]
 ```
 
-If you haven’t set your LWA credentials as environment variables, you can pass them directly when requesting an access token:
+If you haven’t set your LWA credentials as environment variables, pass them directly when requesting the token.
 
 ```ruby
 access_token = Peddler::Token.request(
@@ -75,16 +75,20 @@ access_token = Peddler::Token.request(
 ).parse["access_token"]
 ```
 
-Access tokens are valid for one hour. To optimize performance, cache the token and reuse it across calls instead of generating a new one each time.
+Access tokens are valid for one hour. To optimize performance, cache the token and reuse across calls.
 
-In Rails, if you're storing a refresh token in a model representing a selling partner, you can implement a method like this to cache access tokens:
+In Rails, if you're storing a refresh token in a model representing a selling partner, implement a method there to retrieve and cache access tokens:
 
 ```ruby
-def access_token
-  Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
-    Peddler::Token.request(
-      refresh_token:,
-    ).parse["access_token"]
+class Seller
+  "..."
+
+  def access_token
+    Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
+      Peddler::Token.request(
+        refresh_token:,
+      ).parse["access_token"]
+    end
   end
 end
 ```
@@ -93,7 +97,7 @@ end
 
 Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. Peddler respects these limits and automatically backs off when throttled. To override the default rate limit, pass a `:rate_limit` argument when running an operation.
 
-**Note:** This functionality requires version 6 of the underlying [HTTP library][httprb]. As of writing, this is not released yet. To use rate limiting, point to the main branch of their GitHub repo.
+**Note:** This functionality requires version 6 of the underlying [HTTP library][httprb]. As of writing, this is not released yet. To use rate limiting, point to their main branch on GitHub.
 
 ### The APIs
 
@@ -103,11 +107,9 @@ Peddler provides a class for each API version under an eponymous namespace. Belo
 
 Provides programmatic access to Amazon's catalog data, such as item titles, descriptions, and other product details.
 
-**Example:**
-
 ```ruby
-client = Peddler.catalog_items_20220401("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_catalog_item(
+api = Peddler.catalog_items_2022_04_01(aws_region, access_token)
+response = api.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
 )
@@ -118,27 +120,24 @@ items = response.parse.dig("items")
 
 Allows you to retrieve order information, including order details, buyer information, and order items.
 
-**Example:**
-
 ```ruby
-client = Peddler.orders_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_orders(
+api = Peddler.orders_v0(aws_region, access_token)
+response = api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
 )
-orders = response.parse.dig("orders")
+response.parse.dig("orders")
 ```
 
 #### Feeds API (2021-06-30)
 
 Enables you to upload data to Amazon for updating listings, prices, inventory, and more.
 
-**Example:**
-
 ```ruby
-client = Peddler.feeds_20210630("<AWS_REGION>", "<ACCESS_TOKEN>")
+api = Peddler.feeds_2021_06_30(aws_region, access_token)
+
 # Create a feed document to get an upload URL
-response = client.create_feed_document(
+response = api.create_feed_document(
   contentType: "text/xml; charset=UTF-8"
 )
 feed_document_id = response.parse["feedDocumentId"]
@@ -146,41 +145,37 @@ upload_url = response.parse["url"]
 
 # Upload the feed content to the provided URL
 feed_content = File.read("inventory_update.xml")
-client.upload_feed_document(upload_url, feed_content)
+api.upload_feed_document(upload_url, feed_content)
 
 # Create the feed
-response = client.create_feed(
+response = api.create_feed(
   feedType: "POST_INVENTORY_AVAILABILITY_DATA",
   marketplaceIds: ["ATVPDKIKX0DER"],
   inputFeedDocumentId: feed_document_id
 )
-feed_id = response.parse["feedId"]
+response.parse["feedId"]
 ```
 
 #### Reports API (2021-06-30)
 
 Allows you to request and download various reports, such as order and inventory reports.
 
-**Example:**
-
 ```ruby
-client = Peddler.reports_20210630("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.create_report(
+api = Peddler.reports_2021_06_30(aws_region, access_token)
+response = api.create_report(
   reportType: "GET_FLAT_FILE_OPEN_LISTINGS_DATA",
   marketplaceIds: ["ATVPDKIKX0DER"]
 )
-report_id = response.parse["reportId"]
+response.parse["reportId"]
 ```
 
 #### Listings Items API (2021-08-01)
 
 Enables you to manage your product listings on Amazon, including creating, updating, and deleting listings.
 
-**Example:**
-
 ```ruby
-client = Peddler.listings_items_20210801("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.put_listings_item(
+api = Peddler.listings_items_2021_08_01(aws_region, access_token)
+response = api.put_listings_item(
   "<SELLER_ID>",
   "SKU123",
   "ATVPDKIKX0DER",
@@ -195,19 +190,17 @@ response = client.put_listings_item(
     }
   }
 )
-result = response.parse
+response.parse
 ```
 
 #### Notifications API (v1)
 
 Allows you to subscribe to notifications for specific events like order status updates or feed processing statuses.
 
-**Example:**
-
 ```ruby
-client = Peddler.notifications_v1("<AWS_REGION>", "<ACCESS_TOKEN>")
+api = Peddler.notifications_v1(aws_region, access_token)
 # Create a destination
-response = client.create_destination(
+response = api.create_destination(
   name: "MySQSQueue",
   resourceSpecification: {
     sqs: {
@@ -218,7 +211,7 @@ response = client.create_destination(
 destination_id = response.parse["destinationId"]
 
 # Create a subscription
-response = client.create_subscription(
+response = api.create_subscription(
   notificationType: "ANY_OFFER_CHANGED",
   destinationId: destination_id
 )
@@ -229,11 +222,9 @@ subscription = response.parse
 
 Provides information about fees that may be charged for selling products on Amazon.
 
-**Example:**
-
 ```ruby
-client = Peddler.product_fees_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_my_fees_estimate_for_sku(
+api = Peddler.product_fees_v0(aws_region, access_token)
+response = api.get_my_fees_estimate_for_sku(
   sellerId: "<YOUR_SELLER_ID>",
   sku: "SKU123",
   body: {
@@ -256,11 +247,9 @@ fees_estimate = response.parse
 
 Allows you to create and manage fulfillment orders using Amazon's fulfillment network.
 
-**Example:**
-
 ```ruby
-client = Peddler.fulfillment_outbound_20200701("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.create_fulfillment_order(
+api = Peddler.fulfillment_outbound_2020_07_01(aws_region, access_token)
+response = api.create_fulfillment_order(
   body: {
     sellerFulfillmentOrderId: "ORDER123",
     displayableOrderId: "ORDER123",
@@ -284,18 +273,16 @@ response = client.create_fulfillment_order(
     ]
   }
 )
-result = response.parse
+response.parse
 ```
 
 #### Merchant Fulfillment API (v0)
 
 Allows you to create shipping labels for orders using Amazon's negotiated shipping rates.
 
-**Example:**
-
 ```ruby
-client = Peddler.merchant_fulfillment_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_eligible_shipping_services(
+api = Peddler.merchant_fulfillment_v0(aws_region, access_token)
+response = api.get_eligible_shipping_services(
   body: {
     shipmentRequestDetails: {
       amazonOrderId: "ORDER123",
@@ -337,11 +324,9 @@ shipping_services = response.parse["shippingServiceList"]
 
 Allows vendors to retrieve purchase orders and order details from Amazon.
 
-**Example:**
-
 ```ruby
-client = Peddler.vendor_orders_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_purchase_orders(
+api = Peddler.vendor_orders_2021_12_28(aws_region, access_token)
+response = api.get_purchase_orders(
   shipToPartyId: "<PARTY_ID>",
   limit: 10,
   createdAfter: "2023-01-01T00:00:00Z"
@@ -353,40 +338,36 @@ purchase_orders = response.parse["purchaseOrders"]
 
 Enables vendors to manage shipping labels and shipping information for direct fulfillment orders.
 
-**Example:**
 
 ```ruby
-client = Peddler.vendor_direct_fulfillment_shipping_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_packing_slip(
+api = Peddler.vendor_direct_fulfillment_shipping_2021_12_28(aws_region, access_token)
+response = api.get_packing_slip(
   purchaseOrderNumber: "PO123456789"
 )
-packing_slip = response.parse
+response.parse
 ```
 
 #### Vendor Direct Fulfillment Orders API (2021-12-28)
 
 Allows vendors to receive orders for direct fulfillment and provide shipment confirmations.
 
-**Example:**
 
 ```ruby
-client = Peddler.vendor_direct_fulfillment_orders_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_orders(
+api = Peddler.vendor_direct_fulfillment_orders_2021_12_28(aws_region, access_token)
+response = api.get_orders(
   createdAfter: "2023-01-01T00:00:00Z",
   limit: 10
 )
-orders = response.parse["orders"]
+response.parse["orders"]
 ```
 
 #### Vendor Direct Fulfillment Inventory API (2021-12-28)
 
 Enables vendors to update inventory levels for direct fulfillment items.
 
-**Example:**
-
 ```ruby
-client = Peddler.vendor_direct_fulfillment_inventory_20211228("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.submit_inventory_update(
+api = Peddler.vendor_direct_fulfillment_inventory_2021_12_28(aws_region, access_token)
+response = api.submit_inventory_update(
   body: {
     inventory: [
       {
@@ -407,18 +388,16 @@ response = client.submit_inventory_update(
     ]
   }
 )
-result = response.parse
+response.parse
 ```
 
 #### Shipping API (v2)
 
 Provides functionalities for purchasing shipping labels and tracking shipments.
 
-**Example:**
-
 ```ruby
-client = Peddler.shipping_v2("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.purchase_shipment(
+api = Peddler.shipping_v2(aws_region, access_token)
+response = api.purchase_shipment(
   body: {
     clientReferenceId: "CLIENT_REF_123",
     shipTo: {
@@ -454,18 +433,16 @@ response = client.purchase_shipment(
     serviceType: "Standard"
   }
 )
-shipment = response.parse
+response.parse
 ```
 
 #### Token API (2021-03-01)
 
 Allows you to create restricted data tokens to access personally identifiable information (PII) in specific API calls.
 
-**Example:**
-
 ```ruby
-client = Peddler.tokens_20210301("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.create_restricted_data_token(
+api = Peddler.tokens_2021_03_01(aws_region, access_token)
+response = api.create_restricted_data_token(
   body: {
     restrictedResources: [
       {
@@ -479,39 +456,42 @@ response = client.create_restricted_data_token(
 restricted_data_token = response.parse["restrictedDataToken"]
 
 # Use the token in subsequent API calls
-orders_client = Peddler.orders_20211201("<AWS_REGION>", restricted_data_token)
-response = orders_client.get_order(
+orders_api = Peddler.orders_2021_12_01("<AWS_REGION>", restricted_data_token)
+response = orders_api.get_order(
   orderId: "123-1234567-1234567"
 )
-order_details = response.parse
+response.parse
 ```
 
 #### Finances API (v0)
 
 Provides information about financial events for your seller account, such as order payments, refunds, and fees.
 
-**Example:**
-
 ```ruby
-client = Peddler.finances_v0("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.list_financial_events(
+api = Peddler.finances_v0(aws_region, access_token)
+response = api.list_financial_events(
   postedAfter: "2023-01-01T00:00:00Z",
   maxResultsPerPage: 100
 )
-financial_events = response.parse["FinancialEvents"]
+response.parse
 ```
 
 #### Sellers API (V1)
 
 Provides information about seller's marketplaces and participation status.
 
-**Example:**
-
 ```ruby
-client = Peddler.sellers_v1("<AWS_REGION>", "<ACCESS_TOKEN>")
-response = client.get_marketplace_participations
-participations = response.parse["payload"]
+api = Peddler.sellers_v1(aws_region, access_token)
+response = api.get_marketplace_participations
+response.parse
 ```
+
+## TODO
+
+- Code generate models to parse payload. Consider using `dry-struct`.
+- Code generate the APIs section—descriptions and code examples—in this README here.
+- Schedule code generation with GitHub Actions. Push new gem when models change.
+- Review and consider applying [these patches][patches].
 
 [build]: https://github.com/hakanensari/peddler/actions
 [maintainability]: https://codeclimate.com/github/hakanensari/peddler/maintainability
@@ -523,3 +503,4 @@ participations = response.parse["payload"]
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
 [rate-limits]: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
 [httprb]: https://github.com/httprb/http
+[patches]: https://github.com/bizon/selling-partner-api-sdk/tree/master/codegen/patches

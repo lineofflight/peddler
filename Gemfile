@@ -5,6 +5,8 @@ source "https://rubygems.org"
 gemspec
 
 group :development do
+  # TODO: Remove the version guard when Yard handles changes in the new Commonmarker
+  gem "commonmarker", "~> 0.23.10"
   gem "minitest"
   gem "rake"
   gem "rubocop"
