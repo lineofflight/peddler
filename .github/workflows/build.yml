@@ -14,7 +14,6 @@ jobs:
       - run: bundle exec rubocop
 
   verify-links:
-    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +23,6 @@ jobs:
       - run: bin/verify-links
 
   test:
-    needs: [verify-links]
     strategy:
       matrix:
         ruby: ["3.2", "3.3"]
@@ -39,7 +37,7 @@ jobs:
 
   coverage:
     if: github.event_name == 'push'
-    needs: [test]
+    needs: [lint, verify-links, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
