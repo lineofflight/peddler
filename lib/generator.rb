@@ -6,6 +6,7 @@ require "generator/config"
 require "generator/api"
 require "generator/entrypoint"
 
+# @!visibility private
 module Generator
   class << self
     def generate
