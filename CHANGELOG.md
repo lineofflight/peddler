@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [3.0.0] - 2024-10-04
+
+### Added
+
+- Add new APIS
+    - Application Integrations 2024-04-01
+    - Finances 2024-06-19
+    - Invoices 2024-06-19
+- Implement sandbox mode
+- Add convenience methods for the APIs at the top level
+- Add (back) marketplace model
+
+### Fixed
+
+- Refactor token to handle authorization workflows
+
 ## [3.0.0.beta1] - 2024-09-15
 
 ### Changed
@@ -332,6 +348,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.0 - 2015-08-25
 
 [unreleased]: https://github.com/hakanensari/peddler/compare/v2.4.5...HEAD
+[3.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0.beta1...v3.0.0
+[3.0.0.beta1]: https://github.com/hakanensari/peddler/compare/v2.4.5...v3.0.0.beta1
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.3...v2.4.4
 [2.4.3]: https://github.com/hakanensari/peddler/compare/v2.4.2...v2.4.3
