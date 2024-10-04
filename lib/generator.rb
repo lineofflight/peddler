@@ -40,7 +40,7 @@ module Generator
     end
 
     def api_model_files
-      Dir.glob(File.join(Config::BASE_PATH, "bin/selling-partner-api-models/models/**/*.json"))
+      Dir.glob(File.join(Config::BASE_PATH, "selling-partner-api-models/models/**/*.json"))
     end
   end
 end
