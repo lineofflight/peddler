@@ -39,14 +39,14 @@ module Generator
 
     def test_convert_doc_links_to_full_url
       text = "Refer to [API Documentation](doc:api-doc)."
-      expected = "Refer to {API Documentation https://developer-docs.amazon.com/sp-api/docs/api-doc}."
+      expected = "Refer to {https://developer-docs.amazon.com/sp-api/docs/api-doc API Documentation}."
 
       assert_equal(expected, convert_doc_links_to_full_url(text))
     end
 
     def test_convert_html_links_to_yard
       text = 'Refer to <a href="https://example.com">Example</a>.'
-      expected = "Refer to {Example https://example.com}."
+      expected = "Refer to {https://example.com Example}."
 
       assert_equal(expected, convert_html_links_to_yard(text))
     end
