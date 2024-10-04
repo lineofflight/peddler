@@ -15,7 +15,7 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 Add this line to your Gemfile.
 
 ```ruby
-gem "peddler", "3.0.0.beta1"
+gem "peddler", "~> 3.0"
 ```
 
 And then execute:
