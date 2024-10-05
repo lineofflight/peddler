@@ -13,7 +13,7 @@ module Peddler
         res = api.get_listings_restrictions(
           "188864544X",
           "A34PPN1ZLYCOGT",
-          "A1F83G8C2ARO7P",
+          Marketplace.id("UK"),
           condition_type: "new_new",
         )
 

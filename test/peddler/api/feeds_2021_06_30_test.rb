@@ -37,16 +37,16 @@ module Peddler
               "attributes": {
                 "merchant_suggested_asin": [{
                   "value": "188864544X",
-                  "marketplace_id": "A1F83G8C2ARO7P",
+                  "marketplace_id": Marketplace.id("UK"),
                 }],
                 "condition_type": [{
                   "value": "new_new",
-                  "marketplace_id": "A1F83G8C2ARO7P",
+                  "marketplace_id": Marketplace.id("UK"),
                 }],
                 "merchant_shipping_group": [
                   {
                     "value": "legacy-template-id",
-                    "marketplace_id": "A1F83G8C2ARO7P",
+                    "marketplace_id": Marketplace.id("UK"),
                   },
                 ],
                 "fulfillment_availability": [{
@@ -71,7 +71,7 @@ module Peddler
                       "value_with_tax": 450,
                     }],
                   }],
-                  "marketplace_id": "A1F83G8C2ARO7P",
+                  "marketplace_id": Marketplace.id("UK"),
                 }],
               },
             },
@@ -83,7 +83,7 @@ module Peddler
 
         payload = {
           "feedType" => "JSON_LISTINGS_FEED",
-          "marketplaceIds" => ["A1F83G8C2ARO7P"],
+          "marketplaceIds" => Marketplace.ids("UK"),
           "inputFeedDocumentId" => feed_document_id,
         }
         res = api.create_feed(payload)

@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Added
+
+- Marketplace.id and Marketplace.ids shorthands
+
 ## [3.0.0] - 2024-10-04
 
 ### Added

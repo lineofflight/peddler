@@ -10,19 +10,19 @@ module Peddler
       include FeatureHelpers
 
       def test_get_pricing
-        res = api.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
+        res = api.get_pricing(Marketplace.id("UK"), "Asin", asins: ["188864544X"])
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_competitive_pricing
-        res = api.get_competitive_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
+        res = api.get_competitive_pricing(Marketplace.id("UK"), "Asin", asins: ["188864544X"])
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_item_offers
-        res = api.get_item_offers("A1F83G8C2ARO7P", "New", "B0CHXFCYCR")
+        res = api.get_item_offers(Marketplace.id("UK"), "New", "B0CHXFCYCR")
 
         assert_predicate(res.status, :ok?)
       end
@@ -33,13 +33,13 @@ module Peddler
             {
               "uri" => "/products/pricing/v0/items/B0CHXFCYCR/offers",
               "method" => "GET",
-              "MarketplaceId" => "A1F83G8C2ARO7P",
+              "MarketplaceId" => Marketplace.id("UK"),
               "ItemCondition" => "New",
             },
             {
               "uri" => "/products/pricing/v0/items/B0CHXFCYCR/offers",
               "method" => "GET",
-              "MarketplaceId" => "A1F83G8C2ARO7P",
+              "MarketplaceId" => Marketplace.id("UK"),
               "ItemCondition" => "Used",
             },
 

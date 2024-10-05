@@ -6,7 +6,6 @@ require "peddler/marketplace"
 module Peddler
   class MarketplaceTest < Minitest::Test
     def setup
-      country_code = MARKETPLACE_IDS.keys.sample
       @marketplace = Marketplace.find(country_code)
     end
 
@@ -32,8 +31,26 @@ module Peddler
 
     def test_invalid_country_code
       assert_raises(ArgumentError) do
-        Marketplace.new("FOO").id
+        Marketplace.find("FOO")
       end
+    end
+
+    def test_id_class_method
+      assert(Marketplace.id(country_code))
+    end
+
+    def test_id_gb
+      assert_equal("A1F83G8C2ARO7P", Marketplace.id("GB"))
+    end
+
+    def test_ids
+      assert(Marketplace.ids(*MARKETPLACE_IDS.keys))
+    end
+
+    private
+
+    def country_code
+      MARKETPLACE_IDS.keys.sample
     end
   end
 end

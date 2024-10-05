@@ -13,7 +13,7 @@ module Peddler
         res = api.create_report(
           {
             "reportType" => "GET_MERCHANTS_LISTINGS_FYP_REPORT",
-            "marketplaceIds" => ["A1F83G8C2ARO7P"],
+            "marketplaceIds" => Marketplace.ids("UK"),
           },
         )
 

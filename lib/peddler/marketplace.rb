@@ -33,17 +33,35 @@ module Peddler
     class << self
       # @param [String] country_code
       def find(country_code)
-        values = MARKETPLACE_IDS.fetch(country_code) do
+        values = MARKETPLACE_IDS.fetch(country_code == "GB" ? "UK" : country_code) do
           raise ArgumentError, "#{country_code} not found"
         end
 
         new(**values.merge(country_code: country_code))
+      end
+
+      # @param [String] country_code
+      # @return [String]
+      def id(country_code)
+        find(country_code).id
+      end
+
+      # @param [Array<String>] country_codes
+      # @return [Array<String>]
+      def ids(*country_codes)
+        country_codes.map { |country_code| id(country_code) }
       end
     end
 
     # @return [Peddler::Endpoint]
     def endpoint
       Endpoint.find_by_selling_region(selling_region)
+    end
+
+    # @note So HTTP can encode
+    # @return [String]
+    def to_str
+      id
     end
   end
 end

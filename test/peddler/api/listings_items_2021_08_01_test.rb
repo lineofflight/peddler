@@ -16,16 +16,16 @@ module Peddler
           attributes: {
             merchant_suggested_asin: [{
               value: "188864544X",
-              marketplace_id: "A1F83G8C2ARO7P",
+              marketplace_id: Marketplace.id("UK"),
             }],
             condition_type: [{
               value: "new_new",
-              marketplace_id: "A1F83G8C2ARO7P",
+              marketplace_id: Marketplace.id("UK"),
             }],
             merchant_shipping_group: [
               {
                 value: "legacy-template-id",
-                marketplace_id: "A1F83G8C2ARO7P",
+                marketplace_id: Marketplace.id("UK"),
               },
             ],
             fulfillment_availability: [{
@@ -50,12 +50,12 @@ module Peddler
                   value_with_tax: 450,
                 }],
               }],
-              marketplace_id: "A1F83G8C2ARO7P",
+              marketplace_id: Marketplace.id("UK"),
             }],
           },
         }
 
-        res = api.put_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
+        res = api.put_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.id("UK"), body)
 
         assert_predicate(res.status, :ok?)
       end
@@ -79,7 +79,7 @@ module Peddler
           ],
         }
 
-        res = api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P", body)
+        res = api.patch_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.id("UK"), body)
 
         assert_predicate(res.status, :ok?)
       end
@@ -88,7 +88,7 @@ module Peddler
         res = api.get_listings_item(
           "A34PPN1ZLYCOGT",
           "SKU123",
-          "A1F83G8C2ARO7P",
+          Marketplace.id("UK"),
           included_data: "attributes,issues",
         )
 
@@ -96,7 +96,7 @@ module Peddler
       end
 
       def test_delete_listings_item
-        res = api.delete_listings_item("A34PPN1ZLYCOGT", "SKU123", "A1F83G8C2ARO7P")
+        res = api.delete_listings_item("A34PPN1ZLYCOGT", "SKU123", Marketplace.id("UK"))
 
         assert_predicate(res.status, :ok?)
       end
