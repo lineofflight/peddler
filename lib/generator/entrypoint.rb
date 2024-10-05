@@ -20,7 +20,7 @@ module Generator
     end
 
     def required_libraries
-      apis.map(&:library_name).append("peddler/marketplace", "peddler/token").sort
+      apis.map(&:library_name).append("peddler/token").sort
     end
 
     private

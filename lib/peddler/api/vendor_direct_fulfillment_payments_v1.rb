@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "peddler/api"
+require "peddler/marketplace"
 
 module Peddler
   class << self
