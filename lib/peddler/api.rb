@@ -5,6 +5,7 @@ require "http"
 require "peddler/endpoint"
 require "peddler/error"
 require "peddler/marketplace"
+require "peddler/response_decorator"
 require "peddler/version"
 
 module Peddler
@@ -12,6 +13,11 @@ module Peddler
   class API
     class CannotSandbox < StandardError; end
     class MustSandbox < StandardError; end
+
+    class << self
+      # @return [#call]
+      attr_accessor :parser
+    end
 
     # @return [Peddler::Endpoint]
     attr_reader :endpoint
@@ -122,8 +128,17 @@ module Peddler
           raise error if error
         end
 
-        response
+        ResponseDecorator.decorate(response, parser:)
       end
+    end
+
+    # @param [#call]
+    attr_writer :parser
+
+    # @!attribute [r]
+    # @return [#call]
+    def parser
+      @parser || self.class.parser
     end
 
     private
