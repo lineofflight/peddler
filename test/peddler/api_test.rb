@@ -20,18 +20,6 @@ module Peddler
       assert_includes(@api.sandbox.endpoint_uri.host, "sandbox")
     end
 
-    def test_cannot_sandbox
-      assert_raises(API::CannotSandbox) do
-        @api.sandbox.cannot_sandbox!
-      end
-    end
-
-    def test_must_sandbox
-      assert_raises(API::MustSandbox) do
-        @api.must_sandbox!
-      end
-    end
-
     def test_host_header
       assert(@api.http.default_options.headers["Host"])
     end

@@ -9,7 +9,7 @@ module Peddler
     extend Forwardable
 
     # @!method dig(*key)
-    #   Delegates to the Hash returned by {Response#to_h} to extract a nested
+    #   Delegates to the Hash returned by {ResponseDecorator#to_h} to extract a nested
     #   value specified by the sequence of keys
     #
     #   @param [String] key one or more keys

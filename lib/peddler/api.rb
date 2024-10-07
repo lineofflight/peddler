@@ -38,6 +38,8 @@ module Peddler
       sandbox? ? endpoint.sandbox : endpoint.production
     end
 
+    # Switches to the SP-API sandbox to make test calls
+    #
     # @see https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox
     # @return [self]
     def sandbox
@@ -48,16 +50,6 @@ module Peddler
     # @return [Boolean]
     def sandbox?
       @sandbox
-    end
-
-    # @raise [CannotSandbox] if in a sandbox environment
-    def cannot_sandbox!
-      raise CannotSandbox, "cannot run in a sandbox" if sandbox?
-    end
-
-    # @raise [MustSandbox] unless in a sandbox environment
-    def must_sandbox!
-      raise MustSandbox, "must run in a sandbox" unless sandbox?
     end
 
     # @see https://developer-docs.amazon.com/sp-api/docs/include-a-user-agent-header-in-all-requests
@@ -132,16 +124,23 @@ module Peddler
       end
     end
 
-    # @param [#call]
     attr_writer :parser
 
-    # @!attribute [r]
+    # @!attribute parser
     # @return [#call]
     def parser
       @parser || self.class.parser
     end
 
     private
+
+    def cannot_sandbox!
+      raise CannotSandbox, "cannot run in a sandbox" if sandbox?
+    end
+
+    def must_sandbox!
+      raise MustSandbox, "must run in a sandbox" unless sandbox?
+    end
 
     def user_agent
       "Peddler/#{Peddler::VERSION} (Language=Ruby; #{Socket.gethostname})"
