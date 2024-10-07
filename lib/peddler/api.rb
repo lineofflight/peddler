@@ -4,6 +4,7 @@ require "http"
 
 require "peddler/endpoint"
 require "peddler/error"
+require "peddler/marketplace"
 require "peddler/version"
 
 module Peddler
