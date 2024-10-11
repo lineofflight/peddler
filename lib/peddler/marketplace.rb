@@ -29,6 +29,16 @@ module Peddler
     "JP" => { id: "A1VC38T7YXB528", country_name: "Japan", selling_region: "Far East" },
   }
 
+  # @!parse
+  #   # Wraps an Amazon marketplace
+  #   #
+  #   # @api public
+  #   #
+  #   # @!attribute [r] id
+  #   # @!attribute [r] country_code
+  #   # @!attribute [r] country_name
+  #   # @!attribute [r] selling_region
+  #   class Peddler::Marketplace < Data; end
   Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) do
     class << self
       # Finds the marketplace for the given country code
