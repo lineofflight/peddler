@@ -19,7 +19,7 @@ module Peddler
         assert_predicate(res.status, :ok?)
 
         # And download the JSON schema
-        url = res.parse.dig("schema", "link", "resource")
+        url = res.dig("schema", "link", "resource")
         json_schema = HTTP.get(url).parse(:json)
 
         assert(json_schema)

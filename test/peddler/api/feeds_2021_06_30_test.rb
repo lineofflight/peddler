@@ -105,7 +105,7 @@ module Peddler
         assert_predicate(res.status, :ok?)
 
         # Just exploring the result feed document
-        url = res.parse.dig("url")
+        url = res.dig("url")
         res = HTTP.get(url)
         body = Zlib::GzipReader.new(res).read
 

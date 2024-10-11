@@ -4,6 +4,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)][maintainability]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)][test-coverage]
 
+> ⚠️ This README explains the main branch, which may contain unreleased code. For the README of the latest release, please refer to [this link][latest-release-readme].
+
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
@@ -113,7 +115,7 @@ response = api.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
 )
-items = response.parse.dig("items")
+items = response.dig("items")
 ```
 
 #### Orders API (v0)
@@ -126,7 +128,7 @@ response = api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
 )
-response.parse.dig("orders")
+response.dig("orders")
 ```
 
 #### Feeds API (2021-06-30)
@@ -496,6 +498,7 @@ response.parse
 [build]: https://github.com/hakanensari/peddler/actions
 [maintainability]: https://codeclimate.com/github/hakanensari/peddler/maintainability
 [test-coverage]: https://codeclimate.com/github/hakanensari/peddler/test_coverage
+[latest-release-readme]: https://github.com/lineofflight/peddler/tree/v3.0.0
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
