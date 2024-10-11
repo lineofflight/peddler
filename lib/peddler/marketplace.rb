@@ -31,6 +31,8 @@ module Peddler
 
   Marketplace = Data.define(:id, :country_code, :country_name, :selling_region) do
     class << self
+      # Finds the marketplace for the given country code
+      #
       # @param [String] country_code
       def find(country_code)
         values = MARKETPLACE_IDS.fetch(country_code == "GB" ? "UK" : country_code) do
@@ -40,16 +42,29 @@ module Peddler
         new(**values.merge(country_code: country_code))
       end
 
+      # Returns the marketplace ID for the given country code
+      #
       # @param [String] country_code
       # @return [String]
       def id(country_code)
         find(country_code).id
       end
 
+      # Returns the marketplace IDs for the given country codes
+      #
       # @param [Array<String>] country_codes
       # @return [Array<String>]
       def ids(*country_codes)
         country_codes.map { |country_code| id(country_code) }
+      end
+
+      # Returns all marketplaces
+      #
+      # @return [Array<Peddler::Marketplace>]
+      def all
+        MARKETPLACE_IDS.map do |country_code, values|
+          new(**values.merge(country_code: country_code))
+        end
       end
     end
 

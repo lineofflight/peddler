@@ -47,6 +47,10 @@ module Peddler
       assert(Marketplace.ids(*MARKETPLACE_IDS.keys))
     end
 
+    def test_all
+      assert(Marketplace.all)
+    end
+
     private
 
     def country_code
