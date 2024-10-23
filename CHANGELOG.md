@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Allow custom parser
 - Marketplace.id and Marketplace.ids shorthands
+- Add new operations to Fulfillment Inbound v2024-03-20
 
 ## [3.0.0] - 2024-10-04
 

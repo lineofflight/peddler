@@ -698,9 +698,9 @@ module Peddler
       # List the inbound compliance details for MSKUs in a given marketplace.
       #
       # @note This operation can make a static sandbox call.
-      # @param mskus [Array<String>] List of merchant SKUs - a merchant-supplied identifier for a specific SKU.
-      # @param marketplace_id [String] The Marketplace ID. Refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a list of possible values.
+      # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+      # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
       def list_item_compliance_details(mskus, marketplace_id, rate_limit: 2.0)
@@ -713,12 +713,12 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Update compliance details for list of MSKUs. The details provided here are only used for the IN marketplace
-      # compliance validation.
+      # Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN -
+      # A21TJRUUN4KGV) marketplace compliance validation.
       #
       # @note This operation can make a static sandbox call.
-      # @param marketplace_id [String] The Marketplace ID. Refer to [Marketplace
-      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a list of possible values.
+      # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param body [Hash] The body of the request to `updateItemComplianceDetails`.
       # @param rate_limit [Float] Requests per second
       # @return [Hash] The API response
@@ -731,7 +731,7 @@ module Peddler
         meter(rate_limit).put(path, body:, params:)
       end
 
-      # For a given marketplace - creates labels for a list of mskus.
+      # For a given marketplace - creates labels for a list of MSKUs.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `createMarketplaceItemLabels`.
@@ -739,6 +739,36 @@ module Peddler
       # @return [Hash] The API response
       def create_marketplace_item_labels(body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/labels"
+
+        meter(rate_limit).post(path, body:)
+      end
+
+      # Get preparation details for a list of MSKUs in a specified marketplace.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param marketplace_id [String] The marketplace ID. For a list of possible values, refer to [Marketplace
+      #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
+      # @param rate_limit [Float] Requests per second
+      # @return [Hash] The API response
+      def list_prep_details(marketplace_id, mskus, rate_limit: 2.0)
+        path = "/inbound/fba/2024-03-20/items/prepDetails"
+        params = {
+          "marketplaceId" => marketplace_id,
+          "mskus" => mskus,
+        }.compact
+
+        meter(rate_limit).get(path, params:)
+      end
+
+      # Set the preparation details for a list of MSKUs in a specified marketplace.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param body [Hash] The body of the request to `setPrepDetails`.
+      # @param rate_limit [Float] Requests per second
+      # @return [Hash] The API response
+      def set_prep_details(body, rate_limit: 2.0)
+        path = "/inbound/fba/2024-03-20/items/prepDetails"
 
         meter(rate_limit).post(path, body:)
       end
