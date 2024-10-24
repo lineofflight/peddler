@@ -147,7 +147,7 @@ upload_url = response.parse["url"]
 
 # Upload the feed content to the provided URL
 feed_content = File.read("inventory_update.xml")
-api.upload_feed_document(upload_url, feed_content)
+api.upload_feed_document(upload_url, feed_content, "text/xml; charset=UTF-8")
 
 # Create the feed
 response = api.create_feed(
