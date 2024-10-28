@@ -36,7 +36,7 @@ module Peddler
       # @param offer_type [String] Indicates whether to request pricing information for the seller's B2C or B2B offers.
       #   Default is B2C.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil,
         rate_limit: 0.5)
         path = "/products/pricing/v0/price"
@@ -71,7 +71,7 @@ module Peddler
       # @param customer_type [String] Indicates whether to request pricing information from the point of view of
       #   Consumer or Business buyers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil, rate_limit: 0.5)
         path = "/products/pricing/v0/competitivePrice"
         params = {
@@ -98,7 +98,7 @@ module Peddler
       #   SellerId, which is included with every operation that you submit.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0)
         path = "/products/pricing/v0/listings/#{seller_sku}/offers"
         params = {
@@ -120,7 +120,7 @@ module Peddler
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5)
         path = "/products/pricing/v0/items/#{asin}/offers"
         params = {
@@ -137,7 +137,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_item_offers_batch_request_body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
@@ -150,7 +150,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_listing_offers_batch_request_body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body

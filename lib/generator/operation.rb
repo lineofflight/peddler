@@ -58,7 +58,7 @@ module Generator
       elsif dynamic_sandbox?
         output.unshift("@note This operation can make a dynamic sandbox call.")
       end
-      output << "@return [Hash] The API response"
+      output << "@return [Peddler::Response] The API response"
 
       output.map do |line|
         line = convert_html_links_to_yard(line)

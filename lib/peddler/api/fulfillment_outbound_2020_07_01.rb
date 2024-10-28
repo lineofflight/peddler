@@ -21,7 +21,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetFulfillmentPreviewRequest parameter
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_fulfillment_preview(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
 
@@ -34,7 +34,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetDeliveryOffersRequest parameter
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def delivery_offers(body, rate_limit: 5.0)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
 
@@ -50,7 +50,7 @@ module Peddler
       #   new fulfillment order.
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_all_fulfillment_orders(query_start_date: nil, next_token: nil, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
         params = {
@@ -67,7 +67,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] CreateFulfillmentOrderRequest parameter
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_fulfillment_order(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
 
@@ -81,7 +81,7 @@ module Peddler
       # @param package_number [Integer] The unencrypted package identifier returned by the `getFulfillmentOrder`
       #   operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_package_tracking_details(package_number, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/tracking"
         params = {
@@ -104,7 +104,7 @@ module Peddler
       # @param language [String] The language that the `TranslatedDescription` property of the `ReasonCodeDetails`
       #   response object should be translated into.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil,
         rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/returnReasonCodes"
@@ -126,7 +126,7 @@ module Peddler
       #   time it was created. The seller uses their own records to find the correct `SellerFulfillmentOrderId` value
       #   based on the buyer's request to return items.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/return"
 
@@ -139,7 +139,7 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
 
@@ -153,7 +153,7 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
 
@@ -167,7 +167,7 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/cancel"
 
@@ -185,7 +185,7 @@ module Peddler
       #   fulfillment order was created.
       # @param body [Hash] The identifier assigned to the item by the seller when the fulfillment order was created.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body, rate_limit: nil)
         must_sandbox!
 
@@ -200,7 +200,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return the list of features.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_features(marketplace_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/features"
         params = {
@@ -222,7 +222,7 @@ module Peddler
       #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
       #   in the format yyyy-MM-ddTHH:mm:ss.sssZ
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/features/inventory/#{feature_name}"
         params = {
@@ -245,7 +245,7 @@ module Peddler
       # @param seller_sku [String] Used to identify an item in the given marketplace. `SellerSKU` is qualified by the
       #   seller's `SellerId`, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/features/inventory/#{feature_name}/#{seller_sku}"
         params = {

@@ -40,7 +40,7 @@ module Peddler
       # @param jan [String] A Japanese article number that uniquely identifies the product, manufacturer, and its
       #   attributes.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_catalog_items(marketplace_id, query: nil, query_context_id: nil, seller_sku: nil, upc: nil, ean: nil,
         isbn: nil, jan: nil, rate_limit: nil)
         path = "/catalog/v0/items"
@@ -69,7 +69,7 @@ module Peddler
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for the item.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_catalog_item(marketplace_id, asin, rate_limit: nil)
         path = "/catalog/v0/items/#{asin}"
         params = {
@@ -87,7 +87,7 @@ module Peddler
       # @param seller_sku [String] Used to identify items in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)
         path = "/catalog/v0/categories"
         params = {

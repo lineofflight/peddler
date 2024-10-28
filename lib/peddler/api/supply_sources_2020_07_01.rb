@@ -20,7 +20,7 @@ module Peddler
       # @param next_page_token [String] The pagination token to retrieve a specific page of results.
       # @param page_size [Number] The number of supply sources to return per paginated request.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_supply_sources(next_page_token: nil, page_size: 10, rate_limit: nil)
         path = "/supplySources/2020-07-01/supplySources"
         params = {
@@ -36,7 +36,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param payload [Hash] A request to create a supply source.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_supply_source(payload, rate_limit: nil)
         path = "/supplySources/2020-07-01/supplySources"
         body = payload
@@ -49,7 +49,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_supply_source(supply_source_id, rate_limit: nil)
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
 
@@ -62,7 +62,7 @@ module Peddler
       # @param supply_source_id [String] The unique identitier of a supply source.
       # @param payload [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_supply_source(supply_source_id, payload: nil, rate_limit: nil)
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
         body = payload
@@ -75,7 +75,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def archive_supply_source(supply_source_id, rate_limit: nil)
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
 
@@ -88,7 +88,7 @@ module Peddler
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @param payload [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_supply_source_status(supply_source_id, payload: nil, rate_limit: nil)
         path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}/status"
         body = payload

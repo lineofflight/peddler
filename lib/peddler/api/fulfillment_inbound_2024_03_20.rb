@@ -27,7 +27,7 @@ module Peddler
       # @param sort_by [String] Sort by field.
       # @param sort_order [String] The sort order.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_inbound_plans(page_size: 10, pagination_token: nil, status: nil, sort_by: nil, sort_order: nil,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans"
@@ -48,7 +48,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `createInboundPlan`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_inbound_plan(body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans"
 
@@ -60,7 +60,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_inbound_plan(inbound_plan_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}"
 
@@ -76,7 +76,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/boxes"
         params = {
@@ -94,7 +94,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_inbound_plan(inbound_plan_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/cancellation"
 
@@ -110,7 +110,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/items"
         params = {
@@ -127,7 +127,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `updateInboundPlanName`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_inbound_plan_name(inbound_plan_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/name"
 
@@ -146,7 +146,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingGroups/#{packing_group_id}/boxes"
@@ -169,7 +169,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingGroups/#{packing_group_id}/items"
@@ -188,7 +188,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `setPackingInformation`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def set_packing_information(inbound_plan_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingInformation"
 
@@ -205,7 +205,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
         params = {
@@ -221,7 +221,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_packing_options(inbound_plan_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions"
 
@@ -234,7 +234,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param packing_option_id [String] Identifier of a packing option.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_packing_option(inbound_plan_id, packing_option_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/packingOptions/#{packing_option_id}/confirmation"
 
@@ -251,7 +251,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/pallets"
         params = {
@@ -272,7 +272,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
         params = {
@@ -289,7 +289,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `generatePlacementOptions`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_placement_options(inbound_plan_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions"
 
@@ -303,7 +303,7 @@ module Peddler
       # @param placement_option_id [String] The identifier of a placement option. A placement option represents the
       #   shipment splits and destinations of SKUs.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/placementOptions/#{placement_option_id}/confirmation"
 
@@ -317,7 +317,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipment(inbound_plan_id, shipment_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}"
 
@@ -334,7 +334,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/boxes"
         params = {
@@ -357,7 +357,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
@@ -378,7 +378,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `generateShipmentContentUpdatePreviews`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews"
 
@@ -394,7 +394,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param content_update_preview_id [String] Identifier of a content update preview.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews/#{content_update_preview_id}"
 
@@ -408,7 +408,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param content_update_preview_id [String] Identifier of a content update preview.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/contentUpdatePreviews/#{content_update_preview_id}/confirmation"
@@ -422,7 +422,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_delivery_challan_document(inbound_plan_id, shipment_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryChallanDocument"
 
@@ -441,7 +441,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
@@ -459,7 +459,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param shipment_id [String] The shipment to generate delivery window options for.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions"
 
@@ -478,7 +478,7 @@ module Peddler
       # @param shipment_id [String] The shipment to confirm the delivery window option for.
       # @param delivery_window_option_id [String] The id of the delivery window option to be confirmed.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/deliveryWindowOptions/#{delivery_window_option_id}/confirmation"
 
@@ -495,7 +495,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/items"
         params = {
@@ -513,7 +513,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `updateShipmentName`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/name"
 
@@ -531,7 +531,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/pallets"
         params = {
@@ -549,7 +549,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `cancelSelfShipAppointment`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentCancellation"
 
@@ -567,7 +567,7 @@ module Peddler
       #   The value of this token is fetched from the `pagination` returned in the API response. In the absence of the
       #   token value from the query parameter the API returns the first page of the result.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
@@ -586,7 +586,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `generateSelfShipAppointmentSlots`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots"
 
@@ -601,7 +601,7 @@ module Peddler
       # @param slot_id [String] An identifier to a self-ship appointment slot.
       # @param body [Hash] The body of the request to `scheduleSelfShipAppointment`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/selfShipAppointmentSlots/#{slot_id}/schedule"
 
@@ -618,7 +618,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `updateShipmentSourceAddress`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/sourceAddress"
 
@@ -632,7 +632,7 @@ module Peddler
       # @param shipment_id [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
       # @param body [Hash] The body of the request to `updateShipmentTrackingDetails`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/shipments/#{shipment_id}/trackingDetails"
 
@@ -654,7 +654,7 @@ module Peddler
       # @param shipment_id [String] The shipment to get transportation options for. Either `placementOptionId` or
       #   `shipmentId` must be specified.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil,
         shipment_id: nil, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
@@ -674,7 +674,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `generateTransportationOptions`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions"
 
@@ -688,7 +688,7 @@ module Peddler
       # @param inbound_plan_id [String] Identifier of an inbound plan.
       # @param body [Hash] The body of the request to `confirmTransportationOptions`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{inbound_plan_id}/transportationOptions/confirmation"
 
@@ -702,7 +702,7 @@ module Peddler
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_item_compliance_details(mskus, marketplace_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
@@ -721,7 +721,7 @@ module Peddler
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param body [Hash] The body of the request to `updateItemComplianceDetails`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_item_compliance_details(marketplace_id, body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
@@ -736,7 +736,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `createMarketplaceItemLabels`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_marketplace_item_labels(body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/labels"
 
@@ -750,7 +750,7 @@ module Peddler
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_prep_details(marketplace_id, mskus, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/prepDetails"
         params = {
@@ -766,7 +766,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request to `setPrepDetails`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def set_prep_details(body, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/prepDetails"
 
@@ -778,7 +778,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param operation_id [String] Identifier of an asynchronous operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_inbound_operation_status(operation_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/operations/#{operation_id}"
 

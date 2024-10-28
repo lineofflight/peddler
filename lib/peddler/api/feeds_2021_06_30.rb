@@ -33,7 +33,7 @@ module Peddler
       #   call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other
       #   parameters will cause the request to fail.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_feeds(feed_types: nil, marketplace_ids: nil, page_size: 10, processing_statuses: nil, created_since: nil,
         created_until: nil, next_token: nil, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/feeds"
@@ -55,7 +55,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the feed.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_feed(body, rate_limit: 0.0083)
         path = "/feeds/2021-06-30/feeds"
 
@@ -71,7 +71,7 @@ module Peddler
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
@@ -84,7 +84,7 @@ module Peddler
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{feed_id}"
 
@@ -99,7 +99,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Specifies the content type for the createFeedDocument operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_feed_document(body, rate_limit: 0.5)
         path = "/feeds/2021-06-30/documents"
 
@@ -111,7 +111,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param feed_document_id [String] The identifier of the feed document.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/documents/#{feed_document_id}"
 

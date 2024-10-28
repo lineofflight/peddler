@@ -21,7 +21,7 @@ module Peddler
       # @param body [Hash] The request body that contains the inventory update data to submit.
       # @param warehouse_id [String] Identifier for the warehouse for which to update inventory.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{warehouse_id}/items"
 

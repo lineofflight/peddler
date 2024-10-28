@@ -110,7 +110,7 @@ module Peddler
       #   at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
       #   format.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil,
         last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil,
         buyer_email: nil, seller_order_id: nil, max_results_per_page: nil, easy_ship_shipment_statuses: nil,
@@ -152,7 +152,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}"
 
@@ -164,7 +164,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/buyerInfo"
 
@@ -176,7 +176,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order_address(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/address"
 
@@ -195,7 +195,7 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order_items(order_id, next_token: nil, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/orderItems"
         params = {
@@ -211,7 +211,7 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/orderItems/buyerInfo"
         params = {
@@ -227,7 +227,7 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateShipmentStatus` operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_shipment_status(order_id, payload, rate_limit: 5.0)
         path = "/orders/v0/orders/#{order_id}/shipment"
         body = payload
@@ -240,7 +240,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
 
@@ -253,7 +253,7 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateVerificationStatus` operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_verification_status(order_id, payload, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
@@ -267,7 +267,7 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] Request body of `confirmShipment`.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_shipment(order_id, payload, rate_limit: 2.0)
         path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
         body = payload

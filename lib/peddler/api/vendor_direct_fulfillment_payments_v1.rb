@@ -20,7 +20,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body that contains one or more invoices for vendor orders.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_invoice(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/payments/v1/invoices"
 

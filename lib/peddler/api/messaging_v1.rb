@@ -27,7 +27,7 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}"
         params = {
@@ -47,7 +47,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def confirm_customization_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmCustomizationDetails"
         params = {
@@ -66,7 +66,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmDeliveryDetails"
         params = {
@@ -86,7 +86,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/legalDisclosure"
         params = {
@@ -105,7 +105,7 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_negative_feedback_removal(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/negativeFeedbackRemoval"
         params = {
@@ -124,7 +124,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmOrderDetails"
         params = {
@@ -144,7 +144,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmServiceDetails"
         params = {
@@ -164,7 +164,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_amazon_motors(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/amazonMotors"
         params = {
@@ -183,7 +183,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_warranty(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/warranty"
         params = {
@@ -201,7 +201,7 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/attributes"
         params = {
@@ -220,7 +220,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_digital_access_key(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/digitalAccessKey"
         params = {
@@ -240,7 +240,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/unexpectedProblem"
         params = {
@@ -259,7 +259,7 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body, rate_limit: nil)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/invoice"
         params = {

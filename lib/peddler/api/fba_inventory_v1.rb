@@ -44,7 +44,7 @@ module Peddler
       # @param marketplace_ids [Array<String>] The marketplace ID for the marketplace for which to return inventory
       #   summaries.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
         seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
         path = "/fba/inventory/v1/summaries"
@@ -69,7 +69,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param create_inventory_item_request_body [Hash] CreateInventoryItem Request Body Parameter.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_inventory_item(create_inventory_item_request_body, rate_limit: nil)
         must_sandbox!
 
@@ -87,7 +87,7 @@ module Peddler
       # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def delete_inventory_item(seller_sku, marketplace_id, rate_limit: nil)
         must_sandbox!
 
@@ -108,7 +108,7 @@ module Peddler
       # @param x_amzn_idempotency_token [String] A unique token/requestId provided with each call to ensure idempotency.
       # @param add_inventory_request_body [Hash] List of items to add to Sandbox inventory.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def add_inventory(x_amzn_idempotency_token, add_inventory_request_body, rate_limit: nil)
         must_sandbox!
 

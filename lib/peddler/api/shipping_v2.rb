@@ -23,7 +23,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/rates"
 
@@ -42,7 +42,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
         cannot_sandbox!
@@ -64,7 +64,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments"
 
@@ -78,7 +78,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/oneClickShipment"
 
@@ -95,7 +95,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_tracking(tracking_id, carrier_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/tracking"
         params = {
@@ -119,7 +119,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil,
         x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/#{shipment_id}/documents"
@@ -139,7 +139,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/#{shipment_id}/cancel"
 
@@ -157,7 +157,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_additional_inputs(request_token, rate_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/additionalInputs/schema"
         params = {
@@ -173,7 +173,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -188,7 +188,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -204,7 +204,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -220,7 +220,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -237,7 +237,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
         cannot_sandbox!
@@ -253,7 +253,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -269,7 +269,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -284,7 +284,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
@@ -302,7 +302,7 @@ module Peddler
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_access_points(access_point_types, country_code, postal_code, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
         path = "/shipping/v2/accessPoints"

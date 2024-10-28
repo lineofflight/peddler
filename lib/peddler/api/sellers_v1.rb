@@ -23,7 +23,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_marketplace_participations(rate_limit: 0.016)
         path = "/sellers/v1/marketplaceParticipations"
 
@@ -34,7 +34,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_account(rate_limit: 0.016)
         path = "/sellers/v1/account"
 

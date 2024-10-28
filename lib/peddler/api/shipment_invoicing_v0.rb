@@ -23,7 +23,7 @@ module Peddler
       #   {https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide Notifications API Use Case
       #   Guide}.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}"
 
@@ -36,7 +36,7 @@ module Peddler
       # @param shipment_id [String] The identifier for the shipment.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_invoice(shipment_id, body, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice"
 
@@ -48,7 +48,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The shipment identifier for the shipment.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_invoice_status(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{shipment_id}/invoice/status"
 

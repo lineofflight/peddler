@@ -20,7 +20,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] A request to submit shipment confirmation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmations"
 
@@ -31,7 +31,7 @@ module Peddler
       #
       # @param body [Hash] A request to submit shipment request.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_shipments(body, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -87,7 +87,7 @@ module Peddler
       # @param seller_warehouse_code [String] Get Shipping Details based on vendor warehouse code. This value should be
       #   same as 'sellingParty.partyId' in the Shipment.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
         shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil,
         package_label_created_after: nil, shipped_before: nil, shipped_after: nil, estimated_delivery_before: nil,

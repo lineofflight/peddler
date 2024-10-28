@@ -37,7 +37,7 @@ module Peddler
       # @param include_details [String] When true, returns the complete purchase order details. Otherwise, only purchase
       #   order numbers are returned.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_orders(created_after, created_before, ship_from_party_id: nil, status: nil, limit: nil, sort_order: nil,
         next_token: nil, include_details: "true", rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders"
@@ -61,7 +61,7 @@ module Peddler
       # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{purchase_order_number}"
 
@@ -73,7 +73,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body containing the acknowledgement to an order
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
 

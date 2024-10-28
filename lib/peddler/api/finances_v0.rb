@@ -36,7 +36,7 @@ module Peddler
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_financial_event_groups(max_results_per_page: 10, financial_event_group_started_before: nil,
         financial_event_group_started_after: nil, next_token: nil, rate_limit: 0.5)
         path = "/finances/v0/financialEventGroups"
@@ -72,7 +72,7 @@ module Peddler
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil,
         posted_before: nil, next_token: nil, rate_limit: 0.5)
         path = "/finances/v0/financialEventGroups/#{event_group_id}/financialEvents"
@@ -98,7 +98,7 @@ module Peddler
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
         path = "/finances/v0/orders/#{order_id}/financialEvents"
         params = {
@@ -130,7 +130,7 @@ module Peddler
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_financial_events(max_results_per_page: 100, posted_after: nil, posted_before: nil, next_token: nil,
         rate_limit: 0.5)
         path = "/finances/v0/financialEvents"

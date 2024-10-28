@@ -28,7 +28,7 @@ module Peddler
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -46,7 +46,7 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -67,7 +67,7 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -88,7 +88,7 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request,
         rate_limit: 10.0)
         cannot_sandbox!
@@ -118,7 +118,7 @@ module Peddler
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
         asin_set: nil, page_token: nil, rate_limit: 10.0)
         cannot_sandbox!
@@ -144,7 +144,7 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param post_content_document_asin_relations_request [Hash] The content document ASIN relations request details.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
         post_content_document_asin_relations_request, rate_limit: 10.0)
         cannot_sandbox!
@@ -164,7 +164,7 @@ module Peddler
       # @param asin_set [Array<String>] The set of ASINs.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil,
         rate_limit: 10.0)
         cannot_sandbox!
@@ -189,7 +189,7 @@ module Peddler
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -210,7 +210,7 @@ module Peddler
       #   any A+ content identifier.
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         cannot_sandbox!
 
@@ -230,7 +230,7 @@ module Peddler
       #   any A+ content identifier.
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         cannot_sandbox!
 

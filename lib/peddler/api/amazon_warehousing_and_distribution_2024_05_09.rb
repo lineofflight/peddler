@@ -22,7 +22,7 @@ module Peddler
       # @param sku_quantities [String] If equal to `SHOW`, the response includes the shipment SKU quantity details.
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0)
         path = "/awd/2024-05-09/inboundShipments/#{shipment_id}"
         params = {
@@ -47,7 +47,7 @@ module Peddler
       # @param max_results [Integer] Maximum number of results to return.
       # @param next_token [String] Token to retrieve the next set of paginated results.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil,
         updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundShipments"
@@ -74,7 +74,7 @@ module Peddler
       # @param next_token [String] Token to retrieve the next set of paginated results.
       # @param max_results [Integer] Maximum number of results to return.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
         path = "/awd/2024-05-09/inventory"
         params = {

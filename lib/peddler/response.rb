@@ -5,7 +5,7 @@ require "forwardable"
 
 module Peddler
   # Wraps HTTP::Response to allow custom parsing
-  class ResponseDecorator < SimpleDelegator
+  class Response < SimpleDelegator
     extend Forwardable
 
     # @!method dig(*key)

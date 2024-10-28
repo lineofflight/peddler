@@ -47,7 +47,7 @@ module Peddler
       #   purchase orders for all of the vendor codes that exist in the vendor group used to authorize the API client
       #   application are returned.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_purchase_orders(limit: nil, created_after: nil, created_before: nil, sort_order: nil, next_token: nil,
         include_details: nil, changed_after: nil, changed_before: nil, po_item_state: nil, is_po_changed: nil,
         purchase_order_state: nil, ordering_vendor_code: nil, rate_limit: 10.0)
@@ -76,7 +76,7 @@ module Peddler
       # @param purchase_order_number [String] The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_purchase_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/orders/v1/purchaseOrders/#{purchase_order_number}"
 
@@ -88,7 +88,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/orders/v1/acknowledgements"
 
@@ -130,7 +130,7 @@ module Peddler
       #   If not included in filter, this will return purchase orders for all the buyer's warehouses used for vendor
       #   group purchase orders.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_purchase_orders_status(limit: nil, sort_order: nil, next_token: nil, created_after: nil,
         created_before: nil, updated_after: nil, updated_before: nil, purchase_order_number: nil,
         purchase_order_status: nil, item_confirmation_status: nil, item_receive_status: nil, ordering_vendor_code: nil,

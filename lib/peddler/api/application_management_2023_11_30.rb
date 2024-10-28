@@ -22,7 +22,7 @@ module Peddler
       # secret](https://developer-docs.amazon.com/sp-api/v0/docs/application-management-api-v2023-11-30-use-case-guide#tutorial-rotate-your-applications-client-secret).
       #
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def rotate_application_client_secret(rate_limit: 0.0167)
         cannot_sandbox!
 

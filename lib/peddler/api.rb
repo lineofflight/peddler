@@ -5,7 +5,7 @@ require "http"
 require "peddler/endpoint"
 require "peddler/error"
 require "peddler/marketplace"
-require "peddler/response_decorator"
+require "peddler/response"
 require "peddler/version"
 
 module Peddler
@@ -120,7 +120,7 @@ module Peddler
           raise error if error
         end
 
-        ResponseDecorator.decorate(response, parser:)
+        Response.decorate(response, parser:)
       end
     end
 

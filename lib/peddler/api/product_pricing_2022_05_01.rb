@@ -27,7 +27,7 @@ module Peddler
       # @param get_featured_offer_expected_price_batch_request_body [Hash] The batch of `getFeaturedOfferExpectedPrice`
       #   requests.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_featured_offer_expected_price_batch(get_featured_offer_expected_price_batch_request_body,
         rate_limit: 0.033)
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
@@ -42,7 +42,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param requests [Hash] The batch of `getCompetitiveSummary` requests.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_competitive_summary(requests, rate_limit: 0.033)
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests

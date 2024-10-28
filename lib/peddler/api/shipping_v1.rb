@@ -23,7 +23,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/shipments"
 
@@ -35,7 +35,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}"
 
@@ -47,7 +47,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/cancel"
 
@@ -60,7 +60,7 @@ module Peddler
       # @param shipment_id [String]
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def purchase_labels(shipment_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
 
@@ -74,7 +74,7 @@ module Peddler
       # @param tracking_id [String]
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
 
@@ -86,7 +86,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def purchase_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/purchaseShipment"
 
@@ -98,7 +98,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_rates(body, rate_limit: 5.0)
         path = "/shipping/v1/rates"
 
@@ -109,7 +109,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_account(rate_limit: 5.0)
         path = "/shipping/v1/account"
 
@@ -121,7 +121,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param tracking_id [String]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_tracking_information(tracking_id, rate_limit: 1.0)
         path = "/shipping/v1/tracking/#{tracking_id}"
 

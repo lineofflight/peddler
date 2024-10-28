@@ -31,7 +31,7 @@ module Peddler
       # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
       #   limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipping_labels(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
         next_token: nil, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
@@ -52,7 +52,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Request body containing one or more shipping labels data.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
 
@@ -65,7 +65,7 @@ module Peddler
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
       #   It should be the same `purchaseOrderNumber` as received in the order.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{purchase_order_number}"
 
@@ -77,7 +77,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Request body containing the shipment confirmations data.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
 
@@ -91,7 +91,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Request body containing the shipment status update data.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
 
@@ -114,7 +114,7 @@ module Peddler
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_customer_invoices(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: nil,
         next_token: nil, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices"
@@ -135,7 +135,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] Purchase order number of the shipment for which to return the invoice.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{purchase_order_number}"
 
@@ -157,7 +157,7 @@ module Peddler
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_packing_slips(created_after, created_before, ship_from_party_id: nil, limit: nil, sort_order: "ASC",
         next_token: nil, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/packingSlips"
@@ -178,7 +178,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] The `purchaseOrderNumber` for the packing slip you want.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{purchase_order_number}"
 

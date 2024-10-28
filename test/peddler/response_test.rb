@@ -1,30 +1,30 @@
 # frozen_string_literal: true
 
 require "helper"
-require "peddler/response_decorator"
+require "peddler/response"
 
 module Peddler
-  class ResponseDecoratorTest < Minitest::Test
+  class ResponseTest < Minitest::Test
     def test_parses
-      decorator = ResponseDecorator.decorate(response)
+      decorator = Response.decorate(response)
 
       assert_equal(payload, decorator.parse)
     end
 
     def test_to_h
-      decorator = ResponseDecorator.decorate(response)
+      decorator = Response.decorate(response)
 
       assert_equal(payload, decorator.to_h)
     end
 
     def test_dig
-      decorator = ResponseDecorator.decorate(response)
+      decorator = Response.decorate(response)
 
       assert(decorator.dig("foo"))
     end
 
     def test_parses_with_custom_parser
-      decorator = ResponseDecorator.decorate(
+      decorator = Response.decorate(
         response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
       )
 
@@ -32,7 +32,7 @@ module Peddler
     end
 
     def test_to_h_with_custom_parser
-      decorator = ResponseDecorator.decorate(
+      decorator = Response.decorate(
         response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
       )
 
@@ -40,7 +40,7 @@ module Peddler
     end
 
     def test_dig_with_custom_parser
-      decorator = ResponseDecorator.decorate(
+      decorator = Response.decorate(
         response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
       )
 

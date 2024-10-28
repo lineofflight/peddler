@@ -33,7 +33,7 @@ module Peddler
       #   arguments as the call that produced the token. To get a complete list, call this operation until `nextToken`
       #   is null. Note that this operation can return empty pages.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def list_transactions(posted_after, posted_before: nil, marketplace_id: nil, next_token: nil, rate_limit: 0.5)
         path = "/finances/2024-06-19/transactions"
         params = {

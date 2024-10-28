@@ -21,7 +21,7 @@ module Peddler
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific
       #   transaction.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{transaction_id}"
 

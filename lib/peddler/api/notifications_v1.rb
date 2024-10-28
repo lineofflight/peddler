@@ -27,7 +27,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{notification_type}"
         params = {
@@ -47,7 +47,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{notification_type}"
 
@@ -63,7 +63,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
 
@@ -81,7 +81,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @param notification_type [String] The type of notification. For more information about notification types, refer
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
 
@@ -93,7 +93,7 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_destinations(rate_limit: 1.0)
         path = "/notifications/v1/destinations"
 
@@ -107,7 +107,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_destination(body, rate_limit: 1.0)
         path = "/notifications/v1/destinations"
 
@@ -121,7 +121,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param destination_id [String] The identifier generated when you created the destination.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{destination_id}"
 
@@ -134,7 +134,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param destination_id [String] The identifier for the destination that you want to delete.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def delete_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{destination_id}"
 

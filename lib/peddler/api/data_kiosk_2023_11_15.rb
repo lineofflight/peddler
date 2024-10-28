@@ -31,7 +31,7 @@ module Peddler
       #   with the request that generated this token, with the exception of `pageSize` which can be modified between
       #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil,
         pagination_token: nil, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries"
@@ -55,7 +55,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def create_query(body, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/queries"
 
@@ -71,7 +71,7 @@ module Peddler
       # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def cancel_query(query_id, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
@@ -84,7 +84,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The query identifier.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_query(query_id, rate_limit: 2.0)
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
@@ -97,7 +97,7 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param document_id [String] The identifier for the Data Kiosk document.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def get_document(document_id, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/documents/#{document_id}"
 

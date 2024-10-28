@@ -30,7 +30,7 @@ module Peddler
       #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
       #   when a localization is not available in the specified locale.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
         params = {
@@ -55,7 +55,7 @@ module Peddler
       #   when a localization is not available in the specified locale.
       # @param body [Hash] The request body schema for the patchListingsItem operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
         params = {
@@ -80,7 +80,7 @@ module Peddler
       #   when a localization is not available in the specified locale.
       # @param body [Hash] The request body schema for the putListingsItem operation.
       # @param rate_limit [Float] Requests per second
-      # @return [Hash] The API response
+      # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
         params = {
