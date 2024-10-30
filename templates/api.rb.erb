@@ -1,5 +1,8 @@
 
 require "peddler/api"
+<% if has_helper? %>
+  require "<%= helper_library_name %>"
+<% end %>
 
 module Peddler
   class << self
@@ -13,6 +16,9 @@ module Peddler
     #
     <%= description %>
     class <%= class_name %> < API
+      <% if has_helper? %>
+        include <%= helper_class_name %>
+      <% end %>
       <% operations.each do |operation| %>
         <%= operation.render %>
       <% end %>

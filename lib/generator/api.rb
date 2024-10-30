@@ -42,6 +42,18 @@ module Generator
       "peddler/api/#{name_with_version}"
     end
 
+    def has_helper?
+      File.exist?("lib/" + helper_library_name + ".rb")
+    end
+
+    def helper_class_name
+      "Peddler::Helpers::#{pascalcase(name_with_version)}"
+    end
+
+    def helper_library_name
+      "peddler/helpers/#{name_with_version}"
+    end
+
     def class_name
       pascalcase(name_with_version)
     end
