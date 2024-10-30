@@ -2,6 +2,8 @@
 
 require "peddler/api"
 
+require "peddler/helpers/feeds_2021_06_30"
+
 module Peddler
   class << self
     def feeds_2021_06_30(...)
@@ -14,6 +16,8 @@ module Peddler
     #
     # The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
     class Feeds20210630 < API
+      include Peddler::Helpers::Feeds20210630
+
       # Returns feed details for the feeds that match the filters that you specify.
       #
       # @note This operation can make a static sandbox call.
