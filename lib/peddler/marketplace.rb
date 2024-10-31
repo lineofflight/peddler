@@ -49,7 +49,7 @@ module Peddler
           raise ArgumentError, "#{country_code} not found"
         end
 
-        new(**values.merge(country_code: country_code))
+        new(**values, country_code: country_code)
       end
 
       # Returns the marketplace ID for the given country code
@@ -73,7 +73,7 @@ module Peddler
       # @return [Array<Peddler::Marketplace>]
       def all
         MARKETPLACE_IDS.map do |country_code, values|
-          new(**values.merge(country_code: country_code))
+          new(**values, country_code: country_code)
         end
       end
     end

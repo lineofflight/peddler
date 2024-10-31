@@ -27,14 +27,14 @@ module Peddler
           raise ArgumentError, "#{aws_region} not found"
         end
 
-        new(**values.merge(aws_region: aws_region))
+        new(**values, aws_region: aws_region)
       end
 
       def find_by_selling_region(selling_region)
         aws_region, values = ENDPOINTS.find { |_, v| v[:selling_region] == selling_region } ||
           raise(ArgumentError, "#{selling_region} not found")
 
-        new(**values.merge(aws_region: aws_region))
+        new(**values, aws_region: aws_region)
       end
     end
 
