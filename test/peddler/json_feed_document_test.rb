@@ -9,17 +9,15 @@ module Peddler
   class JSONFeedDocumentTest < Minitest::Test
     include FeatureHelpers
 
-    def document
-      @document ||= JSONFeedDocument.new(api.sandbox)
+    def feed
+      @feed ||= JSONFeedDocument.new(api)
     end
 
     def test_upload
-      skip("spike feed document")
-
       content = { "foo" => "bar" }
-      document.upload(content)
+      res = feed.upload(content)
 
-      assert_predicate(document, :uploaded?)
+      assert_predicate(res.status, :ok?)
     end
 
     private
