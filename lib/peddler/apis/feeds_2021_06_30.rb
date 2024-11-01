@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "peddler/api"
-
 require "peddler/helpers/feeds_2021_06_30"
 
 module Peddler
