@@ -13,12 +13,16 @@ module Peddler
     class << self
       def build(response)
         error = JSON.parse(response).dig("errors").first
-        class_name = error.dig("code")
-        klass = const_get(class_name)
+        code = error.dig("code")
+        message = error.dig("message")
 
-        klass.new(error.dig("message"), response)
+        class_name ||= code
+        klass = const_defined?(class_name) ? const_get(class_name) : const_set(class_name, Class.new(Error))
+
+        klass.new(message, response)
       rescue NameError
-        const_set(class_name, Class.new(Error))
+        # Fall back on message if code cannot be converted to a class name
+        class_name = message.split.map(&:capitalize).join
         retry
       end
     end

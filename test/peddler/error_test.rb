@@ -42,5 +42,12 @@ module Peddler
       assert_includes(Error.constants, :OtherError)
       assert_kind_of(Error::OtherError, error)
     end
+
+    def test_fallback_on_message
+      response = '{"errors":[{"code":"400","message":"Invalid Input"}]}'
+      error = Error.build(response)
+
+      assert_kind_of(Error::InvalidInput, error)
+    end
   end
 end
