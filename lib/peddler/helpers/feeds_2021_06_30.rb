@@ -12,10 +12,7 @@ module Peddler
       # this must match the content-type requested in `create_feed_document`
       # @return [HTTP::Response] The API response
       def upload_feed_document(upload_url, feed_content, content_type)
-        response = HTTP.headers(
-          "Host" => URI.parse(upload_url).host,
-          "content-type" => content_type,
-        ).send(:put, upload_url, body: feed_content)
+        response = HTTP.headers("content-type" => content_type).put(upload_url, body: feed_content)
 
         if response.status.client_error?
           error = Error.build(response)
