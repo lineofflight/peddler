@@ -21,7 +21,7 @@ module Peddler
         feed_document_id = "amzn1.tortuga.4.eu.123"
         url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123"
 
-        json = {
+        content = {
           "header": {
             "sellerId": "A34PPN1ZLYCOGT",
             "version": "2.0",
@@ -77,7 +77,7 @@ module Peddler
             },
           ],
         }
-        res = HTTP.put(url, json:)
+        res = api.upload_feed_document(url, JSON.generate(content), "application/json; charset=UTF-8")
 
         assert_predicate(res.status, :ok?)
 
