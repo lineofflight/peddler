@@ -2,7 +2,7 @@
 
 require "helper"
 
-require "peddler/api/product_pricing_v0"
+require "peddler/apis/product_pricing_v0"
 
 module Peddler
   class Error
@@ -20,7 +20,7 @@ module Peddler
       private
 
       def api_class
-        API::ProductPricingV0
+        APIs::ProductPricingV0
       end
     end
   end

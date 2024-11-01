@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 01 Nov 2024 09:47:12 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 0Q8NWAGQXKVQGFZKX7CC
+      X-Amzn-Requestid:
+      - 5a07c272-9aef-4f60-9618-43f3680ea2ed
+      X-Amz-Date:
+      - Fri, 01 Nov 2024 09:47:12 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Fri, 01 Nov 2024 09:47:12 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/catalog/2022-04-01/items?identifiers=188864544X&identifiersType=ASIN&includedData=summaries&marketplaceIds=A1F83G8C2ARO7P&pageSize=10
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20241101T094712Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 01 Nov 2024 09:47:12 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '598'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 8E4YW7N7Q7J5TVE4DBPE
+      X-Amzn-Ratelimit-Limit:
+      - '2.0'
+      X-Amzn-Requestid:
+      - 30346330-ede5-432b-b10d-3e0cf00e21b6
+      X-Amz-Apigw-Id:
+      - OPF30346330ede5
+      X-Amzn-Trace-Id:
+      - Root=1-6724a3a0-30346330ede5432b
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"numberOfResults":1,"items":[{"asin":"188864544X","summaries":[{"marketplaceId":"A1F83G8C2ARO7P","adultProduct":false,"autographed":false,"browseClassification":{"displayName":"Fashion","classificationId":"267854"},"contributors":[{"role":{"displayName":"Creator","value":"creator"},"value":"Visionaire
+        Publishing"}],"itemClassification":"BASE_PRODUCT","itemName":"Dreams: No.
+        43 (Visionaire S.)","manufacturer":"Visionaire Publishing,U.S.","memorabilia":false,"releaseDate":"2004-09-02","tradeInEligible":false,"websiteDisplayGroup":"book_display_on_website","websiteDisplayGroupName":"Book"}]}]}'
+  recorded_at: Fri, 01 Nov 2024 09:47:12 GMT
+recorded_with: VCR 6.3.1

@@ -5,7 +5,7 @@ if ENV["COVERAGE"]
   require "simplecov"
 
   SimpleCov.start do
-    add_filter "/lib/peddler/api/"
+    add_filter "/lib/peddler/apis/"
     add_filter "/test/"
   end
 end
@@ -94,7 +94,7 @@ module FeatureHelpers
   end
 
   def api_class
-    Object.const_get("Peddler::API::#{api_name}")
+    Object.const_get("Peddler::APIs::#{api_name}")
   end
 
   def api_name

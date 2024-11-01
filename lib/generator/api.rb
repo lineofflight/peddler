@@ -39,7 +39,7 @@ module Generator
     end
 
     def library_name
-      "peddler/api/#{name_with_version}"
+      "peddler/apis/#{name_with_version}"
     end
 
     def has_helper?

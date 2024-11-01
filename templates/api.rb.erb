@@ -7,11 +7,11 @@ require "peddler/api"
 module Peddler
   class << self
     def <%= name_with_version %>(...)
-      API::<%= class_name %>.new(...)
+      APIs::<%= class_name %>.new(...)
     end
   end
 
-  class API
+  module APIs
     <%= title %>
     #
     <%= description %>

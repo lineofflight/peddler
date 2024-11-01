@@ -1,9 +1,9 @@
 Layout/EmptyComment:
   Exclude:
-    - "lib/peddler/api/*.rb"
+    - "lib/peddler/apis/*.rb"
 Layout/LineLength:
   AllowedPatterns:
     - ^\s*\w+ = ".*"$
 Naming/AccessorMethodName:
   Exclude:
-    - "lib/peddler/api/*.rb"
+    - "lib/peddler/apis/*.rb"

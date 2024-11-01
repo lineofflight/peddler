@@ -19,7 +19,7 @@ module Generator
     private
 
     def initialize_directory
-      output_dir = File.join(Config::BASE_PATH, "lib/peddler/api")
+      output_dir = File.join(Config::BASE_PATH, "lib/peddler/apis")
       FileUtils.rm_rf(output_dir)
       FileUtils.mkdir_p(output_dir)
     end

@@ -2,7 +2,7 @@
 
 require "helper"
 
-require "peddler/api/reports_2021_06_30"
+require "peddler/apis/reports_2021_06_30"
 
 module Peddler
   class CustomParserTest < Minitest::Test
@@ -36,7 +36,7 @@ module Peddler
     end
 
     def api_class
-      API::Reports20210630
+      APIs::Reports20210630
     end
   end
 end

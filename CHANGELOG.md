@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Changed
+
+- Pluralized namespace to APIs for consistency
+
 ### Added
 
 - Allow custom parser
