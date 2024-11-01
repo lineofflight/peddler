@@ -5,7 +5,7 @@ require "helper"
 require "peddler/apis/product_pricing_2022_05_01"
 
 module Peddler
-  class API
+  module APIs
     class ProductPricing20220501Test < Minitest::Test
       include FeatureHelpers
 

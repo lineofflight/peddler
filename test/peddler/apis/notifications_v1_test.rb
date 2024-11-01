@@ -5,7 +5,7 @@ require "helper"
 require "peddler/apis/notifications_v1"
 
 module Peddler
-  class API
+  module APIs
     class NotificationsV1Test < Minitest::Test
       include FeatureHelpers
 

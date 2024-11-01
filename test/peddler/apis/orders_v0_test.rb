@@ -6,7 +6,7 @@ require "peddler/apis/orders_v0"
 require "peddler/marketplace"
 
 module Peddler
-  class API
+  module APIs
     class OrdersV0Test < Minitest::Test
       include FeatureHelpers
 
