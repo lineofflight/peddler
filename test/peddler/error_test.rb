@@ -43,11 +43,11 @@ module Peddler
       assert_kind_of(Error::OtherError, error)
     end
 
-    def test_fallback_on_message
+    def test_invalid_class_name
       response = '{"errors":[{"code":"400","message":"Invalid Input"}]}'
       error = Error.build(response)
 
-      assert_kind_of(Error::InvalidInput, error)
+      assert_nil(error)
     end
   end
 end
