@@ -16,6 +16,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add new operations to Fulfillment Inbound v2024-03-20
 - Add upload_feed_document method to Feeds API
 
+### Fixed
+
+-  Set failed http response in a custom attribute instead of cause
+
 ## [3.0.0] - 2024-10-04
 
 ### Added
