@@ -7,7 +7,7 @@ module Peddler
     class QuotaExceeded < Error; end
     class Unauthorized < Error; end
 
-    attr_reader :cause
+    attr_reader :response
 
     # @!visibility private
     class << self
@@ -23,8 +23,8 @@ module Peddler
       end
     end
 
-    def initialize(msg = nil, cause = nil)
-      @cause = cause
+    def initialize(msg = nil, response = nil)
+      @response = response
       super(msg)
     end
   end
