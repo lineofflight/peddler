@@ -13,7 +13,7 @@ module Peddler
         error = assert_raises(NotFound) do
           api.get_report("1234567")
         end
-        assert_equal(404, error.cause.status)
+        assert_equal(404, error.response.status)
       end
 
       private

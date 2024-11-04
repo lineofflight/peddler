@@ -14,7 +14,7 @@ module Peddler
         error = assert_raises(QuotaExceeded) do
           api.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
         end
-        assert_equal(429, error.cause.status)
+        assert_equal(429, error.response.status)
       end
 
       private
