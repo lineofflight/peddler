@@ -7,7 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Pluralized namespace to APIs for consistency
+- Pluralized namespace to APIs for consistency. Direct references to APIs will need to be updated from
+  `Peddler::API::SomeAPI` to `Peddler::APIs::SomeAPI`. The shorthand method `Peddler.some_api` remains unchanged.
 
 ### Added
 
