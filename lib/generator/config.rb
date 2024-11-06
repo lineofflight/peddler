@@ -6,7 +6,7 @@ module Generator
 
     class << self
       def template_path(template_name)
-        File.join(BASE_PATH, "templates/#{template_name}.rb.erb")
+        File.join(BASE_PATH, "lib/generator/templates/#{template_name}.rb.erb")
       end
     end
   end
