@@ -4,11 +4,16 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)][maintainability]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)][test-coverage]
 
-> ⚠️ This README explains the main branch, which may contain unreleased code. For the README of the latest release, please refer to [this link][latest-release-readme].
+> **_NOTE:_** This README explains the main branch, which may contain unreleased code. For the README of the latest release, please refer to [this link][latest-release-readme].
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
+Peddler is automatically generated from the Open API models provided by Amazon.
+
 To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
+
+- [API models][api-models]
+- [API samples][api-samples]
 
 ![Peddler](https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true)
 
@@ -340,7 +345,6 @@ purchase_orders = response.parse["purchaseOrders"]
 
 Enables vendors to manage shipping labels and shipping information for direct fulfillment orders.
 
-
 ```ruby
 api = Peddler.vendor_direct_fulfillment_shipping_2021_12_28(aws_region, access_token)
 response = api.get_packing_slip(
@@ -352,7 +356,6 @@ response.parse
 #### Vendor Direct Fulfillment Orders API (2021-12-28)
 
 Allows vendors to receive orders for direct fulfillment and provide shipment confirmations.
-
 
 ```ruby
 api = Peddler.vendor_direct_fulfillment_orders_2021_12_28(aws_region, access_token)
@@ -502,6 +505,8 @@ response.parse
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
+[api-models]: https://github.com/amzn/selling-partner-api-models
+[api-samples]: https://github.com/amzn/selling-partner-api-samples
 [view-credentials]: https://developer-docs.amazon.com/sp-api/docs/viewing-your-application-information-and-credentials
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
 [rate-limits]: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
