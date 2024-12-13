@@ -16,19 +16,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Marketplace.id and Marketplace.ids shorthands
 - Add new operations to Fulfillment Inbound v2024-03-20
 - Add upload_feed_document method to Feeds API
+- Add Ireland marketplace
 
 ### Fixed
 
--  Set failed http response in a custom attribute instead of cause
+- Set failed http response in a custom attribute instead of cause
 
 ## [3.0.0] - 2024-10-04
 
 ### Added
 
 - Add new APIS
-    - Application Integrations 2024-04-01
-    - Finances 2024-06-19
-    - Invoices 2024-06-19
+  - Application Integrations 2024-04-01
+  - Finances 2024-06-19
+  - Invoices 2024-06-19
 - Implement sandbox mode
 - Add convenience methods for the APIs at the top level
 - Add (back) marketplace model

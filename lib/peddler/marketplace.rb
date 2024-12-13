@@ -9,6 +9,7 @@ module Peddler
     "US" => { id: "ATVPDKIKX0DER", country_name: "United States", selling_region: "North America" },
     "MX" => { id: "A1AM78C64UM0Y8", country_name: "Mexico", selling_region: "North America" },
     "BR" => { id: "A2Q3Y263D00KWC", country_name: "Brazil", selling_region: "North America" },
+    "IE" => { id: "A28R8C7NBKEWEA", country_name: "Ireland", selling_region: "Europe" },
     "ES" => { id: "A1RKKUPIHCS9HS", country_name: "Spain", selling_region: "Europe" },
     "UK" => { id: "A1F83G8C2ARO7P", country_name: "United Kingdom", selling_region: "Europe" },
     "FR" => { id: "A13V1IB3VIYZZH", country_name: "France", selling_region: "Europe" },
