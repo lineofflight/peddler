@@ -2,11 +2,6 @@
 
 module Peddler
   class Error < StandardError
-    class InvalidInput < Error; end
-    class NotFound < Error; end
-    class QuotaExceeded < Error; end
-    class Unauthorized < Error; end
-
     attr_reader :response
 
     # @!visibility private
@@ -15,7 +10,14 @@ module Peddler
         error = JSON.parse(response).dig("errors").first
         class_name = error.dig("code")
         message = error.dig("message")
-        klass = const_defined?(class_name) ? const_get(class_name) : const_set(class_name, Class.new(Error))
+        klass = if Errors.const_defined?(class_name)
+          Errors.const_get(class_name)
+        else
+          Errors.const_set(
+            class_name,
+            Class.new(Error),
+          )
+        end
 
         klass.new(message, response)
       rescue NameError
@@ -27,5 +29,12 @@ module Peddler
       @response = response
       super(msg)
     end
+  end
+
+  module Errors
+    class InvalidInput < Error; end
+    class NotFound < Error; end
+    class QuotaExceeded < Error; end
+    class Unauthorized < Error; end
   end
 end

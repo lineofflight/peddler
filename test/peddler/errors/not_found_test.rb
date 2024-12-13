@@ -5,7 +5,7 @@ require "helper"
 require "peddler/apis/reports_2021_06_30"
 
 module Peddler
-  class Error
+  module Errors
     class NotFoundTest < Minitest::Test
       include FeatureHelpers
 

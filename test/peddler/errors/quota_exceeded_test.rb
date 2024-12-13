@@ -5,7 +5,7 @@ require "helper"
 require "peddler/apis/product_pricing_v0"
 
 module Peddler
-  class Error
+  module Errors
     class QuotaExceededTest < Minitest::Test
       include FeatureHelpers
 
