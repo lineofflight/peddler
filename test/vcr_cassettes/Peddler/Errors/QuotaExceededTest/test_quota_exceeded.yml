@@ -109,4 +109,122 @@ http_interactions:
             ]
           }
     recorded_at: Mon, 30 Sep 2024 17:00:28 GMT
+  - request:
+      method: get
+      uri: https://sellingpartnerapi-eu.amazon.com/products/pricing/v0/price?Asins=188864544X&ItemType=Asin&MarketplaceId=A1F83G8C2ARO7P
+      body:
+        encoding: ASCII-8BIT
+        base64_string: ""
+      headers:
+        Host:
+          - sellingpartnerapi-eu.amazon.com
+        User-Agent:
+          - Peddler/3.0.0.beta1 (Language=Ruby; Hakans-MacBook-Pro.local)
+        X-Amz-Access-Token:
+          - FILTERED
+        X-Amz-Date:
+          - 20240930T170027Z
+        Connection:
+          - close
+    response:
+      status:
+        code: 429
+        message: Too Many Requests
+      headers:
+        Server:
+          - Server
+        Date:
+          - Mon, 30 Sep 2024 17:00:30 GMT
+        Content-Type:
+          - application/json
+        Content-Length:
+          - "156"
+        Connection:
+          - close
+        X-Amz-Rid:
+          - MYAKGSD0DA6RGH0R0WKC
+        X-Amzn-Requestid:
+          - deedae60-32f4-48cd-a21e-927be515432d
+        X-Amz-Apigw-Id:
+          - OPFdeedae6032f4
+        X-Amzn-Trace-Id:
+          - Root=1-66fad92e-deedae6032f448cd
+        X-Amzn-Errortype:
+          - TooManyRequestsException
+        Vary:
+          - Content-Type,Accept-Encoding,User-Agent
+        Strict-Transport-Security:
+          - max-age=47474747; includeSubDomains; preload
+      body:
+        encoding: UTF-8
+        string: |-
+          {
+            "errors": [
+              {
+                "code": "QuotaExceeded",
+                "message": "You exceeded your quota for the requested resource.",
+                "details": ""
+              }
+            ]
+          }
+    recorded_at: Mon, 30 Sep 2024 17:00:28 GMT
+  - request:
+      method: get
+      uri: https://sellingpartnerapi-eu.amazon.com/products/pricing/v0/price?Asins=188864544X&ItemType=Asin&MarketplaceId=A1F83G8C2ARO7P
+      body:
+        encoding: ASCII-8BIT
+        base64_string: ""
+      headers:
+        Host:
+          - sellingpartnerapi-eu.amazon.com
+        User-Agent:
+          - Peddler/3.0.0.beta1 (Language=Ruby; Hakans-MacBook-Pro.local)
+        X-Amz-Access-Token:
+          - FILTERED
+        X-Amz-Date:
+          - 20240930T170027Z
+        Connection:
+          - close
+    response:
+      status:
+        code: 429
+        message: Too Many Requests
+      headers:
+        Server:
+          - Server
+        Date:
+          - Mon, 30 Sep 2024 17:00:30 GMT
+        Content-Type:
+          - application/json
+        Content-Length:
+          - "156"
+        Connection:
+          - close
+        X-Amz-Rid:
+          - MYAKGSD0DA6RGH0R0WKC
+        X-Amzn-Requestid:
+          - deedae60-32f4-48cd-a21e-927be515432d
+        X-Amz-Apigw-Id:
+          - OPFdeedae6032f4
+        X-Amzn-Trace-Id:
+          - Root=1-66fad92e-deedae6032f448cd
+        X-Amzn-Errortype:
+          - TooManyRequestsException
+        Vary:
+          - Content-Type,Accept-Encoding,User-Agent
+        Strict-Transport-Security:
+          - max-age=47474747; includeSubDomains; preload
+      body:
+        encoding: UTF-8
+        string: |-
+          {
+            "errors": [
+              {
+                "code": "QuotaExceeded",
+                "message": "You exceeded your quota for the requested resource.",
+                "details": ""
+              }
+            ]
+          }
+    recorded_at: Mon, 30 Sep 2024 17:00:28 GMT
 recorded_with: VCR 6.3.1

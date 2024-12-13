@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-
 require "peddler/apis/product_pricing_v0"
 
 module Peddler
@@ -11,7 +10,8 @@ module Peddler
 
       # I depleted quota before recording this test.
       def test_quota_exceeded
-        error = assert_raises(QuotaExceeded) do
+        error_class = api.http.respond_to?(:retriable) ? HTTP::OutOfRetriesError : QuotaExceeded
+        error = assert_raises(error_class) do
           api.get_pricing("A1F83G8C2ARO7P", "Asin", asins: ["188864544X"])
         end
         assert_equal(429, error.response.status)

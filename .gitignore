@@ -3,6 +3,7 @@ Gemfile.lock
 .yardoc
 coverage
 doc
+gemfiles/*.gemfile.lock
 pkg
 selling-partner-api-models
 test/config.json

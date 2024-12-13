@@ -26,6 +26,7 @@ jobs:
     strategy:
       matrix:
         ruby: ["3.2", "3.3"]
+        appraisal: [http-5, http-github]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +34,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - run: bundle exec rake test
+      - run: bundle exec appraisal install
+      - run: bundle exec appraisal ${{ matrix.appraisal }} rake test
 
   coverage:
     if: github.event_name == 'push'
