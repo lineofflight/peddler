@@ -66,12 +66,12 @@ module Peddler
 
     # Throttles with a rate limit and retries when the API returns a 429
     #
-    # @param [Float] rate_limit The delay in seconds before retrying
+    # @param [Float] requests_per_second
     # @return [self]
-    def meter(rate_limit)
+    def meter(requests_per_second)
       # HTTP v6.0 will implement retriable. Until then, point to their GitHub repo, or it's a no-op.
       # https://github.com/httprb/http/pull/790
-      delay = sandbox? ? 0.2 : 1.0 / rate_limit
+      delay = sandbox? ? 0.2 : 1.0 / requests_per_second
       retriable(delay: delay, tries: 3, retry_statuses: [429])
 
       self
