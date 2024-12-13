@@ -493,10 +493,10 @@ response.parse
 
 ## TODO
 
-- Code generate models to parse payload. Consider using `dry-struct`.
-- Code generate the APIs section—descriptions and code examples—in this README here.
-- Schedule code generation with GitHub Actions. Push new gem when models change.
-- Review and consider applying [these patches][patches].
+- [ ] Code generate payload parsers.
+- [ ] Code generate the APIs section—descriptions and code examples—in this README here.
+- [ ] Schedule code generation with GitHub Actions. Push new gem when models change.
+- [ ] Review and consider applying [these patches][patches].
 
 [build]: https://github.com/hakanensari/peddler/actions
 [maintainability]: https://codeclimate.com/github/hakanensari/peddler/maintainability
