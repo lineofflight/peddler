@@ -18,7 +18,7 @@ module Peddler
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request body that contains the inventory update data to submit.
+      # @param body [Hash] The request body containing the inventory update data to submit.
       # @param warehouse_id [String] Identifier for the warehouse for which to update inventory.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

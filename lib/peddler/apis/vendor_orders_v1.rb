@@ -86,7 +86,7 @@ module Peddler
       # Submits acknowledgements for one or more purchase orders.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash]
+      # @param body [Hash] Submits acknowledgements for one or more purchase orders from a vendor.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)

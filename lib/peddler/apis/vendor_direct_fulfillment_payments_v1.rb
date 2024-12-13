@@ -18,7 +18,7 @@ module Peddler
       # Submits one or more invoices for a vendor's direct fulfillment orders.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request body that contains one or more invoices for vendor orders.
+      # @param body [Hash] The request body containing one or more invoices for vendor orders.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_invoice(body, rate_limit: 10.0)

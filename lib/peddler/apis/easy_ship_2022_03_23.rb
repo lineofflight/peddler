@@ -96,20 +96,19 @@ module Peddler
         meter(rate_limit).patch(path, body:)
       end
 
-      # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
-      # associated shipping labels, along with other compliance documents according to the marketplace (refer to the
-      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # marketplace document support table}). Developers calling this operation may optionally assign a `packageDetails`
-      # object, allowing them to input a preferred time slot for each order in ther request. In this case, Amazon will
-      # try to schedule the respective packages using their optional settings. On the other hand, *i.e.*, if the time
-      # slot is not provided, Amazon will then pick the earliest time slot possible. Regarding the shipping label's file
-      # format, external developers are able to choose between PDF or ZPL, and Amazon will create the label accordingly.
-      # This operation returns an array composed of the scheduled packages, and a short-lived URL pointing to a zip file
-      # containing the generated shipping labels and the other documents enabled for your marketplace. If at least an
-      # order couldn't be scheduled, then Amazon adds the `rejectedOrders` list into the response, which contains an
-      # entry for each order we couldn't process. Each entry is composed of an error message describing the reason of
-      # the failure, so that sellers can take action. The table below displays the supported request and burst maximum
-      # rates:
+      # This operation automatically schedules a time slot for all specified `amazonOrderId` values and generates the
+      # associated shipping labels and compliance documents based on the marketplace. For more information, refer to the
+      # [marketplace support
+      # table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
+      # You can optionally assign a `packageDetails` object to input a preferred time slot for each order in your
+      # request. In such cases, Amazon schedules the respective packages using the specified optional settings. If you
+      # don't specify a time slot, Amazon assigns the earliest available time slot. You can choose PDF or ZPL for your
+      # shipping label's file format and Amazon creates the label accordingly. This operation returns an array that
+      # contains the scheduled packages, and a temporary URL that you can use to access a ZIP file. The ZIP file
+      # includes the generated shipping labels and any other documents that are required for your marketplace. If an
+      # order can't be scheduled, Amazon adds the `rejectedOrders` list in the response. The response contains an entry
+      # for each order that could not be processed. Each entry contains an error message that describes the reason for
+      # the failure. The following table contains the supported request and burst maximum rates:
       #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`

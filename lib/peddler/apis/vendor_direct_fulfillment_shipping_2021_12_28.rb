@@ -50,7 +50,7 @@ module Peddler
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] Request body that contains the shipping labels data.
+      # @param body [Hash] Request body containing the shipping labels data.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
@@ -62,8 +62,8 @@ module Peddler
       # Returns a shipping label for the purchaseOrderNumber that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
-      #   Should be the same `purchaseOrderNumber` as received in the order.
+      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label
+      #   and should be the same purchaseOrderNumber as received in the order.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
@@ -77,7 +77,7 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping
       #   labels. It should be the same purchaseOrderNumber as received in the order.
-      # @param body [Hash] The request payload that contains parameters for creating shipping labels.
+      # @param body [Hash] The request payload containing parameters for creating shipping labels.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_shipping_labels(purchase_order_number, body, rate_limit: 10.0)
@@ -103,7 +103,7 @@ module Peddler
       # order, when the package is outside of Amazon Network visibility.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] Request body that contains the shipment status update data.
+      # @param body [Hash] Request body containing the shipment status update data.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)

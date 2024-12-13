@@ -15,7 +15,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
     # fulfillment vendor's transaction status.
     class VendorDirectFulfillmentTransactionsV1 < API
-      # Returns the status of the transaction indicated by the specified `transactionId`.
+      # Returns the status of the transaction indicated by the specified transactionId.
       #
       # @note This operation can make a static sandbox call.
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific

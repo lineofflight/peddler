@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Selling Partner API for Listings Items
+    # Listings Items v2021-08-01
     #
     # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
@@ -130,40 +130,6 @@ module Peddler
         }.compact
 
         meter(rate_limit).put(path, body:, params:)
-      end
-
-      # Search for and return list of listings items and respective details for a selling partner.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
-      # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers for the request.
-      # @param identifiers [Array<String>] A comma-delimited list of product identifiers to search for listings items
-      #   by. **Note**: 1. Required when `identifiersType` is provided.
-      # @param identifiers_type [String] Type of product identifiers to search for listings items by. **Note**: 1.
-      #   Required when `identifiers` is provided.
-      # @param page_size [Integer] Number of results to be returned per page.
-      # @param page_token [String] A token to fetch a certain page when there are multiple pages worth of results.
-      # @param included_data [Array<String>] A comma-delimited list of data sets to include in the response. Default:
-      #   summaries.
-      # @param issue_locale [String] A locale for localization of issues. When not provided, the default language code
-      #   of the first marketplace is used. Examples: "en_US", "fr_CA", "fr_FR". Localized messages default to "en_US"
-      #   when a localization is not available in the specified locale.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def search_listings_items(seller_id, marketplace_ids, identifiers: nil, identifiers_type: nil, page_size: 10,
-        page_token: nil, included_data: ["summaries"], issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{seller_id}"
-        params = {
-          "marketplaceIds" => marketplace_ids,
-          "identifiers" => identifiers,
-          "identifiersType" => identifiers_type,
-          "pageSize" => page_size,
-          "pageToken" => page_token,
-          "includedData" => included_data,
-          "issueLocale" => issue_locale,
-        }.compact
-
-        meter(rate_limit).get(path, params:)
       end
     end
   end

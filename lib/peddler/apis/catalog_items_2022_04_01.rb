@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Selling Partner API for Catalog Items
+    # Catalog Items v2022-04-01
     #
     # The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon
     # catalog. For more information, refer to the

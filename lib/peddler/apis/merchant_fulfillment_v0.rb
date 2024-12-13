@@ -12,16 +12,16 @@ module Peddler
   module APIs
     # Selling Partner API for Merchant Fulfillment
     #
-    # The Selling Partner API for Merchant Fulfillment helps you build applications that let sellers purchase shipping
-    # for non-Prime and Prime orders using Amazon’s Buy Shipping Services.
+    # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
+    # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
     class MerchantFulfillmentV0 < API
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash] Request schema for GetEligibleShipmentServices operation.
+      # @param body [Hash] The request schema for the `GetEligibleShipmentServices` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_eligible_shipment_services(body, rate_limit: 5.0)
+      def get_eligible_shipment_services(body, rate_limit: 6.0)
         path = "/mfn/v0/eligibleShippingServices"
 
         meter(rate_limit).post(path, body:)
@@ -54,10 +54,10 @@ module Peddler
       # Create a shipment with the information provided.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash] Request schema for CreateShipment operation.
+      # @param body [Hash] The request schema for the `CreateShipment` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_shipment(body, rate_limit: 1.0)
+      def create_shipment(body, rate_limit: 2.0)
         path = "/mfn/v0/shipments"
 
         meter(rate_limit).post(path, body:)
@@ -67,7 +67,7 @@ module Peddler
       # shipping.
       #
       # @note This operation can make a static sandbox call.
-      # @param body [Hash] Request schema for GetAdditionalSellerInputs operation.
+      # @param body [Hash] The request schema for the `GetAdditionalSellerInputs` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_additional_seller_inputs(body, rate_limit: 1.0)
