@@ -72,7 +72,7 @@ module Peddler
       # HTTP v6.0 will implement retriable. Until then, point to their GitHub repo, or it's a no-op.
       # https://github.com/httprb/http/pull/790
       delay = sandbox? ? 0.2 : 1.0 / rate_limit
-      retriable(delay: delay, retry_statuses: [429]) if @http.respond_to?(:retriable)
+      retriable(delay: delay, retry_statuses: [429])
 
       self
     end
@@ -97,7 +97,7 @@ module Peddler
     #   @return [self]
     [:via, :use, :retriable].each do |method|
       define_method(method) do |*args, &block|
-        @http = http.send(method, *args, &block)
+        @http = http.send(method, *args, &block) if http.respond_to?(method)
         self
       end
     end

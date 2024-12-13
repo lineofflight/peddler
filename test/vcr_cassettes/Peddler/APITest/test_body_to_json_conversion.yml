@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sellingpartnerapi-eu.amazon.com/
+    body:
+      encoding: UTF-8
+      string: '{"key":"value"}'
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/3.0.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20241213T105118Z
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 13 Dec 2024 10:51:18 GMT
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Amz-Rid:
+      - Q8J5GVMGP9FY4NMG2T0X
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        ewogICJlcnJvcnMiOiBbCiAgICB7CiAgICAgICJjb2RlIjogIlVuYXV0aG9y
+        aXplZCIsCiAgICAgICJtZXNzYWdlIjogIkFjY2VzcyB0byByZXF1ZXN0ZWQg
+        cmVzb3VyY2UgaXMgZGVuaWVkLiIsCiAgICAgICJkZXRhaWxzIjogIiIKICAg
+        IH0KICBdCn0=
+  recorded_at: Fri, 13 Dec 2024 10:51:18 GMT
+recorded_with: VCR 6.3.1

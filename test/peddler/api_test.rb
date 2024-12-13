@@ -46,6 +46,13 @@ module Peddler
       refute_empty(@api.http.default_options.features)
     end
 
+    def test_rate_limit_noop
+      initial_http_object_id = @api.http.object_id
+      @api.meter(1.0).http
+
+      assert_equal(initial_http_object_id, @api.http.object_id)
+    end
+
     def test_rate_limit
       skip("HTTP v6.0 not released yet")
     end
@@ -61,6 +68,47 @@ module Peddler
     def test_client_error
       assert_raises(Peddler::Error) do
         @api.post("/")
+      end
+    end
+
+    def test_body_to_json_conversion
+      error = assert_raises(Peddler::Error) do
+        @api.post("/", body: { key: "value" })
+      end
+      request = error.response.request
+      request_body = request.body.source
+      request_content_type = request.headers["Content-Type"]
+
+      assert_equal({ key: "value" }.to_json, request_body)
+      assert_match(%r{\Aapplication/json}, request_content_type)
+    end
+
+    def test_cannot_sandbox!
+      test_api_class = Class.new(API) do
+        def perform_cannot_sandbox_operation
+          cannot_sandbox!
+        end
+      end
+
+      test_api = test_api_class.new("eu-west-1", "access_token")
+      test_api.perform_cannot_sandbox_operation
+
+      assert_raises(API::CannotSandbox) do
+        test_api.sandbox.perform_cannot_sandbox_operation
+      end
+    end
+
+    def test_must_sandbox!
+      test_api_class = Class.new(API) do
+        def perform_must_sandbox_operation
+          must_sandbox!
+        end
+      end
+
+      test_api = test_api_class.new("eu-west-1", "access_token")
+
+      assert_raises(API::MustSandbox) do
+        test_api.perform_must_sandbox_operation
       end
     end
   end
