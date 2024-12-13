@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [Unreleased]
+
+## [4.0.0] - 2024-12-13
 
 ### Changed
 
@@ -363,7 +365,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[unreleased]: https://github.com/hakanensari/peddler/compare/v2.4.5...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0.beta1...v3.0.0
 [3.0.0.beta1]: https://github.com/hakanensari/peddler/compare/v2.4.5...v3.0.0.beta1
 [2.4.4]: https://github.com/hakanensari/peddler/compare/v2.4.4...v2.4.5
