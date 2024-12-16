@@ -19,9 +19,8 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request payload containing parameters for generating test order data scenarios.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_order_scenarios(body, rate_limit: nil)
+      def generate_order_scenarios(body)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
 
         post(path, body:)
@@ -33,9 +32,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
       #   operation.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_order_scenarios(transaction_id, rate_limit: nil)
+      def get_order_scenarios(transaction_id)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{transaction_id}"
 
         get(path)

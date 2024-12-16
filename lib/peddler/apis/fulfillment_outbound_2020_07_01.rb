@@ -184,9 +184,8 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param body [Hash] The identifier assigned to the item by the seller when the fulfillment order was created.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body, rate_limit: nil)
+      def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
         must_sandbox!
 
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/status"

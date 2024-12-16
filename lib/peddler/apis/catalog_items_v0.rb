@@ -39,10 +39,9 @@ module Peddler
       # @param isbn [String] The unique commercial book identifier used to identify books internationally.
       # @param jan [String] A Japanese article number that uniquely identifies the product, manufacturer, and its
       #   attributes.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_catalog_items(marketplace_id, query: nil, query_context_id: nil, seller_sku: nil, upc: nil, ean: nil,
-        isbn: nil, jan: nil, rate_limit: nil)
+        isbn: nil, jan: nil)
         path = "/catalog/v0/items"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -68,9 +67,8 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for the item.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_catalog_item(marketplace_id, asin, rate_limit: nil)
+      def get_catalog_item(marketplace_id, asin)
         path = "/catalog/v0/items/#{asin}"
         params = {
           "MarketplaceId" => marketplace_id,

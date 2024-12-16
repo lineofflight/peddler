@@ -68,9 +68,8 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param create_inventory_item_request_body [Hash] CreateInventoryItem Request Body Parameter.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def create_inventory_item(create_inventory_item_request_body, rate_limit: nil)
+      def create_inventory_item(create_inventory_item_request_body)
         must_sandbox!
 
         path = "/fba/inventory/v1/items"
@@ -86,9 +85,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def delete_inventory_item(seller_sku, marketplace_id, rate_limit: nil)
+      def delete_inventory_item(seller_sku, marketplace_id)
         must_sandbox!
 
         path = "/fba/inventory/v1/items/#{seller_sku}"
@@ -107,9 +105,8 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_idempotency_token [String] A unique token/requestId provided with each call to ensure idempotency.
       # @param add_inventory_request_body [Hash] List of items to add to Sandbox inventory.
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def add_inventory(x_amzn_idempotency_token, add_inventory_request_body, rate_limit: nil)
+      def add_inventory(x_amzn_idempotency_token, add_inventory_request_body)
         must_sandbox!
 
         path = "/fba/inventory/v1/items/inventory"

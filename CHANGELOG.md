@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Meter requests only if a rate limit is given
+
 ## [4.0.1] - 2024-12-13
 
 ### Fixed

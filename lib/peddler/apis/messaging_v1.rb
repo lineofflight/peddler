@@ -258,9 +258,8 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
-      # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def send_invoice(amazon_order_id, marketplace_ids, body, rate_limit: nil)
+      def send_invoice(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/invoice"
         params = {
           "marketplaceIds" => marketplace_ids,

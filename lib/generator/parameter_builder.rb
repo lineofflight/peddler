@@ -11,7 +11,9 @@ module Generator
     def build
       parameters = (@shared_parameters + (@operation["parameters"] || [])).uniq { |p| p["name"] }
       parameters = parameters.select { |p| p["name"] }
-      parameters << build_rate_limit_param
+      if @rate_limit
+        parameters << build_rate_limit_param
+      end
       parameters << build_notification_type_param if needs_notification_type?
 
       parameters
