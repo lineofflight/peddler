@@ -102,7 +102,7 @@ end
 
 ### Rate limiting
 
-Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. Peddler respects these limits and automatically backs off when throttled. To override the default rate limit, pass a `:rate_limit` argument when running an operation.
+Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. Peddler respects these limits and automatically backs off when throttled. You can override the default rate limit by passing a `:rate_limit` to the operation. You can also provide an optional `:tries` argument to specify the number of request attempts, including retries, before giving up. By default, we retry once.
 
 **Note:** This functionality requires version 6 of the underlying [HTTP library][httprb]. As of writing, this is not released yet. To use rate limiting, point to their main branch on GitHub.
 
