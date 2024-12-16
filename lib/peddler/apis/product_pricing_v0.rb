@@ -36,9 +36,10 @@ module Peddler
       # @param offer_type [String] Indicates whether to request pricing information for the seller's B2C or B2B offers.
       #   Default is B2C.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_pricing(marketplace_id, item_type, asins: nil, skus: nil, item_condition: nil, offer_type: nil,
-        rate_limit: 0.5)
+        rate_limit: 0.5, tries: 2)
         path = "/products/pricing/v0/price"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -49,7 +50,7 @@ module Peddler
           "OfferType" => offer_type,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN. **Note:** The
@@ -71,8 +72,10 @@ module Peddler
       # @param customer_type [String] Indicates whether to request pricing information from the point of view of
       #   Consumer or Business buyers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil, rate_limit: 0.5)
+      def get_competitive_pricing(marketplace_id, item_type, asins: nil, skus: nil, customer_type: nil, rate_limit: 0.5,
+        tries: 2)
         path = "/products/pricing/v0/competitivePrice"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -82,7 +85,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns the lowest priced offers for a single SKU listing. **Note:** The parameters associated with this
@@ -98,8 +101,9 @@ module Peddler
       #   SellerId, which is included with every operation that you submit.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0)
+      def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0, tries: 2)
         path = "/products/pricing/v0/listings/#{seller_sku}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -107,7 +111,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns the lowest priced offers for a single item based on ASIN.
@@ -120,8 +124,9 @@ module Peddler
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param customer_type [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5)
+      def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5, tries: 2)
         path = "/products/pricing/v0/items/#{asin}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -129,7 +134,7 @@ module Peddler
           "CustomerType" => customer_type,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
@@ -137,12 +142,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_item_offers_batch_request_body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
+      def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1, tries: 2)
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
@@ -150,12 +156,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param get_listing_offers_batch_request_body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
+      def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5, tries: 2)
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
     end
   end

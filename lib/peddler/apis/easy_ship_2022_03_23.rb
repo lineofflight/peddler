@@ -30,12 +30,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param list_handover_slots_request [Hash] The request schema for the `listHandoverSlots` operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
+      def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0, tries: 2)
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -46,15 +47,16 @@ module Peddler
       #   to deliver using Amazon Easy Ship.
       # @param marketplace_id [String] An identifier for the marketplace in which the seller is selling.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_scheduled_package(amazon_order_id, marketplace_id, rate_limit: 1.0)
+      def get_scheduled_package(amazon_order_id, marketplace_id, rate_limit: 1.0, tries: 2)
         path = "/easyShip/2022-03-23/package"
         params = {
           "amazonOrderId" => amazon_order_id,
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Schedules an Easy Ship order and returns the scheduled package information. This operation does the following: *
@@ -71,12 +73,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_package_request [Hash] The request schema for the `createScheduledPackage` operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
+      def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0, tries: 2)
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -88,12 +91,13 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param update_scheduled_packages_request [Hash] The request schema for the `updateScheduledPackages` operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
+      def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0, tries: 2)
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
 
-        meter(rate_limit).patch(path, body:)
+        meter(rate_limit, tries:).patch(path, body:)
       end
 
       # This operation automatically schedules a time slot for all specified `amazonOrderId` values and generates the
@@ -114,12 +118,13 @@ module Peddler
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
+      def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0, tries: 2)
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
     end
   end

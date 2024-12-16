@@ -44,9 +44,10 @@ module Peddler
       # @param marketplace_ids [Array<String>] The marketplace ID for the marketplace for which to return inventory
       #   summaries.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_inventory_summaries(granularity_type, granularity_id, marketplace_ids, details: nil, start_date_time: nil,
-        seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0)
+        seller_skus: nil, seller_sku: nil, next_token: nil, rate_limit: 2.0, tries: 2)
         path = "/fba/inventory/v1/summaries"
         params = {
           "details" => details,
@@ -59,7 +60,7 @@ module Peddler
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a

@@ -33,11 +33,12 @@ module Peddler
       # @param seller_sku [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
+      def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0, tries: 2)
         path = "/products/fees/v0/listings/#{seller_sku}/feesEstimate"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the
@@ -54,11 +55,12 @@ module Peddler
       # @param body [Hash]
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
+      def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0, tries: 2)
         path = "/products/fees/v0/items/#{asin}/feesEstimate"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns the estimated fees for a list of products.
@@ -66,11 +68,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_my_fees_estimates(body, rate_limit: 0.5)
+      def get_my_fees_estimates(body, rate_limit: 0.5, tries: 2)
         path = "/products/fees/v0/feesEstimate"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
     end
   end

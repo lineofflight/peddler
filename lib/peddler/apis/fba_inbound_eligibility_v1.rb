@@ -28,8 +28,9 @@ module Peddler
       # @param asin [String] The ASIN of the item for which you want an eligibility preview.
       # @param program [String] The program that you want to check eligibility against.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
+      def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0, tries: 2)
         path = "/fba/inbound/v1/eligibility/itemPreview"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -37,7 +38,7 @@ module Peddler
           "program" => program,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
     end
   end

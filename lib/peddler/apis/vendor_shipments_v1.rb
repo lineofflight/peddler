@@ -20,24 +20,26 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] A request to submit shipment confirmation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def submit_shipment_confirmations(body, rate_limit: 10.0)
+      def submit_shipment_confirmations(body, rate_limit: 10.0, tries: 2)
         path = "/vendor/shipping/v1/shipmentConfirmations"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Submits one or more shipment request for vendor Orders.
       #
       # @param body [Hash] A request to submit shipment request.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def submit_shipments(body, rate_limit: 10.0)
+      def submit_shipments(body, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/vendor/shipping/v1/shipments"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
@@ -87,6 +89,7 @@ module Peddler
       # @param seller_warehouse_code [String] Get Shipping Details based on vendor warehouse code. This value should be
       #   same as 'sellingParty.partyId' in the Shipment.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_shipment_details(limit: nil, sort_order: nil, next_token: nil, created_after: nil, created_before: nil,
         shipment_confirmed_before: nil, shipment_confirmed_after: nil, package_label_created_before: nil,
@@ -94,7 +97,7 @@ module Peddler
         estimated_delivery_after: nil, shipment_delivery_before: nil, shipment_delivery_after: nil,
         requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil,
         scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
-        buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
+        buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/vendor/shipping/v1/shipments"
@@ -125,7 +128,7 @@ module Peddler
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
     end
   end

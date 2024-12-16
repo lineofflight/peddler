@@ -21,11 +21,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetFulfillmentPreviewRequest parameter
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_fulfillment_preview(body, rate_limit: 2.0)
+      def get_fulfillment_preview(body, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -34,11 +35,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetDeliveryOffersRequest parameter
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def delivery_offers(body, rate_limit: 5.0)
+      def delivery_offers(body, rate_limit: 5.0, tries: 2)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next
@@ -50,15 +52,16 @@ module Peddler
       #   new fulfillment order.
       # @param next_token [String] A string token returned in the response to your previous request.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def list_all_fulfillment_orders(query_start_date: nil, next_token: nil, rate_limit: 2.0)
+      def list_all_fulfillment_orders(query_start_date: nil, next_token: nil, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
         params = {
           "queryStartDate" => query_start_date,
           "nextToken" => next_token,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -67,11 +70,12 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] CreateFulfillmentOrderRequest parameter
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_fulfillment_order(body, rate_limit: 2.0)
+      def create_fulfillment_order(body, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
@@ -81,14 +85,15 @@ module Peddler
       # @param package_number [Integer] The unencrypted package identifier returned by the `getFulfillmentOrder`
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_package_tracking_details(package_number, rate_limit: 2.0)
+      def get_package_tracking_details(package_number, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/tracking"
         params = {
           "packageNumber" => package_number,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
@@ -104,9 +109,10 @@ module Peddler
       # @param language [String] The language that the `TranslatedDescription` property of the `ReasonCodeDetails`
       #   response object should be translated into.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def list_return_reason_codes(seller_sku, marketplace_id: nil, seller_fulfillment_order_id: nil, language: nil,
-        rate_limit: 2.0)
+        rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/returnReasonCodes"
         params = {
           "sellerSku" => seller_sku,
@@ -115,7 +121,7 @@ module Peddler
           "language" => language,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Creates a fulfillment return.
@@ -126,11 +132,12 @@ module Peddler
       #   time it was created. The seller uses their own records to find the correct `SellerFulfillmentOrderId` value
       #   based on the buyer's request to return items.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
+      def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/return"
 
-        meter(rate_limit).put(path, body:)
+        meter(rate_limit, tries:).put(path, body:)
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
@@ -139,11 +146,12 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
+      def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
 
-        meter(rate_limit).get(path)
+        meter(rate_limit, tries:).get(path)
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -153,11 +161,12 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
+      def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}"
 
-        meter(rate_limit).put(path, body:)
+        meter(rate_limit, tries:).put(path, body:)
       end
 
       # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
@@ -167,11 +176,12 @@ module Peddler
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
+      def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{seller_fulfillment_order_id}/cancel"
 
-        meter(rate_limit).put(path)
+        meter(rate_limit, tries:).put(path)
       end
 
       # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -199,14 +209,15 @@ module Peddler
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return the list of features.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_features(marketplace_id, rate_limit: 2.0)
+      def get_features(marketplace_id, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/features"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -221,8 +232,10 @@ module Peddler
       #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
       #   in the format yyyy-MM-ddTHH:mm:ss.sssZ
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
+      def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0,
+        tries: 2)
         path = "/fba/outbound/2020-07-01/features/inventory/#{feature_name}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -230,7 +243,7 @@ module Peddler
           "queryStartDate" => query_start_date,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified
@@ -244,14 +257,15 @@ module Peddler
       # @param seller_sku [String] Used to identify an item in the given marketplace. `SellerSKU` is qualified by the
       #   seller's `SellerId`, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)
+      def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0, tries: 2)
         path = "/fba/outbound/2020-07-01/features/inventory/#{feature_name}/#{seller_sku}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
     end
   end

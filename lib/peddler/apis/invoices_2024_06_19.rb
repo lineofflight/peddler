@@ -20,14 +20,15 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace identifier.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_invoices_attributes(marketplace_id, rate_limit: 1.0)
+      def get_invoices_attributes(marketplace_id, rate_limit: 1.0, tries: 2)
         path = "/tax/invoices/2024-06-19/attributes"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
@@ -36,11 +37,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param invoices_document_id [String] The export document identifier.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_invoices_document(invoices_document_id, rate_limit: 0.0167)
+      def get_invoices_document(invoices_document_id, rate_limit: 0.0167, tries: 2)
         path = "/tax/invoices/2024-06-19/documents/#{invoices_document_id}"
 
-        meter(rate_limit).get(path)
+        meter(rate_limit, tries:).get(path)
       end
 
       # Creates an invoice export request.
@@ -48,11 +50,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the export request.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_invoices_export(body, rate_limit: 0.167)
+      def create_invoices_export(body, rate_limit: 0.167, tries: 2)
         path = "/tax/invoices/2024-06-19/exports"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
@@ -72,9 +75,10 @@ module Peddler
       #   The default value is the time of the request.
       # @param status [String] Return exports matching the status specified.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_invoices_exports(marketplace_id, date_start: nil, next_token: nil, page_size: nil, date_end: nil,
-        status: nil, rate_limit: 0.1)
+        status: nil, rate_limit: 0.1, tries: 2)
         path = "/tax/invoices/2024-06-19/exports"
         params = {
           "marketplaceId" => marketplace_id,
@@ -85,7 +89,7 @@ module Peddler
           "status" => status,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
@@ -93,11 +97,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param export_id [String] The unique identifier for the export.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_invoices_export(export_id, rate_limit: 2.0)
+      def get_invoices_export(export_id, rate_limit: 2.0, tries: 2)
         path = "/tax/invoices/2024-06-19/exports/#{export_id}"
 
-        meter(rate_limit).get(path)
+        meter(rate_limit, tries:).get(path)
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
@@ -133,10 +138,12 @@ module Peddler
       #   Government Invoice ID.
       # @param sort_by [String] The attribute by which you want to sort the invoices in the response.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_invoices(marketplace_id, transaction_identifier_name: nil, page_size: nil, date_end: nil,
         transaction_type: nil, transaction_identifier_id: nil, date_start: nil, series: nil, next_token: nil,
-        sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, rate_limit: 0.1)
+        sort_order: nil, invoice_type: nil, statuses: nil, external_invoice_id: nil, sort_by: nil, rate_limit: 0.1,
+        tries: 2)
         path = "/tax/invoices/2024-06-19/invoices"
         params = {
           "transactionIdentifierName" => transaction_identifier_name,
@@ -155,7 +162,7 @@ module Peddler
           "sortBy" => sort_by,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
@@ -166,14 +173,15 @@ module Peddler
       # @param marketplace_id [String] The marketplace from which you want the invoice.
       # @param invoice_id [String] The invoice identifier.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_invoice(marketplace_id, invoice_id, rate_limit: 2.0)
+      def get_invoice(marketplace_id, invoice_id, rate_limit: 2.0, tries: 2)
         path = "/tax/invoices/2024-06-19/invoices/#{invoice_id}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
     end
   end

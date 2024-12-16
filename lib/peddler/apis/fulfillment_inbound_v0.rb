@@ -25,11 +25,12 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the CreateInboundShipmentPlanRequest operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_inbound_shipment_plan(body, rate_limit: 2.0)
+      def create_inbound_shipment_plan(body, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/plans"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Returns a new inbound shipment based on the specified shipmentId that was returned by the
@@ -40,11 +41,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_inbound_shipment(body, shipment_id, rate_limit: 2.0)
+      def create_inbound_shipment(body, shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
 
-        meter(rate_limit).post(path, body:)
+        meter(rate_limit, tries:).post(path, body:)
       end
 
       # Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new
@@ -55,11 +57,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_inbound_shipment(body, shipment_id, rate_limit: 2.0)
+      def update_inbound_shipment(body, shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}"
 
-        meter(rate_limit).put(path, body:)
+        meter(rate_limit, tries:).put(path, body:)
       end
 
       # Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order.
@@ -69,14 +72,15 @@ module Peddler
       #   operation.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace the shipment is tied to.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_preorder_info(shipment_id, marketplace_id, rate_limit: 2.0)
+      def get_preorder_info(shipment_id, marketplace_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/preorder"
         params = {
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns information needed to confirm a shipment for pre-order. Call this operation after calling the
@@ -90,15 +94,16 @@ module Peddler
       #   getPreorderInfo operation returns this value.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace the shipment is tied to.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def confirm_preorder(shipment_id, need_by_date, marketplace_id, rate_limit: 2.0)
+      def confirm_preorder(shipment_id, need_by_date, marketplace_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/preorder/confirm"
         params = {
           "NeedByDate" => need_by_date,
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).put(path, params:)
+        meter(rate_limit, tries:).put(path, params:)
       end
 
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
@@ -120,8 +125,9 @@ module Peddler
       #   InvalidASINList property in the response. You can find out which marketplaces a seller participates in by
       #   calling the getMarketplaceParticipations operation in the Selling Partner API for Sellers.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_prep_instructions(ship_to_country_code, seller_sku_list: nil, asin_list: nil, rate_limit: 2.0)
+      def get_prep_instructions(ship_to_country_code, seller_sku_list: nil, asin_list: nil, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/prepInstructions"
         params = {
           "ShipToCountryCode" => ship_to_country_code,
@@ -129,7 +135,7 @@ module Peddler
           "ASINList" => asin_list,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns current transportation information about an inbound shipment.
@@ -138,11 +144,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_transport_details(shipment_id, rate_limit: 2.0)
+      def get_transport_details(shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
 
-        meter(rate_limit).get(path)
+        meter(rate_limit, tries:).get(path)
       end
 
       # Sends transportation information to Amazon about an inbound shipment.
@@ -152,11 +159,12 @@ module Peddler
       #   operation.
       # @param body [Hash] The request schema for the PutTransportDetailsRequest operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def put_transport_details(shipment_id, body, rate_limit: 2.0)
+      def put_transport_details(shipment_id, body, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
 
-        meter(rate_limit).put(path, body:)
+        meter(rate_limit, tries:).put(path, body:)
       end
 
       # Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier. To be
@@ -170,11 +178,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def void_transport(shipment_id, rate_limit: 2.0)
+      def void_transport(shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/void"
 
-        meter(rate_limit).post(path)
+        meter(rate_limit, tries:).post(path)
       end
 
       # Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
@@ -185,11 +194,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def estimate_transport(shipment_id, rate_limit: 2.0)
+      def estimate_transport(shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/estimate"
 
-        meter(rate_limit).post(path)
+        meter(rate_limit, tries:).post(path)
       end
 
       # Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their
@@ -206,11 +216,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def confirm_transport(shipment_id, rate_limit: 2.0)
+      def confirm_transport(shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/confirm"
 
-        meter(rate_limit).post(path)
+        meter(rate_limit, tries:).post(path)
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -239,9 +250,10 @@ module Peddler
       # @param page_start_index [Integer] The page start index for paginating through the total packages' labels. This
       #   is a required parameter for Non-Partnered LTL Shipments.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil,
-        number_of_pallets: nil, page_size: nil, page_start_index: nil, rate_limit: 2.0)
+        number_of_pallets: nil, page_size: nil, page_start_index: nil, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/labels"
         params = {
           "PageType" => page_type,
@@ -253,7 +265,7 @@ module Peddler
           "PageStartIndex" => page_start_index,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading
@@ -264,11 +276,12 @@ module Peddler
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_bill_of_lading(shipment_id, rate_limit: 2.0)
+      def get_bill_of_lading(shipment_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/billOfLading"
 
-        meter(rate_limit).get(path)
+        meter(rate_limit, tries:).get(path)
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
@@ -291,9 +304,10 @@ module Peddler
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_shipments(query_type, marketplace_id, shipment_status_list: nil, shipment_id_list: nil,
-        last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
+        last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments"
         params = {
           "ShipmentStatusList" => shipment_status_list,
@@ -305,7 +319,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns a list of items in a specified inbound shipment.
@@ -315,14 +329,15 @@ module Peddler
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_shipment_items_by_shipment_id(shipment_id, marketplace_id, rate_limit: 2.0)
+      def get_shipment_items_by_shipment_id(shipment_id, marketplace_id, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/items"
         params = {
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
@@ -340,9 +355,10 @@ module Peddler
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
       #   stored.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_shipment_items(query_type, marketplace_id, last_updated_after: nil, last_updated_before: nil,
-        next_token: nil, rate_limit: 2.0)
+        next_token: nil, rate_limit: 2.0, tries: 2)
         path = "/fba/inbound/v0/shipmentItems"
         params = {
           "LastUpdatedAfter" => last_updated_after,
@@ -352,7 +368,7 @@ module Peddler
           "MarketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
     end
   end

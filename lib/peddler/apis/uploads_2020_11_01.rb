@@ -31,9 +31,10 @@ module Peddler
       #   `/uploads/v1/uploadDestinations/aplus/2020-11-01/contentDocuments`.
       # @param content_type [String] The content type of the file to be uploaded.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil,
-        rate_limit: 10.0)
+        rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/uploads/2020-11-01/uploadDestinations/#{resource}"
@@ -43,7 +44,7 @@ module Peddler
           "contentType" => content_type,
         }.compact
 
-        meter(rate_limit).post(path, params:)
+        meter(rate_limit, tries:).post(path, params:)
       end
     end
   end

@@ -4,22 +4,21 @@
   <%= tag %>
 <% end -%>
 <%= method_definition %>
-  <%= sandbox_rule -%>
-  path = "<%= path %>"
-  <% if body_param_name && body_param_name != "body" -%>
-    body = <%= body_param_name %>
+<%= sandbox_rule -%>
+path = "<%= path %>"
+<% if body_param_name && body_param_name != "body" -%>
+  body = <%= body_param_name %>
+<% end -%>
+<% if query_params.any? -%>
+  params = {
+  <% query_params.each do |k, v| -%>
+    "<%= k %>" => <%= v %>,
   <% end -%>
-  <% if query_params.any? -%>
-    params = {
-      <% query_params.each do |k, v| -%>
-          "<%= k %>" => <%= v %>,
-      <% end -%>
-    }.compact
-  <% end -%>
-
-  <% if rate_limit %>
-    meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %>)
-  <% else %>
-    <%= verb %>(<%= request_args.join(", ") %>)
-  <% end %>
+  }.compact
+<% end -%>
+<% if rate_limit %>
+  meter(rate_limit, tries:).<%= verb %>(<%= request_args.join(", ") %>)
+<% else %>
+  <%= verb %>(<%= request_args.join(", ") %>)
+<% end %>
 end

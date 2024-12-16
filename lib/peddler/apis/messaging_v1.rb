@@ -27,14 +27,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
+      def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Sends a message asking a buyer to provide or verify customization details such as name spelling, images,
@@ -47,14 +48,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def confirm_customization_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def confirm_customization_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmCustomizationDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
@@ -66,14 +68,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmDeliveryDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
@@ -86,14 +89,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_legal_disclosure(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_legal_disclosure(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/legalDisclosure"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be
@@ -105,14 +109,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_negative_feedback_removal(amazon_order_id, marketplace_ids, rate_limit: 1.0)
+      def create_negative_feedback_removal(amazon_order_id, marketplace_ids, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/negativeFeedbackRemoval"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, params:)
+        meter(rate_limit, tries:).post(path, params:)
       end
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
@@ -124,14 +129,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_confirm_order_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_confirm_order_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmOrderDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
@@ -144,14 +150,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_confirm_service_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_confirm_service_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmServiceDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by
@@ -164,14 +171,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_amazon_motors(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_amazon_motors(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/amazonMotors"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
@@ -183,14 +191,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_warranty(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_warranty(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/warranty"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
@@ -201,14 +210,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
+      def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/attributes"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Sends a message to a buyer to share a digital access key needed to utilize digital content in their order.
@@ -220,14 +230,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_digital_access_key(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_digital_access_key(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/digitalAccessKey"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
@@ -240,14 +251,15 @@ module Peddler
       #   order was placed. Only one marketplace can be specified.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_unexpected_problem(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
+      def create_unexpected_problem(amazon_order_id, marketplace_ids, body, rate_limit: 1.0, tries: 2)
         path = "/messaging/v1/orders/#{amazon_order_id}/messages/unexpectedProblem"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Sends a message providing the buyer an invoice

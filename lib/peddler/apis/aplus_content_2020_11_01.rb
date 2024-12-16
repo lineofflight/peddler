@@ -28,8 +28,9 @@ module Peddler
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
+      def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments"
@@ -38,7 +39,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Creates a new A+ Content document.
@@ -46,8 +47,9 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0)
+      def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments"
@@ -56,7 +58,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Returns an A+ Content document, if available.
@@ -67,8 +69,9 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param included_data_set [Array<String>] The set of A+ Content data types to include in the response.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
+      def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
@@ -77,7 +80,7 @@ module Peddler
           "includedDataSet" => included_data_set,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Updates an existing A+ Content document.
@@ -88,9 +91,10 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request,
-        rate_limit: 10.0)
+        rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
@@ -99,7 +103,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Returns a list of ASINs related to the specified A+ Content document, if available. If you do not include the
@@ -118,9 +122,10 @@ module Peddler
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
-        asin_set: nil, page_token: nil, rate_limit: 10.0)
+        asin_set: nil, page_token: nil, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
@@ -131,7 +136,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Replaces all ASINs related to the specified A+ Content document, if available. This may add or remove ASINs,
@@ -144,9 +149,10 @@ module Peddler
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param post_content_document_asin_relations_request [Hash] The content document ASIN relations request details.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
-        post_content_document_asin_relations_request, rate_limit: 10.0)
+        post_content_document_asin_relations_request, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
@@ -155,7 +161,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
@@ -164,9 +170,10 @@ module Peddler
       # @param asin_set [Array<String>] The set of ASINs.
       # @param post_content_document_request [Hash] The content document request details.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil,
-        rate_limit: 10.0)
+        rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentAsinValidations"
@@ -176,7 +183,7 @@ module Peddler
           "asinSet" => asin_set,
         }.compact
 
-        meter(rate_limit).post(path, body:, params:)
+        meter(rate_limit, tries:).post(path, body:, params:)
       end
 
       # Searches for A+ Content publishing records, if available.
@@ -189,8 +196,9 @@ module Peddler
       #   other parameter will cause the request to fail. When no nextPageToken value is returned there are no more
       #   pages to return. A pageToken value is not usable across different operations.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
+      def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentPublishRecords"
@@ -200,7 +208,7 @@ module Peddler
           "pageToken" => page_token,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
 
       # Submits an A+ Content document for review, approval, and publishing.
@@ -210,8 +218,9 @@ module Peddler
       #   any A+ content identifier.
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
+      def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/approvalSubmissions"
@@ -219,7 +228,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).post(path, params:)
+        meter(rate_limit, tries:).post(path, params:)
       end
 
       # Submits a request to suspend visible A+ Content. This neither deletes the content document nor the ASIN
@@ -230,8 +239,9 @@ module Peddler
       #   any A+ content identifier.
       # @param marketplace_id [String] The identifier for the marketplace where the A+ Content is published.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
+      def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0, tries: 2)
         cannot_sandbox!
 
         path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/suspendSubmissions"
@@ -239,7 +249,7 @@ module Peddler
           "marketplaceId" => marketplace_id,
         }.compact
 
-        meter(rate_limit).post(path, params:)
+        meter(rate_limit, tries:).post(path, params:)
       end
     end
   end

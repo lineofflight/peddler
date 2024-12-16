@@ -54,9 +54,10 @@ module Peddler
       #   error. Do not include this filter if you want the response to include order metrics for all SKUs. Example:
       #   TestSKU, if you want the response to include order metrics for only SKU TestSKU.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All",
-        fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, rate_limit: 0.5)
+        fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, rate_limit: 0.5, tries: 2)
         path = "/sales/v1/orderMetrics"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -70,7 +71,7 @@ module Peddler
           "sku" => sku,
         }.compact
 
-        meter(rate_limit).get(path, params:)
+        meter(rate_limit, tries:).get(path, params:)
       end
     end
   end

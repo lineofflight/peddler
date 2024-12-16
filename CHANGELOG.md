@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Make retry count configurable
+
 ### Fixed
 
 - Meter requests only if a rate limit is given

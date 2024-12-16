@@ -21,11 +21,12 @@ module Peddler
       # @param transaction_id [String] Previously returned in the response to the POST request of a specific
       #   transaction.
       # @param rate_limit [Float] Requests per second
+      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_transaction_status(transaction_id, rate_limit: 10.0)
+      def get_transaction_status(transaction_id, rate_limit: 10.0, tries: 2)
         path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{transaction_id}"
 
-        meter(rate_limit).get(path)
+        meter(rate_limit, tries:).get(path)
       end
     end
   end
