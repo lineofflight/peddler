@@ -5,11 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-### [4.1.0] - 2024-12-16
+### [4.1.1] - 2024-12-17
 
 ### Added
 
-- Make retry count configurable
+- Make retries configurable
 
 ### Fixed
 
@@ -381,8 +381,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.1.0...HEAD
-[4.1.0]: https://github.com/hakanensari/peddler/compare/v4.0.1...v4.1.0
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.1.1...HEAD
+[4.1.1]: https://github.com/hakanensari/peddler/compare/v4.0.1...v4.1.1
 [4.0.1]: https://github.com/hakanensari/peddler/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0.beta1...v3.0.0
