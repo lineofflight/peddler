@@ -31,10 +31,9 @@ module Peddler
       #   with the request that generated this token, with the exception of `pageSize` which can be modified between
       #   calls to `getQueries`. In the absence of this token value, `getQueries` returns the first page of results.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_queries(processing_statuses: nil, page_size: 10, created_since: nil, created_until: nil,
-        pagination_token: nil, rate_limit: 0.0222, tries: 2)
+        pagination_token: nil, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries"
         params = {
           "processingStatuses" => processing_statuses,
@@ -44,7 +43,7 @@ module Peddler
           "paginationToken" => pagination_token,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a Data Kiosk query request. **Note:** The retention of a query varies based on the fields requested.
@@ -56,12 +55,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_query(body, rate_limit: 0.0167, tries: 2)
+      def create_query(body, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/queries"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus`
@@ -73,12 +71,11 @@ module Peddler
       # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_query(query_id, rate_limit: 0.0222, tries: 2)
+      def cancel_query(query_id, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
-        meter(rate_limit, tries:).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
@@ -87,12 +84,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The query identifier.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_query(query_id, rate_limit: 2.0, tries: 2)
+      def get_query(query_id, rate_limit: 2.0)
         path = "/dataKiosk/2023-11-15/queries/#{query_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
@@ -101,12 +97,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param document_id [String] The identifier for the Data Kiosk document.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_document(document_id, rate_limit: 0.0167, tries: 2)
+      def get_document(document_id, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/documents/#{document_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

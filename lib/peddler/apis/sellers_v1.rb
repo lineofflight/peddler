@@ -23,24 +23,22 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_marketplace_participations(rate_limit: 0.016, tries: 2)
+      def get_marketplace_participations(rate_limit: 0.016)
         path = "/sellers/v1/marketplaceParticipations"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns information about a seller account and its marketplaces.
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_account(rate_limit: 0.016, tries: 2)
+      def get_account(rate_limit: 0.016)
         path = "/sellers/v1/account"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

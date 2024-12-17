@@ -20,12 +20,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the `GetEligibleShipmentServices` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_eligible_shipment_services(body, rate_limit: 6.0, tries: 2)
+      def get_eligible_shipment_services(body, rate_limit: 6.0)
         path = "/mfn/v0/eligibleShippingServices"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns the shipment information for an existing shipment.
@@ -33,12 +32,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_shipment(shipment_id, rate_limit: 1.0, tries: 2)
+      def get_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{shipment_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Cancel the shipment indicated by the specified shipment identifier.
@@ -46,12 +44,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment to cancel.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_shipment(shipment_id, rate_limit: 1.0, tries: 2)
+      def cancel_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{shipment_id}"
 
-        meter(rate_limit, tries:).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Create a shipment with the information provided.
@@ -59,12 +56,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the `CreateShipment` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_shipment(body, rate_limit: 2.0, tries: 2)
+      def create_shipment(body, rate_limit: 2.0)
         path = "/mfn/v0/shipments"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
@@ -73,12 +69,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the `GetAdditionalSellerInputs` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_additional_seller_inputs(body, rate_limit: 1.0, tries: 2)
+      def get_additional_seller_inputs(body, rate_limit: 1.0)
         path = "/mfn/v0/additionalSellerInputs"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

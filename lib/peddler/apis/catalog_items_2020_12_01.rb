@@ -35,11 +35,9 @@ module Peddler
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def search_catalog_items(keywords, marketplace_ids, included_data: "summaries", brand_names: nil,
-        classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, rate_limit: 2.0,
-        tries: 2)
+        classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, rate_limit: 2.0)
         path = "/catalog/2020-12-01/items"
         params = {
           "keywords" => keywords,
@@ -53,7 +51,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -67,9 +65,8 @@ module Peddler
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_catalog_item(asin, marketplace_ids, included_data: "summaries", locale: nil, rate_limit: 2.0, tries: 2)
+      def get_catalog_item(asin, marketplace_ids, included_data: "summaries", locale: nil, rate_limit: 2.0)
         path = "/catalog/2020-12-01/items/#{asin}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -77,7 +74,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

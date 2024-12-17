@@ -23,12 +23,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_shipment(body, rate_limit: 5.0, tries: 2)
+      def create_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/shipments"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Return the entire shipment object for the shipmentId.
@@ -36,12 +35,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_shipment(shipment_id, rate_limit: 5.0, tries: 2)
+      def get_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Cancel a shipment by the given shipmentId.
@@ -49,12 +47,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_shipment(shipment_id, rate_limit: 5.0, tries: 2)
+      def cancel_shipment(shipment_id, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/cancel"
 
-        meter(rate_limit, tries:).post(path)
+        meter(rate_limit).post(path)
       end
 
       # Purchase shipping labels based on a given rate.
@@ -63,12 +60,11 @@ module Peddler
       # @param shipment_id [String]
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def purchase_labels(shipment_id, body, rate_limit: 5.0, tries: 2)
+      def purchase_labels(shipment_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/purchaseLabels"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Retrieve shipping label based on the shipment id and tracking id.
@@ -78,12 +74,11 @@ module Peddler
       # @param tracking_id [String]
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0, tries: 2)
+      def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
         path = "/shipping/v1/shipments/#{shipment_id}/containers/#{tracking_id}/label"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Purchase shipping labels.
@@ -91,12 +86,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def purchase_shipment(body, rate_limit: 5.0, tries: 2)
+      def purchase_shipment(body, rate_limit: 5.0)
         path = "/shipping/v1/purchaseShipment"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Get service rates.
@@ -104,24 +98,22 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_rates(body, rate_limit: 5.0, tries: 2)
+      def get_rates(body, rate_limit: 5.0)
         path = "/shipping/v1/rates"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Verify if the current account is valid.
       #
       # @note This operation can make a static sandbox call.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_account(rate_limit: 5.0, tries: 2)
+      def get_account(rate_limit: 5.0)
         path = "/shipping/v1/account"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Return the tracking information of a shipment.
@@ -129,12 +121,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param tracking_id [String]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_tracking_information(tracking_id, rate_limit: 1.0, tries: 2)
+      def get_tracking_information(tracking_id, rate_limit: 1.0)
         path = "/shipping/v1/tracking/#{tracking_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

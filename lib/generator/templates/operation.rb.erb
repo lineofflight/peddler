@@ -17,7 +17,7 @@ path = "<%= path %>"
   }.compact
 <% end -%>
 <% if rate_limit %>
-  meter(rate_limit, tries:).<%= verb %>(<%= request_args.join(", ") %>)
+  meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %>)
 <% else %>
   <%= verb %>(<%= request_args.join(", ") %>)
 <% end %>

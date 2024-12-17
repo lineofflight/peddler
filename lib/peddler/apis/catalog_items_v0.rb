@@ -85,9 +85,8 @@ module Peddler
       # @param seller_sku [String] Used to identify items in the given marketplace. SellerSKU is qualified by the
       #   seller's SellerId, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0, tries: 2)
+      def list_catalog_categories(marketplace_id, asin: nil, seller_sku: nil, rate_limit: 1.0)
         path = "/catalog/v0/categories"
         params = {
           "MarketplaceId" => marketplace_id,
@@ -95,7 +94,7 @@ module Peddler
           "SellerSKU" => seller_sku,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

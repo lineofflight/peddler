@@ -36,10 +36,9 @@ module Peddler
       #   call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any
       #   other parameters will cause the request to fail.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_reports(report_types: nil, processing_statuses: nil, marketplace_ids: nil, page_size: 10,
-        created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222, tries: 2)
+        created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         path = "/reports/2021-06-30/reports"
         params = {
           "reportTypes" => report_types,
@@ -51,7 +50,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a report.
@@ -59,12 +58,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the report.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_report(body, rate_limit: 0.0167, tries: 2)
+      def create_report(body, rate_limit: 0.0167)
         path = "/reports/2021-06-30/reports"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
@@ -74,12 +72,11 @@ module Peddler
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_report(report_id, rate_limit: 0.0222, tries: 2)
+      def cancel_report(report_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/reports/#{report_id}"
 
-        meter(rate_limit, tries:).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
@@ -88,12 +85,11 @@ module Peddler
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_report(report_id, rate_limit: 2.0, tries: 2)
+      def get_report(report_id, rate_limit: 2.0)
         path = "/reports/2021-06-30/reports/#{report_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns report schedule details that match the filters that you specify.
@@ -102,15 +98,14 @@ module Peddler
       # @param report_types [Array<String>] A list of report types used to filter report schedules. Refer to [Report
       #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_report_schedules(report_types, rate_limit: 0.0222, tries: 2)
+      def get_report_schedules(report_types, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
         params = {
           "reportTypes" => report_types,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
@@ -119,12 +114,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the report schedule.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_report_schedule(body, rate_limit: 0.0222, tries: 2)
+      def create_report_schedule(body, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Cancels the report schedule that you specify.
@@ -133,12 +127,11 @@ module Peddler
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222, tries: 2)
+      def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
-        meter(rate_limit, tries:).delete(path)
+        meter(rate_limit).delete(path)
       end
 
       # Returns report schedule details for the report schedule that you specify.
@@ -147,12 +140,11 @@ module Peddler
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_report_schedule(report_schedule_id, rate_limit: 0.0222, tries: 2)
+      def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the information required for retrieving a report document's contents.
@@ -160,12 +152,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param report_document_id [String] The identifier for the report document.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_report_document(report_document_id, rate_limit: 0.0167, tries: 2)
+      def get_report_document(report_document_id, rate_limit: 0.0167)
         path = "/reports/2021-06-30/documents/#{report_document_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
     end
   end

@@ -20,12 +20,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] A service job identifier.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0, tries: 2)
+      def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         path = "/service/v1/serviceJobs/#{service_job_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -35,15 +34,14 @@ module Peddler
       # @param cancellation_reason_code [String] A cancel reason code that specifies the reason for cancelling a service
       #   job.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0, tries: 2)
+      def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/cancellations"
         params = {
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
 
-        meter(rate_limit, tries:).put(path, params:)
+        meter(rate_limit).put(path, params:)
       end
 
       # Completes the service job indicated by the service job identifier specified.
@@ -51,12 +49,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0, tries: 2)
+      def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/completions"
 
-        meter(rate_limit, tries:).put(path)
+        meter(rate_limit).put(path)
       end
 
       # Gets service job details for the specified filter query.
@@ -93,12 +90,11 @@ module Peddler
       # @param store_ids [Array<String>] List of Amazon-defined identifiers for the region scope. Max values supported
       #   is 50.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_service_jobs(marketplace_ids, service_order_ids: nil, service_job_status: nil, page_token: nil,
         page_size: 20, sort_field: nil, sort_order: nil, created_after: nil, created_before: nil,
         last_updated_after: nil, last_updated_before: nil, schedule_start_date: nil, schedule_end_date: nil, asins: nil,
-        required_skills: nil, store_ids: nil, rate_limit: 10.0, tries: 2)
+        required_skills: nil, store_ids: nil, rate_limit: 10.0)
         path = "/service/v1/serviceJobs"
         params = {
           "serviceOrderIds" => service_order_ids,
@@ -119,7 +115,7 @@ module Peddler
           "storeIds" => store_ids,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
@@ -128,12 +124,11 @@ module Peddler
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param body [Hash] Add appointment operation input details.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0, tries: 2)
+      def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
@@ -143,13 +138,12 @@ module Peddler
       # @param appointment_id [String] An existing appointment identifier for the Service Job.
       # @param body [Hash] Reschedule appointment operation input details.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body,
-        rate_limit: 5.0, tries: 2)
+        rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -160,12 +154,11 @@ module Peddler
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0, tries: 2)
+      def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/resources"
 
-        meter(rate_limit, tries:).put(path, body:)
+        meter(rate_limit).put(path, body:)
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -176,12 +169,11 @@ module Peddler
       # @param appointment_id [String] An Amazon-defined identifier of active service job appointment.
       # @param body [Hash] Appointment fulfillment data collection details.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0, tries: 2)
+      def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointments/#{appointment_id}/fulfillment"
 
-        meter(rate_limit, tries:).put(path, body:)
+        meter(rate_limit).put(path, body:)
       end
 
       # Provides capacity slots in a format similar to availability records.
@@ -192,16 +184,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param next_page_token [String] Next page token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0, tries: 2)
+      def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         path = "/service/v1/serviceResources/#{resource_id}/capacity/range"
         params = {
           "marketplaceIds" => marketplace_ids,
           "nextPageToken" => next_page_token,
         }.compact
 
-        meter(rate_limit, tries:).post(path, body:, params:)
+        meter(rate_limit).post(path, body:, params:)
       end
 
       # Provides capacity in fixed-size slots.
@@ -212,16 +203,15 @@ module Peddler
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param next_page_token [String] Next page token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0, tries: 2)
+      def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         path = "/service/v1/serviceResources/#{resource_id}/capacity/fixed"
         params = {
           "marketplaceIds" => marketplace_ids,
           "nextPageToken" => next_page_token,
         }.compact
 
-        meter(rate_limit, tries:).post(path, body:, params:)
+        meter(rate_limit).post(path, body:, params:)
       end
 
       # Update the schedule of the given resource.
@@ -231,15 +221,14 @@ module Peddler
       # @param body [Hash] Schedule details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_schedule(resource_id, body, marketplace_ids, rate_limit: 5.0, tries: 2)
+      def update_schedule(resource_id, body, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/serviceResources/#{resource_id}/schedules"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit, tries:).put(path, body:, params:)
+        meter(rate_limit).put(path, body:, params:)
       end
 
       # Create a reservation.
@@ -248,15 +237,14 @@ module Peddler
       # @param body [Hash] Reservation details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_reservation(body, marketplace_ids, rate_limit: 5.0, tries: 2)
+      def create_reservation(body, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/reservation"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit, tries:).post(path, body:, params:)
+        meter(rate_limit).post(path, body:, params:)
       end
 
       # Update a reservation.
@@ -266,15 +254,14 @@ module Peddler
       # @param body [Hash] Reservation details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_reservation(reservation_id, body, marketplace_ids, rate_limit: 5.0, tries: 2)
+      def update_reservation(reservation_id, body, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/reservation/#{reservation_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit, tries:).put(path, body:, params:)
+        meter(rate_limit).put(path, body:, params:)
       end
 
       # Cancel a reservation.
@@ -283,15 +270,14 @@ module Peddler
       # @param reservation_id [String] Reservation Identifier
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def cancel_reservation(reservation_id, marketplace_ids, rate_limit: 5.0, tries: 2)
+      def cancel_reservation(reservation_id, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/reservation/#{reservation_id}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
 
-        meter(rate_limit, tries:).delete(path, params:)
+        meter(rate_limit).delete(path, params:)
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -306,10 +292,9 @@ module Peddler
       #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
       #   business configuration. Maximum range of appointment slots can be 90 days.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil,
-        rate_limit: 5.0, tries: 2)
+        rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{service_job_id}/appointmentSlots"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -317,7 +302,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Gets appointment slots as per the service context specified.
@@ -333,10 +318,8 @@ module Peddler
       #   in ISO 8601 format. If `endTime` is provided, `startTime` should also be provided. Default value is as per
       #   business configuration. Maximum range of appointment slots can be 90 days.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 20.0,
-        tries: 2)
+      def get_appointment_slots(asin, store_id, marketplace_ids, start_time: nil, end_time: nil, rate_limit: 20.0)
         path = "/service/v1/appointmentSlots"
         params = {
           "asin" => asin,
@@ -346,7 +329,7 @@ module Peddler
           "endTime" => end_time,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Creates an upload destination.
@@ -354,12 +337,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Upload document operation input details.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_service_document_upload_destination(body, rate_limit: 5.0, tries: 2)
+      def create_service_document_upload_destination(body, rate_limit: 5.0)
         path = "/service/v1/documents"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

@@ -43,11 +43,10 @@ module Peddler
       # @param keywords_locale [String] The language of the keywords provided for `keywords`-based queries. Defaults to
       #   the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"],
         locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10,
-        page_token: nil, keywords_locale: nil, rate_limit: 2.0, tries: 2)
+        page_token: nil, keywords_locale: nil, rate_limit: 2.0)
         path = "/catalog/2022-04-01/items"
         params = {
           "identifiers" => identifiers,
@@ -64,7 +63,7 @@ module Peddler
           "keywordsLocale" => keywords_locale,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -78,9 +77,8 @@ module Peddler
       # @param locale [String] Locale for retrieving localized summaries. Defaults to the primary locale of the
       #   marketplace.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0, tries: 2)
+      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
         path = "/catalog/2022-04-01/items/#{asin}"
         params = {
           "marketplaceIds" => marketplace_ids,
@@ -88,7 +86,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

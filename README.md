@@ -102,9 +102,23 @@ end
 
 ### Rate limiting
 
-Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. Peddler respects these limits and automatically backs off when throttled. You can override the default rate limit by passing a `:rate_limit` to the operation. You can also provide an optional `:tries` argument to specify the number of request attempts, including retries, before giving up. By default, we retry once.
+Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. Peddler respects these limits and will automatically back off when throttled. You can override the default rate limit by passing a `:rate_limit` to the operation.
+
+You can also provide an optional `:retries` argument when initializing an API to specify the number of retries if throttled. By default, this is set to 0, meaning no retries will be attempted. If set to a positive value, Peddler will retry the request that many times if throttled, backing off based on the specified rate limit.
 
 **Note:** This functionality requires version 6 of the underlying [HTTP library][httprb]. As of writing, this is not released yet. To use rate limiting, point to their main branch on GitHub.
+
+Example usage:
+
+```ruby
+api = Peddler.orders_v0(aws_region, access_token, retries: 3)
+api.get_orders(
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  createdAfter: "2023-01-01T00:00:00Z"
+)
+```
+
+In this example, if the request to `get_orders` is throttled, Peddler will retry the request up to 3 times, backing off according to the rate limit specified by Amazon.
 
 ### The APIs
 

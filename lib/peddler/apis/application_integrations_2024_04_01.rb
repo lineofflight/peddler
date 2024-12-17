@@ -20,12 +20,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body for the `createNotification` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_notification(body, rate_limit: 1.0, tries: 2)
+      def create_notification(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Remove your application's notifications from the Appstore notifications dashboard.
@@ -33,12 +32,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body for the `deleteNotifications` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def delete_notifications(body, rate_limit: 1.0, tries: 2)
+      def delete_notifications(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/deletion"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Records the seller's response to a notification.
@@ -47,12 +45,11 @@ module Peddler
       # @param notification_id [String] A `notificationId` uniquely identifies a notification.
       # @param body [Hash] The request body for the `recordActionFeedback` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def record_action_feedback(notification_id, body, rate_limit: 1.0, tries: 2)
+      def record_action_feedback(notification_id, body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/#{notification_id}/feedback"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

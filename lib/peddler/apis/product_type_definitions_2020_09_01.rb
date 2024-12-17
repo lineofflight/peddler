@@ -32,10 +32,9 @@ module Peddler
       # @param search_locale [String] The locale used for the `keywords` and `itemName` parameters. Defaults to the
       #   primary locale of the marketplace.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def search_definitions_product_types(marketplace_ids, keywords: nil, item_name: nil, locale: nil,
-        search_locale: nil, rate_limit: 5.0, tries: 2)
+        search_locale: nil, rate_limit: 5.0)
         path = "/definitions/2020-09-01/productTypes"
         params = {
           "keywords" => keywords,
@@ -45,7 +44,7 @@ module Peddler
           "searchLocale" => search_locale,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieve an Amazon product type definition.
@@ -67,10 +66,9 @@ module Peddler
       # @param locale [String] Locale for retrieving display labels and other presentation details. Defaults to the
       #   default language of the first marketplace in the request.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
-        requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", rate_limit: 5.0, tries: 2)
+        requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", rate_limit: 5.0)
         path = "/definitions/2020-09-01/productTypes/#{product_type}"
         params = {
           "sellerId" => seller_id,
@@ -81,7 +79,7 @@ module Peddler
           "locale" => locale,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

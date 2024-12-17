@@ -27,12 +27,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The restricted data token request details.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def create_restricted_data_token(body, rate_limit: 1.0, tries: 2)
+      def create_restricted_data_token(body, rate_limit: 1.0)
         path = "/tokens/2021-03-01/restrictedDataToken"
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

@@ -110,7 +110,6 @@ module Peddler
       #   at) a specified time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601)
       #   format.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def get_orders(marketplace_ids, created_after: nil, created_before: nil, last_updated_after: nil,
         last_updated_before: nil, order_statuses: nil, fulfillment_channels: nil, payment_methods: nil,
@@ -118,7 +117,7 @@ module Peddler
         electronic_invoice_statuses: nil, next_token: nil, amazon_order_ids: nil,
         actual_fulfillment_supply_source_id: nil, is_ispu: nil, store_chain_store_id: nil,
         earliest_delivery_date_before: nil, earliest_delivery_date_after: nil, latest_delivery_date_before: nil,
-        latest_delivery_date_after: nil, rate_limit: 0.0167, tries: 2)
+        latest_delivery_date_after: nil, rate_limit: 0.0167)
         path = "/orders/v0/orders"
         params = {
           "CreatedAfter" => created_after,
@@ -145,7 +144,7 @@ module Peddler
           "LatestDeliveryDateAfter" => latest_delivery_date_after,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns the order that you specify.
@@ -153,12 +152,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_order(order_id, rate_limit: 0.5, tries: 2)
+      def get_order(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns buyer information for the order that you specify.
@@ -166,12 +164,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_order_buyer_info(order_id, rate_limit: 0.5, tries: 2)
+      def get_order_buyer_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/buyerInfo"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns the shipping address for the order that you specify.
@@ -179,12 +176,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_order_address(order_id, rate_limit: 0.5, tries: 2)
+      def get_order_address(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/address"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -199,15 +195,14 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_order_items(order_id, next_token: nil, rate_limit: 0.5, tries: 2)
+      def get_order_items(order_id, next_token: nil, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/orderItems"
         params = {
           "NextToken" => next_token,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Returns buyer information for the order items in the order that you specify.
@@ -216,15 +211,14 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5, tries: 2)
+      def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/orderItems/buyerInfo"
         params = {
           "NextToken" => next_token,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Update the shipment status for an order that you specify.
@@ -233,13 +227,12 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateShipmentStatus` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_shipment_status(order_id, payload, rate_limit: 5.0, tries: 2)
+      def update_shipment_status(order_id, payload, rate_limit: 5.0)
         path = "/orders/v0/orders/#{order_id}/shipment"
         body = payload
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
 
       # Returns regulated information for the order that you specify.
@@ -247,12 +240,11 @@ module Peddler
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_order_regulated_info(order_id, rate_limit: 0.5, tries: 2)
+      def get_order_regulated_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
 
-        meter(rate_limit, tries:).get(path)
+        meter(rate_limit).get(path)
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -261,13 +253,12 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateVerificationStatus` operation.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def update_verification_status(order_id, payload, rate_limit: 0.5, tries: 2)
+      def update_verification_status(order_id, payload, rate_limit: 0.5)
         path = "/orders/v0/orders/#{order_id}/regulatedInfo"
         body = payload
 
-        meter(rate_limit, tries:).patch(path, body:)
+        meter(rate_limit).patch(path, body:)
       end
 
       # Updates the shipment confirmation status for a specified order.
@@ -276,13 +267,12 @@ module Peddler
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] Request body of `confirmShipment`.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def confirm_shipment(order_id, payload, rate_limit: 2.0, tries: 2)
+      def confirm_shipment(order_id, payload, rate_limit: 2.0)
         path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
         body = payload
 
-        meter(rate_limit, tries:).post(path, body:)
+        meter(rate_limit).post(path, body:)
       end
     end
   end

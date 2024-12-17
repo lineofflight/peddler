@@ -22,15 +22,14 @@ module Peddler
       # @param sku_quantities [String] If equal to `SHOW`, the response includes the shipment SKU quantity details.
       #   Defaults to `HIDE`, in which case the response does not contain SKU quantities
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0, tries: 2)
+      def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0)
         path = "/awd/2024-05-09/inboundShipments/#{shipment_id}"
         params = {
           "skuQuantities" => sku_quantities,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -48,10 +47,9 @@ module Peddler
       # @param max_results [Integer] Maximum number of results to return.
       # @param next_token [String] Token to retrieve the next set of paginated results.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
       def list_inbound_shipments(sort_by: nil, sort_order: nil, shipment_status: nil, updated_after: nil,
-        updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0, tries: 2)
+        updated_before: nil, max_results: 25, next_token: nil, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundShipments"
         params = {
           "sortBy" => sort_by,
@@ -63,7 +61,7 @@ module Peddler
           "nextToken" => next_token,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
@@ -76,10 +74,8 @@ module Peddler
       # @param next_token [String] Token to retrieve the next set of paginated results.
       # @param max_results [Integer] Maximum number of results to return.
       # @param rate_limit [Float] Requests per second
-      # @param tries [Integer] Total request attempts, including retries
       # @return [Peddler::Response] The API response
-      def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0,
-        tries: 2)
+      def list_inventory(sku: nil, sort_order: nil, details: nil, next_token: nil, max_results: 25, rate_limit: 2.0)
         path = "/awd/2024-05-09/inventory"
         params = {
           "sku" => sku,
@@ -89,7 +85,7 @@ module Peddler
           "maxResults" => max_results,
         }.compact
 
-        meter(rate_limit, tries:).get(path, params:)
+        meter(rate_limit).get(path, params:)
       end
     end
   end

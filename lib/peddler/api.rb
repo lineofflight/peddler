@@ -25,11 +25,17 @@ module Peddler
     # @return [String]
     attr_reader :access_token
 
+    # Number of retries if throttled (default: 0)
+    #
+    # @return [Integer]
+    attr_reader :retries
+
     # @param [String] aws_region
     # @param [String] access_token
-    def initialize(aws_region, access_token)
+    def initialize(aws_region, access_token, retries: 0)
       @endpoint = Endpoint.find(aws_region)
       @access_token = access_token
+      @retries = retries
       @sandbox = false
     end
 
@@ -67,13 +73,14 @@ module Peddler
     # Throttles with a rate limit and retries when the API returns a 429
     #
     # @param [Float] requests_per_second
-    # @param [Integer] tries
     # @return [self]
-    def meter(requests_per_second, tries: 2)
+    def meter(requests_per_second)
+      return self if retries.zero?
+
       # HTTP v6.0 will implement retriable. Until then, point to their GitHub repo, or it's a no-op.
       # https://github.com/httprb/http/pull/790
       delay = sandbox? ? 0.2 : 1.0 / requests_per_second
-      retriable(delay:, tries:, retry_statuses: [429])
+      retriable(delay:, tries: retries + 1, retry_statuses: [429])
 
       self
     end

@@ -57,7 +57,13 @@ module Peddler
       skip("HTTP doesn't implement retriable") unless @api.http.respond_to?(:retriable)
       @api.meter(1.0)
 
-      assert_kind_of(HTTP::Retriable::Client, @api.http)
+      assert_kind_of(HTTP::Client, @api.http)
+
+      @api.stub(:retries, 1) do
+        @api.meter(1.0)
+
+        assert_kind_of(HTTP::Retriable::Client, @api.http)
+      end
     end
 
     def test_custom_rate_limit

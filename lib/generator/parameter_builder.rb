@@ -13,7 +13,6 @@ module Generator
       parameters = parameters.select { |p| p["name"] }
       if @rate_limit
         parameters << build_rate_limit_param
-        parameters << build_tries_param
       end
       parameters << build_notification_type_param if needs_notification_type?
 
@@ -29,16 +28,6 @@ module Generator
         "required" => false,
         "description" => "Requests per second",
         "default" => @rate_limit,
-      }
-    end
-
-    def build_tries_param
-      {
-        "name" => "tries",
-        "type" => "Integer",
-        "required" => false,
-        "description" => "Total request attempts, including retries",
-        "default" => 2,
       }
     end
 
