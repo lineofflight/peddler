@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "http", github: "hakanensari/http", branch: "circular-require"
+gem "http", github: "httprb/http"
 
 group :development do
   gem "appraisal"

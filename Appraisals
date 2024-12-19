@@ -5,5 +5,5 @@ appraise "http-5" do
 end
 
 appraise "http-github" do
-  gem "http", github: "hakanensari/http", branch: "circular-require"
+  gem "http", github: "httprb/http"
 end
