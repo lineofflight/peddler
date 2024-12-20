@@ -51,6 +51,10 @@ module Peddler
       assert(Marketplace.all)
     end
 
+    def test_to_str
+      assert_equal(@marketplace.id, @marketplace.to_str)
+    end
+
     private
 
     def country_code

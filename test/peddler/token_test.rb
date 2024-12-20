@@ -45,6 +45,12 @@ module Peddler
       assert_equal("refresh_token", token.grant_type)
     end
 
+    def test_explicit_grant_type
+      token = Token.new(grant_type: "let_me_in")
+
+      assert_equal("let_me_in", token.grant_type)
+    end
+
     private
 
     def scope

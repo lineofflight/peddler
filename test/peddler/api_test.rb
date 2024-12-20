@@ -54,7 +54,6 @@ module Peddler
     end
 
     def test_rate_limit
-      skip("HTTP doesn't implement retriable") unless @api.http.respond_to?(:retriable)
       @api.meter(1.0)
 
       assert_kind_of(HTTP::Client, @api.http)
@@ -62,7 +61,11 @@ module Peddler
       @api.stub(:retries, 1) do
         @api.meter(1.0)
 
-        assert_kind_of(HTTP::Retriable::Client, @api.http)
+        if @api.http.respond_to?(:retriable)
+          assert_kind_of(HTTP::Retriable::Client, @api.http)
+        else
+          assert_kind_of(HTTP::Client, @api.http)
+        end
       end
     end
 
@@ -120,6 +123,13 @@ module Peddler
       assert_raises(API::MustSandbox) do
         test_api.perform_must_sandbox_operation
       end
+    end
+
+    def test_parser
+      parser = ->(response) { JSON.parse(response.body.to_s) }
+      @api.parser = parser
+
+      assert_equal(parser, @api.parser)
     end
   end
 end

@@ -12,6 +12,7 @@ end
 
 require "minitest/autorun"
 require "vcr"
+require "webmock/minitest"
 
 VCR.configure do |c|
   c.hook_into(:webmock)
