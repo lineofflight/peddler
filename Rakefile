@@ -8,6 +8,8 @@ require "yard"
 Minitest::TestTask.create do |t|
   t.libs << "test"
   t.test_globs = ["test/**/*_test.rb"]
+  # https://github.com/minitest/minitest/issues/1020
+  t.framework = nil
 end
 RuboCop::RakeTask.new
 YARD::Rake::YardocTask.new
