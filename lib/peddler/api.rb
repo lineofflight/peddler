@@ -30,8 +30,9 @@ module Peddler
     # @return [Integer]
     attr_reader :retries
 
-    # @param [String] aws_region
-    # @param [String] access_token
+    # @param [String] aws_region The AWS region to use for the endpoint
+    # @param [String] access_token The access token for authentication
+    # @param [Integer] retries The number of retries if throttled (default: 0)
     def initialize(aws_region, access_token, retries: 0)
       @endpoint = Endpoint.find(aws_region)
       @access_token = access_token
