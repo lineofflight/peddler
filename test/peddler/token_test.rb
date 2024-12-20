@@ -21,10 +21,28 @@ module Peddler
       assert(access_token)
     end
 
-    def test_bad_Token
+    def test_token_error
       assert_raises(Token::Error) do
         Token.request(client_id:, client_secret:)
       end
+    end
+
+    def test_grant_type_with_code
+      token = Token.new(code: "dummy_code")
+
+      assert_equal("authorization_code", token.grant_type)
+    end
+
+    def test_grant_type_with_scope
+      token = Token.new(scope: "dummy_scope")
+
+      assert_equal("client_credentials", token.grant_type)
+    end
+
+    def test_grant_type_with_refresh_token
+      token = Token.new(refresh_token: "dummy_refresh_token")
+
+      assert_equal("refresh_token", token.grant_type)
     end
 
     private

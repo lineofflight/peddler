@@ -45,6 +45,18 @@ module Peddler
       response
     end
 
+    def grant_type
+      if options.key?(:grant_type)
+        options[:grant_type]
+      elsif options.key?(:refresh_token)
+        "refresh_token"
+      elsif options.key?(:scope)
+        "client_credentials"
+      elsif options.key?(:code)
+        "authorization_code"
+      end
+    end
+
     private
 
     def params
@@ -53,18 +65,6 @@ module Peddler
         client_id: client_id,
         client_secret: client_secret,
       }.compact.merge(options)
-    end
-
-    def grant_type
-      return if options.key?(:grant_type)
-
-      if options.key?(:refresh_token)
-        "refresh_token"
-      elsif options.key?(:scope)
-        "client_credentials"
-      elsif options.key?(:code)
-        "authorization_code"
-      end
     end
   end
 end
