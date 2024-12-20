@@ -515,7 +515,7 @@ response.parse
 [build]: https://github.com/hakanensari/peddler/actions
 [maintainability]: https://codeclimate.com/github/hakanensari/peddler/maintainability
 [test-coverage]: https://codeclimate.com/github/hakanensari/peddler/test_coverage
-[latest-release-readme]: https://github.com/lineofflight/peddler/tree/v3.0.0
+[latest-release-readme]: https://github.com/lineofflight/peddler/tree/v4.1.1
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
