@@ -43,6 +43,13 @@ module Peddler
       assert_kind_of(Errors::OtherError, error)
     end
 
+    def test_normalized_screaming_snake_case
+      response = '{"errors":[{"code":"NOT_FOUND","message":"Resource not found"}]}'
+      error = Error.build(response)
+
+      assert_kind_of(Errors::NotFound, error)
+    end
+
     def test_invalid_class_name
       response = '{"errors":[{"code":"400","message":"Invalid Input"}]}'
       error = Error.build(response)

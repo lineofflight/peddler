@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Add kwargs to define_method to fix argument error when calling HTTP methods
+- Normalize error class names from screaming snake case
 
 ## [4.0.0] - 2024-12-13
 

@@ -8,7 +8,7 @@ module Peddler
     class << self
       def build(response)
         error = JSON.parse(response).dig("errors").first
-        class_name = error.dig("code")
+        class_name = normalize_class_name(error.dig("code"))
         message = error.dig("message")
         klass = if Errors.const_defined?(class_name)
           Errors.const_get(class_name)
@@ -22,6 +22,16 @@ module Peddler
         klass.new(message, response)
       rescue NameError
         # Do nothing if code cannot be converted to a class name
+      end
+
+      private
+
+      def normalize_class_name(code)
+        if code.match?(/\A[A-Z_]+\z/)
+          code.split("_").map(&:capitalize).join
+        else
+          code
+        end
       end
     end
 
