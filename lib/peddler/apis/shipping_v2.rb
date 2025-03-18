@@ -198,22 +198,6 @@ module Peddler
 
       # This API associates/links the specified carrier account with the merchant.
       #
-      # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
-      # @param body [Hash] LinkCarrierAccountRequest body
-      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
-      #   AmazonShipping_UK.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
-        path = "/shipping/v2/carrierAccounts/#{carrier_id}"
-
-        meter(rate_limit).put(path, body:)
-      end
-
-      # This API associates/links the specified carrier account with the merchant.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
       # @param body [Hash] LinkCarrierAccountRequest body

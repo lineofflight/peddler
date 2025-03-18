@@ -24,6 +24,7 @@ module Generator
     def generate
       return if obsolete?
 
+      handle_duplicate_operations
       File.write(file_path, render)
     end
 
@@ -67,7 +68,7 @@ module Generator
     end
 
     def operations
-      paths.flat_map(&:operations).compact
+      @operations ||= paths.flat_map(&:operations).compact
     end
 
     def paths
@@ -79,6 +80,42 @@ module Generator
     end
 
     private
+
+    def handle_duplicate_operations
+      # Group by operation ID
+      operation_map = operations.group_by { |op| snakecase(op.operation["operationId"]) }
+
+      # Find duplicates
+      duplicates = operation_map.select { |_, ops| ops.size > 1 }
+
+      if duplicates.any?
+        puts "Warning: found duplicate operations in #{name_with_version}:"
+        duplicates.each do |method_name, ops|
+          verbs = ops.map(&:verb).join(", ")
+          puts "#{method_name} (#{verbs})"
+        end
+      end
+
+      # Handle duplicates
+      duplicates.each do |method_name, ops|
+        if name_with_version == "shipping_v2" && method_name == "link_carrier_account"
+          # Special case for ShippingV2's link_carrier_account - choose POST version
+          post_op = ops.find { |op| op.verb == "post" }
+          if post_op
+            # Replace all occurrences with just the POST version
+            operation_map[method_name] = [post_op]
+          end
+        else
+          # For any other duplicates, raise an error
+          verbs = ops.map(&:verb).join(", ")
+          raise "Error: Found duplicate operation '#{method_name}' in #{name_with_version} " \
+            "with HTTP verbs: #{verbs}. Please handle this case specifically."
+        end
+      end
+
+      # Create flattened list of operations with duplicates resolved
+      @operations = operation_map.values.flatten
+    end
 
     def render
       ERB.new(template, trim_mode: "-").result(binding)
