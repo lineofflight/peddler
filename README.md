@@ -100,7 +100,7 @@ end
 
 ### Rate limiting
 
-Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. Peddler respects these limits and will automatically back off when throttled. You can override the default rate limit by passing a `:rate_limit` to the operation.
+Amazon’s Selling Partner API (SP-API) imposes [rate limits][rate-limits] on most operations. You can override the default rate limit on an operation by passing a `:rate_limit` parameter when calling it.
 
 You can also provide an optional `:retries` argument when initializing an API to specify the number of retries if throttled. By default, this is set to 0, meaning no retries will be attempted. If set to a positive value, Peddler will retry the request that many times if throttled, backing off based on the specified rate limit.
 
