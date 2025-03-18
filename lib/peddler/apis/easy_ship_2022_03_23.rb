@@ -12,11 +12,11 @@ module Peddler
   module APIs
     # Selling Partner API for Easy Ship
     #
-    # The Selling Partner API for Easy Ship helps you build applications that help sellers manage and ship Amazon Easy
-    # Ship orders. Your Easy Ship applications can: * Get available time slots for packages to be scheduled for
-    # delivery. * Schedule, reschedule, and cancel Easy Ship orders. * Print labels, invoices, and warranties. See the
-    # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-    # Marketplace Support Table} for the differences in Easy Ship operations by marketplace.
+    # Use the Selling Partner API for Easy Ship to build applications for sellers to manage and ship Amazon Easy Ship
+    # orders. With this API, you can get available time slots, schedule and reschedule Easy Ship orders, and print
+    # shipping labels, invoices, and warranties. To review the differences in Easy Ship operations by marketplace, refer
+    # to [Marketplace
+    # support](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support).
     class EasyShip20220323 < API
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
       # that the seller specifies. This operation is available for scheduled and unscheduled orders based on marketplace
@@ -96,19 +96,20 @@ module Peddler
         meter(rate_limit).patch(path, body:)
       end
 
-      # This operation automatically schedules a time slot for all specified `amazonOrderId` values and generates the
-      # associated shipping labels and compliance documents based on the marketplace. For more information, refer to the
-      # [marketplace support
-      # table](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table).
-      # You can optionally assign a `packageDetails` object to input a preferred time slot for each order in your
-      # request. In such cases, Amazon schedules the respective packages using the specified optional settings. If you
-      # don't specify a time slot, Amazon assigns the earliest available time slot. You can choose PDF or ZPL for your
-      # shipping label's file format and Amazon creates the label accordingly. This operation returns an array that
-      # contains the scheduled packages, and a temporary URL that you can use to access a ZIP file. The ZIP file
-      # includes the generated shipping labels and any other documents that are required for your marketplace. If an
-      # order can't be scheduled, Amazon adds the `rejectedOrders` list in the response. The response contains an entry
-      # for each order that could not be processed. Each entry contains an error message that describes the reason for
-      # the failure. The following table contains the supported request and burst maximum rates:
+      # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
+      # associated shipping labels, along with other compliance documents according to the marketplace (refer to the
+      # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
+      # marketplace document support table}). Developers calling this operation may optionally assign a `packageDetails`
+      # object, allowing them to input a preferred time slot for each order in their request. In this case, Amazon will
+      # try to schedule the respective packages using their optional settings. On the other hand, *i.e.*, if the time
+      # slot is not provided, Amazon will then pick the earliest time slot possible. Regarding the shipping label's file
+      # format, external developers are able to choose between PDF or ZPL, and Amazon will create the label accordingly.
+      # This operation returns an array composed of the scheduled packages, and a short-lived URL pointing to a zip file
+      # containing the generated shipping labels and the other documents enabled for your marketplace. If at least an
+      # order couldn't be scheduled, then Amazon adds the `rejectedOrders` list into the response, which contains an
+      # entry for each order we couldn't process. Each entry is composed of an error message describing the reason of
+      # the failure, so that sellers can take action. The table below displays the supported request and burst maximum
+      # rates:
       #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`

@@ -135,7 +135,7 @@ module Peddler
       # Returns the lowest priced offers for a batch of items based on ASIN.
       #
       # @note This operation can make a static sandbox call.
-      # @param get_item_offers_batch_request_body [Hash]
+      # @param get_item_offers_batch_request_body [Hash] The request associated with the `getItemOffersBatch` API call.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
@@ -148,7 +148,8 @@ module Peddler
       # Returns the lowest priced offers for a batch of listings by SKU.
       #
       # @note This operation can make a static sandbox call.
-      # @param get_listing_offers_batch_request_body [Hash]
+      # @param get_listing_offers_batch_request_body [Hash] The request associated with the `getListingOffersBatch` API
+      #   call.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)

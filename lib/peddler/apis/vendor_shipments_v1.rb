@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Vendor Shipments v1
+    # Selling Partner API for Retail Procurement Shipments
     #
     # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
     # vendors.
@@ -122,6 +122,45 @@ module Peddler
           "vendorShipmentIdentifier" => vendor_shipment_identifier,
           "buyerReferenceNumber" => buyer_reference_number,
           "buyerWarehouseCode" => buyer_warehouse_code,
+          "sellerWarehouseCode" => seller_warehouse_code,
+        }.compact
+
+        meter(rate_limit).get(path, params:)
+      end
+
+      # Returns small parcel shipment labels based on the filters that you specify.
+      #
+      # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
+      # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order.
+      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      #   `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
+      #   results, call the operation with this token and include the same arguments as the call that produced the
+      #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
+      #   return empty pages.
+      # @param label_created_after [String] Shipment labels created after this time will be included in the result. This
+      #   field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+      # @param label_created_before [String] Shipment labels created before this time will be included in the result.
+      #   This field must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
+      # @param buyer_reference_number [String] Get Shipment labels by passing buyer reference number.
+      # @param vendor_shipment_identifier [String] Get Shipment labels by passing vendor shipment identifier.
+      # @param seller_warehouse_code [String] Get Shipping labels based on vendor warehouse code. This value must be
+      #   same as the `sellingParty.partyId` in the shipment.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil,
+        label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil,
+        seller_warehouse_code: nil, rate_limit: 10.0)
+        cannot_sandbox!
+
+        path = "/vendor/shipping/v1/transportLabels"
+        params = {
+          "limit" => limit,
+          "sortOrder" => sort_order,
+          "nextToken" => next_token,
+          "labelCreatedAfter" => label_created_after,
+          "labelCreatedBefore" => label_created_before,
+          "buyerReferenceNumber" => buyer_reference_number,
+          "vendorShipmentIdentifier" => vendor_shipment_identifier,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
 

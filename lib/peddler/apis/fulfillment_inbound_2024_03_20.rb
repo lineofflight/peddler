@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Fulfillment Inbound v2024-03-20
+    # The Selling Partner API for FBA inbound operations.
     #
     # The Selling Partner API for Fulfillment By Amazon (FBA) Inbound. The FBA Inbound API enables building inbound
     # workflows to create, manage, and send shipments into Amazon's fulfillment network. The API has interoperability
@@ -542,7 +542,8 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Cancels a self-ship appointment slot against a shipment.
+      # Cancels a self-ship appointment slot against a shipment. Only available in the following
+      # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
@@ -556,7 +557,9 @@ module Peddler
         meter(rate_limit).put(path, body:)
       end
 
-      # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse.
+      # Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only
+      # available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX,
+      # BR, EG, SA, AE, IN.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
@@ -579,7 +582,8 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Initiates the process of generating the appointment slots list.
+      # Initiates the process of generating the appointment slots list. Only available in the following
+      # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.
@@ -593,7 +597,8 @@ module Peddler
         meter(rate_limit).post(path, body:)
       end
 
-      # Confirms or reschedules a self-ship appointment slot against a shipment.
+      # Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following
+      # [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.
       #
       # @note This operation can make a static sandbox call.
       # @param inbound_plan_id [String] Identifier of an inbound plan.

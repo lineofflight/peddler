@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Vendor Invoices v1
+    # Selling Partner API for Retail Procurement Payments
     #
     # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
     class VendorInvoicesV1 < API

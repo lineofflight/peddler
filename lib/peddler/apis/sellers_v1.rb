@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Selling Partner API for Sellers
+    # The Selling Partner API for Sellers
     #
     # The [Selling Partner API for Sellers](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference)
     # (Sellers API) provides essential information about seller accounts, such as: - The marketplaces a seller can list

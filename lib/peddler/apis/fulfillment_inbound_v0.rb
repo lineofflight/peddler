@@ -15,92 +15,6 @@ module Peddler
     # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
     # shipments of inventory to Amazon's fulfillment network.
     class FulfillmentInboundV0 < API
-      # Returns one or more inbound shipment plans, which provide the information you need to create one or more inbound
-      # shipments for a set of items that you specify. Multiple inbound shipment plans might be required so that items
-      # can be optimally placed in Amazon's fulfillment network—for example, positioning inventory closer to the
-      # customer. Alternatively, two inbound shipment plans might be created with the same Amazon fulfillment center
-      # destination if the two shipment plans require different processing—for example, items that require labels must
-      # be shipped separately from stickerless, commingled inventory.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request schema for the CreateInboundShipmentPlanRequest operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_inbound_shipment_plan(body, rate_limit: 2.0)
-        path = "/fba/inbound/v0/plans"
-
-        meter(rate_limit).post(path, body:)
-      end
-
-      # Returns a new inbound shipment based on the specified shipmentId that was returned by the
-      # createInboundShipmentPlan operation.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request schema for the InboundShipmentRequest operation.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_inbound_shipment(body, shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}"
-
-        meter(rate_limit).post(path, body:)
-      end
-
-      # Updates or removes items from the inbound shipment identified by the specified shipment identifier. Adding new
-      # items is not supported.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param body [Hash] The request schema for the InboundShipmentRequest operation.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def update_inbound_shipment(body, shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}"
-
-        meter(rate_limit).put(path, body:)
-      end
-
-      # Returns pre-order information, including dates, that a seller needs before confirming a shipment for pre-order.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace the shipment is tied to.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_preorder_info(shipment_id, marketplace_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/preorder"
-        params = {
-          "MarketplaceId" => marketplace_id,
-        }.compact
-
-        meter(rate_limit).get(path, params:)
-      end
-
-      # Returns information needed to confirm a shipment for pre-order. Call this operation after calling the
-      # getPreorderInfo operation to get the NeedByDate value and other pre-order information about the shipment.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param need_by_date [String] Date that the shipment must arrive at the Amazon fulfillment center to avoid
-      #   delivery promise breaks for pre-ordered items. Must be in YYYY-MM-DD format. The response to the
-      #   getPreorderInfo operation returns this value.
-      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace the shipment is tied to.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def confirm_preorder(shipment_id, need_by_date, marketplace_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/preorder/confirm"
-        params = {
-          "NeedByDate" => need_by_date,
-          "MarketplaceId" => marketplace_id,
-        }.compact
-
-        meter(rate_limit).put(path, params:)
-      end
-
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.
       #
@@ -130,87 +44,6 @@ module Peddler
         }.compact
 
         meter(rate_limit).get(path, params:)
-      end
-
-      # Returns current transportation information about an inbound shipment.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def get_transport_details(shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
-
-        meter(rate_limit).get(path)
-      end
-
-      # Sends transportation information to Amazon about an inbound shipment.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param body [Hash] The request schema for the PutTransportDetailsRequest operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def put_transport_details(shipment_id, body, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/transport"
-
-        meter(rate_limit).put(path, body:)
-      end
-
-      # Cancels a previously-confirmed request to ship an inbound shipment using an Amazon-partnered carrier. To be
-      # successful, you must call this operation before the VoidDeadline date that is returned by the
-      # getTransportDetails operation. Important: The VoidDeadline date is 24 hours after you confirm a Small Parcel
-      # shipment transportation request or one hour after you confirm a Less Than Truckload/Full Truckload (LTL/FTL)
-      # shipment transportation request. After the void deadline passes, your account will be charged for the shipping
-      # cost.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def void_transport(shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/void"
-
-        meter(rate_limit).post(path)
-      end
-
-      # Initiates the process of estimating the shipping cost for an inbound shipment by an Amazon-partnered carrier.
-      # Prior to calling the estimateTransport operation, you must call the putTransportDetails operation to provide
-      # Amazon with the transportation information for the inbound shipment.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def estimate_transport(shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/estimate"
-
-        meter(rate_limit).post(path)
-      end
-
-      # Confirms that the seller accepts the Amazon-partnered shipping estimate, agrees to allow Amazon to charge their
-      # account for the shipping cost, and requests that the Amazon-partnered carrier ship the inbound shipment. Prior
-      # to calling the confirmTransport operation, you should call the getTransportDetails operation to get the
-      # Amazon-partnered shipping estimate. Important: After confirming the transportation request, if the seller
-      # decides that they do not want the Amazon-partnered carrier to ship the inbound shipment, you can call the
-      # voidTransport operation to cancel the transportation request. Note that for a Small Parcel shipment, the seller
-      # has 24 hours after confirming a transportation request to void the transportation request. For a Less Than
-      # Truckload/Full Truckload (LTL/FTL) shipment, the seller has one hour after confirming a transportation request
-      # to void it. After the grace period has expired the seller's account will be charged for the shipping cost.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
-      #   operation.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def confirm_transport(shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{shipment_id}/transport/confirm"
-
-        meter(rate_limit).post(path)
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -312,11 +145,10 @@ module Peddler
       #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] A shipment identifier used for selecting items in a specific inbound shipment.
-      # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace where the product would be
-      #   stored.
+      # @param marketplace_id [String] Deprecated. Do not use.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_shipment_items_by_shipment_id(shipment_id, marketplace_id, rate_limit: 2.0)
+      def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil, rate_limit: 2.0)
         path = "/fba/inbound/v0/shipments/#{shipment_id}/items"
         params = {
           "MarketplaceId" => marketplace_id,

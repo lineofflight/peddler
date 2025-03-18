@@ -19,7 +19,7 @@ module Peddler
       # Returns the available shipping service offerings.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash]
+      # @param body [Hash] GetRatesRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -33,7 +33,8 @@ module Peddler
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
       # details and documents.
       #
-      # @param body [Hash]
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] DirectPurchaseRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @param locale [String] The IETF Language Tag. Note that this only supports the primary language subtag with one
@@ -45,8 +46,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/shipments/directPurchase"
 
         meter(rate_limit).post(path, body:)
@@ -58,7 +57,7 @@ module Peddler
       # receive this error response, you must get the rates for the shipment again.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash]
+      # @param body [Hash] PurchaseShipmentRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -74,7 +73,7 @@ module Peddler
       # Purchases a shipping service identifier and returns purchase-related details and documents.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash]
+      # @param body [Hash] OneClickShipmentRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -184,7 +183,7 @@ module Peddler
 
       # This API will return Get all carrier accounts for a merchant.
       #
-      # @param body [Hash]
+      # @param body [Hash] GetCarrierAccountsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -199,8 +198,8 @@ module Peddler
 
       # This API associates/links the specified carrier account with the merchant.
       #
-      # @param carrier_id [String] The unique identifier associated with the carrier account.
-      # @param body [Hash]
+      # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
+      # @param body [Hash] LinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -213,10 +212,25 @@ module Peddler
         meter(rate_limit).put(path, body:)
       end
 
+      # This API associates/links the specified carrier account with the merchant.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
+      # @param body [Hash] LinkCarrierAccountRequest body
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
+        path = "/shipping/v2/carrierAccounts/#{carrier_id}"
+
+        meter(rate_limit).post(path, body:)
+      end
+
       # This API Unlink the specified carrier account with the merchant.
       #
       # @param carrier_id [String] carrier Id to unlink with merchant.
-      # @param body [Hash]
+      # @param body [Hash] UnlinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -231,7 +245,7 @@ module Peddler
 
       # This API Call to generate the collection form.
       #
-      # @param body [Hash]
+      # @param body [Hash] GenerateCollectionFormRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
       #   the same request.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -249,7 +263,7 @@ module Peddler
 
       # This API Call to get the history of the previously generated collection forms.
       #
-      # @param body [Hash]
+      # @param body [Hash] GetCollectionFormHistoryRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -265,7 +279,7 @@ module Peddler
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
       # with an eligible carrier for manifesting shall be returned.
       #
-      # @param body [Hash]
+      # @param body [Hash] GetUmanifestedShipmentsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -296,9 +310,9 @@ module Peddler
       # Returns a list of access points in proximity of input postal code.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param access_point_types [Array<String>]
-      # @param country_code [String]
-      # @param postal_code [String]
+      # @param access_point_types [Array<String>] Access point types
+      # @param country_code [String] Country code for access point
+      # @param postal_code [String] postal code for access point
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -313,6 +327,34 @@ module Peddler
         }.compact
 
         meter(rate_limit).get(path, params:)
+      end
+
+      # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] Request body for ndrFeedback operation
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        path = "/shipping/v2/ndrFeedback"
+
+        meter(rate_limit).post(path, body:)
+      end
+
+      # This API will be used to create claim for single eligible shipment.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] Request body for the createClaim operation
+      # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
+      #   AmazonShipping_UK.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        path = "/shipping/v2/claims"
+
+        meter(rate_limit).post(path, body:)
       end
     end
   end

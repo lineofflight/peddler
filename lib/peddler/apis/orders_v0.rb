@@ -10,7 +10,7 @@ module Peddler
   end
 
   module APIs
-    # Orders v0
+    # Selling Partner API for Orders
     #
     # Use the Orders Selling Partner API to programmatically retrieve order information. With this API, you can develop
     # fast, flexible, and custom applications to manage order synchronization, perform order research, and create

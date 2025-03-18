@@ -12,22 +12,23 @@ module Peddler
   module APIs
     # Selling Partner API for Direct Fulfillment Shipping
     #
-    # The Selling Partner API for Direct Fulfillment Shipping provides programmatic access to a direct fulfillment
-    # vendor's shipping data.
+    # Use the Selling Partner API for Direct Fulfillment Shipping to access a direct fulfillment vendor's shipping data.
     class VendorDirectFulfillmentShipping20211228 < API
-      # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
-      # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
-      # search must not be more than 7 days.
+      # Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and
+      # `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to
+      # search must not be more than seven days.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified, the result
-      #   will contain orders for all warehouses.
+      # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
+      #   contains orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned.
       # @param created_after [String] Shipping labels that became available after this date and time will be included in
-      #   the result. Must be in ISO-8601 date/time format.
+      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_before [String] Shipping labels that became available before this date and time will be included
-      #   in the result. Must be in ISO-8601 date/time format.
-      # @param sort_order [String] Sort ASC or DESC by order creation date.
+      #   in the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time
+      #   format.
+      # @param sort_order [String] The sort order creation date. You can choose between ascending (`ASC`) or descending
+      #   (`DESC`) sort order.
       # @param next_token [String] Used for pagination when there are more ship labels than the specified result size
       #   limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
@@ -47,10 +48,10 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Creates a shipping label for a purchase order and returns a transactionId for reference.
+      # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] Request body containing the shipping labels data.
+      # @param body [Hash] The request body that contains the shipping labels data.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
@@ -59,11 +60,11 @@ module Peddler
         meter(rate_limit).post(path, body:)
       end
 
-      # Returns a shipping label for the purchaseOrderNumber that you specify.
+      # Returns a shipping label for the `purchaseOrderNumber` that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label
-      #   and should be the same purchaseOrderNumber as received in the order.
+      # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
+      #   It should be the same `purchaseOrderNumber` that you received in the order.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
@@ -76,8 +77,8 @@ module Peddler
       #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping
-      #   labels. It should be the same purchaseOrderNumber as received in the order.
-      # @param body [Hash] The request payload containing parameters for creating shipping labels.
+      #   labels. It should be the same number as the `purchaseOrderNumber` in the order.
+      # @param body [Hash] The request payload that contains the parameters for creating shipping labels.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_shipping_labels(purchase_order_number, body, rate_limit: 10.0)
@@ -121,9 +122,9 @@ module Peddler
       #   will contain orders for all warehouses.
       # @param limit [Integer] The limit to the number of records returned
       # @param created_after [String] Orders that became available after this date and time will be included in the
-      #   result. Must be in ISO-8601 date/time format.
+      #   result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_before [String] Orders that became available before this date and time will be included in the
-      #   result. Must be in ISO-8601 date/time format.
+      #   result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param sort_order [String] Sort ASC or DESC by order creation date.
       # @param next_token [String] Used for pagination when there are more orders than the specified result size limit.
       #   The token value is returned in the previous API call.
@@ -160,14 +161,14 @@ module Peddler
       # must not be more than 7 days.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified the result
-      #   will contain orders for all warehouses.
-      # @param limit [Integer] The limit to the number of records returned
-      # @param created_after [String] Packing slips that became available after this date and time will be included in
-      #   the result. Must be in ISO-8601 date/time format.
+      # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
+      #   contains orders for all warehouses.
+      # @param limit [Integer] The maximum number of records to return.
+      # @param created_after [String] Packing slips that become available after this date and time will be included in
+      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
       # @param created_before [String] Packing slips that became available before this date and time will be included in
-      #   the result. Must be in ISO-8601 date/time format.
-      # @param sort_order [String] Sort ASC or DESC by packing slip creation date.
+      #   the result. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+      # @param sort_order [String] The packing slip creation dates, which are sorted by ascending or descending order.
       # @param next_token [String] Used for pagination when there are more packing slips than the specified result size
       #   limit. The token value is returned in the previous API call.
       # @param rate_limit [Float] Requests per second
@@ -190,13 +191,25 @@ module Peddler
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param purchase_order_number [String] The purchaseOrderNumber for the packing slip you want.
+      # @param purchase_order_number [String] The `purchaseOrderNumber` for the packing slip that you want.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/#{purchase_order_number}"
 
         meter(rate_limit).get(path)
+      end
+
+      # Creates a container (pallet) label for the associated shipment package.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] Request body containing the container label data.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def create_container_label(body, rate_limit: 10.0)
+        path = "/vendor/directFulfillment/shipping/2021-12-28/containerLabel"
+
+        meter(rate_limit).post(path, body:)
       end
     end
   end
