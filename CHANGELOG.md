@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### [4.2.0] - 2025-03-18
+
+### Added
+
+- New Finances version
+- New Vehicles API
+- Changes to various APIs
+
+### Fixed
+
+- Fix duplicate method definition in ShippingV2 API
+
 ### [4.1.1] - 2024-12-17
 
 ### Added
@@ -382,7 +394,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.1.1...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/hakanensari/peddler/compare/v4.1.1...v4.2.0
 [4.1.1]: https://github.com/hakanensari/peddler/compare/v4.0.1...v4.1.1
 [4.0.1]: https://github.com/hakanensari/peddler/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/hakanensari/peddler/compare/v3.0.0...v4.0.0
