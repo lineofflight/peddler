@@ -65,7 +65,7 @@ module Peddler
           productType: "PRODUCT",
           patches: [
             {
-              op: 1,
+              op: "replace",
               path: "/attributes/purchasable_offer",
               value: [{
                 currency: "GBP",

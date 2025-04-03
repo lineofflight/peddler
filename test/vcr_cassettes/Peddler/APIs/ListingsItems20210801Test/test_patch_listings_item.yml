@@ -53,7 +53,7 @@ http_interactions:
       uri: https://sellingpartnerapi-eu.amazon.com/listings/2021-08-01/items/A34PPN1ZLYCOGT/SKU123?includedData=issues&marketplaceIds=A1F83G8C2ARO7P
       body:
         encoding: UTF-8
-        string: '{"productType":"PRODUCT","patches":[{"op":1,"path":"/attributes/purchasable_offer","value":[{"currency":"GBP","our_price":[{"schedule":[{"value_with_tax":399.99}]}]}]}]}'
+        string: '{"productType":"PRODUCT","patches":[{"op":"replace","path":"/attributes/purchasable_offer","value":[{"currency":"GBP","our_price":[{"schedule":[{"value_with_tax":399.99}]}]}]}]}'
       headers:
         Host:
           - sellingpartnerapi-eu.amazon.com
