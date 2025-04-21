@@ -125,6 +125,7 @@ api = Peddler.<api_name>_<version>(aws_region, access_token, options)
 Below are key APIs with examples of their usage:
 
 #### Orders API (v0)
+
 Retrieve order information and manage orders.
 
 ```ruby
@@ -137,6 +138,7 @@ orders = response.parse["orders"]
 ```
 
 #### Catalog Items API (2022-04-01, 2020-12-01, v0)
+
 Access Amazon's catalog data including product details, offers, and competitive pricing.
 
 ```ruby
@@ -149,6 +151,7 @@ item_details = response.parse["payload"]
 ```
 
 #### Feeds API (2021-06-30)
+
 Upload data to Amazon to update listings, prices, inventory, and more.
 
 ```ruby
@@ -175,6 +178,7 @@ feed_id = feed_response.parse["feedId"]
 ```
 
 #### Reports API (2021-06-30)
+
 Request and download reports about orders, inventory, fulfillment, and more.
 
 ```ruby
@@ -200,10 +204,11 @@ end
 ```
 
 #### Listings APIs
+
 Manage product listings with multiple APIs:
 
 - **Listings Items API (2021-08-01, 2020-09-01)**: Create and update listings
-- **Listings Restrictions API (2021-08-01)**: Check listing eligibility 
+- **Listings Restrictions API (2021-08-01)**: Check listing eligibility
 - **Product Type Definitions API (2020-09-01)**: Get schema requirements for listings
 
 ```ruby
@@ -224,6 +229,7 @@ api.put_listings_item(
 ```
 
 #### Fulfillment APIs
+
 Manage inventory and fulfillment through FBA and merchant fulfillment:
 
 - **Fulfillment Inbound API (2024-03-20, v0)**: Send inventory to FBA
@@ -260,6 +266,7 @@ api.create_fulfillment_order(
 ```
 
 #### Financial APIs (2024-06-19, 2024-06-01, v0)
+
 Get financial data including transaction details, payments, and refunds.
 
 ```ruby
@@ -271,6 +278,7 @@ financial_events = response.parse["FinancialEvents"]
 ```
 
 #### Notifications API (v1)
+
 Subscribe to notifications for various events like order updates and report processing.
 
 ```ruby
@@ -293,6 +301,7 @@ api.create_subscription(
 ```
 
 #### Vendor APIs
+
 APIs for vendors selling to Amazon:
 
 - **Vendor Orders API (v1)**: Retrieve purchase orders
@@ -326,7 +335,6 @@ For a complete list of available APIs, refer to the [API models repository](http
 ## TODO
 
 - [ ] Code generate payload parsers
-- [ ] Schedule code generation with GitHub Actions. Push new gem when models change
 - [ ] Review and consider applying [these patches][patches]
 
 [build]: https://github.com/hakanensari/peddler/actions

@@ -1,0 +1,60 @@
+name: Update API Models
+
+on:
+  schedule:
+    # Run daily at 2:00 UTC
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+    # Allow manual trigger from GitHub UI
+
+jobs:
+  update-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for proper commit messages
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3" # Match version from build.yml
+          bundler-cache: true
+
+      - name: Set up Git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+      - name: Clone API models
+        run: |
+          bin/clone-api-models
+
+      - name: Generate code from API models
+        run: bin/generate-code
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            # Store the list of changed files for commit message
+            git status --porcelain | grep -v '??' | sed 's/^...//' > /tmp/changed_files
+          else
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes_detected == 'true'
+        run: |
+          # Create a meaningful commit message based on changes
+          echo "Update API models and regenerate code" > /tmp/commit_msg
+          echo "" >> /tmp/commit_msg
+          echo "Changed files:" >> /tmp/commit_msg
+          cat /tmp/changed_files >> /tmp/commit_msg
+
+          # Commit the changes
+          git add -A
+          git commit -F /tmp/commit_msg
+          git push
