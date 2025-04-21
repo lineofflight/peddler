@@ -20,7 +20,7 @@ group :development do
 
   # TODO: Remove the version guard when Yard handles changes in the new Commonmarker
   # https://github.com/lsegal/yard/issues/1528
-  gem "commonmarker", "~> 0.23.10"
+  gem "commonmarker", "~> 2.3.0"
 
   # TODO: Remove when deprecation warnings go away
   gem "fiddle"
