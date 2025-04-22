@@ -19,7 +19,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3" # Match version from build.yml
+          ruby-version: "3.4" # Match version from build.yml
           bundler-cache: true
 
       - name: Set up Git
