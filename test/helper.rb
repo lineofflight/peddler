@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-# Keep SimpleCov at top.
-if ENV["COVERAGE"]
-  require "simplecov"
-
-  SimpleCov.start do
-    add_filter "/lib/peddler/apis/"
-    add_filter "/test/"
-  end
-end
-
 require "minitest/autorun"
 require "vcr"
 require "webmock/minitest"

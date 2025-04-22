@@ -13,7 +13,6 @@ group :development do
   gem "rubocop-performance"
   gem "rubocop-rake"
   gem "rubocop-shopify"
-  gem "simplecov"
   gem "vcr"
   gem "webmock"
   gem "yard"

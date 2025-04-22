@@ -1,8 +1,6 @@
 # Peddler
 
 [![Build](https://github.com/hakanensari/peddler/workflows/build/badge.svg)][build]
-[![Maintainability](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/maintainability)][maintainability]
-[![Test Coverage](https://api.codeclimate.com/v1/badges/281e6176048f3c0a1ed3/test_coverage)][test-coverage]
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
@@ -338,8 +336,6 @@ For a complete list of available APIs, refer to the [API models repository](http
 - [ ] Review and consider applying [these patches][patches]
 
 [build]: https://github.com/hakanensari/peddler/actions
-[maintainability]: https://codeclimate.com/github/hakanensari/peddler/maintainability
-[test-coverage]: https://codeclimate.com/github/hakanensari/peddler/test_coverage
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application
