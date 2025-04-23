@@ -33,7 +33,11 @@ module Generator
     end
 
     def run_rubocop
-      %x(rubocop --format simple --autocorrect #{File.join(Config::BASE_PATH, "lib")} 2>&1)
+      unless system("bundle exec rubocop --version > /dev/null 2>&1")
+        raise "RuboCop is not available in the bundle. Please add it to your Gemfile or run 'bundle install'."
+      end
+
+      %x(bundle exec rubocop --format simple --autocorrect #{File.join(Config::BASE_PATH, "lib")} 2>&1)
     end
 
     def apis
