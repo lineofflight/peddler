@@ -30,6 +30,10 @@ jobs:
       - name: Clone API models
         run: |
           bin/clone-api-models
+          
+      - name: Install dependencies
+        run: |
+          bundle install
 
       - name: Generate code from API models
         run: bin/generate-code
