@@ -1,0 +1,44 @@
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/3.4.0/gems/fiddle-1.1.7/ext/fiddle
+/opt/hostedtoolcache/Ruby/3.4.3/x64/bin/ruby extconf.rb
+checking for --enable-debug-build option... no
+checking for pkg-config for libffi... [" ", "", "-lffi"]
+checking for pkg-config for libffi... "3.4.6"
+checking for ffi.h... yes
+checking for -lffi... yes
+libffi_version: 3.4.6
+checking for sys/mman.h... yes
+checking for link.h... yes
+checking for dlfcn.h... yes
+checking for -ldl... yes
+checking for dlopen()... yes
+checking for dlclose()... yes
+checking for dlsym()... yes
+checking for dlerror()... yes
+checking for dlinfo()... yes
+checking for RTLD_DI_LINKMAP in dlfcn.h... yes
+checking for FFI_STDCALL in ffi.h... no
+checking signedness of size_t... unsigned
+checking for rb_str_to_interned_str()... yes
+creating Makefile
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/3.4.0/gems/fiddle-1.1.7/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250423-1865-t2fxxh sitelibdir\=./.gem.20250423-1865-t2fxxh clean
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/3.4.0/gems/fiddle-1.1.7/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250423-1865-t2fxxh sitelibdir\=./.gem.20250423-1865-t2fxxh
+compiling closure.c
+compiling conversions.c
+compiling fiddle.c
+compiling function.c
+compiling handle.c
+compiling memory_view.c
+compiling pinned.c
+compiling pointer.c
+linking shared-object fiddle.so
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/3.4.0/gems/fiddle-1.1.7/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250423-1865-t2fxxh sitelibdir\=./.gem.20250423-1865-t2fxxh install
+/usr/bin/install -c -m 0755 fiddle.so ./.gem.20250423-1865-t2fxxh
+
+current directory: /home/runner/work/peddler/peddler/vendor/bundle/ruby/3.4.0/gems/fiddle-1.1.7/ext/fiddle
+make DESTDIR\= sitearchdir\=./.gem.20250423-1865-t2fxxh sitelibdir\=./.gem.20250423-1865-t2fxxh clean

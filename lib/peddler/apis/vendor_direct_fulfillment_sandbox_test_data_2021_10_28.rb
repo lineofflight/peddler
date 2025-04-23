@@ -1,6 +1,6 @@
-# frozen_string_literal: true
 
 require "peddler/api"
+
 
 module Peddler
   class << self
@@ -10,34 +10,41 @@ module Peddler
   end
 
   module APIs
-    # Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data
+        # Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data
     #
-    # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
+        # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
     # direct fulfillment sandbox test data.
     class VendorDirectFulfillmentSandboxTestData20211028 < API
-      # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] The request payload containing parameters for generating test order data scenarios.
-      # @return [Peddler::Response] The API response
+      
+      
+              # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
+#
+        # @note This operation can make a dynamic sandbox call.
+        # @param body [Hash] The request payload containing parameters for generating test order data scenarios.
+        # @return [Peddler::Response] The API response
       def generate_order_scenarios(body)
-        path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
+path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
 
-        post(path, body:)
-      end
+  post(path, body:)
 
-      # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
+end
+
+      
+              # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
       # successful, also returns the requested test order data.
-      #
-      # @note This operation can make a dynamic sandbox call.
-      # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
+#
+        # @note This operation can make a dynamic sandbox call.
+        # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
       #   operation.
-      # @return [Peddler::Response] The API response
+        # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
-        path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{transaction_id}"
+path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{transaction_id}"
 
-        get(path)
-      end
+  get(path)
+
+end
+
+      
     end
   end
 end
