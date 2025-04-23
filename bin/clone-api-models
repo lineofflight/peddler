@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-BASEDIR=$(cd "$(dirname "$0")/.." && pwd)
-rm -rf "$BASEDIR/selling-partner-api-models"
-git clone https://github.com/amzn/selling-partner-api-models.git "$BASEDIR/selling-partner-api-models"

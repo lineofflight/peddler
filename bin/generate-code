@@ -4,4 +4,18 @@
 $LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
 require_relative "../lib/generator"
 
-Generator.generate
+puts "Starting Peddler code generation..."
+puts "This script will:
+- Clone the Amazon Selling Partner API models (if they don't exist)
+- Generate Ruby code from those models
+- Format the code with RuboCop"
+puts ""
+
+begin
+  Generator.generate
+  puts ""
+  puts "Code generation completed successfully."
+rescue => e
+  puts "Error: #{e.message}"
+  exit(1)
+end

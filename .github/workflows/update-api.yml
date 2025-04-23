@@ -27,10 +27,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-      - name: Clone API models
-        run: |
-          bin/clone-api-models
-          
       - name: Install dependencies
         run: |
           bundle install

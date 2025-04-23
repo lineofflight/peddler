@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "fileutils"
+require "open3"
 
 require "generator/config"
 require "generator/api"
@@ -10,6 +11,7 @@ require "generator/entrypoint"
 module Generator
   class << self
     def generate
+      ensure_api_models_exist
       initialize_directory
       generate_apis
       generate_entry_point
@@ -17,6 +19,28 @@ module Generator
     end
 
     private
+
+    def ensure_api_models_exist
+      api_models_dir = File.join(Config::BASE_PATH, "selling-partner-api-models")
+
+      if !Dir.exist?(api_models_dir) || Dir.empty?(api_models_dir)
+        puts "Cloning Amazon Selling Partner API models..."
+        # Remove directory if it exists but is empty
+        FileUtils.rm_rf(api_models_dir) if Dir.exist?(api_models_dir)
+
+        # Clone the repository
+        repo_url = "https://github.com/amzn/selling-partner-api-models.git"
+        _stdout, stderr, status = Open3.capture3("git", "clone", repo_url, api_models_dir)
+
+        unless status.success?
+          raise "Failed to clone API models: #{stderr}"
+        end
+
+        puts "Successfully cloned API models."
+      else
+        puts "Using existing API models."
+      end
+    end
 
     def initialize_directory
       output_dir = File.join(Config::BASE_PATH, "lib/peddler/apis")
