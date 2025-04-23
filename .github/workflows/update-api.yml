@@ -19,7 +19,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4" # Match version from build.yml
+          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Set up Git
@@ -45,16 +45,25 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Commit and push changes
+      - name: Create Pull Request
         if: steps.check_changes.outputs.changes_detected == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Create a meaningful commit message based on changes
-          echo "Update API models and regenerate code" > /tmp/commit_msg
-          echo "" >> /tmp/commit_msg
-          echo "Changed files:" >> /tmp/commit_msg
-          cat /tmp/changed_files >> /tmp/commit_msg
+          # Create a new branch with a timestamp to ensure uniqueness
+          BRANCH_NAME="update-api-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b $BRANCH_NAME
 
-          # Commit the changes
+          # Create PR title
+          PR_TITLE="Update Amazon models - $(date +%Y-%m-%d)"
+
+          # Create PR body
+          PR_BODY="This PR was automatically generated to update the Amazon API models.\n\nChanges include:\n$(cat /tmp/changed_files | sed 's/^/- /')\n\nCreated by GitHub Actions workflow."
+
+          # Use the PR title as the commit message
           git add -A
-          git commit -F /tmp/commit_msg
-          git push
+          git commit -m "$PR_TITLE"
+          git push --set-upstream origin $BRANCH_NAME
+
+          # Create the PR using GitHub CLI (pre-installed on runners)
+          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head "$BRANCH_NAME"
