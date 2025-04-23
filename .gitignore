@@ -7,3 +7,4 @@ gemfiles/*.gemfile.lock
 pkg
 selling-partner-api-models
 test/config.json
+vendor
