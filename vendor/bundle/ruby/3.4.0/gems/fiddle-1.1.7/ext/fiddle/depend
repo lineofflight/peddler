@@ -1,0 +1,85 @@
+PWD =
+
+CONFIGURE_LIBFFI = \
+	$(LIBFFI_CONFIGURE) --disable-shared \
+		--host=$(LIBFFI_ARCH) --enable-builddir=$(arch) \
+		CC="$(CC)" CFLAGS="$(LIBFFI_CFLAGS)" \
+		LD="$(LD)" LDFLAGS="$(LIBFFI_LDFLAGS)"
+
+$(STATIC_LIB) $(RUBYARCHDIR)/$(DLLIB) $(DLLIB): $(LIBFFI_A)
+
+$(OBJS): $(FFI_H)
+
+.PHONY: .FORCE hdr
+
+.FORCE:
+
+hdr: $(FFI_H)
+
+configure-libffi build-libffi: .FORCE
+configure-libffi \
+$(LIBFFI_DIR)/include/ffi.h \
+$(LIBFFI_DIR)/include/ffitarget.h \
+$(LIBFFI_DIR)/fficonfig.h \
+$(LIBFFI_DIR)/Makefile:
+	$(Q) $(MAKEDIRS) $(LIBFFI_DIR)
+	$(Q) $(CONFIGURE_LIBFFI)
+
+build-libffi $(LIBFFI_A):
+	$(Q) $(SUBMAKE_PRE) $(MAKE) $(SUBMAKE_ARG)
+
+clean-none:
+clean-libffi:
+	$(Q) $(SUBMAKE_PRE) $(MAKE) $(SUBMAKE_ARG) clean
+
+distclean-none:
+distclean-libffi:
+	$(Q) $(SUBMAKE_PRE) $(MAKE) $(SUBMAKE_ARG) distclean
+	$(Q) $(RM) $(LIBFFI_DIR)/local.exp
+	$(Q) $(RUBY) -rfileutils -e "FileUtils.rmdir(Dir.glob(ARGV[0]+'/**/{,.*/}'), :parents=>true)" $(LIBFFI_DIR)
+
+realclean-none:
+realclean-libffi:
+	$(Q) $(RMALL) $(LIBFFI_DIR)
+
+.PHONY: clean-libffi distclean-libffi realclean-libffi
+.PHONY: clean-none distclean-none realclean-none
+
+clean: clean-$(LIBFFI_CLEAN)
+distclean: distclean-$(LIBFFI_CLEAN)
+realclean: realclean-$(LIBFFI_CLEAN)
+
+.PHONY: configure configure-libffi
+
+closure.o: closure.c
+closure.o: closure.h
+closure.o: conversions.h
+closure.o: fiddle.h
+closure.o: function.h
+conversions.o: closure.h
+conversions.o: conversions.c
+conversions.o: conversions.h
+conversions.o: fiddle.h
+conversions.o: function.h
+fiddle.o: closure.h
+fiddle.o: conversions.h
+fiddle.o: fiddle.c
+fiddle.o: fiddle.h
+fiddle.o: function.h
+function.o: closure.h
+function.o: conversions.h
+function.o: fiddle.h
+function.o: function.c
+function.o: function.h
+handle.o: closure.h
+handle.o: conversions.h
+handle.o: fiddle.h
+handle.o: function.h
+handle.o: handle.c
+memory_view.o: fiddle.h
+memory_view.o: memory_view.c
+pointer.o: closure.h
+pointer.o: conversions.h
+pointer.o: fiddle.h
+pointer.o: function.h
+pointer.o: pointer.c
