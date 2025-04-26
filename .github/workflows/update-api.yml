@@ -65,10 +65,20 @@ jobs:
 
           # Create PR body with proper newlines using -e flag with echo
           PR_BODY=$(echo -e "This PR was automatically generated to update the Amazon API models.\n\nChanges include:\n$(cat /tmp/changed_files | sed 's/^/- /')\n\nCreated by GitHub Actions workflow.")
-
-          # Use a simplified commit message
-          git add -A
-          git commit -m "Update Amazon models"
+          
+          # Extract API names from changed files
+          API_UPDATES=$(grep -o 'lib/peddler/apis/[^/]*\.rb' /tmp/changed_files | sed -E 's|lib/peddler/apis/(.*)\.rb|\1|' | sort | uniq)
+          
+          if [[ -n "$API_UPDATES" ]]; then
+            # Create commit message with API list
+            COMMIT_MSG="Update Amazon models\n\nUpdated APIs:\n$(echo "$API_UPDATES" | sed 's/^/- /')"
+            git add -A
+            git commit -m "$(echo -e "$COMMIT_MSG")"
+          else
+            # Fallback to simple commit message if no APIs could be identified
+            git add -A
+            git commit -m "Update Amazon models"
+          fi
           git push --set-upstream origin $BRANCH_NAME
 
           # Create the PR using GitHub CLI (pre-installed on runners)
