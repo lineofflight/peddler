@@ -63,12 +63,12 @@ jobs:
           # Create PR title
           PR_TITLE="Update Amazon models - $(date +%Y-%m-%d)"
 
-          # Create PR body
-          PR_BODY="This PR was automatically generated to update the Amazon API models.\n\nChanges include:\n$(cat /tmp/changed_files | sed 's/^/- /')\n\nCreated by GitHub Actions workflow."
+          # Create PR body with proper newlines using -e flag with echo
+          PR_BODY=$(echo -e "This PR was automatically generated to update the Amazon API models.\n\nChanges include:\n$(cat /tmp/changed_files | sed 's/^/- /')\n\nCreated by GitHub Actions workflow.")
 
-          # Use the PR title as the commit message
+          # Use a simplified commit message
           git add -A
-          git commit -m "$PR_TITLE"
+          git commit -m "Update Amazon models"
           git push --set-upstream origin $BRANCH_NAME
 
           # Create the PR using GitHub CLI (pre-installed on runners)
