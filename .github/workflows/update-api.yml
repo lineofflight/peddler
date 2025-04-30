@@ -21,7 +21,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Full history for proper commit messages
-          commit-signing: true # Enable commit signing
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
