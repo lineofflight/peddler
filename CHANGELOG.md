@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### [4.3.0] - 2025-05-02
+
+### Added
+
+- New Seller Wallet API
+
 ### [4.2.0] - 2025-03-18
 
 ### Added
@@ -394,7 +400,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.2.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.3.0...HEAD
+[4.3.0]: https://github.com/hakanensari/peddler/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/hakanensari/peddler/compare/v4.1.1...v4.2.0
 [4.1.1]: https://github.com/hakanensari/peddler/compare/v4.0.1...v4.1.1
 [4.0.1]: https://github.com/hakanensari/peddler/compare/v4.0.0...v4.0.1
