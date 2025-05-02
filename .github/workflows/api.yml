@@ -1,4 +1,4 @@
-name: Update API Models
+name: api
 
 on:
   schedule:
@@ -32,7 +32,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git config commit.gpgsign true
 
       - name: Install dependencies
         run: |
@@ -66,10 +65,10 @@ jobs:
 
           # Create PR body with proper newlines using -e flag with echo
           PR_BODY=$(echo -e "This PR was automatically generated to update the Amazon API models.\n\nChanges include:\n$(cat /tmp/changed_files | sed 's/^/- /')\n\nCreated by GitHub Actions workflow.")
-          
+
           # Extract API names from changed files
           API_UPDATES=$(grep -o 'lib/peddler/apis/[^/]*\.rb' /tmp/changed_files | sed -E 's|lib/peddler/apis/(.*)\.rb|\1|' | sort | uniq)
-          
+
           if [[ -n "$API_UPDATES" ]]; then
             # Create commit message with API list
             COMMIT_MSG="Update Amazon models\n\nUpdated APIs:\n$(echo "$API_UPDATES" | sed 's/^/- /')"
