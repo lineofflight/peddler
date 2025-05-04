@@ -5,9 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### [4.3.1] - 2025-05-04
+
 ### Fixed
 
-- Use response instead of cause in Token::Error
+- Use response instead of cause in Token::Error for semantic correctness
 
 ### [4.3.0] - 2025-05-02
 
@@ -404,7 +406,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.3.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.3.1...HEAD
+[4.3.1]: https://github.com/hakanensari/peddler/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/hakanensari/peddler/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/hakanensari/peddler/compare/v4.1.1...v4.2.0
 [4.1.1]: https://github.com/hakanensari/peddler/compare/v4.0.1...v4.1.1
