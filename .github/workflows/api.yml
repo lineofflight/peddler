@@ -30,6 +30,7 @@ jobs:
 
       - name: Set up Git
         run: |
+          mkdir -p ~/.ssh
           echo "${{ secrets.BOT_SSH_PRIVATE_KEY }}" > ~/.ssh/bot_signing_key
           chmod 600 ~/.ssh/bot_signing_key
           git config user.name "lineofflightbot"
