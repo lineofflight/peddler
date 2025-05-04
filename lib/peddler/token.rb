@@ -10,10 +10,10 @@ module Peddler
   # @see https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
   class Token
     class Error < StandardError
-      attr_reader :cause
+      attr_reader :response
 
-      def initialize(msg = nil, cause = nil)
-        @cause = cause
+      def initialize(msg = nil, response = nil)
+        @response = response
         super(msg)
       end
     end
@@ -38,7 +38,7 @@ module Peddler
       response = HTTP.post(URL, form: params)
 
       unless response.status.success?
-        message = response.parse["error_description"]
+        message = response.parse["error_description"] || "Unknown token error"
         raise Error.new(message, response)
       end
 

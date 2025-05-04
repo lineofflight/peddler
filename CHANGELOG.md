@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Use response instead of cause in Token::Error
+
 ### [4.3.0] - 2025-05-02
 
 ### Added

@@ -22,9 +22,11 @@ module Peddler
     end
 
     def test_token_error
-      assert_raises(Token::Error) do
+      error = assert_raises(Token::Error) do
         Token.request(client_id:, client_secret:)
       end
+
+      refute_nil(error.response)
     end
 
     def test_grant_type_with_code
