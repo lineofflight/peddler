@@ -30,8 +30,13 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "${{ secrets.BOT_SSH_PRIVATE_KEY }}" > ~/.ssh/bot_signing_key
+          chmod 600 ~/.ssh/bot_signing_key
+          git config user.name "lineofflightbot"
+          git config user.email "bot@lineofflig.ht"
+          git config --global commit.gpgsign true
+          git config --global gpg.format ssh
+          git config --global user.signingkey "$(ssh-keygen -Y fingerprint -f ~/.ssh/bot_signing_key | awk '{print $2}')"
 
       - name: Install dependencies
         run: |
