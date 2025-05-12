@@ -40,6 +40,13 @@ module Peddler
       assert_kind_of(Errors::UnsupportedGrantType, error)
     end
 
+    def test_invalid_grant
+      response = '{"error_description":"The request has an invalid grant parameter : refresh_token. User may have unauthorized or didn' + 't grant the permission.","error":"invalid_grant"}'
+      error = Error.build(response)
+
+      assert_kind_of(Errors::InvalidGrant, error)
+    end
+
     def test_other_api_error
       response = '{"errors":[{"code":"OtherError","message":"OtherError"}]}'
       error = Error.build(response)
