@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Handle token errors in Peddler::Error
+
 ### [4.3.1] - 2025-05-04
 
 ### Fixed

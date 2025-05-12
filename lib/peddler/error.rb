@@ -7,9 +7,18 @@ module Peddler
     # @!visibility private
     class << self
       def build(response)
-        error = JSON.parse(response).dig("errors").first
-        class_name = normalize_class_name(error.dig("code"))
-        message = error.dig("message")
+        payload = JSON.parse(response)
+
+        if payload.key?("error")
+          class_name = normalize_class_name(payload["error"])
+          message = payload["error_description"]
+        elsif payload.key?("errors")
+          class_name = normalize_class_name(payload.dig("errors", 0, "code"))
+          message = payload.dig("errors", 0, "message")
+        else
+          return
+        end
+
         klass = if Errors.const_defined?(class_name)
           Errors.const_get(class_name)
         else
@@ -27,7 +36,7 @@ module Peddler
       private
 
       def normalize_class_name(code)
-        if code.match?(/\A[A-Z_]+\z/)
+        if code.match?(/\A([a-z_]+|[A-Z_]+)\z/)
           code.split("_").map(&:capitalize).join
         else
           code
@@ -46,5 +55,6 @@ module Peddler
     class NotFound < Error; end
     class QuotaExceeded < Error; end
     class Unauthorized < Error; end
+    class UnsupportedGrantType < Error; end
   end
 end

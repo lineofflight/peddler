@@ -2,6 +2,8 @@
 
 require "http"
 
+require "peddler/error"
+
 module Peddler
   # Requests refresh and access tokens that authorize your application to take actions on behalf of a selling partner.
   #
@@ -9,14 +11,7 @@ module Peddler
   #
   # @see https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
   class Token
-    class Error < StandardError
-      attr_reader :response
-
-      def initialize(msg = nil, response = nil)
-        @response = response
-        super(msg)
-      end
-    end
+    Error = Class.new(Peddler::Error)
 
     URL = "https://api.amazon.com/auth/o2/token"
 
@@ -37,9 +32,9 @@ module Peddler
     def request
       response = HTTP.post(URL, form: params)
 
-      unless response.status.success?
-        message = response.parse["error_description"] || "Unknown token error"
-        raise Error.new(message, response)
+      if response.status.client_error?
+        error = Error.build(response)
+        raise error if error
       end
 
       response

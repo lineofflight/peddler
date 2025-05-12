@@ -22,11 +22,18 @@ module Peddler
     end
 
     def test_token_error
-      error = assert_raises(Token::Error) do
+      error = assert_raises(Errors::UnsupportedGrantType) do
         Token.request(client_id:, client_secret:)
       end
 
       refute_nil(error.response)
+    end
+
+    def test_obsolete_error_class
+      assert(defined?(Token::Error))
+      if Gem.loaded_specs["peddler"].version.segments.first >= 5
+        flunk("Token::Error should have been removed in v5.0. Please delete it now.")
+      end
     end
 
     def test_grant_type_with_code

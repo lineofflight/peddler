@@ -33,10 +33,23 @@ module Peddler
       assert_kind_of(Errors::Unauthorized, error)
     end
 
-    def test_other_error
-      refute_includes(Errors.constants, :OtherError)
+    def test_unsupported_grant_type
+      response = '{"error":"unsupported_grant_type","error_description":"The authorization grant type is not supported by the authorization server"}'
+      error = Error.build(response)
 
+      assert_kind_of(Errors::UnsupportedGrantType, error)
+    end
+
+    def test_other_api_error
       response = '{"errors":[{"code":"OtherError","message":"OtherError"}]}'
+      error = Error.build(response)
+
+      assert_includes(Errors.constants, :OtherError)
+      assert_kind_of(Errors::OtherError, error)
+    end
+
+    def test_other_token_error
+      response = '{"error":"other_error","error_description":"OtherError"}'
       error = Error.build(response)
 
       assert_includes(Errors.constants, :OtherError)
