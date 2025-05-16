@@ -23,7 +23,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
-        path = "/vendor/directFulfillment/inventory/v1/warehouses/#{warehouse_id}/items"
+        path = "/vendor/directFulfillment/inventory/v1/warehouses/#{URI.encode_uri_component(warehouse_id)}/items"
 
         meter(rate_limit).post(path, body:)
       end

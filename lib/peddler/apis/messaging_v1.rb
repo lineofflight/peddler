@@ -29,7 +29,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -49,7 +49,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_customization_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmCustomizationDetails"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/confirmCustomizationDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -68,7 +68,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmDeliveryDetails"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/confirmDeliveryDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -88,7 +88,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/legalDisclosure"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/legalDisclosure"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -107,7 +107,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_negative_feedback_removal(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/negativeFeedbackRemoval"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/negativeFeedbackRemoval"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -126,7 +126,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmOrderDetails"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/confirmOrderDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -146,7 +146,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/confirmServiceDetails"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/confirmServiceDetails"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -166,7 +166,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_amazon_motors(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/amazonMotors"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/amazonMotors"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -185,7 +185,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_warranty(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/warranty"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/warranty"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -203,7 +203,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/attributes"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/attributes"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -223,7 +223,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_digital_access_key(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/digitalAccessKey"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/digitalAccessKey"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -243,7 +243,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/unexpectedProblem"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/unexpectedProblem"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -261,7 +261,7 @@ module Peddler
       # @param body [Hash] This contains the message body for a message.
       # @return [Peddler::Response] The API response
       def send_invoice(amazon_order_id, marketplace_ids, body)
-        path = "/messaging/v1/orders/#{amazon_order_id}/messages/invoice"
+        path = "/messaging/v1/orders/#{URI.encode_uri_component(amazon_order_id)}/messages/invoice"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact

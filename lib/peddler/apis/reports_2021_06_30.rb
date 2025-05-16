@@ -74,7 +74,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_report(report_id, rate_limit: 0.0222)
-        path = "/reports/2021-06-30/reports/#{report_id}"
+        path = "/reports/2021-06-30/reports/#{URI.encode_uri_component(report_id)}"
 
         meter(rate_limit).delete(path)
       end
@@ -87,7 +87,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_report(report_id, rate_limit: 2.0)
-        path = "/reports/2021-06-30/reports/#{report_id}"
+        path = "/reports/2021-06-30/reports/#{URI.encode_uri_component(report_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -129,7 +129,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
-        path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
+        path = "/reports/2021-06-30/schedules/#{URI.encode_uri_component(report_schedule_id)}"
 
         meter(rate_limit).delete(path)
       end
@@ -142,7 +142,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
-        path = "/reports/2021-06-30/schedules/#{report_schedule_id}"
+        path = "/reports/2021-06-30/schedules/#{URI.encode_uri_component(report_schedule_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -154,7 +154,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_report_document(report_document_id, rate_limit: 0.0167)
-        path = "/reports/2021-06-30/documents/#{report_document_id}"
+        path = "/reports/2021-06-30/documents/#{URI.encode_uri_component(report_document_id)}"
 
         meter(rate_limit).get(path)
       end

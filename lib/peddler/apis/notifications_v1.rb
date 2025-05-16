@@ -29,7 +29,7 @@ module Peddler
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Peddler::Response] The API response
       def get_subscription(notification_type, payload_version: nil, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{notification_type}"
+        path = "/notifications/v1/subscriptions/#{URI.encode_uri_component(notification_type)}"
         params = {
           "payloadVersion" => payload_version,
         }.compact
@@ -49,7 +49,7 @@ module Peddler
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{notification_type}"
+        path = "/notifications/v1/subscriptions/#{URI.encode_uri_component(notification_type)}"
 
         meter(rate_limit).post(path, body:)
       end
@@ -65,7 +65,7 @@ module Peddler
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
+        path = "/notifications/v1/subscriptions/#{URI.encode_uri_component(notification_type)}/#{URI.encode_uri_component(subscription_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -83,7 +83,7 @@ module Peddler
       #   to [Notification Type Values](https://developer-docs.amazon.com/sp-api/docs/notification-type-values).
       # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
-        path = "/notifications/v1/subscriptions/#{notification_type}/#{subscription_id}"
+        path = "/notifications/v1/subscriptions/#{URI.encode_uri_component(notification_type)}/#{URI.encode_uri_component(subscription_id)}"
 
         meter(rate_limit).delete(path)
       end
@@ -123,7 +123,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_destination(destination_id, rate_limit: 1.0)
-        path = "/notifications/v1/destinations/#{destination_id}"
+        path = "/notifications/v1/destinations/#{URI.encode_uri_component(destination_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -136,7 +136,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_destination(destination_id, rate_limit: 1.0)
-        path = "/notifications/v1/destinations/#{destination_id}"
+        path = "/notifications/v1/destinations/#{URI.encode_uri_component(destination_id)}"
 
         meter(rate_limit).delete(path)
       end

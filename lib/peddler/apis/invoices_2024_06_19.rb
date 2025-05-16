@@ -38,7 +38,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoices_document(invoices_document_id, rate_limit: 0.0167)
-        path = "/tax/invoices/2024-06-19/documents/#{invoices_document_id}"
+        path = "/tax/invoices/2024-06-19/documents/#{URI.encode_uri_component(invoices_document_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -95,7 +95,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoices_export(export_id, rate_limit: 2.0)
-        path = "/tax/invoices/2024-06-19/exports/#{export_id}"
+        path = "/tax/invoices/2024-06-19/exports/#{URI.encode_uri_component(export_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -168,7 +168,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoice(marketplace_id, invoice_id, rate_limit: 2.0)
-        path = "/tax/invoices/2024-06-19/invoices/#{invoice_id}"
+        path = "/tax/invoices/2024-06-19/invoices/#{URI.encode_uri_component(invoice_id)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact

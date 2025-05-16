@@ -34,7 +34,7 @@ module Peddler
       #   operation.
       # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
-        path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{transaction_id}"
+        path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{URI.encode_uri_component(transaction_id)}"
 
         get(path)
       end

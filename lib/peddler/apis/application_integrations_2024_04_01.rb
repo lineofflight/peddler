@@ -47,7 +47,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def record_action_feedback(notification_id, body, rate_limit: 1.0)
-        path = "/appIntegrations/2024-04-01/notifications/#{notification_id}/feedback"
+        path = "/appIntegrations/2024-04-01/notifications/#{URI.encode_uri_component(notification_id)}/feedback"
 
         meter(rate_limit).post(path, body:)
       end

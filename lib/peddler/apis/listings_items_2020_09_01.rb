@@ -32,7 +32,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
+        path = "/listings/2020-09-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,
@@ -57,7 +57,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
+        path = "/listings/2020-09-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,
@@ -82,7 +82,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2020-09-01/items/#{seller_id}/#{sku}"
+        path = "/listings/2020-09-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,

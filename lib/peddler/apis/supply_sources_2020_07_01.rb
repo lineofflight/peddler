@@ -48,7 +48,7 @@ module Peddler
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @return [Peddler::Response] The API response
       def get_supply_source(supply_source_id)
-        path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
+        path = "/supplySources/2020-07-01/supplySources/#{URI.encode_uri_component(supply_source_id)}"
 
         get(path)
       end
@@ -60,7 +60,7 @@ module Peddler
       # @param payload [Hash]
       # @return [Peddler::Response] The API response
       def update_supply_source(supply_source_id, payload: nil)
-        path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
+        path = "/supplySources/2020-07-01/supplySources/#{URI.encode_uri_component(supply_source_id)}"
         body = payload
 
         put(path, body:)
@@ -72,7 +72,7 @@ module Peddler
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @return [Peddler::Response] The API response
       def archive_supply_source(supply_source_id)
-        path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}"
+        path = "/supplySources/2020-07-01/supplySources/#{URI.encode_uri_component(supply_source_id)}"
 
         delete(path)
       end
@@ -84,7 +84,7 @@ module Peddler
       # @param payload [Hash]
       # @return [Peddler::Response] The API response
       def update_supply_source_status(supply_source_id, payload: nil)
-        path = "/supplySources/2020-07-01/supplySources/#{supply_source_id}/status"
+        path = "/supplySources/2020-07-01/supplySources/#{URI.encode_uri_component(supply_source_id)}/status"
         body = payload
 
         put(path, body:)

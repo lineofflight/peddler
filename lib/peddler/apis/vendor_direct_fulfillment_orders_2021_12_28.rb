@@ -63,7 +63,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order(purchase_order_number, rate_limit: 10.0)
-        path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{purchase_order_number}"
+        path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{URI.encode_uri_component(purchase_order_number)}"
 
         meter(rate_limit).get(path)
       end

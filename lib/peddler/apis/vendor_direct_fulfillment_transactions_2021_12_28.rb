@@ -23,7 +23,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)
-        path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{transaction_id}"
+        path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{URI.encode_uri_component(transaction_id)}"
 
         meter(rate_limit).get(path)
       end

@@ -100,7 +100,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_listing_offers(marketplace_id, item_condition, seller_sku, customer_type: nil, rate_limit: 1.0)
-        path = "/products/pricing/v0/listings/#{seller_sku}/offers"
+        path = "/products/pricing/v0/listings/#{URI.encode_uri_component(seller_sku)}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
           "ItemCondition" => item_condition,
@@ -122,7 +122,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_item_offers(marketplace_id, item_condition, asin, customer_type: nil, rate_limit: 0.5)
-        path = "/products/pricing/v0/items/#{asin}/offers"
+        path = "/products/pricing/v0/items/#{URI.encode_uri_component(asin)}/offers"
         params = {
           "MarketplaceId" => marketplace_id,
           "ItemCondition" => item_condition,

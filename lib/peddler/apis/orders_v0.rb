@@ -154,7 +154,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order(order_id, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -166,7 +166,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/buyerInfo"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/buyerInfo"
 
         meter(rate_limit).get(path)
       end
@@ -178,7 +178,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_address(order_id, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/address"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/address"
 
         meter(rate_limit).get(path)
       end
@@ -197,7 +197,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_items(order_id, next_token: nil, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/orderItems"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/orderItems"
         params = {
           "NextToken" => next_token,
         }.compact
@@ -213,7 +213,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_items_buyer_info(order_id, next_token: nil, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/orderItems/buyerInfo"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/orderItems/buyerInfo"
         params = {
           "NextToken" => next_token,
         }.compact
@@ -229,7 +229,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_shipment_status(order_id, payload, rate_limit: 5.0)
-        path = "/orders/v0/orders/#{order_id}/shipment"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/shipment"
         body = payload
 
         meter(rate_limit).post(path, body:)
@@ -242,7 +242,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/regulatedInfo"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/regulatedInfo"
 
         meter(rate_limit).get(path)
       end
@@ -255,7 +255,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_verification_status(order_id, payload, rate_limit: 0.5)
-        path = "/orders/v0/orders/#{order_id}/regulatedInfo"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/regulatedInfo"
         body = payload
 
         meter(rate_limit).patch(path, body:)
@@ -269,7 +269,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_shipment(order_id, payload, rate_limit: 2.0)
-        path = "/orders/v0/orders/#{order_id}/shipmentConfirmation"
+        path = "/orders/v0/orders/#{URI.encode_uri_component(order_id)}/shipmentConfirmation"
         body = payload
 
         meter(rate_limit).post(path, body:)

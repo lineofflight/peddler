@@ -89,7 +89,7 @@ module Peddler
       def delete_inventory_item(seller_sku, marketplace_id)
         must_sandbox!
 
-        path = "/fba/inventory/v1/items/#{seller_sku}"
+        path = "/fba/inventory/v1/items/#{URI.encode_uri_component(seller_sku)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact

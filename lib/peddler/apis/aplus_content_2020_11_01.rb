@@ -72,7 +72,7 @@ module Peddler
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
+        path = "/aplus/2020-11-01/contentDocuments/#{URI.encode_uri_component(content_reference_key)}"
         params = {
           "marketplaceId" => marketplace_id,
           "includedDataSet" => included_data_set,
@@ -96,7 +96,7 @@ module Peddler
         rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}"
+        path = "/aplus/2020-11-01/contentDocuments/#{URI.encode_uri_component(content_reference_key)}"
         body = post_content_document_request
         params = {
           "marketplaceId" => marketplace_id,
@@ -125,7 +125,7 @@ module Peddler
         asin_set: nil, page_token: nil, rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
+        path = "/aplus/2020-11-01/contentDocuments/#{URI.encode_uri_component(content_reference_key)}/asins"
         params = {
           "marketplaceId" => marketplace_id,
           "includedDataSet" => included_data_set,
@@ -154,7 +154,7 @@ module Peddler
         post_content_document_asin_relations_request, rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/asins"
+        path = "/aplus/2020-11-01/contentDocuments/#{URI.encode_uri_component(content_reference_key)}/asins"
         body = post_content_document_asin_relations_request
         params = {
           "marketplaceId" => marketplace_id,
@@ -223,7 +223,7 @@ module Peddler
       def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/approvalSubmissions"
+        path = "/aplus/2020-11-01/contentDocuments/#{URI.encode_uri_component(content_reference_key)}/approvalSubmissions"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
@@ -244,7 +244,7 @@ module Peddler
       def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/aplus/2020-11-01/contentDocuments/#{content_reference_key}/suspendSubmissions"
+        path = "/aplus/2020-11-01/contentDocuments/#{URI.encode_uri_component(content_reference_key)}/suspendSubmissions"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact

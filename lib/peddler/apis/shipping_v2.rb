@@ -121,7 +121,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_documents(shipment_id, package_client_reference_id, format: nil, dpi: nil,
         x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        path = "/shipping/v2/shipments/#{shipment_id}/documents"
+        path = "/shipping/v2/shipments/#{URI.encode_uri_component(shipment_id)}/documents"
         params = {
           "packageClientReferenceId" => package_client_reference_id,
           "format" => format,
@@ -140,7 +140,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        path = "/shipping/v2/shipments/#{shipment_id}/cancel"
+        path = "/shipping/v2/shipments/#{URI.encode_uri_component(shipment_id)}/cancel"
 
         meter(rate_limit).put(path)
       end
@@ -206,7 +206,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
-        path = "/shipping/v2/carrierAccounts/#{carrier_id}"
+        path = "/shipping/v2/carrierAccounts/#{URI.encode_uri_component(carrier_id)}"
 
         meter(rate_limit).post(path, body:)
       end
@@ -222,7 +222,7 @@ module Peddler
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
-        path = "/shipping/v2/carrierAccounts/#{carrier_id}/unlink"
+        path = "/shipping/v2/carrierAccounts/#{URI.encode_uri_component(carrier_id)}/unlink"
 
         meter(rate_limit).put(path, body:)
       end
@@ -286,7 +286,7 @@ module Peddler
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         cannot_sandbox!
 
-        path = "/shipping/v2/collectionForms/#{collection_form_id}"
+        path = "/shipping/v2/collectionForms/#{URI.encode_uri_component(collection_form_id)}"
 
         meter(rate_limit).get(path)
       end
