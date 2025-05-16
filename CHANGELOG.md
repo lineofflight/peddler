@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Handle token errors in Peddler::Error
 
+### Fixed
+
+- URL-encode path parameters in generated API
+
 ### [4.3.1] - 2025-05-04
 
 ### Fixed
