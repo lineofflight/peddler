@@ -53,6 +53,7 @@ module Peddler
   module Errors
     class InvalidGrant < Error; end
     class InvalidInput < Error; end
+    class InvalidRequest < Error; end
     class NotFound < Error; end
     class QuotaExceeded < Error; end
     class Unauthorized < Error; end

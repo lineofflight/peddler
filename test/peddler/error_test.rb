@@ -47,6 +47,13 @@ module Peddler
       assert_kind_of(Errors::InvalidGrant, error)
     end
 
+    def test_invalid_request
+      response = '{"error":"invalid_request","error_description":"The request is missing a required parameter : refresh_token"}'
+      error = Error.build(response)
+
+      assert_kind_of(Errors::InvalidRequest, error)
+    end
+
     def test_other_api_error
       response = '{"errors":[{"code":"OtherError","message":"OtherError"}]}'
       error = Error.build(response)
