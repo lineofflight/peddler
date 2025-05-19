@@ -67,7 +67,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_catalog_item(asin, marketplace_ids, included_data: "summaries", locale: nil, rate_limit: 2.0)
-        path = "/catalog/2020-12-01/items/#{URI.encode_uri_component(asin)}"
+        path = "/catalog/2020-12-01/items/#{percent_encode(asin)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "includedData" => included_data,

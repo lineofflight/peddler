@@ -69,7 +69,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_definitions_product_type(product_type, marketplace_ids, seller_id: nil, product_type_version: "LATEST",
         requirements: "LISTING", requirements_enforced: "ENFORCED", locale: "DEFAULT", rate_limit: 5.0)
-        path = "/definitions/2020-09-01/productTypes/#{URI.encode_uri_component(product_type)}"
+        path = "/definitions/2020-09-01/productTypes/#{percent_encode(product_type)}"
         params = {
           "sellerId" => seller_id,
           "marketplaceIds" => marketplace_ids,

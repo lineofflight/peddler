@@ -2,7 +2,6 @@
 
 require "generator/utils"
 require "generator/operation"
-require "uri"
 
 module Generator
   class Path
@@ -29,7 +28,7 @@ module Generator
 
     def path
       @path.gsub(/\{([^}]+)\}/) do
-        "\#{URI.encode_uri_component(#{snakecase(Regexp.last_match(1))})}"
+        "\#{percent_encode(#{snakecase(Regexp.last_match(1))})}"
       end
     end
 

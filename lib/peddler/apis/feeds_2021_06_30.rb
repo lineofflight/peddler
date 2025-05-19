@@ -76,7 +76,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_feed(feed_id, rate_limit: 2.0)
-        path = "/feeds/2021-06-30/feeds/#{URI.encode_uri_component(feed_id)}"
+        path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
 
         meter(rate_limit).delete(path)
       end
@@ -89,7 +89,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feed(feed_id, rate_limit: 2.0)
-        path = "/feeds/2021-06-30/feeds/#{URI.encode_uri_component(feed_id)}"
+        path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -116,7 +116,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
-        path = "/feeds/2021-06-30/documents/#{URI.encode_uri_component(feed_document_id)}"
+        path = "/feeds/2021-06-30/documents/#{percent_encode(feed_document_id)}"
 
         meter(rate_limit).get(path)
       end

@@ -32,7 +32,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,
@@ -58,7 +58,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, included_data: ["summaries"],
         rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,
@@ -86,7 +86,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def patch_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil,
         issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "includedData" => included_data,
@@ -118,7 +118,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def put_listings_item(seller_id, sku, marketplace_ids, body, included_data: ["issues"], mode: nil,
         issue_locale: nil, rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{URI.encode_uri_component(seller_id)}/#{URI.encode_uri_component(sku)}"
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "includedData" => included_data,
@@ -179,7 +179,7 @@ module Peddler
         created_after: nil, created_before: nil, last_updated_after: nil, last_updated_before: nil,
         with_issue_severity: nil, with_status: nil, without_status: nil, sort_by: "lastUpdatedDate", sort_order: "DESC",
         page_size: 10, page_token: nil, rate_limit: 5.0)
-        path = "/listings/2021-08-01/items/#{URI.encode_uri_component(seller_id)}"
+        path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "issueLocale" => issue_locale,

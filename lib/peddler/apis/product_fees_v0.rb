@@ -35,7 +35,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
-        path = "/products/fees/v0/listings/#{URI.encode_uri_component(seller_sku)}/feesEstimate"
+        path = "/products/fees/v0/listings/#{percent_encode(seller_sku)}/feesEstimate"
 
         meter(rate_limit).post(path, body:)
       end
@@ -56,7 +56,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
-        path = "/products/fees/v0/items/#{URI.encode_uri_component(asin)}/feesEstimate"
+        path = "/products/fees/v0/items/#{percent_encode(asin)}/feesEstimate"
 
         meter(rate_limit).post(path, body:)
       end

@@ -62,7 +62,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_inbound_plan(inbound_plan_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -78,7 +78,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plan_boxes(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/boxes"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/boxes"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -96,7 +96,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_inbound_plan(inbound_plan_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/cancellation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/cancellation"
 
         meter(rate_limit).put(path)
       end
@@ -112,7 +112,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plan_items(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/items"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/items"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -129,7 +129,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_inbound_plan_name(inbound_plan_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/name"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/name"
 
         meter(rate_limit).put(path, body:)
       end
@@ -149,7 +149,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_packing_group_boxes(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/packingGroups/#{URI.encode_uri_component(packing_group_id)}/boxes"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingGroups/#{percent_encode(packing_group_id)}/boxes"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -172,7 +172,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_packing_group_items(inbound_plan_id, packing_group_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/packingGroups/#{URI.encode_uri_component(packing_group_id)}/items"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingGroups/#{percent_encode(packing_group_id)}/items"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -190,7 +190,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def set_packing_information(inbound_plan_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/packingInformation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingInformation"
 
         meter(rate_limit).post(path, body:)
       end
@@ -207,7 +207,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_packing_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/packingOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -223,7 +223,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_packing_options(inbound_plan_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/packingOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingOptions"
 
         meter(rate_limit).post(path)
       end
@@ -236,7 +236,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_packing_option(inbound_plan_id, packing_option_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/packingOptions/#{URI.encode_uri_component(packing_option_id)}/confirmation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/packingOptions/#{percent_encode(packing_option_id)}/confirmation"
 
         meter(rate_limit).post(path)
       end
@@ -253,7 +253,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_inbound_plan_pallets(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/pallets"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/pallets"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -274,7 +274,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_placement_options(inbound_plan_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/placementOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/placementOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -291,7 +291,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_placement_options(inbound_plan_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/placementOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/placementOptions"
 
         meter(rate_limit).post(path, body:)
       end
@@ -305,7 +305,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_placement_option(inbound_plan_id, placement_option_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/placementOptions/#{URI.encode_uri_component(placement_option_id)}/confirmation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/placementOptions/#{percent_encode(placement_option_id)}/confirmation"
 
         meter(rate_limit).post(path)
       end
@@ -319,7 +319,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment(inbound_plan_id, shipment_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -336,7 +336,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_boxes(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/boxes"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/boxes"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -360,7 +360,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_shipment_content_update_previews(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/contentUpdatePreviews"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -380,7 +380,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_shipment_content_update_previews(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/contentUpdatePreviews"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews"
 
         meter(rate_limit).post(path, body:)
       end
@@ -396,7 +396,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/contentUpdatePreviews/#{URI.encode_uri_component(content_update_preview_id)}"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews/#{percent_encode(content_update_preview_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -411,7 +411,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_shipment_content_update_preview(inbound_plan_id, shipment_id, content_update_preview_id,
         rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/contentUpdatePreviews/#{URI.encode_uri_component(content_update_preview_id)}/confirmation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/contentUpdatePreviews/#{percent_encode(content_update_preview_id)}/confirmation"
 
         meter(rate_limit).post(path)
       end
@@ -424,7 +424,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_delivery_challan_document(inbound_plan_id, shipment_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/deliveryChallanDocument"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryChallanDocument"
 
         meter(rate_limit).get(path)
       end
@@ -444,7 +444,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_delivery_window_options(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/deliveryWindowOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryWindowOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -461,7 +461,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_delivery_window_options(inbound_plan_id, shipment_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/deliveryWindowOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryWindowOptions"
 
         meter(rate_limit).post(path)
       end
@@ -480,7 +480,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_delivery_window_options(inbound_plan_id, shipment_id, delivery_window_option_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/deliveryWindowOptions/#{URI.encode_uri_component(delivery_window_option_id)}/confirmation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/deliveryWindowOptions/#{percent_encode(delivery_window_option_id)}/confirmation"
 
         meter(rate_limit).post(path)
       end
@@ -497,7 +497,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_items(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/items"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/items"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -515,7 +515,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_shipment_name(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/name"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/name"
 
         meter(rate_limit).put(path, body:)
       end
@@ -533,7 +533,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_shipment_pallets(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/pallets"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/pallets"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -552,7 +552,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/selfShipAppointmentCancellation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentCancellation"
 
         meter(rate_limit).put(path, body:)
       end
@@ -573,7 +573,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
         rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/selfShipAppointmentSlots"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -592,7 +592,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/selfShipAppointmentSlots"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots"
 
         meter(rate_limit).post(path, body:)
       end
@@ -608,7 +608,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/selfShipAppointmentSlots/#{URI.encode_uri_component(slot_id)}/schedule"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots/#{percent_encode(slot_id)}/schedule"
 
         meter(rate_limit).post(path, body:)
       end
@@ -625,7 +625,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_shipment_source_address(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/sourceAddress"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/sourceAddress"
 
         meter(rate_limit).put(path, body:)
       end
@@ -639,7 +639,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_shipment_tracking_details(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/shipments/#{URI.encode_uri_component(shipment_id)}/trackingDetails"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/trackingDetails"
 
         meter(rate_limit).put(path, body:)
       end
@@ -662,7 +662,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_transportation_options(inbound_plan_id, page_size: 10, pagination_token: nil, placement_option_id: nil,
         shipment_id: nil, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/transportationOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/transportationOptions"
         params = {
           "pageSize" => page_size,
           "paginationToken" => pagination_token,
@@ -681,7 +681,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def generate_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/transportationOptions"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/transportationOptions"
 
         meter(rate_limit).post(path, body:)
       end
@@ -695,7 +695,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_transportation_options(inbound_plan_id, body, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{URI.encode_uri_component(inbound_plan_id)}/transportationOptions/confirmation"
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/transportationOptions/confirmation"
 
         meter(rate_limit).post(path, body:)
       end
@@ -785,7 +785,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_inbound_operation_status(operation_id, rate_limit: 2.0)
-        path = "/inbound/fba/2024-03-20/operations/#{URI.encode_uri_component(operation_id)}"
+        path = "/inbound/fba/2024-03-20/operations/#{percent_encode(operation_id)}"
 
         meter(rate_limit).get(path)
       end

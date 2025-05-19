@@ -38,7 +38,7 @@ module Peddler
       # @param account_id [String] The ID of the Amazon Seller Wallet account.
       # @return [Peddler::Response] The API response
       def get_account(account_id)
-        path = "/finances/transfers/wallet/2024-03-01/accounts/#{URI.encode_uri_component(account_id)}"
+        path = "/finances/transfers/wallet/2024-03-01/accounts/#{percent_encode(account_id)}"
 
         get(path)
       end
@@ -49,7 +49,7 @@ module Peddler
       # @param account_id [String] The ID of the Amazon Seller Wallet account.
       # @return [Peddler::Response] The API response
       def list_account_balances(account_id)
-        path = "/finances/transfers/wallet/2024-03-01/accounts/#{URI.encode_uri_component(account_id)}/balance"
+        path = "/finances/transfers/wallet/2024-03-01/accounts/#{percent_encode(account_id)}/balance"
 
         get(path)
       end
@@ -116,7 +116,7 @@ module Peddler
       # @param transaction_id [String] The ID of the Amazon Seller Wallet transaction.
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id)
-        path = "/finances/transfers/wallet/2024-03-01/transactions/#{URI.encode_uri_component(transaction_id)}"
+        path = "/finances/transfers/wallet/2024-03-01/transactions/#{percent_encode(transaction_id)}"
 
         get(path)
       end
@@ -174,7 +174,7 @@ module Peddler
       # @param transfer_schedule_id [String] The schedule ID of the Amazon Seller Wallet transfer.
       # @return [Peddler::Response] The API response
       def get_transfer_schedule(transfer_schedule_id)
-        path = "/finances/transfers/wallet/2024-03-01/transferSchedules/#{URI.encode_uri_component(transfer_schedule_id)}"
+        path = "/finances/transfers/wallet/2024-03-01/transferSchedules/#{percent_encode(transfer_schedule_id)}"
 
         get(path)
       end
@@ -186,7 +186,7 @@ module Peddler
       # @param transfer_schedule_id [String] A unique reference ID for a scheduled transfer.
       # @return [Peddler::Response] The API response
       def delete_schedule_transaction(transfer_schedule_id)
-        path = "/finances/transfers/wallet/2024-03-01/transferSchedules/#{URI.encode_uri_component(transfer_schedule_id)}"
+        path = "/finances/transfers/wallet/2024-03-01/transferSchedules/#{percent_encode(transfer_schedule_id)}"
 
         delete(path)
       end

@@ -22,7 +22,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -36,7 +36,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_service_job_by_service_job_id(service_job_id, cancellation_reason_code, rate_limit: 5.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/cancellations"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/cancellations"
         params = {
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
@@ -51,7 +51,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/completions"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/completions"
 
         meter(rate_limit).put(path)
       end
@@ -126,7 +126,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/appointments"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments"
 
         meter(rate_limit).post(path, body:)
       end
@@ -141,7 +141,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body,
         rate_limit: 5.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/appointments/#{URI.encode_uri_component(appointment_id)}"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}"
 
         meter(rate_limit).post(path, body:)
       end
@@ -156,7 +156,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/appointments/#{URI.encode_uri_component(appointment_id)}/resources"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/resources"
 
         meter(rate_limit).put(path, body:)
       end
@@ -171,7 +171,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/appointments/#{URI.encode_uri_component(appointment_id)}/fulfillment"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/fulfillment"
 
         meter(rate_limit).put(path, body:)
       end
@@ -186,7 +186,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
-        path = "/service/v1/serviceResources/#{URI.encode_uri_component(resource_id)}/capacity/range"
+        path = "/service/v1/serviceResources/#{percent_encode(resource_id)}/capacity/range"
         params = {
           "marketplaceIds" => marketplace_ids,
           "nextPageToken" => next_page_token,
@@ -205,7 +205,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
-        path = "/service/v1/serviceResources/#{URI.encode_uri_component(resource_id)}/capacity/fixed"
+        path = "/service/v1/serviceResources/#{percent_encode(resource_id)}/capacity/fixed"
         params = {
           "marketplaceIds" => marketplace_ids,
           "nextPageToken" => next_page_token,
@@ -223,7 +223,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_schedule(resource_id, body, marketplace_ids, rate_limit: 5.0)
-        path = "/service/v1/serviceResources/#{URI.encode_uri_component(resource_id)}/schedules"
+        path = "/service/v1/serviceResources/#{percent_encode(resource_id)}/schedules"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -256,7 +256,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_reservation(reservation_id, body, marketplace_ids, rate_limit: 5.0)
-        path = "/service/v1/reservation/#{URI.encode_uri_component(reservation_id)}"
+        path = "/service/v1/reservation/#{percent_encode(reservation_id)}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -272,7 +272,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_reservation(reservation_id, marketplace_ids, rate_limit: 5.0)
-        path = "/service/v1/reservation/#{URI.encode_uri_component(reservation_id)}"
+        path = "/service/v1/reservation/#{percent_encode(reservation_id)}"
         params = {
           "marketplaceIds" => marketplace_ids,
         }.compact
@@ -295,7 +295,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_appointmment_slots_by_job_id(service_job_id, marketplace_ids, start_time: nil, end_time: nil,
         rate_limit: 5.0)
-        path = "/service/v1/serviceJobs/#{URI.encode_uri_component(service_job_id)}/appointmentSlots"
+        path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointmentSlots"
         params = {
           "marketplaceIds" => marketplace_ids,
           "startTime" => start_time,

@@ -73,7 +73,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_query(query_id, rate_limit: 0.0222)
-        path = "/dataKiosk/2023-11-15/queries/#{URI.encode_uri_component(query_id)}"
+        path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
 
         meter(rate_limit).delete(path)
       end
@@ -86,7 +86,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_query(query_id, rate_limit: 2.0)
-        path = "/dataKiosk/2023-11-15/queries/#{URI.encode_uri_component(query_id)}"
+        path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -99,7 +99,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_document(document_id, rate_limit: 0.0167)
-        path = "/dataKiosk/2023-11-15/documents/#{URI.encode_uri_component(document_id)}"
+        path = "/dataKiosk/2023-11-15/documents/#{percent_encode(document_id)}"
 
         meter(rate_limit).get(path)
       end

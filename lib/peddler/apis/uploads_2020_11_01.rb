@@ -37,7 +37,7 @@ module Peddler
         rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/uploads/2020-11-01/uploadDestinations/#{URI.encode_uri_component(resource)}"
+        path = "/uploads/2020-11-01/uploadDestinations/#{percent_encode(resource)}"
         params = {
           "marketplaceIds" => marketplace_ids,
           "contentMD5" => content_md5,

@@ -24,7 +24,7 @@ module Peddler
       def get_transaction(transaction_id, rate_limit: 10.0)
         cannot_sandbox!
 
-        path = "/vendor/transactions/v1/transactions/#{URI.encode_uri_component(transaction_id)}"
+        path = "/vendor/transactions/v1/transactions/#{percent_encode(transaction_id)}"
 
         meter(rate_limit).get(path)
       end

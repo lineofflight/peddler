@@ -25,7 +25,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id, rate_limit: 1.133)
-        path = "/fba/outbound/brazil/v0/shipments/#{URI.encode_uri_component(shipment_id)}"
+        path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -38,7 +38,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_invoice(shipment_id, body, rate_limit: 1.133)
-        path = "/fba/outbound/brazil/v0/shipments/#{URI.encode_uri_component(shipment_id)}/invoice"
+        path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice"
 
         meter(rate_limit).post(path, body:)
       end
@@ -50,7 +50,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_invoice_status(shipment_id, rate_limit: 1.133)
-        path = "/fba/outbound/brazil/v0/shipments/#{URI.encode_uri_component(shipment_id)}/invoice/status"
+        path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice/status"
 
         meter(rate_limit).get(path)
       end

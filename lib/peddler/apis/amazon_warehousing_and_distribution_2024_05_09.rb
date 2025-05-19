@@ -35,7 +35,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_inbound(order_id, rate_limit: 2.0)
-        path = "/awd/2024-05-09/inboundOrders/#{URI.encode_uri_component(order_id)}"
+        path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -49,7 +49,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_inbound(order_id, body, rate_limit: 1.0)
-        path = "/awd/2024-05-09/inboundOrders/#{URI.encode_uri_component(order_id)}"
+        path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
 
         meter(rate_limit).put(path, body:)
       end
@@ -61,7 +61,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_inbound(order_id, rate_limit: 1.0)
-        path = "/awd/2024-05-09/inboundOrders/#{URI.encode_uri_component(order_id)}/cancellation"
+        path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}/cancellation"
 
         meter(rate_limit).post(path)
       end
@@ -73,7 +73,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def confirm_inbound(order_id, rate_limit: 1.0)
-        path = "/awd/2024-05-09/inboundOrders/#{URI.encode_uri_component(order_id)}/confirmation"
+        path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}/confirmation"
 
         meter(rate_limit).post(path)
       end
@@ -87,7 +87,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_inbound_shipment(shipment_id, sku_quantities: nil, rate_limit: 2.0)
-        path = "/awd/2024-05-09/inboundShipments/#{URI.encode_uri_component(shipment_id)}"
+        path = "/awd/2024-05-09/inboundShipments/#{percent_encode(shipment_id)}"
         params = {
           "skuQuantities" => sku_quantities,
         }.compact
@@ -106,7 +106,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_inbound_shipment_labels(shipment_id, page_type: nil, format_type: nil, rate_limit: 1.0)
-        path = "/awd/2024-05-09/inboundShipments/#{URI.encode_uri_component(shipment_id)}/labels"
+        path = "/awd/2024-05-09/inboundShipments/#{percent_encode(shipment_id)}/labels"
         params = {
           "pageType" => page_type,
           "formatType" => format_type,
@@ -123,7 +123,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_inbound_shipment_transport_details(shipment_id, body, rate_limit: 1.0)
-        path = "/awd/2024-05-09/inboundShipments/#{URI.encode_uri_component(shipment_id)}/transport"
+        path = "/awd/2024-05-09/inboundShipments/#{percent_encode(shipment_id)}/transport"
 
         meter(rate_limit).put(path, body:)
       end

@@ -34,7 +34,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 1.0)
-        path = "/mfn/v0/shipments/#{URI.encode_uri_component(shipment_id)}"
+        path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -46,7 +46,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 1.0)
-        path = "/mfn/v0/shipments/#{URI.encode_uri_component(shipment_id)}"
+        path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
 
         meter(rate_limit).delete(path)
       end

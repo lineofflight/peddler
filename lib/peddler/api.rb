@@ -158,5 +158,12 @@ module Peddler
     def timestamp
       Time.now.utc.strftime("%Y%m%dT%H%M%SZ")
     end
+
+    # Encodes URL components using HTTP::URI.percent_encode
+    # @param [String] component The component to encode
+    # @return [String] The encoded component
+    def percent_encode(component)
+      HTTP::URI.percent_encode(component)
+    end
   end
 end

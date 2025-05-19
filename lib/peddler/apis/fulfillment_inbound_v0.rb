@@ -75,7 +75,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_labels(shipment_id, page_type, label_type, number_of_packages: nil, package_labels_to_print: nil,
         number_of_pallets: nil, page_size: nil, page_start_index: nil, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{URI.encode_uri_component(shipment_id)}/labels"
+        path = "/fba/inbound/v0/shipments/#{percent_encode(shipment_id)}/labels"
         params = {
           "PageType" => page_type,
           "LabelType" => label_type,
@@ -99,7 +99,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_bill_of_lading(shipment_id, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{URI.encode_uri_component(shipment_id)}/billOfLading"
+        path = "/fba/inbound/v0/shipments/#{percent_encode(shipment_id)}/billOfLading"
 
         meter(rate_limit).get(path)
       end
@@ -149,7 +149,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment_items_by_shipment_id(shipment_id, marketplace_id: nil, rate_limit: 2.0)
-        path = "/fba/inbound/v0/shipments/#{URI.encode_uri_component(shipment_id)}/items"
+        path = "/fba/inbound/v0/shipments/#{percent_encode(shipment_id)}/items"
         params = {
           "MarketplaceId" => marketplace_id,
         }.compact

@@ -128,7 +128,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
-        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{URI.encode_uri_component(seller_fulfillment_order_id)}/return"
+        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/return"
 
         meter(rate_limit).put(path, body:)
       end
@@ -141,7 +141,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
-        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{URI.encode_uri_component(seller_fulfillment_order_id)}"
+        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -155,7 +155,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
-        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{URI.encode_uri_component(seller_fulfillment_order_id)}"
+        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
 
         meter(rate_limit).put(path, body:)
       end
@@ -169,7 +169,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
-        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{URI.encode_uri_component(seller_fulfillment_order_id)}/cancel"
+        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/cancel"
 
         meter(rate_limit).put(path)
       end
@@ -188,7 +188,7 @@ module Peddler
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
         must_sandbox!
 
-        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{URI.encode_uri_component(seller_fulfillment_order_id)}/status"
+        path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/status"
 
         put(path, body:)
       end
@@ -223,7 +223,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
-        path = "/fba/outbound/2020-07-01/features/inventory/#{URI.encode_uri_component(feature_name)}"
+        path = "/fba/outbound/2020-07-01/features/inventory/#{percent_encode(feature_name)}"
         params = {
           "marketplaceId" => marketplace_id,
           "nextToken" => next_token,
@@ -246,7 +246,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)
-        path = "/fba/outbound/2020-07-01/features/inventory/#{URI.encode_uri_component(feature_name)}/#{URI.encode_uri_component(seller_sku)}"
+        path = "/fba/outbound/2020-07-01/features/inventory/#{percent_encode(feature_name)}/#{percent_encode(seller_sku)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact

@@ -67,7 +67,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
-        path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{URI.encode_uri_component(purchase_order_number)}"
+        path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{percent_encode(purchase_order_number)}"
 
         meter(rate_limit).get(path)
       end
@@ -137,7 +137,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
-        path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{URI.encode_uri_component(purchase_order_number)}"
+        path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{percent_encode(purchase_order_number)}"
 
         meter(rate_limit).get(path)
       end
@@ -180,7 +180,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
-        path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{URI.encode_uri_component(purchase_order_number)}"
+        path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{percent_encode(purchase_order_number)}"
 
         meter(rate_limit).get(path)
       end

@@ -69,7 +69,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_financial_events_by_group_id(event_group_id, max_results_per_page: 100, posted_after: nil,
         posted_before: nil, next_token: nil, rate_limit: 0.5)
-        path = "/finances/v0/financialEventGroups/#{URI.encode_uri_component(event_group_id)}/financialEvents"
+        path = "/finances/v0/financialEventGroups/#{percent_encode(event_group_id)}/financialEvents"
         params = {
           "MaxResultsPerPage" => max_results_per_page,
           "PostedAfter" => posted_after,
@@ -91,7 +91,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def list_financial_events_by_order_id(order_id, max_results_per_page: 100, next_token: nil, rate_limit: 0.5)
-        path = "/finances/v0/orders/#{URI.encode_uri_component(order_id)}/financialEvents"
+        path = "/finances/v0/orders/#{percent_encode(order_id)}/financialEvents"
         params = {
           "MaxResultsPerPage" => max_results_per_page,
           "NextToken" => next_token,

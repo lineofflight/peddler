@@ -37,7 +37,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{URI.encode_uri_component(shipment_id)}"
+        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}"
 
         meter(rate_limit).get(path)
       end
@@ -49,7 +49,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{URI.encode_uri_component(shipment_id)}/cancel"
+        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/cancel"
 
         meter(rate_limit).post(path)
       end
@@ -62,7 +62,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def purchase_labels(shipment_id, body, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{URI.encode_uri_component(shipment_id)}/purchaseLabels"
+        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/purchaseLabels"
 
         meter(rate_limit).post(path, body:)
       end
@@ -76,7 +76,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def retrieve_shipping_label(shipment_id, tracking_id, body, rate_limit: 5.0)
-        path = "/shipping/v1/shipments/#{URI.encode_uri_component(shipment_id)}/containers/#{URI.encode_uri_component(tracking_id)}/label"
+        path = "/shipping/v1/shipments/#{percent_encode(shipment_id)}/containers/#{percent_encode(tracking_id)}/label"
 
         meter(rate_limit).post(path, body:)
       end
@@ -123,7 +123,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_tracking_information(tracking_id, rate_limit: 1.0)
-        path = "/shipping/v1/tracking/#{URI.encode_uri_component(tracking_id)}"
+        path = "/shipping/v1/tracking/#{percent_encode(tracking_id)}"
 
         meter(rate_limit).get(path)
       end
