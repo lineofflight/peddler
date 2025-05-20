@@ -120,11 +120,14 @@ Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is ava
 api = Peddler.<api_name>_<version>(aws_region, access_token, options)
 ```
 
-Below are key APIs with examples of their usage:
+Below is a comprehensive list of all available APIs organized by category:
 
-#### Orders API (v0)
+#### Orders and Financial APIs
 
-Retrieve order information and manage orders.
+- **Orders API (v0)**: Retrieve and manage orders
+- **Finances API (2024-06-19, 2024-06-01, v0)**: Get financial data including transaction details, payments, and refunds
+- **Invoices API (2024-06-19)**: Manage billing invoices
+- **Sales API (v1)**: Get order metrics and sales data
 
 ```ruby
 api = Peddler.orders_v0(aws_region, access_token)
@@ -135,9 +138,15 @@ response = api.get_orders(
 orders = response.parse["orders"]
 ```
 
-#### Catalog Items API (2022-04-01, 2020-12-01, v0)
+#### Catalog and Listing APIs
 
-Access Amazon's catalog data including product details, offers, and competitive pricing.
+- **Catalog Items API (2022-04-01, 2020-12-01, v0)**: Access Amazon's catalog data
+- **Listings Items API (2021-08-01, 2020-09-01)**: Create and update listings
+- **Listings Restrictions API (2021-08-01)**: Check listing eligibility
+- **Product Type Definitions API (2020-09-01)**: Get schema requirements for listings
+- **A+ Content API (2020-11-01)**: Create and manage enhanced marketing content
+- **Product Pricing API (2022-05-01, v0)**: Get pricing information
+- **Product Fees API (v0)**: Retrieve fee estimates for products
 
 ```ruby
 api = Peddler.catalog_items_2022_04_01(aws_region, access_token)
@@ -148,92 +157,19 @@ response = api.get_catalog_item(
 item_details = response.parse["payload"]
 ```
 
-#### Feeds API (2021-06-30)
-
-Upload data to Amazon to update listings, prices, inventory, and more.
-
-```ruby
-api = Peddler.feeds_2021_06_30(aws_region, access_token)
-
-# Create feed document
-document_response = api.create_feed_document(
-  contentType: "text/xml; charset=UTF-8"
-)
-feed_document_id = document_response.parse["feedDocumentId"]
-upload_url = document_response.parse["url"]
-
-# Upload feed content
-feed_content = File.read("inventory_update.xml")
-api.upload_feed_document(upload_url, feed_content, "text/xml; charset=UTF-8")
-
-# Create feed
-feed_response = api.create_feed(
-  feedType: "POST_INVENTORY_AVAILABILITY_DATA",
-  marketplaceIds: ["ATVPDKIKX0DER"],
-  inputFeedDocumentId: feed_document_id
-)
-feed_id = feed_response.parse["feedId"]
-```
-
-#### Reports API (2021-06-30)
-
-Request and download reports about orders, inventory, fulfillment, and more.
-
-```ruby
-api = Peddler.reports_2021_06_30(aws_region, access_token)
-
-# Request a report
-create_response = api.create_report(
-  reportType: "GET_FLAT_FILE_OPEN_LISTINGS_DATA",
-  marketplaceIds: ["ATVPDKIKX0DER"]
-)
-report_id = create_response.parse["reportId"]
-
-# Check report status
-report = api.get_report(report_id).parse
-
-# Once processed, get the document
-if report["processingStatus"] == "DONE"
-  doc_id = report["reportDocumentId"]
-  document = api.get_report_document(doc_id).parse
-  download_url = document["url"]
-  # Download report from URL
-end
-```
-
-#### Listings APIs
-
-Manage product listings with multiple APIs:
-
-- **Listings Items API (2021-08-01, 2020-09-01)**: Create and update listings
-- **Listings Restrictions API (2021-08-01)**: Check listing eligibility
-- **Product Type Definitions API (2020-09-01)**: Get schema requirements for listings
-
-```ruby
-api = Peddler.listings_items_2021_08_01(aws_region, access_token)
-api.put_listings_item(
-  seller_id,
-  "SKU123",
-  "ATVPDKIKX0DER",
-  body: {
-    productType: "LUGGAGE",
-    requirements: "LISTING",
-    attributes: {
-      title: [{ value: "Travel Backpack" }],
-      manufacturer: [{ value: "Brand Name" }]
-    }
-  }
-)
-```
-
-#### Fulfillment APIs
-
-Manage inventory and fulfillment through FBA and merchant fulfillment:
+#### Fulfillment and Inventory APIs
 
 - **Fulfillment Inbound API (2024-03-20, v0)**: Send inventory to FBA
 - **Fulfillment Outbound API (2020-07-01)**: Create and track FBA orders
 - **FBA Inventory API (v1)**: Manage FBA inventory quantities
+- **FBA Inbound Eligibility API (v1)**: Check product eligibility for FBA
 - **Merchant Fulfillment API (v0)**: Create shipping labels for self-fulfilled orders
+- **Easy Ship API (2022-03-23)**: Manage Amazon's carrier service for deliveries
+- **Shipping APIs (v1, v2)**: Create shipments and purchase shipping labels
+- **Replenishment API (2022-11-07)**: Manage inventory replenishment
+- **Amazon Warehousing and Distribution API (2024-05-09)**: Manage fulfillment warehousing
+- **Supply Sources API (2020-07-01)**: Manage supply/inventory sources
+- **Shipment Invoicing API (v0)**: Manage shipment-related invoices
 
 ```ruby
 # FBA outbound example
@@ -263,21 +199,41 @@ api.create_fulfillment_order(
 )
 ```
 
-#### Financial APIs (2024-06-19, 2024-06-01, v0)
+#### Data Management APIs
 
-Get financial data including transaction details, payments, and refunds.
+- **Feeds API (2021-06-30)**: Upload data to Amazon to update listings, prices, inventory, and more
+- **Reports API (2021-06-30)**: Request and download reports about orders, inventory, fulfillment, and more
+- **Uploads API (2020-11-01)**: Upload files for various SP-API operations
+- **Data Kiosk API (2023-11-15)**: Access and manage analytical data
 
 ```ruby
-api = Peddler.finances_v0(aws_region, access_token)
-response = api.list_financial_events(
-  posted_after: "2023-01-01T00:00:00Z"
+api = Peddler.feeds_2021_06_30(aws_region, access_token)
+
+# Create feed document
+document_response = api.create_feed_document(
+  contentType: "text/xml; charset=UTF-8"
 )
-financial_events = response.parse["FinancialEvents"]
+feed_document_id = document_response.parse["feedDocumentId"]
+upload_url = document_response.parse["url"]
+
+# Upload feed content
+feed_content = File.read("inventory_update.xml")
+api.upload_feed_document(upload_url, feed_content, "text/xml; charset=UTF-8")
+
+# Create feed
+feed_response = api.create_feed(
+  feedType: "POST_INVENTORY_AVAILABILITY_DATA",
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  inputFeedDocumentId: feed_document_id
+)
+feed_id = feed_response.parse["feedId"]
 ```
 
-#### Notifications API (v1)
+#### Communication and Customer Management APIs
 
-Subscribe to notifications for various events like order updates and report processing.
+- **Notifications API (v1)**: Subscribe to notifications for events like order updates
+- **Messaging API (v1)**: Send messages to customers
+- **Solicitations API (v1)**: Request customer reviews
 
 ```ruby
 api = Peddler.notifications_v1(aws_region, access_token)
@@ -303,9 +259,15 @@ api.create_subscription(
 APIs for vendors selling to Amazon:
 
 - **Vendor Orders API (v1)**: Retrieve purchase orders
-- **Vendor Direct Fulfillment APIs**: Manage orders, shipping, payments, and inventory
+- **Vendor Direct Fulfillment Orders API (2021-12-28, v1)**: Manage direct fulfillment orders
+- **Vendor Direct Fulfillment Shipping API (2021-12-28, v1)**: Manage shipping for direct fulfillment
+- **Vendor Direct Fulfillment Payments API (v1)**: Process payments for direct fulfillment
+- **Vendor Direct Fulfillment Inventory API (v1)**: Manage inventory for direct fulfillment
+- **Vendor Direct Fulfillment Transactions API (2021-12-28, v1)**: Track transaction status
+- **Vendor Direct Fulfillment Sandbox Test Data API (2021-10-28)**: Generate test data in sandbox
 - **Vendor Shipments API (v1)**: Track vendor shipments
 - **Vendor Invoices API (v1)**: Submit and track invoices
+- **Vendor Transaction Status API (v1)**: Check transaction status
 
 ```ruby
 api = Peddler.vendor_orders_v1(aws_region, access_token)
@@ -315,20 +277,17 @@ orders = api.get_purchase_orders(
 ).parse
 ```
 
-#### Additional APIs
+#### Authorization and Account Management APIs
 
-- **A+ Content API (2020-11-01)**: Create and manage enhanced marketing content
-- **Authorization API (2023-11-30)**: Manage app authorization
-- **Messaging API (v1)**: Send messages to customers
-- **Product Fees API (v0)**: Retrieve fee estimates for products
-- **Product Pricing API (2022-05-01, v0)**: Get pricing information
-- **Sellers API (v1)**: Get seller account information and marketplace participation
-- **Shipping APIs (v1, v2)**: Create shipments and purchase shipping labels
-- **Solicitations API (v1)**: Request customer reviews
+- **Application Management API (2023-11-30)**: Manage application authorization
 - **Tokens API (2021-03-01)**: Generate restricted data tokens for accessing PII
-- **Uploads API (2020-11-01)**: Upload files for various SP-API operations
+- **Sellers API (v1)**: Get seller account information and marketplace participation
+- **Services API (v1)**: Manage seller services and subscriptions
+- **Seller Wallet API (2024-03-01)**: Manage seller financial accounts
+- **Application Integrations API (2024-04-01)**: Manage app integrations
+- **Vehicles API (2024-11-01)**: Manage vehicle data for automotive products
 
-For a complete list of available APIs, refer to the [API models repository](https://github.com/amzn/selling-partner-api-models).
+For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-api-models).
 
 ## TODO
 
