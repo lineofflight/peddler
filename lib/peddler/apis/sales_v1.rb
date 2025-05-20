@@ -59,7 +59,7 @@ module Peddler
         fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, rate_limit: 0.5)
         path = "/sales/v1/orderMetrics"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "interval" => interval,
           "granularityTimeZone" => granularity_time_zone,
           "granularity" => granularity,

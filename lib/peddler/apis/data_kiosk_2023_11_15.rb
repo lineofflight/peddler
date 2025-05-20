@@ -36,7 +36,7 @@ module Peddler
         pagination_token: nil, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries"
         params = {
-          "processingStatuses" => processing_statuses,
+          "processingStatuses" => stringify_array(processing_statuses),
           "pageSize" => page_size,
           "createdSince" => created_since,
           "createdUntil" => created_until,

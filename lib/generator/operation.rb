@@ -100,7 +100,17 @@ module Generator
     def query_params
       parameters.select do |p|
         p["in"] == "query"
-      end.reduce({}) { |hash, p| hash.merge(p["name"] => snakecase(p["name"])) }
+      end.reduce({}) do |hash, p|
+        param_name = snakecase(p["name"])
+        value = param_name
+
+        # If parameter is array type, add array handling
+        if p["type"] == "array"
+          value = "stringify_array(#{param_name})"
+        end
+
+        hash.merge(p["name"] => value)
+      end
     end
 
     def request_args

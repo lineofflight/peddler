@@ -165,5 +165,12 @@ module Peddler
     def percent_encode(component)
       HTTP::URI.percent_encode(component)
     end
+
+    # Converts an array to a comma-separated string, or returns the value as-is if not an array
+    # @param [Object] val The value to stringify if it's an array
+    # @return [Object] A comma-separated string or the original value
+    def stringify_array(val)
+      val.is_a?(Array) ? val.join(",") : val
+    end
   end
 end

@@ -53,10 +53,10 @@ module Peddler
           "granularityType" => granularity_type,
           "granularityId" => granularity_id,
           "startDateTime" => start_date_time,
-          "sellerSkus" => seller_skus,
+          "sellerSkus" => stringify_array(seller_skus),
           "sellerSku" => seller_sku,
           "nextToken" => next_token,
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).get(path, params:)

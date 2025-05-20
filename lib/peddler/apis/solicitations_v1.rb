@@ -34,7 +34,7 @@ module Peddler
       def get_solicitation_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/solicitations/v1/orders/#{percent_encode(amazon_order_id)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -53,7 +53,7 @@ module Peddler
       def create_product_review_and_seller_feedback_solicitation(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/solicitations/v1/orders/#{percent_encode(amazon_order_id)}/solicitations/productReviewAndSellerFeedback"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, params:)

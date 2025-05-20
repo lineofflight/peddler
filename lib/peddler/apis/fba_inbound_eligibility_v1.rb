@@ -32,7 +32,7 @@ module Peddler
       def get_item_eligibility_preview(asin, program, marketplace_ids: nil, rate_limit: 1.0)
         path = "/fba/inbound/v1/eligibility/itemPreview"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "asin" => asin,
           "program" => program,
         }.compact

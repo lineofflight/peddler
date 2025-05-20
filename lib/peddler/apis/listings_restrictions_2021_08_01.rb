@@ -36,7 +36,7 @@ module Peddler
           "asin" => asin,
           "conditionType" => condition_type,
           "sellerId" => seller_id,
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "reasonLocale" => reason_locale,
         }.compact
 

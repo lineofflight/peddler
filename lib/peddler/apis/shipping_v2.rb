@@ -305,7 +305,7 @@ module Peddler
         rate_limit: 80.0)
         path = "/shipping/v2/accessPoints"
         params = {
-          "accessPointTypes" => access_point_types,
+          "accessPointTypes" => stringify_array(access_point_types),
           "countryCode" => country_code,
           "postalCode" => postal_code,
         }.compact

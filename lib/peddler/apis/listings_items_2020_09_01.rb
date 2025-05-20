@@ -34,7 +34,7 @@ module Peddler
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2020-09-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
 
@@ -59,7 +59,7 @@ module Peddler
       def patch_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2020-09-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
 
@@ -84,7 +84,7 @@ module Peddler
       def put_listings_item(seller_id, sku, marketplace_ids, body, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2020-09-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
 

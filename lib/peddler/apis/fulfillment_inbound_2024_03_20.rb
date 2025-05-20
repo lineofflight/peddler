@@ -711,7 +711,7 @@ module Peddler
       def list_item_compliance_details(mskus, marketplace_id, rate_limit: 2.0)
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
-          "mskus" => mskus,
+          "mskus" => stringify_array(mskus),
           "marketplaceId" => marketplace_id,
         }.compact
 
@@ -760,7 +760,7 @@ module Peddler
         path = "/inbound/fba/2024-03-20/items/prepDetails"
         params = {
           "marketplaceId" => marketplace_id,
-          "mskus" => mskus,
+          "mskus" => stringify_array(mskus),
         }.compact
 
         meter(rate_limit).get(path, params:)

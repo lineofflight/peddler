@@ -42,8 +42,8 @@ module Peddler
         path = "/products/pricing/v0/price"
         params = {
           "MarketplaceId" => marketplace_id,
-          "Asins" => asins,
-          "Skus" => skus,
+          "Asins" => stringify_array(asins),
+          "Skus" => stringify_array(skus),
           "ItemType" => item_type,
           "ItemCondition" => item_condition,
           "OfferType" => offer_type,
@@ -76,8 +76,8 @@ module Peddler
         path = "/products/pricing/v0/competitivePrice"
         params = {
           "MarketplaceId" => marketplace_id,
-          "Asins" => asins,
-          "Skus" => skus,
+          "Asins" => stringify_array(asins),
+          "Skus" => stringify_array(skus),
           "ItemType" => item_type,
           "CustomerType" => customer_type,
         }.compact

@@ -31,7 +31,7 @@ module Peddler
       def get_messaging_actions_for_order(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -51,7 +51,7 @@ module Peddler
       def confirm_customization_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/confirmCustomizationDetails"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -70,7 +70,7 @@ module Peddler
       def create_confirm_delivery_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/confirmDeliveryDetails"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -90,7 +90,7 @@ module Peddler
       def create_legal_disclosure(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/legalDisclosure"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -109,7 +109,7 @@ module Peddler
       def create_negative_feedback_removal(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/negativeFeedbackRemoval"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, params:)
@@ -128,7 +128,7 @@ module Peddler
       def create_confirm_order_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/confirmOrderDetails"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -148,7 +148,7 @@ module Peddler
       def create_confirm_service_details(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/confirmServiceDetails"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -168,7 +168,7 @@ module Peddler
       def create_amazon_motors(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/amazonMotors"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -187,7 +187,7 @@ module Peddler
       def create_warranty(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/warranty"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -205,7 +205,7 @@ module Peddler
       def get_attributes(amazon_order_id, marketplace_ids, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/attributes"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -225,7 +225,7 @@ module Peddler
       def create_digital_access_key(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/digitalAccessKey"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -245,7 +245,7 @@ module Peddler
       def create_unexpected_problem(amazon_order_id, marketplace_ids, body, rate_limit: 1.0)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/unexpectedProblem"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -263,7 +263,7 @@ module Peddler
       def send_invoice(amazon_order_id, marketplace_ids, body)
         path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/invoice"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         post(path, body:, params:)

@@ -43,7 +43,7 @@ module Peddler
         path = "/finances/transfers/2024-06-01/paymentMethods"
         params = {
           "marketplaceId" => marketplace_id,
-          "paymentMethodTypes" => payment_method_types,
+          "paymentMethodTypes" => stringify_array(payment_method_types),
         }.compact
 
         meter(rate_limit).get(path, params:)

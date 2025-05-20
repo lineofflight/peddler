@@ -150,7 +150,7 @@ module Peddler
           "nextToken" => next_token,
           "sortOrder" => sort_order,
           "invoiceType" => invoice_type,
-          "statuses" => statuses,
+          "statuses" => stringify_array(statuses),
           "externalInvoiceId" => external_invoice_id,
           "sortBy" => sort_by,
         }.compact

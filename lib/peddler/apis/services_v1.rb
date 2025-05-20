@@ -97,8 +97,8 @@ module Peddler
         required_skills: nil, store_ids: nil, rate_limit: 10.0)
         path = "/service/v1/serviceJobs"
         params = {
-          "serviceOrderIds" => service_order_ids,
-          "serviceJobStatus" => service_job_status,
+          "serviceOrderIds" => stringify_array(service_order_ids),
+          "serviceJobStatus" => stringify_array(service_job_status),
           "pageToken" => page_token,
           "pageSize" => page_size,
           "sortField" => sort_field,
@@ -109,10 +109,10 @@ module Peddler
           "lastUpdatedBefore" => last_updated_before,
           "scheduleStartDate" => schedule_start_date,
           "scheduleEndDate" => schedule_end_date,
-          "marketplaceIds" => marketplace_ids,
-          "asins" => asins,
-          "requiredSkills" => required_skills,
-          "storeIds" => store_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "asins" => stringify_array(asins),
+          "requiredSkills" => stringify_array(required_skills),
+          "storeIds" => stringify_array(store_ids),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -188,7 +188,7 @@ module Peddler
       def get_range_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         path = "/service/v1/serviceResources/#{percent_encode(resource_id)}/capacity/range"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
 
@@ -207,7 +207,7 @@ module Peddler
       def get_fixed_slot_capacity(resource_id, body, marketplace_ids, next_page_token: nil, rate_limit: 5.0)
         path = "/service/v1/serviceResources/#{percent_encode(resource_id)}/capacity/fixed"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
 
@@ -225,7 +225,7 @@ module Peddler
       def update_schedule(resource_id, body, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/serviceResources/#{percent_encode(resource_id)}/schedules"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).put(path, body:, params:)
@@ -241,7 +241,7 @@ module Peddler
       def create_reservation(body, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/reservation"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)
@@ -258,7 +258,7 @@ module Peddler
       def update_reservation(reservation_id, body, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/reservation/#{percent_encode(reservation_id)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).put(path, body:, params:)
@@ -274,7 +274,7 @@ module Peddler
       def cancel_reservation(reservation_id, marketplace_ids, rate_limit: 5.0)
         path = "/service/v1/reservation/#{percent_encode(reservation_id)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
 
         meter(rate_limit).delete(path, params:)
@@ -297,7 +297,7 @@ module Peddler
         rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointmentSlots"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
@@ -324,7 +324,7 @@ module Peddler
         params = {
           "asin" => asin,
           "storeId" => store_id,
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact

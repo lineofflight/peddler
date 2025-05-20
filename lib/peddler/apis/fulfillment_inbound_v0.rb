@@ -39,8 +39,8 @@ module Peddler
         path = "/fba/inbound/v0/prepInstructions"
         params = {
           "ShipToCountryCode" => ship_to_country_code,
-          "SellerSKUList" => seller_sku_list,
-          "ASINList" => asin_list,
+          "SellerSKUList" => stringify_array(seller_sku_list),
+          "ASINList" => stringify_array(asin_list),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -80,7 +80,7 @@ module Peddler
           "PageType" => page_type,
           "LabelType" => label_type,
           "NumberOfPackages" => number_of_packages,
-          "PackageLabelsToPrint" => package_labels_to_print,
+          "PackageLabelsToPrint" => stringify_array(package_labels_to_print),
           "NumberOfPallets" => number_of_pallets,
           "PageSize" => page_size,
           "PageStartIndex" => page_start_index,
@@ -129,8 +129,8 @@ module Peddler
         last_updated_after: nil, last_updated_before: nil, next_token: nil, rate_limit: 2.0)
         path = "/fba/inbound/v0/shipments"
         params = {
-          "ShipmentStatusList" => shipment_status_list,
-          "ShipmentIdList" => shipment_id_list,
+          "ShipmentStatusList" => stringify_array(shipment_status_list),
+          "ShipmentIdList" => stringify_array(shipment_id_list),
           "LastUpdatedAfter" => last_updated_after,
           "LastUpdatedBefore" => last_updated_before,
           "QueryType" => query_type,

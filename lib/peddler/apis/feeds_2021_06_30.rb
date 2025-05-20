@@ -41,10 +41,10 @@ module Peddler
         created_until: nil, next_token: nil, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/feeds"
         params = {
-          "feedTypes" => feed_types,
-          "marketplaceIds" => marketplace_ids,
+          "feedTypes" => stringify_array(feed_types),
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "pageSize" => page_size,
-          "processingStatuses" => processing_statuses,
+          "processingStatuses" => stringify_array(processing_statuses),
           "createdSince" => created_since,
           "createdUntil" => created_until,
           "nextToken" => next_token,

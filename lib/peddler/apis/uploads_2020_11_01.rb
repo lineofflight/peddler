@@ -39,7 +39,7 @@ module Peddler
 
         path = "/uploads/2020-11-01/uploadDestinations/#{percent_encode(resource)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "contentMD5" => content_md5,
           "contentType" => content_type,
         }.compact

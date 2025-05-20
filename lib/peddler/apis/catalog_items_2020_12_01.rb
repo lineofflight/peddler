@@ -40,11 +40,11 @@ module Peddler
         classification_ids: nil, page_size: 10, page_token: nil, keywords_locale: nil, locale: nil, rate_limit: 2.0)
         path = "/catalog/2020-12-01/items"
         params = {
-          "keywords" => keywords,
-          "marketplaceIds" => marketplace_ids,
-          "includedData" => included_data,
-          "brandNames" => brand_names,
-          "classificationIds" => classification_ids,
+          "keywords" => stringify_array(keywords),
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "includedData" => stringify_array(included_data),
+          "brandNames" => stringify_array(brand_names),
+          "classificationIds" => stringify_array(classification_ids),
           "pageSize" => page_size,
           "pageToken" => page_token,
           "keywordsLocale" => keywords_locale,
@@ -69,8 +69,8 @@ module Peddler
       def get_catalog_item(asin, marketplace_ids, included_data: "summaries", locale: nil, rate_limit: 2.0)
         path = "/catalog/2020-12-01/items/#{percent_encode(asin)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
-          "includedData" => included_data,
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "includedData" => stringify_array(included_data),
           "locale" => locale,
         }.compact
 

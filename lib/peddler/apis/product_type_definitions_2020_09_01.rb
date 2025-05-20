@@ -37,8 +37,8 @@ module Peddler
         search_locale: nil, rate_limit: 5.0)
         path = "/definitions/2020-09-01/productTypes"
         params = {
-          "keywords" => keywords,
-          "marketplaceIds" => marketplace_ids,
+          "keywords" => stringify_array(keywords),
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "itemName" => item_name,
           "locale" => locale,
           "searchLocale" => search_locale,
@@ -72,7 +72,7 @@ module Peddler
         path = "/definitions/2020-09-01/productTypes/#{percent_encode(product_type)}"
         params = {
           "sellerId" => seller_id,
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "productTypeVersion" => product_type_version,
           "requirements" => requirements,
           "requirementsEnforced" => requirements_enforced,

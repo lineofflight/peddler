@@ -41,9 +41,9 @@ module Peddler
         created_since: nil, created_until: nil, next_token: nil, rate_limit: 0.0222)
         path = "/reports/2021-06-30/reports"
         params = {
-          "reportTypes" => report_types,
-          "processingStatuses" => processing_statuses,
-          "marketplaceIds" => marketplace_ids,
+          "reportTypes" => stringify_array(report_types),
+          "processingStatuses" => stringify_array(processing_statuses),
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "pageSize" => page_size,
           "createdSince" => created_since,
           "createdUntil" => created_until,
@@ -102,7 +102,7 @@ module Peddler
       def get_report_schedules(report_types, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
         params = {
-          "reportTypes" => report_types,
+          "reportTypes" => stringify_array(report_types),
         }.compact
 
         meter(rate_limit).get(path, params:)

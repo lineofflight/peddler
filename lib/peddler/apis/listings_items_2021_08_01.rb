@@ -34,7 +34,7 @@ module Peddler
       def delete_listings_item(seller_id, sku, marketplace_ids, issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
 
@@ -60,9 +60,9 @@ module Peddler
         rate_limit: 5.0)
         path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
-          "includedData" => included_data,
+          "includedData" => stringify_array(included_data),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -88,8 +88,8 @@ module Peddler
         issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
-          "includedData" => included_data,
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "includedData" => stringify_array(included_data),
           "mode" => mode,
           "issueLocale" => issue_locale,
         }.compact
@@ -120,8 +120,8 @@ module Peddler
         issue_locale: nil, rate_limit: 5.0)
         path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}/#{percent_encode(sku)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
-          "includedData" => included_data,
+          "marketplaceIds" => stringify_array(marketplace_ids),
+          "includedData" => stringify_array(included_data),
           "mode" => mode,
           "issueLocale" => issue_locale,
         }.compact
@@ -181,10 +181,10 @@ module Peddler
         page_size: 10, page_token: nil, rate_limit: 5.0)
         path = "/listings/2021-08-01/items/#{percent_encode(seller_id)}"
         params = {
-          "marketplaceIds" => marketplace_ids,
+          "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
-          "includedData" => included_data,
-          "identifiers" => identifiers,
+          "includedData" => stringify_array(included_data),
+          "identifiers" => stringify_array(identifiers),
           "identifiersType" => identifiers_type,
           "variationParentSku" => variation_parent_sku,
           "packageHierarchySku" => package_hierarchy_sku,
@@ -192,9 +192,9 @@ module Peddler
           "createdBefore" => created_before,
           "lastUpdatedAfter" => last_updated_after,
           "lastUpdatedBefore" => last_updated_before,
-          "withIssueSeverity" => with_issue_severity,
-          "withStatus" => with_status,
-          "withoutStatus" => without_status,
+          "withIssueSeverity" => stringify_array(with_issue_severity),
+          "withStatus" => stringify_array(with_status),
+          "withoutStatus" => stringify_array(without_status),
           "sortBy" => sort_by,
           "sortOrder" => sort_order,
           "pageSize" => page_size,

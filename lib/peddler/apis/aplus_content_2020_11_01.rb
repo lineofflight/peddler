@@ -75,7 +75,7 @@ module Peddler
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}"
         params = {
           "marketplaceId" => marketplace_id,
-          "includedDataSet" => included_data_set,
+          "includedDataSet" => stringify_array(included_data_set),
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -128,8 +128,8 @@ module Peddler
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/asins"
         params = {
           "marketplaceId" => marketplace_id,
-          "includedDataSet" => included_data_set,
-          "asinSet" => asin_set,
+          "includedDataSet" => stringify_array(included_data_set),
+          "asinSet" => stringify_array(asin_set),
           "pageToken" => page_token,
         }.compact
 
@@ -180,7 +180,7 @@ module Peddler
         body = post_content_document_request
         params = {
           "marketplaceId" => marketplace_id,
-          "asinSet" => asin_set,
+          "asinSet" => stringify_array(asin_set),
         }.compact
 
         meter(rate_limit).post(path, body:, params:)

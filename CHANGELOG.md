@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Handle array parameters
+
 ### Changed
 
 - Handle token errors in Peddler::Error
