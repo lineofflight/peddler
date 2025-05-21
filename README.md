@@ -11,7 +11,7 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 - [API models][api-models]
 - [API samples][api-samples]
 
-![Peddler](https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true)
+<img src="https://github.com/hakanensari/peddler/blob/main/images/peddler.jpg?raw=true" alt="Peddler" style="max-width: 830px" />
 
 ## Installation
 
