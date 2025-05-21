@@ -130,12 +130,27 @@ Below is a comprehensive list of all available APIs organized by category:
 - **Sales API (v1)**: Get order metrics and sales data
 
 ```ruby
-api = Peddler.orders_v0(aws_region, access_token)
+api = Peddler.orders_v0(aws_region, access_token, retries: 3)
 response = api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
 )
-orders = response.parse["orders"]
+
+# Use the `dig` method to safely navigate through nested response data
+# This returns nil instead of raising an error if any key in the path doesn't exist
+orders = response.dig("payload", "orders")
+
+# You can chain multiple keys to access deeply nested data
+first_order_id = response.dig("payload", "orders", 0, "amazonOrderId")
+
+# This is safer than using chain indexing which would raise an error if any part is missing:
+# response.parse["payload"]["orders"][0]["amazonOrderId"]  # Error prone!
+
+# For sandbox testing
+api.sandbox.get_orders(
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  createdAfter: "TEST_CASE_200"
+)
 ```
 
 #### Catalog and Listing APIs
@@ -154,7 +169,15 @@ response = api.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
 )
-item_details = response.parse["payload"]
+item_details = response.dig("payload")
+
+# Search catalog items by identifier
+response = api.search_catalog_items(
+  ["ATVPDKIKX0DER"],
+  identifiers: "B08N5WRWNW",
+  identifiers_type: "ASIN"
+)
+search_results = response.parse
 ```
 
 #### Fulfillment and Inventory APIs
@@ -213,8 +236,25 @@ api = Peddler.feeds_2021_06_30(aws_region, access_token)
 document_response = api.create_feed_document(
   contentType: "text/xml; charset=UTF-8"
 )
-feed_document_id = document_response.parse["feedDocumentId"]
-upload_url = document_response.parse["url"]
+
+# The `dig` method safely navigates the response hash
+# If the response structure is:
+# {
+#   "feedDocumentId": "amzn1.tortuga.3.abc123...",
+#   "url": "https://s3.amazonaws.com/bucket/key...",
+#   "encryptionDetails": {
+#     "standard": "AES",
+#     "key": "encryption-key",
+#     "initializationVector": "vector-value"
+#   }
+# }
+
+# Access top-level keys with dig
+feed_document_id = document_response.dig("feedDocumentId")
+upload_url = document_response.dig("url")
+
+# Access nested keys - returns nil if any key in the path is missing
+encryption_key = document_response.dig("encryptionDetails", "key")
 
 # Upload feed content
 feed_content = File.read("inventory_update.xml")
@@ -226,7 +266,40 @@ feed_response = api.create_feed(
   marketplaceIds: ["ATVPDKIKX0DER"],
   inputFeedDocumentId: feed_document_id
 )
-feed_id = feed_response.parse["feedId"]
+feed_id = feed_response.dig("feedId")
+
+# Upload JSON feed
+json_document = api.create_feed_document(
+  { "contentType" => "application/json; charset=UTF-8" }
+)
+json_feed_content = JSON.generate({
+  "header": {
+    "sellerId": "SELLER_ID",
+    "version": "2.0",
+    "issueLocale": "en_US"
+  },
+  "messages": [
+    {
+      "messageId": 1,
+      "sku": "SKU123",
+      "operationType": "UPDATE",
+      "productType": "PRODUCT",
+      "attributes": {
+        # Your product attributes here
+      }
+    }
+  ]
+})
+api.upload_feed_document(json_document.dig("url"), json_feed_content, "application/json; charset=UTF-8")
+
+# Get feed status
+api.get_feed(feed_id)
+
+# Get feed document content
+document = api.get_feed_document(feed_document_id)
+download_url = document.dig("url")
+response = HTTP.get(download_url)
+content = Zlib::GzipReader.new(response).read if document.dig("compressionAlgorithm") == "GZIP"
 ```
 
 #### Communication and Customer Management APIs
@@ -244,7 +317,7 @@ destination = api.create_destination(
     sqs: { arn: "arn:aws:sqs:us-east-1:123456789012:MyQueue" }
   }
 )
-destination_id = destination.parse["payload"]["destinationId"]
+destination_id = destination.dig("payload", "destinationId")
 
 # Create subscription
 api.create_subscription(
@@ -252,6 +325,14 @@ api.create_subscription(
   destinationId: destination_id,
   payloadVersion: "1"
 )
+
+# For sandbox testing (requires grantless token)
+sandbox_api = Peddler.notifications_v1(aws_region, grantless_access_token).sandbox
+# Get all destinations
+destinations = sandbox_api.get_destinations
+
+# Get specific subscription
+subscription = sandbox_api.get_subscription("LISTINGS_ITEM_ISSUES_CHANGE")
 ```
 
 #### Vendor APIs
@@ -287,11 +368,184 @@ orders = api.get_purchase_orders(
 - **Application Integrations API (2024-04-01)**: Manage app integrations
 - **Vehicles API (2024-11-01)**: Manage vehicle data for automotive products
 
+### Additional API Examples
+
+#### Product Pricing API
+
+```ruby
+# Using Product Pricing v0
+api = Peddler.product_pricing_v0(aws_region, access_token)
+
+# Get pricing information for an ASIN
+pricing = api.get_pricing(
+  Marketplace.id("US"),
+  "Asin",
+  asins: ["B08N5WRWNW"]
+)
+
+# Get competitive pricing for an ASIN
+competitive = api.get_competitive_pricing(
+  Marketplace.id("US"),
+  "Asin",
+  asins: ["B08N5WRWNW"]
+)
+
+# Get offers for a specific item
+offers = api.get_item_offers(
+  Marketplace.id("US"),
+  "New",
+  "B08N5WRWNW"
+)
+
+# Batch request for multiple items (2022-05-01 API)
+api = Peddler.product_pricing_2022_05_01(aws_region, access_token)
+batch_request = {
+  requests: [
+    {
+      uri: "/products/pricing/2022-05-01/items/competitiveSummary",
+      method: "GET",
+      asin: "B08N5WRWNW",
+      marketplaceId: Marketplace.id("US"),
+      includedData: ["featuredBuyingOptions", "referencePrices", "lowestPricedOffers"]
+    },
+    # Additional items...
+  ]
+}
+results = api.get_competitive_summary(batch_request)
+```
+
+#### Listings Items API
+
+```ruby
+api = Peddler.listings_items_2021_08_01(aws_region, access_token)
+
+# Create or update a listing
+listing_result = api.put_listings_item(
+  "SELLER_ID",
+  "SKU123",
+  Marketplace.id("US"),
+  {
+    productType: "PRODUCT",
+    requirements: "LISTING_OFFER_ONLY",
+    attributes: {
+      merchant_suggested_asin: [{
+        value: "B08N5WRWNW",
+        marketplace_id: Marketplace.id("US")
+      }],
+      condition_type: [{
+        value: "new_new",
+        marketplace_id: Marketplace.id("US")
+      }],
+      # Additional attributes...
+    }
+  }
+)
+
+# Update specific listing elements with JSON Patch
+patch_result = api.patch_listings_item(
+  "SELLER_ID",
+  "SKU123",
+  Marketplace.id("US"),
+  {
+    productType: "PRODUCT",
+    patches: [
+      {
+        op: "replace",
+        path: "/attributes/purchasable_offer",
+        value: [{
+          currency: "USD",
+          our_price: [{
+            schedule: [{
+              value_with_tax: 39.99
+            }]
+          }]
+        }]
+      }
+    ]
+  }
+)
+
+# Get listing details
+listing = api.get_listings_item(
+  "SELLER_ID",
+  "SKU123",
+  Marketplace.id("US"),
+  included_data: "attributes,issues"
+)
+
+# Delete a listing
+api.delete_listings_item("SELLER_ID", "SKU123", Marketplace.id("US"))
+```
+
+#### Listings Restrictions API
+
+```ruby
+api = Peddler.listings_restrictions_2021_08_01(aws_region, access_token)
+
+# Check restrictions for an ASIN
+restrictions = api.get_listings_restrictions(
+  "B08N5WRWNW",
+  "SELLER_ID",
+  Marketplace.id("US"),
+  condition_type: "new_new"
+)
+```
+
+#### Product Type Definitions API
+
+```ruby
+api = Peddler.product_type_definitions_2020_09_01(aws_region, access_token)
+
+# Get schema for a product type
+definition = api.get_definitions_product_type(
+  "PRODUCT",
+  Marketplace.id("US"),
+  requirements: "LISTING_OFFER_ONLY"
+)
+
+# Download the JSON schema
+schema_url = definition.dig("schema", "link", "resource")
+json_schema = HTTP.get(schema_url).parse(:json)
+```
+
+#### Reports API
+
+```ruby
+api = Peddler.reports_2021_06_30(aws_region, access_token)
+
+# Request a report
+report_response = api.create_report({
+  "reportType" => "GET_MERCHANTS_LISTINGS_FYP_REPORT",
+  "marketplaceIds" => Marketplace.ids("US")
+})
+report_id = report_response.dig("reportId")
+
+# Get report status
+report = api.get_report(report_id)
+
+# Get all reports of a specific type
+reports = api.get_reports(report_types: ["GET_MERCHANTS_LISTINGS_FYP_REPORT"])
+
+# Download a report document
+document = api.get_report_document("DOCUMENT_ID")
+download_url = document.dig("url")
+# Process the downloaded report...
+```
+
+#### Sellers API
+
+```ruby
+api = Peddler.sellers_v1(aws_region, access_token)
+
+# Get marketplace participations
+participations = api.get_marketplace_participations
+```
+
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-api-models).
 
 ## TODO
 
-- [ ] Code generate payload parsers
+- [ ] Code generate payload parsers 🤔
 - [ ] Review and consider applying [these patches][patches]
 
 [build]: https://github.com/hakanensari/peddler/actions
