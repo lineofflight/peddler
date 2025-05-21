@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "http"
+require "uri"
 
 require "peddler/endpoint"
 require "peddler/error"
@@ -159,16 +160,12 @@ module Peddler
       Time.now.utc.strftime("%Y%m%dT%H%M%SZ")
     end
 
-    # Encodes URL components using HTTP::URI.percent_encode
-    # @param [String] component The component to encode
-    # @return [String] The encoded component
+    # Encodes URL path components
     def percent_encode(component)
-      HTTP::URI.percent_encode(component)
+      URI.encode_uri_component(component)
     end
 
     # Converts an array to a comma-separated string, or returns the value as-is if not an array
-    # @param [Object] val The value to stringify if it's an array
-    # @return [Object] A comma-separated string or the original value
     def stringify_array(val)
       val.is_a?(Array) ? val.join(",") : val
     end
