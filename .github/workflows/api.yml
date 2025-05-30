@@ -37,9 +37,7 @@ jobs:
           git config user.email "bot@lineofflig.ht"
           git config --global commit.gpgsign true
           git config --global gpg.format ssh
-          # Get the key fingerprint using standard format instead of -Y option
-          KEY_FINGERPRINT=$(ssh-keygen -l -f ~/.ssh/bot_signing_key | awk '{print $2}')
-          git config --global user.signingkey "$KEY_FINGERPRINT"
+          git config --global user.signingkey ~/.ssh/bot_signing_key
 
       - name: Install dependencies
         run: |
