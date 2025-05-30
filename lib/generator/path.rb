@@ -27,7 +27,8 @@ module Generator
     end
 
     def path
-      @path.gsub(/\{([^}]+)\}/) do
+      # Use atomic grouping (?>...) to prevent ReDoS
+      @path.gsub(/\{(?>([^}]+))\}/) do
         "\#{percent_encode(#{snakecase(Regexp.last_match(1))})}"
       end
     end
