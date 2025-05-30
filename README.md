@@ -120,6 +120,12 @@ Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is ava
 api = Peddler.<api_name>_<version>(aws_region, access_token, options)
 ```
 
+You can also simply initialize the latest version:
+
+```ruby
+api = Peddler.<api_name>(aws_region, access_token, options)
+```
+
 Below is a comprehensive list of all available APIs organized by category:
 
 #### Orders and Financial APIs
@@ -130,7 +136,7 @@ Below is a comprehensive list of all available APIs organized by category:
 - **Sales API (v1)**: Get order metrics and sales data
 
 ```ruby
-api = Peddler.orders_v0(aws_region, access_token, retries: 3)
+api = Peddler.orders(aws_region, access_token)
 response = api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
@@ -164,7 +170,7 @@ api.sandbox.get_orders(
 - **Product Fees API (v0)**: Retrieve fee estimates for products
 
 ```ruby
-api = Peddler.catalog_items_2022_04_01(aws_region, access_token)
+api = Peddler.catalog_items(aws_region, access_token)
 response = api.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
@@ -196,7 +202,7 @@ search_results = response.parse
 
 ```ruby
 # FBA outbound example
-api = Peddler.fulfillment_outbound_2020_07_01(aws_region, access_token)
+api = Peddler.fulfillment_outbound(aws_region, access_token)
 api.create_fulfillment_order(
   body: {
     sellerFulfillmentOrderId: "ORDER123",
@@ -230,7 +236,7 @@ api.create_fulfillment_order(
 - **Data Kiosk API (2023-11-15)**: Access and manage analytical data
 
 ```ruby
-api = Peddler.feeds_2021_06_30(aws_region, access_token)
+api = Peddler.feeds(aws_region, access_token)
 
 # Create feed document
 document_response = api.create_feed_document(
@@ -309,7 +315,7 @@ content = Zlib::GzipReader.new(response).read if document.dig("compressionAlgori
 - **Solicitations API (v1)**: Request customer reviews
 
 ```ruby
-api = Peddler.notifications_v1(aws_region, access_token)
+api = Peddler.notifications(aws_region, access_token)
 # Create destination
 destination = api.create_destination(
   name: "MyEventQueue",
@@ -327,7 +333,7 @@ api.create_subscription(
 )
 
 # For sandbox testing (requires grantless token)
-sandbox_api = Peddler.notifications_v1(aws_region, grantless_access_token).sandbox
+sandbox_api = Peddler.notifications(aws_region, grantless_access_token).sandbox
 # Get all destinations
 destinations = sandbox_api.get_destinations
 
@@ -351,7 +357,7 @@ APIs for vendors selling to Amazon:
 - **Vendor Transaction Status API (v1)**: Check transaction status
 
 ```ruby
-api = Peddler.vendor_orders_v1(aws_region, access_token)
+api = Peddler.vendor_orders(aws_region, access_token)
 orders = api.get_purchase_orders(
   limit: 10,
   createdAfter: "2023-01-01T00:00:00Z"
@@ -417,7 +423,7 @@ results = api.get_competitive_summary(batch_request)
 #### Listings Items API
 
 ```ruby
-api = Peddler.listings_items_2021_08_01(aws_region, access_token)
+api = Peddler.listings_items(aws_region, access_token)
 
 # Create or update a listing
 listing_result = api.put_listings_item(
@@ -480,7 +486,7 @@ api.delete_listings_item("SELLER_ID", "SKU123", Marketplace.id("US"))
 #### Listings Restrictions API
 
 ```ruby
-api = Peddler.listings_restrictions_2021_08_01(aws_region, access_token)
+api = Peddler.listings_restrictions(aws_region, access_token)
 
 # Check restrictions for an ASIN
 restrictions = api.get_listings_restrictions(
@@ -494,7 +500,7 @@ restrictions = api.get_listings_restrictions(
 #### Product Type Definitions API
 
 ```ruby
-api = Peddler.product_type_definitions_2020_09_01(aws_region, access_token)
+api = Peddler.product_type_definitions(aws_region, access_token)
 
 # Get schema for a product type
 definition = api.get_definitions_product_type(
@@ -511,7 +517,7 @@ json_schema = HTTP.get(schema_url).parse(:json)
 #### Reports API
 
 ```ruby
-api = Peddler.reports_2021_06_30(aws_region, access_token)
+api = Peddler.reports(aws_region, access_token)
 
 # Request a report
 report_response = api.create_report({
@@ -535,7 +541,7 @@ download_url = document.dig("url")
 #### Sellers API
 
 ```ruby
-api = Peddler.sellers_v1(aws_region, access_token)
+api = Peddler.sellers(aws_region, access_token)
 
 # Get marketplace participations
 participations = api.get_marketplace_participations

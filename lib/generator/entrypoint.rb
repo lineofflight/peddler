@@ -23,7 +23,23 @@ module Generator
       apis.map(&:library_name).append("peddler/token").sort
     end
 
+    def apis_with_latest_version
+      apis.group_by(&:name).transform_values do |api_list|
+        find_latest_version(api_list.map(&:version))
+      end.sort.to_h
+    end
+
     private
+
+    def find_latest_version(versions)
+      versions.sort_by do |version|
+        if version.start_with?("v")
+          [1, version]
+        else
+          [2, version]
+        end
+      end.last
+    end
 
     def render_template
       ERB.new(template, trim_mode: "-").result(binding)

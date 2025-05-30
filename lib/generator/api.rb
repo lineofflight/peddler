@@ -59,6 +59,14 @@ module Generator
       pascalcase(name_with_version)
     end
 
+    def name
+      file.split("/")[-2].tr("-", "_").sub(/(?:_api)?_model$/, "")
+    end
+
+    def version
+      model["info"]["version"].tr("-", "_")
+    end
+
     def name_with_version
       [name, version].join("_")
     end
@@ -123,14 +131,6 @@ module Generator
 
     def template
       File.read(Config.template_path("api"))
-    end
-
-    def name
-      file.split("/")[-2].tr("-", "_").sub(/(?:_api)?_model$/, "")
-    end
-
-    def version
-      model["info"]["version"].tr("-", "_")
     end
 
     def model

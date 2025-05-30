@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Handle array parameters
+- Add shortcuts for the latest api version
 
 ### Changed
 
