@@ -41,9 +41,7 @@ module Peddler
         meter(rate_limit).delete(path, params:)
       end
 
-      # Returns details about a listings item for a selling partner. **Note:** The parameters associated with this
-      # operation may contain special characters that must be encoded to successfully call the API. To avoid errors with
-      # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Returns details about a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
@@ -97,11 +95,7 @@ module Peddler
         meter(rate_limit).patch(path, body:, params:)
       end
 
-      # Creates or fully updates an existing listings item for a selling partner. **Note:** This operation has a
-      # throttling rate of one request per second when `mode` is `VALIDATION_PREVIEW`. **Note:** The parameters
-      # associated with this operation may contain special characters that must be encoded to successfully call the API.
-      # To avoid errors with SKUs when encoding URLs, refer to [URL
-      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Creates a new or fully-updates an existing listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
