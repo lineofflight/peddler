@@ -53,10 +53,14 @@ module Peddler
       # @param sku [String] Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an
       #   error. Do not include this filter if you want the response to include order metrics for all SKUs. Example:
       #   TestSKU, if you want the response to include order metrics for only SKU TestSKU.
+      # @param amazon_program [String] Filters the results by the Amazon program that you specify. Do not include this
+      #   filter if you want the response to include order metrics for all programs. **Example:** `AmazonHaul` returns
+      #   order metrics for the Amazon Haul program only.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_metrics(marketplace_ids, interval, granularity, granularity_time_zone: nil, buyer_type: "All",
-        fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, rate_limit: 0.5)
+        fulfillment_network: nil, first_day_of_week: "Monday", asin: nil, sku: nil, amazon_program: nil,
+        rate_limit: 0.5)
         path = "/sales/v1/orderMetrics"
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
@@ -68,6 +72,7 @@ module Peddler
           "firstDayOfWeek" => first_day_of_week,
           "asin" => asin,
           "sku" => sku,
+          "amazonProgram" => amazon_program,
         }.compact
 
         meter(rate_limit).get(path, params:)
