@@ -81,9 +81,16 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
   - Generator templates are in `lib/generator/templates/` - edit these to change generated code structure
   - Run `bin/generate-code` after modifying generator code or when Amazon updates their APIs
 
+- **Git Workflow**:
+
+  - Always work on feature branches, never directly on main
+  - Create descriptive branch names (e.g., `feature/marketplace-shortcuts`, `fix/api-timeout`)
+  - Make your changes and commit with conventional commit messages
+  - Push feature branch and create pull request
+  - After PR is merged, return to main and clean up
+
 - **Pull Request Workflow**:
 
-  - Create feature branch from main for all changes
   - Use conventional commit messages (e.g., "feat: add new feature", "fix: resolve bug")
   - Submit pull request with clear description of changes
   - Wait for CI checks and code review
