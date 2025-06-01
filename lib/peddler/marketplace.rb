@@ -77,6 +77,20 @@ module Peddler
           new(**values, country_code: country_code)
         end
       end
+
+      # Dynamically generate shorthand methods for each country code
+      # e.g., Marketplace.us returns the US marketplace
+      MARKETPLACE_IDS.each_key do |country_code|
+        method_name = country_code.downcase
+        define_method(method_name) do
+          find(country_code)
+        end
+      end
+
+      # Special alias for GB (Great Britain) -> UK
+      define_method(:gb) do
+        find("GB")
+      end
     end
 
     # @return [Peddler::Endpoint]
