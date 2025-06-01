@@ -49,52 +49,6 @@ http_interactions:
         string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
     recorded_at: Sat, 14 Sep 2024 20:24:38 GMT
   - request:
-      method: put
-      uri: https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123
-      body:
-        encoding: UTF-8
-        string: '{"header":{"sellerId":"A34PPN1ZLYCOGT","version":"2.0","issueLocale":"en_US"},"messages":[{"messageId":1,"sku":"SKU123","operationType":"UPDATE","productType":"PRODUCT","requirements":"LISTING_OFFER_ONLY","attributes":{"merchant_suggested_asin":[{"value":"188864544X","marketplace_id":"A1F83G8C2ARO7P"}],"condition_type":[{"value":"new_new","marketplace_id":"A1F83G8C2ARO7P"}],"merchant_shipping_group":[{"value":"legacy-template-id","marketplace_id":"A1F83G8C2ARO7P"}],"fulfillment_availability":[{"fulfillment_channel_code":"DEFAULT","quantity":1,"lead_time_to_ship_max_days":3}],"purchasable_offer":[{"currency":"GBP","our_price":[{"schedule":[{"value_with_tax":400}]}],"minimum_seller_allowed_price":[{"schedule":[{"value_with_tax":350}]}],"maximum_seller_allowed_price":[{"schedule":[{"value_with_tax":450}]}],"marketplace_id":"A1F83G8C2ARO7P"}]}}]}'
-      headers:
-        Connection:
-          - close
-        Content-Type:
-          - application/json; charset=utf-8
-        Host:
-          - tortuga-prod-eu.s3-eu-west-1.amazonaws.com
-        User-Agent:
-          - http.rb/5.2.0
-    response:
-      status:
-        code: 200
-        message: OK
-      headers:
-        X-Amz-Id-2:
-          - zP54KPQq7gSu3SDowjDvTVGyOfaMSNBo/yy9C+PjNUW1DLjUB2FduZrcMvFSN77qZ5nfraCLYov9PBaZpQ00jWwZFbNijJme
-        X-Amz-Request-Id:
-          - BYCH6MFHW9TTH4EX
-        Date:
-          - Sat, 14 Sep 2024 20:24:41 GMT
-        X-Amz-Version-Id:
-          - R3fuoRGEuyuOORW5FX8ntC2X0nzbneye
-        X-Amz-Server-Side-Encryption:
-          - aws:kms
-        X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id:
-          - arn:aws:kms:eu-west-1:538593642818:key/eefdcca3-2e83-416d-b342-a5f2ccdb7ea5
-        X-Amz-Server-Side-Encryption-Bucket-Key-Enabled:
-          - "true"
-        Etag:
-          - '"1398000cc21518eb51e616c8d05a6063"'
-        Server:
-          - AmazonS3
-        Content-Length:
-          - "0"
-        Connection:
-          - close
-      body:
-        encoding: UTF-8
-        string: ""
-    recorded_at: Sat, 14 Sep 2024 20:24:38 GMT
-  - request:
       method: post
       uri: https://sellingpartnerapi-eu.amazon.com/feeds/2021-06-30/feeds
       body:

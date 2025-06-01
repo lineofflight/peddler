@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "peddler/error"
+
 module Peddler
   module Helpers
     module Feeds20210630
