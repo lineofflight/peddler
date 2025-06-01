@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "peddler/api"
+require "peddler/helpers/reports_2021_06_30"
 
 module Peddler
   class << self
@@ -15,6 +16,8 @@ module Peddler
     # The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling
     # partners manage their businesses.
     class Reports20210630 < API
+      include Peddler::Helpers::Reports20210630
+
       # Returns report details for the reports that match the filters that you specify.
       #
       # @note This operation can make a static sandbox call.
