@@ -92,6 +92,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - **Pull Request Workflow**:
 
   - Use conventional commit messages (e.g., "feat: add new feature", "fix: resolve bug")
+  - Follow the 50/72 rule: subject line ≤50 chars, body lines ≤72 chars
   - Submit pull request with clear description of changes
   - Wait for CI checks and code review
   - Keep commits focused and atomic
