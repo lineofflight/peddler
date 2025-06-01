@@ -55,6 +55,11 @@ module Peddler
       assert_equal(@marketplace.id, @marketplace.to_str)
     end
 
+    def test_dynamic_shorthand_methods
+      assert_equal("US", Marketplace.us.country_code)
+      assert_equal("GB", Marketplace.gb.country_code)
+    end
+
     private
 
     def country_code
