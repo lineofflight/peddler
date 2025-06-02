@@ -26,13 +26,6 @@ module Peddler
 
       private
 
-      # Downloads report content from a signed download_url previously provided by
-      # get_report_document. This is step 2 of the Reports API workflow.
-      # See https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report
-      #
-      # The download_url is signed and expires after 5 minutes.
-      # @param download_url [String] The signed url from the `get_report_document` response.
-      # @return [HTTP::Response] The API response containing the report content
       def download_report_document_from_url(download_url)
         response = HTTP.get(download_url)
 
