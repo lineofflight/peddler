@@ -6,8 +6,10 @@ module Peddler
   module Helpers
     module Feeds20210630
       # Uploads feed_content to a signed upload_url previously provided by
-      # create_feed_document. The upload_url is signed, the Host and content-type
-      # headers must match the signing.
+      # create_feed_document. This is step 2 of the 6-step Feeds API workflow.
+      # See README.md for the complete workflow documentation.
+      #
+      # The upload_url is signed, the Host and content-type headers must match the signing.
       # @param upload_url [String] The signed url from the `create_feed_document` response.
       # @param feed_content [String] The body of the content to upload.
       # @param content_type [String] The content type of the upload,

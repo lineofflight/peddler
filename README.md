@@ -238,7 +238,15 @@ api.create_fulfillment_order(
 ```ruby
 api = Peddler.feeds(aws_region, access_token)
 
-# Create feed document
+# Complete Feeds API Workflow:
+# 1. Create a feed document (input feed document)
+# 2. Upload content to the document
+# 3. Create feed referencing the document
+# 4. Wait for feed to complete (e.g., SQS notification)
+# 5. Get feed document (result feed document)
+# 6. Download results to see processing outcome
+
+# Step 1: Create feed document (input document)
 document_response = api.create_feed_document(
   contentType: "text/xml; charset=UTF-8"
 )
@@ -262,11 +270,11 @@ upload_url = document_response.dig("url")
 # Access nested keys - returns nil if any key in the path is missing
 encryption_key = document_response.dig("encryptionDetails", "key")
 
-# Upload feed content
+# Step 2: Upload feed content to the input document
 feed_content = File.read("inventory_update.xml")
 api.upload_feed_document(upload_url, feed_content, "text/xml; charset=UTF-8")
 
-# Create feed
+# Step 3: Create feed referencing the input document
 feed_response = api.create_feed(
   feedType: "POST_INVENTORY_AVAILABILITY_DATA",
   marketplaceIds: ["ATVPDKIKX0DER"],
@@ -274,7 +282,32 @@ feed_response = api.create_feed(
 )
 feed_id = feed_response.dig("feedId")
 
-# Upload JSON feed
+# Step 4: Wait for feed to complete (polling or SQS notification)
+# Poll until status is "DONE", "FATAL", or "CANCELLED"
+loop do
+  feed_status = api.get_feed(feed_id)
+  status = feed_status.dig("processingStatus")
+  break if ["DONE", "FATAL", "CANCELLED"].include?(status)
+  sleep 30 # Wait 30 seconds before checking again
+end
+
+# Step 5: Get feed document (result document with processing results)
+result_document_id = feed_status.dig("resultFeedDocumentId")
+result_document = api.get_feed_document(result_document_id) if result_document_id
+
+# Step 6: Download results to see processing outcome
+if result_document
+  download_url = result_document.dig("url")
+  response = HTTP.get(download_url)
+  content = if result_document.dig("compressionAlgorithm") == "GZIP"
+              Zlib::GzipReader.new(response).read
+            else
+              response.to_s
+            end
+  # Parse content to check for errors/success
+end
+
+# JSON feed example
 json_document = api.create_feed_document(
   { "contentType" => "application/json; charset=UTF-8" }
 )
@@ -297,15 +330,6 @@ json_feed_content = JSON.generate({
   ]
 })
 api.upload_feed_document(json_document.dig("url"), json_feed_content, "application/json; charset=UTF-8")
-
-# Get feed status
-api.get_feed(feed_id)
-
-# Get feed document content
-document = api.get_feed_document(feed_document_id)
-download_url = document.dig("url")
-response = HTTP.get(download_url)
-content = Zlib::GzipReader.new(response).read if document.dig("compressionAlgorithm") == "GZIP"
 ```
 
 #### Communication and Customer Management APIs
