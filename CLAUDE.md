@@ -107,4 +107,5 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 
   - Update the `README.md` if relevant
   - Update the `CHANGELOG.md` when fixing bugs, adding features, or making breaking changes
+  - Use YARD documentation for public methods, but don't document private methods
   - Prune and reorganize these docs (`CLAUDE.md` included) if needed. Don't let them become outdated or cluttered
