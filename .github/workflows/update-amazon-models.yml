@@ -1,0 +1,104 @@
+name: Update Amazon API models
+
+on:
+  schedule:
+    # Run daily at 2:00 UTC
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+    # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: read
+
+jobs:
+  update-api:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for proper commit messages
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Generate code from API models
+        run: bin/generate-code
+
+      - name: Create Pull Request
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { execSync } = require('child_process');
+            
+            // Check for changes
+            const status = execSync('git status --porcelain', { encoding: 'utf8' });
+            if (!status.trim()) {
+              console.log('No changes detected, skipping PR creation');
+              return;
+            }
+            
+            // Get changed files (excluding untracked)
+            const changedFiles = status
+              .split('\n')
+              .filter(line => line && !line.startsWith('??'))
+              .map(line => line.substring(3));
+            
+            // Extract API names from changed files
+            const apiUpdates = changedFiles
+              .filter(file => file.match(/lib\/peddler\/apis\/[^\/]*\.rb/))
+              .map(file => file.replace(/lib\/peddler\/apis\/(.*)\.rb/, '$1'))
+              .filter((name, index, arr) => arr.indexOf(name) === index)
+              .sort();
+            
+            // Configure git
+            execSync('git config user.name "github-actions[bot]"');
+            execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
+            
+            // Create branch with timestamp
+            const timestamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0];
+            const branchName = `update-api-${timestamp}`;
+            execSync(`git checkout -b ${branchName}`);
+            
+            // Create commit message
+            let commitMessage = 'Update Amazon models';
+            if (apiUpdates.length > 0) {
+              commitMessage += '\n\nUpdated APIs:\n' + apiUpdates.map(api => `- ${api}`).join('\n');
+            }
+            
+            // Commit changes
+            execSync('git add -A');
+            execSync(`git commit -m "${commitMessage}"`);
+            execSync(`git push --set-upstream origin ${branchName}`);
+            
+            // Create PR title and body
+            const today = new Date().toISOString().split('T')[0];
+            const prTitle = `Update Amazon models - ${today}`;
+            const prBody = `This PR was automatically generated to update the Amazon API models.
+
+            Changes include:
+            ${changedFiles.map(file => `- ${file}`).join('\n')}
+
+            Created by GitHub Actions workflow.`;
+            
+            // Create PR using GitHub API
+            const { data: pr } = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: prTitle,
+              body: prBody,
+              head: branchName,
+              base: 'main'
+            });
+            
+            console.log(`Created PR #${pr.number}: ${pr.html_url}`);
