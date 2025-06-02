@@ -20,7 +20,7 @@ module Peddler
         # Otherwise, treat it as a document ID and get the download URL first
         document_info = get_report_document(report_document_id_or_url)
         download_url = document_info.dig("url")
-        
+
         download_report_document_from_url(download_url)
       end
 

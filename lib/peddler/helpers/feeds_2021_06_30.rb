@@ -6,7 +6,7 @@ require "peddler/error"
 module Peddler
   module Helpers
     module Feeds20210630
-      # Convenience method to upload feed content to a signed upload_url previously 
+      # Convenience method to upload feed content to a signed upload_url previously
       # provided by create_feed_document. This is step 2 of the 6-step Feeds API workflow.
       # See README.md for the complete workflow documentation.
       #
