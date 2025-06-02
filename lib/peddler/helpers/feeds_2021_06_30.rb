@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "http"
 require "peddler/error"
 
 module Peddler
