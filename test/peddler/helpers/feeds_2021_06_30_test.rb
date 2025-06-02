@@ -74,15 +74,6 @@ module Peddler
         assert_predicate(res.status, :ok?)
       end
 
-      def test_upload_feed_document_success
-        stub_request(:put, /.*/)
-          .to_return(status: 200, body: "", headers: {})
-
-        res = upload_feed_document("https://example.com", "content", "text/plain")
-
-        assert_predicate(res.status, :ok?)
-      end
-
       def test_upload_feed_document_client_error
         stub_request(:put, /.*/)
           .to_return(status: 400,
