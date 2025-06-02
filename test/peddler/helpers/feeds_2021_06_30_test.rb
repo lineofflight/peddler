@@ -11,7 +11,7 @@ module Peddler
       include Feeds20210630
 
       def test_upload_feed_document_integration
-        url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123"
+        url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456"
 
         content = {
           "header": {

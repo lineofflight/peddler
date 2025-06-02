@@ -2,7 +2,7 @@
 http_interactions:
   - request:
       method: put
-      uri: https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123
+      uri: https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456
       body:
         encoding: UTF-8
         string: '{"header":{"sellerId":"A34PPN1ZLYCOGT","version":"2.0","issueLocale":"en_US"},"messages":[{"messageId":1,"sku":"SKU123","operationType":"UPDATE","productType":"PRODUCT","requirements":"LISTING_OFFER_ONLY","attributes":{"merchant_suggested_asin":[{"value":"188864544X","marketplace_id":"A1F83G8C2ARO7P"}],"condition_type":[{"value":"new_new","marketplace_id":"A1F83G8C2ARO7P"}],"merchant_shipping_group":[{"value":"legacy-template-id","marketplace_id":"A1F83G8C2ARO7P"}],"fulfillment_availability":[{"fulfillment_channel_code":"DEFAULT","quantity":1,"lead_time_to_ship_max_days":3}],"purchasable_offer":[{"currency":"GBP","our_price":[{"schedule":[{"value_with_tax":400}]}],"minimum_seller_allowed_price":[{"schedule":[{"value_with_tax":350}]}],"maximum_seller_allowed_price":[{"schedule":[{"value_with_tax":450}]}],"marketplace_id":"A1F83G8C2ARO7P"}]}}]}'

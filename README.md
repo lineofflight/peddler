@@ -556,10 +556,9 @@ report = api.get_report(report_id)
 # Get all reports of a specific type
 reports = api.get_reports(report_types: ["GET_MERCHANTS_LISTINGS_FYP_REPORT"])
 
-# Download a report document
-document = api.get_report_document("DOCUMENT_ID")
-download_url = document.dig("url")
-# Process the downloaded report...
+# Download a report document (using convenience helper)
+response = api.download_report_document("DOCUMENT_ID")
+# Process the downloaded report content from response.body...
 ```
 
 #### Sellers API
