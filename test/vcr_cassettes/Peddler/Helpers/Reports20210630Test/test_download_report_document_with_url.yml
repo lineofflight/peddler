@@ -43,99 +43,13 @@ http_interactions:
         Content-Type:
           - text/plain; charset=Cp1252
         Content-Length:
-          - "7349"
+          - "2847"
         Server:
           - AmazonS3
         Connection:
           - close
       body:
         encoding: Windows-1252
-        string:
-          "item-name\titem-description\tlisting-id\tseller-sku\tprice\tquantity\topen-date\timage-url\titem-is-marketplace\tproduct-id-type\tzshop-shipping-fee\titem-note\titem-condition\tzshop-category1\tzshop-browse-path\tzshop-storefront-feature\tasin1\tasin2\tasin3\twill-ship-internationally\texpedited-shipping\tzshop-boldface\tproduct-id\tbid-for-featured-placement\tadd-delete\tpending-quantity\tfulfillment-channel\nFantasy:
-          No. 26 Visionaire Publishing\t\t1212BMY9IKZ\t2Y-QDX2-94FN\t115\t1\t2024-12-12
-          02:20:56 CET\t\ty\t1\t\tLimited edition of only 6,000 copies. Comes in a round
-          box with an included mask.\t2\t\t\t\t1888645040\t\t\t\t\t\t1888645040\t\t\t0\tDEFAULT\nKarl
-          Lagerfeld/Carine Roitfeld The Little Black Jacket /anglais: Chanel's Classic
-          Revisited Lagerfeld/roitfeld\t\t0410FY70NI7\t3G-2AVP-AG66\t205\t1\t2025-04-10
-          21:22:30 CEST\t\ty\t1\t\t\t11\t\t\t\t3869304464\t\t\t\t\t\t3869304464\t\t\t0\tDEFAULT\nHow
-          To Photograph an Atomic Bomb Kuran, Peter\t\t0513FKBHOB2\t3X-WV25-G8WA\t300\t1\t2025-05-13
-          12:57:35 CEST\t\ty\t1\t\t\t2\t\t\t\t1889054119\t\t\t\t\t\t1889054119\t\t\t0\tDEFAULT\nBrancusi
-          - An Afterlife: édition anglaise Alexandra, Croitoru\t\t0602F7E9V2W\t4N-5GDT-J1SW\t30\t1\t2025-06-02
-          03:32:34 CEST\t\ty\t1\t\t\t1\t\t\t\t3943620557\t\t\t\t\t\t3943620557\t\t\t0\tDEFAULT\nJun
-          Aoki - Complete Works 1991-2004: v. 1\t\t0410FYB9ZDM\t4Q-ZPQN-6NG9\t50\t1\t2025-04-10
-          21:19:25 CEST\t\ty\t1\t\t\t2\t\t\t\t4872751248\t\t\t\t\t\t4872751248\t\t\t0\tDEFAULT\nLife's
-          a beach: (Luxe : Signed and Numbered Limited Edition) (E) Parr, Martin\t\t0601F74GXME\t6A-1VYB-NJOE\t900\t1\t2025-06-01
-          23:57:14 CEST\t\ty\t1\t\tLimited edition, numbered 47.\t2\t\t\t\t1597112240\t\t\t\t\t\t1597112240\t\t\t0\tDEFAULT\nThe
-          Jews of Arab Lands: A History and Source Book Stillman, Norman A.\t\t0408FQE2LAH\t8Z-7MSO-FEKG\t20\t1\t2025-04-08
-          13:31:46 CEST\t\ty\t1\t\t\t2\t\t\t\t0827601980\t\t\t\t\t\t0827601980\t\t\t0\tDEFAULT\nVidal
-          Sassoon: Und das Bauhaus Battle-Welch, Gerald and etc.\t\t0514FOKN88V\t9Z-MOJN-MEM4\t291\t1\t2025-05-14
-          18:16:25 CEST\t\ty\t1\t\t\t2\t\t\t\t3893225137\t\t\t\t\t\t3893225137\t\t\t0\tDEFAULT\nSebastião
-          Salgado: Workers [Hardcover] Salgado, Sebastiao\t\t0601F77FZW1\tAJ-90LH-KSXM\t60\t1\t2025-06-02
-          00:14:03 CEST\t\ty\t1\t\t\t11\t\t\t\t089381525X\t\t\t\t\t\t089381525X\t\t\t0\tDEFAULT\nDreams:
-          No. 43 Visionaire Publishing\t\t0410FYBYX3E\tBX-LRLS-ZIB8\t300\t1\t2025-04-10
-          21:24:59 CEST\t\ty\t1\t\t\t2\t\t\t\t188864544X\t\t\t\t\t\t188864544X\t\t\t0\tDEFAULT\nHigh
-          Price - Art Between the Market and Celebrity Culture: édition anglaise [Plastic
-          Comb] Diango, Hernández\t\t0601F7FYX8F\tBZ-M3AP-MLLY\t40\t1\t2025-06-02 01:19:05
-          CEST\t\ty\t1\t\t\t1\t\t\t\t1933128887\t\t\t\t\t\t1933128887\t\t\t0\tDEFAULT\nSelf-Tracking
-          [Paperback] Neff, Gina and Nafus, Dawn\t\t0407FO328NK\tCJ-RATH-4MVA\t10\t1\t2025-04-07
-          21:56:58 CEST\t\ty\t1\t\t\t2\t\t\t\t0262529122\t\t\t\t\t\t0262529122\t\t\t0\tDEFAULT\nDieter
-          Rams: As Little Design as Possible [Hardcover] Lovell, Sophie and Ive, Jonathan\t\t0602F7FZMTK\tDO-VHGB-YJDG\t43.5\t1\t2025-06-02
-          02:52:44 CEST\t\ty\t1\t\t\t1\t\t\t\t1838669094\t\t\t\t\t\t1838669094\t\t\t0\tDEFAULT\nHellen
-          van Meene Konig, Walther and Schampers, Karel\t\t0415FBVIC8E\tH7-BEH3-7NMJ\t30\t3\t2025-04-15
-          13:40:29 CEST\t\ty\t1\t\t\t11\t\t\t\t3883755761\t\t\t\t\t\t3883755761\t\t\t0\tDEFAULT\nRagazzi
-          Helbig, Konrad\t\t0602F78DKMY\tHM-JTLW-9C40\t100\t1\t2025-06-02 02:57:26 CEST\t\ty\t1\t\t\t2\t\t\t\t3926318562\t\t\t\t\t\t3926318562\t\t\t0\tDEFAULT\nMore
-          is More: OMA/Rem Koolhaas. Theorie und Architektur Sinning, Heike\t\t0518F0BFEIT\tHT-XSTP-OINW\t53.23\t1\t2025-05-18
-          21:13:42 CEST\t\ty\t1\t\t\t2\t\t\t\t3803006074\t\t\t\t\t\t3803006074\t\t\t0\tDEFAULT\nGlenn
-          Murcutt: Buildings + Projects 1962-2003 Fromonet, Francoise\t\t0601F77PIV3\tHU-SD73-15CA\t200\t1\t2025-06-02
-          00:07:06 CEST\t\ty\t1\t\t\t2\t\t\t\t0500285896\t\t\t\t\t\t0500285896\t\t\t0\tDEFAULT\nThe
-          Mies Van Der Rohe Archive: Robert F. Carr Memorial Chapel of Saint Savior,
-          S. R. Crown Hall, & Other Buildings & Projects Schulze, Franz\t\t1225BQSDLW3\tIQ-9AJ5-B29N\t279.5\t1\t2024-12-26
-          00:18:11 CET\t\ty\t1\t\t\t11\t\t\t\t0824059964\t\t\t\t\t\t0824059964\t\t\t0\tDEFAULT\nThe
-          Lines of My Hand Frank, Robert\t\t0601F766BVB\tLE-FGZF-OITY\t75\t1\t2025-06-01
-          23:47:33 CEST\t\ty\t1\t\t\t2\t\t\t\t0436162563\t\t\t\t\t\t0436162563\t\t\t0\tDEFAULT\nThe
-          People Vs Tech: How the internet is killing democracy (and how we save it)
-          [Paperback] Bartlett, Jamie\t\t0513FKPB2WX\tM7-Q82S-X4RE\t10\t1\t2025-05-13
-          15:36:31 CEST\t\ty\t1\t\t\t11\t\t\t\t1785039067\t\t\t\t\t\t1785039067\t\t\t0\tDEFAULT\nRichard
-          Serra: Drawings and Etchings from Iceland [Hardcover] Matthew Marks\t\t0513FJW31DY\tMJ-92EM-P9YU\t40\t3\t2025-05-13
-          10:45:29 CEST\t\ty\t1\t\t\t2\t\t\t\t1880146037\t\t\t\t\t\t1880146037\t\t\t0\tDEFAULT\nWatanabe
-          Katsumi: Gangs of Kabukicho Kotaro, Iizawa and Katsumi, Watanabe\t\t0404FH29S06\tNJ-Q5QL-3GT8\t110\t1\t2025-04-04
-          18:08:59 CEST\t\ty\t1\t\t\t2\t\t\t\t097154803X\t\t\t\t\t\t097154803X\t\t\t0\tDEFAULT\nWALTON
-          FORD. PANCHA TANTRA BUFORD, BILL\t\t0410FYCV5ZJ\tOI-Y3FX-FCOR\t800\t1\t2025-04-10
-          21:23:53 CEST\t\ty\t1\t\t\t11\t\t\t\t3822843865\t\t\t\t\t\t3822843865\t\t\t0\tDEFAULT\nUnknown
-          territory: Photographs by Ray K. Metzker [Paperback]\t\t0513FK4W2TP\tOT-1R8J-6WNW\t60\t1\t2025-05-13
-          11:49:30 CEST\t\ty\t1\t\t\t2\t\t\t\t0890900337\t\t\t\t\t\t0890900337\t\t\t0\tDEFAULT\nWatanabe
-          Katsumi: Gangs of Kabukicho Kotaro, Iizawa and Katsumi, Watanabe\t\t0415FBVX8QX\tPU-VC5E-J28I\t75\t3\t2025-04-15
-          13:53:44 CEST\t\ty\t1\t\t\t11\t\t\t\t097154803X\t\t\t\t\t\t097154803X\t\t\t0\tDEFAULT\nNo-ISBN:
-          On Self-Publishing Boulanger, Sylvie; Carrion, Ulises; Cram, Gabriele; Dullaart,
-          Constant; Goldsmith, Kenneth; Hammonds, Kit; Blaha, Agnes; Cella, Bernhard
-          and Findeisen, Leo\t\t0513FK4744O\tS8-J816-Q02Y\t100\t1\t2025-05-13 13:01:26
-          CEST\t\ty\t1\t\t\t11\t\t\t\t3863358198\t\t\t\t\t\t3863358198\t\t\t0\tDEFAULT\nFOR
-          THE LOVE OF VINYL ART HIPGNOSIS HC: The Album Art of Hipgnosis [Hardcover]
-          Mason, Nick\t\t0602F7E23UN\tUD-7YL8-VAS9\t150\t2\t2025-06-02 02:54:20 CEST\t\ty\t1\t\t\t2\t\t\t\t0981562213\t\t\t\t\t\t0981562213\t\t\t0\tDEFAULT\nSurfin'
-          Gaza God Went Surfing with the Devil\t\t0404FGT3UUD\tUE-068E-BJFW\t30\t1\t2025-04-04
-          18:09:56 CEST\t\ty\t1\t\t\t11\t\t\t\t291915902X\t\t\t\t\t\t291915902X\t\t\t0\tDEFAULT\nDelugan
-          Meissl: Konzepte, Projekte, Bauten/Concepts, Projects, Buildings Temel, Robert;
-          Waechter-Böhm, Liesbeth and Schwaiger, E.\t\t0415FC8LRGP\tUQ-P2JX-FFMI\t70\t2\t2025-04-15
-          16:47:32 CEST\t\ty\t1\t\t\t1\t\t\t\t3764365579\t\t\t\t\t\t3764365579\t\t\t0\tDEFAULT\nPerformances
-          1993-2003 Beecroft, Vanessa\t\t0531F5PSIMX\tVD-HLAT-MS2G\t225.37\t1\t2025-06-01
-          01:58:20 CEST\t\ty\t1\t\t\t2\t\t\t\t8884915724\t\t\t\t\t\t8884915724\t\t\t0\tDEFAULT\nClyfford
-          Still: Paintings 1944-1960 Still, Clyfford; Adams, Brooks; Benezra, Neal;
-          Anfam, David; Demetrion, James T. and Hirshhorn Museum and Sculpture Garden\t\t0410FYARXYM\tVG-R201-IZXP\t60\t1\t2025-04-10
-          21:21:37 CEST\t\ty\t1\t\t\t11\t\t\t\t0300089694\t\t\t\t\t\t0300089694\t\t\t0\tDEFAULT\nIrving
-          Penn Regards the Work of Issey Miyake: Photographs 1975-1998 Miyake, Issey;
-          Penn, Irving; Holborn, Mark and Kitamura, Midori\t\t0601F74HA3V\tVM-8QDM-IPCP\t130\t1\t2025-06-01
-          23:30:34 CEST\t\ty\t1\t\t\t2\t\t\t\t0821226290\t\t\t\t\t\t0821226290\t\t\t0\tDEFAULT\nJudaisms
-          and their Messiahs at the Turn of the Christian Era [Paperback] Green, William
-          Scott; Neusner, Jacob and Smith, Jonathan Z.\t\t0408FQFHKGU\tWM-JP8N-0HV0\t24.97\t1\t2025-04-08
-          13:28:56 CEST\t\ty\t1\t\t\t2\t\t\t\t0521349400\t\t\t\t\t\t0521349400\t\t\t0\tDEFAULT\nPhotographs
-          1981-2006: (E) Graham, Paul and Mack, Michael\t\t0415FBVHNI1\tYN-32VB-5PEV\t150\t1\t2025-04-15
-          13:21:01 CEST\t\ty\t1\t\t\t2\t\t\t\t386521858X\t\t\t\t\t\t386521858X\t\t\t0\tDEFAULT\nThe
-          Politics of Secularism: Religion, Diversity, and Institutional Change in France
-          and Turkey: 41 [Hardcover] Akan, Murat\t\t0326FOZPRGF\tZI-82VW-W6VB\t50\t1\t2025-03-26
-          11:42:05 CET\t\ty\t1\t\t\t11\t\t\t\t0231181809\t\t\t\t\t\t0231181809\t\t\t0\tDEFAULT\nPretentiousness:
-          Why it Matters [Paperback] Fox, Dan\t\t0514FOV8XAJ\tZS-F27F-M3GS\t11.4\t1\t2025-05-14
-          18:19:43 CEST\t\ty\t1\t\t\t1\t\t\t\t1804270938\t\t\t\t\t\t1804270938\t\t\t0\tDEFAULT\nM
-          Train [Paperback] Smith, Patti\t\t0514FOT2ZV8\tP0-ZZXL-5MS8\t8\t0\t2025-05-14
-          19:11:49 CEST\t\ty\t1\t\t\t2\t\t\t\t1408867702\t\t\t\t\t\t1408867702\t\t\t0\tDEFAULT\n"
+        string: "item-name\titem-description\tlisting-id\tseller-sku\tprice\tquantity\topen-date\timage-url\titem-is-marketplace\tproduct-id-type\tzshop-shipping-fee\titem-note\titem-condition\tzshop-category1\tzshop-browse-path\tzshop-storefront-feature\tasin1\tasin2\tasin3\twill-ship-internationally\texpedited-shipping\tzshop-boldface\tproduct-id\tbid-for-featured-placement\tadd-delete\tpending-quantity\tfulfillment-channel\nSample Listing Title One\tTest item description\t1234567890A\tSKU-001-TEST\t25.99\t5\t2024-01-15 10:00:00 UTC\t\ty\t1\t\tSample item note\t2\t\t\t\t1234567890\t\t\t\t\t\t1234567890\t\t\t0\tDEFAULT\nSample Listing Title Two\tAnother test description\t1234567890B\tSKU-002-TEST\t19.50\t3\t2024-01-16 11:00:00 UTC\t\ty\t1\t\t\t11\t\t\t\t2345678901\t\t\t\t\t\t2345678901\t\t\t0\tDEFAULT\nSample Listing Title Three\tThird test item\t1234567890C\tSKU-003-TEST\t35.00\t2\t2024-01-17 12:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t3456789012\t\t\t\t\t\t3456789012\t\t\t0\tDEFAULT\nSample Listing Title Four\tFourth test description\t1234567890D\tSKU-004-TEST\t12.99\t10\t2024-01-18 13:00:00 UTC\t\ty\t1\t\t\t1\t\t\t\t4567890123\t\t\t\t\t\t4567890123\t\t\t0\tDEFAULT\nSample Listing Title Five\tFifth sample item\t1234567890E\tSKU-005-TEST\t45.00\t1\t2024-01-19 14:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t5678901234\t\t\t\t\t\t5678901234\t\t\t0\tDEFAULT\nSample Listing Title Six\tSixth test item\t1234567890F\tSKU-006-TEST\t22.75\t7\t2024-01-20 15:00:00 UTC\t\ty\t1\t\tTest note\t11\t\t\t\t6789012345\t\t\t\t\t\t6789012345\t\t\t0\tDEFAULT\nSample Listing Title Seven\tSeventh description\t1234567890G\tSKU-007-TEST\t18.99\t4\t2024-01-21 16:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t7890123456\t\t\t\t\t\t7890123456\t\t\t0\tDEFAULT\nSample Listing Title Eight\tEighth test item\t1234567890H\tSKU-008-TEST\t39.99\t6\t2024-01-22 17:00:00 UTC\t\ty\t1\t\t\t1\t\t\t\t8901234567\t\t\t\t\t\t8901234567\t\t\t0\tDEFAULT\nSample Listing Title Nine\tNinth sample item\t1234567890I\tSKU-009-TEST\t29.50\t2\t2024-01-23 18:00:00 UTC\t\ty\t1\t\t\t11\t\t\t\t9012345678\t\t\t\t\t\t9012345678\t\t\t0\tDEFAULT\nSample Listing Title Ten\tTenth test description\t1234567890J\tSKU-010-TEST\t15.75\t8\t2024-01-24 19:00:00 UTC\t\ty\t1\t\t\t2\t\t\t\t0123456789\t\t\t\t\t\t0123456789\t\t\t0\tDEFAULT\n"
     recorded_at: Mon, 02 Jun 2025 10:21:49 GMT
 recorded_with: VCR 6.3.1
