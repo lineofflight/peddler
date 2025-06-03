@@ -26,6 +26,24 @@ module Peddler
 
         response
       end
+
+      # Convenience method to download result feed content from a signed download_url
+      # provided by get_feed_document. This is step 6 of the 6-step Feeds API workflow.
+      # See README.md for the complete workflow documentation.
+      #
+      # The download_url is signed and provides access to the processed feed results.
+      # @param download_url [String] The signed url from the `get_feed_document` response.
+      # @return [HTTP::Response] The API response containing the feed result document
+      def download_result_feed_document(download_url)
+        response = HTTP.get(download_url)
+
+        if response.status.client_error?
+          error = Error.build(response)
+          raise error if error
+        end
+
+        response
+      end
     end
   end
 end

@@ -1,0 +1,57 @@
+---
+http_interactions:
+  - request:
+      method: get
+      uri: https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/321
+      body:
+        encoding: ASCII-8BIT
+        base64_string: ""
+      headers:
+        Connection:
+          - close
+        Host:
+          - tortuga-prod-eu.s3-eu-west-1.amazonaws.com
+        User-Agent:
+          - http.rb/5.2.0
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        X-Amz-Id-2:
+          - HsgUT3BKTjie6aii3sbjummBKff1l+5wR6fZm1ZaRoZ3hg9HaPs7R7NC9Z5B6hcrxkofRy/7FB8J7falILy7lA==
+        X-Amz-Request-Id:
+          - YGT5P9JYG11261G7
+        Date:
+          - Sat, 14 Sep 2024 20:30:49 GMT
+        Last-Modified:
+          - Sat, 14 Sep 2024 20:24:57 GMT
+        Etag:
+          - '"5a1ec56890290ea114c82f34bf516890"'
+        X-Amz-Server-Side-Encryption:
+          - aws:kms
+        X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id:
+          - arn:aws:kms:eu-west-1:538593642818:key/eefdcca3-2e83-416d-b342-a5f2ccdb7ea5
+        X-Amz-Server-Side-Encryption-Bucket-Key-Enabled:
+          - "true"
+        X-Amz-Version-Id:
+          - gu16m9Al3JKYh4sE89gkql3puTzH7EX1
+        Accept-Ranges:
+          - bytes
+        Content-Type:
+          - application/json
+        Server:
+          - AmazonS3
+        Content-Length:
+          - "165"
+        Connection:
+          - close
+      body:
+        encoding: UTF-8
+        base64_string: |
+          H4sIAAAAAAAA/12MMQvCMBQG/8s3B0lTBZutOEhBtIOLikNonjXQpvKerUjp
+          fxd1EBzvOG7ElZwnhh0h1DTEhYdFns7LcpscN4fVbr2HwkAsoYuwMDMNhQuR
+          /5QmM2aR6iTLlhqTQhDpSWBPZwXp29bx8/0m5o4FVis8HMcQ6y+0JOJqkpK7
+          ikTIwyY/m1cV3e5/soiDa4KH1dP0AmMnH/W/AAAA
+    recorded_at: Sat, 14 Sep 2024 20:30:46 GMT
+recorded_with: VCR 6.3.1
