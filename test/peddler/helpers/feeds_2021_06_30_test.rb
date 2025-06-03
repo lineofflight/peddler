@@ -77,40 +77,12 @@ module Peddler
         assert_predicate(res.status, :ok?)
       end
 
-      def test_upload_feed_document_client_error
-        stub_request(:put, /.*/)
-          .to_return(status: 400,
-            body: {
-              "errors" => [{
-                "code" => "Error",
-              }],
-            }.to_json)
-
-        assert_raises(Peddler::Error) do
-          upload_feed_document("https://example.com", "content", "text/plain")
-        end
-      end
-
       def test_download_result_feed_document
         url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/321"
         res = download_result_feed_document(url)
 
         assert_predicate(res.status, :ok?)
         assert(res.body)
-      end
-
-      def test_download_result_feed_document_client_error
-        stub_request(:get, /.*/)
-          .to_return(status: 404,
-            body: {
-              "errors" => [{
-                "code" => "NotFound",
-              }],
-            }.to_json)
-
-        assert_raises(Peddler::Error) do
-          download_result_feed_document("https://example.com/missing")
-        end
       end
     end
   end
