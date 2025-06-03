@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 03 Jun 2025 14:18:50 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - '08AWSRR3KKD12NS6ZX91'
+      X-Amzn-Requestid:
+      - 1190ccb3-14af-4d85-8af0-4c9a723cee05
+      X-Amz-Date:
+      - Tue, 03 Jun 2025 14:18:50 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Tue, 03 Jun 2025 14:18:50 GMT
+recorded_with: VCR 6.3.1

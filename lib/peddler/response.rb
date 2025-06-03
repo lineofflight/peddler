@@ -3,6 +3,8 @@
 require "delegate"
 require "forwardable"
 
+require "peddler/error"
+
 module Peddler
   # Wraps HTTP::Response to allow custom parsing
   class Response < SimpleDelegator
@@ -17,12 +19,18 @@ module Peddler
     def_delegator :to_h, :dig
 
     class << self
-      # Decorates an HTTP::Response
+      # Decorates an HTTP::Response with error handling
       #
       # @param [HTTP::Response] response
       # @param [nil, #call] parser (if any)
       # @return [ResponseDecorator]
+      # @raise [Peddler::Error] if response has client error status
       def decorate(response, parser: nil)
+        if response.status.client_error?
+          error = Error.build(response)
+          error ? raise(error) : response
+        end
+
         new(response).tap do |decorator|
           decorator.parser = parser
         end

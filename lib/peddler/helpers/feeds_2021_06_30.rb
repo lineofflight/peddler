@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "http"
-require "peddler/error"
+
 require "peddler/response"
 
 module Peddler
@@ -20,11 +20,6 @@ module Peddler
       def upload_feed_document(upload_url, feed_content, content_type)
         response = HTTP.headers("content-type" => content_type).put(upload_url, body: feed_content)
 
-        if response.status.client_error?
-          error = Error.build(response)
-          raise error if error
-        end
-
         Response.decorate(response, parser:)
       end
 
@@ -37,11 +32,6 @@ module Peddler
       # @return [HTTP::Response] The API response containing the feed result document
       def download_result_feed_document(download_url)
         response = HTTP.get(download_url)
-
-        if response.status.client_error?
-          error = Error.build(response)
-          raise error if error
-        end
 
         Response.decorate(response, parser:)
       end

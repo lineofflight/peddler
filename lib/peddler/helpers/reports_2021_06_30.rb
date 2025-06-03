@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "http"
-require "peddler/error"
+
 require "peddler/response"
 
 module Peddler
@@ -29,11 +29,6 @@ module Peddler
 
       def download_report_document_from_url(download_url)
         response = HTTP.get(download_url)
-
-        if response.status.client_error?
-          error = Error.build(response)
-          raise error if error
-        end
 
         Response.decorate(response, parser:)
       end

@@ -47,16 +47,9 @@ module Peddler
       end
 
       def test_download_report_document_client_error
-        stub_request(:get, /.*/)
-          .to_return(status: 400,
-            body: {
-              "errors" => [{
-                "code" => "Error",
-              }],
-            }.to_json)
-
+        url = "https://tortuga-prod-na.s3-external-1.amazonaws.com/123456"
         assert_raises(Peddler::Error) do
-          download_report_document("https://example.com/report.csv")
+          download_report_document(url)
         end
       end
     end

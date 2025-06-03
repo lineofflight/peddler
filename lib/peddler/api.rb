@@ -4,7 +4,6 @@ require "http"
 require "uri"
 
 require "peddler/endpoint"
-require "peddler/error"
 require "peddler/marketplace"
 require "peddler/response"
 require "peddler/version"
@@ -124,11 +123,6 @@ module Peddler
         end
 
         response = http.send(method, uri, **options)
-
-        if response.status.client_error?
-          error = Error.build(response)
-          raise error if error
-        end
 
         Response.decorate(response, parser:)
       end
