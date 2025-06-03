@@ -11,7 +11,7 @@ module Peddler
 
       @klass = Class.new(API) { def foo = get("") }
       @instance = @klass.new(marketplace.endpoint.aws_region, nil)
-      @parser = -> { JSON.parse(it, symbolize_names: true) }
+      @parser = ->(response) { JSON.parse(response, symbolize_names: true) }
 
       stub_request(:get, marketplace.endpoint.production)
         .to_return(status: 200, body: '{"bar": true}', headers: { "Content-Type" => "application/json" })

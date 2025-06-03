@@ -4,9 +4,7 @@ Layout/EmptyComment:
 Layout/LineLength:
   AllowedPatterns:
     - ^\s*\w+ = ".*"$
-Lint/ItWithoutArgumentsInBlock:
-  Exclude:
-    - "test/**/*_test.rb"
+
 Naming/AccessorMethodName:
   Exclude:
     - "lib/peddler/apis/*.rb"
