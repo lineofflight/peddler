@@ -47,8 +47,19 @@ module Peddler
 
       def test_download_report_document_client_error
         url = "https://tortuga-prod-na.s3-external-1.amazonaws.com/123456"
-        assert_raises(Peddler::Error) do
-          download_report_document(url)
+
+        begin
+          require "nokogiri"
+          # With nokogiri available, should parse XML error and raise Peddler::Error
+          assert_raises(Peddler::Error) do
+            download_report_document(url)
+          end
+        rescue LoadError
+          # Without nokogiri, XML parsing fails gracefully - returns response instead of raising error
+          result = download_report_document(url)
+
+          assert_kind_of(Peddler::Response, result)
+          assert_equal(403, result.status.code)
         end
       end
     end

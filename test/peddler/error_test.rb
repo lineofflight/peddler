@@ -58,7 +58,13 @@ module Peddler
       response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Request has expired</Message><X-Amz-Expires>300</X-Amz-Expires><Expires>2025-06-03T12:26:02Z</Expires><ServerTime>2025-06-03T14:34:02Z</ServerTime><RequestId>123</RequestId><HostId>123</HostId></Error>"
       error = Error.build(response)
 
-      assert_kind_of(Errors::AccessDenied, error)
+      begin
+        require "nokogiri"
+
+        assert_kind_of(Errors::AccessDenied, error)
+      rescue LoadError
+        assert_nil(error)
+      end
     end
 
     def test_other_api_error
@@ -86,6 +92,14 @@ module Peddler
 
     def test_invalid_class_name
       response = '{"errors":[{"code":"400","message":"Invalid Input"}]}'
+      error = Error.build(response)
+
+      assert_nil(error)
+    end
+
+    def test_xml_error_fallback
+      # Test that invalid XML gracefully returns nil when nokogiri can't parse it
+      response = "invalid xml content"
       error = Error.build(response)
 
       assert_nil(error)

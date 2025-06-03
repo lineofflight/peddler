@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "json"
-require "rexml/document"
 
 module Peddler
   class Error < StandardError
@@ -13,9 +12,7 @@ module Peddler
         payload = begin
           JSON.parse(response)
         rescue JSON::ParserError
-          Hash[REXML::Document.new(response).root.elements.collect { |e| [e.name, e.text] }]
-        rescue REXML::ParseException
-          {}
+          parse_xml_error(response)
         end
 
         if payload.key?("error")
@@ -46,6 +43,14 @@ module Peddler
       end
 
       private
+
+      def parse_xml_error(response)
+        require "nokogiri"
+        doc = Nokogiri::XML(response)
+        Hash[doc.root.elements.collect { |e| [e.name, e.text] }]
+      rescue LoadError, NoMethodError
+        {}
+      end
 
       def normalize_class_name(code)
         if code.match?(/\A([a-z_]+|[A-Z_]+)\z/)
