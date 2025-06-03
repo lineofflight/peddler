@@ -88,6 +88,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
   - Make your changes and commit with conventional commit messages
   - Push feature branch and create pull request
   - After PR is merged, return to main and clean up
+  - **NEVER use `git add .`** - always stage files explicitly by name
 
 - **Pull Request Workflow**:
 
