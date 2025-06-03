@@ -33,15 +33,14 @@ module Peddler
 
         assert_predicate(res.status, :ok?)
 
-        payload = Zlib::GzipReader.new(res).read
-        payload.force_encoding(res.charset)
-
+        gzip = Zlib::GzipReader.new(res)
         opts = {
           col_sep: "\t",
-          quote_char: "\x00",
+          encoding: "#{res.charset}:UTF-8",
           headers: true,
+          quote_char: "\x00",
         }
-        data = CSV.parse(payload, **opts)
+        data = CSV.parse(gzip, **opts)
 
         assert_kind_of(CSV::Table, data)
       end
