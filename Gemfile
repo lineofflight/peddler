@@ -24,4 +24,7 @@ group :development do
   # TODO: Remove when deprecation warnings go away
   gem "fiddle"
   gem "rdoc"
+
+  # For exploratory code
+  gem "csv"
 end
