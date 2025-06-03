@@ -2,6 +2,7 @@
 
 require "http"
 require "peddler/error"
+require "peddler/response"
 
 module Peddler
   module Helpers
@@ -34,7 +35,7 @@ module Peddler
           raise error if error
         end
 
-        response
+        Response.decorate(response, parser:)
       end
     end
   end

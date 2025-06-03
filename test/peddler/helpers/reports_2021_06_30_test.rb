@@ -11,7 +11,7 @@ module Peddler
       include FeatureHelpers
       include Reports20210630
 
-      def_delegator :api, :get_report_document
+      def_delegators :api, :get_report_document, :parser
 
       def test_download_report_document_with_url
         url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456"

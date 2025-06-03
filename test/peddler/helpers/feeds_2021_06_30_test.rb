@@ -7,10 +7,13 @@ require "peddler/marketplace"
 module Peddler
   module Helpers
     class Feeds20210630Test < Minitest::Test
+      extend Forwardable
       include FeatureHelpers
       include Feeds20210630
 
-      def test_upload_feed_document_integration
+      def_delegators :api, :parser
+
+      def test_upload_feed_document
         url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456"
 
         content = {
