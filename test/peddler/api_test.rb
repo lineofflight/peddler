@@ -126,7 +126,7 @@ module Peddler
     end
 
     def test_parser
-      parser = ->(response) { JSON.parse(response.body.to_s) }
+      parser = ->(response) { JSON.parse(response) }
       @api.parser = parser
 
       assert_equal(parser, @api.parser)
