@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Add `download_report_document` helper method to Reports API (2021-06-30)
+- Handle Amazon S3 errors
 
 ### [4.4.0] - 2025-05-30
 

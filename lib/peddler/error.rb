@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "json"
+require "rexml/document"
+
 module Peddler
   class Error < StandardError
     attr_reader :response
@@ -7,7 +10,13 @@ module Peddler
     # @!visibility private
     class << self
       def build(response)
-        payload = JSON.parse(response)
+        payload = begin
+          JSON.parse(response)
+        rescue JSON::ParserError
+          Hash[REXML::Document.new(response).root.elements.collect { |e| [e.name, e.text] }]
+        rescue REXML::ParseException
+          {}
+        end
 
         if payload.key?("error")
           class_name = normalize_class_name(payload["error"])
@@ -15,6 +24,9 @@ module Peddler
         elsif payload.key?("errors")
           class_name = normalize_class_name(payload.dig("errors", 0, "code"))
           message = payload.dig("errors", 0, "message")
+        elsif payload.key?("Code")
+          class_name = payload["Code"]
+          message = payload["Message"]
         else
           return
         end
@@ -51,6 +63,7 @@ module Peddler
   end
 
   module Errors
+    class AccessDenied < Error; end
     class InvalidGrant < Error; end
     class InvalidInput < Error; end
     class InvalidRequest < Error; end

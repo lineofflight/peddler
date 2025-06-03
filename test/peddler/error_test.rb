@@ -54,6 +54,13 @@ module Peddler
       assert_kind_of(Errors::InvalidRequest, error)
     end
 
+    def test_access_denied
+      response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Request has expired</Message><X-Amz-Expires>300</X-Amz-Expires><Expires>2025-06-03T12:26:02Z</Expires><ServerTime>2025-06-03T14:34:02Z</ServerTime><RequestId>123</RequestId><HostId>123</HostId></Error>"
+      error = Error.build(response)
+
+      assert_kind_of(Errors::AccessDenied, error)
+    end
+
     def test_other_api_error
       response = '{"errors":[{"code":"OtherError","message":"OtherError"}]}'
       error = Error.build(response)
