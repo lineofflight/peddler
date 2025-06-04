@@ -27,6 +27,16 @@ And then execute:
 bundle install
 ```
 
+### Optional Dependencies
+
+For enhanced error handling when uploading or downloading files, Peddler can parse XML error responses from Amazon S3 if Nokogiri is available:
+
+```ruby
+gem "nokogiri"
+```
+
+If Nokogiri is not available, S3 XML errors will still be handled gracefully, but with less detailed error information.
+
 ## Usage
 
 Set your LWA credentials in your environment.
