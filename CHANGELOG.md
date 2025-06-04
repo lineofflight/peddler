@@ -10,6 +10,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add `download_report_document` helper method to Reports API (2021-06-30)
 - Handle Amazon S3 errors
 
+### Changed
+
+- **BREAKING**: Client errors (4xx) now always raise `Peddler::Error` exceptions. Previously, when XML error parsing failed (e.g., Nokogiri unavailable), client errors would return response objects instead of raising.
+
 ### [4.4.0] - 2025-05-30
 
 ### Added
