@@ -13,7 +13,7 @@ require "peddler/error"
 # Current approach:
 #   - Manually check response.status.client_error? in Response.decorate
 #   - Parse error response body to create specific Peddler::Error subclasses
-#   - Fall back to returning response object if parsing fails (e.g., no Nokogiri)
+#   - Fall back to raising generic Peddler::Error if parsing fails (e.g., no Nokogiri)
 #
 # Future approach with HTTP raise_error:
 #   - Configure HTTP client globally: HTTP.use(:raise_error)
@@ -22,10 +22,9 @@ require "peddler/error"
 #   - Re-raise original HTTP::StatusError if parsing fails
 #
 # Benefits:
-#   - More predictable behavior (always raises for client errors)
 #   - Leverages standard HTTP gem patterns
 #   - Maintains compatibility with code that rescues HTTP::StatusError
-#   - Eliminates confusing cases where client errors return response objects
+#   - Reduces boilerplate (inherits response accessor and other functionality)
 #
 # Blockers:
 #   - :raise_error feature is only available in HTTP gem main branch, not stable releases
@@ -56,7 +55,7 @@ module Peddler
       def decorate(response, parser: nil)
         if response.status.client_error?
           error = Error.build(response)
-          error ? raise(error) : response
+          error ? raise(error) : raise(Error.new("Unexpected status code #{response.status.code}", response))
         end
 
         new(response).tap do |decorator|

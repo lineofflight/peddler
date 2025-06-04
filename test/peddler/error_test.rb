@@ -104,5 +104,13 @@ module Peddler
 
       assert_nil(error)
     end
+
+    def test_generic_error_message_format
+      # Test that generic error follows HTTP gem message format
+      error = Error.new("Unexpected status code 403", "response body")
+
+      assert_equal("Unexpected status code 403", error.message)
+      assert_equal("response body", error.response)
+    end
   end
 end

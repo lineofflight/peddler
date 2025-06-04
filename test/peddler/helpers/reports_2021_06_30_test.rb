@@ -55,11 +55,10 @@ module Peddler
             download_report_document(url)
           end
         rescue LoadError
-          # Without nokogiri, XML parsing fails gracefully - returns response instead of raising error
-          result = download_report_document(url)
-
-          assert_kind_of(Peddler::Response, result)
-          assert_equal(403, result.status.code)
+          # Without nokogiri, XML parsing fails gracefully - raises generic Peddler::Error
+          assert_raises(Peddler::Error) do
+            download_report_document(url)
+          end
         end
       end
     end

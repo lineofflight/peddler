@@ -31,10 +31,7 @@ module Peddler
         klass = if Errors.const_defined?(class_name)
           Errors.const_get(class_name)
         else
-          Errors.const_set(
-            class_name,
-            Class.new(Error),
-          )
+          Errors.const_set(class_name, Class.new(Error))
         end
 
         klass.new(message, response)
