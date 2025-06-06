@@ -6,56 +6,73 @@ require "peddler/error"
 module Peddler
   class ErrorTest < Minitest::Test
     def test_invalid_input
-      response = '{"errors":[{"code":"InvalidInput","message":"InvalidInput"}]}'
+      response = mock_http_response(
+        '{"errors":[{"code":"InvalidInput","message":"InvalidInput"}]}', status: 400
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::InvalidInput, error)
     end
 
     def test_not_found
-      response = '{"errors":[{"code":"NotFound","message":"NotFound"}]}'
+      response = mock_http_response(
+        '{"errors":[{"code":"NotFound","message":"NotFound"}]}', status: 404
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::NotFound, error)
     end
 
     def test_quota_exceeded
-      response = '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota for the requested resource."}]}'
+      response = mock_http_response(
+        '{"errors":[{"code":"QuotaExceeded","message":"You exceeded your quota for the requested resource."}]}', status: 429
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::QuotaExceeded, error)
     end
 
     def test_unauthorized
-      response = '{"errors":[{"code":"Unauthorized","message":"Access to requested resource is denied."}]}'
+      response = mock_http_response(
+        '{"errors":[{"code":"Unauthorized","message":"Access to requested resource is denied."}]}', status: 403
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::Unauthorized, error)
     end
 
     def test_unsupported_grant_type
-      response = '{"error":"unsupported_grant_type","error_description":"The authorization grant type is not supported by the authorization server"}'
+      response = mock_http_response(
+        '{"error":"unsupported_grant_type","error_description":"The authorization grant type is not supported by the authorization server"}',
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::UnsupportedGrantType, error)
     end
 
     def test_invalid_grant
-      response = '{"error_description":"The request has an invalid grant parameter : refresh_token. User may have unauthorized or didn' + 't grant the permission.","error":"invalid_grant"}'
+      response = mock_http_response(
+        '{"error_description":"The request has an invalid grant parameter : refresh_token. User may have unauthorized or didn\'t grant the permission.","error":"invalid_grant"}',
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::InvalidGrant, error)
     end
 
     def test_invalid_request
-      response = '{"error":"invalid_request","error_description":"The request is missing a required parameter : refresh_token"}'
+      response = mock_http_response(
+        '{"error":"invalid_request","error_description":"The request is missing a required parameter : refresh_token"}',
+      )
       error = Error.build(response)
 
       assert_kind_of(Errors::InvalidRequest, error)
     end
 
     def test_access_denied
-      response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Request has expired</Message><X-Amz-Expires>300</X-Amz-Expires><Expires>2025-06-03T12:26:02Z</Expires><ServerTime>2025-06-03T14:34:02Z</ServerTime><RequestId>123</RequestId><HostId>123</HostId></Error>"
+      response = mock_http_response(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Request has expired</Message><X-Amz-Expires>300</X-Amz-Expires><Expires>2025-06-03T12:26:02Z</Expires><ServerTime>2025-06-03T14:34:02Z</ServerTime><RequestId>123</RequestId><HostId>123</HostId></Error>",
+        status: 403,
+      )
       error = Error.build(response)
 
       begin
@@ -68,7 +85,7 @@ module Peddler
     end
 
     def test_other_api_error
-      response = '{"errors":[{"code":"OtherError","message":"OtherError"}]}'
+      response = mock_http_response('{"errors":[{"code":"OtherError","message":"OtherError"}]}')
       error = Error.build(response)
 
       assert_includes(Errors.constants, :OtherError)
@@ -76,7 +93,7 @@ module Peddler
     end
 
     def test_other_token_error
-      response = '{"error":"other_error","error_description":"OtherError"}'
+      response = mock_http_response('{"error":"other_error","error_description":"OtherError"}')
       error = Error.build(response)
 
       assert_includes(Errors.constants, :OtherError)
@@ -84,14 +101,14 @@ module Peddler
     end
 
     def test_normalized_screaming_snake_case
-      response = '{"errors":[{"code":"NOT_FOUND","message":"Resource not found"}]}'
+      response = mock_http_response('{"errors":[{"code":"NOT_FOUND","message":"Resource not found"}]}')
       error = Error.build(response)
 
       assert_kind_of(Errors::NotFound, error)
     end
 
     def test_invalid_class_name
-      response = '{"errors":[{"code":"400","message":"Invalid Input"}]}'
+      response = mock_http_response('{"errors":[{"code":"400","message":"Invalid Input"}]}')
       error = Error.build(response)
 
       assert_nil(error)
@@ -99,18 +116,21 @@ module Peddler
 
     def test_xml_error_fallback
       # Test that invalid XML gracefully returns nil when nokogiri can't parse it
-      response = "invalid xml content"
+      response = mock_http_response("invalid xml content")
       error = Error.build(response)
 
       assert_nil(error)
     end
 
-    def test_generic_error_message_format
-      # Test that generic error follows HTTP gem message format
-      error = Error.new("Unexpected status code 403", "response body")
+    private
 
-      assert_equal("Unexpected status code 403", error.message)
-      assert_equal("response body", error.response)
+    def mock_http_response(body, status: 400)
+      HTTP::Response.new(
+        status:,
+        body:,
+        version: "1.1",
+        request: nil,
+      )
     end
   end
 end
