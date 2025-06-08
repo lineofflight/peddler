@@ -582,11 +582,6 @@ participations = api.get_marketplace_participations
 
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-api-models).
 
-## TODO
-
-- [ ] Code generate payload parsers 🤔
-- [ ] Review and consider applying [these patches][patches]
-
 [build]: https://github.com/hakanensari/peddler/actions
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
@@ -597,4 +592,3 @@ For a complete list of available APIs and their detailed documentation, refer to
 [authorization]: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
 [rate-limits]: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
 [httprb]: https://github.com/httprb/http
-[patches]: https://github.com/bizon/selling-partner-api-sdk/tree/master/codegen/patches
