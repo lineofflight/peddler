@@ -2,7 +2,6 @@
 
 require "http"
 
-require "peddler/error"
 require "peddler/response"
 
 module Peddler
