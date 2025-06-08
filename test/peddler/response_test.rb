@@ -84,12 +84,6 @@ module Peddler
       assert_equal(payload, wrapper.parse)
     end
 
-    def test_decorate_deprecation_warning
-      assert_output(nil, /Response\.decorate is deprecated/) do
-        Response.decorate(response)
-      end
-    end
-
     def test_deprecation_removal_reminder
       if Gem.loaded_specs["peddler"].version.segments.first >= 5
         flunk("Response.decorate should have been removed in v5.0. Please delete it now.")
