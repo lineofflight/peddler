@@ -6,45 +6,45 @@ require "peddler/response"
 module Peddler
   class ResponseTest < Minitest::Test
     def test_parses
-      decorator = Response.decorate(response)
+      wrapper = Response.wrap(response)
 
-      assert_equal(payload, decorator.parse)
+      assert_equal(payload, wrapper.parse)
     end
 
     def test_to_h
-      decorator = Response.decorate(response)
+      wrapper = Response.wrap(response)
 
-      assert_equal(payload, decorator.to_h)
+      assert_equal(payload, wrapper.to_h)
     end
 
     def test_dig
-      decorator = Response.decorate(response)
+      wrapper = Response.wrap(response)
 
-      assert(decorator.dig("foo"))
+      assert(wrapper.dig("foo"))
     end
 
     def test_parses_with_custom_parser
-      decorator = Response.decorate(
+      wrapper = Response.wrap(
         response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
       )
 
-      assert_equal(payload_with_symbolized_keys, decorator.parse)
+      assert_equal(payload_with_symbolized_keys, wrapper.parse)
     end
 
     def test_to_h_with_custom_parser
-      decorator = Response.decorate(
+      wrapper = Response.wrap(
         response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
       )
 
-      assert_equal(payload_with_symbolized_keys, decorator.to_h)
+      assert_equal(payload_with_symbolized_keys, wrapper.to_h)
     end
 
     def test_dig_with_custom_parser
-      decorator = Response.decorate(
+      wrapper = Response.wrap(
         response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
       )
 
-      assert(decorator.dig(:foo))
+      assert(wrapper.dig(:foo))
     end
 
     def test_raises_error_on_client_error
@@ -57,7 +57,7 @@ module Peddler
       )
 
       assert_raises(Peddler::Error) do
-        Response.decorate(response)
+        Response.wrap(response)
       end
     end
 
@@ -71,8 +71,14 @@ module Peddler
       )
 
       assert_raises(Peddler::Error) do
-        Response.decorate(response)
+        Response.wrap(response)
       end
+    end
+
+    def test_decorate_deprecation_still_works
+      wrapper = Response.decorate(response)
+
+      assert_equal(payload, wrapper.parse)
     end
 
     private

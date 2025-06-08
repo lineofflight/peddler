@@ -124,7 +124,7 @@ module Peddler
 
         response = http.send(method, uri, **options)
 
-        Response.decorate(response, parser:)
+        Response.wrap(response, parser:)
       end
     end
 

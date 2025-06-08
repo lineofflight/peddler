@@ -20,7 +20,7 @@ module Peddler
       def upload_feed_document(upload_url, feed_content, content_type)
         response = HTTP.headers("content-type" => content_type).put(upload_url, body: feed_content)
 
-        Response.decorate(response, parser:)
+        Response.wrap(response, parser:)
       end
 
       # Convenience method to download result feed content from a signed download_url
@@ -33,7 +33,7 @@ module Peddler
       def download_result_feed_document(download_url)
         response = HTTP.get(download_url)
 
-        Response.decorate(response, parser:)
+        Response.wrap(response, parser:)
       end
     end
   end

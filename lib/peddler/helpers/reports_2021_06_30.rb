@@ -30,7 +30,7 @@ module Peddler
       def download_report_document_from_url(download_url)
         response = HTTP.get(download_url)
 
-        Response.decorate(response, parser:)
+        Response.wrap(response, parser:)
       end
     end
   end
