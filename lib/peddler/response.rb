@@ -51,9 +51,9 @@ module Peddler
       # @param [HTTP::Response] response
       # @param [nil, #call] parser (if any)
       # @return [ResponseDecorator]
-      # @raise [Peddler::Error] if response has client error status
+      # @raise [Peddler::Error] if response has client or server error status
       def decorate(response, parser: nil)
-        if response.status.client_error?
+        if response.status.client_error? || response.status.server_error?
           error = Error.build(response)
           error ? raise(error) : raise(Error.new("Unexpected status code #{response.status.code}", response))
         end

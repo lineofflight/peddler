@@ -47,6 +47,34 @@ module Peddler
       assert(decorator.dig(:foo))
     end
 
+    def test_raises_error_on_client_error
+      response = HTTP::Response.new(
+        body: '{"errors":[{"code":"InvalidInput","message":"Invalid input"}]}',
+        headers: { "Content-Type" => "application/json" },
+        status: 400,
+        version: "1.1",
+        request: nil,
+      )
+
+      assert_raises(Peddler::Error) do
+        Response.decorate(response)
+      end
+    end
+
+    def test_raises_error_on_server_error
+      response = HTTP::Response.new(
+        body: '{"errors":[{"code":"InternalFailure","message":"We encountered an internal error. Please try again."}]}',
+        headers: { "Content-Type" => "application/json" },
+        status: 500,
+        version: "1.1",
+        request: nil,
+      )
+
+      assert_raises(Peddler::Error) do
+        Response.decorate(response)
+      end
+    end
+
     private
 
     def response

@@ -32,7 +32,7 @@ module Peddler
     def request
       response = HTTP.post(URL, form: params)
 
-      if response.status.client_error?
+      if response.status.client_error? || response.status.server_error?
         error = Error.build(response)
         raise error if error
       end
