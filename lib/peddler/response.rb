@@ -55,7 +55,7 @@ module Peddler
       def wrap(response, parser: nil)
         if response.status.client_error? || response.status.server_error?
           error = Error.build(response)
-          error ? raise(error) : raise(Error.new("#{response.status.code} #{response.status.reason}", response))
+          error ? raise(error) : raise(Error.new(response.status, response))
         end
 
         new(response).tap do |wrapper|
