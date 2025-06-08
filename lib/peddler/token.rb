@@ -34,7 +34,7 @@ module Peddler
 
       if response.status.client_error? || response.status.server_error?
         error = Error.build(response)
-        raise error if error
+        error ? raise(error) : raise(Error.new("Unexpected status code #{response.status.code}", response))
       end
 
       response
