@@ -11,7 +11,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 ### General Development
 
 - Default (tests + lint): `bundle exec rake`
-- Lint (with autocorrect, preferred): `bundle exec rubocop -A`
+- Lint (with autocorrect): `bundle exec rubocop -A`
 
 ### Code Generation
 
@@ -22,7 +22,6 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 
 - Run full test suite: `bundle exec rake test`
 - Run single test files: `bundle exec ruby -Itest test/path/to/test_file.rb`
-- Run with VCR cassettes for API testing
 
 ## Tech Stack
 
@@ -59,54 +58,24 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - Provide clear error handling and meaningful error messages
 - Support both sandbox and production environments
 
-## General Development Practices & Expectations
+## Development Practices
 
-- **Linting**:
+### Testing
 
-  - Run RuboCop after making changes to Ruby files
-  - Fix any linting errors and warnings
+- Use VCR cassettes for API integration tests
+- Test behavior, not implementation (don't test private methods directly)
+- Check Amazon API specifications in `selling-partner-api-models/models/`
 
-- **Testing**:
+### Git & Pull Requests
 
-  - Check if there are tests related to the feature you're working on
-  - Update them and add robust tests if needed
-  - Make sure all tests pass
-  - Use VCR cassettes for API integration tests
-  - Don't test private methods directly. Test behavior, not implementation
+- Work on feature branches, never directly on main
+- Use descriptive branch names (e.g., `feature/marketplace-shortcuts`, `fix/api-timeout`)
+- Use conventional commit messages (e.g., "feat: add new feature", "fix: resolve bug")
+- **NEVER use `git add .`** - always stage files explicitly by name
 
-- **Code Generation**:
+### Documentation
 
-  - All code in `lib/peddler/apis/` is auto-generated - don't edit manually
-  - To check Amazon API specifications, look in `selling-partner-api-models/models/`
-  - Generator templates are in `lib/generator/templates/` - edit these to change generated code structure
-  - Run `bin/generate-code` after modifying generator code or when Amazon updates their APIs
-
-- **Git Workflow**:
-
-  - Always work on feature branches, never directly on main
-  - Create descriptive branch names (e.g., `feature/marketplace-shortcuts`, `fix/api-timeout`)
-  - Make your changes and commit with conventional commit messages
-  - Push feature branch and create pull request
-  - After PR is merged, return to main and clean up
-  - **NEVER use `git add .`** - always stage files explicitly by name
-
-- **Pull Request Workflow**:
-
-  - Use conventional commit messages (e.g., "feat: add new feature", "fix: resolve bug")
-  - Follow the 50/72 rule: subject line ≤50 chars, body lines ≤72 chars
-  - Submit pull request with clear description of changes
-  - Wait for CI checks and code review
-  - Keep commits focused and atomic
-
-- **Code Style & Language**:
-
-  - Use casual tone and be concise
-  - Avoid excessive commenting - let the code speak for itself
-  - Write clear, direct code over clever code
-
-- **Documentation & Housekeeping**:
-
-  - Update the `README.md` if relevant
-  - Update the `CHANGELOG.md` when fixing bugs, adding features, or making breaking changes
-  - Use YARD documentation for public methods, but don't document private methods
-  - Prune and reorganize these docs (`CLAUDE.md` included) if needed. Don't let them become outdated or cluttered
+- Update `README.md` and `CHANGELOG.md` when relevant
+- Use YARD documentation for public methods only
+- Write clear, direct code over clever code
+- Avoid excessive commenting - let the code speak for itself
