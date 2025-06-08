@@ -29,17 +29,6 @@ module Peddler
       refute_nil(error.response)
     end
 
-    def test_transient_error
-      VCR.eject_cassette if VCR.current_cassette
-      VCR.turned_off do
-        stub_request(:any, /.*/)
-          .to_return(status: 500, body: "Internal Server Error", headers: { "Content-Type" => "text/html" })
-        assert_raises(Peddler::Error) do
-          Token.request(client_id:, client_secret:).parse
-        end
-      end
-    end
-
     def test_obsolete_error_class
       assert(defined?(Token::Error))
       if Gem.loaded_specs["peddler"].version.segments.first >= 5

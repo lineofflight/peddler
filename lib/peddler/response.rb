@@ -11,7 +11,7 @@ require "peddler/error"
 # HTTP::StatusError for client/server errors. This would simplify our error handling:
 #
 # Current approach:
-#   - Manually check response.status.client_error? in Response.decorate
+#   - Manually check response.status.client_error? in Response.wrap
 #   - Parse error response body to create specific Peddler::Error subclasses
 #   - Fall back to raising generic Peddler::Error if parsing fails (e.g., no Nokogiri)
 #
@@ -46,21 +46,27 @@ module Peddler
     def_delegator :to_h, :dig
 
     class << self
-      # Decorates an HTTP::Response with error handling
+      # Wraps an HTTP::Response with error handling and parsing capabilities
       #
       # @param [HTTP::Response] response
       # @param [nil, #call] parser (if any)
-      # @return [ResponseDecorator]
+      # @return [Response]
       # @raise [Peddler::Error] if response has client or server error status
-      def decorate(response, parser: nil)
+      def wrap(response, parser: nil)
         if response.status.client_error? || response.status.server_error?
           error = Error.build(response)
-          error ? raise(error) : raise(Error.new("Unexpected status code #{response.status.code}", response))
+          error ? raise(error) : raise(Error.new(response.status, response))
         end
 
-        new(response).tap do |decorator|
-          decorator.parser = parser
+        new(response).tap do |wrapper|
+          wrapper.parser = parser
         end
+      end
+
+      # @deprecated Use {.wrap} instead
+      def decorate(...)
+        warn("Response.decorate is deprecated and will be removed in v5.0. Use Response.wrap instead.", uplevel: 1)
+        wrap(...)
       end
     end
 

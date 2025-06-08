@@ -2,7 +2,7 @@
 
 require "http"
 
-require "peddler/error"
+require "peddler/response"
 
 module Peddler
   # Requests refresh and access tokens that authorize your application to take actions on behalf of a selling partner.
@@ -31,13 +31,7 @@ module Peddler
 
     def request
       response = HTTP.post(URL, form: params)
-
-      if response.status.client_error? || response.status.server_error?
-        error = Error.build(response)
-        error ? raise(error) : raise(Error.new("Unexpected status code #{response.status.code}", response))
-      end
-
-      response
+      Response.wrap(response)
     end
 
     def grant_type
