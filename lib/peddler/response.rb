@@ -55,7 +55,7 @@ module Peddler
       def wrap(response, parser: nil)
         if response.status.client_error? || response.status.server_error?
           error = Error.build(response)
-          error ? raise(error) : raise(Error.new("Unexpected status code #{response.status.code}", response))
+          error ? raise(error) : raise(Error.new("#{response.status.code} #{response.status.reason}", response))
         end
 
         new(response).tap do |wrapper|
@@ -64,8 +64,9 @@ module Peddler
       end
 
       # @deprecated Use {.wrap} instead
-      def decorate(response, parser: nil)
-        wrap(response, parser: parser)
+      def decorate(...)
+        warn("Response.decorate is deprecated and will be removed in v5.0. Use Response.wrap instead.", uplevel: 1)
+        wrap(...)
       end
     end
 

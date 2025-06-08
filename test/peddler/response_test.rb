@@ -81,6 +81,35 @@ module Peddler
       assert_equal(payload, wrapper.parse)
     end
 
+    def test_decorate_deprecation_warning
+      assert_output(nil, /Response\.decorate is deprecated/) do
+        Response.decorate(response)
+      end
+    end
+
+    def test_deprecation_removal_reminder
+      if Gem.loaded_specs["peddler"].version.segments.first >= 5
+        flunk("Response.decorate should have been removed in v5.0. Please delete it now.")
+      end
+    end
+
+    def test_error_message_includes_status_reason
+      response = HTTP::Response.new(
+        body: "plain text error",
+        headers: { "Content-Type" => "text/plain" },
+        status: 404,
+        version: "1.1",
+        request: nil,
+      )
+
+      error = assert_raises(Peddler::Error) do
+        Response.wrap(response)
+      end
+
+      assert_includes(error.message, "404")
+      assert_includes(error.message, "Not Found")
+    end
+
     private
 
     def response
