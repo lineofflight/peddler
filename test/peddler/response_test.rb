@@ -76,7 +76,10 @@ module Peddler
     end
 
     def test_decorate_deprecation_still_works
-      wrapper = Response.decorate(response)
+      wrapper = nil
+      assert_output(nil, /Response\.decorate is deprecated/) do
+        wrapper = Response.decorate(response)
+      end
 
       assert_equal(payload, wrapper.parse)
     end
