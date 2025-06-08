@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- **BREAKING**: Both client errors (4xx) and server errors (5xx) now raise `Peddler::Error` exceptions. Previously, server errors would return response objects instead of raising exceptions, which could lead to silent failures.
 - **BREAKING**: Client errors (4xx) now always raise `Peddler::Error` exceptions. Previously, when XML error parsing failed (e.g., Nokogiri unavailable), client errors would return response objects instead of raising.
 
 ### [4.4.0] - 2025-05-30
