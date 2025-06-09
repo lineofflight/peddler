@@ -29,7 +29,7 @@ module Peddler
         # Check for HTTP errors and raise custom Peddler errors
         if response.status >= 400
           error = Error.build(response)
-          raise error || Error.new("HTTP #{response.status}", response)
+          raise error || Error.new(response.status, response)
         end
 
         new(response).tap do |wrapper|
