@@ -31,11 +31,8 @@ module Peddler
     end
 
     def request
-      response = HTTP.use(:raise_error).post(URL, form: params)
+      response = HTTP.post(URL, form: params)
       Response.wrap(response)
-    rescue HTTP::StatusError => e
-      error = Error.build(e.response)
-      raise error || Error.new(e.message, e.response)
     end
 
     def grant_type
