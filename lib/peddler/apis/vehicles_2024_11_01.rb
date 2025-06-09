@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # The Selling Partner API for Automotive.
-    #
     # The Selling Partner API for Automotive provides programmatic access to information needed by selling partners to
     # provide compatibility information about their listed products.
     class Vehicles20241101 < API
       # Get the latest collection of vehicles
-      #
       # @note This operation can make a static sandbox call.
       # @param page_token [String] A token to fetch a certain page when there are multiple pages worth of results.
       # @param marketplace_id [String] An identifier for the marketplace in which the resource operates.

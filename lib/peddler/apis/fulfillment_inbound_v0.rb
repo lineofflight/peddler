@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # Selling Partner API for Fulfillment Inbound
-    #
     # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
     # shipments of inventory to Amazon's fulfillment network.
     class FulfillmentInboundV0 < API
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.
-      #
       # @note This operation can make a static sandbox call.
       # @param ship_to_country_code [String] The country code of the country to which the items will be shipped. Note
       #   that labeling requirements and item preparation instructions can vary by country.
@@ -47,7 +45,6 @@ module Peddler
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
@@ -92,7 +89,6 @@ module Peddler
       # Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading
       # operation returns PDF document data for printing a bill of lading for an Amazon-partnered Less Than
       # Truckload/Full Truckload (LTL/FTL) inbound shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] A shipment identifier originally returned by the createInboundShipmentPlan
       #   operation.
@@ -105,7 +101,6 @@ module Peddler
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_status_list [Array<String>] A list of ShipmentStatus values. Used to select shipments with a
       #   current status that matches the status values that you specify.
@@ -142,7 +137,6 @@ module Peddler
       end
 
       # Returns a list of items in a specified inbound shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] A shipment identifier used for selecting items in a specific inbound shipment.
       # @param marketplace_id [String] Deprecated. Do not use.
@@ -159,7 +153,6 @@ module Peddler
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
       # time frame.
-      #
       # @note This operation can make a static sandbox call.
       # @param last_updated_after [String] A date used for selecting inbound shipment items that were last updated after
       #   (or at) a specified time. The selection includes updates made by Amazon and by the seller.

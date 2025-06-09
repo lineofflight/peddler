@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Catalog Items
-    #
     # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
     # catalog.
     class CatalogItemsV0 < API
       # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for the item.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.

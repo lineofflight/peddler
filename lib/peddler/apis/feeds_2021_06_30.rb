@@ -12,13 +12,11 @@ module Peddler
 
   module APIs
     # Selling Partner API for Feeds
-    #
     # The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
     class Feeds20210630 < API
       include Peddler::Helpers::Feeds20210630
 
       # Returns feed details for the feeds that match the filters that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param feed_types [Array<String>] A list of feed types used to filter feeds. When feedTypes is provided, the
       #   other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also
@@ -54,7 +52,6 @@ module Peddler
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the feed.
       # @param rate_limit [Float] Requests per second
@@ -69,7 +66,6 @@ module Peddler
       # are returned in subsequent calls to the
       # [`getFeed`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#getfeed) and
       # [`getFeeds`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#getfeeds) operations.
-      #
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
@@ -82,7 +78,6 @@ module Peddler
       end
 
       # Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
       #   ID.
@@ -98,7 +93,6 @@ module Peddler
       # the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call
       # to the [`createFeed`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#createfeed)
       # operation.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Specifies the content type for the createFeedDocument operation.
       # @param rate_limit [Float] Requests per second
@@ -110,7 +104,6 @@ module Peddler
       end
 
       # Returns the information required for retrieving a feed document's contents.
-      #
       # @note This operation can make a static sandbox call.
       # @param feed_document_id [String] The identifier of the feed document.
       # @param rate_limit [Float] Requests per second

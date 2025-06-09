@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Listings Items
-    #
     # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
     # you use to retrieve the information about Amazon product types needed to use the Listings Items API. For more
@@ -21,7 +20,6 @@ module Peddler
       # Delete a listings item for a selling partner. **Note:** The parameters associated with this operation may
       # contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when
       # encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
       # @param sku [String] A selling partner provided identifier for an Amazon listing.
@@ -45,7 +43,6 @@ module Peddler
       # patched. Patching nested attributes is not supported. **Note:** The parameters associated with this operation
       # may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when
       # encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
       # @param sku [String] A selling partner provided identifier for an Amazon listing.
@@ -70,7 +67,6 @@ module Peddler
       # associated with this operation may contain special characters that must be encoded to successfully call the API.
       # To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
       # @param sku [String] A selling partner provided identifier for an Amazon listing.

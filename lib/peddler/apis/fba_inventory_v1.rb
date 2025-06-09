@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for FBA Inventory
-    #
     # The Selling Partner API for FBA Inventory lets you programmatically retrieve information about inventory in
     # Amazon's fulfillment network.
     class FBAInventoryV1 < API
@@ -26,7 +25,6 @@ module Peddler
       # returns inventory summaries for only the specified sellerSku. Note: The parameters associated with this
       # operation may contain special characters that must be encoded to successfully call the API. To avoid errors with
       # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and
       #   quantities. Otherwise, returns inventory summaries only (default value).
@@ -65,7 +63,6 @@ module Peddler
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a
       # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param create_inventory_item_request_body [Hash] CreateInventoryItem Request Body Parameter.
       # @return [Peddler::Response] The API response
@@ -81,7 +78,6 @@ module Peddler
       # Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a
       # sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API
       # sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_sku [String] A single seller SKU used for querying the specified seller SKU inventory summaries.
       # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
@@ -101,7 +97,6 @@ module Peddler
       # environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param x_amzn_idempotency_token [String] A unique token/requestId provided with each call to ensure idempotency.
       # @param add_inventory_request_body [Hash] List of items to add to Sandbox inventory.

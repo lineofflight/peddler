@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # The Selling Partner API for third party application integrations.
-    #
     # With the AppIntegrations API v2024-04-01, you can send notifications to Amazon Selling Partners and display the
     # notifications in Seller Central.
     class ApplicationIntegrations20240401 < API
       # Create a notification for sellers in Seller Central.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body for the `createNotification` operation.
       # @param rate_limit [Float] Requests per second
@@ -28,7 +26,6 @@ module Peddler
       end
 
       # Remove your application's notifications from the Appstore notifications dashboard.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body for the `deleteNotifications` operation.
       # @param rate_limit [Float] Requests per second
@@ -40,7 +37,6 @@ module Peddler
       end
 
       # Records the seller's response to a notification.
-      #
       # @note This operation can make a static sandbox call.
       # @param notification_id [String] A `notificationId` uniquely identifies a notification.
       # @param body [Hash] The request body for the `recordActionFeedback` operation.

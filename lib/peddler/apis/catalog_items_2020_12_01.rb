@@ -11,14 +11,12 @@ module Peddler
 
   module APIs
     # Selling Partner API for Catalog Items
-    #
     # The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon
     # catalog. For more information, see the
     # {https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide Catalog Items API Use
     # Case Guide}.
     class CatalogItems20201201 < API
       # Search for and return a list of Amazon catalog items and associated information.
-      #
       # @note This operation can make a static sandbox call.
       # @param keywords [Array<String>] A comma-delimited list of words or item identifiers to search the Amazon catalog
       #   for.
@@ -55,7 +53,6 @@ module Peddler
       end
 
       # Retrieves details for an item in the Amazon catalog.
-      #
       # @note This operation can make a static sandbox call.
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
       # @param marketplace_ids [Array<String>] A comma-delimited list of Amazon marketplace identifiers. Data sets in

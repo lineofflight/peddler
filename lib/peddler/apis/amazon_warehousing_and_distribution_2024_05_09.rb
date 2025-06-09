@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # The Selling Partner API for Amazon Warehousing and Distribution
-    #
     # The Selling Partner API for Amazon Warehousing and Distribution (AWD) provides programmatic access to information
     # about AWD shipments and inventory.
     class AmazonWarehousingAndDistribution20240509 < API
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
       # shipment per order.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Payload for creating an inbound order.
       # @param rate_limit [Float] Requests per second
@@ -29,7 +27,6 @@ module Peddler
       end
 
       # Retrieves an AWD inbound order.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order that you want to retrieve.
       # @param rate_limit [Float] Requests per second
@@ -42,7 +39,6 @@ module Peddler
 
       # Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the
       # `packagesToInbound`, `originAddress` and `preferences` attributes.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order that you want to update.
       # @param body [Hash] Represents an AWD inbound order.
@@ -55,7 +51,6 @@ module Peddler
       end
 
       # Cancels an AWD Inbound order and its associated shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order you want to cancel.
       # @param rate_limit [Float] Requests per second
@@ -67,7 +62,6 @@ module Peddler
       end
 
       # Confirms an AWD inbound order in `DRAFT` status.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] The ID of the inbound order that you want to confirm.
       # @param rate_limit [Float] Requests per second
@@ -79,7 +73,6 @@ module Peddler
       end
 
       # Retrieves an AWD inbound shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] ID for the shipment. A shipment contains the cases being inbounded.
       # @param sku_quantities [String] If equal to `SHOW`, the response includes the shipment SKU quantity details.
@@ -97,7 +90,6 @@ module Peddler
 
       # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
       # status is `GENERATED`, then the label URL is available.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] ID for the shipment.
       # @param page_type [String] Page type for the generated labels. The default is `PLAIN_PAPER`.
@@ -116,7 +108,6 @@ module Peddler
       end
 
       # Updates transport details for an AWD shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The shipment ID.
       # @param body [Hash] Transportation details for the shipment.
@@ -130,7 +121,6 @@ module Peddler
 
       # Determines if the packages you specify are eligible for an AWD inbound order and contains error details for
       # ineligible packages.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Represents the packages you want to inbound.
       # @param rate_limit [Float] Requests per second
@@ -143,7 +133,6 @@ module Peddler
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
       # optional filters.
-      #
       # @note This operation can make a static sandbox call.
       # @param sort_by [String] Field to sort results by. By default, the response will be sorted by UPDATED_AT.
       # @param sort_order [String] Sort the response in ASCENDING or DESCENDING order. By default, the response will be
@@ -178,7 +167,6 @@ module Peddler
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
-      #
       # @note This operation can make a static sandbox call.
       # @param sku [String] Filter by seller or merchant SKU for the item.
       # @param sort_order [String] Sort the response in `ASCENDING` or `DESCENDING` order.

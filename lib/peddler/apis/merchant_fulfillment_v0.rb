@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Merchant Fulfillment
-    #
     # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
     # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
     class MerchantFulfillmentV0 < API
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the `GetEligibleShipmentServices` operation.
       # @param rate_limit [Float] Requests per second
@@ -28,7 +26,6 @@ module Peddler
       end
 
       # Returns the shipment information for an existing shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment.
       # @param rate_limit [Float] Requests per second
@@ -40,7 +37,6 @@ module Peddler
       end
 
       # Cancel the shipment indicated by the specified shipment identifier.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The Amazon-defined shipment identifier for the shipment to cancel.
       # @param rate_limit [Float] Requests per second
@@ -52,7 +48,6 @@ module Peddler
       end
 
       # Create a shipment with the information provided.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the `CreateShipment` operation.
       # @param rate_limit [Float] Requests per second
@@ -65,7 +60,6 @@ module Peddler
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
       # shipping.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request schema for the `GetAdditionalSellerInputs` operation.
       # @param rate_limit [Float] Requests per second

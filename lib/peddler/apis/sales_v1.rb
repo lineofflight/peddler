@@ -11,11 +11,9 @@ module Peddler
 
   module APIs
     # Selling Partner API for Sales
-    #
     # The Selling Partner API for Sales provides APIs related to sales performance.
     class SalesV1 < API
       # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_ids [Array<String>] A marketplace identifier. This specifies the marketplace in which the
       #   order was placed. Only one marketplace can be specified. For example, ATVPDKIKX0DER indicates the US

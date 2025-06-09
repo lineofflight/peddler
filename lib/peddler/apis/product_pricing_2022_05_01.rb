@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Pricing
-    #
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer pricing
     # information for Amazon Marketplace products. For more information, refer to the [Product Pricing v2022-05-01 Use
     # Case Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
@@ -22,7 +21,6 @@ module Peddler
       # called the featured offer expected price (FOEP). Featured offer is not guaranteed because competing offers might
       # change. Other offers might be featured based on factors such as fulfillment capabilities to a specific customer.
       # The response to an unsuccessful request includes the available error text.
-      #
       # @note This operation can make a static sandbox call.
       # @param get_featured_offer_expected_price_batch_request_body [Hash] The batch of `getFeaturedOfferExpectedPrice`
       #   requests.
@@ -38,7 +36,6 @@ module Peddler
 
       # Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId`
       # combination.
-      #
       # @note This operation can make a static sandbox call.
       # @param requests [Hash] The batch of `getCompetitiveSummary` requests.
       # @param rate_limit [Float] Requests per second

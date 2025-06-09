@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # The Selling Partner API for Amazon Seller Wallet Open Banking API
-    #
     # The Selling Partner API for Seller Wallet (Seller Wallet API) provides financial information that is relevant to a
     # seller's Seller Wallet account. You can obtain financial events, balances, and transfer schedules for Seller
     # Wallet accounts. You can also schedule and initiate transactions.
     class SellerWallet20240301 < API
       # Get all Seller Wallet accounts for a given seller.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace for which items are returned. The marketplace ID is the globally
       #   unique identifier of a marketplace. To find the ID for your marketplace, refer to [Marketplace
@@ -33,7 +31,6 @@ module Peddler
       end
 
       # Retrieve an Amazon Seller Wallet bank account by Amazon account identifier.
-      #
       # @note This operation can make a static sandbox call.
       # @param account_id [String] The ID of the Amazon Seller Wallet account.
       # @return [Peddler::Response] The API response
@@ -44,7 +41,6 @@ module Peddler
       end
 
       # Retrieve the balance in a given Amazon Seller Wallet bank account.
-      #
       # @note This operation can make a static sandbox call.
       # @param account_id [String] The ID of the Amazon Seller Wallet account.
       # @return [Peddler::Response] The API response
@@ -55,7 +51,6 @@ module Peddler
       end
 
       # Retrieve a list of potential fees on a transaction.
-      #
       # @note This operation can make a static sandbox call.
       # @param source_country_code [String] Country code of the source transaction account in ISO 3166 format.
       # @param source_currency_code [String] Currency code of the source transaction country in ISO 4217 format.
@@ -79,7 +74,6 @@ module Peddler
       end
 
       # Retrieve a list of transactions for a given Amazon Seller Wallet bank account.
-      #
       # @note This operation can make a static sandbox call.
       # @param account_id [String] The ID of the Amazon Seller Wallet account.
       # @param next_page_token [String] A token that you use to retrieve the next page of results. The response includes
@@ -98,7 +92,6 @@ module Peddler
       end
 
       # Create a transaction request from an Amazon Seller Wallet account to another customer-provided account.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The payload of the request
       # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
@@ -111,7 +104,6 @@ module Peddler
       end
 
       # Find a transaction by the Amazon transaction identifier.
-      #
       # @note This operation can make a static sandbox call.
       # @param transaction_id [String] The ID of the Amazon Seller Wallet transaction.
       # @return [Peddler::Response] The API response
@@ -123,7 +115,6 @@ module Peddler
 
       # Returns all transfer schedules of a given Amazon Seller Wallet bank account with the schedule ID in response if
       # present.
-      #
       # @note This operation can make a static sandbox call.
       # @param account_id [String] The ID of the Amazon Seller Wallet account.
       # @param next_page_token [String] A token that you use to retrieve the next page of results. The response includes
@@ -143,7 +134,6 @@ module Peddler
       end
 
       # Create a transfer schedule request from an Amazon Seller Wallet account to another customer-provided account.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The payload of the request.
       # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
@@ -156,7 +146,6 @@ module Peddler
       end
 
       # Update transfer schedule information. Returns a transfer belonging to the updated scheduled transfer request.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The payload of the scheduled transfer request that is to be updated.
       # @param dest_account_digital_signature [String] Digital signature for the destination bank account details.
@@ -169,7 +158,6 @@ module Peddler
       end
 
       # Find a particular Amazon Seller Wallet account transfer schedule.
-      #
       # @note This operation can make a static sandbox call.
       # @param transfer_schedule_id [String] The schedule ID of the Amazon Seller Wallet transfer.
       # @return [Peddler::Response] The API response
@@ -181,7 +169,6 @@ module Peddler
 
       # Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided
       # account.
-      #
       # @note This operation can make a static sandbox call.
       # @param transfer_schedule_id [String] A unique reference ID for a scheduled transfer.
       # @return [Peddler::Response] The API response

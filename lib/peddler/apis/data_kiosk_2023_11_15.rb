@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # Selling Partner API for Data Kiosk
-    #
     # The Selling Partner API for Data Kiosk lets you submit GraphQL queries from a variety of schemas to help selling
     # partners manage their businesses.
     class DataKiosk20231115 < API
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
       # details about query retention.
-      #
       # @note This operation can make a static sandbox call.
       # @param processing_statuses [Array<String>] A list of processing statuses used to filter queries.
       # @param page_size [Integer] The maximum number of queries to return in a single call.
@@ -51,7 +49,6 @@ module Peddler
       # containing that field will be retained. When a query contains multiple fields with different retentions, the
       # shortest (minimum) retention is applied. The retention of a query's resulting documents always matches the
       # retention of the query.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request.
       # @param rate_limit [Float] Requests per second
@@ -66,7 +63,6 @@ module Peddler
       # (`IN_QUEUE`, `IN_PROGRESS`) can be cancelled. Cancelling a query that already has a `processingStatus` of
       # `CANCELLED` will no-op. Cancelled queries are returned in subsequent calls to the `getQuery` and `getQueries`
       # operations.
-      #
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The identifier for the query. This identifier is unique only in combination with a
       #   selling partner account ID.
@@ -80,7 +76,6 @@ module Peddler
 
       # Returns query details for the query specified by the `queryId` parameter. See the `createQuery` operation for
       # details about query retention.
-      #
       # @note This operation can make a static sandbox call.
       # @param query_id [String] The query identifier.
       # @param rate_limit [Float] Requests per second
@@ -93,7 +88,6 @@ module Peddler
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
       # operation for details about document retention.
-      #
       # @note This operation can make a static sandbox call.
       # @param document_id [String] The identifier for the Data Kiosk document.
       # @param rate_limit [Float] Requests per second

@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Messaging
-    #
     # With the Messaging API you can build applications that send messages to buyers. You can get a list of message
     # types that are available for an order that you specify, then call an operation that sends a message to the buyer
     # for that order. The Messaging API returns responses that are formed according to the <a
@@ -20,7 +19,6 @@ module Peddler
       # Returns a list of message types that are available for an order that you specify. A message type is represented
       # by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to
       # call an operation that sends a message.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
       #   of available message types.
@@ -39,7 +37,6 @@ module Peddler
 
       # Sends a message asking a buyer to provide or verify customization details such as name spelling, images,
       # initials, etc.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -58,7 +55,6 @@ module Peddler
       end
 
       # Sends a message to a buyer to arrange a delivery or to confirm contact information for making a delivery.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -78,7 +74,6 @@ module Peddler
 
       # Sends a critical message that contains documents that a seller is legally obligated to provide to the buyer.
       # This message should only be used to deliver documents that are required by law.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -98,7 +93,6 @@ module Peddler
 
       # Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be
       # sent after the seller has resolved the buyer's problem.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -116,7 +110,6 @@ module Peddler
       end
 
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -136,7 +129,6 @@ module Peddler
 
       # Sends a message to contact a Home Service customer to arrange a service call or to gather information prior to a
       # service call.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -156,7 +148,6 @@ module Peddler
 
       # Sends a message to a buyer to provide details about an Amazon Motors order. This message can only be sent by
       # Amazon Motors sellers.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -175,7 +166,6 @@ module Peddler
       end
 
       # Sends a message to a buyer to provide details about warranty information on a purchase in their order.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -194,7 +184,6 @@ module Peddler
       end
 
       # Returns a response containing attributes related to an order. This includes buyer preferences.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -213,7 +202,6 @@ module Peddler
 
       # Sends a buyer a message to share a digital access key that is required to utilize digital content in their
       # order.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -233,7 +221,6 @@ module Peddler
 
       # Sends a critical message to a buyer that an unexpected problem was encountered affecting the completion of the
       # order.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.
@@ -252,7 +239,6 @@ module Peddler
       end
 
       # Sends a message providing the buyer an invoice
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
       #   sent.

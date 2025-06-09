@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Direct Fulfillment Payments
-    #
     # The Selling Partner API for Direct Fulfillment Payments provides programmatic access to a direct fulfillment
     # vendor's invoice data.
     class VendorDirectFulfillmentPaymentsV1 < API
       # Submits one or more invoices for a vendor's direct fulfillment orders.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body containing one or more invoices for vendor orders.
       # @param rate_limit [Float] Requests per second

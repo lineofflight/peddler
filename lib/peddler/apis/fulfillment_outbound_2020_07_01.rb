@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # Selling Partner APIs for Fulfillment Outbound
-    #
     # The Selling Partner API for Fulfillment Outbound lets you create applications that help a seller fulfill
     # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
     # both potential and existing fulfillment orders.
     class FulfillmentOutbound20200701 < API
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetFulfillmentPreviewRequest parameter
       # @param rate_limit [Float] Requests per second
@@ -30,7 +28,6 @@ module Peddler
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
       # you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetDeliveryOffersRequest parameter
       # @param rate_limit [Float] Requests per second
@@ -43,7 +40,6 @@ module Peddler
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next
       # token parameter.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param query_start_date [String] A date used to select fulfillment orders that were last updated after (or at) a
       #   specified time. An update is defined as any change in fulfillment order status, including the creation of a
@@ -63,7 +59,6 @@ module Peddler
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
       # address.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] CreateFulfillmentOrderRequest parameter
       # @param rate_limit [Float] Requests per second
@@ -76,7 +71,6 @@ module Peddler
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
       # order.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param package_number [Integer] The unencrypted package identifier returned by the `getFulfillmentOrder`
       #   operation.
@@ -94,7 +88,6 @@ module Peddler
       # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
       # may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to
       # [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_sku [String] The seller SKU for which return reason codes are required.
       # @param marketplace_id [String] The marketplace for which the seller wants return reason codes.
@@ -119,7 +112,6 @@ module Peddler
       end
 
       # Creates a fulfillment return.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] CreateFulfillmentReturnRequest parameter
       # @param seller_fulfillment_order_id [String] An identifier assigned by the seller to the fulfillment order at the
@@ -134,7 +126,6 @@ module Peddler
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
@@ -147,7 +138,6 @@ module Peddler
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] UpdateFulfillmentOrderRequest parameter
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
@@ -162,7 +152,6 @@ module Peddler
 
       # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
       # identifier.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
@@ -179,7 +168,6 @@ module Peddler
       # Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling
       # Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more
       # information.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
@@ -195,7 +183,6 @@ module Peddler
 
       # Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and
       # whether the seller for which you made the call is enrolled for each feature.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return the list of features.
       # @param rate_limit [Float] Requests per second
@@ -210,7 +197,6 @@ module Peddler
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return a list of the inventory that is eligible for
       #   the specified feature.
@@ -237,7 +223,6 @@ module Peddler
       # feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object. The
       # parameters for this operation may contain special characters that require URL encoding. To avoid errors with
       # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return the count.
       # @param feature_name [String] The name of the feature.

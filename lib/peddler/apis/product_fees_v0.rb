@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Product Fees
-    #
     # The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can
     # then account for those fees in your pricing.
     class ProductFeesV0 < API
@@ -27,7 +26,6 @@ module Peddler
       # up-to-date information. **Note:** When sellers use the `getMyFeesEstimateForSKU` operation with their
       # `SellerSKU`, they get accurate fees based on real item measurements, but only after they've sent their items to
       # Amazon.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param seller_sku [String] Used to identify an item in the given marketplace. SellerSKU is qualified by the
@@ -49,7 +47,6 @@ module Peddler
       # consult the store-specific fee schedule for the most up-to-date information. **Note:** When using the
       # `getMyFeesEstimateForASIN` operation with an ASIN, the fee estimates might be different. This is because these
       # estimates use the item's catalog size, which might not always match the actual size of the item sent to Amazon.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param asin [String] The Amazon Standard Identification Number (ASIN) of the item.
@@ -62,7 +59,6 @@ module Peddler
       end
 
       # Returns the estimated fees for a list of products.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash]
       # @param rate_limit [Float] Requests per second

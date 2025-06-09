@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # Selling Partner API for Uploads
-    #
     # The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such
     # as the A+ Content API and the Messaging API.
     class Uploads20201101 < API
       # Creates an upload destination, returning the information required to upload a file to the destination and to
       # programmatically access the file.
-      #
       # @param marketplace_ids [Array<String>] The marketplace ID is the globally unique identifier of a marketplace. To
       #   find the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).

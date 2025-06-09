@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # Amazon Shipping API
-    #
     # The Amazon Shipping API is designed to support outbound shipping use cases both for orders originating on
     # Amazon-owned marketplaces as well as external channels/marketplaces. With these APIs, you can request shipping
     # rates, create shipments, cancel shipments, and track shipments.
     class ShippingV2 < API
       # Returns the available shipping service offerings.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] GetRatesRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -32,7 +30,6 @@ module Peddler
 
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
       # details and documents.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] DirectPurchaseRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
@@ -55,7 +52,6 @@ module Peddler
       # purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the
       # 10 minutes have expired, you will receive an error response with the error code equal to "TOKEN_EXPIRED". If you
       # receive this error response, you must get the rates for the shipment again.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] PurchaseShipmentRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
@@ -71,7 +67,6 @@ module Peddler
       end
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] OneClickShipmentRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -85,7 +80,6 @@ module Peddler
       end
 
       # Returns tracking information for a purchased shipment.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param tracking_id [String] A carrier-generated tracking identifier originally returned by the purchaseShipment
       #   operation.
@@ -106,7 +100,6 @@ module Peddler
       end
 
       # Returns the shipping documents associated with a package in a shipment.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
       # @param package_client_reference_id [String] The package client reference identifier originally provided in the
@@ -132,7 +125,6 @@ module Peddler
       end
 
       # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param shipment_id [String] The shipment identifier originally returned by the purchaseShipment operation.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -148,7 +140,6 @@ module Peddler
       # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
       # the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that
       # additional inputs are required for the rate (shipping offering) that you want to purchase.
-      #
       # @note This operation can make a static sandbox call.
       # @param request_token [String] The request token returned in the response to the getRates operation.
       # @param rate_id [String] The rate identifier for the shipping offering (rate) returned in the response to the
@@ -168,7 +159,6 @@ module Peddler
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
-      #
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
       # @param rate_limit [Float] Requests per second
@@ -182,7 +172,6 @@ module Peddler
       end
 
       # This API will return Get all carrier accounts for a merchant.
-      #
       # @param body [Hash] GetCarrierAccountsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -197,7 +186,6 @@ module Peddler
       end
 
       # This API associates/links the specified carrier account with the merchant.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param carrier_id [String] An identifier for the carrier with which the seller's account is being linked.
       # @param body [Hash] LinkCarrierAccountRequest body
@@ -212,7 +200,6 @@ module Peddler
       end
 
       # This API Unlink the specified carrier account with the merchant.
-      #
       # @param carrier_id [String] carrier Id to unlink with merchant.
       # @param body [Hash] UnlinkCarrierAccountRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -228,7 +215,6 @@ module Peddler
       end
 
       # This API Call to generate the collection form.
-      #
       # @param body [Hash] GenerateCollectionFormRequest body
       # @param x_amzn_idempotency_key [String] A unique value which the server uses to recognize subsequent retries of
       #   the same request.
@@ -246,7 +232,6 @@ module Peddler
       end
 
       # This API Call to get the history of the previously generated collection forms.
-      #
       # @param body [Hash] GetCollectionFormHistoryRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -262,7 +247,6 @@ module Peddler
 
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
       # with an eligible carrier for manifesting shall be returned.
-      #
       # @param body [Hash] GetUmanifestedShipmentsRequest body
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -277,7 +261,6 @@ module Peddler
       end
 
       # This API reprint a collection form.
-      #
       # @param collection_form_id [String] collection form Id to reprint a collection.
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
       #   AmazonShipping_UK.
@@ -292,7 +275,6 @@ module Peddler
       end
 
       # Returns a list of access points in proximity of input postal code.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param access_point_types [Array<String>] Access point types
       # @param country_code [String] Country code for access point
@@ -314,7 +296,6 @@ module Peddler
       end
 
       # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body for ndrFeedback operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is
@@ -328,7 +309,6 @@ module Peddler
       end
 
       # This API will be used to create claim for single eligible shipment.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body for the createClaim operation
       # @param x_amzn_shipping_business_id [String] Amazon shipping business to assume for this request. The default is

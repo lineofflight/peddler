@@ -11,14 +11,12 @@ module Peddler
 
   module APIs
     # The Selling Partner API for Finances
-    #
     # The Selling Partner API for Finances helps you obtain financial information relevant to a seller's business. You
     # can obtain financial events for a given order or date range without having to wait until a statement period
     # closes.
     class Finances20240619 < API
       # Returns transactions for the given parameters. It may take up to 48 hours for transactions to appear in your
       # transaction events.
-      #
       # @note This operation can make a static sandbox call.
       # @param posted_after [String] A date used for selecting transactions posted after (or at) a specified time. The
       #   date-time must be no later than two minutes before the request was submitted, in ISO 8601 date time format.

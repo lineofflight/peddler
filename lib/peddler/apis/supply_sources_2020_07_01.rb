@@ -11,11 +11,9 @@ module Peddler
 
   module APIs
     # Selling Partner API for Supply Sources
-    #
     # Manage configurations and capabilities of seller supply sources.
     class SupplySources20200701 < API
       # The path to retrieve paginated supply sources.
-      #
       # @note This operation can make a static sandbox call.
       # @param next_page_token [String] The pagination token to retrieve a specific page of results.
       # @param page_size [Number] The number of supply sources to return per paginated request.
@@ -31,7 +29,6 @@ module Peddler
       end
 
       # Create a new supply source.
-      #
       # @note This operation can make a static sandbox call.
       # @param payload [Hash] A request to create a supply source.
       # @return [Peddler::Response] The API response
@@ -43,7 +40,6 @@ module Peddler
       end
 
       # Retrieve a supply source.
-      #
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @return [Peddler::Response] The API response
@@ -54,7 +50,6 @@ module Peddler
       end
 
       # Update the configuration and capabilities of a supply source.
-      #
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identitier of a supply source.
       # @param payload [Hash]
@@ -67,7 +62,6 @@ module Peddler
       end
 
       # Archive a supply source, making it inactive. Cannot be undone.
-      #
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @return [Peddler::Response] The API response
@@ -78,7 +72,6 @@ module Peddler
       end
 
       # Update the status of a supply source.
-      #
       # @note This operation can make a static sandbox call.
       # @param supply_source_id [String] The unique identifier of a supply source.
       # @param payload [Hash]

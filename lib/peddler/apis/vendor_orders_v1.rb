@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Retail Procurement Orders
-    #
     # The Selling Partner API for Retail Procurement Orders provides programmatic access to vendor orders data.
     class VendorOrdersV1 < API
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
@@ -19,7 +18,6 @@ module Peddler
       # to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting
       # `includeDetails` to false. You can then use the `getPurchaseOrder` operation to receive details for a specific
       # purchase order.
-      #
       # @note This operation can make a static sandbox call.
       # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
       # @param created_after [String] Purchase orders that became available after this time will be included in the
@@ -71,7 +69,6 @@ module Peddler
       end
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param purchase_order_number [String] The purchase order identifier for the order that you want. Formatting
       #   Notes: 8-character alpha-numeric code.
@@ -84,7 +81,6 @@ module Peddler
       end
 
       # Submits acknowledgements for one or more purchase orders.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Submits acknowledgements for one or more purchase orders from a vendor.
       # @param rate_limit [Float] Requests per second
@@ -98,7 +94,6 @@ module Peddler
       # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
       # than 7 days. You can return a list of purchase order statuses using the available filters, or a single purchase
       # order status by providing the purchase order number.
-      #
       # @note This operation can make a static sandbox call.
       # @param limit [Integer] The limit to the number of records returned. Default value is 100 records.
       # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.

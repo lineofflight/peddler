@@ -11,11 +11,9 @@ module Peddler
 
   module APIs
     # Selling Partner API for Retail Procurement Payments
-    #
     # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
     class VendorInvoicesV1 < API
       # Submit new invoices to Amazon.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body containing the invoice data to submit.
       # @param rate_limit [Float] Requests per second

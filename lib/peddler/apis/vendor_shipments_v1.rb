@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Retail Procurement Shipments
-    #
     # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
     # vendors.
     class VendorShipmentsV1 < API
       # Submits one or more shipment confirmations for vendor orders.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] A request to submit shipment confirmation.
       # @param rate_limit [Float] Requests per second
@@ -28,7 +26,6 @@ module Peddler
       end
 
       # Submits one or more shipment request for vendor Orders.
-      #
       # @param body [Hash] A request to submit shipment request.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -42,7 +39,6 @@ module Peddler
 
       # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
       # related to shipment based on the filter parameters value that you specify.
-      #
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
       # @param sort_order [String] Sort in ascending or descending order by purchase order creation date.
       # @param next_token [String] Used for pagination when there are more shipments than the specified result size
@@ -129,7 +125,6 @@ module Peddler
       end
 
       # Returns small parcel shipment labels based on the filters that you specify.
-      #
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
       # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order.
       # @param next_token [String] A token that is used to retrieve the next page of results. The response includes

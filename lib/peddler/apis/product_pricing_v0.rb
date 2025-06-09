@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Pricing
-    #
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
     class ProductPricingV0 < API
@@ -19,7 +18,6 @@ module Peddler
       # associated with this operation may contain special characters that require URL encoding to call the API. To
       # avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
@@ -56,7 +54,6 @@ module Peddler
       # parameters associated with this operation may contain special characters that require URL encoding to call the
       # API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
@@ -88,7 +85,6 @@ module Peddler
       # Returns the lowest priced offers for a single SKU listing. **Note:** The parameters associated with this
       # operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs
       # when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
@@ -111,7 +107,6 @@ module Peddler
       end
 
       # Returns the lowest priced offers for a single item based on ASIN.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are
       #   returned.
@@ -133,7 +128,6 @@ module Peddler
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
-      #
       # @note This operation can make a static sandbox call.
       # @param get_item_offers_batch_request_body [Hash] The request associated with the `getItemOffersBatch` API call.
       # @param rate_limit [Float] Requests per second
@@ -146,7 +140,6 @@ module Peddler
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
-      #
       # @note This operation can make a static sandbox call.
       # @param get_listing_offers_batch_request_body [Hash] The request associated with the `getListingOffersBatch` API
       #   call.

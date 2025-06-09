@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Orders
-    #
     # Use the Orders Selling Partner API to programmatically retrieve order information. With this API, you can develop
     # fast, flexible, and custom applications to manage order synchronization, perform order research, and create
     # demand-based decision support tools. _Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders
@@ -21,7 +20,6 @@ module Peddler
       # Returns orders that are created or updated during the specified time period. If you want to return specific
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
       # in your request; it only impacts the pagination for the filtered orders response.
-      #
       # @note This operation can make a static sandbox call.
       # @param created_after [String] Use this date to select orders created after (or at) a specified time. Only orders
       #   placed after the specified time are returned. The date must be in [ISO
@@ -148,7 +146,6 @@ module Peddler
       end
 
       # Returns the order that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
@@ -160,7 +157,6 @@ module Peddler
       end
 
       # Returns buyer information for the order that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
@@ -172,7 +168,6 @@ module Peddler
       end
 
       # Returns the shipping address for the order that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
@@ -190,7 +185,6 @@ module Peddler
       # leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially
       # Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping
       # charges, gift status and promotions for the order items in the order.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
@@ -206,7 +200,6 @@ module Peddler
       end
 
       # Returns buyer information for the order items in the order that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param next_token [String] A string token returned in the response of your previous request.
@@ -222,7 +215,6 @@ module Peddler
       end
 
       # Update the shipment status for an order that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateShipmentStatus` operation.
@@ -236,7 +228,6 @@ module Peddler
       end
 
       # Returns regulated information for the order that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
@@ -248,7 +239,6 @@ module Peddler
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateVerificationStatus` operation.
@@ -262,7 +252,6 @@ module Peddler
       end
 
       # Updates the shipment confirmation status for a specified order.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param payload [Hash] Request body of `confirmShipment`.

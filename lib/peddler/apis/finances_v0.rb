@@ -11,14 +11,12 @@ module Peddler
 
   module APIs
     # Selling Partner API for Finances
-    #
     # The Selling Partner API for Finances helps you obtain financial information relevant to a seller's business. You
     # can obtain financial events for a given order, financial event group, or date range without having to wait until a
     # statement period closes. You can also obtain financial event groups for a given date range.
     class FinancesV0 < API
       # Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your
       # financial events.
-      #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
@@ -50,7 +48,6 @@ module Peddler
       # Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to
       # appear in your financial events. **Note:** This operation will only retrieve group's data for the past two
       # years. If a request is submitted for data spanning more than two years, an empty response is returned.
-      #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.
@@ -82,7 +79,6 @@ module Peddler
 
       # Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your
       # financial events.
-      #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
@@ -103,7 +99,6 @@ module Peddler
       # Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your
       # financial events. **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until in they
       # are released.
-      #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
       #   the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.

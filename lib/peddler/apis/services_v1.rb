@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Services
-    #
     # With the Services API, you can build applications that help service providers get and modify their service orders
     # and manage their resources.
     class ServicesV1 < API
       # Gets details of service job indicated by the provided `serviceJobID`.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] A service job identifier.
       # @param rate_limit [Float] Requests per second
@@ -28,7 +26,6 @@ module Peddler
       end
 
       # Cancels the service job indicated by the service job identifier specified.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param cancellation_reason_code [String] A cancel reason code that specifies the reason for cancelling a service
@@ -45,7 +42,6 @@ module Peddler
       end
 
       # Completes the service job indicated by the service job identifier specified.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param rate_limit [Float] Requests per second
@@ -57,7 +53,6 @@ module Peddler
       end
 
       # Gets service job details for the specified filter query.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_order_ids [Array<String>] List of service order ids for the query you want to perform.Max values
       #   supported 20.
@@ -119,7 +114,6 @@ module Peddler
       end
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param body [Hash] Add appointment operation input details.
@@ -132,7 +126,6 @@ module Peddler
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon defined service job identifier.
       # @param appointment_id [String] An existing appointment identifier for the Service Job.
@@ -147,7 +140,6 @@ module Peddler
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
       #   `getServiceJobs` operation of the Services API.
@@ -162,7 +154,6 @@ module Peddler
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] An Amazon-defined service job identifier. Get this value by calling the
       #   `getServiceJobs` operation of the Services API.
@@ -177,7 +168,6 @@ module Peddler
       end
 
       # Provides capacity slots in a format similar to availability records.
-      #
       # @note This operation can make a static sandbox call.
       # @param resource_id [String] Resource Identifier.
       # @param body [Hash] Request body.
@@ -196,7 +186,6 @@ module Peddler
       end
 
       # Provides capacity in fixed-size slots.
-      #
       # @note This operation can make a static sandbox call.
       # @param resource_id [String] Resource Identifier.
       # @param body [Hash] Request body.
@@ -215,7 +204,6 @@ module Peddler
       end
 
       # Update the schedule of the given resource.
-      #
       # @note This operation can make a static sandbox call.
       # @param resource_id [String] Resource (store) Identifier
       # @param body [Hash] Schedule details
@@ -232,7 +220,6 @@ module Peddler
       end
 
       # Create a reservation.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Reservation details
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
@@ -248,7 +235,6 @@ module Peddler
       end
 
       # Update a reservation.
-      #
       # @note This operation can make a static sandbox call.
       # @param reservation_id [String] Reservation Identifier
       # @param body [Hash] Reservation details
@@ -265,7 +251,6 @@ module Peddler
       end
 
       # Cancel a reservation.
-      #
       # @note This operation can make a static sandbox call.
       # @param reservation_id [String] Reservation Identifier
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
@@ -281,7 +266,6 @@ module Peddler
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
-      #
       # @note This operation can make a static sandbox call.
       # @param service_job_id [String] A service job identifier to retrive appointment slots for associated service.
       # @param marketplace_ids [Array<String>] An identifier for the marketplace in which the resource operates.
@@ -306,7 +290,6 @@ module Peddler
       end
 
       # Gets appointment slots as per the service context specified.
-      #
       # @note This operation can make a static sandbox call.
       # @param asin [String] ASIN associated with the service.
       # @param store_id [String] Store identifier defining the region scope to retrive appointment slots.
@@ -333,7 +316,6 @@ module Peddler
       end
 
       # Creates an upload destination.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Upload document operation input details.
       # @param rate_limit [Float] Requests per second

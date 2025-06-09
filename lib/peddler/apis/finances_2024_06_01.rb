@@ -11,14 +11,12 @@ module Peddler
 
   module APIs
     # The Selling Partner API for Transfers.
-    #
     # The Selling Partner API for Transfers enables selling partners to retrieve payment methods and initiate payouts
     # for their seller accounts. This API supports the following marketplaces: DE, FR, IT, ES, SE, NL, PL, and BE.
     class Finances20240601 < API
       # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
       # `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace
       # and account type within a 24-hour period.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The request body for the `initiatePayout` operation.
       # @param rate_limit [Float] Requests per second
@@ -30,7 +28,6 @@ module Peddler
       end
 
       # Returns the list of payment methods for the seller, which can be filtered by method type.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The identifier of the marketplace from which you want to retrieve payment
       #   methods. For the list of possible marketplace identifiers, refer to [Marketplace

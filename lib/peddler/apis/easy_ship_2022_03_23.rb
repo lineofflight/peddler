@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Easy Ship
-    #
     # Use the Selling Partner API for Easy Ship to build applications for sellers to manage and ship Amazon Easy Ship
     # orders. With this API, you can get available time slots, schedule and reschedule Easy Ship orders, and print
     # shipping labels, invoices, and warranties. To review the differences in Easy Ship operations by marketplace, refer
@@ -26,7 +25,6 @@ module Peddler
       # methods - see **Supported Handover Methods** in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
       # Marketplace Support Table}.
-      #
       # @note This operation can make a static sandbox call.
       # @param list_handover_slots_request [Hash] The request schema for the `listHandoverSlots` operation.
       # @param rate_limit [Float] Requests per second
@@ -40,7 +38,6 @@ module Peddler
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
       # and item information, and status.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon-defined order identifier. Identifies the order that the seller wants
       #   to deliver using Amazon Easy Ship.
@@ -67,7 +64,6 @@ module Peddler
       # response body. See the **Shipping Label**, **Invoice**, and **Warranty** columns in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
       # Marketplace Support Table} to see which documents are supported in each marketplace.
-      #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_package_request [Hash] The request schema for the `createScheduledPackage` operation.
       # @param rate_limit [Float] Requests per second
@@ -84,7 +80,6 @@ module Peddler
       # `patch` call. See the **Update Package** column in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
       # Marketplace Support Table} to see which marketplaces this operation is supported in.
-      #
       # @note This operation can make a static sandbox call.
       # @param update_scheduled_packages_request [Hash] The request schema for the `updateScheduledPackages` operation.
       # @param rate_limit [Float] Requests per second
@@ -110,7 +105,6 @@ module Peddler
       # entry for each order we couldn't process. Each entry is composed of an error message describing the reason of
       # the failure, so that sellers can take action. The table below displays the supported request and burst maximum
       # rates:
-      #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`
       #   operation.

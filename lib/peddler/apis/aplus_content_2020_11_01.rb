@@ -11,14 +11,12 @@ module Peddler
 
   module APIs
     # Selling Partner API for A+ Content Management
-    #
     # Use the A+ Content API to build applications that help selling partners add rich marketing content to their Amazon
     # product detail pages. Selling partners can use A+ content to share their brand and product story, which helps
     # buyers make informed purchasing decisions. Selling partners use content modules to add images and text.
     class AplusContent20201101 < API
       # Returns a list of all A+ Content documents, including metadata, that are assigned to a selling partner. To get
       # the actual contents of the A+ Content documents, call the `getContentDocument` operation.
-      #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
       #   the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -39,7 +37,6 @@ module Peddler
       end
 
       # Creates a new A+ Content document.
-      #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
       #   the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -59,7 +56,6 @@ module Peddler
       end
 
       # Returns an A+ Content document, if available.
-      #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
@@ -82,7 +78,6 @@ module Peddler
       end
 
       # Updates an existing A+ Content document.
-      #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
@@ -107,7 +102,6 @@ module Peddler
 
       # Returns a list of ASINs that are related to the specified A+ Content document, if available. If you don't
       # include the `asinSet` parameter, this operation returns all ASINs related to the content document.
-      #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
       #   any A+ Content identifier.
@@ -139,7 +133,6 @@ module Peddler
       # Replaces all ASINs related to the specified A+ Content document, if available. This operation can add or remove
       # ASINs, depending on the current set of related ASINs. Removing an ASIN will suspend the content document from
       # that ASIN.
-      #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
       #   any A+ content identifier.
@@ -164,7 +157,6 @@ module Peddler
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
-      #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
       #   the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -187,7 +179,6 @@ module Peddler
       end
 
       # Searches for A+ Content publishing records, if available.
-      #
       # @param marketplace_id [String] The marketplace ID is the globally unique identifier of a marketplace. To find
       #   the ID for your marketplace, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -211,7 +202,6 @@ module Peddler
       end
 
       # Submits an A+ Content document for review, approval, and publishing.
-      #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
       #   any A+ content identifier.
@@ -232,7 +222,6 @@ module Peddler
       end
 
       # Submits a request to suspend visible A+ Content. This doesn't delete the content document or the ASIN relations.
-      #
       # @param content_reference_key [String] The unique reference key for the A+ Content document. A content reference
       #   key cannot form a permalink and might change in the future. A content reference key is not guaranteed to match
       #   any A+ content identifier.

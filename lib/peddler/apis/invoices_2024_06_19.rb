@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # The Selling Partner API for Invoices.
-    #
     # Use the Selling Partner API for Invoices to retrieve and manage invoice-related operations, which can help selling
     # partners manage their bookkeeping processes.
     class Invoices20240619 < API
       # Returns marketplace-dependent schemas and their respective set of possible values.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace identifier.
       # @param rate_limit [Float] Requests per second
@@ -32,7 +30,6 @@ module Peddler
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
       # from the corresponding `createInvoicesExport` request.
-      #
       # @note This operation can make a static sandbox call.
       # @param invoices_document_id [String] The export document identifier.
       # @param rate_limit [Float] Requests per second
@@ -44,7 +41,6 @@ module Peddler
       end
 
       # Creates an invoice export request.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the export request.
       # @param rate_limit [Float] Requests per second
@@ -56,7 +52,6 @@ module Peddler
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The returned exports match the specified marketplace.
       # @param date_start [String] The earliest export creation date and time for exports that you want to include in
@@ -89,7 +84,6 @@ module Peddler
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param export_id [String] The unique identifier for the export.
       # @param rate_limit [Float] Requests per second
@@ -101,7 +95,6 @@ module Peddler
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param transaction_identifier_name [String] The name of the transaction identifier filter. If you provide a
       #   value for this field, you must also provide a value for the `transactionIdentifierId` field.Use the
@@ -161,7 +154,6 @@ module Peddler
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
       # to the response definition to get all the possible attributes. To get the full invoice, use the
       # `createInvoicesExport` operation to start an export request.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace from which you want the invoice.
       # @param invoice_id [String] The invoice identifier.

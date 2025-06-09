@@ -11,13 +11,11 @@ module Peddler
 
   module APIs
     # Selling Partner API for Direct Fulfillment Shipping
-    #
     # Use the Selling Partner API for Direct Fulfillment Shipping to access a direct fulfillment vendor's shipping data.
     class VendorDirectFulfillmentShipping20211228 < API
       # Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and
       # `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to
       # search must not be more than seven days.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
       #   contains orders for all warehouses.
@@ -49,7 +47,6 @@ module Peddler
       end
 
       # Creates a shipping label for a purchase order and returns a `transactionId` for reference.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body that contains the shipping labels data.
       # @param rate_limit [Float] Requests per second
@@ -61,7 +58,6 @@ module Peddler
       end
 
       # Returns a shipping label for the `purchaseOrderNumber` that you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping label.
       #   It should be the same `purchaseOrderNumber` that you received in the order.
@@ -74,7 +70,6 @@ module Peddler
       end
 
       # Creates shipping labels for a purchase order and returns the labels.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The purchase order number for which you want to return the shipping
       #   labels. It should be the same number as the `purchaseOrderNumber` in the order.
@@ -88,7 +83,6 @@ module Peddler
       end
 
       # Submits one or more shipment confirmations for vendor orders.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body containing the shipment confirmations data.
       # @param rate_limit [Float] Requests per second
@@ -102,7 +96,6 @@ module Peddler
       # This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment
       # status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their
       # order, when the package is outside of Amazon Network visibility.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body containing the shipment status update data.
       # @param rate_limit [Float] Requests per second
@@ -116,7 +109,6 @@ module Peddler
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must be no more than 7 days.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor warehouseId for order fulfillment. If not specified, the result
       #   will contain orders for all warehouses.
@@ -146,7 +138,6 @@ module Peddler
       end
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] Purchase order number of the shipment for which to return the invoice.
       # @param rate_limit [Float] Requests per second
@@ -159,7 +150,6 @@ module Peddler
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
       # must not be more than 7 days.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor `warehouseId` for order fulfillment. If not specified, the result
       #   contains orders for all warehouses.
@@ -189,7 +179,6 @@ module Peddler
       end
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The `purchaseOrderNumber` for the packing slip that you want.
       # @param rate_limit [Float] Requests per second
@@ -201,7 +190,6 @@ module Peddler
       end
 
       # Creates a container (pallet) label for the associated shipment package.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] Request body containing the container label data.
       # @param rate_limit [Float] Requests per second

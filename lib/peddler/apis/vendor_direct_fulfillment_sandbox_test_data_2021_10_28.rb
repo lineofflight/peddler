@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data
-    #
     # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
     # direct fulfillment sandbox test data.
     class VendorDirectFulfillmentSandboxTestData20211028 < API
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request payload containing parameters for generating test order data scenarios.
       # @return [Peddler::Response] The API response
@@ -28,7 +26,6 @@ module Peddler
 
       # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
       # successful, also returns the requested test order data.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param transaction_id [String] The transaction identifier returned in the response to the generateOrderScenarios
       #   operation.

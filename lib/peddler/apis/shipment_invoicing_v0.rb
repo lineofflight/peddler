@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Shipment Invoicing
-    #
     # The Selling Partner API for Shipment Invoicing helps you programmatically retrieve shipment invoice information in
     # the Brazil marketplace for a selling partner’s Fulfillment by Amazon (FBA) orders.
     class ShipmentInvoicingV0 < API
       # Returns the shipment details required to issue an invoice for the specified shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus
       #   notification. For information about subscribing to notifications, see the
@@ -31,7 +29,6 @@ module Peddler
       end
 
       # Submits a shipment invoice document for a given shipment.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The identifier for the shipment.
       # @param body [Hash]
@@ -44,7 +41,6 @@ module Peddler
       end
 
       # Returns the invoice status for the shipment you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param shipment_id [String] The shipment identifier for the shipment.
       # @param rate_limit [Float] Requests per second

@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Product Type Definitions
-    #
     # The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data
     # requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type
     # that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the
@@ -20,7 +19,6 @@ module Peddler
     # Type Definitions API Use Case Guide}.
     class ProductTypeDefinitions20200901 < API
       # Search for and return a list of Amazon product types that have definitions available.
-      #
       # @note This operation can make a static sandbox call.
       # @param keywords [Array<String>] A comma-delimited list of keywords to search product types. **Note:** Cannot be
       #   used with `itemName`.
@@ -48,7 +46,6 @@ module Peddler
       end
 
       # Retrieve an Amazon product type definition.
-      #
       # @note This operation can make a static sandbox call.
       # @param product_type [String] The Amazon product type name.
       # @param seller_id [String] A selling partner identifier. When provided, seller-specific requirements and values

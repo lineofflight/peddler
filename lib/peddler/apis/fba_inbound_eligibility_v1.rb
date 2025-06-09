@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for FBA Inbound Eligibilty
-    #
     # With the FBA Inbound Eligibility API, you can build applications that let sellers get eligibility previews for
     # items before shipping them to Amazon's fulfillment centers. With this API you can find out if an item is eligible
     # for inbound shipment to Amazon's fulfillment centers in a specific marketplace. You can also find out if an item
@@ -21,7 +20,6 @@ module Peddler
       # This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility
       # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
       # you want to determine the item's eligibility.
-      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_ids [Array<String>] The identifier for the marketplace in which you want to determine
       #   eligibility. Required only when program=INBOUND.

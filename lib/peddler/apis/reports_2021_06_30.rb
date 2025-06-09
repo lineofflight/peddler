@@ -12,14 +12,12 @@ module Peddler
 
   module APIs
     # Selling Partner API for Reports
-    #
     # The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling
     # partners manage their businesses.
     class Reports20210630 < API
       include Peddler::Helpers::Reports20210630
 
       # Returns report details for the reports that match the filters that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_types [Array<String>] A list of report types used to filter reports. Refer to [Report Type
       #   Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When
@@ -57,7 +55,6 @@ module Peddler
       end
 
       # Creates a report.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the report.
       # @param rate_limit [Float] Requests per second
@@ -70,7 +67,6 @@ module Peddler
 
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
       # reports are returned in subsequent calls to the `getReport` and `getReports` operations.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
@@ -83,7 +79,6 @@ module Peddler
       end
 
       # Returns report details (including the `reportDocumentId`, if available) for the report that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_id [String] The identifier for the report. This identifier is unique only in combination with a
       #   seller ID.
@@ -96,7 +91,6 @@ module Peddler
       end
 
       # Returns report schedule details that match the filters that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_types [Array<String>] A list of report types used to filter report schedules. Refer to [Report
       #   Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
@@ -113,7 +107,6 @@ module Peddler
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
       # will be cancelled and replaced with this one.
-      #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Information required to create the report schedule.
       # @param rate_limit [Float] Requests per second
@@ -125,7 +118,6 @@ module Peddler
       end
 
       # Cancels the report schedule that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
@@ -138,7 +130,6 @@ module Peddler
       end
 
       # Returns report schedule details for the report schedule that you specify.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_schedule_id [String] The identifier for the report schedule. This identifier is unique only in
       #   combination with a seller ID.
@@ -151,7 +142,6 @@ module Peddler
       end
 
       # Returns the information required for retrieving a report document's contents.
-      #
       # @note This operation can make a static sandbox call.
       # @param report_document_id [String] The identifier for the report document.
       # @param rate_limit [Float] Requests per second

@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Solicitations
-    #
     # With the Solicitations API you can build applications that send non-critical solicitations to buyers. You can get
     # a list of solicitation types that are available for an order that you specify, then call an operation that sends a
     # solicitation to the buyer for that order. Buyers cannot respond to solicitations sent by this API, and these
@@ -23,7 +22,6 @@ module Peddler
       # represented by an actions object, which contains a path and query parameter(s). You can use the path and
       # parameter(s) to call an operation that sends a solicitation. Currently only the
       # productReviewAndSellerFeedbackSolicitation solicitation type is available.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which you want a list
       #   of available solicitation types.
@@ -42,7 +40,6 @@ module Peddler
 
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
       # only one productReviewAndSellerFeedback or free form proactive message per order.
-      #
       # @note This operation can make a static sandbox call.
       # @param amazon_order_id [String] An Amazon order identifier. This specifies the order for which a solicitation is
       #   sent.

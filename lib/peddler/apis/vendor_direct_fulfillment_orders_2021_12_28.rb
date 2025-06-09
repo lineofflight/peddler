@@ -11,7 +11,6 @@ module Peddler
 
   module APIs
     # Selling Partner API for Direct Fulfillment Orders
-    #
     # The Selling Partner API for Direct Fulfillment Orders provides programmatic access to a direct fulfillment
     # vendor's order data.
     class VendorDirectFulfillmentOrders20211228 < API
@@ -20,7 +19,6 @@ module Peddler
       # the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns
       # a list of purchase order numbers. You can then call the getOrder operation to return the details of a specific
       # order.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param ship_from_party_id [String] The vendor warehouse identifier for the fulfillment warehouse. If not
       #   specified, the result will contain orders for all warehouses.
@@ -56,7 +54,6 @@ module Peddler
       end
 
       # Returns purchase order information for the purchaseOrderNumber that you specify.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param purchase_order_number [String] The order identifier for the purchase order that you want. Formatting
       #   Notes: alpha-numeric code.
@@ -69,7 +66,6 @@ module Peddler
       end
 
       # Submits acknowledgements for one or more purchase orders.
-      #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] The request body containing the acknowledgement to an order
       # @param rate_limit [Float] Requests per second

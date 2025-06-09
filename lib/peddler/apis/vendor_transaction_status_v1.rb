@@ -11,12 +11,10 @@ module Peddler
 
   module APIs
     # Selling Partner API for Retail Procurement Transaction Status
-    #
     # The Selling Partner API for Retail Procurement Transaction Status provides programmatic access to status
     # information on specific asynchronous POST transactions for vendors.
     class VendorTransactionStatusV1 < API
       # Returns the status of the transaction that you specify.
-      #
       # @param transaction_id [String] The GUID provided by Amazon in the 'transactionId' field in response to the post
       #   request of a specific transaction.
       # @param rate_limit [Float] Requests per second
