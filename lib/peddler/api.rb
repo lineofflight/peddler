@@ -63,7 +63,7 @@ module Peddler
     # @see https://developer-docs.amazon.com/amazon-shipping/docs/connecting-to-the-selling-partner-api#step-3-add-headers-to-the-uri
     # @return [HTTP::Client]
     def http
-      @http ||= HTTP.headers(
+      @http ||= HTTP.use(:raise_error).headers(
         "Host" => endpoint_uri.host,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
@@ -78,8 +78,6 @@ module Peddler
     def meter(requests_per_second)
       return self if retries.zero?
 
-      # HTTP v6.0 will implement retriable. Until then, point to their GitHub repo, or it's a no-op.
-      # https://github.com/httprb/http/pull/790
       delay = sandbox? ? 0.2 : 1.0 / requests_per_second
       retriable(delay:, tries: retries + 1, retry_statuses: [429])
 
@@ -106,7 +104,7 @@ module Peddler
     #   @return [self]
     [:via, :use, :retriable].each do |method|
       define_method(method) do |*args, **kwargs, &block|
-        @http = http.send(method, *args, **kwargs, &block) if http.respond_to?(method)
+        @http = http.send(method, *args, **kwargs, &block)
         self
       end
     end
@@ -123,8 +121,10 @@ module Peddler
         end
 
         response = http.send(method, uri, **options)
-
         Response.wrap(response, parser:)
+      rescue HTTP::StatusError => e
+        error = Error.build(e.response)
+        raise error || Error.new(e.message, e.response)
       end
     end
 

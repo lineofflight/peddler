@@ -47,7 +47,6 @@ module Peddler
     end
 
     def test_rate_limit_noop
-      skip("HTTP implements retriable") if @api.http.respond_to?(:retriable)
       initial_http_object_id = @api.http.object_id
 
       assert_equal(initial_http_object_id, @api.meter(1.0).http.object_id)
@@ -61,21 +60,17 @@ module Peddler
       @api.stub(:retries, 1) do
         @api.meter(1.0)
 
-        if @api.http.respond_to?(:retriable)
-          assert_kind_of(HTTP::Retriable::Client, @api.http)
-        else
-          assert_kind_of(HTTP::Client, @api.http)
-        end
+        assert_kind_of(HTTP::Retriable::Client, @api.http)
       end
     end
 
     def test_custom_rate_limit
-      skip("HTTP doesn't expose retriable arguments")
       # http.instance_variable_get(:@performer).instance_variable_get(:@delay_calculator).instance_variable_get(:@delay)
+      skip("HTTP doesn't expose retriable arguments for inspection")
     end
 
     def test_sandbox_rate_limit
-      skip("HTTP doesn't expose retriable arguments")
+      skip("HTTP doesn't expose retriable arguments for inspection")
     end
 
     def test_client_error

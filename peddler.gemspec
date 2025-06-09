@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage = "https://github.com/lineofflight/peddler"
   gem.license  = "MIT"
 
-  gem.add_dependency("http", ">= 5.0", "< 7.0")
+  gem.add_dependency("http", "~> 5.3")
   gem.required_ruby_version = ">= 3.2"
 
   gem.metadata["rubygems_mfa_required"] = "true"

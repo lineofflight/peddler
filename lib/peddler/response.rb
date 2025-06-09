@@ -5,33 +5,6 @@ require "forwardable"
 
 require "peddler/error"
 
-# TODO: Consider integrating HTTP gem's raise_error feature when available in stable release
-#
-# The HTTP gem's main branch includes a :raise_error feature that automatically raises
-# HTTP::StatusError for client/server errors. This would simplify our error handling:
-#
-# Current approach:
-#   - Manually check response.status.client_error? in Response.wrap
-#   - Parse error response body to create specific Peddler::Error subclasses
-#   - Fall back to raising generic Peddler::Error if parsing fails (e.g., no Nokogiri)
-#
-# Future approach with HTTP raise_error:
-#   - Configure HTTP client globally: HTTP.use(:raise_error)
-#   - Rescue HTTP::StatusError and parse response body
-#   - Create Peddler::Error that inherits from HTTP::StatusError
-#   - Re-raise original HTTP::StatusError if parsing fails
-#
-# Benefits:
-#   - Leverages standard HTTP gem patterns
-#   - Maintains compatibility with code that rescues HTTP::StatusError
-#   - Reduces boilerplate (inherits response accessor and other functionality)
-#
-# Blockers:
-#   - :raise_error feature is only available in HTTP gem main branch, not stable releases
-#   - Would need to wait for next HTTP gem release or force unreleased dependency
-#
-# When HTTP releases this feature, we should evaluate switching to this approach.
-
 module Peddler
   # Wraps HTTP::Response to allow custom parsing
   class Response < SimpleDelegator
@@ -46,18 +19,12 @@ module Peddler
     def_delegator :to_h, :dig
 
     class << self
-      # Wraps an HTTP::Response with error handling and parsing capabilities
+      # Wraps an HTTP::Response with parsing capabilities
       #
       # @param [HTTP::Response] response
       # @param [nil, #call] parser (if any)
       # @return [Response]
-      # @raise [Peddler::Error] if response has client or server error status
       def wrap(response, parser: nil)
-        if response.status.client_error? || response.status.server_error?
-          error = Error.build(response)
-          error ? raise(error) : raise(Error.new(response.status, response))
-        end
-
         new(response).tap do |wrapper|
           wrapper.parser = parser
         end

@@ -112,8 +112,6 @@ Amazon's SP-API imposes [rate limits][rate-limits] on operations. Override the d
 
 Provide an optional `:retries` argument when initializing an API to specify retry attempts if throttled. Default is 0 (no retries). If set to a positive value, Peddler will retry with exponential backoff based on the rate limit.
 
-**Note:** This functionality requires version 6 of the [HTTP library][httprb], which is not yet released. To use rate limiting, point to their main branch on GitHub.
-
 ```ruby
 api = Peddler.orders_v0(aws_region, access_token, retries: 3)
 api.get_orders(

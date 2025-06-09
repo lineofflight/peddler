@@ -3,6 +3,7 @@
 require "http"
 
 require "peddler/response"
+require "peddler/error"
 
 module Peddler
   # Requests refresh and access tokens that authorize your application to take actions on behalf of a selling partner.
@@ -30,8 +31,11 @@ module Peddler
     end
 
     def request
-      response = HTTP.post(URL, form: params)
+      response = HTTP.use(:raise_error).post(URL, form: params)
       Response.wrap(response)
+    rescue HTTP::StatusError => e
+      error = Error.build(e.response)
+      raise error || Error.new(e.message, e.response)
     end
 
     def grant_type

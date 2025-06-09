@@ -3,6 +3,7 @@
 require "http"
 
 require "peddler/response"
+require "peddler/error"
 
 module Peddler
   module Helpers
@@ -28,9 +29,12 @@ module Peddler
       private
 
       def download_report_document_from_url(download_url)
-        response = HTTP.get(download_url)
+        response = HTTP.use(:raise_error).get(download_url)
 
         Response.wrap(response, parser:)
+      rescue HTTP::StatusError => e
+        error = Error.build(e.response)
+        raise error || Error.new(e.message, e.response)
       end
     end
   end

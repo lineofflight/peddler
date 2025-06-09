@@ -47,34 +47,6 @@ module Peddler
       assert(wrapper.dig(:foo))
     end
 
-    def test_raises_error_on_client_error
-      response = HTTP::Response.new(
-        body: '{"errors":[{"code":"InvalidInput","message":"Invalid input"}]}',
-        headers: { "Content-Type" => "application/json" },
-        status: 400,
-        version: "1.1",
-        request: nil,
-      )
-
-      assert_raises(Peddler::Error) do
-        Response.wrap(response)
-      end
-    end
-
-    def test_raises_error_on_server_error
-      response = HTTP::Response.new(
-        body: '{"errors":[{"code":"InternalFailure","message":"We encountered an internal error. Please try again."}]}',
-        headers: { "Content-Type" => "application/json" },
-        status: 500,
-        version: "1.1",
-        request: nil,
-      )
-
-      assert_raises(Peddler::Error) do
-        Response.wrap(response)
-      end
-    end
-
     def test_decorate_deprecation_still_works
       wrapper = nil
       assert_output(nil, /Response\.decorate is deprecated/) do
@@ -88,23 +60,6 @@ module Peddler
       if Gem.loaded_specs["peddler"].version.segments.first >= 5
         flunk("Response.decorate should have been removed in v5.0. Please delete it now.")
       end
-    end
-
-    def test_error_message_includes_status_reason
-      response = HTTP::Response.new(
-        body: "plain text error",
-        headers: { "Content-Type" => "text/plain" },
-        status: 404,
-        version: "1.1",
-        request: nil,
-      )
-
-      error = assert_raises(Peddler::Error) do
-        Response.wrap(response)
-      end
-
-      assert_includes(error.message, "404")
-      assert_includes(error.message, "Not Found")
     end
 
     private
