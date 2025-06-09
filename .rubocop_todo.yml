@@ -1,0 +1,10 @@
+# This file contains RuboCop configuration for auto-generated code that should
+# not be modified by RuboCop auto-correction to maintain consistency with the
+# code generation templates.
+
+Layout/EmptyComment:
+  # Generated API files contain empty comment lines that are part of the code
+  # generation template structure. These should not be auto-corrected to avoid
+  # constant diffs when regenerating from Amazon's OpenAPI specs.
+  Exclude:
+    - "lib/peddler/apis/*.rb"
