@@ -63,7 +63,7 @@ module Peddler
     # @see https://developer-docs.amazon.com/amazon-shipping/docs/connecting-to-the-selling-partner-api#step-3-add-headers-to-the-uri
     # @return [HTTP::Client]
     def http
-      @http ||= HTTP.use(:raise_error).headers(
+      @http ||= HTTP.headers(
         "Host" => endpoint_uri.host,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
@@ -122,9 +122,6 @@ module Peddler
 
         response = http.send(method, uri, **options)
         Response.wrap(response, parser:)
-      rescue HTTP::StatusError => e
-        error = Error.build(e.response)
-        raise error || Error.new(e.message, e.response)
       end
     end
 

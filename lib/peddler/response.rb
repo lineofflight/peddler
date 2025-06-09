@@ -24,7 +24,14 @@ module Peddler
       # @param [HTTP::Response] response
       # @param [nil, #call] parser (if any)
       # @return [Response]
+      # @raise [Error] if response status indicates an error (>= 400)
       def wrap(response, parser: nil)
+        # Check for HTTP errors and raise custom Peddler errors
+        if response.status >= 400
+          error = Error.build(response)
+          raise error || Error.new("HTTP #{response.status}", response)
+        end
+
         new(response).tap do |wrapper|
           wrapper.parser = parser
         end
