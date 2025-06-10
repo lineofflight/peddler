@@ -2,6 +2,8 @@
 
 [![Build](https://github.com/hakanensari/peddler/workflows/build/badge.svg)][build]
 
+> **⚠️ Notice**: This README documents the unreleased development version. Breaking changes to error handling are planned for the next major release.
+
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 Peddler is automatically generated from the Open API models provided by Amazon.
@@ -119,6 +121,65 @@ api.get_orders(
   createdAfter: "2023-01-01T00:00:00Z"
 )
 ```
+
+### Error Handling
+
+**⚠️ Breaking Change Notice**: In the next major release, both client errors (4xx) and server errors (5xx) will consistently raise `Peddler::Error` exceptions instead of sometimes returning response objects.
+
+#### Current Behavior (v4.x)
+
+Currently, error handling varies depending on the type of error:
+
+- **Client errors (4xx)**: Usually raise `Peddler::Error` exceptions, but may return response objects if XML parsing fails
+- **Server errors (5xx)**: Return response objects instead of raising exceptions (this can lead to silent failures)
+
+```ruby
+begin
+  response = api.get_orders(marketplaceIds: ["INVALID"])
+
+  # Check if response indicates an error (current approach)
+  if response.status >= 400
+    puts "Error: #{response.status}"
+    # Handle error response
+  else
+    orders = response.parse["payload"]["orders"]
+  end
+rescue Peddler::Error => e
+  puts "API Error: #{e.message}"
+end
+```
+
+#### Upcoming Behavior (v5.x)
+
+In the next major release, all HTTP errors will consistently raise `Peddler::Error` exceptions:
+
+```ruby
+begin
+  response = api.get_orders(marketplaceIds: ["INVALID"])
+  orders = response.parse["payload"]["orders"]
+rescue Peddler::Error => e
+  puts "API Error: #{e.message}"
+  puts "Status: #{e.response.status}"
+end
+```
+
+#### S3 Error Handling
+
+For file upload/download operations, Amazon S3 may return XML error responses. If Nokogiri is available, these are parsed for detailed error information:
+
+```ruby
+# With Nokogiri gem
+gem "nokogiri"
+
+# Enhanced S3 error parsing
+begin
+  api.upload_document(document_data)
+rescue Peddler::Error => e
+  puts "S3 Error: #{e.message}"  # Detailed XML-parsed error
+end
+```
+
+Without Nokogiri, S3 XML errors are still handled gracefully but with less detailed information.
 
 ### Available APIs
 
