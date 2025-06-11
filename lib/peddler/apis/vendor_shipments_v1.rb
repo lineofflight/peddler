@@ -132,7 +132,7 @@ module Peddler
       #
       # @param limit [Integer] The limit to the number of records returned. Default value is 50 records.
       # @param sort_order [String] Sort the list by shipment label creation date in ascending or descending order.
-      # @param next_token [String] A token that is used to retrieve the next page of results. The response includes
+      # @param next_token [String] A token that you use to retrieve the next page of results. The response includes
       #   `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of
       #   results, call the operation with this token and include the same arguments as the call that produced the
       #   token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can
