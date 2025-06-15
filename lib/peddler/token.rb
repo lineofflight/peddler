@@ -3,7 +3,6 @@
 require "http"
 
 require "peddler/response"
-require "peddler/error"
 
 module Peddler
   # Requests refresh and access tokens that authorize your application to take actions on behalf of a selling partner.
