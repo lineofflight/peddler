@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### [4.5.0] - 2025-06-26
+
 ### Added
 
 - Add `download_report_document` helper method to Reports API (2021-06-30)
@@ -439,7 +441,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.4.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.5.0...HEAD
+[4.5.0]: https://github.com/hakanensari/peddler/compare/v4.4.0...v4.5.0
 [4.4.0]: https://github.com/hakanensari/peddler/compare/v4.3.1...v4.4.0
 [4.3.1]: https://github.com/hakanensari/peddler/compare/v4.3.0...v4.3.1
 [4.3.0]: https://github.com/hakanensari/peddler/compare/v4.2.0...v4.3.0
