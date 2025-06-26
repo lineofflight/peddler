@@ -58,6 +58,7 @@ require "peddler/apis/vendor_invoices_v1"
 require "peddler/apis/vendor_orders_v1"
 require "peddler/apis/vendor_shipments_v1"
 require "peddler/apis/vendor_transaction_status_v1"
+require "peddler/config"
 require "peddler/token"
 
 module Peddler

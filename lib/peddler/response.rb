@@ -3,6 +3,7 @@
 require "delegate"
 require "forwardable"
 
+require "peddler/config"
 require "peddler/error"
 
 module Peddler
@@ -28,8 +29,18 @@ module Peddler
       def wrap(response, parser: nil)
         # Check for HTTP errors and raise custom Peddler errors
         if response.status >= 400
-          error = Error.build(response)
-          raise error || Error.new(response.status, response)
+          # Client errors (4xx) always raise
+          if response.status < 500
+            error = Error.build(response)
+            raise error || Error.new(response.status, response)
+          # Server errors (5xx) - check configuration
+          elsif Peddler.raise_on_server_errors
+            error = Error.build(response)
+            raise error || Error.new(response.status, response)
+          else
+            # Emit deprecation warning for v4 behavior
+            warn_about_server_error_handling
+          end
         end
 
         new(response).tap do |wrapper|
@@ -41,6 +52,27 @@ module Peddler
       def decorate(...)
         warn("Response.decorate is deprecated and will be removed in v5.0. Use Response.wrap instead.", uplevel: 1)
         wrap(...)
+      end
+
+      private
+
+      def warn_about_server_error_handling
+        return if @deprecation_warned
+
+        @deprecation_warned = true
+
+        warn(<<~MSG)
+          [DEPRECATION] Peddler v4 behavior: Server errors (5xx) are returning response objects instead of raising exceptions.
+          This behavior is deprecated and will change in Peddler v5.0.
+
+          To adopt the new behavior now and silence this warning:
+
+            Peddler.configure do |config|
+              config.raise_on_server_errors = true
+            end
+
+          For more information, see: https://github.com/hakanensari/peddler/blob/main/CHANGELOG.md
+        MSG
       end
     end
 

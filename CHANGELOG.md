@@ -9,12 +9,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Add `download_report_document` helper method to Reports API (2021-06-30)
 - Handle Amazon S3 errors
+- Add configuration option `raise_on_server_errors` to opt into v5.0 error handling behavior
 
 ### Changed
 
-- **BREAKING**: Both client errors (4xx) and server errors (5xx) now raise `Peddler::Error` exceptions. Previously, server errors would return response objects instead of raising exceptions, which could lead to silent failures.
-- **BREAKING**: Client errors (4xx) now always raise `Peddler::Error` exceptions. Previously, when XML error parsing failed (e.g., Nokogiri unavailable), client errors would return response objects instead of raising.
 - Update Amazon API models with new Customer Feedback API (2024-06-01) and updates to Finances (2024-06-19), Orders (v0), and Vendor Shipments (v1) APIs
+
+### Deprecated
+
+- **Server errors (5xx) returning response objects** - This behavior is deprecated. In v5.0, all HTTP errors (4xx and 5xx) will raise `Peddler::Error` exceptions. Set `Peddler.raise_on_server_errors = true` to adopt the new behavior now.
 
 ### Fixed
 

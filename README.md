@@ -2,8 +2,6 @@
 
 [![Build](https://github.com/hakanensari/peddler/workflows/build/badge.svg)][build]
 
-> **⚠️ Notice**: This README documents the unreleased development version. Breaking changes to error handling are planned for the next major release.
-
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 Peddler is automatically generated from the latest Open API models provided by Amazon.
@@ -124,42 +122,64 @@ api.get_orders(
 
 ### Error Handling
 
-**⚠️ Breaking Change Notice**: In the next major release, both client errors (4xx) and server errors (5xx) will consistently raise `Peddler::Error` exceptions instead of sometimes returning response objects.
+By default, Peddler v4 maintains backward compatibility:
+- **Client errors (4xx)**: Always raise `Peddler::Error` exceptions
+- **Server errors (5xx)**: Return response objects (deprecated behavior)
 
-#### Current Behavior (v4.x)
-
-Currently, error handling varies depending on the type of error:
-
-- **Client errors (4xx)**: Usually raise `Peddler::Error` exceptions, but may return response objects if XML parsing fails
-- **Server errors (5xx)**: Return response objects instead of raising exceptions (this can lead to silent failures)
+To adopt the recommended v5.0 behavior where all errors raise exceptions:
 
 ```ruby
-begin
-  response = api.get_orders(marketplaceIds: ["INVALID"])
-
-  # Check if response indicates an error (current approach)
-  if response.status >= 400
-    puts "Error: #{response.status}"
-    # Handle error response
-  else
-    orders = response.parse["payload"]["orders"]
-  end
-rescue Peddler::Error => e
-  puts "API Error: #{e.message}"
+Peddler.configure do |config|
+  config.raise_on_server_errors = true
 end
 ```
 
-#### Upcoming Behavior (v5.x)
+This ensures consistent error handling and prevents silent failures from server errors.
 
-In the next major release, all HTTP errors will consistently raise `Peddler::Error` exceptions:
+#### Current Default Behavior (v4.x)
 
 ```ruby
+# Server errors (5xx) return response objects by default
+response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
+
+# Must check status to detect server errors
+if response.status >= 500
+  puts "Server error: #{response.status}"
+  # Handle error or retry
+else
+  orders = response.parse["payload"]["orders"]
+end
+
+# Client errors (4xx) always raise
 begin
   response = api.get_orders(marketplaceIds: ["INVALID"])
+rescue Peddler::Error => e
+  puts "Client error: #{e.message}"
+end
+```
+
+#### Recommended Behavior (v5.0)
+
+Enable consistent error handling by setting `raise_on_server_errors`:
+
+```ruby
+# Configure once at application startup
+Peddler.configure do |config|
+  config.raise_on_server_errors = true
+end
+
+# Now all errors raise exceptions consistently
+begin
+  response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
   orders = response.parse["payload"]["orders"]
 rescue Peddler::Error => e
   puts "API Error: #{e.message}"
   puts "Status: #{e.response.status}"
+  
+  # Handle retries for server errors
+  if e.response.status >= 500
+    # Retry logic here
+  end
 end
 ```
 
