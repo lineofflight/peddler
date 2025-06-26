@@ -162,7 +162,7 @@ module Peddler
       # Returns buyer information for the order that you specify.
       #
       # @note This operation can make a static sandbox call.
-      # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id, rate_limit: 0.5)
@@ -174,7 +174,7 @@ module Peddler
       # Returns the shipping address for the order that you specify.
       #
       # @note This operation can make a static sandbox call.
-      # @param order_id [String] An `orderId` is an Amazon-defined order identifier, in 3-7-7 format.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_address(order_id, rate_limit: 0.5)
@@ -238,7 +238,7 @@ module Peddler
       # Returns regulated information for the order that you specify.
       #
       # @note This operation can make a static sandbox call.
-      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id, rate_limit: 0.5)
@@ -250,7 +250,7 @@ module Peddler
       # Updates (approves or rejects) the verification status of an order containing regulated products.
       #
       # @note This operation can make a static sandbox call.
-      # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
+      # @param order_id [String] The Amazon order identifier in 3-7-7 format.
       # @param payload [Hash] The request body for the `updateVerificationStatus` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response

@@ -7,6 +7,7 @@ require "peddler/apis/application_management_2023_11_30"
 require "peddler/apis/catalog_items_2020_12_01"
 require "peddler/apis/catalog_items_2022_04_01"
 require "peddler/apis/catalog_items_v0"
+require "peddler/apis/customer_feedback_2024_06_01"
 require "peddler/apis/data_kiosk_2023_11_15"
 require "peddler/apis/easy_ship_2022_03_23"
 require "peddler/apis/fba_inbound_eligibility_v1"
@@ -66,6 +67,7 @@ module Peddler
     alias_method :application_integrations, :application_integrations_2024_04_01
     alias_method :application_management, :application_management_2023_11_30
     alias_method :catalog_items, :catalog_items_2022_04_01
+    alias_method :customer_feedback, :customer_feedback_2024_06_01
     alias_method :data_kiosk, :data_kiosk_2023_11_15
     alias_method :easy_ship, :easy_ship_2022_03_23
     alias_method :fba_inbound_eligibility, :fba_inbound_eligibility_v1
