@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - **BREAKING**: Both client errors (4xx) and server errors (5xx) now raise `Peddler::Error` exceptions. Previously, server errors would return response objects instead of raising exceptions, which could lead to silent failures.
 - **BREAKING**: Client errors (4xx) now always raise `Peddler::Error` exceptions. Previously, when XML error parsing failed (e.g., Nokogiri unavailable), client errors would return response objects instead of raising.
+- Update Amazon API models with new Customer Feedback API (2024-06-01) and updates to Finances (2024-06-19), Orders (v0), and Vendor Shipments (v1) APIs
 
 ### Fixed
 

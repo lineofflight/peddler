@@ -6,7 +6,7 @@
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
-Peddler is automatically generated from the Open API models provided by Amazon.
+Peddler is automatically generated from the latest Open API models provided by Amazon.
 
 To begin using the Amazon SP-API, you must [register as a developer][register-as-developer] and [register your application][register-application]. Once registered, [obtain your Login with Amazon (LWA) credentials][view-credentials] to access your own or other selling partners' data.
 
@@ -403,9 +403,34 @@ api.upload_feed_document(json_document.dig("url"), json_feed_content, "applicati
 
 #### Communication and Customer Management APIs
 
+- **Customer Feedback API (2024-06-01)**: Analyze customer reviews and returns data at item and browse node levels
 - **Notifications API (v1)**: Subscribe to notifications for events like order updates
 - **Messaging API (v1)**: Send messages to customers
 - **Solicitations API (v1)**: Request customer reviews
+
+```ruby
+# Customer Feedback API example
+api = Peddler.customer_feedback_2024_06_01(aws_region, access_token)
+
+# Get item review topics (most positive and negative)
+review_topics = api.get_item_review_topics(
+  "B08N5WRWNW",  # ASIN
+  Marketplace.id("US"),
+  "frequency"  # Sort by frequency
+)
+
+# Get item review trends for past 6 months
+review_trends = api.get_item_review_trends(
+  "B08N5WRWNW",
+  Marketplace.id("US")
+)
+
+# Get browse node return topics
+return_topics = api.get_browse_node_return_topics(
+  "123456789",  # Browse node ID
+  Marketplace.id("US")
+)
+```
 
 ```ruby
 api = Peddler.notifications(aws_region, access_token)
