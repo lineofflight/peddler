@@ -19,6 +19,7 @@ group :development do
 
   # TODO: Remove the version guard when Yard handles changes in the new Commonmarker
   # https://github.com/lsegal/yard/issues/1528
+  # Also update .github/dependabot.yml to remove the ignore rule when this is resolved
   gem "commonmarker", "~> 0.23.10"
 
   # TODO: Remove when deprecation warnings go away

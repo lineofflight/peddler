@@ -11,3 +11,8 @@ updates:
       - "hakanensari"
     schedule:
       interval: "daily"
+    ignore:
+      # Ignore commonmarker updates until YARD is compatible with v2.x
+      # See: https://github.com/lsegal/yard/issues/1528
+      - dependency-name: "commonmarker"
+        versions: [">= 1.0"]
