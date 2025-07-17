@@ -65,7 +65,7 @@ module Generator
     end
 
     def apis
-      api_model_files.map { |file| API.new(file) }.reject(&:obsolete?)
+      api_model_files.map { |file| API.new(file) }
     end
 
     def api_model_files

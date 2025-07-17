@@ -13,8 +13,6 @@ module Generator
     include Formatter
     include Utils
 
-    OBSOLETE_APIS = ["reports_2020_09_04", "feeds_2020_09_04"]
-
     attr_reader :file
 
     def initialize(file)
@@ -22,8 +20,6 @@ module Generator
     end
 
     def generate
-      return if obsolete?
-
       handle_duplicate_operations
       File.write(file_path, render)
     end
@@ -69,10 +65,6 @@ module Generator
 
     def name_with_version
       [name, version].join("_")
-    end
-
-    def obsolete?
-      OBSOLETE_APIS.any? { |api| name_with_version.include?(api) }
     end
 
     def operations
