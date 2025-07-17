@@ -31,6 +31,11 @@ module Generator
       }
     end
 
+    # Builds a notification_type parameter for operations that reference the NotificationType parameter.
+    # This is needed because the OpenAPI $ref doesn't get resolved during our generation process,
+    # so we manually add this parameter when we detect a reference to it.
+    #
+    # @return [Hash] Parameter definition for notification_type
     def build_notification_type_param
       {
         "name" => "notification_type",
@@ -41,6 +46,21 @@ module Generator
       }
     end
 
+    # Detects when an operation uses a shared parameter reference that doesn't include a name property.
+    # This pattern is specific to Amazon's Notifications API where the notification type is defined as
+    # a shared parameter reference like: { "$ref": "#/parameters/NotificationType" }
+    #
+    # In the OpenAPI spec, the actual parameter definition exists at the $ref location:
+    #   parameters:
+    #     NotificationType:
+    #       name: notificationType
+    #       in: path
+    #       required: true
+    #       ...
+    #
+    # Since our generator doesn't resolve $refs, we detect this pattern and manually add the parameter.
+    #
+    # @return [Boolean] true if the operation references NotificationType without a name property
     def needs_notification_type?
       @operation["parameters"].find { |el| el.key?("$ref") && !el.key?("name") }
     end

@@ -148,10 +148,10 @@ module Generator
       pattern = %r{
         Burst\s*\|                      # Find "Burst |" at end of table header
         \n                              # Newline after header
-        \|(?:\s*-+\s*\|){2,3}          # Separator line (2-3 columns of dashes)
+        \|(?:\s*-+\s*\|){2,3}           # Separator line (2-3 columns of dashes)
         \n                              # Newline after separator
-        (?:\|[^|]*){0,1}               # Optional first column (e.g., "Default" in 3-column format)
-        \|\s*(\S+)\s*\|                # Capture rate value (always before burst value)
+        (?:\|[^|]*){0,1}                # Optional first column (e.g., "Default" in 3-column format)
+        \|\s*(\S+)\s*\|                 # Capture rate value (always before burst value)
         [^|]*\|                         # Skip to burst column
       }mx
 
