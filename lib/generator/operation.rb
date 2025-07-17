@@ -127,9 +127,43 @@ module Generator
       @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build
     end
 
+    # CAUTION: This method parses rate limits from human-readable documentation. This is inherently fragile. Amazon
+    # could change their documentation format at any time without considering it a breaking change. However, this is the
+    # only source for rate limit data in their OpenAPI specifications.
+    #
+    # Extracts the rate value (requests per second) from the usage plan table
+    # Example table:
+    # | Rate (requests per second) | Burst |
+    # | ---- | ---- |
+    # | 0.0167 | 20 |
+    #
+    # Returns: 0.0167 (rate value in requests per second)
     def rate_limit
-      match = operation["description"].match(/Burst \|\n\|(?: *---- *\|){2,3}\n(?:\|[^|]*){0,1}\| (\S+) \|[^|]*\|/)
-      match[1].to_f if match
+      # This regex:
+      # 1. Finds the "Usage Plan:" section
+      # 2. Locates the table with Rate and Burst columns
+      # 3. Extracts the rate value from the data row
+      # This regex is robust and handles various table formats by looking for "Burst |" in the header and then
+      # extracting the rate value from the data row. It works with both 2-column and 3-column tables.
+      pattern = %r{
+        Burst\s*\|                      # Find "Burst |" at end of table header
+        \n                              # Newline after header
+        \|(?:\s*-+\s*\|){2,3}          # Separator line (2-3 columns of dashes)
+        \n                              # Newline after separator
+        (?:\|[^|]*){0,1}               # Optional first column (e.g., "Default" in 3-column format)
+        \|\s*(\S+)\s*\|                # Capture rate value (always before burst value)
+        [^|]*\|                         # Skip to burst column
+      }mx
+
+      match = operation["description"].match(pattern)
+      if match
+        match[1].to_f
+      elsif operation["description"].match?(/Usage\s+[Pp]lans?:/)
+        # Fail when we can't extract rate limit but Usage Plan exists. This likely means Amazon changed their
+        # documentation format.
+        raise "Failed to extract rate limit for #{operation["operationId"]}. Usage Plan found in description but " \
+          "regex failed to match. This usually means Amazon changed their documentation format."
+      end
     end
 
     def dynamic_sandbox?

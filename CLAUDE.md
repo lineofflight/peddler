@@ -41,6 +41,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - Design intuitive APIs for your classes and modules. Hide internal details behind private methods
 - Use concise and descriptive names
 - Organize code into clear modules and classes. Avoid monolithic files
+- Wrap code and comments at 120 characters
 
 ### Code Generation System
 
