@@ -61,7 +61,14 @@ module Generator
         raise "RuboCop is not available in the bundle. Please add it to your Gemfile or run 'bundle install'."
       end
 
-      %x(bundle exec rubocop --format simple --autocorrect #{File.join(Config::BASE_PATH, "lib")} 2>&1)
+      output, status = Open3.capture2e("bundle exec rubocop --format simple --autocorrect " \
+        "#{File.join(Config::BASE_PATH, "lib")}")
+
+      unless status.success?
+        raise "RuboCop formatting failed:\n#{output}"
+      end
+
+      puts "Code formatted successfully with RuboCop."
     end
 
     def apis
