@@ -1,6 +1,6 @@
 # Peddler
 
-[![Build](https://github.com/hakanensari/peddler/workflows/ci/badge.svg)][build]
+[![Build](https://github.com/lineofflight/peddler/actions/workflows/ci.yml/badge.svg)][build]
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
