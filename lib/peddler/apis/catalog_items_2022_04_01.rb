@@ -47,7 +47,7 @@ module Peddler
       # @return [Peddler::Response] The API response
       def search_catalog_items(marketplace_ids, identifiers: nil, identifiers_type: nil, included_data: ["summaries"],
         locale: nil, seller_id: nil, keywords: nil, brand_names: nil, classification_ids: nil, page_size: 10,
-        page_token: nil, keywords_locale: nil, rate_limit: 5.0)
+        page_token: nil, keywords_locale: nil, rate_limit: 2.0)
         path = "/catalog/2022-04-01/items"
         params = {
           "identifiers" => stringify_array(identifiers),
@@ -79,7 +79,7 @@ module Peddler
       #   locale of the marketplace.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 5.0)
+      def get_catalog_item(asin, marketplace_ids, included_data: ["summaries"], locale: nil, rate_limit: 2.0)
         path = "/catalog/2022-04-01/items/#{percent_encode(asin)}"
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),

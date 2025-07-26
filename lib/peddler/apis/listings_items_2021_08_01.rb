@@ -18,9 +18,7 @@ module Peddler
     # information, see the [Listings Items API Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide).
     class ListingsItems20210801 < API
-      # Delete a listings item for a selling partner. **Note:** The parameters associated with this operation may
-      # contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when
-      # encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Delete a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
