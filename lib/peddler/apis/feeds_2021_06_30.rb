@@ -66,9 +66,8 @@ module Peddler
       end
 
       # Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds
-      # are returned in subsequent calls to the
-      # [`getFeed`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#getfeed) and
-      # [`getFeeds`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#getfeeds) operations.
+      # are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed)
+      # and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
       #
       # @note This operation can make a static sandbox call.
       # @param feed_id [String] The identifier for the feed. This identifier is unique only in combination with a seller
@@ -96,8 +95,7 @@ module Peddler
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
       # the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call
-      # to the [`createFeed`](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference#createfeed)
-      # operation.
+      # to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] Specifies the content type for the createFeedDocument operation.

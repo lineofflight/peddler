@@ -62,9 +62,8 @@ module Peddler
       #   then `PackageLabelsToPrint` must match the `CartonId` values you provide through that feed. If you provide box
       #   content information with the Fulfillment Inbound API v2024-03-20, then `PackageLabelsToPrint` must match the
       #   `boxID` values from the
-      #   [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/docs/fulfillment-inbound-api-v2024-03-20-reference#listshipmentboxes)
-      #   response. If these values do not match as required, the operation returns the `IncorrectPackageIdentifier`
-      #   error code.
+      #   [`listShipmentBoxes`](https://developer-docs.amazon.com/sp-api/reference/listshipmentboxes) response. If these
+      #   values do not match as required, the operation returns the `IncorrectPackageIdentifier` error code.
       # @param number_of_pallets [Integer] The number of pallets in the shipment. This returns four identical labels for
       #   each pallet.
       # @param page_size [Integer] The page size for paginating through the total packages' labels. This is a required
