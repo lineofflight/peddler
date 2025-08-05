@@ -96,25 +96,6 @@ module Peddler
         meter(rate_limit).post(path, body:, params:)
       end
 
-      # Sends a non-critical message that asks a buyer to remove their negative feedback. This message should only be
-      # sent after the seller has resolved the buyer's problem.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param amazon_order_id [String] An Amazon order identifier. This identifies the order for which a message is
-      #   sent.
-      # @param marketplace_ids [Array<String>] A marketplace identifier. This identifies the marketplace in which the
-      #   order was placed. You can only specify one marketplace.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def create_negative_feedback_removal(amazon_order_id, marketplace_ids, rate_limit: 1.0)
-        path = "/messaging/v1/orders/#{percent_encode(amazon_order_id)}/messages/negativeFeedbackRemoval"
-        params = {
-          "marketplaceIds" => stringify_array(marketplace_ids),
-        }.compact
-
-        meter(rate_limit).post(path, params:)
-      end
-
       # Sends a message to ask a buyer an order-related question prior to shipping their order.
       #
       # @note This operation can make a static sandbox call.
