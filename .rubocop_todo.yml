@@ -8,3 +8,11 @@ Layout/EmptyComment:
   # constant diffs when regenerating from Amazon's OpenAPI specs.
   Exclude:
     - "lib/peddler/apis/*.rb"
+
+Metrics/ParameterLists:
+  # Some Amazon API operations have more than 5 parameters. Since these are
+  # auto-generated from Amazon's OpenAPI specifications, we cannot control
+  # the parameter count. This was added when Amazon's Seller Wallet API's
+  # get_transfer_preview operation required 6 parameters.
+  Exclude:
+    - "lib/peddler/apis/*.rb"
