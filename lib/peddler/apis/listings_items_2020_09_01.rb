@@ -14,13 +14,17 @@ module Peddler
     #
     # The Selling Partner API for Listings Items (Listings Items API) provides programmatic access to selling partner
     # listings on Amazon. Use this API in collaboration with the Selling Partner API for Product Type Definitions, which
-    # you use to retrieve the information about Amazon product types needed to use the Listings Items API. For more
-    # information, see the {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide
-    # Listing Items API Use Case Guide}.
+    # you use to retrieve the information about Amazon product types needed to use the Listings Items API.
+    #
+    # For more information, see the
+    # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide Listing Items API Use
+    # Case Guide}.
     class ListingsItems20200901 < API
-      # Delete a listings item for a selling partner. **Note:** The parameters associated with this operation may
-      # contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when
-      # encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Delete a listings item for a selling partner.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
@@ -42,9 +46,11 @@ module Peddler
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
-      # patched. Patching nested attributes is not supported. **Note:** The parameters associated with this operation
-      # may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when
-      # encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # patched. Patching nested attributes is not supported.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
       # @param seller_id [String] A selling partner identifier, such as a merchant account or vendor code.
@@ -66,9 +72,10 @@ module Peddler
         meter(rate_limit).patch(path, body:, params:)
       end
 
-      # Creates a new or fully-updates an existing listings item for a selling partner. **Note:** The parameters
-      # associated with this operation may contain special characters that must be encoded to successfully call the API.
-      # To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Creates a new or fully-updates an existing listings item for a selling partner.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.

@@ -16,16 +16,22 @@ module Peddler
     # Amazon's fulfillment network.
     class FBAInventoryV1 < API
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
-      # startDateTime, sellerSkus and sellerSku parameters: - All inventory summaries with available details are
-      # returned when the startDateTime, sellerSkus and sellerSku parameters are omitted. - When startDateTime is
-      # provided, the operation returns inventory summaries that have had changes after the date and time specified. The
-      # sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both startDateTime and
-      # nextToken to get the next page of inventory summaries that have changed after the date and time specified. -
-      # When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified
-      # sellerSkus. The sellerSku parameter is ignored. - When the sellerSku parameter is provided, the operation
-      # returns inventory summaries for only the specified sellerSku. Note: The parameters associated with this
-      # operation may contain special characters that must be encoded to successfully call the API. To avoid errors with
-      # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # startDateTime, sellerSkus and sellerSku parameters:
+      #
+      # - All inventory summaries with available details are returned when the startDateTime, sellerSkus and sellerSku
+      # parameters are omitted.
+      # - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date
+      # and time specified. The sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both
+      # startDateTime and nextToken to get the next page of inventory summaries that have changed after the date and
+      # time specified.
+      # - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified
+      # sellerSkus. The sellerSku parameter is ignored.
+      # - When the sellerSku parameter is provided, the operation returns inventory summaries for only the specified
+      # sellerSku.
+      #
+      # Note: The parameters associated with this operation may contain special characters that must be encoded to
+      # successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a dynamic sandbox call.
       # @param details [Boolean] true to return inventory summaries with additional summarized inventory details and

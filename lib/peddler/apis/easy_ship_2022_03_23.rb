@@ -19,11 +19,15 @@ module Peddler
     # support](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support).
     class EasyShip20220323 < API
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
-      # that the seller specifies. This operation is available for scheduled and unscheduled orders based on marketplace
-      # support. See **Get Time Slots** in the
+      # that the seller specifies.
+      #
+      # This operation is available for scheduled and unscheduled orders based on marketplace support. See **Get Time
+      # Slots** in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # Marketplace Support Table}. This operation can return time slots that have either pickup or drop-off handover
-      # methods - see **Supported Handover Methods** in the
+      # Marketplace Support Table}.
+      #
+      # This operation can return time slots that have either pickup or drop-off handover methods - see **Supported
+      # Handover Methods** in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
       # Marketplace Support Table}.
       #
@@ -57,14 +61,23 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Schedules an Easy Ship order and returns the scheduled package information. This operation does the following: *
-      # Specifies the time slot and handover method for the order to be scheduled for delivery. * Updates the Easy Ship
-      # order status. * Generates a shipping label and an invoice. Calling `createScheduledPackage` also generates a
-      # warranty document if you specify a `SerialNumber` value. To get these documents, see
+      # Schedules an Easy Ship order and returns the scheduled package information.
+      #
+      # This operation does the following:
+      #
+      # * Specifies the time slot and handover method for the order to be scheduled for delivery.
+      #
+      # * Updates the Easy Ship order status.
+      #
+      # * Generates a shipping label and an invoice. Calling `createScheduledPackage` also generates a warranty document
+      # if you specify a `SerialNumber` value. To get these documents, see
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide How to get invoice,
-      # shipping label, and warranty documents}. * Shows the status of Easy Ship orders when you call the `getOrders`
-      # operation of the Selling Partner API for Orders and examine the `EasyShipShipmentStatus` property in the
-      # response body. See the **Shipping Label**, **Invoice**, and **Warranty** columns in the
+      # shipping label, and warranty documents}.
+      #
+      # * Shows the status of Easy Ship orders when you call the `getOrders` operation of the Selling Partner API for
+      # Orders and examine the `EasyShipShipmentStatus` property in the response body.
+      #
+      # See the **Shipping Label**, **Invoice**, and **Warranty** columns in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
       # Marketplace Support Table} to see which documents are supported in each marketplace.
       #
@@ -81,7 +94,9 @@ module Peddler
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
       # the new `slotId` value for the time slot by calling the `listHandoverSlots` operation before making another
-      # `patch` call. See the **Update Package** column in the
+      # `patch` call.
+      #
+      # See the **Update Package** column in the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
       # Marketplace Support Table} to see which marketplaces this operation is supported in.
       #
@@ -99,17 +114,23 @@ module Peddler
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
       # associated shipping labels, along with other compliance documents according to the marketplace (refer to the
       # {https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support-table
-      # marketplace document support table}). Developers calling this operation may optionally assign a `packageDetails`
-      # object, allowing them to input a preferred time slot for each order in their request. In this case, Amazon will
-      # try to schedule the respective packages using their optional settings. On the other hand, *i.e.*, if the time
-      # slot is not provided, Amazon will then pick the earliest time slot possible. Regarding the shipping label's file
-      # format, external developers are able to choose between PDF or ZPL, and Amazon will create the label accordingly.
+      # marketplace document support table}).
+      #
+      # Developers calling this operation may optionally assign a `packageDetails` object, allowing them to input a
+      # preferred time slot for each order in their request. In this case, Amazon will try to schedule the respective
+      # packages using their optional settings. On the other hand, *i.e.*, if the time slot is not provided, Amazon will
+      # then pick the earliest time slot possible.
+      #
+      # Regarding the shipping label's file format, external developers are able to choose between PDF or ZPL, and
+      # Amazon will create the label accordingly.
+      #
       # This operation returns an array composed of the scheduled packages, and a short-lived URL pointing to a zip file
       # containing the generated shipping labels and the other documents enabled for your marketplace. If at least an
       # order couldn't be scheduled, then Amazon adds the `rejectedOrders` list into the response, which contains an
       # entry for each order we couldn't process. Each entry is composed of an error message describing the reason of
-      # the failure, so that sellers can take action. The table below displays the supported request and burst maximum
-      # rates:
+      # the failure, so that sellers can take action.
+      #
+      # The table below displays the supported request and burst maximum rates:
       #
       # @note This operation can make a static sandbox call.
       # @param create_scheduled_packages_request [Hash] The request schema for the `createScheduledPackageBulk`

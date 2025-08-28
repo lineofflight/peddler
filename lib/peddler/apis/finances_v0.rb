@@ -48,8 +48,10 @@ module Peddler
       end
 
       # Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to
-      # appear in your financial events. **Note:** This operation will only retrieve group's data for the past two
-      # years. If a request is submitted for data spanning more than two years, an empty response is returned.
+      # appear in your financial events.
+      #
+      # **Note:** This operation will only retrieve group's data for the past two years. If a request is submitted for
+      # data spanning more than two years, an empty response is returned.
       #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds
@@ -101,8 +103,9 @@ module Peddler
       end
 
       # Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your
-      # financial events. **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until in they
-      # are released.
+      # financial events.
+      #
+      # **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until in they are released.
       #
       # @note This operation can make a static sandbox call.
       # @param max_results_per_page [Integer] The maximum number of results to return per page. If the response exceeds

@@ -51,10 +51,11 @@ module Peddler
         meter(rate_limit).post(path, body:)
       end
 
-      # Purchases a shipping service and returns purchase related details and documents. Note: You must complete the
-      # purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the
-      # 10 minutes have expired, you will receive an error response with the error code equal to "TOKEN_EXPIRED". If you
-      # receive this error response, you must get the rates for the shipment again.
+      # Purchases a shipping service and returns purchase related details and documents.
+      #
+      # Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you
+      # make the request after the 10 minutes have expired, you will receive an error response with the error code equal
+      # to "TOKEN_EXPIRED". If you receive this error response, you must get the rates for the shipment again.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param body [Hash] PurchaseShipmentRequest body

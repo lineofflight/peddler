@@ -28,6 +28,18 @@ module Peddler
         meter(rate_limit).post(path, body:)
       end
 
+      # Returns fast delivery estimates for Product Detail and Collection pages, based on criteria that you specify.
+      #
+      # @note This operation can make a dynamic sandbox call.
+      # @param body [Hash] GetDeliveryOfferingsRequest parameter
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def delivery_offerings(body, rate_limit: 5.0)
+        path = "/fba/outbound/2020-07-01/deliveryOfferings"
+
+        meter(rate_limit).post(path, body:)
+      end
+
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
       # you specify.
       #
@@ -41,8 +53,8 @@ module Peddler
         meter(rate_limit).post(path, body:)
       end
 
-      # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the next
-      # token parameter.
+      # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
+      # `nextToken` parameter.
       #
       # @note This operation can make a dynamic sandbox call.
       # @param query_start_date [String] A date used to select fulfillment orders that were last updated after (or at) a
@@ -78,14 +90,17 @@ module Peddler
       # order.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param package_number [Integer] The unencrypted package identifier returned by the `getFulfillmentOrder`
-      #   operation.
+      # @param package_number [Integer] The unencrypted package identifier. You can obtain this value from the
+      #   `getFulfillmentOrder` operation.
+      # @param amazon_fulfillment_tracking_number [String] The Amazon fulfillment tracking number. You can obtain this
+      #   value from the `getFulfillmentOrder` operation.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def get_package_tracking_details(package_number, rate_limit: 2.0)
+      def get_package_tracking_details(package_number: nil, amazon_fulfillment_tracking_number: nil, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/tracking"
         params = {
           "packageNumber" => package_number,
+          "amazonFulfillmentTrackingNumber" => amazon_fulfillment_tracking_number,
         }.compact
 
         meter(rate_limit).get(path, params:)
@@ -121,9 +136,9 @@ module Peddler
       # Creates a fulfillment return.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] CreateFulfillmentReturnRequest parameter
-      # @param seller_fulfillment_order_id [String] An identifier assigned by the seller to the fulfillment order at the
-      #   time it was created. The seller uses their own records to find the correct `SellerFulfillmentOrderId` value
+      # @param body [Hash] The request body of the `createFulfillmentReturn` operation.
+      # @param seller_fulfillment_order_id [String] An identifier the seller assigns to the fulfillment order at the
+      #   time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value
       #   based on the buyer's request to return items.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
@@ -149,7 +164,7 @@ module Peddler
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
       #
       # @note This operation can make a dynamic sandbox call.
-      # @param body [Hash] UpdateFulfillmentOrderRequest parameter
+      # @param body [Hash] The request body of the `updateFulfillmentOrder` operation.
       # @param seller_fulfillment_order_id [String] The identifier assigned to the item by the seller when the
       #   fulfillment order was created.
       # @param rate_limit [Float] Requests per second
@@ -216,10 +231,10 @@ module Peddler
       #   the specified feature.
       # @param feature_name [String] The name of the feature for which to return a list of eligible inventory.
       # @param next_token [String] A string token returned in the response to your previous request that is used to
-      #   return the next response page. A value of null will return the first page.
+      #   return the next response page. A value of `null` will return the first page.
       # @param query_start_date [String] A date that you can use to select inventory that has been updated since a
       #   specified date. An update is defined as any change in feature-enabled inventory availability. The date must be
-      #   in the format yyyy-MM-ddTHH:mm:ss.sssZ
+      #   in the format `yyyy-MM-ddTHH:mm:ss.sssZ`
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_inventory(marketplace_id, feature_name, next_token: nil, query_start_date: nil, rate_limit: 2.0)
@@ -233,16 +248,16 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified
-      # feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object. The
+      # Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified
+      # feature. Note that if the `sellerSku` isn't eligible, the response will contain an empty `skuInfo` object. The
       # parameters for this operation may contain special characters that require URL encoding. To avoid errors with
       # SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a dynamic sandbox call.
       # @param marketplace_id [String] The marketplace for which to return the count.
       # @param feature_name [String] The name of the feature.
-      # @param seller_sku [String] Used to identify an item in the given marketplace. `SellerSKU` is qualified by the
-      #   seller's `SellerId`, which is included with every operation that you submit.
+      # @param seller_sku [String] Used to identify an item in the given marketplace. `sellerSku` is qualified by the
+      #   seller's `sellerId`, which is included with every operation that you submit.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_feature_sku(marketplace_id, feature_name, seller_sku, rate_limit: 2.0)

@@ -14,9 +14,11 @@ module Peddler
     #
     # Use the Orders Selling Partner API to programmatically retrieve order information. With this API, you can develop
     # fast, flexible, and custom applications to manage order synchronization, perform order research, and create
-    # demand-based decision support tools. _Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders
-    # from 2016 onward. For all other marketplaces, the Orders API supports orders for the last two years (orders older
-    # than this don't show up in the response).
+    # demand-based decision support tools.
+    #
+    # _Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders from 2016 onward. For all other
+    # marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the
+    # response).
     class OrdersV0 < API
       # Returns orders that are created or updated during the specified time period. If you want to return specific
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
@@ -184,12 +186,14 @@ module Peddler
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
-      # retrieve the next page of order items. __Note__: When an order is in the Pending state (the order has been
-      # placed but payment has not been authorized), the getOrderItems operation does not return information about
-      # pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order
-      # leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially
-      # Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping
-      # charges, gift status and promotions for the order items in the order.
+      # retrieve the next page of order items.
+      #
+      # __Note__: When an order is in the Pending state (the order has been placed but payment has not been authorized),
+      # the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or
+      # promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment
+      # has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation
+      # returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in
+      # the order.
       #
       # @note This operation can make a static sandbox call.
       # @param order_id [String] An Amazon-defined order identifier, in 3-7-7 format.
