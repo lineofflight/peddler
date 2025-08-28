@@ -324,6 +324,23 @@ module Peddler
         meter(rate_limit).get(path)
       end
 
+      # Update/Add custom identifier to the boxes within a shipment. These custom identifiers are provided by the
+      # clients and reflected on the box labels to identify boxes. One example of this custom identifier is the SSCC
+      # (Serial Shipping Container Codes) barcodes, with the encoding of GS1-128, which is an industry standard to
+      # uniquely identify boxes.
+      #
+      # @note This operation can make a static sandbox call.
+      # @param inbound_plan_id [String] Identifier to an inbound plan.
+      # @param shipment_id [String] Identifier to a shipment. A shipment contains the boxes and units being inbounded.
+      # @param body [Hash] The body of the request to `updateBoxIdentifiers`.
+      # @param rate_limit [Float] Requests per second
+      # @return [Peddler::Response] The API response
+      def update_box_identifiers(inbound_plan_id, shipment_id, body, rate_limit: nil)
+        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/boxIdentifiers"
+
+        meter(rate_limit).put(path, body:)
+      end
+
       # Provides a paginated list of box packages in a shipment.
       #
       # @note This operation can make a static sandbox call.
@@ -551,7 +568,7 @@ module Peddler
       # @param body [Hash] The body of the request to `cancelSelfShipAppointment`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
+      def cancel_self_ship_appointment(inbound_plan_id, shipment_id, body, rate_limit: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentCancellation"
 
         meter(rate_limit).put(path, body:)
@@ -572,7 +589,7 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_self_ship_appointment_slots(inbound_plan_id, shipment_id, page_size: 10, pagination_token: nil,
-        rate_limit: 2.0)
+        rate_limit: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots"
         params = {
           "pageSize" => page_size,
@@ -591,7 +608,7 @@ module Peddler
       # @param body [Hash] The body of the request to `generateSelfShipAppointmentSlots`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: 2.0)
+      def generate_self_ship_appointment_slots(inbound_plan_id, shipment_id, body, rate_limit: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots"
 
         meter(rate_limit).post(path, body:)
@@ -607,7 +624,7 @@ module Peddler
       # @param body [Hash] The body of the request to `scheduleSelfShipAppointment`.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: 2.0)
+      def schedule_self_ship_appointment(inbound_plan_id, shipment_id, slot_id, body, rate_limit: nil)
         path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/selfShipAppointmentSlots/#{percent_encode(slot_id)}/schedule"
 
         meter(rate_limit).post(path, body:)
@@ -702,13 +719,25 @@ module Peddler
 
       # List the inbound compliance details for MSKUs in a given marketplace.
       #
+      # **Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # The following characters must be double percent encoded:
+      #
+      # - `%`
+      # - `+`
+      # - `,`
+      #
+      # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
+      # encoded as `test%252Cmsku`.
+      #
       # @note This operation can make a static sandbox call.
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param marketplace_id [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_item_compliance_details(mskus, marketplace_id, rate_limit: 2.0)
+      def list_item_compliance_details(mskus, marketplace_id, rate_limit: nil)
         path = "/inbound/fba/2024-03-20/items/compliance"
         params = {
           "mskus" => stringify_array(mskus),
@@ -750,13 +779,25 @@ module Peddler
 
       # Get preparation details for a list of MSKUs in a specified marketplace.
       #
+      # **Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      #
+      # The following characters must be double percent encoded:
+      #
+      # - `%`
+      # - `+`
+      # - `,`
+      #
+      # **Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is
+      # encoded as `test%252Cmsku`.
+      #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace ID. For a list of possible values, refer to [Marketplace
       #   IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
       # @param mskus [Array<String>] A list of merchant SKUs, a merchant-supplied identifier of a specific SKU.
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
-      def list_prep_details(marketplace_id, mskus, rate_limit: 2.0)
+      def list_prep_details(marketplace_id, mskus, rate_limit: nil)
         path = "/inbound/fba/2024-03-20/items/prepDetails"
         params = {
           "marketplaceId" => marketplace_id,

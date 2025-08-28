@@ -15,9 +15,10 @@ module Peddler
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
     class ProductPricingV0 < API
-      # Returns pricing information for a seller's offer listings based on seller SKU or ASIN. **Note:** The parameters
-      # associated with this operation may contain special characters that require URL encoding to call the API. To
-      # avoid errors with SKUs when encoding URLs, refer to [URL
+      # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
@@ -52,9 +53,10 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN. **Note:** The
-      # parameters associated with this operation may contain special characters that require URL encoding to call the
-      # API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
       # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
@@ -85,9 +87,11 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Returns the lowest priced offers for a single SKU listing. **Note:** The parameters associated with this
-      # operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs
-      # when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+      # Returns the lowest priced offers for a single SKU listing.
+      #
+      # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
+      # to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL
+      # Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] A marketplace identifier. Specifies the marketplace for which prices are

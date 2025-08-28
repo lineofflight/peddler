@@ -46,11 +46,12 @@ module Peddler
         meter(rate_limit).get(path, params:)
       end
 
-      # Creates a Data Kiosk query request. **Note:** The retention of a query varies based on the fields requested.
-      # Each field within a schema is annotated with a `@resultRetention` directive that defines how long a query
-      # containing that field will be retained. When a query contains multiple fields with different retentions, the
-      # shortest (minimum) retention is applied. The retention of a query's resulting documents always matches the
-      # retention of the query.
+      # Creates a Data Kiosk query request.
+      #
+      # **Note:** The retention of a query varies based on the fields requested. Each field within a schema is annotated
+      # with a `@resultRetention` directive that defines how long a query containing that field will be retained. When a
+      # query contains multiple fields with different retentions, the shortest (minimum) retention is applied. The
+      # retention of a query's resulting documents always matches the retention of the query.
       #
       # @note This operation can make a static sandbox call.
       # @param body [Hash] The body of the request.

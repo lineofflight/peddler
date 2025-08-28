@@ -159,8 +159,8 @@ module Peddler
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
-      # to the response definition to get all the possible attributes. To get the full invoice, use the
-      # `createInvoicesExport` operation to start an export request.
+      # to the response definition to get all the possible attributes.
+      # To get the full invoice, use the `createInvoicesExport` operation to start an export request.
       #
       # @note This operation can make a static sandbox call.
       # @param marketplace_id [String] The marketplace from which you want the invoice.

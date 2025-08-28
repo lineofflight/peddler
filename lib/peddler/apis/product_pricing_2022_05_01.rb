@@ -13,8 +13,10 @@ module Peddler
     # Selling Partner API for Pricing
     #
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer pricing
-    # information for Amazon Marketplace products. For more information, refer to the [Product Pricing v2022-05-01 Use
-    # Case Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
+    # information for Amazon Marketplace products.
+    #
+    # For more information, refer to the [Product Pricing v2022-05-01 Use Case
+    # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
     class ProductPricing20220501 < API
       # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
       # body. The response for each successful (HTTP status code 200) request in the set includes the computed listing
