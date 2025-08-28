@@ -27,11 +27,16 @@ module Generator
       description = operation["description"]
 
       # Remove usage plan details
-      lines = description.split("\n")
+      # Some API models have literal \n strings instead of actual newlines
+      delimiter = description.include?("\\n") ? "\\n" : "\n"
+      lines = description.split(delimiter)
       usage_plan_index = lines.find_index { |line| line.downcase.include?("usage plan") }
       lines = lines[0...usage_plan_index] if usage_plan_index
-      lines.reject! { |line| line.strip == "" }
+      # Join lines back together, preserving blank lines for proper paragraph separation
       description = lines.join("\n").strip
+
+      # Ensure **Note:** and **Examples:** start on new lines with blank lines before them
+      description = description.gsub(/(\S)\s*(\*\*(Note|Examples?):\*\*)/, "\\1\n\n\\2")
 
       description = convert_html_links_to_yard(description)
       description = convert_doc_links_to_full_url(description)
@@ -145,11 +150,12 @@ module Generator
       # 3. Extracts the rate value from the data row
       # This regex is robust and handles various table formats by looking for "Burst |" in the header and then
       # extracting the rate value from the data row. It works with both 2-column and 3-column tables.
+      # Note: API models may use either literal \n strings or actual newline characters
       pattern = %r{
         Burst\s*\|                      # Find "Burst |" at end of table header
-        \n                              # Newline after header
+        (?:\\n|\n)                      # Either literal \n string or actual newline
         \|(?:\s*-+\s*\|){2,3}           # Separator line (2-3 columns of dashes)
-        \n                              # Newline after separator
+        (?:\\n|\n)                      # Either literal \n string or actual newline
         (?:\|[^|]*){0,1}                # Optional first column (e.g., "Default" in 3-column format)
         \|\s*(\S+)\s*\|                 # Capture rate value (always before burst value)
         [^|]*\|                         # Skip to burst column
@@ -157,7 +163,13 @@ module Generator
 
       match = operation["description"].match(pattern)
       if match
-        match[1].to_f
+        rate_value = match[1]
+        # Handle "n" as a special case - indicates variable/dynamic rate limits
+        # We return :unknown to signal that rate limiting exists but no default is provided
+        # See: https://developer-docs.amazon.com/sp-api/docs/fulfillment-inbound-api-rate-limits
+        return :unknown if rate_value.downcase == "n"
+
+        rate_value.to_f
       elsif operation["description"].match?(/Usage\s+[Pp]lans?:/)
         # Fail when we can't extract rate limit but Usage Plan exists. This likely means Amazon changed their
         # documentation format.

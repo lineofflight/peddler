@@ -22,13 +22,17 @@ module Generator
     private
 
     def build_rate_limit_param
-      {
+      param = {
         "name" => "rate_limit",
         "type" => "Float",
         "required" => false,
         "description" => "Requests per second",
-        "default" => @rate_limit,
       }
+
+      # Only add default if we have a known rate limit value (not :unknown)
+      param["default"] = @rate_limit unless @rate_limit == :unknown
+
+      param
     end
 
     # Builds a notification_type parameter for operations that reference the NotificationType parameter.
