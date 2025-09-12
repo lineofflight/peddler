@@ -324,23 +324,6 @@ module Peddler
         meter(rate_limit).get(path)
       end
 
-      # Update/Add custom identifier to the boxes within a shipment. These custom identifiers are provided by the
-      # clients and reflected on the box labels to identify boxes. One example of this custom identifier is the SSCC
-      # (Serial Shipping Container Codes) barcodes, with the encoding of GS1-128, which is an industry standard to
-      # uniquely identify boxes.
-      #
-      # @note This operation can make a static sandbox call.
-      # @param inbound_plan_id [String] Identifier to an inbound plan.
-      # @param shipment_id [String] Identifier to a shipment. A shipment contains the boxes and units being inbounded.
-      # @param body [Hash] The body of the request to `updateBoxIdentifiers`.
-      # @param rate_limit [Float] Requests per second
-      # @return [Peddler::Response] The API response
-      def update_box_identifiers(inbound_plan_id, shipment_id, body, rate_limit: nil)
-        path = "/inbound/fba/2024-03-20/inboundPlans/#{percent_encode(inbound_plan_id)}/shipments/#{percent_encode(shipment_id)}/boxIdentifiers"
-
-        meter(rate_limit).put(path, body:)
-      end
-
       # Provides a paginated list of box packages in a shipment.
       #
       # @note This operation can make a static sandbox call.
