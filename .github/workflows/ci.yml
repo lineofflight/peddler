@@ -49,10 +49,27 @@ jobs:
       - uses: actions/checkout@v4
       - name: Extract version from tag
         id: extract_version
-        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@v5
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "version_number=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      - name: Extract changelog entry
+        id: changelog
+        run: |
+          VERSION_NUMBER="${{ steps.extract_version.outputs.version_number }}"
+          # Extract the changelog entry for this version
+          awk "/^## \[$VERSION_NUMBER\]/{flag=1;next}/^## \[/{flag=0}flag" CHANGELOG.md > release_notes.md
+          # Check if we found content
+          if [ -s release_notes.md ]; then
+            echo "Found changelog entry for version $VERSION_NUMBER"
+          else
+            echo "No specific changelog entry found, using default"
+            echo "Release ${{ steps.extract_version.outputs.version }}" > release_notes.md
+          fi
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          title: ${{ steps.extract_version.outputs.version }}
+          tag_name: ${{ steps.extract_version.outputs.version }}
+          name: ${{ steps.extract_version.outputs.version }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
