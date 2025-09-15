@@ -141,7 +141,7 @@ order = orders.first
 # Type-safe attribute access
 order.amazon_order_id     # => "123-4567890-1234567"
 order.order_status        # => "Shipped"
-order.is_prime            # => true
+order.prime?              # => true
 order.order_total         # => Money object (automatic coercion)
 order.order_total.cents   # => 9999
 order.order_total.currency.iso_code # => "USD"
