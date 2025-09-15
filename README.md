@@ -120,6 +120,43 @@ api.get_orders(
 )
 ```
 
+### Typed Responses
+
+Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support:
+
+```ruby
+# Enable typed responses
+api = Peddler.orders(aws_region, access_token).typed
+
+# Get orders with type-safe response
+response = api.get_orders(
+  marketplaceIds: ["ATVPDKIKX0DER"],
+  createdAfter: "2023-01-01T00:00:00Z"
+)
+
+# Access data with type safety
+orders = response.payload.orders  # Returns array of Order objects
+order = orders.first
+
+# Type-safe attribute access
+order.amazon_order_id     # => "123-4567890-1234567"
+order.order_status        # => "Shipped"
+order.is_prime            # => true
+order.order_total         # => Money object (automatic coercion)
+order.order_total.cents   # => 9999
+order.order_total.currency.iso_code # => "USD"
+```
+
+#### Hash Access
+
+If you prefer working with plain hashes, use the standard (non-typed) API:
+
+```ruby
+api = Peddler.orders(aws_region, access_token)
+response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
+orders = response.dig("payload", "orders")
+```
+
 ### Error Handling
 
 By default, Peddler v4 maintains backward compatibility:

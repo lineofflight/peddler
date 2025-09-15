@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Add typed responses with `typed` method for type-safe API responses using Structure gem
+
 ### [4.5.0] - 2025-06-26
 
 ### Added
