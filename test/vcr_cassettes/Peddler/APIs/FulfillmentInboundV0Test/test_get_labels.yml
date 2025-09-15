@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 23:08:38 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 8YB74R14DN1KVQM3VH3B
+      X-Amzn-Requestid:
+      - 6d65a9af-40d1-402a-9eb9-b6d0e1994142
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 23:08:38 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 23:08:38 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/fba/inbound/v0/shipments/348975493/labels?LabelType=BARCODE_2D&PageType=PackageLabel_Letter_2
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T230838Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 23:08:38 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '56'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 5R7YWFGKTDK2M89V64XZ
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - ff8b269f-a72e-488f-86f5-5ac956ccb87c
+      X-Amz-Apigw-Id:
+      - OPFff8b269fa72e
+      X-Amzn-Trace-Id:
+      - Root=1-68c35676-ff8b269fa72e488f
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"DownloadURL":"http://www.labels.url.com"}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 23:08:38 GMT
+recorded_with: VCR 6.3.1

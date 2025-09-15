@@ -3,20 +3,26 @@
 require "erb"
 require "generator/config"
 require "generator/formatter"
-require "generator/utils"
 require "generator/parameter_builder"
 
 module Generator
   class Operation
     include Formatter
-    include Utils
 
-    attr_reader :path, :verb, :operation
+    attr_reader :path, :verb, :operation, :api_name_with_version, :specification
 
-    def initialize(path, verb, operation)
+    DEFAULT_PAYLOAD_KEY = "payload"
+
+    def initialize(path, verb, operation, api_name_with_version = nil, specification = nil)
       @path = path
       @verb = verb
       @operation = operation
+      @api_name_with_version = api_name_with_version
+      @specification = specification
+    end
+
+    def operation_id
+      operation["operationId"]
     end
 
     def render
@@ -52,7 +58,7 @@ module Generator
           items_type = param.dig("items", "type")
           param_type = items_type ? "Array<#{items_type.capitalize}>" : "Array"
         end
-        param_name = snakecase(param["name"])
+        param_name = param["name"].underscore
         param_description = param["description"]&.gsub(/\s+/, " ")
 
         "@param #{param_name} [#{param_type}] #{param_description}"
@@ -73,16 +79,16 @@ module Generator
     end
 
     def method_definition
-      method_name = snakecase(operation.delete("operationId"))
+      method_name = operation["operationId"].underscore
 
-      required_params = parameters.select { |p| p["required"] }&.map { |p| snakecase(p["name"]) } || []
+      required_params = parameters.select { |p| p["required"] }&.map { |p| p["name"].underscore } || []
       optional_params = parameters.reject do |p|
         p["required"]
       end.map do |p|
         default_value = p["default"]
         formatted_default = default_value.is_a?(String) ? "\"#{default_value}\"" : default_value
 
-        "#{snakecase(p["name"])}: #{formatted_default ? formatted_default : "nil"}"
+        "#{p["name"].underscore}: #{formatted_default ? formatted_default : "nil"}"
       end
       params = required_params + optional_params
 
@@ -99,14 +105,14 @@ module Generator
 
     def body_param_name
       body_param = parameters.find { |p| p["in"] == "body" }
-      snakecase(body_param["name"]) if body_param
+      body_param["name"].underscore if body_param
     end
 
     def query_params
       parameters.select do |p|
         p["in"] == "query"
       end.reduce({}) do |hash, p|
-        param_name = snakecase(p["name"])
+        param_name = p["name"].underscore
         value = param_name
 
         # If parameter is array type, add array handling
@@ -126,7 +132,359 @@ module Generator
       args
     end
 
+    def has_typed_response?
+      !!operation_id && response_model[:model]
+    end
+
+    def response_model
+      @response_model ||= build_response_model
+    end
+
     private
+
+    def build_response_model
+      success_response = find_success_response
+      return default_response_model unless success_response && success_response["schema"]
+
+      schema = success_response["schema"]
+
+      if schema["$ref"]
+        build_ref_response_model(schema["$ref"])
+      elsif schema["properties"] && schema["properties"]["payload"]
+        handle_inline_payload_response(schema["properties"]["payload"])
+      else
+        default_response_model
+      end
+    end
+
+    def build_ref_response_model(ref)
+      response_type_name = ref.split("/").last
+      {
+        type: :response,
+        model: response_type_name,
+        path: [],
+      }
+    end
+
+    def default_response_model
+      { type: :raw, model: nil, path: ["payload"] }
+    end
+
+    def find_success_response
+      responses = operation["responses"]
+      # Amazon SP-API uses various 2xx codes: 200 (OK), 201 (Created), 202 (Accepted), 204 (No Content)
+      responses["200"] || responses["201"] || responses["202"] || responses["204"]
+    end
+
+    def handle_ref_response(schema)
+      response_def_name = schema["$ref"].split("/").last
+      definitions = specification&.dig("definitions")
+      response_def = definitions&.dig(response_def_name)
+
+      return default_response_model unless response_def&.dig("properties", "payload")
+
+      payload_schema = response_def["properties"]["payload"]
+      return default_response_model unless payload_schema["$ref"]
+
+      actual_model_name = payload_schema["$ref"].split("/").last
+      determine_model_type(actual_model_name, definitions)
+    end
+
+    def determine_model_type(model_name, definitions)
+      if model_name.end_with?("List")
+        handle_list_model(model_name, definitions)
+      elsif plural_array_type?(model_name)
+        build_plural_array_model(model_name)
+      else
+        build_single_model(model_name)
+      end
+    end
+
+    def plural_array_type?(model_name)
+      model_name.end_with?("s") && !model_name.match?(/(?:Address|Info|Status|Data)$/)
+    end
+
+    def build_plural_array_model(model_name)
+      {
+        type: :array,
+        model: model_name.sub(/s$/, ""),
+        path: ["payload", model_name],
+      }
+    end
+
+    def build_single_model(model_name)
+      {
+        type: :single,
+        model: model_name,
+        path: ["payload"],
+      }
+    end
+
+    def handle_list_model(model_name, definitions)
+      model_def = definitions&.dig(model_name)
+
+      if model_def&.dig("properties")
+        array_property = find_array_property(model_def["properties"], definitions)
+        return build_array_property_model(array_property) if array_property
+      end
+
+      # Fallback for List models
+      build_list_fallback_model(model_name)
+    end
+
+    def build_array_property_model(array_property)
+      array_property_name, singular_model_name = array_property
+      {
+        type: :array,
+        model: singular_model_name,
+        path: ["payload", array_property_name],
+      }
+    end
+
+    def build_list_fallback_model(model_name)
+      {
+        type: :array,
+        model: model_name.sub(/List$/, ""),
+        path: ["payload", model_name],
+      }
+    end
+
+    def find_array_property(properties, definitions)
+      properties.each do |prop_name, prop_def|
+        next unless prop_def["$ref"]
+
+        ref_name = prop_def["$ref"].split("/").last
+        ref_def = definitions&.dig(ref_name)
+
+        if ref_def&.dig("type") == "array" && ref_def.dig("items", "$ref")
+          singular_model_name = ref_def["items"]["$ref"].split("/").last
+          return [prop_name, singular_model_name]
+        end
+      end
+
+      nil
+    end
+
+    def handle_inline_payload_response(payload_schema)
+      if payload_schema["$ref"]
+        handle_payload_ref(payload_schema["$ref"])
+      elsif payload_schema["properties"]
+        handle_properties_payload(payload_schema)
+      else
+        default_response_model
+      end
+    end
+
+    def handle_payload_ref(ref)
+      model_name = ref.split("/").last
+      build_single_model(model_name)
+    end
+
+    def handle_properties_payload(payload_schema)
+      return default_response_model unless payload_schema["properties"]
+
+      array_prop = find_array_in_properties(payload_schema["properties"])
+
+      if array_prop
+        build_properties_array_model(array_prop[0])
+      else
+        build_properties_single_model(payload_schema["properties"].keys.first)
+      end
+    end
+
+    def find_array_in_properties(properties)
+      properties.find { |_, prop| prop["type"] == "array" }
+    end
+
+    def build_properties_array_model(array_name)
+      {
+        type: :array,
+        model: array_name.sub(/s$/, ""),
+        path: ["payload", array_name],
+      }
+    end
+
+    def build_properties_single_model(model_name)
+      {
+        type: :single,
+        model: model_name,
+        path: ["payload", model_name],
+      }
+    end
+
+    def parser_class
+      return unless has_typed_response?
+
+      model = response_model
+      return unless model && model[:model]
+
+      api_class = api_name_with_version.camelize
+
+      # For response types, we use the response class directly as the parser
+      # The type class knows how to parse the JSON response
+      "Peddler::Types::#{api_class}::#{model[:model]}"
+    end
+
+    def parsing_logic
+      return unless has_typed_response?
+
+      model = response_model
+      return unless model && model[:model]
+
+      type_class = build_type_class_name(model[:model])
+
+      case model[:type]
+      when :response
+        parse_response_type(type_class)
+      when :single
+        parse_single_type(type_class, model[:path])
+      when :array
+        parse_array_type(type_class, model[:path])
+      else
+        "response.parse"
+      end
+    end
+
+    def build_type_class_name(model_name)
+      api_class = api_name_with_version.camelize
+      "Peddler::Types::#{api_class}::#{model_name}"
+    end
+
+    def parse_response_type(type_class)
+      "#{type_class}.parse(response.parse)"
+    end
+
+    def parse_single_type(type_class, path)
+      dig_path = build_dig_path(path)
+      "#{type_class}.parse(response.parse.dig(#{dig_path}))"
+    end
+
+    def parse_array_type(type_class, path)
+      if path.size == 2 && path.first == DEFAULT_PAYLOAD_KEY
+        parse_nested_array(type_class, path.last)
+      else
+        parse_simple_array(type_class)
+      end
+    end
+
+    def parse_nested_array(type_class, array_name)
+      "(response.parse.dig(\"#{DEFAULT_PAYLOAD_KEY}\", \"#{array_name}\") || []).map { |item| #{type_class}.parse(item) }"
+    end
+
+    def parse_simple_array(type_class)
+      "(response.parse.dig(\"#{DEFAULT_PAYLOAD_KEY}\") || []).map { |item| #{type_class}.parse(item) }"
+    end
+
+    def build_dig_path(path)
+      path.map { |p| "\"#{p}\"" }.join(", ")
+    end
+
+    def use_ternary?
+      return false unless has_typed_response?
+
+      # Calculate the full ternary line length
+      typed_response = parsing_logic || "response.parse"
+      ternary_line = "typed? ? #{typed_response} : response"
+
+      # Use ternary if it fits in 120 characters (with 8 spaces for indentation)
+      ternary_line.length <= 112 # 120 chars - 8 spaces indentation
+    end
+
+    def name
+      operation_id.underscore
+    end
+
+    def sandbox_test_case
+      return unless static_sandbox?
+
+      # Find the first successful response code (2xx)
+      success_code = operation["responses"].keys.find { |code| code.start_with?("2") }
+      return unless success_code
+
+      sandbox_data = operation["responses"][success_code]["x-amzn-api-sandbox"]
+      return unless sandbox_data&.key?("static")
+
+      # Return the first static test case
+      sandbox_data["static"].first
+    end
+
+    def sandbox_params
+      test_case = sandbox_test_case
+      return "" unless test_case
+
+      request_params = test_case.dig("request", "parameters") || {}
+
+      # Build parameter list in correct order
+      method_params = parameters.select { |p| p["required"] }.map { |p| p["name"].underscore }
+
+      param_values = method_params.map do |param_name|
+        # Find the matching parameter in sandbox data
+        sandbox_param = request_params.find { |k, _| k.underscore == param_name }
+
+        if sandbox_param
+          value = sandbox_param[1]["value"]
+          # Handle arrays
+          if value.is_a?(Array)
+            value.inspect
+          elsif value.is_a?(String)
+            "\"#{value}\""
+          else
+            value
+          end
+        else
+          # This shouldn't happen for required params in sandbox tests
+          "nil"
+        end
+      end
+
+      # Add optional parameters with sandbox values
+      optional_sandbox_params = request_params.reject do |name, _|
+        method_params.include?(name.underscore)
+      end
+
+      optional_sandbox_params.each do |name, param_data|
+        value = param_data["value"]
+        formatted_value = if value.is_a?(Array)
+          value.inspect
+        elsif value.is_a?(String)
+          "\"#{value}\""
+        else
+          value
+        end
+        param_values << "#{name.underscore}: #{formatted_value}"
+      end
+
+      # Check if there's a body parameter in the test case
+      if test_case.dig("request", "body")
+        param_values << "body: #{test_case["request"]["body"].to_json}"
+      end
+
+      param_values.join(", ")
+    end
+
+    def typed_test_assertion
+      test_case = sandbox_test_case
+      return "" unless test_case && has_typed_response?
+
+      model = response_model
+      method_call = "api.sandbox.typed.#{name}(#{sandbox_params})"
+
+      case model[:type]
+      when :single
+        type_class = "Peddler::Types::#{api_name_with_version.camelize}::#{model[:model]}"
+        "result = #{method_call}\n\n        assert_instance_of(#{type_class}, result)"
+      when :array
+        type_class = "Peddler::Types::#{api_name_with_version.camelize}::#{model[:model]}"
+        <<~ASSERTION
+          results = #{method_call}
+
+                assert_kind_of(Array, results)
+                assert_instance_of(#{type_class}, results.first) unless results.empty?
+        ASSERTION
+      else
+        ""
+      end
+    end
 
     def parameters
       @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build

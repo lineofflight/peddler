@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 22:56:40 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - Q06ZBDSD4ZD8G5A880V3
+      X-Amzn-Requestid:
+      - b5cf6a99-fe3e-475d-bba1-6e20e6fddc2c
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 22:56:40 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 22:56:40 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/inbound/fba/2024-03-20/inboundPlans/wf1234abcd-1234-abcd-5678-1234abcd5678/shipments/sh1234abcd-1234-abcd-5678-1234abcd5678
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T225640Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 22:56:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1933'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - A00Y3AX7ZSM0Y0HNRD6R
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - c3129f34-99b2-4c0c-9cfc-c0d5ba25ce06
+      X-Amz-Apigw-Id:
+      - OPFc3129f3499b2
+      X-Amzn-Trace-Id:
+      - Root=1-68c353a8-c3129f3499b24c0c
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"placementOptionId":"pl1234abcd-1234-abcd-5678-1234abcd5678","shipmentId":"sh1234abcd-1234-abcd-5678-1234abcd5678","shipmentConfirmationId":"FBA1234ABCD","amazonReferenceId":"amazonReferenceId","selectedTransportationOptionId":"to1234abcd-1234-abcd-5678-1234abcd5678","selectedDeliveryWindow":{"startDate":"2024-01-01T00:00:00.000Z","endDate":"2024-01-01T06:00:00.000Z","editableUntil":"2024-01-01T06:00:00.000Z","availabilityType":"AVAILABLE","deliveryWindowOptionId":"dw1234abcd-1234-abcd-5678-1234abcd5678"},"name":"FBA
+        (10/02/2023 20:07)-ABC1","source":{"sourceType":"SELLER_FACILITY","address":{"name":"name","companyName":"Acme","addressLine1":"123
+        example street","addressLine2":"Unit 102","city":"Toronto","countryCode":"CA","stateOrProvinceCode":"ON","postalCode":"M1M1M1","phoneNumber":"1234567890","email":"email@email.com"}},"destination":{"destinationType":"AMAZON_WAREHOUSE","address":{"name":"name","companyName":"Acme","addressLine1":"123
+        example street","addressLine2":"Unit 102","city":"Toronto","countryCode":"CA","stateOrProvinceCode":"ON","postalCode":"M1M1M1","phoneNumber":"1234567890","email":"email@email.com"},"warehouseId":"YYZ5"},"dates":{"readyToShipWindow":{"start":"2024-01-01T00:00Z","end":"2024-01-08T00:00Z","editableUntil":"2024-01-07T00:00Z"}},"status":"WORKING","trackingDetails":{"spdTrackingDetail":{"spdTrackingItems":[{"boxId":"boxId","trackingId":"trackingId","trackingNumberValidationStatus":"VALIDATED"}]},"ltlTrackingDetail":{"freightBillNumber":["freightBillNumber1"],"billOfLadingNumber":"billOfLadingNumber"}},"freightInformation":{"freightClass":"FC_50","declaredValue":{"code":"USD","amount":500.0}},"contactInformation":{"name":"name","phoneNumber":"1234567890","email":"email@email.com"},"selfShipAppointmentDetails":[{"appointmentId":1,"appointmentSlotTime":{"startTime":"2024-01-01T00:00:00.000Z","endTime":"2024-01-01T00:00:00.000Z"},"appointmentStatus":"appointmentStatus"}]}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 22:56:40 GMT
+recorded_with: VCR 6.3.1

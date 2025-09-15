@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 group :development do
+  gem "activesupport"
   gem "appraisal"
   gem "minitest"
   gem "rake"

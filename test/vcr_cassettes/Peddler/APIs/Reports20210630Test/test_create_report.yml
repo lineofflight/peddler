@@ -5,7 +5,9 @@ http_interactions:
     uri: https://api.amazon.com/auth/o2/token
     body:
       encoding: ASCII-8BIT
-      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
     headers:
       Connection:
       - close
@@ -14,7 +16,7 @@ http_interactions:
       Host:
       - api.amazon.com
       User-Agent:
-      - http.rb/5.2.0
+      - http.rb/5.3.1
   response:
     status:
       code: 200
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Thu, 12 Sep 2024 19:40:58 GMT
+      - Fri, 12 Sep 2025 13:21:26 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -31,11 +33,11 @@ http_interactions:
       Connection:
       - close
       X-Amz-Rid:
-      - X1NRXPJCAV7WQ14DE1CW
+      - DMQMZQ4FSJ8HATGAAPRR
       X-Amzn-Requestid:
-      - fc33ba3a-b795-4855-8210-a2eb811de6b1
+      - 33fa6d5e-a2e0-4964-a9ca-da492c5a8846
       X-Amz-Date:
-      - Thu, 12 Sep 2024 19:40:58 GMT
+      - Fri, 12 Sep 2025 13:21:26 GMT
       Cache-Control:
       - no-cache, no-store, must-revalidate
       Pragma:
@@ -47,24 +49,26 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
-  recorded_at: Thu, 12 Sep 2024 19:40:58 GMT
+  recorded_at: Fri, 12 Sep 2025 13:21:26 GMT
 - request:
     method: post
-    uri: https://sellingpartnerapi-eu.amazon.com/reports/2021-06-30/reports
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/reports/2021-06-30/reports
     body:
       encoding: UTF-8
-      string: '{"reportType":"GET_MERCHANTS_LISTINGS_FYP_REPORT","marketplaceIds":["A1F83G8C2ARO7P"]}'
+      string: '{"reportType":"GET_MERCHANT_LISTINGS_ALL_DATA","dataStartTime":"2024-03-10T20:11:24.000Z","marketplaceIds":["A1PA6795UKMFR9","ATVPDKIKX0DER"]}'
     headers:
       Host:
-      - sellingpartnerapi-eu.amazon.com
+      - sandbox.sellingpartnerapi-eu.amazon.com
       User-Agent:
-      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
       X-Amz-Access-Token:
       - FILTERED
       X-Amz-Date:
-      - 20240912T194058Z
+      - 20250912T132126Z
       Connection:
       - close
+      Content-Type:
+      - application/json; charset=utf-8
   response:
     status:
       code: 202
@@ -73,29 +77,31 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Thu, 12 Sep 2024 19:40:59 GMT
+      - Fri, 12 Sep 2025 13:21:26 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '27'
+      - '21'
       Connection:
       - close
       X-Amz-Rid:
-      - TMY40KKYQ5K7Q25TZ1P3
+      - YX9WVQDCQZC0RCSYF556
       X-Amzn-Ratelimit-Limit:
-      - '0.0167'
+      - '5.0'
       X-Amzn-Requestid:
-      - 31511e09-fd4e-4844-ba5b-86203eff1c82
+      - 72650431-6a49-41f1-8b5e-a06b725b7c6e
       X-Amz-Apigw-Id:
-      - OPF31511e09fd4e
+      - OPF726504316a49
       X-Amzn-Trace-Id:
-      - Root=1-66e343cb-31511e09fd4e4844
+      - Root=1-68c41e56-726504316a4941f1
       Vary:
       - Content-Type,Accept-Encoding,User-Agent
       Strict-Transport-Security:
       - max-age=47474747; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: '{"reportId":"292248019978"}'
-  recorded_at: Thu, 12 Sep 2024 19:40:59 GMT
+      string: '{"reportId":"ID323"}
+
+        '
+  recorded_at: Fri, 12 Sep 2025 13:21:26 GMT
 recorded_with: VCR 6.3.1

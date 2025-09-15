@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+require "peddler/types/finances_v0/currency"
+
+module Peddler
+  module Types
+    module FinancesV0
+      # An event related to an Adhoc Disbursement.
+      AdhocDisbursementEvent = Structure.new do
+        # @return [String] Indicates the type of transaction.
+        #
+        # Example: "Disbursed to Amazon Gift Card balance"
+        attribute(:transaction_type, String, from: "TransactionType")
+
+        # @return [String] The date and time when the financial event was posted.
+        attribute(:posted_date, String, from: "PostedDate")
+
+        # @return [String] The identifier for the transaction.
+        attribute(:transaction_id, String, from: "TransactionId")
+
+        # @return [Currency] The amount of the transaction.
+        attribute(:transaction_amount, Currency, from: "TransactionAmount")
+      end
+    end
+  end
+end

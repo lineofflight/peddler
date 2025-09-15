@@ -14,6 +14,8 @@ module Peddler
     #
     # Use the Selling Partner API for Invoices to retrieve and manage invoice-related operations, which can help selling
     # partners manage their bookkeeping processes.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/InvoicesApiModel_2024-06-19.json
     class Invoices20240619 < API
       # Returns marketplace-dependent schemas and their respective set of possible values.
       #
@@ -26,8 +28,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::Invoices20240619::GetInvoicesAttributesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the invoice document's ID and URL. Use the URL to download the ZIP file, which contains the invoices
@@ -39,8 +41,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoices_document(invoices_document_id, rate_limit: 0.0167)
         path = "/tax/invoices/2024-06-19/documents/#{percent_encode(invoices_document_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::Invoices20240619::GetInvoicesDocumentResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Creates an invoice export request.
@@ -51,8 +53,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_invoices_export(body, rate_limit: 0.167)
         path = "/tax/invoices/2024-06-19/exports"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Invoices20240619::ExportInvoicesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns invoice exports details for exports that match the filters that you specify.
@@ -84,8 +86,8 @@ module Peddler
           "dateEnd" => date_end,
           "status" => status,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::Invoices20240619::GetInvoicesExportsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns invoice export details (including the `exportDocumentId`, if available) for the export that you specify.
@@ -96,8 +98,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoices_export(export_id, rate_limit: 2.0)
         path = "/tax/invoices/2024-06-19/exports/#{percent_encode(export_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::Invoices20240619::GetInvoicesExportResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns invoice details for the invoices that match the filters that you specify.
@@ -154,8 +156,8 @@ module Peddler
           "externalInvoiceId" => external_invoice_id,
           "sortBy" => sort_by,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::Invoices20240619::GetInvoicesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns invoice data for the specified invoice. This operation returns only a subset of the invoices data; refer
@@ -172,8 +174,14 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
+        parser = Peddler::Types::Invoices20240619::GetInvoiceResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/invoices_2024_06_19"
       end
     end
   end

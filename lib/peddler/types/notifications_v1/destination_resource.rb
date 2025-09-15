@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+require "peddler/types/notifications_v1/sqs_resource"
+require "peddler/types/notifications_v1/event_bridge_resource"
+
+module Peddler
+  module Types
+    module NotificationsV1
+      # The destination resource types.
+      DestinationResource = Structure.new do
+        # @return [SqsResource] An Amazon Simple Queue Service (SQS) queue destination.
+        attribute(:sqs, SqsResource)
+
+        # @return [EventBridgeResource] An Amazon EventBridge destination.
+        attribute(:event_bridge, EventBridgeResource, from: "eventBridge")
+      end
+    end
+  end
+end

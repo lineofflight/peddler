@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 07 Sep 2025 23:14:46 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - HJ7MPSKCST2MT7C34278
+      X-Amzn-Requestid:
+      - '05719d15-d494-48a9-acda-dd2d139c19e8'
+      X-Amz-Date:
+      - Sun, 07 Sep 2025 23:14:46 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Sun, 07 Sep 2025 23:14:46 GMT
+- request:
+    method: post
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/replenishment/2022-11-07/offers/metrics/search
+    body:
+      encoding: UTF-8
+      string: '{"filters":{"aggregationFrequency":"YEAR","timeInterval":{"startDate":"2022-01-01T00:00:00Z","endDate":"2022-12-31T00:00:00Z"},"marketplaceId":"ATVPDKIKX0DER","programTypes":["SUBSCRIBE_AND_SAVE"],"timePeriodType":"PERFORMANCE","asins":["B07CYBR5GZ","B07CYJJW8H"]},"pagination":{"limit":2,"offset":0},"sort":{"order":"ASC","key":"TOTAL_SUBSCRIPTIONS_REVENUE"}}'
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250907T231446Z
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sun, 07 Sep 2025 23:14:46 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '781'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 4ETZH5TM18T3DSFV3C6T
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 5882421e-50e4-4be6-97b3-99691ea36c33
+      X-Amz-Apigw-Id:
+      - OPF5882421e50e4
+      X-Amzn-Trace-Id:
+      - Root=1-68be11e6-5882421e50e44be6
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"offers":[{"asin":"B07CYBR5GZ","notDeliveredDueToOOS":10.2,"totalSubscriptionsRevenue":100.45,"revenuePenetration":23.6,"shippedSubscriptionUnits":100,"activeSubscriptions":100,"lostRevenueDueToOOS":12.32,"couponsRevenuePenetration":10,"shareOfCouponSubscriptions":20.04,"timeInterval":{"startDate":"2022-01-01T00:00:00Z","endDate":"2022-12-31T00:00:00Z"},"currencyCode":"USD"},{"asin":"B07CYJJW8H","notDeliveredDueToOOS":12.78,"totalSubscriptionsRevenue":80.11,"revenuePenetration":35.9,"shippedSubscriptionUnits":100,"activeSubscriptions":100,"lostRevenueDueToOOS":17.82,"couponsRevenuePenetration":17,"shareOfCouponSubscriptions":19.2,"timeInterval":{"startDate":"2022-01-01T00:00:00Z","endDate":"2022-12-31T00:00:00Z"},"currencyCode":"USD"}],"pagination":{"totalResults":17}}
+
+        '
+  recorded_at: Sun, 07 Sep 2025 23:14:46 GMT
+recorded_with: VCR 6.3.1

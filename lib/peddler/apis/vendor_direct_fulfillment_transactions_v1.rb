@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
     # fulfillment vendor's transaction status.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentTransactionsV1.json
     class VendorDirectFulfillmentTransactionsV1 < API
       # Returns the status of the transaction indicated by the specified transactionId.
       #
@@ -24,8 +26,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/transactions/v1/transactions/#{percent_encode(transaction_id)}"
+        parser = Peddler::Types::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/vendor_direct_fulfillment_transactions_v1"
       end
     end
   end

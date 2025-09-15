@@ -14,6 +14,8 @@ module Peddler
     # Selling Partner API for Feeds
     #
     # The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds_2021-06-30.json
     class Feeds20210630 < API
       include Peddler::Helpers::Feeds20210630
 
@@ -49,8 +51,8 @@ module Peddler
           "createdUntil" => created_until,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::Feeds20210630::GetFeedsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a feed. Upload the contents of the feed document before calling this operation.
@@ -61,8 +63,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_feed(body, rate_limit: 0.0083)
         path = "/feeds/2021-06-30/feeds"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Feeds20210630::CreateFeedResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds
@@ -76,7 +78,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
-
         meter(rate_limit).delete(path)
       end
 
@@ -89,8 +90,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::Feeds20210630::Feed if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading
@@ -103,8 +104,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_feed_document(body, rate_limit: 0.5)
         path = "/feeds/2021-06-30/documents"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Feeds20210630::CreateFeedDocumentResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the information required for retrieving a feed document's contents.
@@ -115,8 +116,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/documents/#{percent_encode(feed_document_id)}"
+        parser = Peddler::Types::Feeds20210630::FeedDocument if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/feeds_2021_06_30"
       end
     end
   end

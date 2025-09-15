@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 08 Sep 2025 15:51:38 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - ZFS9Q6GEEJHJVJV0WXMM
+      X-Amzn-Requestid:
+      - e06543bb-a446-4612-9643-29805f084ef2
+      X-Amz-Date:
+      - Mon, 08 Sep 2025 15:51:38 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Mon, 08 Sep 2025 15:51:36 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/orders/v0/orders/TEST_CASE_200/orderItems
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250908T155136Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 08 Sep 2025 15:51:38 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '732'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 7535R7MHZJQ1C5YND005
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 6578778f-5f05-406c-bb2d-d53fb4b1719e
+      X-Amz-Apigw-Id:
+      - OPF6578778f5f05
+      X-Amzn-Trace-Id:
+      - Root=1-68befb8a-6578778f5f05406c
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"AmazonOrderId":"902-1845936-5435065","OrderItems":[{"ASIN":"B00551Q3CS","OrderItemId":"05015851154158","SellerSKU":"NABetaASINB00551Q3CS","Title":"B00551Q3CS
+        [Card Book]","QuantityOrdered":1,"QuantityShipped":0,"ProductInfo":{"NumberOfItems":"1"},"ItemPrice":{"CurrencyCode":"USD","Amount":"10.00"},"ItemTax":{"CurrencyCode":"USD","Amount":"1.01"},"PromotionDiscount":{"CurrencyCode":"USD","Amount":"0.00"},"IsGift":"false","ConditionId":"New","ConditionSubtypeId":"New","IsTransparency":false,"SerialNumberRequired":false,"IossNumber":"","DeemedResellerCategory":"IOSS","StoreChainStoreId":"ISPU_StoreId","BuyerRequestedCancel":{"IsBuyerRequestedCancel":"true","BuyerCancelReason":"Found
+        cheaper somewhere else."}}]}}
+
+        '
+  recorded_at: Mon, 08 Sep 2025 15:51:36 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 12 Sep 2025 13:28:54 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 3DXPWA83PKDG1ZHQJNNK
+      X-Amzn-Requestid:
+      - 77f3ee20-adcc-4f76-812c-942b7c219ebf
+      X-Amz-Date:
+      - Fri, 12 Sep 2025 13:28:54 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Fri, 12 Sep 2025 13:28:54 GMT
+- request:
+    method: get
+    uri: https://sellingpartnerapi-eu.amazon.com/sales/v1/orderMetrics?buyerType=All&firstDayOfWeek=Monday&granularity=Total&interval=2025-05-01T00:00:00-00:00--2025-06-01T00:00:00-00:00&marketplaceIds=A1805IZSGTT6HS
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250912T132854Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 12 Sep 2025 13:28:54 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '313'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - C65JAP3K70EY0BF8S3KX
+      X-Amzn-Ratelimit-Limit:
+      - '0.5'
+      X-Amzn-Requestid:
+      - 64bdb29e-2f94-4b90-81e6-22ff72b34416
+      X-Amz-Apigw-Id:
+      - OPF64bdb29e2f94
+      X-Amzn-Trace-Id:
+      - Root=1-68c42016-64bdb29e2f944b90
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: "{\n  \"payload\" : [\n    \t{\n\t  \t  \"interval\" : \"2025-05-01T00:00Z--2025-06-01T00:00Z\",\n\t
+        \ \"unitCount\" : 1,\n\t  \"orderItemCount\" : 1,\n\t  \"orderCount\" : 1,\n\t
+        \ \"averageUnitPrice\" : {\n\t    \"amount\" : 8.0,\n\t    \"currencyCode\"
+        : \"EUR\"\n\t  },\n\t  \"totalSales\" : {\n\t    \"amount\" : 8.0,\n\t    \"currencyCode\"
+        : \"EUR\"\n\t  }\n\t}\t  ]\n}"
+  recorded_at: Fri, 12 Sep 2025 13:28:54 GMT
+recorded_with: VCR 6.3.1

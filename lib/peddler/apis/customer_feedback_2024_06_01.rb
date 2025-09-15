@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Customer Feedback (Customer Feedback API) provides information about customer reviews
     # and returns at both the item and browse node level.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/customerFeedback_2024-06-01.json
     class CustomerFeedback20240601 < API
       # Retrieve an item's ten most positive and ten most negative review topics.
       #
@@ -30,8 +32,8 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "sortBy" => sort_by,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::CustomerFeedback20240601::ItemReviewTopicsResponse if typed?
+        get(path, params:, parser:)
       end
 
       # This API returns the associated browse node of the requested ASIN. A browse node is a location in a browse tree
@@ -48,8 +50,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeResponse if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve a browse node's ten most positive and ten most negative review topics.
@@ -67,8 +69,8 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "sortBy" => sort_by,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve an item's positive and negative review trends for the past six months.
@@ -84,8 +86,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::CustomerFeedback20240601::ItemReviewTrendsResponse if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve the positive and negative review trends of items in a browse node for the past six months.
@@ -101,8 +103,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve the topics that customers mention when they return items in a browse node.
@@ -118,8 +120,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve the trends of topics that customers mention when they return items in a browse node.
@@ -135,8 +137,14 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
+        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse if typed?
+        get(path, params:, parser:)
+      end
 
-        get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/customer_feedback_2024_06_01"
       end
     end
   end

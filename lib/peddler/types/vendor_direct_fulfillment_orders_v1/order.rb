@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+require "peddler/types/vendor_direct_fulfillment_orders_v1/order_details"
+
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrdersV1
+      # Represents a purchase order.
+      Order = Structure.new do
+        # @return [String] The purchase order number for this order. Formatting Notes: alpha-numeric code.
+        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+
+        # @return [OrderDetails] Purchase order details.
+        attribute(:order_details, OrderDetails, from: "orderDetails")
+      end
+    end
+  end
+end

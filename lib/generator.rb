@@ -4,29 +4,47 @@ require "fileutils"
 require "open3"
 
 require "generator/config"
+require "generator/logger"
 require "generator/api"
+require "generator/type"
 require "generator/entrypoint"
+
+# NOTE: Test generation was explored but removed due to Amazon SP-API sandbox limitations. Most APIs require special
+# roles (vendor, finance, restricted shipping) that aren't available in standard sandbox environments, resulting in ~60%
+# of tests being skipped. Manual integration tests for core APIs provide better value than auto-generated tests that
+# can't actually run.
 
 # @!visibility private
 module Generator
   class << self
+    include Logger
+
     def generate
-      ensure_api_models_exist
-      initialize_directory
-      generate_apis
-      generate_entry_point
-      run_rubocop
+      logger.info("Starting code generation!")
+
+      ensure_api_models_exist!
+      initialize_directories!
+      generate_apis!
+      generate_types!
+      generate_types_index_files!
+      generate_entry_point!
+      format_code!
+
+      logger.info("Code generation completed successfully!")
     end
 
     private
 
-    def ensure_api_models_exist
+    def ensure_api_models_exist!
       api_models_dir = File.join(Config::BASE_PATH, "selling-partner-api-models")
 
-      if !Dir.exist?(api_models_dir) || Dir.empty?(api_models_dir)
-        puts "Cloning Amazon Selling Partner API models..."
-        # Remove directory if it exists but is empty
-        FileUtils.rm_rf(api_models_dir) if Dir.exist?(api_models_dir)
+      # Remove directory if it exists but is empty
+      if Dir.exist?(api_models_dir) && Dir.empty?(api_models_dir)
+        FileUtils.rm_rf(api_models_dir)
+      end
+
+      if !Dir.exist?(api_models_dir)
+        logger.info("Cloning Amazon Selling Partner API models")
 
         # Clone the repository
         repo_url = "https://github.com/amzn/selling-partner-api-models.git"
@@ -35,44 +53,93 @@ module Generator
         unless status.success?
           raise "Failed to clone API models: #{stderr}"
         end
-
-        puts "Successfully cloned API models."
       else
-        puts "Using existing API models."
+        logger.info("Existing API models found")
       end
     end
 
-    def initialize_directory
-      output_dir = File.join(Config::BASE_PATH, "lib/peddler/apis")
-      FileUtils.rm_rf(output_dir)
-      FileUtils.mkdir_p(output_dir)
+    def initialize_directories!
+      ["apis", "types"].each do |dir_name|
+        dir_path = File.join(Config::BASE_PATH, "lib/peddler/#{dir_name}")
+        FileUtils.rm_rf(dir_path)
+        FileUtils.mkdir_p(dir_path)
+      end
+
+      logger.info("Initialized directories")
     end
 
-    def generate_apis
+    def generate_apis!
+      api_count = apis.size
       apis.each(&:generate)
+
+      logger.info("Generated #{api_count} APIs")
     end
 
-    def generate_entry_point
+    def generate_types!
+      type_count = types.count
+      types.each(&:generate)
+
+      logger.info("Generated #{type_count} types")
+    end
+
+    def generate_types_index_files!
+      types_index_template = File.read(Config.template_path("types"))
+
+      apis.each do |api|
+        index_file_path = File.join(Config::BASE_PATH, "lib/peddler/types/#{api.name_with_version}.rb")
+        rendered_content = ERB.new(types_index_template, trim_mode: "-").result(api.instance_eval { binding })
+        File.write(index_file_path, rendered_content)
+      end
+
+      logger.info("Generated types index files")
+    end
+
+    def generate_entry_point!
       Entrypoint.new(apis).generate
+      logger.info("Generated entry point")
     end
 
-    def run_rubocop
+    def format_code!
       unless system("bundle exec rubocop --version > /dev/null 2>&1")
         raise "RuboCop is not available in the bundle. Please add it to your Gemfile or run 'bundle install'."
       end
 
-      output, status = Open3.capture2e("bundle exec rubocop --format simple --autocorrect " \
-        "#{File.join(Config::BASE_PATH, "lib")}")
+      paths = [
+        "lib/peddler.rb",
+        "lib/peddler/apis",
+        "lib/peddler/types",
+      ]
 
-      unless status.success?
-        raise "RuboCop formatting failed:\n#{output}"
+      paths.each do |path|
+        success = system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{path} > /dev/null 2>&1")
+
+        unless success
+          raise "Formatting failed for #{path}"
+        end
+
+        logger.info("Formatted #{path}")
       end
-
-      puts "Code formatted successfully with RuboCop."
     end
 
     def apis
       api_model_files.map { |file| API.new(file) }
+    end
+
+    def types
+      arr = []
+
+      apis.each do |api|
+        api.openapi_spec["definitions"].each do |name, definition|
+          # Skip non-object definitions
+          next unless definition["type"] == "object"
+          # Skip Money types as we use the Money gem for these
+          next if name == "Money"
+
+          arr << Type.new(name, definition, api.name_with_version, api.openapi_spec)
+        end
+      end
+
+      arr
     end
 
     def api_model_files

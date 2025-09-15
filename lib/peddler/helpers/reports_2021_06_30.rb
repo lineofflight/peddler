@@ -3,7 +3,6 @@
 require "http"
 
 require "peddler/response"
-require "peddler/error"
 
 module Peddler
   module Helpers
@@ -29,9 +28,8 @@ module Peddler
       private
 
       def download_report_document_from_url(download_url)
-        response = HTTP.get(download_url)
-
-        Response.wrap(response, parser:)
+        http_response = HTTP.get(download_url)
+        Response.wrap(http_response)
       end
     end
   end

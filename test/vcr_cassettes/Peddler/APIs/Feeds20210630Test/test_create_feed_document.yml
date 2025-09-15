@@ -5,7 +5,9 @@ http_interactions:
     uri: https://api.amazon.com/auth/o2/token
     body:
       encoding: ASCII-8BIT
-      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
     headers:
       Connection:
       - close
@@ -14,7 +16,7 @@ http_interactions:
       Host:
       - api.amazon.com
       User-Agent:
-      - http.rb/5.2.0
+      - http.rb/5.3.1
   response:
     status:
       code: 200
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Sat, 14 Sep 2024 13:32:18 GMT
+      - Thu, 11 Sep 2025 22:13:11 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -31,11 +33,11 @@ http_interactions:
       Connection:
       - close
       X-Amz-Rid:
-      - S97SE0KZ3S8Y7BFZ2X8S
+      - VPE5HS6TAMB1KJGH6WWR
       X-Amzn-Requestid:
-      - ecfbcc48-4bc1-4527-a6b8-da993b91a4b1
+      - 3663a441-a0a4-44f5-8639-b0448baf7ad6
       X-Amz-Date:
-      - Sat, 14 Sep 2024 13:32:18 GMT
+      - Thu, 11 Sep 2025 22:13:11 GMT
       Cache-Control:
       - no-cache, no-store, must-revalidate
       Pragma:
@@ -47,24 +49,26 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
-  recorded_at: Sat, 14 Sep 2024 13:32:14 GMT
+  recorded_at: Thu, 11 Sep 2025 22:13:11 GMT
 - request:
     method: post
-    uri: https://sellingpartnerapi-eu.amazon.com/feeds/2021-06-30/documents
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/feeds/2021-06-30/documents
     body:
       encoding: UTF-8
-      string: '{"contentType":"application/json; charset=UTF-8"}'
+      string: '{"contentType":"text/tab-separated-values; charset=UTF-8"}'
     headers:
       Host:
-      - sellingpartnerapi-eu.amazon.com
+      - sandbox.sellingpartnerapi-eu.amazon.com
       User-Agent:
-      - Peddler/3.0.0.beta1 (Language=Ruby; Hakans-MacBook-Pro.local)
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
       X-Amz-Access-Token:
       - FILTERED
       X-Amz-Date:
-      - 20240914T133214Z
+      - 20250911T221311Z
       Connection:
       - close
+      Content-Type:
+      - application/json; charset=utf-8
   response:
     status:
       code: 201
@@ -73,29 +77,31 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Sat, 14 Sep 2024 13:32:19 GMT
+      - Thu, 11 Sep 2025 22:13:11 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '502'
+      - '137'
       Connection:
       - close
       X-Amz-Rid:
-      - PDXSCQ4GTQJ3334DK6WD
+      - 477TPKEDG6C3PTRAFSDP
       X-Amzn-Ratelimit-Limit:
-      - '0.5'
+      - '5.0'
       X-Amzn-Requestid:
-      - 878a2bbc-5d91-4858-bec4-b54bfa57f53e
+      - fe150c83-5ac9-4ed6-904e-2e34e30c4d49
       X-Amz-Apigw-Id:
-      - OPF878a2bbc5d91
+      - OPFfe150c835ac9
       X-Amzn-Trace-Id:
-      - Root=1-66e59063-878a2bbc5d914858
+      - Root=1-68c34977-fe150c835ac94ed6
       Vary:
       - Content-Type,Accept-Encoding,User-Agent
       Strict-Transport-Security:
       - max-age=47474747; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: '{"feedDocumentId":"amzn1.tortuga.4.eu.9d4faece-0054-4b11-b6d4-14741b5d8c63.T1DN3IS2SW8HHW","url":"https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/9d4faece-0054-4b11-b6d4-14741b5d8c63.amzn1.tortuga.4.eu.T1DN3IS2SW8HHW?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240914T133219Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=300&X-Amz-Credential=AKIAX2ZVOZFBD26QHCVX%2F20240914%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Signature=7cbe0499aeab1b186ff63d497eb138adfffeca9f0fff1b10ac585b496a70e81a"}'
-  recorded_at: Sat, 14 Sep 2024 13:32:15 GMT
+      string: '{"feedDocumentId":"3d4e42b5-1d6e-44e8-a89c-2abfca0625bb","url":"https://d34o8swod1owfl.cloudfront.net/Feed_101__POST_PRODUCT_DATA_.xml"}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 22:13:11 GMT
 recorded_with: VCR 6.3.1

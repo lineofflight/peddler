@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-
 require "peddler/apis/reports_2021_06_30"
 
 module Peddler
@@ -9,33 +8,62 @@ module Peddler
     class Reports20210630Test < Minitest::Test
       include FeatureHelpers
 
-      def test_create_report
-        res = api.create_report(
-          {
-            "reportType" => "GET_MERCHANTS_LISTINGS_FYP_REPORT",
-            "marketplaceIds" => Marketplace.ids("UK"),
-          },
+      def test_get_reports
+        res = api.sandbox.get_reports(
+          report_types: ["FEE_DISCOUNTS_REPORT", "GET_AFN_INVENTORY_DATA"],
+          processing_statuses: ["IN_QUEUE", "IN_PROGRESS"],
         )
 
-        assert_predicate(res.status, :accepted?)
+        assert_predicate(res.status, :success?)
       end
 
-      def test_get_reports
-        res = api.get_reports(report_types: ["GET_MERCHANTS_LISTINGS_FYP_REPORT"])
+      def test_create_report
+        payload = {
+          "reportType": "GET_MERCHANT_LISTINGS_ALL_DATA",
+          "dataStartTime": "2024-03-10T20:11:24.000Z",
+          "marketplaceIds": [
+            "A1PA6795UKMFR9",
+            "ATVPDKIKX0DER",
+          ],
+        }
+        res = api.sandbox.create_report(payload)
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
       end
 
       def test_get_report
-        res = api.get_report("1234567")
+        res = api.sandbox.get_report("ID323")
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
+      end
+
+      def test_get_report_schedules
+        res = api.sandbox.get_report_schedules(["FEE_DISCOUNTS_REPORT", "GET_FBA_FULFILLMENT_CUSTOMER_TAXES_DATA"])
+
+        assert_predicate(res.status, :success?)
+      end
+
+      def test_create_report_schedule
+        res = api.sandbox.create_report_schedule({
+          "reportType" => "FEE_DISCOUNTS_REPORT",
+          "period" => "PT5M",
+          "nextReportCreationTime" => "2024-03-10T20:11:24.000Z",
+          "marketplaceIds" => ["ATVPDKIKX0DER"],
+        })
+
+        assert_predicate(res.status, :success?)
+      end
+
+      def test_get_report_schedule
+        res = api.sandbox.get_report_schedule("ID323")
+
+        assert_predicate(res.status, :success?)
       end
 
       def test_get_report_document
-        res = api.get_report_document("amzn1.spdoc.123")
+        res = api.sandbox.get_report_document("0356cf79-b8b0-4226-b4b9-0ee058ea5760")
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
       end
     end
   end

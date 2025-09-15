@@ -18,6 +18,8 @@ module Peddler
     # solicitations do not appear in the Messaging section of Seller Central or in the recipient's Message Center. The
     # Solicitations API returns responses that are formed according to the <a
     # href=https://tools.ietf.org/html/draft-kelly-json-hal-08>JSON Hypertext Application Language</a> (HAL) standard.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations.json
     class SolicitationsV1 < API
       # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
       # represented by an actions object, which contains a path and query parameter(s). You can use the path and
@@ -36,8 +38,8 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Sends a solicitation to a buyer asking for seller feedback and a product review for the specified order. Send
@@ -55,8 +57,14 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
+        parser = Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse if typed?
+        meter(rate_limit).post(path, params:, parser:)
+      end
 
-        meter(rate_limit).post(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/solicitations_v1"
       end
     end
   end

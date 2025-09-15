@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+require "structure"
+
+module Peddler
+  module Types
+    module ShipmentInvoicingV0
+      # The tax classification for the entity.
+      TaxClassification = Structure.new do
+        # @return [String] The type of tax.
+        attribute(:name, String, from: "Name")
+
+        # @return [String] The entity's tax identifier.
+        attribute(:value, String, from: "Value")
+      end
+    end
+  end
+end

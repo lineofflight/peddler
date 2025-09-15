@@ -4,8 +4,10 @@ http_interactions:
     method: post
     uri: https://api.amazon.com/auth/o2/token
     body:
-      encoding: US-ASCII
-      string: grant_type=refresh_token&refresh_token=FILTERED&client_id=FILTERED&client_secret=FILTERED
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
     headers:
       Connection:
       - close
@@ -14,7 +16,7 @@ http_interactions:
       Host:
       - api.amazon.com
       User-Agent:
-      - http.rb/5.2.0
+      - http.rb/5.3.1
   response:
     status:
       code: 200
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Tue, 10 Sep 2024 11:27:26 GMT
+      - Fri, 12 Sep 2025 13:05:53 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -31,11 +33,11 @@ http_interactions:
       Connection:
       - close
       X-Amz-Rid:
-      - AJNDT9WKXKHE5ZQ65SEX
+      - P4DSSHMX6DDY67M1XGJF
       X-Amzn-Requestid:
-      - d2a491e5-7c2b-4d98-94bd-beac0021c8df
+      - 8e0e45c3-ddea-4ddf-b71f-cd323eeff189
       X-Amz-Date:
-      - Tue, 10 Sep 2024 11:27:26 GMT
+      - Fri, 12 Sep 2025 13:05:53 GMT
       Cache-Control:
       - no-cache, no-store, must-revalidate
       Pragma:
@@ -47,21 +49,22 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
-  recorded_at: Tue, 10 Sep 2024 11:27:24 GMT
+  recorded_at: Fri, 12 Sep 2025 13:05:53 GMT
 - request:
     method: get
-    uri: https://sellingpartnerapi-eu.amazon.com/products/pricing/v0/competitivePrice?Asins=188864544X&ItemType=Asin&MarketplaceId=A1F83G8C2ARO7P
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/products/pricing/v0/competitivePrice?ItemType=Asin&MarketplaceId=ATVPDKIKX0DER
     body:
       encoding: ASCII-8BIT
-      string: ''
+      base64_string: ''
     headers:
       Host:
-      - sellingpartnerapi-eu.amazon.com
+      - sandbox.sellingpartnerapi-eu.amazon.com
       User-Agent:
-      - Peddler/3.0.0.pre (Language=Ruby; Hakans-MacBook-Pro.local)
-      X-Amz-Access-Token: FILTERED
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
       X-Amz-Date:
-      - 20240910T112724Z
+      - 20250912T130553Z
       Connection:
       - close
   response:
@@ -72,29 +75,31 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Tue, 10 Sep 2024 11:27:26 GMT
+      - Fri, 12 Sep 2025 13:05:53 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '559'
+      - '1497'
       Connection:
       - close
       X-Amz-Rid:
-      - VEWV6193J1TT633730EB
+      - JEM38PQY5K8C875SQJZE
       X-Amzn-Ratelimit-Limit:
-      - '0.5'
+      - '5.0'
       X-Amzn-Requestid:
-      - 8c289de2-2267-4852-9c3e-bd51a3f8a83f
+      - 590e61e7-51c6-4788-ba10-88e4addd8d4a
       X-Amz-Apigw-Id:
-      - OPF8c289de22267
+      - OPF590e61e751c6
       X-Amzn-Trace-Id:
-      - Root=1-66e02d1e-8c289de222674852
+      - Root=1-68c41ab1-590e61e751c64788
       Vary:
       - Content-Type,Accept-Encoding,User-Agent
       Strict-Transport-Security:
       - max-age=47474747; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: '{"payload":[{"ASIN":"188864544X","Product":{"CompetitivePricing":{"CompetitivePrices":[{"belongsToRequester":true,"condition":"New","subcondition":"New","Price":{"LandedPrice":{"CurrencyCode":"GBP","Amount":399.94},"ListingPrice":{"CurrencyCode":"GBP","Amount":399.94},"Shipping":{"CurrencyCode":"GBP","Amount":0}},"CompetitivePriceId":"1"}],"NumberOfOfferListings":[{"condition":"New","Count":2},{"condition":"Any","Count":2}]},"Identifiers":{"MarketplaceASIN":{"MarketplaceId":"A1F83G8C2ARO7P","ASIN":"188864544X"}},"SalesRankings":[]},"status":"Success"}]}'
-  recorded_at: Tue, 10 Sep 2024 11:27:24 GMT
+      string: '{"payload":[{"status":"Success","ASIN":"B00V5DG6IQ","Product":{"Identifiers":{"MarketplaceASIN":{"MarketplaceId":"ATVPDKIKX0DER","ASIN":"B00V5DG6IQ"},"SKUIdentifier":{"MarketplaceId":"","SellerId":"","SellerSKU":""}},"CompetitivePricing":{"CompetitivePrices":[{"CompetitivePriceId":"4545645646","Price":{"LandedPrice":{"CurrencyCode":"USD","Amount":10},"ListingPrice":{"CurrencyCode":"USD","Amount":130},"Shipping":{"CurrencyCode":"USD","Amount":120},"Points":{"PointsNumber":130,"PointsMonetaryValue":{"CurrencyCode":"USD","Amount":10}}},"condition":"new","belongsToRequester":true}],"NumberOfOfferListings":[{"Count":20,"condition":"new"}],"TradeInValue":{"CurrencyCode":"USD","Amount":10}},"SalesRankings":[{"ProductCategoryId":"325345","Rank":1}]}},{"status":"Success","ASIN":"B00551Q3CS","Product":{"Identifiers":{"MarketplaceASIN":{"MarketplaceId":"ATVPDKIKX0DER","ASIN":"B00551Q3CS"},"SKUIdentifier":{"MarketplaceId":"","SellerId":"","SellerSKU":""}},"CompetitivePricing":{"CompetitivePrices":[{"CompetitivePriceId":"45456452646","Price":{"LandedPrice":{"CurrencyCode":"USD","Amount":10},"ListingPrice":{"CurrencyCode":"USD","Amount":130},"Shipping":{"CurrencyCode":"USD","Amount":120},"Points":{"PointsNumber":130,"PointsMonetaryValue":{"CurrencyCode":"USD","Amount":10}}},"condition":"new","belongsToRequester":true}],"NumberOfOfferListings":[{"Count":1,"condition":"new"}],"TradeInValue":{"CurrencyCode":"string","Amount":0}},"SalesRankings":[{"ProductCategoryId":"54564","Rank":1}]}}]}
+
+        '
+  recorded_at: Fri, 12 Sep 2025 13:05:53 GMT
 recorded_with: VCR 6.3.1

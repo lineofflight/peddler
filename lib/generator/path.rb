@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-require "generator/utils"
 require "generator/operation"
 
 module Generator
   class Path
-    include Utils
-
     HTTP_METHODS = ["delete", "get", "patch", "post", "put"].freeze
 
     attr_reader :methods
@@ -16,9 +13,9 @@ module Generator
       @methods = methods
     end
 
-    def operations
+    def operations(api_name_with_version = nil, specification = nil)
       methods.select { |k, _| HTTP_METHODS.include?(k) }.map do |method, operation|
-        Operation.new(self, method, operation)
+        Operation.new(self, method, operation, api_name_with_version, specification)
       end
     end
 
@@ -29,7 +26,7 @@ module Generator
     def path
       # Use atomic grouping (?>...) to prevent ReDoS
       @path.gsub(/\{(?>([^}]+))\}/) do
-        "\#{percent_encode(#{snakecase(Regexp.last_match(1))})}"
+        "\#{percent_encode(#{Regexp.last_match(1).underscore})}"
       end
     end
 

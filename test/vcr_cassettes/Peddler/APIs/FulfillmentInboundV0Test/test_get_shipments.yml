@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 23:08:40 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - WPYASS2Q8DDQ95CY9QJC
+      X-Amzn-Requestid:
+      - b9e4509f-35b9-43a2-9a04-0e7081000831
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 23:08:40 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 23:08:41 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/fba/inbound/v0/shipments?MarketplaceId=ATVPDKIKX0DER&QueryType=SHIPMENT
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T230841Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 23:08:41 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '932'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 41X8M1S8N5FXDFVGBFYQ
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 8fd38dd9-45a2-4ab2-8ce1-142efc622cc3
+      X-Amz-Apigw-Id:
+      - OPF8fd38dd945a2
+      X-Amzn-Trace-Id:
+      - Root=1-68c35679-8fd38dd945a24ab2
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"ShipmentData":[{"ShipmentId":"FBA15DJ9S3J5","ShipmentName":"FBA
+        (2/11/20, 11:18 AM) - 1","ShipFromAddress":{"Name":"vungu+naperfectUS","AddressLine1":"501
+        Fairview Ave N","City":"Seattle","StateOrProvinceCode":"WA","CountryCode":"US","PostalCode":"98109"},"DestinationFulfillmentCenterId":"MKC6","ShipmentStatus":"SHIPPED","LabelPrepType":"SELLER_LABEL","BoxContentsSource":"INTERACTIVE"}],"NextToken":"AAAAAAAAAADwtRhfSFJXzbRgKc+wYysmXwEAAAAAAACLuoztkDYG/ClQt9ELs4kYW6MrmpJdFf1QQYk6hSIZSsy5ipek26YvTwmkD9i4cbQny1EWwuuU88wghPxa7770q5R+YYCuP4pYWVy3AVAzWzAib6BRlDr4B0msx6sOKcYCy6ms4J021964JOS9nZhRBGfJ86d96S91rhJPli55+r7Jp+VHPly2FCJ2mAuC53sGTsNP108IUuPdbZqq2myWZ5U+EggLjhRBvXhHFFxRclETG7XfyX46A9nCKKhJYEjDFmMPQoQPtqSuxtMAUMDLPs4MttashstL96Oiu79VYhjV84L13mdMNZS6g21HKgU5E6CDivHvsgS5kC7joXHrXGjwpXMeLcfJqwg+DocBFiU2NELMEbfksrIGXVVjFqiLxHtTiDBsuDxDLbYeVepW0E9oA/ppbZJK4c0nDbgT3WSxxfsgpmAZ42O6iVMhW/KVlJZFDjKsmmHATcq5S5c="}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 23:08:41 GMT
+recorded_with: VCR 6.3.1

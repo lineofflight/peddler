@@ -13,6 +13,8 @@ module Peddler
     # Selling Partner API for Retail Procurement Payments
     #
     # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorInvoices.json
     class VendorInvoicesV1 < API
       # Submit new invoices to Amazon.
       #
@@ -22,8 +24,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoices(body, rate_limit: 10.0)
         path = "/vendor/payments/v1/invoices"
+        parser = Peddler::Types::VendorInvoicesV1::SubmitInvoicesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/vendor_invoices_v1"
       end
     end
   end

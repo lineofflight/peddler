@@ -1,82 +1,123 @@
-# AGENTS
+# CLAUDE.md
+
 This file provides guidance when working on this repository.
 
+## About this agent
+
+I'm a Ruby development assistant specialized in the Peddler gem, which provides access to Amazon's Selling Partner API (SP-API). I help with implementing features, fixing bugs, running tests, researching API specifications, and maintaining code quality. I follow Ruby best practices and the conventions established in this codebase.
+
 ## About the codebase
-This is a Ruby gem called Peddler that allows Amazon sellers and vendors to interact with the Selling Partner APIs (SP-API).
 
-### API Design Principles
-- **Auto-generate API classes from Amazon's OpenAPI specifications** - never edit `lib/peddler/apis/` directly
-- Follow Amazon SP-API naming patterns
-- Provide clear error handling
-- Handle rate limiting gracefully
+This is a Ruby gem called Peddler that provides access to the Amazon Selling Partner API (SP-API). It's a lightweight HTTP client library that allows Ruby developers to interact with Amazon's marketplace APIs for sellers and vendors.
 
-### Directory Structure
-- `lib/peddler/apis/` - Auto-generated API classes (DO NOT EDIT)
-- `lib/generator/` - Code generation system
-- `lib/generator/templates/` - Generator ERB templates
-- `selling-partner-api-models/` - Amazon's OpenAPI specifications
-- `test/` - Test suite
-- `bin/` - Executable scripts
+## Commands
 
-## Workflow
-### For new features or bug fixes:
-1. **Research and understand the requirement**
-   - Use Spec Librarian for API specifications
-   - Use Domain Expert for best practices and known issues
-   - Check existing code patterns in similar files
+### General Development
 
-2. **Plan the implementation**
-   - Identify which files need changes
-   - Determine if tests should be written first (TDD)
-   - Consider impact on existing functionality
+- Default (tests + lint): `bundle exec rake`
+- Lint (with autocorrect): `bundle exec rubocop -A`
+- Lint specific files: `bundle exec rubocop -A path/to/file.rb`
+- Run full test suite: `bundle exec rake test`
+- Run single test files: `bundle exec ruby -Itest test/path/to/test_file.rb`
 
-3. **Create feature branch** (for significant changes)
-   - `git checkout -b feature/description` or `fix/description`
+### Code Generation
 
-4. **Delegate implementation to Coder**
-   - Provide specific requirements and file paths
-   - Request TDD if appropriate
-   - Let Coder handle tests, implementation, and linting
+- Generate API classes from Amazon OpenAPI specs: `bin/generate-code`
+- This downloads/updates Amazon SP-API models and regenerates all API classes
 
-5. **Verify the implementation**
-   - Review Coder's results
-   - Run full test suite: `bundle exec rake`
-   - Check for any missed edge cases
+## Tech Stack
 
-6. **Update documentation if needed**
-   - Update README.md for new features or changed behavior
-   - Add entry to CHANGELOG.md for user-facing changes
+- Ruby 3.2+
+- HTTP gem for API requests
+- Minitest for testing
+- VCR/WebMock for HTTP recording/mocking
+- YARD for documentation
+- RuboCop for linting
 
-7. **Commit changes**
-   - Stage files explicitly (never use `git add .`)
-   - Write a conventional commits: "type: brief description"
-   - Follow 50/72 rule
-   - Write in lowercase, no need to capitalize proper nouns, class names, or acronyms
-   - Include issue number if applicable
+## Code Style and Architecture Guidelines
 
-8. **Create pull request** (if on feature branch)
-   - Provide clear description of changes
-   - Link to related issues
+### Ruby
 
-## Subagents
-**IMPORTANT**: Always delegate to these specialized subagents instead of handling tasks directly. Provide complete context with each invocation.
+- Keep your code idiomatic and direct. Avoid unnecessary complexity
+- Design intuitive APIs for your classes and modules
+- Hide internal details behind private methods
+- Use concise and descriptive names
+- Organize code into clear modules and classes
+- Avoid monolithic files
+- Wrap code and comments at 120 characters
+- Use positional arguments for required parameters, keyword arguments for optional ones
+- Follow patterns from neighboring files rather than introducing new styles
+- Don't add comments unless explicitly requested
 
-### When to use each subagent
-**Use Coder when:**
-- Writing, modifying, or refactoring Ruby code
-- Creating or updating tests
-- Fixing bugs or test failures
-- Running tests and linters
-- Implementing new features or methods
+### Code Generation System
 
-**Use Spec Librarian when:**
-- Looking up SP-API endpoint details, parameters, or response schemas
-- Checking throttling rates or API constraints
-- Exploring `selling-partner-api-models/` directory contents
-- **Never read/grep SP-API model files directly, always use Spec Librarian**
+- **API classes and types are auto-generated** from Amazon's OpenAPI specifications
+- Generated code lives in `lib/peddler/apis/`, `lib/peddler/types/`, and `lib/peddler.rb` - these should not be manually edited
+- The generator is in `lib/generator/` and transforms OpenAPI specs into Ruby classes
+- OpenAPI models are downloaded to `selling-partner-api-models/` from Amazon's official repository
+- To change generated API classes, edit generator logic in `lib/generator/` or templates in `lib/generator/templates/`
+- Run `bin/generate-code` to regenerate all API classes after generator changes
+- The generator automatically runs RuboCop to format generated code
 
-**Use Domain Expert when:**
-- Researching current SP-API documentation or best practices
-- Finding recent deprecations or API changes
-- Looking up GitHub issues, PRs, or community discussions
-- Understanding authentication, rate limiting, or error handling guidance
+### API Design
+
+- Follow Amazon SP-API conventions and naming patterns
+- Maintain consistent method signatures across API classes
+- Use keyword arguments for optional parameters
+- Provide clear error handling and meaningful error messages
+- Support both sandbox and production environments
+
+## Development Practices
+
+### Testing
+
+- Use Minitest for all tests
+- Use VCR cassettes for API integration tests
+- Test behavior, not implementation (don't test private methods directly)
+- Check Amazon API specifications in `selling-partner-api-models/models/`
+- Run specific tests while developing: `bundle exec ruby -Itest test/path/to/test.rb`
+- Run full test suite before completing work: `bundle exec rake test`
+- Use meaningful test names that describe what's being tested
+
+### Git & Pull Requests
+
+- Work on feature branches, never directly on main
+- Use descriptive branch names (e.g., `feature/marketplace-shortcuts`, `fix/api-timeout`)
+- Use conventional commit messages (e.g., "feat: add new feature", "fix: resolve bug")
+- **NEVER use `git add .`** - always stage files explicitly by name
+- Delete feature branches after they've been merged to main to keep the repository clean
+
+### Documentation
+
+- Update `README.md` and `CHANGELOG.md` when relevant
+- Use YARD documentation for public methods only
+- Write clear, direct code over clever code
+- Avoid excessive commenting - let the code speak for itself
+- Keep documentation concise and clear
+
+## Working with SP-API Specifications
+
+### Local OpenAPI Models
+- All API specifications are stored locally in `selling-partner-api-models/models/`
+- If specs are missing or outdated, run `bin/generate-code` to download the latest
+- Use `rg` (ripgrep) to search through JSON specifications
+- Use `jq` to parse and extract JSON structures when needed
+- These specs are the authoritative source for API behavior
+
+### Researching SP-API Issues
+When researching SP-API functionality or issues:
+- Check official documentation at https://developer-docs.amazon.com/sp-api/docs/
+- Review GitHub repos: amzn/selling-partner-api-models, amzn/selling-partner-api-samples
+- Use GitHub MCP server (if available) for direct repository searches instead of web searches
+- Check release notes: https://developer-docs.amazon.com/sp-api/docs/sp-api-release-notes
+- Review deprecation schedule: https://developer-docs.amazon.com/sp-api/docs/sp-api-deprecation-schedule
+- Consult error handling guide: https://developer-docs.amazon.com/sp-api/docs/error-handling
+- Check usage plans: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
+
+### Extracting API Details from Specs
+- Operation details: operationId, HTTP method, path parameters
+- Request/response schemas and headers
+- Error response structures
+- Throttling rates (found in "Usage Plan" sections of operation descriptions)
+- Look for markdown tables with "Rate (requests per second)" and "Burst" columns in descriptions
+- Sandbox-specific endpoints and test data (check for sandbox operations in the specs)

@@ -18,9 +18,8 @@ module Peddler
       # this must match the content-type requested in `create_feed_document`
       # @return [HTTP::Response] The API response
       def upload_feed_document(upload_url, feed_content, content_type)
-        response = HTTP.headers("content-type" => content_type).put(upload_url, body: feed_content)
-
-        Response.wrap(response, parser:)
+        http_response = HTTP.headers("content-type" => content_type).put(upload_url, body: feed_content)
+        Response.wrap(http_response)
       end
 
       # Convenience method to download result feed content from a signed download_url
@@ -31,9 +30,8 @@ module Peddler
       # @param download_url [String] The signed url from the `get_feed_document` response.
       # @return [HTTP::Response] The API response containing the feed result document
       def download_result_feed_document(download_url)
-        response = HTTP.get(download_url)
-
-        Response.wrap(response, parser:)
+        http_response = HTTP.get(download_url)
+        Response.wrap(http_response)
       end
     end
   end

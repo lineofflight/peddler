@@ -14,6 +14,8 @@ module Peddler
     #
     # The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such
     # as the A+ Content API and the Messaging API.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads_2020-11-01.json
     class Uploads20201101 < API
       # Creates an upload destination, returning the information required to upload a file to the destination and to
       # programmatically access the file.
@@ -35,16 +37,20 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil,
         rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/uploads/2020-11-01/uploadDestinations/#{percent_encode(resource)}"
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
           "contentMD5" => content_md5,
           "contentType" => content_type,
         }.compact
+        parser = Peddler::Types::Uploads20201101::CreateUploadDestinationResponse if typed?
+        meter(rate_limit).post(path, params:, parser:)
+      end
 
-        meter(rate_limit).post(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/uploads_2020_11_01"
       end
     end
   end

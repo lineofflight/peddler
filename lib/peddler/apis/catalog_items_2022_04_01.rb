@@ -16,6 +16,8 @@ module Peddler
     #
     # For more information, refer to the [Catalog Items API Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/:catalog-items-api-v2022-04-01-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalogItems_2022-04-01.json
     class CatalogItems20220401 < API
       # Search for a list of Amazon catalog items and item-related information. You can search by identifier or by
       # keywords.
@@ -64,8 +66,8 @@ module Peddler
           "pageToken" => page_token,
           "keywordsLocale" => keywords_locale,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::CatalogItems20220401::ItemSearchResults if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Retrieves details for an item in the Amazon catalog.
@@ -87,8 +89,14 @@ module Peddler
           "includedData" => stringify_array(included_data),
           "locale" => locale,
         }.compact
+        parser = Peddler::Types::CatalogItems20220401::Item if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/catalog_items_2022_04_01"
       end
     end
   end

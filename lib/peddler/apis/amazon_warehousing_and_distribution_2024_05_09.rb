@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Amazon Warehousing and Distribution (AWD) provides programmatic access to information
     # about AWD shipments and inventory.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/awd_2024-05-09.json
     class AmazonWarehousingAndDistribution20240509 < API
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
       # shipment per order.
@@ -24,8 +26,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_inbound(body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Retrieves an AWD inbound order.
@@ -36,8 +38,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound(order_id, rate_limit: 2.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Updates an AWD inbound order that is in `DRAFT` status and not yet confirmed. Use this operation to update the
@@ -50,7 +52,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound(order_id, body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
-
         meter(rate_limit).put(path, body:)
       end
 
@@ -62,7 +63,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_inbound(order_id, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}/cancellation"
-
         meter(rate_limit).post(path)
       end
 
@@ -74,7 +74,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def confirm_inbound(order_id, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}/confirmation"
-
         meter(rate_limit).post(path)
       end
 
@@ -91,8 +90,8 @@ module Peddler
         params = {
           "skuQuantities" => sku_quantities,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Retrieves the box labels for a shipment ID that you specify. This is an asynchronous operation. If the label
@@ -111,8 +110,8 @@ module Peddler
           "pageType" => page_type,
           "formatType" => format_type,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Updates transport details for an AWD shipment.
@@ -124,7 +123,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_inbound_shipment_transport_details(shipment_id, body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundShipments/#{percent_encode(shipment_id)}/transport"
-
         meter(rate_limit).put(path, body:)
       end
 
@@ -137,8 +135,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def check_inbound_eligibility(body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundEligibility"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Retrieves a summary of all the inbound AWD shipments associated with a merchant, with the ability to apply
@@ -173,8 +171,8 @@ module Peddler
           "maxResults" => max_results,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Lists AWD inventory associated with a merchant with the ability to apply optional filters.
@@ -201,8 +199,14 @@ module Peddler
           "nextToken" => next_token,
           "maxResults" => max_results,
         }.compact
+        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryListing if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
       end
     end
   end

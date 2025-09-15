@@ -15,6 +15,8 @@ module Peddler
     # Use the A+ Content API to build applications that help selling partners add rich marketing content to their Amazon
     # product detail pages. Selling partners can use A+ content to share their brand and product story, which helps
     # buyers make informed purchasing decisions. Selling partners use content modules to add images and text.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplusContent_2020-11-01.json
     class AplusContent20201101 < API
       # Returns a list of all A+ Content documents, including metadata, that are assigned to a selling partner. To get
       # the actual contents of the A+ Content documents, call the `getContentDocument` operation.
@@ -27,15 +29,13 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments"
         params = {
           "marketplaceId" => marketplace_id,
           "pageToken" => page_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a new A+ Content document.
@@ -47,15 +47,13 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments"
         body = post_content_document_request
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::AplusContent20201101::PostContentDocumentResponse if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Returns an A+ Content document, if available.
@@ -70,15 +68,13 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}"
         params = {
           "marketplaceId" => marketplace_id,
           "includedDataSet" => stringify_array(included_data_set),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AplusContent20201101::GetContentDocumentResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Updates an existing A+ Content document.
@@ -94,15 +90,13 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request,
         rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}"
         body = post_content_document_request
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::AplusContent20201101::PostContentDocumentResponse if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Returns a list of ASINs that are related to the specified A+ Content document, if available. If you don't
@@ -123,8 +117,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
         asin_set: nil, page_token: nil, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/asins"
         params = {
           "marketplaceId" => marketplace_id,
@@ -132,8 +124,8 @@ module Peddler
           "asinSet" => stringify_array(asin_set),
           "pageToken" => page_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Replaces all ASINs related to the specified A+ Content document, if available. This operation can add or remove
@@ -152,15 +144,13 @@ module Peddler
       # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
         post_content_document_asin_relations_request, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/asins"
         body = post_content_document_asin_relations_request
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Checks if the A+ Content document is valid for use on a set of ASINs.
@@ -174,16 +164,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil,
         rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentAsinValidations"
         body = post_content_document_request
         params = {
           "marketplaceId" => marketplace_id,
           "asinSet" => stringify_array(asin_set),
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Searches for A+ Content publishing records, if available.
@@ -198,16 +186,14 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentPublishRecords"
         params = {
           "marketplaceId" => marketplace_id,
           "asin" => asin,
           "pageToken" => page_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Submits an A+ Content document for review, approval, and publishing.
@@ -221,14 +207,12 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/approvalSubmissions"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).post(path, params:)
+        parser = Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse if typed?
+        meter(rate_limit).post(path, params:, parser:)
       end
 
       # Submits a request to suspend visible A+ Content. This doesn't delete the content document or the ASIN relations.
@@ -242,14 +226,18 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/suspendSubmissions"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
+        parser = Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse if typed?
+        meter(rate_limit).post(path, params:, parser:)
+      end
 
-        meter(rate_limit).post(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/aplus_content_2020_11_01"
       end
     end
   end

@@ -15,6 +15,8 @@ module Peddler
     # The Selling Partner API for Finances helps you obtain financial information relevant to a seller's business. You
     # can obtain financial events for a given order, financial event group, or date range without having to wait until a
     # statement period closes. You can also obtain financial event groups for a given date range.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/financesV0.json
     class FinancesV0 < API
       # Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your
       # financial events.
@@ -43,8 +45,8 @@ module Peddler
           "FinancialEventGroupStartedAfter" => financial_event_group_started_after,
           "NextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to
@@ -78,8 +80,8 @@ module Peddler
           "PostedBefore" => posted_before,
           "NextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FinancesV0::ListFinancialEventsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your
@@ -98,8 +100,8 @@ module Peddler
           "MaxResultsPerPage" => max_results_per_page,
           "NextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FinancesV0::ListFinancialEventsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your
@@ -130,8 +132,14 @@ module Peddler
           "PostedBefore" => posted_before,
           "NextToken" => next_token,
         }.compact
+        parser = Peddler::Types::FinancesV0::ListFinancialEventsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/finances_v0"
       end
     end
   end

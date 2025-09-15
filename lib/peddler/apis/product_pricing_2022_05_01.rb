@@ -17,6 +17,8 @@ module Peddler
     #
     # For more information, refer to the [Product Pricing v2022-05-01 Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/productPricing_2022-05-01.json
     class ProductPricing20220501 < API
       # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
       # body. The response for each successful (HTTP status code 200) request in the set includes the computed listing
@@ -34,8 +36,8 @@ module Peddler
         rate_limit: 0.033)
         path = "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
         body = get_featured_offer_expected_price_batch_request_body
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId`
@@ -48,8 +50,14 @@ module Peddler
       def get_competitive_summary(requests, rate_limit: 0.033)
         path = "/batches/products/pricing/2022-05-01/items/competitiveSummary"
         body = requests
+        parser = Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/product_pricing_2022_05_01"
       end
     end
   end

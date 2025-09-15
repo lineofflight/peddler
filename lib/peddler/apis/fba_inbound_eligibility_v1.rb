@@ -17,6 +17,8 @@ module Peddler
     # for inbound shipment to Amazon's fulfillment centers in a specific marketplace. You can also find out if an item
     # is eligible for using the manufacturer barcode for FBA inventory tracking. Sellers can use this information to
     # inform their decisions about which items to ship Amazon's fulfillment centers.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fbaInbound.json
     class FBAInboundEligibilityV1 < API
       # This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility
       # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
@@ -36,8 +38,14 @@ module Peddler
           "asin" => asin,
           "program" => program,
         }.compact
+        parser = Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/fba_inbound_eligibility_v1"
       end
     end
   end

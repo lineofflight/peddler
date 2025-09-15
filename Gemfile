@@ -5,7 +5,9 @@ source "https://rubygems.org"
 gemspec
 
 group :development do
+  gem "activesupport"
   gem "appraisal"
+  gem "irb"
   gem "minitest"
   gem "rake"
   gem "rubocop"

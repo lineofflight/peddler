@@ -74,14 +74,14 @@ module Peddler
         }
         res = upload_feed_document(url, JSON.generate(content), "application/json; charset=UTF-8")
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
       end
 
       def test_download_result_feed_document
         url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/321"
         res = download_result_feed_document(url)
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
         assert(res.body)
       end
     end

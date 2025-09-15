@@ -1,0 +1,49 @@
+# frozen_string_literal: true
+
+require "peddler/types/vendor_shipments_v1/container_identification"
+require "peddler/types/vendor_shipments_v1/dimensions"
+require "peddler/types/vendor_shipments_v1/weight"
+require "peddler/types/vendor_shipments_v1/inner_containers_details"
+require "peddler/types/vendor_shipments_v1/packed_items"
+
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      # A list of the items in this transportation and their associated inner container details. If any of the item
+      # detail fields are common at a carton or a pallet level, provide them at the corresponding carton or pallet
+      # level.
+      Containers = Structure.new do
+        # @return [String] The type of container.
+        attribute(:container_type, String, from: "containerType")
+
+        # @return [String] An integer that must be submitted for multi-box shipments only, where one item may come in
+        # separate packages.
+        attribute(:container_sequence_number, String, from: "containerSequenceNumber")
+
+        # @return [Array<ContainerIdentification>] A list of carton identifiers.
+        attribute(:container_identifiers, [ContainerIdentification], from: "containerIdentifiers")
+
+        # @return [String] The tracking number used for identifying the shipment.
+        attribute(:tracking_number, String, from: "trackingNumber")
+
+        # @return [Dimensions]
+        attribute(:dimensions, Dimensions)
+
+        # @return [Weight]
+        attribute(:weight, Weight)
+
+        # @return [Integer] Number of layers per pallet.
+        attribute(:tier, Integer)
+
+        # @return [Integer] Number of cartons per layer on the pallet.
+        attribute(:block, Integer)
+
+        # @return [InnerContainersDetails]
+        attribute(:inner_containers_details, InnerContainersDetails, from: "innerContainersDetails")
+
+        # @return [Array<PackedItems>] A list of packed items.
+        attribute(:packed_items, [PackedItems], from: "packedItems")
+      end
+    end
+  end
+end

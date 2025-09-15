@@ -15,6 +15,8 @@ module Peddler
     # The Amazon Shipping API is designed to support outbound shipping use cases both for orders originating on
     # Amazon-owned marketplaces as well as external channels/marketplaces. With these APIs, you can request shipping
     # rates, create shipments, cancel shipments, and track shipments.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shippingV2.json
     class ShippingV2 < API
       # Returns the available shipping service offerings.
       #
@@ -26,8 +28,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/rates"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShippingV2::GetRatesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
@@ -47,8 +49,8 @@ module Peddler
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
         path = "/shipping/v2/shipments/directPurchase"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShippingV2::DirectPurchaseResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Purchases a shipping service and returns purchase related details and documents.
@@ -67,8 +69,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShippingV2::PurchaseShipmentResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Purchases a shipping service identifier and returns purchase-related details and documents.
@@ -81,8 +83,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/oneClickShipment"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShippingV2::OneClickShipmentResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns tracking information for a purchased shipment.
@@ -102,8 +104,8 @@ module Peddler
           "trackingId" => tracking_id,
           "carrierId" => carrier_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ShippingV2::GetTrackingResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the shipping documents associated with a package in a shipment.
@@ -128,8 +130,8 @@ module Peddler
           "format" => format,
           "dpi" => dpi,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ShippingV2::GetShipmentDocumentsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
@@ -142,8 +144,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/#{percent_encode(shipment_id)}/cancel"
-
-        meter(rate_limit).put(path)
+        parser = Peddler::Types::ShippingV2::CancelShipmentResponse if typed?
+        meter(rate_limit).put(path, parser:)
       end
 
       # Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
@@ -164,8 +166,8 @@ module Peddler
           "requestToken" => request_token,
           "rateId" => rate_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ShippingV2::GetAdditionalInputsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # This API will return a list of input schema required to register a shipper account with the carrier.
@@ -175,11 +177,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/carrierAccountFormInputs"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # This API will return Get all carrier accounts for a merchant.
@@ -190,11 +190,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/carrierAccounts"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::ShippingV2::GetCarrierAccountsResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # This API associates/links the specified carrier account with the merchant.
@@ -208,8 +206,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShippingV2::LinkCarrierAccountResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # This API Unlink the specified carrier account with the merchant.
@@ -221,11 +219,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}/unlink"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # This API Call to generate the collection form.
@@ -239,11 +235,9 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/collectionForms"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShippingV2::GenerateCollectionFormResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # This API Call to get the history of the previously generated collection forms.
@@ -254,11 +248,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/collectionForms/history"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::ShippingV2::GetCollectionFormHistoryResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
@@ -270,11 +262,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/unmanifestedShipments"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # This API reprint a collection form.
@@ -285,11 +275,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
-        cannot_sandbox!
-
         path = "/shipping/v2/collectionForms/#{percent_encode(collection_form_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::ShippingV2::GetCollectionFormResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns a list of access points in proximity of input postal code.
@@ -310,8 +298,8 @@ module Peddler
           "countryCode" => country_code,
           "postalCode" => postal_code,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ShippingV2::GetAccessPointsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
@@ -324,7 +312,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_ndr_feedback(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/ndrFeedback"
-
         meter(rate_limit).post(path, body:)
       end
 
@@ -338,8 +325,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/claims"
+        parser = Peddler::Types::ShippingV2::CreateClaimResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/shipping_v2"
       end
     end
   end

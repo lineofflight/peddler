@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for FBA Inventory lets you programmatically retrieve information about inventory in
     # Amazon's fulfillment network.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fbaInventory.json
     class FBAInventoryV1 < API
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
       # startDateTime, sellerSkus and sellerSku parameters:
@@ -64,8 +66,8 @@ module Peddler
           "nextToken" => next_token,
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FBAInventoryV1::GetInventorySummariesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a
@@ -76,12 +78,10 @@ module Peddler
       # @param create_inventory_item_request_body [Hash] CreateInventoryItem Request Body Parameter.
       # @return [Peddler::Response] The API response
       def create_inventory_item(create_inventory_item_request_body)
-        must_sandbox!
-
         path = "/fba/inventory/v1/items"
         body = create_inventory_item_request_body
-
-        post(path, body:)
+        parser = Peddler::Types::FBAInventoryV1::CreateInventoryItemResponse if typed?
+        post(path, body:, parser:)
       end
 
       # Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a
@@ -93,14 +93,12 @@ module Peddler
       # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
       # @return [Peddler::Response] The API response
       def delete_inventory_item(seller_sku, marketplace_id)
-        must_sandbox!
-
         path = "/fba/inventory/v1/items/#{percent_encode(seller_sku)}"
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        delete(path, params:)
+        parser = Peddler::Types::FBAInventoryV1::DeleteInventoryItemResponse if typed?
+        delete(path, params:, parser:)
       end
 
       # Requests that Amazon add items to the Sandbox Inventory with desired amount of quantity in the sandbox
@@ -113,12 +111,16 @@ module Peddler
       # @param add_inventory_request_body [Hash] List of items to add to Sandbox inventory.
       # @return [Peddler::Response] The API response
       def add_inventory(x_amzn_idempotency_token, add_inventory_request_body)
-        must_sandbox!
-
         path = "/fba/inventory/v1/items/inventory"
         body = add_inventory_request_body
+        parser = Peddler::Types::FBAInventoryV1::AddInventoryResponse if typed?
+        post(path, body:, parser:)
+      end
 
-        post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/fba_inventory_v1"
       end
     end
   end

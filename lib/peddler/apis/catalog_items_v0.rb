@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
     # catalog.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalogItemsV0.json
     class CatalogItemsV0 < API
       # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
       #
@@ -31,8 +33,14 @@ module Peddler
           "ASIN" => asin,
           "SellerSKU" => seller_sku,
         }.compact
+        parser = Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/catalog_items_v0"
       end
     end
   end

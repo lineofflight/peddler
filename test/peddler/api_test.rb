@@ -52,6 +52,22 @@ module Peddler
       assert_equal(initial_http_object_id, @api.meter(1.0).http.object_id)
     end
 
+    def test_typed
+      api_subclass = Class.new(API) do
+        def load_types
+        end
+      end
+
+      api = api_subclass.new("eu-west-1", "access_token")
+
+      refute_predicate(api, :typed?)
+
+      result = api.typed
+
+      assert_predicate(api, :typed?)
+      assert_same(api, result)
+    end
+
     def test_rate_limit
       @api.meter(1.0)
 
@@ -120,11 +136,80 @@ module Peddler
       end
     end
 
-    def test_parser
-      parser = ->(response) { JSON.parse(response) }
-      @api.parser = parser
+    def test_server_errors_return_response_by_default
+      # Mock HTTP client to return 500 error
+      mock_http = Minitest::Mock.new
+      mock_http.expect(
+        :get,
+        HTTP::Response.new(
+          body: "Internal Server Error",
+          headers: {},
+          status: 500,
+          version: nil,
+          request: nil,
+        ),
+        [URI],
+      )
 
-      assert_equal(parser, @api.parser)
+      @api.stub(:http, mock_http) do
+        # Should emit deprecation warning
+        response = nil
+        assert_output(nil, /\[DEPRECATION\]/) do
+          response = @api.get("/test")
+        end
+
+        # Should return wrapped response, not raise
+        assert_instance_of(Response, response)
+        assert_equal(500, response.status)
+      end
+    end
+
+    def test_server_errors_raise_when_configured
+      Peddler.raise_on_server_errors = true
+
+      # Mock HTTP client to return 500 error
+      mock_http = Minitest::Mock.new
+      mock_http.expect(
+        :get,
+        HTTP::Response.new(
+          body: JSON.dump({ "errors" => [{ "code" => "InternalError", "message" => "Server error" }] }),
+          headers: { "Content-Type" => "application/json" },
+          status: 500,
+          version: nil,
+          request: nil,
+        ),
+        [URI],
+      )
+
+      @api.stub(:http, mock_http) do
+        assert_raises(Peddler::Error) do
+          @api.get("/test")
+        end
+      end
+    ensure
+      Peddler.instance_variable_set(:@raise_on_server_errors, nil)
+    end
+
+    def test_client_errors_always_raise
+      # Mock HTTP client to return 404 error
+      mock_http = Minitest::Mock.new
+      mock_http.expect(
+        :get,
+        HTTP::Response.new(
+          body: JSON.dump({ "errors" => [{ "code" => "NotFound", "message" => "Not found" }] }),
+          headers: { "Content-Type" => "application/json" },
+          status: 404,
+          version: nil,
+          request: nil,
+        ),
+        [URI],
+      )
+
+      @api.stub(:http, mock_http) do
+        assert_raises(Peddler::Errors::NotFound) do
+          @api.get("/test")
+        end
+      end
     end
   end
 end

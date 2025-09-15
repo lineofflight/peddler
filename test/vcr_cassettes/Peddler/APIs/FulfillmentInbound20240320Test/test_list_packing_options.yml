@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 22:56:44 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 04B8ZXBBWTPMZDKWAKCS
+      X-Amzn-Requestid:
+      - 7d0278f4-bcf4-4699-bc31-f7f76981edff
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 22:56:44 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 22:56:44 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/inbound/fba/2024-03-20/inboundPlans/wf1234abcd-1234-abcd-5678-1234abcd5678/packingOptions?pageSize=2&paginationToken=paginationToken
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T225644Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 22:56:44 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1175'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - A5HXVR2R5CHMP94803NB
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 59b6f4f4-b998-4825-947f-2b4c591f4bf5
+      X-Amz-Apigw-Id:
+      - OPF59b6f4f4b998
+      X-Amzn-Trace-Id:
+      - Root=1-68c353ac-59b6f4f4b9984825
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"packingOptions":[{"packingOptionId":"po1234abcd-1234-abcd-5678-1234abcd5678","packingGroups":["pg1234abcd-1234-abcd-5678-1234abcd5678"],"fees":[{"value":{"code":"USD","amount":1.0},"type":"FEE","target":"Placement
+        Services","description":"description"}],"discounts":[{"value":{"code":"USD","amount":1.0},"type":"DISCOUNT","target":"Placement
+        Services","description":"description"}],"expiration":"2024-01-01T00:00:00.000Z","status":"OFFERED","supportedShippingConfigurations":[{"shippingSolution":"AMAZON_PARTNERED_CARRIER","shippingMode":"GROUND_SMALL_PARCEL"}],"supportedConfigurations":[{"boxPackingMethods":["BOX_CONTENT_PROVIDED"],"boxRequirements":{"weight":{"unit":"KG","minimum":1.0,"maximum":25.0}},"shippingRequirements":[{"solution":"USE_YOUR_OWN_CARRIER","modes":["FREIGHT_LTL","GROUND_SMALL_PARCEL"]}]},{"boxPackingMethods":["MANUAL_PROCESS","BARCODE_2D"],"boxRequirements":{"weight":{"unit":"KG","minimum":1.0,"maximum":15.0}},"shippingRequirements":[{"solution":"USE_YOUR_OWN_CARRIER","modes":["FREIGHT_LTL","GROUND_SMALL_PARCEL"]},{"solution":"AMAZON_PARTNERED_CARRIER","modes":["GROUND_SMALL_PARCEL"]}]}]}],"pagination":{"nextToken":"nextPaginationToken"}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 22:56:44 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 23:08:38 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - HAGJE88J30B9B57M2SZS
+      X-Amzn-Requestid:
+      - 81580db9-cabb-4986-a501-3883946fad73
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 23:08:38 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 23:08:38 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/fba/inbound/v0/prepInstructions?ASINList=ASIN1&ShipToCountryCode=US
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T230838Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 23:08:39 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '616'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 1Q720966SDPSB7PEZAM6
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 6614eb90-b4aa-4abb-8a28-78aac30c810e
+      X-Amz-Apigw-Id:
+      - OPF6614eb90b4aa
+      X-Amzn-Trace-Id:
+      - Root=1-68c35677-6614eb90b4aa4abb
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"SKUPrepInstructionsList":[{"SellerSKU":"SellerSKU","ASIN":"ASIN1","BarcodeInstruction":"RequiresFNSKULabel","PrepGuidance":"ConsultHelpDocuments","PrepInstructionList":["Polybagging"],"AmazonPrepFeesDetailsList":[{"PrepInstruction":"Polybagging","FeePerUnit":{"CurrencyCode":"USD","Value":10}}]}],"InvalidSKUList":[{"SellerSKU":"SellerSKU","ErrorReason":"DoesNotExist"}],"ASINPrepInstructionsList":[{"ASIN":"ASIN1","BarcodeInstruction":"RequiresFNSKULabel","PrepGuidance":"ConsultHelpDocuments","PrepInstructionList":["Polybagging"]}],"InvalidASINList":[{"ASIN":"ASIN1","ErrorReason":"DoesNotExist"}]}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 23:08:39 GMT
+recorded_with: VCR 6.3.1

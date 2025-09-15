@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+require "peddler/types/shipment_invoicing_v0/address"
+require "peddler/types/shipment_invoicing_v0/buyer_tax_info"
+require "peddler/types/shipment_invoicing_v0/error"
+require "peddler/types/shipment_invoicing_v0/get_invoice_status_response"
+require "peddler/types/shipment_invoicing_v0/get_shipment_details_response"
+require "peddler/types/shipment_invoicing_v0/marketplace_tax_info"
+require "peddler/types/shipment_invoicing_v0/payment_information"
+require "peddler/types/shipment_invoicing_v0/shipment_detail"
+require "peddler/types/shipment_invoicing_v0/shipment_invoice_status_info"
+require "peddler/types/shipment_invoicing_v0/shipment_invoice_status_response"
+require "peddler/types/shipment_invoicing_v0/shipment_item"
+require "peddler/types/shipment_invoicing_v0/submit_invoice_request"
+require "peddler/types/shipment_invoicing_v0/submit_invoice_response"
+require "peddler/types/shipment_invoicing_v0/tax_classification"

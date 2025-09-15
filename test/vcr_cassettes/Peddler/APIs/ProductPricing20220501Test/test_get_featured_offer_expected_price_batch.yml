@@ -6,8 +6,8 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       base64_string: |
-        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJnJlZnJlc2hfdG9rZW49RklMVEVS
-        RUQmY2xpZW50X2lkPUZJTFRFUkVEJmNsaWVudF9zZWNyZXQ9RklMVEVSRUQ=
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
     headers:
       Connection:
       - close
@@ -16,7 +16,7 @@ http_interactions:
       Host:
       - api.amazon.com
       User-Agent:
-      - http.rb/5.2.0
+      - http.rb/5.3.1
   response:
     status:
       code: 200
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Mon, 16 Sep 2024 12:46:28 GMT
+      - Fri, 12 Sep 2025 13:10:55 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -33,11 +33,11 @@ http_interactions:
       Connection:
       - close
       X-Amz-Rid:
-      - C7EW8RRHT0E7PZBJ0SPC
+      - P5KV41549AKJV7F4R83M
       X-Amzn-Requestid:
-      - 2c8d9748-8d6d-4d07-ab0a-6628600a6d39
+      - 2c55219e-0148-42a2-9670-ac45ed5eba81
       X-Amz-Date:
-      - Mon, 16 Sep 2024 12:46:28 GMT
+      - Fri, 12 Sep 2025 13:10:55 GMT
       Cache-Control:
       - no-cache, no-store, must-revalidate
       Pragma:
@@ -49,22 +49,22 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
-  recorded_at: Mon, 16 Sep 2024 12:46:26 GMT
+  recorded_at: Fri, 12 Sep 2025 13:10:55 GMT
 - request:
     method: post
-    uri: https://sellingpartnerapi-eu.amazon.com/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice
     body:
       encoding: UTF-8
-      string: '{"requests":[{"uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice","method":"GET","marketplaceId":"A1F83G8C2ARO7P","sku":"TSY-IBT-IL2"},{"uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice","method":"GET","marketplaceId":"A1F83G8C2ARO7P","sku":"SM-2DHM-HZJF"},{"uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice","method":"GET","marketplaceId":"A1F83G8C2ARO7P","sku":"Q0-I4ZH-B6JS"},{"uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice","method":"GET","marketplaceId":"A1F83G8C2ARO7P","sku":"G1-MPH9-Y7RX"}]}'
+      string: '{"requests":[{"marketplaceId":"MARKETPLACE_ID","sku":"MY_SKU","segment":{"segmentDetails":{"sampleLocation":{"postalCode":{"countryCode":"COUNTRY_CODE","value":"POSTAL_CODE_VALUE"}}}},"method":"GET","uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"},{"marketplaceId":"MARKETPLACE_ID","sku":"MY_UNIQUE_SKU","method":"GET","uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"},{"marketplaceId":"MARKETPLACE_ID","sku":"INVALID_SKU","method":"GET","uri":"/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"}]}'
     headers:
       Host:
-      - sellingpartnerapi-eu.amazon.com
+      - sandbox.sellingpartnerapi-eu.amazon.com
       User-Agent:
-      - Peddler/3.0.0.beta1 (Language=Ruby; Hakans-MacBook-Pro.local)
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
       X-Amz-Access-Token:
       - FILTERED
       X-Amz-Date:
-      - 20240916T124626Z
+      - 20250912T131055Z
       Connection:
       - close
       Content-Type:
@@ -77,57 +77,33 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Mon, 16 Sep 2024 12:46:29 GMT
+      - Fri, 12 Sep 2025 13:10:56 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3605'
+      - '2368'
       Connection:
       - close
       X-Amz-Rid:
-      - FBNX9RXV1RGBWB6M0WWM
+      - 49WA4RR4NRB42X5B9ESM
       X-Amzn-Ratelimit-Limit:
-      - '0.033'
+      - '5.0'
       X-Amzn-Requestid:
-      - fa06146b-2ee5-407d-aee2-0c09bc4f13f4
+      - fcf5fb86-9a60-42e8-8b32-05a054402c64
       X-Amz-Apigw-Id:
-      - OPFfa06146b2ee5
+      - OPFfcf5fb869a60
       X-Amzn-Trace-Id:
-      - Root=1-66e828a5-fa06146b2ee5407d
+      - Root=1-68c41be0-fcf5fb869a6042e8
       Vary:
       - accept-encoding,Content-Type,Accept-Encoding,User-Agent
       Strict-Transport-Security:
       - max-age=47474747; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: "{\n  \"responses\": [\n      {\n      \"headers\": {\n                        \"x-amzn-RequestId\":
-        \"eac239b5-4459-4d98-9ed6-0b931deb4b2a\"\n          ,                  \"Date\":
-        \"Mon, 16 Sep 2024 12:46:29 GMT\"\n                              },\n      \"status\":
-        {\n        \"statusCode\": 200,\n        \"reasonPhrase\": \"OK\"\n      },\n
-        \             \"body\": {\"featuredOfferExpectedPriceResults\":[{\"resultStatus\":\"NO_COMPETING_OFFER\",\"currentFeaturedOffer\":{\"condition\":\"New\",\"price\":{\"shippingPrice\":{\"currencyCode\":\"GBP\",\"amount\":0.0},\"listingPrice\":{\"currencyCode\":\"GBP\",\"amount\":399.94}},\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"188864544X\",\"sellerId\":\"A34PPN1ZLYCOGT\",\"fulfillmentType\":\"MFN\"}}}],\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"188864544X\",\"sellerId\":\"A34PPN1ZLYCOGT\",\"sku\":\"TSY-IBT-IL2\"}}\n
-        \           ,\"request\": {\n                      \"marketplaceId\": \"A1F83G8C2ARO7P\"\n
-        \       ,                \"sku\": \"TSY-IBT-IL2\"\n                            }
-        \  \n    },      {\n      \"headers\": {\n                        \"x-amzn-RequestId\":
-        \"7800302b-a311-491b-8df1-085e76f9d1d4\"\n          ,                  \"Date\":
-        \"Mon, 16 Sep 2024 12:46:28 GMT\"\n                              },\n      \"status\":
-        {\n        \"statusCode\": 200,\n        \"reasonPhrase\": \"OK\"\n      },\n
-        \             \"body\": {\"featuredOfferExpectedPriceResults\":[{\"resultStatus\":\"OFFER_NOT_FOUND\"}],\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"8086217868\",\"sellerId\":\"A34PPN1ZLYCOGT\",\"sku\":\"SM-2DHM-HZJF\"}}\n
-        \           ,\"request\": {\n                      \"marketplaceId\": \"A1F83G8C2ARO7P\"\n
-        \       ,                \"sku\": \"SM-2DHM-HZJF\"\n                            }
-        \  \n    },      {\n      \"headers\": {\n                        \"x-amzn-RequestId\":
-        \"85560543-f357-41e6-88d1-21d4f91e2a4e\"\n          ,                  \"Date\":
-        \"Mon, 16 Sep 2024 12:46:29 GMT\"\n                              },\n      \"status\":
-        {\n        \"statusCode\": 200,\n        \"reasonPhrase\": \"OK\"\n      },\n
-        \             \"body\": {\"featuredOfferExpectedPriceResults\":[{\"resultStatus\":\"OFFER_NOT_FOUND\",\"currentFeaturedOffer\":{\"condition\":\"New\",\"price\":{\"shippingPrice\":{\"currencyCode\":\"GBP\",\"amount\":0.0},\"listingPrice\":{\"currencyCode\":\"GBP\",\"amount\":1250.0}},\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"3822843865\",\"sellerId\":\"A3P5ROKL5A1OLE\",\"fulfillmentType\":\"AFN\"}}}],\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"3822843865\",\"sellerId\":\"A34PPN1ZLYCOGT\",\"sku\":\"Q0-I4ZH-B6JS\"}}\n
-        \           ,\"request\": {\n                      \"marketplaceId\": \"A1F83G8C2ARO7P\"\n
-        \       ,                \"sku\": \"Q0-I4ZH-B6JS\"\n                            }
-        \  \n    },      {\n      \"headers\": {\n                        \"x-amzn-RequestId\":
-        \"b5d6e9c8-fa18-4447-8fb5-2fc8e3c87640\"\n          ,                  \"Date\":
-        \"Mon, 16 Sep 2024 12:46:29 GMT\"\n                              },\n      \"status\":
-        {\n        \"statusCode\": 200,\n        \"reasonPhrase\": \"OK\"\n      },\n
-        \             \"body\": {\"featuredOfferExpectedPriceResults\":[{\"resultStatus\":\"OFFER_NOT_FOUND\",\"currentFeaturedOffer\":{\"condition\":\"New\",\"price\":{\"shippingPrice\":{\"currencyCode\":\"GBP\",\"amount\":0.0},\"listingPrice\":{\"currencyCode\":\"GBP\",\"amount\":127.4}},\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"B003EHOCGE\",\"sellerId\":\"AZGQF2ZHVL4Y2\",\"fulfillmentType\":\"MFN\"}}}],\"offerIdentifier\":{\"marketplaceId\":\"A1F83G8C2ARO7P\",\"asin\":\"B003EHOCGE\",\"sellerId\":\"A34PPN1ZLYCOGT\",\"sku\":\"G1-MPH9-Y7RX\"}}\n
-        \           ,\"request\": {\n                      \"marketplaceId\": \"A1F83G8C2ARO7P\"\n
-        \       ,                \"sku\": \"G1-MPH9-Y7RX\"\n                            }
-        \  \n    }    ]\n}\n"
-  recorded_at: Mon, 16 Sep 2024 12:46:27 GMT
+      string: '{"responses":[{"request":{"marketplaceId":"MARKETPLACE_ID","sku":"MY_SKU","segment":{"segmentDetails":{"sampleLocation":{"postalCode":{"countryCode":"COUNTRY_CODE","value":"POSTAL_CODE_VALUE"}}}}},"status":{"statusCode":200,"reasonPhrase":"Success"},"headers":{},"body":{"offerIdentifier":{"asin":"ASIN","sku":"MY_SKU","marketplaceId":"MARKETPLACE_ID","fulfillmentType":"AFN","sellerId":"MY_SELLER_ID"},"featuredOfferExpectedPriceResults":[{"featuredOfferExpectedPrice":{"listingPrice":{"amount":10.0,"currencyCode":"USD"},"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}}},"resultStatus":"VALID_FOEP","competingFeaturedOffer":{"offerIdentifier":{"asin":"ASIN","marketplaceId":"MARKETPLACE_ID","fulfillmentType":"AFN","sellerId":"OTHER_SELLER_ID"},"condition":"New","price":{"listingPrice":{"amount":12.0,"currencyCode":"USD"},"shippingPrice":{"amount":0,"currencyCode":"USD"},"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}}}},"currentFeaturedOffer":{"offerIdentifier":{"asin":"ASIN","marketplaceId":"MARKETPLACE_ID","fulfillmentType":"AFN","sellerId":"OTHER_SELLER_ID"},"condition":"New","price":{"listingPrice":{"amount":12.0,"currencyCode":"USD"},"shippingPrice":{"amount":0,"currencyCode":"USD"},"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}}}}}]}},{"request":{"marketplaceId":"MARKETPLACE_ID","sku":"MY_UNIQUE_SKU"},"status":{"statusCode":200,"reasonPhrase":"Success"},"headers":{},"body":{"offerIdentifier":{"asin":"ASIN","sku":"MY_UNIQUE_SKU","marketplaceId":"MARKETPLACE_ID","fulfillmentType":"AFN","sellerId":"MY_SELLER_ID"},"featuredOfferExpectedPriceResults":[{"resultStatus":"NO_COMPETING_OFFERS","currentFeaturedOffer":{"offerIdentifier":{"asin":"ASIN","marketplaceId":"MARKETPLACE_ID","fulfillmentType":"AFN","sellerId":"MY_SELLER_ID"},"condition":"New","price":{"listingPrice":{"amount":12.0,"currencyCode":"USD"},"shippingPrice":{"amount":0,"currencyCode":"USD"},"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}}}}}]}},{"request":{"marketplaceId":"MARKETPLACE_ID","sku":"MY_NONEXISTENT_SKU"},"status":{"statusCode":400,"reasonPhrase":"Client
+        Error"},"headers":{},"body":{"errors":[{"code":"INVALID_SKU","message":"The
+        requested SKU does not exist for the seller in the requested marketplace."}]}}]}
+
+        '
+  recorded_at: Fri, 12 Sep 2025 13:10:56 GMT
 recorded_with: VCR 6.3.1

@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
     # shipments of inventory to Amazon's fulfillment network.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillmentInboundV0.json
     class FulfillmentInboundV0 < API
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.
@@ -42,8 +44,8 @@ module Peddler
           "SellerSKUList" => stringify_array(seller_sku_list),
           "ASINList" => stringify_array(asin_list),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns package/pallet labels for faster and more accurate shipment processing at the Amazon fulfillment center.
@@ -84,8 +86,8 @@ module Peddler
           "PageSize" => page_size,
           "PageStartIndex" => page_start_index,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentInboundV0::GetLabelsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a bill of lading for a Less Than Truckload/Full Truckload (LTL/FTL) shipment. The getBillOfLading
@@ -99,8 +101,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_bill_of_lading(shipment_id, rate_limit: 2.0)
         path = "/fba/inbound/v0/shipments/#{percent_encode(shipment_id)}/billOfLading"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::FulfillmentInboundV0::GetBillOfLadingResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns a list of inbound shipments based on criteria that you specify.
@@ -136,8 +138,8 @@ module Peddler
           "NextToken" => next_token,
           "MarketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentInboundV0::GetShipmentsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a list of items in a specified inbound shipment.
@@ -152,8 +154,8 @@ module Peddler
         params = {
           "MarketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a list of items in a specified inbound shipment, or a list of items that were updated within a specified
@@ -182,8 +184,14 @@ module Peddler
           "NextToken" => next_token,
           "MarketplaceId" => marketplace_id,
         }.compact
+        parser = Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/fulfillment_inbound_v0"
       end
     end
   end

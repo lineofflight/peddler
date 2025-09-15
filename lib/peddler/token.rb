@@ -2,6 +2,7 @@
 
 require "http"
 
+require "peddler/error"
 require "peddler/response"
 
 module Peddler
@@ -30,8 +31,8 @@ module Peddler
     end
 
     def request
-      response = HTTP.post(URL, form: params)
-      Response.wrap(response)
+      http_response = HTTP.post(URL, form: params)
+      Response.wrap(http_response)
     end
 
     def grant_type

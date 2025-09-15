@@ -21,6 +21,8 @@ module Peddler
     #
     # Refer to the [Sellers API reference](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) for
     # details about this API's operations, data types, and schemas.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers.json
     class SellersV1 < API
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
@@ -30,8 +32,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_marketplace_participations(rate_limit: 0.016)
         path = "/sellers/v1/marketplaceParticipations"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns information about a seller account and its marketplaces.
@@ -41,8 +43,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_account(rate_limit: 0.016)
         path = "/sellers/v1/account"
+        parser = Peddler::Types::SellersV1::GetAccountResponse if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/sellers_v1"
       end
     end
   end

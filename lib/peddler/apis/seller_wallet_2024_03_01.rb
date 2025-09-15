@@ -18,6 +18,8 @@ module Peddler
     # The Selling Partner API for Seller Wallet (Seller Wallet API) provides financial information that is relevant to a
     # seller's Seller Wallet account. You can obtain financial events, balances, and transfer schedules for Seller
     # Wallet accounts. You can also schedule and initiate transactions.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellerWallet_2024-03-01.json
     class SellerWallet20240301 < API
       # Get Seller Wallet accounts for a seller.
       #
@@ -29,8 +31,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::BankAccountListing if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve a Seller Wallet bank account by Amazon account identifier.
@@ -46,8 +48,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::BankAccount if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve the balance in a given Seller Wallet bank account.
@@ -63,8 +65,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::BalanceListing if typed?
+        get(path, params:, parser:)
       end
 
       # Returns list of potential fees on a transaction based on the source and destination country currency code
@@ -95,8 +97,8 @@ module Peddler
           "baseAmount" => base_amount,
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::TransferRatePreview if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve a list of transactions for a given Seller Wallet bank account.
@@ -115,8 +117,8 @@ module Peddler
           "nextPageToken" => next_page_token,
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::TransactionListing if typed?
+        get(path, params:, parser:)
       end
 
       # Create a transaction request from a Seller Wallet account to another customer-provided account.
@@ -134,8 +136,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        post(path, body:, params:)
+        parser = Peddler::Types::SellerWallet20240301::CreateTransactionResponse if typed?
+        post(path, body:, params:, parser:)
       end
 
       # Returns a transaction
@@ -151,8 +153,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::Transaction if typed?
+        get(path, params:, parser:)
       end
 
       # Retrieve transfer schedules of a Seller Wallet bank account.
@@ -171,8 +173,8 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "nextPageToken" => next_page_token,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::TransferScheduleListing if typed?
+        get(path, params:, parser:)
       end
 
       # Create a transfer schedule request from a Seller Wallet account to another customer-provided account.
@@ -190,8 +192,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        post(path, body:, params:)
+        parser = Peddler::Types::SellerWallet20240301::TransferSchedule if typed?
+        post(path, body:, params:, parser:)
       end
 
       # Returns a transfer belonging to the updated scheduled transfer request
@@ -209,8 +211,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        put(path, body:, params:)
+        parser = Peddler::Types::SellerWallet20240301::TransferSchedule if typed?
+        put(path, body:, params:, parser:)
       end
 
       # Find a particular Amazon Seller Wallet account transfer schedule.
@@ -226,8 +228,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SellerWallet20240301::TransferSchedule if typed?
+        get(path, params:, parser:)
       end
 
       # Delete a transaction request that is scheduled from Amazon Seller Wallet account to another customer-provided
@@ -244,8 +246,14 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
+        parser = Peddler::Types::SellerWallet20240301::DeleteTransferSchedule if typed?
+        delete(path, params:, parser:)
+      end
 
-        delete(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/seller_wallet_2024_03_01"
       end
     end
   end

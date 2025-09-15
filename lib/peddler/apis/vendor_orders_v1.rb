@@ -13,6 +13,8 @@ module Peddler
     # Selling Partner API for Retail Procurement Orders
     #
     # The Selling Partner API for Retail Procurement Orders provides programmatic access to vendor orders data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorOrders.json
     class VendorOrdersV1 < API
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
       # frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range
@@ -66,8 +68,8 @@ module Peddler
           "purchaseOrderState" => purchase_order_state,
           "orderingVendorCode" => ordering_vendor_code,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::VendorOrdersV1::GetPurchaseOrdersResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a purchase order based on the `purchaseOrderNumber` value that you specify.
@@ -79,8 +81,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_purchase_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/orders/v1/purchaseOrders/#{percent_encode(purchase_order_number)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::VendorOrdersV1::GetPurchaseOrderResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Submits acknowledgements for one or more purchase orders.
@@ -91,8 +93,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/orders/v1/acknowledgements"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::VendorOrdersV1::SubmitAcknowledgementResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns purchase order statuses based on the filters that you specify. Date range to search must not be more
@@ -151,8 +153,14 @@ module Peddler
           "orderingVendorCode" => ordering_vendor_code,
           "shipToPartyId" => ship_to_party_id,
         }.compact
+        parser = Peddler::Types::VendorOrdersV1::GetPurchaseOrdersStatusResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/vendor_orders_v1"
       end
     end
   end

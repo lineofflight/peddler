@@ -14,6 +14,8 @@ module Peddler
     #
     # With the AppIntegrations API v2024-04-01, you can send notifications to Amazon Selling Partners and display the
     # notifications in Seller Central.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/appIntegrations-2024-04-01.json
     class ApplicationIntegrations20240401 < API
       # Create a notification for sellers in Seller Central.
       #
@@ -23,8 +25,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_notification(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Remove your application's notifications from the Appstore notifications dashboard.
@@ -35,7 +37,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_notifications(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/deletion"
-
         meter(rate_limit).post(path, body:)
       end
 
@@ -48,8 +49,13 @@ module Peddler
       # @return [Peddler::Response] The API response
       def record_action_feedback(notification_id, body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/#{percent_encode(notification_id)}/feedback"
-
         meter(rate_limit).post(path, body:)
+      end
+
+      private
+
+      def load_types
+        require "peddler/types/application_integrations_2024_04_01"
       end
     end
   end

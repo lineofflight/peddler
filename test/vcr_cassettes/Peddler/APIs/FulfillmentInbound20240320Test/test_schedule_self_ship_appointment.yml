@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 22:56:51 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - CYDS3QA6QNHM3R08WMNG
+      X-Amzn-Requestid:
+      - 6f102d1f-4ecd-4f96-9c1f-3e7a8d8136dd
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 22:56:51 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 22:56:51 GMT
+- request:
+    method: post
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/inbound/fba/2024-03-20/inboundPlans/wf1234abcd-1234-abcd-5678-1234abcd5678/shipments/sh1234abcd-1234-abcd-5678-1234abcd5678/selfShipAppointmentSlots/aa1234abcd-1234-abcd-5678-1234abcd5678/schedule
+    body:
+      encoding: UTF-8
+      string: '{"reasonComment":"OTHER"}'
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T225651Z
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=utf-8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 22:56:51 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '186'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - RRZ6M1TM6VDT7ERJJG7K
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 9b9ff8f6-fb5e-4800-a332-1fbe4cbe945d
+      X-Amz-Apigw-Id:
+      - OPF9b9ff8f6fb5e
+      X-Amzn-Trace-Id:
+      - Root=1-68c353b3-9b9ff8f6fb5e4800
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"selfShipAppointmentDetails":{"appointmentId":1000,"appointmentSlotTime":{"startTime":"2023-03-08T13:15:30Z","endTime":"2023-03-09T13:15:30Z"},"appointmentStatus":"ARRIVAL_SCHEDULED"}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 22:56:51 GMT
+recorded_with: VCR 6.3.1

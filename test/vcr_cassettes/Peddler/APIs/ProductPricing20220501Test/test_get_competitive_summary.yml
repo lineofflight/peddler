@@ -6,8 +6,8 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       base64_string: |
-        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJnJlZnJlc2hfdG9rZW49RklMVEVS
-        RUQmY2xpZW50X2lkPUZJTFRFUkVEJmNsaWVudF9zZWNyZXQ9RklMVEVSRUQ=
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
     headers:
       Connection:
       - close
@@ -16,7 +16,7 @@ http_interactions:
       Host:
       - api.amazon.com
       User-Agent:
-      - http.rb/5.2.0
+      - http.rb/5.3.1
   response:
     status:
       code: 200
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Mon, 16 Sep 2024 11:57:35 GMT
+      - Fri, 12 Sep 2025 13:10:52 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -33,11 +33,11 @@ http_interactions:
       Connection:
       - close
       X-Amz-Rid:
-      - XAKK7Y3M52VXAP90V5EF
+      - AMSFHC364QNYA00XFTXD
       X-Amzn-Requestid:
-      - 1eedadb1-75b8-4d66-915a-b9ccd2cbdb8e
+      - b62d6d07-b308-468c-ac98-7cac4ba8ce6f
       X-Amz-Date:
-      - Mon, 16 Sep 2024 11:57:35 GMT
+      - Fri, 12 Sep 2025 13:10:52 GMT
       Cache-Control:
       - no-cache, no-store, must-revalidate
       Pragma:
@@ -49,22 +49,22 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
-  recorded_at: Mon, 16 Sep 2024 11:57:35 GMT
+  recorded_at: Fri, 12 Sep 2025 13:10:52 GMT
 - request:
     method: post
-    uri: https://sellingpartnerapi-eu.amazon.com/batches/products/pricing/2022-05-01/items/competitiveSummary
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/batches/products/pricing/2022-05-01/items/competitiveSummary
     body:
       encoding: UTF-8
-      string: '{"requests":[{"uri":"/products/pricing/2022-05-01/items/competitiveSummary","method":"GET","asin":"188864544X","marketplaceId":"A1F83G8C2ARO7P","includedData":["featuredBuyingOptions","referencePrices","lowestPricedOffers"]},{"uri":"/products/pricing/2022-05-01/items/competitiveSummary","method":"GET","asin":"8086217868","marketplaceId":"A1F83G8C2ARO7P","includedData":["featuredBuyingOptions","referencePrices","lowestPricedOffers"]},{"uri":"/products/pricing/2022-05-01/items/competitiveSummary","method":"GET","asin":"3822843865","marketplaceId":"A1F83G8C2ARO7P","includedData":["featuredBuyingOptions","referencePrices","lowestPricedOffers"]},{"uri":"/products/pricing/2022-05-01/items/competitiveSummary","method":"GET","asin":"B003EHOCGE","marketplaceId":"A1F83G8C2ARO7P","includedData":["featuredBuyingOptions","referencePrices","lowestPricedOffers"]}]}'
+      string: '{"requests":[{"asin":"B00ZIAODGE","marketplaceId":"ATVPDKIKX0DER","includedData":["featuredBuyingOptions","referencePrices","lowestPricedOffers"],"lowestPricedOffersInputs":[{"itemCondition":"New","offerType":"Consumer"},{"itemCondition":"Used","offerType":"Consumer"}],"uri":"/products/pricing/2022-05-01/items/competitiveSummary","method":"GET"},{"asin":"11_AABB_123","marketplaceId":"ATVPDKIKX0DER","includedData":["featuredBuyingOptions"],"uri":"/products/pricing/2022-05-01/items/competitiveSummary","method":"GET"}]}'
     headers:
       Host:
-      - sellingpartnerapi-eu.amazon.com
+      - sandbox.sellingpartnerapi-eu.amazon.com
       User-Agent:
-      - Peddler/3.0.0.beta1 (Language=Ruby; 02b83a1b6003)
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
       X-Amz-Access-Token:
       - FILTERED
       X-Amz-Date:
-      - 20240916T115735Z
+      - 20250912T131052Z
       Connection:
       - close
       Content-Type:
@@ -77,31 +77,33 @@ http_interactions:
       Server:
       - Server
       Date:
-      - Mon, 16 Sep 2024 11:57:36 GMT
+      - Fri, 12 Sep 2025 13:10:53 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3675'
+      - '2965'
       Connection:
       - close
       X-Amz-Rid:
-      - XA1VNQG43RZVREPFKJG3
+      - 59KNX1BAQTMK2XCW9K8Q
       X-Amzn-Ratelimit-Limit:
-      - '0.033'
+      - '5.0'
       X-Amzn-Requestid:
-      - a29d32ab-a250-48cc-a1b0-58393e8523c0
+      - 30cdec7c-547d-4a00-a3e4-4c5305ed3c29
       X-Amz-Apigw-Id:
-      - OPFa29d32aba250
+      - OPF30cdec7c547d
       X-Amzn-Trace-Id:
-      - Root=1-66e81d30-a29d32aba25048cc
+      - Root=1-68c41bdd-30cdec7c547d4a00
       Vary:
       - accept-encoding,Content-Type,Accept-Encoding,User-Agent
       Strict-Transport-Security:
       - max-age=47474747; includeSubDomains; preload
     body:
       encoding: UTF-8
-      string: |2
+      string: '{"responses":[{"status":{"statusCode":200,"reasonPhrase":"Success"},"body":{"asin":"B00ZIAODGE","marketplaceId":"ATVPDKIKX0DER","featuredBuyingOptions":[{"buyingOptionType":"New","segmentedFeaturedOffers":[{"sellerId":"A3DJR8M9Y3OUPG","condition":"New","fulfillmentType":"MFN","listingPrice":{"amount":18.11,"currencyCode":"USD"},"shippingOptions":[{"shippingOptionType":"DEFAULT","price":{"amount":2.5,"currencyCode":"USD"}}],"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}},"featuredOfferSegments":[{"customerMembership":"NON_PRIME","segmentDetails":{"glanceViewWeightPercentage":72,"sampleLocation":{"postalCode":{"countryCode":"US","value":"67890"}}}},{"customerMembership":"PRIME","segmentDetails":{"glanceViewWeightPercentage":10,"sampleLocation":{"postalCode":{"countryCode":"US","value":"12345"}}}}]},{"sellerId":"A2ZWOLFOFDPJL1","condition":"New","fulfillmentType":"MFN","listingPrice":{"amount":17.15,"currencyCode":"USD"},"shippingOptions":[{"shippingOptionType":"DEFAULT","price":{"amount":2.5,"currencyCode":"USD"}}],"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}},"featuredOfferSegments":[{"customerMembership":"NON_PRIME","segmentDetails":{"glanceViewWeightPercentage":18,"sampleLocation":{"postalCode":{"countryCode":"US","value":"12345"}}}}]}]}],"referencePrices":[{"name":"CompetitivePriceThreshold","price":{"amount":18.11,"currencyCode":"USD"}},{"name":"CompetitivePrice","price":{"amount":17.39,"currencyCode":"USD"}},{"name":"WasPrice","price":{"amount":18.49,"currencyCode":"USD"}}],"lowestPricedOffers":[{"lowestPricedOffersInput":{"itemCondition":"New","offerType":"Consumer"},"offers":[{"listingPrice":{"currencyCode":"USD","amount":17.15},"shippingOptions":[{"shippingOptionType":"DEFAULT","price":{"amount":2.5,"currencyCode":"USD"}}],"points":{"pointsMonetaryValue":{"amount":0.5,"currencyCode":"USD"},"pointsNumber":50},"primeDetails":{"eligibility":"REGIONAL"},"subCondition":"New","sellerId":"A2ZWOLFOFDPJL1","fulfillmentType":"MFN"},{"listingPrice":{"amount":18.11,"currencyCode":"USD"},"shippingOptions":[{"shippingOptionType":"DEFAULT","price":{"amount":2.5,"currencyCode":"USD"}}],"points":{"pointsNumber":3,"pointsMonetaryValue":{"amount":0.03,"currencyCode":"USD"}},"primeDetails":{"eligibility":"NATIONAL"},"sellerId":"A3DJR8M9Y3OUPG","subCondition":"New","fulfillmentType":"MFN"}]},{"lowestPricedOffersInput":{"itemCondition":"Used","offerType":"Consumer"},"offers":[{"listingPrice":{"currencyCode":"USD","amount":12.0},"shippingOptions":[{"shippingOptionType":"DEFAULT","price":{"amount":2.5,"currencyCode":"USD"}}],"primeDetails":{"eligibility":"REGIONAL"},"subCondition":"Acceptable","sellerId":"A3DH5AGPM3JVAB","fulfillmentType":"AFN"}]}]}},{"status":{"statusCode":400,"reasonPhrase":"Client
+        Error"},"body":{"asin":"11_AABB_123","marketplaceId":"ATVPDKIKX0DER","errors":[{"code":"INVALID_ASIN","message":"11_AABB_123
+        is not a valid ASIN"}]}}]}
 
-            {"responses":[{"body":{"asin":"188864544X","featuredBuyingOptions":[{"buyingOptionType":"New","segmentedFeaturedOffers":[{"condition":"New","featuredOfferSegments":[{"customerMembership":"PRIME","segmentDetails":{"glanceViewWeightPercentage":50.0}},{"customerMembership":"NON_PRIME","segmentDetails":{"glanceViewWeightPercentage":50.0}}],"fulfillmentType":"MFN","listingPrice":{"amount":399.94,"currencyCode":"GBP"},"sellerId":"A34PPN1ZLYCOGT","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}]}]}],"lowestPricedOffers":[{"lowestPricedOffersInput":{"itemCondition":"New","offerType":"Consumer"},"offers":[{"condition":"New","fulfillmentType":"MFN","listingPrice":{"amount":399.94,"currencyCode":"GBP"},"primeDetails":{"eligibility":"NONE"},"sellerId":"A34PPN1ZLYCOGT","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}],"subCondition":"New"}]}],"marketplaceId":"A1F83G8C2ARO7P","referencePrices":[]},"status":{"reasonPhrase":"Success","statusCode":200}},{"body":{"asin":"8086217868","featuredBuyingOptions":[],"lowestPricedOffers":[{"lowestPricedOffersInput":{"itemCondition":"New","offerType":"Consumer"},"offers":[]}],"marketplaceId":"A1F83G8C2ARO7P","referencePrices":[]},"status":{"reasonPhrase":"Success","statusCode":200}},{"body":{"asin":"3822843865","featuredBuyingOptions":[{"buyingOptionType":"New","segmentedFeaturedOffers":[{"condition":"New","featuredOfferSegments":[{"customerMembership":"PRIME","segmentDetails":{"glanceViewWeightPercentage":75.0}},{"customerMembership":"NON_PRIME","segmentDetails":{"glanceViewWeightPercentage":25.0}}],"fulfillmentType":"AFN","listingPrice":{"amount":1250.0,"currencyCode":"GBP"},"sellerId":"A3P5ROKL5A1OLE","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}]}]}],"lowestPricedOffers":[{"lowestPricedOffersInput":{"itemCondition":"New","offerType":"Consumer"},"offers":[{"condition":"New","fulfillmentType":"MFN","listingPrice":{"amount":1250.0,"currencyCode":"GBP"},"primeDetails":{"eligibility":"NATIONAL"},"sellerId":"A3P5ROKL5A1OLE","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}],"subCondition":"New"},{"condition":"New","fulfillmentType":"AFN","listingPrice":{"amount":1250.0,"currencyCode":"GBP"},"primeDetails":{"eligibility":"NATIONAL"},"sellerId":"A3P5ROKL5A1OLE","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}],"subCondition":"New"}]}],"marketplaceId":"A1F83G8C2ARO7P","referencePrices":[]},"status":{"reasonPhrase":"Success","statusCode":200}},{"body":{"asin":"B003EHOCGE","featuredBuyingOptions":[{"buyingOptionType":"New","segmentedFeaturedOffers":[{"condition":"New","featuredOfferSegments":[{"customerMembership":"PRIME","segmentDetails":{"glanceViewWeightPercentage":75.0}},{"customerMembership":"NON_PRIME","segmentDetails":{"glanceViewWeightPercentage":25.0}}],"fulfillmentType":"MFN","listingPrice":{"amount":127.4,"currencyCode":"GBP"},"sellerId":"AZGQF2ZHVL4Y2","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}]}]}],"lowestPricedOffers":[{"lowestPricedOffersInput":{"itemCondition":"New","offerType":"Consumer"},"offers":[{"condition":"New","fulfillmentType":"MFN","listingPrice":{"amount":127.4,"currencyCode":"GBP"},"primeDetails":{"eligibility":"NONE"},"sellerId":"AZGQF2ZHVL4Y2","shippingOptions":[{"price":{"amount":0.0,"currencyCode":"GBP"},"shippingOptionType":"DEFAULT"}],"subCondition":"New"}]}],"marketplaceId":"A1F83G8C2ARO7P","referencePrices":[]},"status":{"reasonPhrase":"Success","statusCode":200}}]}
-  recorded_at: Mon, 16 Sep 2024 11:57:36 GMT
+        '
+  recorded_at: Fri, 12 Sep 2025 13:10:53 GMT
 recorded_with: VCR 6.3.1

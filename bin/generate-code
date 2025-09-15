@@ -1,15 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "bundler/setup"
+
 $LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
 require_relative "../lib/generator"
-
-puts "Starting Peddler code generation..."
-puts "This script will:
-- Clone the Amazon Selling Partner API models (if they don't exist)
-- Generate Ruby code from those models
-- Format the code with RuboCop"
-puts ""
 
 begin
   Generator.generate

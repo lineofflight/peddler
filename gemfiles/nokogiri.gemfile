@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gem "nokogiri"
 
 group :development do
+  gem "activesupport"
   gem "appraisal"
   gem "minitest"
   gem "rake"

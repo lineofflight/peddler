@@ -3,12 +3,9 @@
 require "erb"
 
 require "generator/config"
-require "generator/utils"
 
 module Generator
   class Entrypoint
-    include Utils
-
     attr_reader :apis
 
     def initialize(apis)

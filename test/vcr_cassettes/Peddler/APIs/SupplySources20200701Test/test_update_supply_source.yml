@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 08 Sep 2025 12:32:32 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - JD37D1HHH6FS55XYC35M
+      X-Amzn-Requestid:
+      - fad2ecde-9c78-4165-84f0-c2b868f85b9a
+      X-Amz-Date:
+      - Mon, 08 Sep 2025 12:32:32 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Mon, 08 Sep 2025 12:32:32 GMT
+- request:
+    method: put
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/supplySources/2020-07-01/supplySources/test-id-123
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250908T123232Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 08 Sep 2025 12:32:32 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      X-Amz-Rid:
+      - K48DJ2YZJBWXX9HNMSF3
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - ed355ec4-3b47-40d5-b1d1-9b3e853d7632
+      X-Amz-Apigw-Id:
+      - OPFed355ec43b47
+      X-Amzn-Trace-Id:
+      - Root=1-68becce0-ed355ec43b4740d5
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 08 Sep 2025 12:32:32 GMT
+recorded_with: VCR 6.3.1

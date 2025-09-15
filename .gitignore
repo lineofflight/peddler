@@ -1,18 +1,11 @@
-# Bundler
-.bundle
 Gemfile.lock
-gemfiles/*.gemfile.lock
-
-# Generated documentation
+.bundle
+.claude/settings.local.json
 .yardoc
-doc/
-
-# Test artifacts
+coverage
+doc
+gemfiles/*.gemfile.lock
+pkg
+selling-partner-api-models
 test/config.json
-
-# Build artifacts
-pkg/
-vendor/
-
-# Downloaded external models
-selling-partner-api-models/
+vendor

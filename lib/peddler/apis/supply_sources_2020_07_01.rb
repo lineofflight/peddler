@@ -13,6 +13,8 @@ module Peddler
     # Selling Partner API for Supply Sources
     #
     # Manage configurations and capabilities of seller supply sources.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supplySources_2020-07-01.json
     class SupplySources20200701 < API
       # The path to retrieve paginated supply sources.
       #
@@ -26,8 +28,8 @@ module Peddler
           "nextPageToken" => next_page_token,
           "pageSize" => page_size,
         }.compact
-
-        get(path, params:)
+        parser = Peddler::Types::SupplySources20200701::GetSupplySourcesResponse if typed?
+        get(path, params:, parser:)
       end
 
       # Create a new supply source.
@@ -38,8 +40,8 @@ module Peddler
       def create_supply_source(payload)
         path = "/supplySources/2020-07-01/supplySources"
         body = payload
-
-        post(path, body:)
+        parser = Peddler::Types::SupplySources20200701::CreateSupplySourceResponse if typed?
+        post(path, body:, parser:)
       end
 
       # Retrieve a supply source.
@@ -49,8 +51,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_supply_source(supply_source_id)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-
-        get(path)
+        parser = Peddler::Types::SupplySources20200701::SupplySource if typed?
+        get(path, parser:)
       end
 
       # Update the configuration and capabilities of a supply source.
@@ -62,8 +64,8 @@ module Peddler
       def update_supply_source(supply_source_id, payload: nil)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
         body = payload
-
-        put(path, body:)
+        parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
+        put(path, body:, parser:)
       end
 
       # Archive a supply source, making it inactive. Cannot be undone.
@@ -73,8 +75,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def archive_supply_source(supply_source_id)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-
-        delete(path)
+        parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
+        delete(path, parser:)
       end
 
       # Update the status of a supply source.
@@ -86,8 +88,14 @@ module Peddler
       def update_supply_source_status(supply_source_id, payload: nil)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}/status"
         body = payload
+        parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
+        put(path, body:, parser:)
+      end
 
-        put(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/supply_sources_2020_07_01"
       end
     end
   end

@@ -3,7 +3,9 @@
 require "http"
 require "uri"
 
+require "peddler/config"
 require "peddler/endpoint"
+require "peddler/error"
 require "peddler/marketplace"
 require "peddler/response"
 require "peddler/version"
@@ -13,11 +15,6 @@ module Peddler
   class API
     class CannotSandbox < StandardError; end
     class MustSandbox < StandardError; end
-
-    class << self
-      # @return [#call]
-      attr_accessor :parser
-    end
 
     # @return [Peddler::Endpoint]
     attr_reader :endpoint
@@ -43,6 +40,20 @@ module Peddler
     # @return [URI::HTTPS]
     def endpoint_uri
       sandbox? ? endpoint.sandbox : endpoint.production
+    end
+
+    # Enables typed response parsing
+    # @return [self]
+    def typed
+      load_types
+      @typed = true
+
+      self
+    end
+
+    # @return [Boolean]
+    def typed?
+      !!@typed
     end
 
     # Switches to the SP-API sandbox to make test calls
@@ -111,7 +122,7 @@ module Peddler
     alias_method :through, :via
 
     [:get, :post, :put, :delete, :patch].each do |method|
-      define_method(method) do |path, **options|
+      define_method(method) do |path, parser: nil, **options|
         if options[:body] && !options[:body].is_a?(String)
           options[:json] = options.delete(:body)
         end
@@ -120,17 +131,10 @@ module Peddler
           uri.path = path
         end
 
-        response = http.send(method, uri, **options)
-        Response.wrap(response, parser:)
+        http_response = http.send(method, uri, **options)
+
+        Response.wrap(http_response, parser:)
       end
-    end
-
-    attr_writer :parser
-
-    # @!attribute parser
-    # @return [#call]
-    def parser
-      @parser || self.class.parser
     end
 
     private
@@ -149,6 +153,10 @@ module Peddler
 
     def timestamp
       Time.now.utc.strftime("%Y%m%dT%H%M%SZ")
+    end
+
+    def load_types
+      raise NotImplementedError, "subclasses must implement #load_types"
     end
 
     # Encodes URL path components

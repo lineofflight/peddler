@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Direct Fulfillment Inventory Updates provides programmatic access to a direct
     # fulfillment vendor's inventory updates.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentInventoryV1.json
     class VendorDirectFulfillmentInventoryV1 < API
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #
@@ -24,8 +26,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{percent_encode(warehouse_id)}/items"
+        parser = Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/vendor_direct_fulfillment_inventory_v1"
       end
     end
   end

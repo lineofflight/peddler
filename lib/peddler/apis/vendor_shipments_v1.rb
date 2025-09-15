@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
     # vendors.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorShipments.json
     class VendorShipmentsV1 < API
       # Submits one or more shipment confirmations for vendor orders.
       #
@@ -23,8 +25,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmations"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Submits one or more shipment request for vendor Orders.
@@ -33,11 +35,9 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_shipments(body, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/shipping/v1/shipments"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the Details about Shipment, Carrier Details, status of the shipment, container details and other details
@@ -95,8 +95,6 @@ module Peddler
         requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil,
         scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
         buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/shipping/v1/shipments"
         params = {
           "limit" => limit,
@@ -124,8 +122,8 @@ module Peddler
           "buyerWarehouseCode" => buyer_warehouse_code,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::VendorShipmentsV1::GetShipmentDetailsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns small parcel shipment labels based on the filters that you specify.
@@ -150,8 +148,6 @@ module Peddler
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil,
         label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil,
         seller_warehouse_code: nil, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/shipping/v1/transportLabels"
         params = {
           "limit" => limit,
@@ -163,8 +159,14 @@ module Peddler
           "vendorShipmentIdentifier" => vendor_shipment_identifier,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
+        parser = Peddler::Types::VendorShipmentsV1::GetShipmentLabels if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/vendor_shipments_v1"
       end
     end
   end

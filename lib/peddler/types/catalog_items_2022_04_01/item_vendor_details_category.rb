@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+require "structure"
+
+module Peddler
+  module Types
+    module CatalogItems20220401
+      # The product category or subcategory that is associated with an Amazon catalog item.
+      ItemVendorDetailsCategory = Structure.new do
+        # @return [String] The display name of the product category or subcategory.
+        attribute(:display_name, String, from: "displayName")
+
+        # @return [String] The code that identifies the product category or subcategory.
+        attribute(:value, String)
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+require "structure"
+
+module Peddler
+  module Types
+    module FBAInventoryV1
+      # An item in the list of inventory to be added.
+      InventoryItem = Structure.new do
+        # @return [String] The seller SKU of the item.
+        attribute(:seller_sku, String, from: "sellerSku")
+
+        # @return [String] The marketplaceId.
+        attribute(:marketplace_id, String, from: "marketplaceId")
+
+        # @return [Integer] The quantity of item to add.
+        attribute(:quantity, Integer)
+      end
+    end
+  end
+end

@@ -19,6 +19,8 @@ module Peddler
     #
     # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide
     # Product Type Definitions API Use Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/definitionsProductTypes_2020-09-01.json
     class ProductTypeDefinitions20200901 < API
       # Search for and return a list of Amazon product types that have definitions available.
       #
@@ -44,8 +46,8 @@ module Peddler
           "locale" => locale,
           "searchLocale" => search_locale,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ProductTypeDefinitions20200901::ProductTypeList if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Retrieve an Amazon product type definition.
@@ -79,8 +81,14 @@ module Peddler
           "requirementsEnforced" => requirements_enforced,
           "locale" => locale,
         }.compact
+        parser = Peddler::Types::ProductTypeDefinitions20200901::ProductTypeDefinition if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/product_type_definitions_2020_09_01"
       end
     end
   end

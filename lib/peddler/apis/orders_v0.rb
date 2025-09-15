@@ -19,6 +19,8 @@ module Peddler
     # _Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders from 2016 onward. For all other
     # marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the
     # response).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/ordersV0.json
     class OrdersV0 < API
       # Returns orders that are created or updated during the specified time period. If you want to return specific
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
@@ -145,8 +147,8 @@ module Peddler
           "LatestDeliveryDateBefore" => latest_delivery_date_before,
           "LatestDeliveryDateAfter" => latest_delivery_date_after,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::OrdersV0::GetOrdersResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the order that you specify.
@@ -157,8 +159,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::OrdersV0::GetOrderResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns buyer information for the order that you specify.
@@ -169,8 +171,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/buyerInfo"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::OrdersV0::GetOrderBuyerInfoResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns the shipping address for the order that you specify.
@@ -181,8 +183,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_address(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/address"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::OrdersV0::GetOrderAddressResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns detailed order item information for the order that you specify. If `NextToken` is provided, it's used to
@@ -205,8 +207,8 @@ module Peddler
         params = {
           "NextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::OrdersV0::GetOrderItemsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns buyer information for the order items in the order that you specify.
@@ -221,8 +223,8 @@ module Peddler
         params = {
           "NextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::OrdersV0::GetOrderItemsBuyerInfoResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Update the shipment status for an order that you specify.
@@ -235,7 +237,6 @@ module Peddler
       def update_shipment_status(order_id, payload, rate_limit: 5.0)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/shipment"
         body = payload
-
         meter(rate_limit).post(path, body:)
       end
 
@@ -247,8 +248,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/regulatedInfo"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::OrdersV0::GetOrderRegulatedInfoResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Updates (approves or rejects) the verification status of an order containing regulated products.
@@ -261,7 +262,6 @@ module Peddler
       def update_verification_status(order_id, payload, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/regulatedInfo"
         body = payload
-
         meter(rate_limit).patch(path, body:)
       end
 
@@ -275,8 +275,13 @@ module Peddler
       def confirm_shipment(order_id, payload, rate_limit: 2.0)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/shipmentConfirmation"
         body = payload
-
         meter(rate_limit).post(path, body:)
+      end
+
+      private
+
+      def load_types
+        require "peddler/types/orders_v0"
       end
     end
   end

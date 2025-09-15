@@ -17,6 +17,8 @@ module Peddler
     # shipping labels, invoices, and warranties. To review the differences in Easy Ship operations by marketplace, refer
     # to [Marketplace
     # support](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easyShip_2022-03-23.json
     class EasyShip20220323 < API
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
       # that the seller specifies.
@@ -38,8 +40,8 @@ module Peddler
       def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::EasyShip20220323::ListHandoverSlotsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns information about a package, including dimensions, weight, time slot information for handover, invoice
@@ -57,8 +59,8 @@ module Peddler
           "amazonOrderId" => amazon_order_id,
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::EasyShip20220323::Package if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Schedules an Easy Ship order and returns the scheduled package information.
@@ -88,8 +90,8 @@ module Peddler
       def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::EasyShip20220323::Package if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Updates the time slot for handing over the package indicated by the specified `scheduledPackageId`. You can get
@@ -107,8 +109,8 @@ module Peddler
       def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
-
-        meter(rate_limit).patch(path, body:)
+        parser = Peddler::Types::EasyShip20220323::Packages if typed?
+        meter(rate_limit).patch(path, body:, parser:)
       end
 
       # This operation automatically schedules a time slot for all the `amazonOrderId`s given as input, generating the
@@ -140,8 +142,14 @@ module Peddler
       def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
+        parser = Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/easy_ship_2022_03_23"
       end
     end
   end

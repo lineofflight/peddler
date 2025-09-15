@@ -18,6 +18,8 @@ module Peddler
     # For more information, see the
     # {https://developer-docs.amazon.com/sp-api/docs/listings-restrictions-api-v2021-08-01-use-case-guide Listings
     # Restrictions API Use Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listingsRestrictions_2021-08-01.json
     class ListingsRestrictions20210801 < API
       # Returns listing restrictions for an item in the Amazon Catalog.
       #
@@ -41,8 +43,14 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "reasonLocale" => reason_locale,
         }.compact
+        parser = Peddler::Types::ListingsRestrictions20210801::RestrictionList if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/listings_restrictions_2021_08_01"
       end
     end
   end

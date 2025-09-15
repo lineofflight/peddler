@@ -18,6 +18,8 @@ module Peddler
     #
     # For more information, see the [Listings Items API Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2021-08-01-use-case-guide).
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listingsItems_2021-08-01.json
     class ListingsItems20210801 < API
       # Delete a listings item for a selling partner.
       #
@@ -36,8 +38,8 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
-
-        meter(rate_limit).delete(path, params:)
+        parser = Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse if typed?
+        meter(rate_limit).delete(path, params:, parser:)
       end
 
       # Returns details about a listings item for a selling partner.
@@ -61,8 +63,8 @@ module Peddler
           "issueLocale" => issue_locale,
           "includedData" => stringify_array(included_data),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ListingsItems20210801::Item if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -90,8 +92,8 @@ module Peddler
           "mode" => mode,
           "issueLocale" => issue_locale,
         }.compact
-
-        meter(rate_limit).patch(path, body:, params:)
+        parser = Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse if typed?
+        meter(rate_limit).patch(path, body:, params:, parser:)
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -118,8 +120,8 @@ module Peddler
           "mode" => mode,
           "issueLocale" => issue_locale,
         }.compact
-
-        meter(rate_limit).put(path, body:, params:)
+        parser = Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse if typed?
+        meter(rate_limit).put(path, body:, params:, parser:)
       end
 
       # Search for and return a list of selling partner listings items and their respective details.
@@ -193,8 +195,14 @@ module Peddler
           "pageSize" => page_size,
           "pageToken" => page_token,
         }.compact
+        parser = Peddler::Types::ListingsItems20210801::ItemSearchResults if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/listings_items_2021_08_01"
       end
     end
   end

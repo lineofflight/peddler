@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 
 require "peddler/api"
 <% if has_helper? -%>
-  require "<%= helper_library_name %>"
-<% end %>
+require "<%= helper_library_name %>"
+<% end -%>
 
 module Peddler
   class << self
@@ -12,16 +13,28 @@ module Peddler
   end
 
   module APIs
-    <%= title %>
+<%= title %>
     #
-    <%= description %>
+<%= description %>
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/<%= github_model_filename %>
     class <%= class_name %> < API
-      <% if has_helper? %>
-        include <%= helper_class_name %>
-      <% end %>
-      <% operations.each do |operation| %>
-        <%= operation.render %>
-      <% end %>
+<% if has_helper? -%>
+      include <%= helper_class_name %>
+<% end -%>
+
+<% operations.each_with_index do |operation, index| -%>
+<% if index > 0 -%>
+
+<% end -%>
+<%= operation.render %>
+<% end -%>
+
+      private
+
+      def load_types
+        require "peddler/types/<%= name_with_version %>"
+      end
     end
   end
 end

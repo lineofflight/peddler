@@ -4,6 +4,10 @@ require "minitest/autorun"
 require "vcr"
 require "webmock/minitest"
 
+# Silence generator logger warnings during tests
+require "generator/logger"
+Generator.logger.level = Logger::ERROR
+
 VCR.configure do |c|
   c.hook_into(:webmock)
   c.cassette_library_dir = "test/vcr_cassettes"

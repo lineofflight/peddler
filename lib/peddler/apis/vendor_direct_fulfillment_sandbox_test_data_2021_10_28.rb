@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
     # direct fulfillment sandbox test data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentSandboxData_2021-10-28.json
     class VendorDirectFulfillmentSandboxTestData20211028 < API
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
       #
@@ -22,8 +24,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_order_scenarios(body)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
-
-        post(path, body:)
+        parser = Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionReference if typed?
+        post(path, body:, parser:)
       end
 
       # Returns the status of the transaction indicated by the specified transactionId. If the transaction was
@@ -35,8 +37,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
         path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{percent_encode(transaction_id)}"
+        parser = Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus if typed?
+        get(path, parser:)
+      end
 
-        get(path)
+      private
+
+      def load_types
+        require "peddler/types/vendor_direct_fulfillment_sandbox_test_data_2021_10_28"
       end
     end
   end

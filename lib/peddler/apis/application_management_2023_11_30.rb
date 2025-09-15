@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Application Management lets you programmatically update the client secret on
     # registered applications.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application_2023-11-30.json
     class ApplicationManagement20231130 < API
       # Rotates application client secrets for a developer application. Developers must register a destination queue in
       # the developer console before calling this operation. When this operation is called a new client secret is
@@ -24,11 +26,14 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def rotate_application_client_secret(rate_limit: 0.0167)
-        cannot_sandbox!
-
         path = "/applications/2023-11-30/clientSecret"
-
         meter(rate_limit).post(path)
+      end
+
+      private
+
+      def load_types
+        require "peddler/types/application_management_2023_11_30"
       end
     end
   end

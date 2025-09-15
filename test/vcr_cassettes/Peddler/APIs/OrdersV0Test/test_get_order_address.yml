@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 08 Sep 2025 15:51:42 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 9MW9M3VPF9G2BTJ4JZ4D
+      X-Amzn-Requestid:
+      - 7ac02b49-674d-4895-8e72-e6e451f9d095
+      X-Amz-Date:
+      - Mon, 08 Sep 2025 15:51:42 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Mon, 08 Sep 2025 15:51:40 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/orders/v0/orders/TEST_CASE_200/address
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250908T155140Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Mon, 08 Sep 2025 15:51:42 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '290'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - J28Y2DJ1838SSV7W80CW
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - dfe9fb1f-89c1-40ac-9239-6978a547e31c
+      X-Amz-Apigw-Id:
+      - OPFdfe9fb1f89c1
+      X-Amzn-Trace-Id:
+      - Root=1-68befb8e-dfe9fb1f89c140ac
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"AmazonOrderId":"902-1845936-5435065","ShippingAddress":{"Name":"MFNIntegrationTestMerchant","AddressLine1":"2201
+        WESTLAKE AVE","City":"SEATTLE","StateOrRegion":"WA","PostalCode":"98121-2778","CountryCode":"US","Phone":"+1
+        480-386-0930 ext. 73824","AddressType":"Commercial"}}}
+
+        '
+  recorded_at: Mon, 08 Sep 2025 15:51:40 GMT
+recorded_with: VCR 6.3.1

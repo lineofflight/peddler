@@ -4,14 +4,14 @@ require "json"
 require "erb"
 
 require "generator/config"
+require "generator/logger"
 require "generator/formatter"
-require "generator/utils"
 require "generator/path"
 
 module Generator
   class API
     include Formatter
-    include Utils
+    include Logger
 
     attr_reader :file
 
@@ -20,7 +20,6 @@ module Generator
     end
 
     def generate
-      handle_duplicate_operations
       File.write(file_path, render)
     end
 
@@ -44,7 +43,7 @@ module Generator
     end
 
     def helper_class_name
-      "Peddler::Helpers::#{pascalcase(name_with_version)}"
+      "Peddler::Helpers::#{name_with_version.camelize}"
     end
 
     def helper_library_name
@@ -52,7 +51,7 @@ module Generator
     end
 
     def class_name
-      pascalcase(name_with_version)
+      name_with_version.camelize
     end
 
     def name
@@ -68,7 +67,17 @@ module Generator
     end
 
     def operations
-      @operations ||= paths.flat_map(&:operations).compact
+      @operations ||= begin
+        ops = paths.flat_map { |path| path.operations(name_with_version, openapi_spec) }.compact
+        deduplicate_operations(ops)
+      end
+    end
+
+    def type_names
+      openapi_spec["definitions"]
+        .select { |name, def_| def_["type"] == "object" && name != "Money" }
+        .keys
+        .sort
     end
 
     def paths
@@ -79,32 +88,40 @@ module Generator
       File.join(Config::BASE_PATH, "lib/#{library_name}.rb")
     end
 
+    def openapi_spec
+      model
+    end
+
+    def github_model_filename
+      File.basename(file)
+    end
+
     private
 
-    def handle_duplicate_operations
+    def deduplicate_operations(ops)
       # Group by operation ID
-      operation_map = operations.group_by { |op| snakecase(op.operation["operationId"]) }
+      operation_map = ops.group_by { |op| op.operation["operationId"].underscore }
 
       # Find duplicates
       duplicates = operation_map.select { |_, ops| ops.size > 1 }
 
       if duplicates.any?
-        puts "Warning: found duplicate operations in #{name_with_version}:"
         duplicates.each do |method_name, ops|
           verbs = ops.map(&:verb).join(", ")
-          puts "#{method_name} (#{verbs})"
+          logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
         end
       end
 
       # Handle duplicates
       duplicates.each do |method_name, ops|
+        # Log warnings for duplicates
+        verbs = ops.map(&:verb).join(", ")
+        logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
+
         if name_with_version == "shipping_v2" && method_name == "link_carrier_account"
           # Special case for ShippingV2's link_carrier_account - choose POST version
           post_op = ops.find { |op| op.verb == "post" }
-          if post_op
-            # Replace all occurrences with just the POST version
-            operation_map[method_name] = [post_op]
-          end
+          operation_map[method_name] = [post_op] if post_op
         else
           # For any other duplicates, raise an error
           verbs = ops.map(&:verb).join(", ")
@@ -113,8 +130,8 @@ module Generator
         end
       end
 
-      # Create flattened list of operations with duplicates resolved
-      @operations = operation_map.values.flatten
+      # Return flattened list of operations with duplicates resolved
+      operation_map.values.flatten
     end
 
     def render

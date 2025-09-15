@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can
     # then account for those fees in your pricing.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/productFeesV0.json
     class ProductFeesV0 < API
       # Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in
       # the request body.
@@ -42,8 +44,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
         path = "/products/fees/v0/listings/#{percent_encode(seller_sku)}/feesEstimate"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimateResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the
@@ -69,8 +71,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
         path = "/products/fees/v0/items/#{percent_encode(asin)}/feesEstimate"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimateResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the estimated fees for a list of products.
@@ -81,8 +83,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimates(body, rate_limit: 0.5)
         path = "/products/fees/v0/feesEstimate"
+        parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimatesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/product_fees_v0"
       end
     end
   end

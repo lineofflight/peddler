@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Automotive provides programmatic access to information needed by selling partners to
     # provide compatibility information about their listed products.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles_2024-11-01.json
     class Vehicles20241101 < API
       # Get the latest collection of vehicles
       #
@@ -32,8 +34,14 @@ module Peddler
           "vehicleType" => vehicle_type,
           "updatedAfter" => updated_after,
         }.compact
+        parser = Peddler::Types::Vehicles20241101::VehiclesResponse if typed?
+        get(path, params:, parser:)
+      end
 
-        get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/vehicles_2024_11_01"
       end
     end
   end

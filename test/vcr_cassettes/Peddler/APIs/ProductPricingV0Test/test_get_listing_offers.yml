@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 12 Sep 2025 13:06:53 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 4G51R8JYAQGNPBPJY89F
+      X-Amzn-Requestid:
+      - d55b5a07-e997-4654-a733-59f028954560
+      X-Amz-Date:
+      - Fri, 12 Sep 2025 13:06:53 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Fri, 12 Sep 2025 13:06:53 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/products/pricing/v0/listings/NABetaASINB00V5DG6IQ/offers?ItemCondition=New&MarketplaceId=ATVPDKIKX0DER
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250912T130653Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Fri, 12 Sep 2025 13:06:53 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1048'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - MCTYD4JDVPBCYMHJBXDS
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - aceaf07c-4b7a-42c6-935f-c8d5a21ab16e
+      X-Amz-Apigw-Id:
+      - OPFaceaf07c4b7a
+      X-Amzn-Trace-Id:
+      - Root=1-68c41aed-aceaf07c4b7a42c6
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"SKU":"NABetaASINB00V5DG6IQ","status":"Success","ItemCondition":"New","Identifier":{"MarketplaceId":"ATVPDKIKX0DER","ItemCondition":"New","SellerSKU":"NABetaASINB00V5DG6IQ"},"Summary":{"LowestPrices":[{"condition":"new","fulfillmentChannel":"Merchant","LandedPrice":{"CurrencyCode":"USD","Amount":10.0},"ListingPrice":{"CurrencyCode":"USD","Amount":10.0},"Shipping":{"CurrencyCode":"USD","Amount":0.0}}],"NumberOfOffers":[{"condition":"new","fulfillmentChannel":"Merchant"}],"BuyBoxEligibleOffers":[{"condition":"new","fulfillmentChannel":"Merchant"}],"TotalOfferCount":1},"Offers":[{"Shipping":{"CurrencyCode":"USD","Amount":0.0},"ListingPrice":{"CurrencyCode":"USD","Amount":10.0},"ShippingTime":{"maximumHours":48,"minimumHours":24,"availabilityType":"NOW"},"SellerFeedbackRating":{"FeedbackCount":0,"SellerPositiveFeedbackRating":0.0},"ShipsFrom":{"State":"WA","Country":"US"},"SubCondition":"new","IsFeaturedMerchant":false,"SellerId":"AXXXXXXXXXXXXX","MyOffer":true,"IsFulfilledByAmazon":false}],"MarketplaceID":"ATVPDKIKX0DER"}}
+
+        '
+  recorded_at: Fri, 12 Sep 2025 13:06:53 GMT
+recorded_with: VCR 6.3.1

@@ -19,6 +19,8 @@ module Peddler
     # For more information, see the
     # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide Listing Items API Use
     # Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listingsItems_2020-09-01.json
     class ListingsItems20200901 < API
       # Delete a listings item for a selling partner.
       #
@@ -41,8 +43,8 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
-
-        meter(rate_limit).delete(path, params:)
+        parser = Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse if typed?
+        meter(rate_limit).delete(path, params:, parser:)
       end
 
       # Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be
@@ -68,8 +70,8 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
-
-        meter(rate_limit).patch(path, body:, params:)
+        parser = Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse if typed?
+        meter(rate_limit).patch(path, body:, params:, parser:)
       end
 
       # Creates a new or fully-updates an existing listings item for a selling partner.
@@ -94,8 +96,14 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
+        parser = Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse if typed?
+        meter(rate_limit).put(path, body:, params:, parser:)
+      end
 
-        meter(rate_limit).put(path, body:, params:)
+      private
+
+      def load_types
+        require "peddler/types/listings_items_2020_09_01"
       end
     end
   end

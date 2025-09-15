@@ -11,10 +11,14 @@ module Generator
     def build
       parameters = (@shared_parameters + (@operation["parameters"] || [])).uniq { |p| p["name"] }
       parameters = parameters.select { |p| p["name"] }
+
+      # Add notification_type first since it's required
+      parameters << build_notification_type_param if needs_notification_type?
+
+      # Add rate_limit last since it's optional
       if @rate_limit
         parameters << build_rate_limit_param
       end
-      parameters << build_notification_type_param if needs_notification_type?
 
       parameters
     end

@@ -10,13 +10,49 @@ module Peddler
       include FeatureHelpers
 
       def test_get_destinations
-        res = api(grantless: true).sandbox.get_destinations
+        res = api(grantless: true).typed.sandbox.get_destinations
+
+        assert_predicate(res.status, :ok?)
+      end
+
+      def test_create_destination
+        body = {
+          resourceSpecification: {
+            sqs: {
+              arn: "arn:aws:sqs:us-east-1:123456789012:test-queue",
+            },
+          },
+          name: "Test Destination",
+        }
+        res = api(grantless: true).typed.sandbox.create_destination(body)
+
+        assert_predicate(res.status, :ok?)
+      end
+
+      def test_get_destination
+        res = api(grantless: true).typed.sandbox.get_destination("TEST_DESTINATION_ID")
+
+        assert_predicate(res.status, :ok?)
+      end
+
+      def test_delete_destination
+        res = api(grantless: true).typed.sandbox.delete_destination("TEST_DESTINATION_ID")
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_subscription
         res = api.sandbox.get_subscription("LISTINGS_ITEM_ISSUES_CHANGE")
+
+        assert_predicate(res.status, :ok?)
+      end
+
+      def test_create_subscription
+        body = {
+          destinationId: "TEST_DESTINATION_ID",
+          payloadVersion: "1.0",
+        }
+        res = api.sandbox.create_subscription(body, "ORDER_CHANGE")
 
         assert_predicate(res.status, :ok?)
       end

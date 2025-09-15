@@ -15,6 +15,8 @@ module Peddler
     # The Selling Partner API for Finances helps you obtain financial information relevant to a seller's business. You
     # can obtain financial events for a given order or date range without having to wait until a statement period
     # closes.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances_2024-06-19.json
     class Finances20240619 < API
       # Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
       #
@@ -47,8 +49,14 @@ module Peddler
           "transactionStatus" => transaction_status,
           "nextToken" => next_token,
         }.compact
+        parser = Peddler::Types::Finances20240619::ListTransactionsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/finances_2024_06_19"
       end
     end
   end

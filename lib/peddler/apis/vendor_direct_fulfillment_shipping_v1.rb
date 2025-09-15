@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Direct Fulfillment Shipping provides programmatic access to a direct fulfillment
     # vendor's shipping data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentShippingV1.json
     class VendorDirectFulfillmentShippingV1 < API
       # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
@@ -43,8 +45,8 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a shipping label for a purchase order and returns a transactionId for reference.
@@ -55,8 +57,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::SubmitShippingLabelsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns a shipping label for the purchaseOrderNumber that you specify.
@@ -68,8 +70,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{percent_encode(purchase_order_number)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Submits one or more shipment confirmations for vendor orders.
@@ -80,8 +82,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::SubmitShipmentConfirmationsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # This API call is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API will submit a shipment
@@ -94,8 +96,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::SubmitShipmentStatusUpdatesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns a list of customer invoices created during a time frame that you specify. You define the time frame
@@ -126,8 +128,8 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoicesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a customer invoice based on the purchaseOrderNumber that you specify.
@@ -138,8 +140,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{percent_encode(purchase_order_number)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoiceResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search
@@ -169,8 +171,8 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipListResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a packing slip based on the purchaseOrderNumber that you specify.
@@ -181,8 +183,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{percent_encode(purchase_order_number)}"
+        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/vendor_direct_fulfillment_shipping_v1"
       end
     end
   end

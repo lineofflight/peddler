@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+require "peddler/types/finances_v0/currency"
+
+module Peddler
+  module Types
+    module FinancesV0
+      # A promotion applied to an item.
+      Promotion = Structure.new do
+        # @return [String] The type of promotion.
+        attribute(:promotion_type, String, from: "PromotionType")
+
+        # @return [String] The seller-specified identifier for the promotion.
+        attribute(:promotion_id, String, from: "PromotionId")
+
+        # @return [Currency] The amount of promotional discount applied to the item.
+        attribute(:promotion_amount, Currency, from: "PromotionAmount")
+      end
+    end
+  end
+end

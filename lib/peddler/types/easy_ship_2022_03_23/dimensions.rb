@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+require "structure"
+
+module Peddler
+  module Types
+    module EasyShip20220323
+      # The dimensions of the scheduled package.
+      Dimensions = Structure.new do
+        # @return [Float] The length dimension.
+        attribute(:length, Float)
+
+        # @return [Float] The width dimension.
+        attribute(:width, Float)
+
+        # @return [Float] The height dimension.
+        attribute(:height, Float)
+
+        # @return [String]
+        attribute(:unit, String)
+
+        # @return [String] Identifier for custom package dimensions.
+        attribute(:identifier, String)
+      end
+    end
+  end
+end

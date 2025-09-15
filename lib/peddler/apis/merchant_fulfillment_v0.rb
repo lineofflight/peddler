@@ -14,6 +14,8 @@ module Peddler
     #
     # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
     # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchantFulfillmentV0.json
     class MerchantFulfillmentV0 < API
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
@@ -23,8 +25,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_eligible_shipment_services(body, rate_limit: 6.0)
         path = "/mfn/v0/eligibleShippingServices"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the shipment information for an existing shipment.
@@ -35,8 +37,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Cancel the shipment indicated by the specified shipment identifier.
@@ -47,8 +49,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
-
-        meter(rate_limit).delete(path)
+        parser = Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse if typed?
+        meter(rate_limit).delete(path, parser:)
       end
 
       # Create a shipment with the information provided.
@@ -59,8 +61,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_shipment(body, rate_limit: 2.0)
         path = "/mfn/v0/shipments"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Gets a list of additional seller inputs required for a ship method. This is generally used for international
@@ -72,8 +74,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_additional_seller_inputs(body, rate_limit: 1.0)
         path = "/mfn/v0/additionalSellerInputs"
+        parser = Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/merchant_fulfillment_v0"
       end
     end
   end

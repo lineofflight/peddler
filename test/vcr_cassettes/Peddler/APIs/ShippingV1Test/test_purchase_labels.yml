@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 21:53:34 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 3257CFR9CVGQ2MRTJZCF
+      X-Amzn-Requestid:
+      - 2aa1ab08-5d20-42b1-9066-f383a1539f24
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 21:53:34 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 21:53:34 GMT
+- request:
+    method: post
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/shipping/v1/shipments/TEST_CASE_200/purchaseLabels
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T215334Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 21:53:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '624'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - M1E1CXPMTDTDC35WVYTD
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - d584565e-26f1-4904-8889-dd5b8c03cd59
+      X-Amz-Apigw-Id:
+      - OPFd584565e26f1
+      X-Amzn-Trace-Id:
+      - Root=1-68c344de-d584565e26f14904
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"payload":{"shipmentId":"TEST_CASE_200","clientReferenceId":"911-7267646-6348616","acceptedRate":{"billedWeight":{"value":4,"unit":"kg"},"totalCharge":{"value":3.5,"unit":"GBP"},"serviceType":"Amazon
+        Shipping Standard","promise":{"deliveryWindow":{"start":"2018-08-25T20:22:30.737Z","end":"2018-08-26T20:22:30.737Z"},"receiveWindow":{"start":"2018-08-23T09:22:30.737Z","end":"2018-08-23T11:22:30.737Z"}}},"labelResults":[{"containerReferenceId":"CRI123456789","trackingId":"1512748795322","label":{"labelStream":"iVBORw0KGgo...AAAARK5CYII=(Truncated)","labelSpecification":{"labelFormat":"PNG","labelStockSize":"4x6"}}}]}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 21:53:34 GMT
+recorded_with: VCR 6.3.1

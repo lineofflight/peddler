@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+require "peddler/types/invoices_2024_06_19/attribute_option"
+require "peddler/types/invoices_2024_06_19/error"
+require "peddler/types/invoices_2024_06_19/error_list"
+require "peddler/types/invoices_2024_06_19/export"
+require "peddler/types/invoices_2024_06_19/export_invoices_request"
+require "peddler/types/invoices_2024_06_19/export_invoices_response"
+require "peddler/types/invoices_2024_06_19/get_invoice_response"
+require "peddler/types/invoices_2024_06_19/get_invoices_attributes_response"
+require "peddler/types/invoices_2024_06_19/get_invoices_document_response"
+require "peddler/types/invoices_2024_06_19/get_invoices_export_response"
+require "peddler/types/invoices_2024_06_19/get_invoices_exports_response"
+require "peddler/types/invoices_2024_06_19/get_invoices_response"
+require "peddler/types/invoices_2024_06_19/invoice"
+require "peddler/types/invoices_2024_06_19/invoices_attributes"
+require "peddler/types/invoices_2024_06_19/invoices_document"
+require "peddler/types/invoices_2024_06_19/transaction_identifier"

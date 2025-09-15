@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+require "peddler/types/aplus_content_2020_11_01/standard_image_text_block"
+
+module Peddler
+  module Types
+    module AplusContent20201101
+      # A standard background image with a floating text box.
+      StandardImageTextOverlayModule = Structure.new do
+        # @return [String]
+        attribute(:overlay_color_type, String, from: "overlayColorType")
+
+        # @return [StandardImageTextBlock]
+        attribute(:block, StandardImageTextBlock)
+      end
+    end
+  end
+end

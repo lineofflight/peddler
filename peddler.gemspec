@@ -14,6 +14,8 @@ Gem::Specification.new do |gem|
   gem.license  = "MIT"
 
   gem.add_dependency("http", "~> 5.3")
+  gem.add_dependency("money", "~> 6.0")
+  gem.add_dependency("structure", "~> 3.0")
   gem.required_ruby_version = ">= 3.2"
 
   gem.metadata["rubygems_mfa_required"] = "true"

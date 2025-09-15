@@ -18,6 +18,8 @@ module Peddler
     #
     # The Replenishment API is available worldwide wherever Amazon Subscribe & Save is available or is supported. The
     # API is available to vendors and FBA selling partners.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-2022-11-07.json
     class Replenishment20221107 < API
       # Returns aggregated replenishment program metrics for a selling partner.
       #
@@ -27,8 +29,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns aggregated replenishment program metrics for a selling partner's offers.
@@ -39,8 +41,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_offer_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/metrics/search"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Replenishment20221107::ListOfferMetricsResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the details of a selling partner's replenishment program offers.
@@ -51,8 +53,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_offers(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/search"
+        parser = Peddler::Types::Replenishment20221107::ListOffersResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/replenishment_2022_11_07"
       end
     end
   end

@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Data Kiosk lets you submit GraphQL queries from a variety of schemas to help selling
     # partners manage their businesses.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/dataKiosk_2023-11-15.json
     class DataKiosk20231115 < API
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
       # details about query retention.
@@ -42,8 +44,8 @@ module Peddler
           "createdUntil" => created_until,
           "paginationToken" => pagination_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::DataKiosk20231115::GetQueriesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a Data Kiosk query request.
@@ -59,8 +61,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_query(body, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/queries"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::DataKiosk20231115::CreateQueryResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Cancels the query specified by the `queryId` parameter. Only queries with a non-terminal `processingStatus`
@@ -75,7 +77,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_query(query_id, rate_limit: 0.0222)
         path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
-
         meter(rate_limit).delete(path)
       end
 
@@ -88,8 +89,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_query(query_id, rate_limit: 2.0)
         path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::DataKiosk20231115::Query if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns the information required for retrieving a Data Kiosk document's contents. See the `createQuery`
@@ -101,8 +102,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_document(document_id, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/documents/#{percent_encode(document_id)}"
+        parser = Peddler::Types::DataKiosk20231115::GetDocumentResponse if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/data_kiosk_2023_11_15"
       end
     end
   end

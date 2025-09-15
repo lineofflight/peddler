@@ -1,0 +1,33 @@
+# frozen_string_literal: true
+
+require "peddler/types/customer_feedback_2024_06_01/date_range"
+require "peddler/types/customer_feedback_2024_06_01/browse_node_review_trends"
+
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      # The response for the `getBrowseNodeReviewTrends` operation.
+      BrowseNodeReviewTrendsResponse = Structure.new do
+        # @return [String] The requested browse node id. A browse node id is the unique identifier of a given browse
+        # node.
+        attribute(:browse_node_id, String, from: "browseNodeId")
+
+        # @return [String] The display name of the requested browse node id. The display name of the browse node as
+        # visible on the Amazon retail website.
+        attribute(:display_name, String, from: "displayName")
+
+        # @return [String] The requested marketplace id.
+        attribute(:marketplace_id, String, from: "marketplaceId")
+
+        # @return [String] The two digit country code of requested marketplace id, in ISO 3166-1 alpha-2 format.
+        attribute(:country_code, String, from: "countryCode")
+
+        # @return [DateRange] The range of dates during which the reviews were made.
+        attribute(:date_range, DateRange, from: "dateRange")
+
+        # @return [BrowseNodeReviewTrends] Browse Node review trends.
+        attribute(:review_trends, BrowseNodeReviewTrends, from: "reviewTrends")
+      end
+    end
+  end
+end

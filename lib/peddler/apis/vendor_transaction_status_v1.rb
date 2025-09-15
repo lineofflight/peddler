@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Transaction Status provides programmatic access to status
     # information on specific asynchronous POST transactions for vendors.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorTransactionStatus.json
     class VendorTransactionStatusV1 < API
       # Returns the status of the transaction that you specify.
       #
@@ -22,11 +24,15 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id, rate_limit: 10.0)
-        cannot_sandbox!
-
         path = "/vendor/transactions/v1/transactions/#{percent_encode(transaction_id)}"
+        parser = Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/vendor_transaction_status_v1"
       end
     end
   end

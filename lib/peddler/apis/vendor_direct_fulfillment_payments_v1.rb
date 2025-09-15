@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Direct Fulfillment Payments provides programmatic access to a direct fulfillment
     # vendor's invoice data.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentPaymentsV1.json
     class VendorDirectFulfillmentPaymentsV1 < API
       # Submits one or more invoices for a vendor's direct fulfillment orders.
       #
@@ -23,8 +25,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoice(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/payments/v1/invoices"
+        parser = Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/vendor_direct_fulfillment_payments_v1"
       end
     end
   end

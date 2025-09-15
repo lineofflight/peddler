@@ -15,6 +15,8 @@ module Peddler
     # The Selling Partner API for Fulfillment Outbound lets you create applications that help a seller fulfill
     # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
     # both potential and existing fulfillment orders.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillmentOutbound_2020-07-01.json
     class FulfillmentOutbound20200701 < API
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
       #
@@ -24,8 +26,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fulfillment_preview(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that
@@ -37,8 +39,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delivery_offers(body, rate_limit: 5.0)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the
@@ -57,8 +59,8 @@ module Peddler
           "queryStartDate" => query_start_date,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination
@@ -70,8 +72,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_fulfillment_order(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment
@@ -90,8 +92,8 @@ module Peddler
           "packageNumber" => package_number,
           "amazonFulfillmentTrackingNumber" => amazon_fulfillment_tracking_number,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation
@@ -117,8 +119,8 @@ module Peddler
           "sellerFulfillmentOrderId" => seller_fulfillment_order_id,
           "language" => language,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a fulfillment return.
@@ -132,8 +134,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/return"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # Returns the fulfillment order indicated by the specified order identifier.
@@ -145,8 +147,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Updates and/or requests shipment for a fulfillment order with an order hold on it.
@@ -159,8 +161,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order
@@ -173,8 +175,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/cancel"
-
-        meter(rate_limit).put(path)
+        parser = Peddler::Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse if typed?
+        meter(rate_limit).put(path, parser:)
       end
 
       # Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only
@@ -189,11 +191,9 @@ module Peddler
       # @param body [Hash] The identifier assigned to the item by the seller when the fulfillment order was created.
       # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
-        must_sandbox!
-
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/status"
-
-        put(path, body:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse if typed?
+        put(path, body:, parser:)
       end
 
       # Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and
@@ -208,8 +208,8 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns a list of inventory items that are eligible for the fulfillment feature you specify.
@@ -232,8 +232,8 @@ module Peddler
           "nextToken" => next_token,
           "queryStartDate" => query_start_date,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified
@@ -253,8 +253,14 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
+        parser = Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/fulfillment_outbound_2020_07_01"
       end
     end
   end

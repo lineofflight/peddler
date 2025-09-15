@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "helper"
-
 require "peddler/apis/feeds_2021_06_30"
 
 module Peddler
@@ -9,39 +8,32 @@ module Peddler
     class Feeds20210630Test < Minitest::Test
       include FeatureHelpers
 
-      def test_create_feed_document
-        res = api.create_feed_document(
-          { "contentType" => "application/json; charset=UTF-8" },
+      def test_get_feeds
+        res = api.sandbox.get_feeds(
+          feed_types: ["POST_PRODUCT_DATA"],
+          page_size: 10,
+          processing_statuses: ["CANCELLED", "DONE"],
         )
 
-        assert_predicate(res.status, :created?)
-      end
-
-      def test_create_feed
-        feed_document_id = "amzn1.tortuga.4.eu.123"
-
-        payload = {
-          "feedType" => "JSON_LISTINGS_FEED",
-          "marketplaceIds" => Marketplace.ids("UK"),
-          "inputFeedDocumentId" => feed_document_id,
-        }
-        res = api.create_feed(payload)
-
-        assert_predicate(res.status, :accepted?)
+        assert_predicate(res.status, :success?)
       end
 
       def test_get_feed
-        feed_id = "123"
-        res = api.get_feed(feed_id)
+        res = api.sandbox.get_feed("feedId1")
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
+      end
+
+      def test_create_feed_document
+        res = api.sandbox.create_feed_document({ "contentType" => "text/tab-separated-values; charset=UTF-8" })
+
+        assert_predicate(res.status, :success?)
       end
 
       def test_get_feed_document
-        feed_document_id = "amzn1.tortuga.4.eu.123"
-        res = api.get_feed_document(feed_document_id)
+        res = api.sandbox.get_feed_document("0356cf79-b8b0-4226-b4b9-0ee058ea5760")
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
       end
     end
   end

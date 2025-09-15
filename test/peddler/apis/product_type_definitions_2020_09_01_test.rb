@@ -16,7 +16,7 @@ module Peddler
           requirements: "LISTING_OFFER_ONLY",
         )
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
 
         # And download the JSON schema
         url = res.dig("schema", "link", "resource")

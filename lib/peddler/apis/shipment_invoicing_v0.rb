@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Shipment Invoicing helps you programmatically retrieve shipment invoice information in
     # the Brazil marketplace for a selling partner’s Fulfillment by Amazon (FBA) orders.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipmentInvoicingV0.json
     class ShipmentInvoicingV0 < API
       # Returns the shipment details required to issue an invoice for the specified shipment.
       #
@@ -26,8 +28,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Submits a shipment invoice document for a given shipment.
@@ -39,8 +41,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoice(shipment_id, body, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the invoice status for the shipment you specify.
@@ -51,8 +53,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoice_status(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice/status"
+        parser = Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/shipment_invoicing_v0"
       end
     end
   end

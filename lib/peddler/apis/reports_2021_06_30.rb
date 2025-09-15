@@ -15,6 +15,8 @@ module Peddler
     #
     # The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling
     # partners manage their businesses.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports_2021-06-30.json
     class Reports20210630 < API
       include Peddler::Helpers::Reports20210630
 
@@ -52,8 +54,8 @@ module Peddler
           "createdUntil" => created_until,
           "nextToken" => next_token,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::Reports20210630::GetReportsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a report.
@@ -64,8 +66,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_report(body, rate_limit: 0.0167)
         path = "/reports/2021-06-30/reports"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Reports20210630::CreateReportResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled
@@ -78,7 +80,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_report(report_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/reports/#{percent_encode(report_id)}"
-
         meter(rate_limit).delete(path)
       end
 
@@ -91,8 +92,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report(report_id, rate_limit: 2.0)
         path = "/reports/2021-06-30/reports/#{percent_encode(report_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::Reports20210630::Report if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns report schedule details that match the filters that you specify.
@@ -107,8 +108,8 @@ module Peddler
         params = {
           "reportTypes" => stringify_array(report_types),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::Reports20210630::ReportScheduleList if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it
@@ -120,8 +121,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_report_schedule(body, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::Reports20210630::CreateReportScheduleResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Cancels the report schedule that you specify.
@@ -133,7 +134,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{percent_encode(report_schedule_id)}"
-
         meter(rate_limit).delete(path)
       end
 
@@ -146,8 +146,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{percent_encode(report_schedule_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::Reports20210630::ReportSchedule if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Returns the information required for retrieving a report document's contents.
@@ -158,8 +158,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_document(report_document_id, rate_limit: 0.0167)
         path = "/reports/2021-06-30/documents/#{percent_encode(report_document_id)}"
+        parser = Peddler::Types::Reports20210630::ReportDocument if typed?
+        meter(rate_limit).get(path, parser:)
+      end
 
-        meter(rate_limit).get(path)
+      private
+
+      def load_types
+        require "peddler/types/reports_2021_06_30"
       end
     end
   end

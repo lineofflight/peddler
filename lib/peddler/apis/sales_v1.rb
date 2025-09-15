@@ -13,6 +13,8 @@ module Peddler
     # Selling Partner API for Sales
     #
     # The Selling Partner API for Sales provides APIs related to sales performance.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sales.json
     class SalesV1 < API
       # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
       #
@@ -74,8 +76,14 @@ module Peddler
           "sku" => sku,
           "amazonProgram" => amazon_program,
         }.compact
+        parser = Peddler::Types::SalesV1::GetOrderMetricsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
+      end
 
-        meter(rate_limit).get(path, params:)
+      private
+
+      def load_types
+        require "peddler/types/sales_v1"
       end
     end
   end

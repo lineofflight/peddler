@@ -14,6 +14,8 @@ module Peddler
     #
     # With the Services API, you can build applications that help service providers get and modify their service orders
     # and manage their resources.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services.json
     class ServicesV1 < API
       # Gets details of service job indicated by the provided `serviceJobID`.
       #
@@ -23,8 +25,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}"
-
-        meter(rate_limit).get(path)
+        parser = Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse if typed?
+        meter(rate_limit).get(path, parser:)
       end
 
       # Cancels the service job indicated by the service job identifier specified.
@@ -40,8 +42,8 @@ module Peddler
         params = {
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
-
-        meter(rate_limit).put(path, params:)
+        parser = Peddler::Types::ServicesV1::CancelServiceJobByServiceJobIdResponse if typed?
+        meter(rate_limit).put(path, params:, parser:)
       end
 
       # Completes the service job indicated by the service job identifier specified.
@@ -52,8 +54,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/completions"
-
-        meter(rate_limit).put(path)
+        parser = Peddler::Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse if typed?
+        meter(rate_limit).put(path, parser:)
       end
 
       # Gets service job details for the specified filter query.
@@ -114,8 +116,8 @@ module Peddler
           "requiredSkills" => stringify_array(required_skills),
           "storeIds" => stringify_array(store_ids),
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ServicesV1::GetServiceJobsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Adds an appointment to the service job indicated by the service job identifier specified.
@@ -127,8 +129,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ServicesV1::SetAppointmentResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Reschedules an appointment for the service job indicated by the service job identifier specified.
@@ -142,8 +144,8 @@ module Peddler
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body,
         rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}"
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ServicesV1::SetAppointmentResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Assigns new resource(s) or overwrite/update the existing one(s) to a service job appointment.
@@ -157,8 +159,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/resources"
-
-        meter(rate_limit).put(path, body:)
+        parser = Peddler::Types::ServicesV1::AssignAppointmentResourcesResponse if typed?
+        meter(rate_limit).put(path, body:, parser:)
       end
 
       # Updates the appointment fulfillment data related to a given `jobID` and `appointmentID`.
@@ -172,7 +174,6 @@ module Peddler
       # @return [Peddler::Response] The API response
       def set_appointment_fulfillment_data(service_job_id, appointment_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/fulfillment"
-
         meter(rate_limit).put(path, body:)
       end
 
@@ -191,8 +192,8 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::ServicesV1::RangeSlotCapacity if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Provides capacity in fixed-size slots.
@@ -210,8 +211,8 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::ServicesV1::FixedSlotCapacity if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Update the schedule of the given resource.
@@ -227,8 +228,8 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-
-        meter(rate_limit).put(path, body:, params:)
+        parser = Peddler::Types::ServicesV1::UpdateScheduleResponse if typed?
+        meter(rate_limit).put(path, body:, params:, parser:)
       end
 
       # Create a reservation.
@@ -243,8 +244,8 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-
-        meter(rate_limit).post(path, body:, params:)
+        parser = Peddler::Types::ServicesV1::CreateReservationResponse if typed?
+        meter(rate_limit).post(path, body:, params:, parser:)
       end
 
       # Update a reservation.
@@ -260,8 +261,8 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-
-        meter(rate_limit).put(path, body:, params:)
+        parser = Peddler::Types::ServicesV1::UpdateReservationResponse if typed?
+        meter(rate_limit).put(path, body:, params:, parser:)
       end
 
       # Cancel a reservation.
@@ -276,8 +277,8 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-
-        meter(rate_limit).delete(path, params:)
+        parser = Peddler::Types::ServicesV1::CancelReservationResponse if typed?
+        meter(rate_limit).delete(path, params:, parser:)
       end
 
       # Gets appointment slots for the service associated with the service job id specified.
@@ -301,8 +302,8 @@ module Peddler
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ServicesV1::GetAppointmentSlotsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Gets appointment slots as per the service context specified.
@@ -328,8 +329,8 @@ module Peddler
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ServicesV1::GetAppointmentSlotsResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Creates an upload destination.
@@ -340,8 +341,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_service_document_upload_destination(body, rate_limit: 5.0)
         path = "/service/v1/documents"
+        parser = Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/services_v1"
       end
     end
   end

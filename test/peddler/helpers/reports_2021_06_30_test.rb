@@ -17,21 +17,21 @@ module Peddler
         url = "https://tortuga-prod-eu.s3-eu-west-1.amazonaws.com/123456"
         res = download_report_document(url)
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
       end
 
       def test_download_report_document_with_document_id
         document_id = "amzn1.spdoc.1.4.eu.123456"
         res = api.download_report_document(document_id)
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
       end
 
       def test_download_compressed_report_document
         url = "https://tortuga-prod-na.s3-external-1.amazonaws.com/123456"
         res = api.download_report_document(url)
 
-        assert_predicate(res.status, :ok?)
+        assert_predicate(res.status, :success?)
 
         gzip = Zlib::GzipReader.new(res)
         opts = {

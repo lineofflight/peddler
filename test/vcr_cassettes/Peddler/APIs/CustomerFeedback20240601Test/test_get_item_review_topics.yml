@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 21:02:25 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - 2YNQ159XRXZM0CYP8W91
+      X-Amzn-Requestid:
+      - e18f5c0a-0058-4b9a-a64b-ca4f55940a90
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 21:02:25 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 21:02:23 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/customerFeedback/2024-06-01/items/B08PD3JNPF/reviews/topics?marketplaceId=ATVPDKIKX0DER&sortBy=MENTIONS
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T210223Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 21:02:25 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '3754'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - KMYEFXT5E9P2D9ZQTX39
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 77e1a634-2c15-4e43-ae7f-5cf59080bfc2
+      X-Amz-Apigw-Id:
+      - OPF77e1a6342c15
+      X-Amzn-Trace-Id:
+      - Root=1-68c338e1-77e1a6342c154e43
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"asin":"B0BT5K9B2T","itemName":"LANTEFUL 10 Tiers Tall Shoe Rack 20-25
+        Pairs Boots Organizer Storage Sturdy Narrow Shoe Shelf for Entryway Closets
+        with Hooks Black","marketplaceId":"ATVPDKIKX0DER","countryCode":"US","dateRange":{"startDate":"2024-03-22T08:35:43.717Z","endDate":"2024-09-22T08:35:43.717Z"},"topics":{"positiveTopics":[{"topic":"Assembly/Installation","asinMetrics":{"numberOfMentions":36,"occurrencePercentage":17.31,"starRatingImpact":4},"parentAsinMetrics":{"numberOfMentions":107,"occurrencePercentage":18.01,"starRatingImpact":3},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":16.41},"starRatingImpact":{"allProducts":1.5}},"childAsinMetrics":{"mostMentions":{"asin":"B08576RCY4","numberOfMentions":36},"leastMentions":{"asin":"B08576DCY4","numberOfMentions":4}},"reviewSnippets":["Easy
+        installation!","Easy to install.","Easy to assemble"],"subtopics":[{"subtopic":"Simple
+        and easy to assemble","metrics":{"numberOfMentions":9,"occurrencePercentage":25.01},"reviewSnippets":["Easy
+        installation!","Not difficult to assemble.","Easy to assemble"]},{"subtopic":"easy
+        to put together and quick","metrics":{"numberOfMentions":5,"occurrencePercentage":13.01},"reviewSnippets":["Easy
+        to put together!!.","Putting the product togetherwas alot however this saved
+        so much room in my closet","love that it came with the one little tool you
+        needed to putit all together!"]},{"subtopic":"quick and easy to install","metrics":{"numberOfMentions":3,"occurrencePercentage":9.01},"reviewSnippets":["Easy
+        installation!","Easy to install.","install was straight forward."]}]},{"topic":"Strong","asinMetrics":{"numberOfMentions":36,"occurrencePercentage":17.31,"starRatingImpact":4.7},"parentAsinMetrics":{"numberOfMentions":107,"occurrencePercentage":18.01,"starRatingImpact":3.8},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":16.41},"starRatingImpact":{"allProducts":1.5}},"childAsinMetrics":{"mostMentions":{"asin":"B08576RCY4","numberOfMentions":36},"leastMentions":{"asin":"B08576DCY4","numberOfMentions":4}},"reviewSnippets":["Sturdy
+        and strong.","Fairly sturdy.","very sturdy"],"subtopics":[{"subtopic":"sturdy
+        and well built","metrics":{"numberOfMentions":9,"occurrencePercentage":25.01},"reviewSnippets":["very
+        sturdy","Sturdiness is ok.","Sturdier than expected."]},{"subtopic":"durable
+        and sturdy","metrics":{"numberOfMentions":4,"occurrencePercentage":12.01},"reviewSnippets":["This
+        IS sturdy.","Sturdiness construction.","it much sturdier than the other two
+        brands that I have purchased."]},{"subtopic":"strong and durable","metrics":{"numberOfMentions":2,"occurrencePercentage":6.01},"reviewSnippets":["This
+        IS sturdy.","Sturdiness construction.","it much sturdier than the other two
+        brands that I have purchased."]}]}],"negativeTopics":[{"topic":"Assembly/Installation","asinMetrics":{"numberOfMentions":36,"occurrencePercentage":17.31,"starRatingImpact":-2.3},"parentAsinMetrics":{"numberOfMentions":107,"occurrencePercentage":18.01,"starRatingImpact":-2.6},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":16.41},"starRatingImpact":{"allProducts":-1.5}},"childAsinMetrics":{"mostMentions":{"asin":"B08576RCY4","numberOfMentions":36},"leastMentions":{"asin":"B08576DCY4","numberOfMentions":4}},"reviewSnippets":["Difficult
+        to assemble","Difficult to assemble","impossible to put together"],"subtopics":[{"subtopic":"difficult
+        to put together","metrics":{"numberOfMentions":9,"occurrencePercentage":25.01},"reviewSnippets":["impossible
+        to put together","Had a little hard time putting together either."]},{"subtopic":"hard
+        to assemble","metrics":{"numberOfMentions":6,"occurrencePercentage":18.01},"reviewSnippets":["impossible
+        to put together","Had a little hard time putting together either."]}]}]}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 21:02:23 GMT
+recorded_with: VCR 6.3.1

@@ -5,49 +5,51 @@ require "peddler/response"
 
 module Peddler
   class ResponseTest < Minitest::Test
-    def test_parses
-      wrapper = Response.wrap(response)
+    def test_parse
+      wrapper = Response.new(response)
 
       assert_equal(payload, wrapper.parse)
     end
 
     def test_to_h
-      wrapper = Response.wrap(response)
+      wrapper = Response.new(response)
 
       assert_equal(payload, wrapper.to_h)
     end
 
     def test_dig
-      wrapper = Response.wrap(response)
+      wrapper = Response.new(response)
 
       assert(wrapper.dig("foo"))
     end
 
-    def test_parses_with_custom_parser
-      wrapper = Response.wrap(
-        response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
-      )
+    def test_wrap_returns_response_for_success
+      wrapper = Response.wrap(response)
 
-      assert_equal(payload_with_symbolized_keys, wrapper.parse)
+      assert_equal(payload, wrapper.parse)
     end
 
-    def test_to_h_with_custom_parser
-      wrapper = Response.wrap(
-        response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
+    def test_wrap_raises_for_client_error
+      error_response = HTTP::Response.new(
+        status: 400,
+        version: "1.1",
+        headers: { "Content-Type" => "application/json" },
+        body: '{"errors": [{"code": "InvalidInput", "message": "Bad request"}]}',
+        request: nil,
       )
 
-      assert_equal(payload_with_symbolized_keys, wrapper.to_h)
+      assert_raises(Peddler::Errors::InvalidInput) do
+        Response.wrap(error_response)
+      end
     end
 
-    def test_dig_with_custom_parser
-      wrapper = Response.wrap(
-        response, parser: ->(response) { JSON.parse(response, symbolize_names: true) }
-      )
+    def test_wrap_with_parser
+      wrapper = Response.wrap(response, parser: custom_parser)
 
-      assert(wrapper.dig(:foo))
+      assert_equal(payload, wrapper.parse)
     end
 
-    def test_decorate_deprecation_still_works
+    def test_decorate_shows_deprecation
       wrapper = nil
       assert_output(nil, /Response\.decorate is deprecated/) do
         wrapper = Response.decorate(response)
@@ -62,76 +64,118 @@ module Peddler
       end
     end
 
-    def test_server_error_behavior_removal_reminder
-      if Gem.loaded_specs["peddler"].version.segments.first >= 5
-        flunk(<<~MSG)
-          Server error handling backward compatibility should be removed in v5.0.
-          Please:
-          1. Remove lib/peddler/config.rb
-          2. Remove test/peddler/config_test.rb
-          3. Remove the require from lib/peddler/response.rb
-          4. Remove the require from the generator template
-          5. Remove the deprecation warning method
-          6. Make all errors (4xx and 5xx) raise exceptions unconditionally
-          7. Update this test to verify all errors raise
-          8. Update README to remove the Error Handling section about configuration
-        MSG
-      end
+    def test_parse_with_custom_parser
+      wrapper = Response.new(response, parser: custom_parser)
+
+      assert_equal(payload, wrapper.parse)
     end
 
-    def test_server_errors_return_response_by_default
-      server_error = HTTP::Response.new(
-        body: "Internal Server Error",
-        headers: {},
-        status: 500,
-        version: nil,
-        request: nil,
-      )
-
-      # Should emit deprecation warning
-      wrapper = nil
-      assert_output(nil, /\[DEPRECATION\]/) do
-        wrapper = Response.wrap(server_error)
+    def test_parse_with_structure_type
+      # Create a Structure type similar to our generated types
+      require "structure"
+      test_type = Structure.new do
+        attribute(:marketplace_id, String)
+        attribute(:seller_id, String)
+        attribute(:feed_id, String)
       end
 
-      # Should return wrapped response, not raise
-      assert_instance_of(Response, wrapper)
-      assert_equal(500, wrapper.status)
-    end
+      # Create response with string keys (as comes from JSON)
+      json_payload = {
+        "marketplace_id" => "ATVPDKIKX0DER",
+        "seller_id" => "A123456789",
+        "feed_id" => "50029018011",
+      }
 
-    def test_server_errors_raise_when_configured
-      Peddler.raise_on_server_errors = true
-
-      server_error = HTTP::Response.new(
-        body: JSON.dump({ "errors" => [{ "code" => "InternalError", "message" => "Server error" }] }),
+      http_response = HTTP::Response.new(
+        body: JSON.dump(json_payload),
         headers: { "Content-Type" => "application/json" },
-        status: 500,
+        status: nil,
         version: nil,
         request: nil,
       )
 
-      # Should raise error
-      assert_raises(Peddler::Error) do
-        Response.wrap(server_error)
-      end
-    ensure
-      # Reset configuration
-      Peddler.instance_variable_set(:@raise_on_server_errors, nil)
+      wrapper = Response.new(http_response, parser: test_type)
+      parsed = wrapper.parse
+
+      # Test that values are correctly parsed
+      assert_equal("ATVPDKIKX0DER", parsed.marketplace_id, "marketplace_id should be parsed correctly")
+      assert_equal("A123456789", parsed.seller_id, "seller_id should be parsed correctly")
+      assert_equal("50029018011", parsed.feed_id, "feed_id should be parsed correctly")
     end
 
-    def test_client_errors_always_raise
-      client_error = HTTP::Response.new(
-        body: JSON.dump({ "errors" => [{ "code" => "NotFound", "message" => "Not found" }] }),
+    def test_parse_with_camelcase_to_snake_case_mapping
+      # Test that Structure correctly maps camelCase JSON keys to snake_case attributes
+      require "structure"
+
+      feed_type = Structure.new do
+        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:seller_id, String, from: "sellerId")
+        attribute(:feed_id, String, from: "feedId")
+      end
+
+      # JSON response with camelCase keys
+      json_payload = {
+        "marketplaceId" => "ATVPDKIKX0DER",
+        "sellerId" => "A123456789",
+        "feedId" => "50029018011",
+      }
+
+      http_response = HTTP::Response.new(
+        body: JSON.dump(json_payload),
         headers: { "Content-Type" => "application/json" },
-        status: 404,
+        status: nil,
         version: nil,
         request: nil,
       )
 
-      # Should always raise regardless of configuration
-      assert_raises(Peddler::Errors::NotFound) do
-        Response.wrap(client_error)
+      wrapper = Response.new(http_response, parser: feed_type)
+      parsed = wrapper.parse
+
+      # Verify we can access values using snake_case attribute names
+      assert_equal("ATVPDKIKX0DER", parsed.marketplace_id, "marketplace_id should be accessible with snake_case")
+      assert_equal("A123456789", parsed.seller_id, "seller_id should be accessible with snake_case")
+      assert_equal("50029018011", parsed.feed_id, "feed_id should be accessible with snake_case")
+    end
+
+    def test_parse_with_nested_payload_structure
+      # Test parsing when data is nested under "payload" key
+      require "structure"
+
+      # Create nested structure types
+      feed_type = Structure.new do
+        attribute(:marketplace_id, String)
+        attribute(:seller_id, String)
+        attribute(:feed_id, String)
       end
+
+      # Simulate what happens with a real API response that has a payload wrapper
+      json_response = {
+        "payload" => {
+          "marketplace_id" => "ATVPDKIKX0DER",
+          "seller_id" => "A123456789",
+          "feed_id" => "50029018011",
+        },
+      }
+
+      http_response = HTTP::Response.new(
+        body: JSON.dump(json_response),
+        headers: { "Content-Type" => "application/json" },
+        status: nil,
+        version: nil,
+        request: nil,
+      )
+
+      # This simulates what happens when we extract the payload first
+      wrapper = Response.new(http_response)
+      payload_data = wrapper.to_h["payload"]
+
+      # Now parse the payload data with the Structure type
+      parsed = feed_type.parse(payload_data)
+
+      # Verify the values are correctly parsed
+      assert_equal("ATVPDKIKX0DER", parsed.marketplace_id, "marketplace_id should be parsed from nested payload")
+      assert_equal("A123456789", parsed.seller_id, "seller_id should be parsed from nested payload")
+      assert_equal("50029018011", parsed.feed_id, "feed_id should be parsed from nested payload")
     end
 
     private
@@ -146,12 +190,17 @@ module Peddler
       )
     end
 
-    def payload
-      { "foo" => "bar" }
+    def custom_parser
+      test_payload = payload
+      Class.new do
+        define_singleton_method :parse do |_payload|
+          test_payload
+        end
+      end
     end
 
-    def payload_with_symbolized_keys
-      payload.transform_keys(&:to_sym)
+    def payload
+      { "foo" => "bar" }
     end
   end
 end

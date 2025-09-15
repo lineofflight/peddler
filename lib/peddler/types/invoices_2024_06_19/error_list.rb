@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+require "peddler/types/invoices_2024_06_19/error"
+
+module Peddler
+  module Types
+    module Invoices20240619
+      # A list of error responses that are returned when a request is unsuccessful.
+      ErrorList = Structure.new do
+        # @return [Array<Error>] List of errors.
+        attribute(:errors, [Error])
+      end
+    end
+  end
+end

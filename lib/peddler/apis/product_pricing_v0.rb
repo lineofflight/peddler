@@ -14,6 +14,8 @@ module Peddler
     #
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/productPricingV0.json
     class ProductPricingV0 < API
       # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
       #
@@ -49,8 +51,8 @@ module Peddler
           "ItemCondition" => item_condition,
           "OfferType" => offer_type,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ProductPricingV0::GetPricingResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
@@ -83,8 +85,8 @@ module Peddler
           "ItemType" => item_type,
           "CustomerType" => customer_type,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ProductPricingV0::GetPricingResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the lowest priced offers for a single SKU listing.
@@ -110,8 +112,8 @@ module Peddler
           "ItemCondition" => item_condition,
           "CustomerType" => customer_type,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ProductPricingV0::GetOffersResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the lowest priced offers for a single item based on ASIN.
@@ -132,8 +134,8 @@ module Peddler
           "ItemCondition" => item_condition,
           "CustomerType" => customer_type,
         }.compact
-
-        meter(rate_limit).get(path, params:)
+        parser = Peddler::Types::ProductPricingV0::GetOffersResponse if typed?
+        meter(rate_limit).get(path, params:, parser:)
       end
 
       # Returns the lowest priced offers for a batch of items based on ASIN.
@@ -145,8 +147,8 @@ module Peddler
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
-
-        meter(rate_limit).post(path, body:)
+        parser = Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
       end
 
       # Returns the lowest priced offers for a batch of listings by SKU.
@@ -159,8 +161,14 @@ module Peddler
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
+        parser = Peddler::Types::ProductPricingV0::GetListingOffersBatchResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/product_pricing_v0"
       end
     end
   end

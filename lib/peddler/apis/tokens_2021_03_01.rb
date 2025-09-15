@@ -19,6 +19,8 @@ module Peddler
     #
     # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide Tokens API
     # Use Case Guide}.
+    #
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens_2021-03-01.json
     class Tokens20210301 < API
       # Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted
       # resource is the HTTP method and path from a restricted operation that returns Personally Identifiable
@@ -32,8 +34,14 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_restricted_data_token(body, rate_limit: 1.0)
         path = "/tokens/2021-03-01/restrictedDataToken"
+        parser = Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse if typed?
+        meter(rate_limit).post(path, body:, parser:)
+      end
 
-        meter(rate_limit).post(path, body:)
+      private
+
+      def load_types
+        require "peddler/types/tokens_2021_03_01"
       end
     end
   end

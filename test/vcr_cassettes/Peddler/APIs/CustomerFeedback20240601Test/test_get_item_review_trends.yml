@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.amazon.com/auth/o2/token
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        Z3JhbnRfdHlwZT1yZWZyZXNoX3Rva2VuJmNsaWVudF9pZD1GSUxURVJFRCZj
+        bGllbnRfc2VjcmV0PUZJTFRFUkVEJnJlZnJlc2hfdG9rZW49RklMVEVSRUQ=
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - api.amazon.com
+      User-Agent:
+      - http.rb/5.3.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 21:02:28 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '806'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - RB2YNKEPXKM3J8FVARZ0
+      X-Amzn-Requestid:
+      - 18c20297-b673-4fba-8a2a-82e754d57a93
+      X-Amz-Date:
+      - Thu, 11 Sep 2025 21:02:28 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"FILTERED","refresh_token":"FILTERED","token_type":"bearer","expires_in":3600}'
+  recorded_at: Thu, 11 Sep 2025 21:02:26 GMT
+- request:
+    method: get
+    uri: https://sandbox.sellingpartnerapi-eu.amazon.com/customerFeedback/2024-06-01/items/B08PD3JNPF/reviews/trends?marketplaceId=ATVPDKIKX0DER
+    body:
+      encoding: ASCII-8BIT
+      base64_string: ''
+    headers:
+      Host:
+      - sandbox.sellingpartnerapi-eu.amazon.com
+      User-Agent:
+      - Peddler/4.5.0 (Language=Ruby; Hakans-MacBook-Pro.local)
+      X-Amz-Access-Token:
+      - FILTERED
+      X-Amz-Date:
+      - 20250911T210226Z
+      Connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 11 Sep 2025 21:02:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '5079'
+      Connection:
+      - close
+      X-Amz-Rid:
+      - F996QKSG0MAWNYVFBT06
+      X-Amzn-Ratelimit-Limit:
+      - '5.0'
+      X-Amzn-Requestid:
+      - 770f1adf-be03-4eb2-80f3-9ef560863383
+      X-Amz-Apigw-Id:
+      - OPF770f1adfbe03
+      X-Amzn-Trace-Id:
+      - Root=1-68c338e4-770f1adfbe034eb2
+      Vary:
+      - accept-encoding,Content-Type,Accept-Encoding,User-Agent
+      Strict-Transport-Security:
+      - max-age=47474747; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: '{"asin":"B0BN5K9B2T","itemName":"LANTEFUL 10 Tiers Tall Shoe Rack 20-25
+        Pairs Boots Organizer Storage Sturdy Narrow Shoe Shelf for Entryway Closets
+        with Hooks Black","marketplaceId":"ATVPDKIKX0DER","countryCode":"US","dateRange":{"startDate":"2024-03-22T08:35:43.717Z","endDate":"2024-03-22T08:35:43.717Z"},"reviewTrends":{"positiveTopics":[{"topic":"Quality-Overall
+        ","trendMetrics":[{"dateRange":{"startDate":"2024-06-01T00:00:00.000Z","endDate":"2024-06-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-05-01T00:00:00.000Z","endDate":"2024-05-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-04-01T00:00:00.000Z","endDate":"2024-04-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-03-01T00:00:00.000Z","endDate":"2024-03-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-02-01T00:00:00.000Z","endDate":"2024-02-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-01-01T00:00:00.000Z","endDate":"2024-01-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}}]},{"topic":"Assembly/Installation
+        ","trendMetrics":[{"dateRange":{"startDate":"2024-06-01T00:00:00.000Z","endDate":"2024-06-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-05-01T00:00:00.000Z","endDate":"2024-05-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-04-01T00:00:00.000Z","endDate":"2024-04-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-03-01T00:00:00.000Z","endDate":"2024-03-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-02-01T00:00:00.000Z","endDate":"2024-02-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-01-01T00:00:00.000Z","endDate":"2024-01-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}}]}],"negativeTopics":[{"topic":"Weak
+        and fragile","trendMetrics":[{"dateRange":{"startDate":"2024-06-01T00:00:00.000Z","endDate":"2024-06-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-05-01T00:00:00.000Z","endDate":"2024-05-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-04-01T00:00:00.000Z","endDate":"2024-04-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-03-01T00:00:00.000Z","endDate":"2024-03-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-02-01T00:00:00.000Z","endDate":"2024-02-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}},{"dateRange":{"startDate":"2024-01-01T00:00:00.000Z","endDate":"2024-01-30T00:00:00.000Z"},"asinMetrics":{"occurrencePercentage":27.58},"parentAsinMetrics":{"occurrencePercentage":27.58},"browseNodeMetrics":{"occurrencePercentage":{"allProducts":13.6}}}]}]}}
+
+        '
+  recorded_at: Thu, 11 Sep 2025 21:02:26 GMT
+recorded_with: VCR 6.3.1
