@@ -55,17 +55,17 @@ module Peddler
         attribute(:ships_from, ShipsFromType, from: "ShipsFrom")
 
         # @return [:boolean] When true, the offer is fulfilled by Amazon.
-        attribute(:is_fulfilled_by_amazon, :boolean, from: "IsFulfilledByAmazon")
+        attribute(:fulfilled_by_amazon, :boolean, from: "IsFulfilledByAmazon")
 
         # @return [PrimeInformationType] Amazon Prime information.
         attribute(:prime_information, PrimeInformationType, from: "PrimeInformation")
 
         # @return [:boolean] When true, the offer is currently in the Buy Box. There can be up to two Buy Box winners at
         # any time per ASIN, one that is eligible for Prime and one that is not eligible for Prime.
-        attribute(:is_buy_box_winner, :boolean, from: "IsBuyBoxWinner")
+        attribute(:buy_box_winner, :boolean, from: "IsBuyBoxWinner")
 
         # @return [:boolean] When true, the seller of the item is eligible to win the Buy Box.
-        attribute(:is_featured_merchant, :boolean, from: "IsFeaturedMerchant")
+        attribute(:featured_merchant, :boolean, from: "IsFeaturedMerchant")
       end
     end
   end

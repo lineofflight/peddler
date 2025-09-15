@@ -12,7 +12,7 @@ module Peddler
         attribute(:exception_date, String, from: "ExceptionDate")
 
         # @return [:boolean] Boolean indicating if the business is closed or open on that date.
-        attribute(:is_open, :boolean, from: "IsOpen")
+        attribute(:open, :boolean, from: "IsOpen")
 
         # @return [Array<OpenInterval>] Time window during the day when the business is open.
         attribute(:open_intervals, [OpenInterval], from: "OpenIntervals")

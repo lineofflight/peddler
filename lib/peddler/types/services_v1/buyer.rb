@@ -17,7 +17,7 @@ module Peddler
         attribute(:phone, String)
 
         # @return [:boolean] When true, the service is for an Amazon Prime buyer.
-        attribute(:is_prime_member, :boolean, from: "isPrimeMember")
+        attribute(:prime_member, :boolean, from: "isPrimeMember")
       end
     end
   end

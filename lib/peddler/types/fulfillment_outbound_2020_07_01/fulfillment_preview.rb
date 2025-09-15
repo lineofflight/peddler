@@ -19,10 +19,10 @@ module Peddler
         attribute(:scheduled_delivery_info, ScheduledDeliveryInfo, from: "scheduledDeliveryInfo")
 
         # @return [:boolean] When true, this fulfillment order preview is fulfillable.
-        attribute(:is_fulfillable, :boolean, from: "isFulfillable")
+        attribute(:fulfillable, :boolean, from: "isFulfillable")
 
         # @return [:boolean] When true, this fulfillment order preview is for COD (Cash On Delivery).
-        attribute(:is_cod_capable, :boolean, from: "isCODCapable")
+        attribute(:cod_capable, :boolean, from: "isCODCapable")
 
         # @return [Weight] Estimated shipping weight for this fulfillment order preview.
         attribute(:estimated_shipping_weight, Weight, from: "estimatedShippingWeight")

@@ -18,7 +18,7 @@ module Peddler
         attribute(:program, String)
 
         # @return [:boolean] Indicates if the item is eligible for the program.
-        attribute(:is_eligible_for_program, :boolean, from: "isEligibleForProgram")
+        attribute(:eligible_for_program, :boolean, from: "isEligibleForProgram")
 
         # @return [Array<String>] Potential Ineligibility Reason Codes.
         attribute(:ineligibility_reason_list, [String], from: "ineligibilityReasonList")

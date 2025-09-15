@@ -14,7 +14,7 @@ module Peddler
         attribute(:group_description, String, from: "groupDescription")
 
         # @return [:boolean] When true, one or more of the value-added services listed must be specified.
-        attribute(:is_required, :boolean, from: "isRequired")
+        attribute(:required, :boolean, from: "isRequired")
 
         # @return [Array<ValueAddedService>] A list of optional value-added services available for purchase with a
         # shipping service offering.

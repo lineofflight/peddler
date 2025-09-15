@@ -14,7 +14,7 @@ module Peddler
         attribute(:inventory_hold_period, Duration, from: "inventoryHoldPeriod")
 
         # @return [:boolean]
-        attribute(:is_supported, :boolean, from: "isSupported")
+        attribute(:supported, :boolean, from: "isSupported")
 
         # @return [OperationalConfiguration]
         attribute(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")

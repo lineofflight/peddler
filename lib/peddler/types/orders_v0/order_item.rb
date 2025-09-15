@@ -130,7 +130,7 @@ module Peddler
         # **2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**.
         # The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
         # **QR code SN:** Submit the URL that the QR code generates.
-        attribute(:is_transparency, :boolean, from: "IsTransparency")
+        attribute(:transparency, :boolean, from: "IsTransparency")
 
         # @return [String] The IOSS number of the marketplace. Sellers shipping to the EU from outside the EU must
         # provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.

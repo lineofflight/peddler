@@ -14,7 +14,7 @@ module Peddler
         attribute(:feature_name, String, from: "featureName")
 
         # @return [:boolean] When true, the seller SKU is eligible for the requested feature.
-        attribute(:is_eligible, :boolean, from: "isEligible")
+        attribute(:eligible, :boolean, from: "isEligible")
 
         # @return [Array<String>] A list of one or more reasons that the seller SKU is ineligible for the feature.
         #

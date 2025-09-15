@@ -20,7 +20,7 @@ module Peddler
         attribute(:id_value, String, from: "IdValue")
 
         # @return [:boolean] When true, the offer is fulfilled by Amazon.
-        attribute(:is_amazon_fulfilled, :boolean, from: "IsAmazonFulfilled")
+        attribute(:amazon_fulfilled, :boolean, from: "IsAmazonFulfilled")
 
         # @return [PriceToEstimateFees] The item price on which the fee estimate is based.
         attribute(:price_to_estimate_fees, PriceToEstimateFees, from: "PriceToEstimateFees")

@@ -21,8 +21,9 @@ module Peddler
 <% if index > 0 -%>
 
 <% end -%>
+<% attr_name = attribute_name_for(prop_name, prop_def) -%>
 <%= format_property_comment(prop_def) %>
-        attribute(:<%= prop_name.underscore %>, <%= ruby_type_for(prop_def) %><% if prop_name.underscore != prop_name %>, from: "<%= prop_name %>"<% end %>)
+        attribute(:<%= attr_name %>, <%= ruby_type_for(prop_def) %><% if attr_name != prop_name %>, from: "<%= prop_name %>"<% end %>)
 <% end -%>
       end
     end

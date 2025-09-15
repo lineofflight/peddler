@@ -15,7 +15,7 @@ module Peddler
         # feed. When sending a full feed, you must send information about all items in the warehouse. Any items not in
         # the full feed are updated as not available. When sending a partial feed, only include the items that need an
         # update to inventory. The status of other items will remain unchanged.
-        attribute(:is_full_update, :boolean, from: "isFullUpdate")
+        attribute(:full_update, :boolean, from: "isFullUpdate")
 
         # @return [Array<ItemDetails>] A list of inventory items with updated details, including quantity available.
         attribute(:items, [ItemDetails])

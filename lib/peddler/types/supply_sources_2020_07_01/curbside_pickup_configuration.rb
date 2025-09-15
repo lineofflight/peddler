@@ -8,7 +8,7 @@ module Peddler
       # The curbside pickup configuration of a supply source.
       CurbsidePickupConfiguration = Structure.new do
         # @return [:boolean] When true, curbside pickup is supported by the supply source.
-        attribute(:is_supported, :boolean, from: "isSupported")
+        attribute(:supported, :boolean, from: "isSupported")
 
         # @return [OperationalConfiguration] The operational configuration for the curbside pickup configuration.
         attribute(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")

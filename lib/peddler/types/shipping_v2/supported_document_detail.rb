@@ -11,7 +11,7 @@ module Peddler
         attribute(:name, String)
 
         # @return [:boolean] When true, the supported document type is required.
-        attribute(:is_mandatory, :boolean, from: "isMandatory")
+        attribute(:mandatory, :boolean, from: "isMandatory")
       end
     end
   end

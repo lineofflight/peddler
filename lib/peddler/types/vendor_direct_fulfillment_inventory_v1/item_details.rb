@@ -19,7 +19,7 @@ module Peddler
         attribute(:available_quantity, ItemQuantity, from: "availableQuantity")
 
         # @return [:boolean] When true, the item is permanently unavailable.
-        attribute(:is_obsolete, :boolean, from: "isObsolete")
+        attribute(:obsolete, :boolean, from: "isObsolete")
       end
     end
   end

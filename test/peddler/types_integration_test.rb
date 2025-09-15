@@ -29,9 +29,9 @@ module Peddler
       result = parse_orders_response
       order = result.payload.orders.first
 
-      assert(order.is_prime)
-      refute(order.is_business_order)
-      refute(order.is_replacement_order)
+      assert_predicate(order, :prime?)
+      refute_predicate(order, :business_order?)
+      refute_predicate(order, :replacement_order?)
     end
 
     def test_money_type_coercion
@@ -175,7 +175,7 @@ module Peddler
       order = result.payload.orders.first
 
       assert_equal("Pending", order.order_status)
-      refute(order.is_prime)
+      refute_predicate(order, :prime?)
     end
 
     private

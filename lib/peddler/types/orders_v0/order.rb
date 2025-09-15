@@ -109,25 +109,25 @@ module Peddler
 
         # @return [:boolean] When true, the order is an Amazon Business order. An Amazon Business order is an order
         # where the buyer is a Verified Business Buyer.
-        attribute(:is_business_order, :boolean, from: "IsBusinessOrder")
+        attribute(:business_order, :boolean, from: "IsBusinessOrder")
 
         # @return [:boolean] When true, the order is a seller-fulfilled Amazon Prime order.
-        attribute(:is_prime, :boolean, from: "IsPrime")
+        attribute(:prime, :boolean, from: "IsPrime")
 
         # @return [:boolean] When true, the order has a Premium Shipping Service Level Agreement. For more information
         # about Premium Shipping orders, refer to "Premium Shipping Options" in the Seller Central Help for your
         # marketplace.
-        attribute(:is_premium_order, :boolean, from: "IsPremiumOrder")
+        attribute(:premium_order, :boolean, from: "IsPremiumOrder")
 
         # @return [:boolean] When true, the order is a `GlobalExpress` order.
-        attribute(:is_global_express_enabled, :boolean, from: "IsGlobalExpressEnabled")
+        attribute(:global_express_enabled, :boolean, from: "IsGlobalExpressEnabled")
 
         # @return [String] The order ID value for the order that is being replaced. Returned only if IsReplacementOrder
         # = true.
         attribute(:replaced_order_id, String, from: "ReplacedOrderId")
 
         # @return [:boolean] When true, this is a replacement order.
-        attribute(:is_replacement_order, :boolean, from: "IsReplacementOrder")
+        attribute(:replacement_order, :boolean, from: "IsReplacementOrder")
 
         # @return [String] Indicates the date by which the seller must respond to the buyer with an estimated ship date.
         # Only returned for Sourcing on Demand orders.
@@ -135,17 +135,17 @@ module Peddler
 
         # @return [:boolean] When true, the estimated ship date is set for the order. Only returned for Sourcing on
         # Demand orders.
-        attribute(:is_estimated_ship_date_set, :boolean, from: "IsEstimatedShipDateSet")
+        attribute(:estimated_ship_date_set, :boolean, from: "IsEstimatedShipDateSet")
 
         # @return [:boolean] When true, the item within this order was bought and re-sold by Amazon Business EU SARL
         # (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your
         # inventory available for sale to customers who would not otherwise purchase from a third-party seller.
-        attribute(:is_sold_by_ab, :boolean, from: "IsSoldByAB")
+        attribute(:sold_by_ab, :boolean, from: "IsSoldByAB")
 
         # @return [:boolean] When true, the item within this order was bought and re-sold by Amazon Business EU SARL
         # (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your
         # inventory available for sale to customers who would not otherwise purchase from a third-party seller.
-        attribute(:is_iba, :boolean, from: "IsIBA")
+        attribute(:iba, :boolean, from: "IsIBA")
 
         # @return [Address] The recommended location for the seller to ship the items from. It is calculated at
         # checkout. The seller may or may not choose to ship from this location.
@@ -172,12 +172,12 @@ module Peddler
         attribute(:fulfillment_instruction, FulfillmentInstruction, from: "FulfillmentInstruction")
 
         # @return [:boolean] When true, this order is marked to be picked up from a store rather than delivered.
-        attribute(:is_ispu, :boolean, from: "IsISPU")
+        attribute(:ispu, :boolean, from: "IsISPU")
 
         # @return [:boolean] When true, this order is marked to be delivered to an Access Point. The access location is
         # chosen by the customer. Access Points include Amazon Hub Lockers, Amazon Hub Counters, and pickup points
         # operated by carriers.
-        attribute(:is_access_point_order, :boolean, from: "IsAccessPointOrder")
+        attribute(:access_point_order, :boolean, from: "IsAccessPointOrder")
 
         # @return [MarketplaceTaxInfo] Tax information about the marketplace where the sale took place. Sellers can use
         # this data to issue electronic invoices for orders in Brazil.

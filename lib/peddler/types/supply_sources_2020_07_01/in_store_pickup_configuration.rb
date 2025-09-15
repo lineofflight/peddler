@@ -9,7 +9,7 @@ module Peddler
       InStorePickupConfiguration = Structure.new do
         # @return [:boolean] When true, in-store pickup is supported by the supply source (default: `isSupported` value
         # in `PickupChannel`).
-        attribute(:is_supported, :boolean, from: "isSupported")
+        attribute(:supported, :boolean, from: "isSupported")
 
         # @return [ParkingConfiguration] The parking configuration for in-store pickup.
         attribute(:parking_configuration, ParkingConfiguration, from: "parkingConfiguration")

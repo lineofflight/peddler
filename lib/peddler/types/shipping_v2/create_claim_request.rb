@@ -17,7 +17,7 @@ module Peddler
         attribute(:claim_reason, String, from: "claimReason")
 
         # @return [:boolean] Applicable for only On Amazon shipments to identify if replacement was sent
-        attribute(:is_replacement_package_sent, :boolean, from: "isReplacementPackageSent")
+        attribute(:replacement_package_sent, :boolean, from: "isReplacementPackageSent")
 
         # @return [Array]
         attribute(:proofs, Array)

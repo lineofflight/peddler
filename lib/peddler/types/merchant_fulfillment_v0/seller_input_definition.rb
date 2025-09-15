@@ -9,7 +9,7 @@ module Peddler
       # Specifies characteristics that apply to a seller input.
       SellerInputDefinition = Structure.new do
         # @return [:boolean] When true, the additional input field is required.
-        attribute(:is_required, :boolean, from: "IsRequired")
+        attribute(:required, :boolean, from: "IsRequired")
 
         # @return [String] The data type of the additional input field.
         attribute(:data_type, String, from: "DataType")

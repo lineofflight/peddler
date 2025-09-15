@@ -20,13 +20,13 @@ module Peddler
         attribute(:input_type, String, from: "inputType")
 
         # @return [:boolean] mandatory or not value .
-        attribute(:is_mandatory, :boolean, from: "isMandatory")
+        attribute(:mandatory, :boolean, from: "isMandatory")
 
         # @return [:boolean] is value is Confidential .
-        attribute(:is_confidential, :boolean, from: "isConfidential")
+        attribute(:confidential, :boolean, from: "isConfidential")
 
         # @return [:boolean] is value is hidden .
-        attribute(:is_hidden, :boolean, from: "isHidden")
+        attribute(:hidden, :boolean, from: "isHidden")
 
         # @return [Array<ValidationMetadata>]
         attribute(:validation_metadata, [ValidationMetadata], from: "validationMetadata")

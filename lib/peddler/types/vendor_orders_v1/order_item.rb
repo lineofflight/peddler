@@ -23,7 +23,7 @@ module Peddler
         attribute(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
 
         # @return [:boolean] When true, we will accept backorder confirmations for this item.
-        attribute(:is_back_order_allowed, :boolean, from: "isBackOrderAllowed")
+        attribute(:back_order_allowed, :boolean, from: "isBackOrderAllowed")
 
         # @return [Money] The net cost of an item per each or weight unit.
         attribute(:net_cost, Money, from: "netCost")

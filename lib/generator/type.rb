@@ -67,6 +67,16 @@ module Generator
       end
     end
 
+    def attribute_name_for(prop_name, prop_def)
+      underscored = prop_name.underscore
+      # For boolean attributes, strip is_ prefix for more idiomatic Ruby
+      if prop_def["type"] == "boolean"
+        underscored.sub(/^is_/, "")
+      else
+        underscored
+      end
+    end
+
     private
 
     def extract_dependencies_from_property(prop_def)

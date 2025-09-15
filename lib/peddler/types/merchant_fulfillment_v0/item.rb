@@ -33,7 +33,7 @@ module Peddler
         attribute(:liquid_volume, LiquidVolume, from: "LiquidVolume")
 
         # @return [:boolean] When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
-        attribute(:is_hazmat, :boolean, from: "IsHazmat")
+        attribute(:hazmat, :boolean, from: "IsHazmat")
 
         # @return [DangerousGoodsDetails]
         attribute(:dangerous_goods_details, DangerousGoodsDetails, from: "DangerousGoodsDetails")
