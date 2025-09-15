@@ -5,10 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.6.0] - 2025-01-15
+
 ### Added
+
 - Add typed responses with `typed` method for type-safe API responses using Structure gem
 
-### [4.5.0] - 2025-06-26
+## [4.5.0] - 2024-06-26
 
 ### Added
 
@@ -28,7 +31,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Handle transient token errors
 
-### [4.4.0] - 2025-05-30
+## [4.4.0] - 2024-05-30
 
 ### Added
 
@@ -43,19 +46,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - URL-encode path parameters in generated API
 
-### [4.3.1] - 2025-05-04
+## [4.3.1] - 2024-05-04
 
 ### Fixed
 
 - Use response instead of cause in Token::Error for semantic correctness
 
-### [4.3.0] - 2025-05-02
+## [4.3.0] - 2024-05-02
 
 ### Added
 
 - New Seller Wallet API
 
-### [4.2.0] - 2025-03-18
+## [4.2.0] - 2024-03-18
 
 ### Added
 
@@ -444,7 +447,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.5.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.6.0...HEAD
+[4.6.0]: https://github.com/hakanensari/peddler/compare/v4.5.0...v4.6.0
 [4.5.0]: https://github.com/hakanensari/peddler/compare/v4.4.0...v4.5.0
 [4.4.0]: https://github.com/hakanensari/peddler/compare/v4.3.1...v4.4.0
 [4.3.1]: https://github.com/hakanensari/peddler/compare/v4.3.0...v4.3.1
