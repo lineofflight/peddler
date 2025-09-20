@@ -85,8 +85,16 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - Work on feature branches, never directly on main
 - Use descriptive branch names (e.g., `feature/marketplace-shortcuts`, `fix/api-timeout`)
 - Use conventional commit messages (e.g., "feat: add new feature", "fix: resolve bug")
+- 50/72 rule
+- Include issue number when applicable
+- Keep it concise: focus on what/why, not implementation details
 - **NEVER use `git add .`** - always stage files explicitly by name
 - Delete feature branches after they've been merged to main to keep the repository clean
+
+### Tools
+- GitHub MCP for issue management (fall back to gh CLI if needed)
+- Playwright MCP for UX testing and visual verification
+- Dev server possibly running at: http://localhost:3000
 
 ### Documentation
 
