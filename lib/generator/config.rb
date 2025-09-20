@@ -15,7 +15,9 @@ module Generator
 
     class << self
       def template_path(template_name)
-        File.join(BASE_PATH, "lib/generator/templates/#{template_name}.rb.erb")
+        # RBS templates don't have .rb extension
+        extension = template_name.start_with?("rbs_") ? ".erb" : ".rb.erb"
+        File.join(BASE_PATH, "lib/generator/templates/#{template_name}#{extension}")
       end
     end
   end

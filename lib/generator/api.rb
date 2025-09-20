@@ -114,10 +114,6 @@ module Generator
 
       # Handle duplicates
       duplicates.each do |method_name, ops|
-        # Log warnings for duplicates
-        verbs = ops.map(&:verb).join(", ")
-        logger.warn("Found duplicate operation in #{name_with_version}: #{method_name} (#{verbs})")
-
         if name_with_version == "shipping_v2" && method_name == "link_carrier_account"
           # Special case for ShippingV2's link_carrier_account - choose POST version
           post_op = ops.find { |op| op.verb == "post" }

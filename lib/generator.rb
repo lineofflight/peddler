@@ -10,6 +10,7 @@ require "generator/type"
 require "generator/entrypoint"
 require "generator/rbs_type"
 require "generator/rbs_api"
+require "generator/rbs_entrypoint"
 
 # NOTE: Test generation was explored but removed due to Amazon SP-API sandbox limitations. Most APIs require special
 # roles (vendor, finance, restricted shipping) that aren't available in standard sandbox environments, resulting in ~60%
@@ -131,6 +132,10 @@ module Generator
         rbs_api.generate
       end
       logger.info("Generated #{apis.size} RBS API signatures")
+
+      # Generate RBS entrypoint
+      RBSEntrypoint.new(apis).generate
+      logger.info("Generated RBS entrypoint")
     end
 
     def format_code!
@@ -156,7 +161,7 @@ module Generator
     end
 
     def apis
-      api_model_files.map { |file| API.new(file) }
+      @apis ||= api_model_files.map { |file| API.new(file) }
     end
 
     def types
