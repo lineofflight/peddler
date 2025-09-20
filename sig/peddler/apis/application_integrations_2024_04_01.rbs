@@ -1,9 +1,9 @@
 module Peddler
   module APIs
     class ApplicationIntegrations20240401 < API
-      def create_notification: (untyped) -> Peddler::Response
-      def delete_notifications: (untyped) -> Peddler::Response
-      def record_action_feedback: (String, untyped) -> Peddler::Response
+      def create_notification: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def delete_notifications: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def record_action_feedback: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

@@ -1,7 +1,7 @@
 module Peddler
   module APIs
     class FBAInboundEligibilityV1 < API
-      def get_item_eligibility_preview: (String, String, ?marketplace_ids: Array[String]) -> Peddler::Response
+      def get_item_eligibility_preview: (String, String, ?marketplace_ids: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

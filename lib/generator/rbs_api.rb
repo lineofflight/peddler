@@ -67,13 +67,17 @@ module Generator
 
         # Special handling for rate_limit parameter
         if param_name == "rate_limit"
-          keyword_params << "?rate_limit: Float"
+          # When rate_limit has no default (i.e., it's :unknown), it can be nil
+          rate_limit_type = param["default"].nil? ? "Float?" : "Float"
+          keyword_params << "?rate_limit: #{rate_limit_type}"
           next
         end
 
         type = if param["in"] == "body" || param_name&.end_with?("_request", "_request_body", "_body")
           # TODO: Eventually we should type body parameters properly based on their schema
-          "Hash"
+          # Body parameters with nil defaults should be nullable
+          base_type = "Hash[untyped, untyped]"
+          !param["required"] && param["default"].nil? ? "#{base_type}?" : base_type
         else
           # Optional parameters should have nullable types
           parameter_rbs_type(param, nullable: !param["required"])
@@ -100,7 +104,7 @@ module Generator
       when "boolean"
         "bool"
       when "number"
-        "Float"
+        "Numeric"
       when "array"
         if param["items"]
           item_type = param["items"]["type"] || "untyped"

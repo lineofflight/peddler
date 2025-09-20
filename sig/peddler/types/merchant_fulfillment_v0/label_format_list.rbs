@@ -1,7 +1,7 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class LabelFormatList < Array[LabelFormat]
+      class LabelFormatList < Array[String]
         def self.parse: (Array[untyped] array) -> instance
       end
     end

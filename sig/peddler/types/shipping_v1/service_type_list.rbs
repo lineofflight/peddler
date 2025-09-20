@@ -1,7 +1,7 @@
 module Peddler
   module Types
     module ShippingV1
-      class ServiceTypeList < Array[ServiceType]
+      class ServiceTypeList < Array[String]
         def self.parse: (Array[untyped] array) -> instance
       end
     end

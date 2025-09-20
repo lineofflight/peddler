@@ -1,10 +1,10 @@
 module Peddler
   module APIs
     class VendorOrdersV1 < API
-      def get_purchase_orders: (?limit: Integer, ?created_after: String, ?created_before: String, ?sort_order: String, ?next_token: String, ?include_details: String, ?changed_after: String, ?changed_before: String, ?po_item_state: String, ?is_po_changed: String, ?purchase_order_state: String, ?ordering_vendor_code: String) -> Peddler::Response
-      def get_purchase_order: (String) -> Peddler::Response
-      def submit_acknowledgement: (untyped) -> Peddler::Response
-      def get_purchase_orders_status: (?limit: Integer, ?sort_order: String, ?next_token: String, ?created_after: String, ?created_before: String, ?updated_after: String, ?updated_before: String, ?purchase_order_number: String, ?purchase_order_status: String, ?item_confirmation_status: String, ?item_receive_status: String, ?ordering_vendor_code: String, ?ship_to_party_id: String) -> Peddler::Response
+      def get_purchase_orders: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: String?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: String?, ?purchase_order_state: String?, ?ordering_vendor_code: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_purchase_order: (String, ?rate_limit: Float) -> Peddler::Response
+      def submit_acknowledgement: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_purchase_orders_status: (?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?created_after: String?, ?created_before: String?, ?updated_after: String?, ?updated_before: String?, ?purchase_order_number: String?, ?purchase_order_status: String?, ?item_confirmation_status: String?, ?item_receive_status: String?, ?ordering_vendor_code: String?, ?ship_to_party_id: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

@@ -17,7 +17,7 @@ module Generator
     end
 
     def required_libraries
-      apis.map(&:library_name).append("peddler/config", "peddler/token").sort
+      apis.map(&:library_name).append("peddler/token").sort
     end
 
     def apis_with_latest_version

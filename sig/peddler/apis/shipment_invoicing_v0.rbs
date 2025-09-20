@@ -1,9 +1,9 @@
 module Peddler
   module APIs
     class ShipmentInvoicingV0 < API
-      def get_shipment_details: (String) -> Peddler::Response
-      def submit_invoice: (String, untyped) -> Peddler::Response
-      def get_invoice_status: (String) -> Peddler::Response
+      def get_shipment_details: (String, ?rate_limit: Float) -> Peddler::Response
+      def submit_invoice: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_invoice_status: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

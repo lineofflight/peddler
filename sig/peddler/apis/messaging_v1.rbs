@@ -1,18 +1,18 @@
 module Peddler
   module APIs
     class MessagingV1 < API
-      def get_messaging_actions_for_order: (String, Array[String]) -> Peddler::Response
-      def confirm_customization_details: (String, Array[String], untyped) -> Peddler::Response
-      def create_confirm_delivery_details: (String, Array[String], untyped) -> Peddler::Response
-      def create_legal_disclosure: (String, Array[String], untyped) -> Peddler::Response
-      def create_confirm_order_details: (String, Array[String], untyped) -> Peddler::Response
-      def create_confirm_service_details: (String, Array[String], untyped) -> Peddler::Response
-      def create_amazon_motors: (String, Array[String], untyped) -> Peddler::Response
-      def create_warranty: (String, Array[String], untyped) -> Peddler::Response
-      def get_attributes: (String, Array[String]) -> Peddler::Response
-      def create_digital_access_key: (String, Array[String], untyped) -> Peddler::Response
-      def create_unexpected_problem: (String, Array[String], untyped) -> Peddler::Response
-      def send_invoice: (String, Array[String], untyped) -> Peddler::Response
+      def get_messaging_actions_for_order: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
+      def confirm_customization_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_confirm_delivery_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_legal_disclosure: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_confirm_order_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_confirm_service_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_amazon_motors: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_warranty: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_attributes: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
+      def create_digital_access_key: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_unexpected_problem: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def send_invoice: (String, Array[String], Hash[untyped, untyped]) -> Peddler::Response
     end
   end
 end

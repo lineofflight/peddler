@@ -1,7 +1,7 @@
 module Peddler
   module Types
     module AplusContent20201101
-      class AsinSet < Array[Asin]
+      class AsinSet < Array[String]
         def self.parse: (Array[untyped] array) -> instance
       end
     end

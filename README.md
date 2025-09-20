@@ -740,7 +740,7 @@ bundle exec rake test
 bin/generate-code
 
 # Type check with Steep
-bundle exec steep check
+bundle exec steep check --severity-level=hint
 ```
 
 [build]: https://github.com/hakanensari/peddler/actions

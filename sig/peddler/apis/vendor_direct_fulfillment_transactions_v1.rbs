@@ -1,7 +1,7 @@
 module Peddler
   module APIs
     class VendorDirectFulfillmentTransactionsV1 < API
-      def get_transaction_status: (String) -> Peddler::Response
+      def get_transaction_status: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

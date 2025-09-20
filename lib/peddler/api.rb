@@ -3,7 +3,6 @@
 require "http"
 require "uri"
 
-require "peddler/config"
 require "peddler/endpoint"
 require "peddler/error"
 require "peddler/marketplace"
@@ -88,6 +87,7 @@ module Peddler
     # @return [self]
     def meter(requests_per_second)
       return self if retries.zero?
+      return self if requests_per_second.nil?
 
       delay = sandbox? ? 0.2 : 1.0 / requests_per_second
       retriable(delay:, tries: retries + 1, retry_statuses: [429])
@@ -122,19 +122,21 @@ module Peddler
     alias_method :through, :via
 
     [:get, :post, :put, :delete, :patch].each do |method|
+      # steep:ignore:start
       define_method(method) do |path, parser: nil, **options|
         if options[:body] && !options[:body].is_a?(String)
           options[:json] = options.delete(:body)
         end
 
-        uri = endpoint_uri.tap do |uri| # steep:ignore
+        uri = endpoint_uri.tap do |uri|
           uri.path = path
         end
 
-        http_response = http.send(method, uri, **options) # steep:ignore
+        http_response = http.send(method, uri, **options)
 
         Response.wrap(http_response, parser:)
       end
+      # steep:ignore:end
     end
 
     private

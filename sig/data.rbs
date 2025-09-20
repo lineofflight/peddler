@@ -1,6 +1,0 @@
-# Ruby's Data class for immutable value objects (Ruby 3.2+)
-# TODO: Remove this file when RBS adds Data to the standard library
-# This is a minimal definition to support Endpoint and Marketplace classes
-class Data
-  def self.define: (*Symbol attributes) { () -> void } -> Class
-end

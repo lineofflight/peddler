@@ -1,7 +1,7 @@
 module Peddler
   module Types
     module Replenishment20221107
-      class ProgramTypes < Array[ProgramType]
+      class ProgramTypes < Array[String]
         def self.parse: (Array[untyped] array) -> instance
       end
     end

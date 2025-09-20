@@ -1,8 +1,8 @@
 module Peddler
   module APIs
     class Finances20240601 < API
-      def initiate_payout: (untyped) -> Peddler::Response
-      def get_payment_methods: (String, ?payment_method_types: Array[String]) -> Peddler::Response
+      def initiate_payout: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_payment_methods: (String, ?payment_method_types: Array[String]?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

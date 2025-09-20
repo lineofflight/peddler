@@ -1,23 +1,23 @@
 module Peddler
   module APIs
     class ServicesV1 < API
-      def get_service_job_by_service_job_id: (String) -> Peddler::Response
-      def cancel_service_job_by_service_job_id: (String, String) -> Peddler::Response
-      def complete_service_job_by_service_job_id: (String) -> Peddler::Response
-      def get_service_jobs: (Array[String], ?service_order_ids: Array[String], ?service_job_status: Array[String], ?page_token: String, ?page_size: Integer, ?sort_field: String, ?sort_order: String, ?created_after: String, ?created_before: String, ?last_updated_after: String, ?last_updated_before: String, ?schedule_start_date: String, ?schedule_end_date: String, ?asins: Array[String], ?required_skills: Array[String], ?store_ids: Array[String]) -> Peddler::Response
-      def add_appointment_for_service_job_by_service_job_id: (String, untyped) -> Peddler::Response
-      def reschedule_appointment_for_service_job_by_service_job_id: (String, String, untyped) -> Peddler::Response
-      def assign_appointment_resources: (String, String, untyped) -> Peddler::Response
-      def set_appointment_fulfillment_data: (String, String, untyped) -> Peddler::Response
-      def get_range_slot_capacity: (String, untyped, Array[String], ?next_page_token: String) -> Peddler::Response
-      def get_fixed_slot_capacity: (String, untyped, Array[String], ?next_page_token: String) -> Peddler::Response
-      def update_schedule: (String, untyped, Array[String]) -> Peddler::Response
-      def create_reservation: (untyped, Array[String]) -> Peddler::Response
-      def update_reservation: (String, untyped, Array[String]) -> Peddler::Response
-      def cancel_reservation: (String, Array[String]) -> Peddler::Response
-      def get_appointmment_slots_by_job_id: (String, Array[String], ?start_time: String, ?end_time: String) -> Peddler::Response
-      def get_appointment_slots: (String, String, Array[String], ?start_time: String, ?end_time: String) -> Peddler::Response
-      def create_service_document_upload_destination: (untyped) -> Peddler::Response
+      def get_service_job_by_service_job_id: (String, ?rate_limit: Float) -> Peddler::Response
+      def cancel_service_job_by_service_job_id: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def complete_service_job_by_service_job_id: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_service_jobs: (Array[String], ?service_order_ids: Array[String]?, ?service_job_status: Array[String]?, ?page_token: String?, ?page_size: Integer?, ?sort_field: String?, ?sort_order: String?, ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?schedule_start_date: String?, ?schedule_end_date: String?, ?asins: Array[String]?, ?required_skills: Array[String]?, ?store_ids: Array[String]?, ?rate_limit: Float) -> Peddler::Response
+      def add_appointment_for_service_job_by_service_job_id: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def reschedule_appointment_for_service_job_by_service_job_id: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def assign_appointment_resources: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def set_appointment_fulfillment_data: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_range_slot_capacity: (String, Hash[untyped, untyped], Array[String], ?next_page_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_fixed_slot_capacity: (String, Hash[untyped, untyped], Array[String], ?next_page_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def update_schedule: (String, Hash[untyped, untyped], Array[String], ?rate_limit: Float) -> Peddler::Response
+      def create_reservation: (Hash[untyped, untyped], Array[String], ?rate_limit: Float) -> Peddler::Response
+      def update_reservation: (String, Hash[untyped, untyped], Array[String], ?rate_limit: Float) -> Peddler::Response
+      def cancel_reservation: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
+      def get_appointmment_slots_by_job_id: (String, Array[String], ?start_time: String?, ?end_time: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_appointment_slots: (String, String, Array[String], ?start_time: String?, ?end_time: String?, ?rate_limit: Float) -> Peddler::Response
+      def create_service_document_upload_destination: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

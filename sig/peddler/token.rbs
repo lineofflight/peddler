@@ -2,12 +2,12 @@ module Peddler
   class Token
     URL: String
 
-    @client_id: String
-    @client_secret: String
+    @client_id: String?
+    @client_secret: String?
     @options: Hash[Symbol, untyped]
 
-    attr_reader client_id: String
-    attr_reader client_secret: String
+    attr_reader client_id: String?
+    attr_reader client_secret: String?
     attr_reader options: Hash[Symbol, untyped]
 
     def self.request: (?client_id: String?, ?client_secret: String?, **untyped options) -> Response

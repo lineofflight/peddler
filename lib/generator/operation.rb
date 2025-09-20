@@ -86,7 +86,17 @@ module Generator
         p["required"]
       end.map do |p|
         default_value = p["default"]
-        formatted_default = default_value.is_a?(String) ? "\"#{default_value}\"" : default_value
+
+        # Handle array parameters with string defaults (OpenAPI spec inconsistency)
+        formatted_default = if p["type"] == "array" && default_value.is_a?(String)
+          "[\"#{default_value}\"]"
+        elsif default_value.is_a?(String)
+          "\"#{default_value}\""
+        elsif default_value.is_a?(Array)
+          default_value.inspect
+        else
+          default_value
+        end
 
         "#{p["name"].underscore}: #{formatted_default ? formatted_default : "nil"}"
       end

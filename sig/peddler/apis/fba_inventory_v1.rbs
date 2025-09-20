@@ -1,10 +1,10 @@
 module Peddler
   module APIs
     class FBAInventoryV1 < API
-      def get_inventory_summaries: (String, String, Array[String], ?details: bool, ?start_date_time: String, ?seller_skus: Array[String], ?seller_sku: String, ?next_token: String) -> Peddler::Response
-      def create_inventory_item: (untyped) -> Peddler::Response
+      def get_inventory_summaries: (String, String, Array[String], ?details: bool?, ?start_date_time: String?, ?seller_skus: Array[String]?, ?seller_sku: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def create_inventory_item: (Hash[untyped, untyped]) -> Peddler::Response
       def delete_inventory_item: (String, String) -> Peddler::Response
-      def add_inventory: (String, untyped) -> Peddler::Response
+      def add_inventory: (String, Hash[untyped, untyped]) -> Peddler::Response
     end
   end
 end

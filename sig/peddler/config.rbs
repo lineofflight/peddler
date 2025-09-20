@@ -1,9 +1,0 @@
-module Peddler
-  def self.configure: () { (singleton(Peddler)) -> void } -> void
-  def self.raise_on_server_errors: () -> bool
-  def self.raise_on_server_errors=: (bool) -> bool
-
-  class Config
-    attr_accessor raise_on_server_errors: bool
-  end
-end

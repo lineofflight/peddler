@@ -1,11 +1,11 @@
 module Peddler
   module APIs
     class MerchantFulfillmentV0 < API
-      def get_eligible_shipment_services: (untyped) -> Peddler::Response
-      def get_shipment: (String) -> Peddler::Response
-      def cancel_shipment: (String) -> Peddler::Response
-      def create_shipment: (untyped) -> Peddler::Response
-      def get_additional_seller_inputs: (untyped) -> Peddler::Response
+      def get_eligible_shipment_services: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_shipment: (String, ?rate_limit: Float) -> Peddler::Response
+      def cancel_shipment: (String, ?rate_limit: Float) -> Peddler::Response
+      def create_shipment: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_additional_seller_inputs: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

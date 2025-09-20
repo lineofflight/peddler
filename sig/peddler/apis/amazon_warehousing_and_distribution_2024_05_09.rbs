@@ -1,17 +1,17 @@
 module Peddler
   module APIs
     class AmazonWarehousingAndDistribution20240509 < API
-      def create_inbound: (untyped) -> Peddler::Response
-      def get_inbound: (String) -> Peddler::Response
-      def update_inbound: (String, untyped) -> Peddler::Response
-      def cancel_inbound: (String) -> Peddler::Response
-      def confirm_inbound: (String) -> Peddler::Response
-      def get_inbound_shipment: (String, ?sku_quantities: String) -> Peddler::Response
-      def get_inbound_shipment_labels: (String, ?page_type: String, ?format_type: String) -> Peddler::Response
-      def update_inbound_shipment_transport_details: (String, untyped) -> Peddler::Response
-      def check_inbound_eligibility: (untyped) -> Peddler::Response
-      def list_inbound_shipments: (?sort_by: String, ?sort_order: String, ?shipment_status: String, ?updated_after: String, ?updated_before: String, ?max_results: Integer, ?next_token: String) -> Peddler::Response
-      def list_inventory: (?sku: String, ?sort_order: String, ?details: String, ?next_token: String, ?max_results: Integer) -> Peddler::Response
+      def create_inbound: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_inbound: (String, ?rate_limit: Float) -> Peddler::Response
+      def update_inbound: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def cancel_inbound: (String, ?rate_limit: Float) -> Peddler::Response
+      def confirm_inbound: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_inbound_shipment: (String, ?sku_quantities: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_inbound_shipment_labels: (String, ?page_type: String?, ?format_type: String?, ?rate_limit: Float) -> Peddler::Response
+      def update_inbound_shipment_transport_details: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def check_inbound_eligibility: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_inbound_shipments: (?sort_by: String?, ?sort_order: String?, ?shipment_status: String?, ?updated_after: String?, ?updated_before: String?, ?max_results: Integer?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_inventory: (?sku: String?, ?sort_order: String?, ?details: String?, ?next_token: String?, ?max_results: Integer?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

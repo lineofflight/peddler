@@ -158,7 +158,37 @@ module Generator
     def array_item_type
       return unless array_type? && type.definition["items"]
 
-      type.definition["items"]["$ref"]&.split("/")&.last
+      if type.definition["items"]["$ref"]
+        ref_type = type.definition["items"]["$ref"].split("/").last
+        # Check if the referenced type is actually generated as a class
+        # Enums and some other types are not generated as separate classes
+        if type_exists?(ref_type)
+          ref_type
+        else
+          # For enums and other non-generated types, determine the base type
+          ref_def = specification&.dig("definitions", ref_type)
+          if ref_def
+            case ref_def["type"]
+            when "string" then "String"
+            when "integer" then "Integer"
+            when "boolean" then "bool"
+            when "number" then "Float"
+            else "untyped"
+            end
+          else
+            "untyped"
+          end
+        end
+      end
+    end
+
+    def type_exists?(type_name)
+      # Check if a corresponding Ruby type file exists
+      type_file = File.join(
+        Config::BASE_PATH,
+        "lib/peddler/types/#{api_name}/#{type_name.underscore}.rb",
+      )
+      File.exist?(type_file)
     end
 
     def rbs_template

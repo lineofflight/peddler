@@ -1,7 +1,7 @@
 module Peddler
   module Types
     module NotificationsV1
-      class OrderChangeTypes < Array[OrderChangeTypeEnum]
+      class OrderChangeTypes < Array[String]
         def self.parse: (Array[untyped] array) -> instance
       end
     end

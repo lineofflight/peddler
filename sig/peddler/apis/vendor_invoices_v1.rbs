@@ -1,7 +1,7 @@
 module Peddler
   module APIs
     class VendorInvoicesV1 < API
-      def submit_invoices: (untyped) -> Peddler::Response
+      def submit_invoices: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

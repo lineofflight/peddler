@@ -1,16 +1,16 @@
 module Peddler
   module APIs
     class OrdersV0 < API
-      def get_orders: (Array[String], ?created_after: String, ?created_before: String, ?last_updated_after: String, ?last_updated_before: String, ?order_statuses: Array[String], ?fulfillment_channels: Array[String], ?payment_methods: Array[String], ?buyer_email: String, ?seller_order_id: String, ?max_results_per_page: Integer, ?easy_ship_shipment_statuses: Array[String], ?electronic_invoice_statuses: Array[String], ?next_token: String, ?amazon_order_ids: Array[String], ?actual_fulfillment_supply_source_id: String, ?is_ispu: bool, ?store_chain_store_id: String, ?earliest_delivery_date_before: String, ?earliest_delivery_date_after: String, ?latest_delivery_date_before: String, ?latest_delivery_date_after: String) -> Peddler::Response
-      def get_order: (String) -> Peddler::Response
-      def get_order_buyer_info: (String) -> Peddler::Response
-      def get_order_address: (String) -> Peddler::Response
-      def get_order_items: (String, ?next_token: String) -> Peddler::Response
-      def get_order_items_buyer_info: (String, ?next_token: String) -> Peddler::Response
-      def update_shipment_status: (String, untyped) -> Peddler::Response
-      def get_order_regulated_info: (String) -> Peddler::Response
-      def update_verification_status: (String, untyped) -> Peddler::Response
-      def confirm_shipment: (String, untyped) -> Peddler::Response
+      def get_orders: (Array[String], ?created_after: String?, ?created_before: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?order_statuses: Array[String]?, ?fulfillment_channels: Array[String]?, ?payment_methods: Array[String]?, ?buyer_email: String?, ?seller_order_id: String?, ?max_results_per_page: Integer?, ?easy_ship_shipment_statuses: Array[String]?, ?electronic_invoice_statuses: Array[String]?, ?next_token: String?, ?amazon_order_ids: Array[String]?, ?actual_fulfillment_supply_source_id: String?, ?is_ispu: bool?, ?store_chain_store_id: String?, ?earliest_delivery_date_before: String?, ?earliest_delivery_date_after: String?, ?latest_delivery_date_before: String?, ?latest_delivery_date_after: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_order: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_order_buyer_info: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_order_address: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_order_items: (String, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_order_items_buyer_info: (String, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def update_shipment_status: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_order_regulated_info: (String, ?rate_limit: Float) -> Peddler::Response
+      def update_verification_status: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def confirm_shipment: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

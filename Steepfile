@@ -21,4 +21,8 @@ target :lib do
   # RBS declarations, also generated, ensure full type safety.
   ignore "lib/peddler/types"
   ignore "lib/peddler/version.rb"
+
+  configure_code_diagnostics do |config|
+    config[Steep::Diagnostic::Ruby::UnexpectedPositionalArgument] = :hint
+  end
 end

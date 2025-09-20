@@ -1,7 +1,7 @@
 module Peddler
   module APIs
     class SalesV1 < API
-      def get_order_metrics: (Array[String], String, String, ?granularity_time_zone: String, ?buyer_type: String, ?fulfillment_network: String, ?first_day_of_week: String, ?asin: String, ?sku: String, ?amazon_program: String) -> Peddler::Response
+      def get_order_metrics: (Array[String], String, String, ?granularity_time_zone: String?, ?buyer_type: String?, ?fulfillment_network: String?, ?first_day_of_week: String?, ?asin: String?, ?sku: String?, ?amazon_program: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

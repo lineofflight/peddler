@@ -94,14 +94,18 @@ module Peddler
     end
 
     # @return [Peddler::Endpoint]
+    # steep:ignore:start
     def endpoint
-      Endpoint.find_by_selling_region(selling_region) # steep:ignore
+      Endpoint.find_by_selling_region(selling_region)
     end
+    # steep:ignore:end
 
     # @note So HTTP can encode
     # @return [String]
+    # steep:ignore:start
     def to_str
-      id # steep:ignore
+      id
     end
+    # steep:ignore:end
   end
 end

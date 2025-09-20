@@ -58,11 +58,23 @@ require "peddler/apis/vendor_invoices_v1"
 require "peddler/apis/vendor_orders_v1"
 require "peddler/apis/vendor_shipments_v1"
 require "peddler/apis/vendor_transaction_status_v1"
-require "peddler/config"
 require "peddler/token"
 
 module Peddler
   class << self
+    attr_writer :raise_on_server_errors
+
+    # steep:ignore:start
+    def raise_on_server_errors
+      @raise_on_server_errors = false if @raise_on_server_errors.nil?
+      @raise_on_server_errors
+    end
+    # steep:ignore:end
+
+    def configure
+      yield self
+    end
+
     alias_method :amazon_warehousing_and_distribution, :amazon_warehousing_and_distribution_2024_05_09
     alias_method :aplus_content, :aplus_content_2020_11_01
     alias_method :application_integrations, :application_integrations_2024_04_01

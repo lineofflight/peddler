@@ -10,7 +10,7 @@ module Peddler
     def self.new: (?id: String?, ?country_code: String?, ?country_name: String?, ?selling_region: String?) -> Marketplace
     def self.find: (String country_code) -> Marketplace
     def self.id: (String country_code) -> String
-    def self.ids: () -> Array[String]
+    def self.ids: (*String country_codes) -> Array[String]
     def self.all: () -> Array[Marketplace]
 
     # Dynamically defined country methods

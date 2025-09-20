@@ -1,7 +1,7 @@
 module Peddler
   module APIs
     class Vehicles20241101 < API
-      def get_vehicles: (String, String, ?page_token: String, ?updated_after: String) -> Peddler::Response
+      def get_vehicles: (String, String, ?page_token: String?, ?updated_after: String?) -> Peddler::Response
     end
   end
 end

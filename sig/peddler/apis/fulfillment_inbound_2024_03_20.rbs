@@ -1,51 +1,51 @@
 module Peddler
   module APIs
     class FulfillmentInbound20240320 < API
-      def list_inbound_plans: (?page_size: Integer, ?pagination_token: String, ?status: String, ?sort_by: String, ?sort_order: String) -> Peddler::Response
-      def create_inbound_plan: (untyped) -> Peddler::Response
-      def get_inbound_plan: (String) -> Peddler::Response
-      def list_inbound_plan_boxes: (String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def cancel_inbound_plan: (String) -> Peddler::Response
-      def list_inbound_plan_items: (String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def update_inbound_plan_name: (String, untyped) -> Peddler::Response
-      def list_packing_group_boxes: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def list_packing_group_items: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def set_packing_information: (String, untyped) -> Peddler::Response
-      def list_packing_options: (String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def generate_packing_options: (String) -> Peddler::Response
-      def confirm_packing_option: (String, String) -> Peddler::Response
-      def list_inbound_plan_pallets: (String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def list_placement_options: (String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def generate_placement_options: (String, untyped) -> Peddler::Response
-      def confirm_placement_option: (String, String) -> Peddler::Response
-      def get_shipment: (String, String) -> Peddler::Response
-      def list_shipment_boxes: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def list_shipment_content_update_previews: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def generate_shipment_content_update_previews: (String, String, untyped) -> Peddler::Response
-      def get_shipment_content_update_preview: (String, String, String) -> Peddler::Response
-      def confirm_shipment_content_update_preview: (String, String, String) -> Peddler::Response
-      def get_delivery_challan_document: (String, String) -> Peddler::Response
-      def list_delivery_window_options: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def generate_delivery_window_options: (String, String) -> Peddler::Response
-      def confirm_delivery_window_options: (String, String, String) -> Peddler::Response
-      def list_shipment_items: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def update_shipment_name: (String, String, untyped) -> Peddler::Response
-      def list_shipment_pallets: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def cancel_self_ship_appointment: (String, String, untyped) -> Peddler::Response
-      def get_self_ship_appointment_slots: (String, String, ?page_size: Integer, ?pagination_token: String) -> Peddler::Response
-      def generate_self_ship_appointment_slots: (String, String, untyped) -> Peddler::Response
-      def schedule_self_ship_appointment: (String, String, String, untyped) -> Peddler::Response
-      def update_shipment_source_address: (String, String, untyped) -> Peddler::Response
-      def update_shipment_tracking_details: (String, String, untyped) -> Peddler::Response
-      def list_transportation_options: (String, ?page_size: Integer, ?pagination_token: String, ?placement_option_id: String, ?shipment_id: String) -> Peddler::Response
-      def generate_transportation_options: (String, untyped) -> Peddler::Response
-      def confirm_transportation_options: (String, untyped) -> Peddler::Response
-      def list_item_compliance_details: (Array[String], String) -> Peddler::Response
-      def update_item_compliance_details: (String, untyped) -> Peddler::Response
-      def create_marketplace_item_labels: (untyped) -> Peddler::Response
-      def list_prep_details: (String, Array[String]) -> Peddler::Response
-      def set_prep_details: (untyped) -> Peddler::Response
-      def get_inbound_operation_status: (String) -> Peddler::Response
+      def list_inbound_plans: (?page_size: Integer?, ?pagination_token: String?, ?status: String?, ?sort_by: String?, ?sort_order: String?, ?rate_limit: Float) -> Peddler::Response
+      def create_inbound_plan: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_inbound_plan: (String, ?rate_limit: Float) -> Peddler::Response
+      def list_inbound_plan_boxes: (String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def cancel_inbound_plan: (String, ?rate_limit: Float) -> Peddler::Response
+      def list_inbound_plan_items: (String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def update_inbound_plan_name: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_packing_group_boxes: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_packing_group_items: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def set_packing_information: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_packing_options: (String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def generate_packing_options: (String, ?rate_limit: Float) -> Peddler::Response
+      def confirm_packing_option: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def list_inbound_plan_pallets: (String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_placement_options: (String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def generate_placement_options: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def confirm_placement_option: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def get_shipment: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def list_shipment_boxes: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_shipment_content_update_previews: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def generate_shipment_content_update_previews: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_shipment_content_update_preview: (String, String, String, ?rate_limit: Float) -> Peddler::Response
+      def confirm_shipment_content_update_preview: (String, String, String, ?rate_limit: Float) -> Peddler::Response
+      def get_delivery_challan_document: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def list_delivery_window_options: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def generate_delivery_window_options: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def confirm_delivery_window_options: (String, String, String, ?rate_limit: Float) -> Peddler::Response
+      def list_shipment_items: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def update_shipment_name: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_shipment_pallets: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def cancel_self_ship_appointment: (String, String, Hash[untyped, untyped], ?rate_limit: Float?) -> Peddler::Response
+      def get_self_ship_appointment_slots: (String, String, ?page_size: Integer?, ?pagination_token: String?, ?rate_limit: Float?) -> Peddler::Response
+      def generate_self_ship_appointment_slots: (String, String, Hash[untyped, untyped], ?rate_limit: Float?) -> Peddler::Response
+      def schedule_self_ship_appointment: (String, String, String, Hash[untyped, untyped], ?rate_limit: Float?) -> Peddler::Response
+      def update_shipment_source_address: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def update_shipment_tracking_details: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_transportation_options: (String, ?page_size: Integer?, ?pagination_token: String?, ?placement_option_id: String?, ?shipment_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def generate_transportation_options: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def confirm_transportation_options: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_item_compliance_details: (Array[String], String, ?rate_limit: Float?) -> Peddler::Response
+      def update_item_compliance_details: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def create_marketplace_item_labels: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def list_prep_details: (String, Array[String], ?rate_limit: Float?) -> Peddler::Response
+      def set_prep_details: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_inbound_operation_status: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

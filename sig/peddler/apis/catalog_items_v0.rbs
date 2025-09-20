@@ -1,7 +1,7 @@
 module Peddler
   module APIs
     class CatalogItemsV0 < API
-      def list_catalog_categories: (String, ?asin: String, ?seller_sku: String) -> Peddler::Response
+      def list_catalog_categories: (String, ?asin: String?, ?seller_sku: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end
