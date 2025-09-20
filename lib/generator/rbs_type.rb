@@ -166,19 +166,21 @@ module Generator
           ref_type
         else
           # For enums and other non-generated types, determine the base type
-          ref_def = specification&.dig("definitions", ref_type)
-          if ref_def
-            case ref_def["type"]
-            when "string" then "String"
-            when "integer" then "Integer"
-            when "boolean" then "bool"
-            when "number" then "Float"
-            else "untyped"
-            end
-          else
-            "untyped"
-          end
+          resolve_base_type(ref_type)
         end
+      end
+    end
+
+    def resolve_base_type(ref_type)
+      ref_def = specification&.dig("definitions", ref_type)
+      return "untyped" unless ref_def
+
+      case ref_def["type"]
+      when "string" then "String"
+      when "integer" then "Integer"
+      when "boolean" then "bool"
+      when "number" then "Float"
+      else "untyped"
       end
     end
 
