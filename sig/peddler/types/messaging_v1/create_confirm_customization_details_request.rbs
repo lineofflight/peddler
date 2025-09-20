@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MessagingV1
+      class CreateConfirmCustomizationDetailsRequest < Data
+        attr_reader text: String?
+        attr_reader attachments: Array[Attachment]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?text: String,
+          ?attachments: Array[Attachment]
+        ) -> void
+      end
+    end
+  end
+end

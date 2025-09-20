@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class ItemRelationship < Data
+        attr_reader child_skus: Array[String]?
+        attr_reader parent_skus: Array[String]?
+        attr_reader variation_theme: ItemVariationTheme?
+        attr_reader type: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?child_skus: Array[String],
+          ?parent_skus: Array[String],
+          ?variation_theme: ItemVariationTheme,
+          type: String
+        ) -> void
+      end
+    end
+  end
+end

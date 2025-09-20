@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ContainerSequenceNumbers < Data
+        attr_reader container_sequence_number: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?container_sequence_number: String
+        ) -> void
+      end
+    end
+  end
+end

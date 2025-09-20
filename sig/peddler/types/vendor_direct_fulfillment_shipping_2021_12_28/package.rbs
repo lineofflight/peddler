@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class Package < Data
+        attr_reader package_tracking_number: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          package_tracking_number: String
+        ) -> void
+      end
+    end
+  end
+end

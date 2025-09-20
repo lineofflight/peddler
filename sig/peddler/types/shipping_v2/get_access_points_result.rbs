@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetAccessPointsResult < Data
+        attr_reader access_points_map: AccessPointsMap
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          access_points_map: AccessPointsMap
+        ) -> void
+      end
+    end
+  end
+end

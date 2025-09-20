@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class DocumentDownload < Data
+        attr_reader download_type: String
+        attr_reader expiration: String?
+        attr_reader uri: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          download_type: String,
+          ?expiration: String,
+          uri: String
+        ) -> void
+      end
+    end
+  end
+end

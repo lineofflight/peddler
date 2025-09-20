@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class Product < Data
+        attr_reader identifiers: IdentifierType
+        attr_reader attribute_sets: Array[Hash[String, untyped]]?
+        attr_reader relationships: Array[Hash[String, untyped]]?
+        attr_reader competitive_pricing: CompetitivePricingType?
+        attr_reader sales_rankings: Array[SalesRankType]?
+        attr_reader offers: Array[OfferType]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          identifiers: IdentifierType,
+          ?attribute_sets: Array[Hash[String, untyped]],
+          ?relationships: Array[Hash[String, untyped]],
+          ?competitive_pricing: CompetitivePricingType,
+          ?sales_rankings: Array[SalesRankType],
+          ?offers: Array[OfferType]
+        ) -> void
+      end
+    end
+  end
+end

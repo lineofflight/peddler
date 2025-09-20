@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class OrderListStatus < Data
+        attr_reader pagination: Pagination?
+        attr_reader orders_status: Array[OrderStatus]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          ?orders_status: Array[OrderStatus]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module CatalogItems20201201
+      class Item < Data
+        attr_reader asin: String
+        attr_reader attributes: ItemAttributes?
+        attr_reader identifiers: Array[ItemIdentifiersByMarketplace]?
+        attr_reader images: Array[ItemImagesByMarketplace]?
+        attr_reader product_types: Array[ItemProductTypeByMarketplace]?
+        attr_reader sales_ranks: Array[ItemSalesRanksByMarketplace]?
+        attr_reader summaries: Array[ItemSummaryByMarketplace]?
+        attr_reader variations: Array[ItemVariationsByMarketplace]?
+        attr_reader vendor_details: Array[ItemVendorDetailsByMarketplace]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          asin: String,
+          ?attributes: ItemAttributes,
+          ?identifiers: Array[ItemIdentifiersByMarketplace],
+          ?images: Array[ItemImagesByMarketplace],
+          ?product_types: Array[ItemProductTypeByMarketplace],
+          ?sales_ranks: Array[ItemSalesRanksByMarketplace],
+          ?summaries: Array[ItemSummaryByMarketplace],
+          ?variations: Array[ItemVariationsByMarketplace],
+          ?vendor_details: Array[ItemVendorDetailsByMarketplace]
+        ) -> void
+      end
+    end
+  end
+end

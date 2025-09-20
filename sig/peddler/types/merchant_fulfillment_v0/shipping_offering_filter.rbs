@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class ShippingOfferingFilter < Data
+        attr_reader include_packing_slip_with_label: bool?
+        attr_reader include_complex_shipping_options: bool?
+        attr_reader carrier_will_pick_up: String?
+        attr_reader delivery_experience: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?include_packing_slip_with_label: bool,
+          ?include_complex_shipping_options: bool,
+          ?carrier_will_pick_up: String,
+          ?delivery_experience: String
+        ) -> void
+      end
+    end
+  end
+end

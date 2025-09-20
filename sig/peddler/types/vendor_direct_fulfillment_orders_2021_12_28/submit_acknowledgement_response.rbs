@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrders20211228
+      class SubmitAcknowledgementResponse < Data
+        attr_reader payload: TransactionId?
+        attr_reader errors: ErrorList?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: TransactionId,
+          ?errors: ErrorList
+        ) -> void
+      end
+    end
+  end
+end

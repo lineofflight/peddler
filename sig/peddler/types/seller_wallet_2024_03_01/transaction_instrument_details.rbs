@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class TransactionInstrumentDetails < Data
+        attr_reader bank_account: BankAccount
+        attr_reader bank_account_number: String
+        attr_reader account_holder_name: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          bank_account: BankAccount,
+          bank_account_number: String,
+          account_holder_name: String
+        ) -> void
+      end
+    end
+  end
+end

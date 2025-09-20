@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Route < Data
+        attr_reader stops: Array[Stop]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          stops: Array[Stop]
+        ) -> void
+      end
+    end
+  end
+end

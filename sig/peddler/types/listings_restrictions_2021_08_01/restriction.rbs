@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ListingsRestrictions20210801
+      class Restriction < Data
+        attr_reader marketplace_id: String
+        attr_reader condition_type: String?
+        attr_reader reasons: Array[Reason]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          ?condition_type: String,
+          ?reasons: Array[Reason]
+        ) -> void
+      end
+    end
+  end
+end

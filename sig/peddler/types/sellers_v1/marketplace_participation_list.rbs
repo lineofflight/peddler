@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module SellersV1
+      class MarketplaceParticipationList < Array[MarketplaceParticipation]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

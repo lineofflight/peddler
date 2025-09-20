@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module Invoices20240619
+      class Export < Data
+        attr_reader error_message: String?
+        attr_reader export_id: String?
+        attr_reader generate_export_finished_at: String?
+        attr_reader generate_export_started_at: String?
+        attr_reader invoices_document_ids: Array[String]?
+        attr_reader status: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?error_message: String,
+          ?export_id: String,
+          ?generate_export_finished_at: String,
+          ?generate_export_started_at: String,
+          ?invoices_document_ids: Array[String],
+          ?status: String
+        ) -> void
+      end
+    end
+  end
+end

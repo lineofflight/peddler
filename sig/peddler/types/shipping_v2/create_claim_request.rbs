@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class CreateClaimRequest < Data
+        attr_reader tracking_id: String
+        attr_reader declared_value: Currency?
+        attr_reader claim_reason: String
+        attr_reader replacement_package_sent: bool?
+        attr_reader proofs: Array[String]?
+        attr_reader settlement_type: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          tracking_id: String,
+          ?declared_value: Currency,
+          claim_reason: String,
+          ?replacement_package_sent: bool,
+          ?proofs: Array[String],
+          settlement_type: String
+        ) -> void
+      end
+    end
+  end
+end

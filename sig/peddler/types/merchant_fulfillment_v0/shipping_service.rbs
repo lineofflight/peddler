@@ -1,0 +1,41 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class ShippingService < Data
+        attr_reader shipping_service_name: String
+        attr_reader carrier_name: String
+        attr_reader shipping_service_id: String
+        attr_reader shipping_service_offer_id: String
+        attr_reader ship_date: String
+        attr_reader earliest_estimated_delivery_date: String?
+        attr_reader latest_estimated_delivery_date: String?
+        attr_reader rate: CurrencyAmount
+        attr_reader shipping_service_options: ShippingServiceOptions
+        attr_reader available_shipping_service_options: AvailableShippingServiceOptions?
+        attr_reader available_label_formats: Array[String]?
+        attr_reader available_format_options_for_label: Array[LabelFormatOption]?
+        attr_reader requires_additional_seller_inputs: bool
+        attr_reader benefits: Benefits?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipping_service_name: String,
+          carrier_name: String,
+          shipping_service_id: String,
+          shipping_service_offer_id: String,
+          ship_date: String,
+          ?earliest_estimated_delivery_date: String,
+          ?latest_estimated_delivery_date: String,
+          rate: CurrencyAmount,
+          shipping_service_options: ShippingServiceOptions,
+          ?available_shipping_service_options: AvailableShippingServiceOptions,
+          ?available_label_formats: Array[String],
+          ?available_format_options_for_label: Array[LabelFormatOption],
+          requires_additional_seller_inputs: bool,
+          ?benefits: Benefits
+        ) -> void
+      end
+    end
+  end
+end

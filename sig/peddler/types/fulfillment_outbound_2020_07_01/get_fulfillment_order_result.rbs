@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class GetFulfillmentOrderResult < Data
+        attr_reader fulfillment_order: FulfillmentOrder
+        attr_reader fulfillment_order_items: Array[FulfillmentOrderItem]
+        attr_reader fulfillment_shipments: Array[FulfillmentShipment]?
+        attr_reader return_items: Array[ReturnItem]
+        attr_reader return_authorizations: Array[ReturnAuthorization]
+        attr_reader payment_information: Array[PaymentInformation]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          fulfillment_order: FulfillmentOrder,
+          fulfillment_order_items: Array[FulfillmentOrderItem],
+          ?fulfillment_shipments: Array[FulfillmentShipment],
+          return_items: Array[ReturnItem],
+          return_authorizations: Array[ReturnAuthorization],
+          ?payment_information: Array[PaymentInformation]
+        ) -> void
+      end
+    end
+  end
+end

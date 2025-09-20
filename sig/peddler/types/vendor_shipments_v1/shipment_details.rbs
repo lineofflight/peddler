@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ShipmentDetails < Data
+        attr_reader pagination: Pagination?
+        attr_reader shipments: Array[Shipment]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          ?shipments: Array[Shipment]
+        ) -> void
+      end
+    end
+  end
+end

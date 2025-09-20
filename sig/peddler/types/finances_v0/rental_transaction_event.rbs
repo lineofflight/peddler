@@ -1,0 +1,33 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class RentalTransactionEvent < Data
+        attr_reader amazon_order_id: String?
+        attr_reader rental_event_type: String?
+        attr_reader extension_length: Integer?
+        attr_reader posted_date: String?
+        attr_reader rental_charge_list: Array[ChargeComponent]?
+        attr_reader rental_fee_list: Array[FeeComponent]?
+        attr_reader marketplace_name: String?
+        attr_reader rental_initial_value: Currency?
+        attr_reader rental_reimbursement: Currency?
+        attr_reader rental_tax_withheld_list: Array[TaxWithheldComponent]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?amazon_order_id: String,
+          ?rental_event_type: String,
+          ?extension_length: Integer,
+          ?posted_date: String,
+          ?rental_charge_list: Array[ChargeComponent],
+          ?rental_fee_list: Array[FeeComponent],
+          ?marketplace_name: String,
+          ?rental_initial_value: Currency,
+          ?rental_reimbursement: Currency,
+          ?rental_tax_withheld_list: Array[TaxWithheldComponent]
+        ) -> void
+      end
+    end
+  end
+end

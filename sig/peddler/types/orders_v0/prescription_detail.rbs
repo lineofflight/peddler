@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class PrescriptionDetail < Data
+        attr_reader prescription_id: String
+        attr_reader expiration_date: String
+        attr_reader written_quantity: Integer
+        attr_reader total_refills_authorized: Integer
+        attr_reader refills_remaining: Integer
+        attr_reader clinic_id: String
+        attr_reader usage_instructions: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          prescription_id: String,
+          expiration_date: String,
+          written_quantity: Integer,
+          total_refills_authorized: Integer,
+          refills_remaining: Integer,
+          clinic_id: String,
+          usage_instructions: String
+        ) -> void
+      end
+    end
+  end
+end

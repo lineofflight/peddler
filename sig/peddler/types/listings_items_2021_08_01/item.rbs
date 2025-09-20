@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class Item < Data
+        attr_reader sku: String
+        attr_reader summaries: Array[ItemSummaryByMarketplace]?
+        attr_reader attributes: ItemAttributes?
+        attr_reader issues: Array[Issue]?
+        attr_reader offers: Array[ItemOfferByMarketplace]?
+        attr_reader fulfillment_availability: Array[FulfillmentAvailability]?
+        attr_reader procurement: Array[ItemProcurement]?
+        attr_reader relationships: Array[ItemRelationshipsByMarketplace]?
+        attr_reader product_types: Array[ItemProductTypeByMarketplace]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          sku: String,
+          ?summaries: Array[ItemSummaryByMarketplace],
+          ?attributes: ItemAttributes,
+          ?issues: Array[Issue],
+          ?offers: Array[ItemOfferByMarketplace],
+          ?fulfillment_availability: Array[FulfillmentAvailability],
+          ?procurement: Array[ItemProcurement],
+          ?relationships: Array[ItemRelationshipsByMarketplace],
+          ?product_types: Array[ItemProductTypeByMarketplace]
+        ) -> void
+      end
+    end
+  end
+end

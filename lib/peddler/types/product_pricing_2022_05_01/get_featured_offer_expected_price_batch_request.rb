@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "structure"
+require "peddler/types/product_pricing_2022_05_01/featured_offer_expected_price_request"
 
 module Peddler
   module Types
@@ -8,7 +8,7 @@ module Peddler
       # The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchRequest = Structure.new do
         # @return [Array<FeaturedOfferExpectedPriceRequest>]
-        attribute(:requests, Array)
+        attribute(:requests, [FeaturedOfferExpectedPriceRequest])
       end
     end
   end

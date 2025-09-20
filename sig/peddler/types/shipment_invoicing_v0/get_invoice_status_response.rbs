@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShipmentInvoicingV0
+      class GetInvoiceStatusResponse < Data
+        attr_reader payload: ShipmentInvoiceStatusResponse?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: ShipmentInvoiceStatusResponse,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

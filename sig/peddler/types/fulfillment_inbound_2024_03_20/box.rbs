@@ -1,0 +1,35 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class Box < Data
+        attr_reader box_id: String?
+        attr_reader content_information_source: String?
+        attr_reader destination_region: Region?
+        attr_reader dimensions: Dimensions?
+        attr_reader external_container_identifier: String?
+        attr_reader external_container_identifier_type: String?
+        attr_reader items: Array[Item]?
+        attr_reader package_id: String
+        attr_reader quantity: Integer?
+        attr_reader template_name: String?
+        attr_reader weight: Weight?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?box_id: String,
+          ?content_information_source: String,
+          ?destination_region: Region,
+          ?dimensions: Dimensions,
+          ?external_container_identifier: String,
+          ?external_container_identifier_type: String,
+          ?items: Array[Item],
+          package_id: String,
+          ?quantity: Integer,
+          ?template_name: String,
+          ?weight: Weight
+        ) -> void
+      end
+    end
+  end
+end

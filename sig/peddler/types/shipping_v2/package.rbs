@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class Package < Data
+        attr_reader dimensions: Dimensions
+        attr_reader weight: Weight
+        attr_reader insured_value: Currency
+        attr_reader hazmat: bool?
+        attr_reader seller_display_name: String?
+        attr_reader charges: Array[ChargeComponent]?
+        attr_reader package_client_reference_id: String
+        attr_reader items: Array[Item]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          dimensions: Dimensions,
+          weight: Weight,
+          insured_value: Currency,
+          ?hazmat: bool,
+          ?seller_display_name: String,
+          ?charges: Array[ChargeComponent],
+          package_client_reference_id: String,
+          items: Array[Item]
+        ) -> void
+      end
+    end
+  end
+end

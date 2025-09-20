@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ContainerItem < Data
+        attr_reader item_reference: String
+        attr_reader shipped_quantity: ItemQuantity
+        attr_reader item_details: ItemDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          item_reference: String,
+          shipped_quantity: ItemQuantity,
+          ?item_details: ItemDetails
+        ) -> void
+      end
+    end
+  end
+end

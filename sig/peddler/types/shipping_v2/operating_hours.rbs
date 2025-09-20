@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class OperatingHours < Data
+        attr_reader closing_time: TimeOfDay?
+        attr_reader opening_time: TimeOfDay?
+        attr_reader mid_day_closures: Array[TimeOfDay]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?closing_time: TimeOfDay,
+          ?opening_time: TimeOfDay,
+          ?mid_day_closures: Array[TimeOfDay]
+        ) -> void
+      end
+    end
+  end
+end

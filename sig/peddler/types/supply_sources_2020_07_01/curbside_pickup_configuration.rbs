@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class CurbsidePickupConfiguration < Data
+        attr_reader supported: bool?
+        attr_reader operational_configuration: OperationalConfiguration?
+        attr_reader parking_with_address_configuration: untyped?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?supported: bool,
+          ?operational_configuration: OperationalConfiguration,
+          ?parking_with_address_configuration: untyped
+        ) -> void
+      end
+    end
+  end
+end

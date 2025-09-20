@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class ListTransactionsResponse < Data
+        attr_reader payload: TransactionsPayload?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: TransactionsPayload
+        ) -> void
+      end
+    end
+  end
+end

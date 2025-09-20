@@ -31,11 +31,20 @@ module Generator
     end
 
     def properties
-      definition["properties"] || {}
+      if definition["allOf"]
+        merge_from_all_of("properties") { |props| props || {} }
+      else
+        definition["properties"] || {}
+      end
     end
 
     def required_properties
-      definition["required"] || []
+      if definition["allOf"]
+        result = merge_from_all_of("required") { |req| req || [] }
+        result.is_a?(Array) ? result.uniq : result
+      else
+        definition["required"] || []
+      end
     end
 
     def library_name
@@ -78,6 +87,35 @@ module Generator
     end
 
     private
+
+    def merge_from_all_of(field_name)
+      result = field_name == "properties" ? {} : []
+
+      definition["allOf"].each do |schema|
+        if schema["$ref"]
+          # Resolve reference and get its field
+          ref_name = schema["$ref"].split("/").last
+          ref_def = specification["definitions"][ref_name]
+          if ref_def && ref_def[field_name]
+            value = yield(ref_def[field_name])
+            if result.is_a?(Hash)
+              result.merge!(value)
+            else
+              result.concat(value)
+            end
+          end
+        elsif schema[field_name]
+          value = yield(schema[field_name])
+          if result.is_a?(Hash)
+            result.merge!(value)
+          else
+            result.concat(value)
+          end
+        end
+      end
+
+      result
+    end
 
     def extract_dependencies_from_property(prop_def)
       dependencies = []
@@ -131,7 +169,54 @@ module Generator
     end
 
     def template
-      File.read(Config.template_path("type"))
+      if array_type?
+        array_template
+      else
+        File.read(Config.template_path("type"))
+      end
+    end
+
+    def array_type?
+      definition["type"] == "array"
+    end
+
+    def array_item_type
+      return unless array_type? && definition["items"]
+
+      definition["items"]["$ref"]&.split("/")&.last
+    end
+
+    def array_template
+      <<~ERB
+        # frozen_string_literal: true
+
+        <% if array_item_type && generated_type?(array_item_type) -%>
+        require "peddler/types/<%= api_name %>/<%= array_item_type.underscore %>"
+        <% end -%>
+
+        module Peddler
+          module Types
+            module <%= api_name.camelize %>
+        <% if definition["description"] -%>
+        <%= split_long_comment_line(definition["description"], base_indent: 6) %>
+        <% end -%>
+              class <%= class_name %> < Array
+                class << self
+                  def parse(array)
+                    return new unless array.is_a?(Array)
+
+        <% if array_item_type && generated_type?(array_item_type) -%>
+                    new(array.map { |item| <%= array_item_type.camelize %>.parse(item) })
+        <% else -%>
+                    new(array)
+        <% end -%>
+                  end
+                end
+              end
+            end
+          end
+        end
+      ERB
     end
   end
 end

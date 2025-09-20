@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class GetDeliveryChallanDocumentResponse < Data
+        attr_reader document_download: DocumentDownload
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          document_download: DocumentDownload
+        ) -> void
+      end
+    end
+  end
+end

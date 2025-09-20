@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CatalogItems20201201
+      class BrandRefinement < Data
+        attr_reader number_of_results: Integer
+        attr_reader brand_name: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          number_of_results: Integer,
+          brand_name: String
+        ) -> void
+      end
+    end
+  end
+end

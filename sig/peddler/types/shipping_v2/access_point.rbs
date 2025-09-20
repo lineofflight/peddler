@@ -1,0 +1,33 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class AccessPoint < Data
+        attr_reader access_point_id: String?
+        attr_reader name: String?
+        attr_reader timezone: String?
+        attr_reader type: String?
+        attr_reader accessibility_attributes: AccessibilityAttributes?
+        attr_reader address: Address?
+        attr_reader exception_operating_hours: Array[ExceptionOperatingHours]?
+        attr_reader assistance_type: String?
+        attr_reader score: String?
+        attr_reader standard_operating_hours: DayOfWeekTimeMap?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?access_point_id: String,
+          ?name: String,
+          ?timezone: String,
+          ?type: String,
+          ?accessibility_attributes: AccessibilityAttributes,
+          ?address: Address,
+          ?exception_operating_hours: Array[ExceptionOperatingHours],
+          ?assistance_type: String,
+          ?score: String,
+          ?standard_operating_hours: DayOfWeekTimeMap
+        ) -> void
+      end
+    end
+  end
+end

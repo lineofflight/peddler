@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentPaymentsV1
+      class TaxDetail < Data
+        attr_reader tax_type: String
+        attr_reader tax_rate: Float?
+        attr_reader tax_amount: Money
+        attr_reader taxable_amount: Money?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          tax_type: String,
+          ?tax_rate: Float,
+          tax_amount: Money,
+          ?taxable_amount: Money
+        ) -> void
+      end
+    end
+  end
+end

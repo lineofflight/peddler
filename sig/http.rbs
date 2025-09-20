@@ -1,0 +1,23 @@
+# Minimal HTTP singleton method declarations missing from rbs_collection
+module HTTP
+  def self.headers: (Hash[String, String?]) -> HTTP::Client
+  def self.get: (String uri, **untyped options) -> HTTP::Response
+  def self.post: (String uri, **untyped options) -> HTTP::Response
+  def self.put: (String uri, **untyped options) -> HTTP::Response
+  def self.delete: (String uri, **untyped options) -> HTTP::Response
+  def self.patch: (String uri, **untyped options) -> HTTP::Response
+
+  class Client
+    def get: (String uri, **untyped options) -> HTTP::Response
+    def post: (String uri, **untyped options) -> HTTP::Response
+    def put: (String uri, **untyped options) -> HTTP::Response
+    def delete: (String uri, **untyped options) -> HTTP::Response
+    def patch: (String uri, **untyped options) -> HTTP::Response
+  end
+
+  class Response
+    # HTTP::Response implements to_str to return the body as a string
+    # This allows implicit string conversion for JSON.parse and other string operations
+    def to_str: () -> String
+  end
+end

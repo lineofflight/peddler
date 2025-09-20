@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "structure"
+require "peddler/types/product_pricing_2022_05_01/segmented_featured_offer"
 
 module Peddler
   module Types
@@ -16,7 +16,7 @@ module Peddler
         # @return [Array<SegmentedFeaturedOffer>] A list of segmented featured offers for the current buying option
         # type. A segment can be considered as a group of regional contexts that all have the same featured offer. A
         # regional context is a combination of factors such as customer type, region, or postal code and buying option.
-        attribute(:segmented_featured_offers, Array, from: "segmentedFeaturedOffers")
+        attribute(:segmented_featured_offers, [SegmentedFeaturedOffer], from: "segmentedFeaturedOffers")
       end
     end
   end

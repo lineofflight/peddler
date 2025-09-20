@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module SolicitationsV1
+      class GetSchemaResponse < Data
+        attr_reader _links: Hash[String, untyped]?
+        attr_reader payload: Schema?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?_links: Hash[String, untyped],
+          ?payload: Schema,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

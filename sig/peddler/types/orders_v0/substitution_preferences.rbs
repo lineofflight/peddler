@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class SubstitutionPreferences < Data
+        attr_reader substitution_type: String
+        attr_reader substitution_options: Array[SubstitutionOption]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          substitution_type: String,
+          ?substitution_options: Array[SubstitutionOption]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class FeaturedOfferExpectedPriceRequest < Data
+        attr_reader uri: String
+        attr_reader method: String
+        attr_reader body: untyped?
+        attr_reader headers: HttpHeaders?
+        attr_reader marketplace_id: String
+        attr_reader sku: String
+        attr_reader segment: Segment?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          uri: String,
+          method: String,
+          ?body: untyped,
+          ?headers: HttpHeaders,
+          marketplace_id: String,
+          sku: String,
+          ?segment: Segment
+        ) -> void
+      end
+    end
+  end
+end

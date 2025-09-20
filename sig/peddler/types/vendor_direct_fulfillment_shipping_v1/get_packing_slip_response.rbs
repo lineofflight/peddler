@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShippingV1
+      class GetPackingSlipResponse < Data
+        attr_reader payload: PackingSlip?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: PackingSlip,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Carton < Data
+        attr_reader carton_identifiers: Array[ContainerIdentification]?
+        attr_reader carton_sequence_number: String
+        attr_reader dimensions: Dimensions?
+        attr_reader weight: Weight?
+        attr_reader tracking_number: String?
+        attr_reader items: Array[ContainerItem]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?carton_identifiers: Array[ContainerIdentification],
+          carton_sequence_number: String,
+          ?dimensions: Dimensions,
+          ?weight: Weight,
+          ?tracking_number: String,
+          items: Array[ContainerItem]
+        ) -> void
+      end
+    end
+  end
+end

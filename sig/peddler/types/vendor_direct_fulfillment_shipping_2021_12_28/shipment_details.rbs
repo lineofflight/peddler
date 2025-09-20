@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class ShipmentDetails < Data
+        attr_reader shipped_date: String
+        attr_reader shipment_status: String
+        attr_reader priority_shipment: bool?
+        attr_reader vendor_order_number: String?
+        attr_reader estimated_delivery_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipped_date: String,
+          shipment_status: String,
+          ?priority_shipment: bool,
+          ?vendor_order_number: String,
+          ?estimated_delivery_date: String
+        ) -> void
+      end
+    end
+  end
+end

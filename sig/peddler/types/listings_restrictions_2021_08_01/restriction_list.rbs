@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ListingsRestrictions20210801
+      class RestrictionList < Data
+        attr_reader restrictions: Array[Restriction]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          restrictions: Array[Restriction]
+        ) -> void
+      end
+    end
+  end
+end

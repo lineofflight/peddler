@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Invoices20240619
+      class ExportInvoicesResponse < Data
+        attr_reader export_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?export_id: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module DataKiosk20231115
+      class CreateQueryResponse < Data
+        attr_reader query_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          query_id: String
+        ) -> void
+      end
+    end
+  end
+end

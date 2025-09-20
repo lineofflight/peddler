@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class UnmanifestedCarrierInformation < Data
+        attr_reader carrier_id: String?
+        attr_reader carrier_name: String?
+        attr_reader unmanifested_shipment_location_list: Array[UnmanifestedShipmentLocation]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?carrier_id: String,
+          ?carrier_name: String,
+          ?unmanifested_shipment_location_list: Array[UnmanifestedShipmentLocation]
+        ) -> void
+      end
+    end
+  end
+end

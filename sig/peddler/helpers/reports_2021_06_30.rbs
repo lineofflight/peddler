@@ -1,0 +1,14 @@
+module Peddler
+  module Helpers
+    module Reports20210630
+      def download_report_document: (String report_document_id_or_url) -> Peddler::Response
+
+      # This method is expected to be defined by the API class that includes this helper
+      def get_report_document: (String report_document_id) -> Peddler::Response
+
+      private
+
+      def download_report_document_from_url: (String download_url) -> Peddler::Response
+    end
+  end
+end

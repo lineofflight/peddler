@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class VendorDirectFulfillmentPaymentsV1 < API
+      def submit_invoice: (untyped) -> Peddler::Response
+    end
+  end
+end

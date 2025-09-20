@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ContainerIdentification < Data
+        attr_reader container_identification_type: String
+        attr_reader container_identification_number: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          container_identification_type: String,
+          container_identification_number: String
+        ) -> void
+      end
+    end
+  end
+end

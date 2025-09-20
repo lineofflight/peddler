@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class GetSelfShipAppointmentSlotsResponse < Data
+        attr_reader pagination: Pagination?
+        attr_reader self_ship_appointment_slots_availability: SelfShipAppointmentSlotsAvailability
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          self_ship_appointment_slots_availability: SelfShipAppointmentSlotsAvailability
+        ) -> void
+      end
+    end
+  end
+end

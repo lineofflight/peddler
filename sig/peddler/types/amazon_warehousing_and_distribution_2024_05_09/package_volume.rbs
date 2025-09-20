@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class PackageVolume < Data
+        attr_reader unit_of_measurement: String
+        attr_reader volume: Float
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          unit_of_measurement: String,
+          volume: Float
+        ) -> void
+      end
+    end
+  end
+end

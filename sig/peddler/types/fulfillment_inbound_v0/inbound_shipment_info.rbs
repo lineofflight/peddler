@@ -1,0 +1,33 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class InboundShipmentInfo < Data
+        attr_reader shipment_id: String?
+        attr_reader shipment_name: String?
+        attr_reader ship_from_address: Address
+        attr_reader destination_fulfillment_center_id: String?
+        attr_reader shipment_status: String?
+        attr_reader label_prep_type: String?
+        attr_reader are_cases_required: bool
+        attr_reader confirmed_need_by_date: String?
+        attr_reader box_contents_source: String?
+        attr_reader estimated_box_contents_fee: BoxContentsFeeDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?shipment_id: String,
+          ?shipment_name: String,
+          ship_from_address: Address,
+          ?destination_fulfillment_center_id: String,
+          ?shipment_status: String,
+          ?label_prep_type: String,
+          are_cases_required: bool,
+          ?confirmed_need_by_date: String,
+          ?box_contents_source: String,
+          ?estimated_box_contents_fee: BoxContentsFeeDetails
+        ) -> void
+      end
+    end
+  end
+end

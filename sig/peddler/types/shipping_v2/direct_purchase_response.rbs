@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class DirectPurchaseResponse < Data
+        attr_reader payload: DirectPurchaseResult?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: DirectPurchaseResult
+        ) -> void
+      end
+    end
+  end
+end

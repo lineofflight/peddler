@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class CollectFreightPickupDetails < Data
+        attr_reader requested_pick_up: String?
+        attr_reader scheduled_pick_up: String?
+        attr_reader carrier_assignment_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?requested_pick_up: String,
+          ?scheduled_pick_up: String,
+          ?carrier_assignment_date: String
+        ) -> void
+      end
+    end
+  end
+end

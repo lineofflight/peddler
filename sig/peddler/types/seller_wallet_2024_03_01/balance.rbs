@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class Balance < Data
+        attr_reader account_id: String
+        attr_reader balance_type: String?
+        attr_reader balance_amount: Float
+        attr_reader balance_currency: String
+        attr_reader last_update_date: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          account_id: String,
+          ?balance_type: String,
+          balance_amount: Float,
+          balance_currency: String,
+          last_update_date: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardTechSpecsModule < Data
+        attr_reader headline: TextComponent?
+        attr_reader specification_list: Array[StandardTextPairBlock]
+        attr_reader table_count: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?headline: TextComponent,
+          specification_list: Array[StandardTextPairBlock],
+          ?table_count: Integer
+        ) -> void
+      end
+    end
+  end
+end

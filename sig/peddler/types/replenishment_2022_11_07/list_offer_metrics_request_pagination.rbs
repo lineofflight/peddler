@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class ListOfferMetricsRequestPagination < Data
+        attr_reader limit: Integer
+        attr_reader offset: Integer
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          limit: Integer,
+          offset: Integer
+        ) -> void
+      end
+    end
+  end
+end

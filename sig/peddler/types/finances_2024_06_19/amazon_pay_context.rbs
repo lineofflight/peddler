@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class AmazonPayContext < Data
+        attr_reader store_name: String?
+        attr_reader order_type: String?
+        attr_reader channel: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?store_name: String,
+          ?order_type: String,
+          ?channel: String
+        ) -> void
+      end
+    end
+  end
+end

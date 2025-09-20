@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShippingV1
+      class Item < Data
+        attr_reader item_sequence_number: Integer
+        attr_reader buyer_product_identifier: String?
+        attr_reader vendor_product_identifier: String?
+        attr_reader shipped_quantity: ItemQuantity
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          item_sequence_number: Integer,
+          ?buyer_product_identifier: String,
+          ?vendor_product_identifier: String,
+          shipped_quantity: ItemQuantity
+        ) -> void
+      end
+    end
+  end
+end

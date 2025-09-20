@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class InStorePickupConfiguration < Data
+        attr_reader supported: bool?
+        attr_reader parking_configuration: ParkingConfiguration?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?supported: bool,
+          ?parking_configuration: ParkingConfiguration
+        ) -> void
+      end
+    end
+  end
+end

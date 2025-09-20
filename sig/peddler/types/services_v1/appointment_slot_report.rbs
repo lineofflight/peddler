@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class AppointmentSlotReport < Data
+        attr_reader scheduling_type: String?
+        attr_reader start_time: String?
+        attr_reader end_time: String?
+        attr_reader appointment_slots: Array[AppointmentSlot]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?scheduling_type: String,
+          ?start_time: String,
+          ?end_time: String,
+          ?appointment_slots: Array[AppointmentSlot]
+        ) -> void
+      end
+    end
+  end
+end

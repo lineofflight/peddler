@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "peddler/types/supply_sources_2020_07_01/operational_configuration"
+require "peddler/types/supply_sources_2020_07_01/parking_with_address_configuration"
 
 module Peddler
   module Types
@@ -13,8 +14,9 @@ module Peddler
         # @return [OperationalConfiguration] The operational configuration for the curbside pickup configuration.
         attribute(:operational_configuration, OperationalConfiguration, from: "operationalConfiguration")
 
-        # @return [Hash] The parking configuration for curbside pickup with address for customers to use.
-        attribute(:parking_with_address_configuration, Hash, from: "parkingWithAddressConfiguration")
+        # @return [ParkingWithAddressConfiguration] The parking configuration for curbside pickup with address for
+        # customers to use.
+        attribute(:parking_with_address_configuration, ParkingWithAddressConfiguration, from: "parkingWithAddressConfiguration")
       end
     end
   end

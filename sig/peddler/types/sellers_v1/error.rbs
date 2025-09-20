@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module SellersV1
+      class Error < Data
+        attr_reader code: String
+        attr_reader message: String
+        attr_reader details: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          code: String,
+          message: String,
+          ?details: String
+        ) -> void
+      end
+    end
+  end
+end

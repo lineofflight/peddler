@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ListTransportationOptionsResponse < Data
+        attr_reader pagination: Pagination?
+        attr_reader transportation_options: Array[TransportationOption]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          transportation_options: Array[TransportationOption]
+        ) -> void
+      end
+    end
+  end
+end

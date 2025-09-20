@@ -1,0 +1,45 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class InboundShipment < Data
+        attr_reader carrier_code: CarrierCode?
+        attr_reader created_at: String?
+        attr_reader destination_address: Address
+        attr_reader external_reference_id: String?
+        attr_reader order_id: String
+        attr_reader origin_address: Address
+        attr_reader received_quantity: Array[InventoryQuantity]?
+        attr_reader ship_by: String?
+        attr_reader shipment_container_quantities: Array[DistributionPackageQuantity]
+        attr_reader shipment_id: String
+        attr_reader shipment_sku_quantities: Array[SkuQuantity]?
+        attr_reader destination_region: String?
+        attr_reader shipment_status: String
+        attr_reader tracking_id: String?
+        attr_reader updated_at: String?
+        attr_reader warehouse_reference_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?carrier_code: CarrierCode,
+          ?created_at: String,
+          destination_address: Address,
+          ?external_reference_id: String,
+          order_id: String,
+          origin_address: Address,
+          ?received_quantity: Array[InventoryQuantity],
+          ?ship_by: String,
+          shipment_container_quantities: Array[DistributionPackageQuantity],
+          shipment_id: String,
+          ?shipment_sku_quantities: Array[SkuQuantity],
+          ?destination_region: String,
+          shipment_status: String,
+          ?tracking_id: String,
+          ?updated_at: String,
+          ?warehouse_reference_id: String
+        ) -> void
+      end
+    end
+  end
+end

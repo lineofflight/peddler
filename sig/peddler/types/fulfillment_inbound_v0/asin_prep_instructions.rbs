@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class ASINPrepInstructions < Data
+        attr_reader asin: String?
+        attr_reader barcode_instruction: String?
+        attr_reader prep_guidance: String?
+        attr_reader prep_instruction_list: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?barcode_instruction: String,
+          ?prep_guidance: String,
+          ?prep_instruction_list: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,41 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class OrderDetails < Data
+        attr_reader purchase_order_date: String
+        attr_reader purchase_order_changed_date: String?
+        attr_reader purchase_order_state_changed_date: String
+        attr_reader purchase_order_type: String?
+        attr_reader import_details: ImportDetails?
+        attr_reader deal_code: String?
+        attr_reader payment_method: String?
+        attr_reader buying_party: PartyIdentification?
+        attr_reader selling_party: PartyIdentification?
+        attr_reader ship_to_party: PartyIdentification?
+        attr_reader bill_to_party: PartyIdentification?
+        attr_reader ship_window: String?
+        attr_reader delivery_window: String?
+        attr_reader items: Array[OrderItem]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          purchase_order_date: String,
+          ?purchase_order_changed_date: String,
+          purchase_order_state_changed_date: String,
+          ?purchase_order_type: String,
+          ?import_details: ImportDetails,
+          ?deal_code: String,
+          ?payment_method: String,
+          ?buying_party: PartyIdentification,
+          ?selling_party: PartyIdentification,
+          ?ship_to_party: PartyIdentification,
+          ?bill_to_party: PartyIdentification,
+          ?ship_window: String,
+          ?delivery_window: String,
+          items: Array[OrderItem]
+        ) -> void
+      end
+    end
+  end
+end

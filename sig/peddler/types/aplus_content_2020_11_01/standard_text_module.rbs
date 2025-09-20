@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardTextModule < Data
+        attr_reader headline: TextComponent?
+        attr_reader body: ParagraphComponent
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?headline: TextComponent,
+          body: ParagraphComponent
+        ) -> void
+      end
+    end
+  end
+end

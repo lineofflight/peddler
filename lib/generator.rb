@@ -8,6 +8,8 @@ require "generator/logger"
 require "generator/api"
 require "generator/type"
 require "generator/entrypoint"
+require "generator/rbs_type"
+require "generator/rbs_api"
 
 # NOTE: Test generation was explored but removed due to Amazon SP-API sandbox limitations. Most APIs require special
 # roles (vendor, finance, restricted shipping) that aren't available in standard sandbox environments, resulting in ~60%
@@ -28,6 +30,7 @@ module Generator
       generate_types!
       generate_types_index_files!
       generate_entry_point!
+      generate_rbs_signatures!
       format_code!
 
       logger.info("Code generation completed successfully!")
@@ -61,6 +64,13 @@ module Generator
     def initialize_directories!
       ["apis", "types"].each do |dir_name|
         dir_path = File.join(Config::BASE_PATH, "lib/peddler/#{dir_name}")
+        FileUtils.rm_rf(dir_path)
+        FileUtils.mkdir_p(dir_path)
+      end
+
+      # Initialize RBS directories
+      ["peddler/apis", "peddler/types"].each do |dir_name|
+        dir_path = File.join(Config::BASE_PATH, "sig/#{dir_name}")
         FileUtils.rm_rf(dir_path)
         FileUtils.mkdir_p(dir_path)
       end
@@ -99,6 +109,30 @@ module Generator
       logger.info("Generated entry point")
     end
 
+    def generate_rbs_signatures!
+      # Generate RBS signatures for types
+      rbs_type_count = 0
+      apis.each do |api|
+        api.openapi_spec["definitions"]&.each do |name, definition|
+          next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
+          next if name == "Money"
+
+          type = Type.new(name, definition, api.name_with_version, api.openapi_spec)
+          rbs_type = RBSType.new(type, api.name_with_version, api.openapi_spec)
+          rbs_type.generate
+          rbs_type_count += 1
+        end
+      end
+      logger.info("Generated #{rbs_type_count} RBS type signatures")
+
+      # Generate RBS signatures for APIs
+      apis.each do |api|
+        rbs_api = RBSApi.new(api, api.name_with_version)
+        rbs_api.generate
+      end
+      logger.info("Generated #{apis.size} RBS API signatures")
+    end
+
     def format_code!
       unless system("bundle exec rubocop --version > /dev/null 2>&1")
         raise "RuboCop is not available in the bundle. Please add it to your Gemfile or run 'bundle install'."
@@ -130,8 +164,8 @@ module Generator
 
       apis.each do |api|
         api.openapi_spec["definitions"].each do |name, definition|
-          # Skip non-object definitions
-          next unless definition["type"] == "object"
+          # Skip non-object definitions (but allow allOf compositions and arrays)
+          next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
           # Skip Money types as we use the Money gem for these
           next if name == "Money"
 

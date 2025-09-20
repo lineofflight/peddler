@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class GeneratePlacementOptionsRequest < Data
+        attr_reader custom_placement: Array[CustomPlacementInput]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?custom_placement: Array[CustomPlacementInput]
+        ) -> void
+      end
+    end
+  end
+end

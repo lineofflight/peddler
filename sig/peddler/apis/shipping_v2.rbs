@@ -1,0 +1,25 @@
+module Peddler
+  module APIs
+    class ShippingV2 < API
+      def get_rates: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def direct_purchase_shipment: (untyped, ?x_amzn_idempotency_key: String, ?locale: String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def purchase_shipment: (untyped, ?x_amzn_idempotency_key: String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def one_click_shipment: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_tracking: (String, String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_shipment_documents: (String, String, ?format: String, ?dpi: Float, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def cancel_shipment: (String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_additional_inputs: (String, String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_carrier_account_form_inputs: (?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_carrier_accounts: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def link_carrier_account: (String, untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def unlink_carrier_account: (String, untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def generate_collection_form: (untyped, ?x_amzn_idempotency_key: String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_collection_form_history: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_unmanifested_shipments: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_collection_form: (String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def get_access_points: (Array[String], String, String, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def submit_ndr_feedback: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+      def create_claim: (untyped, ?x_amzn_shipping_business_id: String) -> Peddler::Response
+    end
+  end
+end

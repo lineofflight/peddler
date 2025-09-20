@@ -1,0 +1,45 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class ContentModule < Data
+        attr_reader content_module_type: String
+        attr_reader standard_company_logo: StandardCompanyLogoModule?
+        attr_reader standard_comparison_table: StandardComparisonTableModule?
+        attr_reader standard_four_image_text: StandardFourImageTextModule?
+        attr_reader standard_four_image_text_quadrant: StandardFourImageTextQuadrantModule?
+        attr_reader standard_header_image_text: StandardHeaderImageTextModule?
+        attr_reader standard_image_sidebar: StandardImageSidebarModule?
+        attr_reader standard_image_text_overlay: StandardImageTextOverlayModule?
+        attr_reader standard_multiple_image_text: StandardMultipleImageTextModule?
+        attr_reader standard_product_description: StandardProductDescriptionModule?
+        attr_reader standard_single_image_highlights: StandardSingleImageHighlightsModule?
+        attr_reader standard_single_image_specs_detail: StandardSingleImageSpecsDetailModule?
+        attr_reader standard_single_side_image: StandardSingleSideImageModule?
+        attr_reader standard_tech_specs: StandardTechSpecsModule?
+        attr_reader standard_text: StandardTextModule?
+        attr_reader standard_three_image_text: StandardThreeImageTextModule?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          content_module_type: String,
+          ?standard_company_logo: StandardCompanyLogoModule,
+          ?standard_comparison_table: StandardComparisonTableModule,
+          ?standard_four_image_text: StandardFourImageTextModule,
+          ?standard_four_image_text_quadrant: StandardFourImageTextQuadrantModule,
+          ?standard_header_image_text: StandardHeaderImageTextModule,
+          ?standard_image_sidebar: StandardImageSidebarModule,
+          ?standard_image_text_overlay: StandardImageTextOverlayModule,
+          ?standard_multiple_image_text: StandardMultipleImageTextModule,
+          ?standard_product_description: StandardProductDescriptionModule,
+          ?standard_single_image_highlights: StandardSingleImageHighlightsModule,
+          ?standard_single_image_specs_detail: StandardSingleImageSpecsDetailModule,
+          ?standard_single_side_image: StandardSingleSideImageModule,
+          ?standard_tech_specs: StandardTechSpecsModule,
+          ?standard_text: StandardTextModule,
+          ?standard_three_image_text: StandardThreeImageTextModule
+        ) -> void
+      end
+    end
+  end
+end

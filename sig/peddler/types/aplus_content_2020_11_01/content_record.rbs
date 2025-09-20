@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class ContentRecord < Data
+        attr_reader content_reference_key: String
+        attr_reader content_metadata: ContentMetadata?
+        attr_reader content_document: ContentDocument?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          content_reference_key: String,
+          ?content_metadata: ContentMetadata,
+          ?content_document: ContentDocument
+        ) -> void
+      end
+    end
+  end
+end

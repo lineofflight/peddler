@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class SAFETReimbursementItem < Data
+        attr_reader item_charge_list: Array[ChargeComponent]?
+        attr_reader product_description: String?
+        attr_reader quantity: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?item_charge_list: Array[ChargeComponent],
+          ?product_description: String,
+          ?quantity: String
+        ) -> void
+      end
+    end
+  end
+end

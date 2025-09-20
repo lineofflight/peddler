@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class GetPrepInstructionsResult < Data
+        attr_reader sku_prep_instructions_list: Array[SKUPrepInstructions]?
+        attr_reader invalid_sku_list: Array[InvalidSKU]?
+        attr_reader asin_prep_instructions_list: Array[ASINPrepInstructions]?
+        attr_reader invalid_asin_list: Array[InvalidASIN]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?sku_prep_instructions_list: Array[SKUPrepInstructions],
+          ?invalid_sku_list: Array[InvalidSKU],
+          ?asin_prep_instructions_list: Array[ASINPrepInstructions],
+          ?invalid_asin_list: Array[InvalidASIN]
+        ) -> void
+      end
+    end
+  end
+end

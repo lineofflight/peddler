@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class Order < Data
+        attr_reader purchase_order_number: String
+        attr_reader purchase_order_state: String
+        attr_reader order_details: OrderDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          purchase_order_number: String,
+          purchase_order_state: String,
+          ?order_details: OrderDetails
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class TaxRate < Data
+        attr_reader cess_rate: Float?
+        attr_reader gst_rate: Float?
+        attr_reader tax_type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?cess_rate: Float,
+          ?gst_rate: Float,
+          ?tax_type: String
+        ) -> void
+      end
+    end
+  end
+end

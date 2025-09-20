@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class ServiceDocumentUploadDestination < Data
+        attr_reader upload_destination_id: String
+        attr_reader url: String
+        attr_reader encryption_details: EncryptionDetails
+        attr_reader headers: Hash[String, untyped]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          upload_destination_id: String,
+          url: String,
+          encryption_details: EncryptionDetails,
+          ?headers: Hash[String, untyped]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetCollectionFormResponse < Data
+        attr_reader collections_form_document: CollectionsFormDocument?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?collections_form_document: CollectionsFormDocument
+        ) -> void
+      end
+    end
+  end
+end

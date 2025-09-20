@@ -1,0 +1,37 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class Item < Data
+        attr_reader item_value: Currency?
+        attr_reader description: String?
+        attr_reader item_identifier: String?
+        attr_reader quantity: Integer
+        attr_reader weight: Weight?
+        attr_reader liquid_volume: LiquidVolume?
+        attr_reader hazmat: bool?
+        attr_reader dangerous_goods_details: DangerousGoodsDetails?
+        attr_reader product_type: String?
+        attr_reader invoice_details: InvoiceDetails?
+        attr_reader serial_numbers: Array[String]?
+        attr_reader direct_fulfillment_item_identifiers: DirectFulfillmentItemIdentifiers?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?item_value: Currency,
+          ?description: String,
+          ?item_identifier: String,
+          quantity: Integer,
+          ?weight: Weight,
+          ?liquid_volume: LiquidVolume,
+          ?hazmat: bool,
+          ?dangerous_goods_details: DangerousGoodsDetails,
+          ?product_type: String,
+          ?invoice_details: InvoiceDetails,
+          ?serial_numbers: Array[String],
+          ?direct_fulfillment_item_identifiers: DirectFulfillmentItemIdentifiers
+        ) -> void
+      end
+    end
+  end
+end

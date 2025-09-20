@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class ProcessingDirective < Data
+        attr_reader event_filter: untyped?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?event_filter: untyped
+        ) -> void
+      end
+    end
+  end
+end

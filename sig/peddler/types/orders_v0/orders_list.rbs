@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class OrdersList < Data
+        attr_reader orders: Array[Order]
+        attr_reader next_token: String?
+        attr_reader last_updated_before: String?
+        attr_reader created_before: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          orders: Array[Order],
+          ?next_token: String,
+          ?last_updated_before: String,
+          ?created_before: String
+        ) -> void
+      end
+    end
+  end
+end

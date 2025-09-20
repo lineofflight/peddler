@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class ItemOffersRequest < Data
+        attr_reader uri: String
+        attr_reader method: String
+        attr_reader headers: HttpRequestHeaders?
+        attr_reader marketplace_id: String
+        attr_reader item_condition: String
+        attr_reader customer_type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          uri: String,
+          method: String,
+          ?headers: HttpRequestHeaders,
+          marketplace_id: String,
+          item_condition: String,
+          ?customer_type: String
+        ) -> void
+      end
+    end
+  end
+end

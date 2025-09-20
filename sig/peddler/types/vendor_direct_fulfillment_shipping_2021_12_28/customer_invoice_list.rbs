@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class CustomerInvoiceList < Data
+        attr_reader pagination: Pagination?
+        attr_reader customer_invoices: Array[CustomerInvoice]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          ?customer_invoices: Array[CustomerInvoice]
+        ) -> void
+      end
+    end
+  end
+end

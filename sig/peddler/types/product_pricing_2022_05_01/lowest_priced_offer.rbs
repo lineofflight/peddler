@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class LowestPricedOffer < Data
+        attr_reader lowest_priced_offers_input: Hash[String, untyped]
+        attr_reader offers: Array[Offer]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          lowest_priced_offers_input: Hash[String, untyped],
+          offers: Array[Offer]
+        ) -> void
+      end
+    end
+  end
+end

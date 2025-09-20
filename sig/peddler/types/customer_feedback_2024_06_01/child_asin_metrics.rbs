@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class ChildAsinMetrics < Data
+        attr_reader most_mentions: ChildAsinMentionMetrics?
+        attr_reader least_mentions: ChildAsinMentionMetrics?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?most_mentions: ChildAsinMentionMetrics,
+          ?least_mentions: ChildAsinMentionMetrics
+        ) -> void
+      end
+    end
+  end
+end

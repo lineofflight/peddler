@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ConfirmTransportationOptionsRequest < Data
+        attr_reader transportation_selections: Array[TransportationSelection]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          transportation_selections: Array[TransportationSelection]
+        ) -> void
+      end
+    end
+  end
+end

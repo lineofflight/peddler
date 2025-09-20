@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class PackingConfiguration < Data
+        attr_reader box_packing_methods: Array[String]?
+        attr_reader box_requirements: BoxRequirements?
+        attr_reader shipping_requirements: Array[ShippingRequirements]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?box_packing_methods: Array[String],
+          ?box_requirements: BoxRequirements,
+          ?shipping_requirements: Array[ShippingRequirements]
+        ) -> void
+      end
+    end
+  end
+end

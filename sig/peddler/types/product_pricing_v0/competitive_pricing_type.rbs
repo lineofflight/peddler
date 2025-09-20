@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class CompetitivePricingType < Data
+        attr_reader competitive_prices: Array[CompetitivePriceType]
+        attr_reader number_of_offer_listings: Array[OfferListingCountType]
+        attr_reader trade_in_value: Money?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          competitive_prices: Array[CompetitivePriceType],
+          number_of_offer_listings: Array[OfferListingCountType],
+          ?trade_in_value: Money
+        ) -> void
+      end
+    end
+  end
+end

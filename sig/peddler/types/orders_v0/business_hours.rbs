@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class BusinessHours < Data
+        attr_reader day_of_week: String?
+        attr_reader open_intervals: Array[OpenInterval]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?day_of_week: String,
+          ?open_intervals: Array[OpenInterval]
+        ) -> void
+      end
+    end
+  end
+end

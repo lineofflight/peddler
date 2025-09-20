@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class TaxDetails < Data
+        attr_reader declared_value: Currency?
+        attr_reader hsn_code: String?
+        attr_reader tax_rates: Array[TaxRate]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?declared_value: Currency,
+          ?hsn_code: String,
+          ?tax_rates: Array[TaxRate]
+        ) -> void
+      end
+    end
+  end
+end

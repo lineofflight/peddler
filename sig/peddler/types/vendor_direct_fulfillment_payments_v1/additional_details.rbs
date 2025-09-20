@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentPaymentsV1
+      class AdditionalDetails < Data
+        attr_reader type: String
+        attr_reader detail: String
+        attr_reader language_code: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          type: String,
+          detail: String,
+          ?language_code: String
+        ) -> void
+      end
+    end
+  end
+end

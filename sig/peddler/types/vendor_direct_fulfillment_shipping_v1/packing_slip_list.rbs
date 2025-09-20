@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShippingV1
+      class PackingSlipList < Data
+        attr_reader pagination: Pagination?
+        attr_reader packing_slips: Array[PackingSlip]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          ?packing_slips: Array[PackingSlip]
+        ) -> void
+      end
+    end
+  end
+end

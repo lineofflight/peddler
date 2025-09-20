@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ListingsRestrictions20210801
+      class Reason < Data
+        attr_reader message: String
+        attr_reader reason_code: String?
+        attr_reader links: Array[Link]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          message: String,
+          ?reason_code: String,
+          ?links: Array[Link]
+        ) -> void
+      end
+    end
+  end
+end

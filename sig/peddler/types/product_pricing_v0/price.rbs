@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class Price < Data
+        attr_reader status: String
+        attr_reader seller_sku: String?
+        attr_reader asin: String?
+        attr_reader product: Product?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          status: String,
+          ?seller_sku: String,
+          ?asin: String,
+          ?product: Product
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class Event < Data
+        attr_reader event_code: String
+        attr_reader event_time: String
+        attr_reader location: Location?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          event_code: String,
+          event_time: String,
+          ?location: Location
+        ) -> void
+      end
+    end
+  end
+end

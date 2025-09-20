@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module DataKiosk20231115
+      class GetQueriesResponse < Data
+        attr_reader queries: Array[Query]
+        attr_reader pagination: Hash[String, untyped]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          queries: Array[Query],
+          ?pagination: Hash[String, untyped]
+        ) -> void
+      end
+    end
+  end
+end

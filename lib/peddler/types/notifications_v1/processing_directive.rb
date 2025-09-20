@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "structure"
+require "peddler/types/notifications_v1/event_filter"
 
 module Peddler
   module Types
@@ -13,8 +13,8 @@ module Peddler
       #
       # This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` `notificationType`s.
       ProcessingDirective = Structure.new do
-        # @return [Hash] A `notificationType` specific filter.
-        attribute(:event_filter, Hash, from: "eventFilter")
+        # @return [EventFilter] A `notificationType` specific filter.
+        attribute(:event_filter, EventFilter, from: "eventFilter")
       end
     end
   end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetRatesResult < Data
+        attr_reader request_token: String
+        attr_reader rates: Array[Rate]
+        attr_reader ineligible_rates: Array[IneligibleRate]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          request_token: String,
+          rates: Array[Rate],
+          ?ineligible_rates: Array[IneligibleRate]
+        ) -> void
+      end
+    end
+  end
+end

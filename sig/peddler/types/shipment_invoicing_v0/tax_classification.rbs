@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShipmentInvoicingV0
+      class TaxClassification < Data
+        attr_reader name: String?
+        attr_reader value: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?name: String,
+          ?value: String
+        ) -> void
+      end
+    end
+  end
+end

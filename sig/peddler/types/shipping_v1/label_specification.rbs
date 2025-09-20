@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class LabelSpecification < Data
+        attr_reader label_format: String
+        attr_reader label_stock_size: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          label_format: String,
+          label_stock_size: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardSingleImageSpecsDetailModule < Data
+        attr_reader headline: TextComponent?
+        attr_reader image: ImageComponent?
+        attr_reader description_headline: TextComponent?
+        attr_reader description_block1: StandardTextBlock?
+        attr_reader description_block2: StandardTextBlock?
+        attr_reader specification_headline: TextComponent?
+        attr_reader specification_list_block: StandardHeaderTextListBlock?
+        attr_reader specification_text_block: StandardTextBlock?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?headline: TextComponent,
+          ?image: ImageComponent,
+          ?description_headline: TextComponent,
+          ?description_block1: StandardTextBlock,
+          ?description_block2: StandardTextBlock,
+          ?specification_headline: TextComponent,
+          ?specification_list_block: StandardHeaderTextListBlock,
+          ?specification_text_block: StandardTextBlock
+        ) -> void
+      end
+    end
+  end
+end

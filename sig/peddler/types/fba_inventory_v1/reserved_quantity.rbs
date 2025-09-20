@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FBAInventoryV1
+      class ReservedQuantity < Data
+        attr_reader total_reserved_quantity: Integer?
+        attr_reader pending_customer_order_quantity: Integer?
+        attr_reader pending_transshipment_quantity: Integer?
+        attr_reader fc_processing_quantity: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?total_reserved_quantity: Integer,
+          ?pending_customer_order_quantity: Integer,
+          ?pending_transshipment_quantity: Integer,
+          ?fc_processing_quantity: Integer
+        ) -> void
+      end
+    end
+  end
+end

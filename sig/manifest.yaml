@@ -1,0 +1,10 @@
+dependencies:
+  - name: ruby/gem_rbs_collection
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    revision: main
+    repo_dir: gems
+    ignore: true
+  - name: http
+    version: '5.3'
+  - name: money
+    version: '6.0'

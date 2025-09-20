@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class DistributionPackage < Data
+        attr_reader contents: DistributionPackageContents
+        attr_reader measurements: MeasurementData
+        attr_reader type: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          contents: DistributionPackageContents,
+          measurements: MeasurementData,
+          type: String
+        ) -> void
+      end
+    end
+  end
+end

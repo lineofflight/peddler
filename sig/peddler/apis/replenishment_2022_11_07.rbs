@@ -1,0 +1,9 @@
+module Peddler
+  module APIs
+    class Replenishment20221107 < API
+      def get_selling_partner_metrics: (?body: untyped) -> Peddler::Response
+      def list_offer_metrics: (?body: untyped) -> Peddler::Response
+      def list_offers: (?body: untyped) -> Peddler::Response
+    end
+  end
+end

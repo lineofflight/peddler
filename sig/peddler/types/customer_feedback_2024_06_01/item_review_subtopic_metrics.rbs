@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class ItemReviewSubtopicMetrics < Data
+        attr_reader number_of_mentions: Integer
+        attr_reader occurrence_percentage: Float
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          number_of_mentions: Integer,
+          occurrence_percentage: Float
+        ) -> void
+      end
+    end
+  end
+end

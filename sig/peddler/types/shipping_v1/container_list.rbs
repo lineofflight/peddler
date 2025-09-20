@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class ContainerList < Array[Container]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

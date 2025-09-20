@@ -1,0 +1,47 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ShipmentConfirmation < Data
+        attr_reader shipment_identifier: String
+        attr_reader shipment_confirmation_type: String
+        attr_reader shipment_type: String?
+        attr_reader shipment_structure: String?
+        attr_reader transportation_details: TransportationDetailsForShipmentConfirmation?
+        attr_reader amazon_reference_number: String?
+        attr_reader shipment_confirmation_date: String
+        attr_reader shipped_date: String?
+        attr_reader estimated_delivery_date: String?
+        attr_reader selling_party: PartyIdentification
+        attr_reader ship_from_party: PartyIdentification
+        attr_reader ship_to_party: PartyIdentification
+        attr_reader shipment_measurements: ShipmentMeasurements?
+        attr_reader import_details: ImportDetails?
+        attr_reader shipped_items: Array[Item]
+        attr_reader cartons: Array[Carton]?
+        attr_reader pallets: Array[Pallet]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_identifier: String,
+          shipment_confirmation_type: String,
+          ?shipment_type: String,
+          ?shipment_structure: String,
+          ?transportation_details: TransportationDetailsForShipmentConfirmation,
+          ?amazon_reference_number: String,
+          shipment_confirmation_date: String,
+          ?shipped_date: String,
+          ?estimated_delivery_date: String,
+          selling_party: PartyIdentification,
+          ship_from_party: PartyIdentification,
+          ship_to_party: PartyIdentification,
+          ?shipment_measurements: ShipmentMeasurements,
+          ?import_details: ImportDetails,
+          shipped_items: Array[Item],
+          ?cartons: Array[Carton],
+          ?pallets: Array[Pallet]
+        ) -> void
+      end
+    end
+  end
+end

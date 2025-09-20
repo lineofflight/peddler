@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class VerificationDetails < Data
+        attr_reader prescription_detail: PrescriptionDetail?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?prescription_detail: PrescriptionDetail
+        ) -> void
+      end
+    end
+  end
+end

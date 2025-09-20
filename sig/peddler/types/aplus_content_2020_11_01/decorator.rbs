@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class Decorator < Data
+        attr_reader type: String?
+        attr_reader offset: Integer?
+        attr_reader length: Integer?
+        attr_reader depth: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?type: String,
+          ?offset: Integer,
+          ?length: Integer,
+          ?depth: Integer
+        ) -> void
+      end
+    end
+  end
+end

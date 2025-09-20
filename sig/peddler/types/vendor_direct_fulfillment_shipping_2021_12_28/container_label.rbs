@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class ContainerLabel < Data
+        attr_reader container_tracking_number: String?
+        attr_reader content: String
+        attr_reader format: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?container_tracking_number: String,
+          content: String,
+          format: String
+        ) -> void
+      end
+    end
+  end
+end

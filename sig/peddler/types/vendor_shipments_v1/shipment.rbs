@@ -1,0 +1,53 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Shipment < Data
+        attr_reader vendor_shipment_identifier: String
+        attr_reader transaction_type: String
+        attr_reader buyer_reference_number: String?
+        attr_reader transaction_date: String
+        attr_reader current_shipment_status: String?
+        attr_reader currentshipment_status_date: String?
+        attr_reader shipment_status_details: Array[ShipmentStatusDetails]?
+        attr_reader shipment_create_date: String?
+        attr_reader shipment_confirm_date: String?
+        attr_reader package_label_create_date: String?
+        attr_reader shipment_freight_term: String?
+        attr_reader selling_party: PartyIdentification
+        attr_reader ship_from_party: PartyIdentification
+        attr_reader ship_to_party: PartyIdentification
+        attr_reader shipment_measurements: TransportShipmentMeasurements?
+        attr_reader collect_freight_pickup_details: CollectFreightPickupDetails?
+        attr_reader purchase_orders: Array[PurchaseOrders]?
+        attr_reader import_details: ImportDetails?
+        attr_reader containers: Array[Containers]?
+        attr_reader transportation_details: TransportationDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          vendor_shipment_identifier: String,
+          transaction_type: String,
+          ?buyer_reference_number: String,
+          transaction_date: String,
+          ?current_shipment_status: String,
+          ?currentshipment_status_date: String,
+          ?shipment_status_details: Array[ShipmentStatusDetails],
+          ?shipment_create_date: String,
+          ?shipment_confirm_date: String,
+          ?package_label_create_date: String,
+          ?shipment_freight_term: String,
+          selling_party: PartyIdentification,
+          ship_from_party: PartyIdentification,
+          ship_to_party: PartyIdentification,
+          ?shipment_measurements: TransportShipmentMeasurements,
+          ?collect_freight_pickup_details: CollectFreightPickupDetails,
+          ?purchase_orders: Array[PurchaseOrders],
+          ?import_details: ImportDetails,
+          ?containers: Array[Containers],
+          ?transportation_details: TransportationDetails
+        ) -> void
+      end
+    end
+  end
+end

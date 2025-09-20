@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class RemovalShipmentItemAdjustment < Data
+        attr_reader removal_shipment_item_id: String?
+        attr_reader tax_collection_model: String?
+        attr_reader fulfillment_network_sku: String?
+        attr_reader adjusted_quantity: Integer?
+        attr_reader revenue_adjustment: Currency?
+        attr_reader tax_amount_adjustment: Currency?
+        attr_reader tax_withheld_adjustment: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?removal_shipment_item_id: String,
+          ?tax_collection_model: String,
+          ?fulfillment_network_sku: String,
+          ?adjusted_quantity: Integer,
+          ?revenue_adjustment: Currency,
+          ?tax_amount_adjustment: Currency,
+          ?tax_withheld_adjustment: Currency
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardMultipleImageTextModule < Data
+        attr_reader blocks: Array[StandardImageTextCaptionBlock]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?blocks: Array[StandardImageTextCaptionBlock]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class SetAppointmentFulfillmentDataRequest < Data
+        attr_reader estimated_arrival_time: DateTimeRange?
+        attr_reader fulfillment_time: FulfillmentTime?
+        attr_reader appointment_resources: Array[AppointmentResource]?
+        attr_reader fulfillment_documents: Array[FulfillmentDocument]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?estimated_arrival_time: DateTimeRange,
+          ?fulfillment_time: FulfillmentTime,
+          ?appointment_resources: Array[AppointmentResource],
+          ?fulfillment_documents: Array[FulfillmentDocument]
+        ) -> void
+      end
+    end
+  end
+end

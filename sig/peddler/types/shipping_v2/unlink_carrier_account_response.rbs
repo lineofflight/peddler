@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class UnlinkCarrierAccountResponse < Data
+        attr_reader unlinked: bool?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?unlinked: bool
+        ) -> void
+      end
+    end
+  end
+end

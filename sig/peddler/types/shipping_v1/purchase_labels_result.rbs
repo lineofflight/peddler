@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class PurchaseLabelsResult < Data
+        attr_reader shipment_id: String
+        attr_reader client_reference_id: String?
+        attr_reader accepted_rate: AcceptedRate
+        attr_reader label_results: Array[LabelResult]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_id: String,
+          ?client_reference_id: String,
+          accepted_rate: AcceptedRate,
+          label_results: Array[LabelResult]
+        ) -> void
+      end
+    end
+  end
+end

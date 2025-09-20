@@ -1,0 +1,9 @@
+module Peddler
+  module APIs
+    class ListingsItems20200901 < API
+      def delete_listings_item: (String, String, Array[String], ?issue_locale: String) -> Peddler::Response
+      def patch_listings_item: (String, String, Array[String], untyped, ?issue_locale: String) -> Peddler::Response
+      def put_listings_item: (String, String, Array[String], untyped, ?issue_locale: String) -> Peddler::Response
+    end
+  end
+end

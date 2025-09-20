@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ChargeRefundEventList < Array[ChargeRefundEvent]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

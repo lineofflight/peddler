@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class VendorTransactionStatusV1 < API
+      def get_transaction: (String) -> Peddler::Response
+    end
+  end
+end

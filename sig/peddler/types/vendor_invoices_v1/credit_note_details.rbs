@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module VendorInvoicesV1
+      class CreditNoteDetails < Data
+        attr_reader reference_invoice_number: String?
+        attr_reader debit_note_number: String?
+        attr_reader returns_reference_number: String?
+        attr_reader goods_return_date: String?
+        attr_reader rma_id: String?
+        attr_reader coop_reference_number: String?
+        attr_reader consignors_reference_number: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?reference_invoice_number: String,
+          ?debit_note_number: String,
+          ?returns_reference_number: String,
+          ?goods_return_date: String,
+          ?rma_id: String,
+          ?coop_reference_number: String,
+          ?consignors_reference_number: String
+        ) -> void
+      end
+    end
+  end
+end

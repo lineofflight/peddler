@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class PreferredDeliveryTime < Data
+        attr_reader business_hours: Array[BusinessHours]?
+        attr_reader exception_dates: Array[ExceptionDates]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?business_hours: Array[BusinessHours],
+          ?exception_dates: Array[ExceptionDates]
+        ) -> void
+      end
+    end
+  end
+end

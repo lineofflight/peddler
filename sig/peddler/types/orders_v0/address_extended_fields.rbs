@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class AddressExtendedFields < Data
+        attr_reader street_name: String?
+        attr_reader street_number: String?
+        attr_reader complement: String?
+        attr_reader neighborhood: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?street_name: String,
+          ?street_number: String,
+          ?complement: String,
+          ?neighborhood: String
+        ) -> void
+      end
+    end
+  end
+end

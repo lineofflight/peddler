@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ServiceFeeEventList < Array[ServiceFeeEvent]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

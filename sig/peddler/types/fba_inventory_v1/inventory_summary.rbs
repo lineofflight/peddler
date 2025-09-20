@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module FBAInventoryV1
+      class InventorySummary < Data
+        attr_reader asin: String?
+        attr_reader fn_sku: String?
+        attr_reader seller_sku: String?
+        attr_reader condition: String?
+        attr_reader inventory_details: InventoryDetails?
+        attr_reader last_updated_time: String?
+        attr_reader product_name: String?
+        attr_reader total_quantity: Integer?
+        attr_reader stores: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?fn_sku: String,
+          ?seller_sku: String,
+          ?condition: String,
+          ?inventory_details: InventoryDetails,
+          ?last_updated_time: String,
+          ?product_name: String,
+          ?total_quantity: Integer,
+          ?stores: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

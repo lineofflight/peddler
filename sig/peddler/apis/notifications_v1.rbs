@@ -1,0 +1,14 @@
+module Peddler
+  module APIs
+    class NotificationsV1 < API
+      def get_subscription: (String, ?payload_version: String) -> Peddler::Response
+      def create_subscription: (untyped, String) -> Peddler::Response
+      def get_subscription_by_id: (String, String) -> Peddler::Response
+      def delete_subscription_by_id: (String, String) -> Peddler::Response
+      def get_destinations: () -> Peddler::Response
+      def create_destination: (untyped) -> Peddler::Response
+      def get_destination: (String) -> Peddler::Response
+      def delete_destination: (String) -> Peddler::Response
+    end
+  end
+end

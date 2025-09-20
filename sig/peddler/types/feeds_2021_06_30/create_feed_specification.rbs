@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module Feeds20210630
+      class CreateFeedSpecification < Data
+        attr_reader feed_type: String
+        attr_reader marketplace_ids: Array[String]
+        attr_reader input_feed_document_id: String
+        attr_reader feed_options: FeedOptions?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          feed_type: String,
+          marketplace_ids: Array[String],
+          input_feed_document_id: String,
+          ?feed_options: FeedOptions
+        ) -> void
+      end
+    end
+  end
+end

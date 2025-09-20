@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class PostContentDocumentRequest < Data
+        attr_reader content_document: ContentDocument
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          content_document: ContentDocument
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ShipmentInformation < Data
+        attr_reader vendor_details: VendorDetails?
+        attr_reader buyer_reference_number: String?
+        attr_reader ship_to_party: PartyIdentification?
+        attr_reader ship_from_party: PartyIdentification?
+        attr_reader warehouse_id: String?
+        attr_reader master_tracking_id: String?
+        attr_reader total_label_count: Integer?
+        attr_reader ship_mode: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?vendor_details: VendorDetails,
+          ?buyer_reference_number: String,
+          ?ship_to_party: PartyIdentification,
+          ?ship_from_party: PartyIdentification,
+          ?warehouse_id: String,
+          ?master_tracking_id: String,
+          ?total_label_count: Integer,
+          ?ship_mode: String
+        ) -> void
+      end
+    end
+  end
+end

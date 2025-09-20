@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module FBAInventoryV1
+      class InventoryDetails < Data
+        attr_reader fulfillable_quantity: Integer?
+        attr_reader inbound_working_quantity: Integer?
+        attr_reader inbound_shipped_quantity: Integer?
+        attr_reader inbound_receiving_quantity: Integer?
+        attr_reader reserved_quantity: ReservedQuantity?
+        attr_reader researching_quantity: ResearchingQuantity?
+        attr_reader unfulfillable_quantity: UnfulfillableQuantity?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?fulfillable_quantity: Integer,
+          ?inbound_working_quantity: Integer,
+          ?inbound_shipped_quantity: Integer,
+          ?inbound_receiving_quantity: Integer,
+          ?reserved_quantity: ReservedQuantity,
+          ?researching_quantity: ResearchingQuantity,
+          ?unfulfillable_quantity: UnfulfillableQuantity
+        ) -> void
+      end
+    end
+  end
+end

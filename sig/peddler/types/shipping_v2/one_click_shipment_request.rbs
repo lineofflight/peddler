@@ -1,0 +1,39 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class OneClickShipmentRequest < Data
+        attr_reader ship_to: Address?
+        attr_reader ship_from: Address
+        attr_reader return_to: Address?
+        attr_reader ship_date: String?
+        attr_reader goods_owner: GoodsOwner?
+        attr_reader packages: Array[Package]
+        attr_reader value_added_services_details: Array[OneClickShipmentValueAddedService]?
+        attr_reader tax_details: Array[TaxDetail]?
+        attr_reader channel_details: ChannelDetails
+        attr_reader label_specifications: RequestedDocumentSpecification
+        attr_reader service_selection: ServiceSelection
+        attr_reader shipper_instruction: ShipperInstruction?
+        attr_reader destination_access_point_details: AccessPointDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?ship_to: Address,
+          ship_from: Address,
+          ?return_to: Address,
+          ?ship_date: String,
+          ?goods_owner: GoodsOwner,
+          packages: Array[Package],
+          ?value_added_services_details: Array[OneClickShipmentValueAddedService],
+          ?tax_details: Array[TaxDetail],
+          channel_details: ChannelDetails,
+          label_specifications: RequestedDocumentSpecification,
+          service_selection: ServiceSelection,
+          ?shipper_instruction: ShipperInstruction,
+          ?destination_access_point_details: AccessPointDetails
+        ) -> void
+      end
+    end
+  end
+end

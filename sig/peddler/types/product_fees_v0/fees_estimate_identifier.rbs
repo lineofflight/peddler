@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module ProductFeesV0
+      class FeesEstimateIdentifier < Data
+        attr_reader marketplace_id: String?
+        attr_reader seller_id: String?
+        attr_reader id_type: String?
+        attr_reader id_value: String?
+        attr_reader amazon_fulfilled: bool?
+        attr_reader price_to_estimate_fees: PriceToEstimateFees?
+        attr_reader seller_input_identifier: String?
+        attr_reader optional_fulfillment_program: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?marketplace_id: String,
+          ?seller_id: String,
+          ?id_type: String,
+          ?id_value: String,
+          ?amazon_fulfilled: bool,
+          ?price_to_estimate_fees: PriceToEstimateFees,
+          ?seller_input_identifier: String,
+          ?optional_fulfillment_program: String
+        ) -> void
+      end
+    end
+  end
+end

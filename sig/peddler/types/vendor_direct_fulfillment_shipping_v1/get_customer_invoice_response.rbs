@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShippingV1
+      class GetCustomerInvoiceResponse < Data
+        attr_reader payload: CustomerInvoice?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: CustomerInvoice,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

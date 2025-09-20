@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class AccessibilityAttributes < Data
+        attr_reader distance: String?
+        attr_reader drive_time: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?distance: String,
+          ?drive_time: Integer
+        ) -> void
+      end
+    end
+  end
+end

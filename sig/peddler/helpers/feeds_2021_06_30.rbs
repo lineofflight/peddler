@@ -1,0 +1,9 @@
+module Peddler
+  module Helpers
+    module Feeds20210630
+      def upload_feed_document: (String upload_url, String feed_content, String content_type) -> Peddler::Response
+
+      def download_result_feed_document: (String download_url) -> Peddler::Response
+    end
+  end
+end

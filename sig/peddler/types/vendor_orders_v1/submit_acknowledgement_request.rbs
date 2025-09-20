@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class SubmitAcknowledgementRequest < Data
+        attr_reader acknowledgements: Array[OrderAcknowledgement]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?acknowledgements: Array[OrderAcknowledgement]
+        ) -> void
+      end
+    end
+  end
+end

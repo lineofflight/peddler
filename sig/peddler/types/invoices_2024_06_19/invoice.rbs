@@ -1,0 +1,33 @@
+module Peddler
+  module Types
+    module Invoices20240619
+      class Invoice < Data
+        attr_reader date: String?
+        attr_reader error_code: String?
+        attr_reader external_invoice_id: String?
+        attr_reader gov_response: String?
+        attr_reader id: String?
+        attr_reader invoice_type: String?
+        attr_reader series: String?
+        attr_reader status: String?
+        attr_reader transaction_ids: Array[TransactionIdentifier]?
+        attr_reader transaction_type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?date: String,
+          ?error_code: String,
+          ?external_invoice_id: String,
+          ?gov_response: String,
+          ?id: String,
+          ?invoice_type: String,
+          ?series: String,
+          ?status: String,
+          ?transaction_ids: Array[TransactionIdentifier],
+          ?transaction_type: String
+        ) -> void
+      end
+    end
+  end
+end

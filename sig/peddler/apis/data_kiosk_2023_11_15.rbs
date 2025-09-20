@@ -1,0 +1,11 @@
+module Peddler
+  module APIs
+    class DataKiosk20231115 < API
+      def get_queries: (?processing_statuses: Array[String], ?page_size: Integer, ?created_since: String, ?created_until: String, ?pagination_token: String) -> Peddler::Response
+      def create_query: (untyped) -> Peddler::Response
+      def cancel_query: (String) -> Peddler::Response
+      def get_query: (String) -> Peddler::Response
+      def get_document: (String) -> Peddler::Response
+    end
+  end
+end

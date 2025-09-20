@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class InvalidASIN < Data
+        attr_reader asin: String?
+        attr_reader error_reason: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?error_reason: String
+        ) -> void
+      end
+    end
+  end
+end

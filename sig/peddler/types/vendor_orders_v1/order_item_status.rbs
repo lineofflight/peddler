@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class OrderItemStatus < Data
+        attr_reader item_sequence_number: String
+        attr_reader buyer_product_identifier: String?
+        attr_reader vendor_product_identifier: String?
+        attr_reader net_cost: Money?
+        attr_reader list_price: Money?
+        attr_reader ordered_quantity: Hash[String, untyped]?
+        attr_reader acknowledgement_status: Hash[String, untyped]?
+        attr_reader receiving_status: Hash[String, untyped]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          item_sequence_number: String,
+          ?buyer_product_identifier: String,
+          ?vendor_product_identifier: String,
+          ?net_cost: Money,
+          ?list_price: Money,
+          ?ordered_quantity: Hash[String, untyped],
+          ?acknowledgement_status: Hash[String, untyped],
+          ?receiving_status: Hash[String, untyped]
+        ) -> void
+      end
+    end
+  end
+end

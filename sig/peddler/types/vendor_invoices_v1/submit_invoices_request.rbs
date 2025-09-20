@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorInvoicesV1
+      class SubmitInvoicesRequest < Data
+        attr_reader invoices: Array[Invoice]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?invoices: Array[Invoice]
+        ) -> void
+      end
+    end
+  end
+end

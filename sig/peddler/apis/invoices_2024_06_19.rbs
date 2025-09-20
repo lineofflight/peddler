@@ -1,0 +1,13 @@
+module Peddler
+  module APIs
+    class Invoices20240619 < API
+      def get_invoices_attributes: (String) -> Peddler::Response
+      def get_invoices_document: (String) -> Peddler::Response
+      def create_invoices_export: (untyped) -> Peddler::Response
+      def get_invoices_exports: (String, ?date_start: String, ?next_token: String, ?page_size: Integer, ?date_end: String, ?status: String) -> Peddler::Response
+      def get_invoices_export: (String) -> Peddler::Response
+      def get_invoices: (String, ?transaction_identifier_name: String, ?page_size: Integer, ?date_end: String, ?transaction_type: String, ?transaction_identifier_id: String, ?date_start: String, ?series: String, ?next_token: String, ?sort_order: String, ?invoice_type: String, ?statuses: Array[String], ?external_invoice_id: String, ?sort_by: String) -> Peddler::Response
+      def get_invoice: (String, String) -> Peddler::Response
+    end
+  end
+end

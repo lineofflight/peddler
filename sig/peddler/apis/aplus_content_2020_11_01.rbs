@@ -1,0 +1,16 @@
+module Peddler
+  module APIs
+    class AplusContent20201101 < API
+      def search_content_documents: (String, ?page_token: String) -> Peddler::Response
+      def create_content_document: (String, untyped) -> Peddler::Response
+      def get_content_document: (String, String, Array[String]) -> Peddler::Response
+      def update_content_document: (String, String, untyped) -> Peddler::Response
+      def list_content_document_asin_relations: (String, String, ?included_data_set: Array[String], ?asin_set: Array[String], ?page_token: String) -> Peddler::Response
+      def post_content_document_asin_relations: (String, String, untyped) -> Peddler::Response
+      def validate_content_document_asin_relations: (String, untyped, ?asin_set: Array[String]) -> Peddler::Response
+      def search_content_publish_records: (String, String, ?page_token: String) -> Peddler::Response
+      def post_content_document_approval_submission: (String, String) -> Peddler::Response
+      def post_content_document_suspend_submission: (String, String) -> Peddler::Response
+    end
+  end
+end

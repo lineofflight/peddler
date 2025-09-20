@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class MskuPrepDetailInput < Data
+        attr_reader msku: String
+        attr_reader prep_category: String
+        attr_reader prep_types: Array[String]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          msku: String,
+          prep_category: String,
+          prep_types: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

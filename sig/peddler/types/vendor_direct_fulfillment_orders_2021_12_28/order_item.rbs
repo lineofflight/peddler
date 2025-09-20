@@ -1,0 +1,35 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrders20211228
+      class OrderItem < Data
+        attr_reader item_sequence_number: String
+        attr_reader buyer_product_identifier: String?
+        attr_reader vendor_product_identifier: String?
+        attr_reader title: String?
+        attr_reader ordered_quantity: ItemQuantity
+        attr_reader scheduled_delivery_shipment: ScheduledDeliveryShipment?
+        attr_reader gift_details: GiftDetails?
+        attr_reader net_price: Money
+        attr_reader tax_details: TaxItemDetails?
+        attr_reader total_price: Money?
+        attr_reader buyer_customized_info: BuyerCustomizedInfoDetail?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          item_sequence_number: String,
+          ?buyer_product_identifier: String,
+          ?vendor_product_identifier: String,
+          ?title: String,
+          ordered_quantity: ItemQuantity,
+          ?scheduled_delivery_shipment: ScheduledDeliveryShipment,
+          ?gift_details: GiftDetails,
+          net_price: Money,
+          ?tax_details: TaxItemDetails,
+          ?total_price: Money,
+          ?buyer_customized_info: BuyerCustomizedInfoDetail
+        ) -> void
+      end
+    end
+  end
+end

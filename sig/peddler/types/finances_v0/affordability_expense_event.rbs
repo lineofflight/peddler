@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class AffordabilityExpenseEvent < Data
+        attr_reader amazon_order_id: String?
+        attr_reader posted_date: String?
+        attr_reader marketplace_id: String?
+        attr_reader transaction_type: String?
+        attr_reader base_expense: Currency?
+        attr_reader tax_type_cgst: Currency
+        attr_reader tax_type_sgst: Currency
+        attr_reader tax_type_igst: Currency
+        attr_reader total_expense: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?amazon_order_id: String,
+          ?posted_date: String,
+          ?marketplace_id: String,
+          ?transaction_type: String,
+          ?base_expense: Currency,
+          tax_type_cgst: Currency,
+          tax_type_sgst: Currency,
+          tax_type_igst: Currency,
+          ?total_expense: Currency
+        ) -> void
+      end
+    end
+  end
+end

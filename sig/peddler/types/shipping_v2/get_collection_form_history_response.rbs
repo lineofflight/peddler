@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetCollectionFormHistoryResponse < Data
+        attr_reader collection_forms_history_record_list: Array[CollectionFormsHistoryRecord]?
+        attr_reader last_refreshed_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?collection_forms_history_record_list: Array[CollectionFormsHistoryRecord],
+          ?last_refreshed_date: String
+        ) -> void
+      end
+    end
+  end
+end

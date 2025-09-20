@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class SKUPrepInstructionsList < Array[SKUPrepInstructions]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

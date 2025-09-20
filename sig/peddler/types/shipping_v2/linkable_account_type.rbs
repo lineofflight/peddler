@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class LinkableAccountType < Data
+        attr_reader account_type: String?
+        attr_reader carrier_account_inputs: Array[CarrierAccountInput]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?account_type: String,
+          ?carrier_account_inputs: Array[CarrierAccountInput]
+        ) -> void
+      end
+    end
+  end
+end

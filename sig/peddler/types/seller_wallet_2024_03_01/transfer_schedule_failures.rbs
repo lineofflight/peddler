@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class TransferScheduleFailures < Data
+        attr_reader transfer_schedule_failure_date: String
+        attr_reader transfer_schedule_failure_reason: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          transfer_schedule_failure_date: String,
+          transfer_schedule_failure_reason: String
+        ) -> void
+      end
+    end
+  end
+end

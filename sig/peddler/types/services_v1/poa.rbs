@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class Poa < Data
+        attr_reader appointment_time: AppointmentTime?
+        attr_reader technicians: Array[Technician]?
+        attr_reader uploading_technician: String?
+        attr_reader upload_time: String?
+        attr_reader poa_type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?appointment_time: AppointmentTime,
+          ?technicians: Array[Technician],
+          ?uploading_technician: String,
+          ?upload_time: String,
+          ?poa_type: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ApplicationIntegrations20240401
+      class CreateNotificationResponse < Data
+        attr_reader notification_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?notification_id: String
+        ) -> void
+      end
+    end
+  end
+end

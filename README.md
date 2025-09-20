@@ -723,6 +723,26 @@ participations = api.get_marketplace_participations
 
 For a complete list of available APIs and their detailed documentation, refer to the [API models repository](https://github.com/amzn/selling-partner-api-models).
 
+## Development
+
+```bash
+# Setup
+bundle install
+bundle exec rbs collection install
+
+# Run tests and linting
+bundle exec rake
+
+# Run tests only
+bundle exec rake test
+
+# Regenerate API classes from latest Amazon OpenAPI specs
+bin/generate-code
+
+# Type check with Steep
+bundle exec steep check
+```
+
 [build]: https://github.com/hakanensari/peddler/actions
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Invoices20240619
+      class TransactionIdentifier < Data
+        attr_reader name: String?
+        attr_reader id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?name: String,
+          ?id: String
+        ) -> void
+      end
+    end
+  end
+end

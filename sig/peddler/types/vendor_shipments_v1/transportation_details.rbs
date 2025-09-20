@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class TransportationDetails < Data
+        attr_reader ship_mode: String?
+        attr_reader transportation_mode: String?
+        attr_reader shipped_date: String?
+        attr_reader estimated_delivery_date: String?
+        attr_reader shipment_delivery_date: String?
+        attr_reader carrier_details: CarrierDetails?
+        attr_reader bill_of_lading_number: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?ship_mode: String,
+          ?transportation_mode: String,
+          ?shipped_date: String,
+          ?estimated_delivery_date: String,
+          ?shipment_delivery_date: String,
+          ?carrier_details: CarrierDetails,
+          ?bill_of_lading_number: String
+        ) -> void
+      end
+    end
+  end
+end

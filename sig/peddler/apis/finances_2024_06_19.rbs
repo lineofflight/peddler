@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class Finances20240619 < API
+      def list_transactions: (String, ?posted_before: String, ?marketplace_id: String, ?transaction_status: String, ?next_token: String) -> Peddler::Response
+    end
+  end
+end

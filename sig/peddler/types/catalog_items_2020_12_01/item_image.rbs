@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module CatalogItems20201201
+      class ItemImage < Data
+        attr_reader variant: String
+        attr_reader link: String
+        attr_reader height: Integer
+        attr_reader width: Integer
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          variant: String,
+          link: String,
+          height: Integer,
+          width: Integer
+        ) -> void
+      end
+    end
+  end
+end

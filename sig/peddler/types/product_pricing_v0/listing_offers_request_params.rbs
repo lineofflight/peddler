@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class ListingOffersRequestParams < Data
+        attr_reader marketplace_id: String
+        attr_reader item_condition: String
+        attr_reader customer_type: String?
+        attr_reader seller_sku: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          item_condition: String,
+          ?customer_type: String,
+          seller_sku: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class AdditionalInputs < Data
+        attr_reader additional_input_field_name: String?
+        attr_reader seller_input_definition: SellerInputDefinition?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?additional_input_field_name: String,
+          ?seller_input_definition: SellerInputDefinition
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class HttpStatusLine < Data
+        attr_reader status_code: Integer?
+        attr_reader reason_phrase: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?status_code: Integer,
+          ?reason_phrase: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class SkuQuantity < Data
+        attr_reader expected_quantity: InventoryQuantity
+        attr_reader received_quantity: InventoryQuantity?
+        attr_reader sku: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          expected_quantity: InventoryQuantity,
+          ?received_quantity: InventoryQuantity,
+          sku: String
+        ) -> void
+      end
+    end
+  end
+end

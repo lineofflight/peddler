@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class ThroughputConfig < Data
+        attr_reader throughput_cap: ThroughputCap?
+        attr_reader throughput_unit: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?throughput_cap: ThroughputCap,
+          throughput_unit: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class Uploads20201101 < API
+      def create_upload_destination_for_resource: (Array[String], String, String, ?content_type: String) -> Peddler::Response
+    end
+  end
+end

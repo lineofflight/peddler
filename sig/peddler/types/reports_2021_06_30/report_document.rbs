@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module Reports20210630
+      class ReportDocument < Data
+        attr_reader report_document_id: String
+        attr_reader url: String
+        attr_reader compression_algorithm: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          report_document_id: String,
+          url: String,
+          ?compression_algorithm: String
+        ) -> void
+      end
+    end
+  end
+end

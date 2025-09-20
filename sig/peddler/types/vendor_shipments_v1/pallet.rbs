@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Pallet < Data
+        attr_reader pallet_identifiers: Array[ContainerIdentification]
+        attr_reader tier: Integer?
+        attr_reader block: Integer?
+        attr_reader dimensions: Dimensions?
+        attr_reader weight: Weight?
+        attr_reader carton_reference_details: CartonReferenceDetails?
+        attr_reader items: Array[ContainerItem]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          pallet_identifiers: Array[ContainerIdentification],
+          ?tier: Integer,
+          ?block: Integer,
+          ?dimensions: Dimensions,
+          ?weight: Weight,
+          ?carton_reference_details: CartonReferenceDetails,
+          ?items: Array[ContainerItem]
+        ) -> void
+      end
+    end
+  end
+end

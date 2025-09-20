@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class FxRateDetails < Data
+        attr_reader fx_rate_id: String
+        attr_reader base_rate: Float
+        attr_reader effective_fx_rate: Float
+        attr_reader rate_direction: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          fx_rate_id: String,
+          base_rate: Float,
+          effective_fx_rate: Float,
+          rate_direction: String
+        ) -> void
+      end
+    end
+  end
+end

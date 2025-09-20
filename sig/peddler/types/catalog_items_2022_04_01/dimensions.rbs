@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module CatalogItems20220401
+      class Dimensions < Data
+        attr_reader height: Dimension?
+        attr_reader length: Dimension?
+        attr_reader weight: Dimension?
+        attr_reader width: Dimension?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?height: Dimension,
+          ?length: Dimension,
+          ?weight: Dimension,
+          ?width: Dimension
+        ) -> void
+      end
+    end
+  end
+end

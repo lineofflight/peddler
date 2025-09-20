@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class Shipment < Data
+        attr_reader shipment_id: String
+        attr_reader client_reference_id: String
+        attr_reader ship_from: Address
+        attr_reader ship_to: Address
+        attr_reader accepted_rate: AcceptedRate?
+        attr_reader shipper: Party?
+        attr_reader containers: Array[Container]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_id: String,
+          client_reference_id: String,
+          ship_from: Address,
+          ship_to: Address,
+          ?accepted_rate: AcceptedRate,
+          ?shipper: Party,
+          containers: Array[Container]
+        ) -> void
+      end
+    end
+  end
+end

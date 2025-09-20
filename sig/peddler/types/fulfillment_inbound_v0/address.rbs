@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class Address < Data
+        attr_reader name: String
+        attr_reader address_line1: String
+        attr_reader address_line2: String?
+        attr_reader district_or_county: String?
+        attr_reader city: String
+        attr_reader state_or_province_code: String
+        attr_reader country_code: String
+        attr_reader postal_code: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          name: String,
+          address_line1: String,
+          ?address_line2: String,
+          ?district_or_county: String,
+          city: String,
+          state_or_province_code: String,
+          country_code: String,
+          postal_code: String
+        ) -> void
+      end
+    end
+  end
+end

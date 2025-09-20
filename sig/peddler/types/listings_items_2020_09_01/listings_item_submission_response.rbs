@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ListingsItems20200901
+      class ListingsItemSubmissionResponse < Data
+        attr_reader sku: String
+        attr_reader status: String
+        attr_reader submission_id: String
+        attr_reader issues: Array[Issue]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          sku: String,
+          status: String,
+          submission_id: String,
+          ?issues: Array[Issue]
+        ) -> void
+      end
+    end
+  end
+end

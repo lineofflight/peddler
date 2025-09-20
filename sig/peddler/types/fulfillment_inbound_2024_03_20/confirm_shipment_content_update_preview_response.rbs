@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ConfirmShipmentContentUpdatePreviewResponse < Data
+        attr_reader operation_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          operation_id: String
+        ) -> void
+      end
+    end
+  end
+end

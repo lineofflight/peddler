@@ -3,6 +3,7 @@
 require "peddler/types/finances_2024_06_19/item_related_identifier"
 require "peddler/types/finances_2024_06_19/currency"
 require "peddler/types/finances_2024_06_19/breakdown"
+require "peddler/types/finances_2024_06_19/context"
 
 module Peddler
   module Types
@@ -23,7 +24,7 @@ module Peddler
         attribute(:breakdowns, [Breakdown])
 
         # @return [Array<Context>] Additional Information about the item.
-        attribute(:contexts, Array)
+        attribute(:contexts, [Context])
       end
     end
   end

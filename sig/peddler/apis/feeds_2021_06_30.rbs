@@ -1,0 +1,12 @@
+module Peddler
+  module APIs
+    class Feeds20210630 < API
+      def get_feeds: (?feed_types: Array[String], ?marketplace_ids: Array[String], ?page_size: Integer, ?processing_statuses: Array[String], ?created_since: String, ?created_until: String, ?next_token: String) -> Peddler::Response
+      def create_feed: (untyped) -> Peddler::Response
+      def cancel_feed: (String) -> Peddler::Response
+      def get_feed: (String) -> Peddler::Response
+      def create_feed_document: (untyped) -> Peddler::Response
+      def get_feed_document: (String) -> Peddler::Response
+    end
+  end
+end

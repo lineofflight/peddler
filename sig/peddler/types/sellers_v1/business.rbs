@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module SellersV1
+      class Business < Data
+        attr_reader name: String
+        attr_reader registered_business_address: Address
+        attr_reader company_registration_number: String?
+        attr_reader company_tax_identification_number: String?
+        attr_reader non_latin_name: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          name: String,
+          registered_business_address: Address,
+          ?company_registration_number: String,
+          ?company_tax_identification_number: String,
+          ?non_latin_name: String
+        ) -> void
+      end
+    end
+  end
+end

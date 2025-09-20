@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class ChannelDetails < Data
+        attr_reader channel_type: String
+        attr_reader amazon_order_details: AmazonOrderDetails?
+        attr_reader amazon_shipment_details: AmazonShipmentDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          channel_type: String,
+          ?amazon_order_details: AmazonOrderDetails,
+          ?amazon_shipment_details: AmazonShipmentDetails
+        ) -> void
+      end
+    end
+  end
+end

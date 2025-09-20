@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class SubmitShipmentConfirmationsResponse < Data
+        attr_reader payload: TransactionReference?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: TransactionReference,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

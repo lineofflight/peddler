@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class PackageDocumentDetail < Data
+        attr_reader package_client_reference_id: String
+        attr_reader package_documents: Array[PackageDocument]
+        attr_reader tracking_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          package_client_reference_id: String,
+          package_documents: Array[PackageDocument],
+          ?tracking_id: String
+        ) -> void
+      end
+    end
+  end
+end

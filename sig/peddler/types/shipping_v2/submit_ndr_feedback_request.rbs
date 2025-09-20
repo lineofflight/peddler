@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class SubmitNdrFeedbackRequest < Data
+        attr_reader tracking_id: String
+        attr_reader ndr_action: String
+        attr_reader ndr_request_data: NdrRequestData?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          tracking_id: String,
+          ndr_action: String,
+          ?ndr_request_data: NdrRequestData
+        ) -> void
+      end
+    end
+  end
+end

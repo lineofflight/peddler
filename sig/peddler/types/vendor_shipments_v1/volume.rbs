@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Volume < Data
+        attr_reader unit_of_measure: String
+        attr_reader value: Float
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          unit_of_measure: String,
+          value: Float
+        ) -> void
+      end
+    end
+  end
+end

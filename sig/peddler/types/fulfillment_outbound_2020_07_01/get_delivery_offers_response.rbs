@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class GetDeliveryOffersResponse < Data
+        attr_reader payload: GetDeliveryOffersResult?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: GetDeliveryOffersResult,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

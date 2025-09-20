@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class RetrieveShippingLabelResponse < Data
+        attr_reader payload: RetrieveShippingLabelResult?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: RetrieveShippingLabelResult,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

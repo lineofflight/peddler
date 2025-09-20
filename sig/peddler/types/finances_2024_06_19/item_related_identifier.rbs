@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class ItemRelatedIdentifier < Data
+        attr_reader item_related_identifier_name: String?
+        attr_reader item_related_identifier_value: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?item_related_identifier_name: String,
+          ?item_related_identifier_value: String
+        ) -> void
+      end
+    end
+  end
+end

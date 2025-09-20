@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class CreateTransactionResponse < Data
+        attr_reader transaction: Transaction
+        attr_reader call_back_url: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          transaction: Transaction,
+          call_back_url: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class Region < Data
+        attr_reader country_code: String?
+        attr_reader state: String?
+        attr_reader warehouse_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?country_code: String,
+          ?state: String,
+          ?warehouse_id: String
+        ) -> void
+      end
+    end
+  end
+end

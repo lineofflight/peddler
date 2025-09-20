@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "structure"
+require "peddler/types/product_pricing_v0/item_offers_request"
 
 module Peddler
   module Types
@@ -8,7 +8,7 @@ module Peddler
       # The request associated with the `getItemOffersBatch` API call.
       GetItemOffersBatchRequest = Structure.new do
         # @return [Array<ItemOffersRequest>]
-        attribute(:requests, Array)
+        attribute(:requests, [ItemOffersRequest])
       end
     end
   end

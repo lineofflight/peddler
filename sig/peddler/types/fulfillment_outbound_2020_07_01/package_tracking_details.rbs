@@ -1,0 +1,43 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class PackageTrackingDetails < Data
+        attr_reader package_number: Integer
+        attr_reader tracking_number: String?
+        attr_reader customer_tracking_link: String?
+        attr_reader carrier_code: String?
+        attr_reader carrier_phone_number: String?
+        attr_reader carrier_url: String?
+        attr_reader ship_date: String?
+        attr_reader estimated_arrival_date: String?
+        attr_reader ship_to_address: TrackingAddress?
+        attr_reader current_status: String?
+        attr_reader current_status_description: String?
+        attr_reader delivery_window: DateRange?
+        attr_reader signed_for_by: String?
+        attr_reader additional_location_info: String?
+        attr_reader tracking_events: Array[TrackingEvent]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          package_number: Integer,
+          ?tracking_number: String,
+          ?customer_tracking_link: String,
+          ?carrier_code: String,
+          ?carrier_phone_number: String,
+          ?carrier_url: String,
+          ?ship_date: String,
+          ?estimated_arrival_date: String,
+          ?ship_to_address: TrackingAddress,
+          ?current_status: String,
+          ?current_status_description: String,
+          ?delivery_window: DateRange,
+          ?signed_for_by: String,
+          ?additional_location_info: String,
+          ?tracking_events: Array[TrackingEvent]
+        ) -> void
+      end
+    end
+  end
+end

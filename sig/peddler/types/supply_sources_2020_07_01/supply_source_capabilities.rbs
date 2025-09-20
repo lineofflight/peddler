@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class SupplySourceCapabilities < Data
+        attr_reader outbound: OutboundCapability?
+        attr_reader services: ServicesCapability?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?outbound: OutboundCapability,
+          ?services: ServicesCapability
+        ) -> void
+      end
+    end
+  end
+end

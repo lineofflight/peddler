@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class OrderedQuantityDetails < Data
+        attr_reader updated_date: String?
+        attr_reader ordered_quantity: ItemQuantity?
+        attr_reader cancelled_quantity: ItemQuantity?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?updated_date: String,
+          ?ordered_quantity: ItemQuantity,
+          ?cancelled_quantity: ItemQuantity
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ListingsItems20200901
+      class PatchOperation < Data
+        attr_reader op: String
+        attr_reader path: String
+        attr_reader value: Array[Hash[String, untyped]]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          op: String,
+          path: String,
+          ?value: Array[Hash[String, untyped]]
+        ) -> void
+      end
+    end
+  end
+end

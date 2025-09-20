@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class FulfillmentShipmentItem < Data
+        attr_reader seller_sku: String
+        attr_reader seller_fulfillment_order_item_id: String
+        attr_reader quantity: Integer
+        attr_reader package_number: Integer?
+        attr_reader serial_number: String?
+        attr_reader manufacturer_lot_codes: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          seller_sku: String,
+          seller_fulfillment_order_item_id: String,
+          quantity: Integer,
+          ?package_number: Integer,
+          ?serial_number: String,
+          ?manufacturer_lot_codes: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

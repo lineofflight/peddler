@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class GetFulfillmentPreviewRequest < Data
+        attr_reader marketplace_id: String?
+        attr_reader address: Address
+        attr_reader items: Array[GetFulfillmentPreviewItem]
+        attr_reader shipping_speed_categories: Array[String]?
+        attr_reader include_cod_fulfillment_preview: bool?
+        attr_reader include_delivery_windows: bool?
+        attr_reader feature_constraints: Array[FeatureSettings]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?marketplace_id: String,
+          address: Address,
+          items: Array[GetFulfillmentPreviewItem],
+          ?shipping_speed_categories: Array[String],
+          ?include_cod_fulfillment_preview: bool,
+          ?include_delivery_windows: bool,
+          ?feature_constraints: Array[FeatureSettings]
+        ) -> void
+      end
+    end
+  end
+end

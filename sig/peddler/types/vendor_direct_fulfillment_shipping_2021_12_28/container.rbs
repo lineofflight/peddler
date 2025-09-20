@@ -1,0 +1,37 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class Container < Data
+        attr_reader container_type: String
+        attr_reader container_identifier: String
+        attr_reader tracking_number: String?
+        attr_reader manifest_id: String?
+        attr_reader manifest_date: String?
+        attr_reader ship_method: String?
+        attr_reader scac_code: String?
+        attr_reader carrier: String?
+        attr_reader container_sequence_number: Integer?
+        attr_reader dimensions: Dimensions?
+        attr_reader weight: Weight
+        attr_reader packed_items: Array[PackedItem]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          container_type: String,
+          container_identifier: String,
+          ?tracking_number: String,
+          ?manifest_id: String,
+          ?manifest_date: String,
+          ?ship_method: String,
+          ?scac_code: String,
+          ?carrier: String,
+          ?container_sequence_number: Integer,
+          ?dimensions: Dimensions,
+          weight: Weight,
+          packed_items: Array[PackedItem]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class OfferProgramConfigurationPromotions < Data
+        attr_reader selling_partner_funded_base_discount: OfferProgramConfigurationPromotionsDiscountFunding?
+        attr_reader selling_partner_funded_tiered_discount: OfferProgramConfigurationPromotionsDiscountFunding?
+        attr_reader amazon_funded_base_discount: OfferProgramConfigurationPromotionsDiscountFunding?
+        attr_reader amazon_funded_tiered_discount: OfferProgramConfigurationPromotionsDiscountFunding?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?selling_partner_funded_base_discount: OfferProgramConfigurationPromotionsDiscountFunding,
+          ?selling_partner_funded_tiered_discount: OfferProgramConfigurationPromotionsDiscountFunding,
+          ?amazon_funded_base_discount: OfferProgramConfigurationPromotionsDiscountFunding,
+          ?amazon_funded_tiered_discount: OfferProgramConfigurationPromotionsDiscountFunding
+        ) -> void
+      end
+    end
+  end
+end

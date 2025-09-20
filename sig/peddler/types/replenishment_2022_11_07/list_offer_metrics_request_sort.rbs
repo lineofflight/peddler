@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class ListOfferMetricsRequestSort < Data
+        attr_reader order: String
+        attr_reader key: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          order: String,
+          key: String
+        ) -> void
+      end
+    end
+  end
+end

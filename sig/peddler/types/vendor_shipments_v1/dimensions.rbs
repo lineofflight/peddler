@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Dimensions < Data
+        attr_reader length: Float
+        attr_reader width: Float
+        attr_reader height: Float
+        attr_reader unit_of_measure: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          length: Float,
+          width: Float,
+          height: Float,
+          unit_of_measure: String
+        ) -> void
+      end
+    end
+  end
+end

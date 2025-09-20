@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class LabelDownloadURL < Data
+        attr_reader download_url: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?download_url: String
+        ) -> void
+      end
+    end
+  end
+end

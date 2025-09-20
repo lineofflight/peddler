@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class RejectionReason < Data
+        attr_reader rejection_reason_id: String
+        attr_reader rejection_reason_description: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          rejection_reason_id: String,
+          rejection_reason_description: String
+        ) -> void
+      end
+    end
+  end
+end

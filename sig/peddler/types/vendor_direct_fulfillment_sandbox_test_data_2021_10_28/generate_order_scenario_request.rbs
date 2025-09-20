@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentSandboxTestData20211028
+      class GenerateOrderScenarioRequest < Data
+        attr_reader orders: Array[OrderScenarioRequest]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?orders: Array[OrderScenarioRequest]
+        ) -> void
+      end
+    end
+  end
+end

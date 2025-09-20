@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class GetOffersResult < Data
+        attr_reader marketplace_id: String
+        attr_reader asin: String?
+        attr_reader sku: String?
+        attr_reader item_condition: String
+        attr_reader status: String
+        attr_reader identifier: ItemIdentifier
+        attr_reader summary: Summary
+        attr_reader offers: Array[OfferDetail]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          ?asin: String,
+          ?sku: String,
+          item_condition: String,
+          status: String,
+          identifier: ItemIdentifier,
+          summary: Summary,
+          offers: Array[OfferDetail]
+        ) -> void
+      end
+    end
+  end
+end

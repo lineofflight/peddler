@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class LoanServicingEvent < Data
+        attr_reader loan_amount: Currency?
+        attr_reader source_business_event_type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?loan_amount: Currency,
+          ?source_business_event_type: String
+        ) -> void
+      end
+    end
+  end
+end

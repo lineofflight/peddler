@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class AssignAppointmentResourcesResponse < Data
+        attr_reader payload: Hash[String, untyped]?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: Hash[String, untyped],
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

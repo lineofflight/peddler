@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class InboundOrder < Data
+        attr_reader created_at: String
+        attr_reader destination_details: DestinationDetails?
+        attr_reader external_reference_id: String?
+        attr_reader order_id: String
+        attr_reader order_status: String
+        attr_reader origin_address: Address
+        attr_reader packages_to_inbound: Array[DistributionPackageQuantity]
+        attr_reader preferences: InboundPreferences?
+        attr_reader updated_at: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          created_at: String,
+          ?destination_details: DestinationDetails,
+          ?external_reference_id: String,
+          order_id: String,
+          order_status: String,
+          origin_address: Address,
+          packages_to_inbound: Array[DistributionPackageQuantity],
+          ?preferences: InboundPreferences,
+          ?updated_at: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ListFinancialEventGroupsPayload < Data
+        attr_reader next_token: String?
+        attr_reader financial_event_group_list: Array[FinancialEventGroup]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?next_token: String,
+          ?financial_event_group_list: Array[FinancialEventGroup]
+        ) -> void
+      end
+    end
+  end
+end

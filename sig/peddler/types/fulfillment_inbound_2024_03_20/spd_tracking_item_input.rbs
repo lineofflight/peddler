@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class SpdTrackingItemInput < Data
+        attr_reader box_id: String
+        attr_reader tracking_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          box_id: String,
+          tracking_id: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class FulfillmentShipmentPackageList < Array[FulfillmentShipmentPackage]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

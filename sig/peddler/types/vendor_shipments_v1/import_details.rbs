@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ImportDetails < Data
+        attr_reader method_of_payment: String?
+        attr_reader seal_number: String?
+        attr_reader route: Route?
+        attr_reader import_containers: String?
+        attr_reader billable_weight: Weight?
+        attr_reader estimated_ship_by_date: String?
+        attr_reader handling_instructions: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?method_of_payment: String,
+          ?seal_number: String,
+          ?route: Route,
+          ?import_containers: String,
+          ?billable_weight: Weight,
+          ?estimated_ship_by_date: String,
+          ?handling_instructions: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class FulfillmentPreviewItem < Data
+        attr_reader seller_sku: String
+        attr_reader quantity: Integer
+        attr_reader seller_fulfillment_order_item_id: String
+        attr_reader estimated_shipping_weight: Weight?
+        attr_reader shipping_weight_calculation_method: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          seller_sku: String,
+          quantity: Integer,
+          seller_fulfillment_order_item_id: String,
+          ?estimated_shipping_weight: Weight,
+          ?shipping_weight_calculation_method: String
+        ) -> void
+      end
+    end
+  end
+end

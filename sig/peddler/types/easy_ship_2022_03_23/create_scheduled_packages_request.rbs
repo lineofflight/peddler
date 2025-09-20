@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module EasyShip20220323
+      class CreateScheduledPackagesRequest < Data
+        attr_reader marketplace_id: String
+        attr_reader order_schedule_details_list: Array[OrderScheduleDetails]
+        attr_reader label_format: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          order_schedule_details_list: Array[OrderScheduleDetails],
+          label_format: String
+        ) -> void
+      end
+    end
+  end
+end

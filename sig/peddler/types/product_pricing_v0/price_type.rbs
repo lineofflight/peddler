@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class PriceType < Data
+        attr_reader landed_price: Money?
+        attr_reader listing_price: Money
+        attr_reader shipping: Money?
+        attr_reader points: Points?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?landed_price: Money,
+          listing_price: Money,
+          ?shipping: Money,
+          ?points: Points
+        ) -> void
+      end
+    end
+  end
+end

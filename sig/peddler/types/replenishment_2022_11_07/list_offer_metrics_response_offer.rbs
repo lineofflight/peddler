@@ -1,0 +1,47 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class ListOfferMetricsResponseOffer < Data
+        attr_reader asin: String?
+        attr_reader not_delivered_due_to_oos: Float?
+        attr_reader total_subscriptions_revenue: Float?
+        attr_reader shipped_subscription_units: Float?
+        attr_reader active_subscriptions: Float?
+        attr_reader revenue_penetration: Float?
+        attr_reader lost_revenue_due_to_oos: Float?
+        attr_reader coupons_revenue_penetration: Float?
+        attr_reader share_of_coupon_subscriptions: Float?
+        attr_reader next30_day_total_subscriptions_revenue: Float?
+        attr_reader next60_day_total_subscriptions_revenue: Float?
+        attr_reader next90_day_total_subscriptions_revenue: Float?
+        attr_reader next30_day_shipped_subscription_units: Float?
+        attr_reader next60_day_shipped_subscription_units: Float?
+        attr_reader next90_day_shipped_subscription_units: Float?
+        attr_reader time_interval: TimeInterval?
+        attr_reader currency_code: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?not_delivered_due_to_oos: Float,
+          ?total_subscriptions_revenue: Float,
+          ?shipped_subscription_units: Float,
+          ?active_subscriptions: Float,
+          ?revenue_penetration: Float,
+          ?lost_revenue_due_to_oos: Float,
+          ?coupons_revenue_penetration: Float,
+          ?share_of_coupon_subscriptions: Float,
+          ?next30_day_total_subscriptions_revenue: Float,
+          ?next60_day_total_subscriptions_revenue: Float,
+          ?next90_day_total_subscriptions_revenue: Float,
+          ?next30_day_shipped_subscription_units: Float,
+          ?next60_day_shipped_subscription_units: Float,
+          ?next90_day_shipped_subscription_units: Float,
+          ?time_interval: TimeInterval,
+          ?currency_code: String
+        ) -> void
+      end
+    end
+  end
+end

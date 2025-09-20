@@ -1,0 +1,11 @@
+module Peddler
+  module APIs
+    class EasyShip20220323 < API
+      def list_handover_slots: (?list_handover_slots_request: untyped) -> Peddler::Response
+      def get_scheduled_package: (String, String) -> Peddler::Response
+      def create_scheduled_package: (untyped) -> Peddler::Response
+      def update_scheduled_packages: (?update_scheduled_packages_request: untyped) -> Peddler::Response
+      def create_scheduled_package_bulk: (untyped) -> Peddler::Response
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class Pallet < Data
+        attr_reader dimensions: Dimensions?
+        attr_reader package_id: String
+        attr_reader quantity: Integer?
+        attr_reader stackability: String?
+        attr_reader weight: Weight?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?dimensions: Dimensions,
+          package_id: String,
+          ?quantity: Integer,
+          ?stackability: String,
+          ?weight: Weight
+        ) -> void
+      end
+    end
+  end
+end

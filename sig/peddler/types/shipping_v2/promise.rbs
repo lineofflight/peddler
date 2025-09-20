@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class Promise < Data
+        attr_reader delivery_window: TimeWindow?
+        attr_reader pickup_window: TimeWindow?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?delivery_window: TimeWindow,
+          ?pickup_window: TimeWindow
+        ) -> void
+      end
+    end
+  end
+end

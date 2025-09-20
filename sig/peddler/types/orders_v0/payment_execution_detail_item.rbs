@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class PaymentExecutionDetailItem < Data
+        attr_reader payment: Money
+        attr_reader payment_method: String
+        attr_reader acquirer_id: String?
+        attr_reader card_brand: String?
+        attr_reader authorization_code: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          payment: Money,
+          payment_method: String,
+          ?acquirer_id: String,
+          ?card_brand: String,
+          ?authorization_code: String
+        ) -> void
+      end
+    end
+  end
+end

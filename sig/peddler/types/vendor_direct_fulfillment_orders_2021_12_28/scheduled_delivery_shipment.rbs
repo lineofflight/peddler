@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrders20211228
+      class ScheduledDeliveryShipment < Data
+        attr_reader scheduled_delivery_service_type: String?
+        attr_reader earliest_nominated_delivery_date: String?
+        attr_reader latest_nominated_delivery_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?scheduled_delivery_service_type: String,
+          ?earliest_nominated_delivery_date: String,
+          ?latest_nominated_delivery_date: String
+        ) -> void
+      end
+    end
+  end
+end

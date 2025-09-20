@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class LinkableCarrier < Data
+        attr_reader carrier_id: String?
+        attr_reader linkable_account_types: Array[LinkableAccountType]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?carrier_id: String,
+          ?linkable_account_types: Array[LinkableAccountType]
+        ) -> void
+      end
+    end
+  end
+end

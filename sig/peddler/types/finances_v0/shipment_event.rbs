@@ -1,0 +1,41 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ShipmentEvent < Data
+        attr_reader amazon_order_id: String?
+        attr_reader seller_order_id: String?
+        attr_reader marketplace_name: String?
+        attr_reader store_name: String?
+        attr_reader order_charge_list: Array[ChargeComponent]?
+        attr_reader order_charge_adjustment_list: Array[ChargeComponent]?
+        attr_reader shipment_fee_list: Array[FeeComponent]?
+        attr_reader shipment_fee_adjustment_list: Array[FeeComponent]?
+        attr_reader order_fee_list: Array[FeeComponent]?
+        attr_reader order_fee_adjustment_list: Array[FeeComponent]?
+        attr_reader direct_payment_list: Array[DirectPayment]?
+        attr_reader posted_date: String?
+        attr_reader shipment_item_list: Array[ShipmentItem]?
+        attr_reader shipment_item_adjustment_list: Array[ShipmentItem]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?amazon_order_id: String,
+          ?seller_order_id: String,
+          ?marketplace_name: String,
+          ?store_name: String,
+          ?order_charge_list: Array[ChargeComponent],
+          ?order_charge_adjustment_list: Array[ChargeComponent],
+          ?shipment_fee_list: Array[FeeComponent],
+          ?shipment_fee_adjustment_list: Array[FeeComponent],
+          ?order_fee_list: Array[FeeComponent],
+          ?order_fee_adjustment_list: Array[FeeComponent],
+          ?direct_payment_list: Array[DirectPayment],
+          ?posted_date: String,
+          ?shipment_item_list: Array[ShipmentItem],
+          ?shipment_item_adjustment_list: Array[ShipmentItem]
+        ) -> void
+      end
+    end
+  end
+end

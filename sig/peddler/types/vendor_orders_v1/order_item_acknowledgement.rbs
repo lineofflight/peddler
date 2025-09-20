@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module VendorOrdersV1
+      class OrderItemAcknowledgement < Data
+        attr_reader acknowledgement_code: String
+        attr_reader acknowledged_quantity: ItemQuantity
+        attr_reader scheduled_ship_date: String?
+        attr_reader scheduled_delivery_date: String?
+        attr_reader rejection_reason: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          acknowledgement_code: String,
+          acknowledged_quantity: ItemQuantity,
+          ?scheduled_ship_date: String,
+          ?scheduled_delivery_date: String,
+          ?rejection_reason: String
+        ) -> void
+      end
+    end
+  end
+end

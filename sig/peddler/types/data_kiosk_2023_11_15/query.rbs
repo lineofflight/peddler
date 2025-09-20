@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module DataKiosk20231115
+      class Query < Data
+        attr_reader query_id: String
+        attr_reader query: String
+        attr_reader created_time: String
+        attr_reader processing_status: String
+        attr_reader processing_start_time: String?
+        attr_reader processing_end_time: String?
+        attr_reader data_document_id: String?
+        attr_reader error_document_id: String?
+        attr_reader pagination: Hash[String, untyped]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          query_id: String,
+          query: String,
+          created_time: String,
+          processing_status: String,
+          ?processing_start_time: String,
+          ?processing_end_time: String,
+          ?data_document_id: String,
+          ?error_document_id: String,
+          ?pagination: Hash[String, untyped]
+        ) -> void
+      end
+    end
+  end
+end

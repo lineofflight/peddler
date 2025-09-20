@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SellersV1
+      class Participation < Data
+        attr_reader participating: bool
+        attr_reader has_suspended_listings: bool
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          participating: bool,
+          has_suspended_listings: bool
+        ) -> void
+      end
+    end
+  end
+end

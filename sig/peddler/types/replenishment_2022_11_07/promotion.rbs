@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class Promotion < Data
+        attr_reader selling_partner_funded_base_discount: DiscountFunding?
+        attr_reader selling_partner_funded_tiered_discount: DiscountFunding?
+        attr_reader amazon_funded_base_discount: DiscountFunding?
+        attr_reader amazon_funded_tiered_discount: DiscountFunding?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?selling_partner_funded_base_discount: DiscountFunding,
+          ?selling_partner_funded_tiered_discount: DiscountFunding,
+          ?amazon_funded_base_discount: DiscountFunding,
+          ?amazon_funded_tiered_discount: DiscountFunding
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+# Minimal RBS for the money gem as used by Peddler
+# The actual Money class from the money gem is much more complex,
+# but this provides the interface needed for type checking Peddler
+
+class Money
+  def self.new: (Integer amount_in_cents, String currency) -> instance
+
+  attr_reader fractional: Integer
+  attr_reader currency: Money::Currency
+
+  def to_s: () -> String
+  def to_i: () -> Integer
+  def to_f: () -> Float
+  def amount: () -> Float
+  def cents: () -> Integer
+
+  class Currency
+    def self.new: (String currency_code) -> instance
+
+    attr_reader iso_code: String
+    attr_reader subunit_to_unit: Integer
+
+    def to_s: () -> String
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class RetrieveShippingLabelResult < Data
+        attr_reader label_stream: String
+        attr_reader label_specification: LabelSpecification
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          label_stream: String,
+          label_specification: LabelSpecification
+        ) -> void
+      end
+    end
+  end
+end

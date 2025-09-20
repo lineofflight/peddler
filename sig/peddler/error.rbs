@@ -1,0 +1,29 @@
+module Peddler
+  class Error < StandardError
+    def self.build: (HTTP::Response response) -> Error?
+    def initialize: ((String | Integer)? msg, HTTP::Response? response) -> void
+
+    private
+    def self.parse_xml_error: (HTTP::Response response) -> Hash[String, untyped]
+    def self.normalize_class_name: (String code) -> String
+  end
+
+  module Errors
+    class AccessDenied < Error
+    end
+    class InvalidGrant < Error
+    end
+    class InvalidInput < Error
+    end
+    class InvalidRequest < Error
+    end
+    class NotFound < Error
+    end
+    class QuotaExceeded < Error
+    end
+    class Unauthorized < Error
+    end
+    class UnsupportedGrantType < Error
+    end
+  end
+end

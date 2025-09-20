@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FBAInventoryV1
+      class InventoryItem < Data
+        attr_reader seller_sku: String
+        attr_reader marketplace_id: String
+        attr_reader quantity: Integer
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          seller_sku: String,
+          marketplace_id: String,
+          quantity: Integer
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class TrackingAddress < Data
+        attr_reader city: String
+        attr_reader state: String
+        attr_reader country: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          city: String,
+          state: String,
+          country: String
+        ) -> void
+      end
+    end
+  end
+end

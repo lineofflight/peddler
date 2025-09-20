@@ -1,0 +1,9 @@
+module Peddler
+  module APIs
+    class ProductFeesV0 < API
+      def get_my_fees_estimate_for_sku: (untyped, String) -> Peddler::Response
+      def get_my_fees_estimate_for_asin: (untyped, String) -> Peddler::Response
+      def get_my_fees_estimates: (untyped) -> Peddler::Response
+    end
+  end
+end

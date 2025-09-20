@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class TrackingEvent < Data
+        attr_reader event_date: String
+        attr_reader event_address: TrackingAddress
+        attr_reader event_code: String
+        attr_reader event_description: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          event_date: String,
+          event_address: TrackingAddress,
+          event_code: String,
+          event_description: String
+        ) -> void
+      end
+    end
+  end
+end

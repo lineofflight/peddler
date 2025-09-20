@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class GetEligibleShipmentServicesResult < Data
+        attr_reader shipping_service_list: Array[ShippingService]
+        attr_reader rejected_shipping_service_list: Array[RejectedShippingService]?
+        attr_reader temporarily_unavailable_carrier_list: Array[TemporarilyUnavailableCarrier]?
+        attr_reader terms_and_conditions_not_accepted_carrier_list: Array[TermsAndConditionsNotAcceptedCarrier]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipping_service_list: Array[ShippingService],
+          ?rejected_shipping_service_list: Array[RejectedShippingService],
+          ?temporarily_unavailable_carrier_list: Array[TemporarilyUnavailableCarrier],
+          ?terms_and_conditions_not_accepted_carrier_list: Array[TermsAndConditionsNotAcceptedCarrier]
+        ) -> void
+      end
+    end
+  end
+end

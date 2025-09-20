@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ProductFeesV0
+      class FeesEstimateByIdRequest < Data
+        attr_reader fees_estimate_request: FeesEstimateRequest?
+        attr_reader id_type: String
+        attr_reader id_value: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?fees_estimate_request: FeesEstimateRequest,
+          id_type: String,
+          id_value: String
+        ) -> void
+      end
+    end
+  end
+end

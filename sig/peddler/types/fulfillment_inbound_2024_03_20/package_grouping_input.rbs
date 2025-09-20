@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class PackageGroupingInput < Data
+        attr_reader boxes: Array[BoxInput]
+        attr_reader packing_group_id: String?
+        attr_reader shipment_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          boxes: Array[BoxInput],
+          ?packing_group_id: String,
+          ?shipment_id: String
+        ) -> void
+      end
+    end
+  end
+end

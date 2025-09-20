@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class AppointmentTime < Data
+        attr_reader start_time: String
+        attr_reader duration_in_minutes: Integer
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          start_time: String,
+          duration_in_minutes: Integer
+        ) -> void
+      end
+    end
+  end
+end

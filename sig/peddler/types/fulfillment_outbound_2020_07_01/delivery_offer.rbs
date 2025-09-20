@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class DeliveryOffer < Data
+        attr_reader expires_at: String?
+        attr_reader date_range: DateRange?
+        attr_reader policy: DeliveryPolicy?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?expires_at: String,
+          ?date_range: DateRange,
+          ?policy: DeliveryPolicy
+        ) -> void
+      end
+    end
+  end
+end

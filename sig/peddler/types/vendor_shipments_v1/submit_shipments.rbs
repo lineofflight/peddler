@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class SubmitShipments < Data
+        attr_reader shipments: Array[Shipment]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?shipments: Array[Shipment]
+        ) -> void
+      end
+    end
+  end
+end

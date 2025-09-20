@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class DeliveryInformation < Data
+        attr_reader delivery_document_list: Array[DeliveryDocument]?
+        attr_reader drop_off_location: DropOffLocation?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?delivery_document_list: Array[DeliveryDocument],
+          ?drop_off_location: DropOffLocation
+        ) -> void
+      end
+    end
+  end
+end

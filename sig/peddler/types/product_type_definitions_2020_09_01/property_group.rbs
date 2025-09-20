@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ProductTypeDefinitions20200901
+      class PropertyGroup < Data
+        attr_reader title: String?
+        attr_reader description: String?
+        attr_reader property_names: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?title: String,
+          ?description: String,
+          ?property_names: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

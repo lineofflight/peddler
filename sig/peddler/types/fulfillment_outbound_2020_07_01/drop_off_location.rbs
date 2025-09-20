@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class DropOffLocation < Data
+        attr_reader type: String
+        attr_reader attributes: Hash[String, String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          type: String,
+          ?attributes: Hash[String, String]
+        ) -> void
+      end
+    end
+  end
+end

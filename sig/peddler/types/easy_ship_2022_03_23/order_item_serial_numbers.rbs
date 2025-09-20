@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module EasyShip20220323
+      class OrderItemSerialNumbers < Array[OrderItemSerialNumber]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ShipmentTransportationConfiguration < Data
+        attr_reader contact_information: ContactInformation?
+        attr_reader freight_information: FreightInformation?
+        attr_reader pallets: Array[PalletInput]?
+        attr_reader ready_to_ship_window: WindowInput
+        attr_reader shipment_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?contact_information: ContactInformation,
+          ?freight_information: FreightInformation,
+          ?pallets: Array[PalletInput],
+          ready_to_ship_window: WindowInput,
+          shipment_id: String
+        ) -> void
+      end
+    end
+  end
+end

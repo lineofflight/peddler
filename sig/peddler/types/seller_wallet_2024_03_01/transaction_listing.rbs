@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class TransactionListing < Data
+        attr_reader next_page_token: String?
+        attr_reader transactions: Array[Transaction]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?next_page_token: String,
+          transactions: Array[Transaction]
+        ) -> void
+      end
+    end
+  end
+end

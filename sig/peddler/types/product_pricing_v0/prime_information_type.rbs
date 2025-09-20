@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class PrimeInformationType < Data
+        attr_reader prime: bool
+        attr_reader national_prime: bool
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          prime: bool,
+          national_prime: bool
+        ) -> void
+      end
+    end
+  end
+end

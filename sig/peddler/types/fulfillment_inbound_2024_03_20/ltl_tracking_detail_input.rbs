@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class LtlTrackingDetailInput < Data
+        attr_reader bill_of_lading_number: String?
+        attr_reader freight_bill_number: Array[String]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?bill_of_lading_number: String,
+          freight_bill_number: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class ContentDocument < Data
+        attr_reader name: String
+        attr_reader content_type: String
+        attr_reader content_sub_type: String?
+        attr_reader locale: String
+        attr_reader content_module_list: Array[ContentModule]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          name: String,
+          content_type: String,
+          ?content_sub_type: String,
+          locale: String,
+          content_module_list: Array[ContentModule]
+        ) -> void
+      end
+    end
+  end
+end

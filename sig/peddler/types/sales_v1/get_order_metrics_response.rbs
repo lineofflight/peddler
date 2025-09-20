@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SalesV1
+      class GetOrderMetricsResponse < Data
+        attr_reader payload: Array[OrderMetricsInterval]?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: Array[OrderMetricsInterval],
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

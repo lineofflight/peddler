@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class BalanceListing < Data
+        attr_reader balances: Array[Balance]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?balances: Array[Balance]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentSandboxTestData20211028
+      class OrderScenarioRequest < Data
+        attr_reader selling_party: PartyIdentification
+        attr_reader ship_from_party: PartyIdentification
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          selling_party: PartyIdentification,
+          ship_from_party: PartyIdentification
+        ) -> void
+      end
+    end
+  end
+end

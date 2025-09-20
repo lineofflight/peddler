@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class DeliveryPreferences < Data
+        attr_reader drop_off_location: String?
+        attr_reader preferred_delivery_time: PreferredDeliveryTime?
+        attr_reader other_attributes: Array[String]?
+        attr_reader address_instructions: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?drop_off_location: String,
+          ?preferred_delivery_time: PreferredDeliveryTime,
+          ?other_attributes: Array[String],
+          ?address_instructions: String
+        ) -> void
+      end
+    end
+  end
+end

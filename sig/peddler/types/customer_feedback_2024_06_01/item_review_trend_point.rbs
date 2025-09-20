@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class ItemReviewTrendPoint < Data
+        attr_reader date_range: DateRange
+        attr_reader asin_metrics: ReviewTrendMetrics
+        attr_reader parent_asin_metrics: ReviewTrendMetrics?
+        attr_reader browse_node_metrics: BrowseNodeTrendMetrics?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          date_range: DateRange,
+          asin_metrics: ReviewTrendMetrics,
+          ?parent_asin_metrics: ReviewTrendMetrics,
+          ?browse_node_metrics: BrowseNodeTrendMetrics
+        ) -> void
+      end
+    end
+  end
+end

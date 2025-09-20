@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ChargeInstrument < Data
+        attr_reader description: String?
+        attr_reader tail: String?
+        attr_reader amount: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?description: String,
+          ?tail: String,
+          ?amount: Currency
+        ) -> void
+      end
+    end
+  end
+end

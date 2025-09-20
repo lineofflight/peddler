@@ -1,0 +1,39 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentPaymentsV1
+      class InvoiceDetail < Data
+        attr_reader invoice_number: String
+        attr_reader invoice_date: String
+        attr_reader reference_number: String?
+        attr_reader remit_to_party: PartyIdentification
+        attr_reader ship_from_party: PartyIdentification
+        attr_reader bill_to_party: PartyIdentification?
+        attr_reader ship_to_country_code: String?
+        attr_reader payment_terms_code: String?
+        attr_reader invoice_total: Money
+        attr_reader tax_totals: Array[TaxDetail]?
+        attr_reader additional_details: Array[AdditionalDetails]?
+        attr_reader charge_details: Array[ChargeDetails]?
+        attr_reader items: Array[InvoiceItem]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          invoice_number: String,
+          invoice_date: String,
+          ?reference_number: String,
+          remit_to_party: PartyIdentification,
+          ship_from_party: PartyIdentification,
+          ?bill_to_party: PartyIdentification,
+          ?ship_to_country_code: String,
+          ?payment_terms_code: String,
+          invoice_total: Money,
+          ?tax_totals: Array[TaxDetail],
+          ?additional_details: Array[AdditionalDetails],
+          ?charge_details: Array[ChargeDetails],
+          items: Array[InvoiceItem]
+        ) -> void
+      end
+    end
+  end
+end

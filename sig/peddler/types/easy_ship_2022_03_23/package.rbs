@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module EasyShip20220323
+      class Package < Data
+        attr_reader scheduled_package_id: ScheduledPackageId
+        attr_reader package_dimensions: Dimensions
+        attr_reader package_weight: Weight
+        attr_reader package_items: Array[Item]?
+        attr_reader package_time_slot: TimeSlot
+        attr_reader package_identifier: String?
+        attr_reader invoice: InvoiceData?
+        attr_reader package_status: String?
+        attr_reader tracking_details: TrackingDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          scheduled_package_id: ScheduledPackageId,
+          package_dimensions: Dimensions,
+          package_weight: Weight,
+          ?package_items: Array[Item],
+          package_time_slot: TimeSlot,
+          ?package_identifier: String,
+          ?invoice: InvoiceData,
+          ?package_status: String,
+          ?tracking_details: TrackingDetails
+        ) -> void
+      end
+    end
+  end
+end

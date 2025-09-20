@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class CreateInboundPlanResponse < Data
+        attr_reader inbound_plan_id: String
+        attr_reader operation_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          inbound_plan_id: String,
+          operation_id: String
+        ) -> void
+      end
+    end
+  end
+end

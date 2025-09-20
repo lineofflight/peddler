@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class PaymentsContext < Data
+        attr_reader payment_type: String?
+        attr_reader payment_method: String?
+        attr_reader payment_reference: String?
+        attr_reader payment_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payment_type: String,
+          ?payment_method: String,
+          ?payment_reference: String,
+          ?payment_date: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ProductFeesV0
+      class FeesEstimateError < Data
+        attr_reader type: String
+        attr_reader code: String
+        attr_reader message: String
+        attr_reader detail: Array[Hash[String, untyped]]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          type: String,
+          code: String,
+          message: String,
+          detail: Array[Hash[String, untyped]]
+        ) -> void
+      end
+    end
+  end
+end

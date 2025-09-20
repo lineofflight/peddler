@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class TextComponent < Data
+        attr_reader value: String
+        attr_reader decorator_set: Array[Decorator]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          value: String,
+          ?decorator_set: Array[Decorator]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ListingsRestrictions20210801
+      class Link < Data
+        attr_reader resource: String
+        attr_reader verb: String
+        attr_reader title: String?
+        attr_reader type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          resource: String,
+          verb: String,
+          ?title: String,
+          ?type: String
+        ) -> void
+      end
+    end
+  end
+end

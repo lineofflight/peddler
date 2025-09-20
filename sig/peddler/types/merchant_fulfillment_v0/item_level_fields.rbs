@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class ItemLevelFields < Data
+        attr_reader asin: String
+        attr_reader additional_inputs: Array[AdditionalInputs]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          asin: String,
+          additional_inputs: Array[AdditionalInputs]
+        ) -> void
+      end
+    end
+  end
+end

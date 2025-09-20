@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrders20211228
+      class BuyerCustomizedInfoDetail < Data
+        attr_reader customized_url: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?customized_url: String
+        ) -> void
+      end
+    end
+  end
+end

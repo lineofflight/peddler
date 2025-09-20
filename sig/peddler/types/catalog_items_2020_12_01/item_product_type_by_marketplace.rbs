@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CatalogItems20201201
+      class ItemProductTypeByMarketplace < Data
+        attr_reader marketplace_id: String?
+        attr_reader product_type: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?marketplace_id: String,
+          ?product_type: String
+        ) -> void
+      end
+    end
+  end
+end

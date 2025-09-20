@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class Benefits < Data
+        attr_reader included_benefits: Array[String]
+        attr_reader excluded_benefits: Array[ExcludedBenefit]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          included_benefits: Array[String],
+          excluded_benefits: Array[ExcludedBenefit]
+        ) -> void
+      end
+    end
+  end
+end

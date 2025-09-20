@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class ImageComponent < Data
+        attr_reader upload_destination_id: String
+        attr_reader image_crop_specification: ImageCropSpecification
+        attr_reader alt_text: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          upload_destination_id: String,
+          image_crop_specification: ImageCropSpecification,
+          alt_text: String
+        ) -> void
+      end
+    end
+  end
+end

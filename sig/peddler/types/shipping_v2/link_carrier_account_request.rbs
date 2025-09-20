@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class LinkCarrierAccountRequest < Data
+        attr_reader client_reference_details: Array[ClientReferenceDetail]?
+        attr_reader carrier_account_type: String
+        attr_reader carrier_account_attributes: Array[CarrierAccountAttribute]
+        attr_reader encrypted_carrier_account_attributes: Array[CarrierAccountAttribute]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?client_reference_details: Array[ClientReferenceDetail],
+          carrier_account_type: String,
+          carrier_account_attributes: Array[CarrierAccountAttribute],
+          ?encrypted_carrier_account_attributes: Array[CarrierAccountAttribute]
+        ) -> void
+      end
+    end
+  end
+end

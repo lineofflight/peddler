@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class FulfillmentAvailability < Data
+        attr_reader fulfillment_channel_code: String
+        attr_reader quantity: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          fulfillment_channel_code: String,
+          ?quantity: Integer
+        ) -> void
+      end
+    end
+  end
+end

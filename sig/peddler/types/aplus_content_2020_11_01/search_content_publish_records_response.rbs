@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class SearchContentPublishRecordsResponse < Data
+        attr_reader publish_record_list: Array[PublishRecord]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          publish_record_list: Array[PublishRecord]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class ItemProcurement < Data
+        attr_reader cost_price: Money
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          cost_price: Money
+        ) -> void
+      end
+    end
+  end
+end

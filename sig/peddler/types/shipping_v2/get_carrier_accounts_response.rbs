@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetCarrierAccountsResponse < Data
+        attr_reader active_accounts: Array[ActiveAccount]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          active_accounts: Array[ActiveAccount]
+        ) -> void
+      end
+    end
+  end
+end

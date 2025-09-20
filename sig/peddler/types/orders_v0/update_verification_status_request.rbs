@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class UpdateVerificationStatusRequest < Data
+        attr_reader regulated_order_verification_status: UpdateVerificationStatusRequestBody
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          regulated_order_verification_status: UpdateVerificationStatusRequestBody
+        ) -> void
+      end
+    end
+  end
+end

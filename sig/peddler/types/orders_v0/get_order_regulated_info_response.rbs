@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class GetOrderRegulatedInfoResponse < Data
+        attr_reader payload: OrderRegulatedInfo?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: OrderRegulatedInfo,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class SetAppointmentResponse < Data
+        attr_reader appointment_id: String?
+        attr_reader warnings: Array[Warning]?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?appointment_id: String,
+          ?warnings: Array[Warning],
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

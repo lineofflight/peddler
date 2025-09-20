@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class CreateReservationRequest < Data
+        attr_reader resource_id: String
+        attr_reader reservation: Reservation
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          resource_id: String,
+          reservation: Reservation
+        ) -> void
+      end
+    end
+  end
+end

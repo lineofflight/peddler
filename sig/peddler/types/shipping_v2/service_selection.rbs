@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class ServiceSelection < Data
+        attr_reader service_id: Array[String]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          service_id: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

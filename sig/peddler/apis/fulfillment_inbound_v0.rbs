@@ -1,0 +1,12 @@
+module Peddler
+  module APIs
+    class FulfillmentInboundV0 < API
+      def get_prep_instructions: (String, ?seller_sku_list: Array[String], ?asin_list: Array[String]) -> Peddler::Response
+      def get_labels: (String, String, String, ?number_of_packages: Integer, ?package_labels_to_print: Array[String], ?number_of_pallets: Integer, ?page_size: Integer, ?page_start_index: Integer) -> Peddler::Response
+      def get_bill_of_lading: (String) -> Peddler::Response
+      def get_shipments: (String, String, ?shipment_status_list: Array[String], ?shipment_id_list: Array[String], ?last_updated_after: String, ?last_updated_before: String, ?next_token: String) -> Peddler::Response
+      def get_shipment_items_by_shipment_id: (String, ?marketplace_id: String) -> Peddler::Response
+      def get_shipment_items: (String, String, ?last_updated_after: String, ?last_updated_before: String, ?next_token: String) -> Peddler::Response
+    end
+  end
+end

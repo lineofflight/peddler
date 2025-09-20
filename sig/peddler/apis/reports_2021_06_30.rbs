@@ -1,0 +1,15 @@
+module Peddler
+  module APIs
+    class Reports20210630 < API
+      def get_reports: (?report_types: Array[String], ?processing_statuses: Array[String], ?marketplace_ids: Array[String], ?page_size: Integer, ?created_since: String, ?created_until: String, ?next_token: String) -> Peddler::Response
+      def create_report: (untyped) -> Peddler::Response
+      def cancel_report: (String) -> Peddler::Response
+      def get_report: (String) -> Peddler::Response
+      def get_report_schedules: (Array[String]) -> Peddler::Response
+      def create_report_schedule: (untyped) -> Peddler::Response
+      def cancel_report_schedule: (String) -> Peddler::Response
+      def get_report_schedule: (String) -> Peddler::Response
+      def get_report_document: (String) -> Peddler::Response
+    end
+  end
+end

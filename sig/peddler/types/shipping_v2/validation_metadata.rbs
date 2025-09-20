@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class ValidationMetadata < Data
+        attr_reader error_message: String?
+        attr_reader validation_strategy: String?
+        attr_reader value: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?error_message: String,
+          ?validation_strategy: String,
+          ?value: String
+        ) -> void
+      end
+    end
+  end
+end

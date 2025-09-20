@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class CreateShipmentRequest < Data
+        attr_reader shipment_request_details: ShipmentRequestDetails
+        attr_reader shipping_service_id: String
+        attr_reader shipping_service_offer_id: String?
+        attr_reader hazmat_type: String?
+        attr_reader label_format_option: LabelFormatOptionRequest?
+        attr_reader shipment_level_seller_inputs_list: Array[AdditionalSellerInputs]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_request_details: ShipmentRequestDetails,
+          shipping_service_id: String,
+          ?shipping_service_offer_id: String,
+          ?hazmat_type: String,
+          ?label_format_option: LabelFormatOptionRequest,
+          ?shipment_level_seller_inputs_list: Array[AdditionalSellerInputs]
+        ) -> void
+      end
+    end
+  end
+end

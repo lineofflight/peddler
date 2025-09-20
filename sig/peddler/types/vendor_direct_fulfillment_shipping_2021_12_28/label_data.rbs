@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class LabelData < Data
+        attr_reader package_identifier: String?
+        attr_reader tracking_number: String?
+        attr_reader ship_method: String?
+        attr_reader ship_method_name: String?
+        attr_reader content: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?package_identifier: String,
+          ?tracking_number: String,
+          ?ship_method: String,
+          ?ship_method_name: String,
+          content: String
+        ) -> void
+      end
+    end
+  end
+end

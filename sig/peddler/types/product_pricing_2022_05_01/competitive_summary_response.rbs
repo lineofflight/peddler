@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class CompetitiveSummaryResponse < Data
+        attr_reader status: HttpStatusLine
+        attr_reader body: CompetitiveSummaryResponseBody
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          status: HttpStatusLine,
+          body: CompetitiveSummaryResponseBody
+        ) -> void
+      end
+    end
+  end
+end

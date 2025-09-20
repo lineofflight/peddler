@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class CustomPlacementInput < Data
+        attr_reader items: Array[ItemInput]
+        attr_reader warehouse_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          items: Array[ItemInput],
+          warehouse_id: String
+        ) -> void
+      end
+    end
+  end
+end

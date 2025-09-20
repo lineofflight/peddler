@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class DirectPayment < Data
+        attr_reader direct_payment_type: String?
+        attr_reader direct_payment_amount: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?direct_payment_type: String,
+          ?direct_payment_amount: Currency
+        ) -> void
+      end
+    end
+  end
+end

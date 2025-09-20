@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class GetSellingPartnerMetricsResponse < Data
+        attr_reader metrics: Array[GetSellingPartnerMetricsResponseMetric]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?metrics: Array[GetSellingPartnerMetricsResponseMetric]
+        ) -> void
+      end
+    end
+  end
+end

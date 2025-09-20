@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Duration < Data
+        attr_reader duration_unit: String
+        attr_reader duration_value: Integer
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          duration_unit: String,
+          duration_value: Integer
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class JobListing < Data
+        attr_reader total_result_size: Integer?
+        attr_reader next_page_token: String?
+        attr_reader previous_page_token: String?
+        attr_reader jobs: Array[ServiceJob]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?total_result_size: Integer,
+          ?next_page_token: String,
+          ?previous_page_token: String,
+          ?jobs: Array[ServiceJob]
+        ) -> void
+      end
+    end
+  end
+end

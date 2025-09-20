@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class ItemSearchResults < Data
+        attr_reader number_of_results: Integer
+        attr_reader pagination: Pagination?
+        attr_reader items: Array[Item]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          number_of_results: Integer,
+          ?pagination: Pagination,
+          items: Array[Item]
+        ) -> void
+      end
+    end
+  end
+end

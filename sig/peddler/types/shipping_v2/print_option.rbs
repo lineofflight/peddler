@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class PrintOption < Data
+        attr_reader supported_dp_is: Array[Integer]?
+        attr_reader supported_page_layouts: Array[String]
+        attr_reader supported_file_joining_options: Array[bool]
+        attr_reader supported_document_details: Array[SupportedDocumentDetail]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?supported_dp_is: Array[Integer],
+          supported_page_layouts: Array[String],
+          supported_file_joining_options: Array[bool],
+          supported_document_details: Array[SupportedDocumentDetail]
+        ) -> void
+      end
+    end
+  end
+end

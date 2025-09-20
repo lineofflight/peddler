@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class UnmanifestedShipmentLocation < Data
+        attr_reader address: Address?
+        attr_reader last_manifest_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?address: Address,
+          ?last_manifest_date: String
+        ) -> void
+      end
+    end
+  end
+end

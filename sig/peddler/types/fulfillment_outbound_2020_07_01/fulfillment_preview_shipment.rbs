@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class FulfillmentPreviewShipment < Data
+        attr_reader earliest_ship_date: String?
+        attr_reader latest_ship_date: String?
+        attr_reader earliest_arrival_date: String?
+        attr_reader latest_arrival_date: String?
+        attr_reader shipping_notes: Array[String]?
+        attr_reader fulfillment_preview_items: Array[FulfillmentPreviewItem]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?earliest_ship_date: String,
+          ?latest_ship_date: String,
+          ?earliest_arrival_date: String,
+          ?latest_arrival_date: String,
+          ?shipping_notes: Array[String],
+          fulfillment_preview_items: Array[FulfillmentPreviewItem]
+        ) -> void
+      end
+    end
+  end
+end

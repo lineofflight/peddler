@@ -1,0 +1,50 @@
+module Peddler
+  VERSION: String
+
+  class API
+    class CannotSandbox < StandardError
+    end
+    class MustSandbox < StandardError
+    end
+    @endpoint: Endpoint
+    @access_token: String
+    @retries: Integer
+    @sandbox: bool
+    @typed: bool
+    @http: untyped
+
+    attr_reader endpoint: Endpoint
+    attr_reader access_token: String
+    attr_reader retries: Integer
+
+    def initialize: (String aws_region, String access_token, ?retries: Integer) -> void
+    def endpoint_uri: () -> URI::HTTPS
+    def typed: () -> self
+    def typed?: () -> bool
+    def sandbox: () -> self
+    def sandbox?: () -> bool
+    def cannot_sandbox!: () -> void
+    def must_sandbox!: () -> void
+    def http: () -> HTTP::Client
+
+    # Methods defined dynamically in the class
+    def via: (*untyped args, **untyped kwargs) ?{ () -> untyped } -> self
+    alias through via
+    def use: (*untyped args, **untyped kwargs) ?{ () -> untyped } -> self
+    def retriable: (**untyped kwargs) ?{ () -> untyped } -> self
+
+    def get: (String path, ?parser: untyped?, **untyped options) -> Response
+    def post: (String path, ?parser: untyped?, **untyped options) -> Response
+    def put: (String path, ?parser: untyped?, **untyped options) -> Response
+    def delete: (String path, ?parser: untyped?, **untyped options) -> Response
+    def patch: (String path, ?parser: untyped?, **untyped options) -> Response
+
+    private
+    def meter: (Float requests_per_second) -> self
+    def user_agent: () -> String
+    def timestamp: () -> String
+    def load_types: () -> void
+    def percent_encode: (String component) -> String
+    def stringify_array: (Array[untyped]? val) -> String?
+  end
+end

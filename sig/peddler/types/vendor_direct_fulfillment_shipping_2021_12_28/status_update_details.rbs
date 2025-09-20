@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class StatusUpdateDetails < Data
+        attr_reader tracking_number: String
+        attr_reader status_code: String
+        attr_reader reason_code: String
+        attr_reader status_date_time: String
+        attr_reader status_location_address: Address
+        attr_reader shipment_schedule: ShipmentSchedule?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          tracking_number: String,
+          status_code: String,
+          reason_code: String,
+          status_date_time: String,
+          status_location_address: Address,
+          ?shipment_schedule: ShipmentSchedule
+        ) -> void
+      end
+    end
+  end
+end

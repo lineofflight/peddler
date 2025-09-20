@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class ShipperInstruction < Data
+        attr_reader delivery_notes: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?delivery_notes: String
+        ) -> void
+      end
+    end
+  end
+end

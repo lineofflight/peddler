@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class PrepDetails < Data
+        attr_reader prep_instruction: String
+        attr_reader prep_owner: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          prep_instruction: String,
+          prep_owner: String
+        ) -> void
+      end
+    end
+  end
+end

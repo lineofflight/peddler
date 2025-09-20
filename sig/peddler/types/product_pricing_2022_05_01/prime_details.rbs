@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class PrimeDetails < Data
+        attr_reader eligibility: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          eligibility: String
+        ) -> void
+      end
+    end
+  end
+end

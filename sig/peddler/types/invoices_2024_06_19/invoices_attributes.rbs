@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module Invoices20240619
+      class InvoicesAttributes < Data
+        attr_reader invoice_status_options: Array[AttributeOption]?
+        attr_reader invoice_type_options: Array[AttributeOption]?
+        attr_reader transaction_identifier_name_options: Array[AttributeOption]?
+        attr_reader transaction_type_options: Array[AttributeOption]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?invoice_status_options: Array[AttributeOption],
+          ?invoice_type_options: Array[AttributeOption],
+          ?transaction_identifier_name_options: Array[AttributeOption],
+          ?transaction_type_options: Array[AttributeOption]
+        ) -> void
+      end
+    end
+  end
+end

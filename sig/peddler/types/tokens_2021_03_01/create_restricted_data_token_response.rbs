@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Tokens20210301
+      class CreateRestrictedDataTokenResponse < Data
+        attr_reader restricted_data_token: String?
+        attr_reader expires_in: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?restricted_data_token: String,
+          ?expires_in: Integer
+        ) -> void
+      end
+    end
+  end
+end

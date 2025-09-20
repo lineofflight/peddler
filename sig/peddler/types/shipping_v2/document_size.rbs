@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class DocumentSize < Data
+        attr_reader width: Float
+        attr_reader length: Float
+        attr_reader unit: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          width: Float,
+          length: Float,
+          unit: String
+        ) -> void
+      end
+    end
+  end
+end

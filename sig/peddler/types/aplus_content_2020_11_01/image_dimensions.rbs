@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class ImageDimensions < Data
+        attr_reader width: IntegerWithUnits
+        attr_reader height: IntegerWithUnits
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          width: IntegerWithUnits,
+          height: IntegerWithUnits
+        ) -> void
+      end
+    end
+  end
+end

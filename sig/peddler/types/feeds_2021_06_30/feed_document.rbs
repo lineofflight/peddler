@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module Feeds20210630
+      class FeedDocument < Data
+        attr_reader feed_document_id: String
+        attr_reader url: String
+        attr_reader compression_algorithm: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          feed_document_id: String,
+          url: String,
+          ?compression_algorithm: String
+        ) -> void
+      end
+    end
+  end
+end

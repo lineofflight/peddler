@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class ItemReviewSubtopic < Data
+        attr_reader subtopic: String
+        attr_reader metrics: ItemReviewSubtopicMetrics
+        attr_reader review_snippets: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          subtopic: String,
+          metrics: ItemReviewSubtopicMetrics,
+          ?review_snippets: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

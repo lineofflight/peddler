@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class LowestPriceType < Data
+        attr_reader condition: String
+        attr_reader fulfillment_channel: String
+        attr_reader offer_type: String?
+        attr_reader quantity_tier: Integer?
+        attr_reader quantity_discount_type: String?
+        attr_reader landed_price: Money?
+        attr_reader listing_price: Money
+        attr_reader shipping: Money?
+        attr_reader points: Points?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          condition: String,
+          fulfillment_channel: String,
+          ?offer_type: String,
+          ?quantity_tier: Integer,
+          ?quantity_discount_type: String,
+          ?landed_price: Money,
+          listing_price: Money,
+          ?shipping: Money,
+          ?points: Points
+        ) -> void
+      end
+    end
+  end
+end

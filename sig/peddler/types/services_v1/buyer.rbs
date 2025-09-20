@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class Buyer < Data
+        attr_reader buyer_id: String?
+        attr_reader name: String?
+        attr_reader phone: String?
+        attr_reader prime_member: bool?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?buyer_id: String,
+          ?name: String,
+          ?phone: String,
+          ?prime_member: bool
+        ) -> void
+      end
+    end
+  end
+end

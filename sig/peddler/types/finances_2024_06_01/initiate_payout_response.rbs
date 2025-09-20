@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Finances20240601
+      class InitiatePayoutResponse < Data
+        attr_reader payout_reference_id: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          payout_reference_id: String
+        ) -> void
+      end
+    end
+  end
+end

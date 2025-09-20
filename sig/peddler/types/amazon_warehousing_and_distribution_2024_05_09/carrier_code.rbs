@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class CarrierCode < Data
+        attr_reader carrier_code_type: String?
+        attr_reader carrier_code_value: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?carrier_code_type: String,
+          ?carrier_code_value: String
+        ) -> void
+      end
+    end
+  end
+end

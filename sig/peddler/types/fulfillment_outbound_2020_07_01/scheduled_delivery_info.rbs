@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class ScheduledDeliveryInfo < Data
+        attr_reader delivery_time_zone: String
+        attr_reader delivery_windows: Array[DeliveryWindow]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          delivery_time_zone: String,
+          delivery_windows: Array[DeliveryWindow]
+        ) -> void
+      end
+    end
+  end
+end

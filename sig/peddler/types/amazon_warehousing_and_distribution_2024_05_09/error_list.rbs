@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class ErrorList < Data
+        attr_reader errors: Array[Error]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

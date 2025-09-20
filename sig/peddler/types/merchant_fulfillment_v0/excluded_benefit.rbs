@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class ExcludedBenefit < Data
+        attr_reader benefit: String?
+        attr_reader reason_codes: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?benefit: String,
+          ?reason_codes: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

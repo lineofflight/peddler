@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class PostContentDocumentAsinRelationsResponse < Data
+        attr_reader warnings: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?warnings: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

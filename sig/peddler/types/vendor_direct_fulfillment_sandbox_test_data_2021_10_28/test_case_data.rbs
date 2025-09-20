@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentSandboxTestData20211028
+      class TestCaseData < Data
+        attr_reader scenarios: Array[Scenario]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?scenarios: Array[Scenario]
+        ) -> void
+      end
+    end
+  end
+end

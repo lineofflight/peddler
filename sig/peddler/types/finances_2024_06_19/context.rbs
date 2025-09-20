@@ -1,0 +1,45 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class Context < Data
+        attr_reader context_type: String
+        attr_reader store_name: String?
+        attr_reader order_type: String?
+        attr_reader channel: String?
+        attr_reader asin: String?
+        attr_reader sku: String?
+        attr_reader quantity_shipped: Integer?
+        attr_reader fulfillment_network: String?
+        attr_reader payment_type: String?
+        attr_reader payment_method: String?
+        attr_reader payment_reference: String?
+        attr_reader payment_date: String?
+        attr_reader deferral_reason: String?
+        attr_reader maturity_date: String?
+        attr_reader start_time: String?
+        attr_reader end_time: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          context_type: String,
+          ?store_name: String,
+          ?order_type: String,
+          ?channel: String,
+          ?asin: String,
+          ?sku: String,
+          ?quantity_shipped: Integer,
+          ?fulfillment_network: String,
+          ?payment_type: String,
+          ?payment_method: String,
+          ?payment_reference: String,
+          ?payment_date: String,
+          ?deferral_reason: String,
+          ?maturity_date: String,
+          ?start_time: String,
+          ?end_time: String
+        ) -> void
+      end
+    end
+  end
+end

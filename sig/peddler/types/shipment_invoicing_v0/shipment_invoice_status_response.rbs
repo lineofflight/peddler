@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShipmentInvoicingV0
+      class ShipmentInvoiceStatusResponse < Data
+        attr_reader shipments: ShipmentInvoiceStatusInfo?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?shipments: ShipmentInvoiceStatusInfo
+        ) -> void
+      end
+    end
+  end
+end

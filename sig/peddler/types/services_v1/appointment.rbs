@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class Appointment < Data
+        attr_reader appointment_id: String?
+        attr_reader appointment_status: String?
+        attr_reader appointment_time: AppointmentTime?
+        attr_reader assigned_technicians: Array[Technician]?
+        attr_reader rescheduled_appointment_id: String?
+        attr_reader poa: Poa?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?appointment_id: String,
+          ?appointment_status: String,
+          ?appointment_time: AppointmentTime,
+          ?assigned_technicians: Array[Technician],
+          ?rescheduled_appointment_id: String,
+          ?poa: Poa
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ScheduleSelfShipAppointmentResponse < Data
+        attr_reader self_ship_appointment_details: SelfShipAppointmentDetails
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          self_ship_appointment_details: SelfShipAppointmentDetails
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ComplianceDetail < Data
+        attr_reader asin: String?
+        attr_reader fnsku: String?
+        attr_reader msku: String?
+        attr_reader tax_details: TaxDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?fnsku: String,
+          ?msku: String,
+          ?tax_details: TaxDetails
+        ) -> void
+      end
+    end
+  end
+end

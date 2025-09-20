@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class TransferScheduleRequest < Data
+        attr_reader source_account_id: String
+        attr_reader source_currency_code: String
+        attr_reader destination_account_id: String
+        attr_reader destination_transaction_instrument: TransactionInstrumentDetails
+        attr_reader transaction_type: String
+        attr_reader transfer_schedule_information: TransferScheduleInformation
+        attr_reader payment_preference: PaymentPreference
+        attr_reader transfer_schedule_status: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          source_account_id: String,
+          source_currency_code: String,
+          destination_account_id: String,
+          destination_transaction_instrument: TransactionInstrumentDetails,
+          transaction_type: String,
+          transfer_schedule_information: TransferScheduleInformation,
+          payment_preference: PaymentPreference,
+          ?transfer_schedule_status: String
+        ) -> void
+      end
+    end
+  end
+end

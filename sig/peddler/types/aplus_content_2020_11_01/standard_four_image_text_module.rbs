@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardFourImageTextModule < Data
+        attr_reader headline: TextComponent?
+        attr_reader block1: StandardImageTextBlock?
+        attr_reader block2: StandardImageTextBlock?
+        attr_reader block3: StandardImageTextBlock?
+        attr_reader block4: StandardImageTextBlock?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?headline: TextComponent,
+          ?block1: StandardImageTextBlock,
+          ?block2: StandardImageTextBlock,
+          ?block3: StandardImageTextBlock,
+          ?block4: StandardImageTextBlock
+        ) -> void
+      end
+    end
+  end
+end

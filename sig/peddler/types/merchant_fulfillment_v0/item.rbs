@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class Item < Data
+        attr_reader order_item_id: String
+        attr_reader quantity: Integer
+        attr_reader item_weight: Weight?
+        attr_reader item_description: String?
+        attr_reader transparency_code_list: Array[String]?
+        attr_reader item_level_seller_inputs_list: Array[AdditionalSellerInputs]?
+        attr_reader liquid_volume: LiquidVolume?
+        attr_reader hazmat: bool?
+        attr_reader dangerous_goods_details: DangerousGoodsDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          order_item_id: String,
+          quantity: Integer,
+          ?item_weight: Weight,
+          ?item_description: String,
+          ?transparency_code_list: Array[String],
+          ?item_level_seller_inputs_list: Array[AdditionalSellerInputs],
+          ?liquid_volume: LiquidVolume,
+          ?hazmat: bool,
+          ?dangerous_goods_details: DangerousGoodsDetails
+        ) -> void
+      end
+    end
+  end
+end

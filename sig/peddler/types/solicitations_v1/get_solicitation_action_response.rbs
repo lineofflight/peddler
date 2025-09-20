@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module SolicitationsV1
+      class GetSolicitationActionResponse < Data
+        attr_reader _links: Hash[String, untyped]?
+        attr_reader _embedded: Hash[String, untyped]?
+        attr_reader payload: SolicitationsAction?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?_links: Hash[String, untyped],
+          ?_embedded: Hash[String, untyped],
+          ?payload: SolicitationsAction,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

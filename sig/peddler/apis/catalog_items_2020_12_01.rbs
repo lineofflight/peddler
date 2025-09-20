@@ -1,0 +1,8 @@
+module Peddler
+  module APIs
+    class CatalogItems20201201 < API
+      def search_catalog_items: (Array[String], Array[String], ?included_data: Array[String], ?brand_names: Array[String], ?classification_ids: Array[String], ?page_size: Integer, ?page_token: String, ?keywords_locale: String, ?locale: String) -> Peddler::Response
+      def get_catalog_item: (String, Array[String], ?included_data: Array[String], ?locale: String) -> Peddler::Response
+    end
+  end
+end

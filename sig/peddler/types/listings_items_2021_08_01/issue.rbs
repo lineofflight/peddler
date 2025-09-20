@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class Issue < Data
+        attr_reader code: String
+        attr_reader message: String
+        attr_reader severity: String
+        attr_reader attribute_names: Array[String]?
+        attr_reader categories: Array[String]
+        attr_reader enforcements: IssueEnforcements?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          code: String,
+          message: String,
+          severity: String,
+          ?attribute_names: Array[String],
+          categories: Array[String],
+          ?enforcements: IssueEnforcements
+        ) -> void
+      end
+    end
+  end
+end

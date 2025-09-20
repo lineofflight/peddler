@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class AdjustmentEvent < Data
+        attr_reader adjustment_type: String?
+        attr_reader posted_date: String?
+        attr_reader store_name: String?
+        attr_reader adjustment_amount: Currency?
+        attr_reader adjustment_item_list: Array[AdjustmentItem]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?adjustment_type: String,
+          ?posted_date: String,
+          ?store_name: String,
+          ?adjustment_amount: Currency,
+          ?adjustment_item_list: Array[AdjustmentItem]
+        ) -> void
+      end
+    end
+  end
+end

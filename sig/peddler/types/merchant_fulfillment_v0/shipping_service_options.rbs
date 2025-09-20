@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class ShippingServiceOptions < Data
+        attr_reader delivery_experience: String
+        attr_reader declared_value: CurrencyAmount?
+        attr_reader carrier_will_pick_up: bool
+        attr_reader carrier_will_pick_up_option: String?
+        attr_reader label_format: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          delivery_experience: String,
+          ?declared_value: CurrencyAmount,
+          carrier_will_pick_up: bool,
+          ?carrier_will_pick_up_option: String,
+          ?label_format: String
+        ) -> void
+      end
+    end
+  end
+end

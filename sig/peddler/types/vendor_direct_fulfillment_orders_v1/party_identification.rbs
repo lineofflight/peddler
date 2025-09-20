@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrdersV1
+      class PartyIdentification < Data
+        attr_reader party_id: String
+        attr_reader address: Address?
+        attr_reader tax_info: TaxRegistrationDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          party_id: String,
+          ?address: Address,
+          ?tax_info: TaxRegistrationDetails
+        ) -> void
+      end
+    end
+  end
+end

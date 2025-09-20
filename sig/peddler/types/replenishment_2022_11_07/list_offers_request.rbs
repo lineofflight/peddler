@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class ListOffersRequest < Data
+        attr_reader pagination: ListOffersRequestPagination
+        attr_reader filters: ListOffersRequestFilters
+        attr_reader sort: ListOffersRequestSort?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          pagination: ListOffersRequestPagination,
+          filters: ListOffersRequestFilters,
+          ?sort: ListOffersRequestSort
+        ) -> void
+      end
+    end
+  end
+end

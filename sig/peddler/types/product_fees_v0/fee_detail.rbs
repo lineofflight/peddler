@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ProductFeesV0
+      class FeeDetail < Data
+        attr_reader fee_type: String
+        attr_reader fee_amount: Money
+        attr_reader fee_promotion: Money?
+        attr_reader tax_amount: Money?
+        attr_reader final_fee: Money
+        attr_reader included_fee_detail_list: Array[IncludedFeeDetail]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          fee_type: String,
+          fee_amount: Money,
+          ?fee_promotion: Money,
+          ?tax_amount: Money,
+          final_fee: Money,
+          ?included_fee_detail_list: Array[IncludedFeeDetail]
+        ) -> void
+      end
+    end
+  end
+end

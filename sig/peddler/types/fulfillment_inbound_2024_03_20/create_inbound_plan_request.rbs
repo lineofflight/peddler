@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class CreateInboundPlanRequest < Data
+        attr_reader destination_marketplaces: Array[String]
+        attr_reader items: Array[ItemInput]
+        attr_reader name: String?
+        attr_reader source_address: AddressInput
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          destination_marketplaces: Array[String],
+          items: Array[ItemInput],
+          ?name: String,
+          source_address: AddressInput
+        ) -> void
+      end
+    end
+  end
+end

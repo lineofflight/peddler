@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class ASINIdentifier < Data
+        attr_reader marketplace_id: String
+        attr_reader asin: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          asin: String
+        ) -> void
+      end
+    end
+  end
+end

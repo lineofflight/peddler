@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class ShipmentLabels < Data
+        attr_reader label_download_url: String?
+        attr_reader label_status: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?label_download_url: String,
+          label_status: String
+        ) -> void
+      end
+    end
+  end
+end

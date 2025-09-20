@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class ReturnAuthorization < Data
+        attr_reader return_authorization_id: String
+        attr_reader fulfillment_center_id: String
+        attr_reader return_to_address: Address
+        attr_reader amazon_rma_id: String
+        attr_reader rma_page_url: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          return_authorization_id: String,
+          fulfillment_center_id: String,
+          return_to_address: Address,
+          amazon_rma_id: String,
+          rma_page_url: String
+        ) -> void
+      end
+    end
+  end
+end

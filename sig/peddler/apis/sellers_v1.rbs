@@ -1,0 +1,8 @@
+module Peddler
+  module APIs
+    class SellersV1 < API
+      def get_marketplace_participations: () -> Peddler::Response
+      def get_account: () -> Peddler::Response
+    end
+  end
+end

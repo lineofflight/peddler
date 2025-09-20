@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module SalesV1
+      class OrderMetricsInterval < Data
+        attr_reader interval: String
+        attr_reader unit_count: Integer
+        attr_reader order_item_count: Integer
+        attr_reader order_count: Integer
+        attr_reader average_unit_price: Money
+        attr_reader total_sales: Money
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          interval: String,
+          unit_count: Integer,
+          order_item_count: Integer,
+          order_count: Integer,
+          average_unit_price: Money,
+          total_sales: Money
+        ) -> void
+      end
+    end
+  end
+end

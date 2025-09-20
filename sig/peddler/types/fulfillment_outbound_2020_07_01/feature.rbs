@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class Feature < Data
+        attr_reader feature_name: String
+        attr_reader feature_description: String
+        attr_reader seller_eligible: bool?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          feature_name: String,
+          feature_description: String,
+          ?seller_eligible: bool
+        ) -> void
+      end
+    end
+  end
+end

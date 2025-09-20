@@ -1,0 +1,9 @@
+module Peddler
+  module APIs
+    class ApplicationIntegrations20240401 < API
+      def create_notification: (untyped) -> Peddler::Response
+      def delete_notifications: (untyped) -> Peddler::Response
+      def record_action_feedback: (String, untyped) -> Peddler::Response
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class CreateSubscriptionRequest < Data
+        attr_reader payload_version: String
+        attr_reader destination_id: String
+        attr_reader processing_directive: ProcessingDirective?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          payload_version: String,
+          destination_id: String,
+          ?processing_directive: ProcessingDirective
+        ) -> void
+      end
+    end
+  end
+end

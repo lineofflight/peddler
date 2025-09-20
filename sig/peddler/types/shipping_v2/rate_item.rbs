@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class RateItem < Data
+        attr_reader rate_item_id: String?
+        attr_reader rate_item_type: String?
+        attr_reader rate_item_charge: Currency?
+        attr_reader rate_item_name_localization: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?rate_item_id: String,
+          ?rate_item_type: String,
+          ?rate_item_charge: Currency,
+          ?rate_item_name_localization: String
+        ) -> void
+      end
+    end
+  end
+end

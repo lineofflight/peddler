@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class Tokens20210301 < API
+      def create_restricted_data_token: (untyped) -> Peddler::Response
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class ContentMetadata < Data
+        attr_reader name: String
+        attr_reader marketplace_id: String
+        attr_reader status: String
+        attr_reader badge_set: Array[String]
+        attr_reader update_time: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          name: String,
+          marketplace_id: String,
+          status: String,
+          badge_set: Array[String],
+          update_time: String
+        ) -> void
+      end
+    end
+  end
+end

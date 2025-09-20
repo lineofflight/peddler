@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ListingsItems20200901
+      class Issue < Data
+        attr_reader code: String
+        attr_reader message: String
+        attr_reader severity: String
+        attr_reader attribute_name: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          code: String,
+          message: String,
+          severity: String,
+          ?attribute_name: String
+        ) -> void
+      end
+    end
+  end
+end

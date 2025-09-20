@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class OperatingHours < Array[OperatingHour]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

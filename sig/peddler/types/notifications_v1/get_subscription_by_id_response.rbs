@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class GetSubscriptionByIdResponse < Data
+        attr_reader payload: Subscription?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: Subscription,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

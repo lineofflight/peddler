@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class ServiceUploadDocument < Data
+        attr_reader content_type: String
+        attr_reader content_length: Float
+        attr_reader content_md5: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          content_type: String,
+          content_length: Float,
+          ?content_md5: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class FeaturedOfferExpectedPriceResponse < Data
+        attr_reader headers: HttpHeaders
+        attr_reader status: HttpStatusLine
+        attr_reader request: FeaturedOfferExpectedPriceRequestParams
+        attr_reader body: FeaturedOfferExpectedPriceResponseBody?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          headers: HttpHeaders,
+          status: HttpStatusLine,
+          request: FeaturedOfferExpectedPriceRequestParams,
+          ?body: FeaturedOfferExpectedPriceResponseBody
+        ) -> void
+      end
+    end
+  end
+end

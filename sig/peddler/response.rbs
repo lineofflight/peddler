@@ -1,0 +1,31 @@
+module Peddler
+  class Response < SimpleDelegator
+    @http_response: untyped
+    @parser: untyped
+
+    attr_reader http_response: untyped
+    def self.wrap: (HTTP::Response response, ?parser: untyped) -> Response
+    def self.decorate: (HTTP::Response http_response, ?parser: untyped) -> Response
+    extend Forwardable
+
+    def initialize: (HTTP::Response http_response, ?parser: untyped) -> void
+    def body: () -> String
+    def parse: () -> untyped
+    def headers: () -> Hash[String, String]
+    def status: () -> Integer
+    def success?: () -> bool
+    def failure?: () -> bool
+    def to_h: () -> Hash[String, untyped]
+    def dig: (*untyped keys) -> untyped
+    def raise_for_status!: (?raise_on_server_errors: bool) -> void
+
+    private
+    def parser: () -> untyped
+    def warn_about_server_error_handling: () -> void
+
+    # Methods from Kernel/Object that SimpleDelegator doesn't automatically delegate
+    def raise: (*untyped) -> bot
+    def warn: (*untyped) -> nil
+    def class: () -> Class
+  end
+end

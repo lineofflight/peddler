@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class DirectFulfillmentItemIdentifiers < Data
+        attr_reader line_item_id: String
+        attr_reader piece_number: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          line_item_id: String,
+          ?piece_number: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class SupplySourceConfiguration < Data
+        attr_reader operational_configuration: OperationalConfiguration?
+        attr_reader timezone: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?operational_configuration: OperationalConfiguration,
+          ?timezone: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class CreateSupplySourceResponse < Data
+        attr_reader supply_source_id: String
+        attr_reader supply_source_code: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          supply_source_id: String,
+          supply_source_code: String
+        ) -> void
+      end
+    end
+  end
+end

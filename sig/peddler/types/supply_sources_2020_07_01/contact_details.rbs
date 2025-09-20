@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class ContactDetails < Data
+        attr_reader primary: Hash[String, untyped]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?primary: Hash[String, untyped]
+        ) -> void
+      end
+    end
+  end
+end

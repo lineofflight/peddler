@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class DebtRecoveryItem < Data
+        attr_reader recovery_amount: Currency?
+        attr_reader original_amount: Currency?
+        attr_reader group_begin_date: String?
+        attr_reader group_end_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?recovery_amount: Currency,
+          ?original_amount: Currency,
+          ?group_begin_date: String,
+          ?group_end_date: String
+        ) -> void
+      end
+    end
+  end
+end

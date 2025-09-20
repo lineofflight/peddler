@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ShipmentDestination < Data
+        attr_reader address: Address?
+        attr_reader destination_type: String
+        attr_reader warehouse_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?address: Address,
+          destination_type: String,
+          ?warehouse_id: String
+        ) -> void
+      end
+    end
+  end
+end

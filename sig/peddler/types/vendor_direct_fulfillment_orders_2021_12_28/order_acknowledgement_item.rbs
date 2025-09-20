@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrders20211228
+      class OrderAcknowledgementItem < Data
+        attr_reader purchase_order_number: String
+        attr_reader vendor_order_number: String
+        attr_reader acknowledgement_date: String
+        attr_reader acknowledgement_status: AcknowledgementStatus
+        attr_reader selling_party: PartyIdentification
+        attr_reader ship_from_party: PartyIdentification
+        attr_reader item_acknowledgements: Array[OrderItemAcknowledgement]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          purchase_order_number: String,
+          vendor_order_number: String,
+          acknowledgement_date: String,
+          acknowledgement_status: AcknowledgementStatus,
+          selling_party: PartyIdentification,
+          ship_from_party: PartyIdentification,
+          item_acknowledgements: Array[OrderItemAcknowledgement]
+        ) -> void
+      end
+    end
+  end
+end

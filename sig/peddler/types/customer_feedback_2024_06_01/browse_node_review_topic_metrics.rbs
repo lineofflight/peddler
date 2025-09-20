@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class BrowseNodeReviewTopicMetrics < Data
+        attr_reader occurrence_percentage: BrowseNodeAllOccurrence?
+        attr_reader star_rating_impact: BrowseNodeAllStarRatingImpact?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?occurrence_percentage: BrowseNodeAllOccurrence,
+          ?star_rating_impact: BrowseNodeAllStarRatingImpact
+        ) -> void
+      end
+    end
+  end
+end

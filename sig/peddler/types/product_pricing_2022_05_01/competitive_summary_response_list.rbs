@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class CompetitiveSummaryResponseList < Array[CompetitiveSummaryResponse]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

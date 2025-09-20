@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "structure"
+require "peddler/types/product_pricing_2022_05_01/featured_offer_expected_price_response"
 
 module Peddler
   module Types
@@ -8,7 +8,7 @@ module Peddler
       # The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchResponse = Structure.new do
         # @return [Array<FeaturedOfferExpectedPriceResponse>]
-        attribute(:responses, Array)
+        attribute(:responses, [FeaturedOfferExpectedPriceResponse])
       end
     end
   end

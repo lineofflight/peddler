@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class CarrierAccountInput < Data
+        attr_reader description_localization_key: String?
+        attr_reader name: String?
+        attr_reader group_name: String?
+        attr_reader input_type: String?
+        attr_reader mandatory: bool?
+        attr_reader confidential: bool?
+        attr_reader hidden: bool?
+        attr_reader validation_metadata: Array[ValidationMetadata]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?description_localization_key: String,
+          ?name: String,
+          ?group_name: String,
+          ?input_type: String,
+          ?mandatory: bool,
+          ?confidential: bool,
+          ?hidden: bool,
+          ?validation_metadata: Array[ValidationMetadata]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class ScopeOfWork < Data
+        attr_reader asin: String?
+        attr_reader title: String?
+        attr_reader quantity: Integer?
+        attr_reader required_skills: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?title: String,
+          ?quantity: Integer,
+          ?required_skills: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

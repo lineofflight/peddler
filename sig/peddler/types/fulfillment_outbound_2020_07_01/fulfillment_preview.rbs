@@ -1,0 +1,35 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class FulfillmentPreview < Data
+        attr_reader shipping_speed_category: String
+        attr_reader scheduled_delivery_info: ScheduledDeliveryInfo?
+        attr_reader fulfillable: bool
+        attr_reader cod_capable: bool
+        attr_reader estimated_shipping_weight: Weight?
+        attr_reader estimated_fees: Array[Fee]?
+        attr_reader fulfillment_preview_shipments: Array[FulfillmentPreviewShipment]?
+        attr_reader unfulfillable_preview_items: Array[UnfulfillablePreviewItem]?
+        attr_reader order_unfulfillable_reasons: Array[String]?
+        attr_reader marketplace_id: String
+        attr_reader feature_constraints: Array[FeatureSettings]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipping_speed_category: String,
+          ?scheduled_delivery_info: ScheduledDeliveryInfo,
+          fulfillable: bool,
+          cod_capable: bool,
+          ?estimated_shipping_weight: Weight,
+          ?estimated_fees: Array[Fee],
+          ?fulfillment_preview_shipments: Array[FulfillmentPreviewShipment],
+          ?unfulfillable_preview_items: Array[UnfulfillablePreviewItem],
+          ?order_unfulfillable_reasons: Array[String],
+          marketplace_id: String,
+          ?feature_constraints: Array[FeatureSettings]
+        ) -> void
+      end
+    end
+  end
+end

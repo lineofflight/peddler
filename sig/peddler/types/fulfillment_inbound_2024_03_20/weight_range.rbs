@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class WeightRange < Data
+        attr_reader maximum: Float
+        attr_reader minimum: Float
+        attr_reader unit: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          maximum: Float,
+          minimum: Float,
+          unit: String
+        ) -> void
+      end
+    end
+  end
+end

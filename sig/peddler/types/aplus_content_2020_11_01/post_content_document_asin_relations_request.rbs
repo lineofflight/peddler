@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class PostContentDocumentAsinRelationsRequest < Data
+        attr_reader asin_set: Array[String]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          asin_set: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

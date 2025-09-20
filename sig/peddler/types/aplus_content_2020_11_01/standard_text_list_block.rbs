@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardTextListBlock < Data
+        attr_reader text_list: Array[TextItem]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          text_list: Array[TextItem]
+        ) -> void
+      end
+    end
+  end
+end

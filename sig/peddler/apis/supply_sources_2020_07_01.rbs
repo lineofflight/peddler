@@ -1,0 +1,12 @@
+module Peddler
+  module APIs
+    class SupplySources20200701 < API
+      def get_supply_sources: (?next_page_token: String, ?page_size: Float) -> Peddler::Response
+      def create_supply_source: (untyped) -> Peddler::Response
+      def get_supply_source: (String) -> Peddler::Response
+      def update_supply_source: (String, ?payload: untyped) -> Peddler::Response
+      def archive_supply_source: (String) -> Peddler::Response
+      def update_supply_source_status: (String, ?payload: untyped) -> Peddler::Response
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class DirectPurchaseRequest < Data
+        attr_reader ship_to: Address?
+        attr_reader ship_from: Address?
+        attr_reader return_to: Address?
+        attr_reader packages: Array[Package]?
+        attr_reader channel_details: ChannelDetails
+        attr_reader label_specifications: RequestedDocumentSpecification?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?ship_to: Address,
+          ?ship_from: Address,
+          ?return_to: Address,
+          ?packages: Array[Package],
+          channel_details: ChannelDetails,
+          ?label_specifications: RequestedDocumentSpecification
+        ) -> void
+      end
+    end
+  end
+end

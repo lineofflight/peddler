@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class UpdateScheduleRequest < Data
+        attr_reader schedules: Array[AvailabilityRecord]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          schedules: Array[AvailabilityRecord]
+        ) -> void
+      end
+    end
+  end
+end

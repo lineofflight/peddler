@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetShipmentDocumentsResult < Data
+        attr_reader shipment_id: String
+        attr_reader package_document_detail: PackageDocumentDetail
+        attr_reader benefits: Benefits?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_id: String,
+          package_document_detail: PackageDocumentDetail,
+          ?benefits: Benefits
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CatalogItems20201201
+      class ItemSalesRanksByMarketplace < Data
+        attr_reader marketplace_id: String
+        attr_reader ranks: Array[ItemSalesRank]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          ranks: Array[ItemSalesRank]
+        ) -> void
+      end
+    end
+  end
+end

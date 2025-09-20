@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class CreateShipmentRequest < Data
+        attr_reader client_reference_id: String
+        attr_reader ship_to: Address
+        attr_reader ship_from: Address
+        attr_reader containers: Array[Container]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          client_reference_id: String,
+          ship_to: Address,
+          ship_from: Address,
+          containers: Array[Container]
+        ) -> void
+      end
+    end
+  end
+end

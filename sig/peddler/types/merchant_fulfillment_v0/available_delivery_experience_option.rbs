@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class AvailableDeliveryExperienceOption < Data
+        attr_reader delivery_experience_option: String
+        attr_reader charge: CurrencyAmount
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          delivery_experience_option: String,
+          charge: CurrencyAmount
+        ) -> void
+      end
+    end
+  end
+end

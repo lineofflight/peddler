@@ -1,0 +1,11 @@
+module Peddler
+  module APIs
+    class ListingsItems20210801 < API
+      def delete_listings_item: (String, String, Array[String], ?issue_locale: String) -> Peddler::Response
+      def get_listings_item: (String, String, Array[String], ?issue_locale: String, ?included_data: Array[String]) -> Peddler::Response
+      def patch_listings_item: (String, String, Array[String], untyped, ?included_data: Array[String], ?mode: String, ?issue_locale: String) -> Peddler::Response
+      def put_listings_item: (String, String, Array[String], untyped, ?included_data: Array[String], ?mode: String, ?issue_locale: String) -> Peddler::Response
+      def search_listings_items: (String, Array[String], ?issue_locale: String, ?included_data: Array[String], ?identifiers: Array[String], ?identifiers_type: String, ?variation_parent_sku: String, ?package_hierarchy_sku: String, ?created_after: String, ?created_before: String, ?last_updated_after: String, ?last_updated_before: String, ?with_issue_severity: Array[String], ?with_status: Array[String], ?without_status: Array[String], ?sort_by: String, ?sort_order: String, ?page_size: Integer, ?page_token: String) -> Peddler::Response
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class IdentifierType < Data
+        attr_reader marketplace_asin: ASINIdentifier
+        attr_reader sku_identifier: SellerSKUIdentifier?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_asin: ASINIdentifier,
+          ?sku_identifier: SellerSKUIdentifier
+        ) -> void
+      end
+    end
+  end
+end

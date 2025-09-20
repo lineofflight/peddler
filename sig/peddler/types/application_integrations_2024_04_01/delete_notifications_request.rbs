@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ApplicationIntegrations20240401
+      class DeleteNotificationsRequest < Data
+        attr_reader template_id: String
+        attr_reader deletion_reason: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          template_id: String,
+          deletion_reason: String
+        ) -> void
+      end
+    end
+  end
+end

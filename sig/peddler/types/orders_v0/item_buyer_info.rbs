@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class ItemBuyerInfo < Data
+        attr_reader buyer_customized_info: BuyerCustomizedInfoDetail?
+        attr_reader gift_wrap_price: Money?
+        attr_reader gift_wrap_tax: Money?
+        attr_reader gift_message_text: String?
+        attr_reader gift_wrap_level: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?buyer_customized_info: BuyerCustomizedInfoDetail,
+          ?gift_wrap_price: Money,
+          ?gift_wrap_tax: Money,
+          ?gift_message_text: String,
+          ?gift_wrap_level: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class AcceptedRate < Data
+        attr_reader total_charge: Currency?
+        attr_reader billed_weight: Weight?
+        attr_reader service_type: String?
+        attr_reader promise: ShippingPromiseSet?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?total_charge: Currency,
+          ?billed_weight: Weight,
+          ?service_type: String,
+          ?promise: ShippingPromiseSet
+        ) -> void
+      end
+    end
+  end
+end

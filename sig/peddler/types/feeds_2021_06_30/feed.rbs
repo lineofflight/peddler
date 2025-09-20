@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module Feeds20210630
+      class Feed < Data
+        attr_reader feed_id: String
+        attr_reader feed_type: String
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader created_time: String
+        attr_reader processing_status: String
+        attr_reader processing_start_time: String?
+        attr_reader processing_end_time: String?
+        attr_reader result_feed_document_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          feed_id: String,
+          feed_type: String,
+          ?marketplace_ids: Array[String],
+          created_time: String,
+          processing_status: String,
+          ?processing_start_time: String,
+          ?processing_end_time: String,
+          ?result_feed_document_id: String
+        ) -> void
+      end
+    end
+  end
+end

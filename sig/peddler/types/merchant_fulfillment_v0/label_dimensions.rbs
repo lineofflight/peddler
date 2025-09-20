@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class LabelDimensions < Data
+        attr_reader length: Float
+        attr_reader width: Float
+        attr_reader unit: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          length: Float,
+          width: Float,
+          unit: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,35 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class ReturnItem < Data
+        attr_reader seller_return_item_id: String
+        attr_reader seller_fulfillment_order_item_id: String
+        attr_reader amazon_shipment_id: String
+        attr_reader seller_return_reason_code: String
+        attr_reader return_comment: String?
+        attr_reader amazon_return_reason_code: String?
+        attr_reader status: String
+        attr_reader status_changed_date: String
+        attr_reader return_authorization_id: String?
+        attr_reader return_received_condition: String?
+        attr_reader fulfillment_center_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          seller_return_item_id: String,
+          seller_fulfillment_order_item_id: String,
+          amazon_shipment_id: String,
+          seller_return_reason_code: String,
+          ?return_comment: String,
+          ?amazon_return_reason_code: String,
+          status: String,
+          status_changed_date: String,
+          ?return_authorization_id: String,
+          ?return_received_condition: String,
+          ?fulfillment_center_id: String
+        ) -> void
+      end
+    end
+  end
+end

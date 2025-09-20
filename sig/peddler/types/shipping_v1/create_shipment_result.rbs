@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class CreateShipmentResult < Data
+        attr_reader shipment_id: String
+        attr_reader eligible_rates: Array[Rate]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_id: String,
+          eligible_rates: Array[Rate]
+        ) -> void
+      end
+    end
+  end
+end

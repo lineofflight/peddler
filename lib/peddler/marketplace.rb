@@ -83,25 +83,25 @@ module Peddler
       MARKETPLACE_IDS.each_key do |country_code|
         method_name = country_code.downcase
         define_method(method_name) do
-          find(country_code)
+          find(country_code) # steep:ignore
         end
       end
 
       # Special alias for GB (Great Britain) -> UK
       define_method(:gb) do
-        find("GB")
+        find("GB") # steep:ignore
       end
     end
 
     # @return [Peddler::Endpoint]
     def endpoint
-      Endpoint.find_by_selling_region(selling_region)
+      Endpoint.find_by_selling_region(selling_region) # steep:ignore
     end
 
     # @note So HTTP can encode
     # @return [String]
     def to_str
-      id
+      id # steep:ignore
     end
   end
 end

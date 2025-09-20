@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class UpdateShipmentStatusRequest < Data
+        attr_reader marketplace_id: String
+        attr_reader shipment_status: String
+        attr_reader order_items: Array[Hash[String, untyped]]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          shipment_status: String,
+          ?order_items: Array[Hash[String, untyped]]
+        ) -> void
+      end
+    end
+  end
+end

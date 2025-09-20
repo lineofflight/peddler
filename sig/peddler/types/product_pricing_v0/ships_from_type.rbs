@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class ShipsFromType < Data
+        attr_reader state: String?
+        attr_reader country: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?state: String,
+          ?country: String
+        ) -> void
+      end
+    end
+  end
+end

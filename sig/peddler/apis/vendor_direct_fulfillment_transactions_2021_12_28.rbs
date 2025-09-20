@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class VendorDirectFulfillmentTransactions20211228 < API
+      def get_transaction_status: (String) -> Peddler::Response
+    end
+  end
+end

@@ -1,0 +1,37 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class Transaction < Data
+        attr_reader selling_partner_metadata: SellingPartnerMetadata?
+        attr_reader related_identifiers: Array[RelatedIdentifier]?
+        attr_reader transaction_type: String?
+        attr_reader transaction_id: String?
+        attr_reader transaction_status: String?
+        attr_reader description: String?
+        attr_reader posted_date: String?
+        attr_reader total_amount: Currency?
+        attr_reader marketplace_details: MarketplaceDetails?
+        attr_reader items: Array[Item]?
+        attr_reader contexts: Array[untyped]?
+        attr_reader breakdowns: Array[Breakdown]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?selling_partner_metadata: SellingPartnerMetadata,
+          ?related_identifiers: Array[RelatedIdentifier],
+          ?transaction_type: String,
+          ?transaction_id: String,
+          ?transaction_status: String,
+          ?description: String,
+          ?posted_date: String,
+          ?total_amount: Currency,
+          ?marketplace_details: MarketplaceDetails,
+          ?items: Array[Item],
+          ?contexts: Array[untyped],
+          ?breakdowns: Array[Breakdown]
+        ) -> void
+      end
+    end
+  end
+end

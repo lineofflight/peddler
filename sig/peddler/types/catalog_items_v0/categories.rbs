@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module CatalogItemsV0
+      class Categories < Data
+        attr_reader product_category_id: String?
+        attr_reader product_category_name: String?
+        attr_reader parent: Hash[String, untyped]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?product_category_id: String,
+          ?product_category_name: String,
+          ?parent: Hash[String, untyped]
+        ) -> void
+      end
+    end
+  end
+end

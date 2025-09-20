@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class GetDestinationResponse < Data
+        attr_reader payload: Destination?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: Destination,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,93 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class OrderItem < Data
+        attr_reader asin: String
+        attr_reader seller_sku: String?
+        attr_reader order_item_id: String
+        attr_reader associated_items: Array[AssociatedItem]?
+        attr_reader title: String?
+        attr_reader quantity_ordered: Integer
+        attr_reader quantity_shipped: Integer?
+        attr_reader product_info: ProductInfoDetail?
+        attr_reader points_granted: PointsGrantedDetail?
+        attr_reader item_price: Money?
+        attr_reader shipping_price: Money?
+        attr_reader item_tax: Money?
+        attr_reader shipping_tax: Money?
+        attr_reader shipping_discount: Money?
+        attr_reader shipping_discount_tax: Money?
+        attr_reader promotion_discount: Money?
+        attr_reader promotion_discount_tax: Money?
+        attr_reader promotion_ids: Array[String]?
+        attr_reader cod_fee: Money?
+        attr_reader cod_fee_discount: Money?
+        attr_reader is_gift: String?
+        attr_reader condition_note: String?
+        attr_reader condition_id: String?
+        attr_reader condition_subtype_id: String?
+        attr_reader scheduled_delivery_start_date: String?
+        attr_reader scheduled_delivery_end_date: String?
+        attr_reader price_designation: String?
+        attr_reader tax_collection: TaxCollection?
+        attr_reader serial_number_required: bool?
+        attr_reader transparency: bool?
+        attr_reader ioss_number: String?
+        attr_reader store_chain_store_id: String?
+        attr_reader deemed_reseller_category: String?
+        attr_reader buyer_info: ItemBuyerInfo?
+        attr_reader buyer_requested_cancel: BuyerRequestedCancel?
+        attr_reader serial_numbers: Array[String]?
+        attr_reader substitution_preferences: SubstitutionPreferences?
+        attr_reader measurement: Measurement?
+        attr_reader shipping_constraints: ShippingConstraints?
+        attr_reader amazon_programs: AmazonPrograms?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          asin: String,
+          ?seller_sku: String,
+          order_item_id: String,
+          ?associated_items: Array[AssociatedItem],
+          ?title: String,
+          quantity_ordered: Integer,
+          ?quantity_shipped: Integer,
+          ?product_info: ProductInfoDetail,
+          ?points_granted: PointsGrantedDetail,
+          ?item_price: Money,
+          ?shipping_price: Money,
+          ?item_tax: Money,
+          ?shipping_tax: Money,
+          ?shipping_discount: Money,
+          ?shipping_discount_tax: Money,
+          ?promotion_discount: Money,
+          ?promotion_discount_tax: Money,
+          ?promotion_ids: Array[String],
+          ?cod_fee: Money,
+          ?cod_fee_discount: Money,
+          ?is_gift: String,
+          ?condition_note: String,
+          ?condition_id: String,
+          ?condition_subtype_id: String,
+          ?scheduled_delivery_start_date: String,
+          ?scheduled_delivery_end_date: String,
+          ?price_designation: String,
+          ?tax_collection: TaxCollection,
+          ?serial_number_required: bool,
+          ?transparency: bool,
+          ?ioss_number: String,
+          ?store_chain_store_id: String,
+          ?deemed_reseller_category: String,
+          ?buyer_info: ItemBuyerInfo,
+          ?buyer_requested_cancel: BuyerRequestedCancel,
+          ?serial_numbers: Array[String],
+          ?substitution_preferences: SubstitutionPreferences,
+          ?measurement: Measurement,
+          ?shipping_constraints: ShippingConstraints,
+          ?amazon_programs: AmazonPrograms
+        ) -> void
+      end
+    end
+  end
+end

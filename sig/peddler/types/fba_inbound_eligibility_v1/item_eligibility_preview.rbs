@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module FBAInboundEligibilityV1
+      class ItemEligibilityPreview < Data
+        attr_reader asin: String
+        attr_reader marketplace_id: String?
+        attr_reader program: String
+        attr_reader eligible_for_program: bool
+        attr_reader ineligibility_reason_list: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          asin: String,
+          ?marketplace_id: String,
+          program: String,
+          eligible_for_program: bool,
+          ?ineligibility_reason_list: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class BuyerInfo < Data
+        attr_reader buyer_email: String?
+        attr_reader buyer_name: String?
+        attr_reader buyer_county: String?
+        attr_reader buyer_tax_info: BuyerTaxInfo?
+        attr_reader purchase_order_number: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?buyer_email: String,
+          ?buyer_name: String,
+          ?buyer_county: String,
+          ?buyer_tax_info: BuyerTaxInfo,
+          ?purchase_order_number: String
+        ) -> void
+      end
+    end
+  end
+end

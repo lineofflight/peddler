@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardImageTextCaptionBlock < Data
+        attr_reader block: StandardImageTextBlock?
+        attr_reader caption: TextComponent?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?block: StandardImageTextBlock,
+          ?caption: TextComponent
+        ) -> void
+      end
+    end
+  end
+end

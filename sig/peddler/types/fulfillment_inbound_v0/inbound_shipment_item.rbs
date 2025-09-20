@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class InboundShipmentItem < Data
+        attr_reader shipment_id: String?
+        attr_reader seller_sku: String
+        attr_reader fulfillment_network_sku: String?
+        attr_reader quantity_shipped: Integer
+        attr_reader quantity_received: Integer?
+        attr_reader quantity_in_case: Integer?
+        attr_reader release_date: String?
+        attr_reader prep_details_list: Array[PrepDetails]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?shipment_id: String,
+          seller_sku: String,
+          ?fulfillment_network_sku: String,
+          quantity_shipped: Integer,
+          ?quantity_received: Integer,
+          ?quantity_in_case: Integer,
+          ?release_date: String,
+          ?prep_details_list: Array[PrepDetails]
+        ) -> void
+      end
+    end
+  end
+end

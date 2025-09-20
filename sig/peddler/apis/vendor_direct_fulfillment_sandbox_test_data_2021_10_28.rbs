@@ -1,0 +1,8 @@
+module Peddler
+  module APIs
+    class VendorDirectFulfillmentSandboxTestData20211028 < API
+      def generate_order_scenarios: (untyped) -> Peddler::Response
+      def get_order_scenarios: (String) -> Peddler::Response
+    end
+  end
+end

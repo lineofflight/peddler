@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardComparisonProductBlock < Data
+        attr_reader position: Integer
+        attr_reader image: ImageComponent?
+        attr_reader title: String?
+        attr_reader asin: String?
+        attr_reader highlight: bool?
+        attr_reader metrics: Array[PlainTextItem]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          position: Integer,
+          ?image: ImageComponent,
+          ?title: String,
+          ?asin: String,
+          ?highlight: bool,
+          ?metrics: Array[PlainTextItem]
+        ) -> void
+      end
+    end
+  end
+end

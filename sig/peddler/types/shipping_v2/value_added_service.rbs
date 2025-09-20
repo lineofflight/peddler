@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class ValueAddedService < Data
+        attr_reader id: String
+        attr_reader name: String
+        attr_reader cost: Currency
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          id: String,
+          name: String,
+          cost: Currency
+        ) -> void
+      end
+    end
+  end
+end

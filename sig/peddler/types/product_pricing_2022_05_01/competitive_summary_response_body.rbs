@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class CompetitiveSummaryResponseBody < Data
+        attr_reader asin: String
+        attr_reader marketplace_id: String
+        attr_reader featured_buying_options: Array[FeaturedBuyingOption]?
+        attr_reader lowest_priced_offers: Array[LowestPricedOffer]?
+        attr_reader reference_prices: Array[ReferencePrice]?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          asin: String,
+          marketplace_id: String,
+          ?featured_buying_options: Array[FeaturedBuyingOption],
+          ?lowest_priced_offers: Array[LowestPricedOffer],
+          ?reference_prices: Array[ReferencePrice],
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

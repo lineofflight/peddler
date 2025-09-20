@@ -1,0 +1,43 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class Shipment < Data
+        attr_reader shipment_id: String
+        attr_reader amazon_order_id: String
+        attr_reader seller_order_id: String?
+        attr_reader item_list: Array[Item]
+        attr_reader ship_from_address: Address
+        attr_reader ship_to_address: Address
+        attr_reader package_dimensions: PackageDimensions
+        attr_reader weight: Weight
+        attr_reader insurance: CurrencyAmount
+        attr_reader shipping_service: ShippingService
+        attr_reader label: Label
+        attr_reader status: String
+        attr_reader tracking_id: String?
+        attr_reader created_date: String
+        attr_reader last_updated_date: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_id: String,
+          amazon_order_id: String,
+          ?seller_order_id: String,
+          item_list: Array[Item],
+          ship_from_address: Address,
+          ship_to_address: Address,
+          package_dimensions: PackageDimensions,
+          weight: Weight,
+          insurance: CurrencyAmount,
+          shipping_service: ShippingService,
+          label: Label,
+          status: String,
+          ?tracking_id: String,
+          created_date: String,
+          ?last_updated_date: String
+        ) -> void
+      end
+    end
+  end
+end

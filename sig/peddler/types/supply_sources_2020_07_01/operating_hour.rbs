@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class OperatingHour < Data
+        attr_reader start_time: String?
+        attr_reader end_time: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?start_time: String,
+          ?end_time: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -26,8 +26,8 @@ module Generator
       type_def = specification["definitions"][name]
       return false unless type_def
 
-      # Only object types get generated as separate files
-      type_def["type"] == "object" && name != "Money"
+      # Only object types and allOf compositions get generated as separate files
+      (type_def["type"] == "object" || type_def["allOf"]) && name != "Money"
     end
 
     private

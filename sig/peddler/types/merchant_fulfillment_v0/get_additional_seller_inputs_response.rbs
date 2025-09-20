@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class GetAdditionalSellerInputsResponse < Data
+        attr_reader payload: GetAdditionalSellerInputsResult?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: GetAdditionalSellerInputsResult,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

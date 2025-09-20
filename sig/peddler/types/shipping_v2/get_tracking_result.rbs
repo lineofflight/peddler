@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetTrackingResult < Data
+        attr_reader tracking_id: String
+        attr_reader alternate_leg_tracking_id: String
+        attr_reader event_history: Array[Event]
+        attr_reader promised_delivery_date: String
+        attr_reader summary: TrackingSummary
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          tracking_id: String,
+          alternate_leg_tracking_id: String,
+          event_history: Array[Event],
+          promised_delivery_date: String,
+          summary: TrackingSummary
+        ) -> void
+      end
+    end
+  end
+end

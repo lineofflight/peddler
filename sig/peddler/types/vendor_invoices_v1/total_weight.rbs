@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorInvoicesV1
+      class TotalWeight < Data
+        attr_reader unit_of_measure: String
+        attr_reader amount: Float
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          unit_of_measure: String,
+          amount: Float
+        ) -> void
+      end
+    end
+  end
+end

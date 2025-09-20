@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class ItemDelivery < Data
+        attr_reader estimated_delivery_date: String?
+        attr_reader item_delivery_promise: ItemDeliveryPromise?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?estimated_delivery_date: String,
+          ?item_delivery_promise: ItemDeliveryPromise
+        ) -> void
+      end
+    end
+  end
+end

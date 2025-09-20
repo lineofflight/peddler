@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class PaginationResponse < Data
+        attr_reader total_results: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?total_results: Integer
+        ) -> void
+      end
+    end
+  end
+end

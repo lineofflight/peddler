@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class ItemReviewTopic < Data
+        attr_reader topic: String
+        attr_reader asin_metrics: ItemReviewTopicMetrics
+        attr_reader parent_asin_metrics: ItemReviewTopicMetrics?
+        attr_reader browse_node_metrics: ItemReviewBrowseNodeMetrics?
+        attr_reader child_asin_metrics: ChildAsinMetrics?
+        attr_reader review_snippets: Array[String]?
+        attr_reader subtopics: Array[ItemReviewSubtopic]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          topic: String,
+          asin_metrics: ItemReviewTopicMetrics,
+          ?parent_asin_metrics: ItemReviewTopicMetrics,
+          ?browse_node_metrics: ItemReviewBrowseNodeMetrics,
+          ?child_asin_metrics: ChildAsinMetrics,
+          ?review_snippets: Array[String],
+          ?subtopics: Array[ItemReviewSubtopic]
+        ) -> void
+      end
+    end
+  end
+end

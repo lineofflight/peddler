@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class EncryptionDetails < Data
+        attr_reader standard: String
+        attr_reader initialization_vector: String
+        attr_reader key: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          standard: String,
+          initialization_vector: String,
+          key: String
+        ) -> void
+      end
+    end
+  end
+end

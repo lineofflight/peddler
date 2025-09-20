@@ -1,0 +1,7 @@
+module Peddler
+  module APIs
+    class VendorDirectFulfillmentInventoryV1 < API
+      def submit_inventory_update: (untyped, String) -> Peddler::Response
+    end
+  end
+end

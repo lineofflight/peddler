@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class GetRatesResponse < Data
+        attr_reader payload: GetRatesResult?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: GetRatesResult,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

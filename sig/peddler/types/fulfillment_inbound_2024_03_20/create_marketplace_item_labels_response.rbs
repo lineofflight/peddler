@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class CreateMarketplaceItemLabelsResponse < Data
+        attr_reader document_downloads: Array[DocumentDownload]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          document_downloads: Array[DocumentDownload]
+        ) -> void
+      end
+    end
+  end
+end

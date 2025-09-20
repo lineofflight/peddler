@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class CreateShippingLabelsRequest < Data
+        attr_reader selling_party: PartyIdentification
+        attr_reader ship_from_party: PartyIdentification
+        attr_reader containers: Array[Container]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          selling_party: PartyIdentification,
+          ship_from_party: PartyIdentification,
+          ?containers: Array[Container]
+        ) -> void
+      end
+    end
+  end
+end

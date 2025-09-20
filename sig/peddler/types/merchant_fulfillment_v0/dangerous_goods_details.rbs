@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class DangerousGoodsDetails < Data
+        attr_reader united_nations_regulatory_id: String?
+        attr_reader transportation_regulatory_class: String?
+        attr_reader packing_group: String?
+        attr_reader packing_instruction: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?united_nations_regulatory_id: String,
+          ?transportation_regulatory_class: String,
+          ?packing_group: String,
+          ?packing_instruction: String
+        ) -> void
+      end
+    end
+  end
+end

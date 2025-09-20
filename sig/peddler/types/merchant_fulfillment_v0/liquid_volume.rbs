@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class LiquidVolume < Data
+        attr_reader unit: String
+        attr_reader value: Float
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          unit: String,
+          value: Float
+        ) -> void
+      end
+    end
+  end
+end

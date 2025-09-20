@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class OperationalConfiguration < Data
+        attr_reader contact_details: ContactDetails?
+        attr_reader throughput_config: ThroughputConfig?
+        attr_reader operating_hours_by_day: OperatingHoursByDay?
+        attr_reader handling_time: Duration?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?contact_details: ContactDetails,
+          ?throughput_config: ThroughputConfig,
+          ?operating_hours_by_day: OperatingHoursByDay,
+          ?handling_time: Duration
+        ) -> void
+      end
+    end
+  end
+end

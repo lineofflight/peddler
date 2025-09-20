@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class AppointmentSlotTime < Data
+        attr_reader end_time: String
+        attr_reader start_time: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          end_time: String,
+          start_time: String
+        ) -> void
+      end
+    end
+  end
+end

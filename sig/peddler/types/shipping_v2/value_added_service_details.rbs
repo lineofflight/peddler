@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class ValueAddedServiceDetails < Data
+        attr_reader collect_on_delivery: CollectOnDelivery?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?collect_on_delivery: CollectOnDelivery
+        ) -> void
+      end
+    end
+  end
+end

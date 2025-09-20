@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class DateRange < Data
+        attr_reader earliest: String
+        attr_reader latest: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          earliest: String,
+          latest: String
+        ) -> void
+      end
+    end
+  end
+end

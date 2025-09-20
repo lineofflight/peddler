@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ShippingConfiguration < Data
+        attr_reader shipping_mode: String?
+        attr_reader shipping_solution: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?shipping_mode: String,
+          ?shipping_solution: String
+        ) -> void
+      end
+    end
+  end
+end

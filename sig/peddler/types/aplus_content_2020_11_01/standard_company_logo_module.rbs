@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardCompanyLogoModule < Data
+        attr_reader company_logo: ImageComponent
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          company_logo: ImageComponent
+        ) -> void
+      end
+    end
+  end
+end

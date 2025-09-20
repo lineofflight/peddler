@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class LinkableCarriersList < Array[LinkableCarrier]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

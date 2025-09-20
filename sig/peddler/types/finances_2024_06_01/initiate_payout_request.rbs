@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Finances20240601
+      class InitiatePayoutRequest < Data
+        attr_reader marketplace_id: String
+        attr_reader account_type: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_id: String,
+          account_type: String
+        ) -> void
+      end
+    end
+  end
+end

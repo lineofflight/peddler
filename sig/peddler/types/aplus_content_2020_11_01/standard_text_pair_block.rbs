@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardTextPairBlock < Data
+        attr_reader label: TextComponent?
+        attr_reader description: TextComponent?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?label: TextComponent,
+          ?description: TextComponent
+        ) -> void
+      end
+    end
+  end
+end

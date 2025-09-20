@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class BatchResponse < Data
+        attr_reader headers: HttpHeaders
+        attr_reader status: HttpStatusLine
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          headers: HttpHeaders,
+          status: HttpStatusLine
+        ) -> void
+      end
+    end
+  end
+end

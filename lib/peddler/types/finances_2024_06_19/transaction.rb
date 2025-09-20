@@ -5,6 +5,7 @@ require "peddler/types/finances_2024_06_19/related_identifier"
 require "peddler/types/finances_2024_06_19/currency"
 require "peddler/types/finances_2024_06_19/marketplace_details"
 require "peddler/types/finances_2024_06_19/item"
+require "peddler/types/finances_2024_06_19/context"
 require "peddler/types/finances_2024_06_19/breakdown"
 
 module Peddler
@@ -56,7 +57,7 @@ module Peddler
         attribute(:items, [Item])
 
         # @return [Array<Context>] Additional Information about the transaction.
-        attribute(:contexts, Array)
+        attribute(:contexts, [Context])
 
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         # transaction.

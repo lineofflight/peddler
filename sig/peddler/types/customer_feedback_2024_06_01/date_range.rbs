@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class DateRange < Data
+        attr_reader start_date: String
+        attr_reader end_date: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          start_date: String,
+          end_date: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ServiceFeeEvent < Data
+        attr_reader amazon_order_id: String?
+        attr_reader fee_reason: String?
+        attr_reader fee_list: Array[FeeComponent]?
+        attr_reader seller_sku: String?
+        attr_reader fn_sku: String?
+        attr_reader fee_description: String?
+        attr_reader asin: String?
+        attr_reader store_name: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?amazon_order_id: String,
+          ?fee_reason: String,
+          ?fee_list: Array[FeeComponent],
+          ?seller_sku: String,
+          ?fn_sku: String,
+          ?fee_description: String,
+          ?asin: String,
+          ?store_name: String
+        ) -> void
+      end
+    end
+  end
+end

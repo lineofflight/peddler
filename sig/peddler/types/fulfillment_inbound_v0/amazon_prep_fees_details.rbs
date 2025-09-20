@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class AmazonPrepFeesDetails < Data
+        attr_reader prep_instruction: String?
+        attr_reader fee_per_unit: Amount?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?prep_instruction: String,
+          ?fee_per_unit: Amount
+        ) -> void
+      end
+    end
+  end
+end

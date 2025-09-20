@@ -17,6 +17,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - Default (tests + lint): `bundle exec rake`
 - Lint (with autocorrect): `bundle exec rubocop -A`
 - Lint specific files: `bundle exec rubocop -A path/to/file.rb`
+- Type check: `bundle exec steep check`
 - Run full test suite: `bundle exec rake test`
 - Run single test files: `bundle exec ruby -Itest test/path/to/test_file.rb`
 

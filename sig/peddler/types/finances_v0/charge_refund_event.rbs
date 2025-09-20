@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ChargeRefundEvent < Data
+        attr_reader posted_date: String?
+        attr_reader reason_code: String?
+        attr_reader reason_code_description: String?
+        attr_reader charge_refund_transactions: Array[ChargeRefundTransaction]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?posted_date: String,
+          ?reason_code: String,
+          ?reason_code_description: String,
+          ?charge_refund_transactions: Array[ChargeRefundTransaction]
+        ) -> void
+      end
+    end
+  end
+end

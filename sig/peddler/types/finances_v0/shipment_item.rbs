@@ -1,0 +1,39 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ShipmentItem < Data
+        attr_reader seller_sku: String?
+        attr_reader order_item_id: String?
+        attr_reader order_adjustment_item_id: String?
+        attr_reader quantity_shipped: Integer?
+        attr_reader item_charge_list: Array[ChargeComponent]?
+        attr_reader item_charge_adjustment_list: Array[ChargeComponent]?
+        attr_reader item_fee_list: Array[FeeComponent]?
+        attr_reader item_fee_adjustment_list: Array[FeeComponent]?
+        attr_reader item_tax_withheld_list: Array[TaxWithheldComponent]?
+        attr_reader promotion_list: Array[Promotion]?
+        attr_reader promotion_adjustment_list: Array[Promotion]?
+        attr_reader cost_of_points_granted: Currency?
+        attr_reader cost_of_points_returned: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?seller_sku: String,
+          ?order_item_id: String,
+          ?order_adjustment_item_id: String,
+          ?quantity_shipped: Integer,
+          ?item_charge_list: Array[ChargeComponent],
+          ?item_charge_adjustment_list: Array[ChargeComponent],
+          ?item_fee_list: Array[FeeComponent],
+          ?item_fee_adjustment_list: Array[FeeComponent],
+          ?item_tax_withheld_list: Array[TaxWithheldComponent],
+          ?promotion_list: Array[Promotion],
+          ?promotion_adjustment_list: Array[Promotion],
+          ?cost_of_points_granted: Currency,
+          ?cost_of_points_returned: Currency
+        ) -> void
+      end
+    end
+  end
+end

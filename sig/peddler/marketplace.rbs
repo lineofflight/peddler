@@ -1,0 +1,24 @@
+module Peddler
+  MARKETPLACE_IDS: Hash[String, Hash[Symbol, String]]
+
+  class Marketplace < Data
+    attr_reader id: String
+    attr_reader country_code: String
+    attr_reader country_name: String
+    attr_reader selling_region: String
+
+    def self.new: (?id: String?, ?country_code: String?, ?country_name: String?, ?selling_region: String?) -> Marketplace
+    def self.find: (String country_code) -> Marketplace
+    def self.id: (String country_code) -> String
+    def self.ids: () -> Array[String]
+    def self.all: () -> Array[Marketplace]
+
+    # Dynamically defined country methods
+    def self.us: () -> Marketplace
+    def self.gb: () -> Marketplace
+
+    def endpoint: () -> Endpoint
+    def to_str: () -> String
+    alias to_s to_str
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class TransportLabel < Data
+        attr_reader label_create_date_time: String?
+        attr_reader shipment_information: ShipmentInformation?
+        attr_reader label_data: Array[LabelData]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?label_create_date_time: String,
+          ?shipment_information: ShipmentInformation,
+          ?label_data: Array[LabelData]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ListDeliveryWindowOptionsResponse < Data
+        attr_reader delivery_window_options: Array[DeliveryWindowOption]
+        attr_reader pagination: Pagination?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          delivery_window_options: Array[DeliveryWindowOption],
+          ?pagination: Pagination
+        ) -> void
+      end
+    end
+  end
+end

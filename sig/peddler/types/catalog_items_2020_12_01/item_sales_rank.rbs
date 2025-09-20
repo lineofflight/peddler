@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module CatalogItems20201201
+      class ItemSalesRank < Data
+        attr_reader title: String
+        attr_reader link: String?
+        attr_reader rank: Integer
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          title: String,
+          ?link: String,
+          rank: Integer
+        ) -> void
+      end
+    end
+  end
+end

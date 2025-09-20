@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class SubmitShipmentConfirmationsRequest < Data
+        attr_reader shipment_confirmations: Array[ShipmentConfirmation]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?shipment_confirmations: Array[ShipmentConfirmation]
+        ) -> void
+      end
+    end
+  end
+end

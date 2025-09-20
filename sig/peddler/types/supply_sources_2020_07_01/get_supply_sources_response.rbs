@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class GetSupplySourcesResponse < Data
+        attr_reader supply_sources: Array[Hash[String, untyped]]?
+        attr_reader next_page_token: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?supply_sources: Array[Hash[String, untyped]],
+          ?next_page_token: String
+        ) -> void
+      end
+    end
+  end
+end

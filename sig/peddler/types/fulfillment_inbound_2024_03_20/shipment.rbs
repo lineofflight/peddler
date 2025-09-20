@@ -1,0 +1,43 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class Shipment < Data
+        attr_reader amazon_reference_id: String?
+        attr_reader contact_information: ContactInformation?
+        attr_reader dates: Dates?
+        attr_reader destination: ShipmentDestination
+        attr_reader freight_information: FreightInformation?
+        attr_reader name: String?
+        attr_reader placement_option_id: String
+        attr_reader selected_delivery_window: SelectedDeliveryWindow?
+        attr_reader selected_transportation_option_id: String?
+        attr_reader self_ship_appointment_details: Array[SelfShipAppointmentDetails]?
+        attr_reader shipment_confirmation_id: String?
+        attr_reader shipment_id: String
+        attr_reader source: ShipmentSource
+        attr_reader status: String?
+        attr_reader tracking_details: TrackingDetails?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?amazon_reference_id: String,
+          ?contact_information: ContactInformation,
+          ?dates: Dates,
+          destination: ShipmentDestination,
+          ?freight_information: FreightInformation,
+          ?name: String,
+          placement_option_id: String,
+          ?selected_delivery_window: SelectedDeliveryWindow,
+          ?selected_transportation_option_id: String,
+          ?self_ship_appointment_details: Array[SelfShipAppointmentDetails],
+          ?shipment_confirmation_id: String,
+          shipment_id: String,
+          source: ShipmentSource,
+          ?status: String,
+          ?tracking_details: TrackingDetails
+        ) -> void
+      end
+    end
+  end
+end

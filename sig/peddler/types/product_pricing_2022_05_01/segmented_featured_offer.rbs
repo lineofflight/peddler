@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class SegmentedFeaturedOffer < Data
+        attr_reader seller_id: String
+        attr_reader condition: String
+        attr_reader sub_condition: String?
+        attr_reader fulfillment_type: String
+        attr_reader listing_price: Money
+        attr_reader shipping_options: Array[ShippingOption]?
+        attr_reader points: Points?
+        attr_reader prime_details: PrimeDetails?
+        attr_reader featured_offer_segments: Array[FeaturedOfferSegment]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          seller_id: String,
+          condition: String,
+          ?sub_condition: String,
+          fulfillment_type: String,
+          listing_price: Money,
+          ?shipping_options: Array[ShippingOption],
+          ?points: Points,
+          ?prime_details: PrimeDetails,
+          featured_offer_segments: Array[FeaturedOfferSegment]
+        ) -> void
+      end
+    end
+  end
+end

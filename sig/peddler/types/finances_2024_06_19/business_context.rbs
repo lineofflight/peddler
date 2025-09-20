@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class BusinessContext < Data
+        attr_reader store_name: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?store_name: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class BoxContentsFeeDetails < Data
+        attr_reader total_units: Integer?
+        attr_reader fee_per_unit: Amount?
+        attr_reader total_fee: Amount?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?total_units: Integer,
+          ?fee_per_unit: Amount,
+          ?total_fee: Amount
+        ) -> void
+      end
+    end
+  end
+end

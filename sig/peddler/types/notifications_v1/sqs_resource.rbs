@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class SqsResource < Data
+        attr_reader arn: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          arn: String
+        ) -> void
+      end
+    end
+  end
+end

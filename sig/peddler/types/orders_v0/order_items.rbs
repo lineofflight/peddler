@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class OrderItems < Array[untyped]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

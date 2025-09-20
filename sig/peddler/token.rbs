@@ -1,0 +1,25 @@
+module Peddler
+  class Token
+    URL: String
+
+    @client_id: String
+    @client_secret: String
+    @options: Hash[Symbol, untyped]
+
+    attr_reader client_id: String
+    attr_reader client_secret: String
+    attr_reader options: Hash[Symbol, untyped]
+
+    def self.request: (?client_id: String?, ?client_secret: String?, **untyped options) -> Response
+
+    def initialize: (?client_id: String?, ?client_secret: String?, **untyped options) -> void
+    def request: () -> Response
+
+    private
+    def grant_type: () -> String?
+    def params: () -> Hash[Symbol, untyped]
+
+    class Error < Peddler::Error
+    end
+  end
+end

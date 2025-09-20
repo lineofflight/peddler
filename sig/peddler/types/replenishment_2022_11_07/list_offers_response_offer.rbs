@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class ListOffersResponseOffer < Data
+        attr_reader sku: String?
+        attr_reader asin: String?
+        attr_reader marketplace_id: String?
+        attr_reader eligibility: String?
+        attr_reader offer_program_configuration: OfferProgramConfiguration?
+        attr_reader program_type: String?
+        attr_reader vendor_codes: Array[String]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?sku: String,
+          ?asin: String,
+          ?marketplace_id: String,
+          ?eligibility: String,
+          ?offer_program_configuration: OfferProgramConfiguration,
+          ?program_type: String,
+          ?vendor_codes: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

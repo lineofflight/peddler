@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class DestinationResourceSpecification < Data
+        attr_reader sqs: SqsResource?
+        attr_reader event_bridge: EventBridgeResourceSpecification?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?sqs: SqsResource,
+          ?event_bridge: EventBridgeResourceSpecification
+        ) -> void
+      end
+    end
+  end
+end

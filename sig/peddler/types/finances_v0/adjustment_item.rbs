@@ -1,0 +1,29 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class AdjustmentItem < Data
+        attr_reader quantity: String?
+        attr_reader per_unit_amount: Currency?
+        attr_reader total_amount: Currency?
+        attr_reader seller_sku: String?
+        attr_reader fn_sku: String?
+        attr_reader product_description: String?
+        attr_reader asin: String?
+        attr_reader transaction_number: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?quantity: String,
+          ?per_unit_amount: Currency,
+          ?total_amount: Currency,
+          ?seller_sku: String,
+          ?fn_sku: String,
+          ?product_description: String,
+          ?asin: String,
+          ?transaction_number: String
+        ) -> void
+      end
+    end
+  end
+end

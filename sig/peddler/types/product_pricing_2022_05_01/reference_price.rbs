@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class ReferencePrice < Data
+        attr_reader name: String
+        attr_reader price: Money
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          name: String,
+          price: Money
+        ) -> void
+      end
+    end
+  end
+end

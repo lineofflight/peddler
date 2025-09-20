@@ -1,0 +1,41 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class Rate < Data
+        attr_reader rate_id: String
+        attr_reader carrier_id: String
+        attr_reader carrier_name: String
+        attr_reader service_id: String
+        attr_reader service_name: String
+        attr_reader billed_weight: Weight?
+        attr_reader total_charge: Currency
+        attr_reader promise: Promise
+        attr_reader supported_document_specifications: Array[SupportedDocumentSpecification]
+        attr_reader available_value_added_service_groups: Array[AvailableValueAddedServiceGroup]?
+        attr_reader requires_additional_inputs: bool
+        attr_reader rate_item_list: Array[RateItem]?
+        attr_reader payment_type: String?
+        attr_reader benefits: Benefits?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          rate_id: String,
+          carrier_id: String,
+          carrier_name: String,
+          service_id: String,
+          service_name: String,
+          ?billed_weight: Weight,
+          total_charge: Currency,
+          promise: Promise,
+          supported_document_specifications: Array[SupportedDocumentSpecification],
+          ?available_value_added_service_groups: Array[AvailableValueAddedServiceGroup],
+          requires_additional_inputs: bool,
+          ?rate_item_list: Array[RateItem],
+          ?payment_type: String,
+          ?benefits: Benefits
+        ) -> void
+      end
+    end
+  end
+end

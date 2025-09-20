@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class CreateClaimResponse < Data
+        attr_reader claim_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?claim_id: String
+        ) -> void
+      end
+    end
+  end
+end

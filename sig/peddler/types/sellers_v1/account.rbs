@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module SellersV1
+      class Account < Data
+        attr_reader marketplace_participation_list: Array[MarketplaceParticipation]
+        attr_reader business_type: String
+        attr_reader selling_plan: String
+        attr_reader business: Business?
+        attr_reader primary_contact: PrimaryContact?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          marketplace_participation_list: Array[MarketplaceParticipation],
+          business_type: String,
+          selling_plan: String,
+          ?business: Business,
+          ?primary_contact: PrimaryContact
+        ) -> void
+      end
+    end
+  end
+end

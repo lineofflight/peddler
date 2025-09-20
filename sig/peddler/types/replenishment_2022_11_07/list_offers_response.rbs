@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class ListOffersResponse < Data
+        attr_reader offers: Array[ListOffersResponseOffer]?
+        attr_reader pagination: PaginationResponse?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?offers: Array[ListOffersResponseOffer],
+          ?pagination: PaginationResponse
+        ) -> void
+      end
+    end
+  end
+end

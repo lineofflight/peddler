@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class BrowseNodeReviewTopics < Data
+        attr_reader positive_topics: Array[BrowseNodeReviewTopic]?
+        attr_reader negative_topics: Array[BrowseNodeReviewTopic]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?positive_topics: Array[BrowseNodeReviewTopic],
+          ?negative_topics: Array[BrowseNodeReviewTopic]
+        ) -> void
+      end
+    end
+  end
+end

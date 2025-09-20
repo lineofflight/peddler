@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class AvailableValueAddedServiceGroup < Data
+        attr_reader group_id: String
+        attr_reader group_description: String
+        attr_reader required: bool
+        attr_reader value_added_services: Array[ValueAddedService]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          group_id: String,
+          group_description: String,
+          required: bool,
+          ?value_added_services: Array[ValueAddedService]
+        ) -> void
+      end
+    end
+  end
+end

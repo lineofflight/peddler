@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class AsinMetadataSet < Array[AsinMetadata]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

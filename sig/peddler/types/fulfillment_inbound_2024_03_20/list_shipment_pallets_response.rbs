@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ListShipmentPalletsResponse < Data
+        attr_reader pagination: Pagination?
+        attr_reader pallets: Array[Pallet]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          pallets: Array[Pallet]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class SampleLocation < Data
+        attr_reader postal_code: PostalCode?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?postal_code: PostalCode
+        ) -> void
+      end
+    end
+  end
+end

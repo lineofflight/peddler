@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class OrderIneligibilityReason < Data
+        attr_reader code: String
+        attr_reader description: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          code: String,
+          description: String
+        ) -> void
+      end
+    end
+  end
+end

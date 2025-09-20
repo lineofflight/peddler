@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module EasyShip20220323
+      class UpdatePackageDetails < Data
+        attr_reader scheduled_package_id: ScheduledPackageId
+        attr_reader package_time_slot: TimeSlot
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          scheduled_package_id: ScheduledPackageId,
+          package_time_slot: TimeSlot
+        ) -> void
+      end
+    end
+  end
+end

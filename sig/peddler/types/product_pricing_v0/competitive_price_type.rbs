@@ -1,0 +1,31 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class CompetitivePriceType < Data
+        attr_reader competitive_price_id: String
+        attr_reader price: PriceType
+        attr_reader condition: String?
+        attr_reader subcondition: String?
+        attr_reader offer_type: String?
+        attr_reader quantity_tier: Integer?
+        attr_reader quantity_discount_type: String?
+        attr_reader seller_id: String?
+        attr_reader belongs_to_requester: bool?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          competitive_price_id: String,
+          price: PriceType,
+          ?condition: String,
+          ?subcondition: String,
+          ?offer_type: String,
+          ?quantity_tier: Integer,
+          ?quantity_discount_type: String,
+          ?seller_id: String,
+          ?belongs_to_requester: bool
+        ) -> void
+      end
+    end
+  end
+end

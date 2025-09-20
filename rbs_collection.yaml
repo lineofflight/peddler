@@ -1,0 +1,14 @@
+# Download sources
+sources:
+  - name: ruby/gem_rbs_collection
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    revision: main
+    repo_dir: gems
+
+# A directory to install the downloaded RBSs
+path: .gem_rbs_collection
+gems:
+  # Money gem doesn't have RBS in gem_rbs_collection, so we ignore it
+  # and provide our own minimal RBS definition
+  - name: money
+    ignore: true

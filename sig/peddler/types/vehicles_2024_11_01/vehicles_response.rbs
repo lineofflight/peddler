@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Vehicles20241101
+      class VehiclesResponse < Data
+        attr_reader pagination: Pagination?
+        attr_reader vehicles: Array[Vehicle]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?pagination: Pagination,
+          vehicles: Array[Vehicle]
+        ) -> void
+      end
+    end
+  end
+end

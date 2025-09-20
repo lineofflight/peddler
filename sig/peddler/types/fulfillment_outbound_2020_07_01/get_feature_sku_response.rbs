@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class GetFeatureSkuResponse < Data
+        attr_reader payload: GetFeatureSkuResult?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: GetFeatureSkuResult,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

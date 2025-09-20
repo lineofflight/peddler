@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class GetEligibleShipmentServicesRequest < Data
+        attr_reader shipment_request_details: ShipmentRequestDetails
+        attr_reader shipping_offering_filter: ShippingOfferingFilter?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          shipment_request_details: ShipmentRequestDetails,
+          ?shipping_offering_filter: ShippingOfferingFilter
+        ) -> void
+      end
+    end
+  end
+end

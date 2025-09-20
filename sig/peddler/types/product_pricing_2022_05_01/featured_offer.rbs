@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class FeaturedOffer < Data
+        attr_reader offer_identifier: OfferIdentifier
+        attr_reader condition: String?
+        attr_reader price: Price?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          offer_identifier: OfferIdentifier,
+          ?condition: String,
+          ?price: Price
+        ) -> void
+      end
+    end
+  end
+end

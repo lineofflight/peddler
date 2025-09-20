@@ -1,0 +1,37 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class UpdateFulfillmentOrderRequest < Data
+        attr_reader marketplace_id: String?
+        attr_reader displayable_order_id: String?
+        attr_reader displayable_order_date: String?
+        attr_reader displayable_order_comment: String?
+        attr_reader shipping_speed_category: String?
+        attr_reader destination_address: Address?
+        attr_reader fulfillment_action: String?
+        attr_reader fulfillment_policy: String?
+        attr_reader ship_from_country_code: String?
+        attr_reader notification_emails: Array[String]?
+        attr_reader feature_constraints: Array[FeatureSettings]?
+        attr_reader items: Array[UpdateFulfillmentOrderItem]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?marketplace_id: String,
+          ?displayable_order_id: String,
+          ?displayable_order_date: String,
+          ?displayable_order_comment: String,
+          ?shipping_speed_category: String,
+          ?destination_address: Address,
+          ?fulfillment_action: String,
+          ?fulfillment_policy: String,
+          ?ship_from_country_code: String,
+          ?notification_emails: Array[String],
+          ?feature_constraints: Array[FeatureSettings],
+          ?items: Array[UpdateFulfillmentOrderItem]
+        ) -> void
+      end
+    end
+  end
+end

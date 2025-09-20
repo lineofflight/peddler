@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ProductTypeDefinitions20200901
+      class ProductTypeVersion < Data
+        attr_reader version: String
+        attr_reader latest: bool
+        attr_reader release_candidate: bool?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          version: String,
+          latest: bool,
+          ?release_candidate: bool
+        ) -> void
+      end
+    end
+  end
+end

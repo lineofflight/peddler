@@ -115,7 +115,7 @@ module Peddler
     #   @return [self]
     [:via, :use, :retriable].each do |method|
       define_method(method) do |*args, **kwargs, &block|
-        @http = http.send(method, *args, **kwargs, &block)
+        @http = http.send(method, *args, **kwargs, &block) # steep:ignore
         self
       end
     end
@@ -127,11 +127,11 @@ module Peddler
           options[:json] = options.delete(:body)
         end
 
-        uri = endpoint_uri.tap do |uri|
+        uri = endpoint_uri.tap do |uri| # steep:ignore
           uri.path = path
         end
 
-        http_response = http.send(method, uri, **options)
+        http_response = http.send(method, uri, **options) # steep:ignore
 
         Response.wrap(http_response, parser:)
       end

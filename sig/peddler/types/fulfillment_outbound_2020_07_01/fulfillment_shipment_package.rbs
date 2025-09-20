@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class FulfillmentShipmentPackage < Data
+        attr_reader package_number: Integer
+        attr_reader carrier_code: String
+        attr_reader tracking_number: String?
+        attr_reader amazon_fulfillment_tracking_number: String?
+        attr_reader estimated_arrival_date: String?
+        attr_reader locker_details: LockerDetails?
+        attr_reader delivery_information: DeliveryInformation?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          package_number: Integer,
+          carrier_code: String,
+          ?tracking_number: String,
+          ?amazon_fulfillment_tracking_number: String,
+          ?estimated_arrival_date: String,
+          ?locker_details: LockerDetails,
+          ?delivery_information: DeliveryInformation
+        ) -> void
+      end
+    end
+  end
+end

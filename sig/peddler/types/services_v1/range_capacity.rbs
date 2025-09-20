@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class RangeCapacity < Data
+        attr_reader capacity_type: String?
+        attr_reader slots: Array[RangeSlot]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?capacity_type: String,
+          ?slots: Array[RangeSlot]
+        ) -> void
+      end
+    end
+  end
+end

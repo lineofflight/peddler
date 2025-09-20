@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class NdrRequestData < Data
+        attr_reader reschedule_date: String?
+        attr_reader additional_address_notes: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?reschedule_date: String,
+          ?additional_address_notes: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FBAInventoryV1
+      class ResearchingQuantity < Data
+        attr_reader total_researching_quantity: Integer?
+        attr_reader researching_quantity_breakdown: Array[ResearchingQuantityEntry]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?total_researching_quantity: Integer,
+          ?researching_quantity_breakdown: Array[ResearchingQuantityEntry]
+        ) -> void
+      end
+    end
+  end
+end

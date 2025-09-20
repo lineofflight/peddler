@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class AccessPointDetails < Data
+        attr_reader access_point_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?access_point_id: String
+        ) -> void
+      end
+    end
+  end
+end

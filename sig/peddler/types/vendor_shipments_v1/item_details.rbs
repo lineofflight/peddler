@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ItemDetails < Data
+        attr_reader purchase_order_number: String?
+        attr_reader lot_number: String?
+        attr_reader expiry: Expiry?
+        attr_reader maximum_retail_price: Money?
+        attr_reader handling_code: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?purchase_order_number: String,
+          ?lot_number: String,
+          ?expiry: Expiry,
+          ?maximum_retail_price: Money,
+          ?handling_code: String
+        ) -> void
+      end
+    end
+  end
+end

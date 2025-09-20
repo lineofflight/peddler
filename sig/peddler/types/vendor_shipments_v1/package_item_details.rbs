@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class PackageItemDetails < Data
+        attr_reader purchase_order_number: String?
+        attr_reader lot_number: String?
+        attr_reader expiry: Expiry?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?purchase_order_number: String,
+          ?lot_number: String,
+          ?expiry: Expiry
+        ) -> void
+      end
+    end
+  end
+end

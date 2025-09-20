@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ApplicationIntegrations20240401
+      class CreateNotificationRequest < Data
+        attr_reader template_id: String
+        attr_reader notification_parameters: NotificationParameters
+        attr_reader marketplace_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          template_id: String,
+          notification_parameters: NotificationParameters,
+          ?marketplace_id: String
+        ) -> void
+      end
+    end
+  end
+end

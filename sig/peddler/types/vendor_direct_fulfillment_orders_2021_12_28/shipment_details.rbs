@@ -1,0 +1,27 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrders20211228
+      class ShipmentDetails < Data
+        attr_reader priority_shipment: bool
+        attr_reader scheduled_delivery_shipment: bool?
+        attr_reader pslip_required: bool
+        attr_reader gift: bool?
+        attr_reader ship_method: String
+        attr_reader shipment_dates: ShipmentDates
+        attr_reader message_to_customer: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          priority_shipment: bool,
+          ?scheduled_delivery_shipment: bool,
+          pslip_required: bool,
+          ?gift: bool,
+          ship_method: String,
+          shipment_dates: ShipmentDates,
+          message_to_customer: String
+        ) -> void
+      end
+    end
+  end
+end

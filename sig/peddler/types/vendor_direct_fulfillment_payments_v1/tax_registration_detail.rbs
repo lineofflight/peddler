@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentPaymentsV1
+      class TaxRegistrationDetail < Data
+        attr_reader tax_registration_type: String?
+        attr_reader tax_registration_number: String
+        attr_reader tax_registration_address: Address?
+        attr_reader tax_registration_message: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?tax_registration_type: String,
+          tax_registration_number: String,
+          ?tax_registration_address: Address,
+          ?tax_registration_message: String
+        ) -> void
+      end
+    end
+  end
+end

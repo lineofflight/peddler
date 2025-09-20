@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class ItemIdentifiers < Array[ItemIdentifiersByMarketplace]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end

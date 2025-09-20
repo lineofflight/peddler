@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class SubstitutionOption < Data
+        attr_reader asin: String?
+        attr_reader quantity_ordered: Integer?
+        attr_reader seller_sku: String?
+        attr_reader title: String?
+        attr_reader measurement: Measurement?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?asin: String,
+          ?quantity_ordered: Integer,
+          ?seller_sku: String,
+          ?title: String,
+          ?measurement: Measurement
+        ) -> void
+      end
+    end
+  end
+end

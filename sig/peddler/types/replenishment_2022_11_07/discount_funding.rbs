@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module Replenishment20221107
+      class DiscountFunding < Data
+        attr_reader percentage: Array[Float]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?percentage: Array[Float]
+        ) -> void
+      end
+    end
+  end
+end

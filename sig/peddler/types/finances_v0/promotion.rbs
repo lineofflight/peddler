@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class Promotion < Data
+        attr_reader promotion_type: String?
+        attr_reader promotion_id: String?
+        attr_reader promotion_amount: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?promotion_type: String,
+          ?promotion_id: String,
+          ?promotion_amount: Currency
+        ) -> void
+      end
+    end
+  end
+end

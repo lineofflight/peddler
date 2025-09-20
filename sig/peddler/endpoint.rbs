@@ -1,0 +1,15 @@
+module Peddler
+  ENDPOINTS: Hash[String, Hash[Symbol, String]]
+
+  class Endpoint < Data
+    attr_reader aws_region: String
+    attr_reader selling_region: String
+    attr_reader host: String
+
+    def self.find: (String aws_region) -> Endpoint
+    def self.find_by_selling_region: (String selling_region) -> Endpoint
+
+    def production: () -> untyped  # Returns URI::HTTPS
+    def sandbox: () -> untyped     # Returns URI::HTTPS
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class SearchContentDocumentsResponse < Data
+        attr_reader content_metadata_records: Array[ContentMetadataRecord]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          content_metadata_records: Array[ContentMetadataRecord]
+        ) -> void
+      end
+    end
+  end
+end

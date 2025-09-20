@@ -1,0 +1,23 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class FixedSlot < Data
+        attr_reader start_date_time: String?
+        attr_reader scheduled_capacity: Integer?
+        attr_reader available_capacity: Integer?
+        attr_reader encumbered_capacity: Integer?
+        attr_reader reserved_capacity: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?start_date_time: String,
+          ?scheduled_capacity: Integer,
+          ?available_capacity: Integer,
+          ?encumbered_capacity: Integer,
+          ?reserved_capacity: Integer
+        ) -> void
+      end
+    end
+  end
+end

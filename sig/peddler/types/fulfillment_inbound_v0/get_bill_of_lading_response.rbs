@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInboundV0
+      class GetBillOfLadingResponse < Data
+        attr_reader payload: BillOfLadingDownloadURL?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: BillOfLadingDownloadURL,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

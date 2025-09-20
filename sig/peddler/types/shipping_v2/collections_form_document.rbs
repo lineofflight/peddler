@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class CollectionsFormDocument < Data
+        attr_reader base64_encoded_content: String?
+        attr_reader document_format: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?base64_encoded_content: String,
+          ?document_format: String
+        ) -> void
+      end
+    end
+  end
+end

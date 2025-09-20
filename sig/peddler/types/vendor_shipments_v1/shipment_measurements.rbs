@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class ShipmentMeasurements < Data
+        attr_reader gross_shipment_weight: Weight?
+        attr_reader shipment_volume: Volume?
+        attr_reader carton_count: Integer?
+        attr_reader pallet_count: Integer?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?gross_shipment_weight: Weight,
+          ?shipment_volume: Volume,
+          ?carton_count: Integer,
+          ?pallet_count: Integer
+        ) -> void
+      end
+    end
+  end
+end

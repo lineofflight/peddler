@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class DistributionPackageQuantity < Data
+        attr_reader count: Integer
+        attr_reader distribution_package: DistributionPackage
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          count: Integer,
+          distribution_package: DistributionPackage
+        ) -> void
+      end
+    end
+  end
+end

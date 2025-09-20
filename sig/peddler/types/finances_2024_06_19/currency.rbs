@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class Currency < Data
+        attr_reader currency_code: String?
+        attr_reader currency_amount: Float?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?currency_code: String,
+          ?currency_amount: Float
+        ) -> void
+      end
+    end
+  end
+end

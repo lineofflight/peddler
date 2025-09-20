@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class OrderAddress < Data
+        attr_reader amazon_order_id: String
+        attr_reader buyer_company_name: String?
+        attr_reader shipping_address: Address?
+        attr_reader delivery_preferences: DeliveryPreferences?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          amazon_order_id: String,
+          ?buyer_company_name: String,
+          ?shipping_address: Address,
+          ?delivery_preferences: DeliveryPreferences
+        ) -> void
+      end
+    end
+  end
+end

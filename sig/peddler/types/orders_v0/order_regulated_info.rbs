@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class OrderRegulatedInfo < Data
+        attr_reader amazon_order_id: String
+        attr_reader regulated_information: RegulatedInformation
+        attr_reader requires_dosage_label: bool
+        attr_reader regulated_order_verification_status: RegulatedOrderVerificationStatus
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          amazon_order_id: String,
+          regulated_information: RegulatedInformation,
+          requires_dosage_label: bool,
+          regulated_order_verification_status: RegulatedOrderVerificationStatus
+        ) -> void
+      end
+    end
+  end
+end

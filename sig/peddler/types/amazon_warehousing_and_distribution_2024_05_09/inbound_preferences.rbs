@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class InboundPreferences < Data
+        attr_reader destination_region: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?destination_region: String
+        ) -> void
+      end
+    end
+  end
+end

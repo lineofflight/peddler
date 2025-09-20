@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GetUnmanifestedShipmentsRequest < Data
+        attr_reader client_reference_details: Array[ClientReferenceDetail]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?client_reference_details: Array[ClientReferenceDetail]
+        ) -> void
+      end
+    end
+  end
+end

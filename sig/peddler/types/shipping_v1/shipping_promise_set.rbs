@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class ShippingPromiseSet < Data
+        attr_reader delivery_window: TimeRange?
+        attr_reader receive_window: TimeRange?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?delivery_window: TimeRange,
+          ?receive_window: TimeRange
+        ) -> void
+      end
+    end
+  end
+end

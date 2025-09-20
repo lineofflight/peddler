@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module ListingsItems20210801
+      class ItemVariationTheme < Data
+        attr_reader attributes: Array[String]
+        attr_reader theme: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          attributes: Array[String],
+          theme: String
+        ) -> void
+      end
+    end
+  end
+end

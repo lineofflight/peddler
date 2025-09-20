@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class WindowInput < Data
+        attr_reader start: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          start: String
+        ) -> void
+      end
+    end
+  end
+end

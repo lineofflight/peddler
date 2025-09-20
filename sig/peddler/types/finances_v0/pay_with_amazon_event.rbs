@@ -1,0 +1,33 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class PayWithAmazonEvent < Data
+        attr_reader seller_order_id: String?
+        attr_reader transaction_posted_date: String?
+        attr_reader business_object_type: String?
+        attr_reader sales_channel: String?
+        attr_reader charge: ChargeComponent?
+        attr_reader fee_list: Array[FeeComponent]?
+        attr_reader payment_amount_type: String?
+        attr_reader amount_description: String?
+        attr_reader fulfillment_channel: String?
+        attr_reader store_name: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?seller_order_id: String,
+          ?transaction_posted_date: String,
+          ?business_object_type: String,
+          ?sales_channel: String,
+          ?charge: ChargeComponent,
+          ?fee_list: Array[FeeComponent],
+          ?payment_amount_type: String,
+          ?amount_description: String,
+          ?fulfillment_channel: String,
+          ?store_name: String
+        ) -> void
+      end
+    end
+  end
+end

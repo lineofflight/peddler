@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module AplusContent20201101
+      class StandardComparisonTableModule < Data
+        attr_reader product_columns: Array[StandardComparisonProductBlock]?
+        attr_reader metric_row_labels: Array[PlainTextItem]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?product_columns: Array[StandardComparisonProductBlock],
+          ?metric_row_labels: Array[PlainTextItem]
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module OrdersV0
+      class RegulatedInformationField < Data
+        attr_reader field_id: String
+        attr_reader field_label: String
+        attr_reader field_type: String
+        attr_reader field_value: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          field_id: String,
+          field_label: String,
+          field_type: String,
+          field_value: String
+        ) -> void
+      end
+    end
+  end
+end

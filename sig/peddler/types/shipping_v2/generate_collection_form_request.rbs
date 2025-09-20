@@ -1,0 +1,19 @@
+module Peddler
+  module Types
+    module ShippingV2
+      class GenerateCollectionFormRequest < Data
+        attr_reader client_reference_details: Array[ClientReferenceDetail]?
+        attr_reader carrier_id: String
+        attr_reader ship_from_address: Address?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?client_reference_details: Array[ClientReferenceDetail],
+          carrier_id: String,
+          ?ship_from_address: Address
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Peddler
+  module APIs
+    class ShippingV1 < API
+      def create_shipment: (untyped) -> Peddler::Response
+      def get_shipment: (String) -> Peddler::Response
+      def cancel_shipment: (String) -> Peddler::Response
+      def purchase_labels: (String, untyped) -> Peddler::Response
+      def retrieve_shipping_label: (String, String, untyped) -> Peddler::Response
+      def purchase_shipment: (untyped) -> Peddler::Response
+      def get_rates: (untyped) -> Peddler::Response
+      def get_account: () -> Peddler::Response
+      def get_tracking_information: (String) -> Peddler::Response
+    end
+  end
+end

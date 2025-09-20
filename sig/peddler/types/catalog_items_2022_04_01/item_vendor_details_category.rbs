@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module CatalogItems20220401
+      class ItemVendorDetailsCategory < Data
+        attr_reader display_name: String?
+        attr_reader value: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?display_name: String,
+          ?value: String
+        ) -> void
+      end
+    end
+  end
+end

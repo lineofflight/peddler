@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentOrdersV1
+      class GiftDetails < Data
+        attr_reader gift_message: String?
+        attr_reader gift_wrap_id: String?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?gift_message: String,
+          ?gift_wrap_id: String
+        ) -> void
+      end
+    end
+  end
+end

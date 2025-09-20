@@ -1,0 +1,35 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class Address < Data
+        attr_reader address_line1: String
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String
+        attr_reader county: String?
+        attr_reader district: String?
+        attr_reader name: String
+        attr_reader phone_number: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          address_line1: String,
+          ?address_line2: String,
+          ?address_line3: String,
+          ?city: String,
+          country_code: String,
+          ?county: String,
+          ?district: String,
+          name: String,
+          ?phone_number: String,
+          ?postal_code: String,
+          state_or_region: String
+        ) -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FBAInboundEligibilityV1
+      class GetItemEligibilityPreviewResponse < Data
+        attr_reader payload: ItemEligibilityPreview?
+        attr_reader errors: Array[Error]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?payload: ItemEligibilityPreview,
+          ?errors: Array[Error]
+        ) -> void
+      end
+    end
+  end
+end

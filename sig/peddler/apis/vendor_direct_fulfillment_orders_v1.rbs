@@ -1,0 +1,9 @@
+module Peddler
+  module APIs
+    class VendorDirectFulfillmentOrdersV1 < API
+      def get_orders: (String, String, ?ship_from_party_id: String, ?status: String, ?limit: Integer, ?sort_order: String, ?next_token: String, ?include_details: String) -> Peddler::Response
+      def get_order: (String) -> Peddler::Response
+      def submit_acknowledgement: (untyped) -> Peddler::Response
+    end
+  end
+end

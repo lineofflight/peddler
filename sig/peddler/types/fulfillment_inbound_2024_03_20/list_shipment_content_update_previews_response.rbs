@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module FulfillmentInbound20240320
+      class ListShipmentContentUpdatePreviewsResponse < Data
+        attr_reader content_update_previews: Array[ContentUpdatePreview]
+        attr_reader pagination: Pagination?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          content_update_previews: Array[ContentUpdatePreview],
+          ?pagination: Pagination
+        ) -> void
+      end
+    end
+  end
+end

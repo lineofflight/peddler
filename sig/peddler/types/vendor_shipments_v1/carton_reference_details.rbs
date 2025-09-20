@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class CartonReferenceDetails < Data
+        attr_reader carton_count: Integer?
+        attr_reader carton_reference_numbers: Array[String]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?carton_count: Integer,
+          carton_reference_numbers: Array[String]
+        ) -> void
+      end
+    end
+  end
+end

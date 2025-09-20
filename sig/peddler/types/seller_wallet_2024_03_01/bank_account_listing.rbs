@@ -1,0 +1,15 @@
+module Peddler
+  module Types
+    module SellerWallet20240301
+      class BankAccountListing < Data
+        attr_reader accounts: Array[BankAccount]
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          accounts: Array[BankAccount]
+        ) -> void
+      end
+    end
+  end
+end

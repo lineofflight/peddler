@@ -1,0 +1,21 @@
+module Peddler
+  module Types
+    module VendorInvoicesV1
+      class ChargeDetails < Data
+        attr_reader type: String
+        attr_reader description: String?
+        attr_reader charge_amount: Money
+        attr_reader tax_details: Array[TaxDetails]?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          type: String,
+          ?description: String,
+          charge_amount: Money,
+          ?tax_details: Array[TaxDetails]
+        ) -> void
+      end
+    end
+  end
+end

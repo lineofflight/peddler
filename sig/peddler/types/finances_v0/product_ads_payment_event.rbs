@@ -1,0 +1,25 @@
+module Peddler
+  module Types
+    module FinancesV0
+      class ProductAdsPaymentEvent < Data
+        attr_reader posted_date: String?
+        attr_reader transaction_type: String?
+        attr_reader invoice_id: String?
+        attr_reader base_value: Currency?
+        attr_reader tax_value: Currency?
+        attr_reader transaction_value: Currency?
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          ?posted_date: String,
+          ?transaction_type: String,
+          ?invoice_id: String,
+          ?base_value: Currency,
+          ?tax_value: Currency,
+          ?transaction_value: Currency
+        ) -> void
+      end
+    end
+  end
+end

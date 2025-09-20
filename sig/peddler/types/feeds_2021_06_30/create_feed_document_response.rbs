@@ -1,0 +1,17 @@
+module Peddler
+  module Types
+    module Feeds20210630
+      class CreateFeedDocumentResponse < Data
+        attr_reader feed_document_id: String
+        attr_reader url: String
+
+        def self.parse: (Hash[String, untyped] hash) -> instance
+
+        def initialize: (
+          feed_document_id: String,
+          url: String
+        ) -> void
+      end
+    end
+  end
+end
