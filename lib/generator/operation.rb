@@ -140,6 +140,10 @@ module Generator
       @response_model ||= build_response_model
     end
 
+    def parameters
+      @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build
+    end
+
     private
 
     def build_response_model
@@ -484,10 +488,6 @@ module Generator
       else
         ""
       end
-    end
-
-    def parameters
-      @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build
     end
 
     # CAUTION: This method parses rate limits from human-readable documentation. This is inherently fragile. Amazon

@@ -33,18 +33,8 @@ module Generator
     private
 
     def build_parameters_list(operation)
-      # Use the same ParameterBuilder as the Ruby generator to ensure consistency
-      rate_limit = extract_rate_limit(operation)
-      shared_params = operation.path.respond_to?(:parameters) ? operation.path.parameters : []
-      ParameterBuilder.new(operation.operation, shared_params, rate_limit).build
-    end
-
-    def extract_rate_limit(operation)
-      # Extract rate limit from operation description if present
-      description = operation.operation["description"] || ""
-      if description =~ /\|\s*([\d.]+)\s*\|.*?\|\s*\d+\s*\|/
-        ::Regexp.last_match(1).to_f
-      end
+      # Reuse the Operation's parameters method which already includes rate_limit via ParameterBuilder
+      operation.parameters
     end
 
     def rbs_file_path
@@ -74,10 +64,19 @@ module Generator
       # Process parameters in the same order as Ruby generator
       params.each do |param|
         param_name = param["name"]&.underscore
+
+        # Special handling for rate_limit parameter
+        if param_name == "rate_limit"
+          keyword_params << "?rate_limit: Float"
+          next
+        end
+
         type = if param["in"] == "body" || param_name&.end_with?("_request", "_request_body", "_body")
-          "untyped"
+          # TODO: Eventually we should type body parameters properly based on their schema
+          "Hash"
         else
-          parameter_rbs_type(param)
+          # Optional parameters should have nullable types
+          parameter_rbs_type(param, nullable: !param["required"])
         end
 
         if param["required"]
@@ -92,8 +91,8 @@ module Generator
       all_params.join(", ")
     end
 
-    def parameter_rbs_type(param)
-      case param["type"]
+    def parameter_rbs_type(param, nullable: false)
+      base_type = case param["type"]
       when "string"
         "String"
       when "integer"
@@ -112,6 +111,9 @@ module Generator
       else
         "untyped"
       end
+
+      # Optional parameters can be nil
+      nullable && base_type != "untyped" ? "#{base_type}?" : base_type
     end
 
     def parameter_item_type(type)
