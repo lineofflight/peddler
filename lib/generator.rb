@@ -31,7 +31,9 @@ module Generator
       generate_types!
       generate_types_index_files!
       generate_entry_point!
-      generate_rbs_signatures!
+      generate_api_signatures!
+      generate_type_signatures!
+      generate_endpoint_for_signatures!
       format_code!
 
       logger.info("Code generation completed successfully!")
@@ -63,34 +65,22 @@ module Generator
     end
 
     def initialize_directories!
-      ["apis", "types"].each do |dir_name|
-        dir_path = File.join(Config::BASE_PATH, "lib/peddler/#{dir_name}")
+      ["apis", "types"].product(["lib", "sig"]).each do |sub, root|
+        dir_path = File.join(Config::BASE_PATH, "#{root}/peddler/#{sub}")
         FileUtils.rm_rf(dir_path)
         FileUtils.mkdir_p(dir_path)
       end
-
-      # Initialize RBS directories
-      ["peddler/apis", "peddler/types"].each do |dir_name|
-        dir_path = File.join(Config::BASE_PATH, "sig/#{dir_name}")
-        FileUtils.rm_rf(dir_path)
-        FileUtils.mkdir_p(dir_path)
-      end
-
       logger.info("Initialized directories")
     end
 
     def generate_apis!
-      api_count = apis.size
       apis.each(&:generate)
-
-      logger.info("Generated #{api_count} APIs")
+      logger.info("Generated #{apis.count} APIs")
     end
 
     def generate_types!
-      type_count = types.count
       types.each(&:generate)
-
-      logger.info("Generated #{type_count} types")
+      logger.info("Generated #{types.count} types")
     end
 
     def generate_types_index_files!
@@ -110,32 +100,23 @@ module Generator
       logger.info("Generated entry point")
     end
 
-    def generate_rbs_signatures!
-      # Generate RBS signatures for types
-      rbs_type_count = 0
+    def generate_api_signatures!
       apis.each do |api|
-        api.openapi_spec["definitions"]&.each do |name, definition|
-          next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
-          next if name == "Money"
-
-          type = Type.new(name, definition, api.name_with_version, api.openapi_spec)
-          rbs_type = RBS::Type.new(type, api.name_with_version, api.openapi_spec)
-          rbs_type.generate
-          rbs_type_count += 1
-        end
+        RBS::API.new(api, api.name_with_version).generate
       end
-      logger.info("Generated #{rbs_type_count} RBS type signatures")
+      logger.info("Generated #{apis.count} RBS API signatures")
+    end
 
-      # Generate RBS signatures for APIs
-      apis.each do |api|
-        rbs_api = RBS::API.new(api, api.name_with_version)
-        rbs_api.generate
+    def generate_type_signatures!
+      types.each do |type|
+        RBS::Type.new(type, type.api_name, type.specification).generate
       end
-      logger.info("Generated #{apis.size} RBS API signatures")
+      logger.info("Generated #{types.count} type signatures")
+    end
 
-      # Generate RBS entrypoint
+    def generate_endpoint_for_signatures!
       RBS::Entrypoint.new(apis).generate
-      logger.info("Generated RBS entrypoint")
+      logger.info("Generated entrypoint for signatures")
     end
 
     def format_code!
@@ -165,20 +146,21 @@ module Generator
     end
 
     def types
-      arr = []
+      @types ||= begin
+        arr  = []
+        apis.each do |api|
+          api.openapi_spec["definitions"].each do |name, definition|
+            # Skip non-object definitions (but allow allOf compositions and arrays)
+            next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
+            # Skip Money types as we use the Money gem for these
+            next if name == "Money"
 
-      apis.each do |api|
-        api.openapi_spec["definitions"].each do |name, definition|
-          # Skip non-object definitions (but allow allOf compositions and arrays)
-          next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
-          # Skip Money types as we use the Money gem for these
-          next if name == "Money"
-
-          arr << Type.new(name, definition, api.name_with_version, api.openapi_spec)
+            arr << Type.new(name, definition, api.name_with_version, api.openapi_spec)
+          end
         end
-      end
 
-      arr
+        arr
+      end
     end
 
     def api_model_files
