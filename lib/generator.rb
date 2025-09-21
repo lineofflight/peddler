@@ -33,7 +33,7 @@ module Generator
       generate_entry_point!
       generate_api_signatures!
       generate_type_signatures!
-      generate_endpoint_for_signatures!
+      generate_entry_point_for_signatures!
       format_code!
 
       logger.info("Code generation completed successfully!")
@@ -114,9 +114,9 @@ module Generator
       logger.info("Generated #{types.count} type signatures")
     end
 
-    def generate_endpoint_for_signatures!
+    def generate_entry_point_for_signatures!
       RBS::Entrypoint.new(apis).generate
-      logger.info("Generated entrypoint for signatures")
+      logger.info("Generated entry point for signatures")
     end
 
     def format_code!
