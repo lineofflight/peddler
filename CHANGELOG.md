@@ -5,6 +5,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.7.0] - 2025-09-21
+
+### Added
+
+- Add RBS type signatures for all API classes and types
+- Add auto-generation of RBS signatures from OpenAPI specifications
+- Add Steep type checking support with `bundle exec steep check`
+
+### Fixed
+
+- Fix all type checking issues across the codebase
+
+### Changed
+
+- Refactor code generator and templates for cleaner output
+
 ## [4.6.1] - 2025-09-15
 
 ### Fixed
@@ -453,7 +469,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.6.1...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.7.0...HEAD
+[4.7.0]: https://github.com/hakanensari/peddler/compare/v4.6.1...v4.7.0
 [4.6.1]: https://github.com/hakanensari/peddler/compare/v4.6.0...v4.6.1
 [4.6.0]: https://github.com/hakanensari/peddler/compare/v4.5.0...v4.6.0
 [4.5.0]: https://github.com/hakanensari/peddler/compare/v4.4.0...v4.5.0
