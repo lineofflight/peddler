@@ -8,9 +8,9 @@ require "generator/logger"
 require "generator/api"
 require "generator/type"
 require "generator/entrypoint"
-require "generator/rbs_type"
-require "generator/rbs_api"
-require "generator/rbs_entrypoint"
+require "generator/rbs/type"
+require "generator/rbs/api"
+require "generator/rbs/entrypoint"
 
 # NOTE: Test generation was explored but removed due to Amazon SP-API sandbox limitations. Most APIs require special
 # roles (vendor, finance, restricted shipping) that aren't available in standard sandbox environments, resulting in ~60%
@@ -119,7 +119,7 @@ module Generator
           next if name == "Money"
 
           type = Type.new(name, definition, api.name_with_version, api.openapi_spec)
-          rbs_type = RBSType.new(type, api.name_with_version, api.openapi_spec)
+          rbs_type = RBS::Type.new(type, api.name_with_version, api.openapi_spec)
           rbs_type.generate
           rbs_type_count += 1
         end
@@ -128,13 +128,13 @@ module Generator
 
       # Generate RBS signatures for APIs
       apis.each do |api|
-        rbs_api = RBSApi.new(api, api.name_with_version)
+        rbs_api = RBS::API.new(api, api.name_with_version)
         rbs_api.generate
       end
       logger.info("Generated #{apis.size} RBS API signatures")
 
       # Generate RBS entrypoint
-      RBSEntrypoint.new(apis).generate
+      RBS::Entrypoint.new(apis).generate
       logger.info("Generated RBS entrypoint")
     end
 

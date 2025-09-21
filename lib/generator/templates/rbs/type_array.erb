@@ -1,0 +1,9 @@
+module Peddler
+  module Types
+    module <%= api_name.camelize %>
+      class <%= class_name %> < Array[<%= array_item_type ? array_item_type.camelize : "untyped" %>]
+        def self.parse: (Array[untyped] array) -> instance
+      end
+    end
+  end
+end
