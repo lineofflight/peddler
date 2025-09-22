@@ -6,7 +6,6 @@ require "peddler/types/money"
 require "peddler/types/product_pricing_v0/offer_count_type"
 require "peddler/types/product_pricing_v0/lowest_price_type"
 require "peddler/types/product_pricing_v0/buy_box_price_type"
-require "peddler/types/product_pricing_v0/money_type"
 require "peddler/types/product_pricing_v0/sales_rank_type"
 
 module Peddler

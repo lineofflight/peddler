@@ -2,10 +2,10 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/merchant_fulfillment_v0/address"
 require "peddler/types/merchant_fulfillment_v0/weight"
 require "peddler/types/merchant_fulfillment_v0/length"
-require "peddler/types/merchant_fulfillment_v0/currency_amount"
 
 module Peddler
   module Types
@@ -36,8 +36,8 @@ module Peddler
         # @return [Length]
         attribute(:value_as_dimension, Length, from: "ValueAsDimension")
 
-        # @return [CurrencyAmount]
-        attribute(:value_as_currency, CurrencyAmount, from: "ValueAsCurrency")
+        # @return [Types::Money]
+        attribute(:value_as_currency, Types::Money, from: "ValueAsCurrency")
       end
     end
   end

@@ -3,6 +3,8 @@
 module Generator
   # Resolves OpenAPI types to Ruby types for code generation
   class TypeResolver
+    MONEY_TYPES = ["Money", "MoneyType", "Currency", "CurrencyAmount"].freeze
+
     attr_reader :type_name, :specification
 
     def initialize(type_name, specification)
@@ -27,7 +29,8 @@ module Generator
       return false unless type_def
 
       # Only object types and allOf compositions get generated as separate files
-      (type_def["type"] == "object" || type_def["allOf"]) && name != "Money"
+      # Money-related types are handled specially
+      (type_def["type"] == "object" || type_def["allOf"]) && !money_type?(name)
     end
 
     private
@@ -49,7 +52,7 @@ module Generator
     end
 
     def money_type?(name)
-      name == "Money" || name == "MoneyType"
+      MONEY_TYPES.include?(name)
     end
 
     def resolve_ref_definition(ref_name, for_comment)

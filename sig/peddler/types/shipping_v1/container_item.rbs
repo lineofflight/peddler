@@ -5,7 +5,7 @@ module Peddler
     module ShippingV1
       class ContainerItem < Data
         attr_reader quantity: Float
-        attr_reader unit_price: Currency
+        attr_reader unit_price: Money
         attr_reader unit_weight: Weight
         attr_reader title: String
 
@@ -13,7 +13,7 @@ module Peddler
 
         def initialize: (
           quantity: Float,
-          unit_price: Currency,
+          unit_price: Money,
           unit_weight: Weight,
           title: String
         ) -> void

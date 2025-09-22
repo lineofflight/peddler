@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 require "peddler/types/finances_v0/safet_reimbursement_item"
 
 module Peddler
@@ -16,8 +16,8 @@ module Peddler
         # @return [String] A SAFE-T claim identifier.
         attribute(:safet_claim_id, String, from: "SAFETClaimId")
 
-        # @return [Currency] The amount of the reimbursement.
-        attribute(:reimbursed_amount, Currency, from: "ReimbursedAmount")
+        # @return [Types::Money] The amount of the reimbursement.
+        attribute(:reimbursed_amount, Types::Money, from: "ReimbursedAmount")
 
         # @return [String] Indicates why the seller was reimbursed.
         attribute(:reason_code, String, from: "ReasonCode")

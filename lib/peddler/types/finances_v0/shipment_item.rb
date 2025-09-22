@@ -2,11 +2,11 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/finances_v0/charge_component"
 require "peddler/types/finances_v0/fee_component"
 require "peddler/types/finances_v0/tax_withheld_component"
 require "peddler/types/finances_v0/promotion"
-require "peddler/types/finances_v0/currency"
 
 module Peddler
   module Types
@@ -51,12 +51,12 @@ module Peddler
         # only returned for refunds, guarantee claims, and chargeback events.
         attribute(:promotion_adjustment_list, [Promotion], from: "PromotionAdjustmentList")
 
-        # @return [Currency] The cost of Amazon Points granted for a shipment item.
-        attribute(:cost_of_points_granted, Currency, from: "CostOfPointsGranted")
+        # @return [Types::Money] The cost of Amazon Points granted for a shipment item.
+        attribute(:cost_of_points_granted, Types::Money, from: "CostOfPointsGranted")
 
-        # @return [Currency] The cost of Amazon Points returned for a shipment item. This value is only returned for
+        # @return [Types::Money] The cost of Amazon Points returned for a shipment item. This value is only returned for
         # refunds, guarantee claims, and chargeback events.
-        attribute(:cost_of_points_returned, Currency, from: "CostOfPointsReturned")
+        attribute(:cost_of_points_returned, Types::Money, from: "CostOfPointsReturned")
       end
     end
   end

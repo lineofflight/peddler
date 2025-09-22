@@ -10,7 +10,7 @@ module Peddler
         attr_reader service_id: String
         attr_reader service_name: String
         attr_reader billed_weight: Weight?
-        attr_reader total_charge: Currency
+        attr_reader total_charge: Money
         attr_reader promise: Promise
         attr_reader supported_document_specifications: Array[SupportedDocumentSpecification]
         attr_reader available_value_added_service_groups: Array[AvailableValueAddedServiceGroup]?
@@ -28,7 +28,7 @@ module Peddler
           service_id: String,
           service_name: String,
           ?billed_weight: Weight,
-          total_charge: Currency,
+          total_charge: Money,
           promise: Promise,
           supported_document_specifications: Array[SupportedDocumentSpecification],
           ?available_value_added_service_groups: Array[AvailableValueAddedServiceGroup],

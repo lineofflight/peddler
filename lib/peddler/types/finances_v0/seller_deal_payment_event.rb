@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -24,14 +24,14 @@ module Peddler
         # @return [String] The type of fee: RunLightningDealFee.
         attribute(:fee_type, String, from: "feeType")
 
-        # @return [Currency] The monetary amount of the fee.
-        attribute(:fee_amount, Currency, from: "feeAmount")
+        # @return [Types::Money] The monetary amount of the fee.
+        attribute(:fee_amount, Types::Money, from: "feeAmount")
 
-        # @return [Currency] The monetary amount of the tax applied.
-        attribute(:tax_amount, Currency, from: "taxAmount")
+        # @return [Types::Money] The monetary amount of the tax applied.
+        attribute(:tax_amount, Types::Money, from: "taxAmount")
 
-        # @return [Currency] The total monetary amount paid.
-        attribute(:total_amount, Currency, from: "totalAmount")
+        # @return [Types::Money] The total monetary amount paid.
+        attribute(:total_amount, Types::Money, from: "totalAmount")
       end
     end
   end

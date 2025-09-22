@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The Tax-Deducted-at-Source (TDS) identifier.
         attribute(:tds_order_id, String, from: "TDSOrderId")
 
-        # @return [Currency] The amount reimbursed.
-        attribute(:reimbursed_amount, Currency, from: "ReimbursedAmount")
+        # @return [Types::Money] The amount reimbursed.
+        attribute(:reimbursed_amount, Types::Money, from: "ReimbursedAmount")
       end
     end
   end

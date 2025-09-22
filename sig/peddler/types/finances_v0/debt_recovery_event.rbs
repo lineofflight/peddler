@@ -5,8 +5,8 @@ module Peddler
     module FinancesV0
       class DebtRecoveryEvent < Data
         attr_reader debt_recovery_type: String?
-        attr_reader recovery_amount: Currency?
-        attr_reader over_payment_credit: Currency?
+        attr_reader recovery_amount: Money?
+        attr_reader over_payment_credit: Money?
         attr_reader debt_recovery_item_list: Array[DebtRecoveryItem]?
         attr_reader charge_instrument_list: Array[ChargeInstrument]?
 
@@ -14,8 +14,8 @@ module Peddler
 
         def initialize: (
           ?debt_recovery_type: String,
-          ?recovery_amount: Currency,
-          ?over_payment_credit: Currency,
+          ?recovery_amount: Money,
+          ?over_payment_credit: Money,
           ?debt_recovery_item_list: Array[DebtRecoveryItem],
           ?charge_instrument_list: Array[ChargeInstrument]
         ) -> void

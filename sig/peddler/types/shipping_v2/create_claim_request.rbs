@@ -5,7 +5,7 @@ module Peddler
     module ShippingV2
       class CreateClaimRequest < Data
         attr_reader tracking_id: String
-        attr_reader declared_value: Currency?
+        attr_reader declared_value: Money?
         attr_reader claim_reason: String
         attr_reader replacement_package_sent: bool?
         attr_reader proofs: Array[String]?
@@ -15,7 +15,7 @@ module Peddler
 
         def initialize: (
           tracking_id: String,
-          ?declared_value: Currency,
+          ?declared_value: Money,
           claim_reason: String,
           ?replacement_package_sent: bool,
           ?proofs: Array[String],

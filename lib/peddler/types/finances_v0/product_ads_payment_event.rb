@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -24,14 +24,14 @@ module Peddler
         # @return [String] Identifier for the invoice that the transaction appears in.
         attribute(:invoice_id, String, from: "invoiceId")
 
-        # @return [Currency] Base amount of the transaction, before tax.
-        attribute(:base_value, Currency, from: "baseValue")
+        # @return [Types::Money] Base amount of the transaction, before tax.
+        attribute(:base_value, Types::Money, from: "baseValue")
 
-        # @return [Currency] Tax amount of the transaction.
-        attribute(:tax_value, Currency, from: "taxValue")
+        # @return [Types::Money] Tax amount of the transaction.
+        attribute(:tax_value, Types::Money, from: "taxValue")
 
-        # @return [Currency] The total amount of the transaction. Equal to baseValue + taxValue.
-        attribute(:transaction_value, Currency, from: "transactionValue")
+        # @return [Types::Money] The total amount of the transaction. Equal to baseValue + taxValue.
+        attribute(:transaction_value, Types::Money, from: "transactionValue")
       end
     end
   end

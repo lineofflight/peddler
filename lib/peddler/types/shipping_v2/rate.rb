@@ -2,8 +2,8 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/shipping_v2/weight"
-require "peddler/types/shipping_v2/currency"
 require "peddler/types/shipping_v2/promise"
 require "peddler/types/shipping_v2/supported_document_specification"
 require "peddler/types/shipping_v2/available_value_added_service_group"
@@ -33,8 +33,8 @@ module Peddler
         # @return [Weight]
         attribute(:billed_weight, Weight, from: "billedWeight")
 
-        # @return [Currency]
-        attribute(:total_charge, Currency, from: "totalCharge")
+        # @return [Types::Money]
+        attribute(:total_charge, Types::Money, from: "totalCharge")
 
         # @return [Promise]
         attribute(:promise, Promise)

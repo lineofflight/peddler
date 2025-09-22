@@ -5,13 +5,13 @@ module Peddler
     module MerchantFulfillmentV0
       class AvailableCarrierWillPickUpOption < Data
         attr_reader carrier_will_pick_up_option: String
-        attr_reader charge: CurrencyAmount
+        attr_reader charge: Money
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
         def initialize: (
           carrier_will_pick_up_option: String,
-          charge: CurrencyAmount
+          charge: Money
         ) -> void
       end
     end

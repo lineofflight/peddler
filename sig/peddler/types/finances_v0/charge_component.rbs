@@ -5,13 +5,13 @@ module Peddler
     module FinancesV0
       class ChargeComponent < Data
         attr_reader charge_type: String?
-        attr_reader charge_amount: Currency?
+        attr_reader charge_amount: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
         def initialize: (
           ?charge_type: String,
-          ?charge_amount: Currency
+          ?charge_amount: Money
         ) -> void
       end
     end

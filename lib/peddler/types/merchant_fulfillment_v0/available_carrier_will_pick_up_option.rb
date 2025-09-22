@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/merchant_fulfillment_v0/currency_amount"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -12,8 +12,8 @@ module Peddler
         # @return [String]
         attribute(:carrier_will_pick_up_option, String, from: "CarrierWillPickUpOption")
 
-        # @return [CurrencyAmount] The fee charged.
-        attribute(:charge, CurrencyAmount, from: "Charge")
+        # @return [Types::Money] The fee charged.
+        attribute(:charge, Types::Money, from: "Charge")
       end
     end
   end

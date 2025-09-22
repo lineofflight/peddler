@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v2/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -12,8 +12,8 @@ module Peddler
         # @return [String]
         attribute(:tracking_id, String, from: "trackingId")
 
-        # @return [Currency] This is required for off-Amazon shipments to determine value of shipments
-        attribute(:declared_value, Currency, from: "declaredValue")
+        # @return [Types::Money] This is required for off-Amazon shipments to determine value of shipments
+        attribute(:declared_value, Types::Money, from: "declaredValue")
 
         # @return [String]
         attribute(:claim_reason, String, from: "claimReason")

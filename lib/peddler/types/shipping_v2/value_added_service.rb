@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v2/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The name of the value-added service.
         attribute(:name, String)
 
-        # @return [Currency] The cost of the value-added service.
-        attribute(:cost, Currency)
+        # @return [Types::Money] The cost of the value-added service.
+        attribute(:cost, Types::Money)
       end
     end
   end

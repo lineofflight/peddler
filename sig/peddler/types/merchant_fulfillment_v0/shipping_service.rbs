@@ -11,7 +11,7 @@ module Peddler
         attr_reader ship_date: String
         attr_reader earliest_estimated_delivery_date: String?
         attr_reader latest_estimated_delivery_date: String?
-        attr_reader rate: CurrencyAmount
+        attr_reader rate: Money
         attr_reader shipping_service_options: ShippingServiceOptions
         attr_reader available_shipping_service_options: AvailableShippingServiceOptions?
         attr_reader available_label_formats: Array[String]?
@@ -29,7 +29,7 @@ module Peddler
           ship_date: String,
           ?earliest_estimated_delivery_date: String,
           ?latest_estimated_delivery_date: String,
-          rate: CurrencyAmount,
+          rate: Money,
           shipping_service_options: ShippingServiceOptions,
           ?available_shipping_service_options: AvailableShippingServiceOptions,
           ?available_label_formats: Array[String],

@@ -2,11 +2,11 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/shipping_v2/package_document_detail"
 require "peddler/types/shipping_v2/promise"
 require "peddler/types/shipping_v2/carrier"
 require "peddler/types/shipping_v2/service"
-require "peddler/types/shipping_v2/currency"
 
 module Peddler
   module Types
@@ -28,8 +28,8 @@ module Peddler
         # @return [Service]
         attribute(:service, Service)
 
-        # @return [Currency]
-        attribute(:total_charge, Currency, from: "totalCharge")
+        # @return [Types::Money]
+        attribute(:total_charge, Types::Money, from: "totalCharge")
       end
     end
   end

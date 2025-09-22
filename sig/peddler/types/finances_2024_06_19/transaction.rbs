@@ -11,7 +11,7 @@ module Peddler
         attr_reader transaction_status: String?
         attr_reader description: String?
         attr_reader posted_date: String?
-        attr_reader total_amount: Currency?
+        attr_reader total_amount: Money?
         attr_reader marketplace_details: MarketplaceDetails?
         attr_reader items: Array[Item]?
         attr_reader contexts: Array[untyped]?
@@ -27,7 +27,7 @@ module Peddler
           ?transaction_status: String,
           ?description: String,
           ?posted_date: String,
-          ?total_amount: Currency,
+          ?total_amount: Money,
           ?marketplace_details: MarketplaceDetails,
           ?items: Array[Item],
           ?contexts: Array[untyped],

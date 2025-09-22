@@ -2,9 +2,9 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/shipping_v2/dimensions"
 require "peddler/types/shipping_v2/weight"
-require "peddler/types/shipping_v2/currency"
 require "peddler/types/shipping_v2/charge_component"
 require "peddler/types/shipping_v2/item"
 
@@ -19,8 +19,8 @@ module Peddler
         # @return [Weight]
         attribute(:weight, Weight)
 
-        # @return [Currency]
-        attribute(:insured_value, Currency, from: "insuredValue")
+        # @return [Types::Money]
+        attribute(:insured_value, Types::Money, from: "insuredValue")
 
         # @return [:boolean] When true, the package contains hazardous materials. Defaults to false.
         attribute(:hazmat, :boolean, from: "isHazmat")

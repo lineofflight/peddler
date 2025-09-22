@@ -11,7 +11,7 @@ module Peddler
         attr_reader payment_event_id: String?
         attr_reader fee_component: FeeComponent?
         attr_reader charge_component: ChargeComponent?
-        attr_reader total_amount: Currency?
+        attr_reader total_amount: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -23,7 +23,7 @@ module Peddler
           ?payment_event_id: String,
           ?fee_component: FeeComponent,
           ?charge_component: ChargeComponent,
-          ?total_amount: Currency
+          ?total_amount: Money
         ) -> void
       end
     end

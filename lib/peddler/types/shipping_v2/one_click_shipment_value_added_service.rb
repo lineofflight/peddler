@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v2/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The identifier of the selected value-added service.
         attribute(:id, String)
 
-        # @return [Currency]
-        attribute(:amount, Currency)
+        # @return [Types::Money]
+        attribute(:amount, Types::Money)
       end
     end
   end

@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -16,12 +16,12 @@ module Peddler
         # @return [String] The identifier for the original removal order.
         attribute(:original_removal_order_id, String, from: "OriginalRemovalOrderId")
 
-        # @return [Currency] The amount paid by the liquidator for the seller's inventory. The seller receives this
+        # @return [Types::Money] The amount paid by the liquidator for the seller's inventory. The seller receives this
         # amount minus LiquidationFeeAmount.
-        attribute(:liquidation_proceeds_amount, Currency, from: "LiquidationProceedsAmount")
+        attribute(:liquidation_proceeds_amount, Types::Money, from: "LiquidationProceedsAmount")
 
-        # @return [Currency] The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
-        attribute(:liquidation_fee_amount, Currency, from: "LiquidationFeeAmount")
+        # @return [Types::Money] The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
+        attribute(:liquidation_fee_amount, Types::Money, from: "LiquidationFeeAmount")
       end
     end
   end

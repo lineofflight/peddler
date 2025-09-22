@@ -5,13 +5,13 @@ module Peddler
     module ShippingV2
       class OneClickShipmentValueAddedService < Data
         attr_reader id: String
-        attr_reader amount: Currency?
+        attr_reader amount: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
         def initialize: (
           id: String,
-          ?amount: Currency
+          ?amount: Money
         ) -> void
       end
     end

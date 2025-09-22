@@ -8,11 +8,11 @@ module Peddler
         attr_reader posted_date: String?
         attr_reader marketplace_id: String?
         attr_reader transaction_type: String?
-        attr_reader base_expense: Currency?
-        attr_reader tax_type_cgst: Currency
-        attr_reader tax_type_sgst: Currency
-        attr_reader tax_type_igst: Currency
-        attr_reader total_expense: Currency?
+        attr_reader base_expense: Money?
+        attr_reader tax_type_cgst: Money
+        attr_reader tax_type_sgst: Money
+        attr_reader tax_type_igst: Money
+        attr_reader total_expense: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -21,11 +21,11 @@ module Peddler
           ?posted_date: String,
           ?marketplace_id: String,
           ?transaction_type: String,
-          ?base_expense: Currency,
-          tax_type_cgst: Currency,
-          tax_type_sgst: Currency,
-          tax_type_igst: Currency,
-          ?total_expense: Currency
+          ?base_expense: Money,
+          tax_type_cgst: Money,
+          tax_type_sgst: Money,
+          tax_type_igst: Money,
+          ?total_expense: Money
         ) -> void
       end
     end

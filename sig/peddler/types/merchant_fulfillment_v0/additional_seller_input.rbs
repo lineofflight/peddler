@@ -12,7 +12,7 @@ module Peddler
         attr_reader value_as_address: Address?
         attr_reader value_as_weight: Weight?
         attr_reader value_as_dimension: Length?
-        attr_reader value_as_currency: CurrencyAmount?
+        attr_reader value_as_currency: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -25,7 +25,7 @@ module Peddler
           ?value_as_address: Address,
           ?value_as_weight: Weight,
           ?value_as_dimension: Length,
-          ?value_as_currency: CurrencyAmount
+          ?value_as_currency: Money
         ) -> void
       end
     end

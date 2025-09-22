@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -30,8 +30,8 @@ module Peddler
         # Example `HARD_DECLINED`
         attribute(:status, String, from: "Status")
 
-        # @return [Currency] The amount of the Adhoc Disbursement.
-        attribute(:transfer_amount, Currency, from: "TransferAmount")
+        # @return [Types::Money] The amount of the Adhoc Disbursement.
+        attribute(:transfer_amount, Types::Money, from: "TransferAmount")
 
         # @return [String] The date and time when the financial event was posted.
         attribute(:posted_date, String, from: "PostedDate")

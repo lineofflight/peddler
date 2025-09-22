@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -28,20 +28,20 @@ module Peddler
         # @return [Integer] The quantity of the item.
         attribute(:quantity, Integer, from: "Quantity")
 
-        # @return [Currency] The total amount paid to the seller for the removed item.
-        attribute(:revenue, Currency, from: "Revenue")
+        # @return [Types::Money] The total amount paid to the seller for the removed item.
+        attribute(:revenue, Types::Money, from: "Revenue")
 
-        # @return [Currency] The fee that Amazon charged to the seller for the removal of the item. The amount is a
+        # @return [Types::Money] The fee that Amazon charged to the seller for the removal of the item. The amount is a
         # negative number.
-        attribute(:fee_amount, Currency, from: "FeeAmount")
+        attribute(:fee_amount, Types::Money, from: "FeeAmount")
 
-        # @return [Currency] Tax collected on the revenue.
-        attribute(:tax_amount, Currency, from: "TaxAmount")
+        # @return [Types::Money] Tax collected on the revenue.
+        attribute(:tax_amount, Types::Money, from: "TaxAmount")
 
-        # @return [Currency] The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If
-        # TaxCollectionModel=MarketplaceFacilitator, then TaxWithheld=TaxAmount (except the TaxWithheld amount is a
-        # negative number). Otherwise TaxWithheld=0.
-        attribute(:tax_withheld, Currency, from: "TaxWithheld")
+        # @return [Types::Money] The tax withheld and remitted to the taxing authority by Amazon on behalf of the
+        # seller. If TaxCollectionModel=MarketplaceFacilitator, then TaxWithheld=TaxAmount (except the TaxWithheld
+        # amount is a negative number). Otherwise TaxWithheld=0.
+        attribute(:tax_withheld, Types::Money, from: "TaxWithheld")
       end
     end
   end

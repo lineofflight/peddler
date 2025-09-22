@@ -4,6 +4,7 @@ require "erb"
 require "fileutils"
 require "generator/config"
 require "generator/formatter"
+require "generator/type_resolver"
 
 module Generator
   module RBS
@@ -85,7 +86,7 @@ module Generator
           if prop_def["$ref"]
             ref_type = prop_def["$ref"].split("/").last
             # Check if it's Money type
-            if ref_type == "Money" || ref_type == "MoneyType"
+            if TypeResolver::MONEY_TYPES.include?(ref_type)
               "Money"
             else
               # Try to resolve the reference to its actual type

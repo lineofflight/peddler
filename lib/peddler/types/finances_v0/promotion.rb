@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The seller-specified identifier for the promotion.
         attribute(:promotion_id, String, from: "PromotionId")
 
-        # @return [Currency] The amount of promotional discount applied to the item.
-        attribute(:promotion_amount, Currency, from: "PromotionAmount")
+        # @return [Types::Money] The amount of promotional discount applied to the item.
+        attribute(:promotion_amount, Types::Money, from: "PromotionAmount")
       end
     end
   end

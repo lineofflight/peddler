@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -34,8 +34,8 @@ module Peddler
         # @return [String] The store name where the payment event occurred.
         attribute(:provider_store_name, String, from: "ProviderStoreName")
 
-        # @return [Currency] The amount of the credit.
-        attribute(:transaction_amount, Currency, from: "TransactionAmount")
+        # @return [Types::Money] The amount of the credit.
+        attribute(:transaction_amount, Types::Money, from: "TransactionAmount")
 
         # @return [String] The date and time that the credit transaction was created, in [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.

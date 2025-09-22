@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v1/currency"
+require "peddler/types/money"
 require "peddler/types/shipping_v1/dimensions"
 require "peddler/types/shipping_v1/container_item"
 require "peddler/types/shipping_v1/weight"
@@ -18,8 +18,8 @@ module Peddler
         # @return [String]
         attribute(:container_reference_id, String, from: "containerReferenceId")
 
-        # @return [Currency] The total value of all items in the container.
-        attribute(:value, Currency)
+        # @return [Types::Money] The total value of all items in the container.
+        attribute(:value, Types::Money)
 
         # @return [Dimensions] The length, width, height, and weight of the container.
         attribute(:dimensions, Dimensions)

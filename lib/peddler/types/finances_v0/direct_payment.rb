@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -31,8 +31,8 @@ module Peddler
         # refunded.
         attribute(:direct_payment_type, String, from: "DirectPaymentType")
 
-        # @return [Currency] The amount of the direct payment.
-        attribute(:direct_payment_amount, Currency, from: "DirectPaymentAmount")
+        # @return [Types::Money] The amount of the direct payment.
+        attribute(:direct_payment_amount, Types::Money, from: "DirectPaymentAmount")
       end
     end
   end

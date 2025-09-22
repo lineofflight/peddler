@@ -10,8 +10,8 @@ module Peddler
         attr_reader swap_reason: String?
         attr_reader asin: String?
         attr_reader marketplace_id: String?
-        attr_reader tax_exclusive_amount: Currency?
-        attr_reader tax_amount: Currency?
+        attr_reader tax_exclusive_amount: Money?
+        attr_reader tax_amount: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -22,8 +22,8 @@ module Peddler
           ?swap_reason: String,
           ?asin: String,
           ?marketplace_id: String,
-          ?tax_exclusive_amount: Currency,
-          ?tax_amount: Currency
+          ?tax_exclusive_amount: Money,
+          ?tax_amount: Money
         ) -> void
       end
     end

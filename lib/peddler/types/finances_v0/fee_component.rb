@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -15,8 +15,8 @@ module Peddler
         # fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
         attribute(:fee_type, String, from: "FeeType")
 
-        # @return [Currency] The amount of the fee.
-        attribute(:fee_amount, Currency, from: "FeeAmount")
+        # @return [Types::Money] The amount of the fee.
+        attribute(:fee_amount, Types::Money, from: "FeeAmount")
       end
     end
   end

@@ -9,7 +9,7 @@ module Peddler
         attr_reader disbursement_id: String?
         attr_reader payment_disbursement_type: String?
         attr_reader status: String?
-        attr_reader transfer_amount: Currency?
+        attr_reader transfer_amount: Money?
         attr_reader posted_date: String?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
@@ -20,7 +20,7 @@ module Peddler
           ?disbursement_id: String,
           ?payment_disbursement_type: String,
           ?status: String,
-          ?transfer_amount: Currency,
+          ?transfer_amount: Money,
           ?posted_date: String
         ) -> void
       end

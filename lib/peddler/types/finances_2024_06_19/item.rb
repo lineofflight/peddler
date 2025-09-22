@@ -2,8 +2,8 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/finances_2024_06_19/item_related_identifier"
-require "peddler/types/finances_2024_06_19/currency"
 require "peddler/types/finances_2024_06_19/breakdown"
 require "peddler/types/finances_2024_06_19/context"
 
@@ -18,8 +18,8 @@ module Peddler
         # @return [Array<ItemRelatedIdentifier>] Related business identifiers of the item.
         attribute(:related_identifiers, [ItemRelatedIdentifier], from: "relatedIdentifiers")
 
-        # @return [Currency] The total amount of the item.
-        attribute(:total_amount, Currency, from: "totalAmount")
+        # @return [Types::Money] The total amount of the item.
+        attribute(:total_amount, Types::Money, from: "totalAmount")
 
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         # transaction.

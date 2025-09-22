@@ -5,16 +5,16 @@ module Peddler
     module FinancesV0
       class TaxWithholdingEvent < Data
         attr_reader posted_date: String?
-        attr_reader base_amount: Currency?
-        attr_reader withheld_amount: Currency?
+        attr_reader base_amount: Money?
+        attr_reader withheld_amount: Money?
         attr_reader tax_withholding_period: TaxWithholdingPeriod?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
         def initialize: (
           ?posted_date: String,
-          ?base_amount: Currency,
-          ?withheld_amount: Currency,
+          ?base_amount: Money,
+          ?withheld_amount: Money,
           ?tax_withholding_period: TaxWithholdingPeriod
         ) -> void
       end

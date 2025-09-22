@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/merchant_fulfillment_v0/currency_amount"
+require "peddler/types/money"
 require "peddler/types/merchant_fulfillment_v0/shipping_service_options"
 require "peddler/types/merchant_fulfillment_v0/available_shipping_service_options"
 require "peddler/types/merchant_fulfillment_v0/label_format_option"
@@ -35,8 +35,8 @@ module Peddler
         # @return [String] The latest date by which the shipment will be delivered.
         attribute(:latest_estimated_delivery_date, String, from: "LatestEstimatedDeliveryDate")
 
-        # @return [CurrencyAmount] The amount that the carrier will charge for the shipment.
-        attribute(:rate, CurrencyAmount, from: "Rate")
+        # @return [Types::Money] The amount that the carrier will charge for the shipment.
+        attribute(:rate, Types::Money, from: "Rate")
 
         # @return [ShippingServiceOptions] Extra services offered by the carrier.
         attribute(:shipping_service_options, ShippingServiceOptions, from: "ShippingServiceOptions")

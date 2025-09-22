@@ -3,7 +3,6 @@
 # This file is generated. Edit template if necessary.
 
 require "peddler/types/money"
-require "peddler/types/product_fees_v0/money_type"
 
 module Peddler
   module Types

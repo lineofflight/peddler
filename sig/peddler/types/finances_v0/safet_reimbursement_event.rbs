@@ -6,7 +6,7 @@ module Peddler
       class SAFETReimbursementEvent < Data
         attr_reader posted_date: String?
         attr_reader safet_claim_id: String?
-        attr_reader reimbursed_amount: Currency?
+        attr_reader reimbursed_amount: Money?
         attr_reader reason_code: String?
         attr_reader safet_reimbursement_item_list: Array[SAFETReimbursementItem]?
 
@@ -15,7 +15,7 @@ module Peddler
         def initialize: (
           ?posted_date: String,
           ?safet_claim_id: String,
-          ?reimbursed_amount: Currency,
+          ?reimbursed_amount: Money,
           ?reason_code: String,
           ?safet_reimbursement_item_list: Array[SAFETReimbursementItem]
         ) -> void

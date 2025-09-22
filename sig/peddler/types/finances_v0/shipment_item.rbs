@@ -15,8 +15,8 @@ module Peddler
         attr_reader item_tax_withheld_list: Array[TaxWithheldComponent]?
         attr_reader promotion_list: Array[Promotion]?
         attr_reader promotion_adjustment_list: Array[Promotion]?
-        attr_reader cost_of_points_granted: Currency?
-        attr_reader cost_of_points_returned: Currency?
+        attr_reader cost_of_points_granted: Money?
+        attr_reader cost_of_points_returned: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -32,8 +32,8 @@ module Peddler
           ?item_tax_withheld_list: Array[TaxWithheldComponent],
           ?promotion_list: Array[Promotion],
           ?promotion_adjustment_list: Array[Promotion],
-          ?cost_of_points_granted: Currency,
-          ?cost_of_points_returned: Currency
+          ?cost_of_points_granted: Money,
+          ?cost_of_points_returned: Money
         ) -> void
       end
     end

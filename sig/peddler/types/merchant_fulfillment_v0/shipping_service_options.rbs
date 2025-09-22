@@ -5,7 +5,7 @@ module Peddler
     module MerchantFulfillmentV0
       class ShippingServiceOptions < Data
         attr_reader delivery_experience: String
-        attr_reader declared_value: CurrencyAmount?
+        attr_reader declared_value: Money?
         attr_reader carrier_will_pick_up: bool
         attr_reader carrier_will_pick_up_option: String?
         attr_reader label_format: String?
@@ -14,7 +14,7 @@ module Peddler
 
         def initialize: (
           delivery_experience: String,
-          ?declared_value: CurrencyAmount,
+          ?declared_value: Money,
           carrier_will_pick_up: bool,
           ?carrier_will_pick_up_option: String,
           ?label_format: String

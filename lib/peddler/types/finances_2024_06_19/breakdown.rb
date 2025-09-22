@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_2024_06_19/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -14,8 +14,8 @@ module Peddler
         # @return [String] The type of charge.
         attribute(:breakdown_type, String, from: "breakdownType")
 
-        # @return [Currency] The amount of the charge.
-        attribute(:breakdown_amount, Currency, from: "breakdownAmount")
+        # @return [Types::Money] The amount of the charge.
+        attribute(:breakdown_amount, Types::Money, from: "breakdownAmount")
 
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         # transaction.

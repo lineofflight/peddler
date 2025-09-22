@@ -12,7 +12,7 @@ module Peddler
         attr_reader ship_to_address: Address
         attr_reader package_dimensions: PackageDimensions
         attr_reader weight: Weight
-        attr_reader insurance: CurrencyAmount
+        attr_reader insurance: Money
         attr_reader shipping_service: ShippingService
         attr_reader label: Label
         attr_reader status: String
@@ -31,7 +31,7 @@ module Peddler
           ship_to_address: Address,
           package_dimensions: PackageDimensions,
           weight: Weight,
-          insurance: CurrencyAmount,
+          insurance: Money,
           shipping_service: ShippingService,
           label: Label,
           status: String,

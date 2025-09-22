@@ -2,15 +2,15 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v2/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
     module ShippingV2
       # The type and amount of a charge applied on a package.
       ChargeComponent = Structure.new do
-        # @return [Currency]
-        attribute(:amount, Currency)
+        # @return [Types::Money]
+        attribute(:amount, Types::Money)
 
         # @return [String] The type of charge.
         attribute(:charge_type, String, from: "chargeType")

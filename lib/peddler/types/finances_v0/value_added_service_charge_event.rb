@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -20,8 +20,8 @@ module Peddler
         # @return [String] A short description of the service charge event.
         attribute(:description, String, from: "Description")
 
-        # @return [Currency] The amount of the service charge event.
-        attribute(:transaction_amount, Currency, from: "TransactionAmount")
+        # @return [Types::Money] The amount of the service charge event.
+        attribute(:transaction_amount, Types::Money, from: "TransactionAmount")
       end
     end
   end

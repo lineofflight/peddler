@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v2/currency"
+require "peddler/types/money"
 require "peddler/types/shipping_v2/weight"
 require "peddler/types/shipping_v2/liquid_volume"
 require "peddler/types/shipping_v2/dangerous_goods_details"
@@ -14,8 +14,8 @@ module Peddler
     module ShippingV2
       # An item in a package.
       Item = Structure.new do
-        # @return [Currency]
-        attribute(:item_value, Currency, from: "itemValue")
+        # @return [Types::Money]
+        attribute(:item_value, Types::Money, from: "itemValue")
 
         # @return [String] The product description of the item.
         attribute(:description, String)

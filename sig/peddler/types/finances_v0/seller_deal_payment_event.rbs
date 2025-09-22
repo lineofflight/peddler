@@ -9,9 +9,9 @@ module Peddler
         attr_reader deal_description: String?
         attr_reader event_type: String?
         attr_reader fee_type: String?
-        attr_reader fee_amount: Currency?
-        attr_reader tax_amount: Currency?
-        attr_reader total_amount: Currency?
+        attr_reader fee_amount: Money?
+        attr_reader tax_amount: Money?
+        attr_reader total_amount: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -21,9 +21,9 @@ module Peddler
           ?deal_description: String,
           ?event_type: String,
           ?fee_type: String,
-          ?fee_amount: Currency,
-          ?tax_amount: Currency,
-          ?total_amount: Currency
+          ?fee_amount: Money,
+          ?tax_amount: Money,
+          ?total_amount: Money
         ) -> void
       end
     end

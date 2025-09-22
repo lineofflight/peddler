@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/seller_wallet_2024_03_01/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -21,8 +21,8 @@ module Peddler
         # @return [String] The value of the fee in percentage format.
         attribute(:fee_rate_value, String, from: "feeRateValue")
 
-        # @return [Currency] Displays actual value of the fee in numeric format.
-        attribute(:fee_amount, Currency, from: "feeAmount")
+        # @return [Types::Money] Displays actual value of the fee in numeric format.
+        attribute(:fee_amount, Types::Money, from: "feeAmount")
       end
     end
   end

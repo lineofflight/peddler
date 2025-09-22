@@ -5,8 +5,8 @@ module Peddler
     module FinancesV0
       class AdjustmentItem < Data
         attr_reader quantity: String?
-        attr_reader per_unit_amount: Currency?
-        attr_reader total_amount: Currency?
+        attr_reader per_unit_amount: Money?
+        attr_reader total_amount: Money?
         attr_reader seller_sku: String?
         attr_reader fn_sku: String?
         attr_reader product_description: String?
@@ -17,8 +17,8 @@ module Peddler
 
         def initialize: (
           ?quantity: String,
-          ?per_unit_amount: Currency,
-          ?total_amount: Currency,
+          ?per_unit_amount: Money,
+          ?total_amount: Money,
           ?seller_sku: String,
           ?fn_sku: String,
           ?product_description: String,

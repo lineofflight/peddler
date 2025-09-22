@@ -76,6 +76,11 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 
 ## Development Practices
 
+### After Fixing Issues
+
+- Provide a brief summary (2-3 sentences) explaining what was wrong and how you fixed it
+- This helps with understanding the changes and learning from issues
+
 ### Testing
 
 - Use Minitest for all tests
@@ -95,6 +100,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - Include issue number when applicable
 - Keep it concise: focus on what/why, not implementation details
 - **NEVER use `git add .`** - always stage files explicitly by name
+- **NEVER commit changes unless explicitly asked** - always let the user review changes first
 - Delete feature branches after they've been merged to main to keep the repository clean
 
 ### Tools

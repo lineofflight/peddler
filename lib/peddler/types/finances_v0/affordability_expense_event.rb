@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -27,21 +27,21 @@ module Peddler
         # * Refund - For an affordability promotion expense reversal.
         attribute(:transaction_type, String, from: "TransactionType")
 
-        # @return [Currency] The amount charged for clicks incurred under the Sponsored Products program.
-        attribute(:base_expense, Currency, from: "BaseExpense")
+        # @return [Types::Money] The amount charged for clicks incurred under the Sponsored Products program.
+        attribute(:base_expense, Types::Money, from: "BaseExpense")
 
-        # @return [Currency] Central Goods and Service Tax, charged and collected by the central government.
-        attribute(:tax_type_cgst, Currency, from: "TaxTypeCGST")
+        # @return [Types::Money] Central Goods and Service Tax, charged and collected by the central government.
+        attribute(:tax_type_cgst, Types::Money, from: "TaxTypeCGST")
 
-        # @return [Currency] State Goods and Service Tax, charged and collected by the state government.
-        attribute(:tax_type_sgst, Currency, from: "TaxTypeSGST")
+        # @return [Types::Money] State Goods and Service Tax, charged and collected by the state government.
+        attribute(:tax_type_sgst, Types::Money, from: "TaxTypeSGST")
 
-        # @return [Currency] Integrated Goods and Service Tax, charged and collected by the central government.
-        attribute(:tax_type_igst, Currency, from: "TaxTypeIGST")
+        # @return [Types::Money] Integrated Goods and Service Tax, charged and collected by the central government.
+        attribute(:tax_type_igst, Types::Money, from: "TaxTypeIGST")
 
-        # @return [Currency] The total amount charged to the seller. TotalExpense = BaseExpense + TaxTypeIGST +
+        # @return [Types::Money] The total amount charged to the seller. TotalExpense = BaseExpense + TaxTypeIGST +
         # TaxTypeCGST + TaxTypeSGST.
-        attribute(:total_expense, Currency, from: "TotalExpense")
+        attribute(:total_expense, Types::Money, from: "TotalExpense")
       end
     end
   end

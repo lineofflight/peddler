@@ -8,10 +8,10 @@ module Peddler
         attr_reader tax_collection_model: String?
         attr_reader fulfillment_network_sku: String?
         attr_reader quantity: Integer?
-        attr_reader revenue: Currency?
-        attr_reader fee_amount: Currency?
-        attr_reader tax_amount: Currency?
-        attr_reader tax_withheld: Currency?
+        attr_reader revenue: Money?
+        attr_reader fee_amount: Money?
+        attr_reader tax_amount: Money?
+        attr_reader tax_withheld: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -20,10 +20,10 @@ module Peddler
           ?tax_collection_model: String,
           ?fulfillment_network_sku: String,
           ?quantity: Integer,
-          ?revenue: Currency,
-          ?fee_amount: Currency,
-          ?tax_amount: Currency,
-          ?tax_withheld: Currency
+          ?revenue: Money,
+          ?fee_amount: Money,
+          ?tax_amount: Money,
+          ?tax_withheld: Money
         ) -> void
       end
     end

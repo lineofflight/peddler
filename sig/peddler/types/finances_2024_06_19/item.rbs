@@ -6,7 +6,7 @@ module Peddler
       class Item < Data
         attr_reader description: String?
         attr_reader related_identifiers: Array[ItemRelatedIdentifier]?
-        attr_reader total_amount: Currency?
+        attr_reader total_amount: Money?
         attr_reader breakdowns: Array[Breakdown]?
         attr_reader contexts: Array[untyped]?
 
@@ -15,7 +15,7 @@ module Peddler
         def initialize: (
           ?description: String,
           ?related_identifiers: Array[ItemRelatedIdentifier],
-          ?total_amount: Currency,
+          ?total_amount: Money,
           ?breakdowns: Array[Breakdown],
           ?contexts: Array[untyped]
         ) -> void

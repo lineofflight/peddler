@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 require "peddler/types/finances_v0/tax_withheld_component"
 
 module Peddler
@@ -25,11 +25,11 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute(:posted_date, String, from: "PostedDate")
 
-        # @return [Currency] The base tax associated with the retrocharge event.
-        attribute(:base_tax, Currency, from: "BaseTax")
+        # @return [Types::Money] The base tax associated with the retrocharge event.
+        attribute(:base_tax, Types::Money, from: "BaseTax")
 
-        # @return [Currency] The shipping tax associated with the retrocharge event.
-        attribute(:shipping_tax, Currency, from: "ShippingTax")
+        # @return [Types::Money] The shipping tax associated with the retrocharge event.
+        attribute(:shipping_tax, Types::Money, from: "ShippingTax")
 
         # @return [String] The name of the marketplace where the retrocharge event occurred.
         attribute(:marketplace_name, String, from: "MarketplaceName")

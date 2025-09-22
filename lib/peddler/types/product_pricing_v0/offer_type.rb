@@ -4,7 +4,6 @@
 
 require "peddler/types/money"
 require "peddler/types/product_pricing_v0/price_type"
-require "peddler/types/product_pricing_v0/money_type"
 require "peddler/types/product_pricing_v0/quantity_discount_price_type"
 
 module Peddler

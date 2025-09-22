@@ -6,7 +6,7 @@ module Peddler
       class Package < Data
         attr_reader dimensions: Dimensions
         attr_reader weight: Weight
-        attr_reader insured_value: Currency
+        attr_reader insured_value: Money
         attr_reader hazmat: bool?
         attr_reader seller_display_name: String?
         attr_reader charges: Array[ChargeComponent]?
@@ -18,7 +18,7 @@ module Peddler
         def initialize: (
           dimensions: Dimensions,
           weight: Weight,
-          insured_value: Currency,
+          insured_value: Money,
           ?hazmat: bool,
           ?seller_display_name: String,
           ?charges: Array[ChargeComponent],

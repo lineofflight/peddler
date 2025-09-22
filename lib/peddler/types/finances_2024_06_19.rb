@@ -5,7 +5,6 @@
 require "peddler/types/finances_2024_06_19/amazon_pay_context"
 require "peddler/types/finances_2024_06_19/breakdown"
 require "peddler/types/finances_2024_06_19/business_context"
-require "peddler/types/finances_2024_06_19/currency"
 require "peddler/types/finances_2024_06_19/deferred_context"
 require "peddler/types/finances_2024_06_19/error"
 require "peddler/types/finances_2024_06_19/error_list"

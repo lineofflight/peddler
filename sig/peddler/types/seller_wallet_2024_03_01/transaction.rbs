@@ -16,9 +16,9 @@ module Peddler
         attr_reader transaction_description: String
         attr_reader transaction_source_account: TransactionAccount
         attr_reader transaction_destination_account: TransactionAccount
-        attr_reader transaction_request_amount: Currency
+        attr_reader transaction_request_amount: Money
         attr_reader transfer_rate_details: TransferRatePreview
-        attr_reader transaction_final_amount: Currency?
+        attr_reader transaction_final_amount: Money?
         attr_reader transaction_failure_reason: String?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
@@ -36,9 +36,9 @@ module Peddler
           transaction_description: String,
           transaction_source_account: TransactionAccount,
           transaction_destination_account: TransactionAccount,
-          transaction_request_amount: Currency,
+          transaction_request_amount: Money,
           transfer_rate_details: TransferRatePreview,
-          ?transaction_final_amount: Currency,
+          ?transaction_final_amount: Money,
           ?transaction_failure_reason: String
         ) -> void
       end

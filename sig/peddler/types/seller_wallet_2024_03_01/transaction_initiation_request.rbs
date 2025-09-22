@@ -10,7 +10,7 @@ module Peddler
         attr_reader transaction_description: String?
         attr_reader customer_payment_reference: String?
         attr_reader destination_account_holder_address: AccountHolderAddress?
-        attr_reader source_amount: Currency
+        attr_reader source_amount: Money
         attr_reader transfer_rate_details: TransferRatePreview?
         attr_reader request_time: String
 
@@ -23,7 +23,7 @@ module Peddler
           ?transaction_description: String,
           ?customer_payment_reference: String,
           ?destination_account_holder_address: AccountHolderAddress,
-          source_amount: Currency,
+          source_amount: Money,
           ?transfer_rate_details: TransferRatePreview,
           request_time: String
         ) -> void

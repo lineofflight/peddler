@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/seller_wallet_2024_03_01/currency"
+require "peddler/types/money"
 require "peddler/types/seller_wallet_2024_03_01/fx_rate_details"
 require "peddler/types/seller_wallet_2024_03_01/fee"
 
@@ -20,14 +20,14 @@ module Peddler
       # In the preceding expressions, **fees** is equal to the sum of all `feeAmount.currencyAmount` values in the
       # `fees` array.
       TransferRatePreview = Structure.new do
-        # @return [Currency] Base amount of the transaction.
-        attribute(:base_amount, Currency, from: "baseAmount")
+        # @return [Types::Money] Base amount of the transaction.
+        attribute(:base_amount, Types::Money, from: "baseAmount")
 
         # @return [FxRateDetails] The foreign exchange rate value of the transaction.
         attribute(:fx_rate_details, FxRateDetails, from: "fxRateDetails")
 
-        # @return [Currency] The final amount reflects both the fee deduction and currency conversion rate exchange
-        attribute(:transfer_amount, Currency, from: "transferAmount")
+        # @return [Types::Money] The final amount reflects both the fee deduction and currency conversion rate exchange
+        attribute(:transfer_amount, Types::Money, from: "transferAmount")
 
         # @return [Array<Fee>] List of fees
         attribute(:fees, [Fee])

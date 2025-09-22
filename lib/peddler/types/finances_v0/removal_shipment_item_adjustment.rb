@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -28,16 +28,16 @@ module Peddler
         # @return [Integer] Adjusted quantity of removal shipmentItemAdjustment items.
         attribute(:adjusted_quantity, Integer, from: "AdjustedQuantity")
 
-        # @return [Currency] The total amount adjusted for disputed items.
-        attribute(:revenue_adjustment, Currency, from: "RevenueAdjustment")
+        # @return [Types::Money] The total amount adjusted for disputed items.
+        attribute(:revenue_adjustment, Types::Money, from: "RevenueAdjustment")
 
-        # @return [Currency] Adjustment on the Tax collected amount on the adjusted revenue.
-        attribute(:tax_amount_adjustment, Currency, from: "TaxAmountAdjustment")
+        # @return [Types::Money] Adjustment on the Tax collected amount on the adjusted revenue.
+        attribute(:tax_amount_adjustment, Types::Money, from: "TaxAmountAdjustment")
 
-        # @return [Currency] Adjustment the tax withheld and remitted to the taxing authority by Amazon on behalf of the
-        # seller. If TaxCollectionModel=MarketplaceFacilitator, then TaxWithheld=TaxAmount (except the TaxWithheld
+        # @return [Types::Money] Adjustment the tax withheld and remitted to the taxing authority by Amazon on behalf of
+        # the seller. If TaxCollectionModel=MarketplaceFacilitator, then TaxWithheld=TaxAmount (except the TaxWithheld
         # amount is a negative number). Otherwise TaxWithheld=0.
-        attribute(:tax_withheld_adjustment, Currency, from: "TaxWithheldAdjustment")
+        attribute(:tax_withheld_adjustment, Types::Money, from: "TaxWithheldAdjustment")
       end
     end
   end

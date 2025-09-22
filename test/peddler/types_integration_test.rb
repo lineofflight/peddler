@@ -82,9 +82,9 @@ module Peddler
       shipment = result.payload.financial_events.shipment_event_list.first
       charge = shipment.shipment_item_list.first.item_charge_list.first
 
-      assert_instance_of(Types::FinancesV0::Currency, charge.charge_amount)
+      assert_instance_of(Types::Money, charge.charge_amount)
       assert_equal("EUR", charge.charge_amount.currency_code)
-      assert_equal(BigDecimal("49.99"), charge.charge_amount.currency_amount)
+      assert_equal("49.99", charge.charge_amount.amount)
     end
 
     def test_catalog_items_search_results

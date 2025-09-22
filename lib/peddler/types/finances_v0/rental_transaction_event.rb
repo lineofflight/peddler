@@ -2,9 +2,9 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/finances_v0/charge_component"
 require "peddler/types/finances_v0/fee_component"
-require "peddler/types/finances_v0/currency"
 require "peddler/types/finances_v0/tax_withheld_component"
 
 module Peddler
@@ -57,14 +57,14 @@ module Peddler
         # @return [String] The name of the marketplace.
         attribute(:marketplace_name, String, from: "MarketplaceName")
 
-        # @return [Currency] The amount of money the customer originally paid to rent the item. This value is only
+        # @return [Types::Money] The amount of money the customer originally paid to rent the item. This value is only
         # returned for RentalChargeFailureReimbursement and RentalLostItemReimbursement events.
-        attribute(:rental_initial_value, Currency, from: "RentalInitialValue")
+        attribute(:rental_initial_value, Types::Money, from: "RentalInitialValue")
 
-        # @return [Currency] The amount of money Amazon sends the seller to compensate for a lost item or a failed
+        # @return [Types::Money] The amount of money Amazon sends the seller to compensate for a lost item or a failed
         # charge. This value is only returned for RentalChargeFailureReimbursement and RentalLostItemReimbursement
         # events.
-        attribute(:rental_reimbursement, Currency, from: "RentalReimbursement")
+        attribute(:rental_reimbursement, Types::Money, from: "RentalReimbursement")
 
         # @return [Array<TaxWithheldComponent>] A list of taxes withheld information for a rental item.
         attribute(:rental_tax_withheld_list, [TaxWithheldComponent], from: "RentalTaxWithheldList")

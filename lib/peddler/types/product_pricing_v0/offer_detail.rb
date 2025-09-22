@@ -5,7 +5,6 @@
 require "peddler/types/money"
 require "peddler/types/product_pricing_v0/seller_feedback_type"
 require "peddler/types/product_pricing_v0/detailed_shipping_time_type"
-require "peddler/types/product_pricing_v0/money_type"
 require "peddler/types/product_pricing_v0/quantity_discount_price_type"
 require "peddler/types/product_pricing_v0/points"
 require "peddler/types/product_pricing_v0/ships_from_type"

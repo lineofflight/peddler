@@ -7,7 +7,7 @@ module Peddler
         attr_reader adjustment_type: String?
         attr_reader posted_date: String?
         attr_reader store_name: String?
-        attr_reader adjustment_amount: Currency?
+        attr_reader adjustment_amount: Money?
         attr_reader adjustment_item_list: Array[AdjustmentItem]?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
@@ -16,7 +16,7 @@ module Peddler
           ?adjustment_type: String,
           ?posted_date: String,
           ?store_name: String,
-          ?adjustment_amount: Currency,
+          ?adjustment_amount: Money,
           ?adjustment_item_list: Array[AdjustmentItem]
         ) -> void
       end

@@ -7,6 +7,7 @@ require "generator/config"
 require "generator/logger"
 require "generator/formatter"
 require "generator/path"
+require "generator/type_resolver"
 
 module Generator
   class API
@@ -75,7 +76,7 @@ module Generator
 
     def type_names
       openapi_spec["definitions"]
-        .select { |name, def_| def_["type"] == "object" && name != "Money" }
+        .select { |name, def_| def_["type"] == "object" && !TypeResolver::MONEY_TYPES.include?(name) }
         .keys
         .sort
     end

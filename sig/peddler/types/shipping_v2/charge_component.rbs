@@ -4,13 +4,13 @@ module Peddler
   module Types
     module ShippingV2
       class ChargeComponent < Data
-        attr_reader amount: Currency?
+        attr_reader amount: Money?
         attr_reader charge_type: String?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
         def initialize: (
-          ?amount: Currency,
+          ?amount: Money,
           ?charge_type: String
         ) -> void
       end

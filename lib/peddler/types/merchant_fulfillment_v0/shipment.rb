@@ -2,11 +2,11 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/merchant_fulfillment_v0/item"
 require "peddler/types/merchant_fulfillment_v0/address"
 require "peddler/types/merchant_fulfillment_v0/package_dimensions"
 require "peddler/types/merchant_fulfillment_v0/weight"
-require "peddler/types/merchant_fulfillment_v0/currency_amount"
 require "peddler/types/merchant_fulfillment_v0/shipping_service"
 require "peddler/types/merchant_fulfillment_v0/label"
 
@@ -39,11 +39,11 @@ module Peddler
         # @return [Weight] The package weight.
         attribute(:weight, Weight, from: "Weight")
 
-        # @return [CurrencyAmount] If you specify `DeclaredValue` in a previous call to the `createShipment` operation,
+        # @return [Types::Money] If you specify `DeclaredValue` in a previous call to the `createShipment` operation,
         # then `Insurance` indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with
         # a previous call to the `createShipment` operation, then the shipment is insured for the carrier's minimum
         # insurance amount, or the combined sale prices that the items are listed for in the shipment.
-        attribute(:insurance, CurrencyAmount, from: "Insurance")
+        attribute(:insurance, Types::Money, from: "Insurance")
 
         # @return [ShippingService]
         attribute(:shipping_service, ShippingService, from: "ShippingService")

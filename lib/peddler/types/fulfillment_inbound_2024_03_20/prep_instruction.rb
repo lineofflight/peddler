@@ -2,15 +2,15 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/fulfillment_inbound_2024_03_20/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       # Information pertaining to the preparation of inbound goods.
       PrepInstruction = Structure.new do
-        # @return [Currency]
-        attribute(:fee, Currency)
+        # @return [Types::Money]
+        attribute(:fee, Types::Money)
 
         # @return [String] In some situations, special preparations are required for items and this field reflects the
         # owner of the preparations. Options include `AMAZON`, `SELLER` or `NONE`.

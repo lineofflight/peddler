@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/merchant_fulfillment_v0/currency_amount"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -12,13 +12,12 @@ module Peddler
         # @return [String] The delivery confirmation level.
         attribute(:delivery_experience, String, from: "DeliveryExperience")
 
-        # @return [CurrencyAmount] The declared value of the shipment. The carrier uses this value to determine the
-        # amount to use to insure the shipment. If `DeclaredValue` is greater than the carrier's minimum insurance
-        # amount, the seller is charged for the additional insurance, as determined by the carrier. For information
-        # about optional insurance coverage, refer to Seller Central Help:
-        # [UK](https://sellercentral.amazon.co.uk/gp/help/200204080),
+        # @return [Types::Money] The declared value of the shipment. The carrier uses this value to determine the amount
+        # to use to insure the shipment. If `DeclaredValue` is greater than the carrier's minimum insurance amount, the
+        # seller is charged for the additional insurance, as determined by the carrier. For information about optional
+        # insurance coverage, refer to Seller Central Help: [UK](https://sellercentral.amazon.co.uk/gp/help/200204080),
         # [US](https://sellercentral.amazon.com/gp/help/200204080).
-        attribute(:declared_value, CurrencyAmount, from: "DeclaredValue")
+        attribute(:declared_value, Types::Money, from: "DeclaredValue")
 
         # @return [:boolean] When true, the carrier will pick up the package. Note: Scheduled carrier pickup is
         # available only using Dynamex (US), DPD (UK), and Royal Mail (UK).

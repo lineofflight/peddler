@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -34,11 +34,11 @@ module Peddler
         # @return [String] The marketplace in which the event took place.
         attribute(:marketplace_id, String, from: "MarketplaceId")
 
-        # @return [Currency] The price of the swapped item minus TaxAmount.
-        attribute(:tax_exclusive_amount, Currency, from: "TaxExclusiveAmount")
+        # @return [Types::Money] The price of the swapped item minus TaxAmount.
+        attribute(:tax_exclusive_amount, Types::Money, from: "TaxExclusiveAmount")
 
-        # @return [Currency] The tax on the network item swap paid by the seller.
-        attribute(:tax_amount, Currency, from: "TaxAmount")
+        # @return [Types::Money] The tax on the network item swap paid by the seller.
+        attribute(:tax_amount, Types::Money, from: "TaxAmount")
       end
     end
   end

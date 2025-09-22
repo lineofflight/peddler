@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/shipping_v2/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -15,8 +15,8 @@ module Peddler
         # @return [String]
         attribute(:rate_item_type, String, from: "rateItemType")
 
-        # @return [Currency]
-        attribute(:rate_item_charge, Currency, from: "rateItemCharge")
+        # @return [Types::Money]
+        attribute(:rate_item_charge, Types::Money, from: "rateItemCharge")
 
         # @return [String] Used for the localization.
         attribute(:rate_item_name_localization, String, from: "rateItemNameLocalization")

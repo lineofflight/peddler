@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 require "peddler/types/finances_v0/debt_recovery_item"
 require "peddler/types/finances_v0/charge_instrument"
 
@@ -22,11 +22,11 @@ module Peddler
         # * DebtAdjustment
         attribute(:debt_recovery_type, String, from: "DebtRecoveryType")
 
-        # @return [Currency] The amount applied for recovery.
-        attribute(:recovery_amount, Currency, from: "RecoveryAmount")
+        # @return [Types::Money] The amount applied for recovery.
+        attribute(:recovery_amount, Types::Money, from: "RecoveryAmount")
 
-        # @return [Currency] The amount returned for overpayment.
-        attribute(:over_payment_credit, Currency, from: "OverPaymentCredit")
+        # @return [Types::Money] The amount returned for overpayment.
+        attribute(:over_payment_credit, Types::Money, from: "OverPaymentCredit")
 
         # @return [Array<DebtRecoveryItem>]
         attribute(:debt_recovery_item_list, [DebtRecoveryItem], from: "DebtRecoveryItemList")

@@ -69,7 +69,7 @@ module Generator
       properties.any? do |_prop_name, prop_def|
         if prop_def["$ref"]
           type_name = prop_def["$ref"].split("/").last
-          type_name == "Money" || type_name == "MoneyType"
+          TypeResolver::MONEY_TYPES.include?(type_name)
         else
           false
         end

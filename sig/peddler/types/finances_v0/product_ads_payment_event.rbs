@@ -7,9 +7,9 @@ module Peddler
         attr_reader posted_date: String?
         attr_reader transaction_type: String?
         attr_reader invoice_id: String?
-        attr_reader base_value: Currency?
-        attr_reader tax_value: Currency?
-        attr_reader transaction_value: Currency?
+        attr_reader base_value: Money?
+        attr_reader tax_value: Money?
+        attr_reader transaction_value: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
@@ -17,9 +17,9 @@ module Peddler
           ?posted_date: String,
           ?transaction_type: String,
           ?invoice_id: String,
-          ?base_value: Currency,
-          ?tax_value: Currency,
-          ?transaction_value: Currency
+          ?base_value: Money,
+          ?tax_value: Money,
+          ?transaction_value: Money
         ) -> void
       end
     end

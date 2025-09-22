@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/fulfillment_inbound_2024_03_20/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -10,8 +10,8 @@ module Peddler
       # Freight information describes the SKUs that are in transit. Freight carrier options and quotes will only be
       # returned if the freight information is provided.
       FreightInformation = Structure.new do
-        # @return [Currency]
-        attribute(:declared_value, Currency, from: "declaredValue")
+        # @return [Types::Money]
+        attribute(:declared_value, Types::Money, from: "declaredValue")
 
         # @return [String] Freight class.
         #

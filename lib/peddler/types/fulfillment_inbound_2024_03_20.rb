@@ -28,7 +28,6 @@ require "peddler/types/fulfillment_inbound_2024_03_20/create_inbound_plan_reques
 require "peddler/types/fulfillment_inbound_2024_03_20/create_inbound_plan_response"
 require "peddler/types/fulfillment_inbound_2024_03_20/create_marketplace_item_labels_request"
 require "peddler/types/fulfillment_inbound_2024_03_20/create_marketplace_item_labels_response"
-require "peddler/types/fulfillment_inbound_2024_03_20/currency"
 require "peddler/types/fulfillment_inbound_2024_03_20/custom_placement_input"
 require "peddler/types/fulfillment_inbound_2024_03_20/dates"
 require "peddler/types/fulfillment_inbound_2024_03_20/delivery_window_option"

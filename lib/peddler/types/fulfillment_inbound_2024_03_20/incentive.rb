@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/fulfillment_inbound_2024_03_20/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -18,8 +18,8 @@ module Peddler
         # @return [String] Type of incentive. Possible values: `FEE`, `DISCOUNT`.
         attribute(:type, String)
 
-        # @return [Currency]
-        attribute(:value, Currency)
+        # @return [Types::Money]
+        attribute(:value, Types::Money)
       end
     end
   end

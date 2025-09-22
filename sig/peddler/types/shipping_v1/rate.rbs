@@ -5,7 +5,7 @@ module Peddler
     module ShippingV1
       class Rate < Data
         attr_reader rate_id: String?
-        attr_reader total_charge: Currency?
+        attr_reader total_charge: Money?
         attr_reader billed_weight: Weight?
         attr_reader expiration_time: String?
         attr_reader service_type: String?
@@ -15,7 +15,7 @@ module Peddler
 
         def initialize: (
           ?rate_id: String,
-          ?total_charge: Currency,
+          ?total_charge: Money,
           ?billed_weight: Weight,
           ?expiration_time: String,
           ?service_type: String,

@@ -2,9 +2,9 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/finances_2024_06_19/selling_partner_metadata"
 require "peddler/types/finances_2024_06_19/related_identifier"
-require "peddler/types/finances_2024_06_19/currency"
 require "peddler/types/finances_2024_06_19/marketplace_details"
 require "peddler/types/finances_2024_06_19/item"
 require "peddler/types/finances_2024_06_19/context"
@@ -49,8 +49,8 @@ module Peddler
         # @return [String] The date and time when the transaction was posted.
         attribute(:posted_date, String, from: "postedDate")
 
-        # @return [Currency] Total amount of transaction.
-        attribute(:total_amount, Currency, from: "totalAmount")
+        # @return [Types::Money] Total amount of transaction.
+        attribute(:total_amount, Types::Money, from: "totalAmount")
 
         # @return [MarketplaceDetails] Information about the marketplace where the transaction occurred.
         attribute(:marketplace_details, MarketplaceDetails, from: "marketplaceDetails")

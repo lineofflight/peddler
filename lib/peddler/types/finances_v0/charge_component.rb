@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -82,8 +82,8 @@ module Peddler
         # @return [String] The type of charge.
         attribute(:charge_type, String, from: "ChargeType")
 
-        # @return [Currency] The amount of the charge.
-        attribute(:charge_amount, Currency, from: "ChargeAmount")
+        # @return [Types::Money] The amount of the charge.
+        attribute(:charge_amount, Types::Money, from: "ChargeAmount")
       end
     end
   end

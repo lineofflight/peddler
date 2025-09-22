@@ -3,7 +3,6 @@
 # This file is generated. Edit template if necessary.
 
 require "peddler/types/money"
-require "peddler/types/product_pricing_2022_05_01/money_type"
 require "peddler/types/product_pricing_2022_05_01/shipping_option"
 require "peddler/types/product_pricing_2022_05_01/points"
 require "peddler/types/product_pricing_2022_05_01/prime_details"

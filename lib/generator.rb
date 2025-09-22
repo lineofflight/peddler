@@ -7,6 +7,7 @@ require "generator/config"
 require "generator/logger"
 require "generator/api"
 require "generator/type"
+require "generator/type_resolver"
 require "generator/entrypoint"
 require "generator/rbs/type"
 require "generator/rbs/api"
@@ -158,8 +159,8 @@ module Generator
           api.openapi_spec["definitions"].each do |name, definition|
             # Skip non-object definitions (but allow allOf compositions and arrays)
             next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
-            # Skip Money types as we use the Money gem for these
-            next if name == "Money"
+            # Skip Money types as we use the custom Money type for these
+            next if TypeResolver::MONEY_TYPES.include?(name)
 
             arr << Type.new(name, definition, api.name_with_version, api.openapi_spec)
           end

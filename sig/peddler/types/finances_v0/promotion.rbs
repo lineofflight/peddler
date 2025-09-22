@@ -6,14 +6,14 @@ module Peddler
       class Promotion < Data
         attr_reader promotion_type: String?
         attr_reader promotion_id: String?
-        attr_reader promotion_amount: Currency?
+        attr_reader promotion_amount: Money?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
         def initialize: (
           ?promotion_type: String,
           ?promotion_id: String,
-          ?promotion_amount: Currency
+          ?promotion_amount: Money
         ) -> void
       end
     end

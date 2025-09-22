@@ -6,7 +6,7 @@ module Peddler
       class Container < Data
         attr_reader container_type: String?
         attr_reader container_reference_id: String
-        attr_reader value: Currency
+        attr_reader value: Money
         attr_reader dimensions: Dimensions
         attr_reader items: Array[ContainerItem]
         attr_reader weight: Weight
@@ -16,7 +16,7 @@ module Peddler
         def initialize: (
           ?container_type: String,
           container_reference_id: String,
-          value: Currency,
+          value: Money,
           dimensions: Dimensions,
           items: Array[ContainerItem],
           weight: Weight

@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/finances_v0/currency"
+require "peddler/types/money"
 require "peddler/types/finances_v0/tax_withholding_period"
 
 module Peddler
@@ -13,11 +13,11 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute(:posted_date, String, from: "PostedDate")
 
-        # @return [Currency] The amount which tax was withheld against.
-        attribute(:base_amount, Currency, from: "BaseAmount")
+        # @return [Types::Money] The amount which tax was withheld against.
+        attribute(:base_amount, Types::Money, from: "BaseAmount")
 
-        # @return [Currency] The amount of the tax withholding deducted from seller's account.
-        attribute(:withheld_amount, Currency, from: "WithheldAmount")
+        # @return [Types::Money] The amount of the tax withholding deducted from seller's account.
+        attribute(:withheld_amount, Types::Money, from: "WithheldAmount")
 
         # @return [TaxWithholdingPeriod] Time period for which tax is withheld.
         attribute(:tax_withholding_period, TaxWithholdingPeriod, from: "TaxWithholdingPeriod")

@@ -2,9 +2,9 @@
 
 # This file is generated. Edit template if necessary.
 
+require "peddler/types/money"
 require "peddler/types/finances_v0/fee_component"
 require "peddler/types/finances_v0/charge_component"
-require "peddler/types/finances_v0/currency"
 
 module Peddler
   module Types
@@ -32,8 +32,8 @@ module Peddler
         # @return [ChargeComponent]
         attribute(:charge_component, ChargeComponent, from: "ChargeComponent")
 
-        # @return [Currency] The FeeComponent value plus the ChargeComponent value.
-        attribute(:total_amount, Currency, from: "TotalAmount")
+        # @return [Types::Money] The FeeComponent value plus the ChargeComponent value.
+        attribute(:total_amount, Types::Money, from: "TotalAmount")
       end
     end
   end

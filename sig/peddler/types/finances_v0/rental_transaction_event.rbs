@@ -11,8 +11,8 @@ module Peddler
         attr_reader rental_charge_list: Array[ChargeComponent]?
         attr_reader rental_fee_list: Array[FeeComponent]?
         attr_reader marketplace_name: String?
-        attr_reader rental_initial_value: Currency?
-        attr_reader rental_reimbursement: Currency?
+        attr_reader rental_initial_value: Money?
+        attr_reader rental_reimbursement: Money?
         attr_reader rental_tax_withheld_list: Array[TaxWithheldComponent]?
 
         def self.parse: (Hash[String, untyped] hash) -> instance
@@ -25,8 +25,8 @@ module Peddler
           ?rental_charge_list: Array[ChargeComponent],
           ?rental_fee_list: Array[FeeComponent],
           ?marketplace_name: String,
-          ?rental_initial_value: Currency,
-          ?rental_reimbursement: Currency,
+          ?rental_initial_value: Money,
+          ?rental_reimbursement: Money,
           ?rental_tax_withheld_list: Array[TaxWithheldComponent]
         ) -> void
       end
