@@ -33,8 +33,8 @@ module Peddler
         # @return [Weight]
         attribute(:billed_weight, Weight, from: "billedWeight")
 
-        # @return [Types::Money]
-        attribute(:total_charge, Types::Money, from: "totalCharge")
+        # @return [Money]
+        attribute(:total_charge, Money, from: "totalCharge")
 
         # @return [Promise]
         attribute(:promise, Promise)

@@ -19,8 +19,8 @@ module Peddler
         # @return [Weight]
         attribute(:weight, Weight)
 
-        # @return [Types::Money]
-        attribute(:insured_value, Types::Money, from: "insuredValue")
+        # @return [Money]
+        attribute(:insured_value, Money, from: "insuredValue")
 
         # @return [:boolean] When true, the package contains hazardous materials. Defaults to false.
         attribute(:hazmat, :boolean, from: "isHazmat")

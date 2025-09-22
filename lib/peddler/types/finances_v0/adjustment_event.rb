@@ -44,8 +44,8 @@ module Peddler
         # @return [String] The name of the store where the event occurred.
         attribute(:store_name, String, from: "StoreName")
 
-        # @return [Types::Money] The amount adjusted as part of this event.
-        attribute(:adjustment_amount, Types::Money, from: "AdjustmentAmount")
+        # @return [Money] The amount adjusted as part of this event.
+        attribute(:adjustment_amount, Money, from: "AdjustmentAmount")
 
         # @return [Array<AdjustmentItem>] A list of information about adjustments to an account.
         attribute(:adjustment_item_list, [AdjustmentItem], from: "AdjustmentItemList")

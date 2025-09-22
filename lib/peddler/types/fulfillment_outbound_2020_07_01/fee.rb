@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The type of fee.
         attribute(:name, String)
 
-        # @return [Types::Money] The amount of the fee.
-        attribute(:amount, Types::Money)
+        # @return [Money] The amount of the fee.
+        attribute(:amount, Money)
       end
     end
   end

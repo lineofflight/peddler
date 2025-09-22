@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The account tail (trailing digits) of the charge instrument.
         attribute(:tail, String, from: "Tail")
 
-        # @return [Types::Money] The amount charged to this charge instrument.
-        attribute(:amount, Types::Money, from: "Amount")
+        # @return [Money] The amount charged to this charge instrument.
+        attribute(:amount, Money, from: "Amount")
       end
     end
   end

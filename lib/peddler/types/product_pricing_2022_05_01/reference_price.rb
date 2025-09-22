@@ -14,8 +14,8 @@ module Peddler
         # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
         attribute(:name, String)
 
-        # @return [Types::Money] The reference price for the ASIN `marketplaceId` combination.
-        attribute(:price, Types::Money)
+        # @return [Money] The reference price for the ASIN `marketplaceId` combination.
+        attribute(:price, Money)
       end
     end
   end

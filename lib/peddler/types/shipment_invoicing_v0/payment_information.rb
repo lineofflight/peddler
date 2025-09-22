@@ -18,8 +18,8 @@ module Peddler
         # @return [String] Credit card brand (if payment method is CreditCard)
         attribute(:card_brand, String, from: "CardBrand")
 
-        # @return [Types::Money] Amount paid in this payment
-        attribute(:payment_value, Types::Money, from: "PaymentValue")
+        # @return [Money] Amount paid in this payment
+        attribute(:payment_value, Money, from: "PaymentValue")
 
         # @return [String] Authorization code for this payment
         attribute(:authorization_code, String, from: "AuthorizationCode")

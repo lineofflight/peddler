@@ -27,8 +27,8 @@ module Peddler
         # @return [ChargeComponent]
         attribute(:charge_component, ChargeComponent, from: "ChargeComponent")
 
-        # @return [Types::Money] The FeeComponent value plus the ChargeComponent value.
-        attribute(:total_amount, Types::Money, from: "TotalAmount")
+        # @return [Money] The FeeComponent value plus the ChargeComponent value.
+        attribute(:total_amount, Money, from: "TotalAmount")
       end
     end
   end

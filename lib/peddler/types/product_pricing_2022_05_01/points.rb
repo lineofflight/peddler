@@ -13,8 +13,8 @@ module Peddler
         # @return [Integer] The number of Amazon Points.
         attribute(:points_number, Integer, from: "pointsNumber")
 
-        # @return [Types::Money] The monetary value of the Amazon Points.
-        attribute(:points_monetary_value, Types::Money, from: "pointsMonetaryValue")
+        # @return [Money] The monetary value of the Amazon Points.
+        attribute(:points_monetary_value, Money, from: "pointsMonetaryValue")
       end
     end
   end

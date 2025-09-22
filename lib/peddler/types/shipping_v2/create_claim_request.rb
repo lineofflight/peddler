@@ -12,8 +12,8 @@ module Peddler
         # @return [String]
         attribute(:tracking_id, String, from: "trackingId")
 
-        # @return [Types::Money] This is required for off-Amazon shipments to determine value of shipments
-        attribute(:declared_value, Types::Money, from: "declaredValue")
+        # @return [Money] This is required for off-Amazon shipments to determine value of shipments
+        attribute(:declared_value, Money, from: "declaredValue")
 
         # @return [String]
         attribute(:claim_reason, String, from: "claimReason")

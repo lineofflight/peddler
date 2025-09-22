@@ -24,14 +24,14 @@ module Peddler
         # @return [String] Identifier for the invoice that the transaction appears in.
         attribute(:invoice_id, String, from: "invoiceId")
 
-        # @return [Types::Money] Base amount of the transaction, before tax.
-        attribute(:base_value, Types::Money, from: "baseValue")
+        # @return [Money] Base amount of the transaction, before tax.
+        attribute(:base_value, Money, from: "baseValue")
 
-        # @return [Types::Money] Tax amount of the transaction.
-        attribute(:tax_value, Types::Money, from: "taxValue")
+        # @return [Money] Tax amount of the transaction.
+        attribute(:tax_value, Money, from: "taxValue")
 
-        # @return [Types::Money] The total amount of the transaction. Equal to baseValue + taxValue.
-        attribute(:transaction_value, Types::Money, from: "transactionValue")
+        # @return [Money] The total amount of the transaction. Equal to baseValue + taxValue.
+        attribute(:transaction_value, Money, from: "transactionValue")
       end
     end
   end

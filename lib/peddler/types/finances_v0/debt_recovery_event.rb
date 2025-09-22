@@ -22,11 +22,11 @@ module Peddler
         # * DebtAdjustment
         attribute(:debt_recovery_type, String, from: "DebtRecoveryType")
 
-        # @return [Types::Money] The amount applied for recovery.
-        attribute(:recovery_amount, Types::Money, from: "RecoveryAmount")
+        # @return [Money] The amount applied for recovery.
+        attribute(:recovery_amount, Money, from: "RecoveryAmount")
 
-        # @return [Types::Money] The amount returned for overpayment.
-        attribute(:over_payment_credit, Types::Money, from: "OverPaymentCredit")
+        # @return [Money] The amount returned for overpayment.
+        attribute(:over_payment_credit, Money, from: "OverPaymentCredit")
 
         # @return [Array<DebtRecoveryItem>]
         attribute(:debt_recovery_item_list, [DebtRecoveryItem], from: "DebtRecoveryItemList")

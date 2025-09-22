@@ -50,15 +50,15 @@ module Peddler
         # @return [TransactionAccount] Destination bank account details in the transaction
         attribute(:transaction_destination_account, TransactionAccount, from: "transactionDestinationAccount")
 
-        # @return [Types::Money] Specifies the amount for which the transfer was initiated
-        attribute(:transaction_request_amount, Types::Money, from: "transactionRequestAmount")
+        # @return [Money] Specifies the amount for which the transfer was initiated
+        attribute(:transaction_request_amount, Money, from: "transactionRequestAmount")
 
         # @return [TransferRatePreview] The fees and rates that apply to the transaction, as applicable.
         attribute(:transfer_rate_details, TransferRatePreview, from: "transferRateDetails")
 
-        # @return [Types::Money] Specifies the amount of completed transaction in the destination account currency, this
-        # will be populated only for international transactions
-        attribute(:transaction_final_amount, Types::Money, from: "transactionFinalAmount")
+        # @return [Money] Specifies the amount of completed transaction in the destination account currency, this will
+        # be populated only for international transactions
+        attribute(:transaction_final_amount, Money, from: "transactionFinalAmount")
 
         # @return [String] Description in case the transaction fails before completion
         attribute(:transaction_failure_reason, String, from: "transactionFailureReason")

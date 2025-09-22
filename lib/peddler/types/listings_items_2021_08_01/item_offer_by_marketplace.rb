@@ -17,8 +17,8 @@ module Peddler
         # @return [String] Type of offer for the listings item.
         attribute(:offer_type, String, from: "offerType")
 
-        # @return [Types::Money] The purchase price of the listings item
-        attribute(:price, Types::Money)
+        # @return [Money] The purchase price of the listings item
+        attribute(:price, Money)
 
         # @return [Points]
         attribute(:points, Points)

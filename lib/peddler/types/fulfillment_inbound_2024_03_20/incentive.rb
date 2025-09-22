@@ -18,8 +18,8 @@ module Peddler
         # @return [String] Type of incentive. Possible values: `FEE`, `DISCOUNT`.
         attribute(:type, String)
 
-        # @return [Types::Money]
-        attribute(:value, Types::Money)
+        # @return [Money]
+        attribute(:value, Money)
       end
     end
   end

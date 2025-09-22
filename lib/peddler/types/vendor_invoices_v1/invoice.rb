@@ -48,10 +48,10 @@ module Peddler
         # @return [PaymentTerms] The payment terms for the invoice.
         attribute(:payment_terms, PaymentTerms, from: "paymentTerms")
 
-        # @return [Types::Money] Total monetary amount charged in the invoice or full value of credit note to be paid
-        # including all relevant taxes. It is the total amount of invoice (including charges, less allowances) before
-        # terms discount (if discount is applicable).
-        attribute(:invoice_total, Types::Money, from: "invoiceTotal")
+        # @return [Money] Total monetary amount charged in the invoice or full value of credit note to be paid including
+        # all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms
+        # discount (if discount is applicable).
+        attribute(:invoice_total, Money, from: "invoiceTotal")
 
         # @return [Array<TaxDetails>] Total tax amount details for all line items.
         attribute(:tax_details, [TaxDetails], from: "taxDetails")

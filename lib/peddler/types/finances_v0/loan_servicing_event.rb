@@ -9,8 +9,8 @@ module Peddler
     module FinancesV0
       # A loan advance, loan payment, or loan refund.
       LoanServicingEvent = Structure.new do
-        # @return [Types::Money] The amount of the loan.
-        attribute(:loan_amount, Types::Money, from: "LoanAmount")
+        # @return [Money] The amount of the loan.
+        attribute(:loan_amount, Money, from: "LoanAmount")
 
         # @return [String] The type of event.
         #

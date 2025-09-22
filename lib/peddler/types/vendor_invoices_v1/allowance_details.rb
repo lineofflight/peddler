@@ -16,8 +16,8 @@ module Peddler
         # @return [String] Description of the allowance.
         attribute(:description, String)
 
-        # @return [Types::Money] Total monetary amount related to this allowance.
-        attribute(:allowance_amount, Types::Money, from: "allowanceAmount")
+        # @return [Money] Total monetary amount related to this allowance.
+        attribute(:allowance_amount, Money, from: "allowanceAmount")
 
         # @return [Array<TaxDetails>] Tax amount details applied on this allowance.
         attribute(:tax_details, [TaxDetails], from: "taxDetails")

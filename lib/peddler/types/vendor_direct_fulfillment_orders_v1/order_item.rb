@@ -34,14 +34,14 @@ module Peddler
         # @return [GiftDetails] Gift message and wrapId details.
         attribute(:gift_details, GiftDetails, from: "giftDetails")
 
-        # @return [Types::Money] Net price (before tax) to vendor with currency details.
-        attribute(:net_price, Types::Money, from: "netPrice")
+        # @return [Money] Net price (before tax) to vendor with currency details.
+        attribute(:net_price, Money, from: "netPrice")
 
         # @return [Hash] Total tax details for the line item.
         attribute(:tax_details, Hash, from: "taxDetails")
 
-        # @return [Types::Money] The price to Amazon each (cost).
-        attribute(:total_price, Types::Money, from: "totalPrice")
+        # @return [Money] The price to Amazon each (cost).
+        attribute(:total_price, Money, from: "totalPrice")
       end
     end
   end

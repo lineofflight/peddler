@@ -12,8 +12,8 @@ module Peddler
         # @return [String]
         attribute(:delivery_experience_option, String, from: "DeliveryExperienceOption")
 
-        # @return [Types::Money]
-        attribute(:charge, Types::Money, from: "Charge")
+        # @return [Money]
+        attribute(:charge, Money, from: "Charge")
       end
     end
   end

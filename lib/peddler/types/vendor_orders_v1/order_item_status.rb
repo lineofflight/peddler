@@ -19,11 +19,11 @@ module Peddler
         # @return [String] The vendor selected product identification of the item.
         attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
-        # @return [Types::Money] The net cost of an item per each or weight unit.
-        attribute(:net_cost, Types::Money, from: "netCost")
+        # @return [Money] The net cost of an item per each or weight unit.
+        attribute(:net_cost, Money, from: "netCost")
 
-        # @return [Types::Money] The list price of an item per each or weight unit.
-        attribute(:list_price, Types::Money, from: "listPrice")
+        # @return [Money] The list price of an item per each or weight unit.
+        attribute(:list_price, Money, from: "listPrice")
 
         # @return [Hash] Ordered quantity information.
         attribute(:ordered_quantity, Hash, from: "orderedQuantity")

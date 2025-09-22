@@ -18,8 +18,8 @@ module Peddler
         # @return [String] A short description of the capacity reservation billing event.
         attribute(:description, String, from: "Description")
 
-        # @return [Types::Money] The amount of the capacity reservation billing event.
-        attribute(:transaction_amount, Types::Money, from: "TransactionAmount")
+        # @return [Money] The amount of the capacity reservation billing event.
+        attribute(:transaction_amount, Money, from: "TransactionAmount")
       end
     end
   end

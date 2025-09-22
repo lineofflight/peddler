@@ -16,8 +16,8 @@ module Peddler
         # @return [String] Description of the charge.
         attribute(:description, String)
 
-        # @return [Types::Money] Total monetary amount related to this charge.
-        attribute(:charge_amount, Types::Money, from: "chargeAmount")
+        # @return [Money] Total monetary amount related to this charge.
+        attribute(:charge_amount, Money, from: "chargeAmount")
 
         # @return [Array<TaxDetails>] Tax amount details applied on this charge.
         attribute(:tax_details, [TaxDetails], from: "taxDetails")

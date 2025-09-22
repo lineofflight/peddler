@@ -57,14 +57,13 @@ module Peddler
         # @return [String] The name of the marketplace.
         attribute(:marketplace_name, String, from: "MarketplaceName")
 
-        # @return [Types::Money] The amount of money the customer originally paid to rent the item. This value is only
-        # returned for RentalChargeFailureReimbursement and RentalLostItemReimbursement events.
-        attribute(:rental_initial_value, Types::Money, from: "RentalInitialValue")
+        # @return [Money] The amount of money the customer originally paid to rent the item. This value is only returned
+        # for RentalChargeFailureReimbursement and RentalLostItemReimbursement events.
+        attribute(:rental_initial_value, Money, from: "RentalInitialValue")
 
-        # @return [Types::Money] The amount of money Amazon sends the seller to compensate for a lost item or a failed
-        # charge. This value is only returned for RentalChargeFailureReimbursement and RentalLostItemReimbursement
-        # events.
-        attribute(:rental_reimbursement, Types::Money, from: "RentalReimbursement")
+        # @return [Money] The amount of money Amazon sends the seller to compensate for a lost item or a failed charge.
+        # This value is only returned for RentalChargeFailureReimbursement and RentalLostItemReimbursement events.
+        attribute(:rental_reimbursement, Money, from: "RentalReimbursement")
 
         # @return [Array<TaxWithheldComponent>] A list of taxes withheld information for a rental item.
         attribute(:rental_tax_withheld_list, [TaxWithheldComponent], from: "RentalTaxWithheldList")

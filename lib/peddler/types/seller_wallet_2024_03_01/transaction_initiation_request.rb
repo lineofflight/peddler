@@ -34,9 +34,9 @@ module Peddler
         # @return [AccountHolderAddress] Destination bank account details of the transaction request
         attribute(:destination_account_holder_address, AccountHolderAddress, from: "destinationAccountHolderAddress")
 
-        # @return [Types::Money] The transaction amount in the source account's currency format. Requests that use a
-        # currency other than the source bank account currency fail.
-        attribute(:source_amount, Types::Money, from: "sourceAmount")
+        # @return [Money] The transaction amount in the source account's currency format. Requests that use a currency
+        # other than the source bank account currency fail.
+        attribute(:source_amount, Money, from: "sourceAmount")
 
         # @return [TransferRatePreview] The fees and foreign exchange rates that apply to the transaction. Transfer Rate
         # Preview is currently optional. This field is required when the third party honors the fees and rates of the

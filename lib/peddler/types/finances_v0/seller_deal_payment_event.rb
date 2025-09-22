@@ -24,14 +24,14 @@ module Peddler
         # @return [String] The type of fee: RunLightningDealFee.
         attribute(:fee_type, String, from: "feeType")
 
-        # @return [Types::Money] The monetary amount of the fee.
-        attribute(:fee_amount, Types::Money, from: "feeAmount")
+        # @return [Money] The monetary amount of the fee.
+        attribute(:fee_amount, Money, from: "feeAmount")
 
-        # @return [Types::Money] The monetary amount of the tax applied.
-        attribute(:tax_amount, Types::Money, from: "taxAmount")
+        # @return [Money] The monetary amount of the tax applied.
+        attribute(:tax_amount, Money, from: "taxAmount")
 
-        # @return [Types::Money] The total monetary amount paid.
-        attribute(:total_amount, Types::Money, from: "totalAmount")
+        # @return [Money] The total monetary amount paid.
+        attribute(:total_amount, Money, from: "totalAmount")
       end
     end
   end

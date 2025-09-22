@@ -27,11 +27,11 @@ module Peddler
         # @return [:boolean] When true, we will accept backorder confirmations for this item.
         attribute(:back_order_allowed, :boolean, from: "isBackOrderAllowed")
 
-        # @return [Types::Money] The net cost of an item per each or weight unit.
-        attribute(:net_cost, Types::Money, from: "netCost")
+        # @return [Money] The net cost of an item per each or weight unit.
+        attribute(:net_cost, Money, from: "netCost")
 
-        # @return [Types::Money] The list price of an item per each or weight unit.
-        attribute(:list_price, Types::Money, from: "listPrice")
+        # @return [Money] The list price of an item per each or weight unit.
+        attribute(:list_price, Money, from: "listPrice")
       end
     end
   end

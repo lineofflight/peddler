@@ -15,8 +15,8 @@ module Peddler
         # @return [String] Indicates the type of quantity discount this price applies to.
         attribute(:quantity_discount_type, String, from: "quantityDiscountType")
 
-        # @return [Types::Money] The price at this quantity tier.
-        attribute(:listing_price, Types::Money, from: "listingPrice")
+        # @return [Money] The price at this quantity tier.
+        attribute(:listing_price, Money, from: "listingPrice")
       end
     end
   end

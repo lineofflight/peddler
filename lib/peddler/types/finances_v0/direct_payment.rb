@@ -31,8 +31,8 @@ module Peddler
         # refunded.
         attribute(:direct_payment_type, String, from: "DirectPaymentType")
 
-        # @return [Types::Money] The amount of the direct payment.
-        attribute(:direct_payment_amount, Types::Money, from: "DirectPaymentAmount")
+        # @return [Money] The amount of the direct payment.
+        attribute(:direct_payment_amount, Money, from: "DirectPaymentAmount")
       end
     end
   end

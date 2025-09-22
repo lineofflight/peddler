@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The type of shipping option.
         attribute(:shipping_option_type, String, from: "shippingOptionType")
 
-        # @return [Types::Money] Shipping price for the offer.
-        attribute(:price, Types::Money)
+        # @return [Money] Shipping price for the offer.
+        attribute(:price, Money)
       end
     end
   end

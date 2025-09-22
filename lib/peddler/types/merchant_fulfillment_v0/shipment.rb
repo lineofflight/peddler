@@ -39,11 +39,11 @@ module Peddler
         # @return [Weight] The package weight.
         attribute(:weight, Weight, from: "Weight")
 
-        # @return [Types::Money] If you specify `DeclaredValue` in a previous call to the `createShipment` operation,
-        # then `Insurance` indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with
-        # a previous call to the `createShipment` operation, then the shipment is insured for the carrier's minimum
+        # @return [Money] If you specify `DeclaredValue` in a previous call to the `createShipment` operation, then
+        # `Insurance` indicates the shipment insurance amount that the carrier uses. If `DeclaredValue` isn't with a
+        # previous call to the `createShipment` operation, then the shipment is insured for the carrier's minimum
         # insurance amount, or the combined sale prices that the items are listed for in the shipment.
-        attribute(:insurance, Types::Money, from: "Insurance")
+        attribute(:insurance, Money, from: "Insurance")
 
         # @return [ShippingService]
         attribute(:shipping_service, ShippingService, from: "ShippingService")

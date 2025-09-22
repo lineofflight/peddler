@@ -16,8 +16,8 @@ module Peddler
         # @return [String] A SAFE-T claim identifier.
         attribute(:safet_claim_id, String, from: "SAFETClaimId")
 
-        # @return [Types::Money] The amount of the reimbursement.
-        attribute(:reimbursed_amount, Types::Money, from: "ReimbursedAmount")
+        # @return [Money] The amount of the reimbursement.
+        attribute(:reimbursed_amount, Money, from: "ReimbursedAmount")
 
         # @return [String] Indicates why the seller was reimbursed.
         attribute(:reason_code, String, from: "ReasonCode")

@@ -14,8 +14,8 @@ module Peddler
     module ShippingV2
       # An item in a package.
       Item = Structure.new do
-        # @return [Types::Money]
-        attribute(:item_value, Types::Money, from: "itemValue")
+        # @return [Money]
+        attribute(:item_value, Money, from: "itemValue")
 
         # @return [String] The product description of the item.
         attribute(:description, String)

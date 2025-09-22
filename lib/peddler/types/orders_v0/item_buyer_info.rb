@@ -15,11 +15,11 @@ module Peddler
         # **Note**: This attribute is only available for MFN (fulfilled by seller) orders.
         attribute(:buyer_customized_info, BuyerCustomizedInfoDetail, from: "BuyerCustomizedInfo")
 
-        # @return [Types::Money] The gift wrap price of the item.
-        attribute(:gift_wrap_price, Types::Money, from: "GiftWrapPrice")
+        # @return [Money] The gift wrap price of the item.
+        attribute(:gift_wrap_price, Money, from: "GiftWrapPrice")
 
-        # @return [Types::Money] The tax on the gift wrap price.
-        attribute(:gift_wrap_tax, Types::Money, from: "GiftWrapTax")
+        # @return [Money] The tax on the gift wrap price.
+        attribute(:gift_wrap_tax, Money, from: "GiftWrapTax")
 
         # @return [String] A gift message provided by the buyer.
         #

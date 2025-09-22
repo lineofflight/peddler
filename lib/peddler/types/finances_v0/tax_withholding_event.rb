@@ -13,11 +13,11 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute(:posted_date, String, from: "PostedDate")
 
-        # @return [Types::Money] The amount which tax was withheld against.
-        attribute(:base_amount, Types::Money, from: "BaseAmount")
+        # @return [Money] The amount which tax was withheld against.
+        attribute(:base_amount, Money, from: "BaseAmount")
 
-        # @return [Types::Money] The amount of the tax withholding deducted from seller's account.
-        attribute(:withheld_amount, Types::Money, from: "WithheldAmount")
+        # @return [Money] The amount of the tax withholding deducted from seller's account.
+        attribute(:withheld_amount, Money, from: "WithheldAmount")
 
         # @return [TaxWithholdingPeriod] Time period for which tax is withheld.
         attribute(:tax_withholding_period, TaxWithholdingPeriod, from: "TaxWithholdingPeriod")

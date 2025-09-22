@@ -10,8 +10,8 @@ module Peddler
       # Freight information describes the SKUs that are in transit. Freight carrier options and quotes will only be
       # returned if the freight information is provided.
       FreightInformation = Structure.new do
-        # @return [Types::Money]
-        attribute(:declared_value, Types::Money, from: "declaredValue")
+        # @return [Money]
+        attribute(:declared_value, Money, from: "declaredValue")
 
         # @return [String] Freight class.
         #

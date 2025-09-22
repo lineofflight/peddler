@@ -20,8 +20,8 @@ module Peddler
         # @return [String] The identifier for the transaction.
         attribute(:transaction_id, String, from: "TransactionId")
 
-        # @return [Types::Money] The amount of the transaction.
-        attribute(:transaction_amount, Types::Money, from: "TransactionAmount")
+        # @return [Money] The amount of the transaction.
+        attribute(:transaction_amount, Money, from: "TransactionAmount")
       end
     end
   end

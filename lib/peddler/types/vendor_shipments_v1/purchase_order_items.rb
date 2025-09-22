@@ -24,8 +24,8 @@ module Peddler
         # @return [ItemQuantity] Total item quantity shipped in this shipment.
         attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
 
-        # @return [Types::Money]
-        attribute(:maximum_retail_price, Types::Money, from: "maximumRetailPrice")
+        # @return [Money]
+        attribute(:maximum_retail_price, Money, from: "maximumRetailPrice")
       end
     end
   end

@@ -17,12 +17,12 @@ module Peddler
         # @return [PriceType] Contains pricing information that includes promotions and contains the shipping cost.
         attribute(:buying_price, PriceType, from: "BuyingPrice")
 
-        # @return [Types::Money] The current price excluding any promotions that apply to the product. Excludes the
-        # shipping cost.
-        attribute(:regular_price, Types::Money, from: "RegularPrice")
+        # @return [Money] The current price excluding any promotions that apply to the product. Excludes the shipping
+        # cost.
+        attribute(:regular_price, Money, from: "RegularPrice")
 
-        # @return [Types::Money] The current listing price for Business buyers.
-        attribute(:business_price, Types::Money, from: "businessPrice")
+        # @return [Money] The current listing price for Business buyers.
+        attribute(:business_price, Money, from: "businessPrice")
 
         # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
         # information when buy in bulk.

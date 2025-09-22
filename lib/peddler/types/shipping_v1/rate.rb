@@ -14,8 +14,8 @@ module Peddler
         # @return [String] An identifier for the rate.
         attribute(:rate_id, String, from: "rateId")
 
-        # @return [Types::Money] The total charge that will be billed for the rate.
-        attribute(:total_charge, Types::Money, from: "totalCharge")
+        # @return [Money] The total charge that will be billed for the rate.
+        attribute(:total_charge, Money, from: "totalCharge")
 
         # @return [Weight] The weight that was used to calculate the totalCharge.
         attribute(:billed_weight, Weight, from: "billedWeight")

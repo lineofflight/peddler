@@ -25,11 +25,11 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute(:posted_date, String, from: "PostedDate")
 
-        # @return [Types::Money] The base tax associated with the retrocharge event.
-        attribute(:base_tax, Types::Money, from: "BaseTax")
+        # @return [Money] The base tax associated with the retrocharge event.
+        attribute(:base_tax, Money, from: "BaseTax")
 
-        # @return [Types::Money] The shipping tax associated with the retrocharge event.
-        attribute(:shipping_tax, Types::Money, from: "ShippingTax")
+        # @return [Money] The shipping tax associated with the retrocharge event.
+        attribute(:shipping_tax, Money, from: "ShippingTax")
 
         # @return [String] The name of the marketplace where the retrocharge event occurred.
         attribute(:marketplace_name, String, from: "MarketplaceName")

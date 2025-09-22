@@ -9,8 +9,8 @@ module Peddler
     module OrdersV0
       # Information about a sub-payment method used to pay for a COD order.
       PaymentExecutionDetailItem = Structure.new do
-        # @return [Types::Money]
-        attribute(:payment, Types::Money, from: "Payment")
+        # @return [Money]
+        attribute(:payment, Money, from: "Payment")
 
         # @return [String] The sub-payment method for an order.
         #

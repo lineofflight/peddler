@@ -15,8 +15,8 @@ module Peddler
         # @return [String]
         attribute(:rate_item_type, String, from: "rateItemType")
 
-        # @return [Types::Money]
-        attribute(:rate_item_charge, Types::Money, from: "rateItemCharge")
+        # @return [Money]
+        attribute(:rate_item_charge, Money, from: "rateItemCharge")
 
         # @return [String] Used for the localization.
         attribute(:rate_item_name_localization, String, from: "rateItemNameLocalization")

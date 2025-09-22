@@ -27,21 +27,21 @@ module Peddler
         # * Refund - For an affordability promotion expense reversal.
         attribute(:transaction_type, String, from: "TransactionType")
 
-        # @return [Types::Money] The amount charged for clicks incurred under the Sponsored Products program.
-        attribute(:base_expense, Types::Money, from: "BaseExpense")
+        # @return [Money] The amount charged for clicks incurred under the Sponsored Products program.
+        attribute(:base_expense, Money, from: "BaseExpense")
 
-        # @return [Types::Money] Central Goods and Service Tax, charged and collected by the central government.
-        attribute(:tax_type_cgst, Types::Money, from: "TaxTypeCGST")
+        # @return [Money] Central Goods and Service Tax, charged and collected by the central government.
+        attribute(:tax_type_cgst, Money, from: "TaxTypeCGST")
 
-        # @return [Types::Money] State Goods and Service Tax, charged and collected by the state government.
-        attribute(:tax_type_sgst, Types::Money, from: "TaxTypeSGST")
+        # @return [Money] State Goods and Service Tax, charged and collected by the state government.
+        attribute(:tax_type_sgst, Money, from: "TaxTypeSGST")
 
-        # @return [Types::Money] Integrated Goods and Service Tax, charged and collected by the central government.
-        attribute(:tax_type_igst, Types::Money, from: "TaxTypeIGST")
+        # @return [Money] Integrated Goods and Service Tax, charged and collected by the central government.
+        attribute(:tax_type_igst, Money, from: "TaxTypeIGST")
 
-        # @return [Types::Money] The total amount charged to the seller. TotalExpense = BaseExpense + TaxTypeIGST +
-        # TaxTypeCGST + TaxTypeSGST.
-        attribute(:total_expense, Types::Money, from: "TotalExpense")
+        # @return [Money] The total amount charged to the seller. TotalExpense = BaseExpense + TaxTypeIGST + TaxTypeCGST
+        # + TaxTypeSGST.
+        attribute(:total_expense, Money, from: "TotalExpense")
       end
     end
   end

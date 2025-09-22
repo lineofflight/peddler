@@ -14,8 +14,8 @@ module Peddler
         # @return [String] The type of charge.
         attribute(:breakdown_type, String, from: "breakdownType")
 
-        # @return [Types::Money] The amount of the charge.
-        attribute(:breakdown_amount, Types::Money, from: "breakdownAmount")
+        # @return [Money] The amount of the charge.
+        attribute(:breakdown_amount, Money, from: "breakdownAmount")
 
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         # transaction.

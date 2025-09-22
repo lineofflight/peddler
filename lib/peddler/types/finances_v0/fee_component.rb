@@ -15,8 +15,8 @@ module Peddler
         # fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
         attribute(:fee_type, String, from: "FeeType")
 
-        # @return [Types::Money] The amount of the fee.
-        attribute(:fee_amount, Types::Money, from: "FeeAmount")
+        # @return [Money] The amount of the fee.
+        attribute(:fee_amount, Money, from: "FeeAmount")
       end
     end
   end

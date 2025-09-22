@@ -39,8 +39,8 @@ module Peddler
         # has been placed.
         attribute(:shipping_time, DetailedShippingTimeType, from: "ShippingTime")
 
-        # @return [Types::Money] The price of the item.
-        attribute(:listing_price, Types::Money, from: "ListingPrice")
+        # @return [Money] The price of the item.
+        attribute(:listing_price, Money, from: "ListingPrice")
 
         # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
         # information when buy in bulk.
@@ -49,8 +49,8 @@ module Peddler
         # @return [Points] The number of Amazon Points offered with the purchase of an item.
         attribute(:points, Points, from: "Points")
 
-        # @return [Types::Money] The shipping cost.
-        attribute(:shipping, Types::Money, from: "Shipping")
+        # @return [Money] The shipping cost.
+        attribute(:shipping, Money, from: "Shipping")
 
         # @return [ShipsFromType] The state and country from where the item is shipped.
         attribute(:ships_from, ShipsFromType, from: "ShipsFrom")

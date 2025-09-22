@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The seller-specified identifier for the promotion.
         attribute(:promotion_id, String, from: "PromotionId")
 
-        # @return [Types::Money] The amount of promotional discount applied to the item.
-        attribute(:promotion_amount, Types::Money, from: "PromotionAmount")
+        # @return [Money] The amount of promotional discount applied to the item.
+        attribute(:promotion_amount, Money, from: "PromotionAmount")
       end
     end
   end

@@ -26,9 +26,8 @@ module Peddler
         # and `MFN` (Merchant Fulfillment Network).
         attribute(:fulfillment_type, String, from: "fulfillmentType")
 
-        # @return [Types::Money] The offer buying price. This doesn't include shipping, points, or applicable
-        # promotions.
-        attribute(:listing_price, Types::Money, from: "listingPrice")
+        # @return [Money] The offer buying price. This doesn't include shipping, points, or applicable promotions.
+        attribute(:listing_price, Money, from: "listingPrice")
 
         # @return [Array<ShippingOption>] A list of shipping options associated with this offer
         attribute(:shipping_options, [ShippingOption], from: "shippingOptions")

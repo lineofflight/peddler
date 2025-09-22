@@ -9,8 +9,8 @@ module Peddler
     module FulfillmentInbound20240320
       # Information pertaining to the preparation of inbound goods.
       PrepInstruction = Structure.new do
-        # @return [Types::Money]
-        attribute(:fee, Types::Money)
+        # @return [Money]
+        attribute(:fee, Money)
 
         # @return [String] In some situations, special preparations are required for items and this field reflects the
         # owner of the preparations. Options include `AMAZON`, `SELLER` or `NONE`.

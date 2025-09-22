@@ -46,8 +46,8 @@ module Peddler
         # @return [String] The order's shipment service level.
         attribute(:ship_service_level, String, from: "ShipServiceLevel")
 
-        # @return [Types::Money] The total charge for this order.
-        attribute(:order_total, Types::Money, from: "OrderTotal")
+        # @return [Money] The total charge for this order.
+        attribute(:order_total, Money, from: "OrderTotal")
 
         # @return [Integer] The number of items shipped.
         attribute(:number_of_items_shipped, Integer, from: "NumberOfItemsShipped")

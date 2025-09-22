@@ -30,8 +30,8 @@ module Peddler
         # Example `HARD_DECLINED`
         attribute(:status, String, from: "Status")
 
-        # @return [Types::Money] The amount of the Adhoc Disbursement.
-        attribute(:transfer_amount, Types::Money, from: "TransferAmount")
+        # @return [Money] The amount of the Adhoc Disbursement.
+        attribute(:transfer_amount, Money, from: "TransferAmount")
 
         # @return [String] The date and time when the financial event was posted.
         attribute(:posted_date, String, from: "PostedDate")

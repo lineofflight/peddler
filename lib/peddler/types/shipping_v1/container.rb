@@ -18,8 +18,8 @@ module Peddler
         # @return [String]
         attribute(:container_reference_id, String, from: "containerReferenceId")
 
-        # @return [Types::Money] The total value of all items in the container.
-        attribute(:value, Types::Money)
+        # @return [Money] The total value of all items in the container.
+        attribute(:value, Money)
 
         # @return [Dimensions] The length, width, height, and weight of the container.
         attribute(:dimensions, Dimensions)

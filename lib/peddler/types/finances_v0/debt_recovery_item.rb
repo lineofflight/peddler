@@ -9,11 +9,11 @@ module Peddler
     module FinancesV0
       # An item of a debt payment or debt adjustment.
       DebtRecoveryItem = Structure.new do
-        # @return [Types::Money] The amount applied for the recovery item.
-        attribute(:recovery_amount, Types::Money, from: "RecoveryAmount")
+        # @return [Money] The amount applied for the recovery item.
+        attribute(:recovery_amount, Money, from: "RecoveryAmount")
 
-        # @return [Types::Money] The original debt amount.
-        attribute(:original_amount, Types::Money, from: "OriginalAmount")
+        # @return [Money] The original debt amount.
+        attribute(:original_amount, Money, from: "OriginalAmount")
 
         # @return [String] The beginning date and time of the financial event group that contains the debt. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.

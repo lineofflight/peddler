@@ -18,8 +18,8 @@ module Peddler
         # @return [Array<ItemRelatedIdentifier>] Related business identifiers of the item.
         attribute(:related_identifiers, [ItemRelatedIdentifier], from: "relatedIdentifiers")
 
-        # @return [Types::Money] The total amount of the item.
-        attribute(:total_amount, Types::Money, from: "totalAmount")
+        # @return [Money] The total amount of the item.
+        attribute(:total_amount, Money, from: "totalAmount")
 
         # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
         # transaction.

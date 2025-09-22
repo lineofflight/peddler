@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The Tax-Deducted-at-Source (TDS) identifier.
         attribute(:tds_order_id, String, from: "TDSOrderId")
 
-        # @return [Types::Money] The amount reimbursed.
-        attribute(:reimbursed_amount, Types::Money, from: "ReimbursedAmount")
+        # @return [Money] The amount reimbursed.
+        attribute(:reimbursed_amount, Money, from: "ReimbursedAmount")
       end
     end
   end

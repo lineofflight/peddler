@@ -35,8 +35,8 @@ module Peddler
         # @return [String] The latest date by which the shipment will be delivered.
         attribute(:latest_estimated_delivery_date, String, from: "LatestEstimatedDeliveryDate")
 
-        # @return [Types::Money] The amount that the carrier will charge for the shipment.
-        attribute(:rate, Types::Money, from: "Rate")
+        # @return [Money] The amount that the carrier will charge for the shipment.
+        attribute(:rate, Money, from: "Rate")
 
         # @return [ShippingServiceOptions] Extra services offered by the carrier.
         attribute(:shipping_service_options, ShippingServiceOptions, from: "ShippingServiceOptions")

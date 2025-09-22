@@ -82,8 +82,8 @@ module Peddler
         # @return [String] The type of charge.
         attribute(:charge_type, String, from: "ChargeType")
 
-        # @return [Types::Money] The amount of the charge.
-        attribute(:charge_amount, Types::Money, from: "ChargeAmount")
+        # @return [Money] The amount of the charge.
+        attribute(:charge_amount, Money, from: "ChargeAmount")
       end
     end
   end

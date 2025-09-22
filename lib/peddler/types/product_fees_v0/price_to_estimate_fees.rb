@@ -10,11 +10,11 @@ module Peddler
     module ProductFeesV0
       # Price information for an item, used to estimate fees.
       PriceToEstimateFees = Structure.new do
-        # @return [Types::Money] The price of the item.
-        attribute(:listing_price, Types::Money, from: "ListingPrice")
+        # @return [Money] The price of the item.
+        attribute(:listing_price, Money, from: "ListingPrice")
 
-        # @return [Types::Money] The shipping cost.
-        attribute(:shipping, Types::Money, from: "Shipping")
+        # @return [Money] The shipping cost.
+        attribute(:shipping, Money, from: "Shipping")
 
         # @return [Points] The number of Amazon Points offered with the purchase of an item.
         attribute(:points, Points, from: "Points")

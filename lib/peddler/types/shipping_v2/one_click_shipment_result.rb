@@ -28,8 +28,8 @@ module Peddler
         # @return [Service]
         attribute(:service, Service)
 
-        # @return [Types::Money]
-        attribute(:total_charge, Types::Money, from: "totalCharge")
+        # @return [Money]
+        attribute(:total_charge, Money, from: "totalCharge")
       end
     end
   end

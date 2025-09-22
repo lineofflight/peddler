@@ -15,8 +15,8 @@ module Peddler
         # @return [String] The name of the value-added service.
         attribute(:name, String)
 
-        # @return [Types::Money] The cost of the value-added service.
-        attribute(:cost, Types::Money)
+        # @return [Money] The cost of the value-added service.
+        attribute(:cost, Money)
       end
     end
   end

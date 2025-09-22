@@ -13,8 +13,8 @@ module Peddler
         # @return [String] Type of charge applied.
         attribute(:type, String)
 
-        # @return [Types::Money]
-        attribute(:charge_amount, Types::Money, from: "chargeAmount")
+        # @return [Money]
+        attribute(:charge_amount, Money, from: "chargeAmount")
 
         # @return [Array<TaxDetail>] Individual tax details per line item.
         attribute(:tax_details, [TaxDetail], from: "taxDetails")

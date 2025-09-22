@@ -21,8 +21,8 @@ module Peddler
         # @return [String] The value of the fee in percentage format.
         attribute(:fee_rate_value, String, from: "feeRateValue")
 
-        # @return [Types::Money] Displays actual value of the fee in numeric format.
-        attribute(:fee_amount, Types::Money, from: "feeAmount")
+        # @return [Money] Displays actual value of the fee in numeric format.
+        attribute(:fee_amount, Money, from: "feeAmount")
       end
     end
   end

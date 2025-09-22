@@ -34,11 +34,11 @@ module Peddler
         # @return [String] The marketplace in which the event took place.
         attribute(:marketplace_id, String, from: "MarketplaceId")
 
-        # @return [Types::Money] The price of the swapped item minus TaxAmount.
-        attribute(:tax_exclusive_amount, Types::Money, from: "TaxExclusiveAmount")
+        # @return [Money] The price of the swapped item minus TaxAmount.
+        attribute(:tax_exclusive_amount, Money, from: "TaxExclusiveAmount")
 
-        # @return [Types::Money] The tax on the network item swap paid by the seller.
-        attribute(:tax_amount, Types::Money, from: "TaxAmount")
+        # @return [Money] The tax on the network item swap paid by the seller.
+        attribute(:tax_amount, Money, from: "TaxAmount")
       end
     end
   end

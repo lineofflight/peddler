@@ -32,17 +32,16 @@ module Peddler
         # @return [String] Indicates whether the item is sellable or unsellable.
         attribute(:order_item_disposition, String, from: "orderItemDisposition")
 
-        # @return [Types::Money] The monetary value assigned by the seller to this item. This is a required field for
-        # India MCF orders.
-        attribute(:per_unit_declared_value, Types::Money, from: "perUnitDeclaredValue")
+        # @return [Money] The monetary value assigned by the seller to this item. This is a required field for India MCF
+        # orders.
+        attribute(:per_unit_declared_value, Money, from: "perUnitDeclaredValue")
 
-        # @return [Types::Money] The amount to be collected from the recipient for this item in a COD (Cash On Delivery)
-        # order.
-        attribute(:per_unit_price, Types::Money, from: "perUnitPrice")
+        # @return [Money] The amount to be collected from the recipient for this item in a COD (Cash On Delivery) order.
+        attribute(:per_unit_price, Money, from: "perUnitPrice")
 
-        # @return [Types::Money] The tax on the amount to be collected from the recipient for this item in a COD (Cash
-        # On Delivery) order.
-        attribute(:per_unit_tax, Types::Money, from: "perUnitTax")
+        # @return [Money] The tax on the amount to be collected from the recipient for this item in a COD (Cash On
+        # Delivery) order.
+        attribute(:per_unit_tax, Money, from: "perUnitTax")
       end
     end
   end

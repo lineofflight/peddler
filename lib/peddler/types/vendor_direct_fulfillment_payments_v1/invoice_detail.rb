@@ -40,8 +40,8 @@ module Peddler
         # @return [String] The payment terms for the invoice.
         attribute(:payment_terms_code, String, from: "paymentTermsCode")
 
-        # @return [Types::Money] Total amount details of the invoice.
-        attribute(:invoice_total, Types::Money, from: "invoiceTotal")
+        # @return [Money] Total amount details of the invoice.
+        attribute(:invoice_total, Money, from: "invoiceTotal")
 
         # @return [Array<TaxDetail>] Individual tax details per line item.
         attribute(:tax_totals, [TaxDetail], from: "taxTotals")

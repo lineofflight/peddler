@@ -12,20 +12,18 @@ module Peddler
         # @return [:boolean] When true, this fulfillment order requires a COD (Cash On Delivery) payment.
         attribute(:cod_required, :boolean, from: "isCodRequired")
 
-        # @return [Types::Money] The amount of the COD charge to be collected from the recipient for a COD order.
-        attribute(:cod_charge, Types::Money, from: "codCharge")
+        # @return [Money] The amount of the COD charge to be collected from the recipient for a COD order.
+        attribute(:cod_charge, Money, from: "codCharge")
 
-        # @return [Types::Money] The amount of the tax on the COD charge to be collected from the recipient for a COD
+        # @return [Money] The amount of the tax on the COD charge to be collected from the recipient for a COD order.
+        attribute(:cod_charge_tax, Money, from: "codChargeTax")
+
+        # @return [Money] The amount of the tax on the COD charge to be collected from the recipient for a COD order.
+        attribute(:shipping_charge, Money, from: "shippingCharge")
+
+        # @return [Money] The amount of the tax on the shipping charge to be collected from the recipient for a COD
         # order.
-        attribute(:cod_charge_tax, Types::Money, from: "codChargeTax")
-
-        # @return [Types::Money] The amount of the tax on the COD charge to be collected from the recipient for a COD
-        # order.
-        attribute(:shipping_charge, Types::Money, from: "shippingCharge")
-
-        # @return [Types::Money] The amount of the tax on the shipping charge to be collected from the recipient for a
-        # COD order.
-        attribute(:shipping_charge_tax, Types::Money, from: "shippingChargeTax")
+        attribute(:shipping_charge_tax, Money, from: "shippingChargeTax")
       end
     end
   end

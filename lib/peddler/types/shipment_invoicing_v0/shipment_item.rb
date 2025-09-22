@@ -24,21 +24,21 @@ module Peddler
         # @return [Float] The number of items ordered.
         attribute(:quantity_ordered, Float, from: "QuantityOrdered")
 
-        # @return [Types::Money] The selling price of the item multiplied by the quantity ordered. Note that ItemPrice
-        # excludes ShippingPrice and GiftWrapPrice.
-        attribute(:item_price, Types::Money, from: "ItemPrice")
+        # @return [Money] The selling price of the item multiplied by the quantity ordered. Note that ItemPrice excludes
+        # ShippingPrice and GiftWrapPrice.
+        attribute(:item_price, Money, from: "ItemPrice")
 
-        # @return [Types::Money] The shipping price of the item.
-        attribute(:shipping_price, Types::Money, from: "ShippingPrice")
+        # @return [Money] The shipping price of the item.
+        attribute(:shipping_price, Money, from: "ShippingPrice")
 
-        # @return [Types::Money] The gift wrap price of the item.
-        attribute(:gift_wrap_price, Types::Money, from: "GiftWrapPrice")
+        # @return [Money] The gift wrap price of the item.
+        attribute(:gift_wrap_price, Money, from: "GiftWrapPrice")
 
-        # @return [Types::Money] The discount on the shipping price.
-        attribute(:shipping_discount, Types::Money, from: "ShippingDiscount")
+        # @return [Money] The discount on the shipping price.
+        attribute(:shipping_discount, Money, from: "ShippingDiscount")
 
-        # @return [Types::Money] The total of all promotional discounts in the offer.
-        attribute(:promotion_discount, Types::Money, from: "PromotionDiscount")
+        # @return [Money] The total of all promotional discounts in the offer.
+        attribute(:promotion_discount, Money, from: "PromotionDiscount")
 
         # @return [Array] The list of serial numbers.
         attribute(:serial_numbers, Array, from: "SerialNumbers")

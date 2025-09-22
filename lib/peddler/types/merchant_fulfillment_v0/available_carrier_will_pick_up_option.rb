@@ -12,8 +12,8 @@ module Peddler
         # @return [String]
         attribute(:carrier_will_pick_up_option, String, from: "CarrierWillPickUpOption")
 
-        # @return [Types::Money] The fee charged.
-        attribute(:charge, Types::Money, from: "Charge")
+        # @return [Money] The fee charged.
+        attribute(:charge, Money, from: "Charge")
       end
     end
   end

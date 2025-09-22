@@ -36,8 +36,8 @@ module Peddler
         # @return [Length]
         attribute(:value_as_dimension, Length, from: "ValueAsDimension")
 
-        # @return [Types::Money]
-        attribute(:value_as_currency, Types::Money, from: "ValueAsCurrency")
+        # @return [Money]
+        attribute(:value_as_currency, Money, from: "ValueAsCurrency")
       end
     end
   end

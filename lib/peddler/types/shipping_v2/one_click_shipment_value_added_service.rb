@@ -12,8 +12,8 @@ module Peddler
         # @return [String] The identifier of the selected value-added service.
         attribute(:id, String)
 
-        # @return [Types::Money]
-        attribute(:amount, Types::Money)
+        # @return [Money]
+        attribute(:amount, Money)
       end
     end
   end

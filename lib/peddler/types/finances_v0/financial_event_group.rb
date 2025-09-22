@@ -25,13 +25,13 @@ module Peddler
         # @return [String] The status of the fund transfer.
         attribute(:fund_transfer_status, String, from: "FundTransferStatus")
 
-        # @return [Types::Money] The total amount in the currency of the marketplace in which the transactions occurred.
-        # For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open
-        # financial event group, this is the current balance.
-        attribute(:original_total, Types::Money, from: "OriginalTotal")
+        # @return [Money] The total amount in the currency of the marketplace in which the transactions occurred. For a
+        # closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial
+        # event group, this is the current balance.
+        attribute(:original_total, Money, from: "OriginalTotal")
 
-        # @return [Types::Money] The total amount in the currency of the marketplace in which the funds were disbursed.
-        attribute(:converted_total, Types::Money, from: "ConvertedTotal")
+        # @return [Money] The total amount in the currency of the marketplace in which the funds were disbursed.
+        attribute(:converted_total, Money, from: "ConvertedTotal")
 
         # @return [String] The date and time when the disbursement or charge was initiated. Only present for closed
         # settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
@@ -43,8 +43,8 @@ module Peddler
         # @return [String] The account tail of the payment instrument.
         attribute(:account_tail, String, from: "AccountTail")
 
-        # @return [Types::Money] The balance at the beginning of the settlement period.
-        attribute(:beginning_balance, Types::Money, from: "BeginningBalance")
+        # @return [Money] The balance at the beginning of the settlement period.
+        attribute(:beginning_balance, Money, from: "BeginningBalance")
 
         # @return [String] The date and time at which the financial event group is opened. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.

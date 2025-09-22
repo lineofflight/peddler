@@ -51,12 +51,12 @@ module Peddler
         # only returned for refunds, guarantee claims, and chargeback events.
         attribute(:promotion_adjustment_list, [Promotion], from: "PromotionAdjustmentList")
 
-        # @return [Types::Money] The cost of Amazon Points granted for a shipment item.
-        attribute(:cost_of_points_granted, Types::Money, from: "CostOfPointsGranted")
+        # @return [Money] The cost of Amazon Points granted for a shipment item.
+        attribute(:cost_of_points_granted, Money, from: "CostOfPointsGranted")
 
-        # @return [Types::Money] The cost of Amazon Points returned for a shipment item. This value is only returned for
+        # @return [Money] The cost of Amazon Points returned for a shipment item. This value is only returned for
         # refunds, guarantee claims, and chargeback events.
-        attribute(:cost_of_points_returned, Types::Money, from: "CostOfPointsReturned")
+        attribute(:cost_of_points_returned, Money, from: "CostOfPointsReturned")
       end
     end
   end

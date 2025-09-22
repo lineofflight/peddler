@@ -26,8 +26,8 @@ module Peddler
         # expiryDate or mfgDate and expiryAfterDuration. These are mandatory for perishable items.
         attribute(:expiry, Expiry)
 
-        # @return [Types::Money] Maximum retail price of the item being shipped.
-        attribute(:maximum_retail_price, Types::Money, from: "maximumRetailPrice")
+        # @return [Money] Maximum retail price of the item being shipped.
+        attribute(:maximum_retail_price, Money, from: "maximumRetailPrice")
 
         # @return [String] Identification of the instructions on how specified item/carton/pallet should be handled.
         attribute(:handling_code, String, from: "handlingCode")

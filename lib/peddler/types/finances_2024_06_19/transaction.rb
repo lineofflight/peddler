@@ -49,8 +49,8 @@ module Peddler
         # @return [String] The date and time when the transaction was posted.
         attribute(:posted_date, String, from: "postedDate")
 
-        # @return [Types::Money] Total amount of transaction.
-        attribute(:total_amount, Types::Money, from: "totalAmount")
+        # @return [Money] Total amount of transaction.
+        attribute(:total_amount, Money, from: "totalAmount")
 
         # @return [MarketplaceDetails] Information about the marketplace where the transaction occurred.
         attribute(:marketplace_details, MarketplaceDetails, from: "marketplaceDetails")

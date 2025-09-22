@@ -39,7 +39,7 @@ module Generator
       ref_name = ref.split("/").last
 
       # Special handling for Money types
-      return "Types::Money" if money_type?(ref_name)
+      return "Money" if money_type?(ref_name)
 
       # Handle self-referential types
       return ":self" if ref_name == type_name
