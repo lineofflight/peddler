@@ -5,6 +5,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Replace Money gem with lightweight Data class for money types
+- Simplify RBS setup with local signatures instead of external collections
+
+### Fixed
+
+- Fix NoMethodError when requiring individual API files without main peddler.rb
+
+### Removed
+
+- Remove Money gem dependency
+
 ## [4.7.0] - 2025-09-21
 
 ### Added
