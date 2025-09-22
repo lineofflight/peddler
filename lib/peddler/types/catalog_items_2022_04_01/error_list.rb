@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/catalog_items_2022_04_01/error"
 
 module Peddler

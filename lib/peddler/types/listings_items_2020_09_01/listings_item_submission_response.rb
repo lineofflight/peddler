@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/listings_items_2020_09_01/issue"
 
 module Peddler

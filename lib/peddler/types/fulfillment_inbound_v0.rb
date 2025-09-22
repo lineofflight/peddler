@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fulfillment_inbound_v0/asin_prep_instructions"
 require "peddler/types/fulfillment_inbound_v0/address"
 require "peddler/types/fulfillment_inbound_v0/amazon_prep_fees_details"

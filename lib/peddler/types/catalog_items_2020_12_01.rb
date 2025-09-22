@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/catalog_items_2020_12_01/brand_refinement"
 require "peddler/types/catalog_items_2020_12_01/classification_refinement"
 require "peddler/types/catalog_items_2020_12_01/error"

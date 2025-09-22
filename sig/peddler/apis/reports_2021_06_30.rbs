@@ -1,3 +1,5 @@
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module APIs
     class Reports20210630 < API

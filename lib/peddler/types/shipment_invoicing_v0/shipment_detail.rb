@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/shipment_invoicing_v0/address"
 require "peddler/types/shipment_invoicing_v0/payment_information"
 require "peddler/types/shipment_invoicing_v0/buyer_tax_info"

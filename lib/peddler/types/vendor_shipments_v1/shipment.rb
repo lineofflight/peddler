@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/vendor_shipments_v1/shipment_status_details"
 require "peddler/types/vendor_shipments_v1/party_identification"
 require "peddler/types/vendor_shipments_v1/transport_shipment_measurements"

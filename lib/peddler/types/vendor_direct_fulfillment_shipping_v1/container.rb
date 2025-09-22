@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/vendor_direct_fulfillment_shipping_v1/dimensions"
 require "peddler/types/vendor_direct_fulfillment_shipping_v1/weight"
 require "peddler/types/vendor_direct_fulfillment_shipping_v1/packed_item"

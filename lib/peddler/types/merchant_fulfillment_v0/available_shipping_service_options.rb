@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/merchant_fulfillment_v0/available_carrier_will_pick_up_option"
 require "peddler/types/merchant_fulfillment_v0/available_delivery_experience_option"
 

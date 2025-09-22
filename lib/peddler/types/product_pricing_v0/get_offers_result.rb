@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/product_pricing_v0/item_identifier"
 require "peddler/types/product_pricing_v0/summary"
 require "peddler/types/product_pricing_v0/offer_detail"

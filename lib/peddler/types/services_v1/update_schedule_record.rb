@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/services_v1/availability_record"
 require "peddler/types/services_v1/warning"
 require "peddler/types/services_v1/error"

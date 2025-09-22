@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/listings_items_2021_08_01/issue"
 require "peddler/types/listings_items_2021_08_01/item_identifiers_by_marketplace"
 

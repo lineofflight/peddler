@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/vendor_transaction_status_v1/transaction"
 
 module Peddler

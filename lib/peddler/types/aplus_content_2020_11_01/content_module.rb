@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/aplus_content_2020_11_01/standard_company_logo_module"
 require "peddler/types/aplus_content_2020_11_01/standard_comparison_table_module"
 require "peddler/types/aplus_content_2020_11_01/standard_four_image_text_module"

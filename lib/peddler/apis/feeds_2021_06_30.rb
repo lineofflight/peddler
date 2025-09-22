@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/api"
 require "peddler/helpers/feeds_2021_06_30"
 

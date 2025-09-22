@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/catalog_items_2020_12_01/item_sales_rank"
 
 module Peddler

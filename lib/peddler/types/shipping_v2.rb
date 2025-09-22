@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/shipping_v2/access_point"
 require "peddler/types/shipping_v2/access_point_details"
 require "peddler/types/shipping_v2/access_points_map"

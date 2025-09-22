@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/vendor_invoices_v1/transaction_id"
 require "peddler/types/vendor_invoices_v1/error"
 

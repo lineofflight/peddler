@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/notifications_v1/sqs_resource"
 require "peddler/types/notifications_v1/event_bridge_resource"
 

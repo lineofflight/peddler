@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/data_kiosk_2023_11_15/create_query_response"
 require "peddler/types/data_kiosk_2023_11_15/create_query_specification"
 require "peddler/types/data_kiosk_2023_11_15/error"

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/product_pricing_v0/http_response_headers"
 require "peddler/types/product_pricing_v0/get_offers_http_status_line"
 require "peddler/types/product_pricing_v0/get_offers_response"

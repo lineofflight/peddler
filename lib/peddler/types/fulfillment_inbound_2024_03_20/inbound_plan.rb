@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fulfillment_inbound_2024_03_20/packing_option_summary"
 require "peddler/types/fulfillment_inbound_2024_03_20/placement_option_summary"
 require "peddler/types/fulfillment_inbound_2024_03_20/shipment_summary"

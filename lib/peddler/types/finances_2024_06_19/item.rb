@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/finances_2024_06_19/item_related_identifier"
 require "peddler/types/finances_2024_06_19/currency"
 require "peddler/types/finances_2024_06_19/breakdown"

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/shipping_v2/client_reference_detail"
 require "peddler/types/shipping_v2/address"
 

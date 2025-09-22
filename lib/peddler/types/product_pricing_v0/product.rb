@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/product_pricing_v0/identifier_type"
 require "peddler/types/product_pricing_v0/competitive_pricing_type"
 require "peddler/types/product_pricing_v0/sales_rank_type"

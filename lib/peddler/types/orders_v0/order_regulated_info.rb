@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/orders_v0/regulated_information"
 require "peddler/types/orders_v0/regulated_order_verification_status"
 

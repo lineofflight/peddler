@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/money"
 require "peddler/types/vendor_invoices_v1/tax_details"
 

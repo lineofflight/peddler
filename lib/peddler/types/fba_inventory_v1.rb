@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fba_inventory_v1/add_inventory_request"
 require "peddler/types/fba_inventory_v1/add_inventory_response"
 require "peddler/types/fba_inventory_v1/create_inventory_item_request"

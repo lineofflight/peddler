@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/tokens_2021_03_01/restricted_resource"
 
 module Peddler

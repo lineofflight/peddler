@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/money"
 require "peddler/types/vendor_direct_fulfillment_payments_v1/tax_detail"
 

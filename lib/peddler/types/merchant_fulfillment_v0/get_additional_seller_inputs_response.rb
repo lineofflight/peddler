@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/merchant_fulfillment_v0/get_additional_seller_inputs_result"
 require "peddler/types/merchant_fulfillment_v0/error"
 

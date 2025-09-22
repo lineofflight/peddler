@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/merchant_fulfillment_v0/item"
 require "peddler/types/merchant_fulfillment_v0/address"
 require "peddler/types/merchant_fulfillment_v0/package_dimensions"

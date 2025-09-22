@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/finances_v0/list_financial_event_groups_payload"
 require "peddler/types/finances_v0/error"
 

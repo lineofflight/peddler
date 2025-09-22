@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/aplus_content_2020_11_01/image_dimensions"
 require "peddler/types/aplus_content_2020_11_01/image_offsets"
 

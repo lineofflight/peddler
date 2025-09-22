@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/finances_2024_06_01/error"
 require "peddler/types/finances_2024_06_01/error_list"
 require "peddler/types/finances_2024_06_01/expiry_date"

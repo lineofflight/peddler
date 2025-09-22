@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/finances_v0/shipment_event"
 require "peddler/types/finances_v0/pay_with_amazon_event"
 require "peddler/types/finances_v0/solution_provider_credit_event"

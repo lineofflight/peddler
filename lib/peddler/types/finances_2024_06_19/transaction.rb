@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/finances_2024_06_19/selling_partner_metadata"
 require "peddler/types/finances_2024_06_19/related_identifier"
 require "peddler/types/finances_2024_06_19/currency"

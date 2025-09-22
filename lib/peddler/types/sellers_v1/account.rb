@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/sellers_v1/marketplace_participation"
 require "peddler/types/sellers_v1/business"
 require "peddler/types/sellers_v1/primary_contact"

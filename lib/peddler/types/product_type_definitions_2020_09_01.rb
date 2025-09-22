@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/product_type_definitions_2020_09_01/error"
 require "peddler/types/product_type_definitions_2020_09_01/error_list"
 require "peddler/types/product_type_definitions_2020_09_01/product_type"

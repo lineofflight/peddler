@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/reports_2021_06_30/create_report_response"
 require "peddler/types/reports_2021_06_30/create_report_schedule_response"
 require "peddler/types/reports_2021_06_30/create_report_schedule_specification"

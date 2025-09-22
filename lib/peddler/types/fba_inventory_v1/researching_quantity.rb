@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fba_inventory_v1/researching_quantity_entry"
 
 module Peddler

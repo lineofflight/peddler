@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fulfillment_inbound_v0/bill_of_lading_download_url"
 require "peddler/types/fulfillment_inbound_v0/error"
 

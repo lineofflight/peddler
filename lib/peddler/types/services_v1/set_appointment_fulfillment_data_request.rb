@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/services_v1/date_time_range"
 require "peddler/types/services_v1/fulfillment_time"
 require "peddler/types/services_v1/appointment_resource"

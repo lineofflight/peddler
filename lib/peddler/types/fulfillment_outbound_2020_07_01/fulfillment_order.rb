@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fulfillment_outbound_2020_07_01/delivery_window"
 require "peddler/types/fulfillment_outbound_2020_07_01/address"
 require "peddler/types/fulfillment_outbound_2020_07_01/cod_settings"

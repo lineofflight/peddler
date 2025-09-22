@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/vehicles_2024_11_01/engine_output"
 require "peddler/types/vehicles_2024_11_01/month_and_year"
 require "peddler/types/vehicles_2024_11_01/vehicle_identifiers"

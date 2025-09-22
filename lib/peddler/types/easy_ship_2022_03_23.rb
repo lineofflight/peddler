@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/easy_ship_2022_03_23/create_scheduled_package_request"
 require "peddler/types/easy_ship_2022_03_23/create_scheduled_packages_request"
 require "peddler/types/easy_ship_2022_03_23/create_scheduled_packages_response"

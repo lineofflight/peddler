@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/merchant_fulfillment_v0/currency_amount"
 require "peddler/types/merchant_fulfillment_v0/shipping_service_options"
 require "peddler/types/merchant_fulfillment_v0/available_shipping_service_options"

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/amazon_warehousing_and_distribution_2024_05_09/expiration_details"
 require "peddler/types/amazon_warehousing_and_distribution_2024_05_09/inventory_details"
 

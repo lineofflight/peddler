@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/product_fees_v0/get_my_fees_estimate_result"
 require "peddler/types/product_fees_v0/error"
 

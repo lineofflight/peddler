@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/replenishment_2022_11_07/offer_program_configuration_preferences"
 require "peddler/types/replenishment_2022_11_07/offer_program_configuration_promotions"
 

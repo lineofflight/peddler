@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/replenishment_2022_11_07/list_offer_metrics_request_pagination"
 require "peddler/types/replenishment_2022_11_07/list_offer_metrics_request_sort"
 require "peddler/types/replenishment_2022_11_07/list_offer_metrics_request_filters"

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/fulfillment_inbound_v0/get_shipment_items_result"
 require "peddler/types/fulfillment_inbound_v0/error"
 

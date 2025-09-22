@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/supply_sources_2020_07_01/contact_details"
 require "peddler/types/supply_sources_2020_07_01/throughput_config"
 require "peddler/types/supply_sources_2020_07_01/operating_hours_by_day"

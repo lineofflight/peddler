@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/orders_v0/rejection_reason"
 require "peddler/types/orders_v0/valid_verification_detail"
 

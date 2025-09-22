@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/merchant_fulfillment_v0/shipment_request_details"
 require "peddler/types/merchant_fulfillment_v0/shipping_offering_filter"
 

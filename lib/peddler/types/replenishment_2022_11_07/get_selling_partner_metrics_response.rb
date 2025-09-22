@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/replenishment_2022_11_07/get_selling_partner_metrics_response_metric"
 
 module Peddler

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/finances_v0/currency"
 require "peddler/types/finances_v0/debt_recovery_item"
 require "peddler/types/finances_v0/charge_instrument"

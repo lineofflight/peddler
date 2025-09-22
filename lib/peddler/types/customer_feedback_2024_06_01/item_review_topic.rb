@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/customer_feedback_2024_06_01/item_review_topic_metrics"
 require "peddler/types/customer_feedback_2024_06_01/item_review_browse_node_metrics"
 require "peddler/types/customer_feedback_2024_06_01/child_asin_metrics"

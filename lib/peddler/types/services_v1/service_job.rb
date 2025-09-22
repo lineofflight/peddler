@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/services_v1/scope_of_work"
 require "peddler/types/services_v1/seller"
 require "peddler/types/services_v1/service_job_provider"

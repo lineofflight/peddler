@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/uploads_2020_11_01/upload_destination"
 require "peddler/types/uploads_2020_11_01/error"
 

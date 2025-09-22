@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/money"
 require "peddler/types/product_pricing_2022_05_01/money_type"
 require "peddler/types/product_pricing_2022_05_01/points"

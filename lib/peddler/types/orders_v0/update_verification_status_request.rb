@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/orders_v0/update_verification_status_request_body"
 
 module Peddler

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/money"
 require "peddler/types/product_pricing_v0/offer_count_type"
 require "peddler/types/product_pricing_v0/lowest_price_type"

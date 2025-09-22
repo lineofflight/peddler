@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/shipping_v2/document_size"
 require "peddler/types/shipping_v2/requested_label_customization"
 

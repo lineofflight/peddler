@@ -1,3 +1,5 @@
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module APIs
     class FBAInboundEligibilityV1 < API

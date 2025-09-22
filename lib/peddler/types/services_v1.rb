@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/types/services_v1/add_appointment_request"
 require "peddler/types/services_v1/address"
 require "peddler/types/services_v1/appointment"
