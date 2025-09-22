@@ -1,12 +1,6 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 module Peddler
-  @raise_on_server_errors: bool?
-
-  def self.configure: () { (singleton(Peddler)) -> void } -> void
-  def self.raise_on_server_errors: () -> bool
-  def self.raise_on_server_errors=: (bool) -> bool
-
   # API method declarations
   <%- api_methods.each do |api| -%>
   def self.<%= api[:name] %>: (String aws_region, String access_token, ?retries: Integer) -> APIs::<%= api[:class_name] %>
