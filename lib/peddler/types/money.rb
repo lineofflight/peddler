@@ -3,10 +3,9 @@
 module Peddler
   module Types
     Money = Data.define(:amount, :currency_code) do
-      NO_SUBUNITS = ["JPY"].freeze
-      private_constant :NO_SUBUNITS
-
       class << self
+        NO_SUBUNITS = ["JPY"].freeze
+        private_constant :NO_SUBUNITS
         def parse(value)
           return unless value
 
