@@ -6,6 +6,7 @@ module Peddler
       class << self
         NO_SUBUNITS = ["JPY"].freeze
         private_constant :NO_SUBUNITS
+
         def parse(value)
           return unless value
 
