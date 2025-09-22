@@ -4,6 +4,9 @@
 <%= tag %>
 <% end -%>
 <%= method_definition %>
+<% if sandbox_rule -%>
+        <%= sandbox_rule -%>
+<% end -%>
         path = "<%= path %>"
 <% if body_param_name && body_param_name != "body" -%>
         body = <%= body_param_name %>

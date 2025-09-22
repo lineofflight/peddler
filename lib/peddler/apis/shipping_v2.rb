@@ -179,6 +179,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_account_form_inputs(x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccountFormInputs"
         parser = Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse if typed?
         meter(rate_limit).get(path, parser:)
@@ -192,6 +194,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_carrier_accounts(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccounts"
         parser = Peddler::Types::ShippingV2::GetCarrierAccountsResponse if typed?
         meter(rate_limit).put(path, body:, parser:)
@@ -221,6 +225,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def unlink_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}/unlink"
         parser = Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse if typed?
         meter(rate_limit).put(path, body:, parser:)
@@ -237,6 +243,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_collection_form(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/collectionForms"
         parser = Peddler::Types::ShippingV2::GenerateCollectionFormResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
@@ -250,6 +258,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form_history(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/collectionForms/history"
         parser = Peddler::Types::ShippingV2::GetCollectionFormHistoryResponse if typed?
         meter(rate_limit).put(path, body:, parser:)
@@ -264,6 +274,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_unmanifested_shipments(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/unmanifestedShipments"
         parser = Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse if typed?
         meter(rate_limit).put(path, body:, parser:)
@@ -277,6 +289,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_collection_form(collection_form_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
+        cannot_sandbox!
+
         path = "/shipping/v2/collectionForms/#{percent_encode(collection_form_id)}"
         parser = Peddler::Types::ShippingV2::GetCollectionFormResponse if typed?
         meter(rate_limit).get(path, parser:)

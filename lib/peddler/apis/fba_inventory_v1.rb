@@ -80,6 +80,8 @@ module Peddler
       # @param create_inventory_item_request_body [Hash] CreateInventoryItem Request Body Parameter.
       # @return [Peddler::Response] The API response
       def create_inventory_item(create_inventory_item_request_body)
+        must_sandbox!
+
         path = "/fba/inventory/v1/items"
         body = create_inventory_item_request_body
         parser = Peddler::Types::FBAInventoryV1::CreateInventoryItemResponse if typed?
@@ -95,6 +97,8 @@ module Peddler
       # @param marketplace_id [String] The marketplace ID for the marketplace for which the sellerSku is to be deleted.
       # @return [Peddler::Response] The API response
       def delete_inventory_item(seller_sku, marketplace_id)
+        must_sandbox!
+
         path = "/fba/inventory/v1/items/#{percent_encode(seller_sku)}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -113,6 +117,8 @@ module Peddler
       # @param add_inventory_request_body [Hash] List of items to add to Sandbox inventory.
       # @return [Peddler::Response] The API response
       def add_inventory(x_amzn_idempotency_token, add_inventory_request_body)
+        must_sandbox!
+
         path = "/fba/inventory/v1/items/inventory"
         body = add_inventory_request_body
         parser = Peddler::Types::FBAInventoryV1::AddInventoryResponse if typed?

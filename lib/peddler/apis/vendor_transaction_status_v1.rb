@@ -26,6 +26,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_transaction(transaction_id, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/vendor/transactions/v1/transactions/#{percent_encode(transaction_id)}"
         parser = Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse if typed?
         meter(rate_limit).get(path, parser:)

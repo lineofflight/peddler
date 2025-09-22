@@ -193,6 +193,8 @@ module Peddler
       # @param body [Hash] The identifier assigned to the item by the seller when the fulfillment order was created.
       # @return [Peddler::Response] The API response
       def submit_fulfillment_order_status_update(seller_fulfillment_order_id, body)
+        must_sandbox!
+
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/status"
         parser = Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse if typed?
         put(path, body:, parser:)

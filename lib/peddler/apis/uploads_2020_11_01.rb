@@ -39,6 +39,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_upload_destination_for_resource(marketplace_ids, content_md5, resource, content_type: nil,
         rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/uploads/2020-11-01/uploadDestinations/#{percent_encode(resource)}"
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),

@@ -108,7 +108,7 @@ module Generator
     def sandbox_rule
       if !static_sandbox? && !dynamic_sandbox?
         "cannot_sandbox!\n\n"
-      elsif path.sandbox_only?
+      elsif sandbox_only?
         "must_sandbox!\n\n"
       end
     end
@@ -554,6 +554,10 @@ module Generator
       code = operation["responses"].keys.find { |code| code.start_with?("2") }
 
       !!operation["responses"][code]&.dig("x-amzn-api-sandbox", "static")
+    end
+
+    def sandbox_only?
+      path.sandbox_only? || !!operation["x-amzn-api-sandbox-only"]
     end
 
     def template

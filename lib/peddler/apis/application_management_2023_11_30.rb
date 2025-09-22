@@ -28,6 +28,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def rotate_application_client_secret(rate_limit: 0.0167)
+        cannot_sandbox!
+
         path = "/applications/2023-11-30/clientSecret"
         meter(rate_limit).post(path)
       end

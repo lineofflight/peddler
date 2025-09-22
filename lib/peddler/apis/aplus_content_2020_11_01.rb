@@ -31,6 +31,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_content_documents(marketplace_id, page_token: nil, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments"
         params = {
           "marketplaceId" => marketplace_id,
@@ -49,6 +51,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def create_content_document(marketplace_id, post_content_document_request, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments"
         body = post_content_document_request
         params = {
@@ -70,6 +74,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def get_content_document(content_reference_key, marketplace_id, included_data_set, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}"
         params = {
           "marketplaceId" => marketplace_id,
@@ -92,6 +98,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_content_document(content_reference_key, marketplace_id, post_content_document_request,
         rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}"
         body = post_content_document_request
         params = {
@@ -119,6 +127,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_content_document_asin_relations(content_reference_key, marketplace_id, included_data_set: nil,
         asin_set: nil, page_token: nil, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/asins"
         params = {
           "marketplaceId" => marketplace_id,
@@ -146,6 +156,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def post_content_document_asin_relations(content_reference_key, marketplace_id,
         post_content_document_asin_relations_request, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/asins"
         body = post_content_document_asin_relations_request
         params = {
@@ -166,6 +178,8 @@ module Peddler
       # @return [Peddler::Response] The API response
       def validate_content_document_asin_relations(marketplace_id, post_content_document_request, asin_set: nil,
         rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentAsinValidations"
         body = post_content_document_request
         params = {
@@ -188,6 +202,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def search_content_publish_records(marketplace_id, asin, page_token: nil, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentPublishRecords"
         params = {
           "marketplaceId" => marketplace_id,
@@ -209,6 +225,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_approval_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/approvalSubmissions"
         params = {
           "marketplaceId" => marketplace_id,
@@ -228,6 +246,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def post_content_document_suspend_submission(content_reference_key, marketplace_id, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/aplus/2020-11-01/contentDocuments/#{percent_encode(content_reference_key)}/suspendSubmissions"
         params = {
           "marketplaceId" => marketplace_id,

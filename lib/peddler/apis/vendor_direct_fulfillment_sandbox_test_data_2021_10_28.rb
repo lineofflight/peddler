@@ -25,6 +25,8 @@ module Peddler
       # @param body [Hash] The request payload containing parameters for generating test order data scenarios.
       # @return [Peddler::Response] The API response
       def generate_order_scenarios(body)
+        must_sandbox!
+
         path = "/vendor/directFulfillment/sandbox/2021-10-28/orders"
         parser = Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionReference if typed?
         post(path, body:, parser:)
@@ -38,6 +40,8 @@ module Peddler
       #   operation.
       # @return [Peddler::Response] The API response
       def get_order_scenarios(transaction_id)
+        must_sandbox!
+
         path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{percent_encode(transaction_id)}"
         parser = Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus if typed?
         get(path, parser:)

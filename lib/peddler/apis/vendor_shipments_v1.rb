@@ -37,6 +37,8 @@ module Peddler
       # @param rate_limit [Float] Requests per second
       # @return [Peddler::Response] The API response
       def submit_shipments(body, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/vendor/shipping/v1/shipments"
         parser = Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
@@ -97,6 +99,8 @@ module Peddler
         requested_pick_up_before: nil, requested_pick_up_after: nil, scheduled_pick_up_before: nil,
         scheduled_pick_up_after: nil, current_shipment_status: nil, vendor_shipment_identifier: nil,
         buyer_reference_number: nil, buyer_warehouse_code: nil, seller_warehouse_code: nil, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/vendor/shipping/v1/shipments"
         params = {
           "limit" => limit,
@@ -150,6 +154,8 @@ module Peddler
       def get_shipment_labels(limit: nil, sort_order: nil, next_token: nil, label_created_after: nil,
         label_created_before: nil, buyer_reference_number: nil, vendor_shipment_identifier: nil,
         seller_warehouse_code: nil, rate_limit: 10.0)
+        cannot_sandbox!
+
         path = "/vendor/shipping/v1/transportLabels"
         params = {
           "limit" => limit,
