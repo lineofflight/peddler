@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/orders_v0/payment_execution_detail_item"
 require "peddler/types/orders_v0/address"
 require "peddler/types/orders_v0/buyer_tax_information"
@@ -44,8 +44,8 @@ module Peddler
         # @return [String] The order's shipment service level.
         attribute(:ship_service_level, String, from: "ShipServiceLevel")
 
-        # @return [Money] The total charge for this order.
-        attribute(:order_total, Money, from: "OrderTotal")
+        # @return [Types::Money] The total charge for this order.
+        attribute(:order_total, Types::Money, from: "OrderTotal")
 
         # @return [Integer] The number of items shipped.
         attribute(:number_of_items_shipped, Integer, from: "NumberOfItemsShipped")

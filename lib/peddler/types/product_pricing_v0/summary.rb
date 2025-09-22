@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/product_pricing_v0/offer_count_type"
 require "peddler/types/product_pricing_v0/lowest_price_type"
 require "peddler/types/product_pricing_v0/buy_box_price_type"
@@ -26,18 +26,18 @@ module Peddler
         # @return [Array<BuyBoxPriceType>] A list of item prices.
         attribute(:buy_box_prices, [BuyBoxPriceType], from: "BuyBoxPrices")
 
-        # @return [Money] The list price of the item as suggested by the manufacturer.
-        attribute(:list_price, Money, from: "ListPrice")
+        # @return [Types::Money] The list price of the item as suggested by the manufacturer.
+        attribute(:list_price, Types::Money, from: "ListPrice")
 
-        # @return [Money] This price is based on competitive prices from other retailers (excluding other Amazon
+        # @return [Types::Money] This price is based on competitive prices from other retailers (excluding other Amazon
         # sellers). The offer may be ineligible for the Buy Box if the seller's price + shipping (minus Amazon Points)
         # is greater than this competitive price.
-        attribute(:competitive_price_threshold, Money, from: "CompetitivePriceThreshold")
+        attribute(:competitive_price_threshold, Types::Money, from: "CompetitivePriceThreshold")
 
-        # @return [Money] The suggested lower price of the item, including shipping and Amazon Points. The suggested
-        # lower price is based on a range of factors, including historical selling prices, recent Buy Box-eligible
-        # prices, and input from customers for your products.
-        attribute(:suggested_lower_price_plus_shipping, Money, from: "SuggestedLowerPricePlusShipping")
+        # @return [Types::Money] The suggested lower price of the item, including shipping and Amazon Points. The
+        # suggested lower price is based on a range of factors, including historical selling prices, recent Buy
+        # Box-eligible prices, and input from customers for your products.
+        attribute(:suggested_lower_price_plus_shipping, Types::Money, from: "SuggestedLowerPricePlusShipping")
 
         # @return [Array<SalesRankType>] A list that contains the sales rank of the item in the given product
         # categories.

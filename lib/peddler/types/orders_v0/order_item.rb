@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/orders_v0/associated_item"
 require "peddler/types/orders_v0/product_info_detail"
 require "peddler/types/orders_v0/points_granted_detail"
@@ -45,40 +45,40 @@ module Peddler
         # @return [PointsGrantedDetail] The number and value of Amazon Points granted with the purchase of an item.
         attribute(:points_granted, PointsGrantedDetail, from: "PointsGranted")
 
-        # @return [Money] The selling price of the order item. Note that an order item is an item and a quantity. This
-        # means that the value of `ItemPrice` is equal to the selling price of the item multiplied by the quantity
+        # @return [Types::Money] The selling price of the order item. Note that an order item is an item and a quantity.
+        # This means that the value of `ItemPrice` is equal to the selling price of the item multiplied by the quantity
         # ordered. `ItemPrice` excludes `ShippingPrice` and GiftWrapPrice.
-        attribute(:item_price, Money, from: "ItemPrice")
+        attribute(:item_price, Types::Money, from: "ItemPrice")
 
-        # @return [Money] The item's shipping price.
-        attribute(:shipping_price, Money, from: "ShippingPrice")
+        # @return [Types::Money] The item's shipping price.
+        attribute(:shipping_price, Types::Money, from: "ShippingPrice")
 
-        # @return [Money] The tax on the item price.
-        attribute(:item_tax, Money, from: "ItemTax")
+        # @return [Types::Money] The tax on the item price.
+        attribute(:item_tax, Types::Money, from: "ItemTax")
 
-        # @return [Money] The tax on the shipping price.
-        attribute(:shipping_tax, Money, from: "ShippingTax")
+        # @return [Types::Money] The tax on the shipping price.
+        attribute(:shipping_tax, Types::Money, from: "ShippingTax")
 
-        # @return [Money] The discount on the shipping price.
-        attribute(:shipping_discount, Money, from: "ShippingDiscount")
+        # @return [Types::Money] The discount on the shipping price.
+        attribute(:shipping_discount, Types::Money, from: "ShippingDiscount")
 
-        # @return [Money] The tax on the discount on the shipping price.
-        attribute(:shipping_discount_tax, Money, from: "ShippingDiscountTax")
+        # @return [Types::Money] The tax on the discount on the shipping price.
+        attribute(:shipping_discount_tax, Types::Money, from: "ShippingDiscountTax")
 
-        # @return [Money] The total of all promotional discounts in the offer.
-        attribute(:promotion_discount, Money, from: "PromotionDiscount")
+        # @return [Types::Money] The total of all promotional discounts in the offer.
+        attribute(:promotion_discount, Types::Money, from: "PromotionDiscount")
 
-        # @return [Money] The tax on the total of all promotional discounts in the offer.
-        attribute(:promotion_discount_tax, Money, from: "PromotionDiscountTax")
+        # @return [Types::Money] The tax on the total of all promotional discounts in the offer.
+        attribute(:promotion_discount_tax, Types::Money, from: "PromotionDiscountTax")
 
         # @return [Array]
         attribute(:promotion_ids, Array, from: "PromotionIds")
 
-        # @return [Money] The fee charged for COD service.
-        attribute(:cod_fee, Money, from: "CODFee")
+        # @return [Types::Money] The fee charged for COD service.
+        attribute(:cod_fee, Types::Money, from: "CODFee")
 
-        # @return [Money] The discount on the COD fee.
-        attribute(:cod_fee_discount, Money, from: "CODFeeDiscount")
+        # @return [Types::Money] The discount on the COD fee.
+        attribute(:cod_fee_discount, Types::Money, from: "CODFeeDiscount")
 
         # @return [String] Indicates whether the item is a gift.
         #

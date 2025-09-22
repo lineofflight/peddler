@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -10,8 +10,8 @@ module Peddler
         # @return [String] The type of fee.
         attribute(:name, String)
 
-        # @return [Money] The amount of the fee.
-        attribute(:amount, Money)
+        # @return [Types::Money] The amount of the fee.
+        attribute(:amount, Types::Money)
       end
     end
   end

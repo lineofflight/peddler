@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -13,12 +13,12 @@ module Peddler
         # @return [String] Tax percentage applied. Percentage must be expressed in decimal.
         attribute(:tax_rate, String, from: "taxRate")
 
-        # @return [Money] Total tax amount applied on invoice total or an item total.
-        attribute(:tax_amount, Money, from: "taxAmount")
+        # @return [Types::Money] Total tax amount applied on invoice total or an item total.
+        attribute(:tax_amount, Types::Money, from: "taxAmount")
 
-        # @return [Money] This field will contain the invoice amount that is taxable at the rate specified in the tax
-        # rate field.
-        attribute(:taxable_amount, Money, from: "taxableAmount")
+        # @return [Types::Money] This field will contain the invoice amount that is taxable at the rate specified in the
+        # tax rate field.
+        attribute(:taxable_amount, Types::Money, from: "taxableAmount")
       end
     end
   end

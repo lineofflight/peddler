@@ -1,4 +1,0 @@
-# Minimal Nokogiri declarations for Peddler
-module Nokogiri
-  def self.XML: (String | untyped) -> untyped
-end

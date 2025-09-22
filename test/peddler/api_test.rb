@@ -9,6 +9,14 @@ module Peddler
 
     def setup
       @api = API.new("eu-west-1", "access_token")
+      # Reset configuration to default
+      Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
+      super
+    end
+
+    def teardown
+      # Reset configuration after each test
+      Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
       super
     end
 

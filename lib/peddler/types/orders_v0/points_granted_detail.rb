@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -10,8 +10,8 @@ module Peddler
         # @return [Integer] The number of Amazon Points granted with the purchase of an item.
         attribute(:points_number, Integer, from: "PointsNumber")
 
-        # @return [Money] The monetary value of the Amazon Points granted.
-        attribute(:points_monetary_value, Money, from: "PointsMonetaryValue")
+        # @return [Types::Money] The monetary value of the Amazon Points granted.
+        attribute(:points_monetary_value, Types::Money, from: "PointsMonetaryValue")
       end
     end
   end

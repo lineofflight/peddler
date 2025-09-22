@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/vendor_invoices_v1/item_quantity"
 require "peddler/types/vendor_invoices_v1/credit_note_details"
 require "peddler/types/vendor_invoices_v1/tax_details"
@@ -25,10 +25,11 @@ module Peddler
         # @return [ItemQuantity] Invoiced quantity of this item. Quantity must be greater than zero.
         attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
 
-        # @return [Money] The item cost to Amazon, which should match the cost on the order. Price information should
-        # not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If items are
-        # priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.: $5/LB
-        attribute(:net_cost, Money, from: "netCost")
+        # @return [Types::Money] The item cost to Amazon, which should match the cost on the order. Price information
+        # should not be zero or negative. It indicates net unit price. Net cost means VAT is not included in cost. If
+        # items are priced by weight, this cost need to be considered in conjunction with netCostUnitOfMeasure. E.g.:
+        # $5/LB
+        attribute(:net_cost, Types::Money, from: "netCost")
 
         # @return [String] This field represents weight unit of measure of items that are ordered by cases and
         # supporting priced by weight.

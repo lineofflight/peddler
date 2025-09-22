@@ -38,9 +38,9 @@ module Peddler
       result = parse_orders_response
       order = result.payload.orders.first
 
-      assert_instance_of(::Money, order.order_total)
-      assert_equal(9999, order.order_total.cents)
-      assert_equal("USD", order.order_total.currency.iso_code)
+      assert_instance_of(Peddler::Types::Money, order.order_total)
+      assert_equal("99.99", order.order_total.amount)
+      assert_equal("USD", order.order_total.currency_code)
     end
 
     def test_feeds_response_structure

@@ -3,6 +3,7 @@
 require "delegate"
 require "forwardable"
 
+require "peddler/config"
 require "peddler/error"
 
 module Peddler

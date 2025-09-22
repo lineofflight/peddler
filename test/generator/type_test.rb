@@ -160,7 +160,7 @@ module Generator
       assert_predicate(type, :needs_money?)
       money_prop = { "$ref" => "#/definitions/Money" }
 
-      assert_equal("Money", type.ruby_type_for(money_prop))
+      assert_equal("Types::Money", type.ruby_type_for(money_prop))
     end
 
     def test_self_referential_type

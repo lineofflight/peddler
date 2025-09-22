@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+module Peddler
+  module Types
+    class Money < Data
+      attr_reader amount: String
+      attr_reader currency_code: String
+
+      def self.parse: (Hash[String, untyped]? value) -> Money?
+
+      def to_d: () -> BigDecimal
+    end
+  end
+end

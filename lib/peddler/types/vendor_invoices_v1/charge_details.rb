@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/vendor_invoices_v1/tax_details"
 
 module Peddler
@@ -14,8 +14,8 @@ module Peddler
         # @return [String] Description of the charge.
         attribute(:description, String)
 
-        # @return [Money] Total monetary amount related to this charge.
-        attribute(:charge_amount, Money, from: "chargeAmount")
+        # @return [Types::Money] Total monetary amount related to this charge.
+        attribute(:charge_amount, Types::Money, from: "chargeAmount")
 
         # @return [Array<TaxDetails>] Tax amount details applied on this charge.
         attribute(:tax_details, [TaxDetails], from: "taxDetails")

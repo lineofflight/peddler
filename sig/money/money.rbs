@@ -1,6 +1,4 @@
-# Minimal RBS for the money gem as used by Peddler
-# The actual Money class from the money gem is much more complex,
-# but this provides the interface needed for type checking Peddler
+# Minimal RBS for the money gem, which provides the interface for type checking Peddler
 
 class Money
   def self.new: (Integer amount_in_cents, String currency) -> instance

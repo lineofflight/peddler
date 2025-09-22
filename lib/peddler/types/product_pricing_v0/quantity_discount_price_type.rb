@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/product_pricing_v0/money_type"
 
 module Peddler
@@ -14,8 +14,8 @@ module Peddler
         # @return [String] Indicates the type of quantity discount this price applies to.
         attribute(:quantity_discount_type, String, from: "quantityDiscountType")
 
-        # @return [Money] The price at this quantity tier.
-        attribute(:listing_price, Money, from: "listingPrice")
+        # @return [Types::Money] The price at this quantity tier.
+        attribute(:listing_price, Types::Money, from: "listingPrice")
       end
     end
   end

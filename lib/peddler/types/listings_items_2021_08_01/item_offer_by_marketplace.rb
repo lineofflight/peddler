@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/listings_items_2021_08_01/points"
 require "peddler/types/listings_items_2021_08_01/audience"
 
@@ -15,8 +15,8 @@ module Peddler
         # @return [String] Type of offer for the listings item.
         attribute(:offer_type, String, from: "offerType")
 
-        # @return [Money] The purchase price of the listings item
-        attribute(:price, Money)
+        # @return [Types::Money] The purchase price of the listings item
+        attribute(:price, Types::Money)
 
         # @return [Points]
         attribute(:points, Points)

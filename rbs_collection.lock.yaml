@@ -161,6 +161,14 @@ gems:
   version: 0.3.0
   source:
     type: rubygems
+- name: nokogiri
+  version: '1.11'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: fdacf4febfd1a10797f2340410e0876a9811cdf2
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: openssl
   version: '0'
   source:

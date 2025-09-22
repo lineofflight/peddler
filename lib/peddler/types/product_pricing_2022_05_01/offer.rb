@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/product_pricing_2022_05_01/money_type"
 require "peddler/types/product_pricing_2022_05_01/shipping_option"
 require "peddler/types/product_pricing_2022_05_01/points"
@@ -24,8 +24,9 @@ module Peddler
         # and `MFN` (Merchant Fulfillment Network).
         attribute(:fulfillment_type, String, from: "fulfillmentType")
 
-        # @return [Money] The offer buying price. This doesn't include shipping, points, or applicable promotions.
-        attribute(:listing_price, Money, from: "listingPrice")
+        # @return [Types::Money] The offer buying price. This doesn't include shipping, points, or applicable
+        # promotions.
+        attribute(:listing_price, Types::Money, from: "listingPrice")
 
         # @return [Array<ShippingOption>] A list of shipping options associated with this offer
         attribute(:shipping_options, [ShippingOption], from: "shippingOptions")

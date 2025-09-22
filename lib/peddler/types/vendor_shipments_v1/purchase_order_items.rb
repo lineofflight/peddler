@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/vendor_shipments_v1/item_quantity"
 
 module Peddler
@@ -22,8 +22,8 @@ module Peddler
         # @return [ItemQuantity] Total item quantity shipped in this shipment.
         attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
 
-        # @return [Money]
-        attribute(:maximum_retail_price, Money, from: "maximumRetailPrice")
+        # @return [Types::Money]
+        attribute(:maximum_retail_price, Types::Money, from: "maximumRetailPrice")
       end
     end
   end

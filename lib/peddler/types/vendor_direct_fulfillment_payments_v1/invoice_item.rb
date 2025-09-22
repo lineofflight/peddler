@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/vendor_direct_fulfillment_payments_v1/item_quantity"
 require "peddler/types/vendor_direct_fulfillment_payments_v1/tax_detail"
 require "peddler/types/vendor_direct_fulfillment_payments_v1/charge_details"
@@ -23,8 +23,8 @@ module Peddler
         # @return [ItemQuantity] Item quantity invoiced.
         attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
 
-        # @return [Money] Net price (before tax) to vendor with currency details.
-        attribute(:net_cost, Money, from: "netCost")
+        # @return [Types::Money] Net price (before tax) to vendor with currency details.
+        attribute(:net_cost, Types::Money, from: "netCost")
 
         # @return [String] The purchase order number for this order. Formatting Notes: 8-character alpha-numeric code.
         attribute(:purchase_order_number, String, from: "purchaseOrderNumber")

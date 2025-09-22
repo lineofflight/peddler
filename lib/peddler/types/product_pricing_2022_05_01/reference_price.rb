@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/product_pricing_2022_05_01/money_type"
 
 module Peddler
@@ -13,8 +13,8 @@ module Peddler
         # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
         attribute(:name, String)
 
-        # @return [Money] The reference price for the ASIN `marketplaceId` combination.
-        attribute(:price, Money)
+        # @return [Types::Money] The reference price for the ASIN `marketplaceId` combination.
+        attribute(:price, Types::Money)
       end
     end
   end

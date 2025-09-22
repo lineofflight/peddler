@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 
 module Peddler
   module Types
     module OrdersV0
       # Information about a sub-payment method used to pay for a COD order.
       PaymentExecutionDetailItem = Structure.new do
-        # @return [Money]
-        attribute(:payment, Money, from: "Payment")
+        # @return [Types::Money]
+        attribute(:payment, Types::Money, from: "Payment")
 
         # @return [String] The sub-payment method for an order.
         #

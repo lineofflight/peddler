@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -11,11 +11,11 @@ module Peddler
         # @return [String]
         attribute(:tax_rate, String, from: "taxRate")
 
-        # @return [Money]
-        attribute(:tax_amount, Money, from: "taxAmount")
+        # @return [Types::Money]
+        attribute(:tax_amount, Types::Money, from: "taxAmount")
 
-        # @return [Money]
-        attribute(:taxable_amount, Money, from: "taxableAmount")
+        # @return [Types::Money]
+        attribute(:taxable_amount, Types::Money, from: "taxableAmount")
 
         # @return [String] Tax type.
         attribute(:type, String)

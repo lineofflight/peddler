@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 require "peddler/types/product_pricing_2022_05_01/money_type"
 
 module Peddler
@@ -11,8 +11,8 @@ module Peddler
         # @return [String] The type of shipping option.
         attribute(:shipping_option_type, String, from: "shippingOptionType")
 
-        # @return [Money] Shipping price for the offer.
-        attribute(:price, Money)
+        # @return [Types::Money] Shipping price for the offer.
+        attribute(:price, Types::Money)
       end
     end
   end

@@ -65,11 +65,17 @@ module Generator
     end
 
     def initialize_directories!
-      ["apis", "types"].product(["lib", "sig"]).each do |sub, root|
-        dir_path = File.join(Config::BASE_PATH, "#{root}/peddler/#{sub}")
-        FileUtils.rm_rf(dir_path)
-        FileUtils.mkdir_p(dir_path)
+      ["lib", "sig"].each do |base|
+        apis_path = File.join(Config::BASE_PATH, base, "peddler/apis")
+        FileUtils.rm_rf(apis_path)
+        FileUtils.mkdir_p(apis_path)
+
+        types_path = File.join(Config::BASE_PATH, base, "peddler/types")
+        Dir.glob(File.join(types_path, "*")).each do |item|
+          FileUtils.rm_rf(item) if File.directory?(item)
+        end
       end
+
       logger.info("Initialized directories")
     end
 

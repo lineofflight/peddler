@@ -6,12 +6,12 @@ require "peddler"
 class PeddlerTest < Minitest::Test
   def setup
     # Reset configuration to default
-    Peddler.instance_variable_set(:@raise_on_server_errors, nil)
+    Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
   end
 
   def teardown
     # Reset configuration after each test
-    Peddler.instance_variable_set(:@raise_on_server_errors, nil)
+    Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
   end
 
   def test_entrypoint

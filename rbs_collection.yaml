@@ -12,3 +12,4 @@ gems:
   # and provide our own minimal RBS definition
   - name: money
     ignore: true
+  - name: nokogiri

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "peddler/money"
+require "peddler/types/money"
 
 module Peddler
   module Types
@@ -22,11 +22,12 @@ module Peddler
         # @return [Integer] The number of orders based on the specified filters.
         attribute(:order_count, Integer, from: "orderCount")
 
-        # @return [Money] The average price for an item based on the specified filters. Formula is totalSales/unitCount.
-        attribute(:average_unit_price, Money, from: "averageUnitPrice")
+        # @return [Types::Money] The average price for an item based on the specified filters. Formula is
+        # totalSales/unitCount.
+        attribute(:average_unit_price, Types::Money, from: "averageUnitPrice")
 
-        # @return [Money] The total ordered product sales for all orders based on the specified filters.
-        attribute(:total_sales, Money, from: "totalSales")
+        # @return [Types::Money] The total ordered product sales for all orders based on the specified filters.
+        attribute(:total_sales, Types::Money, from: "totalSales")
       end
     end
   end
