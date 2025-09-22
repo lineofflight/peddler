@@ -30,6 +30,10 @@ group :development do
   gem "fiddle"
   gem "rdoc"
 
+  # Removed from stdlib
+  # TODO: Remove when VCR updates to handle this natively
+  gem "cgi" if RUBY_VERSION >= "3.5"
+
   # For exploratory code
   gem "csv"
 end
