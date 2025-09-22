@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.summary  = "Amazon Selling Partner API (SP-API) in Ruby"
   gem.authors  = ["Hakan Ensari"]
   gem.email    = ["hakanensari@gmail.com"]
-  gem.files    = Dir["lib/peddler/**/*.rb", "sig/**/*.rbs"].append("lib/peddler.rb", "LICENSE", "README.md")
+  gem.files    = Dir["lib/peddler/**/*.rb", "sig/peddler/**/*.rbs"].append("lib/peddler.rb", "sig/peddler.rbs", "LICENSE", "README.md")
   gem.homepage = "https://github.com/lineofflight/peddler"
   gem.license  = "MIT"
 

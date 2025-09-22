@@ -1,6 +1,4 @@
 module Peddler
-  VERSION: String
-
   class API
     class CannotSandbox < StandardError
     end

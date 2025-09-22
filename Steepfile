@@ -8,8 +8,8 @@ target :lib do
 
   library "delegate"
   library "forwardable"
-  library "http"
   library "json"
+  library "socket"
   library "time"
   library "uri"
 

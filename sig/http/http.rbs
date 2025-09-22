@@ -1,4 +1,4 @@
-# Minimal HTTP singleton method declarations missing from rbs_collection
+# Minimal HTTP singleton method declarations
 module HTTP
   def self.headers: (Hash[String, String?]) -> HTTP::Client
   def self.get: (String uri, **untyped options) -> HTTP::Response
@@ -8,11 +8,14 @@ module HTTP
   def self.patch: (String uri, **untyped options) -> HTTP::Response
 
   class Client
-    def get: (String uri, **untyped options) -> HTTP::Response
-    def post: (String uri, **untyped options) -> HTTP::Response
-    def put: (String uri, **untyped options) -> HTTP::Response
-    def delete: (String uri, **untyped options) -> HTTP::Response
-    def patch: (String uri, **untyped options) -> HTTP::Response
+    def get: (String | URI uri, **untyped options) -> HTTP::Response
+    def post: (String | URI uri, **untyped options) -> HTTP::Response
+    def put: (String | URI uri, **untyped options) -> HTTP::Response
+    def delete: (String | URI uri, **untyped options) -> HTTP::Response
+    def patch: (String | URI uri, **untyped options) -> HTTP::Response
+    def use: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
+    def via: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
+    def retriable: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
   end
 
   class Response
