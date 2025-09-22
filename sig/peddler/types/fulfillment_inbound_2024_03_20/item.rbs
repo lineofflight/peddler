@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           asin: String,
           ?expiration: String,
           fnsku: String,
@@ -24,7 +24,7 @@ module Peddler
           msku: String,
           prep_instructions: Array[PrepInstruction],
           quantity: Integer
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -19,7 +19,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           container_type: String,
           container_identifier: String,
           ?tracking_number: String,
@@ -32,7 +32,7 @@ module Peddler
           ?dimensions: Dimensions,
           weight: Weight,
           packed_items: Array[PackedItem]
-        ) -> void
+        ) -> instance
       end
     end
   end

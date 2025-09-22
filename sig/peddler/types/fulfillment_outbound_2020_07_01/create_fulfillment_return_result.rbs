@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?return_items: Array[ReturnItem],
           ?invalid_return_items: Array[InvalidReturnItem],
           ?return_authorizations: Array[ReturnAuthorization]
-        ) -> void
+        ) -> instance
       end
     end
   end

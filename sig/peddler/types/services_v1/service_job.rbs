@@ -21,7 +21,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?create_time: String,
           ?service_job_id: String,
           ?service_job_status: String,
@@ -36,7 +36,7 @@ module Peddler
           ?buyer: Buyer,
           ?associated_items: Array[AssociatedItem],
           ?service_location: ServiceLocation
-        ) -> void
+        ) -> instance
       end
     end
   end

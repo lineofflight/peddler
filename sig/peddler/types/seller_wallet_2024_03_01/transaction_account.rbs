@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?account_id: String,
           ?bank_account_holder_name: String,
           bank_name: String,
@@ -22,7 +22,7 @@ module Peddler
           ?bank_account_number_tail: String,
           ?bank_account_country_code: String,
           bank_account_currency: String
-        ) -> void
+        ) -> instance
       end
     end
   end

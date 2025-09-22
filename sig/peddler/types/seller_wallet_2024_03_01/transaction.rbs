@@ -23,7 +23,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           transaction_id: String,
           transaction_type: String,
           transaction_status: String,
@@ -40,7 +40,7 @@ module Peddler
           transfer_rate_details: TransferRatePreview,
           ?transaction_final_amount: Money,
           ?transaction_failure_reason: String
-        ) -> void
+        ) -> instance
       end
     end
   end

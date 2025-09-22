@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           dimensions: Dimensions,
           weight: Weight,
           insured_value: Money,
@@ -24,7 +24,7 @@ module Peddler
           ?charges: Array[ChargeComponent],
           package_client_reference_id: String,
           items: Array[Item]
-        ) -> void
+        ) -> instance
       end
     end
   end

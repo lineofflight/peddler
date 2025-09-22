@@ -8,9 +8,9 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           items: Array[CreateReturnItem]
-        ) -> void
+        ) -> instance
       end
     end
   end

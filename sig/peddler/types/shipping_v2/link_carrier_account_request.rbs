@@ -11,12 +11,12 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?client_reference_details: Array[ClientReferenceDetail],
           carrier_account_type: String,
           carrier_account_attributes: Array[CarrierAccountAttribute],
           ?encrypted_carrier_account_attributes: Array[CarrierAccountAttribute]
-        ) -> void
+        ) -> instance
       end
     end
   end

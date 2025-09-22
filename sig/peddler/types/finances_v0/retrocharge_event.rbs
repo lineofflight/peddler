@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?retrocharge_event_type: String,
           ?amazon_order_id: String,
           ?posted_date: String,
@@ -22,7 +22,7 @@ module Peddler
           ?shipping_tax: Money,
           ?marketplace_name: String,
           ?retrocharge_tax_withheld_list: Array[TaxWithheldComponent]
-        ) -> void
+        ) -> instance
       end
     end
   end

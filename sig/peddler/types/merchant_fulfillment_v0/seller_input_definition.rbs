@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           required: bool,
           data_type: String,
           constraints: Array[Constraint],
@@ -22,7 +22,7 @@ module Peddler
           ?input_target: String,
           stored_value: AdditionalSellerInput,
           ?restricted_set_values: Array[String]
-        ) -> void
+        ) -> instance
       end
     end
   end

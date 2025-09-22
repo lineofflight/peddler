@@ -8,9 +8,9 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?collections_form_document: CollectionsFormDocument
-        ) -> void
+        ) -> instance
       end
     end
   end

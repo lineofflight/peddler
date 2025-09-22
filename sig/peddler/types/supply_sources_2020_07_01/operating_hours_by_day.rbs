@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?monday: Array[OperatingHour],
           ?tuesday: Array[OperatingHour],
           ?wednesday: Array[OperatingHour],
@@ -22,7 +22,7 @@ module Peddler
           ?friday: Array[OperatingHour],
           ?saturday: Array[OperatingHour],
           ?sunday: Array[OperatingHour]
-        ) -> void
+        ) -> instance
       end
     end
   end

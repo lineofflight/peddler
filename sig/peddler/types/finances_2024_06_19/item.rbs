@@ -12,13 +12,13 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?description: String,
           ?related_identifiers: Array[ItemRelatedIdentifier],
           ?total_amount: Money,
           ?breakdowns: Array[Breakdown],
           ?contexts: Array[untyped]
-        ) -> void
+        ) -> instance
       end
     end
   end

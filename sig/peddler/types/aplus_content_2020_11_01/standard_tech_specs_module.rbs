@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?headline: TextComponent,
           specification_list: Array[StandardTextPairBlock],
           ?table_count: Integer
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -23,7 +23,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           content_module_type: String,
           ?standard_company_logo: StandardCompanyLogoModule,
           ?standard_comparison_table: StandardComparisonTableModule,
@@ -40,7 +40,7 @@ module Peddler
           ?standard_tech_specs: StandardTechSpecsModule,
           ?standard_text: StandardTextModule,
           ?standard_three_image_text: StandardThreeImageTextModule
-        ) -> void
+        ) -> instance
       end
     end
   end

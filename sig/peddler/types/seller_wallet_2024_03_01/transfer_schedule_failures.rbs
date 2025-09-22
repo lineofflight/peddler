@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           transfer_schedule_failure_date: String,
           transfer_schedule_failure_reason: String
-        ) -> void
+        ) -> instance
       end
     end
   end

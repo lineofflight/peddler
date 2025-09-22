@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           discounts: Array[Incentive],
           ?expiration: String,
           fees: Array[Incentive],
@@ -24,7 +24,7 @@ module Peddler
           status: String,
           supported_configurations: Array[PackingConfiguration],
           supported_shipping_configurations: Array[ShippingConfiguration]
-        ) -> void
+        ) -> instance
       end
     end
   end

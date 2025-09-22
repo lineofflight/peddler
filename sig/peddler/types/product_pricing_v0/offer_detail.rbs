@@ -23,7 +23,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?my_offer: bool,
           ?offer_type: String,
           sub_condition: String,
@@ -40,7 +40,7 @@ module Peddler
           ?prime_information: PrimeInformationType,
           ?buy_box_winner: bool,
           ?featured_merchant: bool
-        ) -> void
+        ) -> instance
       end
     end
   end

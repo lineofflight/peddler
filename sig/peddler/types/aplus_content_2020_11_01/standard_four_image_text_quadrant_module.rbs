@@ -11,12 +11,12 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           block1: StandardImageTextBlock,
           block2: StandardImageTextBlock,
           block3: StandardImageTextBlock,
           block4: StandardImageTextBlock
-        ) -> void
+        ) -> instance
       end
     end
   end

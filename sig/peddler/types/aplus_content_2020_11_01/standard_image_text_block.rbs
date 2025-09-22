@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?image: ImageComponent,
           ?headline: TextComponent,
           ?body: ParagraphComponent
-        ) -> void
+        ) -> instance
       end
     end
   end

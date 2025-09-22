@@ -18,7 +18,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?box_id: String,
           ?content_information_source: String,
           ?destination_region: Region,
@@ -30,7 +30,7 @@ module Peddler
           ?quantity: Integer,
           ?template_name: String,
           ?weight: Weight
-        ) -> void
+        ) -> instance
       end
     end
   end

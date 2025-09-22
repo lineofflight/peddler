@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?custom_text_for_label: String,
           ?standard_id_for_label: String
-        ) -> void
+        ) -> instance
       end
     end
   end

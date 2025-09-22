@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?hour_of_day: Integer,
           ?minute_of_hour: Integer,
           ?second_of_minute: Integer
-        ) -> void
+        ) -> instance
       end
     end
   end

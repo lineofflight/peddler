@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?tax_collection_model: String,
           ?taxes_withheld: Array[ChargeComponent]
-        ) -> void
+        ) -> instance
       end
     end
   end

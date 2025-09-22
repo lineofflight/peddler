@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           pagination: ListOffersRequestPagination,
           filters: ListOffersRequestFilters,
           ?sort: ListOffersRequestSort
-        ) -> void
+        ) -> instance
       end
     end
   end

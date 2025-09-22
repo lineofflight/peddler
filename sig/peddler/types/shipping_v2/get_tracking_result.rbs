@@ -12,13 +12,13 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           tracking_id: String,
           alternate_leg_tracking_id: String,
           event_history: Array[Event],
           promised_delivery_date: String,
           summary: TrackingSummary
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -54,7 +54,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           amazon_order_id: String,
           ?seller_order_id: String,
           purchase_date: String,
@@ -102,7 +102,7 @@ module Peddler
           ?automated_shipping_settings: AutomatedShippingSettings,
           ?has_regulated_items: bool,
           ?electronic_invoice_status: String
-        ) -> void
+        ) -> instance
       end
     end
   end

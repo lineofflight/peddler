@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           inbound_plan_id: String,
           operation_id: String
-        ) -> void
+        ) -> instance
       end
     end
   end

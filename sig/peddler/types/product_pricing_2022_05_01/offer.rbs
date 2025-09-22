@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           seller_id: String,
           condition: String,
           ?sub_condition: String,
@@ -24,7 +24,7 @@ module Peddler
           ?shipping_options: Array[ShippingOption],
           ?points: Points,
           ?prime_details: PrimeDetails
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -12,13 +12,13 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
 <% properties.each_with_index do |(prop_name, prop_def), index| -%>
 <% attr_name = attribute_name_for(prop_name, prop_def) -%>
 <% is_required = required?(prop_name) -%>
           <%= is_required ? "" : "?" %><%= attr_name %>: <%= rbs_type_for(prop_def) %><%= "," unless index == properties.size - 1 %>
 <% end -%>
-        ) -> void
+        ) -> instance
       end
     end
   end

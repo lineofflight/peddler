@@ -13,14 +13,14 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           uri: String,
           method: String,
           ?headers: HttpRequestHeaders,
           marketplace_id: String,
           item_condition: String,
           ?customer_type: String
-        ) -> void
+        ) -> instance
       end
     end
   end

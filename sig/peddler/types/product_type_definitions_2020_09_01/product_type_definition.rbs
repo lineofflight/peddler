@@ -17,7 +17,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?meta_schema: SchemaLink,
           schema: SchemaLink,
           requirements: String,
@@ -28,7 +28,7 @@ module Peddler
           product_type: String,
           display_name: String,
           product_type_version: ProductTypeVersion
-        ) -> void
+        ) -> instance
       end
     end
   end

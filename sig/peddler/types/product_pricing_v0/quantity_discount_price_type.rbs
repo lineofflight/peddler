@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           quantity_tier: Integer,
           quantity_discount_type: String,
           listing_price: Money
-        ) -> void
+        ) -> instance
       end
     end
   end

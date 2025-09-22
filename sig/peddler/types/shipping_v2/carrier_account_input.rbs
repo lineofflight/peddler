@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?description_localization_key: String,
           ?name: String,
           ?group_name: String,
@@ -24,7 +24,7 @@ module Peddler
           ?confidential: bool,
           ?hidden: bool,
           ?validation_metadata: Array[ValidationMetadata]
-        ) -> void
+        ) -> instance
       end
     end
   end

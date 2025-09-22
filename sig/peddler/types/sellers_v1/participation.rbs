@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           participating: bool,
           has_suspended_listings: bool
-        ) -> void
+        ) -> instance
       end
     end
   end

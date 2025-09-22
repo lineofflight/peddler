@@ -40,7 +40,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?shipment_event_list: Array[ShipmentEvent],
           ?shipment_settle_event_list: Array[ShipmentEvent],
           ?refund_event_list: Array[ShipmentEvent],
@@ -74,7 +74,7 @@ module Peddler
           ?failed_adhoc_disbursement_event_list: Array[FailedAdhocDisbursementEvent],
           ?value_added_service_charge_event_list: Array[ValueAddedServiceChargeEvent],
           ?capacity_reservation_billing_event_list: Array[CapacityReservationBillingEvent]
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -8,9 +8,9 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           label_specification: LabelSpecification
-        ) -> void
+        ) -> instance
       end
     end
   end

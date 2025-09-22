@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?height: Float,
           label_type: String,
           ?locale_code: String,
@@ -22,7 +22,7 @@ module Peddler
           msku_quantities: Array[MskuQuantity],
           ?page_type: String,
           ?width: Float
-        ) -> void
+        ) -> instance
       end
     end
   end

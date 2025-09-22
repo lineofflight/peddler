@@ -23,7 +23,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           context_type: String,
           ?store_name: String,
           ?order_type: String,
@@ -40,7 +40,7 @@ module Peddler
           ?maturity_date: String,
           ?start_time: String,
           ?end_time: String
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -17,7 +17,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           container_type: String,
           ?container_sequence_number: String,
           container_identifiers: Array[ContainerIdentification],
@@ -28,7 +28,7 @@ module Peddler
           ?block: Integer,
           ?inner_containers_details: InnerContainersDetails,
           ?packed_items: Array[PackedItems]
-        ) -> void
+        ) -> instance
       end
     end
   end

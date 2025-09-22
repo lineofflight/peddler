@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           image_position_type: String,
           ?block: StandardImageTextBlock
-        ) -> void
+        ) -> instance
       end
     end
   end

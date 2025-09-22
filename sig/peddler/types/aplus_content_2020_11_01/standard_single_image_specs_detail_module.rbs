@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?headline: TextComponent,
           ?image: ImageComponent,
           ?description_headline: TextComponent,
@@ -24,7 +24,7 @@ module Peddler
           ?specification_headline: TextComponent,
           ?specification_list_block: StandardHeaderTextListBlock,
           ?specification_text_block: StandardTextBlock
-        ) -> void
+        ) -> instance
       end
     end
   end

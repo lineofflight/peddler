@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?ltl_tracking_detail: LtlTrackingDetailInput,
           ?spd_tracking_detail: SpdTrackingDetailInput
-        ) -> void
+        ) -> instance
       end
     end
   end

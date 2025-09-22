@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           status: String,
           requires_merchant_action: bool,
           valid_rejection_reasons: Array[RejectionReason],
@@ -22,7 +22,7 @@ module Peddler
           ?review_date: String,
           ?external_reviewer_id: String,
           ?valid_verification_details: Array[ValidVerificationDetail]
-        ) -> void
+        ) -> instance
       end
     end
   end

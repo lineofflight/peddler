@@ -29,7 +29,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?not_delivered_due_to_oos: Float,
           ?total_subscriptions_revenue: Float,
           ?shipped_subscription_units: Float,
@@ -52,7 +52,7 @@ module Peddler
           ?share_of_coupon_subscriptions: Float,
           ?time_interval: TimeInterval,
           ?currency_code: String
-        ) -> void
+        ) -> instance
       end
     end
   end

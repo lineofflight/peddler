@@ -21,7 +21,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           shipping_service_name: String,
           carrier_name: String,
           shipping_service_id: String,
@@ -36,7 +36,7 @@ module Peddler
           ?available_format_options_for_label: Array[LabelFormatOption],
           requires_additional_seller_inputs: bool,
           ?benefits: Benefits
-        ) -> void
+        ) -> instance
       end
     end
   end

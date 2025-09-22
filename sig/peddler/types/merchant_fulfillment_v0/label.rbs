@@ -12,13 +12,13 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?custom_text_for_label: String,
           dimensions: LabelDimensions,
           file_contents: FileContents,
           ?label_format: String,
           ?standard_id_for_label: String
-        ) -> void
+        ) -> instance
       end
     end
   end

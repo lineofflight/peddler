@@ -18,7 +18,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?financial_event_group_id: String,
           ?processing_status: String,
           ?fund_transfer_status: String,
@@ -30,7 +30,7 @@ module Peddler
           ?beginning_balance: Money,
           ?financial_event_group_start: String,
           ?financial_event_group_end: String
-        ) -> void
+        ) -> instance
       end
     end
   end

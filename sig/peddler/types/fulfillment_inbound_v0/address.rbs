@@ -15,7 +15,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           name: String,
           address_line1: String,
           ?address_line2: String,
@@ -24,7 +24,7 @@ module Peddler
           state_or_province_code: String,
           country_code: String,
           postal_code: String
-        ) -> void
+        ) -> instance
       end
     end
   end

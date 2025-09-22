@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           purchase_order_number: String,
           purchase_order_status: String,
           purchase_order_date: String,
@@ -22,7 +22,7 @@ module Peddler
           selling_party: PartyIdentification,
           ship_to_party: PartyIdentification,
           item_status: Array[OrderItemStatus]
-        ) -> void
+        ) -> instance
       end
     end
   end

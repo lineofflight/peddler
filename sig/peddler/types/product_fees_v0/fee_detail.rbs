@@ -13,14 +13,14 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           fee_type: String,
           fee_amount: Money,
           ?fee_promotion: Money,
           ?tax_amount: Money,
           final_fee: Money,
           ?included_fee_detail_list: Array[IncludedFeeDetail]
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           available_carrier_will_pick_up_options: Array[AvailableCarrierWillPickUpOption],
           available_delivery_experience_options: Array[AvailableDeliveryExperienceOption]
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -13,14 +13,14 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?image: ImageComponent,
           ?headline: TextComponent,
           ?text_block1: StandardTextBlock,
           ?text_block2: StandardTextBlock,
           ?text_block3: StandardTextBlock,
           ?bulleted_list_block: StandardHeaderTextListBlock
-        ) -> void
+        ) -> instance
       end
     end
   end

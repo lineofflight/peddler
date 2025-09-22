@@ -22,7 +22,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           package_number: Integer,
           ?tracking_number: String,
           ?customer_tracking_link: String,
@@ -38,7 +38,7 @@ module Peddler
           ?signed_for_by: String,
           ?additional_location_info: String,
           ?tracking_events: Array[TrackingEvent]
-        ) -> void
+        ) -> instance
       end
     end
   end

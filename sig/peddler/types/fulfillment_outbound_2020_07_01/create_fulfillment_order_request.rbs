@@ -24,7 +24,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?marketplace_id: String,
           seller_fulfillment_order_id: String,
           displayable_order_id: String,
@@ -42,7 +42,7 @@ module Peddler
           ?feature_constraints: Array[FeatureSettings],
           items: Array[CreateFulfillmentOrderItem],
           ?payment_information: Array[PaymentInformation]
-        ) -> void
+        ) -> instance
       end
     end
   end

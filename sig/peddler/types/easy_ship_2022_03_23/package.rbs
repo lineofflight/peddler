@@ -16,7 +16,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           scheduled_package_id: ScheduledPackageId,
           package_dimensions: Dimensions,
           package_weight: Weight,
@@ -26,7 +26,7 @@ module Peddler
           ?invoice: InvoiceData,
           ?package_status: String,
           ?tracking_details: TrackingDetails
-        ) -> void
+        ) -> instance
       end
     end
   end

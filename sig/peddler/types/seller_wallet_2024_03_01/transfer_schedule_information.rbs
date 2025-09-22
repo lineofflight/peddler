@@ -11,12 +11,12 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?schedule_start_date: String,
           ?schedule_end_date: String,
           ?schedule_expression: ScheduleExpression,
           ?schedule_type: String
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?sku: String,
           ?asin: String,
           ?marketplace_id: String,
@@ -22,7 +22,7 @@ module Peddler
           ?offer_program_configuration: OfferProgramConfiguration,
           ?program_type: String,
           ?vendor_codes: Array[String]
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -16,7 +16,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           query_id: String,
           query: String,
           created_time: String,
@@ -26,7 +26,7 @@ module Peddler
           ?data_document_id: String,
           ?error_document_id: String,
           ?pagination: Hash[String, untyped]
-        ) -> void
+        ) -> instance
       end
     end
   end

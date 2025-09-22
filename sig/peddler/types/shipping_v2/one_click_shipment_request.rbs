@@ -20,7 +20,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?ship_to: Address,
           ship_from: Address,
           ?return_to: Address,
@@ -34,7 +34,7 @@ module Peddler
           service_selection: ServiceSelection,
           ?shipper_instruction: ShipperInstruction,
           ?destination_access_point_details: AccessPointDetails
-        ) -> void
+        ) -> instance
       end
     end
   end

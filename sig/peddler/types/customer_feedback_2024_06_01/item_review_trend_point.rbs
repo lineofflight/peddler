@@ -11,12 +11,12 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           date_range: DateRange,
           asin_metrics: ReviewTrendMetrics,
           ?parent_asin_metrics: ReviewTrendMetrics,
           ?browse_node_metrics: BrowseNodeTrendMetrics
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -17,7 +17,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?access_point_id: String,
           ?name: String,
           ?timezone: String,
@@ -28,7 +28,7 @@ module Peddler
           ?assistance_type: String,
           ?score: String,
           ?standard_operating_hours: DayOfWeekTimeMap
-        ) -> void
+        ) -> instance
       end
     end
   end

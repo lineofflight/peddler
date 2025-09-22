@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           upload_destination_id: String,
           image_crop_specification: ImageCropSpecification,
           alt_text: String
-        ) -> void
+        ) -> instance
       end
     end
   end

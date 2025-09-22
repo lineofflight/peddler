@@ -11,12 +11,12 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           amazon_order_id: String,
           regulated_information: RegulatedInformation,
           requires_dosage_label: bool,
           regulated_order_verification_status: RegulatedOrderVerificationStatus
-        ) -> void
+        ) -> instance
       end
     end
   end

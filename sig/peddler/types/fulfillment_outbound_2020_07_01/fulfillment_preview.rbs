@@ -18,7 +18,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           shipping_speed_category: String,
           ?scheduled_delivery_info: ScheduledDeliveryInfo,
           fulfillable: bool,
@@ -30,7 +30,7 @@ module Peddler
           ?order_unfulfillable_reasons: Array[String],
           marketplace_id: String,
           ?feature_constraints: Array[FeatureSettings]
-        ) -> void
+        ) -> instance
       end
     end
   end

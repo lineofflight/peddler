@@ -10,11 +10,11 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           download_type: String,
           ?expiration: String,
           uri: String
-        ) -> void
+        ) -> instance
       end
     end
   end

@@ -9,10 +9,10 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?warnings: Array[Error],
           content_record: ContentRecord
-        ) -> void
+        ) -> instance
       end
     end
   end

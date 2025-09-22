@@ -14,7 +14,7 @@ module Peddler
 
         def self.parse: (Hash[String, untyped] hash) -> instance
 
-        def initialize: (
+        def self.new: (
           ?fulfillable_quantity: Integer,
           ?inbound_working_quantity: Integer,
           ?inbound_shipped_quantity: Integer,
@@ -22,7 +22,7 @@ module Peddler
           ?reserved_quantity: ReservedQuantity,
           ?researching_quantity: ResearchingQuantity,
           ?unfulfillable_quantity: UnfulfillableQuantity
-        ) -> void
+        ) -> instance
       end
     end
   end
