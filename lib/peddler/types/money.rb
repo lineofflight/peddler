@@ -16,7 +16,8 @@ module Peddler
           # Handle different field names for amount: Amount, amount, CurrencyAmount, currencyAmount, value
           amount_value = value["Amount"] || value["amount"] || value["CurrencyAmount"] ||
             value["currencyAmount"] || value["currency_amount"] || value["value"]
-          decimal_amount = BigDecimal(amount_value)
+          # Convert to string to ensure BigDecimal compatibility across Ruby versions
+          decimal_amount = BigDecimal(amount_value.to_s)
           amount = NO_SUBUNITS.include?(currency_code) ? decimal_amount.to_i.to_s : format("%.2f", decimal_amount)
 
           new(amount:, currency_code:)
