@@ -16,6 +16,7 @@ module Peddler
     def request: () -> Response
 
     private
+
     def grant_type: () -> String?
     def params: () -> Hash[Symbol, untyped]
 

@@ -2,6 +2,7 @@ module Peddler
   class API
     class CannotSandbox < StandardError
     end
+
     class MustSandbox < StandardError
     end
     @endpoint: Endpoint
@@ -38,6 +39,7 @@ module Peddler
     def patch: (String path, ?parser: untyped?, **untyped options) -> Response
 
     private
+
     def meter: (Float? requests_per_second) -> self
     def user_agent: () -> String
     def timestamp: () -> String

@@ -20,6 +20,7 @@ module Peddler
     def raise_for_status!: (?raise_on_server_errors: bool) -> void
 
     private
+
     def parser: () -> untyped
     def warn_about_server_error_handling: () -> void
 
