@@ -24,8 +24,6 @@ jobs:
         with:
           ruby-version: "3.4"
           bundler-cache: true
-        env:
-          BUNDLE_WITHOUT: lint
       - run: bundle exec steep check --severity-level=hint
 
   verify-links:
@@ -49,8 +47,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-        env:
-          BUNDLE_WITHOUT: lint
       - run: bundle exec appraisal install
       - run: bundle exec appraisal ${{ matrix.appraisal }} rake test
 
