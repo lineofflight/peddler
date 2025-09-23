@@ -9,7 +9,7 @@
 module Peddler
   class << self
     <% apis_with_latest_version.each do |api_name, version| -%>
-      alias_method :<%= api_name %>, :<%= [api_name, version].join('_') %>
+      alias_method :<%= api_name %>, :<%= [api_name, version].join("_") %>
     <% end -%>
   end
 end

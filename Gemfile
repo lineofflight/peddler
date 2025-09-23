@@ -10,15 +10,20 @@ gem "irb"
 gem "minitest"
 gem "rake"
 gem "rbs"
-gem "rubocop"
-gem "rubocop-minitest"
-gem "rubocop-performance"
-gem "rubocop-rake"
-gem "rubocop-shopify"
 gem "steep"
 gem "vcr"
 gem "webmock"
 gem "yard"
+
+group :lint do
+  gem "herb", force_ruby_platform: true
+  gem "rubocop"
+  gem "rubocop-erb"
+  gem "rubocop-minitest"
+  gem "rubocop-performance"
+  gem "rubocop-rake"
+  gem "rubocop-shopify"
+end
 
 # TODO: Remove the version guard when Yard handles changes in the new Commonmarker
 # https://github.com/lsegal/yard/issues/1528

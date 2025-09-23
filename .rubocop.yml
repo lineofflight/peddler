@@ -1,4 +1,5 @@
 plugins:
+  - rubocop-erb
   - rubocop-minitest
   - rubocop-performance
   - rubocop-rake
