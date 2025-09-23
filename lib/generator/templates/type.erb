@@ -3,30 +3,26 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 <% if needs_money? -%>
-require "peddler/types/money"
-<% end -%>
-<% if type_dependencies.empty? && !needs_money? -%>
-require "structure"
+  require "peddler/types/money"
+<% elsif type_dependencies.empty? -%>
+  require "structure"
 <% end -%>
 <% type_dependencies.each do |dep| -%>
-require "peddler/types/<%= api_name %>/<%= dep.underscore %>"
+  require "peddler/types/<%= api_name %>/<%= dep.underscore %>"
 <% end -%>
 
 module Peddler
   module Types
     module <%= api_name.camelize %>
-<% if definition["description"] -%>
-<%= split_long_comment_line(definition["description"], base_indent: 6) %>
-<% end -%>
+      <% if definition["description"] -%>
+        <%= split_long_comment_line(definition["description"], base_indent: 6) %>
+      <% end -%>
       <%= class_name %> = Structure.new do
-<% properties.each_with_index do |(prop_name, prop_def), index| -%>
-<% if index > 0 -%>
-
-<% end -%>
-<% attr_name = attribute_name_for(prop_name, prop_def) -%>
-<%= format_property_comment(prop_def) %>
-        attribute(:<%= attr_name %>, <%= ruby_type_for(prop_def) %><% if attr_name != prop_name %>, from: "<%= prop_name %>"<% end %>)
-<% end -%>
+        <% properties.each_with_index do |(prop_name, prop_def), index| -%>
+          <%= "\n" if index > 0 -%>
+          <%= format_property_comment(prop_def) %>
+          attribute(:<%= attribute_name_for(prop_name, prop_def) %>, <%= ruby_type_for(prop_def) %><% if attribute_name_for(prop_name, prop_def) != prop_name %>, from: "<%= prop_name %>"<% end %>)
+        <% end -%>
       end
     end
   end

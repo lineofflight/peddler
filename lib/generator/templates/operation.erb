@@ -1,29 +1,29 @@
 <%= description %>
-      #
+#
 <% tags.each do |tag| -%>
 <%= tag %>
 <% end -%>
 <%= method_definition %>
-<% if sandbox_rule -%>
-        <%= sandbox_rule -%>
-<% end -%>
-        path = "<%= path %>"
-<% if body_param_name && body_param_name != "body" -%>
-        body = <%= body_param_name %>
-<% end -%>
-<% if query_params.any? -%>
-        params = {
-<% query_params.each do |k, v| -%>
-          "<%= k %>" => <%= v %>,
-<% end -%>
-        }.compact
-<% end -%>
-<% if has_typed_response? -%>
-        parser = <%= parser_class %> if typed?
-<% end -%>
-<% if rate_limit -%>
-        meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)
-<% else -%>
-        <%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)
-<% end -%>
-      end
+  <% if sandbox_rule -%>
+  <%= sandbox_rule -%>
+  <% end -%>
+  path = "<%= path %>"
+  <% if body_param_name && body_param_name != "body" -%>
+  body = <%= body_param_name %>
+  <% end -%>
+  <% if query_params.any? -%>
+  params = {
+    <% query_params.each do |k, v| -%>
+    "<%= k %>" => <%= v %>,
+    <% end -%>
+  }.compact
+  <% end -%>
+  <% if has_typed_response? -%>
+  parser = <%= parser_class %> if typed?
+  <% end -%>
+  <% if rate_limit -%>
+  meter(rate_limit).<%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)
+  <% else -%>
+  <%= verb %>(<%= request_args.join(", ") %><% if has_typed_response? -%>, parser:<% end -%>)
+  <% end -%>
+end
