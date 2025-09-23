@@ -4,10 +4,7 @@ module Peddler
   module APIs
     class <%= class_name %> < API
 <% operations.each do |operation| -%>
-<% rendered = render_operation(operation) -%>
-<% if rendered -%>
-      <%= rendered %>
-<% end -%>
+      <%= render_operation(operation) %>
 <% end -%>
     end
   end
