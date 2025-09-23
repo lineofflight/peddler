@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 require "peddler/apis/amazon_warehousing_and_distribution_2024_05_09"
 require "peddler/apis/aplus_content_2020_11_01"
 require "peddler/apis/application_integrations_2024_04_01"
