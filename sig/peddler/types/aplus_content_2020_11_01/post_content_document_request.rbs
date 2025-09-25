@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class PostContentDocumentRequest < Data
-        attr_reader content_document: ContentDocument
+        def self.new: (content_document: Peddler::Types::AplusContent20201101::ContentDocument?) -> instance
+                    | (Peddler::Types::AplusContent20201101::ContentDocument?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          content_document: ContentDocument
-        ) -> instance
+        attr_reader content_document: Peddler::Types::AplusContent20201101::ContentDocument?
+
+        def to_h: () -> { content_document: Peddler::Types::AplusContent20201101::ContentDocument? }
       end
     end
   end

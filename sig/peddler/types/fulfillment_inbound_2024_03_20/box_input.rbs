@@ -4,21 +4,18 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class BoxInput < Data
-        attr_reader content_information_source: String
-        attr_reader dimensions: Dimensions
-        attr_reader items: Array[ItemInput]?
-        attr_reader quantity: Integer
-        attr_reader weight: Weight
+        def self.new: (content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> instance
+                    | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, Integer?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          content_information_source: String,
-          dimensions: Dimensions,
-          ?items: Array[ItemInput],
-          quantity: Integer,
-          weight: Weight
-        ) -> instance
+        attr_reader content_information_source: String?
+        attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
+        attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
+        attr_reader quantity: Integer?
+        attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+
+        def to_h: () -> { content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
       end
     end
   end

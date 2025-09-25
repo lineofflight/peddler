@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ContentUpdatePreview < Data
-        attr_reader content_update_preview_id: String
-        attr_reader expiration: String
-        attr_reader requested_updates: RequestedUpdates
-        attr_reader transportation_option: TransportationOption
+        def self.new: (content_update_preview_id: String?, expiration: String?, requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> instance
+                    | (String?, String?, Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          content_update_preview_id: String,
-          expiration: String,
-          requested_updates: RequestedUpdates,
-          transportation_option: TransportationOption
-        ) -> instance
+        attr_reader content_update_preview_id: String?
+        attr_reader expiration: String?
+        attr_reader requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?
+        attr_reader transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption?
+
+        def to_h: () -> { content_update_preview_id: String?, expiration: String?, requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption? }
       end
     end
   end

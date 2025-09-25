@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFeatureInventoryResult < Data
-        attr_reader marketplace_id: String
-        attr_reader feature_name: String
+        def self.new: (marketplace_id: String?, feature_name: String?, next_token: String?, feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?) -> instance
+                    | (String?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
+        attr_reader feature_name: String?
         attr_reader next_token: String?
-        attr_reader feature_skus: Array[FeatureSku]?
+        attr_reader feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          feature_name: String,
-          ?next_token: String,
-          ?feature_skus: Array[FeatureSku]
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, feature_name: String?, next_token: String?, feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]? }
       end
     end
   end

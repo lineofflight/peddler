@@ -4,37 +4,26 @@ module Peddler
   module Types
     module ShippingV2
       class OneClickShipmentRequest < Data
-        attr_reader ship_to: Address?
-        attr_reader ship_from: Address
-        attr_reader return_to: Address?
+        def self.new: (ship_to: Peddler::Types::ShippingV2::Address?, ship_from: Peddler::Types::ShippingV2::Address?, return_to: Peddler::Types::ShippingV2::Address?, ship_date: String?, goods_owner: Peddler::Types::ShippingV2::GoodsOwner?, packages: Array[Peddler::Types::ShippingV2::Package]?, value_added_services_details: Array[Peddler::Types::ShippingV2::OneClickShipmentValueAddedService]?, tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?, channel_details: Peddler::Types::ShippingV2::ChannelDetails?, label_specifications: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, service_selection: Peddler::Types::ShippingV2::ServiceSelection?, shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?, destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?) -> instance
+                    | (Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::Address?, String?, Peddler::Types::ShippingV2::GoodsOwner?, Array[Peddler::Types::ShippingV2::Package]?, Array[Peddler::Types::ShippingV2::OneClickShipmentValueAddedService]?, Array[Peddler::Types::ShippingV2::TaxDetail]?, Peddler::Types::ShippingV2::ChannelDetails?, Peddler::Types::ShippingV2::RequestedDocumentSpecification?, Peddler::Types::ShippingV2::ServiceSelection?, Peddler::Types::ShippingV2::ShipperInstruction?, Peddler::Types::ShippingV2::AccessPointDetails?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader ship_to: Peddler::Types::ShippingV2::Address?
+        attr_reader ship_from: Peddler::Types::ShippingV2::Address?
+        attr_reader return_to: Peddler::Types::ShippingV2::Address?
         attr_reader ship_date: String?
-        attr_reader goods_owner: GoodsOwner?
-        attr_reader packages: Array[Package]
-        attr_reader value_added_services_details: Array[OneClickShipmentValueAddedService]?
-        attr_reader tax_details: Array[TaxDetail]?
-        attr_reader channel_details: ChannelDetails
-        attr_reader label_specifications: RequestedDocumentSpecification
-        attr_reader service_selection: ServiceSelection
-        attr_reader shipper_instruction: ShipperInstruction?
-        attr_reader destination_access_point_details: AccessPointDetails?
+        attr_reader goods_owner: Peddler::Types::ShippingV2::GoodsOwner?
+        attr_reader packages: Array[Peddler::Types::ShippingV2::Package]?
+        attr_reader value_added_services_details: Array[Peddler::Types::ShippingV2::OneClickShipmentValueAddedService]?
+        attr_reader tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?
+        attr_reader channel_details: Peddler::Types::ShippingV2::ChannelDetails?
+        attr_reader label_specifications: Peddler::Types::ShippingV2::RequestedDocumentSpecification?
+        attr_reader service_selection: Peddler::Types::ShippingV2::ServiceSelection?
+        attr_reader shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?
+        attr_reader destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?ship_to: Address,
-          ship_from: Address,
-          ?return_to: Address,
-          ?ship_date: String,
-          ?goods_owner: GoodsOwner,
-          packages: Array[Package],
-          ?value_added_services_details: Array[OneClickShipmentValueAddedService],
-          ?tax_details: Array[TaxDetail],
-          channel_details: ChannelDetails,
-          label_specifications: RequestedDocumentSpecification,
-          service_selection: ServiceSelection,
-          ?shipper_instruction: ShipperInstruction,
-          ?destination_access_point_details: AccessPointDetails
-        ) -> instance
+        def to_h: () -> { ship_to: Peddler::Types::ShippingV2::Address?, ship_from: Peddler::Types::ShippingV2::Address?, return_to: Peddler::Types::ShippingV2::Address?, ship_date: String?, goods_owner: Peddler::Types::ShippingV2::GoodsOwner?, packages: Array[Peddler::Types::ShippingV2::Package]?, value_added_services_details: Array[Peddler::Types::ShippingV2::OneClickShipmentValueAddedService]?, tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?, channel_details: Peddler::Types::ShippingV2::ChannelDetails?, label_specifications: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, service_selection: Peddler::Types::ShippingV2::ServiceSelection?, shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?, destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails? }
       end
     end
   end

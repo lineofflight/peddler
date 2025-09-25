@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class TaxClassification < Data
+        def self.new: (name: String?, value: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader name: String?
         attr_reader value: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?name: String,
-          ?value: String
-        ) -> instance
+        def to_h: () -> { name: String?, value: String? }
       end
     end
   end

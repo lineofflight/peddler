@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class TotalWeight < Data
-        attr_reader unit_of_measure: String
-        attr_reader amount: Float
+        def self.new: (unit_of_measure: String?, amount: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          unit_of_measure: String,
-          amount: Float
-        ) -> instance
+        attr_reader unit_of_measure: String?
+        attr_reader amount: String?
+
+        def to_h: () -> { unit_of_measure: String?, amount: String? }
       end
     end
   end

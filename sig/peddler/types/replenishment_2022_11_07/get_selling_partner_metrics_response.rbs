@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Replenishment20221107
       class GetSellingPartnerMetricsResponse < Data
-        attr_reader metrics: Array[GetSellingPartnerMetricsResponseMetric]?
+        def self.new: (metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> instance
+                    | (Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?metrics: Array[GetSellingPartnerMetricsResponseMetric]
-        ) -> instance
+        attr_reader metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?
+
+        def to_h: () -> { metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]? }
       end
     end
   end

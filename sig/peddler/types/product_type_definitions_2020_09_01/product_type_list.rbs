@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class ProductTypeList < Data
-        attr_reader product_types: Array[ProductType]
-        attr_reader product_type_version: String
+        def self.new: (product_types: Array[Peddler::Types::ProductTypeDefinitions20200901::ProductType]?, product_type_version: String?) -> instance
+                    | (Array[Peddler::Types::ProductTypeDefinitions20200901::ProductType]?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          product_types: Array[ProductType],
-          product_type_version: String
-        ) -> instance
+        attr_reader product_types: Array[Peddler::Types::ProductTypeDefinitions20200901::ProductType]?
+        attr_reader product_type_version: String?
+
+        def to_h: () -> { product_types: Array[Peddler::Types::ProductTypeDefinitions20200901::ProductType]?, product_type_version: String? }
       end
     end
   end

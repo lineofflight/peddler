@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class DebtRecoveryEventList < Array[DebtRecoveryEvent]
-        def self.parse: (Array[untyped] array) -> instance
+      class DebtRecoveryEventList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

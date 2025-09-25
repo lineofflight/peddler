@@ -4,29 +4,22 @@ module Peddler
   module Types
     module CatalogItems20201201
       class Item < Data
-        attr_reader asin: String
-        attr_reader attributes: ItemAttributes?
-        attr_reader identifiers: Array[ItemIdentifiersByMarketplace]?
-        attr_reader images: Array[ItemImagesByMarketplace]?
-        attr_reader product_types: Array[ItemProductTypeByMarketplace]?
-        attr_reader sales_ranks: Array[ItemSalesRanksByMarketplace]?
-        attr_reader summaries: Array[ItemSummaryByMarketplace]?
-        attr_reader variations: Array[ItemVariationsByMarketplace]?
-        attr_reader vendor_details: Array[ItemVendorDetailsByMarketplace]?
+        def self.new: (asin: String?, attributes: Peddler::Types::CatalogItems20201201::ItemAttributes?, identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace]?, images: Array[Peddler::Types::CatalogItems20201201::ItemImagesByMarketplace]?, product_types: Array[Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace]?, sales_ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace]?, summaries: Array[Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace]?, variations: Array[Peddler::Types::CatalogItems20201201::ItemVariationsByMarketplace]?, vendor_details: Array[Peddler::Types::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> instance
+                    | (String?, Peddler::Types::CatalogItems20201201::ItemAttributes?, Array[Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemImagesByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemVariationsByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          asin: String,
-          ?attributes: ItemAttributes,
-          ?identifiers: Array[ItemIdentifiersByMarketplace],
-          ?images: Array[ItemImagesByMarketplace],
-          ?product_types: Array[ItemProductTypeByMarketplace],
-          ?sales_ranks: Array[ItemSalesRanksByMarketplace],
-          ?summaries: Array[ItemSummaryByMarketplace],
-          ?variations: Array[ItemVariationsByMarketplace],
-          ?vendor_details: Array[ItemVendorDetailsByMarketplace]
-        ) -> instance
+        attr_reader asin: String?
+        attr_reader attributes: Peddler::Types::CatalogItems20201201::ItemAttributes?
+        attr_reader identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace]?
+        attr_reader images: Array[Peddler::Types::CatalogItems20201201::ItemImagesByMarketplace]?
+        attr_reader product_types: Array[Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace]?
+        attr_reader sales_ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace]?
+        attr_reader summaries: Array[Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace]?
+        attr_reader variations: Array[Peddler::Types::CatalogItems20201201::ItemVariationsByMarketplace]?
+        attr_reader vendor_details: Array[Peddler::Types::CatalogItems20201201::ItemVendorDetailsByMarketplace]?
+
+        def to_h: () -> { asin: String?, attributes: Peddler::Types::CatalogItems20201201::ItemAttributes?, identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace]?, images: Array[Peddler::Types::CatalogItems20201201::ItemImagesByMarketplace]?, product_types: Array[Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace]?, sales_ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace]?, summaries: Array[Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace]?, variations: Array[Peddler::Types::CatalogItems20201201::ItemVariationsByMarketplace]?, vendor_details: Array[Peddler::Types::CatalogItems20201201::ItemVendorDetailsByMarketplace]? }
       end
     end
   end

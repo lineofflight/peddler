@@ -4,13 +4,14 @@ module Peddler
   module Types
     module MessagingV1
       class InvoiceRequest < Data
-        attr_reader attachments: Array[Attachment]?
+        def self.new: (attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> instance
+                    | (Array[Peddler::Types::MessagingV1::Attachment]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?attachments: Array[Attachment]
-        ) -> instance
+        attr_reader attachments: Array[Peddler::Types::MessagingV1::Attachment]?
+
+        def to_h: () -> { attachments: Array[Peddler::Types::MessagingV1::Attachment]? }
       end
     end
   end

@@ -4,27 +4,21 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardSingleImageSpecsDetailModule < Data
-        attr_reader headline: TextComponent?
-        attr_reader image: ImageComponent?
-        attr_reader description_headline: TextComponent?
-        attr_reader description_block1: StandardTextBlock?
-        attr_reader description_block2: StandardTextBlock?
-        attr_reader specification_headline: TextComponent?
-        attr_reader specification_list_block: StandardHeaderTextListBlock?
-        attr_reader specification_text_block: StandardTextBlock?
+        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent?, description_headline: Peddler::Types::AplusContent20201101::TextComponent?, description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, specification_headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?) -> instance
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?headline: TextComponent,
-          ?image: ImageComponent,
-          ?description_headline: TextComponent,
-          ?description_block1: StandardTextBlock,
-          ?description_block2: StandardTextBlock,
-          ?specification_headline: TextComponent,
-          ?specification_list_block: StandardHeaderTextListBlock,
-          ?specification_text_block: StandardTextBlock
-        ) -> instance
+        attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
+        attr_reader description_headline: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        attr_reader description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        attr_reader specification_headline: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?
+        attr_reader specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?
+
+        def to_h: () -> { headline: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent?, description_headline: Peddler::Types::AplusContent20201101::TextComponent?, description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, specification_headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock? }
       end
     end
   end

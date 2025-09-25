@@ -4,21 +4,19 @@ module Peddler
   module Types
     module SupplySources20200701
       class OutboundCapability < Data
+        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, return_location: Peddler::Types::SupplySources20200701::ReturnLocation?, delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?, pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?) -> instance
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::ReturnLocation?, Peddler::Types::SupplySources20200701::DeliveryChannel?, Peddler::Types::SupplySources20200701::PickupChannel?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader supported: bool?
-        attr_reader operational_configuration: OperationalConfiguration?
-        attr_reader return_location: ReturnLocation?
-        attr_reader delivery_channel: DeliveryChannel?
-        attr_reader pickup_channel: PickupChannel?
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader return_location: Peddler::Types::SupplySources20200701::ReturnLocation?
+        attr_reader delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?
+        attr_reader pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?supported: bool,
-          ?operational_configuration: OperationalConfiguration,
-          ?return_location: ReturnLocation,
-          ?delivery_channel: DeliveryChannel,
-          ?pickup_channel: PickupChannel
-        ) -> instance
+        def supported?: () -> bool
+        def to_h: () -> { supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, return_location: Peddler::Types::SupplySources20200701::ReturnLocation?, delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?, pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel? }
       end
     end
   end

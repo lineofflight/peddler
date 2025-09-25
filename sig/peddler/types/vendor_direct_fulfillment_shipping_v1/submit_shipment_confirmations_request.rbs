@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class SubmitShipmentConfirmationsRequest < Data
-        attr_reader shipment_confirmations: Array[ShipmentConfirmation]?
+        def self.new: (shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation]?) -> instance
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?shipment_confirmations: Array[ShipmentConfirmation]
-        ) -> instance
+        attr_reader shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation]?
+
+        def to_h: () -> { shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation]? }
       end
     end
   end

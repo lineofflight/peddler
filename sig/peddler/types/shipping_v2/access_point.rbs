@@ -4,31 +4,23 @@ module Peddler
   module Types
     module ShippingV2
       class AccessPoint < Data
+        def self.new: (access_point_id: String?, name: String?, timezone: String?, type: String?, accessibility_attributes: Peddler::Types::ShippingV2::AccessibilityAttributes?, address: Peddler::Types::ShippingV2::Address?, exception_operating_hours: Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?, assistance_type: String?, score: String?, standard_operating_hours: Peddler::Types::ShippingV2::DayOfWeekTimeMap?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::ShippingV2::AccessibilityAttributes?, Peddler::Types::ShippingV2::Address?, Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?, String?, String?, Peddler::Types::ShippingV2::DayOfWeekTimeMap?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader access_point_id: String?
         attr_reader name: String?
         attr_reader timezone: String?
         attr_reader type: String?
-        attr_reader accessibility_attributes: AccessibilityAttributes?
-        attr_reader address: Address?
-        attr_reader exception_operating_hours: Array[ExceptionOperatingHours]?
+        attr_reader accessibility_attributes: Peddler::Types::ShippingV2::AccessibilityAttributes?
+        attr_reader address: Peddler::Types::ShippingV2::Address?
+        attr_reader exception_operating_hours: Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?
         attr_reader assistance_type: String?
         attr_reader score: String?
-        attr_reader standard_operating_hours: DayOfWeekTimeMap?
+        attr_reader standard_operating_hours: Peddler::Types::ShippingV2::DayOfWeekTimeMap?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?access_point_id: String,
-          ?name: String,
-          ?timezone: String,
-          ?type: String,
-          ?accessibility_attributes: AccessibilityAttributes,
-          ?address: Address,
-          ?exception_operating_hours: Array[ExceptionOperatingHours],
-          ?assistance_type: String,
-          ?score: String,
-          ?standard_operating_hours: DayOfWeekTimeMap
-        ) -> instance
+        def to_h: () -> { access_point_id: String?, name: String?, timezone: String?, type: String?, accessibility_attributes: Peddler::Types::ShippingV2::AccessibilityAttributes?, address: Peddler::Types::ShippingV2::Address?, exception_operating_hours: Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?, assistance_type: String?, score: String?, standard_operating_hours: Peddler::Types::ShippingV2::DayOfWeekTimeMap? }
       end
     end
   end

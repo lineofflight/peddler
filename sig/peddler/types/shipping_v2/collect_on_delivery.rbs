@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class CollectOnDelivery < Data
-        attr_reader amount: Money
+        def self.new: (amount: Peddler::Types::Money?) -> instance
+                    | (Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          amount: Money
-        ) -> instance
+        attr_reader amount: Peddler::Types::Money?
+
+        def to_h: () -> { amount: Peddler::Types::Money? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemSalesRanksByMarketplace < Data
-        attr_reader marketplace_id: String
-        attr_reader classification_ranks: Array[ItemClassificationSalesRank]?
-        attr_reader display_group_ranks: Array[ItemDisplayGroupSalesRank]?
+        def self.new: (marketplace_id: String?, classification_ranks: Array[Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank]?, display_group_ranks: Array[Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank]?) -> instance
+                    | (String?, Array[Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank]?, Array[Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          ?classification_ranks: Array[ItemClassificationSalesRank],
-          ?display_group_ranks: Array[ItemDisplayGroupSalesRank]
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader classification_ranks: Array[Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank]?
+        attr_reader display_group_ranks: Array[Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank]?
+
+        def to_h: () -> { marketplace_id: String?, classification_ranks: Array[Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank]?, display_group_ranks: Array[Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank]? }
       end
     end
   end

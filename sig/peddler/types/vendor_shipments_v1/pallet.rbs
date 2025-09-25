@@ -4,25 +4,20 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Pallet < Data
-        attr_reader pallet_identifiers: Array[ContainerIdentification]
+        def self.new: (pallet_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, tier: Integer?, block: Integer?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, carton_reference_details: Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> instance
+                    | (Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?, Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader pallet_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
         attr_reader tier: Integer?
         attr_reader block: Integer?
-        attr_reader dimensions: Dimensions?
-        attr_reader weight: Weight?
-        attr_reader carton_reference_details: CartonReferenceDetails?
-        attr_reader items: Array[ContainerItem]?
+        attr_reader dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?
+        attr_reader weight: Peddler::Types::VendorShipmentsV1::Weight?
+        attr_reader carton_reference_details: Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?
+        attr_reader items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          pallet_identifiers: Array[ContainerIdentification],
-          ?tier: Integer,
-          ?block: Integer,
-          ?dimensions: Dimensions,
-          ?weight: Weight,
-          ?carton_reference_details: CartonReferenceDetails,
-          ?items: Array[ContainerItem]
-        ) -> instance
+        def to_h: () -> { pallet_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, tier: Integer?, block: Integer?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, carton_reference_details: Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]? }
       end
     end
   end

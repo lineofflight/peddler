@@ -4,29 +4,22 @@ module Peddler
   module Types
     module ProductPricingV0
       class OfferType < Data
+        def self.new: (offer_type: String?, buying_price: Peddler::Types::ProductPricingV0::PriceType?, regular_price: Peddler::Types::Money?, business_price: Peddler::Types::Money?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, seller_sku: String?) -> instance
+                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader offer_type: String?
-        attr_reader buying_price: PriceType
-        attr_reader regular_price: Money
-        attr_reader business_price: Money?
-        attr_reader quantity_discount_prices: Array[QuantityDiscountPriceType]?
-        attr_reader fulfillment_channel: String
-        attr_reader item_condition: String
-        attr_reader item_sub_condition: String
-        attr_reader seller_sku: String
+        attr_reader buying_price: Peddler::Types::ProductPricingV0::PriceType?
+        attr_reader regular_price: Peddler::Types::Money?
+        attr_reader business_price: Peddler::Types::Money?
+        attr_reader quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?
+        attr_reader fulfillment_channel: String?
+        attr_reader item_condition: String?
+        attr_reader item_sub_condition: String?
+        attr_reader seller_sku: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?offer_type: String,
-          buying_price: PriceType,
-          regular_price: Money,
-          ?business_price: Money,
-          ?quantity_discount_prices: Array[QuantityDiscountPriceType],
-          fulfillment_channel: String,
-          item_condition: String,
-          item_sub_condition: String,
-          seller_sku: String
-        ) -> instance
+        def to_h: () -> { offer_type: String?, buying_price: Peddler::Types::ProductPricingV0::PriceType?, regular_price: Peddler::Types::Money?, business_price: Peddler::Types::Money?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, seller_sku: String? }
       end
     end
   end

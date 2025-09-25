@@ -4,23 +4,19 @@ module Peddler
   module Types
     module ShippingV1
       class Rate < Data
+        def self.new: (rate_id: String?, total_charge: Peddler::Types::Money?, billed_weight: Peddler::Types::ShippingV1::Weight?, expiration_time: String?, service_type: String?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet?) -> instance
+                    | (String?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?, String?, String?, Peddler::Types::ShippingV1::ShippingPromiseSet?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader rate_id: String?
-        attr_reader total_charge: Money?
-        attr_reader billed_weight: Weight?
+        attr_reader total_charge: Peddler::Types::Money?
+        attr_reader billed_weight: Peddler::Types::ShippingV1::Weight?
         attr_reader expiration_time: String?
         attr_reader service_type: String?
-        attr_reader promise: ShippingPromiseSet?
+        attr_reader promise: Peddler::Types::ShippingV1::ShippingPromiseSet?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?rate_id: String,
-          ?total_charge: Money,
-          ?billed_weight: Weight,
-          ?expiration_time: String,
-          ?service_type: String,
-          ?promise: ShippingPromiseSet
-        ) -> instance
+        def to_h: () -> { rate_id: String?, total_charge: Peddler::Types::Money?, billed_weight: Peddler::Types::ShippingV1::Weight?, expiration_time: String?, service_type: String?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet? }
       end
     end
   end

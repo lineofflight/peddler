@@ -115,5 +115,26 @@ module Generator
       # **Examples:** should be on its own line with blank line before
       assert_includes(description, "\n      #\n      # **Examples:** An MSKU value")
     end
+
+    def test_parameter_with_array_default
+      operation_data = {
+        "operationId" => "searchCatalogItems",
+        "description" => "Search for items",
+        "parameters" => [
+          {
+            "name" => "includedData",
+            "in" => "query",
+            "type" => "array",
+            "required" => false,
+            "default" => "summaries",
+          },
+        ],
+      }
+
+      operation = Generator::Operation.new(@path, "get", operation_data)
+      method_def = operation.method_definition
+
+      assert_includes(method_def, 'included_data: ["summaries"]')
+    end
   end
 end

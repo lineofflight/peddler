@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class ProductInfoDetail < Data
+        def self.new: (number_of_items: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader number_of_items: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?number_of_items: String
-        ) -> instance
+        def to_h: () -> { number_of_items: String? }
       end
     end
   end

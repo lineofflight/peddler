@@ -4,17 +4,16 @@ module Peddler
   module Types
     module MessagingV1
       class CreateWarrantyRequest < Data
-        attr_reader attachments: Array[Attachment]?
+        def self.new: (attachments: Array[Peddler::Types::MessagingV1::Attachment]?, coverage_start_date: String?, coverage_end_date: String?) -> instance
+                    | (Array[Peddler::Types::MessagingV1::Attachment]?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader attachments: Array[Peddler::Types::MessagingV1::Attachment]?
         attr_reader coverage_start_date: String?
         attr_reader coverage_end_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?attachments: Array[Attachment],
-          ?coverage_start_date: String,
-          ?coverage_end_date: String
-        ) -> instance
+        def to_h: () -> { attachments: Array[Peddler::Types::MessagingV1::Attachment]?, coverage_start_date: String?, coverage_end_date: String? }
       end
     end
   end

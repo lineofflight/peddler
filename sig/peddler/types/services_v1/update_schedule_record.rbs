@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ServicesV1
       class UpdateScheduleRecord < Data
-        attr_reader availability: AvailabilityRecord?
-        attr_reader warnings: Array[Warning]?
-        attr_reader errors: Array[Error]?
+        def self.new: (availability: Peddler::Types::ServicesV1::AvailabilityRecord?, warnings: Array[Peddler::Types::ServicesV1::Warning]?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
+                    | (Peddler::Types::ServicesV1::AvailabilityRecord?, Array[Peddler::Types::ServicesV1::Warning]?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?availability: AvailabilityRecord,
-          ?warnings: Array[Warning],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader availability: Peddler::Types::ServicesV1::AvailabilityRecord?
+        attr_reader warnings: Array[Peddler::Types::ServicesV1::Warning]?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { availability: Peddler::Types::ServicesV1::AvailabilityRecord?, warnings: Array[Peddler::Types::ServicesV1::Warning]?, errors: Array[Peddler::Types::ServicesV1::Error]? }
       end
     end
   end

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class ValueAddedServiceChargeEventList < Array[ValueAddedServiceChargeEvent]
-        def self.parse: (Array[untyped] array) -> instance
+      class ValueAddedServiceChargeEventList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

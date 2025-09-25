@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class ImageOffsets < Data
-        attr_reader x: IntegerWithUnits
-        attr_reader y: IntegerWithUnits
+        def self.new: (x: Peddler::Types::AplusContent20201101::IntegerWithUnits?, y: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> instance
+                    | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          x: IntegerWithUnits,
-          y: IntegerWithUnits
-        ) -> instance
+        attr_reader x: Peddler::Types::AplusContent20201101::IntegerWithUnits?
+        attr_reader y: Peddler::Types::AplusContent20201101::IntegerWithUnits?
+
+        def to_h: () -> { x: Peddler::Types::AplusContent20201101::IntegerWithUnits?, y: Peddler::Types::AplusContent20201101::IntegerWithUnits? }
       end
     end
   end

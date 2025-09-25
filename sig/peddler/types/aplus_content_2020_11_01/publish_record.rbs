@@ -4,23 +4,19 @@ module Peddler
   module Types
     module AplusContent20201101
       class PublishRecord < Data
-        attr_reader marketplace_id: String
-        attr_reader locale: String
-        attr_reader asin: String
-        attr_reader content_type: String
+        def self.new: (marketplace_id: String?, locale: String?, asin: String?, content_type: String?, content_sub_type: String?, content_reference_key: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
+        attr_reader locale: String?
+        attr_reader asin: String?
+        attr_reader content_type: String?
         attr_reader content_sub_type: String?
-        attr_reader content_reference_key: String
+        attr_reader content_reference_key: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          locale: String,
-          asin: String,
-          content_type: String,
-          ?content_sub_type: String,
-          content_reference_key: String
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, locale: String?, asin: String?, content_type: String?, content_sub_type: String?, content_reference_key: String? }
       end
     end
   end

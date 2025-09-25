@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class InvalidSKU < Data
+        def self.new: (seller_sku: String?, error_reason: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader seller_sku: String?
         attr_reader error_reason: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?seller_sku: String,
-          ?error_reason: String
-        ) -> instance
+        def to_h: () -> { seller_sku: String?, error_reason: String? }
       end
     end
   end

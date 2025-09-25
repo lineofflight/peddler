@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class CreateInboundPlanRequest < Data
-        attr_reader destination_marketplaces: Array[String]
-        attr_reader items: Array[ItemInput]
+        def self.new: (destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> instance
+                    | (Array[String]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?, Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader destination_marketplaces: Array[String]?
+        attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
         attr_reader name: String?
-        attr_reader source_address: AddressInput
+        attr_reader source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          destination_marketplaces: Array[String],
-          items: Array[ItemInput],
-          ?name: String,
-          source_address: AddressInput
-        ) -> instance
+        def to_h: () -> { destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InventoryListing < Data
-        attr_reader inventory: Array[InventorySummary]
+        def self.new: (inventory: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?, next_token: String?) -> instance
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader inventory: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?
         attr_reader next_token: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          inventory: Array[InventorySummary],
-          ?next_token: String
-        ) -> instance
+        def to_h: () -> { inventory: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?, next_token: String? }
       end
     end
   end

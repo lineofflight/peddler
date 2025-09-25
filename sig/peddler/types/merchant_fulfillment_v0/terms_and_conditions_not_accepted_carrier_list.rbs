@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class TermsAndConditionsNotAcceptedCarrierList < Array[TermsAndConditionsNotAcceptedCarrier]
-        def self.parse: (Array[untyped] array) -> instance
+      class TermsAndConditionsNotAcceptedCarrierList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

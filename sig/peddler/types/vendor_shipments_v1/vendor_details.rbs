@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class VendorDetails < Data
-        attr_reader selling_party: PartyIdentification?
+        def self.new: (selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, vendor_shipment_identifier: String?) -> instance
+                    | (Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
         attr_reader vendor_shipment_identifier: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?selling_party: PartyIdentification,
-          ?vendor_shipment_identifier: String
-        ) -> instance
+        def to_h: () -> { selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, vendor_shipment_identifier: String? }
       end
     end
   end

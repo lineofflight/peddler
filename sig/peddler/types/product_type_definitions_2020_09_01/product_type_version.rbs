@@ -4,17 +4,18 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class ProductTypeVersion < Data
-        attr_reader version: String
-        attr_reader latest: bool
+        def self.new: (version: String?, latest: bool?, release_candidate: bool?) -> instance
+                    | (String?, bool?, bool?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader version: String?
+        attr_reader latest: bool?
         attr_reader release_candidate: bool?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          version: String,
-          latest: bool,
-          ?release_candidate: bool
-        ) -> instance
+        def latest?: () -> bool
+        def release_candidate?: () -> bool
+        def to_h: () -> { version: String?, latest: bool?, release_candidate: bool? }
       end
     end
   end

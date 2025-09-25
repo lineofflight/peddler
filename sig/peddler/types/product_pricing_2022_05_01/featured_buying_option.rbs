@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedBuyingOption < Data
-        attr_reader buying_option_type: String
-        attr_reader segmented_featured_offers: Array[untyped]
+        def self.new: (buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> instance
+                    | (String?, Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          buying_option_type: String,
-          segmented_featured_offers: Array[untyped]
-        ) -> instance
+        attr_reader buying_option_type: String?
+        attr_reader segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?
+
+        def to_h: () -> { buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]? }
       end
     end
   end

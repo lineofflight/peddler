@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPriceResponseBody < Data
-        attr_reader offer_identifier: OfferIdentifier?
-        attr_reader featured_offer_expected_price_results: Array[FeaturedOfferExpectedPriceResult]?
-        attr_reader errors: Array[Error]?
+        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
+                    | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?offer_identifier: OfferIdentifier,
-          ?featured_offer_expected_price_results: Array[FeaturedOfferExpectedPriceResult],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
+        attr_reader featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?
+        attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
+
+        def to_h: () -> { offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]? }
       end
     end
   end

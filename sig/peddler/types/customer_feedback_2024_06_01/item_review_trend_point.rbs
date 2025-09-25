@@ -4,19 +4,17 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTrendPoint < Data
-        attr_reader date_range: DateRange
-        attr_reader asin_metrics: ReviewTrendMetrics
-        attr_reader parent_asin_metrics: ReviewTrendMetrics?
-        attr_reader browse_node_metrics: BrowseNodeTrendMetrics?
+        def self.new: (date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?) -> instance
+                    | (Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          date_range: DateRange,
-          asin_metrics: ReviewTrendMetrics,
-          ?parent_asin_metrics: ReviewTrendMetrics,
-          ?browse_node_metrics: BrowseNodeTrendMetrics
-        ) -> instance
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?
+        attr_reader parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?
+
+        def to_h: () -> { date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardSingleSideImageModule < Data
-        attr_reader image_position_type: String
-        attr_reader block: StandardImageTextBlock?
+        def self.new: (image_position_type: String?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
+                    | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          image_position_type: String,
-          ?block: StandardImageTextBlock
-        ) -> instance
+        attr_reader image_position_type: String?
+        attr_reader block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+
+        def to_h: () -> { image_position_type: String?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock? }
       end
     end
   end

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class TaxWithheldComponentList < Array[TaxWithheldComponent]
-        def self.parse: (Array[untyped] array) -> instance
+      class TaxWithheldComponentList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

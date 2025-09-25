@@ -4,13 +4,14 @@ module Peddler
   module Types
     module NotificationsV1
       class AggregationFilter < Data
-        attr_reader aggregation_settings: AggregationSettings?
+        def self.new: (aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?) -> instance
+                    | (Peddler::Types::NotificationsV1::AggregationSettings?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?aggregation_settings: AggregationSettings
-        ) -> instance
+        attr_reader aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?
+
+        def to_h: () -> { aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings? }
       end
     end
   end

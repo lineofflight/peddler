@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateResult < Data
+        def self.new: (status: String?, fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, error: Peddler::Types::ProductFeesV0::FeesEstimateError?) -> instance
+                    | (String?, Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, Peddler::Types::ProductFeesV0::FeesEstimate?, Peddler::Types::ProductFeesV0::FeesEstimateError?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader status: String?
-        attr_reader fees_estimate_identifier: FeesEstimateIdentifier?
-        attr_reader fees_estimate: FeesEstimate?
-        attr_reader error: FeesEstimateError?
+        attr_reader fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?
+        attr_reader fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?
+        attr_reader error: Peddler::Types::ProductFeesV0::FeesEstimateError?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?status: String,
-          ?fees_estimate_identifier: FeesEstimateIdentifier,
-          ?fees_estimate: FeesEstimate,
-          ?error: FeesEstimateError
-        ) -> instance
+        def to_h: () -> { status: String?, fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, error: Peddler::Types::ProductFeesV0::FeesEstimateError? }
       end
     end
   end

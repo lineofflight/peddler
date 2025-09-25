@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class Order < Data
-        attr_reader purchase_order_number: String
-        attr_reader order_details: OrderDetails?
+        def self.new: (purchase_order_number: String?, order_details: Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderDetails?) -> instance
+                    | (String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderDetails?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          purchase_order_number: String,
-          ?order_details: OrderDetails
-        ) -> instance
+        attr_reader purchase_order_number: String?
+        attr_reader order_details: Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderDetails?
+
+        def to_h: () -> { purchase_order_number: String?, order_details: Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderDetails? }
       end
     end
   end

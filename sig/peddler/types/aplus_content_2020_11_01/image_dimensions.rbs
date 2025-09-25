@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class ImageDimensions < Data
-        attr_reader width: IntegerWithUnits
-        attr_reader height: IntegerWithUnits
+        def self.new: (width: Peddler::Types::AplusContent20201101::IntegerWithUnits?, height: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> instance
+                    | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          width: IntegerWithUnits,
-          height: IntegerWithUnits
-        ) -> instance
+        attr_reader width: Peddler::Types::AplusContent20201101::IntegerWithUnits?
+        attr_reader height: Peddler::Types::AplusContent20201101::IntegerWithUnits?
+
+        def to_h: () -> { width: Peddler::Types::AplusContent20201101::IntegerWithUnits?, height: Peddler::Types::AplusContent20201101::IntegerWithUnits? }
       end
     end
   end

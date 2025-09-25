@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricingV0
       class OfferListingCountType < Data
-        attr_reader count: Integer
-        attr_reader condition: String
+        def self.new: (count: Integer?, condition: String?) -> instance
+                    | (Integer?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          count: Integer,
-          condition: String
-        ) -> instance
+        attr_reader count: Integer?
+        attr_reader condition: String?
+
+        def to_h: () -> { count: Integer?, condition: String? }
       end
     end
   end

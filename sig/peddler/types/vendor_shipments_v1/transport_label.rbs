@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportLabel < Data
+        def self.new: (label_create_date_time: String?, shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?, label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?) -> instance
+                    | (String?, Peddler::Types::VendorShipmentsV1::ShipmentInformation?, Array[Peddler::Types::VendorShipmentsV1::LabelData]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader label_create_date_time: String?
-        attr_reader shipment_information: ShipmentInformation?
-        attr_reader label_data: Array[LabelData]?
+        attr_reader shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?
+        attr_reader label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?label_create_date_time: String,
-          ?shipment_information: ShipmentInformation,
-          ?label_data: Array[LabelData]
-        ) -> instance
+        def to_h: () -> { label_create_date_time: String?, shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?, label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]? }
       end
     end
   end

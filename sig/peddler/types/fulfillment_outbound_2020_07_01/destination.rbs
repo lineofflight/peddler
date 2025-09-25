@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class Destination < Data
-        attr_reader delivery_address: VariablePrecisionAddress?
+        def self.new: (delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, ip_address: String?) -> instance
+                    | (Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?
         attr_reader ip_address: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?delivery_address: VariablePrecisionAddress,
-          ?ip_address: String
-        ) -> instance
+        def to_h: () -> { delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, ip_address: String? }
       end
     end
   end

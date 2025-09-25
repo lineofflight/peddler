@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Vehicles20241101
       class VehicleIdentifiers < Data
-        attr_reader standard: String
-        attr_reader value: String
+        def self.new: (standard: String?, value: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          standard: String,
-          value: String
-        ) -> instance
+        attr_reader standard: String?
+        attr_reader value: String?
+
+        def to_h: () -> { standard: String?, value: String? }
       end
     end
   end

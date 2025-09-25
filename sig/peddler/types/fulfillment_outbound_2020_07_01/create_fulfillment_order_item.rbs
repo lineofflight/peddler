@@ -4,29 +4,22 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CreateFulfillmentOrderItem < Data
-        attr_reader seller_sku: String
-        attr_reader seller_fulfillment_order_item_id: String
-        attr_reader quantity: Integer
+        def self.new: (seller_sku: String?, seller_fulfillment_order_item_id: String?, quantity: Integer?, gift_message: String?, displayable_comment: String?, fulfillment_network_sku: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money?) -> instance
+                    | (String?, String?, Integer?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader seller_sku: String?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader quantity: Integer?
         attr_reader gift_message: String?
         attr_reader displayable_comment: String?
         attr_reader fulfillment_network_sku: String?
-        attr_reader per_unit_declared_value: Money?
-        attr_reader per_unit_price: Money?
-        attr_reader per_unit_tax: Money?
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
+        attr_reader per_unit_price: Peddler::Types::Money?
+        attr_reader per_unit_tax: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          seller_sku: String,
-          seller_fulfillment_order_item_id: String,
-          quantity: Integer,
-          ?gift_message: String,
-          ?displayable_comment: String,
-          ?fulfillment_network_sku: String,
-          ?per_unit_declared_value: Money,
-          ?per_unit_price: Money,
-          ?per_unit_tax: Money
-        ) -> instance
+        def to_h: () -> { seller_sku: String?, seller_fulfillment_order_item_id: String?, quantity: Integer?, gift_message: String?, displayable_comment: String?, fulfillment_network_sku: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money? }
       end
     end
   end

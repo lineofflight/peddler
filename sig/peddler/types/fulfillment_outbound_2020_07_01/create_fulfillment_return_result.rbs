@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CreateFulfillmentReturnResult < Data
-        attr_reader return_items: Array[ReturnItem]?
-        attr_reader invalid_return_items: Array[InvalidReturnItem]?
-        attr_reader return_authorizations: Array[ReturnAuthorization]?
+        def self.new: (return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?return_items: Array[ReturnItem],
-          ?invalid_return_items: Array[InvalidReturnItem],
-          ?return_authorizations: Array[ReturnAuthorization]
-        ) -> instance
+        attr_reader return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?
+        attr_reader invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?
+        attr_reader return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?
+
+        def to_h: () -> { return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]? }
       end
     end
   end

@@ -4,23 +4,19 @@ module Peddler
   module Types
     module SellersV1
       class Marketplace < Data
-        attr_reader id: String
-        attr_reader name: String
-        attr_reader country_code: String
-        attr_reader default_currency_code: String
-        attr_reader default_language_code: String
-        attr_reader domain_name: String
+        def self.new: (id: String?, name: String?, country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          id: String,
-          name: String,
-          country_code: String,
-          default_currency_code: String,
-          default_language_code: String,
-          domain_name: String
-        ) -> instance
+        attr_reader id: String?
+        attr_reader name: String?
+        attr_reader country_code: String?
+        attr_reader default_currency_code: String?
+        attr_reader default_language_code: String?
+        attr_reader domain_name: String?
+
+        def to_h: () -> { id: String?, name: String?, country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String? }
       end
     end
   end

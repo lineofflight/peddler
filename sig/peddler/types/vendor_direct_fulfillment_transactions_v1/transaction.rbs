@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorDirectFulfillmentTransactionsV1
       class Transaction < Data
-        attr_reader transaction_id: String
-        attr_reader status: String
-        attr_reader errors: Array[Error]?
+        def self.new: (transaction_id: String?, status: String?, errors: Array[Peddler::Types::VendorDirectFulfillmentTransactionsV1::Error]?) -> instance
+                    | (String?, String?, Array[Peddler::Types::VendorDirectFulfillmentTransactionsV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          transaction_id: String,
-          status: String,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader transaction_id: String?
+        attr_reader status: String?
+        attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentTransactionsV1::Error]?
+
+        def to_h: () -> { transaction_id: String?, status: String?, errors: Array[Peddler::Types::VendorDirectFulfillmentTransactionsV1::Error]? }
       end
     end
   end

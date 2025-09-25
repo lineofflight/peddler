@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FBAInventoryV1
-      class InventorySummaries < Array[InventorySummary]
-        def self.parse: (Array[untyped] array) -> instance
+      class InventorySummaries < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

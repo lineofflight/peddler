@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ServicesV1
       class GetServiceJobsResponse < Data
-        attr_reader payload: JobListing?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Peddler::Types::ServicesV1::JobListing?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
+                    | (Peddler::Types::ServicesV1::JobListing?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: JobListing,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Peddler::Types::ServicesV1::JobListing?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { payload: Peddler::Types::ServicesV1::JobListing?, errors: Array[Peddler::Types::ServicesV1::Error]? }
       end
     end
   end

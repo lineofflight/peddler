@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Replenishment20221107
       class DiscountFunding < Data
+        def self.new: (percentage: Array[Float]?) -> instance
+                    | (Array[Float]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader percentage: Array[Float]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?percentage: Array[Float]
-        ) -> instance
+        def to_h: () -> { percentage: Array[Float]? }
       end
     end
   end

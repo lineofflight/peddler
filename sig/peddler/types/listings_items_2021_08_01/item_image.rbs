@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemImage < Data
-        attr_reader link: String
-        attr_reader height: Integer
-        attr_reader width: Integer
+        def self.new: (link: String?, height: Integer?, width: Integer?) -> instance
+                    | (String?, Integer?, Integer?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          link: String,
-          height: Integer,
-          width: Integer
-        ) -> instance
+        attr_reader link: String?
+        attr_reader height: Integer?
+        attr_reader width: Integer?
+
+        def to_h: () -> { link: String?, height: Integer?, width: Integer? }
       end
     end
   end

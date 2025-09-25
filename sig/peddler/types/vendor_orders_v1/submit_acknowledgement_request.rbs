@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorOrdersV1
       class SubmitAcknowledgementRequest < Data
-        attr_reader acknowledgements: Array[OrderAcknowledgement]?
+        def self.new: (acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgement]?) -> instance
+                    | (Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgement]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?acknowledgements: Array[OrderAcknowledgement]
-        ) -> instance
+        attr_reader acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgement]?
+
+        def to_h: () -> { acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgement]? }
       end
     end
   end

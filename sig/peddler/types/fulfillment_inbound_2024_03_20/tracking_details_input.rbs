@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class TrackingDetailsInput < Data
-        attr_reader ltl_tracking_detail: LtlTrackingDetailInput?
-        attr_reader spd_tracking_detail: SpdTrackingDetailInput?
+        def self.new: (ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?ltl_tracking_detail: LtlTrackingDetailInput,
-          ?spd_tracking_detail: SpdTrackingDetailInput
-        ) -> instance
+        attr_reader ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?
+        attr_reader spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput?
+
+        def to_h: () -> { ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput?, spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput? }
       end
     end
   end

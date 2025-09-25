@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricing20220501
       class LowestPricedOffer < Data
-        attr_reader lowest_priced_offers_input: Hash[String, untyped]
-        attr_reader offers: Array[Offer]
+        def self.new: (lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]?) -> instance
+                    | (Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, Array[Peddler::Types::ProductPricing20220501::Offer]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          lowest_priced_offers_input: Hash[String, untyped],
-          offers: Array[Offer]
-        ) -> instance
+        attr_reader lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?
+        attr_reader offers: Array[Peddler::Types::ProductPricing20220501::Offer]?
+
+        def to_h: () -> { lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]? }
       end
     end
   end

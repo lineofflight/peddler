@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class DocumentDownload < Data
-        attr_reader download_type: String
+        def self.new: (download_type: String?, expiration: String?, uri: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader download_type: String?
         attr_reader expiration: String?
-        attr_reader uri: String
+        attr_reader uri: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          download_type: String,
-          ?expiration: String,
-          uri: String
-        ) -> instance
+        def to_h: () -> { download_type: String?, expiration: String?, uri: String? }
       end
     end
   end

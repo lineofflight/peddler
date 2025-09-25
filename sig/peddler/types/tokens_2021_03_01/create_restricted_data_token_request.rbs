@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Tokens20210301
       class CreateRestrictedDataTokenRequest < Data
+        def self.new: (target_application: String?, restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?) -> instance
+                    | (String?, Array[Peddler::Types::Tokens20210301::RestrictedResource]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader target_application: String?
-        attr_reader restricted_resources: Array[RestrictedResource]
+        attr_reader restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?target_application: String,
-          restricted_resources: Array[RestrictedResource]
-        ) -> instance
+        def to_h: () -> { target_application: String?, restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]? }
       end
     end
   end

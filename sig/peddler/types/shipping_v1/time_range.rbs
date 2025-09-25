@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV1
       class TimeRange < Data
+        def self.new: (start: String?, end: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader start: String?
         attr_reader end: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?start: String,
-          ?end: String
-        ) -> instance
+        def to_h: () -> { start: String?, end: String? }
       end
     end
   end

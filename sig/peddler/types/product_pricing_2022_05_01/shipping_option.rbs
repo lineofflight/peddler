@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricing20220501
       class ShippingOption < Data
-        attr_reader shipping_option_type: untyped
-        attr_reader price: Money
+        def self.new: (shipping_option_type: String?, price: Peddler::Types::Money?) -> instance
+                    | (String?, Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          shipping_option_type: untyped,
-          price: Money
-        ) -> instance
+        attr_reader shipping_option_type: String?
+        attr_reader price: Peddler::Types::Money?
+
+        def to_h: () -> { shipping_option_type: String?, price: Peddler::Types::Money? }
       end
     end
   end

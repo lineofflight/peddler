@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class GetAccessPointsResponse < Data
-        attr_reader payload: GetAccessPointsResult?
+        def self.new: (payload: Peddler::Types::ShippingV2::GetAccessPointsResult?) -> instance
+                    | (Peddler::Types::ShippingV2::GetAccessPointsResult?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: GetAccessPointsResult
-        ) -> instance
+        attr_reader payload: Peddler::Types::ShippingV2::GetAccessPointsResult?
+
+        def to_h: () -> { payload: Peddler::Types::ShippingV2::GetAccessPointsResult? }
       end
     end
   end

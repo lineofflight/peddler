@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListShipmentPalletsResponse < Data
-        attr_reader pagination: Pagination?
-        attr_reader pallets: Array[Pallet]
+        def self.new: (pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::Pagination?, Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          pallets: Array[Pallet]
-        ) -> instance
+        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        attr_reader pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]?
+
+        def to_h: () -> { pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, pallets: Array[Peddler::Types::FulfillmentInbound20240320::Pallet]? }
       end
     end
   end

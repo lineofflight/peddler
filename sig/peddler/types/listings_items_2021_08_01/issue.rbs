@@ -4,23 +4,19 @@ module Peddler
   module Types
     module ListingsItems20210801
       class Issue < Data
-        attr_reader code: String
-        attr_reader message: String
-        attr_reader severity: String
+        def self.new: (code: String?, message: String?, severity: String?, attribute_names: Array[String]?, categories: Array[String]?, enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements?) -> instance
+                    | (String?, String?, String?, Array[String]?, Array[String]?, Peddler::Types::ListingsItems20210801::IssueEnforcements?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader code: String?
+        attr_reader message: String?
+        attr_reader severity: String?
         attr_reader attribute_names: Array[String]?
-        attr_reader categories: Array[String]
-        attr_reader enforcements: IssueEnforcements?
+        attr_reader categories: Array[String]?
+        attr_reader enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          code: String,
-          message: String,
-          severity: String,
-          ?attribute_names: Array[String],
-          categories: Array[String],
-          ?enforcements: IssueEnforcements
-        ) -> instance
+        def to_h: () -> { code: String?, message: String?, severity: String?, attribute_names: Array[String]?, categories: Array[String]?, enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements? }
       end
     end
   end

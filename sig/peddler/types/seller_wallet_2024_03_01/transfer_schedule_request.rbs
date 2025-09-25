@@ -4,27 +4,21 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransferScheduleRequest < Data
-        attr_reader source_account_id: String
-        attr_reader source_currency_code: String
-        attr_reader destination_account_id: String
-        attr_reader destination_transaction_instrument: TransactionInstrumentDetails
-        attr_reader transaction_type: String
-        attr_reader transfer_schedule_information: TransferScheduleInformation
-        attr_reader payment_preference: PaymentPreference
+        def self.new: (source_account_id: String?, source_currency_code: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_type: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, transfer_schedule_status: String?) -> instance
+                    | (String?, String?, String?, Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, String?, Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, Peddler::Types::SellerWallet20240301::PaymentPreference?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader source_account_id: String?
+        attr_reader source_currency_code: String?
+        attr_reader destination_account_id: String?
+        attr_reader destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?
+        attr_reader transaction_type: String?
+        attr_reader transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?
+        attr_reader payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?
         attr_reader transfer_schedule_status: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          source_account_id: String,
-          source_currency_code: String,
-          destination_account_id: String,
-          destination_transaction_instrument: TransactionInstrumentDetails,
-          transaction_type: String,
-          transfer_schedule_information: TransferScheduleInformation,
-          payment_preference: PaymentPreference,
-          ?transfer_schedule_status: String
-        ) -> instance
+        def to_h: () -> { source_account_id: String?, source_currency_code: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_type: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, transfer_schedule_status: String? }
       end
     end
   end

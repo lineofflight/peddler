@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricingV0
       class HttpResponseHeaders < Data
+        def self.new: (date: String?, x_amzn_request_id: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader date: String?
         attr_reader x_amzn_request_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?date: String,
-          ?x_amzn_request_id: String
-        ) -> instance
+        def to_h: () -> { date: String?, x_amzn_request_id: String? }
       end
     end
   end

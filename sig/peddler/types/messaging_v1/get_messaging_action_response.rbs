@@ -4,19 +4,17 @@ module Peddler
   module Types
     module MessagingV1
       class GetMessagingActionResponse < Data
-        attr_reader _links: Hash[String, untyped]?
-        attr_reader _embedded: Hash[String, untyped]?
-        attr_reader payload: MessagingAction?
-        attr_reader errors: Array[Error]?
+        def self.new: (_links: Hash?, _embedded: Hash?, payload: Peddler::Types::MessagingV1::MessagingAction?, errors: Array[Peddler::Types::MessagingV1::Error]?) -> instance
+                    | (Hash?, Hash?, Peddler::Types::MessagingV1::MessagingAction?, Array[Peddler::Types::MessagingV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?_links: Hash[String, untyped],
-          ?_embedded: Hash[String, untyped],
-          ?payload: MessagingAction,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader _links: Hash?
+        attr_reader _embedded: Hash?
+        attr_reader payload: Peddler::Types::MessagingV1::MessagingAction?
+        attr_reader errors: Array[Peddler::Types::MessagingV1::Error]?
+
+        def to_h: () -> { _links: Hash?, _embedded: Hash?, payload: Peddler::Types::MessagingV1::MessagingAction?, errors: Array[Peddler::Types::MessagingV1::Error]? }
       end
     end
   end

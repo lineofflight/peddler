@@ -4,25 +4,20 @@ module Peddler
   module Types
     module FBAInventoryV1
       class InventoryDetails < Data
+        def self.new: (fulfillable_quantity: Integer?, inbound_working_quantity: Integer?, inbound_shipped_quantity: Integer?, inbound_receiving_quantity: Integer?, reserved_quantity: Peddler::Types::FBAInventoryV1::ReservedQuantity?, researching_quantity: Peddler::Types::FBAInventoryV1::ResearchingQuantity?, unfulfillable_quantity: Peddler::Types::FBAInventoryV1::UnfulfillableQuantity?) -> instance
+                    | (Integer?, Integer?, Integer?, Integer?, Peddler::Types::FBAInventoryV1::ReservedQuantity?, Peddler::Types::FBAInventoryV1::ResearchingQuantity?, Peddler::Types::FBAInventoryV1::UnfulfillableQuantity?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader fulfillable_quantity: Integer?
         attr_reader inbound_working_quantity: Integer?
         attr_reader inbound_shipped_quantity: Integer?
         attr_reader inbound_receiving_quantity: Integer?
-        attr_reader reserved_quantity: ReservedQuantity?
-        attr_reader researching_quantity: ResearchingQuantity?
-        attr_reader unfulfillable_quantity: UnfulfillableQuantity?
+        attr_reader reserved_quantity: Peddler::Types::FBAInventoryV1::ReservedQuantity?
+        attr_reader researching_quantity: Peddler::Types::FBAInventoryV1::ResearchingQuantity?
+        attr_reader unfulfillable_quantity: Peddler::Types::FBAInventoryV1::UnfulfillableQuantity?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?fulfillable_quantity: Integer,
-          ?inbound_working_quantity: Integer,
-          ?inbound_shipped_quantity: Integer,
-          ?inbound_receiving_quantity: Integer,
-          ?reserved_quantity: ReservedQuantity,
-          ?researching_quantity: ResearchingQuantity,
-          ?unfulfillable_quantity: UnfulfillableQuantity
-        ) -> instance
+        def to_h: () -> { fulfillable_quantity: Integer?, inbound_working_quantity: Integer?, inbound_shipped_quantity: Integer?, inbound_receiving_quantity: Integer?, reserved_quantity: Peddler::Types::FBAInventoryV1::ReservedQuantity?, researching_quantity: Peddler::Types::FBAInventoryV1::ResearchingQuantity?, unfulfillable_quantity: Peddler::Types::FBAInventoryV1::UnfulfillableQuantity? }
       end
     end
   end

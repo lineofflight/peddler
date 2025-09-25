@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentPreviewShipment < Data
+        def self.new: (earliest_ship_date: String?, latest_ship_date: String?, earliest_arrival_date: String?, latest_arrival_date: String?, shipping_notes: Array[String]?, fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?) -> instance
+                    | (String?, String?, String?, String?, Array[String]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader earliest_ship_date: String?
         attr_reader latest_ship_date: String?
         attr_reader earliest_arrival_date: String?
         attr_reader latest_arrival_date: String?
         attr_reader shipping_notes: Array[String]?
-        attr_reader fulfillment_preview_items: Array[FulfillmentPreviewItem]
+        attr_reader fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?earliest_ship_date: String,
-          ?latest_ship_date: String,
-          ?earliest_arrival_date: String,
-          ?latest_arrival_date: String,
-          ?shipping_notes: Array[String],
-          fulfillment_preview_items: Array[FulfillmentPreviewItem]
-        ) -> instance
+        def to_h: () -> { earliest_ship_date: String?, latest_ship_date: String?, earliest_arrival_date: String?, latest_arrival_date: String?, shipping_notes: Array[String]?, fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]? }
       end
     end
   end

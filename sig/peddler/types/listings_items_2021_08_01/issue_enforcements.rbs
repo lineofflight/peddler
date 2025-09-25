@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ListingsItems20210801
       class IssueEnforcements < Data
-        attr_reader actions: Array[IssueEnforcementAction]
-        attr_reader exemption: IssueExemption
+        def self.new: (actions: Array[Peddler::Types::ListingsItems20210801::IssueEnforcementAction]?, exemption: Peddler::Types::ListingsItems20210801::IssueExemption?) -> instance
+                    | (Array[Peddler::Types::ListingsItems20210801::IssueEnforcementAction]?, Peddler::Types::ListingsItems20210801::IssueExemption?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          actions: Array[IssueEnforcementAction],
-          exemption: IssueExemption
-        ) -> instance
+        attr_reader actions: Array[Peddler::Types::ListingsItems20210801::IssueEnforcementAction]?
+        attr_reader exemption: Peddler::Types::ListingsItems20210801::IssueExemption?
+
+        def to_h: () -> { actions: Array[Peddler::Types::ListingsItems20210801::IssueEnforcementAction]?, exemption: Peddler::Types::ListingsItems20210801::IssueExemption? }
       end
     end
   end

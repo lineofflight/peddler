@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class MskuQuantity < Data
-        attr_reader msku: String
-        attr_reader quantity: Integer
+        def self.new: (msku: String?, quantity: Integer?) -> instance
+                    | (String?, Integer?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          msku: String,
-          quantity: Integer
-        ) -> instance
+        attr_reader msku: String?
+        attr_reader quantity: Integer?
+
+        def to_h: () -> { msku: String?, quantity: Integer? }
       end
     end
   end

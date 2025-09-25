@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FinancesV0
       class TaxWithholdingPeriod < Data
+        def self.new: (start_date: String?, end_date: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader start_date: String?
         attr_reader end_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?start_date: String,
-          ?end_date: String
-        ) -> instance
+        def to_h: () -> { start_date: String?, end_date: String? }
       end
     end
   end

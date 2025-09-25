@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class CancelShipmentResponse < Data
-        attr_reader payload: CancelShipmentResult?
+        def self.new: (payload: Peddler::Types::ShippingV2::CancelShipmentResult?) -> instance
+                    | (Peddler::Types::ShippingV2::CancelShipmentResult?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: CancelShipmentResult
-        ) -> instance
+        attr_reader payload: Peddler::Types::ShippingV2::CancelShipmentResult?
+
+        def to_h: () -> { payload: Peddler::Types::ShippingV2::CancelShipmentResult? }
       end
     end
   end

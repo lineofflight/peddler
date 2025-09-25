@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module OrdersV0
-      class OrderList < Array[Order]
-        def self.parse: (Array[untyped] array) -> instance
+      class OrderList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

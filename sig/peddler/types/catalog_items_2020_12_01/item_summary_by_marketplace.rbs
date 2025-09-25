@@ -4,7 +4,12 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemSummaryByMarketplace < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, brand_name: String?, browse_node: String?, color_name: String?, item_name: String?, manufacturer: String?, model_number: String?, size_name: String?, style_name: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader brand_name: String?
         attr_reader browse_node: String?
         attr_reader color_name: String?
@@ -14,19 +19,7 @@ module Peddler
         attr_reader size_name: String?
         attr_reader style_name: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?brand_name: String,
-          ?browse_node: String,
-          ?color_name: String,
-          ?item_name: String,
-          ?manufacturer: String,
-          ?model_number: String,
-          ?size_name: String,
-          ?style_name: String
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, brand_name: String?, browse_node: String?, color_name: String?, item_name: String?, manufacturer: String?, model_number: String?, size_name: String?, style_name: String? }
       end
     end
   end

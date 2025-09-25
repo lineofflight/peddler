@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricingV0
       class IdentifierType < Data
-        attr_reader marketplace_asin: ASINIdentifier
-        attr_reader sku_identifier: SellerSKUIdentifier?
+        def self.new: (marketplace_asin: Peddler::Types::ProductPricingV0::ASINIdentifier?, sku_identifier: Peddler::Types::ProductPricingV0::SellerSKUIdentifier?) -> instance
+                    | (Peddler::Types::ProductPricingV0::ASINIdentifier?, Peddler::Types::ProductPricingV0::SellerSKUIdentifier?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_asin: ASINIdentifier,
-          ?sku_identifier: SellerSKUIdentifier
-        ) -> instance
+        attr_reader marketplace_asin: Peddler::Types::ProductPricingV0::ASINIdentifier?
+        attr_reader sku_identifier: Peddler::Types::ProductPricingV0::SellerSKUIdentifier?
+
+        def to_h: () -> { marketplace_asin: Peddler::Types::ProductPricingV0::ASINIdentifier?, sku_identifier: Peddler::Types::ProductPricingV0::SellerSKUIdentifier? }
       end
     end
   end

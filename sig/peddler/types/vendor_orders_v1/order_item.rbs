@@ -4,25 +4,21 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderItem < Data
-        attr_reader item_sequence_number: String
+        def self.new: (item_sequence_number: String?, amazon_product_identifier: String?, vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, back_order_allowed: bool?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, bool?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader item_sequence_number: String?
         attr_reader amazon_product_identifier: String?
         attr_reader vendor_product_identifier: String?
-        attr_reader ordered_quantity: ItemQuantity
-        attr_reader back_order_allowed: bool
-        attr_reader net_cost: Money?
-        attr_reader list_price: Money?
+        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
+        attr_reader back_order_allowed: bool?
+        attr_reader net_cost: Peddler::Types::Money?
+        attr_reader list_price: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          item_sequence_number: String,
-          ?amazon_product_identifier: String,
-          ?vendor_product_identifier: String,
-          ordered_quantity: ItemQuantity,
-          back_order_allowed: bool,
-          ?net_cost: Money,
-          ?list_price: Money
-        ) -> instance
+        def back_order_allowed?: () -> bool
+        def to_h: () -> { item_sequence_number: String?, amazon_product_identifier: String?, vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, back_order_allowed: bool?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money? }
       end
     end
   end

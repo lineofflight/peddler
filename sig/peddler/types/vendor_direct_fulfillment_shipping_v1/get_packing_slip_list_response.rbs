@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class GetPackingSlipListResponse < Data
-        attr_reader payload: PackingSlipList?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlipList?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> instance
+                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlipList?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: PackingSlipList,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlipList?
+        attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?
+
+        def to_h: () -> { payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlipList?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]? }
       end
     end
   end

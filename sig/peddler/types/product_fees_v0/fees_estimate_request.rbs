@@ -4,21 +4,19 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateRequest < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, identifier: String?, optional_fulfillment_program: String?) -> instance
+                    | (String?, bool?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader amazon_fulfilled: bool?
-        attr_reader price_to_estimate_fees: PriceToEstimateFees
-        attr_reader identifier: String
+        attr_reader price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?
+        attr_reader identifier: String?
         attr_reader optional_fulfillment_program: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?amazon_fulfilled: bool,
-          price_to_estimate_fees: PriceToEstimateFees,
-          identifier: String,
-          ?optional_fulfillment_program: String
-        ) -> instance
+        def amazon_fulfilled?: () -> bool
+        def to_h: () -> { marketplace_id: String?, amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, identifier: String?, optional_fulfillment_program: String? }
       end
     end
   end

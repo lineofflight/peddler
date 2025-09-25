@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Finances20240601
       class ExpiryDate < Data
+        def self.new: (month: String?, year: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader month: String?
         attr_reader year: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?month: String,
-          ?year: String
-        ) -> instance
+        def to_h: () -> { month: String?, year: String? }
       end
     end
   end

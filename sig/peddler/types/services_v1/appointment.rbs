@@ -4,23 +4,19 @@ module Peddler
   module Types
     module ServicesV1
       class Appointment < Data
+        def self.new: (appointment_id: String?, appointment_status: String?, appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?, rescheduled_appointment_id: String?, poa: Peddler::Types::ServicesV1::Poa?) -> instance
+                    | (String?, String?, Peddler::Types::ServicesV1::AppointmentTime?, Array[Peddler::Types::ServicesV1::Technician]?, String?, Peddler::Types::ServicesV1::Poa?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader appointment_id: String?
         attr_reader appointment_status: String?
-        attr_reader appointment_time: AppointmentTime?
-        attr_reader assigned_technicians: Array[Technician]?
+        attr_reader appointment_time: Peddler::Types::ServicesV1::AppointmentTime?
+        attr_reader assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?
         attr_reader rescheduled_appointment_id: String?
-        attr_reader poa: Poa?
+        attr_reader poa: Peddler::Types::ServicesV1::Poa?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?appointment_id: String,
-          ?appointment_status: String,
-          ?appointment_time: AppointmentTime,
-          ?assigned_technicians: Array[Technician],
-          ?rescheduled_appointment_id: String,
-          ?poa: Poa
-        ) -> instance
+        def to_h: () -> { appointment_id: String?, appointment_status: String?, appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?, rescheduled_appointment_id: String?, poa: Peddler::Types::ServicesV1::Poa? }
       end
     end
   end

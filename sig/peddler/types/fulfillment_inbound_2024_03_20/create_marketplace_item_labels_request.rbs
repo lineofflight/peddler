@@ -4,25 +4,20 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class CreateMarketplaceItemLabelsRequest < Data
+        def self.new: (height: Float?, label_type: String?, locale_code: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, page_type: String?, width: Float?) -> instance
+                    | (Float?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, String?, Float?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader height: Float?
-        attr_reader label_type: String
+        attr_reader label_type: String?
         attr_reader locale_code: String?
-        attr_reader marketplace_id: String
-        attr_reader msku_quantities: Array[MskuQuantity]
+        attr_reader marketplace_id: String?
+        attr_reader msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?
         attr_reader page_type: String?
         attr_reader width: Float?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?height: Float,
-          label_type: String,
-          ?locale_code: String,
-          marketplace_id: String,
-          msku_quantities: Array[MskuQuantity],
-          ?page_type: String,
-          ?width: Float
-        ) -> instance
+        def to_h: () -> { height: Float?, label_type: String?, locale_code: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, page_type: String?, width: Float? }
       end
     end
   end

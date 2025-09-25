@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOffer < Data
-        attr_reader offer_identifier: OfferIdentifier
+        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, condition: String?, price: Peddler::Types::ProductPricing20220501::Price?) -> instance
+                    | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, String?, Peddler::Types::ProductPricing20220501::Price?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
         attr_reader condition: String?
-        attr_reader price: Price?
+        attr_reader price: Peddler::Types::ProductPricing20220501::Price?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          offer_identifier: OfferIdentifier,
-          ?condition: String,
-          ?price: Price
-        ) -> instance
+        def to_h: () -> { offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, condition: String?, price: Peddler::Types::ProductPricing20220501::Price? }
       end
     end
   end

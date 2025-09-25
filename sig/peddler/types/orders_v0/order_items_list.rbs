@@ -4,17 +4,16 @@ module Peddler
   module Types
     module OrdersV0
       class OrderItemsList < Data
-        attr_reader order_items: Array[OrderItem]
+        def self.new: (order_items: Array[Peddler::Types::OrdersV0::OrderItem]?, next_token: String?, amazon_order_id: String?) -> instance
+                    | (Array[Peddler::Types::OrdersV0::OrderItem]?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader order_items: Array[Peddler::Types::OrdersV0::OrderItem]?
         attr_reader next_token: String?
-        attr_reader amazon_order_id: String
+        attr_reader amazon_order_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          order_items: Array[OrderItem],
-          ?next_token: String,
-          amazon_order_id: String
-        ) -> instance
+        def to_h: () -> { order_items: Array[Peddler::Types::OrdersV0::OrderItem]?, next_token: String?, amazon_order_id: String? }
       end
     end
   end

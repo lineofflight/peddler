@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class ShipmentInvoiceStatusInfo < Data
+        def self.new: (amazon_shipment_id: String?, invoice_status: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader amazon_shipment_id: String?
         attr_reader invoice_status: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?amazon_shipment_id: String,
-          ?invoice_status: String
-        ) -> instance
+        def to_h: () -> { amazon_shipment_id: String?, invoice_status: String? }
       end
     end
   end

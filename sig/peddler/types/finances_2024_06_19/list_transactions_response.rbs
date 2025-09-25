@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Finances20240619
       class ListTransactionsResponse < Data
-        attr_reader payload: TransactionsPayload?
+        def self.new: (payload: Peddler::Types::Finances20240619::TransactionsPayload?) -> instance
+                    | (Peddler::Types::Finances20240619::TransactionsPayload?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: TransactionsPayload
-        ) -> instance
+        attr_reader payload: Peddler::Types::Finances20240619::TransactionsPayload?
+
+        def to_h: () -> { payload: Peddler::Types::Finances20240619::TransactionsPayload? }
       end
     end
   end

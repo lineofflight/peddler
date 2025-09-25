@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class AvailableShippingServiceOptions < Data
-        attr_reader available_carrier_will_pick_up_options: Array[AvailableCarrierWillPickUpOption]
-        attr_reader available_delivery_experience_options: Array[AvailableDeliveryExperienceOption]
+        def self.new: (available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?) -> instance
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          available_carrier_will_pick_up_options: Array[AvailableCarrierWillPickUpOption],
-          available_delivery_experience_options: Array[AvailableDeliveryExperienceOption]
-        ) -> instance
+        attr_reader available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?
+        attr_reader available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]?
+
+        def to_h: () -> { available_carrier_will_pick_up_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption]?, available_delivery_experience_options: Array[Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption]? }
       end
     end
   end

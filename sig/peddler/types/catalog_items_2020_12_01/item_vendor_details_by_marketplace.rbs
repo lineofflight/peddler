@@ -4,7 +4,12 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemVendorDetailsByMarketplace < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, brand_code: String?, category_code: String?, manufacturer_code: String?, manufacturer_code_parent: String?, product_group: String?, replenishment_category: String?, subcategory_code: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader brand_code: String?
         attr_reader category_code: String?
         attr_reader manufacturer_code: String?
@@ -13,18 +18,7 @@ module Peddler
         attr_reader replenishment_category: String?
         attr_reader subcategory_code: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?brand_code: String,
-          ?category_code: String,
-          ?manufacturer_code: String,
-          ?manufacturer_code_parent: String,
-          ?product_group: String,
-          ?replenishment_category: String,
-          ?subcategory_code: String
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, brand_code: String?, category_code: String?, manufacturer_code: String?, manufacturer_code_parent: String?, product_group: String?, replenishment_category: String?, subcategory_code: String? }
       end
     end
   end

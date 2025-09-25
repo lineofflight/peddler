@@ -4,39 +4,28 @@ module Peddler
   module Types
     module ShippingV2
       class Rate < Data
-        attr_reader rate_id: String
-        attr_reader carrier_id: String
-        attr_reader carrier_name: String
-        attr_reader service_id: String
-        attr_reader service_name: String
-        attr_reader billed_weight: Weight?
-        attr_reader total_charge: Money
-        attr_reader promise: Promise
-        attr_reader supported_document_specifications: Array[SupportedDocumentSpecification]
-        attr_reader available_value_added_service_groups: Array[AvailableValueAddedServiceGroup]?
-        attr_reader requires_additional_inputs: bool
-        attr_reader rate_item_list: Array[RateItem]?
+        def self.new: (rate_id: String?, carrier_id: String?, carrier_name: String?, service_id: String?, service_name: String?, billed_weight: Peddler::Types::ShippingV2::Weight?, total_charge: Peddler::Types::Money?, promise: Peddler::Types::ShippingV2::Promise?, supported_document_specifications: Array[Peddler::Types::ShippingV2::SupportedDocumentSpecification]?, available_value_added_service_groups: Array[Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup]?, requires_additional_inputs: bool?, rate_item_list: Array[Peddler::Types::ShippingV2::RateItem]?, payment_type: String?, benefits: Peddler::Types::ShippingV2::Benefits?) -> instance
+                    | (String?, String?, String?, String?, String?, Peddler::Types::ShippingV2::Weight?, Peddler::Types::Money?, Peddler::Types::ShippingV2::Promise?, Array[Peddler::Types::ShippingV2::SupportedDocumentSpecification]?, Array[Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup]?, bool?, Array[Peddler::Types::ShippingV2::RateItem]?, String?, Peddler::Types::ShippingV2::Benefits?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader rate_id: String?
+        attr_reader carrier_id: String?
+        attr_reader carrier_name: String?
+        attr_reader service_id: String?
+        attr_reader service_name: String?
+        attr_reader billed_weight: Peddler::Types::ShippingV2::Weight?
+        attr_reader total_charge: Peddler::Types::Money?
+        attr_reader promise: Peddler::Types::ShippingV2::Promise?
+        attr_reader supported_document_specifications: Array[Peddler::Types::ShippingV2::SupportedDocumentSpecification]?
+        attr_reader available_value_added_service_groups: Array[Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup]?
+        attr_reader requires_additional_inputs: bool?
+        attr_reader rate_item_list: Array[Peddler::Types::ShippingV2::RateItem]?
         attr_reader payment_type: String?
-        attr_reader benefits: Benefits?
+        attr_reader benefits: Peddler::Types::ShippingV2::Benefits?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          rate_id: String,
-          carrier_id: String,
-          carrier_name: String,
-          service_id: String,
-          service_name: String,
-          ?billed_weight: Weight,
-          total_charge: Money,
-          promise: Promise,
-          supported_document_specifications: Array[SupportedDocumentSpecification],
-          ?available_value_added_service_groups: Array[AvailableValueAddedServiceGroup],
-          requires_additional_inputs: bool,
-          ?rate_item_list: Array[RateItem],
-          ?payment_type: String,
-          ?benefits: Benefits
-        ) -> instance
+        def requires_additional_inputs?: () -> bool
+        def to_h: () -> { rate_id: String?, carrier_id: String?, carrier_name: String?, service_id: String?, service_name: String?, billed_weight: Peddler::Types::ShippingV2::Weight?, total_charge: Peddler::Types::Money?, promise: Peddler::Types::ShippingV2::Promise?, supported_document_specifications: Array[Peddler::Types::ShippingV2::SupportedDocumentSpecification]?, available_value_added_service_groups: Array[Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup]?, requires_additional_inputs: bool?, rate_item_list: Array[Peddler::Types::ShippingV2::RateItem]?, payment_type: String?, benefits: Peddler::Types::ShippingV2::Benefits? }
       end
     end
   end

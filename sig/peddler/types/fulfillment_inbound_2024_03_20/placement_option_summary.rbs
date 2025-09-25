@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class PlacementOptionSummary < Data
-        attr_reader placement_option_id: String
-        attr_reader status: String
+        def self.new: (placement_option_id: String?, status: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          placement_option_id: String,
-          status: String
-        ) -> instance
+        attr_reader placement_option_id: String?
+        attr_reader status: String?
+
+        def to_h: () -> { placement_option_id: String?, status: String? }
       end
     end
   end

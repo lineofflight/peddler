@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class IncludedBenefits < Array[untyped]
-        def self.parse: (Array[untyped] array) -> instance
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

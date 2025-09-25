@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricingV0
       class GetPricingResponse < Data
-        attr_reader payload: Array[Price]?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Array[Peddler::Types::ProductPricingV0::Price]?, errors: Array[Peddler::Types::ProductPricingV0::Error]?) -> instance
+                    | (Array[Peddler::Types::ProductPricingV0::Price]?, Array[Peddler::Types::ProductPricingV0::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: Array[Price],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Array[Peddler::Types::ProductPricingV0::Price]?
+        attr_reader errors: Array[Peddler::Types::ProductPricingV0::Error]?
+
+        def to_h: () -> { payload: Array[Peddler::Types::ProductPricingV0::Price]?, errors: Array[Peddler::Types::ProductPricingV0::Error]? }
       end
     end
   end

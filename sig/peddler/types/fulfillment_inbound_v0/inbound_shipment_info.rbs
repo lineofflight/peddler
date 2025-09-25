@@ -4,31 +4,24 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class InboundShipmentInfo < Data
+        def self.new: (shipment_id: String?, shipment_name: String?, ship_from_address: Peddler::Types::FulfillmentInboundV0::Address?, destination_fulfillment_center_id: String?, shipment_status: String?, label_prep_type: String?, are_cases_required: bool?, confirmed_need_by_date: String?, box_contents_source: String?, estimated_box_contents_fee: Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails?) -> instance
+                    | (String?, String?, Peddler::Types::FulfillmentInboundV0::Address?, String?, String?, String?, bool?, String?, String?, Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader shipment_id: String?
         attr_reader shipment_name: String?
-        attr_reader ship_from_address: Address
+        attr_reader ship_from_address: Peddler::Types::FulfillmentInboundV0::Address?
         attr_reader destination_fulfillment_center_id: String?
         attr_reader shipment_status: String?
         attr_reader label_prep_type: String?
-        attr_reader are_cases_required: bool
+        attr_reader are_cases_required: bool?
         attr_reader confirmed_need_by_date: String?
         attr_reader box_contents_source: String?
-        attr_reader estimated_box_contents_fee: BoxContentsFeeDetails?
+        attr_reader estimated_box_contents_fee: Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?shipment_id: String,
-          ?shipment_name: String,
-          ship_from_address: Address,
-          ?destination_fulfillment_center_id: String,
-          ?shipment_status: String,
-          ?label_prep_type: String,
-          are_cases_required: bool,
-          ?confirmed_need_by_date: String,
-          ?box_contents_source: String,
-          ?estimated_box_contents_fee: BoxContentsFeeDetails
-        ) -> instance
+        def are_cases_required?: () -> bool
+        def to_h: () -> { shipment_id: String?, shipment_name: String?, ship_from_address: Peddler::Types::FulfillmentInboundV0::Address?, destination_fulfillment_center_id: String?, shipment_status: String?, label_prep_type: String?, are_cases_required: bool?, confirmed_need_by_date: String?, box_contents_source: String?, estimated_box_contents_fee: Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails? }
       end
     end
   end

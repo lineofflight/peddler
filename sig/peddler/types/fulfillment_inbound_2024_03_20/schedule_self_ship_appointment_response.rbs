@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ScheduleSelfShipAppointmentResponse < Data
-        attr_reader self_ship_appointment_details: SelfShipAppointmentDetails
+        def self.new: (self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          self_ship_appointment_details: SelfShipAppointmentDetails
-        ) -> instance
+        attr_reader self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails?
+
+        def to_h: () -> { self_ship_appointment_details: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails? }
       end
     end
   end

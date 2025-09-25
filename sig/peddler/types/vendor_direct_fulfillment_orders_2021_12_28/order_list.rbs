@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class OrderList < Data
-        attr_reader pagination: Pagination?
-        attr_reader orders: Array[Order]?
+        def self.new: (pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> instance
+                    | (Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          ?orders: Array[Order]
-        ) -> instance
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?
+        attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]? }
       end
     end
   end

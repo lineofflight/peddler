@@ -4,13 +4,14 @@ module Peddler
   module Types
     module SellerWallet20240301
       class BalanceListing < Data
-        attr_reader balances: Array[Balance]?
+        def self.new: (balances: Array[Peddler::Types::SellerWallet20240301::Balance]?) -> instance
+                    | (Array[Peddler::Types::SellerWallet20240301::Balance]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?balances: Array[Balance]
-        ) -> instance
+        attr_reader balances: Array[Peddler::Types::SellerWallet20240301::Balance]?
+
+        def to_h: () -> { balances: Array[Peddler::Types::SellerWallet20240301::Balance]? }
       end
     end
   end

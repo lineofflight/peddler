@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FulfillmentOutbound20200701
-      class FulfillmentPreviewShipmentList < Array[FulfillmentPreviewShipment]
-        def self.parse: (Array[untyped] array) -> instance
+      class FulfillmentPreviewShipmentList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

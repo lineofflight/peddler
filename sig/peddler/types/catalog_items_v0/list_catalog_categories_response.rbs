@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CatalogItemsV0
       class ListCatalogCategoriesResponse < Data
-        attr_reader payload: Array[Categories]?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Array[Peddler::Types::CatalogItemsV0::Categories]?, errors: Array[Peddler::Types::CatalogItemsV0::Error]?) -> instance
+                    | (Array[Peddler::Types::CatalogItemsV0::Categories]?, Array[Peddler::Types::CatalogItemsV0::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: Array[Categories],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Array[Peddler::Types::CatalogItemsV0::Categories]?
+        attr_reader errors: Array[Peddler::Types::CatalogItemsV0::Error]?
+
+        def to_h: () -> { payload: Array[Peddler::Types::CatalogItemsV0::Categories]?, errors: Array[Peddler::Types::CatalogItemsV0::Error]? }
       end
     end
   end

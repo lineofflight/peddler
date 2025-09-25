@@ -4,17 +4,16 @@ module Peddler
   module Types
     module SupplySources20200701
       class ParkingConfiguration < Data
+        def self.new: (parking_cost_type: String?, parking_spot_identification_type: String?, number_of_parking_spots: Integer?) -> instance
+                    | (String?, String?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader parking_cost_type: String?
         attr_reader parking_spot_identification_type: String?
         attr_reader number_of_parking_spots: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?parking_cost_type: String,
-          ?parking_spot_identification_type: String,
-          ?number_of_parking_spots: Integer
-        ) -> instance
+        def to_h: () -> { parking_cost_type: String?, parking_spot_identification_type: String?, number_of_parking_spots: Integer? }
       end
     end
   end

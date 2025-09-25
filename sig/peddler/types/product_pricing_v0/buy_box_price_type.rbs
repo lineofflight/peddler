@@ -4,29 +4,22 @@ module Peddler
   module Types
     module ProductPricingV0
       class BuyBoxPriceType < Data
-        attr_reader condition: String
+        def self.new: (condition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, seller_id: String?) -> instance
+                    | (String?, String?, Integer?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader condition: String?
         attr_reader offer_type: String?
         attr_reader quantity_tier: Integer?
         attr_reader quantity_discount_type: String?
-        attr_reader landed_price: Money
-        attr_reader listing_price: Money
-        attr_reader shipping: Money
-        attr_reader points: Points?
+        attr_reader landed_price: Peddler::Types::Money?
+        attr_reader listing_price: Peddler::Types::Money?
+        attr_reader shipping: Peddler::Types::Money?
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
         attr_reader seller_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          condition: String,
-          ?offer_type: String,
-          ?quantity_tier: Integer,
-          ?quantity_discount_type: String,
-          landed_price: Money,
-          listing_price: Money,
-          shipping: Money,
-          ?points: Points,
-          ?seller_id: String
-        ) -> instance
+        def to_h: () -> { condition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, seller_id: String? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class UnmanifestedCarrierInformation < Data
+        def self.new: (carrier_id: String?, carrier_name: String?, unmanifested_shipment_location_list: Array[Peddler::Types::ShippingV2::UnmanifestedShipmentLocation]?) -> instance
+                    | (String?, String?, Array[Peddler::Types::ShippingV2::UnmanifestedShipmentLocation]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader carrier_id: String?
         attr_reader carrier_name: String?
-        attr_reader unmanifested_shipment_location_list: Array[UnmanifestedShipmentLocation]?
+        attr_reader unmanifested_shipment_location_list: Array[Peddler::Types::ShippingV2::UnmanifestedShipmentLocation]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?carrier_id: String,
-          ?carrier_name: String,
-          ?unmanifested_shipment_location_list: Array[UnmanifestedShipmentLocation]
-        ) -> instance
+        def to_h: () -> { carrier_id: String?, carrier_name: String?, unmanifested_shipment_location_list: Array[Peddler::Types::ShippingV2::UnmanifestedShipmentLocation]? }
       end
     end
   end

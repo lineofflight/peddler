@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV1
       class GetShipmentResponse < Data
-        attr_reader payload: Shipment?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Peddler::Types::ShippingV1::Shipment?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> instance
+                    | (Peddler::Types::ShippingV1::Shipment?, Array[Peddler::Types::ShippingV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: Shipment,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Peddler::Types::ShippingV1::Shipment?
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+
+        def to_h: () -> { payload: Peddler::Types::ShippingV1::Shipment?, errors: Array[Peddler::Types::ShippingV1::Error]? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class ListContentDocumentAsinRelationsResponse < Data
-        attr_reader asin_metadata_set: Array[AsinMetadata]
+        def self.new: (asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::AsinMetadata]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          asin_metadata_set: Array[AsinMetadata]
-        ) -> instance
+        attr_reader asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]?
+
+        def to_h: () -> { asin_metadata_set: Array[Peddler::Types::AplusContent20201101::AsinMetadata]? }
       end
     end
   end

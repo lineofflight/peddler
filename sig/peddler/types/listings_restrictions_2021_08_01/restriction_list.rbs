@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ListingsRestrictions20210801
       class RestrictionList < Data
-        attr_reader restrictions: Array[Restriction]
+        def self.new: (restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> instance
+                    | (Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          restrictions: Array[Restriction]
-        ) -> instance
+        attr_reader restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?
+
+        def to_h: () -> { restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]? }
       end
     end
   end

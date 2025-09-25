@@ -4,17 +4,23 @@ module Peddler
   module Types
     module Finances20240619
       class Breakdown < Data
+        def self.new: (breakdown_type: String?, breakdown_amount: Peddler::Types::Money?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?) -> instance
+                    | (String?, Peddler::Types::Money?, Array[Peddler::Types::Finances20240619::Breakdown]?) -> instance
+
+        type parse_data = {
+          ?breakdown_type: untyped,
+          ?breakdown_amount: untyped,
+          ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown | parse_data]
+        }
+
+        def self.parse: (?parse_data data) -> instance
+                      | (?Hash[String, untyped] data) -> instance
+
         attr_reader breakdown_type: String?
-        attr_reader breakdown_amount: Money?
-        attr_reader breakdowns: Array[Breakdown]?
+        attr_reader breakdown_amount: Peddler::Types::Money?
+        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?breakdown_type: String,
-          ?breakdown_amount: Money,
-          ?breakdowns: Array[Breakdown]
-        ) -> instance
+        def to_h: () -> { breakdown_type: String?, breakdown_amount: Peddler::Types::Money?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]? }
       end
     end
   end

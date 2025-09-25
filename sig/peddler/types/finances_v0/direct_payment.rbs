@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FinancesV0
       class DirectPayment < Data
+        def self.new: (direct_payment_type: String?, direct_payment_amount: Peddler::Types::Money?) -> instance
+                    | (String?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader direct_payment_type: String?
-        attr_reader direct_payment_amount: Money?
+        attr_reader direct_payment_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?direct_payment_type: String,
-          ?direct_payment_amount: Money
-        ) -> instance
+        def to_h: () -> { direct_payment_type: String?, direct_payment_amount: Peddler::Types::Money? }
       end
     end
   end

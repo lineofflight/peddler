@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ProductPricingV0
       class GetItemOffersBatchRequest < Data
-        attr_reader requests: Array[untyped]?
+        def self.new: (requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?) -> instance
+                    | (Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?requests: Array[untyped]
-        ) -> instance
+        attr_reader requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?
+
+        def to_h: () -> { requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]? }
       end
     end
   end

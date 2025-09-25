@@ -4,17 +4,16 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTopicMetrics < Data
+        def self.new: (number_of_mentions: Integer?, occurrence_percentage: Float?, star_rating_impact: Float?) -> instance
+                    | (Integer?, Float?, Float?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader number_of_mentions: Integer?
         attr_reader occurrence_percentage: Float?
         attr_reader star_rating_impact: Float?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?number_of_mentions: Integer,
-          ?occurrence_percentage: Float,
-          ?star_rating_impact: Float
-        ) -> instance
+        def to_h: () -> { number_of_mentions: Integer?, occurrence_percentage: Float?, star_rating_impact: Float? }
       end
     end
   end

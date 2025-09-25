@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class UnlinkCarrierAccountRequest < Data
-        attr_reader client_reference_details: Array[ClientReferenceDetail]?
+        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, account_id: String?) -> instance
+                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader account_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?client_reference_details: Array[ClientReferenceDetail],
-          ?account_id: String
-        ) -> instance
+        def to_h: () -> { client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, account_id: String? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class ListAllFulfillmentOrdersResponse < Data
-        attr_reader payload: ListAllFulfillmentOrdersResult?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
+                    | (Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: ListAllFulfillmentOrdersResult,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+
+        def to_h: () -> { payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
       end
     end
   end

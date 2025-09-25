@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class CarrierAccountAttribute < Data
+        def self.new: (attribute_name: String?, property_group: String?, value: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader attribute_name: String?
         attr_reader property_group: String?
         attr_reader value: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?attribute_name: String,
-          ?property_group: String,
-          ?value: String
-        ) -> instance
+        def to_h: () -> { attribute_name: String?, property_group: String?, value: String? }
       end
     end
   end

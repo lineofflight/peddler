@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FinancesV0
       class SAFETReimbursementItem < Data
-        attr_reader item_charge_list: Array[ChargeComponent]?
+        def self.new: (item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, product_description: String?, quantity: String?) -> instance
+                    | (Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?
         attr_reader product_description: String?
         attr_reader quantity: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?item_charge_list: Array[ChargeComponent],
-          ?product_description: String,
-          ?quantity: String
-        ) -> instance
+        def to_h: () -> { item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, product_description: String?, quantity: String? }
       end
     end
   end

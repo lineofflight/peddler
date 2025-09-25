@@ -4,15 +4,15 @@ module Peddler
   module Types
     module NotificationsV1
       class DestinationResource < Data
-        attr_reader sqs: SqsResource?
-        attr_reader event_bridge: EventBridgeResource?
+        def self.new: (sqs: Peddler::Types::NotificationsV1::SqsResource?, event_bridge: Peddler::Types::NotificationsV1::EventBridgeResource?) -> instance
+                    | (Peddler::Types::NotificationsV1::SqsResource?, Peddler::Types::NotificationsV1::EventBridgeResource?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?sqs: SqsResource,
-          ?event_bridge: EventBridgeResource
-        ) -> instance
+        attr_reader sqs: Peddler::Types::NotificationsV1::SqsResource?
+        attr_reader event_bridge: Peddler::Types::NotificationsV1::EventBridgeResource?
+
+        def to_h: () -> { sqs: Peddler::Types::NotificationsV1::SqsResource?, event_bridge: Peddler::Types::NotificationsV1::EventBridgeResource? }
       end
     end
   end

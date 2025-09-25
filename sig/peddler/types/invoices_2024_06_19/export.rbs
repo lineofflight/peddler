@@ -4,6 +4,11 @@ module Peddler
   module Types
     module Invoices20240619
       class Export < Data
+        def self.new: (error_message: String?, export_id: String?, generate_export_finished_at: String?, generate_export_started_at: String?, invoices_document_ids: Array[String]?, status: String?) -> instance
+                    | (String?, String?, String?, String?, Array[String]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader error_message: String?
         attr_reader export_id: String?
         attr_reader generate_export_finished_at: String?
@@ -11,16 +16,7 @@ module Peddler
         attr_reader invoices_document_ids: Array[String]?
         attr_reader status: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?error_message: String,
-          ?export_id: String,
-          ?generate_export_finished_at: String,
-          ?generate_export_started_at: String,
-          ?invoices_document_ids: Array[String],
-          ?status: String
-        ) -> instance
+        def to_h: () -> { error_message: String?, export_id: String?, generate_export_finished_at: String?, generate_export_started_at: String?, invoices_document_ids: Array[String]?, status: String? }
       end
     end
   end

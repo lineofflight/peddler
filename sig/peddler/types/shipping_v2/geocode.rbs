@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class Geocode < Data
+        def self.new: (latitude: String?, longitude: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader latitude: String?
         attr_reader longitude: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?latitude: String,
-          ?longitude: String
-        ) -> instance
+        def to_h: () -> { latitude: String?, longitude: String? }
       end
     end
   end

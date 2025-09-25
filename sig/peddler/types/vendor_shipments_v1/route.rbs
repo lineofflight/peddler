@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Route < Data
-        attr_reader stops: Array[Stop]
+        def self.new: (stops: Array[Peddler::Types::VendorShipmentsV1::Stop]?) -> instance
+                    | (Array[Peddler::Types::VendorShipmentsV1::Stop]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          stops: Array[Stop]
-        ) -> instance
+        attr_reader stops: Array[Peddler::Types::VendorShipmentsV1::Stop]?
+
+        def to_h: () -> { stops: Array[Peddler::Types::VendorShipmentsV1::Stop]? }
       end
     end
   end

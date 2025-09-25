@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class InvalidReturnItem < Data
-        attr_reader seller_return_item_id: String
-        attr_reader seller_fulfillment_order_item_id: String
-        attr_reader invalid_item_reason: InvalidItemReason
+        def self.new: (seller_return_item_id: String?, seller_fulfillment_order_item_id: String?, invalid_item_reason: Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?) -> instance
+                    | (String?, String?, Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          seller_return_item_id: String,
-          seller_fulfillment_order_item_id: String,
-          invalid_item_reason: InvalidItemReason
-        ) -> instance
+        attr_reader seller_return_item_id: String?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader invalid_item_reason: Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?
+
+        def to_h: () -> { seller_return_item_id: String?, seller_fulfillment_order_item_id: String?, invalid_item_reason: Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason? }
       end
     end
   end

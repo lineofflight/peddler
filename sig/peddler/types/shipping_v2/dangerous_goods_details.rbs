@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ShippingV2
       class DangerousGoodsDetails < Data
+        def self.new: (united_nations_regulatory_id: String?, transportation_regulatory_class: String?, packing_group: String?, packing_instruction: String?) -> instance
+                    | (String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader united_nations_regulatory_id: String?
         attr_reader transportation_regulatory_class: String?
         attr_reader packing_group: String?
         attr_reader packing_instruction: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?united_nations_regulatory_id: String,
-          ?transportation_regulatory_class: String,
-          ?packing_group: String,
-          ?packing_instruction: String
-        ) -> instance
+        def to_h: () -> { united_nations_regulatory_id: String?, transportation_regulatory_class: String?, packing_group: String?, packing_instruction: String? }
       end
     end
   end

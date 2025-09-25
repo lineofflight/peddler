@@ -4,37 +4,26 @@ module Peddler
   module Types
     module ShippingV2
       class GetRatesRequest < Data
-        attr_reader ship_to: Address?
-        attr_reader ship_from: Address
-        attr_reader return_to: Address?
+        def self.new: (ship_to: Peddler::Types::ShippingV2::Address?, ship_from: Peddler::Types::ShippingV2::Address?, return_to: Peddler::Types::ShippingV2::Address?, ship_date: String?, shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?, packages: Array[Peddler::Types::ShippingV2::Package]?, value_added_services: Peddler::Types::ShippingV2::ValueAddedServiceDetails?, tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?, channel_details: Peddler::Types::ShippingV2::ChannelDetails?, client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, shipment_type: String?, destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?, carrier_accounts: Array[Peddler::Types::ShippingV2::CarrierAccount]?) -> instance
+                    | (Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::Address?, String?, Peddler::Types::ShippingV2::ShipperInstruction?, Array[Peddler::Types::ShippingV2::Package]?, Peddler::Types::ShippingV2::ValueAddedServiceDetails?, Array[Peddler::Types::ShippingV2::TaxDetail]?, Peddler::Types::ShippingV2::ChannelDetails?, Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, String?, Peddler::Types::ShippingV2::AccessPointDetails?, Array[Peddler::Types::ShippingV2::CarrierAccount]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader ship_to: Peddler::Types::ShippingV2::Address?
+        attr_reader ship_from: Peddler::Types::ShippingV2::Address?
+        attr_reader return_to: Peddler::Types::ShippingV2::Address?
         attr_reader ship_date: String?
-        attr_reader shipper_instruction: ShipperInstruction?
-        attr_reader packages: Array[Package]
-        attr_reader value_added_services: ValueAddedServiceDetails?
-        attr_reader tax_details: Array[TaxDetail]?
-        attr_reader channel_details: ChannelDetails
-        attr_reader client_reference_details: Array[ClientReferenceDetail]?
+        attr_reader shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?
+        attr_reader packages: Array[Peddler::Types::ShippingV2::Package]?
+        attr_reader value_added_services: Peddler::Types::ShippingV2::ValueAddedServiceDetails?
+        attr_reader tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?
+        attr_reader channel_details: Peddler::Types::ShippingV2::ChannelDetails?
+        attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader shipment_type: String?
-        attr_reader destination_access_point_details: AccessPointDetails?
-        attr_reader carrier_accounts: Array[CarrierAccount]?
+        attr_reader destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?
+        attr_reader carrier_accounts: Array[Peddler::Types::ShippingV2::CarrierAccount]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?ship_to: Address,
-          ship_from: Address,
-          ?return_to: Address,
-          ?ship_date: String,
-          ?shipper_instruction: ShipperInstruction,
-          packages: Array[Package],
-          ?value_added_services: ValueAddedServiceDetails,
-          ?tax_details: Array[TaxDetail],
-          channel_details: ChannelDetails,
-          ?client_reference_details: Array[ClientReferenceDetail],
-          ?shipment_type: String,
-          ?destination_access_point_details: AccessPointDetails,
-          ?carrier_accounts: Array[CarrierAccount]
-        ) -> instance
+        def to_h: () -> { ship_to: Peddler::Types::ShippingV2::Address?, ship_from: Peddler::Types::ShippingV2::Address?, return_to: Peddler::Types::ShippingV2::Address?, ship_date: String?, shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?, packages: Array[Peddler::Types::ShippingV2::Package]?, value_added_services: Peddler::Types::ShippingV2::ValueAddedServiceDetails?, tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?, channel_details: Peddler::Types::ShippingV2::ChannelDetails?, client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, shipment_type: String?, destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?, carrier_accounts: Array[Peddler::Types::ShippingV2::CarrierAccount]? }
       end
     end
   end

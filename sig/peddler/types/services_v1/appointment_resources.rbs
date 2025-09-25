@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ServicesV1
-      class AppointmentResources < Array[AppointmentResource]
-        def self.parse: (Array[untyped] array) -> instance
+      class AppointmentResources < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemVariationsByMarketplace < Data
-        attr_reader marketplace_id: String
-        attr_reader asins: Array[String]
-        attr_reader variation_type: String
+        def self.new: (marketplace_id: String?, asins: Array[String]?, variation_type: String?) -> instance
+                    | (String?, Array[String]?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          asins: Array[String],
-          variation_type: String
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader asins: Array[String]?
+        attr_reader variation_type: String?
+
+        def to_h: () -> { marketplace_id: String?, asins: Array[String]?, variation_type: String? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTrendMetrics < Data
-        attr_reader occurrence_percentage: BrowseNodeAllOccurrence
+        def self.new: (occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> instance
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          occurrence_percentage: BrowseNodeAllOccurrence
-        ) -> instance
+        attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?
+
+        def to_h: () -> { occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence? }
       end
     end
   end

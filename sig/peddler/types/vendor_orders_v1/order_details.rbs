@@ -4,39 +4,27 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderDetails < Data
-        attr_reader purchase_order_date: String
+        def self.new: (purchase_order_date: String?, purchase_order_changed_date: String?, purchase_order_state_changed_date: String?, purchase_order_type: String?, import_details: Peddler::Types::VendorOrdersV1::ImportDetails?, deal_code: String?, payment_method: String?, buying_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, bill_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_window: String?, delivery_window: String?, items: Array[Peddler::Types::VendorOrdersV1::OrderItem]?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::VendorOrdersV1::ImportDetails?, String?, String?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, String?, String?, Array[Peddler::Types::VendorOrdersV1::OrderItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader purchase_order_date: String?
         attr_reader purchase_order_changed_date: String?
-        attr_reader purchase_order_state_changed_date: String
+        attr_reader purchase_order_state_changed_date: String?
         attr_reader purchase_order_type: String?
-        attr_reader import_details: ImportDetails?
+        attr_reader import_details: Peddler::Types::VendorOrdersV1::ImportDetails?
         attr_reader deal_code: String?
         attr_reader payment_method: String?
-        attr_reader buying_party: PartyIdentification?
-        attr_reader selling_party: PartyIdentification?
-        attr_reader ship_to_party: PartyIdentification?
-        attr_reader bill_to_party: PartyIdentification?
+        attr_reader buying_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
+        attr_reader selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
+        attr_reader bill_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
         attr_reader ship_window: String?
         attr_reader delivery_window: String?
-        attr_reader items: Array[OrderItem]
+        attr_reader items: Array[Peddler::Types::VendorOrdersV1::OrderItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          purchase_order_date: String,
-          ?purchase_order_changed_date: String,
-          purchase_order_state_changed_date: String,
-          ?purchase_order_type: String,
-          ?import_details: ImportDetails,
-          ?deal_code: String,
-          ?payment_method: String,
-          ?buying_party: PartyIdentification,
-          ?selling_party: PartyIdentification,
-          ?ship_to_party: PartyIdentification,
-          ?bill_to_party: PartyIdentification,
-          ?ship_window: String,
-          ?delivery_window: String,
-          items: Array[OrderItem]
-        ) -> instance
+        def to_h: () -> { purchase_order_date: String?, purchase_order_changed_date: String?, purchase_order_state_changed_date: String?, purchase_order_type: String?, import_details: Peddler::Types::VendorOrdersV1::ImportDetails?, deal_code: String?, payment_method: String?, buying_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, bill_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_window: String?, delivery_window: String?, items: Array[Peddler::Types::VendorOrdersV1::OrderItem]? }
       end
     end
   end

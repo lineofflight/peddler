@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DeliveryPolicy < Data
-        attr_reader message: DeliveryMessage?
+        def self.new: (message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> instance
+                    | (Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?message: DeliveryMessage
-        ) -> instance
+        attr_reader message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?
+
+        def to_h: () -> { message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage? }
       end
     end
   end

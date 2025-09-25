@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class ParagraphComponent < Data
-        attr_reader text_list: Array[TextComponent]
+        def self.new: (text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::TextComponent]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          text_list: Array[TextComponent]
-        ) -> instance
+        attr_reader text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]?
+
+        def to_h: () -> { text_list: Array[Peddler::Types::AplusContent20201101::TextComponent]? }
       end
     end
   end

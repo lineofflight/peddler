@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class CreateShippingLabelsRequest < Data
-        attr_reader selling_party: PartyIdentification
-        attr_reader ship_from_party: PartyIdentification
-        attr_reader containers: Array[Container]?
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> instance
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          selling_party: PartyIdentification,
-          ship_from_party: PartyIdentification,
-          ?containers: Array[Container]
-        ) -> instance
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
       end
     end
   end

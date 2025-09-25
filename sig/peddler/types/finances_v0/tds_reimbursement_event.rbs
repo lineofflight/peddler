@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FinancesV0
       class TDSReimbursementEvent < Data
+        def self.new: (posted_date: String?, tds_order_id: String?, reimbursed_amount: Peddler::Types::Money?) -> instance
+                    | (String?, String?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader tds_order_id: String?
-        attr_reader reimbursed_amount: Money?
+        attr_reader reimbursed_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?tds_order_id: String,
-          ?reimbursed_amount: Money
-        ) -> instance
+        def to_h: () -> { posted_date: String?, tds_order_id: String?, reimbursed_amount: Peddler::Types::Money? }
       end
     end
   end

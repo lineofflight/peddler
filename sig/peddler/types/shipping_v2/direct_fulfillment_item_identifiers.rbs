@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class DirectFulfillmentItemIdentifiers < Data
-        attr_reader line_item_id: String
+        def self.new: (line_item_id: String?, piece_number: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader line_item_id: String?
         attr_reader piece_number: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          line_item_id: String,
-          ?piece_number: String
-        ) -> instance
+        def to_h: () -> { line_item_id: String?, piece_number: String? }
       end
     end
   end

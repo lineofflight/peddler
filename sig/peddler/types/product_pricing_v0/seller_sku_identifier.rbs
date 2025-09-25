@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductPricingV0
       class SellerSKUIdentifier < Data
-        attr_reader marketplace_id: String
-        attr_reader seller_id: String
-        attr_reader seller_sku: String
+        def self.new: (marketplace_id: String?, seller_id: String?, seller_sku: String?) -> instance
+                    | (String?, String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          seller_id: String,
-          seller_sku: String
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader seller_id: String?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { marketplace_id: String?, seller_id: String?, seller_sku: String? }
       end
     end
   end

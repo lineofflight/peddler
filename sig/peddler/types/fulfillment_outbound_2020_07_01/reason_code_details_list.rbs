@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FulfillmentOutbound20200701
-      class ReasonCodeDetailsList < Array[ReasonCodeDetails]
-        def self.parse: (Array[untyped] array) -> instance
+      class ReasonCodeDetailsList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

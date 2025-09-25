@@ -4,25 +4,20 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class InboundPlanSummary < Data
-        attr_reader created_at: String
-        attr_reader inbound_plan_id: String
-        attr_reader last_updated_at: String
-        attr_reader marketplace_ids: Array[String]
-        attr_reader name: String
-        attr_reader source_address: Address
-        attr_reader status: String
+        def self.new: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?) -> instance
+                    | (String?, String?, String?, Array[String]?, String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          created_at: String,
-          inbound_plan_id: String,
-          last_updated_at: String,
-          marketplace_ids: Array[String],
-          name: String,
-          source_address: Address,
-          status: String
-        ) -> instance
+        attr_reader created_at: String?
+        attr_reader inbound_plan_id: String?
+        attr_reader last_updated_at: String?
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader name: String?
+        attr_reader source_address: Peddler::Types::FulfillmentInbound20240320::Address?
+        attr_reader status: String?
+
+        def to_h: () -> { created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String? }
       end
     end
   end

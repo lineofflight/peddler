@@ -4,25 +4,20 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOffersRequestFilters < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, skus: Array[String]?, asins: Array[String]?, eligibilities: Array?, preferences: Peddler::Types::Replenishment20221107::Preference?, promotions: Peddler::Types::Replenishment20221107::Promotion?, program_types: Array?) -> instance
+                    | (String?, Array[String]?, Array[String]?, Array?, Peddler::Types::Replenishment20221107::Preference?, Peddler::Types::Replenishment20221107::Promotion?, Array?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader skus: Array[String]?
         attr_reader asins: Array[String]?
-        attr_reader eligibilities: Array[String]?
-        attr_reader preferences: Preference?
-        attr_reader promotions: Promotion?
-        attr_reader program_types: Array[String]
+        attr_reader eligibilities: Array?
+        attr_reader preferences: Peddler::Types::Replenishment20221107::Preference?
+        attr_reader promotions: Peddler::Types::Replenishment20221107::Promotion?
+        attr_reader program_types: Array?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?skus: Array[String],
-          ?asins: Array[String],
-          ?eligibilities: Array[String],
-          ?preferences: Preference,
-          ?promotions: Promotion,
-          program_types: Array[String]
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, skus: Array[String]?, asins: Array[String]?, eligibilities: Array?, preferences: Peddler::Types::Replenishment20221107::Preference?, promotions: Peddler::Types::Replenishment20221107::Promotion?, program_types: Array? }
       end
     end
   end

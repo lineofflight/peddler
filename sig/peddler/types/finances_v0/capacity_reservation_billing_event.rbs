@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FinancesV0
       class CapacityReservationBillingEvent < Data
+        def self.new: (transaction_type: String?, posted_date: String?, description: String?, transaction_amount: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader transaction_type: String?
         attr_reader posted_date: String?
         attr_reader description: String?
-        attr_reader transaction_amount: Money?
+        attr_reader transaction_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?transaction_type: String,
-          ?posted_date: String,
-          ?description: String,
-          ?transaction_amount: Money
-        ) -> instance
+        def to_h: () -> { transaction_type: String?, posted_date: String?, description: String?, transaction_amount: Peddler::Types::Money? }
       end
     end
   end

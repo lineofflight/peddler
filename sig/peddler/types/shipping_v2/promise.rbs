@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class Promise < Data
-        attr_reader delivery_window: TimeWindow?
-        attr_reader pickup_window: TimeWindow?
+        def self.new: (delivery_window: Peddler::Types::ShippingV2::TimeWindow?, pickup_window: Peddler::Types::ShippingV2::TimeWindow?) -> instance
+                    | (Peddler::Types::ShippingV2::TimeWindow?, Peddler::Types::ShippingV2::TimeWindow?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?delivery_window: TimeWindow,
-          ?pickup_window: TimeWindow
-        ) -> instance
+        attr_reader delivery_window: Peddler::Types::ShippingV2::TimeWindow?
+        attr_reader pickup_window: Peddler::Types::ShippingV2::TimeWindow?
+
+        def to_h: () -> { delivery_window: Peddler::Types::ShippingV2::TimeWindow?, pickup_window: Peddler::Types::ShippingV2::TimeWindow? }
       end
     end
   end

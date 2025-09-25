@@ -4,27 +4,21 @@ module Peddler
   module Types
     module OrdersV0
       class PackageDetail < Data
-        attr_reader package_reference_id: String
-        attr_reader carrier_code: String
+        def self.new: (package_reference_id: String?, carrier_code: String?, carrier_name: String?, shipping_method: String?, tracking_number: String?, ship_date: String?, ship_from_supply_source_id: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader package_reference_id: String?
+        attr_reader carrier_code: String?
         attr_reader carrier_name: String?
         attr_reader shipping_method: String?
-        attr_reader tracking_number: String
-        attr_reader ship_date: String
+        attr_reader tracking_number: String?
+        attr_reader ship_date: String?
         attr_reader ship_from_supply_source_id: String?
-        attr_reader order_items: Array[ConfirmShipmentOrderItem]
+        attr_reader order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          package_reference_id: String,
-          carrier_code: String,
-          ?carrier_name: String,
-          ?shipping_method: String,
-          tracking_number: String,
-          ship_date: String,
-          ?ship_from_supply_source_id: String,
-          order_items: Array[ConfirmShipmentOrderItem]
-        ) -> instance
+        def to_h: () -> { package_reference_id: String?, carrier_code: String?, carrier_name: String?, shipping_method: String?, tracking_number: String?, ship_date: String?, ship_from_supply_source_id: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]? }
       end
     end
   end

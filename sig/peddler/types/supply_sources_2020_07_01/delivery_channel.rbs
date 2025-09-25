@@ -4,15 +4,16 @@ module Peddler
   module Types
     module SupplySources20200701
       class DeliveryChannel < Data
+        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> instance
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader supported: bool?
-        attr_reader operational_configuration: OperationalConfiguration?
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?supported: bool,
-          ?operational_configuration: OperationalConfiguration
-        ) -> instance
+        def supported?: () -> bool
+        def to_h: () -> { supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class CreateNotificationResponse < Data
+        def self.new: (notification_id: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader notification_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?notification_id: String
-        ) -> instance
+        def to_h: () -> { notification_id: String? }
       end
     end
   end

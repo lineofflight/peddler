@@ -4,29 +4,22 @@ module Peddler
   module Types
     module FinancesV0
       class AffordabilityExpenseEvent < Data
+        def self.new: (amazon_order_id: String?, posted_date: String?, marketplace_id: String?, transaction_type: String?, base_expense: Peddler::Types::Money?, tax_type_cgst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, total_expense: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader amazon_order_id: String?
         attr_reader posted_date: String?
         attr_reader marketplace_id: String?
         attr_reader transaction_type: String?
-        attr_reader base_expense: Money?
-        attr_reader tax_type_cgst: Money
-        attr_reader tax_type_sgst: Money
-        attr_reader tax_type_igst: Money
-        attr_reader total_expense: Money?
+        attr_reader base_expense: Peddler::Types::Money?
+        attr_reader tax_type_cgst: Peddler::Types::Money?
+        attr_reader tax_type_sgst: Peddler::Types::Money?
+        attr_reader tax_type_igst: Peddler::Types::Money?
+        attr_reader total_expense: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?amazon_order_id: String,
-          ?posted_date: String,
-          ?marketplace_id: String,
-          ?transaction_type: String,
-          ?base_expense: Money,
-          tax_type_cgst: Money,
-          tax_type_sgst: Money,
-          tax_type_igst: Money,
-          ?total_expense: Money
-        ) -> instance
+        def to_h: () -> { amazon_order_id: String?, posted_date: String?, marketplace_id: String?, transaction_type: String?, base_expense: Peddler::Types::Money?, tax_type_cgst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, total_expense: Peddler::Types::Money? }
       end
     end
   end

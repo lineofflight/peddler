@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class TemporarilyUnavailableCarrierList < Array[TemporarilyUnavailableCarrier]
-        def self.parse: (Array[untyped] array) -> instance
+      class TemporarilyUnavailableCarrierList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

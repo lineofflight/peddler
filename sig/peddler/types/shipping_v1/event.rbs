@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV1
       class Event < Data
-        attr_reader event_code: String
-        attr_reader event_time: String
-        attr_reader location: Location?
+        def self.new: (event_code: String?, event_time: String?, location: Peddler::Types::ShippingV1::Location?) -> instance
+                    | (String?, String?, Peddler::Types::ShippingV1::Location?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          event_code: String,
-          event_time: String,
-          ?location: Location
-        ) -> instance
+        attr_reader event_code: String?
+        attr_reader event_time: String?
+        attr_reader location: Peddler::Types::ShippingV1::Location?
+
+        def to_h: () -> { event_code: String?, event_time: String?, location: Peddler::Types::ShippingV1::Location? }
       end
     end
   end

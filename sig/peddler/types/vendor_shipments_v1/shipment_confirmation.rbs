@@ -4,45 +4,30 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ShipmentConfirmation < Data
-        attr_reader shipment_identifier: String
-        attr_reader shipment_confirmation_type: String
+        def self.new: (shipment_identifier: String?, shipment_confirmation_type: String?, shipment_type: String?, shipment_structure: String?, transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?, amazon_reference_number: String?, shipment_confirmation_date: String?, shipped_date: String?, estimated_delivery_date: String?, selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, shipment_measurements: Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?, import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, shipped_items: Array[Peddler::Types::VendorShipmentsV1::Item]?, cartons: Array[Peddler::Types::VendorShipmentsV1::Carton]?, pallets: Array[Peddler::Types::VendorShipmentsV1::Pallet]?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?, Peddler::Types::VendorShipmentsV1::ImportDetails?, Array[Peddler::Types::VendorShipmentsV1::Item]?, Array[Peddler::Types::VendorShipmentsV1::Carton]?, Array[Peddler::Types::VendorShipmentsV1::Pallet]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader shipment_identifier: String?
+        attr_reader shipment_confirmation_type: String?
         attr_reader shipment_type: String?
         attr_reader shipment_structure: String?
-        attr_reader transportation_details: TransportationDetailsForShipmentConfirmation?
+        attr_reader transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?
         attr_reader amazon_reference_number: String?
-        attr_reader shipment_confirmation_date: String
+        attr_reader shipment_confirmation_date: String?
         attr_reader shipped_date: String?
         attr_reader estimated_delivery_date: String?
-        attr_reader selling_party: PartyIdentification
-        attr_reader ship_from_party: PartyIdentification
-        attr_reader ship_to_party: PartyIdentification
-        attr_reader shipment_measurements: ShipmentMeasurements?
-        attr_reader import_details: ImportDetails?
-        attr_reader shipped_items: Array[Item]
-        attr_reader cartons: Array[Carton]?
-        attr_reader pallets: Array[Pallet]?
+        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader shipment_measurements: Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?
+        attr_reader import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?
+        attr_reader shipped_items: Array[Peddler::Types::VendorShipmentsV1::Item]?
+        attr_reader cartons: Array[Peddler::Types::VendorShipmentsV1::Carton]?
+        attr_reader pallets: Array[Peddler::Types::VendorShipmentsV1::Pallet]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          shipment_identifier: String,
-          shipment_confirmation_type: String,
-          ?shipment_type: String,
-          ?shipment_structure: String,
-          ?transportation_details: TransportationDetailsForShipmentConfirmation,
-          ?amazon_reference_number: String,
-          shipment_confirmation_date: String,
-          ?shipped_date: String,
-          ?estimated_delivery_date: String,
-          selling_party: PartyIdentification,
-          ship_from_party: PartyIdentification,
-          ship_to_party: PartyIdentification,
-          ?shipment_measurements: ShipmentMeasurements,
-          ?import_details: ImportDetails,
-          shipped_items: Array[Item],
-          ?cartons: Array[Carton],
-          ?pallets: Array[Pallet]
-        ) -> instance
+        def to_h: () -> { shipment_identifier: String?, shipment_confirmation_type: String?, shipment_type: String?, shipment_structure: String?, transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?, amazon_reference_number: String?, shipment_confirmation_date: String?, shipped_date: String?, estimated_delivery_date: String?, selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, shipment_measurements: Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?, import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, shipped_items: Array[Peddler::Types::VendorShipmentsV1::Item]?, cartons: Array[Peddler::Types::VendorShipmentsV1::Carton]?, pallets: Array[Peddler::Types::VendorShipmentsV1::Pallet]? }
       end
     end
   end

@@ -4,27 +4,21 @@ module Peddler
   module Types
     module FinancesV0
       class CouponPaymentEvent < Data
+        def self.new: (posted_date: String?, coupon_id: String?, seller_coupon_description: String?, clip_or_redemption_count: Integer?, payment_event_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, Integer?, String?, Peddler::Types::FinancesV0::FeeComponent?, Peddler::Types::FinancesV0::ChargeComponent?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader coupon_id: String?
         attr_reader seller_coupon_description: String?
         attr_reader clip_or_redemption_count: Integer?
         attr_reader payment_event_id: String?
-        attr_reader fee_component: FeeComponent?
-        attr_reader charge_component: ChargeComponent?
-        attr_reader total_amount: Money?
+        attr_reader fee_component: Peddler::Types::FinancesV0::FeeComponent?
+        attr_reader charge_component: Peddler::Types::FinancesV0::ChargeComponent?
+        attr_reader total_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?coupon_id: String,
-          ?seller_coupon_description: String,
-          ?clip_or_redemption_count: Integer,
-          ?payment_event_id: String,
-          ?fee_component: FeeComponent,
-          ?charge_component: ChargeComponent,
-          ?total_amount: Money
-        ) -> instance
+        def to_h: () -> { posted_date: String?, coupon_id: String?, seller_coupon_description: String?, clip_or_redemption_count: Integer?, payment_event_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money? }
       end
     end
   end

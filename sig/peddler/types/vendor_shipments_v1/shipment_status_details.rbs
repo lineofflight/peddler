@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ShipmentStatusDetails < Data
+        def self.new: (shipment_status: String?, shipment_status_date: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader shipment_status: String?
         attr_reader shipment_status_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?shipment_status: String,
-          ?shipment_status_date: String
-        ) -> instance
+        def to_h: () -> { shipment_status: String?, shipment_status_date: String? }
       end
     end
   end

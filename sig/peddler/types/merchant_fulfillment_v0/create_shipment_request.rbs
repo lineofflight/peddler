@@ -4,23 +4,19 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class CreateShipmentRequest < Data
-        attr_reader shipment_request_details: ShipmentRequestDetails
-        attr_reader shipping_service_id: String
+        def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, shipping_service_offer_id: String?, hazmat_type: String?, label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?) -> instance
+                    | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
+        attr_reader shipping_service_id: String?
         attr_reader shipping_service_offer_id: String?
         attr_reader hazmat_type: String?
-        attr_reader label_format_option: LabelFormatOptionRequest?
-        attr_reader shipment_level_seller_inputs_list: Array[AdditionalSellerInputs]?
+        attr_reader label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?
+        attr_reader shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          shipment_request_details: ShipmentRequestDetails,
-          shipping_service_id: String,
-          ?shipping_service_offer_id: String,
-          ?hazmat_type: String,
-          ?label_format_option: LabelFormatOptionRequest,
-          ?shipment_level_seller_inputs_list: Array[AdditionalSellerInputs]
-        ) -> instance
+        def to_h: () -> { shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, shipping_service_offer_id: String?, hazmat_type: String?, label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]? }
       end
     end
   end

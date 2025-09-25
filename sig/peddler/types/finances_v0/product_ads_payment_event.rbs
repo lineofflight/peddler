@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FinancesV0
       class ProductAdsPaymentEvent < Data
+        def self.new: (posted_date: String?, transaction_type: String?, invoice_id: String?, base_value: Peddler::Types::Money?, tax_value: Peddler::Types::Money?, transaction_value: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader transaction_type: String?
         attr_reader invoice_id: String?
-        attr_reader base_value: Money?
-        attr_reader tax_value: Money?
-        attr_reader transaction_value: Money?
+        attr_reader base_value: Peddler::Types::Money?
+        attr_reader tax_value: Peddler::Types::Money?
+        attr_reader transaction_value: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?transaction_type: String,
-          ?invoice_id: String,
-          ?base_value: Money,
-          ?tax_value: Money,
-          ?transaction_value: Money
-        ) -> instance
+        def to_h: () -> { posted_date: String?, transaction_type: String?, invoice_id: String?, base_value: Peddler::Types::Money?, tax_value: Peddler::Types::Money?, transaction_value: Peddler::Types::Money? }
       end
     end
   end

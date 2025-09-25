@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DeliveryDocument < Data
-        attr_reader document_type: String
+        def self.new: (document_type: String?, url: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader document_type: String?
         attr_reader url: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          document_type: String,
-          ?url: String
-        ) -> instance
+        def to_h: () -> { document_type: String?, url: String? }
       end
     end
   end

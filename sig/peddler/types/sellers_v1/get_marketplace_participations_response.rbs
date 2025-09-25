@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SellersV1
       class GetMarketplaceParticipationsResponse < Data
-        attr_reader payload: Array[MarketplaceParticipation]?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, errors: Array[Peddler::Types::SellersV1::Error]?) -> instance
+                    | (Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, Array[Peddler::Types::SellersV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: Array[MarketplaceParticipation],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
+        attr_reader errors: Array[Peddler::Types::SellersV1::Error]?
+
+        def to_h: () -> { payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, errors: Array[Peddler::Types::SellersV1::Error]? }
       end
     end
   end

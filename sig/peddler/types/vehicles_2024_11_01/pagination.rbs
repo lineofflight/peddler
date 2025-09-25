@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Vehicles20241101
       class Pagination < Data
+        def self.new: (next_token: String?, previous_token: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader next_token: String?
         attr_reader previous_token: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?next_token: String,
-          ?previous_token: String
-        ) -> instance
+        def to_h: () -> { next_token: String?, previous_token: String? }
       end
     end
   end

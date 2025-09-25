@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemSalesRanksByMarketplace < Data
-        attr_reader marketplace_id: String
-        attr_reader ranks: Array[ItemSalesRank]
+        def self.new: (marketplace_id: String?, ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]?) -> instance
+                    | (String?, Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          ranks: Array[ItemSalesRank]
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]?
+
+        def to_h: () -> { marketplace_id: String?, ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]? }
       end
     end
   end

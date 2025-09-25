@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricingV0
       class SalesRankType < Data
-        attr_reader product_category_id: String
-        attr_reader rank: Integer
+        def self.new: (product_category_id: String?, rank: Integer?) -> instance
+                    | (String?, Integer?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          product_category_id: String,
-          rank: Integer
-        ) -> instance
+        attr_reader product_category_id: String?
+        attr_reader rank: Integer?
+
+        def to_h: () -> { product_category_id: String?, rank: Integer? }
       end
     end
   end

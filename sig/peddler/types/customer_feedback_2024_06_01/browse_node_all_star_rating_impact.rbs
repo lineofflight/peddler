@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeAllStarRatingImpact < Data
-        attr_reader top_twenty_five_percent_products: Float
-        attr_reader all_products: Float
+        def self.new: (top_twenty_five_percent_products: Float?, all_products: Float?) -> instance
+                    | (Float?, Float?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          top_twenty_five_percent_products: Float,
-          all_products: Float
-        ) -> instance
+        attr_reader top_twenty_five_percent_products: Float?
+        attr_reader all_products: Float?
+
+        def to_h: () -> { top_twenty_five_percent_products: Float?, all_products: Float? }
       end
     end
   end

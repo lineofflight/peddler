@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SupplySources20200701
       class SupplySourceConfiguration < Data
-        attr_reader operational_configuration: OperationalConfiguration?
+        def self.new: (operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, timezone: String?) -> instance
+                    | (Peddler::Types::SupplySources20200701::OperationalConfiguration?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
         attr_reader timezone: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?operational_configuration: OperationalConfiguration,
-          ?timezone: String
-        ) -> instance
+        def to_h: () -> { operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, timezone: String? }
       end
     end
   end

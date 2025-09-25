@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SpdTrackingDetail < Data
-        attr_reader spd_tracking_items: Array[SpdTrackingItem]?
+        def self.new: (spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?spd_tracking_items: Array[SpdTrackingItem]
-        ) -> instance
+        attr_reader spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]?
+
+        def to_h: () -> { spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem]? }
       end
     end
   end

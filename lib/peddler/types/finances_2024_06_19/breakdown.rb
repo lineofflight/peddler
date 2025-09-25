@@ -3,6 +3,7 @@
 # This file is generated. Edit template if necessary.
 
 require "peddler/types/money"
+require "structure"
 
 module Peddler
   module Types
@@ -17,9 +18,8 @@ module Peddler
         # @return [Money] The amount of the charge.
         attribute(:breakdown_amount, Money, from: "breakdownAmount")
 
-        # @return [Array<Breakdown>] A list of breakdowns that detail how the total amount is calculated for the
-        # transaction.
-        attribute(:breakdowns, [Breakdown])
+        # @return [Array<self>] A list of breakdowns that detail how the total amount is calculated for the transaction.
+        attribute(:breakdowns, [:self])
       end
     end
   end

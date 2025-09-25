@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class ValidVerificationDetail < Data
-        attr_reader verification_detail_type: String
-        attr_reader valid_verification_statuses: Array[String]
+        def self.new: (verification_detail_type: String?, valid_verification_statuses: Array?) -> instance
+                    | (String?, Array?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          verification_detail_type: String,
-          valid_verification_statuses: Array[String]
-        ) -> instance
+        attr_reader verification_detail_type: String?
+        attr_reader valid_verification_statuses: Array?
+
+        def to_h: () -> { verification_detail_type: String?, valid_verification_statuses: Array? }
       end
     end
   end

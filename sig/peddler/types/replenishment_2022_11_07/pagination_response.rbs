@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Replenishment20221107
       class PaginationResponse < Data
+        def self.new: (total_results: Integer?) -> instance
+                    | (Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader total_results: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?total_results: Integer
-        ) -> instance
+        def to_h: () -> { total_results: Integer? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewSubtopicMetrics < Data
-        attr_reader occurrence_percentage: Float
+        def self.new: (occurrence_percentage: Float?) -> instance
+                    | (Float?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          occurrence_percentage: Float
-        ) -> instance
+        attr_reader occurrence_percentage: Float?
+
+        def to_h: () -> { occurrence_percentage: Float? }
       end
     end
   end

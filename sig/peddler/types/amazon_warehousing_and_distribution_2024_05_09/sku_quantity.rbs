@@ -4,17 +4,16 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class SkuQuantity < Data
-        attr_reader expected_quantity: InventoryQuantity
-        attr_reader received_quantity: InventoryQuantity?
-        attr_reader sku: String
+        def self.new: (expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?) -> instance
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          expected_quantity: InventoryQuantity,
-          ?received_quantity: InventoryQuantity,
-          sku: String
-        ) -> instance
+        attr_reader expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?
+        attr_reader received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?
+        attr_reader sku: String?
+
+        def to_h: () -> { expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String? }
       end
     end
   end

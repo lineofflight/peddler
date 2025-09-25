@@ -4,21 +4,18 @@ module Peddler
   module Types
     module FinancesV0
       class DebtRecoveryEvent < Data
+        def self.new: (debt_recovery_type: String?, recovery_amount: Peddler::Types::Money?, over_payment_credit: Peddler::Types::Money?, debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?) -> instance
+                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, Array[Peddler::Types::FinancesV0::ChargeInstrument]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader debt_recovery_type: String?
-        attr_reader recovery_amount: Money?
-        attr_reader over_payment_credit: Money?
-        attr_reader debt_recovery_item_list: Array[DebtRecoveryItem]?
-        attr_reader charge_instrument_list: Array[ChargeInstrument]?
+        attr_reader recovery_amount: Peddler::Types::Money?
+        attr_reader over_payment_credit: Peddler::Types::Money?
+        attr_reader debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?
+        attr_reader charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?debt_recovery_type: String,
-          ?recovery_amount: Money,
-          ?over_payment_credit: Money,
-          ?debt_recovery_item_list: Array[DebtRecoveryItem],
-          ?charge_instrument_list: Array[ChargeInstrument]
-        ) -> instance
+        def to_h: () -> { debt_recovery_type: String?, recovery_amount: Peddler::Types::Money?, over_payment_credit: Peddler::Types::Money?, debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]? }
       end
     end
   end

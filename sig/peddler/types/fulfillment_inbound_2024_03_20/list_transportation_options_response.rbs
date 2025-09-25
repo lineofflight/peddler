@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListTransportationOptionsResponse < Data
-        attr_reader pagination: Pagination?
-        attr_reader transportation_options: Array[TransportationOption]
+        def self.new: (pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::Pagination?, Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          transportation_options: Array[TransportationOption]
-        ) -> instance
+        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        attr_reader transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?
+
+        def to_h: () -> { pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemSearchResults < Data
-        attr_reader number_of_results: Integer
-        attr_reader pagination: Pagination?
-        attr_reader items: Array[Item]
+        def self.new: (number_of_results: Integer?, pagination: Peddler::Types::ListingsItems20210801::Pagination?, items: Array[Peddler::Types::ListingsItems20210801::Item]?) -> instance
+                    | (Integer?, Peddler::Types::ListingsItems20210801::Pagination?, Array[Peddler::Types::ListingsItems20210801::Item]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          number_of_results: Integer,
-          ?pagination: Pagination,
-          items: Array[Item]
-        ) -> instance
+        attr_reader number_of_results: Integer?
+        attr_reader pagination: Peddler::Types::ListingsItems20210801::Pagination?
+        attr_reader items: Array[Peddler::Types::ListingsItems20210801::Item]?
+
+        def to_h: () -> { number_of_results: Integer?, pagination: Peddler::Types::ListingsItems20210801::Pagination?, items: Array[Peddler::Types::ListingsItems20210801::Item]? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class ValueAddedServiceDetails < Data
-        attr_reader collect_on_delivery: CollectOnDelivery?
+        def self.new: (collect_on_delivery: Peddler::Types::ShippingV2::CollectOnDelivery?) -> instance
+                    | (Peddler::Types::ShippingV2::CollectOnDelivery?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?collect_on_delivery: CollectOnDelivery
-        ) -> instance
+        attr_reader collect_on_delivery: Peddler::Types::ShippingV2::CollectOnDelivery?
+
+        def to_h: () -> { collect_on_delivery: Peddler::Types::ShippingV2::CollectOnDelivery? }
       end
     end
   end

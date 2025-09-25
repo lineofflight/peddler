@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ServicesV1
       class Seller < Data
+        def self.new: (seller_id: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader seller_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?seller_id: String
-        ) -> instance
+        def to_h: () -> { seller_id: String? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ServicesV1
       class UpdateReservationRecord < Data
-        attr_reader reservation: Reservation?
-        attr_reader warnings: Array[Warning]?
-        attr_reader errors: Array[Error]?
+        def self.new: (reservation: Peddler::Types::ServicesV1::Reservation?, warnings: Array[Peddler::Types::ServicesV1::Warning]?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
+                    | (Peddler::Types::ServicesV1::Reservation?, Array[Peddler::Types::ServicesV1::Warning]?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?reservation: Reservation,
-          ?warnings: Array[Warning],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
+        attr_reader warnings: Array[Peddler::Types::ServicesV1::Warning]?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { reservation: Peddler::Types::ServicesV1::Reservation?, warnings: Array[Peddler::Types::ServicesV1::Warning]?, errors: Array[Peddler::Types::ServicesV1::Error]? }
       end
     end
   end

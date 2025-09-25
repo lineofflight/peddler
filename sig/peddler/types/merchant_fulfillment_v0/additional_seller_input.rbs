@@ -4,29 +4,23 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class AdditionalSellerInput < Data
+        def self.new: (data_type: String?, value_as_string: String?, value_as_boolean: bool?, value_as_integer: Integer?, value_as_timestamp: String?, value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, value_as_currency: Peddler::Types::Money?) -> instance
+                    | (String?, String?, bool?, Integer?, String?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::Length?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader data_type: String?
         attr_reader value_as_string: String?
         attr_reader value_as_boolean: bool?
         attr_reader value_as_integer: Integer?
         attr_reader value_as_timestamp: String?
-        attr_reader value_as_address: Address?
-        attr_reader value_as_weight: Weight?
-        attr_reader value_as_dimension: Length?
-        attr_reader value_as_currency: Money?
+        attr_reader value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?
+        attr_reader value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?
+        attr_reader value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?
+        attr_reader value_as_currency: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?data_type: String,
-          ?value_as_string: String,
-          ?value_as_boolean: bool,
-          ?value_as_integer: Integer,
-          ?value_as_timestamp: String,
-          ?value_as_address: Address,
-          ?value_as_weight: Weight,
-          ?value_as_dimension: Length,
-          ?value_as_currency: Money
-        ) -> instance
+        def value_as_boolean?: () -> bool
+        def to_h: () -> { data_type: String?, value_as_string: String?, value_as_boolean: bool?, value_as_integer: Integer?, value_as_timestamp: String?, value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, value_as_currency: Peddler::Types::Money? }
       end
     end
   end

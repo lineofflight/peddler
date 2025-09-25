@@ -4,21 +4,18 @@ module Peddler
   module Types
     module FinancesV0
       class TrialShipmentEvent < Data
+        def self.new: (amazon_order_id: String?, financial_event_group_id: String?, posted_date: String?, sku: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?) -> instance
+                    | (String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader amazon_order_id: String?
         attr_reader financial_event_group_id: String?
         attr_reader posted_date: String?
         attr_reader sku: String?
-        attr_reader fee_list: Array[FeeComponent]?
+        attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?amazon_order_id: String,
-          ?financial_event_group_id: String,
-          ?posted_date: String,
-          ?sku: String,
-          ?fee_list: Array[FeeComponent]
-        ) -> instance
+        def to_h: () -> { amazon_order_id: String?, financial_event_group_id: String?, posted_date: String?, sku: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class LtlTrackingDetail < Data
+        def self.new: (bill_of_lading_number: String?, freight_bill_number: Array[String]?) -> instance
+                    | (String?, Array[String]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader bill_of_lading_number: String?
         attr_reader freight_bill_number: Array[String]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?bill_of_lading_number: String,
-          ?freight_bill_number: Array[String]
-        ) -> instance
+        def to_h: () -> { bill_of_lading_number: String?, freight_bill_number: Array[String]? }
       end
     end
   end

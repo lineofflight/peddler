@@ -4,27 +4,22 @@ module Peddler
   module Types
     module ShippingV2
       class Package < Data
-        attr_reader dimensions: Dimensions
-        attr_reader weight: Weight
-        attr_reader insured_value: Money
+        def self.new: (dimensions: Peddler::Types::ShippingV2::Dimensions?, weight: Peddler::Types::ShippingV2::Weight?, insured_value: Peddler::Types::Money?, hazmat: bool?, seller_display_name: String?, charges: Array[Peddler::Types::ShippingV2::ChargeComponent]?, package_client_reference_id: String?, items: Array[Peddler::Types::ShippingV2::Item]?) -> instance
+                    | (Peddler::Types::ShippingV2::Dimensions?, Peddler::Types::ShippingV2::Weight?, Peddler::Types::Money?, bool?, String?, Array[Peddler::Types::ShippingV2::ChargeComponent]?, String?, Array[Peddler::Types::ShippingV2::Item]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader dimensions: Peddler::Types::ShippingV2::Dimensions?
+        attr_reader weight: Peddler::Types::ShippingV2::Weight?
+        attr_reader insured_value: Peddler::Types::Money?
         attr_reader hazmat: bool?
         attr_reader seller_display_name: String?
-        attr_reader charges: Array[ChargeComponent]?
-        attr_reader package_client_reference_id: String
-        attr_reader items: Array[Item]
+        attr_reader charges: Array[Peddler::Types::ShippingV2::ChargeComponent]?
+        attr_reader package_client_reference_id: String?
+        attr_reader items: Array[Peddler::Types::ShippingV2::Item]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          dimensions: Dimensions,
-          weight: Weight,
-          insured_value: Money,
-          ?hazmat: bool,
-          ?seller_display_name: String,
-          ?charges: Array[ChargeComponent],
-          package_client_reference_id: String,
-          items: Array[Item]
-        ) -> instance
+        def hazmat?: () -> bool
+        def to_h: () -> { dimensions: Peddler::Types::ShippingV2::Dimensions?, weight: Peddler::Types::ShippingV2::Weight?, insured_value: Peddler::Types::Money?, hazmat: bool?, seller_display_name: String?, charges: Array[Peddler::Types::ShippingV2::ChargeComponent]?, package_client_reference_id: String?, items: Array[Peddler::Types::ShippingV2::Item]? }
       end
     end
   end

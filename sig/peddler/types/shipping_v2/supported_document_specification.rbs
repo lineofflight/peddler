@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class SupportedDocumentSpecification < Data
-        attr_reader format: String
-        attr_reader size: DocumentSize
-        attr_reader print_options: Array[PrintOption]
+        def self.new: (format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, print_options: Array[Peddler::Types::ShippingV2::PrintOption]?) -> instance
+                    | (String?, Peddler::Types::ShippingV2::DocumentSize?, Array[Peddler::Types::ShippingV2::PrintOption]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          format: String,
-          size: DocumentSize,
-          print_options: Array[PrintOption]
-        ) -> instance
+        attr_reader format: String?
+        attr_reader size: Peddler::Types::ShippingV2::DocumentSize?
+        attr_reader print_options: Array[Peddler::Types::ShippingV2::PrintOption]?
+
+        def to_h: () -> { format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, print_options: Array[Peddler::Types::ShippingV2::PrintOption]? }
       end
     end
   end

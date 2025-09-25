@@ -4,27 +4,21 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class InboundShipmentItem < Data
+        def self.new: (shipment_id: String?, seller_sku: String?, fulfillment_network_sku: String?, quantity_shipped: Integer?, quantity_received: Integer?, quantity_in_case: Integer?, release_date: String?, prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?) -> instance
+                    | (String?, String?, String?, Integer?, Integer?, Integer?, String?, Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader shipment_id: String?
-        attr_reader seller_sku: String
+        attr_reader seller_sku: String?
         attr_reader fulfillment_network_sku: String?
-        attr_reader quantity_shipped: Integer
+        attr_reader quantity_shipped: Integer?
         attr_reader quantity_received: Integer?
         attr_reader quantity_in_case: Integer?
         attr_reader release_date: String?
-        attr_reader prep_details_list: Array[PrepDetails]?
+        attr_reader prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?shipment_id: String,
-          seller_sku: String,
-          ?fulfillment_network_sku: String,
-          quantity_shipped: Integer,
-          ?quantity_received: Integer,
-          ?quantity_in_case: Integer,
-          ?release_date: String,
-          ?prep_details_list: Array[PrepDetails]
-        ) -> instance
+        def to_h: () -> { shipment_id: String?, seller_sku: String?, fulfillment_network_sku: String?, quantity_shipped: Integer?, quantity_received: Integer?, quantity_in_case: Integer?, release_date: String?, prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]? }
       end
     end
   end

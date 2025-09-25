@@ -4,33 +4,24 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class AddressInput < Data
-        attr_reader address_line1: String
+        def self.new: (address_line1: String?, address_line2: String?, city: String?, company_name: String?, country_code: String?, district_or_county: String?, email: String?, name: String?, phone_number: String?, postal_code: String?, state_or_province_code: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader address_line1: String?
         attr_reader address_line2: String?
-        attr_reader city: String
+        attr_reader city: String?
         attr_reader company_name: String?
-        attr_reader country_code: String
+        attr_reader country_code: String?
         attr_reader district_or_county: String?
         attr_reader email: String?
-        attr_reader name: String
-        attr_reader phone_number: String
-        attr_reader postal_code: String
+        attr_reader name: String?
+        attr_reader phone_number: String?
+        attr_reader postal_code: String?
         attr_reader state_or_province_code: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          address_line1: String,
-          ?address_line2: String,
-          city: String,
-          ?company_name: String,
-          country_code: String,
-          ?district_or_county: String,
-          ?email: String,
-          name: String,
-          phone_number: String,
-          postal_code: String,
-          ?state_or_province_code: String
-        ) -> instance
+        def to_h: () -> { address_line1: String?, address_line2: String?, city: String?, company_name: String?, country_code: String?, district_or_county: String?, email: String?, name: String?, phone_number: String?, postal_code: String?, state_or_province_code: String? }
       end
     end
   end

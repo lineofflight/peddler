@@ -4,23 +4,19 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ShipmentConfirmation < Data
-        attr_reader purchase_order_number: String
-        attr_reader shipment_details: ShipmentDetails
-        attr_reader selling_party: PartyIdentification
-        attr_reader ship_from_party: PartyIdentification
-        attr_reader items: Array[Item]
-        attr_reader containers: Array[Container]?
+        def self.new: (purchase_order_number: String?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> instance
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          purchase_order_number: String,
-          shipment_details: ShipmentDetails,
-          selling_party: PartyIdentification,
-          ship_from_party: PartyIdentification,
-          items: Array[Item],
-          ?containers: Array[Container]
-        ) -> instance
+        attr_reader purchase_order_number: String?
+        attr_reader shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
+
+        def to_h: () -> { purchase_order_number: String?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
       end
     end
   end

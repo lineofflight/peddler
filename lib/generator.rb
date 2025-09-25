@@ -9,6 +9,7 @@ require "generator/logger"
 require "generator/api"
 require "generator/type"
 require "generator/type_resolver"
+require "generator/circular_dependency_detector"
 require "generator/entrypoint"
 require "generator/rbs/api"
 require "generator/rbs/entrypoint"
@@ -41,46 +42,6 @@ module Generator
     end
 
     private
-
-    def detect_circular_dependencies_for(type_array)
-      # Build a dependency graph for all types
-      dependency_graph = {}
-
-      type_array.each do |type|
-        dependency_graph[type.name] = type.type_dependencies
-      end
-
-      # Find all circular dependencies and the specific edges that cause cycles
-      circular_deps = Set.new
-      cycle_edges = Set.new # Store [from, to] pairs that create cycles
-      visited = Set.new
-
-      dependency_graph.keys.each do |type_name|
-        traverse_for_cycles(type_name, dependency_graph, visited, [], circular_deps, cycle_edges)
-      end
-
-      [circular_deps, cycle_edges]
-    end
-
-    def traverse_for_cycles(node, graph, visited, rec_stack, circular_deps, cycle_edges)
-      return unless graph[node] # Skip if node not in graph
-      return if visited.include?(node)
-
-      visited.add(node)
-      rec_stack += [node]
-
-      (graph[node] || []).each do |neighbor|
-        if rec_stack.include?(neighbor)
-          # Found a cycle - mark all nodes in the cycle
-          cycle_start_index = rec_stack.index(neighbor)
-          rec_stack[cycle_start_index..-1].each { |n| circular_deps.add(n) }
-          # Mark this specific edge as causing the cycle
-          cycle_edges.add([node, neighbor])
-        elsif !visited.include?(neighbor)
-          traverse_for_cycles(neighbor, graph, visited, rec_stack, circular_deps, cycle_edges)
-        end
-      end
-    end
 
     def ensure_api_models_exist!
       api_models_dir = File.join(Config::BASE_PATH, "selling-partner-api-models")
@@ -126,7 +87,6 @@ module Generator
     end
 
     def generate_types!
-      # Circular dependencies are already detected and set in the types method
       circular_count = types.find { |t| t.circular_dependencies&.any? }&.circular_dependencies&.size || 0
       logger.info("Detected circular dependencies in #{circular_count} types") if circular_count > 0
 
@@ -200,11 +160,11 @@ module Generator
           end
         end
 
-        # Detect circular dependencies once for all types
-        circular_deps, cycle_edges = detect_circular_dependencies_for(arr)
+        detector = CircularDependencyDetector.new(arr)
+        detector.detect
         arr.each do |type|
-          type.circular_dependencies = circular_deps
-          type.cycle_edges = cycle_edges
+          type.circular_dependencies = detector.circular_deps
+          type.cycle_edges = detector.cycle_edges
         end
 
         arr

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ProductPricing20220501
       class GetFeaturedOfferExpectedPriceBatchResponse < Data
-        attr_reader responses: Array[untyped]?
+        def self.new: (responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> instance
+                    | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?responses: Array[untyped]
-        ) -> instance
+        attr_reader responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?
+
+        def to_h: () -> { responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]? }
       end
     end
   end

@@ -4,21 +4,19 @@ module Peddler
   module Types
     module SupplySources20200701
       class PickupChannel < Data
-        attr_reader inventory_hold_period: Duration?
+        def self.new: (inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?, supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?) -> instance
+                    | (Peddler::Types::SupplySources20200701::Duration?, bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?
         attr_reader supported: bool?
-        attr_reader operational_configuration: OperationalConfiguration?
-        attr_reader in_store_pickup_configuration: InStorePickupConfiguration?
-        attr_reader curbside_pickup_configuration: CurbsidePickupConfiguration?
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?
+        attr_reader curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?inventory_hold_period: Duration,
-          ?supported: bool,
-          ?operational_configuration: OperationalConfiguration,
-          ?in_store_pickup_configuration: InStorePickupConfiguration,
-          ?curbside_pickup_configuration: CurbsidePickupConfiguration
-        ) -> instance
+        def supported?: () -> bool
+        def to_h: () -> { inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?, supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration? }
       end
     end
   end

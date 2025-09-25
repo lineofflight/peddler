@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class PropertyGroup < Data
+        def self.new: (title: String?, description: String?, property_names: Array[String]?) -> instance
+                    | (String?, String?, Array[String]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader title: String?
         attr_reader description: String?
         attr_reader property_names: Array[String]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?title: String,
-          ?description: String,
-          ?property_names: Array[String]
-        ) -> instance
+        def to_h: () -> { title: String?, description: String?, property_names: Array[String]? }
       end
     end
   end

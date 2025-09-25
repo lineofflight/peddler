@@ -4,25 +4,20 @@ module Peddler
   module Types
     module FinancesV0
       class RemovalShipmentItemAdjustment < Data
+        def self.new: (removal_shipment_item_id: String?, tax_collection_model: String?, fulfillment_network_sku: String?, adjusted_quantity: Integer?, revenue_adjustment: Peddler::Types::Money?, tax_amount_adjustment: Peddler::Types::Money?, tax_withheld_adjustment: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, Integer?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader removal_shipment_item_id: String?
         attr_reader tax_collection_model: String?
         attr_reader fulfillment_network_sku: String?
         attr_reader adjusted_quantity: Integer?
-        attr_reader revenue_adjustment: Money?
-        attr_reader tax_amount_adjustment: Money?
-        attr_reader tax_withheld_adjustment: Money?
+        attr_reader revenue_adjustment: Peddler::Types::Money?
+        attr_reader tax_amount_adjustment: Peddler::Types::Money?
+        attr_reader tax_withheld_adjustment: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?removal_shipment_item_id: String,
-          ?tax_collection_model: String,
-          ?fulfillment_network_sku: String,
-          ?adjusted_quantity: Integer,
-          ?revenue_adjustment: Money,
-          ?tax_amount_adjustment: Money,
-          ?tax_withheld_adjustment: Money
-        ) -> instance
+        def to_h: () -> { removal_shipment_item_id: String?, tax_collection_model: String?, fulfillment_network_sku: String?, adjusted_quantity: Integer?, revenue_adjustment: Peddler::Types::Money?, tax_amount_adjustment: Peddler::Types::Money?, tax_withheld_adjustment: Peddler::Types::Money? }
       end
     end
   end

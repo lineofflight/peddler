@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class SubmitInventoryUpdateRequest < Data
-        attr_reader inventory: InventoryUpdate?
+        def self.new: (inventory: Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate?) -> instance
+                    | (Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?inventory: InventoryUpdate
-        ) -> instance
+        attr_reader inventory: Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate?
+
+        def to_h: () -> { inventory: Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate? }
       end
     end
   end

@@ -4,25 +4,20 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransactionAccount < Data
+        def self.new: (account_id: String?, bank_account_holder_name: String?, bank_name: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_country_code: String?, bank_account_currency: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader account_id: String?
         attr_reader bank_account_holder_name: String?
-        attr_reader bank_name: String
-        attr_reader bank_account_number_format: String
+        attr_reader bank_name: String?
+        attr_reader bank_account_number_format: String?
         attr_reader bank_account_number_tail: String?
         attr_reader bank_account_country_code: String?
-        attr_reader bank_account_currency: String
+        attr_reader bank_account_currency: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?account_id: String,
-          ?bank_account_holder_name: String,
-          bank_name: String,
-          bank_account_number_format: String,
-          ?bank_account_number_tail: String,
-          ?bank_account_country_code: String,
-          bank_account_currency: String
-        ) -> instance
+        def to_h: () -> { account_id: String?, bank_account_holder_name: String?, bank_name: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_country_code: String?, bank_account_currency: String? }
       end
     end
   end

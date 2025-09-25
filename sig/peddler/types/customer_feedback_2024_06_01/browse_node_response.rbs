@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeResponse < Data
-        attr_reader browse_node_id: String
-        attr_reader display_name: String
+        def self.new: (browse_node_id: String?, display_name: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          browse_node_id: String,
-          display_name: String
-        ) -> instance
+        attr_reader browse_node_id: String?
+        attr_reader display_name: String?
+
+        def to_h: () -> { browse_node_id: String?, display_name: String? }
       end
     end
   end

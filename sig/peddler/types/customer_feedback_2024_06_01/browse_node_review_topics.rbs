@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTopics < Data
-        attr_reader positive_topics: Array[BrowseNodeReviewTopic]?
-        attr_reader negative_topics: Array[BrowseNodeReviewTopic]?
+        def self.new: (positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?, negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?) -> instance
+                    | (Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?positive_topics: Array[BrowseNodeReviewTopic],
-          ?negative_topics: Array[BrowseNodeReviewTopic]
-        ) -> instance
+        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?
+        attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?
+
+        def to_h: () -> { positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?, negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]? }
       end
     end
   end

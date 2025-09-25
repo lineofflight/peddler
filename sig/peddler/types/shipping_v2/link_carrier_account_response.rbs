@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class LinkCarrierAccountResponse < Data
+        def self.new: (registration_status: String?, account_id: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader registration_status: String?
         attr_reader account_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?registration_status: String,
-          ?account_id: String
-        ) -> instance
+        def to_h: () -> { registration_status: String?, account_id: String? }
       end
     end
   end

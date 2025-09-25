@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ShippingV1
       class Dimensions < Data
-        attr_reader length: Float
-        attr_reader width: Float
-        attr_reader height: Float
-        attr_reader unit: String
+        def self.new: (length: Float?, width: Float?, height: Float?, unit: String?) -> instance
+                    | (Float?, Float?, Float?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          length: Float,
-          width: Float,
-          height: Float,
-          unit: String
-        ) -> instance
+        attr_reader length: Float?
+        attr_reader width: Float?
+        attr_reader height: Float?
+        attr_reader unit: String?
+
+        def to_h: () -> { length: Float?, width: Float?, height: Float?, unit: String? }
       end
     end
   end

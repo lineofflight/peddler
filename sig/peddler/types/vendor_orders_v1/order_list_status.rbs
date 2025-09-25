@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderListStatus < Data
-        attr_reader pagination: Pagination?
-        attr_reader orders_status: Array[OrderStatus]?
+        def self.new: (pagination: Peddler::Types::VendorOrdersV1::Pagination?, orders_status: Array[Peddler::Types::VendorOrdersV1::OrderStatus]?) -> instance
+                    | (Peddler::Types::VendorOrdersV1::Pagination?, Array[Peddler::Types::VendorOrdersV1::OrderStatus]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          ?orders_status: Array[OrderStatus]
-        ) -> instance
+        attr_reader pagination: Peddler::Types::VendorOrdersV1::Pagination?
+        attr_reader orders_status: Array[Peddler::Types::VendorOrdersV1::OrderStatus]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorOrdersV1::Pagination?, orders_status: Array[Peddler::Types::VendorOrdersV1::OrderStatus]? }
       end
     end
   end

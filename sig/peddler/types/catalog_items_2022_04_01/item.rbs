@@ -4,33 +4,24 @@ module Peddler
   module Types
     module CatalogItems20220401
       class Item < Data
-        attr_reader asin: String
-        attr_reader attributes: ItemAttributes?
-        attr_reader classifications: Array[ItemBrowseClassificationsByMarketplace]?
-        attr_reader dimensions: Array[ItemDimensionsByMarketplace]?
-        attr_reader identifiers: Array[ItemIdentifiersByMarketplace]?
-        attr_reader images: Array[ItemImagesByMarketplace]?
-        attr_reader product_types: Array[ItemProductTypeByMarketplace]?
-        attr_reader relationships: Array[ItemRelationshipsByMarketplace]?
-        attr_reader sales_ranks: Array[ItemSalesRanksByMarketplace]?
-        attr_reader summaries: Array[ItemSummaryByMarketplace]?
-        attr_reader vendor_details: Array[ItemVendorDetailsByMarketplace]?
+        def self.new: (asin: String?, attributes: Peddler::Types::CatalogItems20220401::ItemAttributes?, classifications: Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace]?, dimensions: Array[Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace]?, identifiers: Array[Peddler::Types::CatalogItems20220401::ItemIdentifiersByMarketplace]?, images: Array[Peddler::Types::CatalogItems20220401::ItemImagesByMarketplace]?, product_types: Array[Peddler::Types::CatalogItems20220401::ItemProductTypeByMarketplace]?, relationships: Array[Peddler::Types::CatalogItems20220401::ItemRelationshipsByMarketplace]?, sales_ranks: Array[Peddler::Types::CatalogItems20220401::ItemSalesRanksByMarketplace]?, summaries: Array[Peddler::Types::CatalogItems20220401::ItemSummaryByMarketplace]?, vendor_details: Array[Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace]?) -> instance
+                    | (String?, Peddler::Types::CatalogItems20220401::ItemAttributes?, Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemIdentifiersByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemImagesByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemProductTypeByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemRelationshipsByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemSalesRanksByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemSummaryByMarketplace]?, Array[Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          asin: String,
-          ?attributes: ItemAttributes,
-          ?classifications: Array[ItemBrowseClassificationsByMarketplace],
-          ?dimensions: Array[ItemDimensionsByMarketplace],
-          ?identifiers: Array[ItemIdentifiersByMarketplace],
-          ?images: Array[ItemImagesByMarketplace],
-          ?product_types: Array[ItemProductTypeByMarketplace],
-          ?relationships: Array[ItemRelationshipsByMarketplace],
-          ?sales_ranks: Array[ItemSalesRanksByMarketplace],
-          ?summaries: Array[ItemSummaryByMarketplace],
-          ?vendor_details: Array[ItemVendorDetailsByMarketplace]
-        ) -> instance
+        attr_reader asin: String?
+        attr_reader attributes: Peddler::Types::CatalogItems20220401::ItemAttributes?
+        attr_reader classifications: Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace]?
+        attr_reader dimensions: Array[Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace]?
+        attr_reader identifiers: Array[Peddler::Types::CatalogItems20220401::ItemIdentifiersByMarketplace]?
+        attr_reader images: Array[Peddler::Types::CatalogItems20220401::ItemImagesByMarketplace]?
+        attr_reader product_types: Array[Peddler::Types::CatalogItems20220401::ItemProductTypeByMarketplace]?
+        attr_reader relationships: Array[Peddler::Types::CatalogItems20220401::ItemRelationshipsByMarketplace]?
+        attr_reader sales_ranks: Array[Peddler::Types::CatalogItems20220401::ItemSalesRanksByMarketplace]?
+        attr_reader summaries: Array[Peddler::Types::CatalogItems20220401::ItemSummaryByMarketplace]?
+        attr_reader vendor_details: Array[Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace]?
+
+        def to_h: () -> { asin: String?, attributes: Peddler::Types::CatalogItems20220401::ItemAttributes?, classifications: Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace]?, dimensions: Array[Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace]?, identifiers: Array[Peddler::Types::CatalogItems20220401::ItemIdentifiersByMarketplace]?, images: Array[Peddler::Types::CatalogItems20220401::ItemImagesByMarketplace]?, product_types: Array[Peddler::Types::CatalogItems20220401::ItemProductTypeByMarketplace]?, relationships: Array[Peddler::Types::CatalogItems20220401::ItemRelationshipsByMarketplace]?, sales_ranks: Array[Peddler::Types::CatalogItems20220401::ItemSalesRanksByMarketplace]?, summaries: Array[Peddler::Types::CatalogItems20220401::ItemSummaryByMarketplace]?, vendor_details: Array[Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace]? }
       end
     end
   end

@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FinancesV0
       class RemovalShipmentEvent < Data
+        def self.new: (posted_date: String?, merchant_order_id: String?, order_id: String?, transaction_type: String?, store_name: String?, removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?) -> instance
+                    | (String?, String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader merchant_order_id: String?
         attr_reader order_id: String?
         attr_reader transaction_type: String?
         attr_reader store_name: String?
-        attr_reader removal_shipment_item_list: Array[RemovalShipmentItem]?
+        attr_reader removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?merchant_order_id: String,
-          ?order_id: String,
-          ?transaction_type: String,
-          ?store_name: String,
-          ?removal_shipment_item_list: Array[RemovalShipmentItem]
-        ) -> instance
+        def to_h: () -> { posted_date: String?, merchant_order_id: String?, order_id: String?, transaction_type: String?, store_name: String?, removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]? }
       end
     end
   end

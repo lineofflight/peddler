@@ -4,23 +4,19 @@ module Peddler
   module Types
     module SalesV1
       class OrderMetricsInterval < Data
-        attr_reader interval: String
-        attr_reader unit_count: Integer
-        attr_reader order_item_count: Integer
-        attr_reader order_count: Integer
-        attr_reader average_unit_price: Money
-        attr_reader total_sales: Money
+        def self.new: (interval: String?, unit_count: Integer?, order_item_count: Integer?, order_count: Integer?, average_unit_price: Peddler::Types::Money?, total_sales: Peddler::Types::Money?) -> instance
+                    | (String?, Integer?, Integer?, Integer?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          interval: String,
-          unit_count: Integer,
-          order_item_count: Integer,
-          order_count: Integer,
-          average_unit_price: Money,
-          total_sales: Money
-        ) -> instance
+        attr_reader interval: String?
+        attr_reader unit_count: Integer?
+        attr_reader order_item_count: Integer?
+        attr_reader order_count: Integer?
+        attr_reader average_unit_price: Peddler::Types::Money?
+        attr_reader total_sales: Peddler::Types::Money?
+
+        def to_h: () -> { interval: String?, unit_count: Integer?, order_item_count: Integer?, order_count: Integer?, average_unit_price: Peddler::Types::Money?, total_sales: Peddler::Types::Money? }
       end
     end
   end

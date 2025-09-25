@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTrend < Data
-        attr_reader topic: String
-        attr_reader trend_metrics: Array[BrowseNodeReviewTrendPoint]
+        def self.new: (topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> instance
+                    | (String?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          topic: String,
-          trend_metrics: Array[BrowseNodeReviewTrendPoint]
-        ) -> instance
+        attr_reader topic: String?
+        attr_reader trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?
+
+        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]? }
       end
     end
   end

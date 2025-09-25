@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class GetCollectionFormResponse < Data
-        attr_reader collections_form_document: CollectionsFormDocument?
+        def self.new: (collections_form_document: Peddler::Types::ShippingV2::CollectionsFormDocument?) -> instance
+                    | (Peddler::Types::ShippingV2::CollectionsFormDocument?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?collections_form_document: CollectionsFormDocument
-        ) -> instance
+        attr_reader collections_form_document: Peddler::Types::ShippingV2::CollectionsFormDocument?
+
+        def to_h: () -> { collections_form_document: Peddler::Types::ShippingV2::CollectionsFormDocument? }
       end
     end
   end

@@ -4,6 +4,11 @@ module Peddler
   module Types
     module ShippingV2
       class CarrierAccountInput < Data
+        def self.new: (description_localization_key: String?, name: String?, group_name: String?, input_type: String?, mandatory: bool?, confidential: bool?, hidden: bool?, validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> instance
+                    | (String?, String?, String?, String?, bool?, bool?, bool?, Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader description_localization_key: String?
         attr_reader name: String?
         attr_reader group_name: String?
@@ -11,20 +16,12 @@ module Peddler
         attr_reader mandatory: bool?
         attr_reader confidential: bool?
         attr_reader hidden: bool?
-        attr_reader validation_metadata: Array[ValidationMetadata]?
+        attr_reader validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?description_localization_key: String,
-          ?name: String,
-          ?group_name: String,
-          ?input_type: String,
-          ?mandatory: bool,
-          ?confidential: bool,
-          ?hidden: bool,
-          ?validation_metadata: Array[ValidationMetadata]
-        ) -> instance
+        def mandatory?: () -> bool
+        def confidential?: () -> bool
+        def hidden?: () -> bool
+        def to_h: () -> { description_localization_key: String?, name: String?, group_name: String?, input_type: String?, mandatory: bool?, confidential: bool?, hidden: bool?, validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]? }
       end
     end
   end

@@ -4,21 +4,24 @@ require "erb"
 require "generator/config"
 require "generator/formatter"
 require "generator/parameter_builder"
+require "generator/response_model"
+require "generator/rate_limit_parser"
 
 module Generator
   class Operation
     include Formatter
 
-    attr_reader :path, :verb, :operation, :api_name_with_version, :specification
+    DEFAULT_TEMPLATE = File.read(Config.template_path("operation"))
 
-    DEFAULT_PAYLOAD_KEY = "payload"
+    attr_reader :path, :verb, :operation, :api_name_with_version, :specification, :template
 
-    def initialize(path, verb, operation, api_name_with_version = nil, specification = nil)
+    def initialize(path, verb, operation, api_name_with_version: nil, specification: nil, template: DEFAULT_TEMPLATE)
       @path = path
       @verb = verb
       @operation = operation
       @api_name_with_version = api_name_with_version
       @specification = specification
+      @template = template
     end
 
     def operation_id
@@ -147,184 +150,18 @@ module Generator
     end
 
     def response_model
-      @response_model ||= build_response_model
+      @response_model ||= ResponseModel.new(operation, specification).build
     end
 
     def parameters
       @parameters ||= ParameterBuilder.new(operation, path.parameters, rate_limit).build
     end
 
+    def rate_limit
+      @rate_limit ||= RateLimitParser.new(operation).parse
+    end
+
     private
-
-    def build_response_model
-      success_response = find_success_response
-      return default_response_model unless success_response && success_response["schema"]
-
-      schema = success_response["schema"]
-
-      if schema["$ref"]
-        build_ref_response_model(schema["$ref"])
-      elsif schema["properties"] && schema["properties"]["payload"]
-        handle_inline_payload_response(schema["properties"]["payload"])
-      else
-        default_response_model
-      end
-    end
-
-    def build_ref_response_model(ref)
-      response_type_name = ref.split("/").last
-      {
-        type: :response,
-        model: response_type_name,
-        path: [],
-      }
-    end
-
-    def default_response_model
-      { type: :raw, model: nil, path: ["payload"] }
-    end
-
-    def find_success_response
-      responses = operation["responses"]
-      # Amazon SP-API uses various 2xx codes: 200 (OK), 201 (Created), 202 (Accepted), 204 (No Content)
-      responses["200"] || responses["201"] || responses["202"] || responses["204"]
-    end
-
-    def handle_ref_response(schema)
-      response_def_name = schema["$ref"].split("/").last
-      definitions = specification&.dig("definitions")
-      response_def = definitions&.dig(response_def_name)
-
-      return default_response_model unless response_def&.dig("properties", "payload")
-
-      payload_schema = response_def["properties"]["payload"]
-      return default_response_model unless payload_schema["$ref"]
-
-      actual_model_name = payload_schema["$ref"].split("/").last
-      determine_model_type(actual_model_name, definitions)
-    end
-
-    def determine_model_type(model_name, definitions)
-      if model_name.end_with?("List")
-        handle_list_model(model_name, definitions)
-      elsif plural_array_type?(model_name)
-        build_plural_array_model(model_name)
-      else
-        build_single_model(model_name)
-      end
-    end
-
-    def plural_array_type?(model_name)
-      model_name.end_with?("s") && !model_name.match?(/(?:Address|Info|Status|Data)$/)
-    end
-
-    def build_plural_array_model(model_name)
-      {
-        type: :array,
-        model: model_name.sub(/s$/, ""),
-        path: ["payload", model_name],
-      }
-    end
-
-    def build_single_model(model_name)
-      {
-        type: :single,
-        model: model_name,
-        path: ["payload"],
-      }
-    end
-
-    def handle_list_model(model_name, definitions)
-      model_def = definitions&.dig(model_name)
-
-      if model_def&.dig("properties")
-        array_property = find_array_property(model_def["properties"], definitions)
-        return build_array_property_model(array_property) if array_property
-      end
-
-      # Fallback for List models
-      build_list_fallback_model(model_name)
-    end
-
-    def build_array_property_model(array_property)
-      array_property_name, singular_model_name = array_property
-      {
-        type: :array,
-        model: singular_model_name,
-        path: ["payload", array_property_name],
-      }
-    end
-
-    def build_list_fallback_model(model_name)
-      {
-        type: :array,
-        model: model_name.sub(/List$/, ""),
-        path: ["payload", model_name],
-      }
-    end
-
-    def find_array_property(properties, definitions)
-      properties.each do |prop_name, prop_def|
-        next unless prop_def["$ref"]
-
-        ref_name = prop_def["$ref"].split("/").last
-        ref_def = definitions&.dig(ref_name)
-
-        if ref_def&.dig("type") == "array" && ref_def.dig("items", "$ref")
-          singular_model_name = ref_def["items"]["$ref"].split("/").last
-          return [prop_name, singular_model_name]
-        end
-      end
-
-      nil
-    end
-
-    def handle_inline_payload_response(payload_schema)
-      if payload_schema["$ref"]
-        handle_payload_ref(payload_schema["$ref"])
-      elsif payload_schema["properties"]
-        handle_properties_payload(payload_schema)
-      else
-        default_response_model
-      end
-    end
-
-    def handle_payload_ref(ref)
-      model_name = ref.split("/").last
-      build_single_model(model_name)
-    end
-
-    def handle_properties_payload(payload_schema)
-      return default_response_model unless payload_schema["properties"]
-
-      array_prop = find_array_in_properties(payload_schema["properties"])
-
-      if array_prop
-        build_properties_array_model(array_prop[0])
-      else
-        build_properties_single_model(payload_schema["properties"].keys.first)
-      end
-    end
-
-    def find_array_in_properties(properties)
-      properties.find { |_, prop| prop["type"] == "array" }
-    end
-
-    def build_properties_array_model(array_name)
-      {
-        type: :array,
-        model: array_name.sub(/s$/, ""),
-        path: ["payload", array_name],
-      }
-    end
-
-    def build_properties_single_model(model_name)
-      {
-        type: :single,
-        model: model_name,
-        path: ["payload", model_name],
-      }
-    end
 
     def parser_class
       return unless has_typed_response?
@@ -374,7 +211,7 @@ module Generator
     end
 
     def parse_array_type(type_class, path)
-      if path.size == 2 && path.first == DEFAULT_PAYLOAD_KEY
+      if path.size == 2 && path.first == "payload"
         parse_nested_array(type_class, path.last)
       else
         parse_simple_array(type_class)
@@ -382,11 +219,11 @@ module Generator
     end
 
     def parse_nested_array(type_class, array_name)
-      "(response.parse.dig(\"#{DEFAULT_PAYLOAD_KEY}\", \"#{array_name}\") || []).map { |item| #{type_class}.parse(item) }"
+      "(response.parse.dig(\"payload\", \"#{array_name}\") || []).map { |item| #{type_class}.parse(item) }"
     end
 
     def parse_simple_array(type_class)
-      "(response.parse.dig(\"#{DEFAULT_PAYLOAD_KEY}\") || []).map { |item| #{type_class}.parse(item) }"
+      "(response.parse.dig(\"payload\") || []).map { |item| #{type_class}.parse(item) }"
     end
 
     def build_dig_path(path)
@@ -408,144 +245,6 @@ module Generator
       operation_id.underscore
     end
 
-    def sandbox_test_case
-      return unless static_sandbox?
-
-      # Find the first successful response code (2xx)
-      success_code = operation["responses"].keys.find { |code| code.start_with?("2") }
-      return unless success_code
-
-      sandbox_data = operation["responses"][success_code]["x-amzn-api-sandbox"]
-      return unless sandbox_data&.key?("static")
-
-      # Return the first static test case
-      sandbox_data["static"].first
-    end
-
-    def sandbox_params
-      test_case = sandbox_test_case
-      return "" unless test_case
-
-      request_params = test_case.dig("request", "parameters") || {}
-
-      # Build parameter list in correct order
-      method_params = parameters.select { |p| p["required"] }.map { |p| p["name"].underscore }
-
-      param_values = method_params.map do |param_name|
-        # Find the matching parameter in sandbox data
-        sandbox_param = request_params.find { |k, _| k.underscore == param_name }
-
-        if sandbox_param
-          value = sandbox_param[1]["value"]
-          # Handle arrays
-          if value.is_a?(Array)
-            value.inspect
-          elsif value.is_a?(String)
-            "\"#{value}\""
-          else
-            value
-          end
-        else
-          # This shouldn't happen for required params in sandbox tests
-          "nil"
-        end
-      end
-
-      # Add optional parameters with sandbox values
-      optional_sandbox_params = request_params.reject do |name, _|
-        method_params.include?(name.underscore)
-      end
-
-      optional_sandbox_params.each do |name, param_data|
-        value = param_data["value"]
-        formatted_value = if value.is_a?(Array)
-          value.inspect
-        elsif value.is_a?(String)
-          "\"#{value}\""
-        else
-          value
-        end
-        param_values << "#{name.underscore}: #{formatted_value}"
-      end
-
-      # Check if there's a body parameter in the test case
-      if test_case.dig("request", "body")
-        param_values << "body: #{test_case["request"]["body"].to_json}"
-      end
-
-      param_values.join(", ")
-    end
-
-    def typed_test_assertion
-      test_case = sandbox_test_case
-      return "" unless test_case && has_typed_response?
-
-      model = response_model
-      method_call = "api.sandbox.typed.#{name}(#{sandbox_params})"
-
-      case model[:type]
-      when :single
-        type_class = "Peddler::Types::#{api_name_with_version.camelize}::#{model[:model]}"
-        "result = #{method_call}\n\n        assert_instance_of(#{type_class}, result)"
-      when :array
-        type_class = "Peddler::Types::#{api_name_with_version.camelize}::#{model[:model]}"
-        <<~ASSERTION
-          results = #{method_call}
-
-                assert_kind_of(Array, results)
-                assert_instance_of(#{type_class}, results.first) unless results.empty?
-        ASSERTION
-      else
-        ""
-      end
-    end
-
-    # CAUTION: This method parses rate limits from human-readable documentation. This is inherently fragile. Amazon
-    # could change their documentation format at any time without considering it a breaking change. However, this is the
-    # only source for rate limit data in their OpenAPI specifications.
-    #
-    # Extracts the rate value (requests per second) from the usage plan table
-    # Example table:
-    # | Rate (requests per second) | Burst |
-    # | ---- | ---- |
-    # | 0.0167 | 20 |
-    #
-    # Returns: 0.0167 (rate value in requests per second)
-    def rate_limit
-      # This regex:
-      # 1. Finds the "Usage Plan:" section
-      # 2. Locates the table with Rate and Burst columns
-      # 3. Extracts the rate value from the data row
-      # This regex is robust and handles various table formats by looking for "Burst |" in the header and then
-      # extracting the rate value from the data row. It works with both 2-column and 3-column tables.
-      # Note: API models may use either literal \n strings or actual newline characters
-      pattern = %r{
-        Burst\s*\|                      # Find "Burst |" at end of table header
-        (?:\\n|\n)                      # Either literal \n string or actual newline
-        \|(?:\s*-+\s*\|){2,3}           # Separator line (2-3 columns of dashes)
-        (?:\\n|\n)                      # Either literal \n string or actual newline
-        (?:\|[^|]*){0,1}                # Optional first column (e.g., "Default" in 3-column format)
-        \|\s*(\S+)\s*\|                 # Capture rate value (always before burst value)
-        [^|]*\|                         # Skip to burst column
-      }mx
-
-      match = operation["description"].match(pattern)
-      if match
-        rate_value = match[1]
-        # Handle "n" as a special case - indicates variable/dynamic rate limits
-        # We return :unknown to signal that rate limiting exists but no default is provided
-        # See: https://developer-docs.amazon.com/sp-api/docs/fulfillment-inbound-api-rate-limits
-        return :unknown if rate_value.downcase == "n"
-
-        rate_value.to_f
-      elsif operation["description"].match?(/Usage\s+[Pp]lans?:/)
-        # Fail when we can't extract rate limit but Usage Plan exists. This likely means Amazon changed their
-        # documentation format.
-        raise "Failed to extract rate limit for #{operation["operationId"]}. Usage Plan found in description but " \
-          "regex failed to match. This usually means Amazon changed their documentation format."
-      end
-    end
-
     def dynamic_sandbox?
       path.has_dynamic_sandbox? || !!operation.dig("x-amzn-api-sandbox", "dynamic")
     end
@@ -558,10 +257,6 @@ module Generator
 
     def sandbox_only?
       path.sandbox_only? || !!operation["x-amzn-api-sandbox-only"]
-    end
-
-    def template
-      File.read(Config.template_path("operation"))
     end
   end
 end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardHeaderImageTextModule < Data
-        attr_reader headline: TextComponent?
-        attr_reader block: StandardImageTextBlock?
+        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?headline: TextComponent,
-          ?block: StandardImageTextBlock
-        ) -> instance
+        attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+
+        def to_h: () -> { headline: Peddler::Types::AplusContent20201101::TextComponent?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Feeds20210630
       class CreateFeedDocumentResponse < Data
-        attr_reader feed_document_id: String
-        attr_reader url: String
+        def self.new: (feed_document_id: String?, url: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          feed_document_id: String,
-          url: String
-        ) -> instance
+        attr_reader feed_document_id: String?
+        attr_reader url: String?
+
+        def to_h: () -> { feed_document_id: String?, url: String? }
       end
     end
   end

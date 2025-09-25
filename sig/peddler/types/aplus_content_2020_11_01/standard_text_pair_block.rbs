@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardTextPairBlock < Data
-        attr_reader label: TextComponent?
-        attr_reader description: TextComponent?
+        def self.new: (label: Peddler::Types::AplusContent20201101::TextComponent?, description: Peddler::Types::AplusContent20201101::TextComponent?) -> instance
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?label: TextComponent,
-          ?description: TextComponent
-        ) -> instance
+        attr_reader label: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader description: Peddler::Types::AplusContent20201101::TextComponent?
+
+        def to_h: () -> { label: Peddler::Types::AplusContent20201101::TextComponent?, description: Peddler::Types::AplusContent20201101::TextComponent? }
       end
     end
   end

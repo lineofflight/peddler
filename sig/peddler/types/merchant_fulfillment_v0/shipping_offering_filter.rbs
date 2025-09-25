@@ -4,19 +4,19 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class ShippingOfferingFilter < Data
+        def self.new: (include_packing_slip_with_label: bool?, include_complex_shipping_options: bool?, carrier_will_pick_up: String?, delivery_experience: String?) -> instance
+                    | (bool?, bool?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader include_packing_slip_with_label: bool?
         attr_reader include_complex_shipping_options: bool?
         attr_reader carrier_will_pick_up: String?
         attr_reader delivery_experience: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?include_packing_slip_with_label: bool,
-          ?include_complex_shipping_options: bool,
-          ?carrier_will_pick_up: String,
-          ?delivery_experience: String
-        ) -> instance
+        def include_packing_slip_with_label?: () -> bool
+        def include_complex_shipping_options?: () -> bool
+        def to_h: () -> { include_packing_slip_with_label: bool?, include_complex_shipping_options: bool?, carrier_will_pick_up: String?, delivery_experience: String? }
       end
     end
   end

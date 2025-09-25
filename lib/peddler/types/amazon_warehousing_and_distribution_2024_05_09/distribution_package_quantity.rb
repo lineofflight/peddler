@@ -2,7 +2,7 @@
 
 # This file is generated. Edit template if necessary.
 
-require "peddler/types/amazon_warehousing_and_distribution_2024_05_09/distribution_package"
+require "structure"
 
 module Peddler
   module Types
@@ -13,7 +13,7 @@ module Peddler
         attribute(:count, Integer)
 
         # @return [DistributionPackage]
-        attribute(:distribution_package, DistributionPackage, from: "distributionPackage")
+        attribute(:distribution_package, "DistributionPackage", from: "distributionPackage")
       end
     end
   end

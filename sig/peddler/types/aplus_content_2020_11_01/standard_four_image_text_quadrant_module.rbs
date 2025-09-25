@@ -4,19 +4,17 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardFourImageTextQuadrantModule < Data
-        attr_reader block1: StandardImageTextBlock
-        attr_reader block2: StandardImageTextBlock
-        attr_reader block3: StandardImageTextBlock
-        attr_reader block4: StandardImageTextBlock
+        def self.new: (block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
+                    | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          block1: StandardImageTextBlock,
-          block2: StandardImageTextBlock,
-          block3: StandardImageTextBlock,
-          block4: StandardImageTextBlock
-        ) -> instance
+        attr_reader block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+        attr_reader block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+        attr_reader block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+        attr_reader block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
+
+        def to_h: () -> { block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock? }
       end
     end
   end

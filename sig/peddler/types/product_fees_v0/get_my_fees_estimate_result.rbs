@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ProductFeesV0
       class GetMyFeesEstimateResult < Data
-        attr_reader fees_estimate_result: FeesEstimateResult?
+        def self.new: (fees_estimate_result: Peddler::Types::ProductFeesV0::FeesEstimateResult?) -> instance
+                    | (Peddler::Types::ProductFeesV0::FeesEstimateResult?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?fees_estimate_result: FeesEstimateResult
-        ) -> instance
+        attr_reader fees_estimate_result: Peddler::Types::ProductFeesV0::FeesEstimateResult?
+
+        def to_h: () -> { fees_estimate_result: Peddler::Types::ProductFeesV0::FeesEstimateResult? }
       end
     end
   end

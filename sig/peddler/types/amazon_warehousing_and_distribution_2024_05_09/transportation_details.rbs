@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class TransportationDetails < Data
-        attr_reader tracking_details: Array[TrackingDetails]
+        def self.new: (tracking_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> instance
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          tracking_details: Array[TrackingDetails]
-        ) -> instance
+        attr_reader tracking_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]?
+
+        def to_h: () -> { tracking_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]? }
       end
     end
   end

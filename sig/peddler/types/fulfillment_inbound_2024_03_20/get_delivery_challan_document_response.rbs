@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class GetDeliveryChallanDocumentResponse < Data
-        attr_reader document_download: DocumentDownload
+        def self.new: (document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::DocumentDownload?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          document_download: DocumentDownload
-        ) -> instance
+        attr_reader document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload?
+
+        def to_h: () -> { document_download: Peddler::Types::FulfillmentInbound20240320::DocumentDownload? }
       end
     end
   end

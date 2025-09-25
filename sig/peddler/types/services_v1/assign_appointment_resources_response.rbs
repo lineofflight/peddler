@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ServicesV1
       class AssignAppointmentResourcesResponse < Data
-        attr_reader payload: Hash[String, untyped]?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Hash?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
+                    | (Hash?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: Hash[String, untyped],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Hash?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { payload: Hash?, errors: Array[Peddler::Types::ServicesV1::Error]? }
       end
     end
   end

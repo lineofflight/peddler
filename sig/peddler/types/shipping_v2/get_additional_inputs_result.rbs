@@ -4,11 +4,6 @@ module Peddler
   module Types
     module ShippingV2
       class GetAdditionalInputsResult < Data
-
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-        ) -> instance
       end
     end
   end

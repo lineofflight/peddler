@@ -4,17 +4,16 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewSubtopic < Data
-        attr_reader subtopic: String
-        attr_reader metrics: ItemReviewSubtopicMetrics
+        def self.new: (subtopic: String?, metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, review_snippets: Array[String]?) -> instance
+                    | (String?, Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, Array[String]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader subtopic: String?
+        attr_reader metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?
         attr_reader review_snippets: Array[String]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          subtopic: String,
-          metrics: ItemReviewSubtopicMetrics,
-          ?review_snippets: Array[String]
-        ) -> instance
+        def to_h: () -> { subtopic: String?, metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, review_snippets: Array[String]? }
       end
     end
   end

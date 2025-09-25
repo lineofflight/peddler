@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Constraint < Data
+        def self.new: (validation_reg_ex: String?, validation_string: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader validation_reg_ex: String?
-        attr_reader validation_string: String
+        attr_reader validation_string: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?validation_reg_ex: String,
-          validation_string: String
-        ) -> instance
+        def to_h: () -> { validation_reg_ex: String?, validation_string: String? }
       end
     end
   end

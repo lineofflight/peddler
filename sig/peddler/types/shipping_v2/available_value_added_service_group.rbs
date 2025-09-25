@@ -4,19 +4,18 @@ module Peddler
   module Types
     module ShippingV2
       class AvailableValueAddedServiceGroup < Data
-        attr_reader group_id: String
-        attr_reader group_description: String
-        attr_reader required: bool
-        attr_reader value_added_services: Array[ValueAddedService]?
+        def self.new: (group_id: String?, group_description: String?, required: bool?, value_added_services: Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> instance
+                    | (String?, String?, bool?, Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          group_id: String,
-          group_description: String,
-          required: bool,
-          ?value_added_services: Array[ValueAddedService]
-        ) -> instance
+        attr_reader group_id: String?
+        attr_reader group_description: String?
+        attr_reader required: bool?
+        attr_reader value_added_services: Array[Peddler::Types::ShippingV2::ValueAddedService]?
+
+        def required?: () -> bool
+        def to_h: () -> { group_id: String?, group_description: String?, required: bool?, value_added_services: Array[Peddler::Types::ShippingV2::ValueAddedService]? }
       end
     end
   end

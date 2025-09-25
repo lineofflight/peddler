@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MessagingV1
       class CreateDigitalAccessKeyRequest < Data
+        def self.new: (text: String?, attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> instance
+                    | (String?, Array[Peddler::Types::MessagingV1::Attachment]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader text: String?
-        attr_reader attachments: Array[Attachment]?
+        attr_reader attachments: Array[Peddler::Types::MessagingV1::Attachment]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?text: String,
-          ?attachments: Array[Attachment]
-        ) -> instance
+        def to_h: () -> { text: String?, attachments: Array[Peddler::Types::MessagingV1::Attachment]? }
       end
     end
   end

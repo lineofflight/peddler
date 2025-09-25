@@ -4,17 +4,16 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardTechSpecsModule < Data
-        attr_reader headline: TextComponent?
-        attr_reader specification_list: Array[StandardTextPairBlock]
+        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, table_count: Integer?) -> instance
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?
         attr_reader table_count: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?headline: TextComponent,
-          specification_list: Array[StandardTextPairBlock],
-          ?table_count: Integer
-        ) -> instance
+        def to_h: () -> { headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, table_count: Integer? }
       end
     end
   end

@@ -4,27 +4,21 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderAcknowledgementItem < Data
+        def self.new: (item_sequence_number: String?, amazon_product_identifier: String?, vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money?, discount_multiplier: String?, item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> instance
+                    | (String?, String?, String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader item_sequence_number: String?
         attr_reader amazon_product_identifier: String?
         attr_reader vendor_product_identifier: String?
-        attr_reader ordered_quantity: ItemQuantity
-        attr_reader net_cost: Money?
-        attr_reader list_price: Money?
+        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
+        attr_reader net_cost: Peddler::Types::Money?
+        attr_reader list_price: Peddler::Types::Money?
         attr_reader discount_multiplier: String?
-        attr_reader item_acknowledgements: Array[OrderItemAcknowledgement]
+        attr_reader item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?item_sequence_number: String,
-          ?amazon_product_identifier: String,
-          ?vendor_product_identifier: String,
-          ordered_quantity: ItemQuantity,
-          ?net_cost: Money,
-          ?list_price: Money,
-          ?discount_multiplier: String,
-          item_acknowledgements: Array[OrderItemAcknowledgement]
-        ) -> instance
+        def to_h: () -> { item_sequence_number: String?, amazon_product_identifier: String?, vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money?, discount_multiplier: String?, item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]? }
       end
     end
   end

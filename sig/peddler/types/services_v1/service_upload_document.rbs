@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ServicesV1
       class ServiceUploadDocument < Data
-        attr_reader content_type: String
-        attr_reader content_length: Float
+        def self.new: (content_type: String?, content_length: Float?, content_md5: String?) -> instance
+                    | (String?, Float?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader content_type: String?
+        attr_reader content_length: Float?
         attr_reader content_md5: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          content_type: String,
-          content_length: Float,
-          ?content_md5: String
-        ) -> instance
+        def to_h: () -> { content_type: String?, content_length: Float?, content_md5: String? }
       end
     end
   end

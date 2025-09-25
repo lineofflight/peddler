@@ -4,25 +4,20 @@ module Peddler
   module Types
     module SupplySources20200701
       class OperatingHoursByDay < Data
-        attr_reader monday: Array[OperatingHour]?
-        attr_reader tuesday: Array[OperatingHour]?
-        attr_reader wednesday: Array[OperatingHour]?
-        attr_reader thursday: Array[OperatingHour]?
-        attr_reader friday: Array[OperatingHour]?
-        attr_reader saturday: Array[OperatingHour]?
-        attr_reader sunday: Array[OperatingHour]?
+        def self.new: (monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> instance
+                    | (Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?monday: Array[OperatingHour],
-          ?tuesday: Array[OperatingHour],
-          ?wednesday: Array[OperatingHour],
-          ?thursday: Array[OperatingHour],
-          ?friday: Array[OperatingHour],
-          ?saturday: Array[OperatingHour],
-          ?sunday: Array[OperatingHour]
-        ) -> instance
+        attr_reader monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+
+        def to_h: () -> { monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]? }
       end
     end
   end

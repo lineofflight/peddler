@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class SubmitInvoicesRequest < Data
-        attr_reader invoices: Array[Invoice]?
+        def self.new: (invoices: Array[Peddler::Types::VendorInvoicesV1::Invoice]?) -> instance
+                    | (Array[Peddler::Types::VendorInvoicesV1::Invoice]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?invoices: Array[Invoice]
-        ) -> instance
+        attr_reader invoices: Array[Peddler::Types::VendorInvoicesV1::Invoice]?
+
+        def to_h: () -> { invoices: Array[Peddler::Types::VendorInvoicesV1::Invoice]? }
       end
     end
   end

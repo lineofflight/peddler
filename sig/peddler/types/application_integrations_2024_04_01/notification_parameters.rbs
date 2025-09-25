@@ -4,11 +4,6 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class NotificationParameters < Data
-
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-        ) -> instance
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class SearchContentDocumentsResponse < Data
-        attr_reader content_metadata_records: Array[ContentMetadataRecord]
+        def self.new: (content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          content_metadata_records: Array[ContentMetadataRecord]
-        ) -> instance
+        attr_reader content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?
+
+        def to_h: () -> { content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]? }
       end
     end
   end

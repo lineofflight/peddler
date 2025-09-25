@@ -4,31 +4,23 @@ module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class InvoiceItem < Data
-        attr_reader item_sequence_number: String
+        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, vendor_order_number: String?, hsn_code: String?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> instance
+                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, Peddler::Types::Money?, String?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader item_sequence_number: String?
         attr_reader buyer_product_identifier: String?
         attr_reader vendor_product_identifier: String?
-        attr_reader invoiced_quantity: ItemQuantity
-        attr_reader net_cost: Money
-        attr_reader purchase_order_number: String
+        attr_reader invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?
+        attr_reader net_cost: Peddler::Types::Money?
+        attr_reader purchase_order_number: String?
         attr_reader vendor_order_number: String?
         attr_reader hsn_code: String?
-        attr_reader tax_details: Array[TaxDetail]?
-        attr_reader charge_details: Array[ChargeDetails]?
+        attr_reader tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?
+        attr_reader charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          item_sequence_number: String,
-          ?buyer_product_identifier: String,
-          ?vendor_product_identifier: String,
-          invoiced_quantity: ItemQuantity,
-          net_cost: Money,
-          purchase_order_number: String,
-          ?vendor_order_number: String,
-          ?hsn_code: String,
-          ?tax_details: Array[TaxDetail],
-          ?charge_details: Array[ChargeDetails]
-        ) -> instance
+        def to_h: () -> { item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, vendor_order_number: String?, hsn_code: String?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]? }
       end
     end
   end

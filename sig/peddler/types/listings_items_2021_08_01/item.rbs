@@ -4,29 +4,22 @@ module Peddler
   module Types
     module ListingsItems20210801
       class Item < Data
-        attr_reader sku: String
-        attr_reader summaries: Array[ItemSummaryByMarketplace]?
-        attr_reader attributes: ItemAttributes?
-        attr_reader issues: Array[Issue]?
-        attr_reader offers: Array[ItemOfferByMarketplace]?
-        attr_reader fulfillment_availability: Array[FulfillmentAvailability]?
-        attr_reader procurement: Array[ItemProcurement]?
-        attr_reader relationships: Array[ItemRelationshipsByMarketplace]?
-        attr_reader product_types: Array[ItemProductTypeByMarketplace]?
+        def self.new: (sku: String?, summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?, attributes: Peddler::Types::ListingsItems20210801::ItemAttributes?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?) -> instance
+                    | (String?, Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?, Peddler::Types::ListingsItems20210801::ItemAttributes?, Array[Peddler::Types::ListingsItems20210801::Issue]?, Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          sku: String,
-          ?summaries: Array[ItemSummaryByMarketplace],
-          ?attributes: ItemAttributes,
-          ?issues: Array[Issue],
-          ?offers: Array[ItemOfferByMarketplace],
-          ?fulfillment_availability: Array[FulfillmentAvailability],
-          ?procurement: Array[ItemProcurement],
-          ?relationships: Array[ItemRelationshipsByMarketplace],
-          ?product_types: Array[ItemProductTypeByMarketplace]
-        ) -> instance
+        attr_reader sku: String?
+        attr_reader summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?
+        attr_reader attributes: Peddler::Types::ListingsItems20210801::ItemAttributes?
+        attr_reader issues: Array[Peddler::Types::ListingsItems20210801::Issue]?
+        attr_reader offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?
+        attr_reader fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?
+        attr_reader procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?
+        attr_reader relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?
+        attr_reader product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?
+
+        def to_h: () -> { sku: String?, summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?, attributes: Peddler::Types::ListingsItems20210801::ItemAttributes?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class PackingConfiguration < Data
-        attr_reader box_packing_methods: Array[String]?
-        attr_reader box_requirements: BoxRequirements?
-        attr_reader shipping_requirements: Array[ShippingRequirements]?
+        def self.new: (box_packing_methods: Array?, box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?) -> instance
+                    | (Array?, Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?box_packing_methods: Array[String],
-          ?box_requirements: BoxRequirements,
-          ?shipping_requirements: Array[ShippingRequirements]
-        ) -> instance
+        attr_reader box_packing_methods: Array?
+        attr_reader box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?
+        attr_reader shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]?
+
+        def to_h: () -> { box_packing_methods: Array?, box_requirements: Peddler::Types::FulfillmentInbound20240320::BoxRequirements?, shipping_requirements: Array[Peddler::Types::FulfillmentInbound20240320::ShippingRequirements]? }
       end
     end
   end

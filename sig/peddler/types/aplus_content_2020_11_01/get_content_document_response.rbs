@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class GetContentDocumentResponse < Data
-        attr_reader warnings: Array[Error]?
-        attr_reader content_record: ContentRecord
+        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?, content_record: Peddler::Types::AplusContent20201101::ContentRecord?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::Error]?, Peddler::Types::AplusContent20201101::ContentRecord?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?warnings: Array[Error],
-          content_record: ContentRecord
-        ) -> instance
+        attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
+        attr_reader content_record: Peddler::Types::AplusContent20201101::ContentRecord?
+
+        def to_h: () -> { warnings: Array[Peddler::Types::AplusContent20201101::Error]?, content_record: Peddler::Types::AplusContent20201101::ContentRecord? }
       end
     end
   end

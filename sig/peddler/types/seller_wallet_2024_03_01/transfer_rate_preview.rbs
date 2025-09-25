@@ -4,19 +4,17 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransferRatePreview < Data
-        attr_reader base_amount: Money
-        attr_reader fx_rate_details: FxRateDetails
-        attr_reader transfer_amount: Money
-        attr_reader fees: Array[Fee]
+        def self.new: (base_amount: Peddler::Types::Money?, fx_rate_details: Peddler::Types::SellerWallet20240301::FxRateDetails?, transfer_amount: Peddler::Types::Money?, fees: Array[Peddler::Types::SellerWallet20240301::Fee]?) -> instance
+                    | (Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::FxRateDetails?, Peddler::Types::Money?, Array[Peddler::Types::SellerWallet20240301::Fee]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          base_amount: Money,
-          fx_rate_details: FxRateDetails,
-          transfer_amount: Money,
-          fees: Array[Fee]
-        ) -> instance
+        attr_reader base_amount: Peddler::Types::Money?
+        attr_reader fx_rate_details: Peddler::Types::SellerWallet20240301::FxRateDetails?
+        attr_reader transfer_amount: Peddler::Types::Money?
+        attr_reader fees: Array[Peddler::Types::SellerWallet20240301::Fee]?
+
+        def to_h: () -> { base_amount: Peddler::Types::Money?, fx_rate_details: Peddler::Types::SellerWallet20240301::FxRateDetails?, transfer_amount: Peddler::Types::Money?, fees: Array[Peddler::Types::SellerWallet20240301::Fee]? }
       end
     end
   end

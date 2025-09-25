@@ -4,41 +4,28 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class ShipmentDetail < Data
+        def self.new: (warehouse_id: String?, amazon_order_id: String?, amazon_shipment_id: String?, purchase_date: String?, shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?, payment_method_details: Array?, payments: Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, marketplace_id: String?, seller_id: String?, buyer_name: String?, buyer_county: String?, buyer_tax_info: Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, marketplace_tax_info: Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, seller_display_name: String?, shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::ShipmentInvoicingV0::Address?, Array?, Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, String?, String?, String?, String?, Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, String?, Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader warehouse_id: String?
         attr_reader amazon_order_id: String?
         attr_reader amazon_shipment_id: String?
         attr_reader purchase_date: String?
-        attr_reader shipping_address: Address?
-        attr_reader payment_method_details: Array[String]?
-        attr_reader payments: Array[PaymentInformation]?
+        attr_reader shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?
+        attr_reader payment_method_details: Array?
+        attr_reader payments: Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?
         attr_reader marketplace_id: String?
         attr_reader seller_id: String?
         attr_reader buyer_name: String?
         attr_reader buyer_county: String?
-        attr_reader buyer_tax_info: BuyerTaxInfo?
-        attr_reader marketplace_tax_info: MarketplaceTaxInfo?
+        attr_reader buyer_tax_info: Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?
+        attr_reader marketplace_tax_info: Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?
         attr_reader seller_display_name: String?
-        attr_reader shipment_items: Array[ShipmentItem]?
+        attr_reader shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?warehouse_id: String,
-          ?amazon_order_id: String,
-          ?amazon_shipment_id: String,
-          ?purchase_date: String,
-          ?shipping_address: Address,
-          ?payment_method_details: Array[String],
-          ?payments: Array[PaymentInformation],
-          ?marketplace_id: String,
-          ?seller_id: String,
-          ?buyer_name: String,
-          ?buyer_county: String,
-          ?buyer_tax_info: BuyerTaxInfo,
-          ?marketplace_tax_info: MarketplaceTaxInfo,
-          ?seller_display_name: String,
-          ?shipment_items: Array[ShipmentItem]
-        ) -> instance
+        def to_h: () -> { warehouse_id: String?, amazon_order_id: String?, amazon_shipment_id: String?, purchase_date: String?, shipping_address: Peddler::Types::ShipmentInvoicingV0::Address?, payment_method_details: Array?, payments: Array[Peddler::Types::ShipmentInvoicingV0::PaymentInformation]?, marketplace_id: String?, seller_id: String?, buyer_name: String?, buyer_county: String?, buyer_tax_info: Peddler::Types::ShipmentInvoicingV0::BuyerTaxInfo?, marketplace_tax_info: Peddler::Types::ShipmentInvoicingV0::MarketplaceTaxInfo?, seller_display_name: String?, shipment_items: Array[Peddler::Types::ShipmentInvoicingV0::ShipmentItem]? }
       end
     end
   end

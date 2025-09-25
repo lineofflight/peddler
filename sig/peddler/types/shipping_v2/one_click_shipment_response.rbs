@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class OneClickShipmentResponse < Data
-        attr_reader payload: OneClickShipmentResult?
+        def self.new: (payload: Peddler::Types::ShippingV2::OneClickShipmentResult?) -> instance
+                    | (Peddler::Types::ShippingV2::OneClickShipmentResult?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: OneClickShipmentResult
-        ) -> instance
+        attr_reader payload: Peddler::Types::ShippingV2::OneClickShipmentResult?
+
+        def to_h: () -> { payload: Peddler::Types::ShippingV2::OneClickShipmentResult? }
       end
     end
   end

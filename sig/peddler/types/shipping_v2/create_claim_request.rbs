@@ -4,23 +4,20 @@ module Peddler
   module Types
     module ShippingV2
       class CreateClaimRequest < Data
-        attr_reader tracking_id: String
-        attr_reader declared_value: Money?
-        attr_reader claim_reason: String
+        def self.new: (tracking_id: String?, declared_value: Peddler::Types::Money?, claim_reason: String?, replacement_package_sent: bool?, proofs: Array?, settlement_type: String?) -> instance
+                    | (String?, Peddler::Types::Money?, String?, bool?, Array?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader tracking_id: String?
+        attr_reader declared_value: Peddler::Types::Money?
+        attr_reader claim_reason: String?
         attr_reader replacement_package_sent: bool?
-        attr_reader proofs: Array[String]?
-        attr_reader settlement_type: String
+        attr_reader proofs: Array?
+        attr_reader settlement_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          tracking_id: String,
-          ?declared_value: Money,
-          claim_reason: String,
-          ?replacement_package_sent: bool,
-          ?proofs: Array[String],
-          settlement_type: String
-        ) -> instance
+        def replacement_package_sent?: () -> bool
+        def to_h: () -> { tracking_id: String?, declared_value: Peddler::Types::Money?, claim_reason: String?, replacement_package_sent: bool?, proofs: Array?, settlement_type: String? }
       end
     end
   end

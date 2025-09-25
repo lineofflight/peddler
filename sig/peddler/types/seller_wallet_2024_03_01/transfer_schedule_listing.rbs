@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransferScheduleListing < Data
+        def self.new: (next_page_token: String?, transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?) -> instance
+                    | (String?, Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader next_page_token: String?
-        attr_reader transfer_schedules: Array[TransferSchedule]
+        attr_reader transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?next_page_token: String,
-          transfer_schedules: Array[TransferSchedule]
-        ) -> instance
+        def to_h: () -> { next_page_token: String?, transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]? }
       end
     end
   end

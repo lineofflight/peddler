@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class GenerateSelfShipAppointmentSlotsRequest < Data
+        def self.new: (desired_end_date: String?, desired_start_date: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader desired_end_date: String?
         attr_reader desired_start_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?desired_end_date: String,
-          ?desired_start_date: String
-        ) -> instance
+        def to_h: () -> { desired_end_date: String?, desired_start_date: String? }
       end
     end
   end

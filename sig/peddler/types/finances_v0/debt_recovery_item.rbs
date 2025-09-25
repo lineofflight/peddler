@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FinancesV0
       class DebtRecoveryItem < Data
-        attr_reader recovery_amount: Money?
-        attr_reader original_amount: Money?
+        def self.new: (recovery_amount: Peddler::Types::Money?, original_amount: Peddler::Types::Money?, group_begin_date: String?, group_end_date: String?) -> instance
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader recovery_amount: Peddler::Types::Money?
+        attr_reader original_amount: Peddler::Types::Money?
         attr_reader group_begin_date: String?
         attr_reader group_end_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?recovery_amount: Money,
-          ?original_amount: Money,
-          ?group_begin_date: String,
-          ?group_end_date: String
-        ) -> instance
+        def to_h: () -> { recovery_amount: Peddler::Types::Money?, original_amount: Peddler::Types::Money?, group_begin_date: String?, group_end_date: String? }
       end
     end
   end

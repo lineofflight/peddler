@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFulfillmentOrderResult < Data
-        attr_reader fulfillment_order: FulfillmentOrder
-        attr_reader fulfillment_order_items: Array[FulfillmentOrderItem]
-        attr_reader fulfillment_shipments: Array[FulfillmentShipment]?
-        attr_reader return_items: Array[ReturnItem]
-        attr_reader return_authorizations: Array[ReturnAuthorization]
-        attr_reader payment_information: Array[PaymentInformation]?
+        def self.new: (fulfillment_order: Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?, fulfillment_order_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?, fulfillment_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?, return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?) -> instance
+                    | (Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          fulfillment_order: FulfillmentOrder,
-          fulfillment_order_items: Array[FulfillmentOrderItem],
-          ?fulfillment_shipments: Array[FulfillmentShipment],
-          return_items: Array[ReturnItem],
-          return_authorizations: Array[ReturnAuthorization],
-          ?payment_information: Array[PaymentInformation]
-        ) -> instance
+        attr_reader fulfillment_order: Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?
+        attr_reader fulfillment_order_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?
+        attr_reader fulfillment_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?
+        attr_reader return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?
+        attr_reader return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?
+        attr_reader payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?
+
+        def to_h: () -> { fulfillment_order: Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?, fulfillment_order_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?, fulfillment_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?, return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]? }
       end
     end
   end

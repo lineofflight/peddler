@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ItemQuantity < Data
-        attr_reader amount: Integer
-        attr_reader unit_of_measure: String
+        def self.new: (amount: Integer?, unit_of_measure: String?) -> instance
+                    | (Integer?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          amount: Integer,
-          unit_of_measure: String
-        ) -> instance
+        attr_reader amount: Integer?
+        attr_reader unit_of_measure: String?
+
+        def to_h: () -> { amount: Integer?, unit_of_measure: String? }
       end
     end
   end

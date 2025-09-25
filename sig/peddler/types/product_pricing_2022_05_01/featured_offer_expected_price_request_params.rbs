@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPriceRequestParams < Data
-        attr_reader marketplace_id: String
-        attr_reader sku: String
-        attr_reader segment: Segment?
+        def self.new: (marketplace_id: String?, sku: String?, segment: Peddler::Types::ProductPricing20220501::Segment?) -> instance
+                    | (String?, String?, Peddler::Types::ProductPricing20220501::Segment?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          sku: String,
-          ?segment: Segment
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader sku: String?
+        attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
+
+        def to_h: () -> { marketplace_id: String?, sku: String?, segment: Peddler::Types::ProductPricing20220501::Segment? }
       end
     end
   end

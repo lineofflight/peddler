@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ListingsRestrictions20210801
       class Restriction < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, condition_type: String?, reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> instance
+                    | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader condition_type: String?
-        attr_reader reasons: Array[Reason]?
+        attr_reader reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?condition_type: String,
-          ?reasons: Array[Reason]
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, condition_type: String?, reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]? }
       end
     end
   end

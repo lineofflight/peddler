@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ShipmentDestination < Data
-        attr_reader address: Address?
-        attr_reader destination_type: String
+        def self.new: (address: Peddler::Types::FulfillmentInbound20240320::Address?, destination_type: String?, warehouse_id: String?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::Address?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader address: Peddler::Types::FulfillmentInbound20240320::Address?
+        attr_reader destination_type: String?
         attr_reader warehouse_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?address: Address,
-          destination_type: String,
-          ?warehouse_id: String
-        ) -> instance
+        def to_h: () -> { address: Peddler::Types::FulfillmentInbound20240320::Address?, destination_type: String?, warehouse_id: String? }
       end
     end
   end

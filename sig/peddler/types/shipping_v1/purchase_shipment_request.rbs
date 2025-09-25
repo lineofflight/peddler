@@ -4,25 +4,20 @@ module Peddler
   module Types
     module ShippingV1
       class PurchaseShipmentRequest < Data
-        attr_reader client_reference_id: String
-        attr_reader ship_to: Address
-        attr_reader ship_from: Address
+        def self.new: (client_reference_id: String?, ship_to: Peddler::Types::ShippingV1::Address?, ship_from: Peddler::Types::ShippingV1::Address?, ship_date: String?, service_type: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, label_specification: Peddler::Types::ShippingV1::LabelSpecification?) -> instance
+                    | (String?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, String?, String?, Array[Peddler::Types::ShippingV1::Container]?, Peddler::Types::ShippingV1::LabelSpecification?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader client_reference_id: String?
+        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
+        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
         attr_reader ship_date: String?
-        attr_reader service_type: String
-        attr_reader containers: Array[Container]
-        attr_reader label_specification: LabelSpecification
+        attr_reader service_type: String?
+        attr_reader containers: Array[Peddler::Types::ShippingV1::Container]?
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          client_reference_id: String,
-          ship_to: Address,
-          ship_from: Address,
-          ?ship_date: String,
-          service_type: String,
-          containers: Array[Container],
-          label_specification: LabelSpecification
-        ) -> instance
+        def to_h: () -> { client_reference_id: String?, ship_to: Peddler::Types::ShippingV1::Address?, ship_from: Peddler::Types::ShippingV1::Address?, ship_date: String?, service_type: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, label_specification: Peddler::Types::ShippingV1::LabelSpecification? }
       end
     end
   end

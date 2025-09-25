@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class ErrorList < Data
-        attr_reader errors: Array[Error]
+        def self.new: (errors: Array[Peddler::Types::AplusContent20201101::Error]?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          errors: Array[Error]
-        ) -> instance
+        attr_reader errors: Array[Peddler::Types::AplusContent20201101::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
     end
   end

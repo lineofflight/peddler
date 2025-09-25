@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorDirectFulfillmentTransactions20211228
       class Error < Data
-        attr_reader code: String
-        attr_reader message: String
+        def self.new: (code: String?, message: String?, details: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader code: String?
+        attr_reader message: String?
         attr_reader details: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          code: String,
-          message: String,
-          ?details: String
-        ) -> instance
+        def to_h: () -> { code: String?, message: String?, details: String? }
       end
     end
   end

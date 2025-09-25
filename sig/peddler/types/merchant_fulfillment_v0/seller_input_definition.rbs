@@ -4,25 +4,21 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class SellerInputDefinition < Data
-        attr_reader required: bool
-        attr_reader data_type: String
-        attr_reader constraints: Array[Constraint]
-        attr_reader input_display_text: String
+        def self.new: (required: bool?, data_type: String?, constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, input_display_text: String?, input_target: String?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, restricted_set_values: Array?) -> instance
+                    | (bool?, String?, Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, String?, String?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, Array?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader required: bool?
+        attr_reader data_type: String?
+        attr_reader constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?
+        attr_reader input_display_text: String?
         attr_reader input_target: String?
-        attr_reader stored_value: AdditionalSellerInput
-        attr_reader restricted_set_values: Array[String]?
+        attr_reader stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?
+        attr_reader restricted_set_values: Array?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          required: bool,
-          data_type: String,
-          constraints: Array[Constraint],
-          input_display_text: String,
-          ?input_target: String,
-          stored_value: AdditionalSellerInput,
-          ?restricted_set_values: Array[String]
-        ) -> instance
+        def required?: () -> bool
+        def to_h: () -> { required: bool?, data_type: String?, constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, input_display_text: String?, input_target: String?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, restricted_set_values: Array? }
       end
     end
   end

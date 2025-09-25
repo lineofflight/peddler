@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetEligibleShipmentServicesRequest < Data
-        attr_reader shipment_request_details: ShipmentRequestDetails
-        attr_reader shipping_offering_filter: ShippingOfferingFilter?
+        def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?) -> instance
+                    | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          shipment_request_details: ShipmentRequestDetails,
-          ?shipping_offering_filter: ShippingOfferingFilter
-        ) -> instance
+        attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
+        attr_reader shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter?
+
+        def to_h: () -> { shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_offering_filter: Peddler::Types::MerchantFulfillmentV0::ShippingOfferingFilter? }
       end
     end
   end

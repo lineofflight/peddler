@@ -4,23 +4,19 @@ module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryResponseBody < Data
-        attr_reader asin: String
-        attr_reader marketplace_id: String
-        attr_reader featured_buying_options: Array[FeaturedBuyingOption]?
-        attr_reader lowest_priced_offers: Array[LowestPricedOffer]?
-        attr_reader reference_prices: Array[ReferencePrice]?
-        attr_reader errors: Array[Error]?
+        def self.new: (asin: String?, marketplace_id: String?, featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
+                    | (String?, String?, Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          asin: String,
-          marketplace_id: String,
-          ?featured_buying_options: Array[FeaturedBuyingOption],
-          ?lowest_priced_offers: Array[LowestPricedOffer],
-          ?reference_prices: Array[ReferencePrice],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader asin: String?
+        attr_reader marketplace_id: String?
+        attr_reader featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?
+        attr_reader lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?
+        attr_reader reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?
+        attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
+
+        def to_h: () -> { asin: String?, marketplace_id: String?, featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]? }
       end
     end
   end

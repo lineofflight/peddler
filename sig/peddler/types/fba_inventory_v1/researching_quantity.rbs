@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FBAInventoryV1
       class ResearchingQuantity < Data
+        def self.new: (total_researching_quantity: Integer?, researching_quantity_breakdown: Array[Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry]?) -> instance
+                    | (Integer?, Array[Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader total_researching_quantity: Integer?
-        attr_reader researching_quantity_breakdown: Array[ResearchingQuantityEntry]?
+        attr_reader researching_quantity_breakdown: Array[Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?total_researching_quantity: Integer,
-          ?researching_quantity_breakdown: Array[ResearchingQuantityEntry]
-        ) -> instance
+        def to_h: () -> { total_researching_quantity: Integer?, researching_quantity_breakdown: Array[Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry]? }
       end
     end
   end

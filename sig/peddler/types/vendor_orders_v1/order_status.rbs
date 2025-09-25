@@ -4,25 +4,20 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderStatus < Data
-        attr_reader purchase_order_number: String
-        attr_reader purchase_order_status: String
-        attr_reader purchase_order_date: String
+        def self.new: (purchase_order_number: String?, purchase_order_status: String?, purchase_order_date: String?, last_updated_date: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, item_status: Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader purchase_order_number: String?
+        attr_reader purchase_order_status: String?
+        attr_reader purchase_order_date: String?
         attr_reader last_updated_date: String?
-        attr_reader selling_party: PartyIdentification
-        attr_reader ship_to_party: PartyIdentification
-        attr_reader item_status: Array[OrderItemStatus]
+        attr_reader selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
+        attr_reader item_status: Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          purchase_order_number: String,
-          purchase_order_status: String,
-          purchase_order_date: String,
-          ?last_updated_date: String,
-          selling_party: PartyIdentification,
-          ship_to_party: PartyIdentification,
-          item_status: Array[OrderItemStatus]
-        ) -> instance
+        def to_h: () -> { purchase_order_number: String?, purchase_order_status: String?, purchase_order_date: String?, last_updated_date: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, item_status: Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]? }
       end
     end
   end

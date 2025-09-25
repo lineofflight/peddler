@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductPricingV0
       class CompetitivePricingType < Data
-        attr_reader competitive_prices: Array[CompetitivePriceType]
-        attr_reader number_of_offer_listings: Array[OfferListingCountType]
-        attr_reader trade_in_value: Money?
+        def self.new: (competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, trade_in_value: Peddler::Types::Money?) -> instance
+                    | (Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          competitive_prices: Array[CompetitivePriceType],
-          number_of_offer_listings: Array[OfferListingCountType],
-          ?trade_in_value: Money
-        ) -> instance
+        attr_reader competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?
+        attr_reader number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?
+        attr_reader trade_in_value: Peddler::Types::Money?
+
+        def to_h: () -> { competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, trade_in_value: Peddler::Types::Money? }
       end
     end
   end

@@ -4,21 +4,18 @@ module Peddler
   module Types
     module OrdersV0
       class PaymentExecutionDetailItem < Data
-        attr_reader payment: Money
-        attr_reader payment_method: String
+        def self.new: (payment: Peddler::Types::Money?, payment_method: String?, acquirer_id: String?, card_brand: String?, authorization_code: String?) -> instance
+                    | (Peddler::Types::Money?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader payment: Peddler::Types::Money?
+        attr_reader payment_method: String?
         attr_reader acquirer_id: String?
         attr_reader card_brand: String?
         attr_reader authorization_code: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          payment: Money,
-          payment_method: String,
-          ?acquirer_id: String,
-          ?card_brand: String,
-          ?authorization_code: String
-        ) -> instance
+        def to_h: () -> { payment: Peddler::Types::Money?, payment_method: String?, acquirer_id: String?, card_brand: String?, authorization_code: String? }
       end
     end
   end

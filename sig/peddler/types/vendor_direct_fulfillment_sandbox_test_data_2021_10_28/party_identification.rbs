@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class PartyIdentification < Data
-        attr_reader party_id: String
+        def self.new: (party_id: String?) -> instance
+                    | (String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          party_id: String
-        ) -> instance
+        attr_reader party_id: String?
+
+        def to_h: () -> { party_id: String? }
       end
     end
   end

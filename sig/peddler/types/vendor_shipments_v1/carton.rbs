@@ -4,23 +4,19 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Carton < Data
-        attr_reader carton_identifiers: Array[ContainerIdentification]?
-        attr_reader carton_sequence_number: String
-        attr_reader dimensions: Dimensions?
-        attr_reader weight: Weight?
+        def self.new: (carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, carton_sequence_number: String?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, tracking_number: String?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> instance
+                    | (Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, String?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::Weight?, String?, Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
+        attr_reader carton_sequence_number: String?
+        attr_reader dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?
+        attr_reader weight: Peddler::Types::VendorShipmentsV1::Weight?
         attr_reader tracking_number: String?
-        attr_reader items: Array[ContainerItem]
+        attr_reader items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?carton_identifiers: Array[ContainerIdentification],
-          carton_sequence_number: String,
-          ?dimensions: Dimensions,
-          ?weight: Weight,
-          ?tracking_number: String,
-          items: Array[ContainerItem]
-        ) -> instance
+        def to_h: () -> { carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, carton_sequence_number: String?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, tracking_number: String?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]? }
       end
     end
   end

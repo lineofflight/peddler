@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class RelationshipList < Array[untyped]
-        def self.parse: (Array[untyped] array) -> instance
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

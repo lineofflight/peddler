@@ -4,17 +4,16 @@ module Peddler
   module Types
     module SellersV1
       class MarketplaceParticipation < Data
-        attr_reader marketplace: Marketplace
-        attr_reader participation: Participation
-        attr_reader store_name: String
+        def self.new: (marketplace: Peddler::Types::SellersV1::Marketplace?, participation: Peddler::Types::SellersV1::Participation?, store_name: String?) -> instance
+                    | (Peddler::Types::SellersV1::Marketplace?, Peddler::Types::SellersV1::Participation?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace: Marketplace,
-          participation: Participation,
-          store_name: String
-        ) -> instance
+        attr_reader marketplace: Peddler::Types::SellersV1::Marketplace?
+        attr_reader participation: Peddler::Types::SellersV1::Participation?
+        attr_reader store_name: String?
+
+        def to_h: () -> { marketplace: Peddler::Types::SellersV1::Marketplace?, participation: Peddler::Types::SellersV1::Participation?, store_name: String? }
       end
     end
   end

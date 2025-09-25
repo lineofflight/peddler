@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class AvailableCarrierWillPickUpOptionsList < Array[AvailableCarrierWillPickUpOption]
-        def self.parse: (Array[untyped] array) -> instance
+      class AvailableCarrierWillPickUpOptionsList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

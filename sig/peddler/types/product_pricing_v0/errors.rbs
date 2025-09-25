@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ProductPricingV0
       class Errors < Data
-        attr_reader errors: Array[Error]
+        def self.new: (errors: Array[Peddler::Types::ProductPricingV0::Error]?) -> instance
+                    | (Array[Peddler::Types::ProductPricingV0::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          errors: Array[Error]
-        ) -> instance
+        attr_reader errors: Array[Peddler::Types::ProductPricingV0::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricingV0::Error]? }
       end
     end
   end

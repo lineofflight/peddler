@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ItemInput < Data
+        def self.new: (expiration: String?, label_owner: String?, manufacturing_lot_code: String?, msku: String?, prep_owner: String?, quantity: Integer?) -> instance
+                    | (String?, String?, String?, String?, String?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader expiration: String?
-        attr_reader label_owner: String
+        attr_reader label_owner: String?
         attr_reader manufacturing_lot_code: String?
-        attr_reader msku: String
-        attr_reader prep_owner: String
-        attr_reader quantity: Integer
+        attr_reader msku: String?
+        attr_reader prep_owner: String?
+        attr_reader quantity: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?expiration: String,
-          label_owner: String,
-          ?manufacturing_lot_code: String,
-          msku: String,
-          prep_owner: String,
-          quantity: Integer
-        ) -> instance
+        def to_h: () -> { expiration: String?, label_owner: String?, manufacturing_lot_code: String?, msku: String?, prep_owner: String?, quantity: Integer? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ServicesV1
       class ServiceLocation < Data
+        def self.new: (service_location_type: String?, address: Peddler::Types::ServicesV1::Address?) -> instance
+                    | (String?, Peddler::Types::ServicesV1::Address?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader service_location_type: String?
-        attr_reader address: Address?
+        attr_reader address: Peddler::Types::ServicesV1::Address?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?service_location_type: String,
-          ?address: Address
-        ) -> instance
+        def to_h: () -> { service_location_type: String?, address: Peddler::Types::ServicesV1::Address? }
       end
     end
   end

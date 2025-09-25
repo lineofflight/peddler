@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetPrepInstructionsResult < Data
-        attr_reader sku_prep_instructions_list: Array[SKUPrepInstructions]?
-        attr_reader invalid_sku_list: Array[InvalidSKU]?
-        attr_reader asin_prep_instructions_list: Array[ASINPrepInstructions]?
-        attr_reader invalid_asin_list: Array[InvalidASIN]?
+        def self.new: (sku_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?, invalid_sku_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?, Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?sku_prep_instructions_list: Array[SKUPrepInstructions],
-          ?invalid_sku_list: Array[InvalidSKU],
-          ?asin_prep_instructions_list: Array[ASINPrepInstructions],
-          ?invalid_asin_list: Array[InvalidASIN]
-        ) -> instance
+        attr_reader sku_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?
+        attr_reader invalid_sku_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?
+        attr_reader asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?
+        attr_reader invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?
+
+        def to_h: () -> { sku_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?, invalid_sku_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]? }
       end
     end
   end

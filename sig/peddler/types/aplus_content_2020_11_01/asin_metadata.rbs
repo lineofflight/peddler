@@ -4,23 +4,19 @@ module Peddler
   module Types
     module AplusContent20201101
       class AsinMetadata < Data
-        attr_reader asin: String
-        attr_reader badge_set: Array[String]?
+        def self.new: (asin: String?, badge_set: Array?, parent: String?, title: String?, image_url: String?, content_reference_key_set: Array?) -> instance
+                    | (String?, Array?, String?, String?, String?, Array?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader asin: String?
+        attr_reader badge_set: Array?
         attr_reader parent: String?
         attr_reader title: String?
         attr_reader image_url: String?
-        attr_reader content_reference_key_set: Array[String]?
+        attr_reader content_reference_key_set: Array?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          asin: String,
-          ?badge_set: Array[String],
-          ?parent: String,
-          ?title: String,
-          ?image_url: String,
-          ?content_reference_key_set: Array[String]
-        ) -> instance
+        def to_h: () -> { asin: String?, badge_set: Array?, parent: String?, title: String?, image_url: String?, content_reference_key_set: Array? }
       end
     end
   end

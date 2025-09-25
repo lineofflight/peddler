@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class Carrier < Data
-        attr_reader id: String
-        attr_reader name: String
+        def self.new: (id: String?, name: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          id: String,
-          name: String
-        ) -> instance
+        attr_reader id: String?
+        attr_reader name: String?
+
+        def to_h: () -> { id: String?, name: String? }
       end
     end
   end

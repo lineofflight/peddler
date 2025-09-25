@@ -4,27 +4,21 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Item < Data
-        attr_reader asin: String
+        def self.new: (asin: String?, expiration: String?, fnsku: String?, label_owner: String?, manufacturing_lot_code: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader asin: String?
         attr_reader expiration: String?
-        attr_reader fnsku: String
-        attr_reader label_owner: String
+        attr_reader fnsku: String?
+        attr_reader label_owner: String?
         attr_reader manufacturing_lot_code: String?
-        attr_reader msku: String
-        attr_reader prep_instructions: Array[PrepInstruction]
-        attr_reader quantity: Integer
+        attr_reader msku: String?
+        attr_reader prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?
+        attr_reader quantity: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          asin: String,
-          ?expiration: String,
-          fnsku: String,
-          label_owner: String,
-          ?manufacturing_lot_code: String,
-          msku: String,
-          prep_instructions: Array[PrepInstruction],
-          quantity: Integer
-        ) -> instance
+        def to_h: () -> { asin: String?, expiration: String?, fnsku: String?, label_owner: String?, manufacturing_lot_code: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer? }
       end
     end
   end

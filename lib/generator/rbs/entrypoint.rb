@@ -2,6 +2,7 @@
 
 require "erb"
 require "generator/config"
+require "generator/version_selector"
 
 module Generator
   module RBS
@@ -27,14 +28,8 @@ module Generator
 
       def apis_with_latest_version
         apis.group_by(&:name).transform_values do |api_list|
-          api_list.sort_by do |api|
-            version = api.version
-            if version.start_with?("v")
-              [1, version]
-            else
-              [2, version]
-            end
-          end.last
+          latest_version = VersionSelector.find_latest_version(api_list.map(&:version))
+          api_list.find { |api| api.version == latest_version }
         end.sort.to_h
       end
 

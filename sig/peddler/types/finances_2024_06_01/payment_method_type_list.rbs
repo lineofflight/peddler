@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module Finances20240601
-      class PaymentMethodTypeList < Array[String]
-        def self.parse: (Array[untyped] array) -> instance
+      class PaymentMethodTypeList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

@@ -4,27 +4,21 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class PackingOption < Data
-        attr_reader discounts: Array[Incentive]
+        def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[String]?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
         attr_reader expiration: String?
-        attr_reader fees: Array[Incentive]
-        attr_reader packing_groups: Array[String]
-        attr_reader packing_option_id: String
-        attr_reader status: String
-        attr_reader supported_configurations: Array[PackingConfiguration]
-        attr_reader supported_shipping_configurations: Array[ShippingConfiguration]
+        attr_reader fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
+        attr_reader packing_groups: Array[String]?
+        attr_reader packing_option_id: String?
+        attr_reader status: String?
+        attr_reader supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?
+        attr_reader supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          discounts: Array[Incentive],
-          ?expiration: String,
-          fees: Array[Incentive],
-          packing_groups: Array[String],
-          packing_option_id: String,
-          status: String,
-          supported_configurations: Array[PackingConfiguration],
-          supported_shipping_configurations: Array[ShippingConfiguration]
-        ) -> instance
+        def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]? }
       end
     end
   end

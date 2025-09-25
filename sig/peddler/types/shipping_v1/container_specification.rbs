@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV1
       class ContainerSpecification < Data
-        attr_reader dimensions: Dimensions
-        attr_reader weight: Weight
+        def self.new: (dimensions: Peddler::Types::ShippingV1::Dimensions?, weight: Peddler::Types::ShippingV1::Weight?) -> instance
+                    | (Peddler::Types::ShippingV1::Dimensions?, Peddler::Types::ShippingV1::Weight?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          dimensions: Dimensions,
-          weight: Weight
-        ) -> instance
+        attr_reader dimensions: Peddler::Types::ShippingV1::Dimensions?
+        attr_reader weight: Peddler::Types::ShippingV1::Weight?
+
+        def to_h: () -> { dimensions: Peddler::Types::ShippingV1::Dimensions?, weight: Peddler::Types::ShippingV1::Weight? }
       end
     end
   end

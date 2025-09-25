@@ -4,29 +4,22 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransactionInitiationRequest < Data
-        attr_reader source_account_id: String
+        def self.new: (source_account_id: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_description: String?, customer_payment_reference: String?, destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, source_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, request_time: String?) -> instance
+                    | (String?, String?, Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, String?, String?, Peddler::Types::SellerWallet20240301::AccountHolderAddress?, Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader source_account_id: String?
         attr_reader destination_account_id: String?
-        attr_reader destination_transaction_instrument: TransactionInstrumentDetails
+        attr_reader destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?
         attr_reader transaction_description: String?
         attr_reader customer_payment_reference: String?
-        attr_reader destination_account_holder_address: AccountHolderAddress?
-        attr_reader source_amount: Money
-        attr_reader transfer_rate_details: TransferRatePreview?
-        attr_reader request_time: String
+        attr_reader destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?
+        attr_reader source_amount: Peddler::Types::Money?
+        attr_reader transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?
+        attr_reader request_time: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          source_account_id: String,
-          ?destination_account_id: String,
-          destination_transaction_instrument: TransactionInstrumentDetails,
-          ?transaction_description: String,
-          ?customer_payment_reference: String,
-          ?destination_account_holder_address: AccountHolderAddress,
-          source_amount: Money,
-          ?transfer_rate_details: TransferRatePreview,
-          request_time: String
-        ) -> instance
+        def to_h: () -> { source_account_id: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_description: String?, customer_payment_reference: String?, destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, source_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, request_time: String? }
       end
     end
   end

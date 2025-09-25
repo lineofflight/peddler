@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class GoodsOwner < Data
-        attr_reader merchant_id: String
+        def self.new: (merchant_id: String?) -> instance
+                    | (String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          merchant_id: String
-        ) -> instance
+        attr_reader merchant_id: String?
+
+        def to_h: () -> { merchant_id: String? }
       end
     end
   end

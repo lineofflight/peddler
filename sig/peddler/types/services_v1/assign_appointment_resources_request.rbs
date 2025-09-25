@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ServicesV1
       class AssignAppointmentResourcesRequest < Data
-        attr_reader resources: Array[AppointmentResource]
+        def self.new: (resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?) -> instance
+                    | (Array[Peddler::Types::ServicesV1::AppointmentResource]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          resources: Array[AppointmentResource]
-        ) -> instance
+        attr_reader resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?
+
+        def to_h: () -> { resources: Array[Peddler::Types::ServicesV1::AppointmentResource]? }
       end
     end
   end

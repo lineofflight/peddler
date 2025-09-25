@@ -4,23 +4,19 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardSingleImageHighlightsModule < Data
-        attr_reader image: ImageComponent?
-        attr_reader headline: TextComponent?
-        attr_reader text_block1: StandardTextBlock?
-        attr_reader text_block2: StandardTextBlock?
-        attr_reader text_block3: StandardTextBlock?
-        attr_reader bulleted_list_block: StandardHeaderTextListBlock?
+        def self.new: (image: Peddler::Types::AplusContent20201101::ImageComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent?, text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock?, bulleted_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?) -> instance
+                    | (Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?image: ImageComponent,
-          ?headline: TextComponent,
-          ?text_block1: StandardTextBlock,
-          ?text_block2: StandardTextBlock,
-          ?text_block3: StandardTextBlock,
-          ?bulleted_list_block: StandardHeaderTextListBlock
-        ) -> instance
+        attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
+        attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        attr_reader text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        attr_reader text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock?
+        attr_reader bulleted_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?
+
+        def to_h: () -> { image: Peddler::Types::AplusContent20201101::ImageComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent?, text_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, text_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, text_block3: Peddler::Types::AplusContent20201101::StandardTextBlock?, bulleted_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock? }
       end
     end
   end

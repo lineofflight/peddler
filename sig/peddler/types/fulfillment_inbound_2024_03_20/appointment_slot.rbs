@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class AppointmentSlot < Data
-        attr_reader slot_id: String
-        attr_reader slot_time: AppointmentSlotTime
+        def self.new: (slot_id: String?, slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> instance
+                    | (String?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          slot_id: String,
-          slot_time: AppointmentSlotTime
-        ) -> instance
+        attr_reader slot_id: String?
+        attr_reader slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?
+
+        def to_h: () -> { slot_id: String?, slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime? }
       end
     end
   end

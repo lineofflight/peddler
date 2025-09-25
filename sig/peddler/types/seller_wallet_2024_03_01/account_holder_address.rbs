@@ -4,25 +4,20 @@ module Peddler
   module Types
     module SellerWallet20240301
       class AccountHolderAddress < Data
-        attr_reader address_line1: String
+        def self.new: (address_line1: String?, address_line2: String?, city: String?, state: String?, postal_code: String?, country: String?, country_code: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader address_line1: String?
         attr_reader address_line2: String?
-        attr_reader city: String
-        attr_reader state: String
-        attr_reader postal_code: String
+        attr_reader city: String?
+        attr_reader state: String?
+        attr_reader postal_code: String?
         attr_reader country: String?
-        attr_reader country_code: String
+        attr_reader country_code: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          address_line1: String,
-          ?address_line2: String,
-          city: String,
-          state: String,
-          postal_code: String,
-          ?country: String,
-          country_code: String
-        ) -> instance
+        def to_h: () -> { address_line1: String?, address_line2: String?, city: String?, state: String?, postal_code: String?, country: String?, country_code: String? }
       end
     end
   end

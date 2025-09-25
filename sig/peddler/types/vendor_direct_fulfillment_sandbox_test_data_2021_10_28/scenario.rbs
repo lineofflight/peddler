@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class Scenario < Data
-        attr_reader scenario_id: String
-        attr_reader orders: Array[TestOrder]
+        def self.new: (scenario_id: String?, orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?) -> instance
+                    | (String?, Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          scenario_id: String,
-          orders: Array[TestOrder]
-        ) -> instance
+        attr_reader scenario_id: String?
+        attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?
+
+        def to_h: () -> { scenario_id: String?, orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]? }
       end
     end
   end

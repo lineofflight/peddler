@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class TrackingDetailCodes < Data
-        attr_reader forward: Array[String]
-        attr_reader returns: Array[String]
+        def self.new: (forward: Array?, returns: Array?) -> instance
+                    | (Array?, Array?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          forward: Array[String],
-          returns: Array[String]
-        ) -> instance
+        attr_reader forward: Array?
+        attr_reader returns: Array?
+
+        def to_h: () -> { forward: Array?, returns: Array? }
       end
     end
   end

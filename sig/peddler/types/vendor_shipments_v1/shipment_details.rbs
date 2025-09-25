@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ShipmentDetails < Data
-        attr_reader pagination: Pagination?
-        attr_reader shipments: Array[Shipment]?
+        def self.new: (pagination: Peddler::Types::VendorShipmentsV1::Pagination?, shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> instance
+                    | (Peddler::Types::VendorShipmentsV1::Pagination?, Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          ?shipments: Array[Shipment]
-        ) -> instance
+        attr_reader pagination: Peddler::Types::VendorShipmentsV1::Pagination?
+        attr_reader shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorShipmentsV1::Pagination?, shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]? }
       end
     end
   end

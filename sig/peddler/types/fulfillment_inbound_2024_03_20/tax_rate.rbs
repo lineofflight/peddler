@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class TaxRate < Data
+        def self.new: (cess_rate: Float?, gst_rate: Float?, tax_type: String?) -> instance
+                    | (Float?, Float?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader cess_rate: Float?
         attr_reader gst_rate: Float?
         attr_reader tax_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?cess_rate: Float,
-          ?gst_rate: Float,
-          ?tax_type: String
-        ) -> instance
+        def to_h: () -> { cess_rate: Float?, gst_rate: Float?, tax_type: String? }
       end
     end
   end

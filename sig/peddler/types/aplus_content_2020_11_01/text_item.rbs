@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AplusContent20201101
       class TextItem < Data
-        attr_reader position: Integer
-        attr_reader text: TextComponent
+        def self.new: (position: Integer?, text: Peddler::Types::AplusContent20201101::TextComponent?) -> instance
+                    | (Integer?, Peddler::Types::AplusContent20201101::TextComponent?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          position: Integer,
-          text: TextComponent
-        ) -> instance
+        attr_reader position: Integer?
+        attr_reader text: Peddler::Types::AplusContent20201101::TextComponent?
+
+        def to_h: () -> { position: Integer?, text: Peddler::Types::AplusContent20201101::TextComponent? }
       end
     end
   end

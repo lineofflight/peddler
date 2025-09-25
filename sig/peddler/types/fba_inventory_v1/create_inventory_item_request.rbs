@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FBAInventoryV1
       class CreateInventoryItemRequest < Data
-        attr_reader seller_sku: String
-        attr_reader marketplace_id: String
-        attr_reader product_name: String
+        def self.new: (seller_sku: String?, marketplace_id: String?, product_name: String?) -> instance
+                    | (String?, String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          seller_sku: String,
-          marketplace_id: String,
-          product_name: String
-        ) -> instance
+        attr_reader seller_sku: String?
+        attr_reader marketplace_id: String?
+        attr_reader product_name: String?
+
+        def to_h: () -> { seller_sku: String?, marketplace_id: String?, product_name: String? }
       end
     end
   end

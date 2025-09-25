@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class ValidationMetadata < Data
+        def self.new: (error_message: String?, validation_strategy: String?, value: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader error_message: String?
         attr_reader validation_strategy: String?
         attr_reader value: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?error_message: String,
-          ?validation_strategy: String,
-          ?value: String
-        ) -> instance
+        def to_h: () -> { error_message: String?, validation_strategy: String?, value: String? }
       end
     end
   end

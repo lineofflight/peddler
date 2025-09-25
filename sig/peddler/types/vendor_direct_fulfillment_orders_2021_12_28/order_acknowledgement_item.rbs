@@ -4,25 +4,20 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class OrderAcknowledgementItem < Data
-        attr_reader purchase_order_number: String
-        attr_reader vendor_order_number: String
-        attr_reader acknowledgement_date: String
-        attr_reader acknowledgement_status: AcknowledgementStatus
-        attr_reader selling_party: PartyIdentification
-        attr_reader ship_from_party: PartyIdentification
-        attr_reader item_acknowledgements: Array[OrderItemAcknowledgement]
+        def self.new: (purchase_order_number: String?, vendor_order_number: String?, acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> instance
+                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          purchase_order_number: String,
-          vendor_order_number: String,
-          acknowledgement_date: String,
-          acknowledgement_status: AcknowledgementStatus,
-          selling_party: PartyIdentification,
-          ship_from_party: PartyIdentification,
-          item_acknowledgements: Array[OrderItemAcknowledgement]
-        ) -> instance
+        attr_reader purchase_order_number: String?
+        attr_reader vendor_order_number: String?
+        attr_reader acknowledgement_date: String?
+        attr_reader acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?
+        attr_reader item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?
+
+        def to_h: () -> { purchase_order_number: String?, vendor_order_number: String?, acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]? }
       end
     end
   end

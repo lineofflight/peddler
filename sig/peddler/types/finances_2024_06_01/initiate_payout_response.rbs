@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Finances20240601
       class InitiatePayoutResponse < Data
-        attr_reader payout_reference_id: String
+        def self.new: (payout_reference_id: String?) -> instance
+                    | (String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          payout_reference_id: String
-        ) -> instance
+        attr_reader payout_reference_id: String?
+
+        def to_h: () -> { payout_reference_id: String? }
       end
     end
   end

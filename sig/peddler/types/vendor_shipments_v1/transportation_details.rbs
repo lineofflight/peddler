@@ -4,25 +4,20 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportationDetails < Data
+        def self.new: (ship_mode: String?, transportation_mode: String?, shipped_date: String?, estimated_delivery_date: String?, shipment_delivery_date: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, bill_of_lading_number: String?) -> instance
+                    | (String?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader ship_mode: String?
         attr_reader transportation_mode: String?
         attr_reader shipped_date: String?
         attr_reader estimated_delivery_date: String?
         attr_reader shipment_delivery_date: String?
-        attr_reader carrier_details: CarrierDetails?
+        attr_reader carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?
         attr_reader bill_of_lading_number: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?ship_mode: String,
-          ?transportation_mode: String,
-          ?shipped_date: String,
-          ?estimated_delivery_date: String,
-          ?shipment_delivery_date: String,
-          ?carrier_details: CarrierDetails,
-          ?bill_of_lading_number: String
-        ) -> instance
+        def to_h: () -> { ship_mode: String?, transportation_mode: String?, shipped_date: String?, estimated_delivery_date: String?, shipment_delivery_date: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, bill_of_lading_number: String? }
       end
     end
   end

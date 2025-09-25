@@ -4,23 +4,19 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTrendsResponse < Data
-        attr_reader asin: String
-        attr_reader item_name: String
-        attr_reader marketplace_id: String
-        attr_reader country_code: String
-        attr_reader date_range: DateRange
-        attr_reader review_trends: ItemReviewTrends
+        def self.new: (asin: String?, item_name: String?, marketplace_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, review_trends: Peddler::Types::CustomerFeedback20240601::ItemReviewTrends?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::ItemReviewTrends?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          asin: String,
-          item_name: String,
-          marketplace_id: String,
-          country_code: String,
-          date_range: DateRange,
-          review_trends: ItemReviewTrends
-        ) -> instance
+        attr_reader asin: String?
+        attr_reader item_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader review_trends: Peddler::Types::CustomerFeedback20240601::ItemReviewTrends?
+
+        def to_h: () -> { asin: String?, item_name: String?, marketplace_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, review_trends: Peddler::Types::CustomerFeedback20240601::ItemReviewTrends? }
       end
     end
   end

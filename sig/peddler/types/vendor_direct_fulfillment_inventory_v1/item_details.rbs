@@ -4,19 +4,18 @@ module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class ItemDetails < Data
+        def self.new: (buyer_product_identifier: String?, vendor_product_identifier: String?, available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, obsolete: bool?) -> instance
+                    | (String?, String?, Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, bool?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader buyer_product_identifier: String?
         attr_reader vendor_product_identifier: String?
-        attr_reader available_quantity: ItemQuantity
+        attr_reader available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?
         attr_reader obsolete: bool?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?buyer_product_identifier: String,
-          ?vendor_product_identifier: String,
-          available_quantity: ItemQuantity,
-          ?obsolete: bool
-        ) -> instance
+        def obsolete?: () -> bool
+        def to_h: () -> { buyer_product_identifier: String?, vendor_product_identifier: String?, available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, obsolete: bool? }
       end
     end
   end

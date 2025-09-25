@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ListingsItems20210801
       class Points < Data
-        attr_reader points_number: Integer
+        def self.new: (points_number: Integer?) -> instance
+                    | (Integer?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          points_number: Integer
-        ) -> instance
+        attr_reader points_number: Integer?
+
+        def to_h: () -> { points_number: Integer? }
       end
     end
   end

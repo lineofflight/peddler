@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class AdditionalSellerInputs < Data
-        attr_reader additional_input_field_name: String
-        attr_reader additional_seller_input: AdditionalSellerInput
+        def self.new: (additional_input_field_name: String?, additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?) -> instance
+                    | (String?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          additional_input_field_name: String,
-          additional_seller_input: AdditionalSellerInput
-        ) -> instance
+        attr_reader additional_input_field_name: String?
+        attr_reader additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?
+
+        def to_h: () -> { additional_input_field_name: String?, additional_seller_input: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput? }
       end
     end
   end

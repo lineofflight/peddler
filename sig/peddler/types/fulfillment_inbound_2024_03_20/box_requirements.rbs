@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class BoxRequirements < Data
-        attr_reader weight: WeightRange
+        def self.new: (weight: Peddler::Types::FulfillmentInbound20240320::WeightRange?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::WeightRange?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          weight: WeightRange
-        ) -> instance
+        attr_reader weight: Peddler::Types::FulfillmentInbound20240320::WeightRange?
+
+        def to_h: () -> { weight: Peddler::Types::FulfillmentInbound20240320::WeightRange? }
       end
     end
   end

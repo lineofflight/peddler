@@ -4,17 +4,16 @@ module Peddler
   module Types
     module OrdersV0
       class AssociatedItem < Data
+        def self.new: (order_id: String?, order_item_id: String?, association_type: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader order_id: String?
         attr_reader order_item_id: String?
         attr_reader association_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?order_id: String,
-          ?order_item_id: String,
-          ?association_type: String
-        ) -> instance
+        def to_h: () -> { order_id: String?, order_item_id: String?, association_type: String? }
       end
     end
   end

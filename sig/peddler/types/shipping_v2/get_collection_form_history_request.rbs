@@ -4,21 +4,18 @@ module Peddler
   module Types
     module ShippingV2
       class GetCollectionFormHistoryRequest < Data
-        attr_reader client_reference_details: Array[ClientReferenceDetail]?
+        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, max_results: Integer?, carrier_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address?, date_range: Peddler::Types::ShippingV2::DateRange?) -> instance
+                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, Integer?, String?, Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::DateRange?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader max_results: Integer?
         attr_reader carrier_id: String?
-        attr_reader ship_from_address: Address?
-        attr_reader date_range: DateRange?
+        attr_reader ship_from_address: Peddler::Types::ShippingV2::Address?
+        attr_reader date_range: Peddler::Types::ShippingV2::DateRange?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?client_reference_details: Array[ClientReferenceDetail],
-          ?max_results: Integer,
-          ?carrier_id: String,
-          ?ship_from_address: Address,
-          ?date_range: DateRange
-        ) -> instance
+        def to_h: () -> { client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, max_results: Integer?, carrier_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address?, date_range: Peddler::Types::ShippingV2::DateRange? }
       end
     end
   end

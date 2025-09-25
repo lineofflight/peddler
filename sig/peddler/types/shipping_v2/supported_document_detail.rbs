@@ -4,15 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class SupportedDocumentDetail < Data
-        attr_reader name: String
-        attr_reader mandatory: bool
+        def self.new: (name: String?, mandatory: bool?) -> instance
+                    | (String?, bool?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          name: String,
-          mandatory: bool
-        ) -> instance
+        attr_reader name: String?
+        attr_reader mandatory: bool?
+
+        def mandatory?: () -> bool
+        def to_h: () -> { name: String?, mandatory: bool? }
       end
     end
   end

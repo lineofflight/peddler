@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class UpdateVerificationStatusRequest < Data
-        attr_reader regulated_order_verification_status: UpdateVerificationStatusRequestBody
+        def self.new: (regulated_order_verification_status: Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody?) -> instance
+                    | (Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          regulated_order_verification_status: UpdateVerificationStatusRequestBody
-        ) -> instance
+        attr_reader regulated_order_verification_status: Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody?
+
+        def to_h: () -> { regulated_order_verification_status: Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody? }
       end
     end
   end

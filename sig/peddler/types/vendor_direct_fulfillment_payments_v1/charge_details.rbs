@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class ChargeDetails < Data
-        attr_reader type: String
-        attr_reader charge_amount: Money
-        attr_reader tax_details: Array[TaxDetail]?
+        def self.new: (type: String?, charge_amount: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?) -> instance
+                    | (String?, Peddler::Types::Money?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          type: String,
-          charge_amount: Money,
-          ?tax_details: Array[TaxDetail]
-        ) -> instance
+        attr_reader type: String?
+        attr_reader charge_amount: Peddler::Types::Money?
+        attr_reader tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?
+
+        def to_h: () -> { type: String?, charge_amount: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]? }
       end
     end
   end

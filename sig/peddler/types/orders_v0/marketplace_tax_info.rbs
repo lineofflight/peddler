@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class MarketplaceTaxInfo < Data
-        attr_reader tax_classifications: Array[TaxClassification]?
+        def self.new: (tax_classifications: Array[Peddler::Types::OrdersV0::TaxClassification]?) -> instance
+                    | (Array[Peddler::Types::OrdersV0::TaxClassification]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?tax_classifications: Array[TaxClassification]
-        ) -> instance
+        attr_reader tax_classifications: Array[Peddler::Types::OrdersV0::TaxClassification]?
+
+        def to_h: () -> { tax_classifications: Array[Peddler::Types::OrdersV0::TaxClassification]? }
       end
     end
   end

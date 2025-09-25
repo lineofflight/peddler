@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardMultipleImageTextModule < Data
-        attr_reader blocks: Array[StandardImageTextCaptionBlock]?
+        def self.new: (blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?blocks: Array[StandardImageTextCaptionBlock]
-        ) -> instance
+        attr_reader blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?
+
+        def to_h: () -> { blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]? }
       end
     end
   end

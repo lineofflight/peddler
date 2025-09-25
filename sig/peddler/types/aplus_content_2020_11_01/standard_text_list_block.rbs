@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardTextListBlock < Data
-        attr_reader text_list: Array[TextItem]
+        def self.new: (text_list: Array[Peddler::Types::AplusContent20201101::TextItem]?) -> instance
+                    | (Array[Peddler::Types::AplusContent20201101::TextItem]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          text_list: Array[TextItem]
-        ) -> instance
+        attr_reader text_list: Array[Peddler::Types::AplusContent20201101::TextItem]?
+
+        def to_h: () -> { text_list: Array[Peddler::Types::AplusContent20201101::TextItem]? }
       end
     end
   end

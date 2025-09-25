@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FulfillmentInboundV0
-      class PrepInstructionList < Array[String]
-        def self.parse: (Array[untyped] array) -> instance
+      class PrepInstructionList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

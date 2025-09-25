@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ShippingV1
       class TrackingInformation < Data
-        attr_reader tracking_id: String
-        attr_reader summary: TrackingSummary
-        attr_reader promised_delivery_date: String
-        attr_reader event_history: Array[Event]
+        def self.new: (tracking_id: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, promised_delivery_date: String?, event_history: Array[Peddler::Types::ShippingV1::Event]?) -> instance
+                    | (String?, Peddler::Types::ShippingV1::TrackingSummary?, String?, Array[Peddler::Types::ShippingV1::Event]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          tracking_id: String,
-          summary: TrackingSummary,
-          promised_delivery_date: String,
-          event_history: Array[Event]
-        ) -> instance
+        attr_reader tracking_id: String?
+        attr_reader summary: Peddler::Types::ShippingV1::TrackingSummary?
+        attr_reader promised_delivery_date: String?
+        attr_reader event_history: Array[Peddler::Types::ShippingV1::Event]?
+
+        def to_h: () -> { tracking_id: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, promised_delivery_date: String?, event_history: Array[Peddler::Types::ShippingV1::Event]? }
       end
     end
   end

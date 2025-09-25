@@ -4,13 +4,14 @@ module Peddler
   module Types
     module SellerWallet20240301
       class BankAccountListing < Data
-        attr_reader accounts: Array[BankAccount]
+        def self.new: (accounts: Array[Peddler::Types::SellerWallet20240301::BankAccount]?) -> instance
+                    | (Array[Peddler::Types::SellerWallet20240301::BankAccount]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          accounts: Array[BankAccount]
-        ) -> instance
+        attr_reader accounts: Array[Peddler::Types::SellerWallet20240301::BankAccount]?
+
+        def to_h: () -> { accounts: Array[Peddler::Types::SellerWallet20240301::BankAccount]? }
       end
     end
   end

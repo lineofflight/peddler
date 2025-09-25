@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ServicesV1
       class UpdateScheduleResponse < Data
-        attr_reader payload: Array[UpdateScheduleRecord]?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
+                    | (Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: Array[UpdateScheduleRecord],
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { payload: Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?, errors: Array[Peddler::Types::ServicesV1::Error]? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class TransactionId < Data
+        def self.new: (transaction_id: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader transaction_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?transaction_id: String
-        ) -> instance
+        def to_h: () -> { transaction_id: String? }
       end
     end
   end

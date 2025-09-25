@@ -4,13 +4,14 @@ module Peddler
   module Types
     module SupplySources20200701
       class ContactDetails < Data
-        attr_reader primary: Hash[String, untyped]?
+        def self.new: (primary: Hash?) -> instance
+                    | (Hash?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?primary: Hash[String, untyped]
-        ) -> instance
+        attr_reader primary: Hash?
+
+        def to_h: () -> { primary: Hash? }
       end
     end
   end

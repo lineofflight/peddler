@@ -4,25 +4,20 @@ module Peddler
   module Types
     module Finances20240601
       class PaymentMethodDetails < Data
+        def self.new: (account_holder_name: String?, payment_method_id: String?, tail: String?, expiry_date: Peddler::Types::Finances20240601::ExpiryDate?, country_code: String?, payment_method_type: String?, assignment_type: String?) -> instance
+                    | (String?, String?, String?, Peddler::Types::Finances20240601::ExpiryDate?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader account_holder_name: String?
         attr_reader payment_method_id: String?
         attr_reader tail: String?
-        attr_reader expiry_date: ExpiryDate?
+        attr_reader expiry_date: Peddler::Types::Finances20240601::ExpiryDate?
         attr_reader country_code: String?
         attr_reader payment_method_type: String?
         attr_reader assignment_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?account_holder_name: String,
-          ?payment_method_id: String,
-          ?tail: String,
-          ?expiry_date: ExpiryDate,
-          ?country_code: String,
-          ?payment_method_type: String,
-          ?assignment_type: String
-        ) -> instance
+        def to_h: () -> { account_holder_name: String?, payment_method_id: String?, tail: String?, expiry_date: Peddler::Types::Finances20240601::ExpiryDate?, country_code: String?, payment_method_type: String?, assignment_type: String? }
       end
     end
   end

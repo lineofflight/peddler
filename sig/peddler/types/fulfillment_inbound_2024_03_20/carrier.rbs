@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Carrier < Data
+        def self.new: (alpha_code: String?, name: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader alpha_code: String?
         attr_reader name: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?alpha_code: String,
-          ?name: String
-        ) -> instance
+        def to_h: () -> { alpha_code: String?, name: String? }
       end
     end
   end

@@ -4,21 +4,26 @@ module Peddler
   module Types
     module OrdersV0
       class Order < Data
-        attr_reader amazon_order_id: String
+        def self.new: (amazon_order_id: String?, seller_order_id: String?, purchase_date: String?, last_update_date: String?, order_status: String?, fulfillment_channel: String?, sales_channel: String?, order_channel: String?, ship_service_level: String?, order_total: Peddler::Types::Money?, number_of_items_shipped: Integer?, number_of_items_unshipped: Integer?, payment_execution_detail: Array[Peddler::Types::OrdersV0::PaymentExecutionDetailItem]?, payment_method: String?, payment_method_details: Array?, marketplace_id: String?, shipment_service_level_category: String?, easy_ship_shipment_status: String?, cba_displayable_shipping_label: String?, order_type: String?, earliest_ship_date: String?, latest_ship_date: String?, earliest_delivery_date: String?, latest_delivery_date: String?, business_order: bool?, prime: bool?, premium_order: bool?, global_express_enabled: bool?, replaced_order_id: String?, replacement_order: bool?, promise_response_due_date: String?, estimated_ship_date_set: bool?, sold_by_ab: bool?, iba: bool?, default_ship_from_location_address: Peddler::Types::OrdersV0::Address?, buyer_invoice_preference: String?, buyer_tax_information: Peddler::Types::OrdersV0::BuyerTaxInformation?, fulfillment_instruction: Peddler::Types::OrdersV0::FulfillmentInstruction?, ispu: bool?, access_point_order: bool?, marketplace_tax_info: Peddler::Types::OrdersV0::MarketplaceTaxInfo?, seller_display_name: String?, shipping_address: Peddler::Types::OrdersV0::Address?, buyer_info: Peddler::Types::OrdersV0::BuyerInfo?, automated_shipping_settings: Peddler::Types::OrdersV0::AutomatedShippingSettings?, has_regulated_items: bool?, electronic_invoice_status: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Integer?, Integer?, Array[Peddler::Types::OrdersV0::PaymentExecutionDetailItem]?, String?, Array?, String?, String?, String?, String?, String?, String?, String?, String?, String?, bool?, bool?, bool?, bool?, String?, bool?, String?, bool?, bool?, bool?, Peddler::Types::OrdersV0::Address?, String?, Peddler::Types::OrdersV0::BuyerTaxInformation?, Peddler::Types::OrdersV0::FulfillmentInstruction?, bool?, bool?, Peddler::Types::OrdersV0::MarketplaceTaxInfo?, String?, Peddler::Types::OrdersV0::Address?, Peddler::Types::OrdersV0::BuyerInfo?, Peddler::Types::OrdersV0::AutomatedShippingSettings?, bool?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader amazon_order_id: String?
         attr_reader seller_order_id: String?
-        attr_reader purchase_date: String
-        attr_reader last_update_date: String
-        attr_reader order_status: String
+        attr_reader purchase_date: String?
+        attr_reader last_update_date: String?
+        attr_reader order_status: String?
         attr_reader fulfillment_channel: String?
         attr_reader sales_channel: String?
         attr_reader order_channel: String?
         attr_reader ship_service_level: String?
-        attr_reader order_total: Money?
+        attr_reader order_total: Peddler::Types::Money?
         attr_reader number_of_items_shipped: Integer?
         attr_reader number_of_items_unshipped: Integer?
-        attr_reader payment_execution_detail: Array[PaymentExecutionDetailItem]?
+        attr_reader payment_execution_detail: Array[Peddler::Types::OrdersV0::PaymentExecutionDetailItem]?
         attr_reader payment_method: String?
-        attr_reader payment_method_details: Array[String]?
+        attr_reader payment_method_details: Array?
         attr_reader marketplace_id: String?
         attr_reader shipment_service_level_category: String?
         attr_reader easy_ship_shipment_status: String?
@@ -38,71 +43,32 @@ module Peddler
         attr_reader estimated_ship_date_set: bool?
         attr_reader sold_by_ab: bool?
         attr_reader iba: bool?
-        attr_reader default_ship_from_location_address: Address?
+        attr_reader default_ship_from_location_address: Peddler::Types::OrdersV0::Address?
         attr_reader buyer_invoice_preference: String?
-        attr_reader buyer_tax_information: BuyerTaxInformation?
-        attr_reader fulfillment_instruction: FulfillmentInstruction?
+        attr_reader buyer_tax_information: Peddler::Types::OrdersV0::BuyerTaxInformation?
+        attr_reader fulfillment_instruction: Peddler::Types::OrdersV0::FulfillmentInstruction?
         attr_reader ispu: bool?
         attr_reader access_point_order: bool?
-        attr_reader marketplace_tax_info: MarketplaceTaxInfo?
+        attr_reader marketplace_tax_info: Peddler::Types::OrdersV0::MarketplaceTaxInfo?
         attr_reader seller_display_name: String?
-        attr_reader shipping_address: Address?
-        attr_reader buyer_info: BuyerInfo?
-        attr_reader automated_shipping_settings: AutomatedShippingSettings?
+        attr_reader shipping_address: Peddler::Types::OrdersV0::Address?
+        attr_reader buyer_info: Peddler::Types::OrdersV0::BuyerInfo?
+        attr_reader automated_shipping_settings: Peddler::Types::OrdersV0::AutomatedShippingSettings?
         attr_reader has_regulated_items: bool?
         attr_reader electronic_invoice_status: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          amazon_order_id: String,
-          ?seller_order_id: String,
-          purchase_date: String,
-          last_update_date: String,
-          order_status: String,
-          ?fulfillment_channel: String,
-          ?sales_channel: String,
-          ?order_channel: String,
-          ?ship_service_level: String,
-          ?order_total: Money,
-          ?number_of_items_shipped: Integer,
-          ?number_of_items_unshipped: Integer,
-          ?payment_execution_detail: Array[PaymentExecutionDetailItem],
-          ?payment_method: String,
-          ?payment_method_details: Array[String],
-          ?marketplace_id: String,
-          ?shipment_service_level_category: String,
-          ?easy_ship_shipment_status: String,
-          ?cba_displayable_shipping_label: String,
-          ?order_type: String,
-          ?earliest_ship_date: String,
-          ?latest_ship_date: String,
-          ?earliest_delivery_date: String,
-          ?latest_delivery_date: String,
-          ?business_order: bool,
-          ?prime: bool,
-          ?premium_order: bool,
-          ?global_express_enabled: bool,
-          ?replaced_order_id: String,
-          ?replacement_order: bool,
-          ?promise_response_due_date: String,
-          ?estimated_ship_date_set: bool,
-          ?sold_by_ab: bool,
-          ?iba: bool,
-          ?default_ship_from_location_address: Address,
-          ?buyer_invoice_preference: String,
-          ?buyer_tax_information: BuyerTaxInformation,
-          ?fulfillment_instruction: FulfillmentInstruction,
-          ?ispu: bool,
-          ?access_point_order: bool,
-          ?marketplace_tax_info: MarketplaceTaxInfo,
-          ?seller_display_name: String,
-          ?shipping_address: Address,
-          ?buyer_info: BuyerInfo,
-          ?automated_shipping_settings: AutomatedShippingSettings,
-          ?has_regulated_items: bool,
-          ?electronic_invoice_status: String
-        ) -> instance
+        def business_order?: () -> bool
+        def prime?: () -> bool
+        def premium_order?: () -> bool
+        def global_express_enabled?: () -> bool
+        def replacement_order?: () -> bool
+        def estimated_ship_date_set?: () -> bool
+        def sold_by_ab?: () -> bool
+        def iba?: () -> bool
+        def ispu?: () -> bool
+        def access_point_order?: () -> bool
+        def has_regulated_items?: () -> bool
+        def to_h: () -> { amazon_order_id: String?, seller_order_id: String?, purchase_date: String?, last_update_date: String?, order_status: String?, fulfillment_channel: String?, sales_channel: String?, order_channel: String?, ship_service_level: String?, order_total: Peddler::Types::Money?, number_of_items_shipped: Integer?, number_of_items_unshipped: Integer?, payment_execution_detail: Array[Peddler::Types::OrdersV0::PaymentExecutionDetailItem]?, payment_method: String?, payment_method_details: Array?, marketplace_id: String?, shipment_service_level_category: String?, easy_ship_shipment_status: String?, cba_displayable_shipping_label: String?, order_type: String?, earliest_ship_date: String?, latest_ship_date: String?, earliest_delivery_date: String?, latest_delivery_date: String?, business_order: bool?, prime: bool?, premium_order: bool?, global_express_enabled: bool?, replaced_order_id: String?, replacement_order: bool?, promise_response_due_date: String?, estimated_ship_date_set: bool?, sold_by_ab: bool?, iba: bool?, default_ship_from_location_address: Peddler::Types::OrdersV0::Address?, buyer_invoice_preference: String?, buyer_tax_information: Peddler::Types::OrdersV0::BuyerTaxInformation?, fulfillment_instruction: Peddler::Types::OrdersV0::FulfillmentInstruction?, ispu: bool?, access_point_order: bool?, marketplace_tax_info: Peddler::Types::OrdersV0::MarketplaceTaxInfo?, seller_display_name: String?, shipping_address: Peddler::Types::OrdersV0::Address?, buyer_info: Peddler::Types::OrdersV0::BuyerInfo?, automated_shipping_settings: Peddler::Types::OrdersV0::AutomatedShippingSettings?, has_regulated_items: bool?, electronic_invoice_status: String? }
       end
     end
   end

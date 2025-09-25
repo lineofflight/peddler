@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class SubstitutionPreferences < Data
-        attr_reader substitution_type: String
-        attr_reader substitution_options: Array[SubstitutionOption]?
+        def self.new: (substitution_type: String?, substitution_options: Array[Peddler::Types::OrdersV0::SubstitutionOption]?) -> instance
+                    | (String?, Array[Peddler::Types::OrdersV0::SubstitutionOption]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          substitution_type: String,
-          ?substitution_options: Array[SubstitutionOption]
-        ) -> instance
+        attr_reader substitution_type: String?
+        attr_reader substitution_options: Array[Peddler::Types::OrdersV0::SubstitutionOption]?
+
+        def to_h: () -> { substitution_type: String?, substitution_options: Array[Peddler::Types::OrdersV0::SubstitutionOption]? }
       end
     end
   end

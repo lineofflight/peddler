@@ -12,7 +12,7 @@ module Generator
       @logger ||= begin
         require "logger"
         logger = ::Logger.new($stdout)
-        logger.level = ::Logger::INFO
+        logger.level = ::Logger::DEBUG
         logger.formatter = proc do |severity, _datetime, _progname, msg|
           "[#{severity}] #{msg}\n"
         end

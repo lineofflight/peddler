@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class AcknowledgementStatus < Data
+        def self.new: (code: String?, description: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader code: String?
         attr_reader description: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?code: String,
-          ?description: String
-        ) -> instance
+        def to_h: () -> { code: String?, description: String? }
       end
     end
   end

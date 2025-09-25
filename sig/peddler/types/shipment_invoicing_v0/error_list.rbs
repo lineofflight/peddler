@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShipmentInvoicingV0
-      class ErrorList < Array[Error]
-        def self.parse: (Array[untyped] array) -> instance
+      class ErrorList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ProductFeesV0
-      class IncludedFeeDetailList < Array[IncludedFeeDetail]
-        def self.parse: (Array[untyped] array) -> instance
+      class IncludedFeeDetailList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class ASINPrepInstructions < Data
+        def self.new: (asin: String?, barcode_instruction: String?, prep_guidance: String?, prep_instruction_list: Array?) -> instance
+                    | (String?, String?, String?, Array?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader asin: String?
         attr_reader barcode_instruction: String?
         attr_reader prep_guidance: String?
-        attr_reader prep_instruction_list: Array[String]?
+        attr_reader prep_instruction_list: Array?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?asin: String,
-          ?barcode_instruction: String,
-          ?prep_guidance: String,
-          ?prep_instruction_list: Array[String]
-        ) -> instance
+        def to_h: () -> { asin: String?, barcode_instruction: String?, prep_guidance: String?, prep_instruction_list: Array? }
       end
     end
   end

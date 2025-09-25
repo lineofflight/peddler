@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class LinkableCarrier < Data
+        def self.new: (carrier_id: String?, linkable_account_types: Array[Peddler::Types::ShippingV2::LinkableAccountType]?) -> instance
+                    | (String?, Array[Peddler::Types::ShippingV2::LinkableAccountType]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader carrier_id: String?
-        attr_reader linkable_account_types: Array[LinkableAccountType]?
+        attr_reader linkable_account_types: Array[Peddler::Types::ShippingV2::LinkableAccountType]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?carrier_id: String,
-          ?linkable_account_types: Array[LinkableAccountType]
-        ) -> instance
+        def to_h: () -> { carrier_id: String?, linkable_account_types: Array[Peddler::Types::ShippingV2::LinkableAccountType]? }
       end
     end
   end

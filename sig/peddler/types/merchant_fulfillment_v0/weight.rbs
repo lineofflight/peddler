@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Weight < Data
-        attr_reader value: Float
-        attr_reader unit: String
+        def self.new: (value: Float?, unit: String?) -> instance
+                    | (Float?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          value: Float,
-          unit: String
-        ) -> instance
+        attr_reader value: Float?
+        attr_reader unit: String?
+
+        def to_h: () -> { value: Float?, unit: String? }
       end
     end
   end

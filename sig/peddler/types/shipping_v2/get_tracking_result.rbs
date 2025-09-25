@@ -4,21 +4,18 @@ module Peddler
   module Types
     module ShippingV2
       class GetTrackingResult < Data
-        attr_reader tracking_id: String
-        attr_reader alternate_leg_tracking_id: String
-        attr_reader event_history: Array[Event]
-        attr_reader promised_delivery_date: String
-        attr_reader summary: TrackingSummary
+        def self.new: (tracking_id: String?, alternate_leg_tracking_id: String?, event_history: Array[Peddler::Types::ShippingV2::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV2::TrackingSummary?) -> instance
+                    | (String?, String?, Array[Peddler::Types::ShippingV2::Event]?, String?, Peddler::Types::ShippingV2::TrackingSummary?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          tracking_id: String,
-          alternate_leg_tracking_id: String,
-          event_history: Array[Event],
-          promised_delivery_date: String,
-          summary: TrackingSummary
-        ) -> instance
+        attr_reader tracking_id: String?
+        attr_reader alternate_leg_tracking_id: String?
+        attr_reader event_history: Array[Peddler::Types::ShippingV2::Event]?
+        attr_reader promised_delivery_date: String?
+        attr_reader summary: Peddler::Types::ShippingV2::TrackingSummary?
+
+        def to_h: () -> { tracking_id: String?, alternate_leg_tracking_id: String?, event_history: Array[Peddler::Types::ShippingV2::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV2::TrackingSummary? }
       end
     end
   end

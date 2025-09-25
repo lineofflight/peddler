@@ -4,21 +4,18 @@ module Peddler
   module Types
     module SellersV1
       class Account < Data
-        attr_reader marketplace_participation_list: Array[MarketplaceParticipation]
-        attr_reader business_type: String
-        attr_reader selling_plan: String
-        attr_reader business: Business?
-        attr_reader primary_contact: PrimaryContact?
+        def self.new: (marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, business_type: String?, selling_plan: String?, business: Peddler::Types::SellersV1::Business?, primary_contact: Peddler::Types::SellersV1::PrimaryContact?) -> instance
+                    | (Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, String?, String?, Peddler::Types::SellersV1::Business?, Peddler::Types::SellersV1::PrimaryContact?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_participation_list: Array[MarketplaceParticipation],
-          business_type: String,
-          selling_plan: String,
-          ?business: Business,
-          ?primary_contact: PrimaryContact
-        ) -> instance
+        attr_reader marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
+        attr_reader business_type: String?
+        attr_reader selling_plan: String?
+        attr_reader business: Peddler::Types::SellersV1::Business?
+        attr_reader primary_contact: Peddler::Types::SellersV1::PrimaryContact?
+
+        def to_h: () -> { marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, business_type: String?, selling_plan: String?, business: Peddler::Types::SellersV1::Business?, primary_contact: Peddler::Types::SellersV1::PrimaryContact? }
       end
     end
   end

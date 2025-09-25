@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemImagesByMarketplace < Data
-        attr_reader marketplace_id: String
-        attr_reader images: Array[ItemImage]
+        def self.new: (marketplace_id: String?, images: Array[Peddler::Types::CatalogItems20201201::ItemImage]?) -> instance
+                    | (String?, Array[Peddler::Types::CatalogItems20201201::ItemImage]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          images: Array[ItemImage]
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader images: Array[Peddler::Types::CatalogItems20201201::ItemImage]?
+
+        def to_h: () -> { marketplace_id: String?, images: Array[Peddler::Types::CatalogItems20201201::ItemImage]? }
       end
     end
   end

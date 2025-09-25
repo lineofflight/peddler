@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderedQuantityDetails < Data
+        def self.new: (updated_date: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?) -> instance
+                    | (String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::VendorOrdersV1::ItemQuantity?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader updated_date: String?
-        attr_reader ordered_quantity: ItemQuantity?
-        attr_reader cancelled_quantity: ItemQuantity?
+        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
+        attr_reader cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?updated_date: String,
-          ?ordered_quantity: ItemQuantity,
-          ?cancelled_quantity: ItemQuantity
-        ) -> instance
+        def to_h: () -> { updated_date: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity? }
       end
     end
   end

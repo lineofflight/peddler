@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Finances20240619
       class RelatedIdentifier < Data
+        def self.new: (related_identifier_name: String?, related_identifier_value: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader related_identifier_name: String?
         attr_reader related_identifier_value: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?related_identifier_name: String,
-          ?related_identifier_value: String
-        ) -> instance
+        def to_h: () -> { related_identifier_name: String?, related_identifier_value: String? }
       end
     end
   end

@@ -4,25 +4,20 @@ module Peddler
   module Types
     module FinancesV0
       class FailedAdhocDisbursementEvent < Data
+        def self.new: (funds_transfers_type: String?, transfer_id: String?, disbursement_id: String?, payment_disbursement_type: String?, status: String?, transfer_amount: Peddler::Types::Money?, posted_date: String?) -> instance
+                    | (String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader funds_transfers_type: String?
         attr_reader transfer_id: String?
         attr_reader disbursement_id: String?
         attr_reader payment_disbursement_type: String?
         attr_reader status: String?
-        attr_reader transfer_amount: Money?
+        attr_reader transfer_amount: Peddler::Types::Money?
         attr_reader posted_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?funds_transfers_type: String,
-          ?transfer_id: String,
-          ?disbursement_id: String,
-          ?payment_disbursement_type: String,
-          ?status: String,
-          ?transfer_amount: Money,
-          ?posted_date: String
-        ) -> instance
+        def to_h: () -> { funds_transfers_type: String?, transfer_id: String?, disbursement_id: String?, payment_disbursement_type: String?, status: String?, transfer_amount: Peddler::Types::Money?, posted_date: String? }
       end
     end
   end

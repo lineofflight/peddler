@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class AmazonPrograms < Data
-        attr_reader programs: Array[String]
+        def self.new: (programs: Array[String]?) -> instance
+                    | (Array[String]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          programs: Array[String]
-        ) -> instance
+        attr_reader programs: Array[String]?
+
+        def to_h: () -> { programs: Array[String]? }
       end
     end
   end

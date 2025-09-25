@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class CollectionsFormDocument < Data
+        def self.new: (base64_encoded_content: String?, document_format: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader base64_encoded_content: String?
         attr_reader document_format: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?base64_encoded_content: String,
-          ?document_format: String
-        ) -> instance
+        def to_h: () -> { base64_encoded_content: String?, document_format: String? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class GetCarrierAccountFormInputsResponse < Data
-        attr_reader linkable_carriers_list: Array[LinkableCarrier]?
+        def self.new: (linkable_carriers_list: Array[Peddler::Types::ShippingV2::LinkableCarrier]?) -> instance
+                    | (Array[Peddler::Types::ShippingV2::LinkableCarrier]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?linkable_carriers_list: Array[LinkableCarrier]
-        ) -> instance
+        attr_reader linkable_carriers_list: Array[Peddler::Types::ShippingV2::LinkableCarrier]?
+
+        def to_h: () -> { linkable_carriers_list: Array[Peddler::Types::ShippingV2::LinkableCarrier]? }
       end
     end
   end

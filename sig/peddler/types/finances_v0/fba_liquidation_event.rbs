@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FinancesV0
       class FBALiquidationEvent < Data
+        def self.new: (posted_date: String?, original_removal_order_id: String?, liquidation_proceeds_amount: Peddler::Types::Money?, liquidation_fee_amount: Peddler::Types::Money?) -> instance
+                    | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader original_removal_order_id: String?
-        attr_reader liquidation_proceeds_amount: Money?
-        attr_reader liquidation_fee_amount: Money?
+        attr_reader liquidation_proceeds_amount: Peddler::Types::Money?
+        attr_reader liquidation_fee_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?original_removal_order_id: String,
-          ?liquidation_proceeds_amount: Money,
-          ?liquidation_fee_amount: Money
-        ) -> instance
+        def to_h: () -> { posted_date: String?, original_removal_order_id: String?, liquidation_proceeds_amount: Peddler::Types::Money?, liquidation_fee_amount: Peddler::Types::Money? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class SubmitShippingLabelsRequest < Data
-        attr_reader shipping_label_requests: Array[ShippingLabelRequest]?
+        def self.new: (shipping_label_requests: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest]?) -> instance
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?shipping_label_requests: Array[ShippingLabelRequest]
-        ) -> instance
+        attr_reader shipping_label_requests: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest]?
+
+        def to_h: () -> { shipping_label_requests: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest]? }
       end
     end
   end

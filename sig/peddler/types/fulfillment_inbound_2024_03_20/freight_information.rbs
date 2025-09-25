@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class FreightInformation < Data
-        attr_reader declared_value: Money?
+        def self.new: (declared_value: Peddler::Types::Money?, freight_class: String?) -> instance
+                    | (Peddler::Types::Money?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader declared_value: Peddler::Types::Money?
         attr_reader freight_class: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?declared_value: Money,
-          ?freight_class: String
-        ) -> instance
+        def to_h: () -> { declared_value: Peddler::Types::Money?, freight_class: String? }
       end
     end
   end

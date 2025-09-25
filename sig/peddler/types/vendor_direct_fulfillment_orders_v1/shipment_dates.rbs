@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class ShipmentDates < Data
-        attr_reader required_ship_date: String
+        def self.new: (required_ship_date: String?, promised_delivery_date: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader required_ship_date: String?
         attr_reader promised_delivery_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          required_ship_date: String,
-          ?promised_delivery_date: String
-        ) -> instance
+        def to_h: () -> { required_ship_date: String?, promised_delivery_date: String? }
       end
     end
   end

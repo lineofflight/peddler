@@ -4,17 +4,16 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class CollectFreightPickupDetails < Data
+        def self.new: (requested_pick_up: String?, scheduled_pick_up: String?, carrier_assignment_date: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader requested_pick_up: String?
         attr_reader scheduled_pick_up: String?
         attr_reader carrier_assignment_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?requested_pick_up: String,
-          ?scheduled_pick_up: String,
-          ?carrier_assignment_date: String
-        ) -> instance
+        def to_h: () -> { requested_pick_up: String?, scheduled_pick_up: String?, carrier_assignment_date: String? }
       end
     end
   end

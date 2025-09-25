@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class CustomerInvoiceList < Data
-        attr_reader pagination: Pagination?
-        attr_reader customer_invoices: Array[CustomerInvoice]?
+        def self.new: (pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]?) -> instance
+                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          ?customer_invoices: Array[CustomerInvoice]
-        ) -> instance
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?
+        attr_reader customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class TaxItemDetails < Data
-        attr_reader tax_line_item: Array[TaxDetails]?
+        def self.new: (tax_line_item: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxDetails]?) -> instance
+                    | (Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxDetails]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?tax_line_item: Array[TaxDetails]
-        ) -> instance
+        attr_reader tax_line_item: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxDetails]?
+
+        def to_h: () -> { tax_line_item: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxDetails]? }
       end
     end
   end

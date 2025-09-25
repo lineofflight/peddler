@@ -4,43 +4,33 @@ module Peddler
   module Types
     module ProductPricingV0
       class OfferDetail < Data
+        def self.new: (my_offer: bool?, offer_type: String?, sub_condition: String?, seller_id: String?, condition_notes: String?, seller_feedback_rating: Peddler::Types::ProductPricingV0::SellerFeedbackType?, shipping_time: Peddler::Types::ProductPricingV0::DetailedShippingTimeType?, listing_price: Peddler::Types::Money?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, points: Peddler::Types::ProductPricingV0::Points?, shipping: Peddler::Types::Money?, ships_from: Peddler::Types::ProductPricingV0::ShipsFromType?, fulfilled_by_amazon: bool?, prime_information: Peddler::Types::ProductPricingV0::PrimeInformationType?, buy_box_winner: bool?, featured_merchant: bool?) -> instance
+                    | (bool?, String?, String?, String?, String?, Peddler::Types::ProductPricingV0::SellerFeedbackType?, Peddler::Types::ProductPricingV0::DetailedShippingTimeType?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, Peddler::Types::ProductPricingV0::Points?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::ShipsFromType?, bool?, Peddler::Types::ProductPricingV0::PrimeInformationType?, bool?, bool?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader my_offer: bool?
         attr_reader offer_type: String?
-        attr_reader sub_condition: String
+        attr_reader sub_condition: String?
         attr_reader seller_id: String?
         attr_reader condition_notes: String?
-        attr_reader seller_feedback_rating: SellerFeedbackType?
-        attr_reader shipping_time: DetailedShippingTimeType
-        attr_reader listing_price: Money
-        attr_reader quantity_discount_prices: Array[QuantityDiscountPriceType]?
-        attr_reader points: Points?
-        attr_reader shipping: Money
-        attr_reader ships_from: ShipsFromType?
-        attr_reader fulfilled_by_amazon: bool
-        attr_reader prime_information: PrimeInformationType?
+        attr_reader seller_feedback_rating: Peddler::Types::ProductPricingV0::SellerFeedbackType?
+        attr_reader shipping_time: Peddler::Types::ProductPricingV0::DetailedShippingTimeType?
+        attr_reader listing_price: Peddler::Types::Money?
+        attr_reader quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
+        attr_reader shipping: Peddler::Types::Money?
+        attr_reader ships_from: Peddler::Types::ProductPricingV0::ShipsFromType?
+        attr_reader fulfilled_by_amazon: bool?
+        attr_reader prime_information: Peddler::Types::ProductPricingV0::PrimeInformationType?
         attr_reader buy_box_winner: bool?
         attr_reader featured_merchant: bool?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?my_offer: bool,
-          ?offer_type: String,
-          sub_condition: String,
-          ?seller_id: String,
-          ?condition_notes: String,
-          ?seller_feedback_rating: SellerFeedbackType,
-          shipping_time: DetailedShippingTimeType,
-          listing_price: Money,
-          ?quantity_discount_prices: Array[QuantityDiscountPriceType],
-          ?points: Points,
-          shipping: Money,
-          ?ships_from: ShipsFromType,
-          fulfilled_by_amazon: bool,
-          ?prime_information: PrimeInformationType,
-          ?buy_box_winner: bool,
-          ?featured_merchant: bool
-        ) -> instance
+        def my_offer?: () -> bool
+        def fulfilled_by_amazon?: () -> bool
+        def buy_box_winner?: () -> bool
+        def featured_merchant?: () -> bool
+        def to_h: () -> { my_offer: bool?, offer_type: String?, sub_condition: String?, seller_id: String?, condition_notes: String?, seller_feedback_rating: Peddler::Types::ProductPricingV0::SellerFeedbackType?, shipping_time: Peddler::Types::ProductPricingV0::DetailedShippingTimeType?, listing_price: Peddler::Types::Money?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, points: Peddler::Types::ProductPricingV0::Points?, shipping: Peddler::Types::Money?, ships_from: Peddler::Types::ProductPricingV0::ShipsFromType?, fulfilled_by_amazon: bool?, prime_information: Peddler::Types::ProductPricingV0::PrimeInformationType?, buy_box_winner: bool?, featured_merchant: bool? }
       end
     end
   end

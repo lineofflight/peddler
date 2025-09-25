@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class Amount < Data
-        attr_reader currency_code: String
-        attr_reader value: Float
+        def self.new: (currency_code: String?, value: Float?) -> instance
+                    | (String?, Float?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          currency_code: String,
-          value: Float
-        ) -> instance
+        attr_reader currency_code: String?
+        attr_reader value: Float?
+
+        def to_h: () -> { currency_code: String?, value: Float? }
       end
     end
   end

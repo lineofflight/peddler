@@ -4,27 +4,21 @@ module Peddler
   module Types
     module FinancesV0
       class NetworkComminglingTransactionEvent < Data
+        def self.new: (transaction_type: String?, posted_date: String?, net_co_transaction_id: String?, swap_reason: String?, asin: String?, marketplace_id: String?, tax_exclusive_amount: Peddler::Types::Money?, tax_amount: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader transaction_type: String?
         attr_reader posted_date: String?
         attr_reader net_co_transaction_id: String?
         attr_reader swap_reason: String?
         attr_reader asin: String?
         attr_reader marketplace_id: String?
-        attr_reader tax_exclusive_amount: Money?
-        attr_reader tax_amount: Money?
+        attr_reader tax_exclusive_amount: Peddler::Types::Money?
+        attr_reader tax_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?transaction_type: String,
-          ?posted_date: String,
-          ?net_co_transaction_id: String,
-          ?swap_reason: String,
-          ?asin: String,
-          ?marketplace_id: String,
-          ?tax_exclusive_amount: Money,
-          ?tax_amount: Money
-        ) -> instance
+        def to_h: () -> { transaction_type: String?, posted_date: String?, net_co_transaction_id: String?, swap_reason: String?, asin: String?, marketplace_id: String?, tax_exclusive_amount: Peddler::Types::Money?, tax_amount: Peddler::Types::Money? }
       end
     end
   end

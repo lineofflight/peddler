@@ -4,23 +4,20 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardComparisonProductBlock < Data
-        attr_reader position: Integer
-        attr_reader image: ImageComponent?
+        def self.new: (position: Integer?, image: Peddler::Types::AplusContent20201101::ImageComponent?, title: String?, asin: String?, highlight: bool?, metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> instance
+                    | (Integer?, Peddler::Types::AplusContent20201101::ImageComponent?, String?, String?, bool?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader position: Integer?
+        attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
         attr_reader title: String?
         attr_reader asin: String?
         attr_reader highlight: bool?
-        attr_reader metrics: Array[PlainTextItem]?
+        attr_reader metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          position: Integer,
-          ?image: ImageComponent,
-          ?title: String,
-          ?asin: String,
-          ?highlight: bool,
-          ?metrics: Array[PlainTextItem]
-        ) -> instance
+        def highlight?: () -> bool
+        def to_h: () -> { position: Integer?, image: Peddler::Types::AplusContent20201101::ImageComponent?, title: String?, asin: String?, highlight: bool?, metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]? }
       end
     end
   end

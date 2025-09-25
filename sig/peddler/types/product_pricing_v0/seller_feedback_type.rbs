@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductPricingV0
       class SellerFeedbackType < Data
+        def self.new: (seller_positive_feedback_rating: Float?, feedback_count: Integer?) -> instance
+                    | (Float?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader seller_positive_feedback_rating: Float?
-        attr_reader feedback_count: Integer
+        attr_reader feedback_count: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?seller_positive_feedback_rating: Float,
-          feedback_count: Integer
-        ) -> instance
+        def to_h: () -> { seller_positive_feedback_rating: Float?, feedback_count: Integer? }
       end
     end
   end

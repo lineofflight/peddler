@@ -4,19 +4,17 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundOrderCreationData < Data
+        def self.new: (external_reference_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> instance
+                    | (String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader external_reference_id: String?
-        attr_reader origin_address: Address
-        attr_reader packages_to_inbound: Array[DistributionPackageQuantity]
-        attr_reader preferences: InboundPreferences?
+        attr_reader origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
+        attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?external_reference_id: String,
-          origin_address: Address,
-          packages_to_inbound: Array[DistributionPackageQuantity],
-          ?preferences: InboundPreferences
-        ) -> instance
+        def to_h: () -> { external_reference_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences? }
       end
     end
   end

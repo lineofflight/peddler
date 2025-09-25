@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class GenerateOrderScenarioRequest < Data
-        attr_reader orders: Array[OrderScenarioRequest]?
+        def self.new: (orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]?) -> instance
+                    | (Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?orders: Array[OrderScenarioRequest]
-        ) -> instance
+        attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]?
+
+        def to_h: () -> { orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]? }
       end
     end
   end

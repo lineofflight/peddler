@@ -4,21 +4,18 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemOfferByMarketplace < Data
-        attr_reader marketplace_id: String
-        attr_reader offer_type: String
-        attr_reader price: Money
-        attr_reader points: Points?
-        attr_reader audience: Audience?
+        def self.new: (marketplace_id: String?, offer_type: String?, price: Peddler::Types::Money?, points: Peddler::Types::ListingsItems20210801::Points?, audience: Peddler::Types::ListingsItems20210801::Audience?) -> instance
+                    | (String?, String?, Peddler::Types::Money?, Peddler::Types::ListingsItems20210801::Points?, Peddler::Types::ListingsItems20210801::Audience?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          marketplace_id: String,
-          offer_type: String,
-          price: Money,
-          ?points: Points,
-          ?audience: Audience
-        ) -> instance
+        attr_reader marketplace_id: String?
+        attr_reader offer_type: String?
+        attr_reader price: Peddler::Types::Money?
+        attr_reader points: Peddler::Types::ListingsItems20210801::Points?
+        attr_reader audience: Peddler::Types::ListingsItems20210801::Audience?
+
+        def to_h: () -> { marketplace_id: String?, offer_type: String?, price: Peddler::Types::Money?, points: Peddler::Types::ListingsItems20210801::Points?, audience: Peddler::Types::ListingsItems20210801::Audience? }
       end
     end
   end

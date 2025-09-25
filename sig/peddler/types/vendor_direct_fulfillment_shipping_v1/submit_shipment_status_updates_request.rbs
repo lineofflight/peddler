@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class SubmitShipmentStatusUpdatesRequest < Data
-        attr_reader shipment_status_updates: Array[ShipmentStatusUpdate]?
+        def self.new: (shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentStatusUpdate]?) -> instance
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentStatusUpdate]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?shipment_status_updates: Array[ShipmentStatusUpdate]
-        ) -> instance
+        attr_reader shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentStatusUpdate]?
+
+        def to_h: () -> { shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentStatusUpdate]? }
       end
     end
   end

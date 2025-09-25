@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class CreateClaimResponse < Data
+        def self.new: (claim_id: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader claim_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?claim_id: String
-        ) -> instance
+        def to_h: () -> { claim_id: String? }
       end
     end
   end

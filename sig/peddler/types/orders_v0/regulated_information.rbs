@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class RegulatedInformation < Data
-        attr_reader fields: Array[RegulatedInformationField]
+        def self.new: (fields: Array[Peddler::Types::OrdersV0::RegulatedInformationField]?) -> instance
+                    | (Array[Peddler::Types::OrdersV0::RegulatedInformationField]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          fields: Array[RegulatedInformationField]
-        ) -> instance
+        attr_reader fields: Array[Peddler::Types::OrdersV0::RegulatedInformationField]?
+
+        def to_h: () -> { fields: Array[Peddler::Types::OrdersV0::RegulatedInformationField]? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class BuyerTaxInfo < Data
+        def self.new: (company_legal_name: String?, taxing_region: String?, tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?) -> instance
+                    | (String?, String?, Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader company_legal_name: String?
         attr_reader taxing_region: String?
-        attr_reader tax_classifications: Array[TaxClassification]?
+        attr_reader tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?company_legal_name: String,
-          ?taxing_region: String,
-          ?tax_classifications: Array[TaxClassification]
-        ) -> instance
+        def to_h: () -> { company_legal_name: String?, taxing_region: String?, tax_classifications: Array[Peddler::Types::ShipmentInvoicingV0::TaxClassification]? }
       end
     end
   end

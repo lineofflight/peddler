@@ -4,21 +4,18 @@ module Peddler
   module Types
     module ProductPricing20220501
       class OfferIdentifier < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, seller_id: String?, sku: String?, asin: String?, fulfillment_type: String?) -> instance
+                    | (String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader seller_id: String?
         attr_reader sku: String?
-        attr_reader asin: String
+        attr_reader asin: String?
         attr_reader fulfillment_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?seller_id: String,
-          ?sku: String,
-          asin: String,
-          ?fulfillment_type: String
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, seller_id: String?, sku: String?, asin: String?, fulfillment_type: String? }
       end
     end
   end

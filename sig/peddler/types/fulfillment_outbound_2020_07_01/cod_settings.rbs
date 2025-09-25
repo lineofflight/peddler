@@ -4,21 +4,19 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CODSettings < Data
-        attr_reader cod_required: bool
-        attr_reader cod_charge: Money?
-        attr_reader cod_charge_tax: Money?
-        attr_reader shipping_charge: Money?
-        attr_reader shipping_charge_tax: Money?
+        def self.new: (cod_required: bool?, cod_charge: Peddler::Types::Money?, cod_charge_tax: Peddler::Types::Money?, shipping_charge: Peddler::Types::Money?, shipping_charge_tax: Peddler::Types::Money?) -> instance
+                    | (bool?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          cod_required: bool,
-          ?cod_charge: Money,
-          ?cod_charge_tax: Money,
-          ?shipping_charge: Money,
-          ?shipping_charge_tax: Money
-        ) -> instance
+        attr_reader cod_required: bool?
+        attr_reader cod_charge: Peddler::Types::Money?
+        attr_reader cod_charge_tax: Peddler::Types::Money?
+        attr_reader shipping_charge: Peddler::Types::Money?
+        attr_reader shipping_charge_tax: Peddler::Types::Money?
+
+        def cod_required?: () -> bool
+        def to_h: () -> { cod_required: bool?, cod_charge: Peddler::Types::Money?, cod_charge_tax: Peddler::Types::Money?, shipping_charge: Peddler::Types::Money?, shipping_charge_tax: Peddler::Types::Money? }
       end
     end
   end

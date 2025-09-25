@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SupplySources20200701
       class ReturnLocation < Data
+        def self.new: (supply_source_id: String?, address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?) -> instance
+                    | (String?, Peddler::Types::SupplySources20200701::AddressWithContact?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader supply_source_id: String?
-        attr_reader address_with_contact: AddressWithContact?
+        attr_reader address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?supply_source_id: String,
-          ?address_with_contact: AddressWithContact
-        ) -> instance
+        def to_h: () -> { supply_source_id: String?, address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact? }
       end
     end
   end

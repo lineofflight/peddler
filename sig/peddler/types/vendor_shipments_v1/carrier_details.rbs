@@ -4,21 +4,18 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class CarrierDetails < Data
+        def self.new: (name: String?, code: String?, phone: String?, email: String?, shipment_reference_number: String?) -> instance
+                    | (String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader name: String?
         attr_reader code: String?
         attr_reader phone: String?
         attr_reader email: String?
         attr_reader shipment_reference_number: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?name: String,
-          ?code: String,
-          ?phone: String,
-          ?email: String,
-          ?shipment_reference_number: String
-        ) -> instance
+        def to_h: () -> { name: String?, code: String?, phone: String?, email: String?, shipment_reference_number: String? }
       end
     end
   end

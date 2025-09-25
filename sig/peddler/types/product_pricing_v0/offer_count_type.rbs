@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ProductPricingV0
       class OfferCountType < Data
+        def self.new: (condition: String?, fulfillment_channel: String?, offer_count: Integer?) -> instance
+                    | (String?, String?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader condition: String?
         attr_reader fulfillment_channel: String?
         attr_reader offer_count: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?condition: String,
-          ?fulfillment_channel: String,
-          ?offer_count: Integer
-        ) -> instance
+        def to_h: () -> { condition: String?, fulfillment_channel: String?, offer_count: Integer? }
       end
     end
   end

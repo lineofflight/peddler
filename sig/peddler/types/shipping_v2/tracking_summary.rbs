@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class TrackingSummary < Data
+        def self.new: (status: String?, tracking_detail_codes: Peddler::Types::ShippingV2::TrackingDetailCodes?) -> instance
+                    | (String?, Peddler::Types::ShippingV2::TrackingDetailCodes?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader status: String?
-        attr_reader tracking_detail_codes: TrackingDetailCodes?
+        attr_reader tracking_detail_codes: Peddler::Types::ShippingV2::TrackingDetailCodes?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?status: String,
-          ?tracking_detail_codes: TrackingDetailCodes
-        ) -> instance
+        def to_h: () -> { status: String?, tracking_detail_codes: Peddler::Types::ShippingV2::TrackingDetailCodes? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Invoices20240619
       class ExportInvoicesResponse < Data
+        def self.new: (export_id: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader export_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?export_id: String
-        ) -> instance
+        def to_h: () -> { export_id: String? }
       end
     end
   end

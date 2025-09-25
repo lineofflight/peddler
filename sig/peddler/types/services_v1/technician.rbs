@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ServicesV1
       class Technician < Data
+        def self.new: (technician_id: String?, name: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader technician_id: String?
         attr_reader name: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?technician_id: String,
-          ?name: String
-        ) -> instance
+        def to_h: () -> { technician_id: String?, name: String? }
       end
     end
   end

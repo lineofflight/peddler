@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class PlacementOption < Data
-        attr_reader discounts: Array[Incentive]
+        def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?) -> instance
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[String]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
         attr_reader expiration: String?
-        attr_reader fees: Array[Incentive]
-        attr_reader placement_option_id: String
-        attr_reader shipment_ids: Array[String]
-        attr_reader status: String
+        attr_reader fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
+        attr_reader placement_option_id: String?
+        attr_reader shipment_ids: Array[String]?
+        attr_reader status: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          discounts: Array[Incentive],
-          ?expiration: String,
-          fees: Array[Incentive],
-          placement_option_id: String,
-          shipment_ids: Array[String],
-          status: String
-        ) -> instance
+        def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Replenishment20221107
       class OfferProgramConfigurationPreferences < Data
+        def self.new: (auto_enrollment: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader auto_enrollment: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?auto_enrollment: String
-        ) -> instance
+        def to_h: () -> { auto_enrollment: String? }
       end
     end
   end

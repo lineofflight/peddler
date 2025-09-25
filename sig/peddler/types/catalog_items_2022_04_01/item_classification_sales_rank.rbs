@@ -4,19 +4,17 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemClassificationSalesRank < Data
-        attr_reader classification_id: String
-        attr_reader title: String
+        def self.new: (classification_id: String?, title: String?, link: String?, rank: Integer?) -> instance
+                    | (String?, String?, String?, Integer?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader classification_id: String?
+        attr_reader title: String?
         attr_reader link: String?
-        attr_reader rank: Integer
+        attr_reader rank: Integer?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          classification_id: String,
-          title: String,
-          ?link: String,
-          rank: Integer
-        ) -> instance
+        def to_h: () -> { classification_id: String?, title: String?, link: String?, rank: Integer? }
       end
     end
   end

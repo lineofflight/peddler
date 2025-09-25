@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module SellersV1
-      class MarketplaceParticipationList < Array[MarketplaceParticipation]
-        def self.parse: (Array[untyped] array) -> instance
+      class MarketplaceParticipationList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

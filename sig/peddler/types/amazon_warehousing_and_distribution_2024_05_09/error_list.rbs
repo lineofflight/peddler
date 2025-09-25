@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class ErrorList < Data
-        attr_reader errors: Array[Error]
+        def self.new: (errors: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]?) -> instance
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          errors: Array[Error]
-        ) -> instance
+        attr_reader errors: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]? }
       end
     end
   end

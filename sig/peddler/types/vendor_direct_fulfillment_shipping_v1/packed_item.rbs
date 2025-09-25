@@ -4,19 +4,17 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class PackedItem < Data
-        attr_reader item_sequence_number: Integer
+        def self.new: (item_sequence_number: Integer?, buyer_product_identifier: String?, vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?) -> instance
+                    | (Integer?, String?, String?, Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader item_sequence_number: Integer?
         attr_reader buyer_product_identifier: String?
         attr_reader vendor_product_identifier: String?
-        attr_reader packed_quantity: ItemQuantity
+        attr_reader packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          item_sequence_number: Integer,
-          ?buyer_product_identifier: String,
-          ?vendor_product_identifier: String,
-          packed_quantity: ItemQuantity
-        ) -> instance
+        def to_h: () -> { item_sequence_number: Integer?, buyer_product_identifier: String?, vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity? }
       end
     end
   end

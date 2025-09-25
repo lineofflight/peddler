@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class ValueAddedService < Data
-        attr_reader id: String
-        attr_reader name: String
-        attr_reader cost: Money
+        def self.new: (id: String?, name: String?, cost: Peddler::Types::Money?) -> instance
+                    | (String?, String?, Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          id: String,
-          name: String,
-          cost: Money
-        ) -> instance
+        attr_reader id: String?
+        attr_reader name: String?
+        attr_reader cost: Peddler::Types::Money?
+
+        def to_h: () -> { id: String?, name: String?, cost: Peddler::Types::Money? }
       end
     end
   end

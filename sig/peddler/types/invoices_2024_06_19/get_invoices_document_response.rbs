@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Invoices20240619
       class GetInvoicesDocumentResponse < Data
-        attr_reader invoices_document: InvoicesDocument?
+        def self.new: (invoices_document: Peddler::Types::Invoices20240619::InvoicesDocument?) -> instance
+                    | (Peddler::Types::Invoices20240619::InvoicesDocument?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?invoices_document: InvoicesDocument
-        ) -> instance
+        attr_reader invoices_document: Peddler::Types::Invoices20240619::InvoicesDocument?
+
+        def to_h: () -> { invoices_document: Peddler::Types::Invoices20240619::InvoicesDocument? }
       end
     end
   end

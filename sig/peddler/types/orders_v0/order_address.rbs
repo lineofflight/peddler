@@ -4,19 +4,17 @@ module Peddler
   module Types
     module OrdersV0
       class OrderAddress < Data
-        attr_reader amazon_order_id: String
+        def self.new: (amazon_order_id: String?, buyer_company_name: String?, shipping_address: Peddler::Types::OrdersV0::Address?, delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?) -> instance
+                    | (String?, String?, Peddler::Types::OrdersV0::Address?, Peddler::Types::OrdersV0::DeliveryPreferences?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader amazon_order_id: String?
         attr_reader buyer_company_name: String?
-        attr_reader shipping_address: Address?
-        attr_reader delivery_preferences: DeliveryPreferences?
+        attr_reader shipping_address: Peddler::Types::OrdersV0::Address?
+        attr_reader delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          amazon_order_id: String,
-          ?buyer_company_name: String,
-          ?shipping_address: Address,
-          ?delivery_preferences: DeliveryPreferences
-        ) -> instance
+        def to_h: () -> { amazon_order_id: String?, buyer_company_name: String?, shipping_address: Peddler::Types::OrdersV0::Address?, delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences? }
       end
     end
   end

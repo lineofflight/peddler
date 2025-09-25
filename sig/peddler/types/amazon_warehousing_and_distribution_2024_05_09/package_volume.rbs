@@ -4,15 +4,15 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class PackageVolume < Data
-        attr_reader unit_of_measurement: String
-        attr_reader volume: Float
+        def self.new: (unit_of_measurement: String?, volume: Float?) -> instance
+                    | (String?, Float?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          unit_of_measurement: String,
-          volume: Float
-        ) -> instance
+        attr_reader unit_of_measurement: String?
+        attr_reader volume: Float?
+
+        def to_h: () -> { unit_of_measurement: String?, volume: Float? }
       end
     end
   end

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ServicesV1
-      class FulfillmentDocuments < Array[FulfillmentDocument]
-        def self.parse: (Array[untyped] array) -> instance
+      class FulfillmentDocuments < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

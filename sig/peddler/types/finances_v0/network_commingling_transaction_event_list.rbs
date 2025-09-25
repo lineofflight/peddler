@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class NetworkComminglingTransactionEventList < Array[NetworkComminglingTransactionEvent]
-        def self.parse: (Array[untyped] array) -> instance
+      class NetworkComminglingTransactionEventList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

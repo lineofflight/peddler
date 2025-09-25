@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class OpenInterval < Data
-        attr_reader start_time: OpenTimeInterval?
-        attr_reader end_time: OpenTimeInterval?
+        def self.new: (start_time: Peddler::Types::OrdersV0::OpenTimeInterval?, end_time: Peddler::Types::OrdersV0::OpenTimeInterval?) -> instance
+                    | (Peddler::Types::OrdersV0::OpenTimeInterval?, Peddler::Types::OrdersV0::OpenTimeInterval?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?start_time: OpenTimeInterval,
-          ?end_time: OpenTimeInterval
-        ) -> instance
+        attr_reader start_time: Peddler::Types::OrdersV0::OpenTimeInterval?
+        attr_reader end_time: Peddler::Types::OrdersV0::OpenTimeInterval?
+
+        def to_h: () -> { start_time: Peddler::Types::OrdersV0::OpenTimeInterval?, end_time: Peddler::Types::OrdersV0::OpenTimeInterval? }
       end
     end
   end

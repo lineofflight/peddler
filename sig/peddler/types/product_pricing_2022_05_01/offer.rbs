@@ -4,27 +4,21 @@ module Peddler
   module Types
     module ProductPricing20220501
       class Offer < Data
-        attr_reader seller_id: String
-        attr_reader condition: String
+        def self.new: (seller_id: String?, condition: String?, sub_condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader seller_id: String?
+        attr_reader condition: String?
         attr_reader sub_condition: String?
-        attr_reader fulfillment_type: String
-        attr_reader listing_price: Money
-        attr_reader shipping_options: Array[ShippingOption]?
-        attr_reader points: Points?
-        attr_reader prime_details: PrimeDetails?
+        attr_reader fulfillment_type: String?
+        attr_reader listing_price: Peddler::Types::Money?
+        attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
+        attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+        attr_reader prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          seller_id: String,
-          condition: String,
-          ?sub_condition: String,
-          fulfillment_type: String,
-          listing_price: Money,
-          ?shipping_options: Array[ShippingOption],
-          ?points: Points,
-          ?prime_details: PrimeDetails
-        ) -> instance
+        def to_h: () -> { seller_id: String?, condition: String?, sub_condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails? }
       end
     end
   end

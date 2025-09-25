@@ -4,17 +4,16 @@ module Peddler
   module Types
     module Finances20240619
       class AmazonPayContext < Data
+        def self.new: (store_name: String?, order_type: String?, channel: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader store_name: String?
         attr_reader order_type: String?
         attr_reader channel: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?store_name: String,
-          ?order_type: String,
-          ?channel: String
-        ) -> instance
+        def to_h: () -> { store_name: String?, order_type: String?, channel: String? }
       end
     end
   end

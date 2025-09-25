@@ -4,23 +4,19 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOfferMetricsRequestFilters < Data
+        def self.new: (aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, marketplace_id: String?, program_types: Array?, asins: Array[String]?) -> instance
+                    | (String?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array?, Array[String]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader aggregation_frequency: String?
-        attr_reader time_interval: TimeInterval
-        attr_reader time_period_type: String
-        attr_reader marketplace_id: String
-        attr_reader program_types: Array[String]
+        attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
+        attr_reader time_period_type: String?
+        attr_reader marketplace_id: String?
+        attr_reader program_types: Array?
         attr_reader asins: Array[String]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?aggregation_frequency: String,
-          time_interval: TimeInterval,
-          time_period_type: String,
-          marketplace_id: String,
-          program_types: Array[String],
-          ?asins: Array[String]
-        ) -> instance
+        def to_h: () -> { aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, marketplace_id: String?, program_types: Array?, asins: Array[String]? }
       end
     end
   end

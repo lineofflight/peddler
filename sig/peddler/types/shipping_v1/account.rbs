@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV1
       class Account < Data
-        attr_reader account_id: String
+        def self.new: (account_id: String?) -> instance
+                    | (String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          account_id: String
-        ) -> instance
+        attr_reader account_id: String?
+
+        def to_h: () -> { account_id: String? }
       end
     end
   end

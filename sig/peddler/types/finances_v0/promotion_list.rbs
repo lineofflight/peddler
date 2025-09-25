@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class PromotionList < Array[Promotion]
-        def self.parse: (Array[untyped] array) -> instance
+      class PromotionList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

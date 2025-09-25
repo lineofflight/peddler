@@ -4,31 +4,23 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class ProductTypeDefinition < Data
-        attr_reader meta_schema: SchemaLink?
-        attr_reader schema: SchemaLink
-        attr_reader requirements: String
-        attr_reader requirements_enforced: String
-        attr_reader property_groups: Hash[String, PropertyGroup]
-        attr_reader locale: String
-        attr_reader marketplace_ids: Array[String]
-        attr_reader product_type: String
-        attr_reader display_name: String
-        attr_reader product_type_version: ProductTypeVersion
+        def self.new: (meta_schema: Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?, schema: Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?, requirements: String?, requirements_enforced: String?, property_groups: Hash?, locale: String?, marketplace_ids: Array[String]?, product_type: String?, display_name: String?, product_type_version: Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion?) -> instance
+                    | (Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?, Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?, String?, String?, Hash?, String?, Array[String]?, String?, String?, Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?meta_schema: SchemaLink,
-          schema: SchemaLink,
-          requirements: String,
-          requirements_enforced: String,
-          property_groups: Hash[String, PropertyGroup],
-          locale: String,
-          marketplace_ids: Array[String],
-          product_type: String,
-          display_name: String,
-          product_type_version: ProductTypeVersion
-        ) -> instance
+        attr_reader meta_schema: Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?
+        attr_reader schema: Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?
+        attr_reader requirements: String?
+        attr_reader requirements_enforced: String?
+        attr_reader property_groups: Hash?
+        attr_reader locale: String?
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader product_type: String?
+        attr_reader display_name: String?
+        attr_reader product_type_version: Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion?
+
+        def to_h: () -> { meta_schema: Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?, schema: Peddler::Types::ProductTypeDefinitions20200901::SchemaLink?, requirements: String?, requirements_enforced: String?, property_groups: Hash?, locale: String?, marketplace_ids: Array[String]?, product_type: String?, display_name: String?, product_type_version: Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion? }
       end
     end
   end

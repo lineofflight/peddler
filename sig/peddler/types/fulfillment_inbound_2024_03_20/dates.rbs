@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Dates < Data
-        attr_reader ready_to_ship_window: Window?
+        def self.new: (ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::Window?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?ready_to_ship_window: Window
-        ) -> instance
+        attr_reader ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?
+
+        def to_h: () -> { ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window? }
       end
     end
   end

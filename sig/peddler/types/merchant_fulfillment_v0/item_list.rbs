@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class ItemList < Array[Item]
-        def self.parse: (Array[untyped] array) -> instance
+      class ItemList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

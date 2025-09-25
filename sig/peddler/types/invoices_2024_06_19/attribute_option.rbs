@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Invoices20240619
       class AttributeOption < Data
+        def self.new: (description: String?, value: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader description: String?
         attr_reader value: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?description: String,
-          ?value: String
-        ) -> instance
+        def to_h: () -> { description: String?, value: String? }
       end
     end
   end

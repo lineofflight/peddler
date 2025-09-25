@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FBAInventoryV1
       class GetInventorySummariesResponse < Data
-        attr_reader payload: GetInventorySummariesResult?
-        attr_reader pagination: Pagination?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?, pagination: Peddler::Types::FBAInventoryV1::Pagination?, errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> instance
+                    | (Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?, Peddler::Types::FBAInventoryV1::Pagination?, Array[Peddler::Types::FBAInventoryV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: GetInventorySummariesResult,
-          ?pagination: Pagination,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?
+        attr_reader pagination: Peddler::Types::FBAInventoryV1::Pagination?
+        attr_reader errors: Array[Peddler::Types::FBAInventoryV1::Error]?
+
+        def to_h: () -> { payload: Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?, pagination: Peddler::Types::FBAInventoryV1::Pagination?, errors: Array[Peddler::Types::FBAInventoryV1::Error]? }
       end
     end
   end

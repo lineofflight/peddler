@@ -4,25 +4,20 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTopic < Data
-        attr_reader topic: String
-        attr_reader asin_metrics: ItemReviewTopicMetrics
-        attr_reader parent_asin_metrics: ItemReviewTopicMetrics?
-        attr_reader browse_node_metrics: ItemReviewBrowseNodeMetrics?
-        attr_reader child_asin_metrics: ChildAsinMetrics?
+        def self.new: (topic: String?, asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> instance
+                    | (String?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, Array[String]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader topic: String?
+        attr_reader asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?
+        attr_reader parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?
+        attr_reader child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?
         attr_reader review_snippets: Array[String]?
-        attr_reader subtopics: Array[ItemReviewSubtopic]?
+        attr_reader subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          topic: String,
-          asin_metrics: ItemReviewTopicMetrics,
-          ?parent_asin_metrics: ItemReviewTopicMetrics,
-          ?browse_node_metrics: ItemReviewBrowseNodeMetrics,
-          ?child_asin_metrics: ChildAsinMetrics,
-          ?review_snippets: Array[String],
-          ?subtopics: Array[ItemReviewSubtopic]
-        ) -> instance
+        def to_h: () -> { topic: String?, asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]? }
       end
     end
   end

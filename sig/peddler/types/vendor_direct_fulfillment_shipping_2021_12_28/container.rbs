@@ -4,8 +4,13 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class Container < Data
-        attr_reader container_type: String
-        attr_reader container_identifier: String
+        def self.new: (container_type: String?, container_identifier: String?, tracking_number: String?, manifest_id: String?, manifest_date: String?, ship_method: String?, scac_code: String?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader container_type: String?
+        attr_reader container_identifier: String?
         attr_reader tracking_number: String?
         attr_reader manifest_id: String?
         attr_reader manifest_date: String?
@@ -13,26 +18,11 @@ module Peddler
         attr_reader scac_code: String?
         attr_reader carrier: String?
         attr_reader container_sequence_number: Integer?
-        attr_reader dimensions: Dimensions?
-        attr_reader weight: Weight
-        attr_reader packed_items: Array[PackedItem]
+        attr_reader dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?
+        attr_reader weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?
+        attr_reader packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          container_type: String,
-          container_identifier: String,
-          ?tracking_number: String,
-          ?manifest_id: String,
-          ?manifest_date: String,
-          ?ship_method: String,
-          ?scac_code: String,
-          ?carrier: String,
-          ?container_sequence_number: Integer,
-          ?dimensions: Dimensions,
-          weight: Weight,
-          packed_items: Array[PackedItem]
-        ) -> instance
+        def to_h: () -> { container_type: String?, container_identifier: String?, tracking_number: String?, manifest_id: String?, manifest_date: String?, ship_method: String?, scac_code: String?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]? }
       end
     end
   end

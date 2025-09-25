@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOfferMetricsRequestPagination < Data
-        attr_reader limit: Integer
-        attr_reader offset: Integer
+        def self.new: (limit: Integer?, offset: Integer?) -> instance
+                    | (Integer?, Integer?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          limit: Integer,
-          offset: Integer
-        ) -> instance
+        attr_reader limit: Integer?
+        attr_reader offset: Integer?
+
+        def to_h: () -> { limit: Integer?, offset: Integer? }
       end
     end
   end

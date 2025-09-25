@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class BuyerRequestedCancel < Data
+        def self.new: (is_buyer_requested_cancel: String?, buyer_cancel_reason: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader is_buyer_requested_cancel: String?
         attr_reader buyer_cancel_reason: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?is_buyer_requested_cancel: String,
-          ?buyer_cancel_reason: String
-        ) -> instance
+        def to_h: () -> { is_buyer_requested_cancel: String?, buyer_cancel_reason: String? }
       end
     end
   end

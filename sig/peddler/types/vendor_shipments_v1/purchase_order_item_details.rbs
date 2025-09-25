@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class PurchaseOrderItemDetails < Data
-        attr_reader maximum_retail_price: Money?
+        def self.new: (maximum_retail_price: Peddler::Types::Money?) -> instance
+                    | (Peddler::Types::Money?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?maximum_retail_price: Money
-        ) -> instance
+        attr_reader maximum_retail_price: Peddler::Types::Money?
+
+        def to_h: () -> { maximum_retail_price: Peddler::Types::Money? }
       end
     end
   end

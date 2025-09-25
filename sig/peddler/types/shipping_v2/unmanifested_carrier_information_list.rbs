@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class UnmanifestedCarrierInformationList < Array[UnmanifestedCarrierInformation]
-        def self.parse: (Array[untyped] array) -> instance
+      class UnmanifestedCarrierInformationList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryBatchRequest < Data
-        attr_reader requests: Array[CompetitiveSummaryRequest]
+        def self.new: (requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> instance
+                    | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          requests: Array[CompetitiveSummaryRequest]
-        ) -> instance
+        attr_reader requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?
+
+        def to_h: () -> { requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]? }
       end
     end
   end

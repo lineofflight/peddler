@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module EasyShip20220323
-      class UpdatePackageDetailsList < Array[UpdatePackageDetails]
-        def self.parse: (Array[untyped] array) -> instance
+      class UpdatePackageDetailsList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListPrepDetailsResponse < Data
-        attr_reader msku_prep_details: Array[MskuPrepDetail]
+        def self.new: (msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          msku_prep_details: Array[MskuPrepDetail]
-        ) -> instance
+        attr_reader msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]?
+
+        def to_h: () -> { msku_prep_details: Array[Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail]? }
       end
     end
   end

@@ -4,7 +4,12 @@ module Peddler
   module Types
     module Finances20240619
       class Context < Data
-        attr_reader context_type: String
+        def self.new: (context_type: String?, store_name: String?, order_type: String?, channel: String?, asin: String?, sku: String?, quantity_shipped: Integer?, fulfillment_network: String?, payment_type: String?, payment_method: String?, payment_reference: String?, payment_date: String?, deferral_reason: String?, maturity_date: String?, start_time: String?, end_time: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader context_type: String?
         attr_reader store_name: String?
         attr_reader order_type: String?
         attr_reader channel: String?
@@ -21,26 +26,7 @@ module Peddler
         attr_reader start_time: String?
         attr_reader end_time: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          context_type: String,
-          ?store_name: String,
-          ?order_type: String,
-          ?channel: String,
-          ?asin: String,
-          ?sku: String,
-          ?quantity_shipped: Integer,
-          ?fulfillment_network: String,
-          ?payment_type: String,
-          ?payment_method: String,
-          ?payment_reference: String,
-          ?payment_date: String,
-          ?deferral_reason: String,
-          ?maturity_date: String,
-          ?start_time: String,
-          ?end_time: String
-        ) -> instance
+        def to_h: () -> { context_type: String?, store_name: String?, order_type: String?, channel: String?, asin: String?, sku: String?, quantity_shipped: Integer?, fulfillment_network: String?, payment_type: String?, payment_method: String?, payment_reference: String?, payment_date: String?, deferral_reason: String?, maturity_date: String?, start_time: String?, end_time: String? }
       end
     end
   end

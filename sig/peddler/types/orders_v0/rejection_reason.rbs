@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class RejectionReason < Data
-        attr_reader rejection_reason_id: String
-        attr_reader rejection_reason_description: String
+        def self.new: (rejection_reason_id: String?, rejection_reason_description: String?) -> instance
+                    | (String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          rejection_reason_id: String,
-          rejection_reason_description: String
-        ) -> instance
+        attr_reader rejection_reason_id: String?
+        attr_reader rejection_reason_description: String?
+
+        def to_h: () -> { rejection_reason_id: String?, rejection_reason_description: String? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class VerificationDetails < Data
-        attr_reader prescription_detail: PrescriptionDetail?
+        def self.new: (prescription_detail: Peddler::Types::OrdersV0::PrescriptionDetail?) -> instance
+                    | (Peddler::Types::OrdersV0::PrescriptionDetail?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?prescription_detail: PrescriptionDetail
-        ) -> instance
+        attr_reader prescription_detail: Peddler::Types::OrdersV0::PrescriptionDetail?
+
+        def to_h: () -> { prescription_detail: Peddler::Types::OrdersV0::PrescriptionDetail? }
       end
     end
   end

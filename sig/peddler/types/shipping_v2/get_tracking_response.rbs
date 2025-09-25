@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class GetTrackingResponse < Data
-        attr_reader payload: GetTrackingResult?
+        def self.new: (payload: Peddler::Types::ShippingV2::GetTrackingResult?) -> instance
+                    | (Peddler::Types::ShippingV2::GetTrackingResult?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: GetTrackingResult
-        ) -> instance
+        attr_reader payload: Peddler::Types::ShippingV2::GetTrackingResult?
+
+        def to_h: () -> { payload: Peddler::Types::ShippingV2::GetTrackingResult? }
       end
     end
   end

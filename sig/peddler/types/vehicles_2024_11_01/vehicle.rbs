@@ -4,35 +4,25 @@ module Peddler
   module Types
     module Vehicles20241101
       class Vehicle < Data
-        attr_reader make: String
-        attr_reader model: String
+        def self.new: (make: String?, model: String?, variant_name: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, last_processed_date: String?, status: String?, identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Vehicles20241101::EngineOutput]?, Peddler::Types::Vehicles20241101::MonthAndYear?, Peddler::Types::Vehicles20241101::MonthAndYear?, String?, String?, Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader make: String?
+        attr_reader model: String?
         attr_reader variant_name: String?
         attr_reader body_style: String?
         attr_reader drive_type: String?
         attr_reader energy: String?
-        attr_reader engine_output: Array[EngineOutput]?
-        attr_reader manufacturing_start_date: MonthAndYear?
-        attr_reader manufacturing_stop_date: MonthAndYear?
+        attr_reader engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?
+        attr_reader manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?
+        attr_reader manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?
         attr_reader last_processed_date: String?
         attr_reader status: String?
-        attr_reader identifiers: Array[VehicleIdentifiers]
+        attr_reader identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          make: String,
-          model: String,
-          ?variant_name: String,
-          ?body_style: String,
-          ?drive_type: String,
-          ?energy: String,
-          ?engine_output: Array[EngineOutput],
-          ?manufacturing_start_date: MonthAndYear,
-          ?manufacturing_stop_date: MonthAndYear,
-          ?last_processed_date: String,
-          ?status: String,
-          identifiers: Array[VehicleIdentifiers]
-        ) -> instance
+        def to_h: () -> { make: String?, model: String?, variant_name: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, last_processed_date: String?, status: String?, identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]? }
       end
     end
   end

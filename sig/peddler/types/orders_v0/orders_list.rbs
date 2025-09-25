@@ -4,19 +4,17 @@ module Peddler
   module Types
     module OrdersV0
       class OrdersList < Data
-        attr_reader orders: Array[Order]
+        def self.new: (orders: Array[Peddler::Types::OrdersV0::Order]?, next_token: String?, last_updated_before: String?, created_before: String?) -> instance
+                    | (Array[Peddler::Types::OrdersV0::Order]?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader orders: Array[Peddler::Types::OrdersV0::Order]?
         attr_reader next_token: String?
         attr_reader last_updated_before: String?
         attr_reader created_before: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          orders: Array[Order],
-          ?next_token: String,
-          ?last_updated_before: String,
-          ?created_before: String
-        ) -> instance
+        def to_h: () -> { orders: Array[Peddler::Types::OrdersV0::Order]?, next_token: String?, last_updated_before: String?, created_before: String? }
       end
     end
   end

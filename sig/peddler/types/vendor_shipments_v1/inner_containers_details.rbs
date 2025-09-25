@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class InnerContainersDetails < Data
+        def self.new: (container_count: Integer?, container_sequence_numbers: Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]?) -> instance
+                    | (Integer?, Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader container_count: Integer?
-        attr_reader container_sequence_numbers: Array[ContainerSequenceNumbers]?
+        attr_reader container_sequence_numbers: Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?container_count: Integer,
-          ?container_sequence_numbers: Array[ContainerSequenceNumbers]
-        ) -> instance
+        def to_h: () -> { container_count: Integer?, container_sequence_numbers: Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]? }
       end
     end
   end

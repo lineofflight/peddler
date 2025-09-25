@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FinancesV0
       class ImagingServicesFeeEvent < Data
+        def self.new: (imaging_request_billing_item_id: String?, asin: String?, posted_date: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?) -> instance
+                    | (String?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader imaging_request_billing_item_id: String?
         attr_reader asin: String?
         attr_reader posted_date: String?
-        attr_reader fee_list: Array[FeeComponent]?
+        attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?imaging_request_billing_item_id: String,
-          ?asin: String,
-          ?posted_date: String,
-          ?fee_list: Array[FeeComponent]
-        ) -> instance
+        def to_h: () -> { imaging_request_billing_item_id: String?, asin: String?, posted_date: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]? }
       end
     end
   end

@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ServicesV1
       class SetAppointmentFulfillmentDataRequest < Data
-        attr_reader estimated_arrival_time: DateTimeRange?
-        attr_reader fulfillment_time: FulfillmentTime?
-        attr_reader appointment_resources: Array[AppointmentResource]?
-        attr_reader fulfillment_documents: Array[FulfillmentDocument]?
+        def self.new: (estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?, appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> instance
+                    | (Peddler::Types::ServicesV1::DateTimeRange?, Peddler::Types::ServicesV1::FulfillmentTime?, Array[Peddler::Types::ServicesV1::AppointmentResource]?, Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?estimated_arrival_time: DateTimeRange,
-          ?fulfillment_time: FulfillmentTime,
-          ?appointment_resources: Array[AppointmentResource],
-          ?fulfillment_documents: Array[FulfillmentDocument]
-        ) -> instance
+        attr_reader estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?
+        attr_reader fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?
+        attr_reader appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?
+        attr_reader fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?
+
+        def to_h: () -> { estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?, appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]? }
       end
     end
   end

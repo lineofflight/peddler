@@ -4,15 +4,15 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class SubmitInvoicesResponse < Data
-        attr_reader payload: TransactionId?
-        attr_reader errors: Array[Error]?
+        def self.new: (payload: Peddler::Types::VendorInvoicesV1::TransactionId?, errors: Array[Peddler::Types::VendorInvoicesV1::Error]?) -> instance
+                    | (Peddler::Types::VendorInvoicesV1::TransactionId?, Array[Peddler::Types::VendorInvoicesV1::Error]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?payload: TransactionId,
-          ?errors: Array[Error]
-        ) -> instance
+        attr_reader payload: Peddler::Types::VendorInvoicesV1::TransactionId?
+        attr_reader errors: Array[Peddler::Types::VendorInvoicesV1::Error]?
+
+        def to_h: () -> { payload: Peddler::Types::VendorInvoicesV1::TransactionId?, errors: Array[Peddler::Types::VendorInvoicesV1::Error]? }
       end
     end
   end

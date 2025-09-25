@@ -4,13 +4,14 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class SubmitShipments < Data
-        attr_reader shipments: Array[Shipment]?
+        def self.new: (shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> instance
+                    | (Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?shipments: Array[Shipment]
-        ) -> instance
+        attr_reader shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?
+
+        def to_h: () -> { shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]? }
       end
     end
   end

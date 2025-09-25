@@ -4,13 +4,14 @@ module Peddler
   module Types
     module Replenishment20221107
       class OfferProgramConfigurationPromotionsDiscountFunding < Data
+        def self.new: (percentage: Float?) -> instance
+                    | (Float?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader percentage: Float?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?percentage: Float
-        ) -> instance
+        def to_h: () -> { percentage: Float? }
       end
     end
   end

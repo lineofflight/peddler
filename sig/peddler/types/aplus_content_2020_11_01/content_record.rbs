@@ -4,17 +4,16 @@ module Peddler
   module Types
     module AplusContent20201101
       class ContentRecord < Data
-        attr_reader content_reference_key: String
-        attr_reader content_metadata: ContentMetadata?
-        attr_reader content_document: ContentDocument?
+        def self.new: (content_reference_key: String?, content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_document: Peddler::Types::AplusContent20201101::ContentDocument?) -> instance
+                    | (String?, Peddler::Types::AplusContent20201101::ContentMetadata?, Peddler::Types::AplusContent20201101::ContentDocument?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          content_reference_key: String,
-          ?content_metadata: ContentMetadata,
-          ?content_document: ContentDocument
-        ) -> instance
+        attr_reader content_reference_key: String?
+        attr_reader content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?
+        attr_reader content_document: Peddler::Types::AplusContent20201101::ContentDocument?
+
+        def to_h: () -> { content_reference_key: String?, content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_document: Peddler::Types::AplusContent20201101::ContentDocument? }
       end
     end
   end

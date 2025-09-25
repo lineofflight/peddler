@@ -4,7 +4,12 @@ module Peddler
   module Types
     module OrdersV0
       class Address < Data
-        attr_reader name: String
+        def self.new: (name: String?, company_name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, municipality: String?, postal_code: String?, country_code: String?, phone: String?, extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?, address_type: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::OrdersV0::AddressExtendedFields?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader name: String?
         attr_reader company_name: String?
         attr_reader address_line1: String?
         attr_reader address_line2: String?
@@ -17,28 +22,10 @@ module Peddler
         attr_reader postal_code: String?
         attr_reader country_code: String?
         attr_reader phone: String?
-        attr_reader extended_fields: AddressExtendedFields?
+        attr_reader extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?
         attr_reader address_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          name: String,
-          ?company_name: String,
-          ?address_line1: String,
-          ?address_line2: String,
-          ?address_line3: String,
-          ?city: String,
-          ?county: String,
-          ?district: String,
-          ?state_or_region: String,
-          ?municipality: String,
-          ?postal_code: String,
-          ?country_code: String,
-          ?phone: String,
-          ?extended_fields: AddressExtendedFields,
-          ?address_type: String
-        ) -> instance
+        def to_h: () -> { name: String?, company_name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, municipality: String?, postal_code: String?, country_code: String?, phone: String?, extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?, address_type: String? }
       end
     end
   end

@@ -4,7 +4,12 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class PackageTrackingDetails < Data
-        attr_reader package_number: Integer
+        def self.new: (package_number: Integer?, tracking_number: String?, customer_tracking_link: String?, carrier_code: String?, carrier_phone_number: String?, carrier_url: String?, ship_date: String?, estimated_arrival_date: String?, ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, current_status: String?, current_status_description: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?, signed_for_by: String?, additional_location_info: String?, tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?) -> instance
+                    | (Integer?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::DateRange?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader package_number: Integer?
         attr_reader tracking_number: String?
         attr_reader customer_tracking_link: String?
         attr_reader carrier_code: String?
@@ -12,33 +17,15 @@ module Peddler
         attr_reader carrier_url: String?
         attr_reader ship_date: String?
         attr_reader estimated_arrival_date: String?
-        attr_reader ship_to_address: TrackingAddress?
+        attr_reader ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?
         attr_reader current_status: String?
         attr_reader current_status_description: String?
-        attr_reader delivery_window: DateRange?
+        attr_reader delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?
         attr_reader signed_for_by: String?
         attr_reader additional_location_info: String?
-        attr_reader tracking_events: Array[TrackingEvent]?
+        attr_reader tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          package_number: Integer,
-          ?tracking_number: String,
-          ?customer_tracking_link: String,
-          ?carrier_code: String,
-          ?carrier_phone_number: String,
-          ?carrier_url: String,
-          ?ship_date: String,
-          ?estimated_arrival_date: String,
-          ?ship_to_address: TrackingAddress,
-          ?current_status: String,
-          ?current_status_description: String,
-          ?delivery_window: DateRange,
-          ?signed_for_by: String,
-          ?additional_location_info: String,
-          ?tracking_events: Array[TrackingEvent]
-        ) -> instance
+        def to_h: () -> { package_number: Integer?, tracking_number: String?, customer_tracking_link: String?, carrier_code: String?, carrier_phone_number: String?, carrier_url: String?, ship_date: String?, estimated_arrival_date: String?, ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, current_status: String?, current_status_description: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?, signed_for_by: String?, additional_location_info: String?, tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]? }
       end
     end
   end

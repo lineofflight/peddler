@@ -4,19 +4,17 @@ module Peddler
   module Types
     module FinancesV0
       class ChargeRefundEvent < Data
+        def self.new: (posted_date: String?, reason_code: String?, reason_code_description: String?, charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> instance
+                    | (String?, String?, String?, Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader reason_code: String?
         attr_reader reason_code_description: String?
-        attr_reader charge_refund_transactions: Array[ChargeRefundTransaction]?
+        attr_reader charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?reason_code: String,
-          ?reason_code_description: String,
-          ?charge_refund_transactions: Array[ChargeRefundTransaction]
-        ) -> instance
+        def to_h: () -> { posted_date: String?, reason_code: String?, reason_code_description: String?, charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]? }
       end
     end
   end

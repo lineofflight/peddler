@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SolicitationsV1
       class LinkObject < Data
-        attr_reader href: String
+        def self.new: (href: String?, name: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader href: String?
         attr_reader name: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          href: String,
-          ?name: String
-        ) -> instance
+        def to_h: () -> { href: String?, name: String? }
       end
     end
   end

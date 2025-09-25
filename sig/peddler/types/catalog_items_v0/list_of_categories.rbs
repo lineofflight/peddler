@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module CatalogItemsV0
-      class ListOfCategories < Array[Categories]
-        def self.parse: (Array[untyped] array) -> instance
+      class ListOfCategories < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

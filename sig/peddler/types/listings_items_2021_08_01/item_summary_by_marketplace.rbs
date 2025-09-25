@@ -4,31 +4,23 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemSummaryByMarketplace < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, asin: String?, product_type: String?, condition_type: String?, status: Array[String]?, fn_sku: String?, item_name: String?, created_date: String?, last_updated_date: String?, main_image: Peddler::Types::ListingsItems20210801::ItemImage?) -> instance
+                    | (String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, Peddler::Types::ListingsItems20210801::ItemImage?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader asin: String?
-        attr_reader product_type: String
+        attr_reader product_type: String?
         attr_reader condition_type: String?
-        attr_reader status: Array[String]
+        attr_reader status: Array[String]?
         attr_reader fn_sku: String?
         attr_reader item_name: String?
-        attr_reader created_date: String
-        attr_reader last_updated_date: String
-        attr_reader main_image: ItemImage?
+        attr_reader created_date: String?
+        attr_reader last_updated_date: String?
+        attr_reader main_image: Peddler::Types::ListingsItems20210801::ItemImage?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?asin: String,
-          product_type: String,
-          ?condition_type: String,
-          status: Array[String],
-          ?fn_sku: String,
-          ?item_name: String,
-          created_date: String,
-          last_updated_date: String,
-          ?main_image: ItemImage
-        ) -> instance
+        def to_h: () -> { marketplace_id: String?, asin: String?, product_type: String?, condition_type: String?, status: Array[String]?, fn_sku: String?, item_name: String?, created_date: String?, last_updated_date: String?, main_image: Peddler::Types::ListingsItems20210801::ItemImage? }
       end
     end
   end

@@ -4,19 +4,17 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetEligibleShipmentServicesResult < Data
-        attr_reader shipping_service_list: Array[ShippingService]
-        attr_reader rejected_shipping_service_list: Array[RejectedShippingService]?
-        attr_reader temporarily_unavailable_carrier_list: Array[TemporarilyUnavailableCarrier]?
-        attr_reader terms_and_conditions_not_accepted_carrier_list: Array[TermsAndConditionsNotAcceptedCarrier]?
+        def self.new: (shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> instance
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          shipping_service_list: Array[ShippingService],
-          ?rejected_shipping_service_list: Array[RejectedShippingService],
-          ?temporarily_unavailable_carrier_list: Array[TemporarilyUnavailableCarrier],
-          ?terms_and_conditions_not_accepted_carrier_list: Array[TermsAndConditionsNotAcceptedCarrier]
-        ) -> instance
+        attr_reader shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?
+        attr_reader rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?
+        attr_reader temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?
+        attr_reader terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?
+
+        def to_h: () -> { shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]? }
       end
     end
   end

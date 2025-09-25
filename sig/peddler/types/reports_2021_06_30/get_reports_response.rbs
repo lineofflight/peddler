@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Reports20210630
       class GetReportsResponse < Data
-        attr_reader reports: Array[Report]
+        def self.new: (reports: Array[Peddler::Types::Reports20210630::Report]?, next_token: String?) -> instance
+                    | (Array[Peddler::Types::Reports20210630::Report]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader reports: Array[Peddler::Types::Reports20210630::Report]?
         attr_reader next_token: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          reports: Array[Report],
-          ?next_token: String
-        ) -> instance
+        def to_h: () -> { reports: Array[Peddler::Types::Reports20210630::Report]?, next_token: String? }
       end
     end
   end

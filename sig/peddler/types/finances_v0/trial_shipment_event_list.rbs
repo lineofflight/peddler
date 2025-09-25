@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class TrialShipmentEventList < Array[TrialShipmentEvent]
-        def self.parse: (Array[untyped] array) -> instance
+      class TrialShipmentEventList < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
       end
     end
   end

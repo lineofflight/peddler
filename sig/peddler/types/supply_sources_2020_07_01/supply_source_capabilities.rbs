@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SupplySources20200701
       class SupplySourceCapabilities < Data
-        attr_reader outbound: OutboundCapability?
-        attr_reader services: ServicesCapability?
+        def self.new: (outbound: Peddler::Types::SupplySources20200701::OutboundCapability?, services: Peddler::Types::SupplySources20200701::ServicesCapability?) -> instance
+                    | (Peddler::Types::SupplySources20200701::OutboundCapability?, Peddler::Types::SupplySources20200701::ServicesCapability?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?outbound: OutboundCapability,
-          ?services: ServicesCapability
-        ) -> instance
+        attr_reader outbound: Peddler::Types::SupplySources20200701::OutboundCapability?
+        attr_reader services: Peddler::Types::SupplySources20200701::ServicesCapability?
+
+        def to_h: () -> { outbound: Peddler::Types::SupplySources20200701::OutboundCapability?, services: Peddler::Types::SupplySources20200701::ServicesCapability? }
       end
     end
   end

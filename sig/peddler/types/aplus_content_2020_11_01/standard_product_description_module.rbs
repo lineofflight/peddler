@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardProductDescriptionModule < Data
-        attr_reader body: ParagraphComponent
+        def self.new: (body: Peddler::Types::AplusContent20201101::ParagraphComponent?) -> instance
+                    | (Peddler::Types::AplusContent20201101::ParagraphComponent?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          body: ParagraphComponent
-        ) -> instance
+        attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?
+
+        def to_h: () -> { body: Peddler::Types::AplusContent20201101::ParagraphComponent? }
       end
     end
   end

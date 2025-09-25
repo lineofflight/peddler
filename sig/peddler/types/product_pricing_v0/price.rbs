@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ProductPricingV0
       class Price < Data
-        attr_reader status: String
+        def self.new: (status: String?, seller_sku: String?, asin: String?, product: Peddler::Types::ProductPricingV0::Product?) -> instance
+                    | (String?, String?, String?, Peddler::Types::ProductPricingV0::Product?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader status: String?
         attr_reader seller_sku: String?
         attr_reader asin: String?
-        attr_reader product: Product?
+        attr_reader product: Peddler::Types::ProductPricingV0::Product?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          status: String,
-          ?seller_sku: String,
-          ?asin: String,
-          ?product: Product
-        ) -> instance
+        def to_h: () -> { status: String?, seller_sku: String?, asin: String?, product: Peddler::Types::ProductPricingV0::Product? }
       end
     end
   end

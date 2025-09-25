@@ -4,21 +4,18 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class RejectedShippingService < Data
-        attr_reader carrier_name: String
-        attr_reader shipping_service_name: String
-        attr_reader shipping_service_id: String
-        attr_reader rejection_reason_code: String
+        def self.new: (carrier_name: String?, shipping_service_name: String?, shipping_service_id: String?, rejection_reason_code: String?, rejection_reason_message: String?) -> instance
+                    | (String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader carrier_name: String?
+        attr_reader shipping_service_name: String?
+        attr_reader shipping_service_id: String?
+        attr_reader rejection_reason_code: String?
         attr_reader rejection_reason_message: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          carrier_name: String,
-          shipping_service_name: String,
-          shipping_service_id: String,
-          rejection_reason_code: String,
-          ?rejection_reason_message: String
-        ) -> instance
+        def to_h: () -> { carrier_name: String?, shipping_service_name: String?, shipping_service_id: String?, rejection_reason_code: String?, rejection_reason_message: String? }
       end
     end
   end

@@ -4,17 +4,16 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class FileContents < Data
-        attr_reader contents: String
-        attr_reader file_type: String
-        attr_reader checksum: String
+        def self.new: (contents: String?, file_type: String?, checksum: String?) -> instance
+                    | (String?, String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          contents: String,
-          file_type: String,
-          checksum: String
-        ) -> instance
+        attr_reader contents: String?
+        attr_reader file_type: String?
+        attr_reader checksum: String?
+
+        def to_h: () -> { contents: String?, file_type: String?, checksum: String? }
       end
     end
   end

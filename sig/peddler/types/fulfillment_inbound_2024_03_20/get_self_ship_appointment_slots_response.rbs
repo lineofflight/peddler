@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class GetSelfShipAppointmentSlotsResponse < Data
-        attr_reader pagination: Pagination?
-        attr_reader self_ship_appointment_slots_availability: SelfShipAppointmentSlotsAvailability
+        def self.new: (pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?) -> instance
+                    | (Peddler::Types::FulfillmentInbound20240320::Pagination?, Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?pagination: Pagination,
-          self_ship_appointment_slots_availability: SelfShipAppointmentSlotsAvailability
-        ) -> instance
+        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
+        attr_reader self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?
+
+        def to_h: () -> { pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability? }
       end
     end
   end

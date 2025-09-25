@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class ListReturnReasonCodesResult < Data
-        attr_reader reason_code_details: Array[ReasonCodeDetails]?
+        def self.new: (reason_code_details: Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?reason_code_details: Array[ReasonCodeDetails]
-        ) -> instance
+        attr_reader reason_code_details: Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]?
+
+        def to_h: () -> { reason_code_details: Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]? }
       end
     end
   end

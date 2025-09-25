@@ -4,21 +4,18 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class CreateContainerLabelRequest < Data
-        attr_reader selling_party: PartyIdentification
-        attr_reader ship_from_party: PartyIdentification
-        attr_reader carrier_id: String
-        attr_reader vendor_container_id: String
-        attr_reader packages: Array[Package]
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, carrier_id: String?, vendor_container_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?) -> instance
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          selling_party: PartyIdentification,
-          ship_from_party: PartyIdentification,
-          carrier_id: String,
-          vendor_container_id: String,
-          packages: Array[Package]
-        ) -> instance
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader carrier_id: String?
+        attr_reader vendor_container_id: String?
+        attr_reader packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, carrier_id: String?, vendor_container_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module OrdersV0
       class BuyerCustomizedInfoDetail < Data
+        def self.new: (customized_url: String?) -> instance
+                    | (String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader customized_url: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?customized_url: String
-        ) -> instance
+        def to_h: () -> { customized_url: String? }
       end
     end
   end

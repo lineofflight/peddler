@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class PackageDocumentDetail < Data
-        attr_reader package_client_reference_id: String
-        attr_reader package_documents: Array[PackageDocument]
+        def self.new: (package_client_reference_id: String?, package_documents: Array[Peddler::Types::ShippingV2::PackageDocument]?, tracking_id: String?) -> instance
+                    | (String?, Array[Peddler::Types::ShippingV2::PackageDocument]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader package_client_reference_id: String?
+        attr_reader package_documents: Array[Peddler::Types::ShippingV2::PackageDocument]?
         attr_reader tracking_id: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          package_client_reference_id: String,
-          package_documents: Array[PackageDocument],
-          ?tracking_id: String
-        ) -> instance
+        def to_h: () -> { package_client_reference_id: String?, package_documents: Array[Peddler::Types::ShippingV2::PackageDocument]?, tracking_id: String? }
       end
     end
   end

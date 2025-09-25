@@ -4,13 +4,14 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundPackages < Data
-        attr_reader packages_to_inbound: Array[DistributionPackageQuantity]
+        def self.new: (packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> instance
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          packages_to_inbound: Array[DistributionPackageQuantity]
-        ) -> instance
+        attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+
+        def to_h: () -> { packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]? }
       end
     end
   end

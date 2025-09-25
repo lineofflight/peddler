@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ContactInformation < Data
+        def self.new: (email: String?, name: String?, phone_number: String?) -> instance
+                    | (String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader email: String?
-        attr_reader name: String
-        attr_reader phone_number: String
+        attr_reader name: String?
+        attr_reader phone_number: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?email: String,
-          name: String,
-          phone_number: String
-        ) -> instance
+        def to_h: () -> { email: String?, name: String?, phone_number: String? }
       end
     end
   end

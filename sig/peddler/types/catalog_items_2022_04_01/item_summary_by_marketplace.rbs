@@ -4,13 +4,18 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemSummaryByMarketplace < Data
-        attr_reader marketplace_id: String
+        def self.new: (marketplace_id: String?, adult_product: bool?, autographed: bool?, brand: String?, browse_classification: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?, color: String?, contributors: Array[Peddler::Types::CatalogItems20220401::ItemContributor]?, item_classification: String?, item_name: String?, manufacturer: String?, memorabilia: bool?, model_number: String?, package_quantity: Integer?, part_number: String?, release_date: String?, size: String?, style: String?, trade_in_eligible: bool?, website_display_group: String?, website_display_group_name: String?) -> instance
+                    | (String?, bool?, bool?, String?, Peddler::Types::CatalogItems20220401::ItemBrowseClassification?, String?, Array[Peddler::Types::CatalogItems20220401::ItemContributor]?, String?, String?, String?, bool?, String?, Integer?, String?, String?, String?, String?, bool?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader marketplace_id: String?
         attr_reader adult_product: bool?
         attr_reader autographed: bool?
         attr_reader brand: String?
-        attr_reader browse_classification: ItemBrowseClassification?
+        attr_reader browse_classification: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?
         attr_reader color: String?
-        attr_reader contributors: Array[ItemContributor]?
+        attr_reader contributors: Array[Peddler::Types::CatalogItems20220401::ItemContributor]?
         attr_reader item_classification: String?
         attr_reader item_name: String?
         attr_reader manufacturer: String?
@@ -25,30 +30,11 @@ module Peddler
         attr_reader website_display_group: String?
         attr_reader website_display_group_name: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          marketplace_id: String,
-          ?adult_product: bool,
-          ?autographed: bool,
-          ?brand: String,
-          ?browse_classification: ItemBrowseClassification,
-          ?color: String,
-          ?contributors: Array[ItemContributor],
-          ?item_classification: String,
-          ?item_name: String,
-          ?manufacturer: String,
-          ?memorabilia: bool,
-          ?model_number: String,
-          ?package_quantity: Integer,
-          ?part_number: String,
-          ?release_date: String,
-          ?size: String,
-          ?style: String,
-          ?trade_in_eligible: bool,
-          ?website_display_group: String,
-          ?website_display_group_name: String
-        ) -> instance
+        def adult_product?: () -> bool
+        def autographed?: () -> bool
+        def memorabilia?: () -> bool
+        def trade_in_eligible?: () -> bool
+        def to_h: () -> { marketplace_id: String?, adult_product: bool?, autographed: bool?, brand: String?, browse_classification: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?, color: String?, contributors: Array[Peddler::Types::CatalogItems20220401::ItemContributor]?, item_classification: String?, item_name: String?, manufacturer: String?, memorabilia: bool?, model_number: String?, package_quantity: Integer?, part_number: String?, release_date: String?, size: String?, style: String?, trade_in_eligible: bool?, website_display_group: String?, website_display_group_name: String? }
       end
     end
   end

@@ -4,13 +4,14 @@ module Peddler
   module Types
     module SolicitationsV1
       class SolicitationsAction < Data
-        attr_reader name: String
+        def self.new: (name: String?) -> instance
+                    | (String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          name: String
-        ) -> instance
+        attr_reader name: String?
+
+        def to_h: () -> { name: String? }
       end
     end
   end

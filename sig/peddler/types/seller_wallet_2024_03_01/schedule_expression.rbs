@@ -4,15 +4,15 @@ module Peddler
   module Types
     module SellerWallet20240301
       class ScheduleExpression < Data
-        attr_reader schedule_expression_type: String
+        def self.new: (schedule_expression_type: String?, recurring_frequency: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader schedule_expression_type: String?
         attr_reader recurring_frequency: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          schedule_expression_type: String,
-          ?recurring_frequency: String
-        ) -> instance
+        def to_h: () -> { schedule_expression_type: String?, recurring_frequency: String? }
       end
     end
   end

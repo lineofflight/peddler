@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SelfShipAppointmentDetails < Data
+        def self.new: (appointment_id: Float?, appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, appointment_status: String?) -> instance
+                    | (Float?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader appointment_id: Float?
-        attr_reader appointment_slot_time: AppointmentSlotTime?
+        attr_reader appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?
         attr_reader appointment_status: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?appointment_id: Float,
-          ?appointment_slot_time: AppointmentSlotTime,
-          ?appointment_status: String
-        ) -> instance
+        def to_h: () -> { appointment_id: Float?, appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, appointment_status: String? }
       end
     end
   end

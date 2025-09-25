@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV1
       class PurchaseLabelsRequest < Data
-        attr_reader rate_id: String
-        attr_reader label_specification: LabelSpecification
+        def self.new: (rate_id: String?, label_specification: Peddler::Types::ShippingV1::LabelSpecification?) -> instance
+                    | (String?, Peddler::Types::ShippingV1::LabelSpecification?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          rate_id: String,
-          label_specification: LabelSpecification
-        ) -> instance
+        attr_reader rate_id: String?
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
+
+        def to_h: () -> { rate_id: String?, label_specification: Peddler::Types::ShippingV1::LabelSpecification? }
       end
     end
   end

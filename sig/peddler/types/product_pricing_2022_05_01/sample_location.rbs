@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ProductPricing20220501
       class SampleLocation < Data
-        attr_reader postal_code: PostalCode?
+        def self.new: (postal_code: Peddler::Types::ProductPricing20220501::PostalCode?) -> instance
+                    | (Peddler::Types::ProductPricing20220501::PostalCode?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?postal_code: PostalCode
-        ) -> instance
+        attr_reader postal_code: Peddler::Types::ProductPricing20220501::PostalCode?
+
+        def to_h: () -> { postal_code: Peddler::Types::ProductPricing20220501::PostalCode? }
       end
     end
   end

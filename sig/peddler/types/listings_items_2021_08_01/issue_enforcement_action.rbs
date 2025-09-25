@@ -4,13 +4,14 @@ module Peddler
   module Types
     module ListingsItems20210801
       class IssueEnforcementAction < Data
-        attr_reader action: String
+        def self.new: (action: String?) -> instance
+                    | (String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          action: String
-        ) -> instance
+        attr_reader action: String?
+
+        def to_h: () -> { action: String? }
       end
     end
   end

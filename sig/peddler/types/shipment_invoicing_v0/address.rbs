@@ -4,6 +4,11 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class Address < Data
+        def self.new: (name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_code: String?, country_code: String?, phone: String?, address_type: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader name: String?
         attr_reader address_line1: String?
         attr_reader address_line2: String?
@@ -17,22 +22,7 @@ module Peddler
         attr_reader phone: String?
         attr_reader address_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?name: String,
-          ?address_line1: String,
-          ?address_line2: String,
-          ?address_line3: String,
-          ?city: String,
-          ?county: String,
-          ?district: String,
-          ?state_or_region: String,
-          ?postal_code: String,
-          ?country_code: String,
-          ?phone: String,
-          ?address_type: String
-        ) -> instance
+        def to_h: () -> { name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_code: String?, country_code: String?, phone: String?, address_type: String? }
       end
     end
   end

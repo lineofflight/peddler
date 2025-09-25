@@ -4,19 +4,17 @@ module Peddler
   module Types
     module ServicesV1
       class FixedSlotCapacity < Data
+        def self.new: (resource_id: String?, slot_duration: Float?, capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, next_page_token: String?) -> instance
+                    | (String?, Float?, Array[Peddler::Types::ServicesV1::FixedSlot]?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader resource_id: String?
         attr_reader slot_duration: Float?
-        attr_reader capacities: Array[FixedSlot]?
+        attr_reader capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?
         attr_reader next_page_token: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?resource_id: String,
-          ?slot_duration: Float,
-          ?capacities: Array[FixedSlot],
-          ?next_page_token: String
-        ) -> instance
+        def to_h: () -> { resource_id: String?, slot_duration: Float?, capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, next_page_token: String? }
       end
     end
   end

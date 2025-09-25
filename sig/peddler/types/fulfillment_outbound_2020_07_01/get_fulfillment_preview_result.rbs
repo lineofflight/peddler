@@ -4,13 +4,14 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFulfillmentPreviewResult < Data
-        attr_reader fulfillment_previews: Array[FulfillmentPreview]?
+        def self.new: (fulfillment_previews: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]?) -> instance
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?fulfillment_previews: Array[FulfillmentPreview]
-        ) -> instance
+        attr_reader fulfillment_previews: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]?
+
+        def to_h: () -> { fulfillment_previews: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]? }
       end
     end
   end

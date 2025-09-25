@@ -4,6 +4,11 @@ module Peddler
   module Types
     module FinancesV0
       class SolutionProviderCreditEvent < Data
+        def self.new: (provider_transaction_type: String?, seller_order_id: String?, marketplace_id: String?, marketplace_country_code: String?, seller_id: String?, seller_store_name: String?, provider_id: String?, provider_store_name: String?, transaction_amount: Peddler::Types::Money?, transaction_creation_date: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader provider_transaction_type: String?
         attr_reader seller_order_id: String?
         attr_reader marketplace_id: String?
@@ -12,23 +17,10 @@ module Peddler
         attr_reader seller_store_name: String?
         attr_reader provider_id: String?
         attr_reader provider_store_name: String?
-        attr_reader transaction_amount: Money?
+        attr_reader transaction_amount: Peddler::Types::Money?
         attr_reader transaction_creation_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?provider_transaction_type: String,
-          ?seller_order_id: String,
-          ?marketplace_id: String,
-          ?marketplace_country_code: String,
-          ?seller_id: String,
-          ?seller_store_name: String,
-          ?provider_id: String,
-          ?provider_store_name: String,
-          ?transaction_amount: Money,
-          ?transaction_creation_date: String
-        ) -> instance
+        def to_h: () -> { provider_transaction_type: String?, seller_order_id: String?, marketplace_id: String?, marketplace_country_code: String?, seller_id: String?, seller_store_name: String?, provider_id: String?, provider_store_name: String?, transaction_amount: Peddler::Types::Money?, transaction_creation_date: String? }
       end
     end
   end

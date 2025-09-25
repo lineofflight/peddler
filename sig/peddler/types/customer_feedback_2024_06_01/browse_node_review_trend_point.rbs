@@ -4,15 +4,15 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTrendPoint < Data
-        attr_reader date_range: DateRange
-        attr_reader browse_node_metrics: BrowseNodeReviewTrendMetrics
+        def self.new: (date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?) -> instance
+                    | (Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          date_range: DateRange,
-          browse_node_metrics: BrowseNodeReviewTrendMetrics
-        ) -> instance
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?
+
+        def to_h: () -> { date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics? }
       end
     end
   end

@@ -4,27 +4,21 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentShipment < Data
-        attr_reader amazon_shipment_id: String
-        attr_reader fulfillment_center_id: String
-        attr_reader fulfillment_shipment_status: String
+        def self.new: (amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_status: String?, shipping_date: String?, estimated_arrival_date: String?, shipping_notes: Array[String]?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?) -> instance
+                    | (String?, String?, String?, String?, String?, Array[String]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader amazon_shipment_id: String?
+        attr_reader fulfillment_center_id: String?
+        attr_reader fulfillment_shipment_status: String?
         attr_reader shipping_date: String?
         attr_reader estimated_arrival_date: String?
         attr_reader shipping_notes: Array[String]?
-        attr_reader fulfillment_shipment_item: Array[FulfillmentShipmentItem]
-        attr_reader fulfillment_shipment_package: Array[FulfillmentShipmentPackage]?
+        attr_reader fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?
+        attr_reader fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          amazon_shipment_id: String,
-          fulfillment_center_id: String,
-          fulfillment_shipment_status: String,
-          ?shipping_date: String,
-          ?estimated_arrival_date: String,
-          ?shipping_notes: Array[String],
-          fulfillment_shipment_item: Array[FulfillmentShipmentItem],
-          ?fulfillment_shipment_package: Array[FulfillmentShipmentPackage]
-        ) -> instance
+        def to_h: () -> { amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_status: String?, shipping_date: String?, estimated_arrival_date: String?, shipping_notes: Array[String]?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]? }
       end
     end
   end

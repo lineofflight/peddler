@@ -4,15 +4,15 @@ module Peddler
   module Types
     module Finances20240619
       class DeferredContext < Data
+        def self.new: (deferral_reason: String?, maturity_date: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader deferral_reason: String?
         attr_reader maturity_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?deferral_reason: String,
-          ?maturity_date: String
-        ) -> instance
+        def to_h: () -> { deferral_reason: String?, maturity_date: String? }
       end
     end
   end

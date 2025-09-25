@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FinancesV0
       class FeeComponent < Data
+        def self.new: (fee_type: String?, fee_amount: Peddler::Types::Money?) -> instance
+                    | (String?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader fee_type: String?
-        attr_reader fee_amount: Money?
+        attr_reader fee_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?fee_type: String,
-          ?fee_amount: Money
-        ) -> instance
+        def to_h: () -> { fee_type: String?, fee_amount: Peddler::Types::Money? }
       end
     end
   end

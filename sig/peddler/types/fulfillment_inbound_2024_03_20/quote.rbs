@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Quote < Data
-        attr_reader cost: Money
+        def self.new: (cost: Peddler::Types::Money?, expiration: String?, voidable_until: String?) -> instance
+                    | (Peddler::Types::Money?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader cost: Peddler::Types::Money?
         attr_reader expiration: String?
         attr_reader voidable_until: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          cost: Money,
-          ?expiration: String,
-          ?voidable_until: String
-        ) -> instance
+        def to_h: () -> { cost: Peddler::Types::Money?, expiration: String?, voidable_until: String? }
       end
     end
   end

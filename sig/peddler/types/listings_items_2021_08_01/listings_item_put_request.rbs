@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ListingsItemPutRequest < Data
-        attr_reader product_type: String
+        def self.new: (product_type: String?, requirements: String?, attributes: Hash?) -> instance
+                    | (String?, String?, Hash?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader product_type: String?
         attr_reader requirements: String?
-        attr_reader attributes: Hash[String, untyped]
+        attr_reader attributes: Hash?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          product_type: String,
-          ?requirements: String,
-          attributes: Hash[String, untyped]
-        ) -> instance
+        def to_h: () -> { product_type: String?, requirements: String?, attributes: Hash? }
       end
     end
   end

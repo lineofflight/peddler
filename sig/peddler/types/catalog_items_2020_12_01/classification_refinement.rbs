@@ -4,17 +4,16 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ClassificationRefinement < Data
-        attr_reader number_of_results: Integer
-        attr_reader display_name: String
-        attr_reader classification_id: String
+        def self.new: (number_of_results: Integer?, display_name: String?, classification_id: String?) -> instance
+                    | (Integer?, String?, String?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          number_of_results: Integer,
-          display_name: String,
-          classification_id: String
-        ) -> instance
+        attr_reader number_of_results: Integer?
+        attr_reader display_name: String?
+        attr_reader classification_id: String?
+
+        def to_h: () -> { number_of_results: Integer?, display_name: String?, classification_id: String? }
       end
     end
   end

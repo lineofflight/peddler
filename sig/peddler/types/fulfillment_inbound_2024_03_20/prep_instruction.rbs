@@ -4,17 +4,16 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class PrepInstruction < Data
-        attr_reader fee: Money?
+        def self.new: (fee: Peddler::Types::Money?, prep_owner: String?, prep_type: String?) -> instance
+                    | (Peddler::Types::Money?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader fee: Peddler::Types::Money?
         attr_reader prep_owner: String?
         attr_reader prep_type: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?fee: Money,
-          ?prep_owner: String,
-          ?prep_type: String
-        ) -> instance
+        def to_h: () -> { fee: Peddler::Types::Money?, prep_owner: String?, prep_type: String? }
       end
     end
   end

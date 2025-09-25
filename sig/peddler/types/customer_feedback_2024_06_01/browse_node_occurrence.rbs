@@ -4,13 +4,14 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeOccurrence < Data
-        attr_reader all_products: Float
+        def self.new: (all_products: Float?) -> instance
+                    | (Float?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          all_products: Float
-        ) -> instance
+        attr_reader all_products: Float?
+
+        def to_h: () -> { all_products: Float? }
       end
     end
   end

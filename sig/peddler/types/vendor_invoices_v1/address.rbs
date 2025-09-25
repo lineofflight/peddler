@@ -4,8 +4,13 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class Address < Data
-        attr_reader name: String
-        attr_reader address_line1: String
+        def self.new: (name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_or_zip_code: String?, country_code: String?, phone: String?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader name: String?
+        attr_reader address_line1: String?
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader city: String?
@@ -13,24 +18,10 @@ module Peddler
         attr_reader district: String?
         attr_reader state_or_region: String?
         attr_reader postal_or_zip_code: String?
-        attr_reader country_code: String
+        attr_reader country_code: String?
         attr_reader phone: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          name: String,
-          address_line1: String,
-          ?address_line2: String,
-          ?address_line3: String,
-          ?city: String,
-          ?county: String,
-          ?district: String,
-          ?state_or_region: String,
-          ?postal_or_zip_code: String,
-          country_code: String,
-          ?phone: String
-        ) -> instance
+        def to_h: () -> { name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_or_zip_code: String?, country_code: String?, phone: String? }
       end
     end
   end

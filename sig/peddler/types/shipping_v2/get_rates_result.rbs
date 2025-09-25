@@ -4,17 +4,16 @@ module Peddler
   module Types
     module ShippingV2
       class GetRatesResult < Data
-        attr_reader request_token: String
-        attr_reader rates: Array[Rate]
-        attr_reader ineligible_rates: Array[IneligibleRate]?
+        def self.new: (request_token: String?, rates: Array[Peddler::Types::ShippingV2::Rate]?, ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> instance
+                    | (String?, Array[Peddler::Types::ShippingV2::Rate]?, Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          request_token: String,
-          rates: Array[Rate],
-          ?ineligible_rates: Array[IneligibleRate]
-        ) -> instance
+        attr_reader request_token: String?
+        attr_reader rates: Array[Peddler::Types::ShippingV2::Rate]?
+        attr_reader ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?
+
+        def to_h: () -> { request_token: String?, rates: Array[Peddler::Types::ShippingV2::Rate]?, ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]? }
       end
     end
   end

@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ShippingV2
       class UnmanifestedShipmentLocation < Data
-        attr_reader address: Address?
+        def self.new: (address: Peddler::Types::ShippingV2::Address?, last_manifest_date: String?) -> instance
+                    | (Peddler::Types::ShippingV2::Address?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader address: Peddler::Types::ShippingV2::Address?
         attr_reader last_manifest_date: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?address: Address,
-          ?last_manifest_date: String
-        ) -> instance
+        def to_h: () -> { address: Peddler::Types::ShippingV2::Address?, last_manifest_date: String? }
       end
     end
   end

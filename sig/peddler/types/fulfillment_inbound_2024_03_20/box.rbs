@@ -4,33 +4,24 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Box < Data
+        def self.new: (box_id: String?, content_information_source: String?, destination_region: Peddler::Types::FulfillmentInbound20240320::Region?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, external_container_identifier: String?, external_container_identifier_type: String?, items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, package_id: String?, quantity: Integer?, template_name: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> instance
+                    | (String?, String?, Peddler::Types::FulfillmentInbound20240320::Region?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Item]?, String?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader box_id: String?
         attr_reader content_information_source: String?
-        attr_reader destination_region: Region?
-        attr_reader dimensions: Dimensions?
+        attr_reader destination_region: Peddler::Types::FulfillmentInbound20240320::Region?
+        attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
         attr_reader external_container_identifier: String?
         attr_reader external_container_identifier_type: String?
-        attr_reader items: Array[Item]?
-        attr_reader package_id: String
+        attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?
+        attr_reader package_id: String?
         attr_reader quantity: Integer?
         attr_reader template_name: String?
-        attr_reader weight: Weight?
+        attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?box_id: String,
-          ?content_information_source: String,
-          ?destination_region: Region,
-          ?dimensions: Dimensions,
-          ?external_container_identifier: String,
-          ?external_container_identifier_type: String,
-          ?items: Array[Item],
-          package_id: String,
-          ?quantity: Integer,
-          ?template_name: String,
-          ?weight: Weight
-        ) -> instance
+        def to_h: () -> { box_id: String?, content_information_source: String?, destination_region: Peddler::Types::FulfillmentInbound20240320::Region?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, external_container_identifier: String?, external_container_identifier_type: String?, items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, package_id: String?, quantity: Integer?, template_name: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
       end
     end
   end

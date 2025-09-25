@@ -4,6 +4,11 @@ module Peddler
   module Types
     module Replenishment20221107
       class GetSellingPartnerMetricsResponseMetric < Data
+        def self.new: (not_delivered_due_to_oos: Float?, total_subscriptions_revenue: Float?, shipped_subscription_units: Float?, active_subscriptions: Float?, subscriber_average_revenue: Float?, non_subscriber_average_revenue: Float?, lost_revenue_due_to_oos: Float?, subscriber_average_reorders: Float?, non_subscriber_average_reorders: Float?, coupons_revenue_penetration: Float?, revenue_from_subscriptions_with_multiple_deliveries: Float?, revenue_from_active_subscriptions_with_single_delivery: Float?, revenue_from_cancelled_subscriptions_after_single_delivery: Float?, subscriber_retention_for30_days: Float?, subscriber_retention_for90_days: Float?, revenue_penetration_for0_percent_seller_funding: Float?, revenue_penetration_for5_percent_seller_funding: Float?, revenue_penetration_for10_percent_seller_funding: Float?, revenue_penetration_for5_plus_percent_seller_funding: Float?, share_of_coupon_subscriptions: Float?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, currency_code: String?) -> instance
+                    | (Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Peddler::Types::Replenishment20221107::TimeInterval?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader not_delivered_due_to_oos: Float?
         attr_reader total_subscriptions_revenue: Float?
         attr_reader shipped_subscription_units: Float?
@@ -24,35 +29,10 @@ module Peddler
         attr_reader revenue_penetration_for10_percent_seller_funding: Float?
         attr_reader revenue_penetration_for5_plus_percent_seller_funding: Float?
         attr_reader share_of_coupon_subscriptions: Float?
-        attr_reader time_interval: TimeInterval?
+        attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
         attr_reader currency_code: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?not_delivered_due_to_oos: Float,
-          ?total_subscriptions_revenue: Float,
-          ?shipped_subscription_units: Float,
-          ?active_subscriptions: Float,
-          ?subscriber_average_revenue: Float,
-          ?non_subscriber_average_revenue: Float,
-          ?lost_revenue_due_to_oos: Float,
-          ?subscriber_average_reorders: Float,
-          ?non_subscriber_average_reorders: Float,
-          ?coupons_revenue_penetration: Float,
-          ?revenue_from_subscriptions_with_multiple_deliveries: Float,
-          ?revenue_from_active_subscriptions_with_single_delivery: Float,
-          ?revenue_from_cancelled_subscriptions_after_single_delivery: Float,
-          ?subscriber_retention_for30_days: Float,
-          ?subscriber_retention_for90_days: Float,
-          ?revenue_penetration_for0_percent_seller_funding: Float,
-          ?revenue_penetration_for5_percent_seller_funding: Float,
-          ?revenue_penetration_for10_percent_seller_funding: Float,
-          ?revenue_penetration_for5_plus_percent_seller_funding: Float,
-          ?share_of_coupon_subscriptions: Float,
-          ?time_interval: TimeInterval,
-          ?currency_code: String
-        ) -> instance
+        def to_h: () -> { not_delivered_due_to_oos: Float?, total_subscriptions_revenue: Float?, shipped_subscription_units: Float?, active_subscriptions: Float?, subscriber_average_revenue: Float?, non_subscriber_average_revenue: Float?, lost_revenue_due_to_oos: Float?, subscriber_average_reorders: Float?, non_subscriber_average_reorders: Float?, coupons_revenue_penetration: Float?, revenue_from_subscriptions_with_multiple_deliveries: Float?, revenue_from_active_subscriptions_with_single_delivery: Float?, revenue_from_cancelled_subscriptions_after_single_delivery: Float?, subscriber_retention_for30_days: Float?, subscriber_retention_for90_days: Float?, revenue_penetration_for0_percent_seller_funding: Float?, revenue_penetration_for5_percent_seller_funding: Float?, revenue_penetration_for10_percent_seller_funding: Float?, revenue_penetration_for5_plus_percent_seller_funding: Float?, share_of_coupon_subscriptions: Float?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, currency_code: String? }
       end
     end
   end

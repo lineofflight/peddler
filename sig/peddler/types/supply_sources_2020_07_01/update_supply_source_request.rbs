@@ -4,17 +4,16 @@ module Peddler
   module Types
     module SupplySources20200701
       class UpdateSupplySourceRequest < Data
+        def self.new: (alias: String?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?) -> instance
+                    | (String?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader alias: String?
-        attr_reader configuration: SupplySourceConfiguration?
-        attr_reader capabilities: SupplySourceCapabilities?
+        attr_reader configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?
+        attr_reader capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?alias: String,
-          ?configuration: SupplySourceConfiguration,
-          ?capabilities: SupplySourceCapabilities
-        ) -> instance
+        def to_h: () -> { alias: String?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities? }
       end
     end
   end

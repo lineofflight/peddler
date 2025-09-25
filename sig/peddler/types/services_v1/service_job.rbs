@@ -4,39 +4,27 @@ module Peddler
   module Types
     module ServicesV1
       class ServiceJob < Data
+        def self.new: (create_time: String?, service_job_id: String?, service_job_status: String?, scope_of_work: Peddler::Types::ServicesV1::ScopeOfWork?, seller: Peddler::Types::ServicesV1::Seller?, service_job_provider: Peddler::Types::ServicesV1::ServiceJobProvider?, preferred_appointment_times: Array[Peddler::Types::ServicesV1::AppointmentTime]?, appointments: Array[Peddler::Types::ServicesV1::Appointment]?, service_order_id: String?, marketplace_id: String?, store_id: String?, buyer: Peddler::Types::ServicesV1::Buyer?, associated_items: Array[Peddler::Types::ServicesV1::AssociatedItem]?, service_location: Peddler::Types::ServicesV1::ServiceLocation?) -> instance
+                    | (String?, String?, String?, Peddler::Types::ServicesV1::ScopeOfWork?, Peddler::Types::ServicesV1::Seller?, Peddler::Types::ServicesV1::ServiceJobProvider?, Array[Peddler::Types::ServicesV1::AppointmentTime]?, Array[Peddler::Types::ServicesV1::Appointment]?, String?, String?, String?, Peddler::Types::ServicesV1::Buyer?, Array[Peddler::Types::ServicesV1::AssociatedItem]?, Peddler::Types::ServicesV1::ServiceLocation?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader create_time: String?
         attr_reader service_job_id: String?
         attr_reader service_job_status: String?
-        attr_reader scope_of_work: ScopeOfWork?
-        attr_reader seller: Seller?
-        attr_reader service_job_provider: ServiceJobProvider?
-        attr_reader preferred_appointment_times: Array[AppointmentTime]?
-        attr_reader appointments: Array[Appointment]?
+        attr_reader scope_of_work: Peddler::Types::ServicesV1::ScopeOfWork?
+        attr_reader seller: Peddler::Types::ServicesV1::Seller?
+        attr_reader service_job_provider: Peddler::Types::ServicesV1::ServiceJobProvider?
+        attr_reader preferred_appointment_times: Array[Peddler::Types::ServicesV1::AppointmentTime]?
+        attr_reader appointments: Array[Peddler::Types::ServicesV1::Appointment]?
         attr_reader service_order_id: String?
         attr_reader marketplace_id: String?
         attr_reader store_id: String?
-        attr_reader buyer: Buyer?
-        attr_reader associated_items: Array[AssociatedItem]?
-        attr_reader service_location: ServiceLocation?
+        attr_reader buyer: Peddler::Types::ServicesV1::Buyer?
+        attr_reader associated_items: Array[Peddler::Types::ServicesV1::AssociatedItem]?
+        attr_reader service_location: Peddler::Types::ServicesV1::ServiceLocation?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?create_time: String,
-          ?service_job_id: String,
-          ?service_job_status: String,
-          ?scope_of_work: ScopeOfWork,
-          ?seller: Seller,
-          ?service_job_provider: ServiceJobProvider,
-          ?preferred_appointment_times: Array[AppointmentTime],
-          ?appointments: Array[Appointment],
-          ?service_order_id: String,
-          ?marketplace_id: String,
-          ?store_id: String,
-          ?buyer: Buyer,
-          ?associated_items: Array[AssociatedItem],
-          ?service_location: ServiceLocation
-        ) -> instance
+        def to_h: () -> { create_time: String?, service_job_id: String?, service_job_status: String?, scope_of_work: Peddler::Types::ServicesV1::ScopeOfWork?, seller: Peddler::Types::ServicesV1::Seller?, service_job_provider: Peddler::Types::ServicesV1::ServiceJobProvider?, preferred_appointment_times: Array[Peddler::Types::ServicesV1::AppointmentTime]?, appointments: Array[Peddler::Types::ServicesV1::Appointment]?, service_order_id: String?, marketplace_id: String?, store_id: String?, buyer: Peddler::Types::ServicesV1::Buyer?, associated_items: Array[Peddler::Types::ServicesV1::AssociatedItem]?, service_location: Peddler::Types::ServicesV1::ServiceLocation? }
       end
     end
   end

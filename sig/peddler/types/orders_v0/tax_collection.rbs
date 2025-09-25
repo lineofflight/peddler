@@ -4,15 +4,15 @@ module Peddler
   module Types
     module OrdersV0
       class TaxCollection < Data
+        def self.new: (model: String?, responsible_party: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader model: String?
         attr_reader responsible_party: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?model: String,
-          ?responsible_party: String
-        ) -> instance
+        def to_h: () -> { model: String?, responsible_party: String? }
       end
     end
   end

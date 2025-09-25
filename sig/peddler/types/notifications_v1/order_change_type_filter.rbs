@@ -4,13 +4,14 @@ module Peddler
   module Types
     module NotificationsV1
       class OrderChangeTypeFilter < Data
-        attr_reader order_change_types: Array[String]?
+        def self.new: (order_change_types: Array?) -> instance
+                    | (Array?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?order_change_types: Array[String]
-        ) -> instance
+        attr_reader order_change_types: Array?
+
+        def to_h: () -> { order_change_types: Array? }
       end
     end
   end

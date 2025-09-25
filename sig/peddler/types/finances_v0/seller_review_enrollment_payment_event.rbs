@@ -4,23 +4,19 @@ module Peddler
   module Types
     module FinancesV0
       class SellerReviewEnrollmentPaymentEvent < Data
+        def self.new: (posted_date: String?, enrollment_id: String?, parent_asin: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money?) -> instance
+                    | (String?, String?, String?, Peddler::Types::FinancesV0::FeeComponent?, Peddler::Types::FinancesV0::ChargeComponent?, Peddler::Types::Money?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader posted_date: String?
         attr_reader enrollment_id: String?
         attr_reader parent_asin: String?
-        attr_reader fee_component: FeeComponent?
-        attr_reader charge_component: ChargeComponent?
-        attr_reader total_amount: Money?
+        attr_reader fee_component: Peddler::Types::FinancesV0::FeeComponent?
+        attr_reader charge_component: Peddler::Types::FinancesV0::ChargeComponent?
+        attr_reader total_amount: Peddler::Types::Money?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?posted_date: String,
-          ?enrollment_id: String,
-          ?parent_asin: String,
-          ?fee_component: FeeComponent,
-          ?charge_component: ChargeComponent,
-          ?total_amount: Money
-        ) -> instance
+        def to_h: () -> { posted_date: String?, enrollment_id: String?, parent_asin: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money? }
       end
     end
   end

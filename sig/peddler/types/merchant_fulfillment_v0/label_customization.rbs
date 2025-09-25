@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class LabelCustomization < Data
+        def self.new: (custom_text_for_label: String?, standard_id_for_label: String?) -> instance
+                    | (String?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader custom_text_for_label: String?
         attr_reader standard_id_for_label: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?custom_text_for_label: String,
-          ?standard_id_for_label: String
-        ) -> instance
+        def to_h: () -> { custom_text_for_label: String?, standard_id_for_label: String? }
       end
     end
   end

@@ -4,23 +4,19 @@ module Peddler
   module Types
     module ShippingV1
       class Container < Data
+        def self.new: (container_type: String?, container_reference_id: String?, value: Peddler::Types::Money?, dimensions: Peddler::Types::ShippingV1::Dimensions?, items: Array[Peddler::Types::ShippingV1::ContainerItem]?, weight: Peddler::Types::ShippingV1::Weight?) -> instance
+                    | (String?, String?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Dimensions?, Array[Peddler::Types::ShippingV1::ContainerItem]?, Peddler::Types::ShippingV1::Weight?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader container_type: String?
-        attr_reader container_reference_id: String
-        attr_reader value: Money
-        attr_reader dimensions: Dimensions
-        attr_reader items: Array[ContainerItem]
-        attr_reader weight: Weight
+        attr_reader container_reference_id: String?
+        attr_reader value: Peddler::Types::Money?
+        attr_reader dimensions: Peddler::Types::ShippingV1::Dimensions?
+        attr_reader items: Array[Peddler::Types::ShippingV1::ContainerItem]?
+        attr_reader weight: Peddler::Types::ShippingV1::Weight?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?container_type: String,
-          container_reference_id: String,
-          value: Money,
-          dimensions: Dimensions,
-          items: Array[ContainerItem],
-          weight: Weight
-        ) -> instance
+        def to_h: () -> { container_type: String?, container_reference_id: String?, value: Peddler::Types::Money?, dimensions: Peddler::Types::ShippingV1::Dimensions?, items: Array[Peddler::Types::ShippingV1::ContainerItem]?, weight: Peddler::Types::ShippingV1::Weight? }
       end
     end
   end

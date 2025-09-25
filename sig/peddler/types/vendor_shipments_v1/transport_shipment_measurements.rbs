@@ -4,21 +4,18 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportShipmentMeasurements < Data
+        def self.new: (total_carton_count: Integer?, total_pallet_stackable: Integer?, total_pallet_non_stackable: Integer?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?) -> instance
+                    | (Integer?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::Volume?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
         attr_reader total_carton_count: Integer?
         attr_reader total_pallet_stackable: Integer?
         attr_reader total_pallet_non_stackable: Integer?
-        attr_reader shipment_weight: Weight?
-        attr_reader shipment_volume: Volume?
+        attr_reader shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?
+        attr_reader shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          ?total_carton_count: Integer,
-          ?total_pallet_stackable: Integer,
-          ?total_pallet_non_stackable: Integer,
-          ?shipment_weight: Weight,
-          ?shipment_volume: Volume
-        ) -> instance
+        def to_h: () -> { total_carton_count: Integer?, total_pallet_stackable: Integer?, total_pallet_non_stackable: Integer?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume? }
       end
     end
   end

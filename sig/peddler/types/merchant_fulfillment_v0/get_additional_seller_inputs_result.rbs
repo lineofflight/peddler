@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetAdditionalSellerInputsResult < Data
-        attr_reader shipment_level_fields: Array[AdditionalInputs]?
-        attr_reader item_level_fields_list: Array[ItemLevelFields]?
+        def self.new: (shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?) -> instance
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          ?shipment_level_fields: Array[AdditionalInputs],
-          ?item_level_fields_list: Array[ItemLevelFields]
-        ) -> instance
+        attr_reader shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?
+        attr_reader item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?
+
+        def to_h: () -> { shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]? }
       end
     end
   end

@@ -4,23 +4,19 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReturnTopicsResponse < Data
-        attr_reader browse_node_id: String
-        attr_reader display_name: String
-        attr_reader marketplace_id: String
-        attr_reader country_code: String
-        attr_reader date_range: DateRange
-        attr_reader topics: Array[BrowseNodeReturnTopics]
+        def self.new: (browse_node_id: String?, display_name: String?, marketplace_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> instance
+                    | (String?, String?, String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> instance
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        def self.new: (
-          browse_node_id: String,
-          display_name: String,
-          marketplace_id: String,
-          country_code: String,
-          date_range: DateRange,
-          topics: Array[BrowseNodeReturnTopics]
-        ) -> instance
+        attr_reader browse_node_id: String?
+        attr_reader display_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]?
+
+        def to_h: () -> { browse_node_id: String?, display_name: String?, marketplace_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]? }
       end
     end
   end

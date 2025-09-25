@@ -4,25 +4,24 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class ShipmentDetails < Data
-        attr_reader priority_shipment: bool
+        def self.new: (priority_shipment: bool?, scheduled_delivery_shipment: bool?, pslip_required: bool?, gift: bool?, ship_method: String?, shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, message_to_customer: String?) -> instance
+                    | (bool?, bool?, bool?, bool?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, String?) -> instance
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+
+        attr_reader priority_shipment: bool?
         attr_reader scheduled_delivery_shipment: bool?
-        attr_reader pslip_required: bool
+        attr_reader pslip_required: bool?
         attr_reader gift: bool?
-        attr_reader ship_method: String
-        attr_reader shipment_dates: ShipmentDates
-        attr_reader message_to_customer: String
+        attr_reader ship_method: String?
+        attr_reader shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?
+        attr_reader message_to_customer: String?
 
-        def self.parse: (Hash[String, untyped] hash) -> instance
-
-        def self.new: (
-          priority_shipment: bool,
-          ?scheduled_delivery_shipment: bool,
-          pslip_required: bool,
-          ?gift: bool,
-          ship_method: String,
-          shipment_dates: ShipmentDates,
-          message_to_customer: String
-        ) -> instance
+        def priority_shipment?: () -> bool
+        def scheduled_delivery_shipment?: () -> bool
+        def pslip_required?: () -> bool
+        def gift?: () -> bool
+        def to_h: () -> { priority_shipment: bool?, scheduled_delivery_shipment: bool?, pslip_required: bool?, gift: bool?, ship_method: String?, shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, message_to_customer: String? }
       end
     end
   end
