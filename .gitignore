@@ -9,3 +9,4 @@ pkg
 selling-partner-api-models
 test/config.json
 vendor
+/.gem_rbs_collection/

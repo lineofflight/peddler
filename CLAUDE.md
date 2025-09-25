@@ -65,6 +65,7 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - To change generated API classes, edit generator logic in `lib/generator/` or templates in `lib/generator/templates/`
 - Run `bin/generate-code` to regenerate all API classes after generator changes
 - The generator automatically runs RuboCop to format generated code
+- **Note**: Code generation takes 3-5 minutes to complete. The RuboCop formatting step for ~1700 type files is the slowest part - be patient!
 
 ### API Design
 
@@ -124,6 +125,33 @@ This is a Ruby gem called Peddler that provides access to the Amazon Selling Par
 - Use `rg` (ripgrep) to search through JSON specifications
 - Use `jq` to parse and extract JSON structures when needed
 - These specs are the authoritative source for API behavior
+
+#### Parsing OpenAPI Model Files
+Each API model file (e.g., `awd_2024-05-09.json`) follows this structure:
+- **paths**: API endpoints and operations
+  - Each path contains HTTP methods (get, post, put, delete)
+  - Each method has `operationId`, `parameters`, `responses`
+- **definitions**: Type definitions for request/response objects
+  - Watch for circular references (e.g., Type A → Type B → Type A)
+- **x-amzn-api-sandbox**: Sandbox response examples (when available)
+
+Common jq commands for exploring models:
+```bash
+# List all type definitions
+jq '.definitions | keys' <api-model>.json
+
+# Find operations that use a specific type
+grep -n '"#/definitions/TypeName"' <api-model>.json
+
+# Check for sandbox examples
+grep -c "x-amzn-api-sandbox" <api-model>.json
+
+# Extract operation IDs
+jq '.paths | .[] | .[] | .operationId' <api-model>.json
+
+# Find circular type dependencies
+jq '.definitions.TypeName.properties | to_entries[] | select(.value["$ref"]) | .value["$ref"]' <api-model>.json
+```
 
 ### Researching SP-API Issues
 When researching SP-API functionality or issues:

@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module <%= api_name.camelize %>
+      class <%= class_name %> < Array[untyped]
+        def self.parse: (Array[untyped]) -> instance
+      end
+    end
+  end
+end

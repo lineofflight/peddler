@@ -3,12 +3,13 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 <% if needs_money? -%>
-  require "peddler/types/money"
-<% elsif type_dependencies.empty? -%>
-  require "structure"
+require "peddler/types/money"
+<% end -%>
+<% if type_dependencies.empty? || uses_string_class_names? -%>
+require "structure"
 <% end -%>
 <% type_dependencies.each do |dep| -%>
-  require "peddler/types/<%= api_name %>/<%= dep.underscore %>"
+require "peddler/types/<%= api_name %>/<%= dep.underscore %>"
 <% end -%>
 
 module Peddler

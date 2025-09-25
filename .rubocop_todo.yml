@@ -16,3 +16,4 @@ Metrics/ParameterLists:
   # get_transfer_preview operation required 6 parameters.
   Exclude:
     - "lib/peddler/apis/*.rb"
+    - "lib/generator.rb"

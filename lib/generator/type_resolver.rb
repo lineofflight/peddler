@@ -7,6 +7,12 @@ module Generator
 
     attr_reader :type_name, :specification
 
+    class << self
+      def money?(name)
+        MONEY_TYPES.include?(name)
+      end
+    end
+
     def initialize(type_name, specification)
       @type_name = type_name
       @specification = specification
@@ -30,16 +36,20 @@ module Generator
 
       # Only object types and allOf compositions get generated as separate files
       # Money-related types are handled specially
-      (type_def["type"] == "object" || type_def["allOf"]) && !money_type?(name)
+      (type_def["type"] == "object" || type_def["allOf"]) && !money?(name)
     end
 
     private
+
+    def money?(name)
+      self.class.money?(name)
+    end
 
     def resolve_ref_type(ref, for_comment)
       ref_name = ref.split("/").last
 
       # Special handling for Money types
-      return "Money" if money_type?(ref_name)
+      return "Money" if money?(ref_name)
 
       # Handle self-referential types
       return ":self" if ref_name == type_name
@@ -49,10 +59,6 @@ module Generator
 
       # For non-object types, resolve their actual type
       resolve_ref_definition(ref_name, for_comment)
-    end
-
-    def money_type?(name)
-      MONEY_TYPES.include?(name)
     end
 
     def resolve_ref_definition(ref_name, for_comment)
@@ -122,6 +128,11 @@ module Generator
 
     def resolve_array_with_ref(ref, for_comment)
       item_type = ref.split("/").last
+
+      # Check if this is a self-referential array (direct property, not via another type)
+      if item_type == type_name
+        return for_comment ? "Array<self>" : "[:self]"
+      end
 
       if for_comment
         "Array<#{item_type}>"

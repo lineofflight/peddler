@@ -5,12 +5,14 @@ require "fileutils"
 require "generator/config"
 require "generator/formatter"
 require "generator/type_resolver"
+require "structure/rbs"
 
 module Generator
   class Type
     include Formatter
 
     attr_reader :name, :definition, :api_name, :specification
+    attr_accessor :circular_dependencies, :cycle_edges
 
     def initialize(name, definition, api_name, specification = nil)
       @name = name
@@ -52,7 +54,37 @@ module Generator
     end
 
     def ruby_type_for(prop_def, for_comment: false)
-      type_resolver.resolve(prop_def, for_comment: for_comment)
+      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment)
+
+      # Handle self-references properly
+      return resolved_type if resolved_type == ":self"
+
+      # Only use string class names for the specific edges that cause cycles
+      unless for_comment
+        # Handle direct references
+        if resolved_type.is_a?(String) &&
+            resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
+            resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
+            resolved_type != "Money" && resolved_type != ":boolean"
+          # Check if THIS specific edge causes a cycle
+          if cycle_edges&.include?([name, resolved_type])
+            # Return as a string for lazy loading
+            return "\"#{resolved_type}\""
+          end
+        end
+
+        # Handle arrays containing cycle-causing types
+        if resolved_type.is_a?(String) && resolved_type =~ /^\[(.+)\]$/
+          inner_type = ::Regexp.last_match(1)
+          # Only use string class for actual cycles
+          if cycle_edges&.include?([name, inner_type])
+            # Return as array with string class name for lazy loading
+            return "[\"#{inner_type}\"]"
+          end
+        end
+      end
+
+      resolved_type
     end
 
     def type_dependencies
@@ -61,8 +93,13 @@ module Generator
         dependencies.concat(extract_dependencies_from_property(prop_def))
       end
       # Only include dependencies that actually get generated as type files
-      # Exclude self-references to avoid circular dependencies
-      dependencies.select { |dep| generated_type?(dep) && dep != name }.uniq
+      # Exclude self-references to avoid requiring ourselves
+      # Only exclude the specific edges that cause cycles (not all edges between circular types!)
+      dependencies.select do |dep|
+        generated_type?(dep) &&
+          dep != name &&
+          !(cycle_edges && cycle_edges.include?([name, dep]))
+      end.uniq
     end
 
     def needs_money?
@@ -76,6 +113,35 @@ module Generator
       end
     end
 
+    def uses_string_class_names?
+      properties.any? do |_prop_name, prop_def|
+        resolved_type = type_resolver.resolve(prop_def)
+
+        # Check for self-references
+        if resolved_type == class_name || resolved_type == "[#{class_name}]"
+          return true
+        end
+
+        # Check for cycle-causing edges
+        if resolved_type.is_a?(String)
+          # Handle direct types
+          if resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
+              resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
+              resolved_type != "Money" && resolved_type != ":boolean"
+            return true if cycle_edges&.include?([name, resolved_type])
+          end
+
+          # Handle arrays
+          if resolved_type =~ /^\[(.+)\]$/
+            inner_type = ::Regexp.last_match(1)
+            return true if cycle_edges&.include?([name, inner_type])
+          end
+        end
+
+        false
+      end
+    end
+
     def attribute_name_for(prop_name, prop_def)
       underscored = prop_name.underscore
       # For boolean attributes, strip is_ prefix for more idiomatic Ruby
@@ -84,6 +150,21 @@ module Generator
       else
         underscored
       end
+    end
+
+    def generate_rbs
+      # Generate RBS file path
+      rbs_path = File.join(Config::BASE_PATH, "sig/#{library_name}.rbs")
+      FileUtils.mkdir_p(File.dirname(rbs_path))
+
+      # Generate the appropriate RBS content
+      rbs_content = if array_type?
+        generate_array_rbs
+      else
+        generate_structure_rbs
+      end
+
+      File.write(rbs_path, rbs_content)
     end
 
     private
@@ -217,6 +298,53 @@ module Generator
           end
         end
       ERB
+    end
+
+    def generate_structure_rbs
+      # Load the specific type
+      require library_name
+      klass = Peddler::Types.const_get(api_name.camelize).const_get(class_name)
+
+      # Generate RBS using Structure::RBS
+      rbs_content = Structure::RBS.emit(klass)
+      raise "Structure::RBS.emit returned nil for #{api_name.camelize}::#{class_name}" unless rbs_content
+
+      # Wrap in proper module structure
+      wrap_rbs_in_modules(rbs_content)
+    rescue => e
+      raise "Couldn't generate RBS for #{api_name.camelize}::#{class_name}: #{e.message}"
+    end
+
+    def generate_array_rbs
+      template = File.read(Config.template_path("rbs/array"))
+      ERB.new(template, trim_mode: "-").result(binding)
+    end
+
+    def wrap_rbs_in_modules(rbs_content)
+      # Extract the class definition from Structure::RBS output
+      class_lines = rbs_content.lines
+
+      # Fix the class name if it's fully qualified
+      class_lines[0] = class_lines[0].sub(/class .*::(\w+)/, 'class \1')
+
+      # Build the properly nested module structure
+      lines = []
+      lines << "# #{Generator::Config::GENERATED_FILE_NOTICE}"
+      lines << ""
+      lines << "module Peddler"
+      lines << "  module Types"
+      lines << "    module #{api_name.camelize}"
+
+      # Indent the class definition properly
+      class_lines.each do |line|
+        lines << "      #{line}".rstrip
+      end
+
+      lines << "    end"
+      lines << "  end"
+      lines << "end"
+
+      lines.join("\n") + "\n"
     end
   end
 end

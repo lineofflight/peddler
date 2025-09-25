@@ -5,121 +5,99 @@ require "generator/type"
 
 module Generator
   class TypeTest < Minitest::Test
-    def setup
-      @api_name = "test_api_v1"
-      @specification = {
-        "definitions" => {
-          "SimpleType" => {
-            "type" => "object",
-            "properties" => {
-              "name" => { "type" => "string" },
-              "count" => { "type" => "integer" },
-            },
-          },
-          "ComplexType" => {
-            "type" => "object",
-            "properties" => {
-              "id" => { "type" => "string" },
-              "items" => {
-                "type" => "array",
-                "items" => { "$ref" => "#/definitions/SimpleType" },
-              },
-            },
-          },
-          "Money" => {
-            "type" => "object",
-            "properties" => {
-              "currencyCode" => { "type" => "string" },
-              "amount" => { "type" => "string" },
-            },
-          },
-          "TypeWithMoney" => {
-            "type" => "object",
-            "properties" => {
-              "price" => { "$ref" => "#/definitions/Money" },
-              "name" => { "type" => "string" },
-            },
-          },
-          "SelfReferentialType" => {
-            "type" => "object",
-            "properties" => {
-              "name" => { "type" => "string" },
-              "parent" => { "$ref" => "#/definitions/SelfReferentialType" },
-            },
-          },
-          "StringEnum" => {
-            "type" => "string",
-            "enum" => ["ACTIVE", "INACTIVE"],
-          },
-          "ArrayType" => {
-            "type" => "array",
-            "items" => { "$ref" => "#/definitions/SimpleType" },
-          },
-        },
-      }
-    end
+    API_NAME = "test_api"
 
     def test_simple_type_name
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+        },
+      }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal("SimpleType", type.name)
       assert_equal("SimpleType", type.class_name)
     end
 
     def test_simple_type_properties_count
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+          "count" => { "type" => "integer" },
+        },
+      }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal(2, type.properties.size)
     end
 
     def test_simple_type_property_names
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+          "count" => { "type" => "integer" },
+        },
+      }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_includes(type.properties.keys, "name")
       assert_includes(type.properties.keys, "count")
     end
 
     def test_ruby_type_for_string
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal("String", type.ruby_type_for({ "type" => "string" }))
     end
 
     def test_ruby_type_for_integer
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal("Integer", type.ruby_type_for({ "type" => "integer" }))
     end
 
     def test_ruby_type_for_number
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal("Float", type.ruby_type_for({ "type" => "number" }))
     end
 
     def test_ruby_type_for_boolean
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal(":boolean", type.ruby_type_for({ "type" => "boolean" }))
     end
 
     def test_ruby_type_for_object
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_equal("Hash", type.ruby_type_for({ "type" => "object" }))
     end
 
     def test_ruby_type_for_array_of_objects
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "SimpleType" => { "type" => "object", "properties" => {} },
+        },
+      }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       array_prop = { "type" => "array", "items" => { "$ref" => "#/definitions/SimpleType" } }
 
@@ -127,8 +105,13 @@ module Generator
     end
 
     def test_ruby_type_for_array_of_objects_comment
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "SimpleType" => { "type" => "object", "properties" => {} },
+        },
+      }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       array_prop = { "type" => "array", "items" => { "$ref" => "#/definitions/SimpleType" } }
 
@@ -136,8 +119,9 @@ module Generator
     end
 
     def test_ruby_type_for_array_of_strings
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       string_array = { "type" => "array", "items" => { "type" => "string" } }
 
@@ -145,8 +129,9 @@ module Generator
     end
 
     def test_ruby_type_for_array_of_strings_comment
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       string_array = { "type" => "array", "items" => { "type" => "string" } }
 
@@ -154,8 +139,24 @@ module Generator
     end
 
     def test_money_type_handling
-      definition = @specification["definitions"]["TypeWithMoney"]
-      type = Type.new("TypeWithMoney", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "price" => { "$ref" => "#/definitions/Money" },
+        },
+      }
+      specification = {
+        "definitions" => {
+          "Money" => {
+            "type" => "object",
+            "properties" => {
+              "currencyCode" => { "type" => "string" },
+              "amount" => { "type" => "string" },
+            },
+          },
+        },
+      }
+      type = Type.new("TypeWithMoney", definition, API_NAME, specification)
 
       assert_predicate(type, :needs_money?)
       money_prop = { "$ref" => "#/definitions/Money" }
@@ -164,17 +165,101 @@ module Generator
     end
 
     def test_self_referential_type
-      definition = @specification["definitions"]["SelfReferentialType"]
-      type = Type.new("SelfReferentialType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+          "parent" => { "$ref" => "#/definitions/SelfReferentialType" },
+        },
+      }
+      specification = {
+        "definitions" => {
+          "SelfReferentialType" => definition,
+        },
+      }
+      type = Type.new("SelfReferentialType", definition, API_NAME, specification)
 
       parent_prop = { "$ref" => "#/definitions/SelfReferentialType" }
 
       assert_equal(":self", type.ruby_type_for(parent_prop))
     end
 
+    def test_array_with_self_reference
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+          "children" => {
+            "type" => "array",
+            "items" => { "$ref" => "#/definitions/TreeNode" },
+          },
+        },
+      }
+      specification = {
+        "definitions" => {
+          "TreeNode" => definition,
+        },
+      }
+      type = Type.new("TreeNode", definition, API_NAME, specification)
+
+      children_prop = {
+        "type" => "array",
+        "items" => { "$ref" => "#/definitions/TreeNode" },
+      }
+
+      assert_equal("[:self]", type.ruby_type_for(children_prop))
+    end
+
+    def test_array_with_self_reference_comment
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+          "children" => {
+            "type" => "array",
+            "items" => { "$ref" => "#/definitions/TreeNode" },
+          },
+        },
+      }
+      specification = {
+        "definitions" => {
+          "TreeNode" => definition,
+        },
+      }
+      type = Type.new("TreeNode", definition, API_NAME, specification)
+
+      children_prop = {
+        "type" => "array",
+        "items" => { "$ref" => "#/definitions/TreeNode" },
+      }
+
+      assert_equal("Array<self>", type.ruby_type_for(children_prop, for_comment: true))
+    end
+
     def test_type_dependencies
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "items" => {
+            "type" => "array",
+            "items" => { "$ref" => "#/definitions/SimpleType" },
+          },
+          "price" => { "$ref" => "#/definitions/Money" },
+        },
+      }
+      specification = {
+        "definitions" => {
+          "SimpleType" => { "type" => "object", "properties" => {} },
+          "Money" => {
+            "type" => "object",
+            "properties" => {
+              "currencyCode" => { "type" => "string" },
+              "amount" => { "type" => "string" },
+            },
+          },
+        },
+      }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       dependencies = type.type_dependencies
 
@@ -183,8 +268,18 @@ module Generator
     end
 
     def test_type_dependencies_excludes_self
-      definition = @specification["definitions"]["SelfReferentialType"]
-      type = Type.new("SelfReferentialType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "parent" => { "$ref" => "#/definitions/SelfReferentialType" },
+        },
+      }
+      specification = {
+        "definitions" => {
+          "SelfReferentialType" => definition,
+        },
+      }
+      type = Type.new("SelfReferentialType", definition, API_NAME, specification)
 
       dependencies = type.type_dependencies
 
@@ -192,45 +287,84 @@ module Generator
     end
 
     def test_generated_object_types
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "SimpleType" => { "type" => "object", "properties" => {} },
+          "ComplexType" => { "type" => "object", "properties" => {} },
+        },
+      }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       assert(type.send(:generated_type?, "SimpleType"))
       assert(type.send(:generated_type?, "ComplexType"))
     end
 
     def test_money_not_generated
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "Money" => {
+            "type" => "object",
+            "properties" => {
+              "currencyCode" => { "type" => "string" },
+              "amount" => { "type" => "string" },
+            },
+          },
+        },
+      }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       refute(type.send(:generated_type?, "Money"))
     end
 
     def test_non_object_types_not_generated
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "StringEnum" => {
+            "type" => "string",
+            "enum" => ["ACTIVE", "INACTIVE"],
+          },
+          "ArrayType" => {
+            "type" => "array",
+            "items" => { "type" => "string" },
+          },
+        },
+      }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       refute(type.send(:generated_type?, "StringEnum"))
       refute(type.send(:generated_type?, "ArrayType"))
     end
 
     def test_non_existent_type_not_generated
-      definition = @specification["definitions"]["ComplexType"]
-      type = Type.new("ComplexType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("ComplexType", definition, API_NAME, specification)
 
       refute(type.send(:generated_type?, "NonExistentType"))
     end
 
     def test_library_name
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
-      assert_equal("peddler/types/test_api_v1/simple_type", type.library_name)
+      assert_equal("peddler/types/test_api/simple_type", type.library_name)
     end
 
     def test_handle_ref_with_string_enum
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "StringEnum" => {
+            "type" => "string",
+            "enum" => ["ACTIVE", "INACTIVE"],
+          },
+        },
+      }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       string_enum_ref = { "$ref" => "#/definitions/StringEnum" }
 
@@ -238,8 +372,17 @@ module Generator
     end
 
     def test_handle_ref_with_array_type
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "SimpleType" => { "type" => "object", "properties" => {} },
+          "ArrayType" => {
+            "type" => "array",
+            "items" => { "$ref" => "#/definitions/SimpleType" },
+          },
+        },
+      }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       array_type_ref = { "$ref" => "#/definitions/ArrayType" }
 
@@ -247,8 +390,17 @@ module Generator
     end
 
     def test_handle_ref_with_array_type_comment
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = {
+        "definitions" => {
+          "SimpleType" => { "type" => "object", "properties" => {} },
+          "ArrayType" => {
+            "type" => "array",
+            "items" => { "$ref" => "#/definitions/SimpleType" },
+          },
+        },
+      }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       array_type_ref = { "$ref" => "#/definitions/ArrayType" }
 
@@ -256,8 +408,9 @@ module Generator
     end
 
     def test_format_property_comment_with_description
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       prop_with_desc = { "type" => "string", "description" => "The name of the item" }
       comment = type.send(:format_property_comment, prop_with_desc)
@@ -266,8 +419,9 @@ module Generator
     end
 
     def test_format_property_comment_without_description
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = { "type" => "object", "properties" => {} }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       prop_without_desc = { "type" => "integer" }
       comment = type.send(:format_property_comment, prop_without_desc)
@@ -285,14 +439,21 @@ module Generator
           "optional" => { "type" => "string" },
         },
       }
-      type = Type.new("RequiredTest", definition, @api_name, @specification)
+      specification = { "definitions" => {} }
+      type = Type.new("RequiredTest", definition, API_NAME, specification)
 
       assert_equal(["id", "name"], type.required_properties)
     end
 
     def test_no_required_properties
-      definition = @specification["definitions"]["SimpleType"]
-      type = Type.new("SimpleType", definition, @api_name, @specification)
+      definition = {
+        "type" => "object",
+        "properties" => {
+          "name" => { "type" => "string" },
+        },
+      }
+      specification = { "definitions" => {} }
+      type = Type.new("SimpleType", definition, API_NAME, specification)
 
       assert_empty(type.required_properties)
     end

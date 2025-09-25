@@ -2,6 +2,7 @@
 
 require "fileutils"
 require "open3"
+require "set"
 
 require "generator/config"
 require "generator/logger"
@@ -9,7 +10,6 @@ require "generator/api"
 require "generator/type"
 require "generator/type_resolver"
 require "generator/entrypoint"
-require "generator/rbs/type"
 require "generator/rbs/api"
 require "generator/rbs/entrypoint"
 
@@ -41,6 +41,46 @@ module Generator
     end
 
     private
+
+    def detect_circular_dependencies_for(type_array)
+      # Build a dependency graph for all types
+      dependency_graph = {}
+
+      type_array.each do |type|
+        dependency_graph[type.name] = type.type_dependencies
+      end
+
+      # Find all circular dependencies and the specific edges that cause cycles
+      circular_deps = Set.new
+      cycle_edges = Set.new # Store [from, to] pairs that create cycles
+      visited = Set.new
+
+      dependency_graph.keys.each do |type_name|
+        traverse_for_cycles(type_name, dependency_graph, visited, [], circular_deps, cycle_edges)
+      end
+
+      [circular_deps, cycle_edges]
+    end
+
+    def traverse_for_cycles(node, graph, visited, rec_stack, circular_deps, cycle_edges)
+      return unless graph[node] # Skip if node not in graph
+      return if visited.include?(node)
+
+      visited.add(node)
+      rec_stack += [node]
+
+      (graph[node] || []).each do |neighbor|
+        if rec_stack.include?(neighbor)
+          # Found a cycle - mark all nodes in the cycle
+          cycle_start_index = rec_stack.index(neighbor)
+          rec_stack[cycle_start_index..-1].each { |n| circular_deps.add(n) }
+          # Mark this specific edge as causing the cycle
+          cycle_edges.add([node, neighbor])
+        elsif !visited.include?(neighbor)
+          traverse_for_cycles(neighbor, graph, visited, rec_stack, circular_deps, cycle_edges)
+        end
+      end
+    end
 
     def ensure_api_models_exist!
       api_models_dir = File.join(Config::BASE_PATH, "selling-partner-api-models")
@@ -86,6 +126,10 @@ module Generator
     end
 
     def generate_types!
+      # Circular dependencies are already detected and set in the types method
+      circular_count = types.find { |t| t.circular_dependencies&.any? }&.circular_dependencies&.size || 0
+      logger.info("Detected circular dependencies in #{circular_count} types") if circular_count > 0
+
       types.each(&:generate)
       logger.info("Generated #{types.count} types")
     end
@@ -111,13 +155,12 @@ module Generator
       apis.each do |api|
         RBS::API.new(api, api.name_with_version).generate
       end
-      logger.info("Generated #{apis.count} RBS API signatures")
+      logger.info("Generated #{apis.count} API signatures")
     end
 
     def generate_type_signatures!
-      types.each do |type|
-        RBS::Type.new(type, type.api_name, type.specification).generate
-      end
+      # Generate RBS for all types (both Structure and Array types)
+      types.each(&:generate_rbs)
       logger.info("Generated #{types.count} type signatures")
     end
 
@@ -127,22 +170,13 @@ module Generator
     end
 
     def format_code!
-      unless system("bundle exec rubocop --version > /dev/null 2>&1")
-        raise "RuboCop is not available in the bundle. Please add it to your Gemfile or run 'bundle install'."
-      end
+      system("bundle exec rubocop --version > /dev/null 2>&1") ||
+        raise("RuboCop isn't available")
 
-      paths = [
-        "lib/peddler.rb",
-        "lib/peddler/apis",
-        "lib/peddler/types",
-      ]
-
+      paths = ["lib/peddler.rb", "lib/peddler/apis", "lib/peddler/types"]
       paths.each do |path|
-        success = system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{path} > /dev/null 2>&1")
-
-        unless success
-          raise "Formatting failed for #{path}"
-        end
+        system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{path} > /dev/null 2>&1") ||
+          raise("Couldn't format #{path}")
 
         logger.info("Formatted #{path}")
       end
@@ -157,13 +191,20 @@ module Generator
         arr  = []
         apis.each do |api|
           api.openapi_spec["definitions"].each do |name, definition|
-            # Skip non-object definitions (but allow allOf compositions and arrays)
+            # Skip non-object definitions but allow allOf compositions and arrays
             next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
             # Skip Money types as we use the custom Money type for these
-            next if TypeResolver::MONEY_TYPES.include?(name)
+            next if TypeResolver.money?(name)
 
             arr << Type.new(name, definition, api.name_with_version, api.openapi_spec)
           end
+        end
+
+        # Detect circular dependencies once for all types
+        circular_deps, cycle_edges = detect_circular_dependencies_for(arr)
+        arr.each do |type|
+          type.circular_dependencies = circular_deps
+          type.cycle_edges = cycle_edges
         end
 
         arr
