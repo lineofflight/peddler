@@ -21,11 +21,7 @@ gem "vcr"
 gem "webmock"
 gem "yard"
 
-# TODO: Remove when below resolves
-# https://github.com/marcoroth/herb/issues/484
-#
-# Force Ruby platform compilation on macOS
-gem "herb", force_ruby_platform: RUBY_PLATFORM.include?("darwin")
+gem "herb", "~> 0.7", ">= 0.7.4"
 
 # TODO: Remove the version guard when Yard handles changes in the new Commonmarker
 # https://github.com/lsegal/yard/issues/1528
