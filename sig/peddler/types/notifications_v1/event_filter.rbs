@@ -4,17 +4,17 @@ module Peddler
   module Types
     module NotificationsV1
       class EventFilter < Data
-        def self.new: (aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array?, order_change_types: Array?, event_filter_type: String?) -> instance
-                    | (Peddler::Types::NotificationsV1::AggregationSettings?, Array?, Array?, String?) -> instance
+        def self.new: (aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array[untyped]?, order_change_types: Array[untyped]?, event_filter_type: String?) -> instance
+                    | (Peddler::Types::NotificationsV1::AggregationSettings?, Array[untyped]?, Array[untyped]?, String?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?
-        attr_reader marketplace_ids: Array?
-        attr_reader order_change_types: Array?
+        attr_reader marketplace_ids: Array[untyped]?
+        attr_reader order_change_types: Array[untyped]?
         attr_reader event_filter_type: String?
 
-        def to_h: () -> { aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array?, order_change_types: Array?, event_filter_type: String? }
+        def to_h: () -> { aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array[untyped]?, order_change_types: Array[untyped]?, event_filter_type: String? }
       end
     end
   end

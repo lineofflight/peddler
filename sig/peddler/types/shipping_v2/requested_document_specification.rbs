@@ -4,8 +4,8 @@ module Peddler
   module Types
     module ShippingV2
       class RequestedDocumentSpecification < Data
-        def self.new: (format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, need_file_joining: bool?, requested_document_types: Array?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> instance
-                    | (String?, Peddler::Types::ShippingV2::DocumentSize?, Integer?, String?, bool?, Array?, Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> instance
+        def self.new: (format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, need_file_joining: bool?, requested_document_types: Array[untyped]?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> instance
+                    | (String?, Peddler::Types::ShippingV2::DocumentSize?, Integer?, String?, bool?, Array[untyped]?, Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
@@ -14,11 +14,11 @@ module Peddler
         attr_reader dpi: Integer?
         attr_reader page_layout: String?
         attr_reader need_file_joining: bool?
-        attr_reader requested_document_types: Array?
+        attr_reader requested_document_types: Array[untyped]?
         attr_reader requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?
 
         def need_file_joining?: () -> bool
-        def to_h: () -> { format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, need_file_joining: bool?, requested_document_types: Array?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization? }
+        def to_h: () -> { format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, need_file_joining: bool?, requested_document_types: Array[untyped]?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization? }
       end
     end
   end

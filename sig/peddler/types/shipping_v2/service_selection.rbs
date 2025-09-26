@@ -4,14 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class ServiceSelection < Data
-        def self.new: (service_id: Array?) -> instance
-                    | (Array?) -> instance
+        def self.new: (service_id: Array[untyped]?) -> instance
+                    | (Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader service_id: Array?
+        attr_reader service_id: Array[untyped]?
 
-        def to_h: () -> { service_id: Array? }
+        def to_h: () -> { service_id: Array[untyped]? }
       end
     end
   end

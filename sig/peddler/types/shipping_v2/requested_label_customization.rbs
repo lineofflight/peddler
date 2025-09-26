@@ -4,14 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class RequestedLabelCustomization < Data
-        def self.new: (request_attributes: Array?) -> instance
-                    | (Array?) -> instance
+        def self.new: (request_attributes: Array[untyped]?) -> instance
+                    | (Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader request_attributes: Array?
+        attr_reader request_attributes: Array[untyped]?
 
-        def to_h: () -> { request_attributes: Array? }
+        def to_h: () -> { request_attributes: Array[untyped]? }
       end
     end
   end

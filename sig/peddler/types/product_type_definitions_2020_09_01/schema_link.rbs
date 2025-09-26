@@ -4,15 +4,15 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class SchemaLink < Data
-        def self.new: (link: Hash?, checksum: String?) -> instance
-                    | (Hash?, String?) -> instance
+        def self.new: (link: Hash[untyped, untyped]?, checksum: String?) -> instance
+                    | (Hash[untyped, untyped]?, String?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader link: Hash?
+        attr_reader link: Hash[untyped, untyped]?
         attr_reader checksum: String?
 
-        def to_h: () -> { link: Hash?, checksum: String? }
+        def to_h: () -> { link: Hash[untyped, untyped]?, checksum: String? }
       end
     end
   end

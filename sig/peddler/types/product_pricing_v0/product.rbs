@@ -4,19 +4,19 @@ module Peddler
   module Types
     module ProductPricingV0
       class Product < Data
-        def self.new: (identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, attribute_sets: Array?, relationships: Array?, competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, offers: Array[Peddler::Types::ProductPricingV0::OfferType]?) -> instance
-                    | (Peddler::Types::ProductPricingV0::IdentifierType?, Array?, Array?, Peddler::Types::ProductPricingV0::CompetitivePricingType?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?, Array[Peddler::Types::ProductPricingV0::OfferType]?) -> instance
+        def self.new: (identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, attribute_sets: Array[untyped]?, relationships: Array[untyped]?, competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, offers: Array[Peddler::Types::ProductPricingV0::OfferType]?) -> instance
+                    | (Peddler::Types::ProductPricingV0::IdentifierType?, Array[untyped]?, Array[untyped]?, Peddler::Types::ProductPricingV0::CompetitivePricingType?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?, Array[Peddler::Types::ProductPricingV0::OfferType]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader identifiers: Peddler::Types::ProductPricingV0::IdentifierType?
-        attr_reader attribute_sets: Array?
-        attr_reader relationships: Array?
+        attr_reader attribute_sets: Array[untyped]?
+        attr_reader relationships: Array[untyped]?
         attr_reader competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?
         attr_reader sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?
         attr_reader offers: Array[Peddler::Types::ProductPricingV0::OfferType]?
 
-        def to_h: () -> { identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, attribute_sets: Array?, relationships: Array?, competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, offers: Array[Peddler::Types::ProductPricingV0::OfferType]? }
+        def to_h: () -> { identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, attribute_sets: Array[untyped]?, relationships: Array[untyped]?, competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, offers: Array[Peddler::Types::ProductPricingV0::OfferType]? }
       end
     end
   end

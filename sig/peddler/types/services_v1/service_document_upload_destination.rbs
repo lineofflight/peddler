@@ -4,17 +4,17 @@ module Peddler
   module Types
     module ServicesV1
       class ServiceDocumentUploadDestination < Data
-        def self.new: (upload_destination_id: String?, url: String?, encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?, headers: Hash?) -> instance
-                    | (String?, String?, Peddler::Types::ServicesV1::EncryptionDetails?, Hash?) -> instance
+        def self.new: (upload_destination_id: String?, url: String?, encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?, headers: Hash[untyped, untyped]?) -> instance
+                    | (String?, String?, Peddler::Types::ServicesV1::EncryptionDetails?, Hash[untyped, untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader upload_destination_id: String?
         attr_reader url: String?
         attr_reader encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?
-        attr_reader headers: Hash?
+        attr_reader headers: Hash[untyped, untyped]?
 
-        def to_h: () -> { upload_destination_id: String?, url: String?, encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?, headers: Hash? }
+        def to_h: () -> { upload_destination_id: String?, url: String?, encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?, headers: Hash[untyped, untyped]? }
       end
     end
   end

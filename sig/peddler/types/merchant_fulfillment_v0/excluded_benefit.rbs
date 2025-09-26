@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class ExcludedBenefit < Data
-        def self.new: (benefit: String?, reason_codes: Array?) -> instance
-                    | (String?, Array?) -> instance
+        def self.new: (benefit: String?, reason_codes: Array[untyped]?) -> instance
+                    | (String?, Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader benefit: String?
-        attr_reader reason_codes: Array?
+        attr_reader reason_codes: Array[untyped]?
 
-        def to_h: () -> { benefit: String?, reason_codes: Array? }
+        def to_h: () -> { benefit: String?, reason_codes: Array[untyped]? }
       end
     end
   end

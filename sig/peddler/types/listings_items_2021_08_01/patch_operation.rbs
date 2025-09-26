@@ -4,16 +4,16 @@ module Peddler
   module Types
     module ListingsItems20210801
       class PatchOperation < Data
-        def self.new: (op: String?, path: String?, value: Array?) -> instance
-                    | (String?, String?, Array?) -> instance
+        def self.new: (op: String?, path: String?, value: Array[untyped]?) -> instance
+                    | (String?, String?, Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader op: String?
         attr_reader path: String?
-        attr_reader value: Array?
+        attr_reader value: Array[untyped]?
 
-        def to_h: () -> { op: String?, path: String?, value: Array? }
+        def to_h: () -> { op: String?, path: String?, value: Array[untyped]? }
       end
     end
   end

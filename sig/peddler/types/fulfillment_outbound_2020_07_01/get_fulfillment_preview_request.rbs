@@ -4,22 +4,22 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFulfillmentPreviewRequest < Data
-        def self.new: (marketplace_id: String?, address: Peddler::Types::FulfillmentOutbound20200701::Address?, items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, shipping_speed_categories: Array?, include_cod_fulfillment_preview: bool?, include_delivery_windows: bool?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
-                    | (String?, Peddler::Types::FulfillmentOutbound20200701::Address?, Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, Array?, bool?, bool?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
+        def self.new: (marketplace_id: String?, address: Peddler::Types::FulfillmentOutbound20200701::Address?, items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, shipping_speed_categories: Array[untyped]?, include_cod_fulfillment_preview: bool?, include_delivery_windows: bool?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
+                    | (String?, Peddler::Types::FulfillmentOutbound20200701::Address?, Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, Array[untyped]?, bool?, bool?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader marketplace_id: String?
         attr_reader address: Peddler::Types::FulfillmentOutbound20200701::Address?
         attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?
-        attr_reader shipping_speed_categories: Array?
+        attr_reader shipping_speed_categories: Array[untyped]?
         attr_reader include_cod_fulfillment_preview: bool?
         attr_reader include_delivery_windows: bool?
         attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
 
         def include_cod_fulfillment_preview?: () -> bool
         def include_delivery_windows?: () -> bool
-        def to_h: () -> { marketplace_id: String?, address: Peddler::Types::FulfillmentOutbound20200701::Address?, items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, shipping_speed_categories: Array?, include_cod_fulfillment_preview: bool?, include_delivery_windows: bool?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]? }
+        def to_h: () -> { marketplace_id: String?, address: Peddler::Types::FulfillmentOutbound20200701::Address?, items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, shipping_speed_categories: Array[untyped]?, include_cod_fulfillment_preview: bool?, include_delivery_windows: bool?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]? }
       end
     end
   end

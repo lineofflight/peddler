@@ -4,15 +4,15 @@ module Peddler
   module Types
     module EasyShip20220323
       class Item < Data
-        def self.new: (order_item_id: String?, order_item_serial_numbers: Array?) -> instance
-                    | (String?, Array?) -> instance
+        def self.new: (order_item_id: String?, order_item_serial_numbers: Array[untyped]?) -> instance
+                    | (String?, Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader order_item_id: String?
-        attr_reader order_item_serial_numbers: Array?
+        attr_reader order_item_serial_numbers: Array[untyped]?
 
-        def to_h: () -> { order_item_id: String?, order_item_serial_numbers: Array? }
+        def to_h: () -> { order_item_id: String?, order_item_serial_numbers: Array[untyped]? }
       end
     end
   end

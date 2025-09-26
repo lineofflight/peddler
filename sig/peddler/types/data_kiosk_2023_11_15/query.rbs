@@ -4,8 +4,8 @@ module Peddler
   module Types
     module DataKiosk20231115
       class Query < Data
-        def self.new: (query_id: String?, query: String?, created_time: String?, processing_status: String?, processing_start_time: String?, processing_end_time: String?, data_document_id: String?, error_document_id: String?, pagination: Hash?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, Hash?) -> instance
+        def self.new: (query_id: String?, query: String?, created_time: String?, processing_status: String?, processing_start_time: String?, processing_end_time: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
@@ -17,9 +17,9 @@ module Peddler
         attr_reader processing_end_time: String?
         attr_reader data_document_id: String?
         attr_reader error_document_id: String?
-        attr_reader pagination: Hash?
+        attr_reader pagination: Hash[untyped, untyped]?
 
-        def to_h: () -> { query_id: String?, query: String?, created_time: String?, processing_status: String?, processing_start_time: String?, processing_end_time: String?, data_document_id: String?, error_document_id: String?, pagination: Hash? }
+        def to_h: () -> { query_id: String?, query: String?, created_time: String?, processing_status: String?, processing_start_time: String?, processing_end_time: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]? }
       end
     end
   end

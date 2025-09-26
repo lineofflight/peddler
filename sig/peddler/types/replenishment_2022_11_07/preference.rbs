@@ -4,14 +4,14 @@ module Peddler
   module Types
     module Replenishment20221107
       class Preference < Data
-        def self.new: (auto_enrollment: Array?) -> instance
-                    | (Array?) -> instance
+        def self.new: (auto_enrollment: Array[untyped]?) -> instance
+                    | (Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader auto_enrollment: Array?
+        attr_reader auto_enrollment: Array[untyped]?
 
-        def to_h: () -> { auto_enrollment: Array? }
+        def to_h: () -> { auto_enrollment: Array[untyped]? }
       end
     end
   end

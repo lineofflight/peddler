@@ -4,8 +4,8 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class MskuPrepDetail < Data
-        def self.new: (all_owners_constraint: String?, label_owner_constraint: String?, msku: String?, prep_category: String?, prep_owner_constraint: String?, prep_types: Array?) -> instance
-                    | (String?, String?, String?, String?, String?, Array?) -> instance
+        def self.new: (all_owners_constraint: String?, label_owner_constraint: String?, msku: String?, prep_category: String?, prep_owner_constraint: String?, prep_types: Array[untyped]?) -> instance
+                    | (String?, String?, String?, String?, String?, Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
@@ -14,9 +14,9 @@ module Peddler
         attr_reader msku: String?
         attr_reader prep_category: String?
         attr_reader prep_owner_constraint: String?
-        attr_reader prep_types: Array?
+        attr_reader prep_types: Array[untyped]?
 
-        def to_h: () -> { all_owners_constraint: String?, label_owner_constraint: String?, msku: String?, prep_category: String?, prep_owner_constraint: String?, prep_types: Array? }
+        def to_h: () -> { all_owners_constraint: String?, label_owner_constraint: String?, msku: String?, prep_category: String?, prep_owner_constraint: String?, prep_types: Array[untyped]? }
       end
     end
   end

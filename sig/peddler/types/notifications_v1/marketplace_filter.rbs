@@ -4,14 +4,14 @@ module Peddler
   module Types
     module NotificationsV1
       class MarketplaceFilter < Data
-        def self.new: (marketplace_ids: Array?) -> instance
-                    | (Array?) -> instance
+        def self.new: (marketplace_ids: Array[untyped]?) -> instance
+                    | (Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader marketplace_ids: Array?
+        attr_reader marketplace_ids: Array[untyped]?
 
-        def to_h: () -> { marketplace_ids: Array? }
+        def to_h: () -> { marketplace_ids: Array[untyped]? }
       end
     end
   end

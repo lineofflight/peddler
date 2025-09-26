@@ -4,19 +4,19 @@ module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryRequest < Data
-        def self.new: (asin: String?, marketplace_id: String?, included_data: Array?, lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?, method: String?, uri: String?) -> instance
-                    | (String?, String?, Array?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?, String?, String?) -> instance
+        def self.new: (asin: String?, marketplace_id: String?, included_data: Array[untyped]?, lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?, method: String?, uri: String?) -> instance
+                    | (String?, String?, Array[untyped]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?, String?, String?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader asin: String?
         attr_reader marketplace_id: String?
-        attr_reader included_data: Array?
+        attr_reader included_data: Array[untyped]?
         attr_reader lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?
         attr_reader method: String?
         attr_reader uri: String?
 
-        def to_h: () -> { asin: String?, marketplace_id: String?, included_data: Array?, lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?, method: String?, uri: String? }
+        def to_h: () -> { asin: String?, marketplace_id: String?, included_data: Array[untyped]?, lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?, method: String?, uri: String? }
       end
     end
   end

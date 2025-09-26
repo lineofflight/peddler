@@ -4,17 +4,17 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateError < Data
-        def self.new: (type: String?, code: String?, message: String?, detail: Array?) -> instance
-                    | (String?, String?, String?, Array?) -> instance
+        def self.new: (type: String?, code: String?, message: String?, detail: Array[untyped]?) -> instance
+                    | (String?, String?, String?, Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader type: String?
         attr_reader code: String?
         attr_reader message: String?
-        attr_reader detail: Array?
+        attr_reader detail: Array[untyped]?
 
-        def to_h: () -> { type: String?, code: String?, message: String?, detail: Array? }
+        def to_h: () -> { type: String?, code: String?, message: String?, detail: Array[untyped]? }
       end
     end
   end

@@ -4,8 +4,8 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentOrder < Data
-        def self.new: (seller_fulfillment_order_id: String?, marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, received_date: String?, fulfillment_order_status: String?, status_updated_date: String?, notification_emails: Array?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::CODSettings?, String?, String?, String?, Array?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
+        def self.new: (seller_fulfillment_order_id: String?, marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, received_date: String?, fulfillment_order_status: String?, status_updated_date: String?, notification_emails: Array[untyped]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
+                    | (String?, String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::CODSettings?, String?, String?, String?, Array[untyped]?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
@@ -23,10 +23,10 @@ module Peddler
         attr_reader received_date: String?
         attr_reader fulfillment_order_status: String?
         attr_reader status_updated_date: String?
-        attr_reader notification_emails: Array?
+        attr_reader notification_emails: Array[untyped]?
         attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
 
-        def to_h: () -> { seller_fulfillment_order_id: String?, marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, received_date: String?, fulfillment_order_status: String?, status_updated_date: String?, notification_emails: Array?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]? }
+        def to_h: () -> { seller_fulfillment_order_id: String?, marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, received_date: String?, fulfillment_order_status: String?, status_updated_date: String?, notification_emails: Array[untyped]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]? }
       end
     end
   end

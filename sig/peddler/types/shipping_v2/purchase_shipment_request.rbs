@@ -4,8 +4,8 @@ module Peddler
   module Types
     module ShippingV2
       class PurchaseShipmentRequest < Data
-        def self.new: (request_token: String?, rate_id: String?, requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, additional_inputs: Hash?) -> instance
-                    | (String?, String?, Peddler::Types::ShippingV2::RequestedDocumentSpecification?, Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, Hash?) -> instance
+        def self.new: (request_token: String?, rate_id: String?, requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, additional_inputs: Hash[untyped, untyped]?) -> instance
+                    | (String?, String?, Peddler::Types::ShippingV2::RequestedDocumentSpecification?, Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, Hash[untyped, untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
@@ -13,9 +13,9 @@ module Peddler
         attr_reader rate_id: String?
         attr_reader requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?
         attr_reader requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?
-        attr_reader additional_inputs: Hash?
+        attr_reader additional_inputs: Hash[untyped, untyped]?
 
-        def to_h: () -> { request_token: String?, rate_id: String?, requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, additional_inputs: Hash? }
+        def to_h: () -> { request_token: String?, rate_id: String?, requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, additional_inputs: Hash[untyped, untyped]? }
       end
     end
   end

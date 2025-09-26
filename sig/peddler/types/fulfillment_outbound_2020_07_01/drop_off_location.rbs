@@ -4,15 +4,15 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DropOffLocation < Data
-        def self.new: (type: String?, attributes: Hash?) -> instance
-                    | (String?, Hash?) -> instance
+        def self.new: (type: String?, attributes: Hash[untyped, untyped]?) -> instance
+                    | (String?, Hash[untyped, untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader type: String?
-        attr_reader attributes: Hash?
+        attr_reader attributes: Hash[untyped, untyped]?
 
-        def to_h: () -> { type: String?, attributes: Hash? }
+        def to_h: () -> { type: String?, attributes: Hash[untyped, untyped]? }
       end
     end
   end

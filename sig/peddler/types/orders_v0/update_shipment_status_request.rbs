@@ -4,16 +4,16 @@ module Peddler
   module Types
     module OrdersV0
       class UpdateShipmentStatusRequest < Data
-        def self.new: (marketplace_id: String?, shipment_status: String?, order_items: Array?) -> instance
-                    | (String?, String?, Array?) -> instance
+        def self.new: (marketplace_id: String?, shipment_status: String?, order_items: Array[untyped]?) -> instance
+                    | (String?, String?, Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader marketplace_id: String?
         attr_reader shipment_status: String?
-        attr_reader order_items: Array?
+        attr_reader order_items: Array[untyped]?
 
-        def to_h: () -> { marketplace_id: String?, shipment_status: String?, order_items: Array? }
+        def to_h: () -> { marketplace_id: String?, shipment_status: String?, order_items: Array[untyped]? }
       end
     end
   end

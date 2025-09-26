@@ -4,18 +4,18 @@ module Peddler
   module Types
     module AplusContent20201101
       class ContentMetadata < Data
-        def self.new: (name: String?, marketplace_id: String?, status: String?, badge_set: Array?, update_time: String?) -> instance
-                    | (String?, String?, String?, Array?, String?) -> instance
+        def self.new: (name: String?, marketplace_id: String?, status: String?, badge_set: Array[untyped]?, update_time: String?) -> instance
+                    | (String?, String?, String?, Array[untyped]?, String?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
         attr_reader name: String?
         attr_reader marketplace_id: String?
         attr_reader status: String?
-        attr_reader badge_set: Array?
+        attr_reader badge_set: Array[untyped]?
         attr_reader update_time: String?
 
-        def to_h: () -> { name: String?, marketplace_id: String?, status: String?, badge_set: Array?, update_time: String? }
+        def to_h: () -> { name: String?, marketplace_id: String?, status: String?, badge_set: Array[untyped]?, update_time: String? }
       end
     end
   end

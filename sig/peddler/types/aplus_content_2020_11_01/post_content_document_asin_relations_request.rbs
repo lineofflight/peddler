@@ -4,14 +4,14 @@ module Peddler
   module Types
     module AplusContent20201101
       class PostContentDocumentAsinRelationsRequest < Data
-        def self.new: (asin_set: Array?) -> instance
-                    | (Array?) -> instance
+        def self.new: (asin_set: Array[untyped]?) -> instance
+                    | (Array[untyped]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader asin_set: Array?
+        attr_reader asin_set: Array[untyped]?
 
-        def to_h: () -> { asin_set: Array? }
+        def to_h: () -> { asin_set: Array[untyped]? }
       end
     end
   end

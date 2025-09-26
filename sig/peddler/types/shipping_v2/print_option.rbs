@@ -4,17 +4,17 @@ module Peddler
   module Types
     module ShippingV2
       class PrintOption < Data
-        def self.new: (supported_dp_is: Array?, supported_page_layouts: Array?, supported_file_joining_options: Array?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> instance
-                    | (Array?, Array?, Array?, Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> instance
+        def self.new: (supported_dp_is: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_file_joining_options: Array[untyped]?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> instance
+                    | (Array[untyped]?, Array[untyped]?, Array[untyped]?, Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> instance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
 
-        attr_reader supported_dp_is: Array?
-        attr_reader supported_page_layouts: Array?
-        attr_reader supported_file_joining_options: Array?
+        attr_reader supported_dp_is: Array[untyped]?
+        attr_reader supported_page_layouts: Array[untyped]?
+        attr_reader supported_file_joining_options: Array[untyped]?
         attr_reader supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?
 
-        def to_h: () -> { supported_dp_is: Array?, supported_page_layouts: Array?, supported_file_joining_options: Array?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]? }
+        def to_h: () -> { supported_dp_is: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_file_joining_options: Array[untyped]?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]? }
       end
     end
   end
