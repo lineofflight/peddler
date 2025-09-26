@@ -69,7 +69,7 @@ module Generator
 
     def operations
       @operations ||= begin
-        ops = paths.flat_map { |path| path.operations(name_with_version, openapi_spec) }.compact
+        ops = paths.flat_map { |path| path.operations(name_with_version) }.compact
         deduplicate_operations(ops)
       end
     end

@@ -13,14 +13,13 @@ module Generator
 
     DEFAULT_TEMPLATE = File.read(Config.template_path("operation"))
 
-    attr_reader :path, :verb, :operation, :api_name_with_version, :specification, :template
+    attr_reader :path, :verb, :operation, :api_name_with_version, :template
 
-    def initialize(path, verb, operation, api_name_with_version: nil, specification: nil, template: DEFAULT_TEMPLATE)
+    def initialize(path, verb, operation, api_name_with_version: nil, template: DEFAULT_TEMPLATE)
       @path = path
       @verb = verb
       @operation = operation
       @api_name_with_version = api_name_with_version
-      @specification = specification
       @template = template
     end
 
@@ -150,7 +149,7 @@ module Generator
     end
 
     def response_model
-      @response_model ||= ResponseModel.new(operation, specification).build
+      @response_model ||= ResponseModel.new(operation).build
     end
 
     def parameters

@@ -4,11 +4,10 @@ module Generator
   class ResponseModel
     DEFAULT_PAYLOAD_KEY = "payload"
 
-    attr_reader :operation, :specification
+    attr_reader :operation
 
-    def initialize(operation, specification = nil)
+    def initialize(operation)
       @operation = operation
-      @specification = specification
     end
 
     def build

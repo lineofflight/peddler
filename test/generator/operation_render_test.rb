@@ -3,7 +3,6 @@
 require "minitest/autorun"
 require "generator/operation"
 require "generator/path"
-require "tempfile"
 
 module Generator
   class OperationRenderTest < Minitest::Test

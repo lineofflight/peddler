@@ -13,9 +13,9 @@ module Generator
       @methods = methods
     end
 
-    def operations(api_name_with_version = nil, specification = nil)
+    def operations(api_name_with_version = nil)
       methods.select { |k, _| HTTP_METHODS.include?(k) }.map do |method, operation|
-        Operation.new(self, method, operation, api_name_with_version: api_name_with_version, specification: specification)
+        Operation.new(self, method, operation, api_name_with_version: api_name_with_version)
       end
     end
 
