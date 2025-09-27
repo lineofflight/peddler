@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class CreateDestinationRequest < Data
-        def self.new: (resource_specification: Peddler::Types::NotificationsV1::DestinationResourceSpecification?, name: String?) -> instance
-                    | (Peddler::Types::NotificationsV1::DestinationResourceSpecification?, String?) -> instance
+        def self.new: (resource_specification: Peddler::Types::NotificationsV1::DestinationResourceSpecification?, name: String?) -> Peddler::Types::NotificationsV1::CreateDestinationRequest
+                    | (Peddler::Types::NotificationsV1::DestinationResourceSpecification?, String?) -> Peddler::Types::NotificationsV1::CreateDestinationRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::CreateDestinationRequest
 
         attr_reader resource_specification: Peddler::Types::NotificationsV1::DestinationResourceSpecification?
         attr_reader name: String?

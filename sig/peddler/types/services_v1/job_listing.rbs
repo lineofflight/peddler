@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class JobListing < Data
-        def self.new: (total_result_size: Integer?, next_page_token: String?, previous_page_token: String?, jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?) -> instance
-                    | (Integer?, String?, String?, Array[Peddler::Types::ServicesV1::ServiceJob]?) -> instance
+        def self.new: (total_result_size: Integer?, next_page_token: String?, previous_page_token: String?, jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?) -> Peddler::Types::ServicesV1::JobListing
+                    | (Integer?, String?, String?, Array[Peddler::Types::ServicesV1::ServiceJob]?) -> Peddler::Types::ServicesV1::JobListing
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::JobListing
 
         attr_reader total_result_size: Integer?
         attr_reader next_page_token: String?

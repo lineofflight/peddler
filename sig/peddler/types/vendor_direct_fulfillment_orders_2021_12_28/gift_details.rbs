@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class GiftDetails < Data
-        def self.new: (gift_message: String?, gift_wrap_id: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (gift_message: String?, gift_wrap_id: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::GiftDetails
+                    | (String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::GiftDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::GiftDetails
 
         attr_reader gift_message: String?
         attr_reader gift_wrap_id: String?

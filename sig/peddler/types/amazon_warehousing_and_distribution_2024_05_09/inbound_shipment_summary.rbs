@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundShipmentSummary < Data
-        def self.new: (created_at: String?, external_reference_id: String?, order_id: String?, shipment_id: String?, shipment_status: String?, updated_at: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?) -> instance
+        def self.new: (created_at: String?, external_reference_id: String?, order_id: String?, shipment_id: String?, shipment_status: String?, updated_at: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+                    | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
 
         attr_reader created_at: String?
         attr_reader external_reference_id: String?

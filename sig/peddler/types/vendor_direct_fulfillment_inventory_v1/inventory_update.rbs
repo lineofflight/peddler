@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class InventoryUpdate < Data
-        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?, full_update: bool?, items: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?, bool?, Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?) -> instance
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?, full_update: bool?, items: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
+                    | (Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?, bool?, Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?
         attr_reader full_update: bool?

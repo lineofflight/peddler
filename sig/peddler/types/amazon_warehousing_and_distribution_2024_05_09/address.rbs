@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class Address < Data
-        def self.new: (address_line1: String?, address_line2: String?, address_line3: String?, city: String?, country_code: String?, county: String?, district: String?, name: String?, phone_number: String?, postal_code: String?, state_or_region: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+        def self.new: (address_line1: String?, address_line2: String?, address_line3: String?, city: String?, country_code: String?, county: String?, district: String?, name: String?, phone_number: String?, postal_code: String?, state_or_region: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Address
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Address
 
         attr_reader address_line1: String?
         attr_reader address_line2: String?

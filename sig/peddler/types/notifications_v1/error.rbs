@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::NotificationsV1::Error
+                    | (String?, String?, String?) -> Peddler::Types::NotificationsV1::Error
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::Error
 
         attr_reader code: String?
         attr_reader message: String?

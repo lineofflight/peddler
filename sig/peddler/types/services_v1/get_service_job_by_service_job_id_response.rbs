@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class GetServiceJobByServiceJobIdResponse < Data
-        def self.new: (payload: Peddler::Types::ServicesV1::ServiceJob?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
-                    | (Peddler::Types::ServicesV1::ServiceJob?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::ServicesV1::ServiceJob?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
+                    | (Peddler::Types::ServicesV1::ServiceJob?, Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
 
         attr_reader payload: Peddler::Types::ServicesV1::ServiceJob?
         attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?

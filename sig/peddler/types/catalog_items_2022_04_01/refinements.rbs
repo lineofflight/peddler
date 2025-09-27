@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class Refinements < Data
-        def self.new: (brands: Array[Peddler::Types::CatalogItems20220401::BrandRefinement]?, classifications: Array[Peddler::Types::CatalogItems20220401::ClassificationRefinement]?) -> instance
-                    | (Array[Peddler::Types::CatalogItems20220401::BrandRefinement]?, Array[Peddler::Types::CatalogItems20220401::ClassificationRefinement]?) -> instance
+        def self.new: (brands: Array[Peddler::Types::CatalogItems20220401::BrandRefinement]?, classifications: Array[Peddler::Types::CatalogItems20220401::ClassificationRefinement]?) -> Peddler::Types::CatalogItems20220401::Refinements
+                    | (Array[Peddler::Types::CatalogItems20220401::BrandRefinement]?, Array[Peddler::Types::CatalogItems20220401::ClassificationRefinement]?) -> Peddler::Types::CatalogItems20220401::Refinements
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::Refinements
 
         attr_reader brands: Array[Peddler::Types::CatalogItems20220401::BrandRefinement]?
         attr_reader classifications: Array[Peddler::Types::CatalogItems20220401::ClassificationRefinement]?

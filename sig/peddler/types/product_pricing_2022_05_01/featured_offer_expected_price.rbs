@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPrice < Data
-        def self.new: (listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points?) -> instance
-                    | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?) -> instance
+        def self.new: (listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
+                    | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
 
         attr_reader listing_price: Peddler::Types::Money?
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?

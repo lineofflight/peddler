@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListShipmentContentUpdatePreviewsResponse < Data
-        def self.new: (content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> instance
+        def self.new: (content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentContentUpdatePreviewsResponse
 
         attr_reader content_update_previews: Array[Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?

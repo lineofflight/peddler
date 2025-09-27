@@ -4,16 +4,16 @@ module Peddler
   module Types
     module OrdersV0
       class ConfirmShipmentOrderItem < Data
-        def self.new: (order_item_id: String?, quantity: Integer?, transparency_codes: Array[untyped]?) -> instance
-                    | (String?, Integer?, Array[untyped]?) -> instance
+        def self.new: (order_item_id: String?, quantity: Integer?, transparency_codes: Array?) -> Peddler::Types::OrdersV0::ConfirmShipmentOrderItem
+                    | (String?, Integer?, Array?) -> Peddler::Types::OrdersV0::ConfirmShipmentOrderItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ConfirmShipmentOrderItem
 
         attr_reader order_item_id: String?
         attr_reader quantity: Integer?
-        attr_reader transparency_codes: Array[untyped]?
+        attr_reader transparency_codes: Array?
 
-        def to_h: () -> { order_item_id: String?, quantity: Integer?, transparency_codes: Array[untyped]? }
+        def to_h: () -> { order_item_id: String?, quantity: Integer?, transparency_codes: Array? }
       end
     end
   end

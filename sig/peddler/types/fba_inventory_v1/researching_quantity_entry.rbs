@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FBAInventoryV1
       class ResearchingQuantityEntry < Data
-        def self.new: (name: String?, quantity: Integer?) -> instance
-                    | (String?, Integer?) -> instance
+        def self.new: (name: String?, quantity: Integer?) -> Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry
+                    | (String?, Integer?) -> Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::ResearchingQuantityEntry
 
         attr_reader name: String?
         attr_reader quantity: Integer?

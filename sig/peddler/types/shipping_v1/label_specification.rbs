@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class LabelSpecification < Data
-        def self.new: (label_format: String?, label_stock_size: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (label_format: String?, label_stock_size: String?) -> Peddler::Types::ShippingV1::LabelSpecification
+                    | (String?, String?) -> Peddler::Types::ShippingV1::LabelSpecification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::LabelSpecification
 
         attr_reader label_format: String?
         attr_reader label_stock_size: String?

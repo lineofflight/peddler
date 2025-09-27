@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20200901
       class Issue < Data
-        def self.new: (code: String?, message: String?, severity: String?, attribute_name: String?) -> instance
-                    | (String?, String?, String?, String?) -> instance
+        def self.new: (code: String?, message: String?, severity: String?, attribute_name: String?) -> Peddler::Types::ListingsItems20200901::Issue
+                    | (String?, String?, String?, String?) -> Peddler::Types::ListingsItems20200901::Issue
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20200901::Issue
 
         attr_reader code: String?
         attr_reader message: String?

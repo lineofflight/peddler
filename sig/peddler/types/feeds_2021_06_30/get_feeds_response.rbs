@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Feeds20210630
       class GetFeedsResponse < Data
-        def self.new: (feeds: Array[Peddler::Types::Feeds20210630::Feed]?, next_token: String?) -> instance
-                    | (Array[Peddler::Types::Feeds20210630::Feed]?, String?) -> instance
+        def self.new: (feeds: Array[Peddler::Types::Feeds20210630::Feed]?, next_token: String?) -> Peddler::Types::Feeds20210630::GetFeedsResponse
+                    | (Array[Peddler::Types::Feeds20210630::Feed]?, String?) -> Peddler::Types::Feeds20210630::GetFeedsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::GetFeedsResponse
 
         attr_reader feeds: Array[Peddler::Types::Feeds20210630::Feed]?
         attr_reader next_token: String?

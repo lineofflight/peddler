@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class RentalTransactionEvent < Data
-        def self.new: (amazon_order_id: String?, rental_event_type: String?, extension_length: Integer?, posted_date: String?, rental_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, rental_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, marketplace_name: String?, rental_initial_value: Peddler::Types::Money?, rental_reimbursement: Peddler::Types::Money?, rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> instance
-                    | (String?, String?, Integer?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> instance
+        def self.new: (amazon_order_id: String?, rental_event_type: String?, extension_length: Integer?, posted_date: String?, rental_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, rental_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, marketplace_name: String?, rental_initial_value: Peddler::Types::Money?, rental_reimbursement: Peddler::Types::Money?, rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
+                    | (String?, String?, Integer?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RentalTransactionEvent
 
         attr_reader amazon_order_id: String?
         attr_reader rental_event_type: String?

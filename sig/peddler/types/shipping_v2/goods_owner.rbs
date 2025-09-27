@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GoodsOwner < Data
-        def self.new: (merchant_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (merchant_id: String?) -> Peddler::Types::ShippingV2::GoodsOwner
+                    | (String?) -> Peddler::Types::ShippingV2::GoodsOwner
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GoodsOwner
 
         attr_reader merchant_id: String?
 

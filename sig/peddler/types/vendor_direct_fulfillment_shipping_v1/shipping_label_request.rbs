@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class ShippingLabelRequest < Data
-        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?) -> instance
-                    | (String?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?) -> instance
+        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelRequest
 
         attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?

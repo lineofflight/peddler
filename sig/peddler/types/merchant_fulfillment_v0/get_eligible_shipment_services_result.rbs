@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetEligibleShipmentServicesResult < Data
-        def self.new: (shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> instance
-                    | (Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> instance
+        def self.new: (shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, temporarily_unavailable_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, terms_and_conditions_not_accepted_carrier_list: Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?, Array[Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier]?, Array[Peddler::Types::MerchantFulfillmentV0::TermsAndConditionsNotAcceptedCarrier]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult
 
         attr_reader shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::ShippingService]?
         attr_reader rejected_shipping_service_list: Array[Peddler::Types::MerchantFulfillmentV0::RejectedShippingService]?

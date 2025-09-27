@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class PurchaseLabelsResult < Data
-        def self.new: (shipment_id: String?, client_reference_id: String?, accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, label_results: Array[Peddler::Types::ShippingV1::LabelResult]?) -> instance
-                    | (String?, String?, Peddler::Types::ShippingV1::AcceptedRate?, Array[Peddler::Types::ShippingV1::LabelResult]?) -> instance
+        def self.new: (shipment_id: String?, client_reference_id: String?, accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, label_results: Array[Peddler::Types::ShippingV1::LabelResult]?) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
+                    | (String?, String?, Peddler::Types::ShippingV1::AcceptedRate?, Array[Peddler::Types::ShippingV1::LabelResult]?) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
 
         attr_reader shipment_id: String?
         attr_reader client_reference_id: String?

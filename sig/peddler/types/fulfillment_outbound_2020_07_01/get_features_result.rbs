@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFeaturesResult < Data
-        def self.new: (features: Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?) -> instance
-                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?) -> instance
+        def self.new: (features: Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult
 
         attr_reader features: Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?
 

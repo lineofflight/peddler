@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class ServiceJobProvider < Data
-        def self.new: (service_job_provider_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (service_job_provider_id: String?) -> Peddler::Types::ServicesV1::ServiceJobProvider
+                    | (String?) -> Peddler::Types::ServicesV1::ServiceJobProvider
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::ServiceJobProvider
 
         attr_reader service_job_provider_id: String?
 

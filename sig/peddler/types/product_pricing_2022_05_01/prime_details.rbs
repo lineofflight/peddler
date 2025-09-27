@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class PrimeDetails < Data
-        def self.new: (eligibility: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (eligibility: String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
+                    | (String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::PrimeDetails
 
         attr_reader eligibility: String?
 

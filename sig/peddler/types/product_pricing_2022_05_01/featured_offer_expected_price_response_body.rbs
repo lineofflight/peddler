@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPriceResponseBody < Data
-        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
-                    | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
+        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
+                    | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
 
         attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
         attr_reader featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?

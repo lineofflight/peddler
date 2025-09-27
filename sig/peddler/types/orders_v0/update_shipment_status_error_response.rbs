@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class UpdateShipmentStatusErrorResponse < Data
-        def self.new: (errors: Array[Peddler::Types::OrdersV0::Error]?) -> instance
-                    | (Array[Peddler::Types::OrdersV0::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::UpdateShipmentStatusErrorResponse
+                    | (Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::UpdateShipmentStatusErrorResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::UpdateShipmentStatusErrorResponse
 
         attr_reader errors: Array[Peddler::Types::OrdersV0::Error]?
 

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module EasyShip20220323
       class TrackingDetails < Data
-        def self.new: (tracking_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (tracking_id: String?) -> Peddler::Types::EasyShip20220323::TrackingDetails
+                    | (String?) -> Peddler::Types::EasyShip20220323::TrackingDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::TrackingDetails
 
         attr_reader tracking_id: String?
 

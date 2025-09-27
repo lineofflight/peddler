@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTopic < Data
-        def self.new: (topic: String?, asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> instance
-                    | (String?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, Array[String]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> instance
+        def self.new: (topic: String?, asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopic
+                    | (String?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, Array[String]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopic
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopic
 
         attr_reader topic: String?
         attr_reader asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?

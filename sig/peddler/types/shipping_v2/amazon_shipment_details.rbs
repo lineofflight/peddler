@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class AmazonShipmentDetails < Data
-        def self.new: (shipment_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (shipment_id: String?) -> Peddler::Types::ShippingV2::AmazonShipmentDetails
+                    | (String?) -> Peddler::Types::ShippingV2::AmazonShipmentDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::AmazonShipmentDetails
 
         attr_reader shipment_id: String?
 

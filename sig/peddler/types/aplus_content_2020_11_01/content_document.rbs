@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class ContentDocument < Data
-        def self.new: (name: String?, content_type: String?, content_sub_type: String?, locale: String?, content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?) -> instance
-                    | (String?, String?, String?, String?, Array[Peddler::Types::AplusContent20201101::ContentModule]?) -> instance
+        def self.new: (name: String?, content_type: String?, content_sub_type: String?, locale: String?, content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?) -> Peddler::Types::AplusContent20201101::ContentDocument
+                    | (String?, String?, String?, String?, Array[Peddler::Types::AplusContent20201101::ContentModule]?) -> Peddler::Types::AplusContent20201101::ContentDocument
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ContentDocument
 
         attr_reader name: String?
         attr_reader content_type: String?

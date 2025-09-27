@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class AplusPaginatedResponse < Data
-        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?, next_page_token: String?) -> instance
-                    | (Array[Peddler::Types::AplusContent20201101::Error]?, String?) -> instance
+        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?, next_page_token: String?) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
+                    | (Array[Peddler::Types::AplusContent20201101::Error]?, String?) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::AplusPaginatedResponse
 
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
         attr_reader next_page_token: String?

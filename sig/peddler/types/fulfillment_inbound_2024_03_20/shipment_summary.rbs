@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ShipmentSummary < Data
-        def self.new: (shipment_id: String?, status: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (shipment_id: String?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
+                    | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSummary
 
         attr_reader shipment_id: String?
         attr_reader status: String?

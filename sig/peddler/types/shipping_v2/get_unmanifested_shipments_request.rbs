@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GetUnmanifestedShipmentsRequest < Data
-        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> instance
-                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> instance
+        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsRequest
+                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsRequest
 
         attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
 

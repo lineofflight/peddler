@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MessagingV1
       class CreateConfirmCustomizationDetailsResponse < Data
-        def self.new: (errors: Array[Peddler::Types::MessagingV1::Error]?) -> instance
-                    | (Array[Peddler::Types::MessagingV1::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsResponse
+                    | (Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsResponse
 
         attr_reader errors: Array[Peddler::Types::MessagingV1::Error]?
 

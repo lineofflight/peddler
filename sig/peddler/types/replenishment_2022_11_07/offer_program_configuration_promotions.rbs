@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Replenishment20221107
       class OfferProgramConfigurationPromotions < Data
-        def self.new: (selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> instance
-                    | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> instance
+        def self.new: (selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
+                    | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
 
         attr_reader selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?
         attr_reader selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?

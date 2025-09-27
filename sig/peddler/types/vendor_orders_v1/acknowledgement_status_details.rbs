@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorOrdersV1
       class AcknowledgementStatusDetails < Data
-        def self.new: (acknowledgement_date: String?, accepted_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, rejected_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?) -> instance
-                    | (String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::VendorOrdersV1::ItemQuantity?) -> instance
+        def self.new: (acknowledgement_date: String?, accepted_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, rejected_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?) -> Peddler::Types::VendorOrdersV1::AcknowledgementStatusDetails
+                    | (String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::VendorOrdersV1::ItemQuantity?) -> Peddler::Types::VendorOrdersV1::AcknowledgementStatusDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::AcknowledgementStatusDetails
 
         attr_reader acknowledgement_date: String?
         attr_reader accepted_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?, error_level: String?) -> instance
-                    | (String?, String?, String?, String?) -> instance
+        def self.new: (code: String?, message: String?, details: String?, error_level: String?) -> Peddler::Types::ServicesV1::Error
+                    | (String?, String?, String?, String?) -> Peddler::Types::ServicesV1::Error
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Error
 
         attr_reader code: String?
         attr_reader message: String?

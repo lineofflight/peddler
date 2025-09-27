@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Window < Data
-        def self.new: (editable_until: String?, end: String?, start: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (editable_until: String?, end: String?, start: String?) -> Peddler::Types::FulfillmentInbound20240320::Window
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Window
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Window
 
         attr_reader editable_until: String?
         attr_reader end: String?

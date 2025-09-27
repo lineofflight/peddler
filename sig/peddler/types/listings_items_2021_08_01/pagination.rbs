@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class Pagination < Data
-        def self.new: (next_token: String?, previous_token: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (next_token: String?, previous_token: String?) -> Peddler::Types::ListingsItems20210801::Pagination
+                    | (String?, String?) -> Peddler::Types::ListingsItems20210801::Pagination
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::Pagination
 
         attr_reader next_token: String?
         attr_reader previous_token: String?

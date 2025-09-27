@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class ListAllFulfillmentOrdersResult < Data
-        def self.new: (next_token: String?, fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?) -> instance
-                    | (String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?) -> instance
+        def self.new: (next_token: String?, fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
+                    | (String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
 
         attr_reader next_token: String?
         attr_reader fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?

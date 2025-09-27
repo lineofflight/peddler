@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Reports20210630
       class ReportScheduleList < Data
-        def self.new: (report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> instance
-                    | (Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> instance
+        def self.new: (report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> Peddler::Types::Reports20210630::ReportScheduleList
+                    | (Array[Peddler::Types::Reports20210630::ReportSchedule]?) -> Peddler::Types::Reports20210630::ReportScheduleList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::ReportScheduleList
 
         attr_reader report_schedules: Array[Peddler::Types::Reports20210630::ReportSchedule]?
 

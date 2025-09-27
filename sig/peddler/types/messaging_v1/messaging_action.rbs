@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MessagingV1
       class MessagingAction < Data
-        def self.new: (name: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (name: String?) -> Peddler::Types::MessagingV1::MessagingAction
+                    | (String?) -> Peddler::Types::MessagingV1::MessagingAction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::MessagingAction
 
         attr_reader name: String?
 

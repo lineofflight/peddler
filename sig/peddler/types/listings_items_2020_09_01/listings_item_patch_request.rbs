@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20200901
       class ListingsItemPatchRequest < Data
-        def self.new: (product_type: String?, patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?) -> instance
-                    | (String?, Array[Peddler::Types::ListingsItems20200901::PatchOperation]?) -> instance
+        def self.new: (product_type: String?, patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
+                    | (String?, Array[Peddler::Types::ListingsItems20200901::PatchOperation]?) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
 
         attr_reader product_type: String?
         attr_reader patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?

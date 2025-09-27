@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class EventBridgeResourceSpecification < Data
-        def self.new: (region: String?, account_id: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (region: String?, account_id: String?) -> Peddler::Types::NotificationsV1::EventBridgeResourceSpecification
+                    | (String?, String?) -> Peddler::Types::NotificationsV1::EventBridgeResourceSpecification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::EventBridgeResourceSpecification
 
         attr_reader region: String?
         attr_reader account_id: String?

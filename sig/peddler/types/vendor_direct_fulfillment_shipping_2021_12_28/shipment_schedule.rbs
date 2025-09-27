@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ShipmentSchedule < Data
-        def self.new: (estimated_delivery_date_time: String?, appt_window_start_date_time: String?, appt_window_end_date_time: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (estimated_delivery_date_time: String?, appt_window_start_date_time: String?, appt_window_end_date_time: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule
+                    | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule
 
         attr_reader estimated_delivery_date_time: String?
         attr_reader appt_window_start_date_time: String?

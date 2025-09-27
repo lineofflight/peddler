@@ -4,10 +4,10 @@ module Peddler
   module Types
     module EasyShip20220323
       class Dimensions < Data
-        def self.new: (length: Float?, width: Float?, height: Float?, unit: String?, identifier: String?) -> instance
-                    | (Float?, Float?, Float?, String?, String?) -> instance
+        def self.new: (length: Float?, width: Float?, height: Float?, unit: String?, identifier: String?) -> Peddler::Types::EasyShip20220323::Dimensions
+                    | (Float?, Float?, Float?, String?, String?) -> Peddler::Types::EasyShip20220323::Dimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::Dimensions
 
         attr_reader length: Float?
         attr_reader width: Float?

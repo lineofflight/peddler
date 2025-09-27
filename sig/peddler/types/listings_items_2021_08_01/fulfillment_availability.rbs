@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class FulfillmentAvailability < Data
-        def self.new: (fulfillment_channel_code: String?, quantity: Integer?) -> instance
-                    | (String?, Integer?) -> instance
+        def self.new: (fulfillment_channel_code: String?, quantity: Integer?) -> Peddler::Types::ListingsItems20210801::FulfillmentAvailability
+                    | (String?, Integer?) -> Peddler::Types::ListingsItems20210801::FulfillmentAvailability
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::FulfillmentAvailability
 
         attr_reader fulfillment_channel_code: String?
         attr_reader quantity: Integer?

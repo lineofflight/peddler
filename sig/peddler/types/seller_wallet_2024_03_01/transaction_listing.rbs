@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransactionListing < Data
-        def self.new: (next_page_token: String?, transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?) -> instance
-                    | (String?, Array[Peddler::Types::SellerWallet20240301::Transaction]?) -> instance
+        def self.new: (next_page_token: String?, transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?) -> Peddler::Types::SellerWallet20240301::TransactionListing
+                    | (String?, Array[Peddler::Types::SellerWallet20240301::Transaction]?) -> Peddler::Types::SellerWallet20240301::TransactionListing
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionListing
 
         attr_reader next_page_token: String?
         attr_reader transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?

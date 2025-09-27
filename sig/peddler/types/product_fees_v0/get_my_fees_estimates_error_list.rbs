@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductFeesV0
       class GetMyFeesEstimatesErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::ProductFeesV0::Error]?) -> instance
-                    | (Array[Peddler::Types::ProductFeesV0::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::ProductFeesV0::Error]?) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
+                    | (Array[Peddler::Types::ProductFeesV0::Error]?) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
 
         attr_reader errors: Array[Peddler::Types::ProductFeesV0::Error]?
 

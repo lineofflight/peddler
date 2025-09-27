@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SelfShipAppointmentSlotsAvailability < Data
-        def self.new: (expires_at: String?, slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> instance
-                    | (String?, Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> instance
+        def self.new: (expires_at: String?, slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
+                    | (String?, Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability
 
         attr_reader expires_at: String?
         attr_reader slots: Array[Peddler::Types::FulfillmentInbound20240320::AppointmentSlot]?

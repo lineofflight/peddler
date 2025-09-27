@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Vehicles20241101
       class Vehicle < Data
-        def self.new: (make: String?, model: String?, variant_name: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, last_processed_date: String?, status: String?, identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Vehicles20241101::EngineOutput]?, Peddler::Types::Vehicles20241101::MonthAndYear?, Peddler::Types::Vehicles20241101::MonthAndYear?, String?, String?, Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> instance
+        def self.new: (make: String?, model: String?, variant_name: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, last_processed_date: String?, status: String?, identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> Peddler::Types::Vehicles20241101::Vehicle
+                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Vehicles20241101::EngineOutput]?, Peddler::Types::Vehicles20241101::MonthAndYear?, Peddler::Types::Vehicles20241101::MonthAndYear?, String?, String?, Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> Peddler::Types::Vehicles20241101::Vehicle
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::Vehicle
 
         attr_reader make: String?
         attr_reader model: String?

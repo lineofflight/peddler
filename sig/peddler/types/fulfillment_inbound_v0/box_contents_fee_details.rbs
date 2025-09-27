@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class BoxContentsFeeDetails < Data
-        def self.new: (total_units: Integer?, fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?, total_fee: Peddler::Types::FulfillmentInboundV0::Amount?) -> instance
-                    | (Integer?, Peddler::Types::FulfillmentInboundV0::Amount?, Peddler::Types::FulfillmentInboundV0::Amount?) -> instance
+        def self.new: (total_units: Integer?, fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?, total_fee: Peddler::Types::FulfillmentInboundV0::Amount?) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
+                    | (Integer?, Peddler::Types::FulfillmentInboundV0::Amount?, Peddler::Types::FulfillmentInboundV0::Amount?) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
 
         attr_reader total_units: Integer?
         attr_reader fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?

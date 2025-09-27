@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellersV1
       class Marketplace < Data
-        def self.new: (id: String?, name: String?, country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?) -> instance
+        def self.new: (id: String?, name: String?, country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?) -> Peddler::Types::SellersV1::Marketplace
+                    | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Marketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Marketplace
 
         attr_reader id: String?
         attr_reader name: String?

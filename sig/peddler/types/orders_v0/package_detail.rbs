@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class PackageDetail < Data
-        def self.new: (package_reference_id: String?, carrier_code: String?, carrier_name: String?, shipping_method: String?, tracking_number: String?, ship_date: String?, ship_from_supply_source_id: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> instance
+        def self.new: (package_reference_id: String?, carrier_code: String?, carrier_name: String?, shipping_method: String?, tracking_number: String?, ship_date: String?, ship_from_supply_source_id: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> Peddler::Types::OrdersV0::PackageDetail
+                    | (String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> Peddler::Types::OrdersV0::PackageDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PackageDetail
 
         attr_reader package_reference_id: String?
         attr_reader carrier_code: String?

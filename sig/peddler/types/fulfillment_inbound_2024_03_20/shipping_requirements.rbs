@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ShippingRequirements < Data
-        def self.new: (modes: Array[String]?, solution: String?) -> instance
-                    | (Array[String]?, String?) -> instance
+        def self.new: (modes: Array[String]?, solution: String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
+                    | (Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShippingRequirements
 
         attr_reader modes: Array[String]?
         attr_reader solution: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ShippingLabel < Data
-        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, label_format: String?, label_data: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?) -> instance
-                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?) -> instance
+        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, label_format: String?, label_data: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
 
         attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?

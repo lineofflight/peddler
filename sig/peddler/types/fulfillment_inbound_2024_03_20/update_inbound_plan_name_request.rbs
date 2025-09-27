@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class UpdateInboundPlanNameRequest < Data
-        def self.new: (name: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (name: String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
+                    | (String?) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateInboundPlanNameRequest
 
         attr_reader name: String?
 

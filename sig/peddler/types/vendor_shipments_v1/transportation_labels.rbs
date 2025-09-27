@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportationLabels < Data
-        def self.new: (pagination: Peddler::Types::VendorShipmentsV1::Pagination?, transport_labels: Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?) -> instance
-                    | (Peddler::Types::VendorShipmentsV1::Pagination?, Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?) -> instance
+        def self.new: (pagination: Peddler::Types::VendorShipmentsV1::Pagination?, transport_labels: Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?) -> Peddler::Types::VendorShipmentsV1::TransportationLabels
+                    | (Peddler::Types::VendorShipmentsV1::Pagination?, Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?) -> Peddler::Types::VendorShipmentsV1::TransportationLabels
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationLabels
 
         attr_reader pagination: Peddler::Types::VendorShipmentsV1::Pagination?
         attr_reader transport_labels: Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?

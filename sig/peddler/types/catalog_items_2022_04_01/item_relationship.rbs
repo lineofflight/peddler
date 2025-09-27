@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemRelationship < Data
-        def self.new: (child_asins: Array[String]?, parent_asins: Array[String]?, variation_theme: Peddler::Types::CatalogItems20220401::ItemVariationTheme?, type: String?) -> instance
-                    | (Array[String]?, Array[String]?, Peddler::Types::CatalogItems20220401::ItemVariationTheme?, String?) -> instance
+        def self.new: (child_asins: Array[String]?, parent_asins: Array[String]?, variation_theme: Peddler::Types::CatalogItems20220401::ItemVariationTheme?, type: String?) -> Peddler::Types::CatalogItems20220401::ItemRelationship
+                    | (Array[String]?, Array[String]?, Peddler::Types::CatalogItems20220401::ItemVariationTheme?, String?) -> Peddler::Types::CatalogItems20220401::ItemRelationship
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemRelationship
 
         attr_reader child_asins: Array[String]?
         attr_reader parent_asins: Array[String]?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ShippingConfiguration < Data
-        def self.new: (shipping_mode: String?, shipping_solution: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (shipping_mode: String?, shipping_solution: String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
+                    | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration
 
         attr_reader shipping_mode: String?
         attr_reader shipping_solution: String?

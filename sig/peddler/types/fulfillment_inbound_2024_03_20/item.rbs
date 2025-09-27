@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Item < Data
-        def self.new: (asin: String?, expiration: String?, fnsku: String?, label_owner: String?, manufacturing_lot_code: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, Integer?) -> instance
+        def self.new: (asin: String?, expiration: String?, fnsku: String?, label_owner: String?, manufacturing_lot_code: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?) -> Peddler::Types::FulfillmentInbound20240320::Item
+                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, Integer?) -> Peddler::Types::FulfillmentInbound20240320::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Item
 
         attr_reader asin: String?
         attr_reader expiration: String?

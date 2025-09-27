@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class ItemLevelFields < Data
-        def self.new: (asin: String?, additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> instance
-                    | (String?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> instance
+        def self.new: (asin: String?, additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
+                    | (String?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
 
         attr_reader asin: String?
         attr_reader additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?

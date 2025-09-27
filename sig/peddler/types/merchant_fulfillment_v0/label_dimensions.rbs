@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class LabelDimensions < Data
-        def self.new: (length: Float?, width: Float?, unit: String?) -> instance
-                    | (Float?, Float?, String?) -> instance
+        def self.new: (length: Float?, width: Float?, unit: String?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
+                    | (Float?, Float?, String?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
 
         attr_reader length: Float?
         attr_reader width: Float?

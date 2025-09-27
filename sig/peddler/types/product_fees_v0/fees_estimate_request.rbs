@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateRequest < Data
-        def self.new: (marketplace_id: String?, amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, identifier: String?, optional_fulfillment_program: String?) -> instance
-                    | (String?, bool?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> instance
+        def self.new: (marketplace_id: String?, amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, identifier: String?, optional_fulfillment_program: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
+                    | (String?, bool?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
 
         attr_reader marketplace_id: String?
         attr_reader amazon_fulfilled: bool?

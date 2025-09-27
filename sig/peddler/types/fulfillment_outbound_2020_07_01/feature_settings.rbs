@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FeatureSettings < Data
-        def self.new: (feature_name: String?, feature_fulfillment_policy: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (feature_name: String?, feature_fulfillment_policy: String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
 
         attr_reader feature_name: String?
         attr_reader feature_fulfillment_policy: String?

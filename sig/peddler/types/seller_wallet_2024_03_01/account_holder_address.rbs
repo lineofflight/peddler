@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class AccountHolderAddress < Data
-        def self.new: (address_line1: String?, address_line2: String?, city: String?, state: String?, postal_code: String?, country: String?, country_code: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?) -> instance
+        def self.new: (address_line1: String?, address_line2: String?, city: String?, state: String?, postal_code: String?, country: String?, country_code: String?) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
+                    | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
 
         attr_reader address_line1: String?
         attr_reader address_line2: String?

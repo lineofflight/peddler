@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class TrackingSummary < Data
-        def self.new: (status: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (status: String?) -> Peddler::Types::ShippingV1::TrackingSummary
+                    | (String?) -> Peddler::Types::ShippingV1::TrackingSummary
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::TrackingSummary
 
         attr_reader status: String?
 

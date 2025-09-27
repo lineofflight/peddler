@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class CreateInboundPlanResponse < Data
-        def self.new: (inbound_plan_id: String?, operation_id: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (inbound_plan_id: String?, operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
+                    | (String?, String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanResponse
 
         attr_reader inbound_plan_id: String?
         attr_reader operation_id: String?

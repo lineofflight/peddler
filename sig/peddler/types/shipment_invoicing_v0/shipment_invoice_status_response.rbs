@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class ShipmentInvoiceStatusResponse < Data
-        def self.new: (shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> instance
-                    | (Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> instance
+        def self.new: (shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
+                    | (Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse
 
         attr_reader shipments: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusInfo?
 

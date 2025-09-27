@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemDisplayGroupSalesRank < Data
-        def self.new: (website_display_group: String?, title: String?, link: String?, rank: Integer?) -> instance
-                    | (String?, String?, String?, Integer?) -> instance
+        def self.new: (website_display_group: String?, title: String?, link: String?, rank: Integer?) -> Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank
+                    | (String?, String?, String?, Integer?) -> Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemDisplayGroupSalesRank
 
         attr_reader website_display_group: String?
         attr_reader title: String?

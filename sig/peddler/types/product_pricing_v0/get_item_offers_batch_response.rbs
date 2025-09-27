@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class GetItemOffersBatchResponse < Data
-        def self.new: (responses: Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?) -> instance
-                    | (Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?) -> instance
+        def self.new: (responses: Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse
+                    | (Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse
 
         attr_reader responses: Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?
 

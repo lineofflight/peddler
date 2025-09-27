@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::Error]?) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ErrorList
 
         attr_reader errors: Array[Peddler::Types::FulfillmentInbound20240320::Error]?
 

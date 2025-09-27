@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class ReasonCodeDetails < Data
-        def self.new: (return_reason_code: String?, description: String?, translated_description: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (return_reason_code: String?, description: String?, translated_description: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
 
         attr_reader return_reason_code: String?
         attr_reader description: String?

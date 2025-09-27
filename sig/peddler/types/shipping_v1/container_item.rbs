@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class ContainerItem < Data
-        def self.new: (quantity: Float?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight?, title: String?) -> instance
-                    | (Float?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?, String?) -> instance
+        def self.new: (quantity: Float?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight?, title: String?) -> Peddler::Types::ShippingV1::ContainerItem
+                    | (Float?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?, String?) -> Peddler::Types::ShippingV1::ContainerItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::ContainerItem
 
         attr_reader quantity: Float?
         attr_reader unit_price: Peddler::Types::Money?
