@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SpdTrackingItem < Data
-        def self.new: (box_id: String?, tracking_id: String?, tracking_number_validation_status: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (box_id: String?, tracking_id: String?, tracking_number_validation_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingItem
 
         attr_reader box_id: String?
         attr_reader tracking_id: String?

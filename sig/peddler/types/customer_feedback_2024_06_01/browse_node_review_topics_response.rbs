@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTopicsResponse < Data
-        def self.new: (browse_node_id: String?, display_name: String?, marketplace_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, topics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> instance
-                    | (String?, String?, String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> instance
+        def self.new: (browse_node_id: String?, display_name: String?, marketplace_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, topics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+                    | (String?, String?, String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
 
         attr_reader browse_node_id: String?
         attr_reader display_name: String?

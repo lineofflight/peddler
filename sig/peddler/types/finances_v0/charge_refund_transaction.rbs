@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class ChargeRefundTransaction < Data
-        def self.new: (charge_amount: Peddler::Types::Money?, charge_type: String?) -> instance
-                    | (Peddler::Types::Money?, String?) -> instance
+        def self.new: (charge_amount: Peddler::Types::Money?, charge_type: String?) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
+                    | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ChargeRefundTransaction
 
         attr_reader charge_amount: Peddler::Types::Money?
         attr_reader charge_type: String?

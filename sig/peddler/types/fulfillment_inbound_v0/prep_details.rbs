@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class PrepDetails < Data
-        def self.new: (prep_instruction: String?, prep_owner: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (prep_instruction: String?, prep_owner: String?) -> Peddler::Types::FulfillmentInboundV0::PrepDetails
+                    | (String?, String?) -> Peddler::Types::FulfillmentInboundV0::PrepDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::PrepDetails
 
         attr_reader prep_instruction: String?
         attr_reader prep_owner: String?

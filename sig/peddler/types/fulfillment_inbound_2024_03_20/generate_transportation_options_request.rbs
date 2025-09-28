@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class GenerateTransportationOptionsRequest < Data
-        def self.new: (placement_option_id: String?, shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> instance
-                    | (String?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> instance
+        def self.new: (placement_option_id: String?, shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
+                    | (String?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::GenerateTransportationOptionsRequest
 
         attr_reader placement_option_id: String?
         attr_reader shipment_transportation_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration]?

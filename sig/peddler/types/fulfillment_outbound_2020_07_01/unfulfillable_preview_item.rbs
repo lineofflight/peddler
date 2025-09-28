@@ -4,17 +4,17 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class UnfulfillablePreviewItem < Data
-        def self.new: (seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, item_unfulfillable_reasons: Array[untyped]?) -> instance
-                    | (String?, Integer?, String?, Array[untyped]?) -> instance
+        def self.new: (seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, item_unfulfillable_reasons: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
+                    | (String?, Integer?, String?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
 
         attr_reader seller_sku: String?
         attr_reader quantity: Integer?
         attr_reader seller_fulfillment_order_item_id: String?
-        attr_reader item_unfulfillable_reasons: Array[untyped]?
+        attr_reader item_unfulfillable_reasons: Array[String]?
 
-        def to_h: () -> { seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, item_unfulfillable_reasons: Array[untyped]? }
+        def to_h: () -> { seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, item_unfulfillable_reasons: Array[String]? }
       end
     end
   end

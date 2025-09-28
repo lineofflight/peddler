@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemProcurement < Data
-        def self.new: (cost_price: Peddler::Types::Money?) -> instance
-                    | (Peddler::Types::Money?) -> instance
+        def self.new: (cost_price: Peddler::Types::Money?) -> Peddler::Types::ListingsItems20210801::ItemProcurement
+                    | (Peddler::Types::Money?) -> Peddler::Types::ListingsItems20210801::ItemProcurement
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemProcurement
 
         attr_reader cost_price: Peddler::Types::Money?
 

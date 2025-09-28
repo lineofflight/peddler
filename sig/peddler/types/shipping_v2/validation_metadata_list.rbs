@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class ValidationMetadataList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ValidationMetadataList < Array[ValidationMetadata]
+        def self.parse: (Array[untyped]) -> ValidationMetadataList
       end
     end
   end

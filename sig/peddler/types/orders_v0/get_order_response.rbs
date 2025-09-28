@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class GetOrderResponse < Data
-        def self.new: (payload: Peddler::Types::OrdersV0::Order?, errors: Array[Peddler::Types::OrdersV0::Error]?) -> instance
-                    | (Peddler::Types::OrdersV0::Order?, Array[Peddler::Types::OrdersV0::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::OrdersV0::Order?, errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderResponse
+                    | (Peddler::Types::OrdersV0::Order?, Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::GetOrderResponse
 
         attr_reader payload: Peddler::Types::OrdersV0::Order?
         attr_reader errors: Array[Peddler::Types::OrdersV0::Error]?

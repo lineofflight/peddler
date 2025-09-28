@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class RateItem < Data
-        def self.new: (rate_item_id: String?, rate_item_type: String?, rate_item_charge: Peddler::Types::Money?, rate_item_name_localization: String?) -> instance
-                    | (String?, String?, Peddler::Types::Money?, String?) -> instance
+        def self.new: (rate_item_id: String?, rate_item_type: String?, rate_item_charge: Peddler::Types::Money?, rate_item_name_localization: String?) -> Peddler::Types::ShippingV2::RateItem
+                    | (String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::ShippingV2::RateItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::RateItem
 
         attr_reader rate_item_id: String?
         attr_reader rate_item_type: String?

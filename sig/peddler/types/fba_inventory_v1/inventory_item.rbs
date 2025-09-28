@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FBAInventoryV1
       class InventoryItem < Data
-        def self.new: (seller_sku: String?, marketplace_id: String?, quantity: Integer?) -> instance
-                    | (String?, String?, Integer?) -> instance
+        def self.new: (seller_sku: String?, marketplace_id: String?, quantity: Integer?) -> Peddler::Types::FBAInventoryV1::InventoryItem
+                    | (String?, String?, Integer?) -> Peddler::Types::FBAInventoryV1::InventoryItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::InventoryItem
 
         attr_reader seller_sku: String?
         attr_reader marketplace_id: String?

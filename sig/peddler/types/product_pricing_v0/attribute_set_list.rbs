@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class AttributeSetList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> AttributeSetList
       end
     end
   end

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class TransportationSelection < Data
-        def self.new: (contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, shipment_id: String?, transportation_option_id: String?) -> instance
-                    | (Peddler::Types::FulfillmentInbound20240320::ContactInformation?, String?, String?) -> instance
+        def self.new: (contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, shipment_id: String?, transportation_option_id: String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
+                    | (Peddler::Types::FulfillmentInbound20240320::ContactInformation?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::TransportationSelection
 
         attr_reader contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?
         attr_reader shipment_id: String?

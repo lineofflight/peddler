@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class DeliveryWindowOption < Data
-        def self.new: (availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, valid_until: String?) -> instance
-                    | (String?, String?, String?, String?, String?) -> instance
+        def self.new: (availability_type: String?, delivery_window_option_id: String?, end_date: String?, start_date: String?, valid_until: String?) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption
 
         attr_reader availability_type: String?
         attr_reader delivery_window_option_id: String?

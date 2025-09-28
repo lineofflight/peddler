@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentPreview < Data
-        def self.new: (shipping_speed_category: String?, scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, fulfillable: bool?, cod_capable: bool?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?, order_unfulfillable_reasons: Array[untyped]?, marketplace_id: String?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
-                    | (String?, Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, bool?, bool?, Peddler::Types::FulfillmentOutbound20200701::Weight?, Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?, Array[untyped]?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> instance
+        def self.new: (shipping_speed_category: String?, scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, fulfillable: bool?, cod_capable: bool?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?, order_unfulfillable_reasons: Array[String]?, marketplace_id: String?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview
+                    | (String?, Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, bool?, bool?, Peddler::Types::FulfillmentOutbound20200701::Weight?, Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?, Array[String]?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview
 
         attr_reader shipping_speed_category: String?
         attr_reader scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?
@@ -17,13 +17,13 @@ module Peddler
         attr_reader estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?
         attr_reader fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?
         attr_reader unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?
-        attr_reader order_unfulfillable_reasons: Array[untyped]?
+        attr_reader order_unfulfillable_reasons: Array[String]?
         attr_reader marketplace_id: String?
         attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
 
         def fulfillable?: () -> bool
         def cod_capable?: () -> bool
-        def to_h: () -> { shipping_speed_category: String?, scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, fulfillable: bool?, cod_capable: bool?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?, order_unfulfillable_reasons: Array[untyped]?, marketplace_id: String?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]? }
+        def to_h: () -> { shipping_speed_category: String?, scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, fulfillable: bool?, cod_capable: bool?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?, order_unfulfillable_reasons: Array[String]?, marketplace_id: String?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]? }
       end
     end
   end

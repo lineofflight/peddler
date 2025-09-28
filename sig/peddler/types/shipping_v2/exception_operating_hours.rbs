@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class ExceptionOperatingHours < Data
-        def self.new: (date_range: Peddler::Types::ShippingV2::DateRange?, operating_hours: Peddler::Types::ShippingV2::OperatingHours?) -> instance
-                    | (Peddler::Types::ShippingV2::DateRange?, Peddler::Types::ShippingV2::OperatingHours?) -> instance
+        def self.new: (date_range: Peddler::Types::ShippingV2::DateRange?, operating_hours: Peddler::Types::ShippingV2::OperatingHours?) -> Peddler::Types::ShippingV2::ExceptionOperatingHours
+                    | (Peddler::Types::ShippingV2::DateRange?, Peddler::Types::ShippingV2::OperatingHours?) -> Peddler::Types::ShippingV2::ExceptionOperatingHours
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ExceptionOperatingHours
 
         attr_reader date_range: Peddler::Types::ShippingV2::DateRange?
         attr_reader operating_hours: Peddler::Types::ShippingV2::OperatingHours?

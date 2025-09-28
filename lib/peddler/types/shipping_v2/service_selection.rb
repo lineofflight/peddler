@@ -9,8 +9,8 @@ module Peddler
     module ShippingV2
       # Service Selection Criteria.
       ServiceSelection = Structure.new do
-        # @return [Array]
-        attribute(:service_id, Array, from: "serviceId")
+        # @return [Array<String>]
+        attribute(:service_id, [String], from: "serviceId")
       end
     end
   end

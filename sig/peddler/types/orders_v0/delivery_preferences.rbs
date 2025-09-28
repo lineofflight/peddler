@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class DeliveryPreferences < Data
-        def self.new: (drop_off_location: String?, preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?, other_attributes: Array[untyped]?, address_instructions: String?) -> instance
-                    | (String?, Peddler::Types::OrdersV0::PreferredDeliveryTime?, Array[untyped]?, String?) -> instance
+        def self.new: (drop_off_location: String?, preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?, other_attributes: Array[untyped]?, address_instructions: String?) -> Peddler::Types::OrdersV0::DeliveryPreferences
+                    | (String?, Peddler::Types::OrdersV0::PreferredDeliveryTime?, Array[untyped]?, String?) -> Peddler::Types::OrdersV0::DeliveryPreferences
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::DeliveryPreferences
 
         attr_reader drop_off_location: String?
         attr_reader preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?

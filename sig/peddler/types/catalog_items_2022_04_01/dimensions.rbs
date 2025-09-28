@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class Dimensions < Data
-        def self.new: (height: Peddler::Types::CatalogItems20220401::Dimension?, length: Peddler::Types::CatalogItems20220401::Dimension?, weight: Peddler::Types::CatalogItems20220401::Dimension?, width: Peddler::Types::CatalogItems20220401::Dimension?) -> instance
-                    | (Peddler::Types::CatalogItems20220401::Dimension?, Peddler::Types::CatalogItems20220401::Dimension?, Peddler::Types::CatalogItems20220401::Dimension?, Peddler::Types::CatalogItems20220401::Dimension?) -> instance
+        def self.new: (height: Peddler::Types::CatalogItems20220401::Dimension?, length: Peddler::Types::CatalogItems20220401::Dimension?, weight: Peddler::Types::CatalogItems20220401::Dimension?, width: Peddler::Types::CatalogItems20220401::Dimension?) -> Peddler::Types::CatalogItems20220401::Dimensions
+                    | (Peddler::Types::CatalogItems20220401::Dimension?, Peddler::Types::CatalogItems20220401::Dimension?, Peddler::Types::CatalogItems20220401::Dimension?, Peddler::Types::CatalogItems20220401::Dimension?) -> Peddler::Types::CatalogItems20220401::Dimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::Dimensions
 
         attr_reader height: Peddler::Types::CatalogItems20220401::Dimension?
         attr_reader length: Peddler::Types::CatalogItems20220401::Dimension?

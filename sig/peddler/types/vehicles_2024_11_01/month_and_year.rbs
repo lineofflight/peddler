@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Vehicles20241101
       class MonthAndYear < Data
-        def self.new: (year: Float?, month: Float?) -> instance
-                    | (Float?, Float?) -> instance
+        def self.new: (year: Float?, month: Float?) -> Peddler::Types::Vehicles20241101::MonthAndYear
+                    | (Float?, Float?) -> Peddler::Types::Vehicles20241101::MonthAndYear
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::MonthAndYear
 
         attr_reader year: Float?
         attr_reader month: Float?

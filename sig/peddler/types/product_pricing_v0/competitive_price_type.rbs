@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class CompetitivePriceType < Data
-        def self.new: (competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, condition: String?, subcondition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, seller_id: String?, belongs_to_requester: bool?) -> instance
-                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, String?, String?, String?, Integer?, String?, String?, bool?) -> instance
+        def self.new: (competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, condition: String?, subcondition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, seller_id: String?, belongs_to_requester: bool?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
+                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, String?, String?, String?, Integer?, String?, String?, bool?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
 
         attr_reader competitive_price_id: String?
         attr_reader price: Peddler::Types::ProductPricingV0::PriceType?

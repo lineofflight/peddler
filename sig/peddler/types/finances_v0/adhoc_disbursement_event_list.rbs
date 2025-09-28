@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class AdhocDisbursementEventList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class AdhocDisbursementEventList < Array[AdhocDisbursementEvent]
+        def self.parse: (Array[untyped]) -> AdhocDisbursementEventList
       end
     end
   end

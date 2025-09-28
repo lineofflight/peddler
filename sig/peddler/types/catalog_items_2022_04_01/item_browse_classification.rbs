@@ -4,8 +4,8 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemBrowseClassification < Data
-        def self.new: (display_name: String?, classification_id: String?, parent: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> instance
-                    | (String?, String?, Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> instance
+        def self.new: (display_name: String?, classification_id: String?, parent: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
+                    | (String?, String?, Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
 
         type parse_data = {
           ?display_name: untyped,
@@ -13,8 +13,8 @@ module Peddler
           ?parent: Peddler::Types::CatalogItems20220401::ItemBrowseClassification | parse_data
         }
 
-        def self.parse: (?parse_data data) -> instance
-                      | (?Hash[String, untyped] data) -> instance
+        def self.parse: (?parse_data data) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
+                      | (?Hash[String, untyped] data) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
 
         attr_reader display_name: String?
         attr_reader classification_id: String?

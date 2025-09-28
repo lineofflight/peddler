@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellersV1
       class PrimaryContact < Data
-        def self.new: (name: String?, address: Peddler::Types::SellersV1::Address?, non_latin_name: String?) -> instance
-                    | (String?, Peddler::Types::SellersV1::Address?, String?) -> instance
+        def self.new: (name: String?, address: Peddler::Types::SellersV1::Address?, non_latin_name: String?) -> Peddler::Types::SellersV1::PrimaryContact
+                    | (String?, Peddler::Types::SellersV1::Address?, String?) -> Peddler::Types::SellersV1::PrimaryContact
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::PrimaryContact
 
         attr_reader name: String?
         attr_reader address: Peddler::Types::SellersV1::Address?

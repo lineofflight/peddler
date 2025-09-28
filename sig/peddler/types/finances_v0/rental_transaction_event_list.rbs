@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class RentalTransactionEventList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class RentalTransactionEventList < Array[RentalTransactionEvent]
+        def self.parse: (Array[untyped]) -> RentalTransactionEventList
       end
     end
   end

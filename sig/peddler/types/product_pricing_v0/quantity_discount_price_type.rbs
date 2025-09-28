@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class QuantityDiscountPriceType < Data
-        def self.new: (quantity_tier: Integer?, quantity_discount_type: String?, listing_price: Peddler::Types::Money?) -> instance
-                    | (Integer?, String?, Peddler::Types::Money?) -> instance
+        def self.new: (quantity_tier: Integer?, quantity_discount_type: String?, listing_price: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
+                    | (Integer?, String?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
 
         attr_reader quantity_tier: Integer?
         attr_reader quantity_discount_type: String?

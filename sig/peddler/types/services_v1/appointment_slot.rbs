@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class AppointmentSlot < Data
-        def self.new: (start_time: String?, end_time: String?, capacity: Integer?) -> instance
-                    | (String?, String?, Integer?) -> instance
+        def self.new: (start_time: String?, end_time: String?, capacity: Integer?) -> Peddler::Types::ServicesV1::AppointmentSlot
+                    | (String?, String?, Integer?) -> Peddler::Types::ServicesV1::AppointmentSlot
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentSlot
 
         attr_reader start_time: String?
         attr_reader end_time: String?

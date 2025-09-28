@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class RejectedShippingServiceList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class RejectedShippingServiceList < Array[RejectedShippingService]
+        def self.parse: (Array[untyped]) -> RejectedShippingServiceList
       end
     end
   end

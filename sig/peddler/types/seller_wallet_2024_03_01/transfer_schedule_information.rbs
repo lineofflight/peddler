@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransferScheduleInformation < Data
-        def self.new: (schedule_start_date: String?, schedule_end_date: String?, schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?, schedule_type: String?) -> instance
-                    | (String?, String?, Peddler::Types::SellerWallet20240301::ScheduleExpression?, String?) -> instance
+        def self.new: (schedule_start_date: String?, schedule_end_date: String?, schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?, schedule_type: String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
+                    | (String?, String?, Peddler::Types::SellerWallet20240301::ScheduleExpression?, String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
 
         attr_reader schedule_start_date: String?
         attr_reader schedule_end_date: String?

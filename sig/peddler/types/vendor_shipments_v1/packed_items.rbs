@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class PackedItems < Data
-        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?) -> instance
-                    | (String?, String?, String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::VendorShipmentsV1::PackageItemDetails?) -> instance
+        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?) -> Peddler::Types::VendorShipmentsV1::PackedItems
+                    | (String?, String?, String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::VendorShipmentsV1::PackageItemDetails?) -> Peddler::Types::VendorShipmentsV1::PackedItems
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PackedItems
 
         attr_reader item_sequence_number: String?
         attr_reader buyer_product_identifier: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Replenishment20221107
       class Promotion < Data
-        def self.new: (selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, amazon_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?) -> instance
-                    | (Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?) -> instance
+        def self.new: (selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, amazon_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?, amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?) -> Peddler::Types::Replenishment20221107::Promotion
+                    | (Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?, Peddler::Types::Replenishment20221107::DiscountFunding?) -> Peddler::Types::Replenishment20221107::Promotion
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::Promotion
 
         attr_reader selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::DiscountFunding?
         attr_reader selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::DiscountFunding?

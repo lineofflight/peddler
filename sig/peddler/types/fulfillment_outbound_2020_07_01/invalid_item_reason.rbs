@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class InvalidItemReason < Data
-        def self.new: (invalid_item_reason_code: String?, description: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (invalid_item_reason_code: String?, description: String?) -> Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason
 
         attr_reader invalid_item_reason_code: String?
         attr_reader description: String?

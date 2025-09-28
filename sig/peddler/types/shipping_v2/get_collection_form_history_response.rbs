@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GetCollectionFormHistoryResponse < Data
-        def self.new: (collection_forms_history_record_list: Array[Peddler::Types::ShippingV2::CollectionFormsHistoryRecord]?, last_refreshed_date: String?) -> instance
-                    | (Array[Peddler::Types::ShippingV2::CollectionFormsHistoryRecord]?, String?) -> instance
+        def self.new: (collection_forms_history_record_list: Array[Peddler::Types::ShippingV2::CollectionFormsHistoryRecord]?, last_refreshed_date: String?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryResponse
+                    | (Array[Peddler::Types::ShippingV2::CollectionFormsHistoryRecord]?, String?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryResponse
 
         attr_reader collection_forms_history_record_list: Array[Peddler::Types::ShippingV2::CollectionFormsHistoryRecord]?
         attr_reader last_refreshed_date: String?

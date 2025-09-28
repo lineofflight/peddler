@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class UpdateFulfillmentOrderRequest < Data
-        def self.new: (marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, ship_from_country_code: String?, notification_emails: Array[untyped]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?) -> instance
-                    | (String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, String?, Array[untyped]?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?) -> instance
+        def self.new: (marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, ship_from_country_code: String?, notification_emails: Array[String]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
+                    | (String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, String?, Array[String]?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
 
         attr_reader marketplace_id: String?
         attr_reader displayable_order_id: String?
@@ -18,11 +18,11 @@ module Peddler
         attr_reader fulfillment_action: String?
         attr_reader fulfillment_policy: String?
         attr_reader ship_from_country_code: String?
-        attr_reader notification_emails: Array[untyped]?
+        attr_reader notification_emails: Array[String]?
         attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
         attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?
 
-        def to_h: () -> { marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, ship_from_country_code: String?, notification_emails: Array[untyped]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]? }
+        def to_h: () -> { marketplace_id: String?, displayable_order_id: String?, displayable_order_date: String?, displayable_order_comment: String?, shipping_speed_category: String?, destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, fulfillment_action: String?, fulfillment_policy: String?, ship_from_country_code: String?, notification_emails: Array[String]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]? }
       end
     end
   end

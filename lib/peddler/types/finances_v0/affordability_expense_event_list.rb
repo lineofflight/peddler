@@ -2,6 +2,8 @@
 
 require "peddler/types/finances_v0/affordability_expense_event"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module FinancesV0
@@ -9,9 +11,7 @@ module Peddler
       class AffordabilityExpenseEventList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| AffordabilityExpenseEvent.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| AffordabilityExpenseEvent.parse(item) }) : new
           end
         end
       end

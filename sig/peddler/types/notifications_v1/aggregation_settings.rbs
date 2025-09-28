@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class AggregationSettings < Data
-        def self.new: (aggregation_time_period: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (aggregation_time_period: String?) -> Peddler::Types::NotificationsV1::AggregationSettings
+                    | (String?) -> Peddler::Types::NotificationsV1::AggregationSettings
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::AggregationSettings
 
         attr_reader aggregation_time_period: String?
 

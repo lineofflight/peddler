@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransactionInstrumentDetails < Data
-        def self.new: (bank_account: Peddler::Types::SellerWallet20240301::BankAccount?, bank_account_number: String?, account_holder_name: String?) -> instance
-                    | (Peddler::Types::SellerWallet20240301::BankAccount?, String?, String?) -> instance
+        def self.new: (bank_account: Peddler::Types::SellerWallet20240301::BankAccount?, bank_account_number: String?, account_holder_name: String?) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
+                    | (Peddler::Types::SellerWallet20240301::BankAccount?, String?, String?) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
 
         attr_reader bank_account: Peddler::Types::SellerWallet20240301::BankAccount?
         attr_reader bank_account_number: String?

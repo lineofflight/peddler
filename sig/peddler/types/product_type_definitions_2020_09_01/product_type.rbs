@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class ProductType < Data
-        def self.new: (name: String?, display_name: String?, marketplace_ids: Array[String]?) -> instance
-                    | (String?, String?, Array[String]?) -> instance
+        def self.new: (name: String?, display_name: String?, marketplace_ids: Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductType
+                    | (String?, String?, Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::ProductType
 
         attr_reader name: String?
         attr_reader display_name: String?

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class ChargeList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ChargeList < Array[ChargeComponent]
+        def self.parse: (Array[untyped]) -> ChargeList
       end
     end
   end

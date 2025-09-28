@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class Address < Data
-        def self.new: (name: String?, attention: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_code: String?, country_code: String?, phone: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> instance
+        def self.new: (name: String?, attention: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_code: String?, country_code: String?, phone: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
 
         attr_reader name: String?
         attr_reader attention: String?

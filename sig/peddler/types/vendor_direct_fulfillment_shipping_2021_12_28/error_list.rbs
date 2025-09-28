@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?) -> instance
-                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ErrorList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ErrorList
 
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?
 

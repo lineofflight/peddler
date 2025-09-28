@@ -25,8 +25,8 @@ module Peddler
         # @return [String] The serial number of the shipped item.
         attribute(:serial_number, String, from: "serialNumber")
 
-        # @return [Array] The manufacturer lot codes of the shipped items.
-        attribute(:manufacturer_lot_codes, Array, from: "manufacturerLotCodes")
+        # @return [Array<String>] The manufacturer lot codes of the shipped items.
+        attribute(:manufacturer_lot_codes, [String], from: "manufacturerLotCodes")
       end
     end
   end

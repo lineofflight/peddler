@@ -73,8 +73,8 @@ module Peddler
         # @return [Money] The tax on the total of all promotional discounts in the offer.
         attribute(:promotion_discount_tax, Money, from: "PromotionDiscountTax")
 
-        # @return [Array]
-        attribute(:promotion_ids, Array, from: "PromotionIds")
+        # @return [Array<String>]
+        attribute(:promotion_ids, [String], from: "PromotionIds")
 
         # @return [Money] The fee charged for COD service.
         attribute(:cod_fee, Money, from: "CODFee")

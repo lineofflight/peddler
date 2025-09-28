@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class ImageComponent < Data
-        def self.new: (upload_destination_id: String?, image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?, alt_text: String?) -> instance
-                    | (String?, Peddler::Types::AplusContent20201101::ImageCropSpecification?, String?) -> instance
+        def self.new: (upload_destination_id: String?, image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?, alt_text: String?) -> Peddler::Types::AplusContent20201101::ImageComponent
+                    | (String?, Peddler::Types::AplusContent20201101::ImageCropSpecification?, String?) -> Peddler::Types::AplusContent20201101::ImageComponent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ImageComponent
 
         attr_reader upload_destination_id: String?
         attr_reader image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?

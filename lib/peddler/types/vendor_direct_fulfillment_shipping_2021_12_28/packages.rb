@@ -2,6 +2,8 @@
 
 require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28/package"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -9,9 +11,7 @@ module Peddler
       class Packages < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| Package.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| Package.parse(item) }) : new
           end
         end
       end

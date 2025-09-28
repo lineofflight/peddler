@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class SubmitFulfillmentOrderStatusUpdateResponse < Data
-        def self.new: (errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
-                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
 
         attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
 

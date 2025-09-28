@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MessagingV1
       class Attachment < Data
-        def self.new: (upload_destination_id: String?, file_name: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (upload_destination_id: String?, file_name: String?) -> Peddler::Types::MessagingV1::Attachment
+                    | (String?, String?) -> Peddler::Types::MessagingV1::Attachment
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::Attachment
 
         attr_reader upload_destination_id: String?
         attr_reader file_name: String?

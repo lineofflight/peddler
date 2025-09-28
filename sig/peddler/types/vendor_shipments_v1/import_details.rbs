@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ImportDetails < Data
-        def self.new: (method_of_payment: String?, seal_number: String?, route: Peddler::Types::VendorShipmentsV1::Route?, import_containers: String?, billable_weight: Peddler::Types::VendorShipmentsV1::Weight?, estimated_ship_by_date: String?, handling_instructions: String?) -> instance
-                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Route?, String?, Peddler::Types::VendorShipmentsV1::Weight?, String?, String?) -> instance
+        def self.new: (method_of_payment: String?, seal_number: String?, route: Peddler::Types::VendorShipmentsV1::Route?, import_containers: String?, billable_weight: Peddler::Types::VendorShipmentsV1::Weight?, estimated_ship_by_date: String?, handling_instructions: String?) -> Peddler::Types::VendorShipmentsV1::ImportDetails
+                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Route?, String?, Peddler::Types::VendorShipmentsV1::Weight?, String?, String?) -> Peddler::Types::VendorShipmentsV1::ImportDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ImportDetails
 
         attr_reader method_of_payment: String?
         attr_reader seal_number: String?

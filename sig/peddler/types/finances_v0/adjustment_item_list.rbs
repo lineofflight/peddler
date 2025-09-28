@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class AdjustmentItemList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class AdjustmentItemList < Array[AdjustmentItem]
+        def self.parse: (Array[untyped]) -> AdjustmentItemList
       end
     end
   end

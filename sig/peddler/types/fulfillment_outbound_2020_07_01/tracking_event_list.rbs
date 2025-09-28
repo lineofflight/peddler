@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FulfillmentOutbound20200701
-      class TrackingEventList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class TrackingEventList < Array[TrackingEvent]
+        def self.parse: (Array[untyped]) -> TrackingEventList
       end
     end
   end

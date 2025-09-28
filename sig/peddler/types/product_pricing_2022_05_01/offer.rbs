@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class Offer < Data
-        def self.new: (seller_id: String?, condition: String?, sub_condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?) -> instance
-                    | (String?, String?, String?, String?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?) -> instance
+        def self.new: (seller_id: String?, condition: String?, sub_condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?) -> Peddler::Types::ProductPricing20220501::Offer
+                    | (String?, String?, String?, String?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?) -> Peddler::Types::ProductPricing20220501::Offer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::Offer
 
         attr_reader seller_id: String?
         attr_reader condition: String?

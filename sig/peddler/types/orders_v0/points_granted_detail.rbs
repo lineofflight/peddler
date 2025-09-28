@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class PointsGrantedDetail < Data
-        def self.new: (points_number: Integer?, points_monetary_value: Peddler::Types::Money?) -> instance
-                    | (Integer?, Peddler::Types::Money?) -> instance
+        def self.new: (points_number: Integer?, points_monetary_value: Peddler::Types::Money?) -> Peddler::Types::OrdersV0::PointsGrantedDetail
+                    | (Integer?, Peddler::Types::Money?) -> Peddler::Types::OrdersV0::PointsGrantedDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PointsGrantedDetail
 
         attr_reader points_number: Integer?
         attr_reader points_monetary_value: Peddler::Types::Money?

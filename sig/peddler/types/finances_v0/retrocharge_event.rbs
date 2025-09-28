@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class RetrochargeEvent < Data
-        def self.new: (retrocharge_event_type: String?, amazon_order_id: String?, posted_date: String?, base_tax: Peddler::Types::Money?, shipping_tax: Peddler::Types::Money?, marketplace_name: String?, retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> instance
-                    | (String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> instance
+        def self.new: (retrocharge_event_type: String?, amazon_order_id: String?, posted_date: String?, base_tax: Peddler::Types::Money?, shipping_tax: Peddler::Types::Money?, marketplace_name: String?, retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RetrochargeEvent
+                    | (String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RetrochargeEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RetrochargeEvent
 
         attr_reader retrocharge_event_type: String?
         attr_reader amazon_order_id: String?

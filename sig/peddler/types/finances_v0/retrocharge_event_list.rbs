@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class RetrochargeEventList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class RetrochargeEventList < Array[RetrochargeEvent]
+        def self.parse: (Array[untyped]) -> RetrochargeEventList
       end
     end
   end

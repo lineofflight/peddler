@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemImage < Data
-        def self.new: (variant: String?, link: String?, height: Integer?, width: Integer?) -> instance
-                    | (String?, String?, Integer?, Integer?) -> instance
+        def self.new: (variant: String?, link: String?, height: Integer?, width: Integer?) -> Peddler::Types::CatalogItems20201201::ItemImage
+                    | (String?, String?, Integer?, Integer?) -> Peddler::Types::CatalogItems20201201::ItemImage
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemImage
 
         attr_reader variant: String?
         attr_reader link: String?

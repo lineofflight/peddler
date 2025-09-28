@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Duration < Data
-        def self.new: (duration_unit: String?, duration_value: Integer?) -> instance
-                    | (String?, Integer?) -> instance
+        def self.new: (duration_unit: String?, duration_value: Integer?) -> Peddler::Types::VendorShipmentsV1::Duration
+                    | (String?, Integer?) -> Peddler::Types::VendorShipmentsV1::Duration
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Duration
 
         attr_reader duration_unit: String?
         attr_reader duration_value: Integer?

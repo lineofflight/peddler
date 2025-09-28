@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class CustomerInvoice < Data
-        def self.new: (purchase_order_number: String?, content: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (purchase_order_number: String?, content: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
+                    | (String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
 
         attr_reader purchase_order_number: String?
         attr_reader content: String?

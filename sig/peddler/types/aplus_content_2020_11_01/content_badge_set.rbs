@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class ContentBadgeSet < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> ContentBadgeSet
       end
     end
   end

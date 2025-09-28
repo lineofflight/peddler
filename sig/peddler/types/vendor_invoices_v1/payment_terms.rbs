@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class PaymentTerms < Data
-        def self.new: (type: String?, discount_percent: String?, discount_due_days: Float?, net_due_days: Float?) -> instance
-                    | (String?, String?, Float?, Float?) -> instance
+        def self.new: (type: String?, discount_percent: String?, discount_due_days: Float?, net_due_days: Float?) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
+                    | (String?, String?, Float?, Float?) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
 
         attr_reader type: String?
         attr_reader discount_percent: String?

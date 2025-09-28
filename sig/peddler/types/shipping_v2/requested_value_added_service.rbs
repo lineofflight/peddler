@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class RequestedValueAddedService < Data
-        def self.new: (id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (id: String?) -> Peddler::Types::ShippingV2::RequestedValueAddedService
+                    | (String?) -> Peddler::Types::ShippingV2::RequestedValueAddedService
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::RequestedValueAddedService
 
         attr_reader id: String?
 

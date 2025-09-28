@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class TaxClassification < Data
-        def self.new: (name: String?, value: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (name: String?, value: String?) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
+                    | (String?, String?) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::TaxClassification
 
         attr_reader name: String?
         attr_reader value: String?

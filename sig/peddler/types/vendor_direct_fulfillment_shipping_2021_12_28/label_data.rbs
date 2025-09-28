@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class LabelData < Data
-        def self.new: (package_identifier: String?, tracking_number: String?, ship_method: String?, ship_method_name: String?, content: String?) -> instance
-                    | (String?, String?, String?, String?, String?) -> instance
+        def self.new: (package_identifier: String?, tracking_number: String?, ship_method: String?, ship_method_name: String?, content: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
 
         attr_reader package_identifier: String?
         attr_reader tracking_number: String?

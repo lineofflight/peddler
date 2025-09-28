@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ProductPricingV0
-      class OffersList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class OffersList < Array[OfferType]
+        def self.parse: (Array[untyped]) -> OffersList
       end
     end
   end

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class AddAppointmentRequest < Data
-        def self.new: (appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?) -> instance
-                    | (Peddler::Types::ServicesV1::AppointmentTimeInput?) -> instance
+        def self.new: (appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?) -> Peddler::Types::ServicesV1::AddAppointmentRequest
+                    | (Peddler::Types::ServicesV1::AppointmentTimeInput?) -> Peddler::Types::ServicesV1::AddAppointmentRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AddAppointmentRequest
 
         attr_reader appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?
 

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class UpdateShipmentTrackingDetailsRequest < Data
-        def self.new: (tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> instance
-                    | (Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> instance
+        def self.new: (tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
+                    | (Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
 
         attr_reader tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?
 

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class GetShippingLabelResponse < Data
-        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelResponse
+                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelResponse
 
         attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ConfirmTransportationOptionsResponse < Data
-        def self.new: (operation_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (operation_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
+                    | (String?) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ConfirmTransportationOptionsResponse
 
         attr_reader operation_id: String?
 

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductFeesV0
       class GetMyFeesEstimateRequest < Data
-        def self.new: (fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?) -> instance
-                    | (Peddler::Types::ProductFeesV0::FeesEstimateRequest?) -> instance
+        def self.new: (fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimateRequest
+                    | (Peddler::Types::ProductFeesV0::FeesEstimateRequest?) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimateRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimateRequest
 
         attr_reader fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?
 

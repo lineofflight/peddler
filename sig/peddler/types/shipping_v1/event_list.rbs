@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV1
-      class EventList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class EventList < Array[Event]
+        def self.parse: (Array[untyped]) -> EventList
       end
     end
   end

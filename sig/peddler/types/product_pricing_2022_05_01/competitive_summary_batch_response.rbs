@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryBatchResponse < Data
-        def self.new: (responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> instance
-                    | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> instance
+        def self.new: (responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
+                    | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
 
         attr_reader responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?
 

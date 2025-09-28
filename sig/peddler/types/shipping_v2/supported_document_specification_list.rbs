@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class SupportedDocumentSpecificationList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class SupportedDocumentSpecificationList < Array[SupportedDocumentSpecification]
+        def self.parse: (Array[untyped]) -> SupportedDocumentSpecificationList
       end
     end
   end

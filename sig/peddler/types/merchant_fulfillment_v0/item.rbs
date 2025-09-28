@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Item < Data
-        def self.new: (order_item_id: String?, quantity: Integer?, item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, item_description: String?, transparency_code_list: Array[untyped]?, item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, hazmat: bool?, dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?) -> instance
-                    | (String?, Integer?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, Array[untyped]?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, bool?, Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?) -> instance
+        def self.new: (order_item_id: String?, quantity: Integer?, item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, item_description: String?, transparency_code_list: Array[untyped]?, item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, hazmat: bool?, dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?) -> Peddler::Types::MerchantFulfillmentV0::Item
+                    | (String?, Integer?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, Array[untyped]?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, bool?, Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?) -> Peddler::Types::MerchantFulfillmentV0::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Item
 
         attr_reader order_item_id: String?
         attr_reader quantity: Integer?

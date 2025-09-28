@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorTransactionStatusV1
       class Transaction < Data
-        def self.new: (transaction_id: String?, status: String?, errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> instance
-                    | (String?, String?, Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> instance
+        def self.new: (transaction_id: String?, status: String?, errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::Transaction
+                    | (String?, String?, Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::Transaction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorTransactionStatusV1::Transaction
 
         attr_reader transaction_id: String?
         attr_reader status: String?

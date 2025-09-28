@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetDeliveryOffersProduct < Data
-        def self.new: (product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, amount: Peddler::Types::FulfillmentOutbound20200701::Amount?) -> instance
-                    | (Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, Peddler::Types::FulfillmentOutbound20200701::Amount?) -> instance
+        def self.new: (product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, amount: Peddler::Types::FulfillmentOutbound20200701::Amount?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
+                    | (Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, Peddler::Types::FulfillmentOutbound20200701::Amount?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
 
         attr_reader product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?
         attr_reader amount: Peddler::Types::FulfillmentOutbound20200701::Amount?

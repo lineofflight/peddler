@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTrends < Data
-        def self.new: (positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> instance
-                    | (Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> instance
+        def self.new: (positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
+                    | (Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
 
         attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?
         attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class IneligibleRateList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class IneligibleRateList < Array[IneligibleRate]
+        def self.parse: (Array[untyped]) -> IneligibleRateList
       end
     end
   end

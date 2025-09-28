@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorOrdersV1
       class GetPurchaseOrderResponse < Data
-        def self.new: (payload: Peddler::Types::VendorOrdersV1::Order?, errors: Array[Peddler::Types::VendorOrdersV1::Error]?) -> instance
-                    | (Peddler::Types::VendorOrdersV1::Order?, Array[Peddler::Types::VendorOrdersV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::VendorOrdersV1::Order?, errors: Array[Peddler::Types::VendorOrdersV1::Error]?) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrderResponse
+                    | (Peddler::Types::VendorOrdersV1::Order?, Array[Peddler::Types::VendorOrdersV1::Error]?) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrderResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrderResponse
 
         attr_reader payload: Peddler::Types::VendorOrdersV1::Order?
         attr_reader errors: Array[Peddler::Types::VendorOrdersV1::Error]?

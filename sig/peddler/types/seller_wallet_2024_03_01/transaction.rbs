@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class Transaction < Data
-        def self.new: (transaction_id: String?, transaction_type: String?, transaction_status: String?, transaction_request_date: String?, expected_completion_date: String?, transaction_actual_completion_date: String?, last_update_date: String?, requester_name: String?, transaction_requester_source: String?, transaction_description: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_request_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, transaction_final_amount: Peddler::Types::Money?, transaction_failure_reason: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, Peddler::Types::Money?, String?) -> instance
+        def self.new: (transaction_id: String?, transaction_type: String?, transaction_status: String?, transaction_request_date: String?, expected_completion_date: String?, transaction_actual_completion_date: String?, last_update_date: String?, requester_name: String?, transaction_requester_source: String?, transaction_description: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_request_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, transaction_final_amount: Peddler::Types::Money?, transaction_failure_reason: String?) -> Peddler::Types::SellerWallet20240301::Transaction
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, Peddler::Types::Money?, String?) -> Peddler::Types::SellerWallet20240301::Transaction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Transaction
 
         attr_reader transaction_id: String?
         attr_reader transaction_type: String?

@@ -2,6 +2,8 @@
 
 require "peddler/types/orders_v0/payment_execution_detail_item"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module OrdersV0
@@ -9,9 +11,7 @@ module Peddler
       class PaymentExecutionDetailItemList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| PaymentExecutionDetailItem.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| PaymentExecutionDetailItem.parse(item) }) : new
           end
         end
       end

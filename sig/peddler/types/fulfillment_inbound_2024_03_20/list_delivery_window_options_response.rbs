@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListDeliveryWindowOptionsResponse < Data
-        def self.new: (delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> instance
+        def self.new: (delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListDeliveryWindowOptionsResponse
 
         attr_reader delivery_window_options: Array[Peddler::Types::FulfillmentInbound20240320::DeliveryWindowOption]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?

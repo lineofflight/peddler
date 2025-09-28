@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ListingsItemSubmissionResponse < Data
-        def self.new: (sku: String?, status: String?, submission_id: String?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?) -> instance
-                    | (String?, String?, String?, Array[Peddler::Types::ListingsItems20210801::Issue]?, Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?) -> instance
+        def self.new: (sku: String?, status: String?, submission_id: String?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
+                    | (String?, String?, String?, Array[Peddler::Types::ListingsItems20210801::Issue]?, Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
 
         attr_reader sku: String?
         attr_reader status: String?

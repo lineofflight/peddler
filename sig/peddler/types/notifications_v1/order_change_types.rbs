@@ -4,7 +4,7 @@ module Peddler
   module Types
     module NotificationsV1
       class OrderChangeTypes < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> OrderChangeTypes
       end
     end
   end

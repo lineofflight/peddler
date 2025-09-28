@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class SupportedDocumentDetail < Data
-        def self.new: (name: String?, mandatory: bool?) -> instance
-                    | (String?, bool?) -> instance
+        def self.new: (name: String?, mandatory: bool?) -> Peddler::Types::ShippingV2::SupportedDocumentDetail
+                    | (String?, bool?) -> Peddler::Types::ShippingV2::SupportedDocumentDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::SupportedDocumentDetail
 
         attr_reader name: String?
         attr_reader mandatory: bool?

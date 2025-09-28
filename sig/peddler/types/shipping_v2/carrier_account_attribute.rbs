@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class CarrierAccountAttribute < Data
-        def self.new: (attribute_name: String?, property_group: String?, value: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (attribute_name: String?, property_group: String?, value: String?) -> Peddler::Types::ShippingV2::CarrierAccountAttribute
+                    | (String?, String?, String?) -> Peddler::Types::ShippingV2::CarrierAccountAttribute
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CarrierAccountAttribute
 
         attr_reader attribute_name: String?
         attr_reader property_group: String?

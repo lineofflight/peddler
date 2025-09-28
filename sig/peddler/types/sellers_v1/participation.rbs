@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellersV1
       class Participation < Data
-        def self.new: (participating: bool?, has_suspended_listings: bool?) -> instance
-                    | (bool?, bool?) -> instance
+        def self.new: (participating: bool?, has_suspended_listings: bool?) -> Peddler::Types::SellersV1::Participation
+                    | (bool?, bool?) -> Peddler::Types::SellersV1::Participation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Participation
 
         attr_reader participating: bool?
         attr_reader has_suspended_listings: bool?

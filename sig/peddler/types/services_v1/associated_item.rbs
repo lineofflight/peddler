@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class AssociatedItem < Data
-        def self.new: (asin: String?, title: String?, quantity: Integer?, order_id: String?, item_status: String?, brand_name: String?, item_delivery: Peddler::Types::ServicesV1::ItemDelivery?) -> instance
-                    | (String?, String?, Integer?, String?, String?, String?, Peddler::Types::ServicesV1::ItemDelivery?) -> instance
+        def self.new: (asin: String?, title: String?, quantity: Integer?, order_id: String?, item_status: String?, brand_name: String?, item_delivery: Peddler::Types::ServicesV1::ItemDelivery?) -> Peddler::Types::ServicesV1::AssociatedItem
+                    | (String?, String?, Integer?, String?, String?, String?, Peddler::Types::ServicesV1::ItemDelivery?) -> Peddler::Types::ServicesV1::AssociatedItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AssociatedItem
 
         attr_reader asin: String?
         attr_reader title: String?

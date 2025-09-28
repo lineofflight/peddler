@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class TransparencyCodeList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> TransparencyCodeList
       end
     end
   end

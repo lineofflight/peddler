@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MessagingV1
       class GetAttributesResponse < Data
-        def self.new: (buyer: Hash[untyped, untyped]?, errors: Array[Peddler::Types::MessagingV1::Error]?) -> instance
-                    | (Hash[untyped, untyped]?, Array[Peddler::Types::MessagingV1::Error]?) -> instance
+        def self.new: (buyer: Hash[untyped, untyped]?, errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetAttributesResponse
+                    | (Hash[untyped, untyped]?, Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetAttributesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::GetAttributesResponse
 
         attr_reader buyer: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::Types::MessagingV1::Error]?

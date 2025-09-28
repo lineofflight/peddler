@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemClassificationSalesRank < Data
-        def self.new: (classification_id: String?, title: String?, link: String?, rank: Integer?) -> instance
-                    | (String?, String?, String?, Integer?) -> instance
+        def self.new: (classification_id: String?, title: String?, link: String?, rank: Integer?) -> Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank
+                    | (String?, String?, String?, Integer?) -> Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemClassificationSalesRank
 
         attr_reader classification_id: String?
         attr_reader title: String?

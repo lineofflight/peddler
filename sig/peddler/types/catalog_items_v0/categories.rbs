@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItemsV0
       class Categories < Data
-        def self.new: (product_category_id: String?, product_category_name: String?, parent: Hash[untyped, untyped]?) -> instance
-                    | (String?, String?, Hash[untyped, untyped]?) -> instance
+        def self.new: (product_category_id: String?, product_category_name: String?, parent: Hash[untyped, untyped]?) -> Peddler::Types::CatalogItemsV0::Categories
+                    | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::CatalogItemsV0::Categories
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItemsV0::Categories
 
         attr_reader product_category_id: String?
         attr_reader product_category_name: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class TransactionReference < Data
-        def self.new: (transaction_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference
 
         attr_reader transaction_id: String?
 

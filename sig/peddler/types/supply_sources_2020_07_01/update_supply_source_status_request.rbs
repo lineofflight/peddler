@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class UpdateSupplySourceStatusRequest < Data
-        def self.new: (status: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (status: String?) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceStatusRequest
+                    | (String?) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceStatusRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceStatusRequest
 
         attr_reader status: String?
 

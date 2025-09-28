@@ -2,6 +2,8 @@
 
 require "peddler/types/vendor_direct_fulfillment_orders_2021_12_28/tax_details"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
@@ -9,9 +11,7 @@ module Peddler
       class TaxLineItem < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| TaxDetails.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| TaxDetails.parse(item) }) : new
           end
         end
       end

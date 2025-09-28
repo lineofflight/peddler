@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::ListingsItems20210801::Error]?) -> instance
-                    | (Array[Peddler::Types::ListingsItems20210801::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::ListingsItems20210801::Error]?) -> Peddler::Types::ListingsItems20210801::ErrorList
+                    | (Array[Peddler::Types::ListingsItems20210801::Error]?) -> Peddler::Types::ListingsItems20210801::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ErrorList
 
         attr_reader errors: Array[Peddler::Types::ListingsItems20210801::Error]?
 

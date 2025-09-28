@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module Finances20240619
-      class Contexts < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class Contexts < Array[Context]
+        def self.parse: (Array[untyped]) -> Contexts
       end
     end
   end

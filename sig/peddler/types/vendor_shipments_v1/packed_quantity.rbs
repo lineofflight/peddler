@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class PackedQuantity < Data
-        def self.new: (amount: Integer?, unit_of_measure: String?, unit_size: Integer?) -> instance
-                    | (Integer?, String?, Integer?) -> instance
+        def self.new: (amount: Integer?, unit_of_measure: String?, unit_size: Integer?) -> Peddler::Types::VendorShipmentsV1::PackedQuantity
+                    | (Integer?, String?, Integer?) -> Peddler::Types::VendorShipmentsV1::PackedQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PackedQuantity
 
         attr_reader amount: Integer?
         attr_reader unit_of_measure: String?

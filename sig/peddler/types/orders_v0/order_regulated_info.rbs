@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class OrderRegulatedInfo < Data
-        def self.new: (amazon_order_id: String?, regulated_information: Peddler::Types::OrdersV0::RegulatedInformation?, requires_dosage_label: bool?, regulated_order_verification_status: Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus?) -> instance
-                    | (String?, Peddler::Types::OrdersV0::RegulatedInformation?, bool?, Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus?) -> instance
+        def self.new: (amazon_order_id: String?, regulated_information: Peddler::Types::OrdersV0::RegulatedInformation?, requires_dosage_label: bool?, regulated_order_verification_status: Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus?) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
+                    | (String?, Peddler::Types::OrdersV0::RegulatedInformation?, bool?, Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus?) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
 
         attr_reader amazon_order_id: String?
         attr_reader regulated_information: Peddler::Types::OrdersV0::RegulatedInformation?

@@ -2,6 +2,8 @@
 
 require "peddler/types/catalog_items_2020_12_01/item_images_by_marketplace"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module CatalogItems20201201
@@ -10,9 +12,7 @@ module Peddler
       class ItemImages < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| ItemImagesByMarketplace.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| ItemImagesByMarketplace.parse(item) }) : new
           end
         end
       end

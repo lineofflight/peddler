@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class SqsResource < Data
-        def self.new: (arn: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (arn: String?) -> Peddler::Types::NotificationsV1::SqsResource
+                    | (String?) -> Peddler::Types::NotificationsV1::SqsResource
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::SqsResource
 
         attr_reader arn: String?
 

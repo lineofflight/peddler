@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class CreateContainerLabelRequest < Data
-        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, carrier_id: String?, vendor_container_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?) -> instance
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, carrier_id: String?, vendor_container_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
 
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?

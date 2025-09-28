@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class OneClickShipmentValueAddedServiceDetails < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class OneClickShipmentValueAddedServiceDetails < Array[OneClickShipmentValueAddedService]
+        def self.parse: (Array[untyped]) -> OneClickShipmentValueAddedServiceDetails
       end
     end
   end

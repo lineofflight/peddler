@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Expiry < Data
-        def self.new: (manufacturer_date: String?, expiry_date: String?, expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?) -> instance
-                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Duration?) -> instance
+        def self.new: (manufacturer_date: String?, expiry_date: String?, expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?) -> Peddler::Types::VendorShipmentsV1::Expiry
+                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Duration?) -> Peddler::Types::VendorShipmentsV1::Expiry
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Expiry
 
         attr_reader manufacturer_date: String?
         attr_reader expiry_date: String?

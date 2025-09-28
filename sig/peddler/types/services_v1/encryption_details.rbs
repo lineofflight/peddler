@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class EncryptionDetails < Data
-        def self.new: (standard: String?, initialization_vector: String?, key: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (standard: String?, initialization_vector: String?, key: String?) -> Peddler::Types::ServicesV1::EncryptionDetails
+                    | (String?, String?, String?) -> Peddler::Types::ServicesV1::EncryptionDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::EncryptionDetails
 
         attr_reader standard: String?
         attr_reader initialization_vector: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Invoices20240619
       class Invoice < Data
-        def self.new: (date: String?, error_code: String?, external_invoice_id: String?, gov_response: String?, id: String?, invoice_type: String?, series: String?, status: String?, transaction_ids: Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, transaction_type: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, String?) -> instance
+        def self.new: (date: String?, error_code: String?, external_invoice_id: String?, gov_response: String?, id: String?, invoice_type: String?, series: String?, status: String?, transaction_ids: Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, transaction_type: String?) -> Peddler::Types::Invoices20240619::Invoice
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, String?) -> Peddler::Types::Invoices20240619::Invoice
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::Invoice
 
         attr_reader date: String?
         attr_reader error_code: String?

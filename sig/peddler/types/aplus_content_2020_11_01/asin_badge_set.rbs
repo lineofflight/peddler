@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class AsinBadgeSet < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> AsinBadgeSet
       end
     end
   end

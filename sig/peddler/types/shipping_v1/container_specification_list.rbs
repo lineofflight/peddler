@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV1
-      class ContainerSpecificationList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ContainerSpecificationList < Array[ContainerSpecification]
+        def self.parse: (Array[untyped]) -> ContainerSpecificationList
       end
     end
   end

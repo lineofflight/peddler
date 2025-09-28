@@ -2,6 +2,8 @@
 
 require "peddler/types/reports_2021_06_30/report"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module Reports20210630
@@ -9,9 +11,7 @@ module Peddler
       class ReportList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| Report.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| Report.parse(item) }) : new
           end
         end
       end

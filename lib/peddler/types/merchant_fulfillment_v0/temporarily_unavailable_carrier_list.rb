@@ -2,6 +2,8 @@
 
 require "peddler/types/merchant_fulfillment_v0/temporarily_unavailable_carrier"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -9,9 +11,7 @@ module Peddler
       class TemporarilyUnavailableCarrierList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| TemporarilyUnavailableCarrier.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| TemporarilyUnavailableCarrier.parse(item) }) : new
           end
         end
       end

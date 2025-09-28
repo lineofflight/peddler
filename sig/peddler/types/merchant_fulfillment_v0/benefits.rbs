@@ -4,15 +4,15 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Benefits < Data
-        def self.new: (included_benefits: Array[untyped]?, excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?) -> instance
-                    | (Array[untyped]?, Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?) -> instance
+        def self.new: (included_benefits: Array[String]?, excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?) -> Peddler::Types::MerchantFulfillmentV0::Benefits
+                    | (Array[String]?, Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?) -> Peddler::Types::MerchantFulfillmentV0::Benefits
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Benefits
 
-        attr_reader included_benefits: Array[untyped]?
+        attr_reader included_benefits: Array[String]?
         attr_reader excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]?
 
-        def to_h: () -> { included_benefits: Array[untyped]?, excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]? }
+        def to_h: () -> { included_benefits: Array[String]?, excluded_benefits: Array[Peddler::Types::MerchantFulfillmentV0::ExcludedBenefit]? }
       end
     end
   end

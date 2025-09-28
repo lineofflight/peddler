@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemSearchResults < Data
-        def self.new: (number_of_results: Integer?, pagination: Peddler::Types::CatalogItems20201201::Pagination?, refinements: Peddler::Types::CatalogItems20201201::Refinements?, items: Array[Peddler::Types::CatalogItems20201201::Item]?) -> instance
-                    | (Integer?, Peddler::Types::CatalogItems20201201::Pagination?, Peddler::Types::CatalogItems20201201::Refinements?, Array[Peddler::Types::CatalogItems20201201::Item]?) -> instance
+        def self.new: (number_of_results: Integer?, pagination: Peddler::Types::CatalogItems20201201::Pagination?, refinements: Peddler::Types::CatalogItems20201201::Refinements?, items: Array[Peddler::Types::CatalogItems20201201::Item]?) -> Peddler::Types::CatalogItems20201201::ItemSearchResults
+                    | (Integer?, Peddler::Types::CatalogItems20201201::Pagination?, Peddler::Types::CatalogItems20201201::Refinements?, Array[Peddler::Types::CatalogItems20201201::Item]?) -> Peddler::Types::CatalogItems20201201::ItemSearchResults
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemSearchResults
 
         attr_reader number_of_results: Integer?
         attr_reader pagination: Peddler::Types::CatalogItems20201201::Pagination?

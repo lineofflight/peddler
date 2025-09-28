@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetShipmentItemsResult < Data
-        def self.new: (item_data: Array[Peddler::Types::FulfillmentInboundV0::InboundShipmentItem]?, next_token: String?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInboundV0::InboundShipmentItem]?, String?) -> instance
+        def self.new: (item_data: Array[Peddler::Types::FulfillmentInboundV0::InboundShipmentItem]?, next_token: String?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult
+                    | (Array[Peddler::Types::FulfillmentInboundV0::InboundShipmentItem]?, String?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult
 
         attr_reader item_data: Array[Peddler::Types::FulfillmentInboundV0::InboundShipmentItem]?
         attr_reader next_token: String?

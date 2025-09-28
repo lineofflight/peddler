@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::ShippingV2::Error]?) -> instance
-                    | (Array[Peddler::Types::ShippingV2::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::ShippingV2::Error]?) -> Peddler::Types::ShippingV2::ErrorList
+                    | (Array[Peddler::Types::ShippingV2::Error]?) -> Peddler::Types::ShippingV2::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ErrorList
 
         attr_reader errors: Array[Peddler::Types::ShippingV2::Error]?
 

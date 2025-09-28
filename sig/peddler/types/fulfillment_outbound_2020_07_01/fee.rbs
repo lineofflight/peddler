@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class Fee < Data
-        def self.new: (name: String?, amount: Peddler::Types::Money?) -> instance
-                    | (String?, Peddler::Types::Money?) -> instance
+        def self.new: (name: String?, amount: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
+                    | (String?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Fee
 
         attr_reader name: String?
         attr_reader amount: Peddler::Types::Money?

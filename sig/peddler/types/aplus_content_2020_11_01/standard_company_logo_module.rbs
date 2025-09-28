@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardCompanyLogoModule < Data
-        def self.new: (company_logo: Peddler::Types::AplusContent20201101::ImageComponent?) -> instance
-                    | (Peddler::Types::AplusContent20201101::ImageComponent?) -> instance
+        def self.new: (company_logo: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
+                    | (Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardCompanyLogoModule
 
         attr_reader company_logo: Peddler::Types::AplusContent20201101::ImageComponent?
 

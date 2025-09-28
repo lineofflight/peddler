@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorOrdersV1
       class TransactionId < Data
-        def self.new: (transaction_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (transaction_id: String?) -> Peddler::Types::VendorOrdersV1::TransactionId
+                    | (String?) -> Peddler::Types::VendorOrdersV1::TransactionId
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::TransactionId
 
         attr_reader transaction_id: String?
 

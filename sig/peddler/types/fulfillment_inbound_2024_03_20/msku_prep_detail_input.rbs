@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class MskuPrepDetailInput < Data
-        def self.new: (msku: String?, prep_category: String?, prep_types: Array[untyped]?) -> instance
-                    | (String?, String?, Array[untyped]?) -> instance
+        def self.new: (msku: String?, prep_category: String?, prep_types: Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
+                    | (String?, String?, Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetailInput
 
         attr_reader msku: String?
         attr_reader prep_category: String?

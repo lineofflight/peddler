@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class GetRatesResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV1::GetRatesResult?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> instance
-                    | (Peddler::Types::ShippingV1::GetRatesResult?, Array[Peddler::Types::ShippingV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::ShippingV1::GetRatesResult?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetRatesResponse
+                    | (Peddler::Types::ShippingV1::GetRatesResult?, Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetRatesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::GetRatesResponse
 
         attr_reader payload: Peddler::Types::ShippingV1::GetRatesResult?
         attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class ShipsFromType < Data
-        def self.new: (state: String?, country: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (state: String?, country: String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
+                    | (String?, String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ShipsFromType
 
         attr_reader state: String?
         attr_reader country: String?

@@ -2,6 +2,8 @@
 
 require "peddler/types/vendor_orders_v1/order_item_status"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module VendorOrdersV1
@@ -9,9 +11,7 @@ module Peddler
       class ItemStatus < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| OrderItemStatus.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| OrderItemStatus.parse(item) }) : new
           end
         end
       end

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ReviewTrendMetrics < Data
-        def self.new: (occurrence_percentage: Float?) -> instance
-                    | (Float?) -> instance
+        def self.new: (occurrence_percentage: Float?) -> Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics
+                    | (Float?) -> Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics
 
         attr_reader occurrence_percentage: Float?
 

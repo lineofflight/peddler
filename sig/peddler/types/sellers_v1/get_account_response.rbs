@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellersV1
       class GetAccountResponse < Data
-        def self.new: (payload: Peddler::Types::SellersV1::Account?, errors: Array[Peddler::Types::SellersV1::Error]?) -> instance
-                    | (Peddler::Types::SellersV1::Account?, Array[Peddler::Types::SellersV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::SellersV1::Account?, errors: Array[Peddler::Types::SellersV1::Error]?) -> Peddler::Types::SellersV1::GetAccountResponse
+                    | (Peddler::Types::SellersV1::Account?, Array[Peddler::Types::SellersV1::Error]?) -> Peddler::Types::SellersV1::GetAccountResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::GetAccountResponse
 
         attr_reader payload: Peddler::Types::SellersV1::Account?
         attr_reader errors: Array[Peddler::Types::SellersV1::Error]?

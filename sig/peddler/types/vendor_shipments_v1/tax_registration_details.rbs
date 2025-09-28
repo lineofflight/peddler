@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TaxRegistrationDetails < Data
-        def self.new: (tax_registration_type: String?, tax_registration_number: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (tax_registration_type: String?, tax_registration_number: String?) -> Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails
 
         attr_reader tax_registration_type: String?
         attr_reader tax_registration_number: String?

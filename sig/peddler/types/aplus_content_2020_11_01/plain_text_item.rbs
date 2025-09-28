@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class PlainTextItem < Data
-        def self.new: (position: Integer?, value: String?) -> instance
-                    | (Integer?, String?) -> instance
+        def self.new: (position: Integer?, value: String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
+                    | (Integer?, String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::PlainTextItem
 
         attr_reader position: Integer?
         attr_reader value: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class InvoiceItem < Data
-        def self.new: (item_sequence_number: Integer?, amazon_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?, net_cost: Peddler::Types::Money?, net_cost_unit_of_measure: String?, purchase_order_number: String?, hsn_code: String?, credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?) -> instance
-                    | (Integer?, String?, String?, Peddler::Types::VendorInvoicesV1::ItemQuantity?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?) -> instance
+        def self.new: (item_sequence_number: Integer?, amazon_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?, net_cost: Peddler::Types::Money?, net_cost_unit_of_measure: String?, purchase_order_number: String?, hsn_code: String?, credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
+                    | (Integer?, String?, String?, Peddler::Types::VendorInvoicesV1::ItemQuantity?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
 
         attr_reader item_sequence_number: Integer?
         attr_reader amazon_product_identifier: String?

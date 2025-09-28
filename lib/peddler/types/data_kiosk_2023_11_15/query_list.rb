@@ -2,6 +2,8 @@
 
 require "peddler/types/data_kiosk_2023_11_15/query"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module DataKiosk20231115
@@ -9,9 +11,7 @@ module Peddler
       class QueryList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| Query.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| Query.parse(item) }) : new
           end
         end
       end

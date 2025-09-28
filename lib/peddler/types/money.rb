@@ -4,7 +4,7 @@ module Peddler
   module Types
     Money = Data.define(:amount, :currency_code) do
       class << self
-        NO_SUBUNITS = ["JPY"].freeze
+        NO_SUBUNITS = ["JPY"].freeze # steep:ignore
         private_constant :NO_SUBUNITS
 
         def parse(value)
@@ -19,15 +19,17 @@ module Peddler
             value["currencyAmount"] || value["currency_amount"] || value["value"]
           # Convert to string to ensure BigDecimal compatibility across Ruby versions
           decimal_amount = BigDecimal(amount_value.to_s)
-          amount = NO_SUBUNITS.include?(currency_code) ? decimal_amount.to_i.to_s : format("%.2f", decimal_amount)
+          amount = NO_SUBUNITS.include?(currency_code) ? decimal_amount.to_i.to_s : format("%.2f", decimal_amount) # steep:ignore
 
           new(amount:, currency_code:)
         end
       end
 
+      # steep:ignore:start
       def to_d
         BigDecimal(amount)
       end
+      # steep:ignore:end
     end
   end
 end

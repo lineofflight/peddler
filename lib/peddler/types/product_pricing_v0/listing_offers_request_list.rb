@@ -2,6 +2,8 @@
 
 require "peddler/types/product_pricing_v0/listing_offers_request"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module ProductPricingV0
@@ -9,9 +11,7 @@ module Peddler
       class ListingOffersRequestList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| ListingOffersRequest.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| ListingOffersRequest.parse(item) }) : new
           end
         end
       end

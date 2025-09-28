@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module AplusContent20201101
-      class DecoratorSet < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class DecoratorSet < Array[Decorator]
+        def self.parse: (Array[untyped]) -> DecoratorSet
       end
     end
   end

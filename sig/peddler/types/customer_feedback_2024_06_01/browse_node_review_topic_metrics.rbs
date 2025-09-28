@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTopicMetrics < Data
-        def self.new: (occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?) -> instance
-                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?) -> instance
+        def self.new: (occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
 
         attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?
         attr_reader star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?

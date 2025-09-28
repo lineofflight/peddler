@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOffersRequestSort < Data
-        def self.new: (order: String?, key: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (order: String?, key: String?) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
+                    | (String?, String?) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequestSort
 
         attr_reader order: String?
         attr_reader key: String?

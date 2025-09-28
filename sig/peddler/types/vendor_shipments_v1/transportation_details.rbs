@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportationDetails < Data
-        def self.new: (ship_mode: String?, transportation_mode: String?, shipped_date: String?, estimated_delivery_date: String?, shipment_delivery_date: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, bill_of_lading_number: String?) -> instance
-                    | (String?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?) -> instance
+        def self.new: (ship_mode: String?, transportation_mode: String?, shipped_date: String?, estimated_delivery_date: String?, shipment_delivery_date: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, bill_of_lading_number: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+                    | (String?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
 
         attr_reader ship_mode: String?
         attr_reader transportation_mode: String?

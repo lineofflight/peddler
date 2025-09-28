@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class CustomPlacementInput < Data
-        def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, warehouse_id: String?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> instance
+        def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CustomPlacementInput
 
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
         attr_reader warehouse_id: String?

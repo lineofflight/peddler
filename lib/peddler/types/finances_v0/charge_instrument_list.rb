@@ -2,6 +2,8 @@
 
 require "peddler/types/finances_v0/charge_instrument"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module FinancesV0
@@ -9,9 +11,7 @@ module Peddler
       class ChargeInstrumentList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| ChargeInstrument.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| ChargeInstrument.parse(item) }) : new
           end
         end
       end

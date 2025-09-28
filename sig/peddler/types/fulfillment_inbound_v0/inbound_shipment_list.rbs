@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FulfillmentInboundV0
-      class InboundShipmentList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class InboundShipmentList < Array[InboundShipmentInfo]
+        def self.parse: (Array[untyped]) -> InboundShipmentList
       end
     end
   end

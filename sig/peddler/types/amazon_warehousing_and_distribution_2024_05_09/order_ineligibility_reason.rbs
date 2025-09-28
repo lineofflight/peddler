@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class OrderIneligibilityReason < Data
-        def self.new: (code: String?, description: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (code: String?, description: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
 
         attr_reader code: String?
         attr_reader description: String?

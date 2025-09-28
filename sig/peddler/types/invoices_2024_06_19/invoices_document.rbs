@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Invoices20240619
       class InvoicesDocument < Data
-        def self.new: (invoices_document_id: String?, invoices_document_url: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (invoices_document_id: String?, invoices_document_url: String?) -> Peddler::Types::Invoices20240619::InvoicesDocument
+                    | (String?, String?) -> Peddler::Types::Invoices20240619::InvoicesDocument
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::InvoicesDocument
 
         attr_reader invoices_document_id: String?
         attr_reader invoices_document_url: String?

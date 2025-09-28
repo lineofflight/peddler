@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class CarrierAccountInputsList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class CarrierAccountInputsList < Array[CarrierAccountInput]
+        def self.parse: (Array[untyped]) -> CarrierAccountInputsList
       end
     end
   end

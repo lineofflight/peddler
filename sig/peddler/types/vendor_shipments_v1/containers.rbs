@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Containers < Data
-        def self.new: (container_type: String?, container_sequence_number: String?, container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, tracking_number: String?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, tier: Integer?, block: Integer?, inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?) -> instance
-                    | (String?, String?, Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, String?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::Weight?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, Array[Peddler::Types::VendorShipmentsV1::PackedItems]?) -> instance
+        def self.new: (container_type: String?, container_sequence_number: String?, container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, tracking_number: String?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, tier: Integer?, block: Integer?, inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?) -> Peddler::Types::VendorShipmentsV1::Containers
+                    | (String?, String?, Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, String?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::Weight?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, Array[Peddler::Types::VendorShipmentsV1::PackedItems]?) -> Peddler::Types::VendorShipmentsV1::Containers
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Containers
 
         attr_reader container_type: String?
         attr_reader container_sequence_number: String?

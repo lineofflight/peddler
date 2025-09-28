@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class BuyBoxPriceType < Data
-        def self.new: (condition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, seller_id: String?) -> instance
-                    | (String?, String?, Integer?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, String?) -> instance
+        def self.new: (condition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, seller_id: String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
+                    | (String?, String?, Integer?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
 
         attr_reader condition: String?
         attr_reader offer_type: String?

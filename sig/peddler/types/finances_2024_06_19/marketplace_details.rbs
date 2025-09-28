@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Finances20240619
       class MarketplaceDetails < Data
-        def self.new: (marketplace_id: String?, marketplace_name: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (marketplace_id: String?, marketplace_name: String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
+                    | (String?, String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::MarketplaceDetails
 
         attr_reader marketplace_id: String?
         attr_reader marketplace_name: String?

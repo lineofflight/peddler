@@ -11,8 +11,8 @@ module Peddler
       # (for example, `CLAIMS_PROTECTED`) when sellers purchase shipping through Amazon. Benefit details are made
       # available for any shipment placed on or after January 1st 2024 00:00 UTC.
       Benefits = Structure.new do
-        # @return [Array]
-        attribute(:included_benefits, Array, from: "IncludedBenefits")
+        # @return [Array<String>]
+        attribute(:included_benefits, [String], from: "IncludedBenefits")
 
         # @return [Array<ExcludedBenefit>]
         attribute(:excluded_benefits, [ExcludedBenefit], from: "ExcludedBenefits")

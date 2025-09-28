@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class BatchResponse < Data
-        def self.new: (headers: Peddler::Types::ProductPricing20220501::HttpHeaders?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> instance
-                    | (Peddler::Types::ProductPricing20220501::HttpHeaders?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> instance
+        def self.new: (headers: Peddler::Types::ProductPricing20220501::HttpHeaders?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
+                    | (Peddler::Types::ProductPricing20220501::HttpHeaders?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::BatchResponse
 
         attr_reader headers: Peddler::Types::ProductPricing20220501::HttpHeaders?
         attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?

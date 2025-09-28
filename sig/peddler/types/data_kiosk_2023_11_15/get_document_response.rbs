@@ -4,10 +4,10 @@ module Peddler
   module Types
     module DataKiosk20231115
       class GetDocumentResponse < Data
-        def self.new: (document_id: String?, document_url: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (document_id: String?, document_url: String?) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
+                    | (String?, String?) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::GetDocumentResponse
 
         attr_reader document_id: String?
         attr_reader document_url: String?

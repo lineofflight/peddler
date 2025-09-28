@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class PackageGroupingInput < Data
-        def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, packing_group_id: String?, shipment_id: String?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, String?, String?) -> instance
+        def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, packing_group_id: String?, shipment_id: String?) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput
 
         attr_reader boxes: Array[Peddler::Types::FulfillmentInbound20240320::BoxInput]?
         attr_reader packing_group_id: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class ASINIdentifier < Data
-        def self.new: (marketplace_id: String?, asin: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (marketplace_id: String?, asin: String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
+                    | (String?, String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ASINIdentifier
 
         attr_reader marketplace_id: String?
         attr_reader asin: String?

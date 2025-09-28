@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class PrimeInformationType < Data
-        def self.new: (prime: bool?, national_prime: bool?) -> instance
-                    | (bool?, bool?) -> instance
+        def self.new: (prime: bool?, national_prime: bool?) -> Peddler::Types::ProductPricingV0::PrimeInformationType
+                    | (bool?, bool?) -> Peddler::Types::ProductPricingV0::PrimeInformationType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::PrimeInformationType
 
         attr_reader prime: bool?
         attr_reader national_prime: bool?

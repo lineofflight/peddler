@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class UpdateScheduleRequest < Data
-        def self.new: (schedules: Array[Peddler::Types::ServicesV1::AvailabilityRecord]?) -> instance
-                    | (Array[Peddler::Types::ServicesV1::AvailabilityRecord]?) -> instance
+        def self.new: (schedules: Array[Peddler::Types::ServicesV1::AvailabilityRecord]?) -> Peddler::Types::ServicesV1::UpdateScheduleRequest
+                    | (Array[Peddler::Types::ServicesV1::AvailabilityRecord]?) -> Peddler::Types::ServicesV1::UpdateScheduleRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::UpdateScheduleRequest
 
         attr_reader schedules: Array[Peddler::Types::ServicesV1::AvailabilityRecord]?
 

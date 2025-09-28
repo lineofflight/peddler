@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class ClientReferenceDetails < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ClientReferenceDetails < Array[ClientReferenceDetail]
+        def self.parse: (Array[untyped]) -> ClientReferenceDetails
       end
     end
   end

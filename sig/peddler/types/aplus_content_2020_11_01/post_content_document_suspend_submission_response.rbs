@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class PostContentDocumentSuspendSubmissionResponse < Data
-        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> instance
-                    | (Array[Peddler::Types::AplusContent20201101::Error]?) -> instance
+        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
+                    | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
 
         attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
 

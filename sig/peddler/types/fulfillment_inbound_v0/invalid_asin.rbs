@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class InvalidASIN < Data
-        def self.new: (asin: String?, error_reason: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (asin: String?, error_reason: String?) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
+                    | (String?, String?) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
 
         attr_reader asin: String?
         attr_reader error_reason: String?

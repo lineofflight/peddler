@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class NotificationEmailList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> NotificationEmailList
       end
     end
   end

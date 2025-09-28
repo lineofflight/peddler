@@ -2,6 +2,8 @@
 
 require "peddler/types/product_fees_v0/fees_estimate_result"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module ProductFeesV0
@@ -9,9 +11,7 @@ module Peddler
       class GetMyFeesEstimatesResponse < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| FeesEstimateResult.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| FeesEstimateResult.parse(item) }) : new
           end
         end
       end

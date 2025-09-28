@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOfferMetricsResponse < Data
-        def self.new: (offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> instance
-                    | (Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> instance
+        def self.new: (offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
+                    | (Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponse
 
         attr_reader offers: Array[Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer]?
         attr_reader pagination: Peddler::Types::Replenishment20221107::PaginationResponse?

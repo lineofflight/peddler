@@ -41,8 +41,8 @@ module Peddler
         # @return [Money] The total of all promotional discounts in the offer.
         attribute(:promotion_discount, Money, from: "PromotionDiscount")
 
-        # @return [Array] The list of serial numbers.
-        attribute(:serial_numbers, Array, from: "SerialNumbers")
+        # @return [Array<String>] The list of serial numbers.
+        attribute(:serial_numbers, [String], from: "SerialNumbers")
       end
     end
   end

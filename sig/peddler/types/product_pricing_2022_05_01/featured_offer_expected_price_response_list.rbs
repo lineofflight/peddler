@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ProductPricing20220501
-      class FeaturedOfferExpectedPriceResponseList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class FeaturedOfferExpectedPriceResponseList < Array[FeaturedOfferExpectedPriceResponse]
+        def self.parse: (Array[untyped]) -> FeaturedOfferExpectedPriceResponseList
       end
     end
   end

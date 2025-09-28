@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class Decorator < Data
-        def self.new: (type: String?, offset: Integer?, length: Integer?, depth: Integer?) -> instance
-                    | (String?, Integer?, Integer?, Integer?) -> instance
+        def self.new: (type: String?, offset: Integer?, length: Integer?, depth: Integer?) -> Peddler::Types::AplusContent20201101::Decorator
+                    | (String?, Integer?, Integer?, Integer?) -> Peddler::Types::AplusContent20201101::Decorator
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::Decorator
 
         attr_reader type: String?
         attr_reader offset: Integer?

@@ -2,6 +2,8 @@
 
 require "peddler/types/fulfillment_inbound_v0/amazon_prep_fees_details"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module FulfillmentInboundV0
@@ -9,9 +11,7 @@ module Peddler
       class AmazonPrepFeesDetailsList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| AmazonPrepFeesDetails.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| AmazonPrepFeesDetails.parse(item) }) : new
           end
         end
       end

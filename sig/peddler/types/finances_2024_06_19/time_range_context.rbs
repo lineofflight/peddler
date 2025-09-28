@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Finances20240619
       class TimeRangeContext < Data
-        def self.new: (start_time: String?, end_time: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (start_time: String?, end_time: String?) -> Peddler::Types::Finances20240619::TimeRangeContext
+                    | (String?, String?) -> Peddler::Types::Finances20240619::TimeRangeContext
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::TimeRangeContext
 
         attr_reader start_time: String?
         attr_reader end_time: String?

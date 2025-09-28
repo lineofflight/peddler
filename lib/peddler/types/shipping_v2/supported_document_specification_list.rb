@@ -2,6 +2,8 @@
 
 require "peddler/types/shipping_v2/supported_document_specification"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module ShippingV2
@@ -9,9 +11,7 @@ module Peddler
       class SupportedDocumentSpecificationList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| SupportedDocumentSpecification.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| SupportedDocumentSpecification.parse(item) }) : new
           end
         end
       end

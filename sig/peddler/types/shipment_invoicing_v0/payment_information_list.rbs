@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShipmentInvoicingV0
-      class PaymentInformationList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class PaymentInformationList < Array[PaymentInformation]
+        def self.parse: (Array[untyped]) -> PaymentInformationList
       end
     end
   end

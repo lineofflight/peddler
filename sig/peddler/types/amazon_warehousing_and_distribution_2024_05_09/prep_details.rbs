@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class PrepDetails < Data
-        def self.new: (label_owner: String?, prep_category: String?, prep_instructions: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, prep_owner: String?) -> instance
-                    | (String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, String?) -> instance
+        def self.new: (label_owner: String?, prep_category: String?, prep_instructions: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, prep_owner: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails
+                    | (String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails
 
         attr_reader label_owner: String?
         attr_reader prep_category: String?

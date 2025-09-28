@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemSummaryByMarketplace < Data
-        def self.new: (marketplace_id: String?, asin: String?, product_type: String?, condition_type: String?, status: Array[String]?, fn_sku: String?, item_name: String?, created_date: String?, last_updated_date: String?, main_image: Peddler::Types::ListingsItems20210801::ItemImage?) -> instance
-                    | (String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, Peddler::Types::ListingsItems20210801::ItemImage?) -> instance
+        def self.new: (marketplace_id: String?, asin: String?, product_type: String?, condition_type: String?, status: Array[String]?, fn_sku: String?, item_name: String?, created_date: String?, last_updated_date: String?, main_image: Peddler::Types::ListingsItems20210801::ItemImage?) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
+                    | (String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, Peddler::Types::ListingsItems20210801::ItemImage?) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
 
         attr_reader marketplace_id: String?
         attr_reader asin: String?

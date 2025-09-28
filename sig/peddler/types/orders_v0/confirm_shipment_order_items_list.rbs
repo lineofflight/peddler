@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module OrdersV0
-      class ConfirmShipmentOrderItemsList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ConfirmShipmentOrderItemsList < Array[ConfirmShipmentOrderItem]
+        def self.parse: (Array[untyped]) -> ConfirmShipmentOrderItemsList
       end
     end
   end

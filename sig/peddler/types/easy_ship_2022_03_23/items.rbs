@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module EasyShip20220323
-      class Items < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class Items < Array[Item]
+        def self.parse: (Array[untyped]) -> Items
       end
     end
   end

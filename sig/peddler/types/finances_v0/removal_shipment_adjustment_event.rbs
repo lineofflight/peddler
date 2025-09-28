@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class RemovalShipmentAdjustmentEvent < Data
-        def self.new: (posted_date: String?, adjustment_event_id: String?, merchant_order_id: String?, order_id: String?, transaction_type: String?, removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?) -> instance
-                    | (String?, String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?) -> instance
+        def self.new: (posted_date: String?, adjustment_event_id: String?, merchant_order_id: String?, order_id: String?, transaction_type: String?, removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
+                    | (String?, String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
 
         attr_reader posted_date: String?
         attr_reader adjustment_event_id: String?

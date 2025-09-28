@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetShipmentItemsResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult?, errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> instance
-                    | (Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult?, Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult?, errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse
+                    | (Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult?, Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse
 
         attr_reader payload: Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResult?
         attr_reader errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?

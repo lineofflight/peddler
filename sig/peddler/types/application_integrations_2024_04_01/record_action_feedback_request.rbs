@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class RecordActionFeedbackRequest < Data
-        def self.new: (feedback_action_code: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (feedback_action_code: String?) -> Peddler::Types::ApplicationIntegrations20240401::RecordActionFeedbackRequest
+                    | (String?) -> Peddler::Types::ApplicationIntegrations20240401::RecordActionFeedbackRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::RecordActionFeedbackRequest
 
         attr_reader feedback_action_code: String?
 

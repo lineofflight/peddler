@@ -2,6 +2,8 @@
 
 require "peddler/types/services_v1/fulfillment_document"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module ServicesV1
@@ -9,9 +11,7 @@ module Peddler
       class FulfillmentDocuments < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| FulfillmentDocument.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| FulfillmentDocument.parse(item) }) : new
           end
         end
       end

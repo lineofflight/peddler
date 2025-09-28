@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,9 +9,7 @@ module Peddler
       class RelationshipList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array)
+            array.is_a?(Array) ? new(array) : new
           end
         end
       end

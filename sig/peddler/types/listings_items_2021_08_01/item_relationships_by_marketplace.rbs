@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemRelationshipsByMarketplace < Data
-        def self.new: (marketplace_id: String?, relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationship]?) -> instance
-                    | (String?, Array[Peddler::Types::ListingsItems20210801::ItemRelationship]?) -> instance
+        def self.new: (marketplace_id: String?, relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationship]?) -> Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace
+                    | (String?, Array[Peddler::Types::ListingsItems20210801::ItemRelationship]?) -> Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace
 
         attr_reader marketplace_id: String?
         attr_reader relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationship]?

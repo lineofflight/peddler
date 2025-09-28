@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class FixedSlotCapacityQuery < Data
-        def self.new: (capacity_types: Array[untyped]?, slot_duration: Float?, start_date_time: String?, end_date_time: String?) -> instance
-                    | (Array[untyped]?, Float?, String?, String?) -> instance
+        def self.new: (capacity_types: Array[untyped]?, slot_duration: Float?, start_date_time: String?, end_date_time: String?) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
+                    | (Array[untyped]?, Float?, String?, String?) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
 
         attr_reader capacity_types: Array[untyped]?
         attr_reader slot_duration: Float?

@@ -2,6 +2,8 @@
 
 require "peddler/types/fba_inventory_v1/inventory_summary"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module FBAInventoryV1
@@ -9,9 +11,7 @@ module Peddler
       class InventorySummaries < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| InventorySummary.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| InventorySummary.parse(item) }) : new
           end
         end
       end

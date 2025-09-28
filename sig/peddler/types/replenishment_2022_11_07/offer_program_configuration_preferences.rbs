@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Replenishment20221107
       class OfferProgramConfigurationPreferences < Data
-        def self.new: (auto_enrollment: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (auto_enrollment: String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
+                    | (String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences
 
         attr_reader auto_enrollment: String?
 

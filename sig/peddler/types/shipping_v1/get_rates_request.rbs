@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class GetRatesRequest < Data
-        def self.new: (ship_to: Peddler::Types::ShippingV1::Address?, ship_from: Peddler::Types::ShippingV1::Address?, service_types: Array[untyped]?, ship_date: String?, container_specifications: Array[Peddler::Types::ShippingV1::ContainerSpecification]?) -> instance
-                    | (Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, Array[untyped]?, String?, Array[Peddler::Types::ShippingV1::ContainerSpecification]?) -> instance
+        def self.new: (ship_to: Peddler::Types::ShippingV1::Address?, ship_from: Peddler::Types::ShippingV1::Address?, service_types: Array[untyped]?, ship_date: String?, container_specifications: Array[Peddler::Types::ShippingV1::ContainerSpecification]?) -> Peddler::Types::ShippingV1::GetRatesRequest
+                    | (Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, Array[untyped]?, String?, Array[Peddler::Types::ShippingV1::ContainerSpecification]?) -> Peddler::Types::ShippingV1::GetRatesRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::GetRatesRequest
 
         attr_reader ship_to: Peddler::Types::ShippingV1::Address?
         attr_reader ship_from: Peddler::Types::ShippingV1::Address?

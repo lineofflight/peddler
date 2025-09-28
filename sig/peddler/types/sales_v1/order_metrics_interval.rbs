@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SalesV1
       class OrderMetricsInterval < Data
-        def self.new: (interval: String?, unit_count: Integer?, order_item_count: Integer?, order_count: Integer?, average_unit_price: Peddler::Types::Money?, total_sales: Peddler::Types::Money?) -> instance
-                    | (String?, Integer?, Integer?, Integer?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+        def self.new: (interval: String?, unit_count: Integer?, order_item_count: Integer?, order_count: Integer?, average_unit_price: Peddler::Types::Money?, total_sales: Peddler::Types::Money?) -> Peddler::Types::SalesV1::OrderMetricsInterval
+                    | (String?, Integer?, Integer?, Integer?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::SalesV1::OrderMetricsInterval
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SalesV1::OrderMetricsInterval
 
         attr_reader interval: String?
         attr_reader unit_count: Integer?

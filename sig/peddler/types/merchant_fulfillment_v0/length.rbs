@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Length < Data
-        def self.new: (value: Float?, unit: String?) -> instance
-                    | (Float?, String?) -> instance
+        def self.new: (value: Float?, unit: String?) -> Peddler::Types::MerchantFulfillmentV0::Length
+                    | (Float?, String?) -> Peddler::Types::MerchantFulfillmentV0::Length
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Length
 
         attr_reader value: Float?
         attr_reader unit: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class PackageWeight < Data
-        def self.new: (unit_of_measurement: String?, weight: Float?) -> instance
-                    | (String?, Float?) -> instance
+        def self.new: (unit_of_measurement: String?, weight: Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight
+                    | (String?, Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight
 
         attr_reader unit_of_measurement: String?
         attr_reader weight: Float?

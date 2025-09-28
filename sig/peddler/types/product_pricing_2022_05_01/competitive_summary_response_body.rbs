@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryResponseBody < Data
-        def self.new: (asin: String?, marketplace_id: String?, featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
-                    | (String?, String?, Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, Array[Peddler::Types::ProductPricing20220501::Error]?) -> instance
+        def self.new: (asin: String?, marketplace_id: String?, featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
+                    | (String?, String?, Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?, Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
 
         attr_reader asin: String?
         attr_reader marketplace_id: String?

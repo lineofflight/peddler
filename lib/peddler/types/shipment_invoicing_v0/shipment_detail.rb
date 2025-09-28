@@ -28,8 +28,8 @@ module Peddler
         # @return [Address]
         attribute(:shipping_address, Address, from: "ShippingAddress")
 
-        # @return [Array]
-        attribute(:payment_method_details, Array, from: "PaymentMethodDetails")
+        # @return [Array<String>]
+        attribute(:payment_method_details, [String], from: "PaymentMethodDetails")
 
         # @return [Array<PaymentInformation>]
         attribute(:payments, [PaymentInformation], from: "Payments")

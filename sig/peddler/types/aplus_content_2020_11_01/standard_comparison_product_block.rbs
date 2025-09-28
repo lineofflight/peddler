@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardComparisonProductBlock < Data
-        def self.new: (position: Integer?, image: Peddler::Types::AplusContent20201101::ImageComponent?, title: String?, asin: String?, highlight: bool?, metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> instance
-                    | (Integer?, Peddler::Types::AplusContent20201101::ImageComponent?, String?, String?, bool?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> instance
+        def self.new: (position: Integer?, image: Peddler::Types::AplusContent20201101::ImageComponent?, title: String?, asin: String?, highlight: bool?, metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
+                    | (Integer?, Peddler::Types::AplusContent20201101::ImageComponent?, String?, String?, bool?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
 
         attr_reader position: Integer?
         attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?

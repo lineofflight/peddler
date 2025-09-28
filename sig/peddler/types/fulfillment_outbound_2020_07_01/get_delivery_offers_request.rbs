@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetDeliveryOffersRequest < Data
-        def self.new: (product: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, terms: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?) -> instance
-                    | (Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?) -> instance
+        def self.new: (product: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, terms: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersRequest
+                    | (Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersRequest
 
         attr_reader product: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?
         attr_reader terms: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?

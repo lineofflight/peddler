@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFulfillmentPreviewResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
-                    | (Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+                    | (Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
 
         attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?
         attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?

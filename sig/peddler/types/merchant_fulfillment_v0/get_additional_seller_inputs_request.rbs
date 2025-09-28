@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetAdditionalSellerInputsRequest < Data
-        def self.new: (shipping_service_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, order_id: String?) -> instance
-                    | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, String?) -> instance
+        def self.new: (shipping_service_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, order_id: String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
+                    | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
 
         attr_reader shipping_service_id: String?
         attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?

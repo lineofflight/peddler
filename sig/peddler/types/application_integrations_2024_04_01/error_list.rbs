@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::ApplicationIntegrations20240401::Error]?) -> instance
-                    | (Array[Peddler::Types::ApplicationIntegrations20240401::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::ApplicationIntegrations20240401::Error]?) -> Peddler::Types::ApplicationIntegrations20240401::ErrorList
+                    | (Array[Peddler::Types::ApplicationIntegrations20240401::Error]?) -> Peddler::Types::ApplicationIntegrations20240401::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::ErrorList
 
         attr_reader errors: Array[Peddler::Types::ApplicationIntegrations20240401::Error]?
 

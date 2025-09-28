@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
-      class Packages < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class Packages < Array[Package]
+        def self.parse: (Array[untyped]) -> Packages
       end
     end
   end

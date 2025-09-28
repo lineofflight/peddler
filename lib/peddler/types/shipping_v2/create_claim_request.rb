@@ -22,8 +22,8 @@ module Peddler
         # @return [:boolean] Applicable for only On Amazon shipments to identify if replacement was sent
         attribute(:replacement_package_sent, :boolean, from: "isReplacementPackageSent")
 
-        # @return [Array]
-        attribute(:proofs, Array)
+        # @return [Array<String>]
+        attribute(:proofs, [String])
 
         # @return [String]
         attribute(:settlement_type, String, from: "settlementType")

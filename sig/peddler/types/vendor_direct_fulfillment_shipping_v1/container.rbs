@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class Container < Data
-        def self.new: (container_type: String?, container_identifier: String?, tracking_number: String?, manifest_id: String?, manifest_date: String?, ship_method: String?, scac_code: String?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?) -> instance
+        def self.new: (container_type: String?, container_identifier: String?, tracking_number: String?, manifest_id: String?, manifest_date: String?, ship_method: String?, scac_code: String?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
 
         attr_reader container_type: String?
         attr_reader container_identifier: String?

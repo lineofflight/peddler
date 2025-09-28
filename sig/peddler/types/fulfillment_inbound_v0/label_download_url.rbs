@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class LabelDownloadURL < Data
-        def self.new: (download_url: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (download_url: String?) -> Peddler::Types::FulfillmentInboundV0::LabelDownloadURL
+                    | (String?) -> Peddler::Types::FulfillmentInboundV0::LabelDownloadURL
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::LabelDownloadURL
 
         attr_reader download_url: String?
 

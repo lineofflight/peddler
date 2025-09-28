@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SetPackingInformationRequest < Data
-        def self.new: (package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> instance
+        def self.new: (package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::SetPackingInformationRequest
 
         attr_reader package_groupings: Array[Peddler::Types::FulfillmentInbound20240320::PackageGroupingInput]?
 

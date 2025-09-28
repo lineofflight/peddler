@@ -2,6 +2,8 @@
 
 require "peddler/types/sales_v1/order_metrics_interval"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module SalesV1
@@ -9,9 +11,7 @@ module Peddler
       class OrderMetricsList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| OrderMetricsInterval.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| OrderMetricsInterval.parse(item) }) : new
           end
         end
       end

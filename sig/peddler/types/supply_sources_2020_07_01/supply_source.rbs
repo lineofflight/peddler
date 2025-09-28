@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class SupplySource < Data
-        def self.new: (supply_source_id: String?, supply_source_code: String?, alias: String?, status: String?, address: Peddler::Types::SupplySources20200701::Address?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, created_at: String?, updated_at: String?) -> instance
-                    | (String?, String?, String?, String?, Peddler::Types::SupplySources20200701::Address?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, String?, String?) -> instance
+        def self.new: (supply_source_id: String?, supply_source_code: String?, alias: String?, status: String?, address: Peddler::Types::SupplySources20200701::Address?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, created_at: String?, updated_at: String?) -> Peddler::Types::SupplySources20200701::SupplySource
+                    | (String?, String?, String?, String?, Peddler::Types::SupplySources20200701::Address?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, String?, String?) -> Peddler::Types::SupplySources20200701::SupplySource
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::SupplySource
 
         attr_reader supply_source_id: String?
         attr_reader supply_source_code: String?

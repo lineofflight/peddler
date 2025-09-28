@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class RegulatedOrderVerificationStatus < Data
-        def self.new: (status: String?, requires_merchant_action: bool?, valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?, rejection_reason: Peddler::Types::OrdersV0::RejectionReason?, review_date: String?, external_reviewer_id: String?, valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> instance
-                    | (String?, bool?, Array[Peddler::Types::OrdersV0::RejectionReason]?, Peddler::Types::OrdersV0::RejectionReason?, String?, String?, Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> instance
+        def self.new: (status: String?, requires_merchant_action: bool?, valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?, rejection_reason: Peddler::Types::OrdersV0::RejectionReason?, review_date: String?, external_reviewer_id: String?, valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
+                    | (String?, bool?, Array[Peddler::Types::OrdersV0::RejectionReason]?, Peddler::Types::OrdersV0::RejectionReason?, String?, String?, Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
 
         attr_reader status: String?
         attr_reader requires_merchant_action: bool?

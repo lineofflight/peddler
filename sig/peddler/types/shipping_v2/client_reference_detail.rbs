@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class ClientReferenceDetail < Data
-        def self.new: (client_reference_type: String?, client_reference_id: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (client_reference_type: String?, client_reference_id: String?) -> Peddler::Types::ShippingV2::ClientReferenceDetail
+                    | (String?, String?) -> Peddler::Types::ShippingV2::ClientReferenceDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ClientReferenceDetail
 
         attr_reader client_reference_type: String?
         attr_reader client_reference_id: String?

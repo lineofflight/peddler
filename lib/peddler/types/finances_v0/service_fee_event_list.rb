@@ -2,6 +2,8 @@
 
 require "peddler/types/finances_v0/service_fee_event"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module FinancesV0
@@ -9,9 +11,7 @@ module Peddler
       class ServiceFeeEventList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| ServiceFeeEvent.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| ServiceFeeEvent.parse(item) }) : new
           end
         end
       end

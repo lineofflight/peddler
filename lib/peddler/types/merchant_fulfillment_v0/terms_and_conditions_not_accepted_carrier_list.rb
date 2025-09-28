@@ -2,6 +2,8 @@
 
 require "peddler/types/merchant_fulfillment_v0/terms_and_conditions_not_accepted_carrier"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -9,9 +11,7 @@ module Peddler
       class TermsAndConditionsNotAcceptedCarrierList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| TermsAndConditionsNotAcceptedCarrier.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| TermsAndConditionsNotAcceptedCarrier.parse(item) }) : new
           end
         end
       end

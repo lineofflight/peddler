@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class ShipmentRequestDetails < Data
-        def self.new: (amazon_order_id: String?, seller_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, must_arrive_by_date: String?, ship_date: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?) -> instance
-                    | (String?, String?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::LabelCustomization?) -> instance
+        def self.new: (amazon_order_id: String?, seller_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, must_arrive_by_date: String?, ship_date: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
+                    | (String?, String?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::LabelCustomization?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
 
         attr_reader amazon_order_id: String?
         attr_reader seller_order_id: String?

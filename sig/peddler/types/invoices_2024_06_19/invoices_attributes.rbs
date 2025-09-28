@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Invoices20240619
       class InvoicesAttributes < Data
-        def self.new: (invoice_status_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, invoice_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, transaction_identifier_name_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, transaction_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?) -> instance
-                    | (Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?) -> instance
+        def self.new: (invoice_status_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, invoice_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, transaction_identifier_name_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, transaction_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?) -> Peddler::Types::Invoices20240619::InvoicesAttributes
+                    | (Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?) -> Peddler::Types::Invoices20240619::InvoicesAttributes
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::InvoicesAttributes
 
         attr_reader invoice_status_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?
         attr_reader invoice_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?

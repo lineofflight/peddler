@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class PaymentMethodDetailItemList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> PaymentMethodDetailItemList
       end
     end
   end

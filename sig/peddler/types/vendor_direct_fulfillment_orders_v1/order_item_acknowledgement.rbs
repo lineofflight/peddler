@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class OrderItemAcknowledgement < Data
-        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, acknowledged_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?) -> instance
-                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?) -> instance
+        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, acknowledged_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItemAcknowledgement
+                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItemAcknowledgement
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItemAcknowledgement
 
         attr_reader item_sequence_number: String?
         attr_reader buyer_product_identifier: String?

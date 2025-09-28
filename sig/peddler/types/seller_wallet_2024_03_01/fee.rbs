@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class Fee < Data
-        def self.new: (fee_id: String?, fee_type: String?, fee_rate_value: String?, fee_amount: Peddler::Types::Money?) -> instance
-                    | (String?, String?, String?, Peddler::Types::Money?) -> instance
+        def self.new: (fee_id: String?, fee_type: String?, fee_rate_value: String?, fee_amount: Peddler::Types::Money?) -> Peddler::Types::SellerWallet20240301::Fee
+                    | (String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::SellerWallet20240301::Fee
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Fee
 
         attr_reader fee_id: String?
         attr_reader fee_type: String?

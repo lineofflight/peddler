@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class TestOrder < Data
-        def self.new: (order_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (order_id: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder
 
         attr_reader order_id: String?
 

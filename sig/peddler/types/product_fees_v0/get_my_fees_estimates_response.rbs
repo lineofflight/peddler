@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ProductFeesV0
-      class GetMyFeesEstimatesResponse < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class GetMyFeesEstimatesResponse < Array[FeesEstimateResult]
+        def self.parse: (Array[untyped]) -> GetMyFeesEstimatesResponse
       end
     end
   end

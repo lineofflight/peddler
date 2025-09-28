@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class CurbsidePickupConfiguration < Data
-        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, parking_with_address_configuration: Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?) -> instance
-                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?) -> instance
+        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, parking_with_address_configuration: Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration
 
         attr_reader supported: bool?
         attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?

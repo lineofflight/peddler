@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemIdentifiersByMarketplace < Data
-        def self.new: (marketplace_id: String?, identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?) -> instance
-                    | (String?, Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?) -> instance
+        def self.new: (marketplace_id: String?, identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
+                    | (String?, Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
 
         attr_reader marketplace_id: String?
         attr_reader identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?

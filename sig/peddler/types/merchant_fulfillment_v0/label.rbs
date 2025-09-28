@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Label < Data
-        def self.new: (custom_text_for_label: String?, dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, file_contents: Peddler::Types::MerchantFulfillmentV0::FileContents?, label_format: String?, standard_id_for_label: String?) -> instance
-                    | (String?, Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, Peddler::Types::MerchantFulfillmentV0::FileContents?, String?, String?) -> instance
+        def self.new: (custom_text_for_label: String?, dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, file_contents: Peddler::Types::MerchantFulfillmentV0::FileContents?, label_format: String?, standard_id_for_label: String?) -> Peddler::Types::MerchantFulfillmentV0::Label
+                    | (String?, Peddler::Types::MerchantFulfillmentV0::LabelDimensions?, Peddler::Types::MerchantFulfillmentV0::FileContents?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Label
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Label
 
         attr_reader custom_text_for_label: String?
         attr_reader dimensions: Peddler::Types::MerchantFulfillmentV0::LabelDimensions?

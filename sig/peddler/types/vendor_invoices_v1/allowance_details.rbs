@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class AllowanceDetails < Data
-        def self.new: (type: String?, description: String?, allowance_amount: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> instance
-                    | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> instance
+        def self.new: (type: String?, description: String?, allowance_amount: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::AllowanceDetails
+                    | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::AllowanceDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::AllowanceDetails
 
         attr_reader type: String?
         attr_reader description: String?

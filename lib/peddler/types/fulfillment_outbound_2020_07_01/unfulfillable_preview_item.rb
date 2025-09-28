@@ -19,9 +19,9 @@ module Peddler
         # operation.
         attribute(:seller_fulfillment_order_item_id, String, from: "sellerFulfillmentOrderItemId")
 
-        # @return [Array] Error codes associated with the fulfillment order preview that indicate why the item is
-        # unfulfillable.
-        attribute(:item_unfulfillable_reasons, Array, from: "itemUnfulfillableReasons")
+        # @return [Array<String>] Error codes associated with the fulfillment order preview that indicate why the item
+        # is unfulfillable.
+        attribute(:item_unfulfillable_reasons, [String], from: "itemUnfulfillableReasons")
       end
     end
   end

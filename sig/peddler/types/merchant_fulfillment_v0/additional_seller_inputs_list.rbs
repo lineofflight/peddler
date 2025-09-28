@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class AdditionalSellerInputsList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class AdditionalSellerInputsList < Array[AdditionalSellerInputs]
+        def self.parse: (Array[untyped]) -> AdditionalSellerInputsList
       end
     end
   end

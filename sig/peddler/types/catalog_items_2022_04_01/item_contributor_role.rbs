@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemContributorRole < Data
-        def self.new: (display_name: String?, value: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (display_name: String?, value: String?) -> Peddler::Types::CatalogItems20220401::ItemContributorRole
+                    | (String?, String?) -> Peddler::Types::CatalogItems20220401::ItemContributorRole
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemContributorRole
 
         attr_reader display_name: String?
         attr_reader value: String?

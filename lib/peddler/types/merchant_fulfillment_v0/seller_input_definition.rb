@@ -28,8 +28,8 @@ module Peddler
         # @return [AdditionalSellerInput]
         attribute(:stored_value, AdditionalSellerInput, from: "StoredValue")
 
-        # @return [Array]
-        attribute(:restricted_set_values, Array, from: "RestrictedSetValues")
+        # @return [Array<String>]
+        attribute(:restricted_set_values, [String], from: "RestrictedSetValues")
       end
     end
   end

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class ActiveAccounts < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ActiveAccounts < Array[ActiveAccount]
+        def self.parse: (Array[untyped]) -> ActiveAccounts
       end
     end
   end

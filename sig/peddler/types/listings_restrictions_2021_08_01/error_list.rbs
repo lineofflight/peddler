@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ListingsRestrictions20210801
-      class ErrorList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
       end
     end
   end

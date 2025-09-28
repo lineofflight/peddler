@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module AplusContent20201101
-      class MessageSet < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class MessageSet < Array[Error]
+        def self.parse: (Array[untyped]) -> MessageSet
       end
     end
   end

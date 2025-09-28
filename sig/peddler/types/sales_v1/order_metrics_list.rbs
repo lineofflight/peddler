@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module SalesV1
-      class OrderMetricsList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class OrderMetricsList < Array[OrderMetricsInterval]
+        def self.parse: (Array[untyped]) -> OrderMetricsList
       end
     end
   end

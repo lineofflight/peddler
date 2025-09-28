@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class MskuPrepDetail < Data
-        def self.new: (all_owners_constraint: String?, label_owner_constraint: String?, msku: String?, prep_category: String?, prep_owner_constraint: String?, prep_types: Array[untyped]?) -> instance
-                    | (String?, String?, String?, String?, String?, Array[untyped]?) -> instance
+        def self.new: (all_owners_constraint: String?, label_owner_constraint: String?, msku: String?, prep_category: String?, prep_owner_constraint: String?, prep_types: Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
+                    | (String?, String?, String?, String?, String?, Array[untyped]?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
 
         attr_reader all_owners_constraint: String?
         attr_reader label_owner_constraint: String?

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV1
-      class LabelResultList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class LabelResultList < Array[LabelResult]
+        def self.parse: (Array[untyped]) -> LabelResultList
       end
     end
   end

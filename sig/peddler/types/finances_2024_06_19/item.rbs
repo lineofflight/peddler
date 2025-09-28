@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Finances20240619
       class Item < Data
-        def self.new: (description: String?, related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, total_amount: Peddler::Types::Money?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]?) -> instance
-                    | (String?, Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, Peddler::Types::Money?, Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?) -> instance
+        def self.new: (description: String?, related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, total_amount: Peddler::Types::Money?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]?) -> Peddler::Types::Finances20240619::Item
+                    | (String?, Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, Peddler::Types::Money?, Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?) -> Peddler::Types::Finances20240619::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::Item
 
         attr_reader description: String?
         attr_reader related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?

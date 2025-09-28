@@ -18,7 +18,7 @@ module Peddler
         # @return [String] A message that describes the error condition.
         attribute(:message, String, from: "Message")
 
-        # @return [Array]
+        # @return [Array<Object>]
         attribute(:detail, Array, from: "Detail")
       end
     end

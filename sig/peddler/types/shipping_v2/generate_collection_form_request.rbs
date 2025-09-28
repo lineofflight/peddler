@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GenerateCollectionFormRequest < Data
-        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, carrier_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address?) -> instance
-                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, String?, Peddler::Types::ShippingV2::Address?) -> instance
+        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, carrier_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
+                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, String?, Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
 
         attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader carrier_id: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class Subscription < Data
-        def self.new: (subscription_id: String?, payload_version: String?, destination_id: String?, processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?) -> instance
-                    | (String?, String?, String?, Peddler::Types::NotificationsV1::ProcessingDirective?) -> instance
+        def self.new: (subscription_id: String?, payload_version: String?, destination_id: String?, processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
+                    | (String?, String?, String?, Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::Subscription
 
         attr_reader subscription_id: String?
         attr_reader payload_version: String?

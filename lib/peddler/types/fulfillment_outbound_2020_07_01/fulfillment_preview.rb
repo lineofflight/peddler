@@ -39,14 +39,14 @@ module Peddler
         # @return [Array<UnfulfillablePreviewItem>]
         attribute(:unfulfillable_preview_items, [UnfulfillablePreviewItem], from: "unfulfillablePreviewItems")
 
-        # @return [Array] Error codes associated with the fulfillment order preview that indicate why the order is not
-        # fulfillable.
+        # @return [Array<String>] Error codes associated with the fulfillment order preview that indicate why the order
+        # is not fulfillable.
         #
         # Error code examples:
         #
         # `DeliverySLAUnavailable`
         # `InvalidDestinationAddress`
-        attribute(:order_unfulfillable_reasons, Array, from: "orderUnfulfillableReasons")
+        attribute(:order_unfulfillable_reasons, [String], from: "orderUnfulfillableReasons")
 
         # @return [String] The marketplace the fulfillment order is placed against.
         attribute(:marketplace_id, String, from: "marketplaceId")

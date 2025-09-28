@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class CreateNotificationRequest < Data
-        def self.new: (template_id: String?, notification_parameters: Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, marketplace_id: String?) -> instance
-                    | (String?, Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, String?) -> instance
+        def self.new: (template_id: String?, notification_parameters: Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, marketplace_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
+                    | (String?, Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
 
         attr_reader template_id: String?
         attr_reader notification_parameters: Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module Reports20210630
-      class ReportList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ReportList < Array[Report]
+        def self.parse: (Array[untyped]) -> ReportList
       end
     end
   end

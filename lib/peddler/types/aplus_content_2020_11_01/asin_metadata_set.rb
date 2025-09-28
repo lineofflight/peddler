@@ -2,6 +2,8 @@
 
 require "peddler/types/aplus_content_2020_11_01/asin_metadata"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module AplusContent20201101
@@ -9,9 +11,7 @@ module Peddler
       class AsinMetadataSet < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| AsinMetadata.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| AsinMetadata.parse(item) }) : new
           end
         end
       end

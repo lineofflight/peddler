@@ -15,10 +15,10 @@ module Peddler
         # @return [IdentifierType]
         attribute(:identifiers, IdentifierType, from: "Identifiers")
 
-        # @return [Array]
+        # @return [Array<Object>]
         attribute(:attribute_sets, Array, from: "AttributeSets")
 
-        # @return [Array]
+        # @return [Array<Object>]
         attribute(:relationships, Array, from: "Relationships")
 
         # @return [CompetitivePricingType]

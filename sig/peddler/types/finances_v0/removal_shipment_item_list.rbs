@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module FinancesV0
-      class RemovalShipmentItemList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class RemovalShipmentItemList < Array[RemovalShipmentItem]
+        def self.parse: (Array[untyped]) -> RemovalShipmentItemList
       end
     end
   end

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemVariationTheme < Data
-        def self.new: (attributes: Array[String]?, theme: String?) -> instance
-                    | (Array[String]?, String?) -> instance
+        def self.new: (attributes: Array[String]?, theme: String?) -> Peddler::Types::CatalogItems20220401::ItemVariationTheme
+                    | (Array[String]?, String?) -> Peddler::Types::CatalogItems20220401::ItemVariationTheme
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemVariationTheme
 
         attr_reader attributes: Array[String]?
         attr_reader theme: String?

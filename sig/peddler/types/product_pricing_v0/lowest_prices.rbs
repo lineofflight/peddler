@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ProductPricingV0
-      class LowestPrices < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class LowestPrices < Array[LowestPriceType]
+        def self.parse: (Array[untyped]) -> LowestPrices
       end
     end
   end

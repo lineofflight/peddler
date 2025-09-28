@@ -4,10 +4,10 @@ module Peddler
   module Types
     module EasyShip20220323
       class TimeSlot < Data
-        def self.new: (slot_id: String?, start_time: String?, end_time: String?, handover_method: String?) -> instance
-                    | (String?, String?, String?, String?) -> instance
+        def self.new: (slot_id: String?, start_time: String?, end_time: String?, handover_method: String?) -> Peddler::Types::EasyShip20220323::TimeSlot
+                    | (String?, String?, String?, String?) -> Peddler::Types::EasyShip20220323::TimeSlot
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::TimeSlot
 
         attr_reader slot_id: String?
         attr_reader start_time: String?

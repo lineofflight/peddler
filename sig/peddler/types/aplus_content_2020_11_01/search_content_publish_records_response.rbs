@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class SearchContentPublishRecordsResponse < Data
-        def self.new: (publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> instance
-                    | (Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> instance
+        def self.new: (publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
+                    | (Array[Peddler::Types::AplusContent20201101::PublishRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse
 
         attr_reader publish_record_list: Array[Peddler::Types::AplusContent20201101::PublishRecord]?
 

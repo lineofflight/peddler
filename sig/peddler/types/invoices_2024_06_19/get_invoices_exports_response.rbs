@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Invoices20240619
       class GetInvoicesExportsResponse < Data
-        def self.new: (exports: Array[Peddler::Types::Invoices20240619::Export]?, next_token: String?) -> instance
-                    | (Array[Peddler::Types::Invoices20240619::Export]?, String?) -> instance
+        def self.new: (exports: Array[Peddler::Types::Invoices20240619::Export]?, next_token: String?) -> Peddler::Types::Invoices20240619::GetInvoicesExportsResponse
+                    | (Array[Peddler::Types::Invoices20240619::Export]?, String?) -> Peddler::Types::Invoices20240619::GetInvoicesExportsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesExportsResponse
 
         attr_reader exports: Array[Peddler::Types::Invoices20240619::Export]?
         attr_reader next_token: String?

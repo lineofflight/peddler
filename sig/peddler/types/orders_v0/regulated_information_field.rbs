@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class RegulatedInformationField < Data
-        def self.new: (field_id: String?, field_label: String?, field_type: String?, field_value: String?) -> instance
-                    | (String?, String?, String?, String?) -> instance
+        def self.new: (field_id: String?, field_label: String?, field_type: String?, field_value: String?) -> Peddler::Types::OrdersV0::RegulatedInformationField
+                    | (String?, String?, String?, String?) -> Peddler::Types::OrdersV0::RegulatedInformationField
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::RegulatedInformationField
 
         attr_reader field_id: String?
         attr_reader field_label: String?

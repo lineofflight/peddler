@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardFourImageTextModule < Data
-        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
-                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> instance
+        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardFourImageTextModule
 
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?

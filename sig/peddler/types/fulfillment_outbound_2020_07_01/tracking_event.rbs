@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class TrackingEvent < Data
-        def self.new: (event_date: String?, event_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, event_code: String?, event_description: String?) -> instance
-                    | (String?, Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, String?, String?) -> instance
+        def self.new: (event_date: String?, event_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, event_code: String?, event_description: String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingEvent
+                    | (String?, Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::TrackingEvent
 
         attr_reader event_date: String?
         attr_reader event_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class RetrieveShippingLabelRequest < Data
-        def self.new: (label_specification: Peddler::Types::ShippingV1::LabelSpecification?) -> instance
-                    | (Peddler::Types::ShippingV1::LabelSpecification?) -> instance
+        def self.new: (label_specification: Peddler::Types::ShippingV1::LabelSpecification?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelRequest
+                    | (Peddler::Types::ShippingV1::LabelSpecification?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::RetrieveShippingLabelRequest
 
         attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
 

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class ListingOffersResponse < Data
-        def self.new: (headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, body: Peddler::Types::ProductPricingV0::GetOffersResponse?, request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?) -> instance
-                    | (Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::ListingOffersRequestParams?) -> instance
+        def self.new: (headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, body: Peddler::Types::ProductPricingV0::GetOffersResponse?, request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
+                    | (Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::ListingOffersRequestParams?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
 
         attr_reader headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?
         attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?

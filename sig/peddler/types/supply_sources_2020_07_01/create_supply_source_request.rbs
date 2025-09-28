@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class CreateSupplySourceRequest < Data
-        def self.new: (supply_source_code: String?, alias: String?, address: Peddler::Types::SupplySources20200701::Address?) -> instance
-                    | (String?, String?, Peddler::Types::SupplySources20200701::Address?) -> instance
+        def self.new: (supply_source_code: String?, alias: String?, address: Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::CreateSupplySourceRequest
+                    | (String?, String?, Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::CreateSupplySourceRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::CreateSupplySourceRequest
 
         attr_reader supply_source_code: String?
         attr_reader alias: String?

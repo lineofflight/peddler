@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateErrorDetail < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> FeesEstimateErrorDetail
       end
     end
   end

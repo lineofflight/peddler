@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV1
-      class RateList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class RateList < Array[Rate]
+        def self.parse: (Array[untyped]) -> RateList
       end
     end
   end

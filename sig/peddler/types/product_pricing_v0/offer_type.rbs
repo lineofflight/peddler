@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class OfferType < Data
-        def self.new: (offer_type: String?, buying_price: Peddler::Types::ProductPricingV0::PriceType?, regular_price: Peddler::Types::Money?, business_price: Peddler::Types::Money?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, seller_sku: String?) -> instance
-                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, String?, String?, String?, String?) -> instance
+        def self.new: (offer_type: String?, buying_price: Peddler::Types::ProductPricingV0::PriceType?, regular_price: Peddler::Types::Money?, business_price: Peddler::Types::Money?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, seller_sku: String?) -> Peddler::Types::ProductPricingV0::OfferType
+                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?, String?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::OfferType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::OfferType
 
         attr_reader offer_type: String?
         attr_reader buying_price: Peddler::Types::ProductPricingV0::PriceType?

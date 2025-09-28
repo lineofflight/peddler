@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class CreateShipmentResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV1::CreateShipmentResult?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> instance
-                    | (Peddler::Types::ShippingV1::CreateShipmentResult?, Array[Peddler::Types::ShippingV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::ShippingV1::CreateShipmentResult?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::CreateShipmentResponse
+                    | (Peddler::Types::ShippingV1::CreateShipmentResult?, Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::CreateShipmentResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::CreateShipmentResponse
 
         attr_reader payload: Peddler::Types::ShippingV1::CreateShipmentResult?
         attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?

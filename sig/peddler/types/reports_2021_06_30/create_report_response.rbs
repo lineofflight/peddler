@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Reports20210630
       class CreateReportResponse < Data
-        def self.new: (report_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (report_id: String?) -> Peddler::Types::Reports20210630::CreateReportResponse
+                    | (String?) -> Peddler::Types::Reports20210630::CreateReportResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::CreateReportResponse
 
         attr_reader report_id: String?
 

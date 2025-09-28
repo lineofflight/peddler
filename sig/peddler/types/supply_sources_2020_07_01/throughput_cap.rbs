@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class ThroughputCap < Data
-        def self.new: (value: Integer?, time_unit: String?) -> instance
-                    | (Integer?, String?) -> instance
+        def self.new: (value: Integer?, time_unit: String?) -> Peddler::Types::SupplySources20200701::ThroughputCap
+                    | (Integer?, String?) -> Peddler::Types::SupplySources20200701::ThroughputCap
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ThroughputCap
 
         attr_reader value: Integer?
         attr_reader time_unit: String?

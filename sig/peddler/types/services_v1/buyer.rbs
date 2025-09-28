@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class Buyer < Data
-        def self.new: (buyer_id: String?, name: String?, phone: String?, prime_member: bool?) -> instance
-                    | (String?, String?, String?, bool?) -> instance
+        def self.new: (buyer_id: String?, name: String?, phone: String?, prime_member: bool?) -> Peddler::Types::ServicesV1::Buyer
+                    | (String?, String?, String?, bool?) -> Peddler::Types::ServicesV1::Buyer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Buyer
 
         attr_reader buyer_id: String?
         attr_reader name: String?

@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module Finances20240619
-      class Transactions < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class Transactions < Array[Transaction]
+        def self.parse: (Array[untyped]) -> Transactions
       end
     end
   end

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ShipmentMeasurements < Data
-        def self.new: (gross_shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, carton_count: Integer?, pallet_count: Integer?) -> instance
-                    | (Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::Volume?, Integer?, Integer?) -> instance
+        def self.new: (gross_shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, carton_count: Integer?, pallet_count: Integer?) -> Peddler::Types::VendorShipmentsV1::ShipmentMeasurements
+                    | (Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::Volume?, Integer?, Integer?) -> Peddler::Types::VendorShipmentsV1::ShipmentMeasurements
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentMeasurements
 
         attr_reader gross_shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?
         attr_reader shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?

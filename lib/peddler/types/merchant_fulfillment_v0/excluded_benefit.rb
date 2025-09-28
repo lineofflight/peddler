@@ -12,8 +12,8 @@ module Peddler
         # @return [String] A benefit that is being excluded from a shipment.
         attribute(:benefit, String, from: "Benefit")
 
-        # @return [Array]
-        attribute(:reason_codes, Array, from: "ReasonCodes")
+        # @return [Array<String>]
+        attribute(:reason_codes, [String], from: "ReasonCodes")
       end
     end
   end

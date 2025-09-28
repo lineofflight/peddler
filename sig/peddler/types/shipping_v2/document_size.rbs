@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class DocumentSize < Data
-        def self.new: (width: Float?, length: Float?, unit: String?) -> instance
-                    | (Float?, Float?, String?) -> instance
+        def self.new: (width: Float?, length: Float?, unit: String?) -> Peddler::Types::ShippingV2::DocumentSize
+                    | (Float?, Float?, String?) -> Peddler::Types::ShippingV2::DocumentSize
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DocumentSize
 
         attr_reader width: Float?
         attr_reader length: Float?

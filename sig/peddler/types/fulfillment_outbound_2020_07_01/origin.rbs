@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class Origin < Data
-        def self.new: (country_code: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (country_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::Origin
+                    | (String?) -> Peddler::Types::FulfillmentOutbound20200701::Origin
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Origin
 
         attr_reader country_code: String?
 

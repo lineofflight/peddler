@@ -63,8 +63,8 @@ module Peddler
         # recommend using the `PaymentMethodDetails` property to get payment method information.
         attribute(:payment_method, String, from: "PaymentMethod")
 
-        # @return [Array] A list of payment methods for the order.
-        attribute(:payment_method_details, Array, from: "PaymentMethodDetails")
+        # @return [Array<String>] A list of payment methods for the order.
+        attribute(:payment_method_details, [String], from: "PaymentMethodDetails")
 
         # @return [String] The identifier for the marketplace where the order was placed.
         attribute(:marketplace_id, String, from: "MarketplaceId")

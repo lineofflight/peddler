@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class CreateMarketplaceItemLabelsRequest < Data
-        def self.new: (height: Float?, label_type: String?, locale_code: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, page_type: String?, width: Float?) -> instance
-                    | (Float?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, String?, Float?) -> instance
+        def self.new: (height: Float?, label_type: String?, locale_code: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, page_type: String?, width: Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
+                    | (Float?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
 
         attr_reader height: Float?
         attr_reader label_type: String?

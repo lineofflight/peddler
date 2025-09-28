@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductFeesV0
       class PriceToEstimateFees < Data
-        def self.new: (listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductFeesV0::Points?) -> instance
-                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductFeesV0::Points?) -> instance
+        def self.new: (listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductFeesV0::Points?) -> Peddler::Types::ProductFeesV0::PriceToEstimateFees
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductFeesV0::Points?) -> Peddler::Types::ProductFeesV0::PriceToEstimateFees
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::PriceToEstimateFees
 
         attr_reader listing_price: Peddler::Types::Money?
         attr_reader shipping: Peddler::Types::Money?

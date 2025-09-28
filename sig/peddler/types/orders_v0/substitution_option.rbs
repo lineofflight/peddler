@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class SubstitutionOption < Data
-        def self.new: (asin: String?, quantity_ordered: Integer?, seller_sku: String?, title: String?, measurement: Peddler::Types::OrdersV0::Measurement?) -> instance
-                    | (String?, Integer?, String?, String?, Peddler::Types::OrdersV0::Measurement?) -> instance
+        def self.new: (asin: String?, quantity_ordered: Integer?, seller_sku: String?, title: String?, measurement: Peddler::Types::OrdersV0::Measurement?) -> Peddler::Types::OrdersV0::SubstitutionOption
+                    | (String?, Integer?, String?, String?, Peddler::Types::OrdersV0::Measurement?) -> Peddler::Types::OrdersV0::SubstitutionOption
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::SubstitutionOption
 
         attr_reader asin: String?
         attr_reader quantity_ordered: Integer?

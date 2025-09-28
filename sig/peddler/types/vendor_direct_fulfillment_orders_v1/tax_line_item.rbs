@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
-      class TaxLineItem < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class TaxLineItem < Array[TaxDetails]
+        def self.parse: (Array[untyped]) -> TaxLineItem
       end
     end
   end

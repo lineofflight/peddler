@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CreateReturnItem < Data
-        def self.new: (seller_return_item_id: String?, seller_fulfillment_order_item_id: String?, amazon_shipment_id: String?, return_reason_code: String?, return_comment: String?) -> instance
-                    | (String?, String?, String?, String?, String?) -> instance
+        def self.new: (seller_return_item_id: String?, seller_fulfillment_order_item_id: String?, amazon_shipment_id: String?, return_reason_code: String?, return_comment: String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
 
         attr_reader seller_return_item_id: String?
         attr_reader seller_fulfillment_order_item_id: String?

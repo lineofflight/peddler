@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FBAInventoryV1
       class Granularity < Data
-        def self.new: (granularity_type: String?, granularity_id: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (granularity_type: String?, granularity_id: String?) -> Peddler::Types::FBAInventoryV1::Granularity
+                    | (String?, String?) -> Peddler::Types::FBAInventoryV1::Granularity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::Granularity
 
         attr_reader granularity_type: String?
         attr_reader granularity_id: String?

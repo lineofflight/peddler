@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class Transaction < Data
-        def self.new: (transaction_id: String?, status: String?, test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> instance
-                    | (String?, String?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> instance
+        def self.new: (transaction_id: String?, status: String?, test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
+                    | (String?, String?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
 
         attr_reader transaction_id: String?
         attr_reader status: String?

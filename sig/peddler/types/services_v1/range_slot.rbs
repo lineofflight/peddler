@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class RangeSlot < Data
-        def self.new: (start_date_time: String?, end_date_time: String?, capacity: Integer?) -> instance
-                    | (String?, String?, Integer?) -> instance
+        def self.new: (start_date_time: String?, end_date_time: String?, capacity: Integer?) -> Peddler::Types::ServicesV1::RangeSlot
+                    | (String?, String?, Integer?) -> Peddler::Types::ServicesV1::RangeSlot
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::RangeSlot
 
         attr_reader start_date_time: String?
         attr_reader end_date_time: String?

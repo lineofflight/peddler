@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetEligibleShipmentServicesResponse < Data
-        def self.new: (payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?, errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> instance
-                    | (Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?, Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?, errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
+                    | (Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?, Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
 
         attr_reader payload: Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResult?
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?

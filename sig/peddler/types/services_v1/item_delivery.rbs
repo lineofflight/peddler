@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class ItemDelivery < Data
-        def self.new: (estimated_delivery_date: String?, item_delivery_promise: Peddler::Types::ServicesV1::ItemDeliveryPromise?) -> instance
-                    | (String?, Peddler::Types::ServicesV1::ItemDeliveryPromise?) -> instance
+        def self.new: (estimated_delivery_date: String?, item_delivery_promise: Peddler::Types::ServicesV1::ItemDeliveryPromise?) -> Peddler::Types::ServicesV1::ItemDelivery
+                    | (String?, Peddler::Types::ServicesV1::ItemDeliveryPromise?) -> Peddler::Types::ServicesV1::ItemDelivery
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::ItemDelivery
 
         attr_reader estimated_delivery_date: String?
         attr_reader item_delivery_promise: Peddler::Types::ServicesV1::ItemDeliveryPromise?

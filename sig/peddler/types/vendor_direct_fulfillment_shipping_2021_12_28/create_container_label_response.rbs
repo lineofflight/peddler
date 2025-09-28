@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class CreateContainerLabelResponse < Data
-        def self.new: (container_label: Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?) -> instance
+        def self.new: (container_label: Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
 
         attr_reader container_label: Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?
 

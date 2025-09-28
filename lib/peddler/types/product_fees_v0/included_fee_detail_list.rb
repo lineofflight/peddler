@@ -2,6 +2,8 @@
 
 require "peddler/types/product_fees_v0/included_fee_detail"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module ProductFeesV0
@@ -9,9 +11,7 @@ module Peddler
       class IncludedFeeDetailList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| IncludedFeeDetail.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| IncludedFeeDetail.parse(item) }) : new
           end
         end
       end

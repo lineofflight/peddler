@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class Weight < Data
-        def self.new: (unit: String?, value: Float?) -> instance
-                    | (String?, Float?) -> instance
+        def self.new: (unit: String?, value: Float?) -> Peddler::Types::ShippingV2::Weight
+                    | (String?, Float?) -> Peddler::Types::ShippingV2::Weight
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Weight
 
         attr_reader unit: String?
         attr_reader value: Float?

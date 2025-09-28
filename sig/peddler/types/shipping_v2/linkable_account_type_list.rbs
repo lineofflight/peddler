@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module ShippingV2
-      class LinkableAccountTypeList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class LinkableAccountTypeList < Array[LinkableAccountType]
+        def self.parse: (Array[untyped]) -> LinkableAccountTypeList
       end
     end
   end

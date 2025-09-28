@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class TimeWindow < Data
-        def self.new: (start: String?, end: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (start: String?, end: String?) -> Peddler::Types::ShippingV2::TimeWindow
+                    | (String?, String?) -> Peddler::Types::ShippingV2::TimeWindow
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::TimeWindow
 
         attr_reader start: String?
         attr_reader end: String?

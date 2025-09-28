@@ -13,8 +13,8 @@ module Peddler
         # @return [AggregationSettings]
         attribute(:aggregation_settings, AggregationSettings, from: "aggregationSettings")
 
-        # @return [Array]
-        attribute(:marketplace_ids, Array, from: "marketplaceIds")
+        # @return [Array<String>]
+        attribute(:marketplace_ids, [String], from: "marketplaceIds")
 
         # @return [Array<OrderChangeTypeEnum>]
         attribute(:order_change_types, Array, from: "orderChangeTypes")

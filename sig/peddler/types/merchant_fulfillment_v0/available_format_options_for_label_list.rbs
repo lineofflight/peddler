@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module MerchantFulfillmentV0
-      class AvailableFormatOptionsForLabelList < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class AvailableFormatOptionsForLabelList < Array[LabelFormatOption]
+        def self.parse: (Array[untyped]) -> AvailableFormatOptionsForLabelList
       end
     end
   end

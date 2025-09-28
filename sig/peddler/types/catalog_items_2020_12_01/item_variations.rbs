@@ -3,8 +3,8 @@
 module Peddler
   module Types
     module CatalogItems20201201
-      class ItemVariations < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+      class ItemVariations < Array[ItemVariationsByMarketplace]
+        def self.parse: (Array[untyped]) -> ItemVariations
       end
     end
   end

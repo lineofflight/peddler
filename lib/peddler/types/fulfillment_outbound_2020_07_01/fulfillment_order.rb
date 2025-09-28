@@ -58,8 +58,8 @@ module Peddler
         # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
         attribute(:status_updated_date, String, from: "statusUpdatedDate")
 
-        # @return [Array]
-        attribute(:notification_emails, Array, from: "notificationEmails")
+        # @return [Array<String>]
+        attribute(:notification_emails, [String], from: "notificationEmails")
 
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
         attribute(:feature_constraints, [FeatureSettings], from: "featureConstraints")

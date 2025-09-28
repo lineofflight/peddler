@@ -2,6 +2,8 @@
 
 require "peddler/types/finances_2024_06_19/related_identifier"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module Finances20240619
@@ -9,9 +11,7 @@ module Peddler
       class RelatedIdentifiers < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| RelatedIdentifier.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| RelatedIdentifier.parse(item) }) : new
           end
         end
       end

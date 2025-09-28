@@ -2,6 +2,8 @@
 
 require "peddler/types/notifications_v1/destination"
 
+# This file is generated. Edit template if necessary.
+
 module Peddler
   module Types
     module NotificationsV1
@@ -9,9 +11,7 @@ module Peddler
       class DestinationList < Array
         class << self
           def parse(array)
-            return new unless array.is_a?(Array)
-
-            new(array.map { |item| Destination.parse(item) })
+            array.is_a?(Array) ? new(array.map { |item| Destination.parse(item) }) : new
           end
         end
       end
