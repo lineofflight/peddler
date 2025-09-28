@@ -53,8 +53,8 @@ module Generator
       "peddler/types/#{api_name}/#{name.underscore}"
     end
 
-    def ruby_type_for(prop_def, for_comment: false)
-      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment)
+    def ruby_type_for(prop_def, for_comment: false, for_rbs: false)
+      resolved_type = type_resolver.resolve(prop_def, for_comment: for_comment, for_rbs: for_rbs)
 
       # Handle self-references properly
       return resolved_type if resolved_type == ":self"
@@ -64,7 +64,7 @@ module Generator
         # Handle direct references
         if resolved_type.is_a?(String) &&
             resolved_type !~ /^[:\[]/ && resolved_type != "String" && resolved_type != "Integer" &&
-            resolved_type != "Float" && resolved_type != "Hash" && resolved_type != "Array" &&
+            resolved_type != "Float" && !resolved_type.include?("Hash") && !resolved_type.include?("Array") &&
             resolved_type != "Money" && resolved_type != ":boolean"
           # Check if THIS specific edge causes a cycle
           if cycle_edges&.include?([name, resolved_type])
@@ -268,36 +268,7 @@ module Generator
     end
 
     def array_template
-      <<~ERB
-        # frozen_string_literal: true
-
-        <% if array_item_type && generated_type?(array_item_type) -%>
-        require "peddler/types/<%= api_name %>/<%= array_item_type.underscore %>"
-        <% end -%>
-
-        module Peddler
-          module Types
-            module <%= api_name.camelize %>
-        <% if definition["description"] -%>
-        <%= split_long_comment_line(definition["description"], base_indent: 6) %>
-        <% end -%>
-              class <%= class_name %> < Array
-                class << self
-                  def parse(array)
-                    return new unless array.is_a?(Array)
-
-        <% if array_item_type && generated_type?(array_item_type) -%>
-                    new(array.map { |item| <%= array_item_type.camelize %>.parse(item) })
-        <% else -%>
-                    new(array)
-        <% end -%>
-                  end
-                end
-              end
-            end
-          end
-        end
-      ERB
+      File.read(Config.template_path("array"))
     end
 
     def generate_structure_rbs

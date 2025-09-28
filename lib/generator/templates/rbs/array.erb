@@ -3,8 +3,13 @@
 module Peddler
   module Types
     module <%= api_name.camelize %>
+<% if array_item_type && generated_type?(array_item_type) -%>
+      class <%= class_name %> < Array[<%= array_item_type.camelize %>]
+        def self.parse: (Array[untyped]) -> <%= class_name %>
+<% else -%>
       class <%= class_name %> < Array[untyped]
-        def self.parse: (Array[untyped]) -> instance
+        def self.parse: (Array[untyped]) -> <%= class_name %>
+<% end -%>
       end
     end
   end

@@ -110,7 +110,7 @@ gems:
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: herb
-  version: 0.7.3
+  version: 0.7.4
   source:
     type: rubygems
 - name: http
@@ -278,7 +278,7 @@ gems:
   source:
     type: stdlib
 - name: structure
-  version: 3.6.0
+  version: 3.6.3
   source:
     type: rubygems
 - name: thor

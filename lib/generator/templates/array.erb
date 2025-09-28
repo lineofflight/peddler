@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+<% if array_item_type && generated_type?(array_item_type) -%>
+require "peddler/types/<%= api_name %>/<%= array_item_type.underscore %>"
+<% end -%>
+
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module <%= api_name.camelize %>
+<% if definition["description"] -%>
+<%= split_long_comment_line(definition["description"], base_indent: 6) %>
+<% end -%>
+      class <%= class_name %> < Array
+        class << self
+          def parse(array)
+<% if array_item_type && generated_type?(array_item_type) -%>
+            array.is_a?(Array) ? new(array.map { |item| <%= array_item_type.camelize %>.parse(item) }) : new
+<% else -%>
+            array.is_a?(Array) ? new(array) : new
+<% end -%>
+          end
+        end
+      end
+    end
+  end
+end

@@ -39,6 +39,7 @@ module Peddler
     end
 
     # @return [URI]
+    # steep:ignore:start
     def production
       URI::HTTPS.build(host: host)
     end
@@ -47,5 +48,6 @@ module Peddler
     def sandbox
       URI::HTTPS.build(host: "sandbox.#{host}")
     end
+    # steep:ignore:end
   end
 end
