@@ -24,7 +24,7 @@ jobs:
         with:
           ruby-version: "3.4"
           bundler-cache: true
-      - run: bundle exec steep check --severity-level=hint
+      - run: bundle exec steep check
 
   verify-links:
     runs-on: ubuntu-latest
