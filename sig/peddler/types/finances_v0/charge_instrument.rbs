@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class ChargeInstrument < Data
-        def self.new: (description: String?, tail: String?, amount: Peddler::Types::Money?) -> instance
-                    | (String?, String?, Peddler::Types::Money?) -> instance
+        def self.new: (description: String?, tail: String?, amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ChargeInstrument
+                    | (String?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ChargeInstrument
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ChargeInstrument
 
         attr_reader description: String?
         attr_reader tail: String?

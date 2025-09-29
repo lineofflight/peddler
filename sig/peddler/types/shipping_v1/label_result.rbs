@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class LabelResult < Data
-        def self.new: (container_reference_id: String?, tracking_id: String?, label: Peddler::Types::ShippingV1::Label?) -> instance
-                    | (String?, String?, Peddler::Types::ShippingV1::Label?) -> instance
+        def self.new: (container_reference_id: String?, tracking_id: String?, label: Peddler::Types::ShippingV1::Label?) -> Peddler::Types::ShippingV1::LabelResult
+                    | (String?, String?, Peddler::Types::ShippingV1::Label?) -> Peddler::Types::ShippingV1::LabelResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::LabelResult
 
         attr_reader container_reference_id: String?
         attr_reader tracking_id: String?

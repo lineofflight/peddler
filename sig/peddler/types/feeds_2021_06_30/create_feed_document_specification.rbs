@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Feeds20210630
       class CreateFeedDocumentSpecification < Data
-        def self.new: (content_type: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (content_type: String?) -> Peddler::Types::Feeds20210630::CreateFeedDocumentSpecification
+                    | (String?) -> Peddler::Types::Feeds20210630::CreateFeedDocumentSpecification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::CreateFeedDocumentSpecification
 
         attr_reader content_type: String?
 

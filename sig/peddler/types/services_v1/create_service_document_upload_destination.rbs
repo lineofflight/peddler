@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class CreateServiceDocumentUploadDestination < Data
-        def self.new: (payload: Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> instance
-                    | (Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?, Array[Peddler::Types::ServicesV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination
+                    | (Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?, Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination
 
         attr_reader payload: Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?
         attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?

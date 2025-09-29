@@ -4,10 +4,10 @@ module Peddler
   module Types
     module DataKiosk20231115
       class ErrorList < Data
-        def self.new: (errors: Array[Peddler::Types::DataKiosk20231115::Error]?) -> instance
-                    | (Array[Peddler::Types::DataKiosk20231115::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::DataKiosk20231115::Error]?) -> Peddler::Types::DataKiosk20231115::ErrorList
+                    | (Array[Peddler::Types::DataKiosk20231115::Error]?) -> Peddler::Types::DataKiosk20231115::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::ErrorList
 
         attr_reader errors: Array[Peddler::Types::DataKiosk20231115::Error]?
 

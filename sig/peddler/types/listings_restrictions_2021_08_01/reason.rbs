@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsRestrictions20210801
       class Reason < Data
-        def self.new: (message: String?, reason_code: String?, links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?) -> instance
-                    | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Link]?) -> instance
+        def self.new: (message: String?, reason_code: String?, links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?) -> Peddler::Types::ListingsRestrictions20210801::Reason
+                    | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Link]?) -> Peddler::Types::ListingsRestrictions20210801::Reason
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsRestrictions20210801::Reason
 
         attr_reader message: String?
         attr_reader reason_code: String?

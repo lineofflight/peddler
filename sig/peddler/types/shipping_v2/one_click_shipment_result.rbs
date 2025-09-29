@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class OneClickShipmentResult < Data
-        def self.new: (shipment_id: String?, package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, carrier: Peddler::Types::ShippingV2::Carrier?, service: Peddler::Types::ShippingV2::Service?, total_charge: Peddler::Types::Money?) -> instance
-                    | (String?, Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, Peddler::Types::ShippingV2::Promise?, Peddler::Types::ShippingV2::Carrier?, Peddler::Types::ShippingV2::Service?, Peddler::Types::Money?) -> instance
+        def self.new: (shipment_id: String?, package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, carrier: Peddler::Types::ShippingV2::Carrier?, service: Peddler::Types::ShippingV2::Service?, total_charge: Peddler::Types::Money?) -> Peddler::Types::ShippingV2::OneClickShipmentResult
+                    | (String?, Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, Peddler::Types::ShippingV2::Promise?, Peddler::Types::ShippingV2::Carrier?, Peddler::Types::ShippingV2::Service?, Peddler::Types::Money?) -> Peddler::Types::ShippingV2::OneClickShipmentResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::OneClickShipmentResult
 
         attr_reader shipment_id: String?
         attr_reader package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?

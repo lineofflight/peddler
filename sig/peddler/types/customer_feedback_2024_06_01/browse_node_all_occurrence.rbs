@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeAllOccurrence < Data
-        def self.new: (top_twenty_five_percent_products: Float?, all_products: Float?) -> instance
-                    | (Float?, Float?) -> instance
+        def self.new: (top_twenty_five_percent_products: Float?, all_products: Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence
+                    | (Float?, Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence
 
         attr_reader top_twenty_five_percent_products: Float?
         attr_reader all_products: Float?

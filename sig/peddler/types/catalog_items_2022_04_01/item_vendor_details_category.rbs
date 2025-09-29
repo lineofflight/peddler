@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemVendorDetailsCategory < Data
-        def self.new: (display_name: String?, value: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (display_name: String?, value: String?) -> Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory
+                    | (String?, String?) -> Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory
 
         attr_reader display_name: String?
         attr_reader value: String?

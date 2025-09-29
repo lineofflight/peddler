@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class OrderAcknowledgementItem < Data
-        def self.new: (purchase_order_number: String?, vendor_order_number: String?, acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> instance
-                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> instance
+        def self.new: (purchase_order_number: String?, vendor_order_number: String?, acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
+                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
 
         attr_reader purchase_order_number: String?
         attr_reader vendor_order_number: String?

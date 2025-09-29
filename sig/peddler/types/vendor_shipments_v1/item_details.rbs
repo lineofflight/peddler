@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ItemDetails < Data
-        def self.new: (purchase_order_number: String?, lot_number: String?, expiry: Peddler::Types::VendorShipmentsV1::Expiry?, maximum_retail_price: Peddler::Types::Money?, handling_code: String?) -> instance
-                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Expiry?, Peddler::Types::Money?, String?) -> instance
+        def self.new: (purchase_order_number: String?, lot_number: String?, expiry: Peddler::Types::VendorShipmentsV1::Expiry?, maximum_retail_price: Peddler::Types::Money?, handling_code: String?) -> Peddler::Types::VendorShipmentsV1::ItemDetails
+                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Expiry?, Peddler::Types::Money?, String?) -> Peddler::Types::VendorShipmentsV1::ItemDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ItemDetails
 
         attr_reader purchase_order_number: String?
         attr_reader lot_number: String?

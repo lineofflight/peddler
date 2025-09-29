@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class InboundOperationStatus < Data
-        def self.new: (operation: String?, operation_id: String?, operation_problems: Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, operation_status: String?) -> instance
-                    | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, String?) -> instance
+        def self.new: (operation: String?, operation_id: String?, operation_problems: Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, operation_status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
+                    | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::OperationProblem]?, String?) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus
 
         attr_reader operation: String?
         attr_reader operation_id: String?

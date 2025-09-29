@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class SubmitInvoiceResponse < Data
-        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
+                    | (Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
 
         attr_reader payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?

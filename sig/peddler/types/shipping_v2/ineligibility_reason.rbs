@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class IneligibilityReason < Data
-        def self.new: (code: String?, message: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (code: String?, message: String?) -> Peddler::Types::ShippingV2::IneligibilityReason
+                    | (String?, String?) -> Peddler::Types::ShippingV2::IneligibilityReason
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::IneligibilityReason
 
         attr_reader code: String?
         attr_reader message: String?

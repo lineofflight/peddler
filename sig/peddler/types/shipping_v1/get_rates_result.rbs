@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class GetRatesResult < Data
-        def self.new: (service_rates: Array[Peddler::Types::ShippingV1::ServiceRate]?) -> instance
-                    | (Array[Peddler::Types::ShippingV1::ServiceRate]?) -> instance
+        def self.new: (service_rates: Array[Peddler::Types::ShippingV1::ServiceRate]?) -> Peddler::Types::ShippingV1::GetRatesResult
+                    | (Array[Peddler::Types::ShippingV1::ServiceRate]?) -> Peddler::Types::ShippingV1::GetRatesResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::GetRatesResult
 
         attr_reader service_rates: Array[Peddler::Types::ShippingV1::ServiceRate]?
 

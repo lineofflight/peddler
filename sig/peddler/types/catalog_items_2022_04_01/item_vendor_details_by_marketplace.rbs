@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemVendorDetailsByMarketplace < Data
-        def self.new: (marketplace_id: String?, brand_code: String?, manufacturer_code: String?, manufacturer_code_parent: String?, product_category: Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, product_group: String?, product_subcategory: Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, replenishment_category: String?) -> instance
-                    | (String?, String?, String?, String?, Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, String?, Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, String?) -> instance
+        def self.new: (marketplace_id: String?, brand_code: String?, manufacturer_code: String?, manufacturer_code_parent: String?, product_category: Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, product_group: String?, product_subcategory: Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, replenishment_category: String?) -> Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace
+                    | (String?, String?, String?, String?, Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, String?, Peddler::Types::CatalogItems20220401::ItemVendorDetailsCategory?, String?) -> Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemVendorDetailsByMarketplace
 
         attr_reader marketplace_id: String?
         attr_reader brand_code: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class SetAppointmentFulfillmentDataRequest < Data
-        def self.new: (estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?, appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> instance
-                    | (Peddler::Types::ServicesV1::DateTimeRange?, Peddler::Types::ServicesV1::FulfillmentTime?, Array[Peddler::Types::ServicesV1::AppointmentResource]?, Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> instance
+        def self.new: (estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?, appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
+                    | (Peddler::Types::ServicesV1::DateTimeRange?, Peddler::Types::ServicesV1::FulfillmentTime?, Array[Peddler::Types::ServicesV1::AppointmentResource]?, Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
 
         attr_reader estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?
         attr_reader fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?

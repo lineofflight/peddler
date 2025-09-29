@@ -4,10 +4,10 @@ module Peddler
   module Types
     module NotificationsV1
       class ProcessingDirective < Data
-        def self.new: (event_filter: Peddler::Types::NotificationsV1::EventFilter?) -> instance
-                    | (Peddler::Types::NotificationsV1::EventFilter?) -> instance
+        def self.new: (event_filter: Peddler::Types::NotificationsV1::EventFilter?) -> Peddler::Types::NotificationsV1::ProcessingDirective
+                    | (Peddler::Types::NotificationsV1::EventFilter?) -> Peddler::Types::NotificationsV1::ProcessingDirective
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::ProcessingDirective
 
         attr_reader event_filter: Peddler::Types::NotificationsV1::EventFilter?
 

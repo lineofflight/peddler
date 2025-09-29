@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class UpdateShipmentSourceAddressRequest < Data
-        def self.new: (address: Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> instance
-                    | (Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> instance
+        def self.new: (address: Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
+                    | (Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentSourceAddressRequest
 
         attr_reader address: Peddler::Types::FulfillmentInbound20240320::AddressInput?
 

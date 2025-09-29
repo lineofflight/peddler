@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class DetailedShippingTimeType < Data
-        def self.new: (minimum_hours: Integer?, maximum_hours: Integer?, available_date: String?, availability_type: String?) -> instance
-                    | (Integer?, Integer?, String?, String?) -> instance
+        def self.new: (minimum_hours: Integer?, maximum_hours: Integer?, available_date: String?, availability_type: String?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
+                    | (Integer?, Integer?, String?, String?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
 
         attr_reader minimum_hours: Integer?
         attr_reader maximum_hours: Integer?

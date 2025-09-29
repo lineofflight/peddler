@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SalesV1
       class GetOrderMetricsResponse < Data
-        def self.new: (payload: Array[Peddler::Types::SalesV1::OrderMetricsInterval]?, errors: Array[Peddler::Types::SalesV1::Error]?) -> instance
-                    | (Array[Peddler::Types::SalesV1::OrderMetricsInterval]?, Array[Peddler::Types::SalesV1::Error]?) -> instance
+        def self.new: (payload: Array[Peddler::Types::SalesV1::OrderMetricsInterval]?, errors: Array[Peddler::Types::SalesV1::Error]?) -> Peddler::Types::SalesV1::GetOrderMetricsResponse
+                    | (Array[Peddler::Types::SalesV1::OrderMetricsInterval]?, Array[Peddler::Types::SalesV1::Error]?) -> Peddler::Types::SalesV1::GetOrderMetricsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SalesV1::GetOrderMetricsResponse
 
         attr_reader payload: Array[Peddler::Types::SalesV1::OrderMetricsInterval]?
         attr_reader errors: Array[Peddler::Types::SalesV1::Error]?

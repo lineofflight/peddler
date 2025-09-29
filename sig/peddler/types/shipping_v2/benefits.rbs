@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class Benefits < Data
-        def self.new: (included_benefits: Array[untyped]?, excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?) -> instance
-                    | (Array[untyped]?, Array[Peddler::Types::ShippingV2::ExcludedBenefit]?) -> instance
+        def self.new: (included_benefits: Array[untyped]?, excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?) -> Peddler::Types::ShippingV2::Benefits
+                    | (Array[untyped]?, Array[Peddler::Types::ShippingV2::ExcludedBenefit]?) -> Peddler::Types::ShippingV2::Benefits
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Benefits
 
         attr_reader included_benefits: Array[untyped]?
         attr_reader excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?

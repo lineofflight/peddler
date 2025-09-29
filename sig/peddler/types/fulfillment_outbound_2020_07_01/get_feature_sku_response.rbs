@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFeatureSkuResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
-                    | (Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
+                    | (Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
 
         attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?
         attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?

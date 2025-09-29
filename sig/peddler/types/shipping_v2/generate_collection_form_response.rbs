@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GenerateCollectionFormResponse < Data
-        def self.new: (collections_form_document: Peddler::Types::ShippingV2::CollectionsFormDocument?) -> instance
-                    | (Peddler::Types::ShippingV2::CollectionsFormDocument?) -> instance
+        def self.new: (collections_form_document: Peddler::Types::ShippingV2::CollectionsFormDocument?) -> Peddler::Types::ShippingV2::GenerateCollectionFormResponse
+                    | (Peddler::Types::ShippingV2::CollectionsFormDocument?) -> Peddler::Types::ShippingV2::GenerateCollectionFormResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GenerateCollectionFormResponse
 
         attr_reader collections_form_document: Peddler::Types::ShippingV2::CollectionsFormDocument?
 

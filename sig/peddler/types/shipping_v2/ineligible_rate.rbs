@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class IneligibleRate < Data
-        def self.new: (service_id: String?, service_name: String?, carrier_name: String?, carrier_id: String?, ineligibility_reasons: Array[Peddler::Types::ShippingV2::IneligibilityReason]?) -> instance
-                    | (String?, String?, String?, String?, Array[Peddler::Types::ShippingV2::IneligibilityReason]?) -> instance
+        def self.new: (service_id: String?, service_name: String?, carrier_name: String?, carrier_id: String?, ineligibility_reasons: Array[Peddler::Types::ShippingV2::IneligibilityReason]?) -> Peddler::Types::ShippingV2::IneligibleRate
+                    | (String?, String?, String?, String?, Array[Peddler::Types::ShippingV2::IneligibilityReason]?) -> Peddler::Types::ShippingV2::IneligibleRate
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::IneligibleRate
 
         attr_reader service_id: String?
         attr_reader service_name: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class AmazonPrepFeesDetails < Data
-        def self.new: (prep_instruction: String?, fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?) -> instance
-                    | (String?, Peddler::Types::FulfillmentInboundV0::Amount?) -> instance
+        def self.new: (prep_instruction: String?, fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?) -> Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails
+                    | (String?, Peddler::Types::FulfillmentInboundV0::Amount?) -> Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails
 
         attr_reader prep_instruction: String?
         attr_reader fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?

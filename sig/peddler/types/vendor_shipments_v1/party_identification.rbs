@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class PartyIdentification < Data
-        def self.new: (address: Peddler::Types::VendorShipmentsV1::Address?, party_id: String?, tax_registration_details: Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?) -> instance
-                    | (Peddler::Types::VendorShipmentsV1::Address?, String?, Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?) -> instance
+        def self.new: (address: Peddler::Types::VendorShipmentsV1::Address?, party_id: String?, tax_registration_details: Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorShipmentsV1::PartyIdentification
+                    | (Peddler::Types::VendorShipmentsV1::Address?, String?, Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorShipmentsV1::PartyIdentification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PartyIdentification
 
         attr_reader address: Peddler::Types::VendorShipmentsV1::Address?
         attr_reader party_id: String?

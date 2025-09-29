@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class RangeSlotCapacity < Data
-        def self.new: (resource_id: String?, capacities: Array[Peddler::Types::ServicesV1::RangeCapacity]?, next_page_token: String?) -> instance
-                    | (String?, Array[Peddler::Types::ServicesV1::RangeCapacity]?, String?) -> instance
+        def self.new: (resource_id: String?, capacities: Array[Peddler::Types::ServicesV1::RangeCapacity]?, next_page_token: String?) -> Peddler::Types::ServicesV1::RangeSlotCapacity
+                    | (String?, Array[Peddler::Types::ServicesV1::RangeCapacity]?, String?) -> Peddler::Types::ServicesV1::RangeSlotCapacity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::RangeSlotCapacity
 
         attr_reader resource_id: String?
         attr_reader capacities: Array[Peddler::Types::ServicesV1::RangeCapacity]?

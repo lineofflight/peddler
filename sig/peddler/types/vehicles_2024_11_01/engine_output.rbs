@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Vehicles20241101
       class EngineOutput < Data
-        def self.new: (value: Float?, unit: String?) -> instance
-                    | (Float?, String?) -> instance
+        def self.new: (value: Float?, unit: String?) -> Peddler::Types::Vehicles20241101::EngineOutput
+                    | (Float?, String?) -> Peddler::Types::Vehicles20241101::EngineOutput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::EngineOutput
 
         attr_reader value: Float?
         attr_reader unit: String?

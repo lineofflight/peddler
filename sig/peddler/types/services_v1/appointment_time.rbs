@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class AppointmentTime < Data
-        def self.new: (start_time: String?, duration_in_minutes: Integer?) -> instance
-                    | (String?, Integer?) -> instance
+        def self.new: (start_time: String?, duration_in_minutes: Integer?) -> Peddler::Types::ServicesV1::AppointmentTime
+                    | (String?, Integer?) -> Peddler::Types::ServicesV1::AppointmentTime
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentTime
 
         attr_reader start_time: String?
         attr_reader duration_in_minutes: Integer?

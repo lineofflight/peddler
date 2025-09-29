@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class LabelFormatOptionRequest < Data
-        def self.new: (include_packing_slip_with_label: bool?) -> instance
-                    | (bool?) -> instance
+        def self.new: (include_packing_slip_with_label: bool?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
+                    | (bool?) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest
 
         attr_reader include_packing_slip_with_label: bool?
 

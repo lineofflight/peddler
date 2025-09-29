@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class UnfulfillablePreviewItem < Data
-        def self.new: (seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, item_unfulfillable_reasons: Array[untyped]?) -> instance
-                    | (String?, Integer?, String?, Array[untyped]?) -> instance
+        def self.new: (seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, item_unfulfillable_reasons: Array[untyped]?) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
+                    | (String?, Integer?, String?, Array[untyped]?) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
 
         attr_reader seller_sku: String?
         attr_reader quantity: Integer?

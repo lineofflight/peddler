@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GetCarrierAccountsResponse < Data
-        def self.new: (active_accounts: Array[Peddler::Types::ShippingV2::ActiveAccount]?) -> instance
-                    | (Array[Peddler::Types::ShippingV2::ActiveAccount]?) -> instance
+        def self.new: (active_accounts: Array[Peddler::Types::ShippingV2::ActiveAccount]?) -> Peddler::Types::ShippingV2::GetCarrierAccountsResponse
+                    | (Array[Peddler::Types::ShippingV2::ActiveAccount]?) -> Peddler::Types::ShippingV2::GetCarrierAccountsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetCarrierAccountsResponse
 
         attr_reader active_accounts: Array[Peddler::Types::ShippingV2::ActiveAccount]?
 

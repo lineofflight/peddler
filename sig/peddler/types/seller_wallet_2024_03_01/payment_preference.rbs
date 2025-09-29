@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class PaymentPreference < Data
-        def self.new: (payment_preference_payment_type: String?, value: Float?) -> instance
-                    | (String?, Float?) -> instance
+        def self.new: (payment_preference_payment_type: String?, value: Float?) -> Peddler::Types::SellerWallet20240301::PaymentPreference
+                    | (String?, Float?) -> Peddler::Types::SellerWallet20240301::PaymentPreference
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::PaymentPreference
 
         attr_reader payment_preference_payment_type: String?
         attr_reader value: Float?

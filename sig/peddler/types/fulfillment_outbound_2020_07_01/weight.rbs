@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class Weight < Data
-        def self.new: (unit: String?, value: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (unit: String?, value: String?) -> Peddler::Types::FulfillmentOutbound20200701::Weight
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Weight
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Weight
 
         attr_reader unit: String?
         attr_reader value: String?

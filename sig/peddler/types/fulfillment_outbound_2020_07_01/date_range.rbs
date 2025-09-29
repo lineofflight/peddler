@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DateRange < Data
-        def self.new: (earliest: String?, latest: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (earliest: String?, latest: String?) -> Peddler::Types::FulfillmentOutbound20200701::DateRange
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DateRange
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DateRange
 
         attr_reader earliest: String?
         attr_reader latest: String?

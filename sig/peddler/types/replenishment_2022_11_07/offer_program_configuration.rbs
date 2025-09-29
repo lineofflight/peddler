@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Replenishment20221107
       class OfferProgramConfiguration < Data
-        def self.new: (preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, enrollment_method: String?) -> instance
-                    | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, String?) -> instance
+        def self.new: (preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, enrollment_method: String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
+                    | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
 
         attr_reader preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?
         attr_reader promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class OperatingHoursByDay < Data
-        def self.new: (monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> instance
-                    | (Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> instance
+        def self.new: (monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> Peddler::Types::SupplySources20200701::OperatingHoursByDay
+                    | (Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> Peddler::Types::SupplySources20200701::OperatingHoursByDay
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::OperatingHoursByDay
 
         attr_reader monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
         attr_reader tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?

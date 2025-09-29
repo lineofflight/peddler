@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MessagingV1
       class GetSchemaResponse < Data
-        def self.new: (_links: Hash[untyped, untyped]?, payload: Peddler::Types::MessagingV1::Schema?, errors: Array[Peddler::Types::MessagingV1::Error]?) -> instance
-                    | (Hash[untyped, untyped]?, Peddler::Types::MessagingV1::Schema?, Array[Peddler::Types::MessagingV1::Error]?) -> instance
+        def self.new: (_links: Hash[untyped, untyped]?, payload: Peddler::Types::MessagingV1::Schema?, errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetSchemaResponse
+                    | (Hash[untyped, untyped]?, Peddler::Types::MessagingV1::Schema?, Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetSchemaResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::GetSchemaResponse
 
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader payload: Peddler::Types::MessagingV1::Schema?

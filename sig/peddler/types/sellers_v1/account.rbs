@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellersV1
       class Account < Data
-        def self.new: (marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, business_type: String?, selling_plan: String?, business: Peddler::Types::SellersV1::Business?, primary_contact: Peddler::Types::SellersV1::PrimaryContact?) -> instance
-                    | (Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, String?, String?, Peddler::Types::SellersV1::Business?, Peddler::Types::SellersV1::PrimaryContact?) -> instance
+        def self.new: (marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, business_type: String?, selling_plan: String?, business: Peddler::Types::SellersV1::Business?, primary_contact: Peddler::Types::SellersV1::PrimaryContact?) -> Peddler::Types::SellersV1::Account
+                    | (Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, String?, String?, Peddler::Types::SellersV1::Business?, Peddler::Types::SellersV1::PrimaryContact?) -> Peddler::Types::SellersV1::Account
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Account
 
         attr_reader marketplace_participation_list: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
         attr_reader business_type: String?

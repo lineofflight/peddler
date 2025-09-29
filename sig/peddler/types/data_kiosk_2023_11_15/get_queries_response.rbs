@@ -4,10 +4,10 @@ module Peddler
   module Types
     module DataKiosk20231115
       class GetQueriesResponse < Data
-        def self.new: (queries: Array[Peddler::Types::DataKiosk20231115::Query]?, pagination: Hash[untyped, untyped]?) -> instance
-                    | (Array[Peddler::Types::DataKiosk20231115::Query]?, Hash[untyped, untyped]?) -> instance
+        def self.new: (queries: Array[Peddler::Types::DataKiosk20231115::Query]?, pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
+                    | (Array[Peddler::Types::DataKiosk20231115::Query]?, Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
 
         attr_reader queries: Array[Peddler::Types::DataKiosk20231115::Query]?
         attr_reader pagination: Hash[untyped, untyped]?

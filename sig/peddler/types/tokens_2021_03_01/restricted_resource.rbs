@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Tokens20210301
       class RestrictedResource < Data
-        def self.new: (method: String?, path: String?, data_elements: Array[String]?) -> instance
-                    | (String?, String?, Array[String]?) -> instance
+        def self.new: (method: String?, path: String?, data_elements: Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
+                    | (String?, String?, Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Tokens20210301::RestrictedResource
 
         attr_reader method: String?
         attr_reader path: String?

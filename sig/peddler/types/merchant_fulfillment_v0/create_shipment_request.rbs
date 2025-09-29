@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class CreateShipmentRequest < Data
-        def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, shipping_service_offer_id: String?, hazmat_type: String?, label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?) -> instance
-                    | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?) -> instance
+        def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, shipping_service_offer_id: String?, hazmat_type: String?, label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
+                    | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
 
         attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
         attr_reader shipping_service_id: String?

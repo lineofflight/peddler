@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FBAInventoryV1
       class CreateInventoryItemResponse < Data
-        def self.new: (errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> instance
-                    | (Array[Peddler::Types::FBAInventoryV1::Error]?) -> instance
+        def self.new: (errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::CreateInventoryItemResponse
+                    | (Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::CreateInventoryItemResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::CreateInventoryItemResponse
 
         attr_reader errors: Array[Peddler::Types::FBAInventoryV1::Error]?
 

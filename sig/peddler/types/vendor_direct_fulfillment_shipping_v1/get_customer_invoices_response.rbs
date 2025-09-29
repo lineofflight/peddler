@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class GetCustomerInvoicesResponse < Data
-        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoicesResponse
+                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoicesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoicesResponse
 
         attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?

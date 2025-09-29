@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class TemporarilyUnavailableCarrier < Data
-        def self.new: (carrier_name: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (carrier_name: String?) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
+                    | (String?) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::TemporarilyUnavailableCarrier
 
         attr_reader carrier_name: String?
 

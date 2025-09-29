@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class RequestedDocumentSpecification < Data
-        def self.new: (format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, need_file_joining: bool?, requested_document_types: Array[untyped]?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> instance
-                    | (String?, Peddler::Types::ShippingV2::DocumentSize?, Integer?, String?, bool?, Array[untyped]?, Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> instance
+        def self.new: (format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, need_file_joining: bool?, requested_document_types: Array[untyped]?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
+                    | (String?, Peddler::Types::ShippingV2::DocumentSize?, Integer?, String?, bool?, Array[untyped]?, Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
 
         attr_reader format: String?
         attr_reader size: Peddler::Types::ShippingV2::DocumentSize?

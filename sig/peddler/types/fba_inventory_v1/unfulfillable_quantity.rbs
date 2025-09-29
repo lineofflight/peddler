@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FBAInventoryV1
       class UnfulfillableQuantity < Data
-        def self.new: (total_unfulfillable_quantity: Integer?, customer_damaged_quantity: Integer?, warehouse_damaged_quantity: Integer?, distributor_damaged_quantity: Integer?, carrier_damaged_quantity: Integer?, defective_quantity: Integer?, expired_quantity: Integer?) -> instance
-                    | (Integer?, Integer?, Integer?, Integer?, Integer?, Integer?, Integer?) -> instance
+        def self.new: (total_unfulfillable_quantity: Integer?, customer_damaged_quantity: Integer?, warehouse_damaged_quantity: Integer?, distributor_damaged_quantity: Integer?, carrier_damaged_quantity: Integer?, defective_quantity: Integer?, expired_quantity: Integer?) -> Peddler::Types::FBAInventoryV1::UnfulfillableQuantity
+                    | (Integer?, Integer?, Integer?, Integer?, Integer?, Integer?, Integer?) -> Peddler::Types::FBAInventoryV1::UnfulfillableQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::UnfulfillableQuantity
 
         attr_reader total_unfulfillable_quantity: Integer?
         attr_reader customer_damaged_quantity: Integer?

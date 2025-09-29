@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricingV0
       class ItemOffersRequest < Data
-        def self.new: (uri: String?, method: String?, headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?, marketplace_id: String?, item_condition: String?, customer_type: String?) -> instance
-                    | (String?, String?, Peddler::Types::ProductPricingV0::HttpRequestHeaders?, String?, String?, String?) -> instance
+        def self.new: (uri: String?, method: String?, headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?, marketplace_id: String?, item_condition: String?, customer_type: String?) -> Peddler::Types::ProductPricingV0::ItemOffersRequest
+                    | (String?, String?, Peddler::Types::ProductPricingV0::HttpRequestHeaders?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::ItemOffersRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ItemOffersRequest
 
         attr_reader uri: String?
         attr_reader method: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class ListFinancialEventGroupsPayload < Data
-        def self.new: (next_token: String?, financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?) -> instance
-                    | (String?, Array[Peddler::Types::FinancesV0::FinancialEventGroup]?) -> instance
+        def self.new: (next_token: String?, financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
+                    | (String?, Array[Peddler::Types::FinancesV0::FinancialEventGroup]?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload
 
         attr_reader next_token: String?
         attr_reader financial_event_group_list: Array[Peddler::Types::FinancesV0::FinancialEventGroup]?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class CancelSelfShipAppointmentRequest < Data
-        def self.new: (reason_comment: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (reason_comment: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
+                    | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
 
         attr_reader reason_comment: String?
 

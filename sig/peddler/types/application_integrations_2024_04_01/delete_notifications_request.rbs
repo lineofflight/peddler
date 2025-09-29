@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class DeleteNotificationsRequest < Data
-        def self.new: (template_id: String?, deletion_reason: String?) -> instance
-                    | (String?, String?) -> instance
+        def self.new: (template_id: String?, deletion_reason: String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
+                    | (String?, String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
         attr_reader template_id: String?
         attr_reader deletion_reason: String?

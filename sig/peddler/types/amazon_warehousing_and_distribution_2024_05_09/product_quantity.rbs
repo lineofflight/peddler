@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class ProductQuantity < Data
-        def self.new: (attributes: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, quantity: Integer?, sku: String?, expiration: String?, prep_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> instance
-                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, Integer?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> instance
+        def self.new: (attributes: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, quantity: Integer?, sku: String?, expiration: String?, prep_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, Integer?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity
 
         attr_reader attributes: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?
         attr_reader quantity: Integer?

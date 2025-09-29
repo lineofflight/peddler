@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class ShippingPromiseSet < Data
-        def self.new: (delivery_window: Peddler::Types::ShippingV1::TimeRange?, receive_window: Peddler::Types::ShippingV1::TimeRange?) -> instance
-                    | (Peddler::Types::ShippingV1::TimeRange?, Peddler::Types::ShippingV1::TimeRange?) -> instance
+        def self.new: (delivery_window: Peddler::Types::ShippingV1::TimeRange?, receive_window: Peddler::Types::ShippingV1::TimeRange?) -> Peddler::Types::ShippingV1::ShippingPromiseSet
+                    | (Peddler::Types::ShippingV1::TimeRange?, Peddler::Types::ShippingV1::TimeRange?) -> Peddler::Types::ShippingV1::ShippingPromiseSet
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::ShippingPromiseSet
 
         attr_reader delivery_window: Peddler::Types::ShippingV1::TimeRange?
         attr_reader receive_window: Peddler::Types::ShippingV1::TimeRange?

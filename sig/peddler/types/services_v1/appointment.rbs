@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ServicesV1
       class Appointment < Data
-        def self.new: (appointment_id: String?, appointment_status: String?, appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?, rescheduled_appointment_id: String?, poa: Peddler::Types::ServicesV1::Poa?) -> instance
-                    | (String?, String?, Peddler::Types::ServicesV1::AppointmentTime?, Array[Peddler::Types::ServicesV1::Technician]?, String?, Peddler::Types::ServicesV1::Poa?) -> instance
+        def self.new: (appointment_id: String?, appointment_status: String?, appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?, rescheduled_appointment_id: String?, poa: Peddler::Types::ServicesV1::Poa?) -> Peddler::Types::ServicesV1::Appointment
+                    | (String?, String?, Peddler::Types::ServicesV1::AppointmentTime?, Array[Peddler::Types::ServicesV1::Technician]?, String?, Peddler::Types::ServicesV1::Poa?) -> Peddler::Types::ServicesV1::Appointment
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Appointment
 
         attr_reader appointment_id: String?
         attr_reader appointment_status: String?

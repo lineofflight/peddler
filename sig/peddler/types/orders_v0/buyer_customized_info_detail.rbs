@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class BuyerCustomizedInfoDetail < Data
-        def self.new: (customized_url: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (customized_url: String?) -> Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail
+                    | (String?) -> Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail
 
         attr_reader customized_url: String?
 

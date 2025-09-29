@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemImage < Data
-        def self.new: (link: String?, height: Integer?, width: Integer?) -> instance
-                    | (String?, Integer?, Integer?) -> instance
+        def self.new: (link: String?, height: Integer?, width: Integer?) -> Peddler::Types::ListingsItems20210801::ItemImage
+                    | (String?, Integer?, Integer?) -> Peddler::Types::ListingsItems20210801::ItemImage
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemImage
 
         attr_reader link: String?
         attr_reader height: Integer?

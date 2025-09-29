@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardTextModule < Data
-        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, body: Peddler::Types::AplusContent20201101::ParagraphComponent?) -> instance
-                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ParagraphComponent?) -> instance
+        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, body: Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardTextModule
 
         attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?

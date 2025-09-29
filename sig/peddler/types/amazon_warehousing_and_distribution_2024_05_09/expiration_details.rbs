@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class ExpirationDetails < Data
-        def self.new: (expiration: String?, onhand_quantity: Integer?) -> instance
-                    | (String?, Integer?) -> instance
+        def self.new: (expiration: String?, onhand_quantity: Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails
+                    | (String?, Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails
 
         attr_reader expiration: String?
         attr_reader onhand_quantity: Integer?

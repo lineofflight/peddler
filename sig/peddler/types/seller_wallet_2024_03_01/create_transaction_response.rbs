@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SellerWallet20240301
       class CreateTransactionResponse < Data
-        def self.new: (transaction: Peddler::Types::SellerWallet20240301::Transaction?, call_back_url: String?) -> instance
-                    | (Peddler::Types::SellerWallet20240301::Transaction?, String?) -> instance
+        def self.new: (transaction: Peddler::Types::SellerWallet20240301::Transaction?, call_back_url: String?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
+                    | (Peddler::Types::SellerWallet20240301::Transaction?, String?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
 
         attr_reader transaction: Peddler::Types::SellerWallet20240301::Transaction?
         attr_reader call_back_url: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class AvailableCarrierWillPickUpOption < Data
-        def self.new: (carrier_will_pick_up_option: String?, charge: Peddler::Types::Money?) -> instance
-                    | (String?, Peddler::Types::Money?) -> instance
+        def self.new: (carrier_will_pick_up_option: String?, charge: Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
+                    | (String?, Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::AvailableCarrierWillPickUpOption
 
         attr_reader carrier_will_pick_up_option: String?
         attr_reader charge: Peddler::Types::Money?

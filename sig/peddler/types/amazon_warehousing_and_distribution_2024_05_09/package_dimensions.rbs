@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class PackageDimensions < Data
-        def self.new: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> instance
-                    | (Float?, Float?, String?, Float?) -> instance
+        def self.new: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions
+                    | (Float?, Float?, String?, Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions
 
         attr_reader height: Float?
         attr_reader length: Float?

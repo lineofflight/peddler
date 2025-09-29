@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Uploads20201101
       class UploadDestination < Data
-        def self.new: (upload_destination_id: String?, url: String?, headers: Hash[untyped, untyped]?) -> instance
-                    | (String?, String?, Hash[untyped, untyped]?) -> instance
+        def self.new: (upload_destination_id: String?, url: String?, headers: Hash[untyped, untyped]?) -> Peddler::Types::Uploads20201101::UploadDestination
+                    | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Uploads20201101::UploadDestination
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Uploads20201101::UploadDestination
 
         attr_reader upload_destination_id: String?
         attr_reader url: String?

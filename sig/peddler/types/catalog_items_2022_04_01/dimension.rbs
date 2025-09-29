@@ -4,10 +4,10 @@ module Peddler
   module Types
     module CatalogItems20220401
       class Dimension < Data
-        def self.new: (unit: String?, value: Float?) -> instance
-                    | (String?, Float?) -> instance
+        def self.new: (unit: String?, value: Float?) -> Peddler::Types::CatalogItems20220401::Dimension
+                    | (String?, Float?) -> Peddler::Types::CatalogItems20220401::Dimension
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::Dimension
 
         attr_reader unit: String?
         attr_reader value: Float?

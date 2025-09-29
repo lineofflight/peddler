@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GetUnmanifestedShipmentsResponse < Data
-        def self.new: (unmanifested_carrier_information_list: Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?) -> instance
-                    | (Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?) -> instance
+        def self.new: (unmanifested_carrier_information_list: Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
+                    | (Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
 
         attr_reader unmanifested_carrier_information_list: Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?
 

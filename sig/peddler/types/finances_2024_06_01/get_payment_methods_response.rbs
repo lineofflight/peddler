@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Finances20240601
       class GetPaymentMethodsResponse < Data
-        def self.new: (payment_methods: Array[Peddler::Types::Finances20240601::PaymentMethodDetails]?) -> instance
-                    | (Array[Peddler::Types::Finances20240601::PaymentMethodDetails]?) -> instance
+        def self.new: (payment_methods: Array[Peddler::Types::Finances20240601::PaymentMethodDetails]?) -> Peddler::Types::Finances20240601::GetPaymentMethodsResponse
+                    | (Array[Peddler::Types::Finances20240601::PaymentMethodDetails]?) -> Peddler::Types::Finances20240601::GetPaymentMethodsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240601::GetPaymentMethodsResponse
 
         attr_reader payment_methods: Array[Peddler::Types::Finances20240601::PaymentMethodDetails]?
 

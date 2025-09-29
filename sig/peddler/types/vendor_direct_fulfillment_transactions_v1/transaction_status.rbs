@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentTransactionsV1
       class TransactionStatus < Data
-        def self.new: (transaction_status: Peddler::Types::VendorDirectFulfillmentTransactionsV1::Transaction?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentTransactionsV1::Transaction?) -> instance
+        def self.new: (transaction_status: Peddler::Types::VendorDirectFulfillmentTransactionsV1::Transaction?) -> Peddler::Types::VendorDirectFulfillmentTransactionsV1::TransactionStatus
+                    | (Peddler::Types::VendorDirectFulfillmentTransactionsV1::Transaction?) -> Peddler::Types::VendorDirectFulfillmentTransactionsV1::TransactionStatus
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactionsV1::TransactionStatus
 
         attr_reader transaction_status: Peddler::Types::VendorDirectFulfillmentTransactionsV1::Transaction?
 

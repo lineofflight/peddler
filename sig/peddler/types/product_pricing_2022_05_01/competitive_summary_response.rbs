@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryResponse < Data
-        def self.new: (status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?) -> instance
-                    | (Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?) -> instance
+        def self.new: (status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+                    | (Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
 
         attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
         attr_reader body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?

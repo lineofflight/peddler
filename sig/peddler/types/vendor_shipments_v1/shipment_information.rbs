@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ShipmentInformation < Data
-        def self.new: (vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?, buyer_reference_number: String?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, warehouse_id: String?, master_tracking_id: String?, total_label_count: Integer?, ship_mode: String?) -> instance
-                    | (Peddler::Types::VendorShipmentsV1::VendorDetails?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, String?, Integer?, String?) -> instance
+        def self.new: (vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?, buyer_reference_number: String?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, warehouse_id: String?, master_tracking_id: String?, total_label_count: Integer?, ship_mode: String?) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
+                    | (Peddler::Types::VendorShipmentsV1::VendorDetails?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, String?, Integer?, String?) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
 
         attr_reader vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?
         attr_reader buyer_reference_number: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module Feeds20210630
       class CreateFeedResponse < Data
-        def self.new: (feed_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (feed_id: String?) -> Peddler::Types::Feeds20210630::CreateFeedResponse
+                    | (String?) -> Peddler::Types::Feeds20210630::CreateFeedResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::CreateFeedResponse
 
         attr_reader feed_id: String?
 

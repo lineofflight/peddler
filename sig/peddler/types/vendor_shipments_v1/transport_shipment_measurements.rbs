@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportShipmentMeasurements < Data
-        def self.new: (total_carton_count: Integer?, total_pallet_stackable: Integer?, total_pallet_non_stackable: Integer?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?) -> instance
-                    | (Integer?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::Volume?) -> instance
+        def self.new: (total_carton_count: Integer?, total_pallet_stackable: Integer?, total_pallet_non_stackable: Integer?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+                    | (Integer?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::Volume?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
 
         attr_reader total_carton_count: Integer?
         attr_reader total_pallet_stackable: Integer?

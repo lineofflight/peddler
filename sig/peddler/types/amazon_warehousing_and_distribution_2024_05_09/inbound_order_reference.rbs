@@ -4,10 +4,10 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundOrderReference < Data
-        def self.new: (order_id: String?) -> instance
-                    | (String?) -> instance
+        def self.new: (order_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+                    | (String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
 
         attr_reader order_id: String?
 

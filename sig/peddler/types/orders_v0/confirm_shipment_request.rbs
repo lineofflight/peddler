@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class ConfirmShipmentRequest < Data
-        def self.new: (package_detail: Peddler::Types::OrdersV0::PackageDetail?, cod_collection_method: String?, marketplace_id: String?) -> instance
-                    | (Peddler::Types::OrdersV0::PackageDetail?, String?, String?) -> instance
+        def self.new: (package_detail: Peddler::Types::OrdersV0::PackageDetail?, cod_collection_method: String?, marketplace_id: String?) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
+                    | (Peddler::Types::OrdersV0::PackageDetail?, String?, String?) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
 
         attr_reader package_detail: Peddler::Types::OrdersV0::PackageDetail?
         attr_reader cod_collection_method: String?

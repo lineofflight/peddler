@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ItemQuantity < Data
-        def self.new: (amount: Integer?, unit_of_measure: String?, unit_size: Integer?, total_weight: Peddler::Types::VendorShipmentsV1::TotalWeight?) -> instance
-                    | (Integer?, String?, Integer?, Peddler::Types::VendorShipmentsV1::TotalWeight?) -> instance
+        def self.new: (amount: Integer?, unit_of_measure: String?, unit_size: Integer?, total_weight: Peddler::Types::VendorShipmentsV1::TotalWeight?) -> Peddler::Types::VendorShipmentsV1::ItemQuantity
+                    | (Integer?, String?, Integer?, Peddler::Types::VendorShipmentsV1::TotalWeight?) -> Peddler::Types::VendorShipmentsV1::ItemQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ItemQuantity
 
         attr_reader amount: Integer?
         attr_reader unit_of_measure: String?

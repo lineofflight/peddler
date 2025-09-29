@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SpdTrackingDetailInput < Data
-        def self.new: (spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> instance
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> instance
+        def self.new: (spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetailInput
 
         attr_reader spd_tracking_items: Array[Peddler::Types::FulfillmentInbound20240320::SpdTrackingItemInput]?
 

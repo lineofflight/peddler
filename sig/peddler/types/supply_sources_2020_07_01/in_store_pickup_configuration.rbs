@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class InStorePickupConfiguration < Data
-        def self.new: (supported: bool?, parking_configuration: Peddler::Types::SupplySources20200701::ParkingConfiguration?) -> instance
-                    | (bool?, Peddler::Types::SupplySources20200701::ParkingConfiguration?) -> instance
+        def self.new: (supported: bool?, parking_configuration: Peddler::Types::SupplySources20200701::ParkingConfiguration?) -> Peddler::Types::SupplySources20200701::InStorePickupConfiguration
+                    | (bool?, Peddler::Types::SupplySources20200701::ParkingConfiguration?) -> Peddler::Types::SupplySources20200701::InStorePickupConfiguration
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::InStorePickupConfiguration
 
         attr_reader supported: bool?
         attr_reader parking_configuration: Peddler::Types::SupplySources20200701::ParkingConfiguration?

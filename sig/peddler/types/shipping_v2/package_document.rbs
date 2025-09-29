@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class PackageDocument < Data
-        def self.new: (type: String?, format: String?, contents: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (type: String?, format: String?, contents: String?) -> Peddler::Types::ShippingV2::PackageDocument
+                    | (String?, String?, String?) -> Peddler::Types::ShippingV2::PackageDocument
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PackageDocument
 
         attr_reader type: String?
         attr_reader format: String?

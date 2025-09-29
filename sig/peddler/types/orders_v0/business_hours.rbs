@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class BusinessHours < Data
-        def self.new: (day_of_week: String?, open_intervals: Array[Peddler::Types::OrdersV0::OpenInterval]?) -> instance
-                    | (String?, Array[Peddler::Types::OrdersV0::OpenInterval]?) -> instance
+        def self.new: (day_of_week: String?, open_intervals: Array[Peddler::Types::OrdersV0::OpenInterval]?) -> Peddler::Types::OrdersV0::BusinessHours
+                    | (String?, Array[Peddler::Types::OrdersV0::OpenInterval]?) -> Peddler::Types::OrdersV0::BusinessHours
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::BusinessHours
 
         attr_reader day_of_week: String?
         attr_reader open_intervals: Array[Peddler::Types::OrdersV0::OpenInterval]?

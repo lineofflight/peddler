@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV2
       class GetAdditionalInputsResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV2::GetAdditionalInputsResult?) -> instance
-                    | (Peddler::Types::ShippingV2::GetAdditionalInputsResult?) -> instance
+        def self.new: (payload: Peddler::Types::ShippingV2::GetAdditionalInputsResult?) -> Peddler::Types::ShippingV2::GetAdditionalInputsResponse
+                    | (Peddler::Types::ShippingV2::GetAdditionalInputsResult?) -> Peddler::Types::ShippingV2::GetAdditionalInputsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetAdditionalInputsResponse
 
         attr_reader payload: Peddler::Types::ShippingV2::GetAdditionalInputsResult?
 

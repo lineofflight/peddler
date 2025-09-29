@@ -4,10 +4,10 @@ module Peddler
   module Types
     module OrdersV0
       class ItemBuyerInfo < Data
-        def self.new: (buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, gift_wrap_price: Peddler::Types::Money?, gift_wrap_tax: Peddler::Types::Money?, gift_message_text: String?, gift_wrap_level: String?) -> instance
-                    | (Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> instance
+        def self.new: (buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, gift_wrap_price: Peddler::Types::Money?, gift_wrap_tax: Peddler::Types::Money?, gift_message_text: String?, gift_wrap_level: String?) -> Peddler::Types::OrdersV0::ItemBuyerInfo
+                    | (Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::OrdersV0::ItemBuyerInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ItemBuyerInfo
 
         attr_reader buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?
         attr_reader gift_wrap_price: Peddler::Types::Money?

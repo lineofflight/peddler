@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FinancesV0
       class AffordabilityExpenseEvent < Data
-        def self.new: (amazon_order_id: String?, posted_date: String?, marketplace_id: String?, transaction_type: String?, base_expense: Peddler::Types::Money?, tax_type_cgst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, total_expense: Peddler::Types::Money?) -> instance
-                    | (String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> instance
+        def self.new: (amazon_order_id: String?, posted_date: String?, marketplace_id: String?, transaction_type: String?, base_expense: Peddler::Types::Money?, tax_type_cgst: Peddler::Types::Money?, tax_type_sgst: Peddler::Types::Money?, tax_type_igst: Peddler::Types::Money?, total_expense: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
+                    | (String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::AffordabilityExpenseEvent
 
         attr_reader amazon_order_id: String?
         attr_reader posted_date: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module SupplySources20200701
       class OutboundCapability < Data
-        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, return_location: Peddler::Types::SupplySources20200701::ReturnLocation?, delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?, pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?) -> instance
-                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::ReturnLocation?, Peddler::Types::SupplySources20200701::DeliveryChannel?, Peddler::Types::SupplySources20200701::PickupChannel?) -> instance
+        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, return_location: Peddler::Types::SupplySources20200701::ReturnLocation?, delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?, pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?) -> Peddler::Types::SupplySources20200701::OutboundCapability
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::ReturnLocation?, Peddler::Types::SupplySources20200701::DeliveryChannel?, Peddler::Types::SupplySources20200701::PickupChannel?) -> Peddler::Types::SupplySources20200701::OutboundCapability
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::OutboundCapability
 
         attr_reader supported: bool?
         attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?

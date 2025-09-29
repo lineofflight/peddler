@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class OrderScenarioRequest < Data
-        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> instance
-                    | (Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> instance
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
+                    | (Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
 
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?

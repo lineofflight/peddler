@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class PaymentInformation < Data
-        def self.new: (payment_transaction_id: String?, payment_mode: String?, payment_date: String?) -> instance
-                    | (String?, String?, String?) -> instance
+        def self.new: (payment_transaction_id: String?, payment_mode: String?, payment_date: String?) -> Peddler::Types::FulfillmentOutbound20200701::PaymentInformation
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::PaymentInformation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::PaymentInformation
 
         attr_reader payment_transaction_id: String?
         attr_reader payment_mode: String?

@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DeliveryOffer < Data
-        def self.new: (expires_at: String?, date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?, policy: Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> instance
-                    | (String?, Peddler::Types::FulfillmentOutbound20200701::DateRange?, Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> instance
+        def self.new: (expires_at: String?, date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?, policy: Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
+                    | (String?, Peddler::Types::FulfillmentOutbound20200701::DateRange?, Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
 
         attr_reader expires_at: String?
         attr_reader date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?

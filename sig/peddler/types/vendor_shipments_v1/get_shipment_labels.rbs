@@ -4,10 +4,10 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class GetShipmentLabels < Data
-        def self.new: (payload: Peddler::Types::VendorShipmentsV1::TransportationLabels?, errors: Array[Peddler::Types::VendorShipmentsV1::Error]?) -> instance
-                    | (Peddler::Types::VendorShipmentsV1::TransportationLabels?, Array[Peddler::Types::VendorShipmentsV1::Error]?) -> instance
+        def self.new: (payload: Peddler::Types::VendorShipmentsV1::TransportationLabels?, errors: Array[Peddler::Types::VendorShipmentsV1::Error]?) -> Peddler::Types::VendorShipmentsV1::GetShipmentLabels
+                    | (Peddler::Types::VendorShipmentsV1::TransportationLabels?, Array[Peddler::Types::VendorShipmentsV1::Error]?) -> Peddler::Types::VendorShipmentsV1::GetShipmentLabels
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::GetShipmentLabels
 
         attr_reader payload: Peddler::Types::VendorShipmentsV1::TransportationLabels?
         attr_reader errors: Array[Peddler::Types::VendorShipmentsV1::Error]?

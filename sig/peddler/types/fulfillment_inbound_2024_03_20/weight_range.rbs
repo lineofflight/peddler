@@ -4,10 +4,10 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class WeightRange < Data
-        def self.new: (maximum: Float?, minimum: Float?, unit: String?) -> instance
-                    | (Float?, Float?, String?) -> instance
+        def self.new: (maximum: Float?, minimum: Float?, unit: String?) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
+                    | (Float?, Float?, String?) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::WeightRange
 
         attr_reader maximum: Float?
         attr_reader minimum: Float?

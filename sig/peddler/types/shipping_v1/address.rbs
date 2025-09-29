@@ -4,10 +4,10 @@ module Peddler
   module Types
     module ShippingV1
       class Address < Data
-        def self.new: (name: String?, address_line1: String?, address_line2: String?, address_line3: String?, state_or_region: String?, city: String?, country_code: String?, postal_code: String?, email: String?, copy_emails: Array[String]?, phone_number: String?) -> instance
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, Array[String]?, String?) -> instance
+        def self.new: (name: String?, address_line1: String?, address_line2: String?, address_line3: String?, state_or_region: String?, city: String?, country_code: String?, postal_code: String?, email: String?, copy_emails: Array[String]?, phone_number: String?) -> Peddler::Types::ShippingV1::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, Array[String]?, String?) -> Peddler::Types::ShippingV1::Address
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> instance
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::Address
 
         attr_reader name: String?
         attr_reader address_line1: String?
