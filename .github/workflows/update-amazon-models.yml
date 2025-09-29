@@ -98,12 +98,35 @@ jobs:
             // Create PR title and body
             const today = new Date().toISOString().split('T')[0];
             const prTitle = `Update Amazon models - ${today}`;
-            const prBody = `This PR was automatically generated to update the Amazon API models.
+
+            // Build PR body with character limit handling
+            const baseBody = `This PR was automatically generated to update the Amazon API models.
 
             Changes include:
-            ${changedFiles.map(file => `- ${file}`).join('\n')}
+            `;
 
-            Created by GitHub Actions workflow.`;
+            const maxLength = 65536;
+            const truncationMessage = '(truncated due to length)';
+
+            let filesList = changedFiles.map(file => `- ${file}`).join('\n');
+
+            // Calculate max allowed length for the complete body
+            const maxBodyLength = maxLength;
+            const currentLength = baseBody.length + filesList.length;
+
+            // Truncate if necessary
+            if (currentLength > maxBodyLength) {
+              const maxFilesListLength = maxBodyLength - baseBody.length - truncationMessage.length;
+              filesList = filesList.substring(0, maxFilesListLength);
+              // Find the last complete line
+              const lastNewline = filesList.lastIndexOf('\n');
+              if (lastNewline > 0) {
+                filesList = filesList.substring(0, lastNewline);
+              }
+              filesList += truncationMessage;
+            }
+
+            const prBody = baseBody + filesList;
 
             // Create PR using GitHub API
             const { data: pr } = await github.rest.pulls.create({
