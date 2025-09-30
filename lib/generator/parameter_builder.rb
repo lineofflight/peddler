@@ -31,10 +31,13 @@ module Generator
         "type" => "Float",
         "required" => false,
         "description" => "Requests per second",
-      }
+      } #: Hash[String, untyped]
 
       # Only add default if we have a known rate limit value (not :unknown)
-      param["default"] = @rate_limit unless @rate_limit == :unknown
+      # The default should be a Float value
+      if @rate_limit.is_a?(Float)
+        param["default"] = @rate_limit
+      end
 
       param
     end

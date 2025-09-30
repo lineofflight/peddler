@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+module Generator
+  module Logger
+    @logger: ::Logger?
+
+    def logger: () -> ::Logger
+  end
+end

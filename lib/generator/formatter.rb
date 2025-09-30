@@ -9,7 +9,7 @@ module Generator
 
       # Handle multi-line input by processing each line separately
       input_lines = line.split("\n")
-      all_lines = []
+      all_lines = [] #: Array[String]
 
       input_lines.each do |input_line|
         # Preserve blank lines
@@ -18,8 +18,8 @@ module Generator
           next
         end
 
-        current_line = []
-        lines = []
+        current_line = [] #: Array[String]
+        lines = [] #: Array[String]
         input_line.sub(/^\s*#\s*/, "").split.each do |word|
           if lines.empty? && (current_line + [word]).join(" ").size <= max_width
             current_line << word
@@ -44,7 +44,7 @@ module Generator
       max_width = max_line_length - base_indent
 
       current_line = ["def #{method_name}("]
-      lines = []
+      lines = [] #: Array[String]
       params.each do |param|
         if (current_line + ["#{param},"]).join.size <= max_width
           current_line << param + ", "
@@ -53,7 +53,8 @@ module Generator
           current_line = ["  " + param + ", "]
         end
       end
-      lines << " " * base_indent + current_line.join[..-3] + ")"
+      joined = current_line.join
+      lines << " " * base_indent + (joined[..-3] || "") + ")"
 
       lines.join("\n")
     end

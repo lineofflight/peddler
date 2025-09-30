@@ -148,7 +148,7 @@ module Generator
 
     def types
       @types ||= begin
-        arr  = []
+        arr = [] #: Array[Type]
         apis.each do |api|
           api.openapi_spec["definitions"].each do |name, definition|
             # Skip non-object definitions but allow allOf compositions and arrays

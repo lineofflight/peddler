@@ -1,0 +1,25 @@
+# frozen_string_literal: true
+
+module Generator
+  class Path
+    HTTP_METHODS: Array[String]
+
+    @path: String
+
+    attr_reader methods: Hash[String, untyped]
+
+    def initialize: (String path, Hash[String, untyped] methods) -> void
+
+    def operations: (?String? api_name_with_version) -> Array[Operation]
+
+    def to_s: () -> String
+
+    def path: () -> String
+
+    def parameters: () -> Array[Hash[String, untyped]]
+
+    def has_dynamic_sandbox?: () -> bool
+
+    def sandbox_only?: () -> bool
+  end
+end

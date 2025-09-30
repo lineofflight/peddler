@@ -1,0 +1,83 @@
+# frozen_string_literal: true
+
+module Generator
+  class Operation
+    include Formatter
+
+    DEFAULT_TEMPLATE: String
+
+    @response_model: Hash[Symbol, untyped]?
+    @parameters: Array[Hash[String, untyped]]?
+    @rate_limit: (Float | :unknown | nil)?
+
+    attr_reader path: Path
+    attr_reader verb: String
+    attr_reader operation: Hash[String, untyped]
+    attr_reader api_name_with_version: String?
+    attr_reader template: String
+
+    def initialize: (
+      Path path,
+      String verb,
+      Hash[String, untyped] operation,
+      ?api_name_with_version: String?,
+      ?template: String
+    ) -> void
+
+    def operation_id: () -> String?
+
+    def render: () -> String
+
+    def description: () -> String
+
+    def tags: () -> Array[String]
+
+    def method_definition: () -> String
+
+    def sandbox_rule: () -> String?
+
+    def body_param_name: () -> String?
+
+    def query_params: () -> Hash[String, String]
+
+    def request_args: () -> Array[String]
+
+    def has_typed_response?: () -> bool
+
+    def response_model: () -> Hash[Symbol, untyped]
+
+    def parameters: () -> Array[Hash[String, untyped]]
+
+    def rate_limit: () -> (Float | :unknown | nil)
+
+    private
+
+    def parser_class: () -> String?
+
+    def parsing_logic: () -> String?
+
+    def build_type_class_name: (String model_name) -> String
+
+    def parse_response_type: (String type_class) -> String
+
+    def parse_single_type: (String type_class, Array[String] path) -> String
+
+    def parse_array_type: (String type_class, Array[String] path) -> String
+
+    def parse_nested_array: (String type_class, String array_name) -> String
+
+    def parse_simple_array: (String type_class) -> String
+
+    def build_dig_path: (Array[String] path) -> String
+
+    def use_ternary?: () -> bool
+
+    def name: () -> String
+
+    def dynamic_sandbox?: () -> bool
+
+    def static_sandbox?: () -> bool
+
+    def sandbox_only?: () -> bool
+  end
+end

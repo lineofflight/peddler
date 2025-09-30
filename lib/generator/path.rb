@@ -26,7 +26,8 @@ module Generator
     def path
       # Use atomic grouping (?>...) to prevent ReDoS
       @path.gsub(/\{(?>([^}]+))\}/) do
-        "\#{percent_encode(#{Regexp.last_match(1).underscore})}"
+        match = Regexp.last_match(1) or raise("No match found")
+        "\#{percent_encode(#{match.underscore})}"
       end
     end
 

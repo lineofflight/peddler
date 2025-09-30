@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+module Generator
+  module VersionSelector
+    def self.find_latest_version: (Array[String] versions) -> String
+  end
+end

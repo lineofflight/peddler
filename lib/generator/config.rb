@@ -4,7 +4,7 @@ require "active_support/inflector"
 
 module Generator
   module Config
-    BASE_PATH = File.expand_path("../..", __dir__)
+    BASE_PATH = File.expand_path("../..", __dir__ || raise("__dir__ is nil"))
     GENERATED_FILE_NOTICE = "This file is generated. Edit template if necessary."
 
     # Configure ActiveSupport::Inflector with Amazon SP-API acronyms

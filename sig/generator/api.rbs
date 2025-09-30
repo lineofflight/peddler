@@ -1,0 +1,59 @@
+# frozen_string_literal: true
+
+module Generator
+  class API
+    include Formatter
+    include Logger
+
+    @operations: Array[Operation]?
+    @model: Hash[String, untyped]?
+
+    attr_reader file: String
+
+    def initialize: (String file) -> void
+
+    def generate: () -> void
+
+    def title: () -> String
+
+    def description: () -> String
+
+    def library_name: () -> String
+
+    def has_helper?: () -> bool
+
+    def helper_class_name: () -> String
+
+    def helper_library_name: () -> String
+
+    def class_name: () -> String
+
+    def name: () -> String
+
+    def version: () -> String
+
+    def name_with_version: () -> String
+
+    def operations: () -> Array[Operation]
+
+    def type_names: () -> Array[String]
+
+    def paths: () -> Array[Path]
+
+    def file_path: () -> String
+
+    def openapi_spec: () -> Hash[String, untyped]
+
+    def github_model_filename: () -> String
+
+    private
+
+    def deduplicate_operations: (Array[Operation] ops) -> Array[Operation]
+
+    def render: () -> String
+
+    def template: () -> String
+
+    def model: () -> Hash[String, untyped]
+  end
+end

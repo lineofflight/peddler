@@ -44,11 +44,12 @@ module Generator
 
       def render_operation(operation)
         # Skip operations without an operation_id
-        return unless operation.operation_id
+        operation_id = operation.operation_id
+        return unless operation_id
 
         params = render_parameters(operation)
 
-        method_name = operation.operation_id.underscore
+        method_name = operation_id.underscore
 
         <<~RBS.strip
           def #{method_name}: (#{params}) -> Peddler::Response
@@ -56,8 +57,8 @@ module Generator
       end
 
       def render_parameters(operation)
-        positional_params = []
-        keyword_params = []
+        positional_params = [] #: Array[String]
+        keyword_params = [] #: Array[String]
 
         # Build parameters list to match Ruby generator's ordering
         params = build_parameters_list(operation)

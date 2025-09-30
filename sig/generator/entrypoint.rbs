@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+module Generator
+  class Entrypoint
+    attr_reader apis: Array[API]
+
+    def initialize: (Array[API] apis) -> void
+
+    def generate: () -> void
+
+    def required_libraries: () -> Array[String]
+
+    def apis_with_latest_version: () -> Hash[String, API]
+
+    private
+
+    def render_template: () -> String
+
+    def file_path: () -> String
+
+    def template: () -> String
+  end
+end

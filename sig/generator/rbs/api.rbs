@@ -1,0 +1,38 @@
+# frozen_string_literal: true
+
+module Generator
+  module RBS
+    class API
+      include Formatter
+
+      attr_reader api: Generator::API
+      attr_reader api_name: String
+
+      def initialize: (Generator::API api, String api_name) -> void
+
+      def generate: () -> void
+
+      def class_name: () -> String
+
+      def operations: () -> Array[Generator::Operation]
+
+      private
+
+      def build_parameters_list: (Generator::Operation operation) -> Array[Hash[String, untyped]]
+
+      def rbs_file_path: () -> String
+
+      def render_operation: (Generator::Operation operation) -> String?
+
+      def render_parameters: (Generator::Operation operation) -> String
+
+      def parameter_rbs_type: (Hash[String, untyped] param, ?nullable: bool) -> String
+
+      def parameter_item_type: (String type) -> String
+
+      def render_rbs: () -> String
+
+      def rbs_template: () -> String
+    end
+  end
+end

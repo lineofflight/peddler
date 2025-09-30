@@ -97,10 +97,10 @@ module Generator
         elsif default_value.is_a?(Array)
           default_value.inspect
         else
-          default_value
+          default_value || "nil"
         end
 
-        "#{p["name"].underscore}: #{formatted_default ? formatted_default : "nil"}"
+        "#{p["name"].underscore}: #{formatted_default}"
       end
       params = required_params + optional_params
 
@@ -121,9 +121,8 @@ module Generator
     end
 
     def query_params
-      parameters.select do |p|
-        p["in"] == "query"
-      end.reduce({}) do |hash, p|
+      hash = {} #: Hash[String, String]
+      parameters.select { |p| p["in"] == "query" }.each do |p|
         param_name = p["name"].underscore
         value = param_name
 
@@ -132,8 +131,9 @@ module Generator
           value = "stringify_array(#{param_name})"
         end
 
-        hash.merge(p["name"] => value)
+        hash[p["name"]] = value
       end
+      hash
     end
 
     def request_args
@@ -168,7 +168,7 @@ module Generator
       model = response_model
       return unless model && model[:model]
 
-      api_class = api_name_with_version.camelize
+      api_class = (api_name_with_version || raise("api_name_with_version is nil")).camelize
 
       # For response types, we use the response class directly as the parser
       # The type class knows how to parse the JSON response
@@ -196,7 +196,7 @@ module Generator
     end
 
     def build_type_class_name(model_name)
-      api_class = api_name_with_version.camelize
+      api_class = (api_name_with_version || raise("api_name_with_version is nil")).camelize
       "Peddler::Types::#{api_class}::#{model_name}"
     end
 
@@ -241,7 +241,7 @@ module Generator
     end
 
     def name
-      operation_id.underscore
+      (operation_id || raise("operation_id is nil")).underscore
     end
 
     def dynamic_sandbox?

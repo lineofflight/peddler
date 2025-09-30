@@ -36,13 +36,14 @@ module Generator
     end
 
     def build_dependency_graph
-      types.each_with_object({}) do |type, graph|
+      graph = {} #: Hash[String, Array[String]]
+      types.each do |type|
         graph[type.name] = type.type_dependencies
       end
+      graph
     end
 
     def traverse_for_cycles(node, visited: Set.new, rec_stack: [])
-      return unless dependency_graph[node]
       return if visited.include?(node)
 
       visited.add(node)
@@ -61,8 +62,10 @@ module Generator
 
     def mark_cycle(rec_stack, neighbor, node)
       cycle_start_index = rec_stack.index(neighbor)
-      rec_stack[cycle_start_index..-1].each { |n| circular_deps.add(n) }
-      edge = [node, neighbor]
+      return unless cycle_start_index
+
+      (rec_stack[cycle_start_index..-1] || []).each { |n| circular_deps.add(n) }
+      edge = [node, neighbor] #: [String, String]
       logger.debug("Adding cycle edge #{edge.inspect}, rec_stack=#{rec_stack.inspect}")
       cycle_edges.add(edge)
     end

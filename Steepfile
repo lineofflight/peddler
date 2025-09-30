@@ -6,13 +6,9 @@ target :lib do
   signature "sig"
   check "lib"
 
-  ignore(
-    "lib/generator",
-    "lib/generator.rb",
-  )
-
   library(
     "json",
+    "open3",
     "socket",
     "time",
     "uri",

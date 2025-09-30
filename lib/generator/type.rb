@@ -77,7 +77,7 @@ module Generator
         if resolved_type.is_a?(String) && resolved_type =~ /^\[(.+)\]$/
           inner_type = ::Regexp.last_match(1)
           # Only use string class for actual cycles
-          if cycle_edges&.include?([name, inner_type])
+          if inner_type && cycle_edges&.include?([name, inner_type])
             # Return as array with string class name for lazy loading
             return "[\"#{inner_type}\"]"
           end
@@ -88,7 +88,7 @@ module Generator
     end
 
     def type_dependencies
-      dependencies = []
+      dependencies = [] #: Array[String]
       properties.each do |_prop_name, prop_def|
         dependencies.concat(extract_dependencies_from_property(prop_def))
       end
@@ -134,7 +134,7 @@ module Generator
           # Handle arrays
           if resolved_type =~ /^\[(.+)\]$/
             inner_type = ::Regexp.last_match(1)
-            return true if cycle_edges&.include?([name, inner_type])
+            return true if inner_type && cycle_edges&.include?([name, inner_type])
           end
         end
 
@@ -170,36 +170,42 @@ module Generator
     private
 
     def merge_from_all_of(field_name)
-      result = field_name == "properties" ? {} : []
-
-      definition["allOf"].each do |schema|
-        if schema["$ref"]
-          # Resolve reference and get its field
-          ref_name = schema["$ref"].split("/").last
-          ref_def = specification["definitions"][ref_name]
-          if ref_def && ref_def[field_name]
-            value = yield(ref_def[field_name])
-            if result.is_a?(Hash)
-              result.merge!(value)
-            else
-              result.concat(value)
+      if field_name == "properties"
+        result = {} #: Hash[String, untyped]
+        definition["allOf"].each do |schema|
+          if schema["$ref"]
+            ref_name = schema["$ref"].split("/").last
+            ref_def = specification&.dig("definitions", ref_name)
+            if ref_def && ref_def[field_name]
+              value = yield(ref_def[field_name]) #: untyped
+              result.merge!(value) if value.is_a?(Hash)
             end
+          elsif schema[field_name]
+            value = yield(schema[field_name]) #: untyped
+            result.merge!(value) if value.is_a?(Hash)
           end
-        elsif schema[field_name]
-          value = yield(schema[field_name])
-          if result.is_a?(Hash)
-            result.merge!(value)
-          else
-            result.concat(value)
+        end
+      else
+        result = [] #: Array[String]
+        definition["allOf"].each do |schema|
+          if schema["$ref"]
+            ref_name = schema["$ref"].split("/").last
+            ref_def = specification&.dig("definitions", ref_name)
+            if ref_def && ref_def[field_name]
+              value = yield(ref_def[field_name]) #: untyped
+              result.concat(value) if value.is_a?(Array)
+            end
+          elsif schema[field_name]
+            value = yield(schema[field_name]) #: untyped
+            result.concat(value) if value.is_a?(Array)
           end
         end
       end
-
       result
     end
 
     def extract_dependencies_from_property(prop_def)
-      dependencies = []
+      dependencies = [] #: Array[String]
 
       if prop_def["$ref"]
         # Extract type name from $ref like "#/definitions/LowestPricedOffersInput"
@@ -299,7 +305,7 @@ module Generator
       class_lines[0] = class_lines[0].sub(/class .*::(\w+)/, 'class \1')
 
       # Build the properly nested module structure
-      lines = []
+      lines = [] #: Array[String]
       lines << "# #{Generator::Config::GENERATED_FILE_NOTICE}"
       lines << ""
       lines << "module Peddler"

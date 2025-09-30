@@ -1,0 +1,35 @@
+# frozen_string_literal: true
+
+module Generator
+  class CircularDependencyDetector
+    include Logger
+
+    @circular_deps: Set[String]?
+    @cycle_edges: Set[[String, String]]?
+    @dependency_graph: Hash[String, Array[String]]?
+
+    attr_reader types: Array[Type]
+
+    def initialize: (Array[Type] types) -> void
+
+    def detect: () -> void
+
+    def circular_deps: () -> Set[String]
+
+    def cycle_edges: () -> Set[[String, String]]
+
+    private
+
+    def dependency_graph: () -> Hash[String, Array[String]]
+
+    def build_dependency_graph: () -> Hash[String, Array[String]]
+
+    def traverse_for_cycles: (
+      String node,
+      ?visited: Set[String],
+      ?rec_stack: Array[String]
+    ) -> void
+
+    def mark_cycle: (Array[String] rec_stack, String neighbor, String node) -> void
+  end
+end
