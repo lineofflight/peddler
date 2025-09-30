@@ -11,7 +11,7 @@ module Peddler
       class TDSReimbursementEventList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| TDSReimbursementEvent.parse(item) }) : new
+            new(array.map { |item| TDSReimbursementEvent.parse(item) })
           end
         end
       end

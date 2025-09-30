@@ -11,7 +11,7 @@ module Peddler
       class FeaturedOfferExpectedPriceRequestList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| FeaturedOfferExpectedPriceRequest.parse(item) }) : new
+            new(array.map { |item| FeaturedOfferExpectedPriceRequest.parse(item) })
           end
         end
       end

@@ -11,7 +11,7 @@ module Peddler
       class AvailableFormatOptionsForLabel < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| LabelFormatOption.parse(item) }) : new
+            new(array.map { |item| LabelFormatOption.parse(item) })
           end
         end
       end

@@ -11,7 +11,7 @@ module Peddler
       class PackageDocumentList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| PackageDocument.parse(item) }) : new
+            new(array.map { |item| PackageDocument.parse(item) })
           end
         end
       end

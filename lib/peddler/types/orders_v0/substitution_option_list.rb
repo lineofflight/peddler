@@ -11,7 +11,7 @@ module Peddler
       class SubstitutionOptionList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| SubstitutionOption.parse(item) }) : new
+            new(array.map { |item| SubstitutionOption.parse(item) })
           end
         end
       end

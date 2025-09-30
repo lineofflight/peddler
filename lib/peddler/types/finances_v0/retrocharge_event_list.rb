@@ -11,7 +11,7 @@ module Peddler
       class RetrochargeEventList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| RetrochargeEvent.parse(item) }) : new
+            new(array.map { |item| RetrochargeEvent.parse(item) })
           end
         end
       end

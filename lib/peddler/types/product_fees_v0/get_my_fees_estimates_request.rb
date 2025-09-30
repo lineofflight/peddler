@@ -11,7 +11,7 @@ module Peddler
       class GetMyFeesEstimatesRequest < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| FeesEstimateByIdRequest.parse(item) }) : new
+            new(array.map { |item| FeesEstimateByIdRequest.parse(item) })
           end
         end
       end

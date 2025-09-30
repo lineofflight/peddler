@@ -16,9 +16,9 @@ module Peddler
         class << self
           def parse(array)
 <% if array_item_type && generated_type?(array_item_type) -%>
-            array.is_a?(Array) ? new(array.map { |item| <%= array_item_type.camelize %>.parse(item) }) : new
+            new(array.map { |item| <%= array_item_type.camelize %>.parse(item) })
 <% else -%>
-            array.is_a?(Array) ? new(array) : new
+            new(array)
 <% end -%>
           end
         end

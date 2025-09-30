@@ -11,7 +11,7 @@ module Peddler
       class Features < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| Feature.parse(item) }) : new
+            new(array.map { |item| Feature.parse(item) })
           end
         end
       end

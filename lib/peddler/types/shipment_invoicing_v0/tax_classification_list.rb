@@ -11,7 +11,7 @@ module Peddler
       class TaxClassificationList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| TaxClassification.parse(item) }) : new
+            new(array.map { |item| TaxClassification.parse(item) })
           end
         end
       end

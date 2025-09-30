@@ -10,7 +10,7 @@ module Peddler
       class OrderChangeTypes < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array) : new
+            new(array)
           end
         end
       end

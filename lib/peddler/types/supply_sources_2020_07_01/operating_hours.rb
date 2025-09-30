@@ -11,7 +11,7 @@ module Peddler
       class OperatingHours < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| OperatingHour.parse(item) }) : new
+            new(array.map { |item| OperatingHour.parse(item) })
           end
         end
       end

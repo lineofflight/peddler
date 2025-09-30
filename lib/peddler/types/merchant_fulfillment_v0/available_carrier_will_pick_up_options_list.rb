@@ -11,7 +11,7 @@ module Peddler
       class AvailableCarrierWillPickUpOptionsList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| AvailableCarrierWillPickUpOption.parse(item) }) : new
+            new(array.map { |item| AvailableCarrierWillPickUpOption.parse(item) })
           end
         end
       end

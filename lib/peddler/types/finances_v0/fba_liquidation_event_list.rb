@@ -11,7 +11,7 @@ module Peddler
       class FBALiquidationEventList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| FBALiquidationEvent.parse(item) }) : new
+            new(array.map { |item| FBALiquidationEvent.parse(item) })
           end
         end
       end

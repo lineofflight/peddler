@@ -11,7 +11,7 @@ module Peddler
       class FailedAdhocDisbursementEventList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| FailedAdhocDisbursementEvent.parse(item) }) : new
+            new(array.map { |item| FailedAdhocDisbursementEvent.parse(item) })
           end
         end
       end

@@ -11,7 +11,7 @@ module Peddler
       class QueryList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| Query.parse(item) }) : new
+            new(array.map { |item| Query.parse(item) })
           end
         end
       end

@@ -11,7 +11,7 @@ module Peddler
       class CreateReturnItemList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| CreateReturnItem.parse(item) }) : new
+            new(array.map { |item| CreateReturnItem.parse(item) })
           end
         end
       end

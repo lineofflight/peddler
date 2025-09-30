@@ -11,7 +11,7 @@ module Peddler
       class WarningList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| Warning.parse(item) }) : new
+            new(array.map { |item| Warning.parse(item) })
           end
         end
       end

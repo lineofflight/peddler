@@ -11,7 +11,7 @@ module Peddler
       class AvailableValueAddedServiceGroupList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| AvailableValueAddedServiceGroup.parse(item) }) : new
+            new(array.map { |item| AvailableValueAddedServiceGroup.parse(item) })
           end
         end
       end

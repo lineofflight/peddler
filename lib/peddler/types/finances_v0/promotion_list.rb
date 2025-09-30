@@ -11,7 +11,7 @@ module Peddler
       class PromotionList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| Promotion.parse(item) }) : new
+            new(array.map { |item| Promotion.parse(item) })
           end
         end
       end

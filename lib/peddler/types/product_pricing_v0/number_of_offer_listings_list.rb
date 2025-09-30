@@ -12,7 +12,7 @@ module Peddler
       class NumberOfOfferListingsList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| OfferListingCountType.parse(item) }) : new
+            new(array.map { |item| OfferListingCountType.parse(item) })
           end
         end
       end

@@ -11,7 +11,7 @@ module Peddler
       class TermsAndConditionsNotAcceptedCarrierList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| TermsAndConditionsNotAcceptedCarrier.parse(item) }) : new
+            new(array.map { |item| TermsAndConditionsNotAcceptedCarrier.parse(item) })
           end
         end
       end

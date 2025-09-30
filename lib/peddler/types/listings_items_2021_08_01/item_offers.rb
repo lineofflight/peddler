@@ -11,7 +11,7 @@ module Peddler
       class ItemOffers < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| ItemOfferByMarketplace.parse(item) }) : new
+            new(array.map { |item| ItemOfferByMarketplace.parse(item) })
           end
         end
       end

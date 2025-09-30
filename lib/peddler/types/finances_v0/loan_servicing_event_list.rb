@@ -11,7 +11,7 @@ module Peddler
       class LoanServicingEventList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| LoanServicingEvent.parse(item) }) : new
+            new(array.map { |item| LoanServicingEvent.parse(item) })
           end
         end
       end

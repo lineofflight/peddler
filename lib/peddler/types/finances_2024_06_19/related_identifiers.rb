@@ -11,7 +11,7 @@ module Peddler
       class RelatedIdentifiers < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| RelatedIdentifier.parse(item) }) : new
+            new(array.map { |item| RelatedIdentifier.parse(item) })
           end
         end
       end

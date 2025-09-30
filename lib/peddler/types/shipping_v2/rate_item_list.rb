@@ -11,7 +11,7 @@ module Peddler
       class RateItemList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| RateItem.parse(item) }) : new
+            new(array.map { |item| RateItem.parse(item) })
           end
         end
       end

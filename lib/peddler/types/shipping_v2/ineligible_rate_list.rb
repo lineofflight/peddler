@@ -11,7 +11,7 @@ module Peddler
       class IneligibleRateList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| IneligibleRate.parse(item) }) : new
+            new(array.map { |item| IneligibleRate.parse(item) })
           end
         end
       end

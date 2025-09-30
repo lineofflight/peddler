@@ -11,7 +11,7 @@ module Peddler
       class CapacityReservationBillingEventList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| CapacityReservationBillingEvent.parse(item) }) : new
+            new(array.map { |item| CapacityReservationBillingEvent.parse(item) })
           end
         end
       end

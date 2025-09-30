@@ -11,7 +11,7 @@ module Peddler
       class ExcludedBenefits < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| ExcludedBenefit.parse(item) }) : new
+            new(array.map { |item| ExcludedBenefit.parse(item) })
           end
         end
       end

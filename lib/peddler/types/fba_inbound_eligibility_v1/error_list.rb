@@ -11,7 +11,7 @@ module Peddler
       class ErrorList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| Error.parse(item) }) : new
+            new(array.map { |item| Error.parse(item) })
           end
         end
       end

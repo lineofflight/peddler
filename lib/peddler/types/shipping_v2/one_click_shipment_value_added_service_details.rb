@@ -11,7 +11,7 @@ module Peddler
       class OneClickShipmentValueAddedServiceDetails < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| OneClickShipmentValueAddedService.parse(item) }) : new
+            new(array.map { |item| OneClickShipmentValueAddedService.parse(item) })
           end
         end
       end

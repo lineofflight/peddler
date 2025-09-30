@@ -11,7 +11,7 @@ module Peddler
       class OrderMetricsList < Array
         class << self
           def parse(array)
-            array.is_a?(Array) ? new(array.map { |item| OrderMetricsInterval.parse(item) }) : new
+            new(array.map { |item| OrderMetricsInterval.parse(item) })
           end
         end
       end
