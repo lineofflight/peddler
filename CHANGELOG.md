@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fix missing sandbox rules in some API methods
+- Generate X-Amz-Date header per request instead of memoizing stale timestamps
 
 ## [4.8.0] - 2025-09-22
 

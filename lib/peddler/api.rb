@@ -77,7 +77,6 @@ module Peddler
         "Host" => endpoint_uri.host,
         "User-Agent" => user_agent,
         "X-Amz-Access-Token" => access_token,
-        "X-Amz-Date" => timestamp,
       )
     end
 
@@ -132,7 +131,7 @@ module Peddler
           uri.path = path
         end
 
-        http_response = http.send(method, uri, **options)
+        http_response = http.headers("X-Amz-Date" => timestamp).send(method, uri, **options)
 
         Response.wrap(http_response, parser:)
       end

@@ -40,8 +40,8 @@ module Peddler
       assert_equal(@api.http.default_options.headers["X-Amz-Access-Token"], @api.access_token)
     end
 
-    def test_date_header
-      assert(@api.http.default_options.headers["X-Amz-Date"])
+    def test_date_header_added_per_request
+      refute(@api.http.default_options.headers["X-Amz-Date"])
     end
 
     def test_http_verb_methods
@@ -147,6 +147,7 @@ module Peddler
     def test_server_errors_return_response_by_default
       # Mock HTTP client to return 500 error
       mock_http = Minitest::Mock.new
+      mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
       mock_http.expect(
         :get,
         HTTP::Response.new(
@@ -177,6 +178,7 @@ module Peddler
 
       # Mock HTTP client to return 500 error
       mock_http = Minitest::Mock.new
+      mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
       mock_http.expect(
         :get,
         HTTP::Response.new(
@@ -201,6 +203,7 @@ module Peddler
     def test_client_errors_always_raise
       # Mock HTTP client to return 404 error
       mock_http = Minitest::Mock.new
+      mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
       mock_http.expect(
         :get,
         HTTP::Response.new(
