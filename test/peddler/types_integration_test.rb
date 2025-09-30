@@ -331,6 +331,7 @@ module Peddler
     def catalog_items_response_data
       {
         "numberOfResults" => 2,
+        "pagination" => {},
         "items" => [
           {
             "asin" => "B001234567",

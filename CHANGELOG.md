@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade structure gem to 4.0 for improved optional attribute handling
+- Regenerate all type classes with attribute? for optional fields
+
 ### Fixed
 
 - Fix missing sandbox rules in some API methods

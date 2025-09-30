@@ -7,9 +7,8 @@ target :lib do
   check "lib"
 
   ignore(
-    "lib/peddler",
-    # "lib/generator",
-    # "lib/generator.rb",
+    "lib/generator",
+    "lib/generator.rb",
   )
 
   library(
@@ -18,9 +17,4 @@ target :lib do
     "time",
     "uri",
   )
-
-  # configure_code_diagnostics do |config|
-  #   config[Steep::Diagnostic::Ruby::UnexpectedPositionalArgument] = :hint
-  # end
-  #
 end

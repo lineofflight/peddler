@@ -278,7 +278,7 @@ gems:
   source:
     type: stdlib
 - name: structure
-  version: 3.6.3
+  version: 4.0.0
   source:
     type: rubygems
 - name: thor

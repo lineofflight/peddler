@@ -9,6 +9,9 @@ module Peddler
       def test_order_boolean_predicates
         data = {
           "AmazonOrderId" => "123",
+          "PurchaseDate" => "2025-01-01",
+          "LastUpdateDate" => "2025-01-01",
+          "OrderStatus" => "Pending",
           "IsPrime" => true,
           "IsBusinessOrder" => false,
           "IsReplacementOrder" => false,
@@ -23,6 +26,9 @@ module Peddler
       def test_order_money_type
         data = {
           "AmazonOrderId" => "123",
+          "PurchaseDate" => "2025-01-01",
+          "LastUpdateDate" => "2025-01-01",
+          "OrderStatus" => "Pending",
           "OrderTotal" => {
             "CurrencyCode" => "USD",
             "Amount" => "99.99",
@@ -36,7 +42,12 @@ module Peddler
       end
 
       def test_order_optional_attributes_nil
-        data = { "AmazonOrderId" => "123" }
+        data = {
+          "AmazonOrderId" => "123",
+          "PurchaseDate" => "2025-01-01",
+          "LastUpdateDate" => "2025-01-01",
+          "OrderStatus" => "Pending",
+        }
         order = OrdersV0::Order.parse(data)
 
         assert_nil(order.seller_order_id)
@@ -61,8 +72,18 @@ module Peddler
         data = {
           "payload" => {
             "Orders" => [
-              { "AmazonOrderId" => "123" },
-              { "AmazonOrderId" => "456" },
+              {
+                "AmazonOrderId" => "123",
+                "PurchaseDate" => "2025-01-01",
+                "LastUpdateDate" => "2025-01-01",
+                "OrderStatus" => "Pending",
+              },
+              {
+                "AmazonOrderId" => "456",
+                "PurchaseDate" => "2025-01-01",
+                "LastUpdateDate" => "2025-01-01",
+                "OrderStatus" => "Pending",
+              },
             ],
             "NextToken" => "token123",
           },
