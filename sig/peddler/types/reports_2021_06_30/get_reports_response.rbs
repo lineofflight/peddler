@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Reports20210630
       class GetReportsResponse < Data
-        def self.new: (reports: Array[Peddler::Types::Reports20210630::Report]?, next_token: String?) -> Peddler::Types::Reports20210630::GetReportsResponse
+        def self.new: (reports: Array[Peddler::Types::Reports20210630::Report]?, ?next_token: String?) -> Peddler::Types::Reports20210630::GetReportsResponse
                     | (Array[Peddler::Types::Reports20210630::Report]?, String?) -> Peddler::Types::Reports20210630::GetReportsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::GetReportsResponse

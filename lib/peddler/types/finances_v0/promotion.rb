@@ -11,13 +11,13 @@ module Peddler
       # A promotion applied to an item.
       Promotion = Structure.new do
         # @return [String] The type of promotion.
-        attribute(:promotion_type, String, from: "PromotionType")
+        attribute?(:promotion_type, String, from: "PromotionType")
 
         # @return [String] The seller-specified identifier for the promotion.
-        attribute(:promotion_id, String, from: "PromotionId")
+        attribute?(:promotion_id, String, from: "PromotionId")
 
         # @return [Money] The amount of promotional discount applied to the item.
-        attribute(:promotion_amount, Money, from: "PromotionAmount")
+        attribute?(:promotion_amount, Money, from: "PromotionAmount")
       end
     end
   end

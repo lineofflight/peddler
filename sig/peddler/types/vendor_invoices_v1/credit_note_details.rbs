@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class CreditNoteDetails < Data
-        def self.new: (reference_invoice_number: String?, debit_note_number: String?, returns_reference_number: String?, goods_return_date: String?, rma_id: String?, coop_reference_number: String?, consignors_reference_number: String?) -> Peddler::Types::VendorInvoicesV1::CreditNoteDetails
+        def self.new: (?reference_invoice_number: String?, ?debit_note_number: String?, ?returns_reference_number: String?, ?goods_return_date: String?, ?rma_id: String?, ?coop_reference_number: String?, ?consignors_reference_number: String?) -> Peddler::Types::VendorInvoicesV1::CreditNoteDetails
                     | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorInvoicesV1::CreditNoteDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::CreditNoteDetails

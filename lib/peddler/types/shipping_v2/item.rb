@@ -15,42 +15,42 @@ module Peddler
       # An item in a package.
       Item = Structure.new do
         # @return [Money]
-        attribute(:item_value, Money, from: "itemValue")
+        attribute?(:item_value, Money, from: "itemValue")
 
         # @return [String] The product description of the item.
-        attribute(:description, String)
+        attribute?(:description, String)
 
         # @return [String] A unique identifier for an item provided by the client.
-        attribute(:item_identifier, String, from: "itemIdentifier")
+        attribute?(:item_identifier, String, from: "itemIdentifier")
 
         # @return [Integer] The number of units. This value is required.
         attribute(:quantity, Integer)
 
         # @return [Weight]
-        attribute(:weight, Weight)
+        attribute?(:weight, Weight)
 
         # @return [LiquidVolume]
-        attribute(:liquid_volume, LiquidVolume, from: "liquidVolume")
+        attribute?(:liquid_volume, LiquidVolume, from: "liquidVolume")
 
         # @return [:boolean] When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
-        attribute(:hazmat, :boolean, from: "isHazmat")
+        attribute?(:hazmat, :boolean, from: "isHazmat")
 
         # @return [DangerousGoodsDetails]
-        attribute(:dangerous_goods_details, DangerousGoodsDetails, from: "dangerousGoodsDetails")
+        attribute?(:dangerous_goods_details, DangerousGoodsDetails, from: "dangerousGoodsDetails")
 
         # @return [String] The product type of the item.
-        attribute(:product_type, String, from: "productType")
+        attribute?(:product_type, String, from: "productType")
 
         # @return [InvoiceDetails]
-        attribute(:invoice_details, InvoiceDetails, from: "invoiceDetails")
+        attribute?(:invoice_details, InvoiceDetails, from: "invoiceDetails")
 
         # @return [Array<String>] A list of unique serial numbers in an Amazon package that can be used to guarantee
         # non-fraudulent items. The number of serial numbers in the list must be less than or equal to the quantity of
         # items being shipped. Only applicable when channel source is Amazon.
-        attribute(:serial_numbers, [String], from: "serialNumbers")
+        attribute?(:serial_numbers, [String], from: "serialNumbers")
 
         # @return [DirectFulfillmentItemIdentifiers]
-        attribute(:direct_fulfillment_item_identifiers, DirectFulfillmentItemIdentifiers, from: "directFulfillmentItemIdentifiers")
+        attribute?(:direct_fulfillment_item_identifiers, DirectFulfillmentItemIdentifiers, from: "directFulfillmentItemIdentifiers")
       end
     end
   end

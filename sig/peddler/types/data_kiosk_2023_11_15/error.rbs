@@ -4,7 +4,7 @@ module Peddler
   module Types
     module DataKiosk20231115
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::DataKiosk20231115::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::DataKiosk20231115::Error
                     | (String?, String?, String?) -> Peddler::Types::DataKiosk20231115::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::Error

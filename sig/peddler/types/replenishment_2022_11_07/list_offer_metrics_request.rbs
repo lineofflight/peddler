@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOfferMetricsRequest < Data
-        def self.new: (pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?, filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
+        def self.new: (pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?, filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
                     | (Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest

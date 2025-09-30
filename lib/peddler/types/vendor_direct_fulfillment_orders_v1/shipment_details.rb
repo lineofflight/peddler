@@ -13,13 +13,13 @@ module Peddler
         attribute(:priority_shipment, :boolean, from: "isPriorityShipment")
 
         # @return [:boolean] When true, this order is part of a scheduled delivery program.
-        attribute(:scheduled_delivery_shipment, :boolean, from: "isScheduledDeliveryShipment")
+        attribute?(:scheduled_delivery_shipment, :boolean, from: "isScheduledDeliveryShipment")
 
         # @return [:boolean] When true, a packing slip is required to be sent to the customer.
         attribute(:pslip_required, :boolean, from: "isPslipRequired")
 
         # @return [:boolean] When true, the order contain a gift. Include the gift message and gift wrap information.
-        attribute(:gift, :boolean, from: "isGift")
+        attribute?(:gift, :boolean, from: "isGift")
 
         # @return [String] Ship method to be used for shipping the order. Amazon defines ship method codes indicating
         # the shipping carrier and shipment service level. To see the full list of ship methods in use, including both

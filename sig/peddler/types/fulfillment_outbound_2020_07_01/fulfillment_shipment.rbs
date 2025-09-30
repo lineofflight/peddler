@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentShipment < Data
-        def self.new: (amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_status: String?, shipping_date: String?, estimated_arrival_date: String?, shipping_notes: Array[String]?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
+        def self.new: (amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_status: String?, ?shipping_date: String?, ?estimated_arrival_date: String?, ?shipping_notes: Array[String]?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, ?fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
                     | (String?, String?, String?, String?, String?, Array[String]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment

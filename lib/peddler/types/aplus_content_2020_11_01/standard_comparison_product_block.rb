@@ -15,19 +15,19 @@ module Peddler
         attribute(:position, Integer)
 
         # @return [ImageComponent]
-        attribute(:image, ImageComponent)
+        attribute?(:image, ImageComponent)
 
         # @return [String] The comparison product title.
-        attribute(:title, String)
+        attribute?(:title, String)
 
         # @return [String]
-        attribute(:asin, String)
+        attribute?(:asin, String)
 
         # @return [:boolean] When true, indicates that this content block is visually highlighted.
-        attribute(:highlight, :boolean)
+        attribute?(:highlight, :boolean)
 
         # @return [Array<PlainTextItem>] Comparison metrics for the product.
-        attribute(:metrics, [PlainTextItem])
+        attribute?(:metrics, [PlainTextItem])
       end
     end
   end

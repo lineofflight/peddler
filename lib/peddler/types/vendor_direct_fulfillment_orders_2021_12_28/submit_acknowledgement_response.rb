@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the submitAcknowledgement operation.
       SubmitAcknowledgementResponse = Structure.new do
         # @return [TransactionId] The payload for the submitAcknowledgement operation.
-        attribute(:payload, TransactionId)
+        attribute?(:payload, TransactionId)
 
         # @return [ErrorList]
-        attribute(:errors, ErrorList)
+        attribute?(:errors, ErrorList)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTopicMetrics < Data
-        def self.new: (number_of_mentions: Integer?, occurrence_percentage: Float?, star_rating_impact: Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
+        def self.new: (?number_of_mentions: Integer?, ?occurrence_percentage: Float?, ?star_rating_impact: Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
                     | (Integer?, Float?, Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics

@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `listTransactions` operation.
       ListTransactionsResponse = Structure.new do
         # @return [TransactionsPayload] The payload for the `listTransactions` operation.
-        attribute(:payload, TransactionsPayload)
+        attribute?(:payload, TransactionsPayload)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class GetTrackingInformationResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV1::TrackingInformation?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse
+        def self.new: (?payload: Peddler::Types::ShippingV1::TrackingInformation?, ?errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse
                     | (Peddler::Types::ShippingV1::TrackingInformation?, Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse

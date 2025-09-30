@@ -14,7 +14,7 @@ module Peddler
         attribute(:shipment_request_details, ShipmentRequestDetails, from: "ShipmentRequestDetails")
 
         # @return [ShippingOfferingFilter]
-        attribute(:shipping_offering_filter, ShippingOfferingFilter, from: "ShippingOfferingFilter")
+        attribute?(:shipping_offering_filter, ShippingOfferingFilter, from: "ShippingOfferingFilter")
       end
     end
   end

@@ -12,16 +12,16 @@ module Peddler
       # An item identifier and the estimated fees for the item.
       FeesEstimateResult = Structure.new do
         # @return [String] The status of the fee request. Possible values: Success, ClientError, ServiceError.
-        attribute(:status, String, from: "Status")
+        attribute?(:status, String, from: "Status")
 
         # @return [FeesEstimateIdentifier] Information used to identify a fees estimate request.
-        attribute(:fees_estimate_identifier, FeesEstimateIdentifier, from: "FeesEstimateIdentifier")
+        attribute?(:fees_estimate_identifier, FeesEstimateIdentifier, from: "FeesEstimateIdentifier")
 
         # @return [FeesEstimate] The total estimated fees for an item and a list of details.
-        attribute(:fees_estimate, FeesEstimate, from: "FeesEstimate")
+        attribute?(:fees_estimate, FeesEstimate, from: "FeesEstimate")
 
         # @return [FeesEstimateError] An error object with a type, code, and message.
-        attribute(:error, FeesEstimateError, from: "Error")
+        attribute?(:error, FeesEstimateError, from: "Error")
       end
     end
   end

@@ -17,13 +17,13 @@ module Peddler
         attribute(:acknowledged_quantity, ItemQuantity, from: "acknowledgedQuantity")
 
         # @return [String] Estimated ship date per line item. Must be in ISO-8601 date/time format.
-        attribute(:scheduled_ship_date, String, from: "scheduledShipDate")
+        attribute?(:scheduled_ship_date, String, from: "scheduledShipDate")
 
         # @return [String] Estimated delivery date per line item. Must be in ISO-8601 date/time format.
-        attribute(:scheduled_delivery_date, String, from: "scheduledDeliveryDate")
+        attribute?(:scheduled_delivery_date, String, from: "scheduledDeliveryDate")
 
         # @return [String] Indicates the reason for rejection.
-        attribute(:rejection_reason, String, from: "rejectionReason")
+        attribute?(:rejection_reason, String, from: "rejectionReason")
       end
     end
   end

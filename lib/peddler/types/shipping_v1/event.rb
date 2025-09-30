@@ -16,7 +16,7 @@ module Peddler
         attribute(:event_time, String, from: "eventTime")
 
         # @return [Location]
-        attribute(:location, Location)
+        attribute?(:location, Location)
       end
     end
   end

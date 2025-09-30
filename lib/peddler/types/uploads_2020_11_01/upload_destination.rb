@@ -10,13 +10,13 @@ module Peddler
       # Information about an upload destination.
       UploadDestination = Structure.new do
         # @return [String] The unique identifier for the upload destination.
-        attribute(:upload_destination_id, String, from: "uploadDestinationId")
+        attribute?(:upload_destination_id, String, from: "uploadDestinationId")
 
         # @return [String] The URL for the upload destination.
-        attribute(:url, String)
+        attribute?(:url, String)
 
         # @return [Hash] The headers to include in the upload request.
-        attribute(:headers, Hash)
+        attribute?(:headers, Hash)
       end
     end
   end

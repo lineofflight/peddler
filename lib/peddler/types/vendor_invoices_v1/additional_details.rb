@@ -16,7 +16,7 @@ module Peddler
         attribute(:detail, String)
 
         # @return [String] The language code of the additional information detail.
-        attribute(:language_code, String, from: "languageCode")
+        attribute?(:language_code, String, from: "languageCode")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class AcknowledgementStatus < Data
-        def self.new: (code: String?, description: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::AcknowledgementStatus
+        def self.new: (?code: String?, ?description: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::AcknowledgementStatus
                     | (String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::AcknowledgementStatus
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::AcknowledgementStatus

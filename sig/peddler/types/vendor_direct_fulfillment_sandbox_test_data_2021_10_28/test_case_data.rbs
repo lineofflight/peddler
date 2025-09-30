@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class TestCaseData < Data
-        def self.new: (scenarios: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData
+        def self.new: (?scenarios: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData
                     | (Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData

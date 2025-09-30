@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the `sendInvoice` operation.
       InvoiceRequest = Structure.new do
         # @return [Array<Attachment>] Attachments to include in the message to the buyer.
-        attribute(:attachments, [Attachment])
+        attribute?(:attachments, [Attachment])
       end
     end
   end

@@ -10,19 +10,19 @@ module Peddler
       # The dimensions of the scheduled package.
       Dimensions = Structure.new do
         # @return [Float] The length dimension.
-        attribute(:length, Float)
+        attribute?(:length, Float)
 
         # @return [Float] The width dimension.
-        attribute(:width, Float)
+        attribute?(:width, Float)
 
         # @return [Float] The height dimension.
-        attribute(:height, Float)
+        attribute?(:height, Float)
 
         # @return [String]
-        attribute(:unit, String)
+        attribute?(:unit, String)
 
         # @return [String] Identifier for custom package dimensions.
-        attribute(:identifier, String)
+        attribute?(:identifier, String)
       end
     end
   end

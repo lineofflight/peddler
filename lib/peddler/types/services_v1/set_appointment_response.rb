@@ -13,15 +13,15 @@ module Peddler
       SetAppointmentResponse = Structure.new do
         # @return [String] New appointment identifier generated during the `addAppointmentForServiceJobByServiceJobId`
         # or `rescheduleAppointmentForServiceJobByServiceJobId` operations.
-        attribute(:appointment_id, String, from: "appointmentId")
+        attribute?(:appointment_id, String, from: "appointmentId")
 
         # @return [Array<Warning>] Warnings generated during the `addAppointmentForServiceJobByServiceJobId` or
         # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
-        attribute(:warnings, [Warning])
+        attribute?(:warnings, [Warning])
 
         # @return [Array<Error>] Errors occurred during during the `addAppointmentForServiceJobByServiceJobId` or
         # `rescheduleAppointmentForServiceJobByServiceJobId` operations.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

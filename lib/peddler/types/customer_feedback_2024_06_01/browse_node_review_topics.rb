@@ -16,7 +16,7 @@ module Peddler
         # the list. This value is `null` if there are not enough positive reviews for the requested browse node.
         #
         # **Max length:** 10
-        attribute(:positive_topics, [BrowseNodeReviewTopic], from: "positiveTopics")
+        attribute?(:positive_topics, [BrowseNodeReviewTopic], from: "positiveTopics")
 
         # @return [Array<BrowseNodeReviewTopic>] A list of the most negative review topics. When the `sortBy` query
         # parameter is set to `MENTIONS`, the number of reviews of items within the requested browse node that mention
@@ -25,7 +25,7 @@ module Peddler
         # the list. This value is `null` if there are not enough negative reviews for the requested browse node.
         #
         # **Max length:** 10
-        attribute(:negative_topics, [BrowseNodeReviewTopic], from: "negativeTopics")
+        attribute?(:negative_topics, [BrowseNodeReviewTopic], from: "negativeTopics")
       end
     end
   end

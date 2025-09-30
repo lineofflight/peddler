@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class AdjustmentEvent < Data
-        def self.new: (adjustment_type: String?, posted_date: String?, store_name: String?, adjustment_amount: Peddler::Types::Money?, adjustment_item_list: Array[Peddler::Types::FinancesV0::AdjustmentItem]?) -> Peddler::Types::FinancesV0::AdjustmentEvent
+        def self.new: (?adjustment_type: String?, ?posted_date: String?, ?store_name: String?, ?adjustment_amount: Peddler::Types::Money?, ?adjustment_item_list: Array[Peddler::Types::FinancesV0::AdjustmentItem]?) -> Peddler::Types::FinancesV0::AdjustmentEvent
                     | (String?, String?, String?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::AdjustmentItem]?) -> Peddler::Types::FinancesV0::AdjustmentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::AdjustmentEvent

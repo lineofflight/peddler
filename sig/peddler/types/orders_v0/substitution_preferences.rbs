@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class SubstitutionPreferences < Data
-        def self.new: (substitution_type: String?, substitution_options: Array[Peddler::Types::OrdersV0::SubstitutionOption]?) -> Peddler::Types::OrdersV0::SubstitutionPreferences
+        def self.new: (substitution_type: String?, ?substitution_options: Array[Peddler::Types::OrdersV0::SubstitutionOption]?) -> Peddler::Types::OrdersV0::SubstitutionPreferences
                     | (String?, Array[Peddler::Types::OrdersV0::SubstitutionOption]?) -> Peddler::Types::OrdersV0::SubstitutionPreferences
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::SubstitutionPreferences

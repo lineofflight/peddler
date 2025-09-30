@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class TaxRegistrationDetails < Data
-        def self.new: (tax_registration_type: String?, tax_registration_number: String?, tax_registration_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tax_registration_messages: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails
+        def self.new: (?tax_registration_type: String?, tax_registration_number: String?, ?tax_registration_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, ?tax_registration_messages: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails
                     | (String?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails

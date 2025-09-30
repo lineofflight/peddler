@@ -16,10 +16,10 @@ module Peddler
         attribute(:address_line1, String, from: "addressLine1")
 
         # @return [String] Additional address information, if required.
-        attribute(:address_line2, String, from: "addressLine2")
+        attribute?(:address_line2, String, from: "addressLine2")
 
         # @return [String] Additional address information, if required.
-        attribute(:address_line3, String, from: "addressLine3")
+        attribute?(:address_line3, String, from: "addressLine3")
 
         # @return [String]
         attribute(:state_or_region, String, from: "stateOrRegion")
@@ -34,13 +34,13 @@ module Peddler
         attribute(:postal_code, String, from: "postalCode")
 
         # @return [String] The email address of the contact associated with the address.
-        attribute(:email, String)
+        attribute?(:email, String)
 
         # @return [Array<String>] The email cc addresses of the contact associated with the address.
-        attribute(:copy_emails, [String], from: "copyEmails")
+        attribute?(:copy_emails, [String], from: "copyEmails")
 
         # @return [String] The phone number of the person, business or institution located at that address.
-        attribute(:phone_number, String, from: "phoneNumber")
+        attribute?(:phone_number, String, from: "phoneNumber")
       end
     end
   end

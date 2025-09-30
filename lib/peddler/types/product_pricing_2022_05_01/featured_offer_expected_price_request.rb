@@ -18,10 +18,10 @@ module Peddler
         attribute(:method, String)
 
         # @return [Hash]
-        attribute(:body, Hash)
+        attribute?(:body, Hash)
 
         # @return [HttpHeaders]
-        attribute(:headers, HttpHeaders)
+        attribute?(:headers, HttpHeaders)
 
         # @return [String]
         attribute(:marketplace_id, String, from: "marketplaceId")
@@ -30,7 +30,7 @@ module Peddler
         attribute(:sku, String)
 
         # @return [Segment]
-        attribute(:segment, Segment)
+        attribute?(:segment, Segment)
       end
     end
   end

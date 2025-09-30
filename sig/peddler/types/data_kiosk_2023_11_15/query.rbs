@@ -4,7 +4,7 @@ module Peddler
   module Types
     module DataKiosk20231115
       class Query < Data
-        def self.new: (query_id: String?, query: String?, created_time: String?, processing_status: String?, processing_start_time: String?, processing_end_time: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::Query
+        def self.new: (query_id: String?, query: String?, created_time: String?, processing_status: String?, ?processing_start_time: String?, ?processing_end_time: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::Query
                     | (String?, String?, String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::Query
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::Query

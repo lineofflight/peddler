@@ -18,7 +18,7 @@ module Peddler
         # provided with the same values that were provided with the request that generated this token, with the
         # exception of `pageSize` which can be modified between calls to `getQueries`. When there are no more pages to
         # fetch, the `nextToken` field will be absent.
-        attribute(:pagination, Hash)
+        attribute?(:pagination, Hash)
       end
     end
   end

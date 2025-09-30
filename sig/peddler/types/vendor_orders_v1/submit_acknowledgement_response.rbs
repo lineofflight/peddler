@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorOrdersV1
       class SubmitAcknowledgementResponse < Data
-        def self.new: (payload: Peddler::Types::VendorOrdersV1::TransactionId?, errors: Array[Peddler::Types::VendorOrdersV1::Error]?) -> Peddler::Types::VendorOrdersV1::SubmitAcknowledgementResponse
+        def self.new: (?payload: Peddler::Types::VendorOrdersV1::TransactionId?, ?errors: Array[Peddler::Types::VendorOrdersV1::Error]?) -> Peddler::Types::VendorOrdersV1::SubmitAcknowledgementResponse
                     | (Peddler::Types::VendorOrdersV1::TransactionId?, Array[Peddler::Types::VendorOrdersV1::Error]?) -> Peddler::Types::VendorOrdersV1::SubmitAcknowledgementResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::SubmitAcknowledgementResponse

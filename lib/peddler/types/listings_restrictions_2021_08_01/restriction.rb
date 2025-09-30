@@ -14,10 +14,10 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The condition that applies to the restriction.
-        attribute(:condition_type, String, from: "conditionType")
+        attribute?(:condition_type, String, from: "conditionType")
 
         # @return [Array<Reason>] A list of reasons for the restriction.
-        attribute(:reasons, [Reason])
+        attribute?(:reasons, [Reason])
       end
     end
   end

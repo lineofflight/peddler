@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class SubmitInventoryUpdateResponse < Data
-        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?, errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
+        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?, ?errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
                     | (Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?, Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse

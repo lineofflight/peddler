@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInboundEligibilityV1
       class ItemEligibilityPreview < Data
-        def self.new: (asin: String?, marketplace_id: String?, program: String?, eligible_for_program: bool?, ineligibility_reason_list: Array[String]?) -> Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview
+        def self.new: (asin: String?, ?marketplace_id: String?, program: String?, eligible_for_program: bool?, ?ineligibility_reason_list: Array[String]?) -> Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview
                     | (String?, String?, String?, bool?, Array[String]?) -> Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview

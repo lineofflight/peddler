@@ -18,29 +18,29 @@ module Peddler
         attribute(:container_identifier, String, from: "containerIdentifier")
 
         # @return [String] The tracking number.
-        attribute(:tracking_number, String, from: "trackingNumber")
+        attribute?(:tracking_number, String, from: "trackingNumber")
 
         # @return [String] The manifest identifier.
-        attribute(:manifest_id, String, from: "manifestId")
+        attribute?(:manifest_id, String, from: "manifestId")
 
         # @return [String] The date of the manifest.
-        attribute(:manifest_date, String, from: "manifestDate")
+        attribute?(:manifest_date, String, from: "manifestDate")
 
         # @return [String] The shipment method.
-        attribute(:ship_method, String, from: "shipMethod")
+        attribute?(:ship_method, String, from: "shipMethod")
 
         # @return [String] SCAC code required for NA VOC vendors only.
-        attribute(:scac_code, String, from: "scacCode")
+        attribute?(:scac_code, String, from: "scacCode")
 
         # @return [String] Carrier required for EU VOC vendors only.
-        attribute(:carrier, String)
+        attribute?(:carrier, String)
 
         # @return [Integer] An integer that must be submitted for multi-box shipments only, where one item may come in
         # separate packages.
-        attribute(:container_sequence_number, Integer, from: "containerSequenceNumber")
+        attribute?(:container_sequence_number, Integer, from: "containerSequenceNumber")
 
         # @return [Dimensions]
-        attribute(:dimensions, Dimensions)
+        attribute?(:dimensions, Dimensions)
 
         # @return [Weight]
         attribute(:weight, Weight)

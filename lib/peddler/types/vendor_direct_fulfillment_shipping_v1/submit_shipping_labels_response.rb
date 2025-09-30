@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the submitShippingLabelRequest operation.
       SubmitShippingLabelsResponse = Structure.new do
         # @return [TransactionReference] The response payload for the submitShippingLabelRequest operation.
-        attribute(:payload, TransactionReference)
+        attribute?(:payload, TransactionReference)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

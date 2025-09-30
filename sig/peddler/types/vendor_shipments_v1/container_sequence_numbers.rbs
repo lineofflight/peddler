@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ContainerSequenceNumbers < Data
-        def self.new: (container_sequence_number: String?) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers
+        def self.new: (?container_sequence_number: String?) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers
                     | (String?) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers

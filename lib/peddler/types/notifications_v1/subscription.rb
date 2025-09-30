@@ -19,7 +19,7 @@ module Peddler
         attribute(:destination_id, String, from: "destinationId")
 
         # @return [ProcessingDirective]
-        attribute(:processing_directive, ProcessingDirective, from: "processingDirective")
+        attribute?(:processing_directive, ProcessingDirective, from: "processingDirective")
       end
     end
   end

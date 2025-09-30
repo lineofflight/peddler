@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class UpdateVerificationStatusErrorResponse < Data
-        def self.new: (errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::UpdateVerificationStatusErrorResponse
+        def self.new: (?errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::UpdateVerificationStatusErrorResponse
                     | (Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::UpdateVerificationStatusErrorResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::UpdateVerificationStatusErrorResponse

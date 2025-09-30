@@ -11,10 +11,10 @@ module Peddler
       # The breakdown of eligibility inventory by feature.
       GetFeatureInventoryResponse = Structure.new do
         # @return [GetFeatureInventoryResult]
-        attribute(:payload, GetFeatureInventoryResult)
+        attribute?(:payload, GetFeatureInventoryResult)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `getFeatureInventory` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

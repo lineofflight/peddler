@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardMultipleImageTextModule < Data
-        def self.new: (blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
+        def self.new: (?blocks: Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
                     | (Array[Peddler::Types::AplusContent20201101::StandardImageTextCaptionBlock]?) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardMultipleImageTextModule

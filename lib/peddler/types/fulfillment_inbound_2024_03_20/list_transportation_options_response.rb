@@ -11,7 +11,7 @@ module Peddler
       # The `listTransportationOptions` response.
       ListTransportationOptionsResponse = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<TransportationOption>] Transportation options generated for the placement option.
         attribute(:transportation_options, [TransportationOption], from: "transportationOptions")

@@ -11,10 +11,10 @@ module Peddler
       # Response schema.
       GetAdditionalSellerInputsResponse = Structure.new do
         # @return [GetAdditionalSellerInputsResult]
-        attribute(:payload, GetAdditionalSellerInputsResult)
+        attribute?(:payload, GetAdditionalSellerInputsResult)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

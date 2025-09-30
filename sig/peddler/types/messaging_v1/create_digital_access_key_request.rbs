@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MessagingV1
       class CreateDigitalAccessKeyRequest < Data
-        def self.new: (text: String?, attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateDigitalAccessKeyRequest
+        def self.new: (?text: String?, ?attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateDigitalAccessKeyRequest
                     | (String?, Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateDigitalAccessKeyRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateDigitalAccessKeyRequest

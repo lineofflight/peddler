@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Reports20210630
       class CreateReportSpecification < Data
-        def self.new: (report_options: Peddler::Types::Reports20210630::ReportOptions?, report_type: String?, data_start_time: String?, data_end_time: String?, marketplace_ids: Array[String]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
+        def self.new: (?report_options: Peddler::Types::Reports20210630::ReportOptions?, report_type: String?, ?data_start_time: String?, ?data_end_time: String?, marketplace_ids: Array[String]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
                     | (Peddler::Types::Reports20210630::ReportOptions?, String?, String?, String?, Array[String]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::CreateReportSpecification

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemDimensionsByMarketplace < Data
-        def self.new: (marketplace_id: String?, item: Peddler::Types::CatalogItems20220401::Dimensions?, package: Peddler::Types::CatalogItems20220401::Dimensions?) -> Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace
+        def self.new: (marketplace_id: String?, ?item: Peddler::Types::CatalogItems20220401::Dimensions?, ?package: Peddler::Types::CatalogItems20220401::Dimensions?) -> Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace
                     | (String?, Peddler::Types::CatalogItems20220401::Dimensions?, Peddler::Types::CatalogItems20220401::Dimensions?) -> Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemDimensionsByMarketplace

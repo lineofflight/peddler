@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class GetRatesResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV2::GetRatesResult?) -> Peddler::Types::ShippingV2::GetRatesResponse
+        def self.new: (?payload: Peddler::Types::ShippingV2::GetRatesResult?) -> Peddler::Types::ShippingV2::GetRatesResponse
                     | (Peddler::Types::ShippingV2::GetRatesResult?) -> Peddler::Types::ShippingV2::GetRatesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetRatesResponse

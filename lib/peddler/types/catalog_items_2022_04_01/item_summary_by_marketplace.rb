@@ -16,64 +16,64 @@ module Peddler
 
         # @return [:boolean] When `true`, the Amazon catalog item is intended for an adult audience or is sexual in
         # nature.
-        attribute(:adult_product, :boolean, from: "adultProduct")
+        attribute?(:adult_product, :boolean, from: "adultProduct")
 
         # @return [:boolean] When `true`, the Amazon catalog item is autographed.
-        attribute(:autographed, :boolean)
+        attribute?(:autographed, :boolean)
 
         # @return [String] Name of the brand that is associated with the Amazon catalog item.
-        attribute(:brand, String)
+        attribute?(:brand, String)
 
         # @return [ItemBrowseClassification] Classification (browse node) that is associated with the Amazon catalog
         # item.
-        attribute(:browse_classification, ItemBrowseClassification, from: "browseClassification")
+        attribute?(:browse_classification, ItemBrowseClassification, from: "browseClassification")
 
         # @return [String] The color that is associated with the Amazon catalog item.
-        attribute(:color, String)
+        attribute?(:color, String)
 
         # @return [Array<ItemContributor>] Individual contributors to the creation of the item, such as the authors or
         # actors.
-        attribute(:contributors, [ItemContributor])
+        attribute?(:contributors, [ItemContributor])
 
         # @return [String] Classification type that is associated with the Amazon catalog item.
-        attribute(:item_classification, String, from: "itemClassification")
+        attribute?(:item_classification, String, from: "itemClassification")
 
         # @return [String] The name that is associated with the Amazon catalog item.
-        attribute(:item_name, String, from: "itemName")
+        attribute?(:item_name, String, from: "itemName")
 
         # @return [String] The name of the manufacturer that is associated with the Amazon catalog item.
-        attribute(:manufacturer, String)
+        attribute?(:manufacturer, String)
 
         # @return [:boolean] When true, the item is classified as memorabilia.
-        attribute(:memorabilia, :boolean)
+        attribute?(:memorabilia, :boolean)
 
         # @return [String] The model number that is associated with the Amazon catalog item.
-        attribute(:model_number, String, from: "modelNumber")
+        attribute?(:model_number, String, from: "modelNumber")
 
         # @return [Integer] The quantity of the Amazon catalog item within one package.
-        attribute(:package_quantity, Integer, from: "packageQuantity")
+        attribute?(:package_quantity, Integer, from: "packageQuantity")
 
         # @return [String] The part number that is associated with the Amazon catalog item.
-        attribute(:part_number, String, from: "partNumber")
+        attribute?(:part_number, String, from: "partNumber")
 
         # @return [String] The earliest date on which the Amazon catalog item can be shipped to customers.
-        attribute(:release_date, String, from: "releaseDate")
+        attribute?(:release_date, String, from: "releaseDate")
 
         # @return [String] The name of the size of the Amazon catalog item.
-        attribute(:size, String)
+        attribute?(:size, String)
 
         # @return [String] The name of the style that is associated with the Amazon catalog item.
-        attribute(:style, String)
+        attribute?(:style, String)
 
         # @return [:boolean] When true, the Amazon catalog item is eligible for trade-in.
-        attribute(:trade_in_eligible, :boolean, from: "tradeInEligible")
+        attribute?(:trade_in_eligible, :boolean, from: "tradeInEligible")
 
         # @return [String] The identifier of the website display group that is associated with the Amazon catalog item.
-        attribute(:website_display_group, String, from: "websiteDisplayGroup")
+        attribute?(:website_display_group, String, from: "websiteDisplayGroup")
 
         # @return [String] The display name of the website display group that is associated with the Amazon catalog
         # item.
-        attribute(:website_display_group_name, String, from: "websiteDisplayGroupName")
+        attribute?(:website_display_group_name, String, from: "websiteDisplayGroupName")
       end
     end
   end

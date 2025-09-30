@@ -10,13 +10,13 @@ module Peddler
       # The hours in which the access point shall remain operational
       OperatingHours = Structure.new do
         # @return [TimeOfDay]
-        attribute(:closing_time, TimeOfDay, from: "closingTime")
+        attribute?(:closing_time, TimeOfDay, from: "closingTime")
 
         # @return [TimeOfDay]
-        attribute(:opening_time, TimeOfDay, from: "openingTime")
+        attribute?(:opening_time, TimeOfDay, from: "openingTime")
 
         # @return [Array<TimeOfDay>] midDayClosures operating hours array
-        attribute(:mid_day_closures, [TimeOfDay], from: "midDayClosures")
+        attribute?(:mid_day_closures, [TimeOfDay], from: "midDayClosures")
       end
     end
   end

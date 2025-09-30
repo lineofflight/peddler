@@ -10,10 +10,10 @@ module Peddler
       # Information about the location of the service job.
       ServiceLocation = Structure.new do
         # @return [String] The location of the service job.
-        attribute(:service_location_type, String, from: "serviceLocationType")
+        attribute?(:service_location_type, String, from: "serviceLocationType")
 
         # @return [Address] The shipping address for the service job.
-        attribute(:address, Address)
+        attribute?(:address, Address)
       end
     end
   end

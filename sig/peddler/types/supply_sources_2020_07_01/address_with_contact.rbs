@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class AddressWithContact < Data
-        def self.new: (contact_details: Peddler::Types::SupplySources20200701::ContactDetails?, address: Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::AddressWithContact
+        def self.new: (?contact_details: Peddler::Types::SupplySources20200701::ContactDetails?, ?address: Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::AddressWithContact
                     | (Peddler::Types::SupplySources20200701::ContactDetails?, Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::AddressWithContact
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::AddressWithContact

@@ -16,7 +16,7 @@ module Peddler
         attribute(:sku, String)
 
         # @return [Segment]
-        attribute(:segment, Segment)
+        attribute?(:segment, Segment)
       end
     end
   end

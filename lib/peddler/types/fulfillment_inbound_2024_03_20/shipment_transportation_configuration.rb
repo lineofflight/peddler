@@ -13,13 +13,13 @@ module Peddler
       # Details needed to generate the transportation options.
       ShipmentTransportationConfiguration = Structure.new do
         # @return [ContactInformation]
-        attribute(:contact_information, ContactInformation, from: "contactInformation")
+        attribute?(:contact_information, ContactInformation, from: "contactInformation")
 
         # @return [FreightInformation]
-        attribute(:freight_information, FreightInformation, from: "freightInformation")
+        attribute?(:freight_information, FreightInformation, from: "freightInformation")
 
         # @return [Array<PalletInput>] List of pallet configuration inputs.
-        attribute(:pallets, [PalletInput])
+        attribute?(:pallets, [PalletInput])
 
         # @return [WindowInput] The range of dates within which the seller intends to ship their items. This is the
         # pick-up date or 'ready to ship' date, not an estimated delivery date.

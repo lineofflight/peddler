@@ -13,7 +13,7 @@ module Peddler
         attribute(:start_time, String, from: "startTime")
 
         # @return [Integer] The duration of an appointment in minutes.
-        attribute(:duration_in_minutes, Integer, from: "durationInMinutes")
+        attribute?(:duration_in_minutes, Integer, from: "durationInMinutes")
       end
     end
   end

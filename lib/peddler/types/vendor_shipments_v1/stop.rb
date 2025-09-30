@@ -13,13 +13,13 @@ module Peddler
         attribute(:function_code, String, from: "functionCode")
 
         # @return [Location]
-        attribute(:location_identification, Location, from: "locationIdentification")
+        attribute?(:location_identification, Location, from: "locationIdentification")
 
         # @return [String] Date and time of the arrival of the cargo.
-        attribute(:arrival_time, String, from: "arrivalTime")
+        attribute?(:arrival_time, String, from: "arrivalTime")
 
         # @return [String] Date and time of the departure of the cargo.
-        attribute(:departure_time, String, from: "departureTime")
+        attribute?(:departure_time, String, from: "departureTime")
       end
     end
   end

@@ -10,13 +10,13 @@ module Peddler
       # Appointment details for carrier pickup or fulfillment center appointments.
       SelfShipAppointmentDetails = Structure.new do
         # @return [Float] Identifier for appointment.
-        attribute(:appointment_id, Float, from: "appointmentId")
+        attribute?(:appointment_id, Float, from: "appointmentId")
 
         # @return [AppointmentSlotTime]
-        attribute(:appointment_slot_time, AppointmentSlotTime, from: "appointmentSlotTime")
+        attribute?(:appointment_slot_time, AppointmentSlotTime, from: "appointmentSlotTime")
 
         # @return [String] Status of the appointment.
-        attribute(:appointment_status, String, from: "appointmentStatus")
+        attribute?(:appointment_status, String, from: "appointmentStatus")
       end
     end
   end

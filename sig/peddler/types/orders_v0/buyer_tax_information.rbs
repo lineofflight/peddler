@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class BuyerTaxInformation < Data
-        def self.new: (buyer_legal_company_name: String?, buyer_business_address: String?, buyer_tax_registration_id: String?, buyer_tax_office: String?) -> Peddler::Types::OrdersV0::BuyerTaxInformation
+        def self.new: (?buyer_legal_company_name: String?, ?buyer_business_address: String?, ?buyer_tax_registration_id: String?, ?buyer_tax_office: String?) -> Peddler::Types::OrdersV0::BuyerTaxInformation
                     | (String?, String?, String?, String?) -> Peddler::Types::OrdersV0::BuyerTaxInformation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::BuyerTaxInformation

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class TransportationDetailsForShipmentConfirmation < Data
-        def self.new: (carrier_scac: String?, carrier_shipment_reference_number: String?, transportation_mode: String?, bill_of_lading_number: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation
+        def self.new: (?carrier_scac: String?, ?carrier_shipment_reference_number: String?, ?transportation_mode: String?, ?bill_of_lading_number: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation
                     | (String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation

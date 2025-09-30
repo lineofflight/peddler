@@ -34,7 +34,7 @@ module Peddler
 
         # @return [Hash] Details for the scheduled delivery timeline for a shipment, including the estimated delivery
         # date and time, as well as the start and end times of the appointment window for delivery.
-        attribute(:shipment_schedule, Hash, from: "shipmentSchedule")
+        attribute?(:shipment_schedule, Hash, from: "shipmentSchedule")
       end
     end
   end

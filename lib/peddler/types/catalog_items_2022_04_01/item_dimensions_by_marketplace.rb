@@ -14,10 +14,10 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Dimensions] Dimensions of an Amazon catalog item.
-        attribute(:item, Dimensions)
+        attribute?(:item, Dimensions)
 
         # @return [Dimensions] Dimensions of a package that contains an Amazon catalog item.
-        attribute(:package, Dimensions)
+        attribute?(:package, Dimensions)
       end
     end
   end

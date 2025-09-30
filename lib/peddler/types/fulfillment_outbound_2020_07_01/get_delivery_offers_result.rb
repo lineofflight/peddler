@@ -11,7 +11,7 @@ module Peddler
       # offer policy.
       GetDeliveryOffersResult = Structure.new do
         # @return [Array<DeliveryOffer>] An array of delivery offers.
-        attribute(:delivery_offers, [DeliveryOffer], from: "deliveryOffers")
+        attribute?(:delivery_offers, [DeliveryOffer], from: "deliveryOffers")
       end
     end
   end

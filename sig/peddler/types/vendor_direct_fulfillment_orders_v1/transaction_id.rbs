@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class TransactionId < Data
-        def self.new: (transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::TransactionId
+        def self.new: (?transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::TransactionId
                     | (String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::TransactionId
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::TransactionId

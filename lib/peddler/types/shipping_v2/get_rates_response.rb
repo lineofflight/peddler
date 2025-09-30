@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the getRates operation.
       GetRatesResponse = Structure.new do
         # @return [GetRatesResult]
-        attribute(:payload, GetRatesResult)
+        attribute?(:payload, GetRatesResult)
       end
     end
   end

@@ -13,16 +13,16 @@ module Peddler
       # The operational configuration of `supplySources`.
       OperationalConfiguration = Structure.new do
         # @return [ContactDetails]
-        attribute(:contact_details, ContactDetails, from: "contactDetails")
+        attribute?(:contact_details, ContactDetails, from: "contactDetails")
 
         # @return [ThroughputConfig]
-        attribute(:throughput_config, ThroughputConfig, from: "throughputConfig")
+        attribute?(:throughput_config, ThroughputConfig, from: "throughputConfig")
 
         # @return [OperatingHoursByDay]
-        attribute(:operating_hours_by_day, OperatingHoursByDay, from: "operatingHoursByDay")
+        attribute?(:operating_hours_by_day, OperatingHoursByDay, from: "operatingHoursByDay")
 
         # @return [Duration]
-        attribute(:handling_time, Duration, from: "handlingTime")
+        attribute?(:handling_time, Duration, from: "handlingTime")
       end
     end
   end

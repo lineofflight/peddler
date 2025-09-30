@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class SubmitInvoiceResponse < Data
-        def self.new: (errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
+        def self.new: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
                     | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse

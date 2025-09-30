@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class GetPricingResponse < Data
-        def self.new: (payload: Array[Peddler::Types::ProductPricingV0::Price]?, errors: Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
+        def self.new: (?payload: Array[Peddler::Types::ProductPricingV0::Price]?, ?errors: Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
                     | (Array[Peddler::Types::ProductPricingV0::Price]?, Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetPricingResponse

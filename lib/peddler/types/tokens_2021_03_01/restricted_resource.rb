@@ -33,7 +33,7 @@ module Peddler
         # information, if available.
         # - **shippingAddress**. This includes information for fulfilling orders.
         # - **buyerTaxInformation**. This includes information for issuing tax invoices.
-        attribute(:data_elements, [String], from: "dataElements")
+        attribute?(:data_elements, [String], from: "dataElements")
       end
     end
   end

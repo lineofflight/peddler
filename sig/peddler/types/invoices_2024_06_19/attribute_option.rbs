@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Invoices20240619
       class AttributeOption < Data
-        def self.new: (description: String?, value: String?) -> Peddler::Types::Invoices20240619::AttributeOption
+        def self.new: (?description: String?, ?value: String?) -> Peddler::Types::Invoices20240619::AttributeOption
                     | (String?, String?) -> Peddler::Types::Invoices20240619::AttributeOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::AttributeOption

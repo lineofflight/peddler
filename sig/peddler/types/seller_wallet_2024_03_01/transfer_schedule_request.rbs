@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransferScheduleRequest < Data
-        def self.new: (source_account_id: String?, source_currency_code: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_type: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, transfer_schedule_status: String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleRequest
+        def self.new: (source_account_id: String?, source_currency_code: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_type: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, ?transfer_schedule_status: String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleRequest
                     | (String?, String?, String?, Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, String?, Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, Peddler::Types::SellerWallet20240301::PaymentPreference?, String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransferScheduleRequest

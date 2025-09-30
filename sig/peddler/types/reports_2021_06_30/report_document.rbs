@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Reports20210630
       class ReportDocument < Data
-        def self.new: (report_document_id: String?, url: String?, compression_algorithm: String?) -> Peddler::Types::Reports20210630::ReportDocument
+        def self.new: (report_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::Types::Reports20210630::ReportDocument
                     | (String?, String?, String?) -> Peddler::Types::Reports20210630::ReportDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::ReportDocument

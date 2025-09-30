@@ -14,7 +14,7 @@ module Peddler
         attribute(:shipment_id, String, from: "shipmentId")
 
         # @return [String]
-        attribute(:client_reference_id, String, from: "clientReferenceId")
+        attribute?(:client_reference_id, String, from: "clientReferenceId")
 
         # @return [AcceptedRate]
         attribute(:accepted_rate, AcceptedRate, from: "acceptedRate")

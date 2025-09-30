@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getPurchaseOrdersStatus operation.
       GetPurchaseOrdersStatusResponse = Structure.new do
         # @return [OrderListStatus] Current status of list of purchase orders.
-        attribute(:payload, OrderListStatus)
+        attribute?(:payload, OrderListStatus)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

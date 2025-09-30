@@ -10,10 +10,10 @@ module Peddler
       # The request schema for remove the Carrier Account associated with the provided merchant.
       UnlinkCarrierAccountRequest = Structure.new do
         # @return [Array<ClientReferenceDetail>]
-        attribute(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
+        attribute?(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
 
         # @return [String]
-        attribute(:account_id, String, from: "accountId")
+        attribute?(:account_id, String, from: "accountId")
       end
     end
   end

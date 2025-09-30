@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the createLegalDisclosure operation.
       CreateLegalDisclosureResponse = Structure.new do
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

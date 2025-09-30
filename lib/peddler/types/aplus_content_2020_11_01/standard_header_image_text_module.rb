@@ -11,10 +11,10 @@ module Peddler
       # Standard headline text, an image, and body text.
       StandardHeaderImageTextModule = Structure.new do
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [StandardImageTextBlock]
-        attribute(:block, StandardImageTextBlock)
+        attribute?(:block, StandardImageTextBlock)
       end
     end
   end

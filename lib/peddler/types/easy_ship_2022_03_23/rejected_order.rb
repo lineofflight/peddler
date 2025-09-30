@@ -13,7 +13,7 @@ module Peddler
         attribute(:amazon_order_id, String, from: "amazonOrderId")
 
         # @return [Error]
-        attribute(:error, Error)
+        attribute?(:error, Error)
       end
     end
   end

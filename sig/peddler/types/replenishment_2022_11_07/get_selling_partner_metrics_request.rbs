@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class GetSellingPartnerMetricsRequest < Data
-        def self.new: (aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, metrics: Array[untyped]?, time_period_type: String?, marketplace_id: String?, program_types: Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
+        def self.new: (?aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?metrics: Array[untyped]?, time_period_type: String?, marketplace_id: String?, program_types: Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
                     | (String?, Peddler::Types::Replenishment20221107::TimeInterval?, Array[untyped]?, String?, String?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest

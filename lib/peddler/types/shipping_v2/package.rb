@@ -23,13 +23,13 @@ module Peddler
         attribute(:insured_value, Money, from: "insuredValue")
 
         # @return [:boolean] When true, the package contains hazardous materials. Defaults to false.
-        attribute(:hazmat, :boolean, from: "isHazmat")
+        attribute?(:hazmat, :boolean, from: "isHazmat")
 
         # @return [String] The seller name displayed on the label.
-        attribute(:seller_display_name, String, from: "sellerDisplayName")
+        attribute?(:seller_display_name, String, from: "sellerDisplayName")
 
         # @return [Array<ChargeComponent>]
-        attribute(:charges, [ChargeComponent])
+        attribute?(:charges, [ChargeComponent])
 
         # @return [String]
         attribute(:package_client_reference_id, String, from: "packageClientReferenceId")

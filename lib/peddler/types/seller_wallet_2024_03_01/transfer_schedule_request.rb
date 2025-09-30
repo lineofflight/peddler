@@ -37,7 +37,7 @@ module Peddler
 
         # @return [String] Type of the transaction schedule which is mandatory field in request body if a transfer
         # schedule needs to be updated
-        attribute(:transfer_schedule_status, String, from: "transferScheduleStatus")
+        attribute?(:transfer_schedule_status, String, from: "transferScheduleStatus")
       end
     end
   end

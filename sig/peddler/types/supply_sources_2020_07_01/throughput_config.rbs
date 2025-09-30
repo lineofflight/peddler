@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class ThroughputConfig < Data
-        def self.new: (throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap?, throughput_unit: String?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
+        def self.new: (?throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap?, throughput_unit: String?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
                     | (Peddler::Types::SupplySources20200701::ThroughputCap?, String?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ThroughputConfig

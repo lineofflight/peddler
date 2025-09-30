@@ -11,23 +11,23 @@ module Peddler
       # than country code and postal code alone.
       VariablePrecisionAddress = Structure.new do
         # @return [String] The first line of the address.
-        attribute(:address_line1, String, from: "addressLine1")
+        attribute?(:address_line1, String, from: "addressLine1")
 
         # @return [String] Additional address information, if required.
-        attribute(:address_line2, String, from: "addressLine2")
+        attribute?(:address_line2, String, from: "addressLine2")
 
         # @return [String] Additional address information, if required.
-        attribute(:address_line3, String, from: "addressLine3")
+        attribute?(:address_line3, String, from: "addressLine3")
 
         # @return [String] The city where the person, business, or institution is located. This property should not be
         # used in Japan.
-        attribute(:city, String)
+        attribute?(:city, String)
 
         # @return [String] The district or county where the person, business, or institution is located.
-        attribute(:district_or_county, String, from: "districtOrCounty")
+        attribute?(:district_or_county, String, from: "districtOrCounty")
 
         # @return [String] The state or region where the person, business or institution is located.
-        attribute(:state_or_region, String, from: "stateOrRegion")
+        attribute?(:state_or_region, String, from: "stateOrRegion")
 
         # @return [String] The postal code of the address.
         attribute(:postal_code, String, from: "postalCode")

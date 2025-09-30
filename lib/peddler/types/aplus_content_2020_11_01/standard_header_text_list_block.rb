@@ -11,10 +11,10 @@ module Peddler
       # The A+ standard fixed-length list of text and a related headline.
       StandardHeaderTextListBlock = Structure.new do
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [StandardTextListBlock]
-        attribute(:block, StandardTextListBlock)
+        attribute?(:block, StandardTextListBlock)
       end
     end
   end

@@ -18,7 +18,7 @@ module Peddler
 
         # @return [TestCaseData] Test case data for the transaction. Only available when the transaction status is
         # SUCCESS.
-        attribute(:test_case_data, TestCaseData, from: "testCaseData")
+        attribute?(:test_case_data, TestCaseData, from: "testCaseData")
       end
     end
   end

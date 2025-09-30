@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class OpenTimeInterval < Data
-        def self.new: (hour: Integer?, minute: Integer?) -> Peddler::Types::OrdersV0::OpenTimeInterval
+        def self.new: (?hour: Integer?, ?minute: Integer?) -> Peddler::Types::OrdersV0::OpenTimeInterval
                     | (Integer?, Integer?) -> Peddler::Types::OrdersV0::OpenTimeInterval
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OpenTimeInterval

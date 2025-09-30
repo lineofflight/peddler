@@ -10,10 +10,10 @@ module Peddler
       # Response schema for the `assignAppointmentResources` operation.
       AssignAppointmentResourcesResponse = Structure.new do
         # @return [Hash] The payload for the `assignAppointmentResource` operation.
-        attribute(:payload, Hash)
+        attribute?(:payload, Hash)
 
         # @return [Array<Error>] Errors occurred during during the `assignAppointmentResources` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

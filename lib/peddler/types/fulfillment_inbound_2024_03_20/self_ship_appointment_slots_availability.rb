@@ -11,10 +11,10 @@ module Peddler
       SelfShipAppointmentSlotsAvailability = Structure.new do
         # @return [String] The time at which the self ship appointment slot expires. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format.
-        attribute(:expires_at, String, from: "expiresAt")
+        attribute?(:expires_at, String, from: "expiresAt")
 
         # @return [Array<AppointmentSlot>] A list of appointment slots.
-        attribute(:slots, [AppointmentSlot])
+        attribute?(:slots, [AppointmentSlot])
       end
     end
   end

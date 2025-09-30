@@ -15,10 +15,10 @@ module Peddler
         attribute(:party_id, String, from: "partyId")
 
         # @return [Address] Address details of the party.
-        attribute(:address, Address)
+        attribute?(:address, Address)
 
         # @return [TaxRegistrationDetails] Tax registration details of the entity.
-        attribute(:tax_info, TaxRegistrationDetails, from: "taxInfo")
+        attribute?(:tax_info, TaxRegistrationDetails, from: "taxInfo")
       end
     end
   end

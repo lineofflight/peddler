@@ -18,7 +18,7 @@ module Peddler
 
         # @return [:boolean] When true, the version indicated by the version identifier is the prerelease (release
         # candidate) for the Amazon product type.
-        attribute(:release_candidate, :boolean, from: "releaseCandidate")
+        attribute?(:release_candidate, :boolean, from: "releaseCandidate")
       end
     end
   end

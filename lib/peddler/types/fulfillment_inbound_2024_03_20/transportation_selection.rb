@@ -10,7 +10,7 @@ module Peddler
       # The transportation option selected to confirm.
       TransportationSelection = Structure.new do
         # @return [ContactInformation]
-        attribute(:contact_information, ContactInformation, from: "contactInformation")
+        attribute?(:contact_information, ContactInformation, from: "contactInformation")
 
         # @return [String] Shipment ID that the transportation Option is for.
         attribute(:shipment_id, String, from: "shipmentId")

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class ProductInfoDetail < Data
-        def self.new: (number_of_items: String?) -> Peddler::Types::OrdersV0::ProductInfoDetail
+        def self.new: (?number_of_items: String?) -> Peddler::Types::OrdersV0::ProductInfoDetail
                     | (String?) -> Peddler::Types::OrdersV0::ProductInfoDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ProductInfoDetail

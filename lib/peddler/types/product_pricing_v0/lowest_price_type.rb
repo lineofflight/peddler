@@ -18,25 +18,25 @@ module Peddler
         attribute(:fulfillment_channel, String, from: "fulfillmentChannel")
 
         # @return [String] Indicates the type of customer that the offer is valid for.
-        attribute(:offer_type, String, from: "offerType")
+        attribute?(:offer_type, String, from: "offerType")
 
         # @return [Integer] Indicates at what quantity this price becomes active.
-        attribute(:quantity_tier, Integer, from: "quantityTier")
+        attribute?(:quantity_tier, Integer, from: "quantityTier")
 
         # @return [String] Indicates the type of quantity discount this price applies to.
-        attribute(:quantity_discount_type, String, from: "quantityDiscountType")
+        attribute?(:quantity_discount_type, String, from: "quantityDiscountType")
 
         # @return [Money] The value calculated by adding ListingPrice + Shipping - Points.
-        attribute(:landed_price, Money, from: "LandedPrice")
+        attribute?(:landed_price, Money, from: "LandedPrice")
 
         # @return [Money] The price of the item.
         attribute(:listing_price, Money, from: "ListingPrice")
 
         # @return [Money] The shipping cost.
-        attribute(:shipping, Money, from: "Shipping")
+        attribute?(:shipping, Money, from: "Shipping")
 
         # @return [Points] The number of Amazon Points offered with the purchase of an item.
-        attribute(:points, Points, from: "Points")
+        attribute?(:points, Points, from: "Points")
       end
     end
   end

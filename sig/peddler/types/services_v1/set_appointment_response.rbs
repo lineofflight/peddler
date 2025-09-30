@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class SetAppointmentResponse < Data
-        def self.new: (appointment_id: String?, warnings: Array[Peddler::Types::ServicesV1::Warning]?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
+        def self.new: (?appointment_id: String?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?, ?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
                     | (String?, Array[Peddler::Types::ServicesV1::Warning]?, Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::SetAppointmentResponse

@@ -17,7 +17,7 @@ module Peddler
         attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
 
         # @return [Array<Container>] A list of the packages in this shipment.
-        attribute(:containers, [Container])
+        attribute?(:containers, [Container])
       end
     end
   end

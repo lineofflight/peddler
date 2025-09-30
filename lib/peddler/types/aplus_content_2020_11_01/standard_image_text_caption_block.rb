@@ -12,10 +12,10 @@ module Peddler
       # devices.
       StandardImageTextCaptionBlock = Structure.new do
         # @return [StandardImageTextBlock]
-        attribute(:block, StandardImageTextBlock)
+        attribute?(:block, StandardImageTextBlock)
 
         # @return [TextComponent]
-        attribute(:caption, TextComponent)
+        attribute?(:caption, TextComponent)
       end
     end
   end

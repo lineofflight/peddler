@@ -10,10 +10,10 @@ module Peddler
       # Additional information related to time range for transaction.
       TimeRangeContext = Structure.new do
         # @return [String] Start time of the transaction.
-        attribute(:start_time, String, from: "startTime")
+        attribute?(:start_time, String, from: "startTime")
 
         # @return [String] End time of the transaction.
-        attribute(:end_time, String, from: "endTime")
+        attribute?(:end_time, String, from: "endTime")
       end
     end
   end

@@ -20,31 +20,31 @@ module Peddler
 
         # @return [String] An integer that must be submitted for multi-box shipments only, where one item may come in
         # separate packages.
-        attribute(:container_sequence_number, String, from: "containerSequenceNumber")
+        attribute?(:container_sequence_number, String, from: "containerSequenceNumber")
 
         # @return [Array<ContainerIdentification>] A list of carton identifiers.
         attribute(:container_identifiers, [ContainerIdentification], from: "containerIdentifiers")
 
         # @return [String] The tracking number used for identifying the shipment.
-        attribute(:tracking_number, String, from: "trackingNumber")
+        attribute?(:tracking_number, String, from: "trackingNumber")
 
         # @return [Dimensions]
-        attribute(:dimensions, Dimensions)
+        attribute?(:dimensions, Dimensions)
 
         # @return [Weight]
-        attribute(:weight, Weight)
+        attribute?(:weight, Weight)
 
         # @return [Integer] Number of layers per pallet.
-        attribute(:tier, Integer)
+        attribute?(:tier, Integer)
 
         # @return [Integer] Number of cartons per layer on the pallet.
-        attribute(:block, Integer)
+        attribute?(:block, Integer)
 
         # @return [InnerContainersDetails]
-        attribute(:inner_containers_details, InnerContainersDetails, from: "innerContainersDetails")
+        attribute?(:inner_containers_details, InnerContainersDetails, from: "innerContainersDetails")
 
         # @return [Array<PackedItems>] A list of packed items.
-        attribute(:packed_items, [PackedItems], from: "packedItems")
+        attribute?(:packed_items, [PackedItems], from: "packedItems")
       end
     end
   end

@@ -13,7 +13,7 @@ module Peddler
         attribute(:invoice_content, String, from: "InvoiceContent")
 
         # @return [String] An Amazon marketplace identifier.
-        attribute(:marketplace_id, String, from: "MarketplaceId")
+        attribute?(:marketplace_id, String, from: "MarketplaceId")
 
         # @return [String] MD5 sum for validating the invoice data. For more information about calculating this value,
         # see [Working with Content-MD5

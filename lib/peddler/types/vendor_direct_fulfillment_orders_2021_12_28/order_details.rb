@@ -22,13 +22,13 @@ module Peddler
         attribute(:order_date, String, from: "orderDate")
 
         # @return [String] Current status of the order.
-        attribute(:order_status, String, from: "orderStatus")
+        attribute?(:order_status, String, from: "orderStatus")
 
         # @return [ShipmentDetails]
         attribute(:shipment_details, ShipmentDetails, from: "shipmentDetails")
 
         # @return [TaxItemDetails]
-        attribute(:tax_total, TaxItemDetails, from: "taxTotal")
+        attribute?(:tax_total, TaxItemDetails, from: "taxTotal")
 
         # @return [PartyIdentification] PartyID of vendor code.
         attribute(:selling_party, PartyIdentification, from: "sellingParty")

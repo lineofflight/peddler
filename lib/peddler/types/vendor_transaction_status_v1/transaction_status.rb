@@ -10,7 +10,7 @@ module Peddler
       # Represents the status of a transaction.
       TransactionStatus = Structure.new do
         # @return [Transaction]
-        attribute(:transaction_status, Transaction, from: "transactionStatus")
+        attribute?(:transaction_status, Transaction, from: "transactionStatus")
       end
     end
   end

@@ -13,7 +13,7 @@ module Peddler
         attribute(:marketplace_id, String, from: "MarketplaceId")
 
         # @return [:boolean] When true, the offer is fulfilled by Amazon.
-        attribute(:amazon_fulfilled, :boolean, from: "IsAmazonFulfilled")
+        attribute?(:amazon_fulfilled, :boolean, from: "IsAmazonFulfilled")
 
         # @return [PriceToEstimateFees] The product price that the fee estimate is based on.
         attribute(:price_to_estimate_fees, PriceToEstimateFees, from: "PriceToEstimateFees")
@@ -22,7 +22,7 @@ module Peddler
         attribute(:identifier, String, from: "Identifier")
 
         # @return [String]
-        attribute(:optional_fulfillment_program, String, from: "OptionalFulfillmentProgram")
+        attribute?(:optional_fulfillment_program, String, from: "OptionalFulfillmentProgram")
       end
     end
   end

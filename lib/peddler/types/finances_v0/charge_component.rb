@@ -81,10 +81,10 @@ module Peddler
       # * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
       ChargeComponent = Structure.new do
         # @return [String] The type of charge.
-        attribute(:charge_type, String, from: "ChargeType")
+        attribute?(:charge_type, String, from: "ChargeType")
 
         # @return [Money] The amount of the charge.
-        attribute(:charge_amount, Money, from: "ChargeAmount")
+        attribute?(:charge_amount, Money, from: "ChargeAmount")
       end
     end
   end

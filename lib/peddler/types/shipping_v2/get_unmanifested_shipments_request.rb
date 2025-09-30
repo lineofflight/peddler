@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the GetUnmanifestedShipmentsRequest operation.
       GetUnmanifestedShipmentsRequest = Structure.new do
         # @return [Array<ClientReferenceDetail>]
-        attribute(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
+        attribute?(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
       end
     end
   end

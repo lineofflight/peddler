@@ -11,11 +11,11 @@ module Peddler
       # Information pertaining to the preparation of inbound goods.
       PrepInstruction = Structure.new do
         # @return [Money]
-        attribute(:fee, Money)
+        attribute?(:fee, Money)
 
         # @return [String] In some situations, special preparations are required for items and this field reflects the
         # owner of the preparations. Options include `AMAZON`, `SELLER` or `NONE`.
-        attribute(:prep_owner, String, from: "prepOwner")
+        attribute?(:prep_owner, String, from: "prepOwner")
 
         # @return [String] Type of preparation that should be done.
         #
@@ -24,7 +24,7 @@ module Peddler
         # `ITEM_SUFFOSTK`, `ITEM_CAP_SEALING`, `ITEM_DEBUNDLE`, `ITEM_SETSTK`, `ITEM_SIOC`, `ITEM_NO_PREP`, `ADULT`,
         # `BABY`, `TEXTILE`, `HANGER`, `FRAGILE`, `LIQUID`, `SHARP`, `SMALL`, `PERFORATED`, `GRANULAR`, `SET`,
         # `FC_PROVIDED`, `UNKNOWN`, `NONE`.
-        attribute(:prep_type, String, from: "prepType")
+        attribute?(:prep_type, String, from: "prepType")
       end
     end
   end

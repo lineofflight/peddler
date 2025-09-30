@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InventorySummary < Data
-        def self.new: (expiration_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, inventory_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?, sku: String?, total_inbound_quantity: Integer?, total_onhand_quantity: Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary
+        def self.new: (?expiration_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, ?inventory_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?, sku: String?, ?total_inbound_quantity: Integer?, ?total_onhand_quantity: Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary
                     | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?, String?, Integer?, Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class SellerFeedbackType < Data
-        def self.new: (seller_positive_feedback_rating: Float?, feedback_count: Integer?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
+        def self.new: (?seller_positive_feedback_rating: Float?, feedback_count: Integer?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
                     | (Float?, Integer?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::SellerFeedbackType

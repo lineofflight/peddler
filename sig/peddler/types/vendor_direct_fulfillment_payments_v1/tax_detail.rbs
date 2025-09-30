@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class TaxDetail < Data
-        def self.new: (tax_type: String?, tax_rate: String?, tax_amount: Peddler::Types::Money?, taxable_amount: Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
+        def self.new: (tax_type: String?, ?tax_rate: String?, tax_amount: Peddler::Types::Money?, ?taxable_amount: Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
                     | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail

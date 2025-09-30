@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MessagingV1
       class CreateConfirmCustomizationDetailsRequest < Data
-        def self.new: (text: String?, attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
+        def self.new: (?text: String?, ?attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
                     | (String?, Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderItemStatus < Data
-        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money?, ordered_quantity: Hash[untyped, untyped]?, acknowledgement_status: Hash[untyped, untyped]?, receiving_status: Hash[untyped, untyped]?) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
+        def self.new: (item_sequence_number: String?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, ?net_cost: Peddler::Types::Money?, ?list_price: Peddler::Types::Money?, ?ordered_quantity: Hash[untyped, untyped]?, ?acknowledgement_status: Hash[untyped, untyped]?, ?receiving_status: Hash[untyped, untyped]?) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
                     | (String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderItemStatus

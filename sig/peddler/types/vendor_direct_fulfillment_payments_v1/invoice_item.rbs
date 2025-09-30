@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class InvoiceItem < Data
-        def self.new: (item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, vendor_order_number: String?, hsn_code: String?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
+        def self.new: (item_sequence_number: String?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, ?vendor_order_number: String?, ?hsn_code: String?, ?tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, ?charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
                     | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, Peddler::Types::Money?, String?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem

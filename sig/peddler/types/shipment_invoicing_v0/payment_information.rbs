@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class PaymentInformation < Data
-        def self.new: (payment_method: String?, acquirer_id: String?, card_brand: String?, payment_value: Peddler::Types::Money?, authorization_code: String?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
+        def self.new: (?payment_method: String?, ?acquirer_id: String?, ?card_brand: String?, ?payment_value: Peddler::Types::Money?, ?authorization_code: String?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
                     | (String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation

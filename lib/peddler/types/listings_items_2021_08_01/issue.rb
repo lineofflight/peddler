@@ -19,7 +19,7 @@ module Peddler
         attribute(:severity, String)
 
         # @return [Array<String>] The names of the attributes associated with the issue, if applicable.
-        attribute(:attribute_names, [String], from: "attributeNames")
+        attribute?(:attribute_names, [String], from: "attributeNames")
 
         # @return [Array<String>] List of issue categories.
         #
@@ -45,7 +45,7 @@ module Peddler
 
         # @return [IssueEnforcements] This field provides information about the enforcement actions taken by Amazon that
         # affect the publishing or status of a listing. It also includes details about any associated exemptions.
-        attribute(:enforcements, IssueEnforcements)
+        attribute?(:enforcements, IssueEnforcements)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20220401
       class Pagination < Data
-        def self.new: (next_token: String?, previous_token: String?) -> Peddler::Types::CatalogItems20220401::Pagination
+        def self.new: (?next_token: String?, ?previous_token: String?) -> Peddler::Types::CatalogItems20220401::Pagination
                     | (String?, String?) -> Peddler::Types::CatalogItems20220401::Pagination
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::Pagination

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorOrdersV1
       class OrderAcknowledgementItem < Data
-        def self.new: (item_sequence_number: String?, amazon_product_identifier: String?, vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money?, discount_multiplier: String?, item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
+        def self.new: (?item_sequence_number: String?, ?amazon_product_identifier: String?, ?vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?net_cost: Peddler::Types::Money?, ?list_price: Peddler::Types::Money?, ?discount_multiplier: String?, item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
                     | (String?, String?, String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPriceRequestParams < Data
-        def self.new: (marketplace_id: String?, sku: String?, segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
+        def self.new: (marketplace_id: String?, sku: String?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
                     | (String?, String?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams

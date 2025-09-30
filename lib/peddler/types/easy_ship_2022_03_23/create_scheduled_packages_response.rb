@@ -13,14 +13,14 @@ module Peddler
       # for a ZIP file containing the associated shipping labels plus the documents enabled for your marketplace.
       CreateScheduledPackagesResponse = Structure.new do
         # @return [Array<Package>] A list of packages. Refer to the `Package` object.
-        attribute(:scheduled_packages, [Package], from: "scheduledPackages")
+        attribute?(:scheduled_packages, [Package], from: "scheduledPackages")
 
         # @return [Array<RejectedOrder>] A list of orders we couldn't scheduled on your behalf. Each element contains
         # the reason and details on the error.
-        attribute(:rejected_orders, [RejectedOrder], from: "rejectedOrders")
+        attribute?(:rejected_orders, [RejectedOrder], from: "rejectedOrders")
 
         # @return [String]
-        attribute(:printable_documents_url, String, from: "printableDocumentsUrl")
+        attribute?(:printable_documents_url, String, from: "printableDocumentsUrl")
       end
     end
   end

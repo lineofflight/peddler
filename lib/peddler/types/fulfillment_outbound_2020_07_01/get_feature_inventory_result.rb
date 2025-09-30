@@ -17,10 +17,10 @@ module Peddler
 
         # @return [String] When present and not empty, pass this string token in the next request to return the next
         # response page.
-        attribute(:next_token, String, from: "nextToken")
+        attribute?(:next_token, String, from: "nextToken")
 
         # @return [Array<FeatureSku>] An array of SKUs eligible for this feature and the quantity available.
-        attribute(:feature_skus, [FeatureSku], from: "featureSkus")
+        attribute?(:feature_skus, [FeatureSku], from: "featureSkus")
       end
     end
   end

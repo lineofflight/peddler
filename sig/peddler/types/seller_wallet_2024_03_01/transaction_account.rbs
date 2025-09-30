@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransactionAccount < Data
-        def self.new: (account_id: String?, bank_account_holder_name: String?, bank_name: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_country_code: String?, bank_account_currency: String?) -> Peddler::Types::SellerWallet20240301::TransactionAccount
+        def self.new: (?account_id: String?, ?bank_account_holder_name: String?, bank_name: String?, bank_account_number_format: String?, ?bank_account_number_tail: String?, ?bank_account_country_code: String?, bank_account_currency: String?) -> Peddler::Types::SellerWallet20240301::TransactionAccount
                     | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellerWallet20240301::TransactionAccount
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionAccount

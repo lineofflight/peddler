@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class PublishRecord < Data
-        def self.new: (marketplace_id: String?, locale: String?, asin: String?, content_type: String?, content_sub_type: String?, content_reference_key: String?) -> Peddler::Types::AplusContent20201101::PublishRecord
+        def self.new: (marketplace_id: String?, locale: String?, asin: String?, content_type: String?, ?content_sub_type: String?, content_reference_key: String?) -> Peddler::Types::AplusContent20201101::PublishRecord
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::PublishRecord
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::PublishRecord

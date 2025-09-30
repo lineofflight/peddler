@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SelectedDeliveryWindow < Data
-        def self.new: (availability_type: String?, delivery_window_option_id: String?, editable_until: String?, end_date: String?, start_date: String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
+        def self.new: (availability_type: String?, delivery_window_option_id: String?, ?editable_until: String?, end_date: String?, start_date: String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::SelectedDeliveryWindow

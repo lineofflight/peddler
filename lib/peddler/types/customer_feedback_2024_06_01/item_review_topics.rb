@@ -16,7 +16,7 @@ module Peddler
         # specified ASIN.
         #
         # **Max length:** 10
-        attribute(:positive_topics, [ItemReviewTopic], from: "positiveTopics")
+        attribute?(:positive_topics, [ItemReviewTopic], from: "positiveTopics")
 
         # @return [Array<ItemReviewTopic>] A list of the most negative review topics. When the `sortBy` query parameter
         # is set to `MENTIONS`, the number of reviews that mention the topic determines the topic's placement in the
@@ -25,7 +25,7 @@ module Peddler
         # specified ASIN.
         #
         # **Max length:** 10
-        attribute(:negative_topics, [ItemReviewTopic], from: "negativeTopics")
+        attribute?(:negative_topics, [ItemReviewTopic], from: "negativeTopics")
       end
     end
   end

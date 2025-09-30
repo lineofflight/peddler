@@ -13,7 +13,7 @@ module Peddler
         attribute(:package_detail, PackageDetail, from: "packageDetail")
 
         # @return [String] The COD collection method (only supported in the JP marketplace).
-        attribute(:cod_collection_method, String, from: "codCollectionMethod")
+        attribute?(:cod_collection_method, String, from: "codCollectionMethod")
 
         # @return [String]
         attribute(:marketplace_id, String, from: "marketplaceId")

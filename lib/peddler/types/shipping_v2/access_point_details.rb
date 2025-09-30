@@ -10,7 +10,7 @@ module Peddler
       # AccessPointDetails object
       AccessPointDetails = Structure.new do
         # @return [String]
-        attribute(:access_point_id, String, from: "accessPointId")
+        attribute?(:access_point_id, String, from: "accessPointId")
       end
     end
   end

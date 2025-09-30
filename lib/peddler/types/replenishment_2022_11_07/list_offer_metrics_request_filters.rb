@@ -11,7 +11,7 @@ module Peddler
       # an array, the result must match at least one element in the provided array.
       ListOfferMetricsRequestFilters = Structure.new do
         # @return [String]
-        attribute(:aggregation_frequency, String, from: "aggregationFrequency")
+        attribute?(:aggregation_frequency, String, from: "aggregationFrequency")
 
         # @return [TimeInterval] A time interval used to compute metrics.
         attribute(:time_interval, TimeInterval, from: "timeInterval")
@@ -29,7 +29,7 @@ module Peddler
         attribute(:program_types, Array, from: "programTypes")
 
         # @return [Array<String>] A list of Amazon Standard Identification Numbers (ASINs).
-        attribute(:asins, [String])
+        attribute?(:asins, [String])
       end
     end
   end

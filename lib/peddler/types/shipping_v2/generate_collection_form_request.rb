@@ -11,13 +11,13 @@ module Peddler
       # The request schema Call to generate the collection form.
       GenerateCollectionFormRequest = Structure.new do
         # @return [Array<ClientReferenceDetail>]
-        attribute(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
+        attribute?(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
 
         # @return [String]
         attribute(:carrier_id, String, from: "carrierId")
 
         # @return [Address]
-        attribute(:ship_from_address, Address, from: "shipFromAddress")
+        attribute?(:ship_from_address, Address, from: "shipFromAddress")
       end
     end
   end

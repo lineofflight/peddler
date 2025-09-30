@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class InvalidSKU < Data
-        def self.new: (seller_sku: String?, error_reason: String?) -> Peddler::Types::FulfillmentInboundV0::InvalidSKU
+        def self.new: (?seller_sku: String?, ?error_reason: String?) -> Peddler::Types::FulfillmentInboundV0::InvalidSKU
                     | (String?, String?) -> Peddler::Types::FulfillmentInboundV0::InvalidSKU
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::InvalidSKU

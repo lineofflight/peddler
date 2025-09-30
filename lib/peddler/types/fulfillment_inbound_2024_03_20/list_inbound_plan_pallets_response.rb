@@ -11,7 +11,7 @@ module Peddler
       # The `listInboundPlanPallets` response.
       ListInboundPlanPalletsResponse = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Pallet>] The pallets in an inbound plan.
         attribute(:pallets, [Pallet])

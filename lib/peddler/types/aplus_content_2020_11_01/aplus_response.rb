@@ -11,7 +11,7 @@ module Peddler
       # Individual operations can extend this with additional data.
       AplusResponse = Structure.new do
         # @return [Array<Error>]
-        attribute(:warnings, [Error])
+        attribute?(:warnings, [Error])
       end
     end
   end

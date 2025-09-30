@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class Poa < Data
-        def self.new: (appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, technicians: Array[Peddler::Types::ServicesV1::Technician]?, uploading_technician: String?, upload_time: String?, poa_type: String?) -> Peddler::Types::ServicesV1::Poa
+        def self.new: (?appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, ?technicians: Array[Peddler::Types::ServicesV1::Technician]?, ?uploading_technician: String?, ?upload_time: String?, ?poa_type: String?) -> Peddler::Types::ServicesV1::Poa
                     | (Peddler::Types::ServicesV1::AppointmentTime?, Array[Peddler::Types::ServicesV1::Technician]?, String?, String?, String?) -> Peddler::Types::ServicesV1::Poa
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Poa

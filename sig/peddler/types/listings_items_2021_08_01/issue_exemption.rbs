@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20210801
       class IssueExemption < Data
-        def self.new: (status: String?, expiry_date: String?) -> Peddler::Types::ListingsItems20210801::IssueExemption
+        def self.new: (status: String?, ?expiry_date: String?) -> Peddler::Types::ListingsItems20210801::IssueExemption
                     | (String?, String?) -> Peddler::Types::ListingsItems20210801::IssueExemption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::IssueExemption

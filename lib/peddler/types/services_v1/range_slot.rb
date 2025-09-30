@@ -10,13 +10,13 @@ module Peddler
       # Capacity slots represented in a format similar to availability rules.
       RangeSlot = Structure.new do
         # @return [String] Start date time of slot in ISO 8601 format with precision of seconds.
-        attribute(:start_date_time, String, from: "startDateTime")
+        attribute?(:start_date_time, String, from: "startDateTime")
 
         # @return [String] End date time of slot in ISO 8601 format with precision of seconds.
-        attribute(:end_date_time, String, from: "endDateTime")
+        attribute?(:end_date_time, String, from: "endDateTime")
 
         # @return [Integer] Capacity of the slot.
-        attribute(:capacity, Integer)
+        attribute?(:capacity, Integer)
       end
     end
   end

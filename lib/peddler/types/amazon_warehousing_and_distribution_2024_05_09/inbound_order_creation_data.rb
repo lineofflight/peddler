@@ -12,7 +12,7 @@ module Peddler
       # Payload for creating an inbound order.
       InboundOrderCreationData = Structure.new do
         # @return [String] Reference ID that can be used to correlate the order with partner resources.
-        attribute(:external_reference_id, String, from: "externalReferenceId")
+        attribute?(:external_reference_id, String, from: "externalReferenceId")
 
         # @return [Address] Origin address from where the inbound order will be shipped.
         attribute(:origin_address, Address, from: "originAddress")
@@ -21,7 +21,7 @@ module Peddler
         attribute(:packages_to_inbound, [DistributionPackageQuantity], from: "packagesToInbound")
 
         # @return [InboundPreferences]
-        attribute(:preferences, InboundPreferences)
+        attribute?(:preferences, InboundPreferences)
       end
     end
   end

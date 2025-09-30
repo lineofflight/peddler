@@ -12,13 +12,13 @@ module Peddler
       # The Response schema.
       GetInventorySummariesResponse = Structure.new do
         # @return [GetInventorySummariesResult] The payload for the getInventorySummaries operation.
-        attribute(:payload, GetInventorySummariesResult)
+        attribute?(:payload, GetInventorySummariesResult)
 
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the getInventorySummaries operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -10,10 +10,10 @@ module Peddler
       # The throughput capacity
       ThroughputCap = Structure.new do
         # @return [Integer]
-        attribute(:value, Integer)
+        attribute?(:value, Integer)
 
         # @return [String]
-        attribute(:time_unit, String, from: "timeUnit")
+        attribute?(:time_unit, String, from: "timeUnit")
       end
     end
   end

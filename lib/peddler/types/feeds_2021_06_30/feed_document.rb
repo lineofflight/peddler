@@ -22,7 +22,7 @@ module Peddler
         # feed directly. Refer to [Step 7. Download the feed processing
         # report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case
         # guide, where sample code is provided.
-        attribute(:compression_algorithm, String, from: "compressionAlgorithm")
+        attribute?(:compression_algorithm, String, from: "compressionAlgorithm")
       end
     end
   end

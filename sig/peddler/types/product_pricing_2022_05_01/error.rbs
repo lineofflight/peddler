@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::ProductPricing20220501::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ProductPricing20220501::Error
                     | (String?, String?, String?) -> Peddler::Types::ProductPricing20220501::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::Error

@@ -16,11 +16,11 @@ module Peddler
 
         # @return [Array<ItemClassificationSalesRank>] Sales ranks of an Amazon catalog item for a `marketplaceId`,
         # grouped by classification.
-        attribute(:classification_ranks, [ItemClassificationSalesRank], from: "classificationRanks")
+        attribute?(:classification_ranks, [ItemClassificationSalesRank], from: "classificationRanks")
 
         # @return [Array<ItemDisplayGroupSalesRank>] Sales ranks of an Amazon catalog item for a `marketplaceId`,
         # grouped by website display group.
-        attribute(:display_group_ranks, [ItemDisplayGroupSalesRank], from: "displayGroupRanks")
+        attribute?(:display_group_ranks, [ItemDisplayGroupSalesRank], from: "displayGroupRanks")
       end
     end
   end

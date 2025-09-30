@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class GetAccountResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV1::Account?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetAccountResponse
+        def self.new: (?payload: Peddler::Types::ShippingV1::Account?, ?errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetAccountResponse
                     | (Peddler::Types::ShippingV1::Account?, Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::GetAccountResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::GetAccountResponse

@@ -18,7 +18,7 @@ module Peddler
         attribute(:unit_of_measure, String, from: "unitOfMeasure")
 
         # @return [Integer] The case size, in the event that we ordered using cases. Otherwise, 1.
-        attribute(:unit_size, Integer, from: "unitSize")
+        attribute?(:unit_size, Integer, from: "unitSize")
       end
     end
   end

@@ -16,7 +16,7 @@ module Peddler
 
         # @return [Array<ItemBrowseClassification>] Classifications (browse nodes) that are associated with the item in
         # the Amazon catalog.
-        attribute(:classifications, [ItemBrowseClassification])
+        attribute?(:classifications, [ItemBrowseClassification])
       end
     end
   end

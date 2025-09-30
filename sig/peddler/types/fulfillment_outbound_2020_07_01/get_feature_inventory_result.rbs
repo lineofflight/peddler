@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFeatureInventoryResult < Data
-        def self.new: (marketplace_id: String?, feature_name: String?, next_token: String?, feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult
+        def self.new: (marketplace_id: String?, feature_name: String?, ?next_token: String?, ?feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult
                     | (String?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult

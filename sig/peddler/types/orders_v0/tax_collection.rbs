@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class TaxCollection < Data
-        def self.new: (model: String?, responsible_party: String?) -> Peddler::Types::OrdersV0::TaxCollection
+        def self.new: (?model: String?, ?responsible_party: String?) -> Peddler::Types::OrdersV0::TaxCollection
                     | (String?, String?) -> Peddler::Types::OrdersV0::TaxCollection
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::TaxCollection

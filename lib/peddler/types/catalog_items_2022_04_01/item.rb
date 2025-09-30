@@ -22,34 +22,34 @@ module Peddler
         attribute(:asin, String)
 
         # @return [ItemAttributes]
-        attribute(:attributes, ItemAttributes)
+        attribute?(:attributes, ItemAttributes)
 
         # @return [Array<ItemBrowseClassificationsByMarketplace>]
-        attribute(:classifications, [ItemBrowseClassificationsByMarketplace])
+        attribute?(:classifications, [ItemBrowseClassificationsByMarketplace])
 
         # @return [Array<ItemDimensionsByMarketplace>]
-        attribute(:dimensions, [ItemDimensionsByMarketplace])
+        attribute?(:dimensions, [ItemDimensionsByMarketplace])
 
         # @return [Array<ItemIdentifiersByMarketplace>]
-        attribute(:identifiers, [ItemIdentifiersByMarketplace])
+        attribute?(:identifiers, [ItemIdentifiersByMarketplace])
 
         # @return [Array<ItemImagesByMarketplace>]
-        attribute(:images, [ItemImagesByMarketplace])
+        attribute?(:images, [ItemImagesByMarketplace])
 
         # @return [Array<ItemProductTypeByMarketplace>]
-        attribute(:product_types, [ItemProductTypeByMarketplace], from: "productTypes")
+        attribute?(:product_types, [ItemProductTypeByMarketplace], from: "productTypes")
 
         # @return [Array<ItemRelationshipsByMarketplace>]
-        attribute(:relationships, [ItemRelationshipsByMarketplace])
+        attribute?(:relationships, [ItemRelationshipsByMarketplace])
 
         # @return [Array<ItemSalesRanksByMarketplace>]
-        attribute(:sales_ranks, [ItemSalesRanksByMarketplace], from: "salesRanks")
+        attribute?(:sales_ranks, [ItemSalesRanksByMarketplace], from: "salesRanks")
 
         # @return [Array<ItemSummaryByMarketplace>]
-        attribute(:summaries, [ItemSummaryByMarketplace])
+        attribute?(:summaries, [ItemSummaryByMarketplace])
 
         # @return [Array<ItemVendorDetailsByMarketplace>]
-        attribute(:vendor_details, [ItemVendorDetailsByMarketplace], from: "vendorDetails")
+        attribute?(:vendor_details, [ItemVendorDetailsByMarketplace], from: "vendorDetails")
       end
     end
   end

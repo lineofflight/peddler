@@ -18,7 +18,7 @@ module Peddler
         # @return [String] The time at which this packing option is no longer valid. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         # `yyyy-MM-ddTHH:mm:ss.sssZ`.
-        attribute(:expiration, String)
+        attribute?(:expiration, String)
 
         # @return [Array<Incentive>] Fee for the offered option.
         attribute(:fees, [Incentive])

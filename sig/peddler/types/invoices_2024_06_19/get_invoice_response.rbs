@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Invoices20240619
       class GetInvoiceResponse < Data
-        def self.new: (invoice: Peddler::Types::Invoices20240619::Invoice?) -> Peddler::Types::Invoices20240619::GetInvoiceResponse
+        def self.new: (?invoice: Peddler::Types::Invoices20240619::Invoice?) -> Peddler::Types::Invoices20240619::GetInvoiceResponse
                     | (Peddler::Types::Invoices20240619::Invoice?) -> Peddler::Types::Invoices20240619::GetInvoiceResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::GetInvoiceResponse

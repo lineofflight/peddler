@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class StatusUpdateDetails < Data
-        def self.new: (tracking_number: String?, status_code: String?, reason_code: String?, status_date_time: String?, status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
+        def self.new: (tracking_number: String?, status_code: String?, reason_code: String?, status_date_time: String?, status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, ?shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
                     | (String?, String?, String?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails

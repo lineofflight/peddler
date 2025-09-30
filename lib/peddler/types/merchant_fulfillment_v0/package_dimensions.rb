@@ -11,22 +11,22 @@ module Peddler
       PackageDimensions = Structure.new do
         # @return [Float] The length dimension. If you don't specify `PredefinedPackageDimensions`, you must specify the
         # length.
-        attribute(:length, Float, from: "Length")
+        attribute?(:length, Float, from: "Length")
 
         # @return [Float] The width dimension. If you don't specify `PredefinedPackageDimensions`, you must specify the
         # width.
-        attribute(:width, Float, from: "Width")
+        attribute?(:width, Float, from: "Width")
 
         # @return [Float] The height dimension. If you don't specify `PredefinedPackageDimensions`, you must specify the
         # height.
-        attribute(:height, Float, from: "Height")
+        attribute?(:height, Float, from: "Height")
 
         # @return [String] The unit of measurement. If you don't specify `PredefinedPackageDimensions`, you must specify
         # the unit.
-        attribute(:unit, String, from: "Unit")
+        attribute?(:unit, String, from: "Unit")
 
         # @return [String]
-        attribute(:predefined_package_dimensions, String, from: "PredefinedPackageDimensions")
+        attribute?(:predefined_package_dimensions, String, from: "PredefinedPackageDimensions")
       end
     end
   end

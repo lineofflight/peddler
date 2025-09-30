@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getListingOffers` and `getItemOffers` operations.
       GetOffersResponse = Structure.new do
         # @return [GetOffersResult] The payload for the `getListingOffers` and `getItemOffers` operations.
-        attribute(:payload, GetOffersResult)
+        attribute?(:payload, GetOffersResult)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

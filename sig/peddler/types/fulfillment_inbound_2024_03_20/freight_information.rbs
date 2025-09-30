@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class FreightInformation < Data
-        def self.new: (declared_value: Peddler::Types::Money?, freight_class: String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
+        def self.new: (?declared_value: Peddler::Types::Money?, ?freight_class: String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::FreightInformation

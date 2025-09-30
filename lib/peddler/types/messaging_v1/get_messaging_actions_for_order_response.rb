@@ -10,13 +10,13 @@ module Peddler
       # The response schema for the `getMessagingActionsForOrder` operation.
       GetMessagingActionsForOrderResponse = Structure.new do
         # @return [Hash] The links response that is associated with the specified `amazonOrderId`.
-        attribute(:_links, Hash)
+        attribute?(:_links, Hash)
 
         # @return [Hash] The messaging actions response that is associated with the specified `amazonOrderId`.
-        attribute(:_embedded, Hash)
+        attribute?(:_embedded, Hash)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

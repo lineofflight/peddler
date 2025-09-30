@@ -14,10 +14,10 @@ module Peddler
         attribute(:message, String)
 
         # @return [String] A code indicating why the listing is restricted.
-        attribute(:reason_code, String, from: "reasonCode")
+        attribute?(:reason_code, String, from: "reasonCode")
 
         # @return [Array<Link>] A list of path forward links that may allow Selling Partners to remove the restriction.
-        attribute(:links, [Link])
+        attribute?(:links, [Link])
       end
     end
   end

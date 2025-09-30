@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getFeatures` operation.
       GetFeaturesResponse = Structure.new do
         # @return [GetFeaturesResult]
-        attribute(:payload, GetFeaturesResult)
+        attribute?(:payload, GetFeaturesResult)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

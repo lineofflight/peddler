@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class PriceType < Data
-        def self.new: (landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?) -> Peddler::Types::ProductPricingV0::PriceType
+        def self.new: (?landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, ?shipping: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?) -> Peddler::Types::ProductPricingV0::PriceType
                     | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?) -> Peddler::Types::ProductPricingV0::PriceType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::PriceType

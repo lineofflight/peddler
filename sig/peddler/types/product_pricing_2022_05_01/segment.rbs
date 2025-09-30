@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class Segment < Data
-        def self.new: (segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
+        def self.new: (?segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
                     | (Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::Segment

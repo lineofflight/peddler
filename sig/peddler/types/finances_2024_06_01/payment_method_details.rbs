@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240601
       class PaymentMethodDetails < Data
-        def self.new: (account_holder_name: String?, payment_method_id: String?, tail: String?, expiry_date: Peddler::Types::Finances20240601::ExpiryDate?, country_code: String?, payment_method_type: String?, assignment_type: String?) -> Peddler::Types::Finances20240601::PaymentMethodDetails
+        def self.new: (?account_holder_name: String?, ?payment_method_id: String?, ?tail: String?, ?expiry_date: Peddler::Types::Finances20240601::ExpiryDate?, ?country_code: String?, ?payment_method_type: String?, ?assignment_type: String?) -> Peddler::Types::Finances20240601::PaymentMethodDetails
                     | (String?, String?, String?, Peddler::Types::Finances20240601::ExpiryDate?, String?, String?, String?) -> Peddler::Types::Finances20240601::PaymentMethodDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240601::PaymentMethodDetails

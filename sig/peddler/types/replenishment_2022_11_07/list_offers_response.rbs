@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOffersResponse < Data
-        def self.new: (offers: Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
+        def self.new: (?offers: Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, ?pagination: Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
                     | (Array[Peddler::Types::Replenishment20221107::ListOffersResponseOffer]?, Peddler::Types::Replenishment20221107::PaginationResponse?) -> Peddler::Types::Replenishment20221107::ListOffersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersResponse

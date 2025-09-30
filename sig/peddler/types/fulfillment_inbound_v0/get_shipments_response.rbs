@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetShipmentsResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentInboundV0::GetShipmentsResult?, errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentsResponse
+        def self.new: (?payload: Peddler::Types::FulfillmentInboundV0::GetShipmentsResult?, ?errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentsResponse
                     | (Peddler::Types::FulfillmentInboundV0::GetShipmentsResult?, Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetShipmentsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetShipmentsResponse

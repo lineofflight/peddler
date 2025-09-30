@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the submitInvoices operation.
       SubmitInvoicesResponse = Structure.new do
         # @return [TransactionId] The response payload for the submitInvoices operation.
-        attribute(:payload, TransactionId)
+        attribute?(:payload, TransactionId)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

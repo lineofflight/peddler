@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Uploads20201101
       class CreateUploadDestinationResponse < Data
-        def self.new: (payload: Peddler::Types::Uploads20201101::UploadDestination?, errors: Array[Peddler::Types::Uploads20201101::Error]?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
+        def self.new: (?payload: Peddler::Types::Uploads20201101::UploadDestination?, ?errors: Array[Peddler::Types::Uploads20201101::Error]?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
                     | (Peddler::Types::Uploads20201101::UploadDestination?, Array[Peddler::Types::Uploads20201101::Error]?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse

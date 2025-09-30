@@ -11,7 +11,7 @@ module Peddler
       # estimated ship dates and arrival dates.
       GetFulfillmentPreviewResult = Structure.new do
         # @return [Array<FulfillmentPreview>]
-        attribute(:fulfillment_previews, [FulfillmentPreview], from: "fulfillmentPreviews")
+        attribute?(:fulfillment_previews, [FulfillmentPreview], from: "fulfillmentPreviews")
       end
     end
   end

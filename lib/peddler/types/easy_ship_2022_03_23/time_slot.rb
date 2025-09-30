@@ -13,13 +13,13 @@ module Peddler
         attribute(:slot_id, String, from: "slotId")
 
         # @return [String] The start date and time of the time slot.
-        attribute(:start_time, String, from: "startTime")
+        attribute?(:start_time, String, from: "startTime")
 
         # @return [String] The end date and time of the time slot.
-        attribute(:end_time, String, from: "endTime")
+        attribute?(:end_time, String, from: "endTime")
 
         # @return [String] The method by which a seller will hand a package over to Amazon Logistics.
-        attribute(:handover_method, String, from: "handoverMethod")
+        attribute?(:handover_method, String, from: "handoverMethod")
       end
     end
   end

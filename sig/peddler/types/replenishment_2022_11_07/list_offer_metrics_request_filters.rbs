@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOfferMetricsRequestFilters < Data
-        def self.new: (aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, marketplace_id: String?, program_types: Array[untyped]?, asins: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
+        def self.new: (?aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, marketplace_id: String?, program_types: Array[untyped]?, ?asins: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
                     | (String?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array[untyped]?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters

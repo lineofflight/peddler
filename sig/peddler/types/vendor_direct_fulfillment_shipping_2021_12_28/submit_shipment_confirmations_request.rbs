@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class SubmitShipmentConfirmationsRequest < Data
-        def self.new: (shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest
+        def self.new: (?shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest
                     | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest

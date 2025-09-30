@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class SubmitFulfillmentOrderStatusUpdateRequest < Data
-        def self.new: (fulfillment_order_status: String?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest
+        def self.new: (?fulfillment_order_status: String?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest
                     | (String?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest

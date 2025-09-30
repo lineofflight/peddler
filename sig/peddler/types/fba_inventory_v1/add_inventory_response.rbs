@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInventoryV1
       class AddInventoryResponse < Data
-        def self.new: (errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::AddInventoryResponse
+        def self.new: (?errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::AddInventoryResponse
                     | (Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::AddInventoryResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::AddInventoryResponse

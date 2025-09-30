@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class TransactionId < Data
-        def self.new: (transaction_id: String?) -> Peddler::Types::VendorInvoicesV1::TransactionId
+        def self.new: (?transaction_id: String?) -> Peddler::Types::VendorInvoicesV1::TransactionId
                     | (String?) -> Peddler::Types::VendorInvoicesV1::TransactionId
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::TransactionId

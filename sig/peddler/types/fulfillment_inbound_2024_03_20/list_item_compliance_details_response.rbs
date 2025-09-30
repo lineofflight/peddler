@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListItemComplianceDetailsResponse < Data
-        def self.new: (compliance_details: Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
+        def self.new: (?compliance_details: Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::ComplianceDetail]?) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListItemComplianceDetailsResponse

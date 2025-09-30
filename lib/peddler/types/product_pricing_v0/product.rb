@@ -16,19 +16,19 @@ module Peddler
         attribute(:identifiers, IdentifierType, from: "Identifiers")
 
         # @return [Array<Object>]
-        attribute(:attribute_sets, Array, from: "AttributeSets")
+        attribute?(:attribute_sets, Array, from: "AttributeSets")
 
         # @return [Array<Object>]
-        attribute(:relationships, Array, from: "Relationships")
+        attribute?(:relationships, Array, from: "Relationships")
 
         # @return [CompetitivePricingType]
-        attribute(:competitive_pricing, CompetitivePricingType, from: "CompetitivePricing")
+        attribute?(:competitive_pricing, CompetitivePricingType, from: "CompetitivePricing")
 
         # @return [Array<SalesRankType>]
-        attribute(:sales_rankings, [SalesRankType], from: "SalesRankings")
+        attribute?(:sales_rankings, [SalesRankType], from: "SalesRankings")
 
         # @return [Array<OfferType>]
-        attribute(:offers, [OfferType], from: "Offers")
+        attribute?(:offers, [OfferType], from: "Offers")
       end
     end
   end

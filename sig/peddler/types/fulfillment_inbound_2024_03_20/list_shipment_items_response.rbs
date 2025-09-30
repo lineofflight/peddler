@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListShipmentItemsResponse < Data
-        def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
+        def self.new: (items: Array[Peddler::Types::FulfillmentInbound20240320::Item]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Item]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListShipmentItemsResponse

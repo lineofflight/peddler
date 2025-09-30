@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class GetServiceJobsResponse < Data
-        def self.new: (payload: Peddler::Types::ServicesV1::JobListing?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::GetServiceJobsResponse
+        def self.new: (?payload: Peddler::Types::ServicesV1::JobListing?, ?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::GetServiceJobsResponse
                     | (Peddler::Types::ServicesV1::JobListing?, Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::GetServiceJobsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::GetServiceJobsResponse

@@ -14,25 +14,25 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The brand code that is associated with an Amazon catalog item.
-        attribute(:brand_code, String, from: "brandCode")
+        attribute?(:brand_code, String, from: "brandCode")
 
         # @return [String] The manufacturer code that is associated with an Amazon catalog item.
-        attribute(:manufacturer_code, String, from: "manufacturerCode")
+        attribute?(:manufacturer_code, String, from: "manufacturerCode")
 
         # @return [String] The parent vendor code of the manufacturer code.
-        attribute(:manufacturer_code_parent, String, from: "manufacturerCodeParent")
+        attribute?(:manufacturer_code_parent, String, from: "manufacturerCodeParent")
 
         # @return [ItemVendorDetailsCategory] The product category that is associated with an Amazon catalog item.
-        attribute(:product_category, ItemVendorDetailsCategory, from: "productCategory")
+        attribute?(:product_category, ItemVendorDetailsCategory, from: "productCategory")
 
         # @return [String] The product group that is associated with an Amazon catalog item.
-        attribute(:product_group, String, from: "productGroup")
+        attribute?(:product_group, String, from: "productGroup")
 
         # @return [ItemVendorDetailsCategory] The product subcategory that is associated with an Amazon catalog item.
-        attribute(:product_subcategory, ItemVendorDetailsCategory, from: "productSubcategory")
+        attribute?(:product_subcategory, ItemVendorDetailsCategory, from: "productSubcategory")
 
         # @return [String] The replenishment category that is associated with an Amazon catalog item.
-        attribute(:replenishment_category, String, from: "replenishmentCategory")
+        attribute?(:replenishment_category, String, from: "replenishmentCategory")
       end
     end
   end

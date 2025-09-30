@@ -11,16 +11,16 @@ module Peddler
       # Rate Item for shipping (base cost, transaction fee, confirmation, insurance, etc.) Data source definition:
       RateItem = Structure.new do
         # @return [String]
-        attribute(:rate_item_id, String, from: "rateItemID")
+        attribute?(:rate_item_id, String, from: "rateItemID")
 
         # @return [String]
-        attribute(:rate_item_type, String, from: "rateItemType")
+        attribute?(:rate_item_type, String, from: "rateItemType")
 
         # @return [Money]
-        attribute(:rate_item_charge, Money, from: "rateItemCharge")
+        attribute?(:rate_item_charge, Money, from: "rateItemCharge")
 
         # @return [String] Used for the localization.
-        attribute(:rate_item_name_localization, String, from: "rateItemNameLocalization")
+        attribute?(:rate_item_name_localization, String, from: "rateItemNameLocalization")
       end
     end
   end

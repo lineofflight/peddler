@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class VariablePrecisionAddress < Data
-        def self.new: (address_line1: String?, address_line2: String?, address_line3: String?, city: String?, district_or_county: String?, state_or_region: String?, postal_code: String?, country_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress
+        def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?district_or_county: String?, ?state_or_region: String?, postal_code: String?, country_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress
                     | (String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress

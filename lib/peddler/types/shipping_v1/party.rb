@@ -10,7 +10,7 @@ module Peddler
       # The account related with the shipment.
       Party = Structure.new do
         # @return [String]
-        attribute(:account_id, String, from: "accountId")
+        attribute?(:account_id, String, from: "accountId")
       end
     end
   end

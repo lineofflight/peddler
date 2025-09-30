@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Feeds20210630
       class FeedDocument < Data
-        def self.new: (feed_document_id: String?, url: String?, compression_algorithm: String?) -> Peddler::Types::Feeds20210630::FeedDocument
+        def self.new: (feed_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::Types::Feeds20210630::FeedDocument
                     | (String?, String?, String?) -> Peddler::Types::Feeds20210630::FeedDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::FeedDocument

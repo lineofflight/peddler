@@ -11,10 +11,10 @@ module Peddler
       ListFinancialEventGroupsPayload = Structure.new do
         # @return [String] When present and not empty, pass this string token in the next request to return the next
         # response page.
-        attribute(:next_token, String, from: "NextToken")
+        attribute?(:next_token, String, from: "NextToken")
 
         # @return [Array<FinancialEventGroup>]
-        attribute(:financial_event_group_list, [FinancialEventGroup], from: "FinancialEventGroupList")
+        attribute?(:financial_event_group_list, [FinancialEventGroup], from: "FinancialEventGroupList")
       end
     end
   end

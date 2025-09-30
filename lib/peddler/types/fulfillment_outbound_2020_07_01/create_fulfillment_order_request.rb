@@ -16,7 +16,7 @@ module Peddler
       # The request body schema for the `createFulfillmentOrder` operation.
       CreateFulfillmentOrderRequest = Structure.new do
         # @return [String] The marketplace the fulfillment order is placed against.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] A fulfillment order identifier that the seller creates to track their fulfillment order. The
         # `sellerFulfillmentOrderId` must be unique for each fulfillment order that a seller creates. If the seller's
@@ -50,7 +50,7 @@ module Peddler
         attribute(:shipping_speed_category, String, from: "shippingSpeedCategory")
 
         # @return [DeliveryWindow]
-        attribute(:delivery_window, DeliveryWindow, from: "deliveryWindow")
+        attribute?(:delivery_window, DeliveryWindow, from: "deliveryWindow")
 
         # @return [Address] The destination address for the fulfillment order.
         attribute(:destination_address, Address, from: "destinationAddress")
@@ -61,26 +61,26 @@ module Peddler
         # This feature is currently supported only in the JP marketplace and not applicable for other marketplaces.
         # For eligible orders, the default delivery preference will be to deliver the package unattended at the front
         # door, unless you specify otherwise.
-        attribute(:delivery_preferences, DeliveryPreferences, from: "deliveryPreferences")
+        attribute?(:delivery_preferences, DeliveryPreferences, from: "deliveryPreferences")
 
         # @return [String]
-        attribute(:fulfillment_action, String, from: "fulfillmentAction")
+        attribute?(:fulfillment_action, String, from: "fulfillmentAction")
 
         # @return [String]
-        attribute(:fulfillment_policy, String, from: "fulfillmentPolicy")
+        attribute?(:fulfillment_policy, String, from: "fulfillmentPolicy")
 
         # @return [CODSettings]
-        attribute(:cod_settings, CODSettings, from: "codSettings")
+        attribute?(:cod_settings, CODSettings, from: "codSettings")
 
         # @return [String] The two-character country code for the country from which the fulfillment order ships. Must
         # be in ISO 3166-1 alpha-2 format.
-        attribute(:ship_from_country_code, String, from: "shipFromCountryCode")
+        attribute?(:ship_from_country_code, String, from: "shipFromCountryCode")
 
         # @return [Array<String>]
-        attribute(:notification_emails, [String], from: "notificationEmails")
+        attribute?(:notification_emails, [String], from: "notificationEmails")
 
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
-        attribute(:feature_constraints, [FeatureSettings], from: "featureConstraints")
+        attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")
 
         # @return [Array<CreateFulfillmentOrderItem>] A list of items to include in the fulfillment order preview,
         # including quantity. Maximum of 100 line items with a maximum of 250 units per order.
@@ -88,7 +88,7 @@ module Peddler
 
         # @return [Array<PaymentInformation>] An array of various payment attributes related to this fulfillment order.
         # This property is required if the order is placed against the India marketplace.
-        attribute(:payment_information, [PaymentInformation], from: "paymentInformation")
+        attribute?(:payment_information, [PaymentInformation], from: "paymentInformation")
       end
     end
   end

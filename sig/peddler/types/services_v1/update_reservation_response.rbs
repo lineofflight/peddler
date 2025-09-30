@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class UpdateReservationResponse < Data
-        def self.new: (payload: Peddler::Types::ServicesV1::UpdateReservationRecord?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::UpdateReservationResponse
+        def self.new: (?payload: Peddler::Types::ServicesV1::UpdateReservationRecord?, ?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::UpdateReservationResponse
                     | (Peddler::Types::ServicesV1::UpdateReservationRecord?, Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::UpdateReservationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::UpdateReservationResponse

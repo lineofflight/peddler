@@ -11,10 +11,10 @@ module Peddler
       # The request schema for the GetShipmentDetails operation.
       ShipmentDetails = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Shipment>] A list of one or more shipments with underlying details.
-        attribute(:shipments, [Shipment])
+        attribute?(:shipments, [Shipment])
       end
     end
   end

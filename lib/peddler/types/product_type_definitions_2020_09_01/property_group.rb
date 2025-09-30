@@ -11,13 +11,13 @@ module Peddler
       # informational purposes.
       PropertyGroup = Structure.new do
         # @return [String] The display label of the property group.
-        attribute(:title, String)
+        attribute?(:title, String)
 
         # @return [String] The description of the property group.
-        attribute(:description, String)
+        attribute?(:description, String)
 
         # @return [Array<String>] The names of the schema properties for the property group.
-        attribute(:property_names, [String], from: "propertyNames")
+        attribute?(:property_names, [String], from: "propertyNames")
       end
     end
   end

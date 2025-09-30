@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundOrderCreationData < Data
-        def self.new: (external_reference_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+        def self.new: (?external_reference_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
                     | (String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData

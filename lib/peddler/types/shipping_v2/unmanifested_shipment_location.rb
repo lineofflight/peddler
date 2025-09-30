@@ -10,10 +10,10 @@ module Peddler
       # UnmanifestedShipmentLocation info
       UnmanifestedShipmentLocation = Structure.new do
         # @return [Address]
-        attribute(:address, Address)
+        attribute?(:address, Address)
 
         # @return [String] Its Last Manifest Date.
-        attribute(:last_manifest_date, String, from: "lastManifestDate")
+        attribute?(:last_manifest_date, String, from: "lastManifestDate")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class OfferIdentifier < Data
-        def self.new: (marketplace_id: String?, seller_id: String?, sku: String?, asin: String?, fulfillment_type: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+        def self.new: (marketplace_id: String?, ?seller_id: String?, ?sku: String?, asin: String?, ?fulfillment_type: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::OfferIdentifier

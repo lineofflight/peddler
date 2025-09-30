@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class PackageDetails < Data
-        def self.new: (package_items: Array[Peddler::Types::EasyShip20220323::Item]?, package_time_slot: Peddler::Types::EasyShip20220323::TimeSlot?, package_identifier: String?) -> Peddler::Types::EasyShip20220323::PackageDetails
+        def self.new: (?package_items: Array[Peddler::Types::EasyShip20220323::Item]?, package_time_slot: Peddler::Types::EasyShip20220323::TimeSlot?, ?package_identifier: String?) -> Peddler::Types::EasyShip20220323::PackageDetails
                     | (Array[Peddler::Types::EasyShip20220323::Item]?, Peddler::Types::EasyShip20220323::TimeSlot?, String?) -> Peddler::Types::EasyShip20220323::PackageDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::PackageDetails

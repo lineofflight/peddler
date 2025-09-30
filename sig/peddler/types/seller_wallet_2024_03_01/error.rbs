@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SellerWallet20240301
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::SellerWallet20240301::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::SellerWallet20240301::Error
                     | (String?, String?, String?) -> Peddler::Types::SellerWallet20240301::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Error

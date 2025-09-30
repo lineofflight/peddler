@@ -20,7 +20,7 @@ module Peddler
         attribute(:filters, ListOffersRequestFilters)
 
         # @return [ListOffersRequestSort] Use these parameters to sort the response.
-        attribute(:sort, ListOffersRequestSort)
+        attribute?(:sort, ListOffersRequestSort)
       end
     end
   end

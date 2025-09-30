@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `getPaymentMethods` operation.
       GetPaymentMethodsResponse = Structure.new do
         # @return [Array<PaymentMethodDetails>]
-        attribute(:payment_methods, [PaymentMethodDetails], from: "paymentMethods")
+        attribute?(:payment_methods, [PaymentMethodDetails], from: "paymentMethods")
       end
     end
   end

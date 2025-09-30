@@ -19,10 +19,10 @@ module Peddler
 
         # @return [Array<String>] A list of marketplace identifiers. The report document's contents will contain data
         # for all of the specified marketplaces, unless the report type indicates otherwise.
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute?(:marketplace_ids, [String], from: "marketplaceIds")
 
         # @return [ReportOptions]
-        attribute(:report_options, ReportOptions, from: "reportOptions")
+        attribute?(:report_options, ReportOptions, from: "reportOptions")
 
         # @return [String] An <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> period value
         # that indicates how often a report should be created.
@@ -30,7 +30,7 @@ module Peddler
 
         # @return [String] The date and time when the schedule will create its next report, in <a
         # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
-        attribute(:next_report_creation_time, String, from: "nextReportCreationTime")
+        attribute?(:next_report_creation_time, String, from: "nextReportCreationTime")
       end
     end
   end

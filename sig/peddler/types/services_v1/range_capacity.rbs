@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class RangeCapacity < Data
-        def self.new: (capacity_type: String?, slots: Array[Peddler::Types::ServicesV1::RangeSlot]?) -> Peddler::Types::ServicesV1::RangeCapacity
+        def self.new: (?capacity_type: String?, ?slots: Array[Peddler::Types::ServicesV1::RangeSlot]?) -> Peddler::Types::ServicesV1::RangeCapacity
                     | (String?, Array[Peddler::Types::ServicesV1::RangeSlot]?) -> Peddler::Types::ServicesV1::RangeCapacity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::RangeCapacity

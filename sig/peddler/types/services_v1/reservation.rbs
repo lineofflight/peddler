@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class Reservation < Data
-        def self.new: (reservation_id: String?, type: String?, availability: Peddler::Types::ServicesV1::AvailabilityRecord?) -> Peddler::Types::ServicesV1::Reservation
+        def self.new: (?reservation_id: String?, type: String?, availability: Peddler::Types::ServicesV1::AvailabilityRecord?) -> Peddler::Types::ServicesV1::Reservation
                     | (String?, String?, Peddler::Types::ServicesV1::AvailabilityRecord?) -> Peddler::Types::ServicesV1::Reservation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Reservation

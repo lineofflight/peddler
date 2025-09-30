@@ -15,7 +15,7 @@ module Peddler
 
         # @return [String] Field to specify recurrence of the scheduled transfer. Recurring frequency is mandatory if
         # scheduleExpressionType is set as RECURRING otherwise it should be empty field.
-        attribute(:recurring_frequency, String, from: "recurringFrequency")
+        attribute?(:recurring_frequency, String, from: "recurringFrequency")
       end
     end
   end

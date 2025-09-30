@@ -12,13 +12,13 @@ module Peddler
       # returned if the freight information is provided.
       FreightInformation = Structure.new do
         # @return [Money]
-        attribute(:declared_value, Money, from: "declaredValue")
+        attribute?(:declared_value, Money, from: "declaredValue")
 
         # @return [String] Freight class.
         #
         # Possible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`,
         # `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.
-        attribute(:freight_class, String, from: "freightClass")
+        attribute?(:freight_class, String, from: "freightClass")
       end
     end
   end

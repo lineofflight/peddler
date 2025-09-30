@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SolicitationsV1
       class CreateProductReviewAndSellerFeedbackSolicitationResponse < Data
-        def self.new: (errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
+        def self.new: (?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
                     | (Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class TransportationOption < Data
-        def self.new: (carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, preconditions: Array[String]?, quote: Peddler::Types::FulfillmentInbound20240320::Quote?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
+        def self.new: (carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, ?carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, preconditions: Array[String]?, ?quote: Peddler::Types::FulfillmentInbound20240320::Quote?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
                     | (Peddler::Types::FulfillmentInbound20240320::Carrier?, Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, Array[String]?, Peddler::Types::FulfillmentInbound20240320::Quote?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption

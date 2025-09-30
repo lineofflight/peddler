@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::Replenishment20221107::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Replenishment20221107::Error
                     | (String?, String?, String?) -> Peddler::Types::Replenishment20221107::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::Error

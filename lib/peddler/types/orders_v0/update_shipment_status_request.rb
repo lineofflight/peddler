@@ -16,7 +16,7 @@ module Peddler
         attribute(:shipment_status, String, from: "shipmentStatus")
 
         # @return [Array<Object>]
-        attribute(:order_items, Array, from: "orderItems")
+        attribute?(:order_items, Array, from: "orderItems")
       end
     end
   end

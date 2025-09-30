@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the SubmitShipmentConfirmations operation.
       SubmitShipmentConfirmationsRequest = Structure.new do
         # @return [Array<ShipmentConfirmation>] A list of one or more shipment confirmations.
-        attribute(:shipment_confirmations, [ShipmentConfirmation], from: "shipmentConfirmations")
+        attribute?(:shipment_confirmations, [ShipmentConfirmation], from: "shipmentConfirmations")
       end
     end
   end

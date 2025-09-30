@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class AvailableValueAddedServiceGroup < Data
-        def self.new: (group_id: String?, group_description: String?, required: bool?, value_added_services: Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
+        def self.new: (group_id: String?, group_description: String?, required: bool?, ?value_added_services: Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
                     | (String?, String?, bool?, Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup

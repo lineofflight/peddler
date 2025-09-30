@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class TaxClassification < Data
-        def self.new: (name: String?, value: String?) -> Peddler::Types::OrdersV0::TaxClassification
+        def self.new: (?name: String?, ?value: String?) -> Peddler::Types::OrdersV0::TaxClassification
                     | (String?, String?) -> Peddler::Types::OrdersV0::TaxClassification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::TaxClassification

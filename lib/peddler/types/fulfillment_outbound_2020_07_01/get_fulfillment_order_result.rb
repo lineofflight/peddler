@@ -21,7 +21,7 @@ module Peddler
         attribute(:fulfillment_order_items, [FulfillmentOrderItem], from: "fulfillmentOrderItems")
 
         # @return [Array<FulfillmentShipment>]
-        attribute(:fulfillment_shipments, [FulfillmentShipment], from: "fulfillmentShipments")
+        attribute?(:fulfillment_shipments, [FulfillmentShipment], from: "fulfillmentShipments")
 
         # @return [Array<ReturnItem>]
         attribute(:return_items, [ReturnItem], from: "returnItems")
@@ -30,7 +30,7 @@ module Peddler
         attribute(:return_authorizations, [ReturnAuthorization], from: "returnAuthorizations")
 
         # @return [Array<PaymentInformation>]
-        attribute(:payment_information, [PaymentInformation], from: "paymentInformation")
+        attribute?(:payment_information, [PaymentInformation], from: "paymentInformation")
       end
     end
   end

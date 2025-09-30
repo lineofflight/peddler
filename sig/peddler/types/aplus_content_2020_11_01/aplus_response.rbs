@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class AplusResponse < Data
-        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
+        def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::AplusResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::AplusResponse

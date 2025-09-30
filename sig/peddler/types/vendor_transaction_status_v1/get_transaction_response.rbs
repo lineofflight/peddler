@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorTransactionStatusV1
       class GetTransactionResponse < Data
-        def self.new: (payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?, errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
+        def self.new: (?payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?, ?errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
                     | (Peddler::Types::VendorTransactionStatusV1::TransactionStatus?, Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse

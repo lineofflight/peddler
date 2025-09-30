@@ -12,10 +12,10 @@ module Peddler
       # Japan.
       Points = Structure.new do
         # @return [Integer] The number of Amazon Points
-        attribute(:points_number, Integer, from: "PointsNumber")
+        attribute?(:points_number, Integer, from: "PointsNumber")
 
         # @return [Money]
-        attribute(:points_monetary_value, Money, from: "PointsMonetaryValue")
+        attribute?(:points_monetary_value, Money, from: "PointsMonetaryValue")
       end
     end
   end

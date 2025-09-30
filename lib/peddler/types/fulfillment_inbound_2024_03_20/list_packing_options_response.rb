@@ -14,7 +14,7 @@ module Peddler
         attribute(:packing_options, [PackingOption], from: "packingOptions")
 
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
       end
     end
   end

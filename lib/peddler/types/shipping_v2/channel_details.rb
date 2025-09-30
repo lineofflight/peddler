@@ -14,10 +14,10 @@ module Peddler
         attribute(:channel_type, String, from: "channelType")
 
         # @return [AmazonOrderDetails]
-        attribute(:amazon_order_details, AmazonOrderDetails, from: "amazonOrderDetails")
+        attribute?(:amazon_order_details, AmazonOrderDetails, from: "amazonOrderDetails")
 
         # @return [AmazonShipmentDetails]
-        attribute(:amazon_shipment_details, AmazonShipmentDetails, from: "amazonShipmentDetails")
+        attribute?(:amazon_shipment_details, AmazonShipmentDetails, from: "amazonShipmentDetails")
       end
     end
   end

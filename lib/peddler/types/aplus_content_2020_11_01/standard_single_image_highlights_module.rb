@@ -13,22 +13,22 @@ module Peddler
       # A standard image with several paragraphs and a bulleted list.
       StandardSingleImageHighlightsModule = Structure.new do
         # @return [ImageComponent]
-        attribute(:image, ImageComponent)
+        attribute?(:image, ImageComponent)
 
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [StandardTextBlock]
-        attribute(:text_block1, StandardTextBlock, from: "textBlock1")
+        attribute?(:text_block1, StandardTextBlock, from: "textBlock1")
 
         # @return [StandardTextBlock]
-        attribute(:text_block2, StandardTextBlock, from: "textBlock2")
+        attribute?(:text_block2, StandardTextBlock, from: "textBlock2")
 
         # @return [StandardTextBlock]
-        attribute(:text_block3, StandardTextBlock, from: "textBlock3")
+        attribute?(:text_block3, StandardTextBlock, from: "textBlock3")
 
         # @return [StandardHeaderTextListBlock]
-        attribute(:bulleted_list_block, StandardHeaderTextListBlock, from: "bulletedListBlock")
+        attribute?(:bulleted_list_block, StandardHeaderTextListBlock, from: "bulletedListBlock")
       end
     end
   end

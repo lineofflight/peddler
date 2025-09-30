@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemIdentifiersByMarketplace < Data
-        def self.new: (marketplace_id: String?, asin: String?) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
+        def self.new: (?marketplace_id: String?, ?asin: String?) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
                     | (String?, String?) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace

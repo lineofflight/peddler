@@ -16,7 +16,7 @@ module Peddler
         attribute(:message, String)
 
         # @return [String] Additional information that can help the caller understand or fix the issue.
-        attribute(:details, String)
+        attribute?(:details, String)
       end
     end
   end

@@ -20,7 +20,7 @@ module Peddler
 
         # @return [Array<ValueAddedService>] A list of optional value-added services available for purchase with a
         # shipping service offering.
-        attribute(:value_added_services, [ValueAddedService], from: "valueAddedServices")
+        attribute?(:value_added_services, [ValueAddedService], from: "valueAddedServices")
       end
     end
   end

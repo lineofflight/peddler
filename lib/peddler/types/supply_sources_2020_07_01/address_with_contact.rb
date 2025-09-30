@@ -11,10 +11,10 @@ module Peddler
       # The address and contact details.
       AddressWithContact = Structure.new do
         # @return [ContactDetails]
-        attribute(:contact_details, ContactDetails, from: "contactDetails")
+        attribute?(:contact_details, ContactDetails, from: "contactDetails")
 
         # @return [Address]
-        attribute(:address, Address)
+        attribute?(:address, Address)
       end
     end
   end

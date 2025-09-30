@@ -13,7 +13,7 @@ module Peddler
         attribute(:image_position_type, String, from: "imagePositionType")
 
         # @return [StandardImageTextBlock]
-        attribute(:block, StandardImageTextBlock)
+        attribute?(:block, StandardImageTextBlock)
       end
     end
   end

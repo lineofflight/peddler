@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class Item < Data
-        def self.new: (item_sequence_number: Integer?, buyer_product_identifier: String?, vendor_product_identifier: String?, shipped_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item
+        def self.new: (item_sequence_number: Integer?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, shipped_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item
                     | (Integer?, String?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item

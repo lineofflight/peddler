@@ -11,13 +11,13 @@ module Peddler
       # The `GET` request schema response.
       GetSchemaResponse = Structure.new do
         # @return [Hash] The links response that is associated with the object.
-        attribute(:_links, Hash)
+        attribute?(:_links, Hash)
 
         # @return [Schema]
-        attribute(:payload, Schema)
+        attribute?(:payload, Schema)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -18,7 +18,7 @@ module Peddler
         attribute(:number_of_offer_listings, [OfferListingCountType], from: "NumberOfOfferListings")
 
         # @return [Money] The trade-in value of the item in the trade-in program.
-        attribute(:trade_in_value, Money, from: "TradeInValue")
+        attribute?(:trade_in_value, Money, from: "TradeInValue")
       end
     end
   end

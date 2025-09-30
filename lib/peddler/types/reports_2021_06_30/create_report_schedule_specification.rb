@@ -17,7 +17,7 @@ module Peddler
         attribute(:marketplace_ids, [String], from: "marketplaceIds")
 
         # @return [ReportOptions]
-        attribute(:report_options, ReportOptions, from: "reportOptions")
+        attribute?(:report_options, ReportOptions, from: "reportOptions")
 
         # @return [String] One of a set of predefined <a
         # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> periods that specifies how often a
@@ -26,7 +26,7 @@ module Peddler
 
         # @return [String] The date and time when the schedule will create its next report, in <a
         # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
-        attribute(:next_report_creation_time, String, from: "nextReportCreationTime")
+        attribute?(:next_report_creation_time, String, from: "nextReportCreationTime")
       end
     end
   end

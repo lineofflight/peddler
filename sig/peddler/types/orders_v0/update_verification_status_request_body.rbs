@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class UpdateVerificationStatusRequestBody < Data
-        def self.new: (status: String?, external_reviewer_id: String?, rejection_reason_id: String?, verification_details: Peddler::Types::OrdersV0::VerificationDetails?) -> Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody
+        def self.new: (?status: String?, external_reviewer_id: String?, ?rejection_reason_id: String?, ?verification_details: Peddler::Types::OrdersV0::VerificationDetails?) -> Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody
                     | (String?, String?, String?, Peddler::Types::OrdersV0::VerificationDetails?) -> Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::UpdateVerificationStatusRequestBody

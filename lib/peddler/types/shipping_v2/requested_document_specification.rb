@@ -18,10 +18,10 @@ module Peddler
         attribute(:size, DocumentSize)
 
         # @return [Integer]
-        attribute(:dpi, Integer)
+        attribute?(:dpi, Integer)
 
         # @return [String]
-        attribute(:page_layout, String, from: "pageLayout")
+        attribute?(:page_layout, String, from: "pageLayout")
 
         # @return [:boolean]
         attribute(:need_file_joining, :boolean, from: "needFileJoining")
@@ -30,7 +30,7 @@ module Peddler
         attribute(:requested_document_types, Array, from: "requestedDocumentTypes")
 
         # @return [RequestedLabelCustomization]
-        attribute(:requested_label_customization, RequestedLabelCustomization, from: "requestedLabelCustomization")
+        attribute?(:requested_label_customization, RequestedLabelCustomization, from: "requestedLabelCustomization")
       end
     end
   end

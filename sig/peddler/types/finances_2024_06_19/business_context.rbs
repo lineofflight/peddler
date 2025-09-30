@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class BusinessContext < Data
-        def self.new: (store_name: String?) -> Peddler::Types::Finances20240619::BusinessContext
+        def self.new: (?store_name: String?) -> Peddler::Types::Finances20240619::BusinessContext
                     | (String?) -> Peddler::Types::Finances20240619::BusinessContext
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::BusinessContext

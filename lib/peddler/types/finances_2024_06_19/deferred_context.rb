@@ -12,10 +12,10 @@ module Peddler
         # @return [String] The deferral policy applied to the transaction.
         #
         # **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)
-        attribute(:deferral_reason, String, from: "deferralReason")
+        attribute?(:deferral_reason, String, from: "deferralReason")
 
         # @return [String] The release date of the transaction.
-        attribute(:maturity_date, String, from: "maturityDate")
+        attribute?(:maturity_date, String, from: "maturityDate")
       end
     end
   end

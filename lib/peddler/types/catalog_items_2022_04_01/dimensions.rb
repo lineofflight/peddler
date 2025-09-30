@@ -10,16 +10,16 @@ module Peddler
       # Dimensions of an Amazon catalog item or item in its packaging.
       Dimensions = Structure.new do
         # @return [Dimension] Height of an item or item package.
-        attribute(:height, Dimension)
+        attribute?(:height, Dimension)
 
         # @return [Dimension] Length of an item or item package.
-        attribute(:length, Dimension)
+        attribute?(:length, Dimension)
 
         # @return [Dimension] Weight of an item or item package.
-        attribute(:weight, Dimension)
+        attribute?(:weight, Dimension)
 
         # @return [Dimension] Width of an item or item package.
-        attribute(:width, Dimension)
+        attribute?(:width, Dimension)
       end
     end
   end

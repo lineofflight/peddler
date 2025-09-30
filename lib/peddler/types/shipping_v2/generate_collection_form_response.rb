@@ -10,7 +10,7 @@ module Peddler
       # The Response for the GenerateCollectionFormResponse operation.
       GenerateCollectionFormResponse = Structure.new do
         # @return [CollectionsFormDocument]
-        attribute(:collections_form_document, CollectionsFormDocument, from: "collectionsFormDocument")
+        attribute?(:collections_form_document, CollectionsFormDocument, from: "collectionsFormDocument")
       end
     end
   end

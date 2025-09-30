@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInventoryV1
       class ReservedQuantity < Data
-        def self.new: (total_reserved_quantity: Integer?, pending_customer_order_quantity: Integer?, pending_transshipment_quantity: Integer?, fc_processing_quantity: Integer?) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
+        def self.new: (?total_reserved_quantity: Integer?, ?pending_customer_order_quantity: Integer?, ?pending_transshipment_quantity: Integer?, ?fc_processing_quantity: Integer?) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
                     | (Integer?, Integer?, Integer?, Integer?) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::ReservedQuantity

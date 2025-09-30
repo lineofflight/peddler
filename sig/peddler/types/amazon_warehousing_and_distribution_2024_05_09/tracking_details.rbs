@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class TrackingDetails < Data
-        def self.new: (carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, booking_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails
+        def self.new: (?carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, booking_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails
                     | (Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails

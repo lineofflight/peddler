@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the submitInventoryUpdate operation.
       SubmitInventoryUpdateResponse = Structure.new do
         # @return [TransactionReference] The response payload for the submitInventoryUpdate operation.
-        attribute(:payload, TransactionReference)
+        attribute?(:payload, TransactionReference)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

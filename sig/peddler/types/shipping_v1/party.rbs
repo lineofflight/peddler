@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class Party < Data
-        def self.new: (account_id: String?) -> Peddler::Types::ShippingV1::Party
+        def self.new: (?account_id: String?) -> Peddler::Types::ShippingV1::Party
                     | (String?) -> Peddler::Types::ShippingV1::Party
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::Party

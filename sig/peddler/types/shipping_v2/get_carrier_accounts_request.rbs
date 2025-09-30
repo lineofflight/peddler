@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class GetCarrierAccountsRequest < Data
-        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> Peddler::Types::ShippingV2::GetCarrierAccountsRequest
+        def self.new: (?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> Peddler::Types::ShippingV2::GetCarrierAccountsRequest
                     | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?) -> Peddler::Types::ShippingV2::GetCarrierAccountsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetCarrierAccountsRequest

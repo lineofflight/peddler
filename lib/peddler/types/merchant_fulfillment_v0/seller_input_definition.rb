@@ -23,13 +23,13 @@ module Peddler
         attribute(:input_display_text, String, from: "InputDisplayText")
 
         # @return [String] Whether the seller input applies to the item or the shipment.
-        attribute(:input_target, String, from: "InputTarget")
+        attribute?(:input_target, String, from: "InputTarget")
 
         # @return [AdditionalSellerInput]
         attribute(:stored_value, AdditionalSellerInput, from: "StoredValue")
 
         # @return [Array<String>]
-        attribute(:restricted_set_values, [String], from: "RestrictedSetValues")
+        attribute?(:restricted_set_values, [String], from: "RestrictedSetValues")
       end
     end
   end

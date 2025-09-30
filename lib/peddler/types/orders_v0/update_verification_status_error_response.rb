@@ -10,7 +10,7 @@ module Peddler
       # The error response schema for the `UpdateVerificationStatus` operation.
       UpdateVerificationStatusErrorResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `UpdateVerificationStatus` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

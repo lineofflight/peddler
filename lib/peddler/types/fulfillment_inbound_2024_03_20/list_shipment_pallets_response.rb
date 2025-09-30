@@ -11,7 +11,7 @@ module Peddler
       # The `listShipmentPallets` response.
       ListShipmentPalletsResponse = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Pallet>] The pallets in a shipment.
         attribute(:pallets, [Pallet])

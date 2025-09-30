@@ -13,13 +13,13 @@ module Peddler
         attribute(:status, String)
 
         # @return [String] The seller stock keeping unit (SKU) of the item.
-        attribute(:seller_sku, String, from: "SellerSKU")
+        attribute?(:seller_sku, String, from: "SellerSKU")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
-        attribute(:asin, String, from: "ASIN")
+        attribute?(:asin, String, from: "ASIN")
 
         # @return [Product]
-        attribute(:product, Product, from: "Product")
+        attribute?(:product, Product, from: "Product")
       end
     end
   end

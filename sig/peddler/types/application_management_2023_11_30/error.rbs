@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ApplicationManagement20231130
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::ApplicationManagement20231130::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ApplicationManagement20231130::Error
                     | (String?, String?, String?) -> Peddler::Types::ApplicationManagement20231130::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationManagement20231130::Error

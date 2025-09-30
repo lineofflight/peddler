@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class GetCollectionFormHistoryRequest < Data
-        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, max_results: Integer?, carrier_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address?, date_range: Peddler::Types::ShippingV2::DateRange?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
+        def self.new: (?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, ?max_results: Integer?, ?carrier_id: String?, ?ship_from_address: Peddler::Types::ShippingV2::Address?, ?date_range: Peddler::Types::ShippingV2::DateRange?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
                     | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, Integer?, String?, Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::DateRange?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest

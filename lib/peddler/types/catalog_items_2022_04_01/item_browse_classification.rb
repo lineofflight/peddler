@@ -16,7 +16,7 @@ module Peddler
         attribute(:classification_id, String, from: "classificationId")
 
         # @return [:self] Parent classification of the current classification.
-        attribute(:parent, :self)
+        attribute?(:parent, :self)
       end
     end
   end

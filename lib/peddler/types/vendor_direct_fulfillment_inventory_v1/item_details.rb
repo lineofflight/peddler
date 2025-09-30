@@ -11,17 +11,17 @@ module Peddler
       ItemDetails = Structure.new do
         # @return [String] The buyer selected product identification of the item. Either buyerProductIdentifier or
         # vendorProductIdentifier should be submitted.
-        attribute(:buyer_product_identifier, String, from: "buyerProductIdentifier")
+        attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item. Either buyerProductIdentifier or
         # vendorProductIdentifier should be submitted.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Total item quantity available in the warehouse.
         attribute(:available_quantity, ItemQuantity, from: "availableQuantity")
 
         # @return [:boolean] When true, the item is permanently unavailable.
-        attribute(:obsolete, :boolean, from: "isObsolete")
+        attribute?(:obsolete, :boolean, from: "isObsolete")
       end
     end
   end

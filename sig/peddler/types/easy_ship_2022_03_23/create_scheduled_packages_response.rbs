@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class CreateScheduledPackagesResponse < Data
-        def self.new: (scheduled_packages: Array[Peddler::Types::EasyShip20220323::Package]?, rejected_orders: Array[Peddler::Types::EasyShip20220323::RejectedOrder]?, printable_documents_url: String?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse
+        def self.new: (?scheduled_packages: Array[Peddler::Types::EasyShip20220323::Package]?, ?rejected_orders: Array[Peddler::Types::EasyShip20220323::RejectedOrder]?, ?printable_documents_url: String?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse
                     | (Array[Peddler::Types::EasyShip20220323::Package]?, Array[Peddler::Types::EasyShip20220323::RejectedOrder]?, String?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse

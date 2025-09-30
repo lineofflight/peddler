@@ -17,22 +17,22 @@ module Peddler
         attribute(:carrier_code, String, from: "carrierCode")
 
         # @return [String] The tracking number, if provided, can be used to obtain tracking and delivery information.
-        attribute(:tracking_number, String, from: "trackingNumber")
+        attribute?(:tracking_number, String, from: "trackingNumber")
 
         # @return [String] The Amazon fulfillment tracking number, if provided, can be used to obtain tracking and
         # delivery information.
-        attribute(:amazon_fulfillment_tracking_number, String, from: "amazonFulfillmentTrackingNumber")
+        attribute?(:amazon_fulfillment_tracking_number, String, from: "amazonFulfillmentTrackingNumber")
 
         # @return [String] The estimated arrival date and time of the package. Must be in <a
         # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
-        attribute(:estimated_arrival_date, String, from: "estimatedArrivalDate")
+        attribute?(:estimated_arrival_date, String, from: "estimatedArrivalDate")
 
         # @return [LockerDetails] The locker details, if provided can be used to access locker delivery box.
-        attribute(:locker_details, LockerDetails, from: "lockerDetails")
+        attribute?(:locker_details, LockerDetails, from: "lockerDetails")
 
         # @return [DeliveryInformation] The delivery information for the package. This information is available after
         # the package is delivered.
-        attribute(:delivery_information, DeliveryInformation, from: "deliveryInformation")
+        attribute?(:delivery_information, DeliveryInformation, from: "deliveryInformation")
       end
     end
   end

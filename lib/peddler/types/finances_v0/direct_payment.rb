@@ -30,10 +30,10 @@ module Peddler
         #
         # * CollectOnDeliveryRefund - The amount that Amazon refunds to the buyer if an order paid for by COD is
         # refunded.
-        attribute(:direct_payment_type, String, from: "DirectPaymentType")
+        attribute?(:direct_payment_type, String, from: "DirectPaymentType")
 
         # @return [Money] The amount of the direct payment.
-        attribute(:direct_payment_amount, Money, from: "DirectPaymentAmount")
+        attribute?(:direct_payment_amount, Money, from: "DirectPaymentAmount")
       end
     end
   end

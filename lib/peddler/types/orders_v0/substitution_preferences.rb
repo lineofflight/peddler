@@ -13,7 +13,7 @@ module Peddler
         attribute(:substitution_type, String, from: "SubstitutionType")
 
         # @return [Array<SubstitutionOption>] Substitution options for the order item.
-        attribute(:substitution_options, [SubstitutionOption], from: "SubstitutionOptions")
+        attribute?(:substitution_options, [SubstitutionOption], from: "SubstitutionOptions")
       end
     end
   end

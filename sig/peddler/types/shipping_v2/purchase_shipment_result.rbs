@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class PurchaseShipmentResult < Data
-        def self.new: (shipment_id: String?, package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, benefits: Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
+        def self.new: (shipment_id: String?, package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, ?benefits: Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
                     | (String?, Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, Peddler::Types::ShippingV2::Promise?, Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PurchaseShipmentResult

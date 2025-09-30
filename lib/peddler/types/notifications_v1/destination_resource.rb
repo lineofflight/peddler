@@ -11,10 +11,10 @@ module Peddler
       # The destination resource types.
       DestinationResource = Structure.new do
         # @return [SqsResource] An Amazon Simple Queue Service (SQS) queue destination.
-        attribute(:sqs, SqsResource)
+        attribute?(:sqs, SqsResource)
 
         # @return [EventBridgeResource] An Amazon EventBridge destination.
-        attribute(:event_bridge, EventBridgeResource, from: "eventBridge")
+        attribute?(:event_bridge, EventBridgeResource, from: "eventBridge")
       end
     end
   end

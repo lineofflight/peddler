@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class PickupChannel < Data
-        def self.new: (inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?, supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?) -> Peddler::Types::SupplySources20200701::PickupChannel
+        def self.new: (?inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?, ?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, ?in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, ?curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?) -> Peddler::Types::SupplySources20200701::PickupChannel
                     | (Peddler::Types::SupplySources20200701::Duration?, bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?) -> Peddler::Types::SupplySources20200701::PickupChannel
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::PickupChannel

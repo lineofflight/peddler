@@ -11,7 +11,7 @@ module Peddler
       # featured offer expected price is requested.
       Segment = Structure.new do
         # @return [SegmentDetails] Segment details
-        attribute(:segment_details, SegmentDetails, from: "segmentDetails")
+        attribute?(:segment_details, SegmentDetails, from: "segmentDetails")
       end
     end
   end

@@ -12,11 +12,11 @@ module Peddler
       FixedSlotCapacityQuery = Structure.new do
         # @return [Array<CapacityType>] An array of capacity types which are being requested. Default value is
         # `[SCHEDULED_CAPACITY]`.
-        attribute(:capacity_types, Array, from: "capacityTypes")
+        attribute?(:capacity_types, Array, from: "capacityTypes")
 
         # @return [Float] Size in which slots are being requested. This value should be a multiple of 5 and fall in the
         # range: 5 <= `slotDuration` <= 360.
-        attribute(:slot_duration, Float, from: "slotDuration")
+        attribute?(:slot_duration, Float, from: "slotDuration")
 
         # @return [String] Start date time from which the capacity slots are being requested in ISO 8601 format.
         attribute(:start_date_time, String, from: "startDateTime")

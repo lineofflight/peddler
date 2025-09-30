@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class AppointmentSlotReport < Data
-        def self.new: (scheduling_type: String?, start_time: String?, end_time: String?, appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+        def self.new: (?scheduling_type: String?, ?start_time: String?, ?end_time: String?, ?appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
                     | (String?, String?, String?, Array[Peddler::Types::ServicesV1::AppointmentSlot]?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentSlotReport

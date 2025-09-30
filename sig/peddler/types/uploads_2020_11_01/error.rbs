@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Uploads20201101
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::Uploads20201101::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Uploads20201101::Error
                     | (String?, String?, String?) -> Peddler::Types::Uploads20201101::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Uploads20201101::Error

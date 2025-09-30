@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `createFulfillmentOrder` operation.
       CreateFulfillmentOrderResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `createFulfillmentOrder` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

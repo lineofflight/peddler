@@ -11,17 +11,17 @@ module Peddler
       # including account_links, short cut links to the account balance and transactions -> since not mandatory
       BankAccount = Structure.new do
         # @return [String] The unique identifier provided by Amazon to identify the account
-        attribute(:account_id, String, from: "accountId")
+        attribute?(:account_id, String, from: "accountId")
 
         # @return [String] BankAccount holder's name (expected to be Amazon customer)
-        attribute(:account_holder_name, String, from: "accountHolderName")
+        attribute?(:account_holder_name, String, from: "accountHolderName")
 
         # @return [String] Format in which the Bank BankAccount is provided
         attribute(:bank_account_number_format, String, from: "bankAccountNumberFormat")
 
         # @return [String] The name of the bank, for all Amazon Seller Wallet account the value will be Amazon Seller
         # Wallet
-        attribute(:bank_name, String, from: "bankName")
+        attribute?(:bank_name, String, from: "bankName")
 
         # @return [String] Type of the Bank BankAccount is provided, for all Amazon Seller Wallet account the value will
         # be SELF
@@ -45,7 +45,7 @@ module Peddler
         attribute(:bank_account_number_tail, String, from: "bankAccountNumberTail")
 
         # @return [String] Bank account holder compliance status
-        attribute(:bank_account_holder_status, String, from: "bankAccountHolderStatus")
+        attribute?(:bank_account_holder_status, String, from: "bankAccountHolderStatus")
       end
     end
   end

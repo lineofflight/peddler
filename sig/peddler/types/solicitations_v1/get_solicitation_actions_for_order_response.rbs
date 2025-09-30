@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SolicitationsV1
       class GetSolicitationActionsForOrderResponse < Data
-        def self.new: (_links: Hash[untyped, untyped]?, _embedded: Hash[untyped, untyped]?, errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
+        def self.new: (?_links: Hash[untyped, untyped]?, ?_embedded: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse

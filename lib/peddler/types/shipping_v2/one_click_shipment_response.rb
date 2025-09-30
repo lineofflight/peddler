@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the OneClickShipment operation.
       OneClickShipmentResponse = Structure.new do
         # @return [OneClickShipmentResult]
-        attribute(:payload, OneClickShipmentResult)
+        attribute?(:payload, OneClickShipmentResult)
       end
     end
   end

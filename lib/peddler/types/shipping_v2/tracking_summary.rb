@@ -10,10 +10,10 @@ module Peddler
       # A package status summary.
       TrackingSummary = Structure.new do
         # @return [String]
-        attribute(:status, String)
+        attribute?(:status, String)
 
         # @return [TrackingDetailCodes]
-        attribute(:tracking_detail_codes, TrackingDetailCodes, from: "trackingDetailCodes")
+        attribute?(:tracking_detail_codes, TrackingDetailCodes, from: "trackingDetailCodes")
       end
     end
   end

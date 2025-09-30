@@ -31,7 +31,7 @@ module Peddler
 
         # @return [Array<Container>] Provide the details of the items in this shipment. If any of the item details field
         # is common at a package or a pallet level, then provide them at the corresponding package.
-        attribute(:containers, [Container])
+        attribute?(:containers, [Container])
       end
     end
   end

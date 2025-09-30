@@ -13,7 +13,7 @@ module Peddler
         attribute(:amazon_order_id, String, from: "amazonOrderId")
 
         # @return [PackageDetails]
-        attribute(:package_details, PackageDetails, from: "packageDetails")
+        attribute?(:package_details, PackageDetails, from: "packageDetails")
       end
     end
   end

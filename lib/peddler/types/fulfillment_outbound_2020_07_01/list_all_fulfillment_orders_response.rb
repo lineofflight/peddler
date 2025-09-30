@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `listAllFulfillmentOrders` operation.
       ListAllFulfillmentOrdersResponse = Structure.new do
         # @return [ListAllFulfillmentOrdersResult] The payload for the `listAllFulfillmentOrders` operation.
-        attribute(:payload, ListAllFulfillmentOrdersResult)
+        attribute?(:payload, ListAllFulfillmentOrdersResult)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `listAllFulfillmentOrders` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

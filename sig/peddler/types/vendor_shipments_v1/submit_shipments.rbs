@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class SubmitShipments < Data
-        def self.new: (shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipments
+        def self.new: (?shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipments
                     | (Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipments
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::SubmitShipments

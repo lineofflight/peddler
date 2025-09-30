@@ -11,10 +11,10 @@ module Peddler
       # Response schema.
       GetEligibleShipmentServicesResponse = Structure.new do
         # @return [GetEligibleShipmentServicesResult]
-        attribute(:payload, GetEligibleShipmentServicesResult)
+        attribute?(:payload, GetEligibleShipmentServicesResult)
 
         # @return [Array<Error>] One or more unexpected errors occurred during this operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

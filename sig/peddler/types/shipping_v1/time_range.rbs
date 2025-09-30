@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class TimeRange < Data
-        def self.new: (start: String?, end: String?) -> Peddler::Types::ShippingV1::TimeRange
+        def self.new: (?start: String?, ?end: String?) -> Peddler::Types::ShippingV1::TimeRange
                     | (String?, String?) -> Peddler::Types::ShippingV1::TimeRange
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::TimeRange

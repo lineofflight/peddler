@@ -10,10 +10,10 @@ module Peddler
       # The state and country from where the item is shipped.
       ShipsFromType = Structure.new do
         # @return [String] The state from where the item is shipped.
-        attribute(:state, String, from: "State")
+        attribute?(:state, String, from: "State")
 
         # @return [String] The country from where the item is shipped.
-        attribute(:country, String, from: "Country")
+        attribute?(:country, String, from: "Country")
       end
     end
   end

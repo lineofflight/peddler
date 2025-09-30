@@ -16,10 +16,10 @@ module Peddler
         attribute(:end_time, String, from: "endTime")
 
         # @return [Recurrence] Recurrence object containing the recurrence pattern of schedule.
-        attribute(:recurrence, Recurrence)
+        attribute?(:recurrence, Recurrence)
 
         # @return [Integer] Signifies the capacity of a resource which is available.
-        attribute(:capacity, Integer)
+        attribute?(:capacity, Integer)
       end
     end
   end

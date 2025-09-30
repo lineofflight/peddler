@@ -10,13 +10,13 @@ module Peddler
     module SolicitationsV1
       GetSchemaResponse = Structure.new do
         # @return [Hash]
-        attribute(:_links, Hash)
+        attribute?(:_links, Hash)
 
         # @return [Schema]
-        attribute(:payload, Schema)
+        attribute?(:payload, Schema)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

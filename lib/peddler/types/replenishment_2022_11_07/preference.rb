@@ -11,7 +11,7 @@ module Peddler
       Preference = Structure.new do
         # @return [Array<AutoEnrollmentPreference>] Filters the results to only include offers with the auto-enrollment
         # preference specified.
-        attribute(:auto_enrollment, Array, from: "autoEnrollment")
+        attribute?(:auto_enrollment, Array, from: "autoEnrollment")
       end
     end
   end

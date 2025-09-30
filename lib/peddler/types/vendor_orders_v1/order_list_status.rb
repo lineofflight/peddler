@@ -11,10 +11,10 @@ module Peddler
       # A list of order statuses.
       OrderListStatus = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<OrderStatus>] Represents an order status within the OrderListStatus.
-        attribute(:orders_status, [OrderStatus], from: "ordersStatus")
+        attribute?(:orders_status, [OrderStatus], from: "ordersStatus")
       end
     end
   end

@@ -34,17 +34,17 @@ module Peddler
         # when it has been generated via the corresponding operation. If there is a chosen placement option, only
         # packing options for that placement option will be returned. If there are confirmed shipments, only packing
         # options for those shipments will be returned. Query the packing option for more details.
-        attribute(:packing_options, [PackingOptionSummary], from: "packingOptions")
+        attribute?(:packing_options, [PackingOptionSummary], from: "packingOptions")
 
         # @return [Array<PlacementOptionSummary>] Placement options for the inbound plan. This property will be
         # populated when it has been generated via the corresponding operation. If there is a chosen placement option,
         # that will be the only returned option. Query the placement option for more details.
-        attribute(:placement_options, [PlacementOptionSummary], from: "placementOptions")
+        attribute?(:placement_options, [PlacementOptionSummary], from: "placementOptions")
 
         # @return [Array<ShipmentSummary>] A list of shipment IDs for the inbound plan. This property is populated when
         # it has been generated with the `confirmPlacementOptions` operation. Only shipments from the chosen placement
         # option are returned. Query the shipment for more details.
-        attribute(:shipments, [ShipmentSummary])
+        attribute?(:shipments, [ShipmentSummary])
 
         # @return [Address]
         attribute(:source_address, Address, from: "sourceAddress")

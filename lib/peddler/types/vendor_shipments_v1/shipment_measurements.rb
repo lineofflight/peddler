@@ -11,18 +11,18 @@ module Peddler
       # Shipment measurement details.
       ShipmentMeasurements = Structure.new do
         # @return [Weight] Gross weight of the shipment.
-        attribute(:gross_shipment_weight, Weight, from: "grossShipmentWeight")
+        attribute?(:gross_shipment_weight, Weight, from: "grossShipmentWeight")
 
         # @return [Volume] Gross Volume of the shipment.
-        attribute(:shipment_volume, Volume, from: "shipmentVolume")
+        attribute?(:shipment_volume, Volume, from: "shipmentVolume")
 
         # @return [Integer] Number of cartons present in the shipment. Provide the cartonCount only for non-palletized
         # shipments.
-        attribute(:carton_count, Integer, from: "cartonCount")
+        attribute?(:carton_count, Integer, from: "cartonCount")
 
         # @return [Integer] Number of pallets present in the shipment. Provide the palletCount only for palletized
         # shipments.
-        attribute(:pallet_count, Integer, from: "palletCount")
+        attribute?(:pallet_count, Integer, from: "palletCount")
       end
     end
   end

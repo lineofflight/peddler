@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class AutomatedShippingSettings < Data
-        def self.new: (has_automated_shipping_settings: bool?, automated_carrier: String?, automated_ship_method: String?) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
+        def self.new: (?has_automated_shipping_settings: bool?, ?automated_carrier: String?, ?automated_ship_method: String?) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
                     | (bool?, String?, String?) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::AutomatedShippingSettings

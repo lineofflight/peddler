@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentPreviewShipment < Data
-        def self.new: (earliest_ship_date: String?, latest_ship_date: String?, earliest_arrival_date: String?, latest_arrival_date: String?, shipping_notes: Array[String]?, fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment
+        def self.new: (?earliest_ship_date: String?, ?latest_ship_date: String?, ?earliest_arrival_date: String?, ?latest_arrival_date: String?, ?shipping_notes: Array[String]?, fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment
                     | (String?, String?, String?, String?, Array[String]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment

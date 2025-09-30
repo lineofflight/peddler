@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class PackingSlipList < Data
-        def self.new: (pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, ?packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
                     | (Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList

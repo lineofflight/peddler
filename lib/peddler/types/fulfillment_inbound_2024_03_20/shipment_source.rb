@@ -10,7 +10,7 @@ module Peddler
       # Specifies the 'ship from' address for the shipment.
       ShipmentSource = Structure.new do
         # @return [Address]
-        attribute(:address, Address)
+        attribute?(:address, Address)
 
         # @return [String] The type of source for this shipment. Possible values: `SELLER_FACILITY`.
         attribute(:source_type, String, from: "sourceType")

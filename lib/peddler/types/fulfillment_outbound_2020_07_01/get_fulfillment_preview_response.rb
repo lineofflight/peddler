@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getFulfillmentPreview` operation.
       GetFulfillmentPreviewResponse = Structure.new do
         # @return [GetFulfillmentPreviewResult] The response payload for the `getFulfillmentPreview` operation.
-        attribute(:payload, GetFulfillmentPreviewResult)
+        attribute?(:payload, GetFulfillmentPreviewResult)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `getFulfillmentPreview` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20210801
       class Audience < Data
-        def self.new: (value: String?, display_name: String?) -> Peddler::Types::ListingsItems20210801::Audience
+        def self.new: (?value: String?, ?display_name: String?) -> Peddler::Types::ListingsItems20210801::Audience
                     | (String?, String?) -> Peddler::Types::ListingsItems20210801::Audience
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::Audience

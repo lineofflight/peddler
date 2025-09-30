@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ItemOfferByMarketplace < Data
-        def self.new: (marketplace_id: String?, offer_type: String?, price: Peddler::Types::Money?, points: Peddler::Types::ListingsItems20210801::Points?, audience: Peddler::Types::ListingsItems20210801::Audience?) -> Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace
+        def self.new: (marketplace_id: String?, offer_type: String?, price: Peddler::Types::Money?, ?points: Peddler::Types::ListingsItems20210801::Points?, ?audience: Peddler::Types::ListingsItems20210801::Audience?) -> Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace
                     | (String?, String?, Peddler::Types::Money?, Peddler::Types::ListingsItems20210801::Points?, Peddler::Types::ListingsItems20210801::Audience?) -> Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace

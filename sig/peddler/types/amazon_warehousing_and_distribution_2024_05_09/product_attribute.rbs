@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class ProductAttribute < Data
-        def self.new: (name: String?, value: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute
+        def self.new: (?name: String?, ?value: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute
                     | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute

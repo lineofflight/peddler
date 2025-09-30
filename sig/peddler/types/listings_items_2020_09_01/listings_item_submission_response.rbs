@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20200901
       class ListingsItemSubmissionResponse < Data
-        def self.new: (sku: String?, status: String?, submission_id: String?, issues: Array[Peddler::Types::ListingsItems20200901::Issue]?) -> Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse
+        def self.new: (sku: String?, status: String?, submission_id: String?, ?issues: Array[Peddler::Types::ListingsItems20200901::Issue]?) -> Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse
                     | (String?, String?, String?, Array[Peddler::Types::ListingsItems20200901::Issue]?) -> Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse

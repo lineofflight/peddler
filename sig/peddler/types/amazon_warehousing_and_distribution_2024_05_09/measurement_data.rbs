@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class MeasurementData < Data
-        def self.new: (dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?, weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
+        def self.new: (?dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?, weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
                     | (Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData

@@ -12,7 +12,7 @@ module Peddler
       # is appropriate.
       PurchaseOrderItemDetails = Structure.new do
         # @return [Money] Maximum retail price of the item being shipped.
-        attribute(:maximum_retail_price, Money, from: "maximumRetailPrice")
+        attribute?(:maximum_retail_price, Money, from: "maximumRetailPrice")
       end
     end
   end

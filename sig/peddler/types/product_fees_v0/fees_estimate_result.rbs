@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateResult < Data
-        def self.new: (status: String?, fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, error: Peddler::Types::ProductFeesV0::FeesEstimateError?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
+        def self.new: (?status: String?, ?fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, ?fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, ?error: Peddler::Types::ProductFeesV0::FeesEstimateError?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
                     | (String?, Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, Peddler::Types::ProductFeesV0::FeesEstimate?, Peddler::Types::ProductFeesV0::FeesEstimateError?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateResult

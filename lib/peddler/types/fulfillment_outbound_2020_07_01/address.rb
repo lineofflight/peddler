@@ -16,17 +16,17 @@ module Peddler
         attribute(:address_line1, String, from: "addressLine1")
 
         # @return [String] Additional address information, if required.
-        attribute(:address_line2, String, from: "addressLine2")
+        attribute?(:address_line2, String, from: "addressLine2")
 
         # @return [String] Additional address information, if required.
-        attribute(:address_line3, String, from: "addressLine3")
+        attribute?(:address_line3, String, from: "addressLine3")
 
         # @return [String] The city where the person, business, or institution is located. This property is required in
         # all countries except Japan. It should not be used in Japan.
-        attribute(:city, String)
+        attribute?(:city, String)
 
         # @return [String] The district or county where the person, business, or institution is located.
-        attribute(:district_or_county, String, from: "districtOrCounty")
+        attribute?(:district_or_county, String, from: "districtOrCounty")
 
         # @return [String] The state or region where the person, business or institution is located.
         attribute(:state_or_region, String, from: "stateOrRegion")
@@ -38,7 +38,7 @@ module Peddler
         attribute(:country_code, String, from: "countryCode")
 
         # @return [String] The phone number of the person, business, or institution located at the address.
-        attribute(:phone, String)
+        attribute?(:phone, String)
       end
     end
   end

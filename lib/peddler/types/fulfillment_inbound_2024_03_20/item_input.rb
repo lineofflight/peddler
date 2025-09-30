@@ -12,13 +12,13 @@ module Peddler
         # @return [String] The expiration date of the MSKU. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern `YYYY-MM-DD`. Items
         # with the same MSKU but different expiration dates cannot go into the same box.
-        attribute(:expiration, String)
+        attribute?(:expiration, String)
 
         # @return [String]
         attribute(:label_owner, String, from: "labelOwner")
 
         # @return [String] The manufacturing lot code.
-        attribute(:manufacturing_lot_code, String, from: "manufacturingLotCode")
+        attribute?(:manufacturing_lot_code, String, from: "manufacturingLotCode")
 
         # @return [String] The merchant SKU, a merchant-supplied identifier of a specific SKU.
         attribute(:msku, String)

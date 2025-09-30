@@ -15,10 +15,10 @@ module Peddler
         attribute(:offer_identifier, OfferIdentifier, from: "offerIdentifier")
 
         # @return [String] The item condition.
-        attribute(:condition, String)
+        attribute?(:condition, String)
 
         # @return [Price] The current active price of the offer.
-        attribute(:price, Price)
+        attribute?(:price, Price)
       end
     end
   end

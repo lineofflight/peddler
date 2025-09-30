@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class Pagination < Data
-        def self.new: (next_token: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination
+        def self.new: (?next_token: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination
                     | (String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination

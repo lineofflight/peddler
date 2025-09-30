@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class DiscountFunding < Data
-        def self.new: (percentage: Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
+        def self.new: (?percentage: Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
                     | (Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::DiscountFunding

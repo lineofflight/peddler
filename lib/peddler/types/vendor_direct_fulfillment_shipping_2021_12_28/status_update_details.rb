@@ -34,7 +34,7 @@ module Peddler
         attribute(:status_location_address, Address, from: "statusLocationAddress")
 
         # @return [ShipmentSchedule]
-        attribute(:shipment_schedule, ShipmentSchedule, from: "shipmentSchedule")
+        attribute?(:shipment_schedule, ShipmentSchedule, from: "shipmentSchedule")
       end
     end
   end

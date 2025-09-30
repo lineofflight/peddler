@@ -11,10 +11,10 @@ module Peddler
       # The `listInboundPlans` response.
       ListInboundPlansResponse = Structure.new do
         # @return [Array<InboundPlanSummary>] A list of inbound plans with minimal information.
-        attribute(:inbound_plans, [InboundPlanSummary], from: "inboundPlans")
+        attribute?(:inbound_plans, [InboundPlanSummary], from: "inboundPlans")
 
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
       end
     end
   end

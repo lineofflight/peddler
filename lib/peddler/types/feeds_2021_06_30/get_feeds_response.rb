@@ -14,7 +14,7 @@ module Peddler
 
         # @return [String] Returned when the number of results exceeds pageSize. To get the next page of results, call
         # the getFeeds operation with this token as the only parameter.
-        attribute(:next_token, String, from: "nextToken")
+        attribute?(:next_token, String, from: "nextToken")
       end
     end
   end

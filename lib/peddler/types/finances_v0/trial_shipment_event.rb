@@ -10,20 +10,20 @@ module Peddler
       # An event related to a trial shipment.
       TrialShipmentEvent = Structure.new do
         # @return [String] An Amazon-defined identifier for an order.
-        attribute(:amazon_order_id, String, from: "AmazonOrderId")
+        attribute?(:amazon_order_id, String, from: "AmazonOrderId")
 
         # @return [String] The identifier of the financial event group.
-        attribute(:financial_event_group_id, String, from: "FinancialEventGroupId")
+        attribute?(:financial_event_group_id, String, from: "FinancialEventGroupId")
 
         # @return [String] The date and time when the financial event was posted.
-        attribute(:posted_date, String, from: "PostedDate")
+        attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [String] The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is
         # included with every call to the Selling Partner API.
-        attribute(:sku, String, from: "SKU")
+        attribute?(:sku, String, from: "SKU")
 
         # @return [Array<FeeComponent>] A list of fees charged by Amazon for trial shipments.
-        attribute(:fee_list, [FeeComponent], from: "FeeList")
+        attribute?(:fee_list, [FeeComponent], from: "FeeList")
       end
     end
   end

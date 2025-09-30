@@ -16,10 +16,10 @@ module Peddler
         attribute(:address_line1, String, from: "AddressLine1")
 
         # @return [String] Additional street address information, if required.
-        attribute(:address_line2, String, from: "AddressLine2")
+        attribute?(:address_line2, String, from: "AddressLine2")
 
         # @return [String] The district or county.
-        attribute(:district_or_county, String, from: "DistrictOrCounty")
+        attribute?(:district_or_county, String, from: "DistrictOrCounty")
 
         # @return [String] The city.
         attribute(:city, String, from: "City")

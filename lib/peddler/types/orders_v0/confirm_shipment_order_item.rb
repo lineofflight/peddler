@@ -16,7 +16,7 @@ module Peddler
         attribute(:quantity, Integer)
 
         # @return [Array<TransparencyCode>] The list of transparency codes.
-        attribute(:transparency_codes, Array, from: "transparencyCodes")
+        attribute?(:transparency_codes, Array, from: "transparencyCodes")
       end
     end
   end

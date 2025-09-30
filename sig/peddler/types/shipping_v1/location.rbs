@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class Location < Data
-        def self.new: (state_or_region: String?, city: String?, country_code: String?, postal_code: String?) -> Peddler::Types::ShippingV1::Location
+        def self.new: (?state_or_region: String?, ?city: String?, ?country_code: String?, ?postal_code: String?) -> Peddler::Types::ShippingV1::Location
                     | (String?, String?, String?, String?) -> Peddler::Types::ShippingV1::Location
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::Location

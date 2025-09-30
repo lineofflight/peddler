@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class BillOfLadingDownloadURL < Data
-        def self.new: (download_url: String?) -> Peddler::Types::FulfillmentInboundV0::BillOfLadingDownloadURL
+        def self.new: (?download_url: String?) -> Peddler::Types::FulfillmentInboundV0::BillOfLadingDownloadURL
                     | (String?) -> Peddler::Types::FulfillmentInboundV0::BillOfLadingDownloadURL
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::BillOfLadingDownloadURL

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class SubmitAcknowledgementRequest < Data
-        def self.new: (order_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderAcknowledgementItem]?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::SubmitAcknowledgementRequest
+        def self.new: (?order_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderAcknowledgementItem]?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::SubmitAcknowledgementRequest
                     | (Array[Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderAcknowledgementItem]?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::SubmitAcknowledgementRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::SubmitAcknowledgementRequest

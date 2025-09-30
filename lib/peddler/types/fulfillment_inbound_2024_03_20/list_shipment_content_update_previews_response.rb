@@ -14,7 +14,7 @@ module Peddler
         attribute(:content_update_previews, [ContentUpdatePreview], from: "contentUpdatePreviews")
 
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
       end
     end
   end

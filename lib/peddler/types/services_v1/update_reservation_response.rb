@@ -12,10 +12,10 @@ module Peddler
       UpdateReservationResponse = Structure.new do
         # @return [UpdateReservationRecord] `UpdateReservationRecord` contains only the new `reservationId` if the
         # operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
-        attribute(:payload, UpdateReservationRecord)
+        attribute?(:payload, UpdateReservationRecord)
 
         # @return [Array<Error>] Errors encountered, if any.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

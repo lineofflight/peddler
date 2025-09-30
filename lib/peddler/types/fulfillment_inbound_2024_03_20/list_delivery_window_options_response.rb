@@ -14,7 +14,7 @@ module Peddler
         attribute(:delivery_window_options, [DeliveryWindowOption], from: "deliveryWindowOptions")
 
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
       end
     end
   end

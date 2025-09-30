@@ -13,7 +13,7 @@ module Peddler
         attribute(:invoice_number, String, from: "invoiceNumber")
 
         # @return [String] The date that the invoice was generated.
-        attribute(:invoice_date, String, from: "invoiceDate")
+        attribute?(:invoice_date, String, from: "invoiceDate")
       end
     end
   end

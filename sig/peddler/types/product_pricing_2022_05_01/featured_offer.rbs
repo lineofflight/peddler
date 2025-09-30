@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOffer < Data
-        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, condition: String?, price: Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, ?condition: String?, ?price: Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
                     | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, String?, Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOffer

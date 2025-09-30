@@ -15,10 +15,10 @@ module Peddler
         attribute(:marketplace_id, String, from: "MarketplaceID")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
-        attribute(:asin, String, from: "ASIN")
+        attribute?(:asin, String, from: "ASIN")
 
         # @return [String] The stock keeping unit (SKU) of the item.
-        attribute(:sku, String, from: "SKU")
+        attribute?(:sku, String, from: "SKU")
 
         # @return [String] The condition of the item.
         attribute(:item_condition, String, from: "ItemCondition")

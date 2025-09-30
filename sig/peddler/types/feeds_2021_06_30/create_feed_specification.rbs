@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Feeds20210630
       class CreateFeedSpecification < Data
-        def self.new: (feed_type: String?, marketplace_ids: Array[String]?, input_feed_document_id: String?, feed_options: Peddler::Types::Feeds20210630::FeedOptions?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
+        def self.new: (feed_type: String?, marketplace_ids: Array[String]?, input_feed_document_id: String?, ?feed_options: Peddler::Types::Feeds20210630::FeedOptions?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
                     | (String?, Array[String]?, String?, Peddler::Types::Feeds20210630::FeedOptions?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::CreateFeedSpecification

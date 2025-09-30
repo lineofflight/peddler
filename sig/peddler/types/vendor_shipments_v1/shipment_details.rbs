@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ShipmentDetails < Data
-        def self.new: (pagination: Peddler::Types::VendorShipmentsV1::Pagination?, shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails
+        def self.new: (?pagination: Peddler::Types::VendorShipmentsV1::Pagination?, ?shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails
                     | (Peddler::Types::VendorShipmentsV1::Pagination?, Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails

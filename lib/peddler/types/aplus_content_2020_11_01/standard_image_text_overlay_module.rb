@@ -13,7 +13,7 @@ module Peddler
         attribute(:overlay_color_type, String, from: "overlayColorType")
 
         # @return [StandardImageTextBlock]
-        attribute(:block, StandardImageTextBlock)
+        attribute?(:block, StandardImageTextBlock)
       end
     end
   end

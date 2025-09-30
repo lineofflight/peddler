@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class ScheduledDeliveryShipment < Data
-        def self.new: (scheduled_delivery_service_type: String?, earliest_nominated_delivery_date: String?, latest_nominated_delivery_date: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ScheduledDeliveryShipment
+        def self.new: (?scheduled_delivery_service_type: String?, ?earliest_nominated_delivery_date: String?, ?latest_nominated_delivery_date: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ScheduledDeliveryShipment
                     | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ScheduledDeliveryShipment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ScheduledDeliveryShipment

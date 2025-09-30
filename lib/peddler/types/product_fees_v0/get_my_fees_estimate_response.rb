@@ -11,10 +11,10 @@ module Peddler
       # The response object for the GetMyFeesEstimate operation.
       GetMyFeesEstimateResponse = Structure.new do
         # @return [GetMyFeesEstimateResult] The payload for the operation.
-        attribute(:payload, GetMyFeesEstimateResult)
+        attribute?(:payload, GetMyFeesEstimateResult)
 
         # @return [Array<Error>] A list of errors that may have occurred during the GetMyFeesEstimate operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

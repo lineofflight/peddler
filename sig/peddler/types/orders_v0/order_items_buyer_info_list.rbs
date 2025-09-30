@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class OrderItemsBuyerInfoList < Data
-        def self.new: (order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, next_token: String?, amazon_order_id: String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
+        def self.new: (order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, ?next_token: String?, amazon_order_id: String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
                     | (Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, String?, String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList

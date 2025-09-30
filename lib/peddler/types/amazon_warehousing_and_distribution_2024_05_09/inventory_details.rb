@@ -11,14 +11,14 @@ module Peddler
       # `SHOW`.
       InventoryDetails = Structure.new do
         # @return [Integer] Quantity that is available for downstream channel replenishment.
-        attribute(:available_distributable_quantity, Integer, from: "availableDistributableQuantity")
+        attribute?(:available_distributable_quantity, Integer, from: "availableDistributableQuantity")
 
         # @return [Integer] Quantity that is in transit from AWD and has not yet been received at FBA.
-        attribute(:replenishment_quantity, Integer, from: "replenishmentQuantity")
+        attribute?(:replenishment_quantity, Integer, from: "replenishmentQuantity")
 
         # @return [Integer] Quantity that is reserved for a downstream channel replenishment order that is being
         # prepared for shipment.
-        attribute(:reserved_distributable_quantity, Integer, from: "reservedDistributableQuantity")
+        attribute?(:reserved_distributable_quantity, Integer, from: "reservedDistributableQuantity")
       end
     end
   end

@@ -21,7 +21,7 @@ module Peddler
         attribute(:purchase_order_date, String, from: "purchaseOrderDate")
 
         # @return [String] The date when the purchase order was last updated. Must be in ISO-8601 date/time format.
-        attribute(:last_updated_date, String, from: "lastUpdatedDate")
+        attribute?(:last_updated_date, String, from: "lastUpdatedDate")
 
         # @return [PartyIdentification] Name/Address and tax details of the selling party.
         attribute(:selling_party, PartyIdentification, from: "sellingParty")

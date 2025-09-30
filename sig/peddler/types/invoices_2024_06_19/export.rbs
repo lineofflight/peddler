@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Invoices20240619
       class Export < Data
-        def self.new: (error_message: String?, export_id: String?, generate_export_finished_at: String?, generate_export_started_at: String?, invoices_document_ids: Array[String]?, status: String?) -> Peddler::Types::Invoices20240619::Export
+        def self.new: (?error_message: String?, ?export_id: String?, ?generate_export_finished_at: String?, ?generate_export_started_at: String?, ?invoices_document_ids: Array[String]?, ?status: String?) -> Peddler::Types::Invoices20240619::Export
                     | (String?, String?, String?, String?, Array[String]?, String?) -> Peddler::Types::Invoices20240619::Export
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::Export

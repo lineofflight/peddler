@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class PurchaseShipmentResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV1::PurchaseShipmentResult?, errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse
+        def self.new: (?payload: Peddler::Types::ShippingV1::PurchaseShipmentResult?, ?errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse
                     | (Peddler::Types::ShippingV1::PurchaseShipmentResult?, Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse

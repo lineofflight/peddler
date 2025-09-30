@@ -18,7 +18,7 @@ module Peddler
         attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
 
         # @return [ItemDetails]
-        attribute(:item_details, ItemDetails, from: "itemDetails")
+        attribute?(:item_details, ItemDetails, from: "itemDetails")
       end
     end
   end

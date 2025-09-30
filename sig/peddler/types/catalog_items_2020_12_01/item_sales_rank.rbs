@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemSalesRank < Data
-        def self.new: (title: String?, link: String?, rank: Integer?) -> Peddler::Types::CatalogItems20201201::ItemSalesRank
+        def self.new: (title: String?, ?link: String?, rank: Integer?) -> Peddler::Types::CatalogItems20201201::ItemSalesRank
                     | (String?, String?, Integer?) -> Peddler::Types::CatalogItems20201201::ItemSalesRank
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemSalesRank

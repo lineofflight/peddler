@@ -23,7 +23,7 @@ module Peddler
         attribute(:request, FeaturedOfferExpectedPriceRequestParams)
 
         # @return [FeaturedOfferExpectedPriceResponseBody]
-        attribute(:body, FeaturedOfferExpectedPriceResponseBody)
+        attribute?(:body, FeaturedOfferExpectedPriceResponseBody)
       end
     end
   end

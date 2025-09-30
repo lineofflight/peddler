@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class Breakdown < Data
-        def self.new: (breakdown_type: String?, breakdown_amount: Peddler::Types::Money?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
+        def self.new: (?breakdown_type: String?, ?breakdown_amount: Peddler::Types::Money?, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
                     | (String?, Peddler::Types::Money?, Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
 
         type parse_data = {

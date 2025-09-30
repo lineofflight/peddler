@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class Address < Data
-        def self.new: (name: String?, address_line1: String?, address_line2: String?, address_line3: String?, company_name: String?, state_or_region: String?, city: String?, country_code: String?, postal_code: String?, email: String?, phone_number: String?, geocode: Peddler::Types::ShippingV2::Geocode?) -> Peddler::Types::ShippingV2::Address
+        def self.new: (name: String?, address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?company_name: String?, state_or_region: String?, city: String?, country_code: String?, postal_code: String?, ?email: String?, ?phone_number: String?, ?geocode: Peddler::Types::ShippingV2::Geocode?) -> Peddler::Types::ShippingV2::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::ShippingV2::Geocode?) -> Peddler::Types::ShippingV2::Address
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Address

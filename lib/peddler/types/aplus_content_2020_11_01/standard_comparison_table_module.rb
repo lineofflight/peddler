@@ -11,10 +11,10 @@ module Peddler
       # The standard product comparison table.
       StandardComparisonTableModule = Structure.new do
         # @return [Array<StandardComparisonProductBlock>]
-        attribute(:product_columns, [StandardComparisonProductBlock], from: "productColumns")
+        attribute?(:product_columns, [StandardComparisonProductBlock], from: "productColumns")
 
         # @return [Array<PlainTextItem>]
-        attribute(:metric_row_labels, [PlainTextItem], from: "metricRowLabels")
+        attribute?(:metric_row_labels, [PlainTextItem], from: "metricRowLabels")
       end
     end
   end

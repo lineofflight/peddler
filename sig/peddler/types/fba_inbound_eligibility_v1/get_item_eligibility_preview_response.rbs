@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInboundEligibilityV1
       class GetItemEligibilityPreviewResponse < Data
-        def self.new: (payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?, errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
+        def self.new: (?payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?, ?errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
                     | (Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?, Array[Peddler::Types::FBAInboundEligibilityV1::Error]?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse

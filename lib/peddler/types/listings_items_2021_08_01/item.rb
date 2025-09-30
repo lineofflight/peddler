@@ -20,28 +20,28 @@ module Peddler
         attribute(:sku, String)
 
         # @return [Array<ItemSummaryByMarketplace>]
-        attribute(:summaries, [ItemSummaryByMarketplace])
+        attribute?(:summaries, [ItemSummaryByMarketplace])
 
         # @return [ItemAttributes]
-        attribute(:attributes, ItemAttributes)
+        attribute?(:attributes, ItemAttributes)
 
         # @return [Array<Issue>]
-        attribute(:issues, [Issue])
+        attribute?(:issues, [Issue])
 
         # @return [Array<ItemOfferByMarketplace>]
-        attribute(:offers, [ItemOfferByMarketplace])
+        attribute?(:offers, [ItemOfferByMarketplace])
 
         # @return [Array<FulfillmentAvailability>] The fulfillment availability for the listings item.
-        attribute(:fulfillment_availability, [FulfillmentAvailability], from: "fulfillmentAvailability")
+        attribute?(:fulfillment_availability, [FulfillmentAvailability], from: "fulfillmentAvailability")
 
         # @return [Array<ItemProcurement>] The vendor procurement information for the listings item.
-        attribute(:procurement, [ItemProcurement])
+        attribute?(:procurement, [ItemProcurement])
 
         # @return [Array<ItemRelationshipsByMarketplace>]
-        attribute(:relationships, [ItemRelationshipsByMarketplace])
+        attribute?(:relationships, [ItemRelationshipsByMarketplace])
 
         # @return [Array<ItemProductTypeByMarketplace>]
-        attribute(:product_types, [ItemProductTypeByMarketplace], from: "productTypes")
+        attribute?(:product_types, [ItemProductTypeByMarketplace], from: "productTypes")
       end
     end
   end

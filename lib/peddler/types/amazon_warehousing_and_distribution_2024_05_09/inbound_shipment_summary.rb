@@ -11,11 +11,11 @@ module Peddler
       # shipment.
       InboundShipmentSummary = Structure.new do
         # @return [String] Timestamp when the shipment was created.
-        attribute(:created_at, String, from: "createdAt")
+        attribute?(:created_at, String, from: "createdAt")
 
         # @return [String] Optional client-provided reference ID that can be used to correlate this shipment with client
         # resources. For example, to map this shipment to an internal bookkeeping order record.
-        attribute(:external_reference_id, String, from: "externalReferenceId")
+        attribute?(:external_reference_id, String, from: "externalReferenceId")
 
         # @return [String] The AWD inbound order ID that this inbound shipment belongs to.
         attribute(:order_id, String, from: "orderId")
@@ -27,7 +27,7 @@ module Peddler
         attribute(:shipment_status, String, from: "shipmentStatus")
 
         # @return [String] Timestamp when the shipment was updated.
-        attribute(:updated_at, String, from: "updatedAt")
+        attribute?(:updated_at, String, from: "updatedAt")
       end
     end
   end

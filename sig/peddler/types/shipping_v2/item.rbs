@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class Item < Data
-        def self.new: (item_value: Peddler::Types::Money?, description: String?, item_identifier: String?, quantity: Integer?, weight: Peddler::Types::ShippingV2::Weight?, liquid_volume: Peddler::Types::ShippingV2::LiquidVolume?, hazmat: bool?, dangerous_goods_details: Peddler::Types::ShippingV2::DangerousGoodsDetails?, product_type: String?, invoice_details: Peddler::Types::ShippingV2::InvoiceDetails?, serial_numbers: Array[String]?, direct_fulfillment_item_identifiers: Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers?) -> Peddler::Types::ShippingV2::Item
+        def self.new: (?item_value: Peddler::Types::Money?, ?description: String?, ?item_identifier: String?, quantity: Integer?, ?weight: Peddler::Types::ShippingV2::Weight?, ?liquid_volume: Peddler::Types::ShippingV2::LiquidVolume?, ?hazmat: bool?, ?dangerous_goods_details: Peddler::Types::ShippingV2::DangerousGoodsDetails?, ?product_type: String?, ?invoice_details: Peddler::Types::ShippingV2::InvoiceDetails?, ?serial_numbers: Array[String]?, ?direct_fulfillment_item_identifiers: Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers?) -> Peddler::Types::ShippingV2::Item
                     | (Peddler::Types::Money?, String?, String?, Integer?, Peddler::Types::ShippingV2::Weight?, Peddler::Types::ShippingV2::LiquidVolume?, bool?, Peddler::Types::ShippingV2::DangerousGoodsDetails?, String?, Peddler::Types::ShippingV2::InvoiceDetails?, Array[String]?, Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers?) -> Peddler::Types::ShippingV2::Item
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Item

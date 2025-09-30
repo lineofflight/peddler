@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the createClaim operation.
       CreateClaimResponse = Structure.new do
         # @return [String]
-        attribute(:claim_id, String, from: "claimId")
+        attribute?(:claim_id, String, from: "claimId")
       end
     end
   end

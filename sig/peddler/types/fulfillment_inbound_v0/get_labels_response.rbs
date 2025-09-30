@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetLabelsResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?, errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
+        def self.new: (?payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?, ?errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
                     | (Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?, Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse

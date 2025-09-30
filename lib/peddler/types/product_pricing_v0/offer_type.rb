@@ -12,7 +12,7 @@ module Peddler
       # Schema for an individual offer.
       OfferType = Structure.new do
         # @return [String] Indicates the type of customer that the offer is valid for.
-        attribute(:offer_type, String, from: "offerType")
+        attribute?(:offer_type, String, from: "offerType")
 
         # @return [PriceType] Contains pricing information that includes promotions and contains the shipping cost.
         attribute(:buying_price, PriceType, from: "BuyingPrice")
@@ -22,11 +22,11 @@ module Peddler
         attribute(:regular_price, Money, from: "RegularPrice")
 
         # @return [Money] The current listing price for Business buyers.
-        attribute(:business_price, Money, from: "businessPrice")
+        attribute?(:business_price, Money, from: "businessPrice")
 
         # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
         # information when buy in bulk.
-        attribute(:quantity_discount_prices, [QuantityDiscountPriceType], from: "quantityDiscountPrices")
+        attribute?(:quantity_discount_prices, [QuantityDiscountPriceType], from: "quantityDiscountPrices")
 
         # @return [String] The fulfillment channel for the offer listing. Possible values:
         #

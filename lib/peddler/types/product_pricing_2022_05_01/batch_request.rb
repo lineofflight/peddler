@@ -17,10 +17,10 @@ module Peddler
         attribute(:method, String)
 
         # @return [Hash]
-        attribute(:body, Hash)
+        attribute?(:body, Hash)
 
         # @return [HttpHeaders]
-        attribute(:headers, HttpHeaders)
+        attribute?(:headers, HttpHeaders)
       end
     end
   end

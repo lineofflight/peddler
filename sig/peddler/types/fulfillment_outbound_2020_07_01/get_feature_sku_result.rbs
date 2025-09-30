@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFeatureSkuResult < Data
-        def self.new: (marketplace_id: String?, feature_name: String?, eligible: bool?, ineligible_reasons: Array[String]?, sku_info: Peddler::Types::FulfillmentOutbound20200701::FeatureSku?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult
+        def self.new: (marketplace_id: String?, feature_name: String?, eligible: bool?, ?ineligible_reasons: Array[String]?, ?sku_info: Peddler::Types::FulfillmentOutbound20200701::FeatureSku?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult
                     | (String?, String?, bool?, Array[String]?, Peddler::Types::FulfillmentOutbound20200701::FeatureSku?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult

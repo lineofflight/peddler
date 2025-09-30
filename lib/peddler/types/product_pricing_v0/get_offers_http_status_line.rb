@@ -11,10 +11,10 @@ module Peddler
       # 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
       GetOffersHttpStatusLine = Structure.new do
         # @return [Integer] The HTTP response Status Code.
-        attribute(:status_code, Integer, from: "statusCode")
+        attribute?(:status_code, Integer, from: "statusCode")
 
         # @return [String] The HTTP response Reason-Phase.
-        attribute(:reason_phrase, String, from: "reasonPhrase")
+        attribute?(:reason_phrase, String, from: "reasonPhrase")
       end
     end
   end

@@ -19,7 +19,7 @@ module Peddler
         attribute(:severity, String)
 
         # @return [String] Name of the attribute associated with the issue, if applicable.
-        attribute(:attribute_name, String, from: "attributeName")
+        attribute?(:attribute_name, String, from: "attributeName")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class CreateNotificationResponse < Data
-        def self.new: (notification_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
+        def self.new: (?notification_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
                     | (String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse

@@ -10,7 +10,7 @@ module Peddler
       # The response associated with the `getListingOffersBatch` API call.
       GetListingOffersBatchResponse = Structure.new do
         # @return [Array<ListingOffersResponse>]
-        attribute(:responses, [ListingOffersResponse])
+        attribute?(:responses, [ListingOffersResponse])
       end
     end
   end

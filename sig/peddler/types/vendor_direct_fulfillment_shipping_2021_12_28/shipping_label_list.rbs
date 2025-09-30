@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ShippingLabelList < Data
-        def self.new: (pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
+        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, ?shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
                     | (Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList

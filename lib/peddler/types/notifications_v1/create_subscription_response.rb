@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `createSubscription` operation.
       CreateSubscriptionResponse = Structure.new do
         # @return [Subscription] The payload for the `createSubscription` operation.
-        attribute(:payload, Subscription)
+        attribute?(:payload, Subscription)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `createSubscription` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

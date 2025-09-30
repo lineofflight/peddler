@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `createServiceDocumentUploadDestination` operation.
       CreateServiceDocumentUploadDestination = Structure.new do
         # @return [ServiceDocumentUploadDestination]
-        attribute(:payload, ServiceDocumentUploadDestination)
+        attribute?(:payload, ServiceDocumentUploadDestination)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

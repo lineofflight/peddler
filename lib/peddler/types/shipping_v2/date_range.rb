@@ -10,10 +10,10 @@ module Peddler
       # Date Range for query the results.
       DateRange = Structure.new do
         # @return [String] Start Date for query .
-        attribute(:start_date, String, from: "startDate")
+        attribute?(:start_date, String, from: "startDate")
 
         # @return [String] end date for query.
-        attribute(:end_date, String, from: "endDate")
+        attribute?(:end_date, String, from: "endDate")
       end
     end
   end

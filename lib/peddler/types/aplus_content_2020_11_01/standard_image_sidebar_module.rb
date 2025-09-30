@@ -14,22 +14,22 @@ module Peddler
       # Two images, two paragraphs, and two bulleted lists. One image is smaller and displayed in the sidebar.
       StandardImageSidebarModule = Structure.new do
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [StandardImageCaptionBlock]
-        attribute(:image_caption_block, StandardImageCaptionBlock, from: "imageCaptionBlock")
+        attribute?(:image_caption_block, StandardImageCaptionBlock, from: "imageCaptionBlock")
 
         # @return [StandardTextBlock]
-        attribute(:description_text_block, StandardTextBlock, from: "descriptionTextBlock")
+        attribute?(:description_text_block, StandardTextBlock, from: "descriptionTextBlock")
 
         # @return [StandardTextListBlock]
-        attribute(:description_list_block, StandardTextListBlock, from: "descriptionListBlock")
+        attribute?(:description_list_block, StandardTextListBlock, from: "descriptionListBlock")
 
         # @return [StandardImageTextBlock]
-        attribute(:sidebar_image_text_block, StandardImageTextBlock, from: "sidebarImageTextBlock")
+        attribute?(:sidebar_image_text_block, StandardImageTextBlock, from: "sidebarImageTextBlock")
 
         # @return [StandardTextListBlock]
-        attribute(:sidebar_list_block, StandardTextListBlock, from: "sidebarListBlock")
+        attribute?(:sidebar_list_block, StandardTextListBlock, from: "sidebarListBlock")
       end
     end
   end

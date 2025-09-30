@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetPrepInstructionsResult < Data
-        def self.new: (sku_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?, invalid_sku_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
+        def self.new: (?sku_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?, ?invalid_sku_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, ?asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, ?invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
                     | (Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?, Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult

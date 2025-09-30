@@ -10,7 +10,7 @@ module Peddler
       # The Response for the UnlinkCarrierAccountResponse operation.
       UnlinkCarrierAccountResponse = Structure.new do
         # @return [:boolean] Is Carrier unlinked from Merchant
-        attribute(:unlinked, :boolean, from: "isUnlinked")
+        attribute?(:unlinked, :boolean, from: "isUnlinked")
       end
     end
   end

@@ -12,13 +12,13 @@ module Peddler
       # The result for the `createFulfillmentReturn` operation.
       CreateFulfillmentReturnResult = Structure.new do
         # @return [Array<ReturnItem>]
-        attribute(:return_items, [ReturnItem], from: "returnItems")
+        attribute?(:return_items, [ReturnItem], from: "returnItems")
 
         # @return [Array<InvalidReturnItem>]
-        attribute(:invalid_return_items, [InvalidReturnItem], from: "invalidReturnItems")
+        attribute?(:invalid_return_items, [InvalidReturnItem], from: "invalidReturnItems")
 
         # @return [Array<ReturnAuthorization>]
-        attribute(:return_authorizations, [ReturnAuthorization], from: "returnAuthorizations")
+        attribute?(:return_authorizations, [ReturnAuthorization], from: "returnAuthorizations")
       end
     end
   end

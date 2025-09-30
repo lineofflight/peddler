@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class CancelShipmentResponse < Data
-        def self.new: (payload: Peddler::Types::MerchantFulfillmentV0::Shipment?, errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
+        def self.new: (?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?, ?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
                     | (Peddler::Types::MerchantFulfillmentV0::Shipment?, Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse

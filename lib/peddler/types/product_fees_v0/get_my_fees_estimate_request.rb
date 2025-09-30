@@ -10,7 +10,7 @@ module Peddler
       # Request schema.
       GetMyFeesEstimateRequest = Structure.new do
         # @return [FeesEstimateRequest]
-        attribute(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
+        attribute?(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
       end
     end
   end

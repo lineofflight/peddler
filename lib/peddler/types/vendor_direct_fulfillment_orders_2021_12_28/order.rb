@@ -13,7 +13,7 @@ module Peddler
         attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
 
         # @return [OrderDetails] Purchase order details.
-        attribute(:order_details, OrderDetails, from: "orderDetails")
+        attribute?(:order_details, OrderDetails, from: "orderDetails")
       end
     end
   end

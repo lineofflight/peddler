@@ -12,10 +12,10 @@ module Peddler
         # @return [String] A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to
         # restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to
         # these restricted resources.
-        attribute(:restricted_data_token, String, from: "restrictedDataToken")
+        attribute?(:restricted_data_token, String, from: "restrictedDataToken")
 
         # @return [Integer] The lifetime of the Restricted Data Token, in seconds.
-        attribute(:expires_in, Integer, from: "expiresIn")
+        attribute?(:expires_in, Integer, from: "expiresIn")
       end
     end
   end

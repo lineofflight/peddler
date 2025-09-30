@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class ListFinancialEventsResponse < Data
-        def self.new: (payload: Peddler::Types::FinancesV0::ListFinancialEventsPayload?, errors: Array[Peddler::Types::FinancesV0::Error]?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
+        def self.new: (?payload: Peddler::Types::FinancesV0::ListFinancialEventsPayload?, ?errors: Array[Peddler::Types::FinancesV0::Error]?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
                     | (Peddler::Types::FinancesV0::ListFinancialEventsPayload?, Array[Peddler::Types::FinancesV0::Error]?) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventsResponse

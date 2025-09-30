@@ -13,10 +13,10 @@ module Peddler
         attribute(:code, String)
 
         # @return [String] A message that describes the error condition in a human-readable form.
-        attribute(:message, String)
+        attribute?(:message, String)
 
         # @return [String] Additional information that can help the caller understand or fix the issue.
-        attribute(:details, String)
+        attribute?(:details, String)
       end
     end
   end

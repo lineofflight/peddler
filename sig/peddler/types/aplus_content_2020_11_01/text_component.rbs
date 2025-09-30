@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class TextComponent < Data
-        def self.new: (value: String?, decorator_set: Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
+        def self.new: (value: String?, ?decorator_set: Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
                     | (String?, Array[Peddler::Types::AplusContent20201101::Decorator]?) -> Peddler::Types::AplusContent20201101::TextComponent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::TextComponent

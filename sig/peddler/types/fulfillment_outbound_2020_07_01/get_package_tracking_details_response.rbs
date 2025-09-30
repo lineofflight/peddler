@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetPackageTrackingDetailsResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
+        def self.new: (?payload: Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails?, ?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
                     | (Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse

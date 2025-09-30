@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the getAdditionalInputs operation.
       GetAdditionalInputsResponse = Structure.new do
         # @return [GetAdditionalInputsResult]
-        attribute(:payload, GetAdditionalInputsResult)
+        attribute?(:payload, GetAdditionalInputsResult)
       end
     end
   end

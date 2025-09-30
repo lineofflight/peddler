@@ -11,14 +11,14 @@ module Peddler
       # A list of one or more ShipmentLabels.
       TransportLabel = Structure.new do
         # @return [String] Date on which label is created.
-        attribute(:label_create_date_time, String, from: "labelCreateDateTime")
+        attribute?(:label_create_date_time, String, from: "labelCreateDateTime")
 
         # @return [ShipmentInformation] Indicates the shipment Information details like warehouse and business reference
         # details like ARN, Selling Party detail and Vendor Warehouse details
-        attribute(:shipment_information, ShipmentInformation, from: "shipmentInformation")
+        attribute?(:shipment_information, ShipmentInformation, from: "shipmentInformation")
 
         # @return [Array<LabelData>] Indicates the label data,format and type associated .
-        attribute(:label_data, [LabelData], from: "labelData")
+        attribute?(:label_data, [LabelData], from: "labelData")
       end
     end
   end

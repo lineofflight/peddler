@@ -16,13 +16,13 @@ module Peddler
         attribute(:address_line1, String, from: "AddressLine1")
 
         # @return [String]
-        attribute(:address_line2, String, from: "AddressLine2")
+        attribute?(:address_line2, String, from: "AddressLine2")
 
         # @return [String]
-        attribute(:address_line3, String, from: "AddressLine3")
+        attribute?(:address_line3, String, from: "AddressLine3")
 
         # @return [String]
-        attribute(:district_or_county, String, from: "DistrictOrCounty")
+        attribute?(:district_or_county, String, from: "DistrictOrCounty")
 
         # @return [String]
         attribute(:email, String, from: "Email")
@@ -31,7 +31,7 @@ module Peddler
         attribute(:city, String, from: "City")
 
         # @return [String]
-        attribute(:state_or_province_code, String, from: "StateOrProvinceCode")
+        attribute?(:state_or_province_code, String, from: "StateOrProvinceCode")
 
         # @return [String]
         attribute(:postal_code, String, from: "PostalCode")

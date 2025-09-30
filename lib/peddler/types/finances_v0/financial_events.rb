@@ -37,103 +37,103 @@ module Peddler
       # Contains all information related to a financial event.
       FinancialEvents = Structure.new do
         # @return [Array<ShipmentEvent>] A list of shipment events.
-        attribute(:shipment_event_list, [ShipmentEvent], from: "ShipmentEventList")
+        attribute?(:shipment_event_list, [ShipmentEvent], from: "ShipmentEventList")
 
         # @return [Array<ShipmentEvent>] A list of Shipment Settle events.
-        attribute(:shipment_settle_event_list, [ShipmentEvent], from: "ShipmentSettleEventList")
+        attribute?(:shipment_settle_event_list, [ShipmentEvent], from: "ShipmentSettleEventList")
 
         # @return [Array<ShipmentEvent>] A list of refund events.
-        attribute(:refund_event_list, [ShipmentEvent], from: "RefundEventList")
+        attribute?(:refund_event_list, [ShipmentEvent], from: "RefundEventList")
 
         # @return [Array<ShipmentEvent>] A list of guarantee claim events.
-        attribute(:guarantee_claim_event_list, [ShipmentEvent], from: "GuaranteeClaimEventList")
+        attribute?(:guarantee_claim_event_list, [ShipmentEvent], from: "GuaranteeClaimEventList")
 
         # @return [Array<ShipmentEvent>] A list of chargeback events.
-        attribute(:chargeback_event_list, [ShipmentEvent], from: "ChargebackEventList")
+        attribute?(:chargeback_event_list, [ShipmentEvent], from: "ChargebackEventList")
 
         # @return [Array<PayWithAmazonEvent>]
-        attribute(:pay_with_amazon_event_list, [PayWithAmazonEvent], from: "PayWithAmazonEventList")
+        attribute?(:pay_with_amazon_event_list, [PayWithAmazonEvent], from: "PayWithAmazonEventList")
 
         # @return [Array<SolutionProviderCreditEvent>]
-        attribute(:service_provider_credit_event_list, [SolutionProviderCreditEvent], from: "ServiceProviderCreditEventList")
+        attribute?(:service_provider_credit_event_list, [SolutionProviderCreditEvent], from: "ServiceProviderCreditEventList")
 
         # @return [Array<RetrochargeEvent>]
-        attribute(:retrocharge_event_list, [RetrochargeEvent], from: "RetrochargeEventList")
+        attribute?(:retrocharge_event_list, [RetrochargeEvent], from: "RetrochargeEventList")
 
         # @return [Array<RentalTransactionEvent>]
-        attribute(:rental_transaction_event_list, [RentalTransactionEvent], from: "RentalTransactionEventList")
+        attribute?(:rental_transaction_event_list, [RentalTransactionEvent], from: "RentalTransactionEventList")
 
         # @return [Array<ProductAdsPaymentEvent>]
-        attribute(:product_ads_payment_event_list, [ProductAdsPaymentEvent], from: "ProductAdsPaymentEventList")
+        attribute?(:product_ads_payment_event_list, [ProductAdsPaymentEvent], from: "ProductAdsPaymentEventList")
 
         # @return [Array<ServiceFeeEvent>]
-        attribute(:service_fee_event_list, [ServiceFeeEvent], from: "ServiceFeeEventList")
+        attribute?(:service_fee_event_list, [ServiceFeeEvent], from: "ServiceFeeEventList")
 
         # @return [Array<SellerDealPaymentEvent>]
-        attribute(:seller_deal_payment_event_list, [SellerDealPaymentEvent], from: "SellerDealPaymentEventList")
+        attribute?(:seller_deal_payment_event_list, [SellerDealPaymentEvent], from: "SellerDealPaymentEventList")
 
         # @return [Array<DebtRecoveryEvent>]
-        attribute(:debt_recovery_event_list, [DebtRecoveryEvent], from: "DebtRecoveryEventList")
+        attribute?(:debt_recovery_event_list, [DebtRecoveryEvent], from: "DebtRecoveryEventList")
 
         # @return [Array<LoanServicingEvent>]
-        attribute(:loan_servicing_event_list, [LoanServicingEvent], from: "LoanServicingEventList")
+        attribute?(:loan_servicing_event_list, [LoanServicingEvent], from: "LoanServicingEventList")
 
         # @return [Array<AdjustmentEvent>]
-        attribute(:adjustment_event_list, [AdjustmentEvent], from: "AdjustmentEventList")
+        attribute?(:adjustment_event_list, [AdjustmentEvent], from: "AdjustmentEventList")
 
         # @return [Array<SAFETReimbursementEvent>]
-        attribute(:safet_reimbursement_event_list, [SAFETReimbursementEvent], from: "SAFETReimbursementEventList")
+        attribute?(:safet_reimbursement_event_list, [SAFETReimbursementEvent], from: "SAFETReimbursementEventList")
 
         # @return [Array<SellerReviewEnrollmentPaymentEvent>]
-        attribute(:seller_review_enrollment_payment_event_list, [SellerReviewEnrollmentPaymentEvent], from: "SellerReviewEnrollmentPaymentEventList")
+        attribute?(:seller_review_enrollment_payment_event_list, [SellerReviewEnrollmentPaymentEvent], from: "SellerReviewEnrollmentPaymentEventList")
 
         # @return [Array<FBALiquidationEvent>]
-        attribute(:fba_liquidation_event_list, [FBALiquidationEvent], from: "FBALiquidationEventList")
+        attribute?(:fba_liquidation_event_list, [FBALiquidationEvent], from: "FBALiquidationEventList")
 
         # @return [Array<CouponPaymentEvent>]
-        attribute(:coupon_payment_event_list, [CouponPaymentEvent], from: "CouponPaymentEventList")
+        attribute?(:coupon_payment_event_list, [CouponPaymentEvent], from: "CouponPaymentEventList")
 
         # @return [Array<ImagingServicesFeeEvent>]
-        attribute(:imaging_services_fee_event_list, [ImagingServicesFeeEvent], from: "ImagingServicesFeeEventList")
+        attribute?(:imaging_services_fee_event_list, [ImagingServicesFeeEvent], from: "ImagingServicesFeeEventList")
 
         # @return [Array<NetworkComminglingTransactionEvent>]
-        attribute(:network_commingling_transaction_event_list, [NetworkComminglingTransactionEvent], from: "NetworkComminglingTransactionEventList")
+        attribute?(:network_commingling_transaction_event_list, [NetworkComminglingTransactionEvent], from: "NetworkComminglingTransactionEventList")
 
         # @return [Array<AffordabilityExpenseEvent>]
-        attribute(:affordability_expense_event_list, [AffordabilityExpenseEvent], from: "AffordabilityExpenseEventList")
+        attribute?(:affordability_expense_event_list, [AffordabilityExpenseEvent], from: "AffordabilityExpenseEventList")
 
         # @return [Array<AffordabilityExpenseEvent>]
-        attribute(:affordability_expense_reversal_event_list, [AffordabilityExpenseEvent], from: "AffordabilityExpenseReversalEventList")
+        attribute?(:affordability_expense_reversal_event_list, [AffordabilityExpenseEvent], from: "AffordabilityExpenseReversalEventList")
 
         # @return [Array<RemovalShipmentEvent>]
-        attribute(:removal_shipment_event_list, [RemovalShipmentEvent], from: "RemovalShipmentEventList")
+        attribute?(:removal_shipment_event_list, [RemovalShipmentEvent], from: "RemovalShipmentEventList")
 
         # @return [Array<RemovalShipmentAdjustmentEvent>]
-        attribute(:removal_shipment_adjustment_event_list, [RemovalShipmentAdjustmentEvent], from: "RemovalShipmentAdjustmentEventList")
+        attribute?(:removal_shipment_adjustment_event_list, [RemovalShipmentAdjustmentEvent], from: "RemovalShipmentAdjustmentEventList")
 
         # @return [Array<TrialShipmentEvent>]
-        attribute(:trial_shipment_event_list, [TrialShipmentEvent], from: "TrialShipmentEventList")
+        attribute?(:trial_shipment_event_list, [TrialShipmentEvent], from: "TrialShipmentEventList")
 
         # @return [Array<TDSReimbursementEvent>]
-        attribute(:tds_reimbursement_event_list, [TDSReimbursementEvent], from: "TDSReimbursementEventList")
+        attribute?(:tds_reimbursement_event_list, [TDSReimbursementEvent], from: "TDSReimbursementEventList")
 
         # @return [Array<AdhocDisbursementEvent>]
-        attribute(:adhoc_disbursement_event_list, [AdhocDisbursementEvent], from: "AdhocDisbursementEventList")
+        attribute?(:adhoc_disbursement_event_list, [AdhocDisbursementEvent], from: "AdhocDisbursementEventList")
 
         # @return [Array<TaxWithholdingEvent>]
-        attribute(:tax_withholding_event_list, [TaxWithholdingEvent], from: "TaxWithholdingEventList")
+        attribute?(:tax_withholding_event_list, [TaxWithholdingEvent], from: "TaxWithholdingEventList")
 
         # @return [Array<ChargeRefundEvent>]
-        attribute(:charge_refund_event_list, [ChargeRefundEvent], from: "ChargeRefundEventList")
+        attribute?(:charge_refund_event_list, [ChargeRefundEvent], from: "ChargeRefundEventList")
 
         # @return [Array<FailedAdhocDisbursementEvent>]
-        attribute(:failed_adhoc_disbursement_event_list, [FailedAdhocDisbursementEvent], from: "FailedAdhocDisbursementEventList")
+        attribute?(:failed_adhoc_disbursement_event_list, [FailedAdhocDisbursementEvent], from: "FailedAdhocDisbursementEventList")
 
         # @return [Array<ValueAddedServiceChargeEvent>]
-        attribute(:value_added_service_charge_event_list, [ValueAddedServiceChargeEvent], from: "ValueAddedServiceChargeEventList")
+        attribute?(:value_added_service_charge_event_list, [ValueAddedServiceChargeEvent], from: "ValueAddedServiceChargeEventList")
 
         # @return [Array<CapacityReservationBillingEvent>]
-        attribute(:capacity_reservation_billing_event_list, [CapacityReservationBillingEvent], from: "CapacityReservationBillingEventList")
+        attribute?(:capacity_reservation_billing_event_list, [CapacityReservationBillingEvent], from: "CapacityReservationBillingEventList")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class ContainerItem < Data
-        def self.new: (item_reference: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
+        def self.new: (item_reference: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
                     | (String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerItem

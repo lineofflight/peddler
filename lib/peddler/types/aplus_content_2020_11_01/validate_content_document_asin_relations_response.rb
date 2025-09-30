@@ -9,7 +9,7 @@ module Peddler
     module AplusContent20201101
       ValidateContentDocumentAsinRelationsResponse = Structure.new do
         # @return [Array<Error>]
-        attribute(:warnings, [Error])
+        attribute?(:warnings, [Error])
 
         # @return [Array<Error>] A list of error responses that are returned when a request is unsuccessful.
         attribute(:errors, [Error])

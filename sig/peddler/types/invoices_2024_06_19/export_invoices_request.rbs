@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Invoices20240619
       class ExportInvoicesRequest < Data
-        def self.new: (date_end: String?, date_start: String?, external_invoice_id: String?, file_format: String?, invoice_type: String?, marketplace_id: String?, series: String?, statuses: Array[String]?, transaction_identifier: Peddler::Types::Invoices20240619::TransactionIdentifier?, transaction_type: String?) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest
+        def self.new: (?date_end: String?, ?date_start: String?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, marketplace_id: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::Types::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest
                     | (String?, String?, String?, String?, String?, String?, String?, Array[String]?, Peddler::Types::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest

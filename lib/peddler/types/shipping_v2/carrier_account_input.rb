@@ -10,28 +10,28 @@ module Peddler
       # Info About CarrierAccountInput
       CarrierAccountInput = Structure.new do
         # @return [String] descriptionLocalizationKey value .
-        attribute(:description_localization_key, String, from: "descriptionLocalizationKey")
+        attribute?(:description_localization_key, String, from: "descriptionLocalizationKey")
 
         # @return [String] name value .
-        attribute(:name, String)
+        attribute?(:name, String)
 
         # @return [String] groupName value .
-        attribute(:group_name, String, from: "groupName")
+        attribute?(:group_name, String, from: "groupName")
 
         # @return [String]
-        attribute(:input_type, String, from: "inputType")
+        attribute?(:input_type, String, from: "inputType")
 
         # @return [:boolean] mandatory or not value .
-        attribute(:mandatory, :boolean, from: "isMandatory")
+        attribute?(:mandatory, :boolean, from: "isMandatory")
 
         # @return [:boolean] is value is Confidential .
-        attribute(:confidential, :boolean, from: "isConfidential")
+        attribute?(:confidential, :boolean, from: "isConfidential")
 
         # @return [:boolean] is value is hidden .
-        attribute(:hidden, :boolean, from: "isHidden")
+        attribute?(:hidden, :boolean, from: "isHidden")
 
         # @return [Array<ValidationMetadata>]
-        attribute(:validation_metadata, [ValidationMetadata], from: "validationMetadata")
+        attribute?(:validation_metadata, [ValidationMetadata], from: "validationMetadata")
       end
     end
   end

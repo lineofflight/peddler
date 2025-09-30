@@ -12,10 +12,10 @@ module Peddler
       UpdateScheduleResponse = Structure.new do
         # @return [Array<UpdateScheduleRecord>] Contains the `UpdateScheduleRecords` for which the error/warning has
         # occurred.
-        attribute(:payload, [UpdateScheduleRecord])
+        attribute?(:payload, [UpdateScheduleRecord])
 
         # @return [Array<Error>] Errors encountered, if any.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

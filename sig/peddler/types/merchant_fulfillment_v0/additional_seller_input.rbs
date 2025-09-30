@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class AdditionalSellerInput < Data
-        def self.new: (data_type: String?, value_as_string: String?, value_as_boolean: bool?, value_as_integer: Integer?, value_as_timestamp: String?, value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, value_as_currency: Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
+        def self.new: (?data_type: String?, ?value_as_string: String?, ?value_as_boolean: bool?, ?value_as_integer: Integer?, ?value_as_timestamp: String?, ?value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, ?value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, ?value_as_currency: Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
                     | (String?, String?, bool?, Integer?, String?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::Length?, Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput

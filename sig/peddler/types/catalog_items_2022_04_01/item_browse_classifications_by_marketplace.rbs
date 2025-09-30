@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemBrowseClassificationsByMarketplace < Data
-        def self.new: (marketplace_id: String?, classifications: Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassification]?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace
+        def self.new: (marketplace_id: String?, ?classifications: Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassification]?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace
                     | (String?, Array[Peddler::Types::CatalogItems20220401::ItemBrowseClassification]?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassificationsByMarketplace

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DeliveryDocument < Data
-        def self.new: (document_type: String?, url: String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument
+        def self.new: (document_type: String?, ?url: String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument
                     | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument

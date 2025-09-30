@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class PurchaseOrders < Data
-        def self.new: (purchase_order_number: String?, purchase_order_date: String?, ship_window: String?, items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
+        def self.new: (?purchase_order_number: String?, ?purchase_order_date: String?, ?ship_window: String?, ?items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
                     | (String?, String?, String?, Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders

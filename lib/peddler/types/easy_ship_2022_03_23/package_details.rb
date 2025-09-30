@@ -11,13 +11,13 @@ module Peddler
       # Package details. Includes `packageItems`, `packageTimeSlot`, and `packageIdentifier`.
       PackageDetails = Structure.new do
         # @return [Array<Item>]
-        attribute(:package_items, [Item], from: "packageItems")
+        attribute?(:package_items, [Item], from: "packageItems")
 
         # @return [TimeSlot]
         attribute(:package_time_slot, TimeSlot, from: "packageTimeSlot")
 
         # @return [String]
-        attribute(:package_identifier, String, from: "packageIdentifier")
+        attribute?(:package_identifier, String, from: "packageIdentifier")
       end
     end
   end

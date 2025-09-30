@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class Weight < Data
-        def self.new: (value: Float?, unit: String?) -> Peddler::Types::EasyShip20220323::Weight
+        def self.new: (?value: Float?, ?unit: String?) -> Peddler::Types::EasyShip20220323::Weight
                     | (Float?, String?) -> Peddler::Types::EasyShip20220323::Weight
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::Weight

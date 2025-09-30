@@ -10,7 +10,7 @@ module Peddler
       # Struct that holds list of balances on the seller account.
       BalanceListing = Structure.new do
         # @return [Array<Balance>] Collection that holds list of balances on the account
-        attribute(:balances, [Balance])
+        attribute?(:balances, [Balance])
       end
     end
   end

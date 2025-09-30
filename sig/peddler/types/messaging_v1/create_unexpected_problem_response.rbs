@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MessagingV1
       class CreateUnexpectedProblemResponse < Data
-        def self.new: (errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::CreateUnexpectedProblemResponse
+        def self.new: (?errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::CreateUnexpectedProblemResponse
                     | (Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::CreateUnexpectedProblemResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateUnexpectedProblemResponse

@@ -24,11 +24,11 @@ module Peddler
         # * `MERCHANT_NOT_ENROLLED`: The merchant isn't enrolled for the feature.
         # * `SKU_NOT_ELIGIBLE`: The SKU doesn't reside in a warehouse that supports the feature.
         # * `INVALID_SKU`: There is an issue with the SKU provided.
-        attribute(:ineligible_reasons, [String], from: "ineligibleReasons")
+        attribute?(:ineligible_reasons, [String], from: "ineligibleReasons")
 
         # @return [FeatureSku] Information about the SKU, including the count available, identifiers, and a list of
         # overlapping SKUs that share the same inventory pool.
-        attribute(:sku_info, FeatureSku, from: "skuInfo")
+        attribute?(:sku_info, FeatureSku, from: "skuInfo")
       end
     end
   end

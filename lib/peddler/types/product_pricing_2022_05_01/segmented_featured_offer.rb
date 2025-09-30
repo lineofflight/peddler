@@ -20,7 +20,7 @@ module Peddler
         attribute(:condition, String)
 
         # @return [String] The item subcondition of the offer.
-        attribute(:sub_condition, String, from: "subCondition")
+        attribute?(:sub_condition, String, from: "subCondition")
 
         # @return [String] The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network)
         # and `MFN` (Merchant Fulfillment Network).
@@ -30,14 +30,14 @@ module Peddler
         attribute(:listing_price, Money, from: "listingPrice")
 
         # @return [Array<ShippingOption>] A list of shipping options associated with this offer
-        attribute(:shipping_options, [ShippingOption], from: "shippingOptions")
+        attribute?(:shipping_options, [ShippingOption], from: "shippingOptions")
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
         # value of these points. Note that the Points element is only returned in Japan (JP).
-        attribute(:points, Points)
+        attribute?(:points, Points)
 
         # @return [PrimeDetails] Amazon Prime details.
-        attribute(:prime_details, PrimeDetails, from: "primeDetails")
+        attribute?(:prime_details, PrimeDetails, from: "primeDetails")
 
         # @return [Array<FeaturedOfferSegment>] The list of segment information in which the offer is featured.
         attribute(:featured_offer_segments, [FeaturedOfferSegment], from: "featuredOfferSegments")

@@ -10,10 +10,10 @@ module Peddler
       # Represents a month in a specific year.
       MonthAndYear = Structure.new do
         # @return [Float]
-        attribute(:year, Float)
+        attribute?(:year, Float)
 
         # @return [Float]
-        attribute(:month, Float)
+        attribute?(:month, Float)
       end
     end
   end

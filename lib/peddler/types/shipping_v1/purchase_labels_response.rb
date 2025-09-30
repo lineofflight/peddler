@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the purchaseLabels operation.
       PurchaseLabelsResponse = Structure.new do
         # @return [PurchaseLabelsResult] The payload for purchaseLabels operation
-        attribute(:payload, PurchaseLabelsResult)
+        attribute?(:payload, PurchaseLabelsResult)
 
         # @return [Array<Error>] Encountered errors for the operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

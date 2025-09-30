@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Stop < Data
-        def self.new: (function_code: String?, location_identification: Peddler::Types::VendorShipmentsV1::Location?, arrival_time: String?, departure_time: String?) -> Peddler::Types::VendorShipmentsV1::Stop
+        def self.new: (function_code: String?, ?location_identification: Peddler::Types::VendorShipmentsV1::Location?, ?arrival_time: String?, ?departure_time: String?) -> Peddler::Types::VendorShipmentsV1::Stop
                     | (String?, Peddler::Types::VendorShipmentsV1::Location?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Stop
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Stop

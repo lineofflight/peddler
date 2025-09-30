@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardComparisonTableModule < Data
-        def self.new: (product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?, metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
+        def self.new: (?product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?, ?metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
                     | (Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule

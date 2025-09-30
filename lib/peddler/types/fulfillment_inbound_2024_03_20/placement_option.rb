@@ -15,7 +15,7 @@ module Peddler
         # @return [String] The expiration date of the placement option. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         # `yyyy-MM-ddTHH:mm:ss.sssZ`.
-        attribute(:expiration, String)
+        attribute?(:expiration, String)
 
         # @return [Array<Incentive>] The fee for the offered option.
         attribute(:fees, [Incentive])

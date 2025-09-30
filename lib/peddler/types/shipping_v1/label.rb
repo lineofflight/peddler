@@ -10,10 +10,10 @@ module Peddler
       # The label details of the container.
       Label = Structure.new do
         # @return [String]
-        attribute(:label_stream, String, from: "labelStream")
+        attribute?(:label_stream, String, from: "labelStream")
 
         # @return [LabelSpecification]
-        attribute(:label_specification, LabelSpecification, from: "labelSpecification")
+        attribute?(:label_specification, LabelSpecification, from: "labelSpecification")
       end
     end
   end

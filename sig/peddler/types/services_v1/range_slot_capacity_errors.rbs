@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class RangeSlotCapacityErrors < Data
-        def self.new: (errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors
                     | (Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors

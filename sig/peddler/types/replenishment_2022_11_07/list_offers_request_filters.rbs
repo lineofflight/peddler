@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class ListOffersRequestFilters < Data
-        def self.new: (marketplace_id: String?, skus: Array[String]?, asins: Array[String]?, eligibilities: Array[untyped]?, preferences: Peddler::Types::Replenishment20221107::Preference?, promotions: Peddler::Types::Replenishment20221107::Promotion?, program_types: Array[untyped]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
+        def self.new: (marketplace_id: String?, ?skus: Array[String]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::Types::Replenishment20221107::Preference?, ?promotions: Peddler::Types::Replenishment20221107::Promotion?, program_types: Array[untyped]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
                     | (String?, Array[String]?, Array[String]?, Array[untyped]?, Peddler::Types::Replenishment20221107::Preference?, Peddler::Types::Replenishment20221107::Promotion?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters

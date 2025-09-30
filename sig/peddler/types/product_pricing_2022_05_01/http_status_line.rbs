@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class HttpStatusLine < Data
-        def self.new: (status_code: Integer?, reason_phrase: String?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+        def self.new: (?status_code: Integer?, ?reason_phrase: String?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
                     | (Integer?, String?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::HttpStatusLine

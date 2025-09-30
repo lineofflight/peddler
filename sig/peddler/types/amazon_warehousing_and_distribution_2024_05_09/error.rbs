@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class Error < Data
-        def self.new: (code: String?, details: String?, message: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error
+        def self.new: (code: String?, ?details: String?, message: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error
                     | (String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error

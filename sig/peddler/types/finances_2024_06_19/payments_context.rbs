@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class PaymentsContext < Data
-        def self.new: (payment_type: String?, payment_method: String?, payment_reference: String?, payment_date: String?) -> Peddler::Types::Finances20240619::PaymentsContext
+        def self.new: (?payment_type: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_date: String?) -> Peddler::Types::Finances20240619::PaymentsContext
                     | (String?, String?, String?, String?) -> Peddler::Types::Finances20240619::PaymentsContext
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::PaymentsContext

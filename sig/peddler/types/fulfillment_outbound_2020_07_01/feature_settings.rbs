@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FeatureSettings < Data
-        def self.new: (feature_name: String?, feature_fulfillment_policy: String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
+        def self.new: (?feature_name: String?, ?feature_fulfillment_policy: String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
                     | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings

@@ -10,7 +10,7 @@ module Peddler
       # The error response schema for the `confirmShipment` operation.
       ConfirmShipmentErrorResponse = Structure.new do
         # @return [Array<Error>] One or more unexpected errors occurred during the `confirmShipment` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

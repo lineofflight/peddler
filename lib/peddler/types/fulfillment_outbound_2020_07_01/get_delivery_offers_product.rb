@@ -14,7 +14,7 @@ module Peddler
         attribute(:product_identifier, ProductIdentifier, from: "productIdentifier")
 
         # @return [Amount] The amount of the requested product.
-        attribute(:amount, Amount)
+        attribute?(:amount, Amount)
       end
     end
   end

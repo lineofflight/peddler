@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class CreateShippingLabelsRequest < Data
-        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest
                     | (Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest

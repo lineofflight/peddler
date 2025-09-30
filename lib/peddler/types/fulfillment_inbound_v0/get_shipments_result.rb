@@ -10,11 +10,11 @@ module Peddler
       # Result for the get shipments operation
       GetShipmentsResult = Structure.new do
         # @return [Array<InboundShipmentInfo>] Information about your inbound shipments.
-        attribute(:shipment_data, [InboundShipmentInfo], from: "ShipmentData")
+        attribute?(:shipment_data, [InboundShipmentInfo], from: "ShipmentData")
 
         # @return [String] When present and not empty, pass this string token in the next request to return the next
         # response page.
-        attribute(:next_token, String, from: "NextToken")
+        attribute?(:next_token, String, from: "NextToken")
       end
     end
   end

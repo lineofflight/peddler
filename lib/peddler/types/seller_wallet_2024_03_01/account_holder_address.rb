@@ -14,7 +14,7 @@ module Peddler
         attribute(:address_line1, String, from: "addressLine1")
 
         # @return [String] Address Line 2 of the public address
-        attribute(:address_line2, String, from: "addressLine2")
+        attribute?(:address_line2, String, from: "addressLine2")
 
         # @return [String] City name of the public address
         attribute(:city, String)
@@ -26,7 +26,7 @@ module Peddler
         attribute(:postal_code, String, from: "postalCode")
 
         # @return [String] Country name of the public address
-        attribute(:country, String)
+        attribute?(:country, String)
 
         # @return [String] The two digit country code, in ISO 3166 format.
         attribute(:country_code, String, from: "countryCode")

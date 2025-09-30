@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MessagingV1
       class GetMessagingActionResponse < Data
-        def self.new: (_links: Hash[untyped, untyped]?, _embedded: Hash[untyped, untyped]?, payload: Peddler::Types::MessagingV1::MessagingAction?, errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetMessagingActionResponse
+        def self.new: (?_links: Hash[untyped, untyped]?, ?_embedded: Hash[untyped, untyped]?, ?payload: Peddler::Types::MessagingV1::MessagingAction?, ?errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetMessagingActionResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Peddler::Types::MessagingV1::MessagingAction?, Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetMessagingActionResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::GetMessagingActionResponse

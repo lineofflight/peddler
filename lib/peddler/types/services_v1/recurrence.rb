@@ -14,10 +14,10 @@ module Peddler
 
         # @return [Array<DayOfWeek>] Days of the week when recurrence is valid. If the schedule is valid every Monday,
         # input will only contain `MONDAY` in the list.
-        attribute(:days_of_week, Array, from: "daysOfWeek")
+        attribute?(:days_of_week, Array, from: "daysOfWeek")
 
         # @return [Array<Integer>] Days of the month when recurrence is valid.
-        attribute(:days_of_month, [Integer], from: "daysOfMonth")
+        attribute?(:days_of_month, [Integer], from: "daysOfMonth")
       end
     end
   end

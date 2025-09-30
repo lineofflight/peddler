@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class Geocode < Data
-        def self.new: (latitude: String?, longitude: String?) -> Peddler::Types::ShippingV2::Geocode
+        def self.new: (?latitude: String?, ?longitude: String?) -> Peddler::Types::ShippingV2::Geocode
                     | (String?, String?) -> Peddler::Types::ShippingV2::Geocode
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Geocode

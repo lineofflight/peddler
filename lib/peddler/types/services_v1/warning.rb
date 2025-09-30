@@ -17,7 +17,7 @@ module Peddler
         attribute(:message, String)
 
         # @return [String] Additional details that can help the caller understand or address the warning.
-        attribute(:details, String)
+        attribute?(:details, String)
       end
     end
   end

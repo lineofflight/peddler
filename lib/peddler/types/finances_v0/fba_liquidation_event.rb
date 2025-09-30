@@ -12,17 +12,17 @@ module Peddler
       # marketplace.
       FBALiquidationEvent = Structure.new do
         # @return [String] The date and time when the financial event was posted.
-        attribute(:posted_date, String, from: "PostedDate")
+        attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [String] The identifier for the original removal order.
-        attribute(:original_removal_order_id, String, from: "OriginalRemovalOrderId")
+        attribute?(:original_removal_order_id, String, from: "OriginalRemovalOrderId")
 
         # @return [Money] The amount paid by the liquidator for the seller's inventory. The seller receives this amount
         # minus LiquidationFeeAmount.
-        attribute(:liquidation_proceeds_amount, Money, from: "LiquidationProceedsAmount")
+        attribute?(:liquidation_proceeds_amount, Money, from: "LiquidationProceedsAmount")
 
         # @return [Money] The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
-        attribute(:liquidation_fee_amount, Money, from: "LiquidationFeeAmount")
+        attribute?(:liquidation_fee_amount, Money, from: "LiquidationFeeAmount")
       end
     end
   end

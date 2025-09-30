@@ -10,7 +10,7 @@ module Peddler
       # The request associated with the `getItemOffersBatch` API call.
       GetItemOffersBatchRequest = Structure.new do
         # @return [Array<ItemOffersRequest>]
-        attribute(:requests, [ItemOffersRequest])
+        attribute?(:requests, [ItemOffersRequest])
       end
     end
   end

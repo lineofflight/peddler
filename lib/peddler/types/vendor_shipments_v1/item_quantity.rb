@@ -18,10 +18,10 @@ module Peddler
         attribute(:unit_of_measure, String, from: "unitOfMeasure")
 
         # @return [Integer] The case size, in the event that we ordered using cases. Otherwise, 1.
-        attribute(:unit_size, Integer, from: "unitSize")
+        attribute?(:unit_size, Integer, from: "unitSize")
 
         # @return [TotalWeight]
-        attribute(:total_weight, TotalWeight, from: "totalWeight")
+        attribute?(:total_weight, TotalWeight, from: "totalWeight")
       end
     end
   end

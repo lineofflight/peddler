@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class TaxDetails < Data
-        def self.new: (declared_value: Peddler::Types::Money?, hsn_code: String?, tax_rates: Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
+        def self.new: (?declared_value: Peddler::Types::Money?, ?hsn_code: String?, ?tax_rates: Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
                     | (Peddler::Types::Money?, String?, Array[Peddler::Types::FulfillmentInbound20240320::TaxRate]?) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::TaxDetails

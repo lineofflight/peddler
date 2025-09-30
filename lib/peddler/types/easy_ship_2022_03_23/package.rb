@@ -25,22 +25,22 @@ module Peddler
         attribute(:package_weight, Weight, from: "packageWeight")
 
         # @return [Array<Item>]
-        attribute(:package_items, [Item], from: "packageItems")
+        attribute?(:package_items, [Item], from: "packageItems")
 
         # @return [TimeSlot]
         attribute(:package_time_slot, TimeSlot, from: "packageTimeSlot")
 
         # @return [String]
-        attribute(:package_identifier, String, from: "packageIdentifier")
+        attribute?(:package_identifier, String, from: "packageIdentifier")
 
         # @return [InvoiceData]
-        attribute(:invoice, InvoiceData)
+        attribute?(:invoice, InvoiceData)
 
         # @return [String]
-        attribute(:package_status, String, from: "packageStatus")
+        attribute?(:package_status, String, from: "packageStatus")
 
         # @return [TrackingDetails]
-        attribute(:tracking_details, TrackingDetails, from: "trackingDetails")
+        attribute?(:tracking_details, TrackingDetails, from: "trackingDetails")
       end
     end
   end

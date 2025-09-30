@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class PartyIdentification < Data
-        def self.new: (party_id: String?, address: Peddler::Types::VendorDirectFulfillmentOrdersV1::Address?, tax_info: Peddler::Types::VendorDirectFulfillmentOrdersV1::TaxRegistrationDetails?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::PartyIdentification
+        def self.new: (party_id: String?, ?address: Peddler::Types::VendorDirectFulfillmentOrdersV1::Address?, ?tax_info: Peddler::Types::VendorDirectFulfillmentOrdersV1::TaxRegistrationDetails?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::PartyIdentification
                     | (String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::Address?, Peddler::Types::VendorDirectFulfillmentOrdersV1::TaxRegistrationDetails?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::PartyIdentification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::PartyIdentification

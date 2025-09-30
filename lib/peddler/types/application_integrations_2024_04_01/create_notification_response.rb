@@ -10,7 +10,7 @@ module Peddler
       # The response for the `createNotification` operation.
       CreateNotificationResponse = Structure.new do
         # @return [String] The unique identifier assigned to each notification.
-        attribute(:notification_id, String, from: "notificationId")
+        attribute?(:notification_id, String, from: "notificationId")
       end
     end
   end

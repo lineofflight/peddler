@@ -17,10 +17,10 @@ module Peddler
 
         # @return [DestinationDetails] Destination details of an inbound order based on the assigned region and DC for
         # the order.
-        attribute(:destination_details, DestinationDetails, from: "destinationDetails")
+        attribute?(:destination_details, DestinationDetails, from: "destinationDetails")
 
         # @return [String] Reference ID that can be used to correlate the order with partner resources.
-        attribute(:external_reference_id, String, from: "externalReferenceId")
+        attribute?(:external_reference_id, String, from: "externalReferenceId")
 
         # @return [String] Inbound order ID.
         attribute(:order_id, String, from: "orderId")
@@ -35,10 +35,10 @@ module Peddler
         attribute(:packages_to_inbound, [DistributionPackageQuantity], from: "packagesToInbound")
 
         # @return [InboundPreferences]
-        attribute(:preferences, InboundPreferences)
+        attribute?(:preferences, InboundPreferences)
 
         # @return [String] Date when this order was last updated.
-        attribute(:updated_at, String, from: "updatedAt")
+        attribute?(:updated_at, String, from: "updatedAt")
       end
     end
   end

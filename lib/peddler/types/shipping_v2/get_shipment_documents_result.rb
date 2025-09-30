@@ -17,7 +17,7 @@ module Peddler
         attribute(:package_document_detail, PackageDocumentDetail, from: "packageDocumentDetail")
 
         # @return [Benefits]
-        attribute(:benefits, Benefits)
+        attribute?(:benefits, Benefits)
       end
     end
   end

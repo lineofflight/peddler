@@ -11,10 +11,10 @@ module Peddler
       # `null`.
       ExpiryDate = Structure.new do
         # @return [String] The month the card expires expressed as a number from `1` to `12`.
-        attribute(:month, String)
+        attribute?(:month, String)
 
         # @return [String] Year
-        attribute(:year, String)
+        attribute?(:year, String)
       end
     end
   end

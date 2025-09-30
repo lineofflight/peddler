@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the GetAccessPoints operation.
       GetAccessPointsResponse = Structure.new do
         # @return [GetAccessPointsResult]
-        attribute(:payload, GetAccessPointsResult)
+        attribute?(:payload, GetAccessPointsResult)
       end
     end
   end

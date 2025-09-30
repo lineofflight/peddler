@@ -11,16 +11,16 @@ module Peddler
       # Three standard images with text, presented across a single row.
       StandardThreeImageTextModule = Structure.new do
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [StandardImageTextBlock]
-        attribute(:block1, StandardImageTextBlock)
+        attribute?(:block1, StandardImageTextBlock)
 
         # @return [StandardImageTextBlock]
-        attribute(:block2, StandardImageTextBlock)
+        attribute?(:block2, StandardImageTextBlock)
 
         # @return [StandardImageTextBlock]
-        attribute(:block3, StandardImageTextBlock)
+        attribute?(:block3, StandardImageTextBlock)
       end
     end
   end

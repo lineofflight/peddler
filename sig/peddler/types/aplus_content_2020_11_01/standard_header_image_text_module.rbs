@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardHeaderImageTextModule < Data
-        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
+        def self.new: (?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
                     | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardHeaderImageTextModule

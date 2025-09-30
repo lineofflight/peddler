@@ -12,23 +12,23 @@ module Peddler
       # A fee payment event for the Early Reviewer Program.
       SellerReviewEnrollmentPaymentEvent = Structure.new do
         # @return [String] The date and time when the financial event was posted.
-        attribute(:posted_date, String, from: "PostedDate")
+        attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [String] An enrollment identifier.
-        attribute(:enrollment_id, String, from: "EnrollmentId")
+        attribute?(:enrollment_id, String, from: "EnrollmentId")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early
         # Reviewer Program.
-        attribute(:parent_asin, String, from: "ParentASIN")
+        attribute?(:parent_asin, String, from: "ParentASIN")
 
         # @return [FeeComponent]
-        attribute(:fee_component, FeeComponent, from: "FeeComponent")
+        attribute?(:fee_component, FeeComponent, from: "FeeComponent")
 
         # @return [ChargeComponent]
-        attribute(:charge_component, ChargeComponent, from: "ChargeComponent")
+        attribute?(:charge_component, ChargeComponent, from: "ChargeComponent")
 
         # @return [Money] The FeeComponent value plus the ChargeComponent value.
-        attribute(:total_amount, Money, from: "TotalAmount")
+        attribute?(:total_amount, Money, from: "TotalAmount")
       end
     end
   end

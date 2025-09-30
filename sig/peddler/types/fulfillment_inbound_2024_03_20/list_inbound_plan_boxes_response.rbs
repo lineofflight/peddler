@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListInboundPlanBoxesResponse < Data
-        def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
+        def self.new: (boxes: Array[Peddler::Types::FulfillmentInbound20240320::Box]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::Box]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListInboundPlanBoxesResponse

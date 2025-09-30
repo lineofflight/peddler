@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class TransactionsPayload < Data
-        def self.new: (next_token: String?, transactions: Array[Peddler::Types::Finances20240619::Transaction]?) -> Peddler::Types::Finances20240619::TransactionsPayload
+        def self.new: (?next_token: String?, ?transactions: Array[Peddler::Types::Finances20240619::Transaction]?) -> Peddler::Types::Finances20240619::TransactionsPayload
                     | (String?, Array[Peddler::Types::Finances20240619::Transaction]?) -> Peddler::Types::Finances20240619::TransactionsPayload
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::TransactionsPayload

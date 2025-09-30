@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class Constraint < Data
-        def self.new: (validation_reg_ex: String?, validation_string: String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
+        def self.new: (?validation_reg_ex: String?, validation_string: String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
                     | (String?, String?) -> Peddler::Types::MerchantFulfillmentV0::Constraint
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Constraint

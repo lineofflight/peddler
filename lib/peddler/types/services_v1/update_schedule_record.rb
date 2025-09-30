@@ -13,13 +13,13 @@ module Peddler
       # the requested operation on it.
       UpdateScheduleRecord = Structure.new do
         # @return [AvailabilityRecord] Availability record if the operation failed.
-        attribute(:availability, AvailabilityRecord)
+        attribute?(:availability, AvailabilityRecord)
 
         # @return [Array<Warning>] Warnings encountered, if any.
-        attribute(:warnings, [Warning])
+        attribute?(:warnings, [Warning])
 
         # @return [Array<Error>] Errors encountered, if any.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

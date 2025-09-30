@@ -10,10 +10,10 @@ module Peddler
       # Identity attributes associated with the item in the Amazon catalog for the indicated Amazon marketplace.
       ItemIdentifiersByMarketplace = Structure.new do
         # @return [String] A marketplace identifier. Identifies the Amazon marketplace for the listings item.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] Amazon Standard Identification Number (ASIN) of the listings item.
-        attribute(:asin, String)
+        attribute?(:asin, String)
       end
     end
   end

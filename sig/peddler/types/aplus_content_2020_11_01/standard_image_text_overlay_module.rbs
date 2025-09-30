@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardImageTextOverlayModule < Data
-        def self.new: (overlay_color_type: String?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
+        def self.new: (overlay_color_type: String?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
                     | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardImageTextOverlayModule

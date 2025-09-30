@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class OneClickShipmentValueAddedService < Data
-        def self.new: (id: String?, amount: Peddler::Types::Money?) -> Peddler::Types::ShippingV2::OneClickShipmentValueAddedService
+        def self.new: (id: String?, ?amount: Peddler::Types::Money?) -> Peddler::Types::ShippingV2::OneClickShipmentValueAddedService
                     | (String?, Peddler::Types::Money?) -> Peddler::Types::ShippingV2::OneClickShipmentValueAddedService
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::OneClickShipmentValueAddedService

@@ -10,16 +10,16 @@ module Peddler
       # Offer promotions to include in the result filter criteria.
       Promotion = Structure.new do
         # @return [DiscountFunding] A base discount set by the selling partner on the offer.
-        attribute(:selling_partner_funded_base_discount, DiscountFunding, from: "sellingPartnerFundedBaseDiscount")
+        attribute?(:selling_partner_funded_base_discount, DiscountFunding, from: "sellingPartnerFundedBaseDiscount")
 
         # @return [DiscountFunding] A tiered discount set by the selling partner on the offer.
-        attribute(:selling_partner_funded_tiered_discount, DiscountFunding, from: "sellingPartnerFundedTieredDiscount")
+        attribute?(:selling_partner_funded_tiered_discount, DiscountFunding, from: "sellingPartnerFundedTieredDiscount")
 
         # @return [DiscountFunding] A base discount set by Amazon on the offer.
-        attribute(:amazon_funded_base_discount, DiscountFunding, from: "amazonFundedBaseDiscount")
+        attribute?(:amazon_funded_base_discount, DiscountFunding, from: "amazonFundedBaseDiscount")
 
         # @return [DiscountFunding] A tiered discount set by Amazon on the offer.
-        attribute(:amazon_funded_tiered_discount, DiscountFunding, from: "amazonFundedTieredDiscount")
+        attribute?(:amazon_funded_tiered_discount, DiscountFunding, from: "amazonFundedTieredDiscount")
       end
     end
   end

@@ -11,10 +11,10 @@ module Peddler
       # The A+ Content standard text box block, which contains a paragraph and a headline.
       StandardTextBlock = Structure.new do
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [ParagraphComponent]
-        attribute(:body, ParagraphComponent)
+        attribute?(:body, ParagraphComponent)
       end
     end
   end

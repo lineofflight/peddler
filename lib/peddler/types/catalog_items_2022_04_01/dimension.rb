@@ -10,10 +10,10 @@ module Peddler
       # The value of an individual dimension for an Amazon catalog item or item package.
       Dimension = Structure.new do
         # @return [String] Unit of measurement for the dimension value.
-        attribute(:unit, String)
+        attribute?(:unit, String)
 
         # @return [Float] Numeric value of the dimension.
-        attribute(:value, Float)
+        attribute?(:value, Float)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SolicitationsV1
       class LinkObject < Data
-        def self.new: (href: String?, name: String?) -> Peddler::Types::SolicitationsV1::LinkObject
+        def self.new: (href: String?, ?name: String?) -> Peddler::Types::SolicitationsV1::LinkObject
                     | (String?, String?) -> Peddler::Types::SolicitationsV1::LinkObject
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SolicitationsV1::LinkObject

@@ -10,7 +10,7 @@ module Peddler
       # The policy for a delivery offering.
       DeliveryPolicy = Structure.new do
         # @return [DeliveryMessage] Localized messaging for a delivery offering.
-        attribute(:message, DeliveryMessage)
+        attribute?(:message, DeliveryMessage)
       end
     end
   end

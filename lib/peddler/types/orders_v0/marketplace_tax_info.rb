@@ -10,7 +10,7 @@ module Peddler
       # Tax information about the marketplace.
       MarketplaceTaxInfo = Structure.new do
         # @return [Array<TaxClassification>] A list of tax classifications that apply to the order.
-        attribute(:tax_classifications, [TaxClassification], from: "TaxClassifications")
+        attribute?(:tax_classifications, [TaxClassification], from: "TaxClassifications")
       end
     end
   end

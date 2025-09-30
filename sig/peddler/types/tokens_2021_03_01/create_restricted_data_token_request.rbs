@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Tokens20210301
       class CreateRestrictedDataTokenRequest < Data
-        def self.new: (target_application: String?, restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+        def self.new: (?target_application: String?, restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
                     | (String?, Array[Peddler::Types::Tokens20210301::RestrictedResource]?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest

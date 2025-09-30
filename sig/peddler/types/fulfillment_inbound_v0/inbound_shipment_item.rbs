@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class InboundShipmentItem < Data
-        def self.new: (shipment_id: String?, seller_sku: String?, fulfillment_network_sku: String?, quantity_shipped: Integer?, quantity_received: Integer?, quantity_in_case: Integer?, release_date: String?, prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
+        def self.new: (?shipment_id: String?, seller_sku: String?, ?fulfillment_network_sku: String?, quantity_shipped: Integer?, ?quantity_received: Integer?, ?quantity_in_case: Integer?, ?release_date: String?, ?prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
                     | (String?, String?, String?, Integer?, Integer?, Integer?, String?, Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem

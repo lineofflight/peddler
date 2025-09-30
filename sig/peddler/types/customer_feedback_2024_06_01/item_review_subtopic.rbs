@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewSubtopic < Data
-        def self.new: (subtopic: String?, metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, review_snippets: Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
+        def self.new: (subtopic: String?, metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, ?review_snippets: Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
                     | (String?, Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class SegmentDetails < Data
-        def self.new: (glance_view_weight_percentage: Float?, sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
+        def self.new: (?glance_view_weight_percentage: Float?, ?sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
                     | (Float?, Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::SegmentDetails

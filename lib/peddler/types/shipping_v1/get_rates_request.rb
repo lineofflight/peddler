@@ -20,7 +20,7 @@ module Peddler
         attribute(:service_types, Array, from: "serviceTypes")
 
         # @return [String] The start date and time. This defaults to the current date and time.
-        attribute(:ship_date, String, from: "shipDate")
+        attribute?(:ship_date, String, from: "shipDate")
 
         # @return [Array<ContainerSpecification>]
         attribute(:container_specifications, [ContainerSpecification], from: "containerSpecifications")

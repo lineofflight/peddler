@@ -14,14 +14,14 @@ module Peddler
         # positive reviews for the specified ASIN.
         #
         # **Max length:** 10
-        attribute(:positive_topics, [ItemReviewTrend], from: "positiveTopics")
+        attribute?(:positive_topics, [ItemReviewTrend], from: "positiveTopics")
 
         # @return [Array<ItemReviewTrend>] A list of the most negative review topics. The percentage of reviews that
         # contain the topic determines the topic's placement in the list. This value is `null` if there are not enough
         # negative reviews for the specified ASIN.
         #
         # **Max length:** 10
-        attribute(:negative_topics, [ItemReviewTrend], from: "negativeTopics")
+        attribute?(:negative_topics, [ItemReviewTrend], from: "negativeTopics")
       end
     end
   end

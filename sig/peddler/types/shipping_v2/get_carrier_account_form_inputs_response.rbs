@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class GetCarrierAccountFormInputsResponse < Data
-        def self.new: (linkable_carriers_list: Array[Peddler::Types::ShippingV2::LinkableCarrier]?) -> Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse
+        def self.new: (?linkable_carriers_list: Array[Peddler::Types::ShippingV2::LinkableCarrier]?) -> Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse
                     | (Array[Peddler::Types::ShippingV2::LinkableCarrier]?) -> Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse

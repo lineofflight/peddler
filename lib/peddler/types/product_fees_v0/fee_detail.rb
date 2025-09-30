@@ -17,16 +17,16 @@ module Peddler
         attribute(:fee_amount, Money, from: "FeeAmount")
 
         # @return [Money] The promotion amount for a given fee.
-        attribute(:fee_promotion, Money, from: "FeePromotion")
+        attribute?(:fee_promotion, Money, from: "FeePromotion")
 
         # @return [Money] The tax amount for a given fee.
-        attribute(:tax_amount, Money, from: "TaxAmount")
+        attribute?(:tax_amount, Money, from: "TaxAmount")
 
         # @return [Money] The final fee amount for a given fee.
         attribute(:final_fee, Money, from: "FinalFee")
 
         # @return [Array<IncludedFeeDetail>]
-        attribute(:included_fee_detail_list, [IncludedFeeDetail], from: "IncludedFeeDetailList")
+        attribute?(:included_fee_detail_list, [IncludedFeeDetail], from: "IncludedFeeDetailList")
       end
     end
   end

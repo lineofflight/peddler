@@ -11,10 +11,10 @@ module Peddler
       # set to `SHOW`.
       ExpirationDetails = Structure.new do
         # @return [String] The expiration date of the SKU.
-        attribute(:expiration, String)
+        attribute?(:expiration, String)
 
         # @return [Integer] The quantity that is present in AWD.
-        attribute(:onhand_quantity, Integer, from: "onhandQuantity")
+        attribute?(:onhand_quantity, Integer, from: "onhandQuantity")
       end
     end
   end

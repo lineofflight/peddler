@@ -10,7 +10,7 @@ module Peddler
       # The `scheduleSelfShipAppointment` request.
       ScheduleSelfShipAppointmentRequest = Structure.new do
         # @return [String]
-        attribute(:reason_comment, String, from: "reasonComment")
+        attribute?(:reason_comment, String, from: "reasonComment")
       end
     end
   end

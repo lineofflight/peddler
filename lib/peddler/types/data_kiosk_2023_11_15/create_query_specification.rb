@@ -18,7 +18,7 @@ module Peddler
         # `Query` object, and the `query` field for this object must also be set to the `query` field of the same
         # `Query` object. A `Query` object can be retrieved from either the `getQueries` or `getQuery` operation. In the
         # absence of this token value, the first page of query results will be requested.
-        attribute(:pagination_token, String, from: "paginationToken")
+        attribute?(:pagination_token, String, from: "paginationToken")
       end
     end
   end

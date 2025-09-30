@@ -10,13 +10,13 @@ module Peddler
       # A time window along with associated capacity in which the service can be performed.
       AppointmentSlot = Structure.new do
         # @return [String] Time window start time in ISO 8601 format.
-        attribute(:start_time, String, from: "startTime")
+        attribute?(:start_time, String, from: "startTime")
 
         # @return [String] Time window end time in ISO 8601 format.
-        attribute(:end_time, String, from: "endTime")
+        attribute?(:end_time, String, from: "endTime")
 
         # @return [Integer] Number of resources for which a slot can be reserved.
-        attribute(:capacity, Integer)
+        attribute?(:capacity, Integer)
       end
     end
   end

@@ -14,16 +14,16 @@ module Peddler
         attribute(:tracking_id, String, from: "trackingId")
 
         # @return [Money] This is required for off-Amazon shipments to determine value of shipments
-        attribute(:declared_value, Money, from: "declaredValue")
+        attribute?(:declared_value, Money, from: "declaredValue")
 
         # @return [String]
         attribute(:claim_reason, String, from: "claimReason")
 
         # @return [:boolean] Applicable for only On Amazon shipments to identify if replacement was sent
-        attribute(:replacement_package_sent, :boolean, from: "isReplacementPackageSent")
+        attribute?(:replacement_package_sent, :boolean, from: "isReplacementPackageSent")
 
         # @return [Array<String>]
-        attribute(:proofs, [String])
+        attribute?(:proofs, [String])
 
         # @return [String]
         attribute(:settlement_type, String, from: "settlementType")

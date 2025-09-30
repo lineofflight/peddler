@@ -13,7 +13,7 @@ module Peddler
       # Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
       ProductTypeDefinition = Structure.new do
         # @return [SchemaLink] Link to meta-schema describing the vocabulary used by the product type schema.
-        attribute(:meta_schema, SchemaLink, from: "metaSchema")
+        attribute?(:meta_schema, SchemaLink, from: "metaSchema")
 
         # @return [SchemaLink] Link to schema describing the attributes and requirements for the product type.
         attribute(:schema, SchemaLink)

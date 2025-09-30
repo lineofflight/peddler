@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20210801
       class ListingsItemPutRequest < Data
-        def self.new: (product_type: String?, requirements: String?, attributes: Hash[untyped, untyped]?) -> Peddler::Types::ListingsItems20210801::ListingsItemPutRequest
+        def self.new: (product_type: String?, ?requirements: String?, attributes: Hash[untyped, untyped]?) -> Peddler::Types::ListingsItems20210801::ListingsItemPutRequest
                     | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ListingsItems20210801::ListingsItemPutRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ListingsItemPutRequest

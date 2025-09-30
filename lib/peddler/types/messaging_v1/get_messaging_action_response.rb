@@ -12,16 +12,16 @@ module Peddler
       # (HAL) link to the JSON schema document that describes the expected input.
       GetMessagingActionResponse = Structure.new do
         # @return [Hash] The links response that is associated with the messaging action.
-        attribute(:_links, Hash)
+        attribute?(:_links, Hash)
 
         # @return [Hash] The embedded response associated with the messaging action.
-        attribute(:_embedded, Hash)
+        attribute?(:_embedded, Hash)
 
         # @return [MessagingAction]
-        attribute(:payload, MessagingAction)
+        attribute?(:payload, MessagingAction)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

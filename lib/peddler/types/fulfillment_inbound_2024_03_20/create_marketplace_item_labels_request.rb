@@ -10,14 +10,14 @@ module Peddler
       # The `createMarketplaceItemLabels` request.
       CreateMarketplaceItemLabelsRequest = Structure.new do
         # @return [Float] The height of the item label.
-        attribute(:height, Float)
+        attribute?(:height, Float)
 
         # @return [String]
         attribute(:label_type, String, from: "labelType")
 
         # @return [String] The locale code constructed from ISO 639 language code and ISO 3166-1 alpha-2 standard of
         # country codes separated by an underscore character.
-        attribute(:locale_code, String, from: "localeCode")
+        attribute?(:locale_code, String, from: "localeCode")
 
         # @return [String] The Marketplace ID. For a list of possible values, refer to [Marketplace
         # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
@@ -27,10 +27,10 @@ module Peddler
         attribute(:msku_quantities, [MskuQuantity], from: "mskuQuantities")
 
         # @return [String]
-        attribute(:page_type, String, from: "pageType")
+        attribute?(:page_type, String, from: "pageType")
 
         # @return [Float] The width of the item label.
-        attribute(:width, Float)
+        attribute?(:width, Float)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class DebtRecoveryEvent < Data
-        def self.new: (debt_recovery_type: String?, recovery_amount: Peddler::Types::Money?, over_payment_credit: Peddler::Types::Money?, debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
+        def self.new: (?debt_recovery_type: String?, ?recovery_amount: Peddler::Types::Money?, ?over_payment_credit: Peddler::Types::Money?, ?debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, ?charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
                     | (String?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, Array[Peddler::Types::FinancesV0::ChargeInstrument]?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryEvent

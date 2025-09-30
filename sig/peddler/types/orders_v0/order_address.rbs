@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class OrderAddress < Data
-        def self.new: (amazon_order_id: String?, buyer_company_name: String?, shipping_address: Peddler::Types::OrdersV0::Address?, delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?) -> Peddler::Types::OrdersV0::OrderAddress
+        def self.new: (amazon_order_id: String?, ?buyer_company_name: String?, ?shipping_address: Peddler::Types::OrdersV0::Address?, ?delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?) -> Peddler::Types::OrdersV0::OrderAddress
                     | (String?, String?, Peddler::Types::OrdersV0::Address?, Peddler::Types::OrdersV0::DeliveryPreferences?) -> Peddler::Types::OrdersV0::OrderAddress
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderAddress

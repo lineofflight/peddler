@@ -19,11 +19,11 @@ module Peddler
 
         # @return [ReviewTrendMetrics] The parent ASIN's review trend metrics. This value is `null` if there isn't
         # enough topic data for the parent ASIN.
-        attribute(:parent_asin_metrics, ReviewTrendMetrics, from: "parentAsinMetrics")
+        attribute?(:parent_asin_metrics, ReviewTrendMetrics, from: "parentAsinMetrics")
 
         # @return [BrowseNodeTrendMetrics] The browse node's review trend metrics. This value is `null` if there isn't
         # enough topic data for the browse node.
-        attribute(:browse_node_metrics, BrowseNodeTrendMetrics, from: "browseNodeMetrics")
+        attribute?(:browse_node_metrics, BrowseNodeTrendMetrics, from: "browseNodeMetrics")
       end
     end
   end

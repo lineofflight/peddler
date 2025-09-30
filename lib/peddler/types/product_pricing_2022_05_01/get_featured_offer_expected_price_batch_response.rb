@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchResponse = Structure.new do
         # @return [Array<FeaturedOfferExpectedPriceResponse>]
-        attribute(:responses, [FeaturedOfferExpectedPriceResponse])
+        attribute?(:responses, [FeaturedOfferExpectedPriceResponse])
       end
     end
   end

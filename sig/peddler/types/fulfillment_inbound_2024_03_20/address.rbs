@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Address < Data
-        def self.new: (address_line1: String?, address_line2: String?, city: String?, company_name: String?, country_code: String?, district_or_county: String?, email: String?, name: String?, phone_number: String?, postal_code: String?, state_or_province_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Address
+        def self.new: (address_line1: String?, ?address_line2: String?, city: String?, ?company_name: String?, country_code: String?, ?district_or_county: String?, ?email: String?, name: String?, ?phone_number: String?, postal_code: String?, ?state_or_province_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Address
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Address

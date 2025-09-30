@@ -13,13 +13,13 @@ module Peddler
       FeaturedOfferExpectedPriceResponseBody = Structure.new do
         # @return [OfferIdentifier] Metadata that identifies the target offer for which the FOEP result data was
         # computed.
-        attribute(:offer_identifier, OfferIdentifier, from: "offerIdentifier")
+        attribute?(:offer_identifier, OfferIdentifier, from: "offerIdentifier")
 
         # @return [Array<FeaturedOfferExpectedPriceResult>] The FOEP results for the requested target offer.
-        attribute(:featured_offer_expected_price_results, [FeaturedOfferExpectedPriceResult], from: "featuredOfferExpectedPriceResults")
+        attribute?(:featured_offer_expected_price_results, [FeaturedOfferExpectedPriceResult], from: "featuredOfferExpectedPriceResults")
 
         # @return [Array<Error>] The errors that occurred if the operation wasn't successful (HTTP status code non-200).
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

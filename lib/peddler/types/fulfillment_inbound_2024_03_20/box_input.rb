@@ -19,7 +19,7 @@ module Peddler
 
         # @return [Array<ItemInput>] The items and their quantity in the box. This must be empty if the box
         # `contentInformationSource` is `BARCODE_2D` or `MANUAL_PROCESS`.
-        attribute(:items, [ItemInput])
+        attribute?(:items, [ItemInput])
 
         # @return [Integer] The number of containers where all other properties like weight or dimensions are identical.
         attribute(:quantity, Integer)

@@ -13,7 +13,7 @@ module Peddler
         attribute(:href, String)
 
         # @return [String] An identifier for this object.
-        attribute(:name, String)
+        attribute?(:name, String)
       end
     end
   end

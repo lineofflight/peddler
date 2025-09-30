@@ -15,25 +15,25 @@ module Peddler
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [String] Buyer's Standard Identification Number (ASIN) of an item.
-        attribute(:buyer_product_identifier, String, from: "buyerProductIdentifier")
+        attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [Money] The net cost of an item per each or weight unit.
-        attribute(:net_cost, Money, from: "netCost")
+        attribute?(:net_cost, Money, from: "netCost")
 
         # @return [Money] The list price of an item per each or weight unit.
-        attribute(:list_price, Money, from: "listPrice")
+        attribute?(:list_price, Money, from: "listPrice")
 
         # @return [Hash] Ordered quantity information.
-        attribute(:ordered_quantity, Hash, from: "orderedQuantity")
+        attribute?(:ordered_quantity, Hash, from: "orderedQuantity")
 
         # @return [Hash] Acknowledgement status information.
-        attribute(:acknowledgement_status, Hash, from: "acknowledgementStatus")
+        attribute?(:acknowledgement_status, Hash, from: "acknowledgementStatus")
 
         # @return [Hash] Item receive status at the buyer's warehouse.
-        attribute(:receiving_status, Hash, from: "receivingStatus")
+        attribute?(:receiving_status, Hash, from: "receivingStatus")
       end
     end
   end

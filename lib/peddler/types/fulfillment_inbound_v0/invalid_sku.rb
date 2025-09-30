@@ -10,10 +10,10 @@ module Peddler
       # Contains detail about an invalid SKU
       InvalidSKU = Structure.new do
         # @return [String] The seller SKU of the item.
-        attribute(:seller_sku, String, from: "SellerSKU")
+        attribute?(:seller_sku, String, from: "SellerSKU")
 
         # @return [String] The reason why the seller SKU is invalid.
-        attribute(:error_reason, String, from: "ErrorReason")
+        attribute?(:error_reason, String, from: "ErrorReason")
       end
     end
   end

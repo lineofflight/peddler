@@ -22,10 +22,10 @@ module Peddler
         attribute(:seller_return_reason_code, String, from: "sellerReturnReasonCode")
 
         # @return [String] An optional comment about the return item.
-        attribute(:return_comment, String, from: "returnComment")
+        attribute?(:return_comment, String, from: "returnComment")
 
         # @return [String] The return reason code that the Amazon fulfillment center assigned to the return item.
-        attribute(:amazon_return_reason_code, String, from: "amazonReturnReasonCode")
+        attribute?(:amazon_return_reason_code, String, from: "amazonReturnReasonCode")
 
         # @return [String] Indicates if the return item has been processed by an Amazon fulfillment center.
         attribute(:status, String)
@@ -34,13 +34,13 @@ module Peddler
         attribute(:status_changed_date, String, from: "statusChangedDate")
 
         # @return [String] Identifies the return authorization used to return this item. Refer to `ReturnAuthorization`.
-        attribute(:return_authorization_id, String, from: "returnAuthorizationId")
+        attribute?(:return_authorization_id, String, from: "returnAuthorizationId")
 
         # @return [String]
-        attribute(:return_received_condition, String, from: "returnReceivedCondition")
+        attribute?(:return_received_condition, String, from: "returnReceivedCondition")
 
         # @return [String] The identifier for the Amazon fulfillment center that processed the return item.
-        attribute(:fulfillment_center_id, String, from: "fulfillmentCenterId")
+        attribute?(:fulfillment_center_id, String, from: "fulfillmentCenterId")
       end
     end
   end

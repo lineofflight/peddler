@@ -11,7 +11,7 @@ module Peddler
       SubmitShipmentStatusUpdatesRequest = Structure.new do
         # @return [Array<ShipmentStatusUpdate>] Contains a list of one or more `ShipmentStatusUpdate` objects. Each
         # `ShipmentStatusUpdate` object represents an update to the status of a specific shipment.
-        attribute(:shipment_status_updates, [ShipmentStatusUpdate], from: "shipmentStatusUpdates")
+        attribute?(:shipment_status_updates, [ShipmentStatusUpdate], from: "shipmentStatusUpdates")
       end
     end
   end

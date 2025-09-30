@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class DeliveryChannel < Data
-        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::DeliveryChannel
+        def self.new: (?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::DeliveryChannel
                     | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::DeliveryChannel
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::DeliveryChannel

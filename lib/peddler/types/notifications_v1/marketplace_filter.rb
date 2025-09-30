@@ -10,7 +10,7 @@ module Peddler
       # An event filter to customize your subscription to send notifications for only the specified `marketplaceId`s.
       MarketplaceFilter = Structure.new do
         # @return [Array<String>]
-        attribute(:marketplace_ids, [String], from: "marketplaceIds")
+        attribute?(:marketplace_ids, [String], from: "marketplaceIds")
       end
     end
   end

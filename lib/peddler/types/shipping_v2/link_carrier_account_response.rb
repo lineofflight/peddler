@@ -10,10 +10,10 @@ module Peddler
       # The Response for the LinkCarrierAccount operation.
       LinkCarrierAccountResponse = Structure.new do
         # @return [String]
-        attribute(:registration_status, String, from: "registrationStatus")
+        attribute?(:registration_status, String, from: "registrationStatus")
 
         # @return [String]
-        attribute(:account_id, String, from: "accountId")
+        attribute?(:account_id, String, from: "accountId")
       end
     end
   end

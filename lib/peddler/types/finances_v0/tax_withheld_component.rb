@@ -17,10 +17,10 @@ module Peddler
         # seller.
         #
         # * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
-        attribute(:tax_collection_model, String, from: "TaxCollectionModel")
+        attribute?(:tax_collection_model, String, from: "TaxCollectionModel")
 
         # @return [Array<ChargeComponent>] A list of charges that represent the types and amounts of taxes withheld.
-        attribute(:taxes_withheld, [ChargeComponent], from: "TaxesWithheld")
+        attribute?(:taxes_withheld, [ChargeComponent], from: "TaxesWithheld")
       end
     end
   end

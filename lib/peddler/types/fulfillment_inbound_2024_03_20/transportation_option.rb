@@ -15,13 +15,13 @@ module Peddler
         attribute(:carrier, Carrier)
 
         # @return [CarrierAppointment]
-        attribute(:carrier_appointment, CarrierAppointment, from: "carrierAppointment")
+        attribute?(:carrier_appointment, CarrierAppointment, from: "carrierAppointment")
 
         # @return [Array<String>] Identifies a list of preconditions for confirming the transportation option.
         attribute(:preconditions, [String])
 
         # @return [Quote]
-        attribute(:quote, Quote)
+        attribute?(:quote, Quote)
 
         # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
         attribute(:shipment_id, String, from: "shipmentId")

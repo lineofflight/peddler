@@ -10,10 +10,10 @@ module Peddler
       # The length.
       Length = Structure.new do
         # @return [Float] The value in units.
-        attribute(:value, Float)
+        attribute?(:value, Float)
 
         # @return [String]
-        attribute(:unit, String)
+        attribute?(:unit, String)
       end
     end
   end

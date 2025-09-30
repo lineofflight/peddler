@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the SubmitShipments operation.
       SubmitShipments = Structure.new do
         # @return [Array<Shipment>] A list of one or more shipments with underlying details.
-        attribute(:shipments, [Shipment])
+        attribute?(:shipments, [Shipment])
       end
     end
   end

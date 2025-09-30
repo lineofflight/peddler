@@ -10,10 +10,10 @@ module Peddler
       # Item identifier and serial number information.
       Item = Structure.new do
         # @return [String]
-        attribute(:order_item_id, String, from: "orderItemId")
+        attribute?(:order_item_id, String, from: "orderItemId")
 
         # @return [Array<OrderItemSerialNumber>]
-        attribute(:order_item_serial_numbers, Array, from: "orderItemSerialNumbers")
+        attribute?(:order_item_serial_numbers, Array, from: "orderItemSerialNumbers")
       end
     end
   end

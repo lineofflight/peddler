@@ -11,10 +11,10 @@ module Peddler
       # Response payload with the list of Packing Slips.
       GetPackingSlipListResponse = Structure.new do
         # @return [PackingSlipList]
-        attribute(:payload, PackingSlipList)
+        attribute?(:payload, PackingSlipList)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

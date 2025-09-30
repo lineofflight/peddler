@@ -12,22 +12,22 @@ module Peddler
       # The available rate that can be used to send the shipment
       Rate = Structure.new do
         # @return [String] An identifier for the rate.
-        attribute(:rate_id, String, from: "rateId")
+        attribute?(:rate_id, String, from: "rateId")
 
         # @return [Money] The total charge that will be billed for the rate.
-        attribute(:total_charge, Money, from: "totalCharge")
+        attribute?(:total_charge, Money, from: "totalCharge")
 
         # @return [Weight] The weight that was used to calculate the totalCharge.
-        attribute(:billed_weight, Weight, from: "billedWeight")
+        attribute?(:billed_weight, Weight, from: "billedWeight")
 
         # @return [String] The time after which the offering will expire.
-        attribute(:expiration_time, String, from: "expirationTime")
+        attribute?(:expiration_time, String, from: "expirationTime")
 
         # @return [String]
-        attribute(:service_type, String, from: "serviceType")
+        attribute?(:service_type, String, from: "serviceType")
 
         # @return [ShippingPromiseSet]
-        attribute(:promise, ShippingPromiseSet)
+        attribute?(:promise, ShippingPromiseSet)
       end
     end
   end

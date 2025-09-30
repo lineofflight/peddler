@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::ShipmentInvoicingV0::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ShipmentInvoicingV0::Error
                     | (String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::Error

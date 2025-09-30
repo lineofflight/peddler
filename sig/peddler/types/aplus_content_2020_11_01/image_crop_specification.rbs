@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class ImageCropSpecification < Data
-        def self.new: (size: Peddler::Types::AplusContent20201101::ImageDimensions?, offset: Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
+        def self.new: (size: Peddler::Types::AplusContent20201101::ImageDimensions?, ?offset: Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
                     | (Peddler::Types::AplusContent20201101::ImageDimensions?, Peddler::Types::AplusContent20201101::ImageOffsets?) -> Peddler::Types::AplusContent20201101::ImageCropSpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ImageCropSpecification

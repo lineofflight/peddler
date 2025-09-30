@@ -11,19 +11,19 @@ module Peddler
       # A SAFE-T claim reimbursement on the seller's account.
       SAFETReimbursementEvent = Structure.new do
         # @return [String] The date and time when the financial event was posted.
-        attribute(:posted_date, String, from: "PostedDate")
+        attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [String] A SAFE-T claim identifier.
-        attribute(:safet_claim_id, String, from: "SAFETClaimId")
+        attribute?(:safet_claim_id, String, from: "SAFETClaimId")
 
         # @return [Money] The amount of the reimbursement.
-        attribute(:reimbursed_amount, Money, from: "ReimbursedAmount")
+        attribute?(:reimbursed_amount, Money, from: "ReimbursedAmount")
 
         # @return [String] Indicates why the seller was reimbursed.
-        attribute(:reason_code, String, from: "ReasonCode")
+        attribute?(:reason_code, String, from: "ReasonCode")
 
         # @return [Array<SAFETReimbursementItem>]
-        attribute(:safet_reimbursement_item_list, [SAFETReimbursementItem], from: "SAFETReimbursementItemList")
+        attribute?(:safet_reimbursement_item_list, [SAFETReimbursementItem], from: "SAFETReimbursementItemList")
       end
     end
   end

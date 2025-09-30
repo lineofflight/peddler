@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class LinkCarrierAccountRequest < Data
-        def self.new: (client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, carrier_account_type: String?, carrier_account_attributes: Array[Peddler::Types::ShippingV2::CarrierAccountAttribute]?, encrypted_carrier_account_attributes: Array[Peddler::Types::ShippingV2::CarrierAccountAttribute]?) -> Peddler::Types::ShippingV2::LinkCarrierAccountRequest
+        def self.new: (?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, carrier_account_type: String?, carrier_account_attributes: Array[Peddler::Types::ShippingV2::CarrierAccountAttribute]?, ?encrypted_carrier_account_attributes: Array[Peddler::Types::ShippingV2::CarrierAccountAttribute]?) -> Peddler::Types::ShippingV2::LinkCarrierAccountRequest
                     | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, String?, Array[Peddler::Types::ShippingV2::CarrierAccountAttribute]?, Array[Peddler::Types::ShippingV2::CarrierAccountAttribute]?) -> Peddler::Types::ShippingV2::LinkCarrierAccountRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::LinkCarrierAccountRequest

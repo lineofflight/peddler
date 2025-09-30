@@ -17,7 +17,7 @@ module Peddler
 
         # @return [String] A translation of the description. The translation is in the language specified in the
         # `language` request parameter.
-        attribute(:translated_description, String, from: "translatedDescription")
+        attribute?(:translated_description, String, from: "translatedDescription")
       end
     end
   end

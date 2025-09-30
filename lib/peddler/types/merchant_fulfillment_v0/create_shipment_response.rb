@@ -11,10 +11,10 @@ module Peddler
       # Response schema.
       CreateShipmentResponse = Structure.new do
         # @return [Shipment] Shipment information.
-        attribute(:payload, Shipment)
+        attribute?(:payload, Shipment)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `createShipment` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

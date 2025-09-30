@@ -10,10 +10,10 @@ module Peddler
       # The start and end time that specifies the time interval of an event.
       TimeWindow = Structure.new do
         # @return [String] The start time of the time window.
-        attribute(:start, String)
+        attribute?(:start, String)
 
         # @return [String] The end time of the time window.
-        attribute(:end, String)
+        attribute?(:end, String)
       end
     end
   end

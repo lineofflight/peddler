@@ -11,17 +11,17 @@ module Peddler
       OfferProgramConfigurationPromotions = Structure.new do
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A base discount set by the selling partner on the
         # offer.
-        attribute(:selling_partner_funded_base_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "sellingPartnerFundedBaseDiscount")
+        attribute?(:selling_partner_funded_base_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "sellingPartnerFundedBaseDiscount")
 
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A tiered discount set by the selling partner on
         # the offer.
-        attribute(:selling_partner_funded_tiered_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "sellingPartnerFundedTieredDiscount")
+        attribute?(:selling_partner_funded_tiered_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "sellingPartnerFundedTieredDiscount")
 
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A base discount set by Amazon on the offer.
-        attribute(:amazon_funded_base_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "amazonFundedBaseDiscount")
+        attribute?(:amazon_funded_base_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "amazonFundedBaseDiscount")
 
         # @return [OfferProgramConfigurationPromotionsDiscountFunding] A tiered discount set by Amazon on the offer.
-        attribute(:amazon_funded_tiered_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "amazonFundedTieredDiscount")
+        attribute?(:amazon_funded_tiered_discount, OfferProgramConfigurationPromotionsDiscountFunding, from: "amazonFundedTieredDiscount")
       end
     end
   end

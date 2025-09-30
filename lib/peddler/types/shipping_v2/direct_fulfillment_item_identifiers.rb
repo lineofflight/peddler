@@ -16,7 +16,7 @@ module Peddler
 
         # @return [String] A unique identifier for an item provided by the client for a direct fulfillment shipment.
         # This is only populated if a single line item has multiple pieces. Defaults to 1.
-        attribute(:piece_number, String, from: "pieceNumber")
+        attribute?(:piece_number, String, from: "pieceNumber")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class Item < Data
-        def self.new: (order_item_id: String?, order_item_serial_numbers: Array[untyped]?) -> Peddler::Types::EasyShip20220323::Item
+        def self.new: (?order_item_id: String?, ?order_item_serial_numbers: Array[untyped]?) -> Peddler::Types::EasyShip20220323::Item
                     | (String?, Array[untyped]?) -> Peddler::Types::EasyShip20220323::Item
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::Item

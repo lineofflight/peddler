@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class TransactionReference < Data
-        def self.new: (transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference
+        def self.new: (?transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference
                     | (String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference

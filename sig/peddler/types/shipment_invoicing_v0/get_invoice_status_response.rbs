@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShipmentInvoicingV0
       class GetInvoiceStatusResponse < Data
-        def self.new: (payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?, errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
+        def self.new: (?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?, ?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
                     | (Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?, Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse

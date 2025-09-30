@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class ShipmentLabels < Data
-        def self.new: (label_download_url: String?, label_status: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+        def self.new: (?label_download_url: String?, label_status: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
                     | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels

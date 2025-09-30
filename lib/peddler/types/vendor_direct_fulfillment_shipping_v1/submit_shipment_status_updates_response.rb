@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the submitShipmentStatusUpdates operation.
       SubmitShipmentStatusUpdatesResponse = Structure.new do
         # @return [TransactionReference] The response payload for the submitShipmentStatusUpdates operation.
-        attribute(:payload, TransactionReference)
+        attribute?(:payload, TransactionReference)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class InvoiceData < Data
-        def self.new: (invoice_number: String?, invoice_date: String?) -> Peddler::Types::EasyShip20220323::InvoiceData
+        def self.new: (invoice_number: String?, ?invoice_date: String?) -> Peddler::Types::EasyShip20220323::InvoiceData
                     | (String?, String?) -> Peddler::Types::EasyShip20220323::InvoiceData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::InvoiceData

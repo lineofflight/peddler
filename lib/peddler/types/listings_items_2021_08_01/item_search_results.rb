@@ -18,7 +18,7 @@ module Peddler
 
         # @return [Pagination] If available, the `nextToken` and/or `previousToken` values required to return paginated
         # results.
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Item>] A list of listings items.
         attribute(:items, [Item])

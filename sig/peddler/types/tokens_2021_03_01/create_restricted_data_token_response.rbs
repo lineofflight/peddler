@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Tokens20210301
       class CreateRestrictedDataTokenResponse < Data
-        def self.new: (restricted_data_token: String?, expires_in: Integer?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
+        def self.new: (?restricted_data_token: String?, ?expires_in: Integer?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
                     | (String?, Integer?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse

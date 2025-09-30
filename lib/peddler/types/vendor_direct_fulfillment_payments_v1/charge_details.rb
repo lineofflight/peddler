@@ -17,7 +17,7 @@ module Peddler
         attribute(:charge_amount, Money, from: "chargeAmount")
 
         # @return [Array<TaxDetail>] Individual tax details per line item.
-        attribute(:tax_details, [TaxDetail], from: "taxDetails")
+        attribute?(:tax_details, [TaxDetail], from: "taxDetails")
       end
     end
   end

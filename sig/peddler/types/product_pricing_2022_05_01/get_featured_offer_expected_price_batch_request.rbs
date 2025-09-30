@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class GetFeaturedOfferExpectedPriceBatchRequest < Data
-        def self.new: (requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
+        def self.new: (?requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
                     | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest

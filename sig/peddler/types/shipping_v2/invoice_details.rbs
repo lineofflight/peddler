@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class InvoiceDetails < Data
-        def self.new: (invoice_number: String?, invoice_date: String?) -> Peddler::Types::ShippingV2::InvoiceDetails
+        def self.new: (?invoice_number: String?, ?invoice_date: String?) -> Peddler::Types::ShippingV2::InvoiceDetails
                     | (String?, String?) -> Peddler::Types::ShippingV2::InvoiceDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::InvoiceDetails

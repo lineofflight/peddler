@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentPreviewItem < Data
-        def self.new: (seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, shipping_weight_calculation_method: String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem
+        def self.new: (seller_sku: String?, quantity: Integer?, seller_fulfillment_order_item_id: String?, ?estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, ?shipping_weight_calculation_method: String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem
                     | (String?, Integer?, String?, Peddler::Types::FulfillmentOutbound20200701::Weight?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem

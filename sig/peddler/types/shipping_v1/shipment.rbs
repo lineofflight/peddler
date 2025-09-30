@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class Shipment < Data
-        def self.new: (shipment_id: String?, client_reference_id: String?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, shipper: Peddler::Types::ShippingV1::Party?, containers: Array[Peddler::Types::ShippingV1::Container]?) -> Peddler::Types::ShippingV1::Shipment
+        def self.new: (shipment_id: String?, client_reference_id: String?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, ?accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, ?shipper: Peddler::Types::ShippingV1::Party?, containers: Array[Peddler::Types::ShippingV1::Container]?) -> Peddler::Types::ShippingV1::Shipment
                     | (String?, String?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::AcceptedRate?, Peddler::Types::ShippingV1::Party?, Array[Peddler::Types::ShippingV1::Container]?) -> Peddler::Types::ShippingV1::Shipment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::Shipment

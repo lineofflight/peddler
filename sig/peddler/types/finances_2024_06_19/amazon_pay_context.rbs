@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class AmazonPayContext < Data
-        def self.new: (store_name: String?, order_type: String?, channel: String?) -> Peddler::Types::Finances20240619::AmazonPayContext
+        def self.new: (?store_name: String?, ?order_type: String?, ?channel: String?) -> Peddler::Types::Finances20240619::AmazonPayContext
                     | (String?, String?, String?) -> Peddler::Types::Finances20240619::AmazonPayContext
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::AmazonPayContext

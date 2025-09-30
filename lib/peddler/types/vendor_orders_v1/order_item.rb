@@ -16,10 +16,10 @@ module Peddler
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [String] Amazon Standard Identification Number (ASIN) of an item.
-        attribute(:amazon_product_identifier, String, from: "amazonProductIdentifier")
+        attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Item quantity ordered.
         attribute(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
@@ -28,10 +28,10 @@ module Peddler
         attribute(:back_order_allowed, :boolean, from: "isBackOrderAllowed")
 
         # @return [Money] The net cost of an item per each or weight unit.
-        attribute(:net_cost, Money, from: "netCost")
+        attribute?(:net_cost, Money, from: "netCost")
 
         # @return [Money] The list price of an item per each or weight unit.
-        attribute(:list_price, Money, from: "listPrice")
+        attribute?(:list_price, Money, from: "listPrice")
       end
     end
   end

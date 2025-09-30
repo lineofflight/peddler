@@ -11,18 +11,18 @@ module Peddler
       PurchaseOrders = Structure.new do
         # @return [String] Purchase order numbers involved in this shipment, list all the PO that are involved as part
         # of this shipment.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute?(:purchase_order_number, String, from: "purchaseOrderNumber")
 
         # @return [String] Purchase order numbers involved in this shipment, list all the PO that are involved as part
         # of this shipment.
-        attribute(:purchase_order_date, String, from: "purchaseOrderDate")
+        attribute?(:purchase_order_date, String, from: "purchaseOrderDate")
 
         # @return [String] Date range in which shipment is expected for these purchase orders.
-        attribute(:ship_window, String, from: "shipWindow")
+        attribute?(:ship_window, String, from: "shipWindow")
 
         # @return [Array<PurchaseOrderItems>] A list of the items that are associated to the PO in this transport and
         # their associated details.
-        attribute(:items, [PurchaseOrderItems])
+        attribute?(:items, [PurchaseOrderItems])
       end
     end
   end

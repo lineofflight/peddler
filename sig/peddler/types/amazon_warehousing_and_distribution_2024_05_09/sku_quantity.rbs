@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class SkuQuantity < Data
-        def self.new: (expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity
+        def self.new: (expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, ?received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity
                     | (Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity

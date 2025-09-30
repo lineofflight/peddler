@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardTechSpecsModule < Data
-        def self.new: (headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, table_count: Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
+        def self.new: (?headline: Peddler::Types::AplusContent20201101::TextComponent?, specification_list: Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, ?table_count: Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
                     | (Peddler::Types::AplusContent20201101::TextComponent?, Array[Peddler::Types::AplusContent20201101::StandardTextPairBlock]?, Integer?) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardTechSpecsModule

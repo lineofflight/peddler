@@ -12,31 +12,31 @@ module Peddler
       # The supply source details, including configurations and capabilities.
       SupplySource = Structure.new do
         # @return [String]
-        attribute(:supply_source_id, String, from: "supplySourceId")
+        attribute?(:supply_source_id, String, from: "supplySourceId")
 
         # @return [String]
-        attribute(:supply_source_code, String, from: "supplySourceCode")
+        attribute?(:supply_source_code, String, from: "supplySourceCode")
 
         # @return [String]
-        attribute(:alias, String)
+        attribute?(:alias, String)
 
         # @return [String]
-        attribute(:status, String)
+        attribute?(:status, String)
 
         # @return [Address]
-        attribute(:address, Address)
+        attribute?(:address, Address)
 
         # @return [SupplySourceConfiguration]
-        attribute(:configuration, SupplySourceConfiguration)
+        attribute?(:configuration, SupplySourceConfiguration)
 
         # @return [SupplySourceCapabilities]
-        attribute(:capabilities, SupplySourceCapabilities)
+        attribute?(:capabilities, SupplySourceCapabilities)
 
         # @return [String]
-        attribute(:created_at, String, from: "createdAt")
+        attribute?(:created_at, String, from: "createdAt")
 
         # @return [String]
-        attribute(:updated_at, String, from: "updatedAt")
+        attribute?(:updated_at, String, from: "updatedAt")
       end
     end
   end

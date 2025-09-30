@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the listFinancialEventGroups operation.
       ListFinancialEventGroupsResponse = Structure.new do
         # @return [ListFinancialEventGroupsPayload] The payload for the listFinancialEventGroups operation.
-        attribute(:payload, ListFinancialEventGroupsPayload)
+        attribute?(:payload, ListFinancialEventGroupsPayload)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the listFinancialEventGroups operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

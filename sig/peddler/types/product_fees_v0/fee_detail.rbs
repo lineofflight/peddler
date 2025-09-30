@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeeDetail < Data
-        def self.new: (fee_type: String?, fee_amount: Peddler::Types::Money?, fee_promotion: Peddler::Types::Money?, tax_amount: Peddler::Types::Money?, final_fee: Peddler::Types::Money?, included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?) -> Peddler::Types::ProductFeesV0::FeeDetail
+        def self.new: (fee_type: String?, fee_amount: Peddler::Types::Money?, ?fee_promotion: Peddler::Types::Money?, ?tax_amount: Peddler::Types::Money?, final_fee: Peddler::Types::Money?, ?included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?) -> Peddler::Types::ProductFeesV0::FeeDetail
                     | (String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?) -> Peddler::Types::ProductFeesV0::FeeDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeeDetail

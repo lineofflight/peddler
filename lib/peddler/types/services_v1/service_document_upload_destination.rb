@@ -19,7 +19,7 @@ module Peddler
         attribute(:encryption_details, EncryptionDetails, from: "encryptionDetails")
 
         # @return [Hash] The headers to include in the upload request.
-        attribute(:headers, Hash)
+        attribute?(:headers, Hash)
       end
     end
   end

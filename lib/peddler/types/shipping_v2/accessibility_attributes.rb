@@ -10,10 +10,10 @@ module Peddler
       # Defines the accessibility details of the access point.
       AccessibilityAttributes = Structure.new do
         # @return [String] The approximate distance of access point from input postalCode's centroid.
-        attribute(:distance, String)
+        attribute?(:distance, String)
 
         # @return [Integer] The approximate (static) drive time from input postal code's centroid.
-        attribute(:drive_time, Integer, from: "driveTime")
+        attribute?(:drive_time, Integer, from: "driveTime")
       end
     end
   end

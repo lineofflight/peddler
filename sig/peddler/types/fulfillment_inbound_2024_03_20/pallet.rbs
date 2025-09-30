@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Pallet < Data
-        def self.new: (dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, package_id: String?, quantity: Integer?, stackability: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
+        def self.new: (?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, package_id: String?, ?quantity: Integer?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
                     | (Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::Pallet
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Pallet

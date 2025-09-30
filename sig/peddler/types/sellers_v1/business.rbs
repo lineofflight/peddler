@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SellersV1
       class Business < Data
-        def self.new: (name: String?, registered_business_address: Peddler::Types::SellersV1::Address?, company_registration_number: String?, company_tax_identification_number: String?, non_latin_name: String?) -> Peddler::Types::SellersV1::Business
+        def self.new: (name: String?, registered_business_address: Peddler::Types::SellersV1::Address?, ?company_registration_number: String?, ?company_tax_identification_number: String?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::Business
                     | (String?, Peddler::Types::SellersV1::Address?, String?, String?, String?) -> Peddler::Types::SellersV1::Business
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Business

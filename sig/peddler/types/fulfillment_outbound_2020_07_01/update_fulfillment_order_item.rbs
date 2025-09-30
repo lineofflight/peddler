@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class UpdateFulfillmentOrderItem < Data
-        def self.new: (seller_sku: String?, seller_fulfillment_order_item_id: String?, quantity: Integer?, gift_message: String?, displayable_comment: String?, fulfillment_network_sku: String?, order_item_disposition: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem
+        def self.new: (?seller_sku: String?, seller_fulfillment_order_item_id: String?, quantity: Integer?, ?gift_message: String?, ?displayable_comment: String?, ?fulfillment_network_sku: String?, ?order_item_disposition: String?, ?per_unit_declared_value: Peddler::Types::Money?, ?per_unit_price: Peddler::Types::Money?, ?per_unit_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem
                     | (String?, String?, Integer?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem

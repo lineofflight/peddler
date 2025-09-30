@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SellerWallet20240301
       class Balance < Data
-        def self.new: (account_id: String?, balance_type: String?, balance_amount: Float?, balance_currency: String?, last_update_date: String?) -> Peddler::Types::SellerWallet20240301::Balance
+        def self.new: (account_id: String?, ?balance_type: String?, balance_amount: Float?, balance_currency: String?, last_update_date: String?) -> Peddler::Types::SellerWallet20240301::Balance
                     | (String?, String?, Float?, String?, String?) -> Peddler::Types::SellerWallet20240301::Balance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Balance

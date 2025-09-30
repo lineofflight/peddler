@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `listReturnReasonCodes` operation.
       ListReturnReasonCodesResponse = Structure.new do
         # @return [ListReturnReasonCodesResult] The payload for the `listReturnReasonCodes` operation.
-        attribute(:payload, ListReturnReasonCodesResult)
+        attribute?(:payload, ListReturnReasonCodesResult)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `listReturnReasonCodes` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

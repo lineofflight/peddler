@@ -21,10 +21,10 @@ module Peddler
         attribute(:price, Money)
 
         # @return [Points]
-        attribute(:points, Points)
+        attribute?(:points, Points)
 
         # @return [Audience] Buyer segment or program this offer is applicable to.
-        attribute(:audience, Audience)
+        attribute?(:audience, Audience)
       end
     end
   end

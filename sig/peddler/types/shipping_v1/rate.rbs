@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class Rate < Data
-        def self.new: (rate_id: String?, total_charge: Peddler::Types::Money?, billed_weight: Peddler::Types::ShippingV1::Weight?, expiration_time: String?, service_type: String?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet?) -> Peddler::Types::ShippingV1::Rate
+        def self.new: (?rate_id: String?, ?total_charge: Peddler::Types::Money?, ?billed_weight: Peddler::Types::ShippingV1::Weight?, ?expiration_time: String?, ?service_type: String?, ?promise: Peddler::Types::ShippingV1::ShippingPromiseSet?) -> Peddler::Types::ShippingV1::Rate
                     | (String?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?, String?, String?, Peddler::Types::ShippingV1::ShippingPromiseSet?) -> Peddler::Types::ShippingV1::Rate
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::Rate

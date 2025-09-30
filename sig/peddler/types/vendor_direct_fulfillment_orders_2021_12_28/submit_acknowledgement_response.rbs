@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class SubmitAcknowledgementResponse < Data
-        def self.new: (payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?, errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
+        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?, ?errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
                     | (Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?, Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse

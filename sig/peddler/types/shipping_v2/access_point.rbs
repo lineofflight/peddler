@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class AccessPoint < Data
-        def self.new: (access_point_id: String?, name: String?, timezone: String?, type: String?, accessibility_attributes: Peddler::Types::ShippingV2::AccessibilityAttributes?, address: Peddler::Types::ShippingV2::Address?, exception_operating_hours: Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?, assistance_type: String?, score: String?, standard_operating_hours: Peddler::Types::ShippingV2::DayOfWeekTimeMap?) -> Peddler::Types::ShippingV2::AccessPoint
+        def self.new: (?access_point_id: String?, ?name: String?, ?timezone: String?, ?type: String?, ?accessibility_attributes: Peddler::Types::ShippingV2::AccessibilityAttributes?, ?address: Peddler::Types::ShippingV2::Address?, ?exception_operating_hours: Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?, ?assistance_type: String?, ?score: String?, ?standard_operating_hours: Peddler::Types::ShippingV2::DayOfWeekTimeMap?) -> Peddler::Types::ShippingV2::AccessPoint
                     | (String?, String?, String?, String?, Peddler::Types::ShippingV2::AccessibilityAttributes?, Peddler::Types::ShippingV2::Address?, Array[Peddler::Types::ShippingV2::ExceptionOperatingHours]?, String?, String?, Peddler::Types::ShippingV2::DayOfWeekTimeMap?) -> Peddler::Types::ShippingV2::AccessPoint
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::AccessPoint

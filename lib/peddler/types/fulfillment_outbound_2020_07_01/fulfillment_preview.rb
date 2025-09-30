@@ -18,7 +18,7 @@ module Peddler
         attribute(:shipping_speed_category, String, from: "shippingSpeedCategory")
 
         # @return [ScheduledDeliveryInfo]
-        attribute(:scheduled_delivery_info, ScheduledDeliveryInfo, from: "scheduledDeliveryInfo")
+        attribute?(:scheduled_delivery_info, ScheduledDeliveryInfo, from: "scheduledDeliveryInfo")
 
         # @return [:boolean] When true, this fulfillment order preview is fulfillable.
         attribute(:fulfillable, :boolean, from: "isFulfillable")
@@ -27,17 +27,17 @@ module Peddler
         attribute(:cod_capable, :boolean, from: "isCODCapable")
 
         # @return [Weight] Estimated shipping weight for this fulfillment order preview.
-        attribute(:estimated_shipping_weight, Weight, from: "estimatedShippingWeight")
+        attribute?(:estimated_shipping_weight, Weight, from: "estimatedShippingWeight")
 
         # @return [Array<Fee>] The estimated fulfillment fees for this fulfillment order preview, if applicable. The
         # fees data will not be available for IN marketplace orders.
-        attribute(:estimated_fees, [Fee], from: "estimatedFees")
+        attribute?(:estimated_fees, [Fee], from: "estimatedFees")
 
         # @return [Array<FulfillmentPreviewShipment>]
-        attribute(:fulfillment_preview_shipments, [FulfillmentPreviewShipment], from: "fulfillmentPreviewShipments")
+        attribute?(:fulfillment_preview_shipments, [FulfillmentPreviewShipment], from: "fulfillmentPreviewShipments")
 
         # @return [Array<UnfulfillablePreviewItem>]
-        attribute(:unfulfillable_preview_items, [UnfulfillablePreviewItem], from: "unfulfillablePreviewItems")
+        attribute?(:unfulfillable_preview_items, [UnfulfillablePreviewItem], from: "unfulfillablePreviewItems")
 
         # @return [Array<String>] Error codes associated with the fulfillment order preview that indicate why the order
         # is not fulfillable.
@@ -46,13 +46,13 @@ module Peddler
         #
         # `DeliverySLAUnavailable`
         # `InvalidDestinationAddress`
-        attribute(:order_unfulfillable_reasons, [String], from: "orderUnfulfillableReasons")
+        attribute?(:order_unfulfillable_reasons, [String], from: "orderUnfulfillableReasons")
 
         # @return [String] The marketplace the fulfillment order is placed against.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
-        attribute(:feature_constraints, [FeatureSettings], from: "featureConstraints")
+        attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")
       end
     end
   end

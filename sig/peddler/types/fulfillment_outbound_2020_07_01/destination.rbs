@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class Destination < Data
-        def self.new: (delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, ip_address: String?) -> Peddler::Types::FulfillmentOutbound20200701::Destination
+        def self.new: (?delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, ?ip_address: String?) -> Peddler::Types::FulfillmentOutbound20200701::Destination
                     | (Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Destination
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Destination

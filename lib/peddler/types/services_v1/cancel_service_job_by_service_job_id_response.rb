@@ -10,7 +10,7 @@ module Peddler
       # Response schema for the `cancelServiceJobByServiceJobId` operation.
       CancelServiceJobByServiceJobIdResponse = Structure.new do
         # @return [Array<Error>] Encountered errors for the `cancelServiceJobByServiceJobId` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

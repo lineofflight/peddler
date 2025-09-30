@@ -25,16 +25,16 @@ module Peddler
 
         # @return [String] Expected completion date of a transaction, for existing active Payees (Trusted Beneficiaries)
         # it will be 24 hours but for new destination bank accounts the value could go up to 5 days
-        attribute(:expected_completion_date, String, from: "expectedCompletionDate")
+        attribute?(:expected_completion_date, String, from: "expectedCompletionDate")
 
         # @return [String] Transaction completion date
-        attribute(:transaction_actual_completion_date, String, from: "transactionActualCompletionDate")
+        attribute?(:transaction_actual_completion_date, String, from: "transactionActualCompletionDate")
 
         # @return [String] The last update date on the transaction
         attribute(:last_update_date, String, from: "lastUpdateDate")
 
         # @return [String] Amazon SW customer who requested the transaction
-        attribute(:requester_name, String, from: "requesterName")
+        attribute?(:requester_name, String, from: "requesterName")
 
         # @return [String] The transaction initiation source. This value is either the Amazon portal or PISP name that
         # the customer used to start the transaction.
@@ -58,10 +58,10 @@ module Peddler
 
         # @return [Money] Specifies the amount of completed transaction in the destination account currency, this will
         # be populated only for international transactions
-        attribute(:transaction_final_amount, Money, from: "transactionFinalAmount")
+        attribute?(:transaction_final_amount, Money, from: "transactionFinalAmount")
 
         # @return [String] Description in case the transaction fails before completion
-        attribute(:transaction_failure_reason, String, from: "transactionFailureReason")
+        attribute?(:transaction_failure_reason, String, from: "transactionFailureReason")
       end
     end
   end

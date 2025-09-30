@@ -11,7 +11,7 @@ module Peddler
       # transportation, this is a single tracking entry for the entire shipment.
       TrackingDetails = Structure.new do
         # @return [CarrierCode] Unique or identifying code for the carrier.
-        attribute(:carrier_code, CarrierCode, from: "carrierCode")
+        attribute?(:carrier_code, CarrierCode, from: "carrierCode")
 
         # @return [String] The identifier that is received from transportation to uniquely identify a booking.
         attribute(:booking_id, String, from: "bookingId")

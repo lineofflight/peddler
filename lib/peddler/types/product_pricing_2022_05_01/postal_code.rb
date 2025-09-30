@@ -10,10 +10,10 @@ module Peddler
       # Postal code value with country code
       PostalCode = Structure.new do
         # @return [String] Country code value
-        attribute(:country_code, String, from: "countryCode")
+        attribute?(:country_code, String, from: "countryCode")
 
         # @return [String] Postal code value
-        attribute(:value, String)
+        attribute?(:value, String)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class PrepInstruction < Data
-        def self.new: (prep_owner: String?, prep_type: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction
+        def self.new: (?prep_owner: String?, ?prep_type: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction
                     | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction

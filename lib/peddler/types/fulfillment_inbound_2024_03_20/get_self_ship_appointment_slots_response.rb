@@ -11,7 +11,7 @@ module Peddler
       # The `getSelfShipAppointmentSlots` response.
       GetSelfShipAppointmentSlotsResponse = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [SelfShipAppointmentSlotsAvailability]
         attribute(:self_ship_appointment_slots_availability, SelfShipAppointmentSlotsAvailability, from: "selfShipAppointmentSlotsAvailability")

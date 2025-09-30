@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class ExceptionDates < Data
-        def self.new: (exception_date: String?, open: bool?, open_intervals: Array[Peddler::Types::OrdersV0::OpenInterval]?) -> Peddler::Types::OrdersV0::ExceptionDates
+        def self.new: (?exception_date: String?, ?open: bool?, ?open_intervals: Array[Peddler::Types::OrdersV0::OpenInterval]?) -> Peddler::Types::OrdersV0::ExceptionDates
                     | (String?, bool?, Array[Peddler::Types::OrdersV0::OpenInterval]?) -> Peddler::Types::OrdersV0::ExceptionDates
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ExceptionDates

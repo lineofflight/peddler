@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInventoryV1
       class InventoryDetails < Data
-        def self.new: (fulfillable_quantity: Integer?, inbound_working_quantity: Integer?, inbound_shipped_quantity: Integer?, inbound_receiving_quantity: Integer?, reserved_quantity: Peddler::Types::FBAInventoryV1::ReservedQuantity?, researching_quantity: Peddler::Types::FBAInventoryV1::ResearchingQuantity?, unfulfillable_quantity: Peddler::Types::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::Types::FBAInventoryV1::InventoryDetails
+        def self.new: (?fulfillable_quantity: Integer?, ?inbound_working_quantity: Integer?, ?inbound_shipped_quantity: Integer?, ?inbound_receiving_quantity: Integer?, ?reserved_quantity: Peddler::Types::FBAInventoryV1::ReservedQuantity?, ?researching_quantity: Peddler::Types::FBAInventoryV1::ResearchingQuantity?, ?unfulfillable_quantity: Peddler::Types::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::Types::FBAInventoryV1::InventoryDetails
                     | (Integer?, Integer?, Integer?, Integer?, Peddler::Types::FBAInventoryV1::ReservedQuantity?, Peddler::Types::FBAInventoryV1::ResearchingQuantity?, Peddler::Types::FBAInventoryV1::UnfulfillableQuantity?) -> Peddler::Types::FBAInventoryV1::InventoryDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::InventoryDetails

@@ -11,10 +11,10 @@ module Peddler
       # Tracking information input for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.
       TrackingDetailsInput = Structure.new do
         # @return [LtlTrackingDetailInput]
-        attribute(:ltl_tracking_detail, LtlTrackingDetailInput, from: "ltlTrackingDetail")
+        attribute?(:ltl_tracking_detail, LtlTrackingDetailInput, from: "ltlTrackingDetail")
 
         # @return [SpdTrackingDetailInput]
-        attribute(:spd_tracking_detail, SpdTrackingDetailInput, from: "spdTrackingDetail")
+        attribute?(:spd_tracking_detail, SpdTrackingDetailInput, from: "spdTrackingDetail")
       end
     end
   end

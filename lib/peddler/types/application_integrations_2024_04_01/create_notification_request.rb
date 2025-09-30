@@ -17,7 +17,7 @@ module Peddler
         attribute(:notification_parameters, NotificationParameters, from: "notificationParameters")
 
         # @return [String] An encrypted marketplace identifier for the posted notification.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
       end
     end
   end

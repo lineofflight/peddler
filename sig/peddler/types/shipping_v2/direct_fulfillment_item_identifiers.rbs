@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class DirectFulfillmentItemIdentifiers < Data
-        def self.new: (line_item_id: String?, piece_number: String?) -> Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers
+        def self.new: (line_item_id: String?, ?piece_number: String?) -> Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers
                     | (String?, String?) -> Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers

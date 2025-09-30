@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class SellerInputDefinition < Data
-        def self.new: (required: bool?, data_type: String?, constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, input_display_text: String?, input_target: String?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, restricted_set_values: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
+        def self.new: (required: bool?, data_type: String?, constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, input_display_text: String?, ?input_target: String?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, ?restricted_set_values: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
                     | (bool?, String?, Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, String?, String?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition

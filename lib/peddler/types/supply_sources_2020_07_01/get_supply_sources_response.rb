@@ -10,10 +10,10 @@ module Peddler
       # The paginated list of supply sources.
       GetSupplySourcesResponse = Structure.new do
         # @return [Array<Object>]
-        attribute(:supply_sources, Array, from: "supplySources")
+        attribute?(:supply_sources, Array, from: "supplySources")
 
         # @return [String] If present, use this pagination token to retrieve the next page of supply sources.
-        attribute(:next_page_token, String, from: "nextPageToken")
+        attribute?(:next_page_token, String, from: "nextPageToken")
       end
     end
   end

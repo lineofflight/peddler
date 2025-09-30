@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class ServiceUploadDocument < Data
-        def self.new: (content_type: String?, content_length: Float?, content_md5: String?) -> Peddler::Types::ServicesV1::ServiceUploadDocument
+        def self.new: (content_type: String?, content_length: Float?, ?content_md5: String?) -> Peddler::Types::ServicesV1::ServiceUploadDocument
                     | (String?, Float?, String?) -> Peddler::Types::ServicesV1::ServiceUploadDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::ServiceUploadDocument

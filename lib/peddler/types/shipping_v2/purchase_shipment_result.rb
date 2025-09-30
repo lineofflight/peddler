@@ -21,7 +21,7 @@ module Peddler
         attribute(:promise, Promise)
 
         # @return [Benefits]
-        attribute(:benefits, Benefits)
+        attribute?(:benefits, Benefits)
       end
     end
   end

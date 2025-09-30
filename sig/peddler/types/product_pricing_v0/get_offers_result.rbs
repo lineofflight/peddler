@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class GetOffersResult < Data
-        def self.new: (marketplace_id: String?, asin: String?, sku: String?, item_condition: String?, status: String?, identifier: Peddler::Types::ProductPricingV0::ItemIdentifier?, summary: Peddler::Types::ProductPricingV0::Summary?, offers: Array[Peddler::Types::ProductPricingV0::OfferDetail]?) -> Peddler::Types::ProductPricingV0::GetOffersResult
+        def self.new: (marketplace_id: String?, ?asin: String?, ?sku: String?, item_condition: String?, status: String?, identifier: Peddler::Types::ProductPricingV0::ItemIdentifier?, summary: Peddler::Types::ProductPricingV0::Summary?, offers: Array[Peddler::Types::ProductPricingV0::OfferDetail]?) -> Peddler::Types::ProductPricingV0::GetOffersResult
                     | (String?, String?, String?, String?, String?, Peddler::Types::ProductPricingV0::ItemIdentifier?, Peddler::Types::ProductPricingV0::Summary?, Array[Peddler::Types::ProductPricingV0::OfferDetail]?) -> Peddler::Types::ProductPricingV0::GetOffersResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetOffersResult

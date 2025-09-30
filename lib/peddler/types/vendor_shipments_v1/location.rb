@@ -10,13 +10,13 @@ module Peddler
       # Location identifier.
       Location = Structure.new do
         # @return [String] Type of location identification.
-        attribute(:type, String)
+        attribute?(:type, String)
 
         # @return [String] Location code.
-        attribute(:location_code, String, from: "locationCode")
+        attribute?(:location_code, String, from: "locationCode")
 
         # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
+        attribute?(:country_code, String, from: "countryCode")
       end
     end
   end

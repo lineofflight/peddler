@@ -14,7 +14,7 @@ module Peddler
         attribute(:asin, String)
 
         # @return [String] The marketplace for which eligibility was determined.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The program for which eligibility was determined.
         attribute(:program, String)
@@ -23,7 +23,7 @@ module Peddler
         attribute(:eligible_for_program, :boolean, from: "isEligibleForProgram")
 
         # @return [Array<String>] Potential Ineligibility Reason Codes.
-        attribute(:ineligibility_reason_list, [String], from: "ineligibilityReasonList")
+        attribute?(:ineligibility_reason_list, [String], from: "ineligibilityReasonList")
       end
     end
   end

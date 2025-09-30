@@ -11,10 +11,10 @@ module Peddler
       # The payload for the `getAdditionalSellerInputs` operation.
       GetAdditionalSellerInputsResult = Structure.new do
         # @return [Array<AdditionalInputs>]
-        attribute(:shipment_level_fields, [AdditionalInputs], from: "ShipmentLevelFields")
+        attribute?(:shipment_level_fields, [AdditionalInputs], from: "ShipmentLevelFields")
 
         # @return [Array<ItemLevelFields>]
-        attribute(:item_level_fields_list, [ItemLevelFields], from: "ItemLevelFieldsList")
+        attribute?(:item_level_fields_list, [ItemLevelFields], from: "ItemLevelFieldsList")
       end
     end
   end

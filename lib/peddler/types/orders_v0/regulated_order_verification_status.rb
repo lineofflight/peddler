@@ -23,18 +23,18 @@ module Peddler
 
         # @return [RejectionReason] The reason for rejecting the order's regulated information. Not present if the order
         # isn't rejected.
-        attribute(:rejection_reason, RejectionReason, from: "RejectionReason")
+        attribute?(:rejection_reason, RejectionReason, from: "RejectionReason")
 
         # @return [String] The date the order was reviewed. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format.
-        attribute(:review_date, String, from: "ReviewDate")
+        attribute?(:review_date, String, from: "ReviewDate")
 
         # @return [String] The identifier for the order's regulated information reviewer.
-        attribute(:external_reviewer_id, String, from: "ExternalReviewerId")
+        attribute?(:external_reviewer_id, String, from: "ExternalReviewerId")
 
         # @return [Array<ValidVerificationDetail>] A list of valid verification details that may be provided and the
         # criteria required for when the verification detail can be provided.
-        attribute(:valid_verification_details, [ValidVerificationDetail], from: "ValidVerificationDetails")
+        attribute?(:valid_verification_details, [ValidVerificationDetail], from: "ValidVerificationDetails")
       end
     end
   end

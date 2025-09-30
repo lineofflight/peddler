@@ -10,10 +10,10 @@ module Peddler
       # The shipment invoice status information.
       ShipmentInvoiceStatusInfo = Structure.new do
         # @return [String] The Amazon-defined shipment identifier.
-        attribute(:amazon_shipment_id, String, from: "AmazonShipmentId")
+        attribute?(:amazon_shipment_id, String, from: "AmazonShipmentId")
 
         # @return [String]
-        attribute(:invoice_status, String, from: "InvoiceStatus")
+        attribute?(:invoice_status, String, from: "InvoiceStatus")
       end
     end
   end

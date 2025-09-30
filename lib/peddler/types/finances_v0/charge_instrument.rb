@@ -11,13 +11,13 @@ module Peddler
       # A payment instrument.
       ChargeInstrument = Structure.new do
         # @return [String] A short description of the charge instrument.
-        attribute(:description, String, from: "Description")
+        attribute?(:description, String, from: "Description")
 
         # @return [String] The account tail (trailing digits) of the charge instrument.
-        attribute(:tail, String, from: "Tail")
+        attribute?(:tail, String, from: "Tail")
 
         # @return [Money] The amount charged to this charge instrument.
-        attribute(:amount, Money, from: "Amount")
+        attribute?(:amount, Money, from: "Amount")
       end
     end
   end

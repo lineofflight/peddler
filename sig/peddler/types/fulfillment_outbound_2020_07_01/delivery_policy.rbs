@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class DeliveryPolicy < Data
-        def self.new: (message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy
+        def self.new: (?message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy
                     | (Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class AccessPointDetails < Data
-        def self.new: (access_point_id: String?) -> Peddler::Types::ShippingV2::AccessPointDetails
+        def self.new: (?access_point_id: String?) -> Peddler::Types::ShippingV2::AccessPointDetails
                     | (String?) -> Peddler::Types::ShippingV2::AccessPointDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::AccessPointDetails

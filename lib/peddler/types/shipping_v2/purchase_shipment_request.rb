@@ -20,7 +20,7 @@ module Peddler
         attribute(:requested_document_specification, RequestedDocumentSpecification, from: "requestedDocumentSpecification")
 
         # @return [Array<RequestedValueAddedService>]
-        attribute(:requested_value_added_services, [RequestedValueAddedService], from: "requestedValueAddedServices")
+        attribute?(:requested_value_added_services, [RequestedValueAddedService], from: "requestedValueAddedServices")
 
         # @return [Hash] The additional inputs required to purchase a shipping offering, in JSON format. The JSON
         # provided here must adhere to the JSON schema that is returned in the response to the getAdditionalInputs
@@ -28,7 +28,7 @@ module Peddler
         #
         # Additional inputs are only required when indicated by the requiresAdditionalInputs property in the response to
         # the getRates operation.
-        attribute(:additional_inputs, Hash, from: "additionalInputs")
+        attribute?(:additional_inputs, Hash, from: "additionalInputs")
       end
     end
   end

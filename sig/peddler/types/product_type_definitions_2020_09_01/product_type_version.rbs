@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class ProductTypeVersion < Data
-        def self.new: (version: String?, latest: bool?, release_candidate: bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
+        def self.new: (version: String?, latest: bool?, ?release_candidate: bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
                     | (String?, bool?, bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion

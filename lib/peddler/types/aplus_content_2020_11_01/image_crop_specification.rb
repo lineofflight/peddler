@@ -16,7 +16,7 @@ module Peddler
         attribute(:size, ImageDimensions)
 
         # @return [ImageOffsets]
-        attribute(:offset, ImageOffsets)
+        attribute?(:offset, ImageOffsets)
       end
     end
   end

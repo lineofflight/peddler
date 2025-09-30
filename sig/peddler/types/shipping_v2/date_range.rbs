@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class DateRange < Data
-        def self.new: (start_date: String?, end_date: String?) -> Peddler::Types::ShippingV2::DateRange
+        def self.new: (?start_date: String?, ?end_date: String?) -> Peddler::Types::ShippingV2::DateRange
                     | (String?, String?) -> Peddler::Types::ShippingV2::DateRange
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DateRange

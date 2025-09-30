@@ -10,10 +10,10 @@ module Peddler
       # Range capacity entity where each entry has a capacity type and corresponding slots.
       RangeCapacity = Structure.new do
         # @return [String] Capacity type corresponding to the slots.
-        attribute(:capacity_type, String, from: "capacityType")
+        attribute?(:capacity_type, String, from: "capacityType")
 
         # @return [Array<RangeSlot>] Array of capacity slots in range slot format.
-        attribute(:slots, [RangeSlot])
+        attribute?(:slots, [RangeSlot])
       end
     end
   end

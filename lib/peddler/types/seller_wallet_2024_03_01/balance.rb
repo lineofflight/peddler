@@ -13,7 +13,7 @@ module Peddler
         attribute(:account_id, String, from: "accountId")
 
         # @return [String] Type of the balance
-        attribute(:balance_type, String, from: "balanceType")
+        attribute?(:balance_type, String, from: "balanceType")
 
         # @return [Float] The balance amount in number format
         attribute(:balance_amount, Float, from: "balanceAmount")

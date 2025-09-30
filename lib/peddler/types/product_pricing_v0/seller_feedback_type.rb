@@ -11,7 +11,7 @@ module Peddler
       # ratings received.
       SellerFeedbackType = Structure.new do
         # @return [Float] The percentage of positive feedback for the seller in the past 365 days.
-        attribute(:seller_positive_feedback_rating, Float, from: "SellerPositiveFeedbackRating")
+        attribute?(:seller_positive_feedback_rating, Float, from: "SellerPositiveFeedbackRating")
 
         # @return [Integer] The number of ratings received about the seller.
         attribute(:feedback_count, Integer, from: "FeedbackCount")

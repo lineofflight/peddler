@@ -10,17 +10,17 @@ module Peddler
       # Contains item identifiers and related tax information.
       ComplianceDetail = Structure.new do
         # @return [String] The Amazon Standard Identification Number, which identifies the detail page identifier.
-        attribute(:asin, String)
+        attribute?(:asin, String)
 
         # @return [String] The Fulfillment Network SKU, which identifies a real fulfillable item with catalog data and
         # condition.
-        attribute(:fnsku, String)
+        attribute?(:fnsku, String)
 
         # @return [String] The merchant SKU, a merchant-supplied identifier for a specific SKU.
-        attribute(:msku, String)
+        attribute?(:msku, String)
 
         # @return [TaxDetails]
-        attribute(:tax_details, TaxDetails, from: "taxDetails")
+        attribute?(:tax_details, TaxDetails, from: "taxDetails")
       end
     end
   end

@@ -10,13 +10,13 @@ module Peddler
       # UnmanifestedCarrierInformation like carrierId CarrierName and Location
       UnmanifestedCarrierInformation = Structure.new do
         # @return [String]
-        attribute(:carrier_id, String, from: "carrierId")
+        attribute?(:carrier_id, String, from: "carrierId")
 
         # @return [String]
-        attribute(:carrier_name, String, from: "carrierName")
+        attribute?(:carrier_name, String, from: "carrierName")
 
         # @return [Array<UnmanifestedShipmentLocation>]
-        attribute(:unmanifested_shipment_location_list, [UnmanifestedShipmentLocation], from: "unmanifestedShipmentLocationList")
+        attribute?(:unmanifested_shipment_location_list, [UnmanifestedShipmentLocation], from: "unmanifestedShipmentLocationList")
       end
     end
   end

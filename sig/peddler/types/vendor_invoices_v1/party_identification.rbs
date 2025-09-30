@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class PartyIdentification < Data
-        def self.new: (party_id: String?, address: Peddler::Types::VendorInvoicesV1::Address?, tax_registration_details: Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
+        def self.new: (party_id: String?, ?address: Peddler::Types::VendorInvoicesV1::Address?, ?tax_registration_details: Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
                     | (String?, Peddler::Types::VendorInvoicesV1::Address?, Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::PartyIdentification

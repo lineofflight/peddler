@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the createRestrictedDataToken operation.
       CreateRestrictedDataTokenRequest = Structure.new do
         # @return [String] The application ID for the target application to which access is being delegated.
-        attribute(:target_application, String, from: "targetApplication")
+        attribute?(:target_application, String, from: "targetApplication")
 
         # @return [Array<RestrictedResource>] A list of restricted resources.
         # Maximum: 50

@@ -25,10 +25,10 @@ module Peddler
         attribute(:ship_to, Address, from: "shipTo")
 
         # @return [AcceptedRate]
-        attribute(:accepted_rate, AcceptedRate, from: "acceptedRate")
+        attribute?(:accepted_rate, AcceptedRate, from: "acceptedRate")
 
         # @return [Party]
-        attribute(:shipper, Party)
+        attribute?(:shipper, Party)
 
         # @return [Array<Container>]
         attribute(:containers, [Container])

@@ -10,7 +10,7 @@ module Peddler
       # The discount funding on the offer.
       DiscountFunding = Structure.new do
         # @return [Array<Number>] Filters the results to only include offers with the percentage specified.
-        attribute(:percentage, [Float])
+        attribute?(:percentage, [Float])
       end
     end
   end

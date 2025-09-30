@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getPricing` and `getCompetitivePricing` operations.
       GetPricingResponse = Structure.new do
         # @return [Array<Price>] The payload for the getPricing and getCompetitivePricing operations.
-        attribute(:payload, [Price])
+        attribute?(:payload, [Price])
 
         # @return [Array<Error>] One or more unexpected errors occurred during the operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

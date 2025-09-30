@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateByIdRequest < Data
-        def self.new: (fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?, id_type: String?, id_value: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
+        def self.new: (?fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?, id_type: String?, id_value: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
                     | (Peddler::Types::ProductFeesV0::FeesEstimateRequest?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest

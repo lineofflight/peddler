@@ -13,7 +13,7 @@ module Peddler
       # Container in the shipment.
       Container = Structure.new do
         # @return [String] The type of physical container being used. (always 'PACKAGE')
-        attribute(:container_type, String, from: "containerType")
+        attribute?(:container_type, String, from: "containerType")
 
         # @return [String]
         attribute(:container_reference_id, String, from: "containerReferenceId")

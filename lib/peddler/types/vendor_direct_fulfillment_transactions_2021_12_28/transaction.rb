@@ -18,7 +18,7 @@ module Peddler
 
         # @return [ErrorList] Error code and message for the failed transaction. Only available when transaction status
         # is 'Failure'.
-        attribute(:errors, ErrorList)
+        attribute?(:errors, ErrorList)
       end
     end
   end

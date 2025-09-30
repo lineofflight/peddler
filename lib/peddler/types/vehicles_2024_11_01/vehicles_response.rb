@@ -12,7 +12,7 @@ module Peddler
       VehiclesResponse = Structure.new do
         # @return [Pagination] If available, the `nextToken` and/or `previousToken` values required to return paginated
         # results.
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Vehicle>] List of vehicles from Amazon's catalog.
         attribute(:vehicles, [Vehicle])

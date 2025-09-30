@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorInvoicesV1
       class ChargeDetails < Data
-        def self.new: (type: String?, description: String?, charge_amount: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
+        def self.new: (type: String?, ?description: String?, charge_amount: Peddler::Types::Money?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
                     | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::ChargeDetails

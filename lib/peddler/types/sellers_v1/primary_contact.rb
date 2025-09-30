@@ -16,7 +16,7 @@ module Peddler
         attribute(:address, Address)
 
         # @return [String] The non-Latin script version of the primary contact's name, if applicable.
-        attribute(:non_latin_name, String, from: "nonLatinName")
+        attribute?(:non_latin_name, String, from: "nonLatinName")
       end
     end
   end

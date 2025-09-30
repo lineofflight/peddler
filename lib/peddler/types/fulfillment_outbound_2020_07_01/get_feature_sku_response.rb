@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getFeatureSKU` operation.
       GetFeatureSkuResponse = Structure.new do
         # @return [GetFeatureSkuResult]
-        attribute(:payload, GetFeatureSkuResult)
+        attribute?(:payload, GetFeatureSkuResult)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -10,14 +10,14 @@ module Peddler
       # The request body for the `getSellingPartnerMetrics` operation.
       GetSellingPartnerMetricsRequest = Structure.new do
         # @return [String]
-        attribute(:aggregation_frequency, String, from: "aggregationFrequency")
+        attribute?(:aggregation_frequency, String, from: "aggregationFrequency")
 
         # @return [TimeInterval] A time interval used to compute metrics.
         attribute(:time_interval, TimeInterval, from: "timeInterval")
 
         # @return [Array<Metric>] The list of metrics requested. If no metric value is provided, data for all of the
         # metrics will be returned.
-        attribute(:metrics, Array)
+        attribute?(:metrics, Array)
 
         # @return [String]
         attribute(:time_period_type, String, from: "timePeriodType")

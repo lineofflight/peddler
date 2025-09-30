@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SellerWallet20240301
       class TransactionInitiationRequest < Data
-        def self.new: (source_account_id: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_description: String?, customer_payment_reference: String?, destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, source_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, request_time: String?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
+        def self.new: (source_account_id: String?, ?destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, ?transaction_description: String?, ?customer_payment_reference: String?, ?destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, source_amount: Peddler::Types::Money?, ?transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, request_time: String?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
                     | (String?, String?, Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, String?, String?, Peddler::Types::SellerWallet20240301::AccountHolderAddress?, Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, String?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest

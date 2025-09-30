@@ -11,7 +11,7 @@ module Peddler
       # notification every five minutes for high frequency notifications).
       AggregationFilter = Structure.new do
         # @return [AggregationSettings]
-        attribute(:aggregation_settings, AggregationSettings, from: "aggregationSettings")
+        attribute?(:aggregation_settings, AggregationSettings, from: "aggregationSettings")
       end
     end
   end

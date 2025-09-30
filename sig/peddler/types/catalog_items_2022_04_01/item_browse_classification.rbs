@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20220401
       class ItemBrowseClassification < Data
-        def self.new: (display_name: String?, classification_id: String?, parent: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
+        def self.new: (display_name: String?, classification_id: String?, ?parent: Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
                     | (String?, String?, Peddler::Types::CatalogItems20220401::ItemBrowseClassification?) -> Peddler::Types::CatalogItems20220401::ItemBrowseClassification
 
         type parse_data = {

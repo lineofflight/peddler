@@ -10,10 +10,10 @@ module Peddler
       # The time interval for which the business is open.
       OpenInterval = Structure.new do
         # @return [OpenTimeInterval] The time when the business opens.
-        attribute(:start_time, OpenTimeInterval, from: "StartTime")
+        attribute?(:start_time, OpenTimeInterval, from: "StartTime")
 
         # @return [OpenTimeInterval] The time when the business closes.
-        attribute(:end_time, OpenTimeInterval, from: "EndTime")
+        attribute?(:end_time, OpenTimeInterval, from: "EndTime")
       end
     end
   end

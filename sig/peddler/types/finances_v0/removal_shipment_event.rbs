@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class RemovalShipmentEvent < Data
-        def self.new: (posted_date: String?, merchant_order_id: String?, order_id: String?, transaction_type: String?, store_name: String?, removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
+        def self.new: (?posted_date: String?, ?merchant_order_id: String?, ?order_id: String?, ?transaction_type: String?, ?store_name: String?, ?removal_shipment_item_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
                     | (String?, String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItem]?) -> Peddler::Types::FinancesV0::RemovalShipmentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentEvent

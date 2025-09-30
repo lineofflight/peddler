@@ -19,7 +19,7 @@ module Peddler
         attribute(:submission_id, String, from: "submissionId")
 
         # @return [Array<Issue>] Listings item issues related to the listings item submission.
-        attribute(:issues, [Issue])
+        attribute?(:issues, [Issue])
       end
     end
   end

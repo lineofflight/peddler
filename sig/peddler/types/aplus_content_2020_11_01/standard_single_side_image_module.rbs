@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardSingleSideImageModule < Data
-        def self.new: (image_position_type: String?, block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
+        def self.new: (image_position_type: String?, ?block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
                     | (String?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardSingleSideImageModule

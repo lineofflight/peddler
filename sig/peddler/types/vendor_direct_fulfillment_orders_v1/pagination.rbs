@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class Pagination < Data
-        def self.new: (next_token: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination
+        def self.new: (?next_token: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination
                     | (String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination

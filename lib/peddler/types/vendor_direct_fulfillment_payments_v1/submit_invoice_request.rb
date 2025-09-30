@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the submitInvoice operation.
       SubmitInvoiceRequest = Structure.new do
         # @return [Array<InvoiceDetail>] An array of invoice details to be submitted.
-        attribute(:invoices, [InvoiceDetail])
+        attribute?(:invoices, [InvoiceDetail])
       end
     end
   end

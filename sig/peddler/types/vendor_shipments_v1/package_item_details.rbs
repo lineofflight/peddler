@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class PackageItemDetails < Data
-        def self.new: (purchase_order_number: String?, lot_number: String?, expiry: Peddler::Types::VendorShipmentsV1::Expiry?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
+        def self.new: (?purchase_order_number: String?, ?lot_number: String?, ?expiry: Peddler::Types::VendorShipmentsV1::Expiry?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
                     | (String?, String?, Peddler::Types::VendorShipmentsV1::Expiry?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails

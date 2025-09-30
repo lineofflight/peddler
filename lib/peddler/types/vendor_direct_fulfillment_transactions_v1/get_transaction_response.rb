@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getTransactionStatus operation.
       GetTransactionResponse = Structure.new do
         # @return [TransactionStatus]
-        attribute(:payload, TransactionStatus)
+        attribute?(:payload, TransactionStatus)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class InboundPlan < Data
-        def self.new: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, shipments: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
+        def self.new: (created_at: String?, inbound_plan_id: String?, last_updated_at: String?, marketplace_ids: Array[String]?, name: String?, ?packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, ?placement_options: Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, ?shipments: Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?, source_address: Peddler::Types::FulfillmentInbound20240320::Address?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
                     | (String?, String?, String?, Array[String]?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingOptionSummary]?, Array[Peddler::Types::FulfillmentInbound20240320::PlacementOptionSummary]?, Array[Peddler::Types::FulfillmentInbound20240320::ShipmentSummary]?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::InboundPlan

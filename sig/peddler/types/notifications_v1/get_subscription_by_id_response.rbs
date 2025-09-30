@@ -4,7 +4,7 @@ module Peddler
   module Types
     module NotificationsV1
       class GetSubscriptionByIdResponse < Data
-        def self.new: (payload: Peddler::Types::NotificationsV1::Subscription?, errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse
+        def self.new: (?payload: Peddler::Types::NotificationsV1::Subscription?, ?errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse
                     | (Peddler::Types::NotificationsV1::Subscription?, Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse

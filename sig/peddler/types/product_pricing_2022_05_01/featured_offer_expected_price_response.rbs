@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPriceResponse < Data
-        def self.new: (headers: Peddler::Types::ProductPricing20220501::HttpHeaders?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+        def self.new: (headers: Peddler::Types::ProductPricing20220501::HttpHeaders?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, ?body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
                     | (Peddler::Types::ProductPricing20220501::HttpHeaders?, Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse

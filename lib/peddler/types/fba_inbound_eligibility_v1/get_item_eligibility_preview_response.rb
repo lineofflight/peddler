@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getItemEligibilityPreview operation.
       GetItemEligibilityPreviewResponse = Structure.new do
         # @return [ItemEligibilityPreview] The payload for the getItemEligibilityPreview operation.
-        attribute(:payload, ItemEligibilityPreview)
+        attribute?(:payload, ItemEligibilityPreview)
 
         # @return [Array<Error>] An unexpected condition occurred during the GetItemEligibilityPreview operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

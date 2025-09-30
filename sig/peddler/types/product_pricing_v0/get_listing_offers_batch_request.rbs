@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class GetListingOffersBatchRequest < Data
-        def self.new: (requests: Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest
+        def self.new: (?requests: Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest
                     | (Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest

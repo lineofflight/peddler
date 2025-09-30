@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsItems20210801
       class PatchOperation < Data
-        def self.new: (op: String?, path: String?, value: Array[untyped]?) -> Peddler::Types::ListingsItems20210801::PatchOperation
+        def self.new: (op: String?, path: String?, ?value: Array[untyped]?) -> Peddler::Types::ListingsItems20210801::PatchOperation
                     | (String?, String?, Array[untyped]?) -> Peddler::Types::ListingsItems20210801::PatchOperation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::PatchOperation

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricing20220501
       class SampleLocation < Data
-        def self.new: (postal_code: Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
+        def self.new: (?postal_code: Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
                     | (Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::SampleLocation

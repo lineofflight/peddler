@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MessagingV1
       class CreateLegalDisclosureRequest < Data
-        def self.new: (attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateLegalDisclosureRequest
+        def self.new: (?attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateLegalDisclosureRequest
                     | (Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateLegalDisclosureRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateLegalDisclosureRequest

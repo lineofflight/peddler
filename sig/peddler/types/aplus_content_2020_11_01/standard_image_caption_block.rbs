@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class StandardImageCaptionBlock < Data
-        def self.new: (image: Peddler::Types::AplusContent20201101::ImageComponent?, caption: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
+        def self.new: (?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?caption: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
                     | (Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock

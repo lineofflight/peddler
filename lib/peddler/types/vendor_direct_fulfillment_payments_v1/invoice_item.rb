@@ -17,10 +17,10 @@ module Peddler
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [String] Buyer's standard identification number (ASIN) of an item.
-        attribute(:buyer_product_identifier, String, from: "buyerProductIdentifier")
+        attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Item quantity invoiced.
         attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
@@ -32,16 +32,16 @@ module Peddler
         attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
 
         # @return [String] The vendor's order number for this order.
-        attribute(:vendor_order_number, String, from: "vendorOrderNumber")
+        attribute?(:vendor_order_number, String, from: "vendorOrderNumber")
 
         # @return [String] Harmonized System of Nomenclature (HSN) tax code. The HSN number cannot contain alphabets.
-        attribute(:hsn_code, String, from: "hsnCode")
+        attribute?(:hsn_code, String, from: "hsnCode")
 
         # @return [Array<TaxDetail>] Individual tax details per line item.
-        attribute(:tax_details, [TaxDetail], from: "taxDetails")
+        attribute?(:tax_details, [TaxDetail], from: "taxDetails")
 
         # @return [Array<ChargeDetails>] Individual charge details per line item.
-        attribute(:charge_details, [ChargeDetails], from: "chargeDetails")
+        attribute?(:charge_details, [ChargeDetails], from: "chargeDetails")
       end
     end
   end

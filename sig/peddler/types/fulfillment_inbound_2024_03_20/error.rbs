@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Error < Data
-        def self.new: (code: String?, details: String?, message: String?) -> Peddler::Types::FulfillmentInbound20240320::Error
+        def self.new: (code: String?, ?details: String?, message: String?) -> Peddler::Types::FulfillmentInbound20240320::Error
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Error

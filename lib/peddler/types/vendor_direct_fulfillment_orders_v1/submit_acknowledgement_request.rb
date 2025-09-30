@@ -10,7 +10,7 @@ module Peddler
       # The request schema for the submitAcknowledgement operation.
       SubmitAcknowledgementRequest = Structure.new do
         # @return [Array<OrderAcknowledgementItem>] A list of one or more purchase orders.
-        attribute(:order_acknowledgements, [OrderAcknowledgementItem], from: "orderAcknowledgements")
+        attribute?(:order_acknowledgements, [OrderAcknowledgementItem], from: "orderAcknowledgements")
       end
     end
   end

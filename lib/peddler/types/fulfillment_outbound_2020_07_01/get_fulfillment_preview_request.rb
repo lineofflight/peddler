@@ -12,7 +12,7 @@ module Peddler
       # The request body schema for the `getFulfillmentPreview` operation.
       GetFulfillmentPreviewRequest = Structure.new do
         # @return [String] The marketplace the fulfillment order is placed against.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Address] The destination address for the fulfillment order preview.
         attribute(:address, Address)
@@ -32,19 +32,19 @@ module Peddler
         # * `ScheduledDelivery`: Scheduled Delivery shipping method.
         # **Note:** Shipping method service level agreements vary by marketplace. Sellers should see the Seller Central
         # website in their marketplace for shipping method service level agreements and fulfillment fees.
-        attribute(:shipping_speed_categories, Array, from: "shippingSpeedCategories")
+        attribute?(:shipping_speed_categories, Array, from: "shippingSpeedCategories")
 
         # @return [:boolean] When true, returns all fulfillment order previews both for COD and not for COD. Otherwise,
         # returns only fulfillment order previews that are not for COD.
-        attribute(:include_cod_fulfillment_preview, :boolean, from: "includeCODFulfillmentPreview")
+        attribute?(:include_cod_fulfillment_preview, :boolean, from: "includeCODFulfillmentPreview")
 
         # @return [:boolean] When true, returns the `ScheduledDeliveryInfo` response object, which contains the
         # available delivery windows for a Scheduled Delivery. The `ScheduledDeliveryInfo` response object can only be
         # returned for fulfillment order previews with `ShippingSpeedCategories` equal to `ScheduledDelivery`.
-        attribute(:include_delivery_windows, :boolean, from: "includeDeliveryWindows")
+        attribute?(:include_delivery_windows, :boolean, from: "includeDeliveryWindows")
 
         # @return [Array<FeatureSettings>] A list of features and their fulfillment policies to apply to the order.
-        attribute(:feature_constraints, [FeatureSettings], from: "featureConstraints")
+        attribute?(:feature_constraints, [FeatureSettings], from: "featureConstraints")
       end
     end
   end

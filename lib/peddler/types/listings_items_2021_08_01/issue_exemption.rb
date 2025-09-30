@@ -18,7 +18,7 @@ module Peddler
 
         # @return [String] Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary
         # exemptions expires, and Amazon begins enforcing the listed actions.
-        attribute(:expiry_date, String, from: "expiryDate")
+        attribute?(:expiry_date, String, from: "expiryDate")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class CarrierAccountInput < Data
-        def self.new: (description_localization_key: String?, name: String?, group_name: String?, input_type: String?, mandatory: bool?, confidential: bool?, hidden: bool?, validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
+        def self.new: (?description_localization_key: String?, ?name: String?, ?group_name: String?, ?input_type: String?, ?mandatory: bool?, ?confidential: bool?, ?hidden: bool?, ?validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
                     | (String?, String?, String?, String?, bool?, bool?, bool?, Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CarrierAccountInput

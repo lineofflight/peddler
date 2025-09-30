@@ -16,10 +16,10 @@ module Peddler
         attribute(:verb, String)
 
         # @return [String] The title of the related resource.
-        attribute(:title, String)
+        attribute?(:title, String)
 
         # @return [String] The media type of the related resource.
-        attribute(:type, String)
+        attribute?(:type, String)
       end
     end
   end

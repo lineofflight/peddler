@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class CustomerInvoiceList < Data
-        def self.new: (pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList
+        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, ?customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList
                     | (Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoice]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::CustomerInvoiceList

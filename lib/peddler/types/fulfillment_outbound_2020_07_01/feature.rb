@@ -16,7 +16,7 @@ module Peddler
         attribute(:feature_description, String, from: "featureDescription")
 
         # @return [:boolean] When true, indicates that the seller is eligible to use the feature.
-        attribute(:seller_eligible, :boolean, from: "sellerEligible")
+        attribute?(:seller_eligible, :boolean, from: "sellerEligible")
       end
     end
   end

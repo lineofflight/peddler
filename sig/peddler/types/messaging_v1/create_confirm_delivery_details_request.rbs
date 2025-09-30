@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MessagingV1
       class CreateConfirmDeliveryDetailsRequest < Data
-        def self.new: (text: String?) -> Peddler::Types::MessagingV1::CreateConfirmDeliveryDetailsRequest
+        def self.new: (?text: String?) -> Peddler::Types::MessagingV1::CreateConfirmDeliveryDetailsRequest
                     | (String?) -> Peddler::Types::MessagingV1::CreateConfirmDeliveryDetailsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateConfirmDeliveryDetailsRequest

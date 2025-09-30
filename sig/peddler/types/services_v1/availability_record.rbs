@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class AvailabilityRecord < Data
-        def self.new: (start_time: String?, end_time: String?, recurrence: Peddler::Types::ServicesV1::Recurrence?, capacity: Integer?) -> Peddler::Types::ServicesV1::AvailabilityRecord
+        def self.new: (start_time: String?, end_time: String?, ?recurrence: Peddler::Types::ServicesV1::Recurrence?, ?capacity: Integer?) -> Peddler::Types::ServicesV1::AvailabilityRecord
                     | (String?, String?, Peddler::Types::ServicesV1::Recurrence?, Integer?) -> Peddler::Types::ServicesV1::AvailabilityRecord
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AvailabilityRecord

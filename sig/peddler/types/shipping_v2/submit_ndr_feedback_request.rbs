@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class SubmitNdrFeedbackRequest < Data
-        def self.new: (tracking_id: String?, ndr_action: String?, ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData?) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
+        def self.new: (tracking_id: String?, ndr_action: String?, ?ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData?) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
                     | (String?, String?, Peddler::Types::ShippingV2::NdrRequestData?) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest

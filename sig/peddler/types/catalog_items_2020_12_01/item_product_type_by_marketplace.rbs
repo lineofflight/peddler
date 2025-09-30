@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemProductTypeByMarketplace < Data
-        def self.new: (marketplace_id: String?, product_type: String?) -> Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace
+        def self.new: (?marketplace_id: String?, ?product_type: String?) -> Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace
                     | (String?, String?) -> Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace

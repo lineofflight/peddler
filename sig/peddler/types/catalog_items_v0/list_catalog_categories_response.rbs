@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItemsV0
       class ListCatalogCategoriesResponse < Data
-        def self.new: (payload: Array[Peddler::Types::CatalogItemsV0::Categories]?, errors: Array[Peddler::Types::CatalogItemsV0::Error]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
+        def self.new: (?payload: Array[Peddler::Types::CatalogItemsV0::Categories]?, ?errors: Array[Peddler::Types::CatalogItemsV0::Error]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
                     | (Array[Peddler::Types::CatalogItemsV0::Categories]?, Array[Peddler::Types::CatalogItemsV0::Error]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse

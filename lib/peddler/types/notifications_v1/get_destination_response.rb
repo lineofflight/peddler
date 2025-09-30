@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getDestination` operation.
       GetDestinationResponse = Structure.new do
         # @return [Destination] The payload for the `getDestination` operation.
-        attribute(:payload, Destination)
+        attribute?(:payload, Destination)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `getDestination` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class TransactionStatus < Data
-        def self.new: (transaction_status: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
+        def self.new: (?transaction_status: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
                     | (Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus

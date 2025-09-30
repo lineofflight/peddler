@@ -13,7 +13,7 @@ module Peddler
         attribute(:value, String)
 
         # @return [Array<Decorator>]
-        attribute(:decorator_set, [Decorator], from: "decoratorSet")
+        attribute?(:decorator_set, [Decorator], from: "decoratorSet")
       end
     end
   end

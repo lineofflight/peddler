@@ -12,10 +12,10 @@ module Peddler
       CreateReservationResponse = Structure.new do
         # @return [CreateReservationRecord] `CreateReservationRecord` contains only the new `reservationId` if the
         # operation was successful. Otherwise it will contain the reservation entity with warnings/errors.
-        attribute(:payload, CreateReservationRecord)
+        attribute?(:payload, CreateReservationRecord)
 
         # @return [Array<Error>] Errors encountered, if any.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

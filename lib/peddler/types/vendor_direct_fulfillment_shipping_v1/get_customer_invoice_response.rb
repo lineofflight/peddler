@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getCustomerInvoice operation.
       GetCustomerInvoiceResponse = Structure.new do
         # @return [CustomerInvoice] The payload for the getCustomerInvoice operation.
-        attribute(:payload, CustomerInvoice)
+        attribute?(:payload, CustomerInvoice)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

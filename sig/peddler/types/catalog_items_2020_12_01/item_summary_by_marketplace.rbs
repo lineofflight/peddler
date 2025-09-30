@@ -4,7 +4,7 @@ module Peddler
   module Types
     module CatalogItems20201201
       class ItemSummaryByMarketplace < Data
-        def self.new: (marketplace_id: String?, brand_name: String?, browse_node: String?, color_name: String?, item_name: String?, manufacturer: String?, model_number: String?, size_name: String?, style_name: String?) -> Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace
+        def self.new: (marketplace_id: String?, ?brand_name: String?, ?browse_node: String?, ?color_name: String?, ?item_name: String?, ?manufacturer: String?, ?model_number: String?, ?size_name: String?, ?style_name: String?) -> Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace

@@ -17,7 +17,7 @@ module Peddler
         attribute(:item_condition, String, from: "ItemCondition")
 
         # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
-        attribute(:customer_type, String, from: "CustomerType")
+        attribute?(:customer_type, String, from: "CustomerType")
 
         # @return [String] The seller stock keeping unit (SKU) of the item. This is the same SKU passed as a path
         # parameter.

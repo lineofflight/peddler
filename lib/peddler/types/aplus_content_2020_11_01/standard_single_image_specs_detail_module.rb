@@ -13,28 +13,28 @@ module Peddler
       # A standard image with paragraphs, a bulleted list, and extra space for technical details.
       StandardSingleImageSpecsDetailModule = Structure.new do
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [ImageComponent]
-        attribute(:image, ImageComponent)
+        attribute?(:image, ImageComponent)
 
         # @return [TextComponent]
-        attribute(:description_headline, TextComponent, from: "descriptionHeadline")
+        attribute?(:description_headline, TextComponent, from: "descriptionHeadline")
 
         # @return [StandardTextBlock]
-        attribute(:description_block1, StandardTextBlock, from: "descriptionBlock1")
+        attribute?(:description_block1, StandardTextBlock, from: "descriptionBlock1")
 
         # @return [StandardTextBlock]
-        attribute(:description_block2, StandardTextBlock, from: "descriptionBlock2")
+        attribute?(:description_block2, StandardTextBlock, from: "descriptionBlock2")
 
         # @return [TextComponent]
-        attribute(:specification_headline, TextComponent, from: "specificationHeadline")
+        attribute?(:specification_headline, TextComponent, from: "specificationHeadline")
 
         # @return [StandardHeaderTextListBlock]
-        attribute(:specification_list_block, StandardHeaderTextListBlock, from: "specificationListBlock")
+        attribute?(:specification_list_block, StandardHeaderTextListBlock, from: "specificationListBlock")
 
         # @return [StandardTextBlock]
-        attribute(:specification_text_block, StandardTextBlock, from: "specificationTextBlock")
+        attribute?(:specification_text_block, StandardTextBlock, from: "specificationTextBlock")
       end
     end
   end

@@ -14,13 +14,13 @@ module Peddler
       CreateReservationRecord = Structure.new do
         # @return [Reservation] Reservation record if the operation failed. It will only contain the new `reservationId`
         # if the operation is successful.
-        attribute(:reservation, Reservation)
+        attribute?(:reservation, Reservation)
 
         # @return [Array<Warning>] Warnings encountered, if any.
-        attribute(:warnings, [Warning])
+        attribute?(:warnings, [Warning])
 
         # @return [Array<Error>] Errors encountered, if any.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

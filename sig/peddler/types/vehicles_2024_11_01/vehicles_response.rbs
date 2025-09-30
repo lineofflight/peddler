@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Vehicles20241101
       class VehiclesResponse < Data
-        def self.new: (pagination: Peddler::Types::Vehicles20241101::Pagination?, vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
+        def self.new: (?pagination: Peddler::Types::Vehicles20241101::Pagination?, vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
                     | (Peddler::Types::Vehicles20241101::Pagination?, Array[Peddler::Types::Vehicles20241101::Vehicle]?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::VehiclesResponse

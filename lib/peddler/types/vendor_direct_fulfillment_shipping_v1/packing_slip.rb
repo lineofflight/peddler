@@ -16,7 +16,7 @@ module Peddler
         attribute(:content, String)
 
         # @return [String] The format of the file such as PDF, JPEG etc.
-        attribute(:content_type, String, from: "contentType")
+        attribute?(:content_type, String, from: "contentType")
       end
     end
   end

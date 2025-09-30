@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInventoryV1
       class DeleteInventoryItemResponse < Data
-        def self.new: (errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::DeleteInventoryItemResponse
+        def self.new: (?errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::DeleteInventoryItemResponse
                     | (Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::DeleteInventoryItemResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::DeleteInventoryItemResponse

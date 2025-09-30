@@ -10,7 +10,7 @@ module Peddler
       # A request to update the status of a supply source.
       UpdateSupplySourceStatusRequest = Structure.new do
         # @return [String]
-        attribute(:status, String)
+        attribute?(:status, String)
       end
     end
   end

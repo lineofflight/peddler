@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class PropertyGroup < Data
-        def self.new: (title: String?, description: String?, property_names: Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
+        def self.new: (?title: String?, ?description: String?, ?property_names: Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
                     | (String?, String?, Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup

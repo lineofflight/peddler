@@ -10,7 +10,7 @@ module Peddler
       # Response schema for the `cancelReservation` operation.
       CancelReservationResponse = Structure.new do
         # @return [Array<Error>] Errors encountered, if any
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

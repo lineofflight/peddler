@@ -18,10 +18,10 @@ module Peddler
         attribute(:carrier_code, String, from: "carrierCode")
 
         # @return [String] Carrier name that will deliver the package. Required when `carrierCode` is "Other"
-        attribute(:carrier_name, String, from: "carrierName")
+        attribute?(:carrier_name, String, from: "carrierName")
 
         # @return [String] Ship method to be used for shipping the order.
-        attribute(:shipping_method, String, from: "shippingMethod")
+        attribute?(:shipping_method, String, from: "shippingMethod")
 
         # @return [String] The tracking number used to obtain tracking and delivery information.
         attribute(:tracking_number, String, from: "trackingNumber")
@@ -31,7 +31,7 @@ module Peddler
         attribute(:ship_date, String, from: "shipDate")
 
         # @return [String] The unique identifier for the supply source.
-        attribute(:ship_from_supply_source_id, String, from: "shipFromSupplySourceId")
+        attribute?(:ship_from_supply_source_id, String, from: "shipFromSupplySourceId")
 
         # @return [Array<ConfirmShipmentOrderItem>] The list of order items and quantities to be updated.
         attribute(:order_items, [ConfirmShipmentOrderItem], from: "orderItems")

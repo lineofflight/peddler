@@ -11,11 +11,11 @@ module Peddler
       # The response schema for the `getPackageTrackingDetails` operation.
       GetPackageTrackingDetailsResponse = Structure.new do
         # @return [PackageTrackingDetails] The payload for the `getPackageTrackingDetails` operation.
-        attribute(:payload, PackageTrackingDetails)
+        attribute?(:payload, PackageTrackingDetails)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `getPackageTrackingDetails`
         # operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ComplianceDetail < Data
-        def self.new: (asin: String?, fnsku: String?, msku: String?, tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
+        def self.new: (?asin: String?, ?fnsku: String?, ?msku: String?, ?tax_details: Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
                     | (String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::TaxDetails?) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ComplianceDetail

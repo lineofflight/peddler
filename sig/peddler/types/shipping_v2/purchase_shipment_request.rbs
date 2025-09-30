@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class PurchaseShipmentRequest < Data
-        def self.new: (request_token: String?, rate_id: String?, requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, additional_inputs: Hash[untyped, untyped]?) -> Peddler::Types::ShippingV2::PurchaseShipmentRequest
+        def self.new: (request_token: String?, rate_id: String?, requested_document_specification: Peddler::Types::ShippingV2::RequestedDocumentSpecification?, ?requested_value_added_services: Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, ?additional_inputs: Hash[untyped, untyped]?) -> Peddler::Types::ShippingV2::PurchaseShipmentRequest
                     | (String?, String?, Peddler::Types::ShippingV2::RequestedDocumentSpecification?, Array[Peddler::Types::ShippingV2::RequestedValueAddedService]?, Hash[untyped, untyped]?) -> Peddler::Types::ShippingV2::PurchaseShipmentRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PurchaseShipmentRequest

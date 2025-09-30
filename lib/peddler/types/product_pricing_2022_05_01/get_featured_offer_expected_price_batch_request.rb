@@ -10,7 +10,7 @@ module Peddler
       # The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
       GetFeaturedOfferExpectedPriceBatchRequest = Structure.new do
         # @return [Array<FeaturedOfferExpectedPriceRequest>]
-        attribute(:requests, [FeaturedOfferExpectedPriceRequest])
+        attribute?(:requests, [FeaturedOfferExpectedPriceRequest])
       end
     end
   end

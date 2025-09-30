@@ -11,10 +11,10 @@ module Peddler
       TransactionIdentifier = Structure.new do
         # @return [String] The transaction identifier name. Use the `getInvoicesAttributes` operation to check
         # `transactionIdentifierName` options.
-        attribute(:name, String)
+        attribute?(:name, String)
 
         # @return [String] The transaction identifier.
-        attribute(:id, String)
+        attribute?(:id, String)
       end
     end
   end

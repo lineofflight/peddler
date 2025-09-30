@@ -10,10 +10,10 @@ module Peddler
       # The A+ Content standard label and description block, which contains a pair of text components.
       StandardTextPairBlock = Structure.new do
         # @return [TextComponent]
-        attribute(:label, TextComponent)
+        attribute?(:label, TextComponent)
 
         # @return [TextComponent]
-        attribute(:description, TextComponent)
+        attribute?(:description, TextComponent)
       end
     end
   end

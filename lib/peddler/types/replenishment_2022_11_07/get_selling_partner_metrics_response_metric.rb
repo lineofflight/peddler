@@ -11,89 +11,89 @@ module Peddler
       GetSellingPartnerMetricsResponseMetric = Structure.new do
         # @return [Float] The percentage of items that were not shipped out of the total shipped units over a period of
         # time due to being out of stock. Applicable to PERFORMANCE timePeriodType.
-        attribute(:not_delivered_due_to_oos, Float, from: "notDeliveredDueToOOS")
+        attribute?(:not_delivered_due_to_oos, Float, from: "notDeliveredDueToOOS")
 
         # @return [Float] The revenue generated from subscriptions over a period of time. Applicable for both the
         # PERFORMANCE and FORECAST timePeriodType.
-        attribute(:total_subscriptions_revenue, Float, from: "totalSubscriptionsRevenue")
+        attribute?(:total_subscriptions_revenue, Float, from: "totalSubscriptionsRevenue")
 
         # @return [Float] The number of units shipped to the subscribers over a period of time. Applicable for both the
         # PERFORMANCE and FORECAST timePeriodType.
-        attribute(:shipped_subscription_units, Float, from: "shippedSubscriptionUnits")
+        attribute?(:shipped_subscription_units, Float, from: "shippedSubscriptionUnits")
 
         # @return [Float] The number of active subscriptions present at the end of the period. Applicable to PERFORMANCE
         # timePeriodType.
-        attribute(:active_subscriptions, Float, from: "activeSubscriptions")
+        attribute?(:active_subscriptions, Float, from: "activeSubscriptions")
 
         # @return [Float] The average revenue per subscriber of the program over a period of past 12 months for sellers
         # and 6 months for vendors. Applicable to PERFORMANCE timePeriodType.
-        attribute(:subscriber_average_revenue, Float, from: "subscriberAverageRevenue")
+        attribute?(:subscriber_average_revenue, Float, from: "subscriberAverageRevenue")
 
         # @return [Float] The average revenue per non-subscriber of the program over a period of past 12 months for
         # sellers and 6 months for vendors. Applicable to PERFORMANCE timePeriodType.
-        attribute(:non_subscriber_average_revenue, Float, from: "nonSubscriberAverageRevenue")
+        attribute?(:non_subscriber_average_revenue, Float, from: "nonSubscriberAverageRevenue")
 
         # @return [Float] The revenue that would have been generated had there not been out of stock. Applicable to
         # PERFORMANCE timePeriodType.
-        attribute(:lost_revenue_due_to_oos, Float, from: "lostRevenueDueToOOS")
+        attribute?(:lost_revenue_due_to_oos, Float, from: "lostRevenueDueToOOS")
 
         # @return [Float] The average reorders per subscriber of the program over a period of 12 months. Applicable to
         # PERFORMANCE timePeriodType.
-        attribute(:subscriber_average_reorders, Float, from: "subscriberAverageReorders")
+        attribute?(:subscriber_average_reorders, Float, from: "subscriberAverageReorders")
 
         # @return [Float] The average reorders per non-subscriber of the program over a period of past 12 months.
         # Applicable to PERFORMANCE timePeriodType.
-        attribute(:non_subscriber_average_reorders, Float, from: "nonSubscriberAverageReorders")
+        attribute?(:non_subscriber_average_reorders, Float, from: "nonSubscriberAverageReorders")
 
         # @return [Float] The percentage of revenue from ASINs with coupons out of total revenue from all ASINs.
         # Applicable to PERFORMANCE timePeriodType.
-        attribute(:coupons_revenue_penetration, Float, from: "couponsRevenuePenetration")
+        attribute?(:coupons_revenue_penetration, Float, from: "couponsRevenuePenetration")
 
         # @return [Float] The subscription revenue generated from subscriptions with over two deliveries over the past
         # 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_from_subscriptions_with_multiple_deliveries, Float, from: "revenueFromSubscriptionsWithMultipleDeliveries")
+        attribute?(:revenue_from_subscriptions_with_multiple_deliveries, Float, from: "revenueFromSubscriptionsWithMultipleDeliveries")
 
         # @return [Float] The subscription revenue generated from active subscriptions with one delivery over the past
         # 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_from_active_subscriptions_with_single_delivery, Float, from: "revenueFromActiveSubscriptionsWithSingleDelivery")
+        attribute?(:revenue_from_active_subscriptions_with_single_delivery, Float, from: "revenueFromActiveSubscriptionsWithSingleDelivery")
 
         # @return [Float] The subscription revenue generated from subscriptions which are cancelled after one delivery
         # over the past 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_from_cancelled_subscriptions_after_single_delivery, Float, from: "revenueFromCancelledSubscriptionsAfterSingleDelivery")
+        attribute?(:revenue_from_cancelled_subscriptions_after_single_delivery, Float, from: "revenueFromCancelledSubscriptionsAfterSingleDelivery")
 
         # @return [Float] The percentage of subscriptions retained after 30 days of subscription creation. Applicable to
         # PERFORMANCE timePeriodType.
-        attribute(:subscriber_retention_for30_days, Float, from: "subscriberRetentionFor30Days")
+        attribute?(:subscriber_retention_for30_days, Float, from: "subscriberRetentionFor30Days")
 
         # @return [Float] The percentage of subscriptions retained after 90 days of subscription creation. Applicable to
         # PERFORMANCE timePeriodType.
-        attribute(:subscriber_retention_for90_days, Float, from: "subscriberRetentionFor90Days")
+        attribute?(:subscriber_retention_for90_days, Float, from: "subscriberRetentionFor90Days")
 
         # @return [Float] The percentage of subscription revenue generated by offers with 0% seller-funded discount over
         # the last 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_penetration_for0_percent_seller_funding, Float, from: "revenuePenetrationFor0PercentSellerFunding")
+        attribute?(:revenue_penetration_for0_percent_seller_funding, Float, from: "revenuePenetrationFor0PercentSellerFunding")
 
         # @return [Float] [Applicable only for Sellers] The percentage of subscription revenue generated by offers with
         # 5% seller-funded discount over the last 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_penetration_for5_percent_seller_funding, Float, from: "revenuePenetrationFor5PercentSellerFunding")
+        attribute?(:revenue_penetration_for5_percent_seller_funding, Float, from: "revenuePenetrationFor5PercentSellerFunding")
 
         # @return [Float] [Applicable only for Sellers] The percentage of subscription revenue generated by offers with
         # 10% seller-funded discount over the last 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_penetration_for10_percent_seller_funding, Float, from: "revenuePenetrationFor10PercentSellerFunding")
+        attribute?(:revenue_penetration_for10_percent_seller_funding, Float, from: "revenuePenetrationFor10PercentSellerFunding")
 
         # @return [Float] [Applicable only for vendors] The percentage of subscription revenue generated by offers with
         # 5% or above seller-funded discount over the last 12 months. Applicable to PERFORMANCE timePeriodType.
-        attribute(:revenue_penetration_for5_plus_percent_seller_funding, Float, from: "revenuePenetrationFor5PlusPercentSellerFunding")
+        attribute?(:revenue_penetration_for5_plus_percent_seller_funding, Float, from: "revenuePenetrationFor5PlusPercentSellerFunding")
 
         # @return [Float] The percentage of new subscriptions acquired through coupons. Applicable to PERFORMANCE
         # timePeriodType.
-        attribute(:share_of_coupon_subscriptions, Float, from: "shareOfCouponSubscriptions")
+        attribute?(:share_of_coupon_subscriptions, Float, from: "shareOfCouponSubscriptions")
 
         # @return [TimeInterval] A time interval used to compute metrics.
-        attribute(:time_interval, TimeInterval, from: "timeInterval")
+        attribute?(:time_interval, TimeInterval, from: "timeInterval")
 
         # @return [String] The currency code in ISO 4217 format.
-        attribute(:currency_code, String, from: "currencyCode")
+        attribute?(:currency_code, String, from: "currencyCode")
       end
     end
   end

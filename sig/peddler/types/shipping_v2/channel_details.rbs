@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class ChannelDetails < Data
-        def self.new: (channel_type: String?, amazon_order_details: Peddler::Types::ShippingV2::AmazonOrderDetails?, amazon_shipment_details: Peddler::Types::ShippingV2::AmazonShipmentDetails?) -> Peddler::Types::ShippingV2::ChannelDetails
+        def self.new: (channel_type: String?, ?amazon_order_details: Peddler::Types::ShippingV2::AmazonOrderDetails?, ?amazon_shipment_details: Peddler::Types::ShippingV2::AmazonShipmentDetails?) -> Peddler::Types::ShippingV2::ChannelDetails
                     | (String?, Peddler::Types::ShippingV2::AmazonOrderDetails?, Peddler::Types::ShippingV2::AmazonShipmentDetails?) -> Peddler::Types::ShippingV2::ChannelDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ChannelDetails

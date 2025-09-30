@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class CreateClaimRequest < Data
-        def self.new: (tracking_id: String?, declared_value: Peddler::Types::Money?, claim_reason: String?, replacement_package_sent: bool?, proofs: Array[String]?, settlement_type: String?) -> Peddler::Types::ShippingV2::CreateClaimRequest
+        def self.new: (tracking_id: String?, ?declared_value: Peddler::Types::Money?, claim_reason: String?, ?replacement_package_sent: bool?, ?proofs: Array[String]?, settlement_type: String?) -> Peddler::Types::ShippingV2::CreateClaimRequest
                     | (String?, Peddler::Types::Money?, String?, bool?, Array[String]?, String?) -> Peddler::Types::ShippingV2::CreateClaimRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CreateClaimRequest

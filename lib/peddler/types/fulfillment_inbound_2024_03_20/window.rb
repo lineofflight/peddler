@@ -10,7 +10,7 @@ module Peddler
       # Contains a start and end DateTime representing a time range.
       Window = Structure.new do
         # @return [String] The timestamp at which this Window can no longer be edited.
-        attribute(:editable_until, String, from: "editableUntil")
+        attribute?(:editable_until, String, from: "editableUntil")
 
         # @return [String] The end timestamp of the window.
         attribute(:end, String)

@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the directPurchaseShipment operation.
       DirectPurchaseResponse = Structure.new do
         # @return [DirectPurchaseResult]
-        attribute(:payload, DirectPurchaseResult)
+        attribute?(:payload, DirectPurchaseResult)
       end
     end
   end

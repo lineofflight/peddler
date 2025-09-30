@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class PayWithAmazonEvent < Data
-        def self.new: (seller_order_id: String?, transaction_posted_date: String?, business_object_type: String?, sales_channel: String?, charge: Peddler::Types::FinancesV0::ChargeComponent?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, payment_amount_type: String?, amount_description: String?, fulfillment_channel: String?, store_name: String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
+        def self.new: (?seller_order_id: String?, ?transaction_posted_date: String?, ?business_object_type: String?, ?sales_channel: String?, ?charge: Peddler::Types::FinancesV0::ChargeComponent?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?payment_amount_type: String?, ?amount_description: String?, ?fulfillment_channel: String?, ?store_name: String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
                     | (String?, String?, String?, String?, Peddler::Types::FinancesV0::ChargeComponent?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::PayWithAmazonEvent

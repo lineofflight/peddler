@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class Duration < Data
-        def self.new: (value: Integer?, time_unit: String?) -> Peddler::Types::SupplySources20200701::Duration
+        def self.new: (?value: Integer?, ?time_unit: String?) -> Peddler::Types::SupplySources20200701::Duration
                     | (Integer?, String?) -> Peddler::Types::SupplySources20200701::Duration
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::Duration

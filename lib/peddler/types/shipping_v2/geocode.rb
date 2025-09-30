@@ -10,10 +10,10 @@ module Peddler
       # Defines the latitude and longitude of the access point.
       Geocode = Structure.new do
         # @return [String] The latitude of access point.
-        attribute(:latitude, String)
+        attribute?(:latitude, String)
 
         # @return [String] The longitude of access point.
-        attribute(:longitude, String)
+        attribute?(:longitude, String)
       end
     end
   end

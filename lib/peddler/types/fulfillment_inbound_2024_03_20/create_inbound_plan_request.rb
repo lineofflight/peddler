@@ -18,7 +18,7 @@ module Peddler
         attribute(:items, [ItemInput])
 
         # @return [String] Name for the Inbound Plan. If one isn't provided, a default name will be provided.
-        attribute(:name, String)
+        attribute?(:name, String)
 
         # @return [AddressInput]
         attribute(:source_address, AddressInput, from: "sourceAddress")

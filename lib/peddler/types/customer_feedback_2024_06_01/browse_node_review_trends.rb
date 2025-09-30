@@ -15,7 +15,7 @@ module Peddler
         # node.
         #
         # **Max length:** 10
-        attribute(:positive_topics, [BrowseNodeReviewTrend], from: "positiveTopics")
+        attribute?(:positive_topics, [BrowseNodeReviewTrend], from: "positiveTopics")
 
         # @return [Array<BrowseNodeReviewTrend>] The trends of the most negative review topics. The percentage of
         # reviews that contain the topic across all products in the requested browse node determine the topic's
@@ -23,7 +23,7 @@ module Peddler
         # node.
         #
         # **Max length:** 10
-        attribute(:negative_topics, [BrowseNodeReviewTrend], from: "negativeTopics")
+        attribute?(:negative_topics, [BrowseNodeReviewTrend], from: "negativeTopics")
       end
     end
   end

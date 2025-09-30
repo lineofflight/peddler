@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class SAFETReimbursementItem < Data
-        def self.new: (item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, product_description: String?, quantity: String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
+        def self.new: (?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?product_description: String?, ?quantity: String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
                     | (Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, String?) -> Peddler::Types::FinancesV0::SAFETReimbursementItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::SAFETReimbursementItem

@@ -11,10 +11,10 @@ module Peddler
       # A list of packing slips.
       PackingSlipList = Structure.new do
         # @return [Pagination] The pagination elements required to retrieve the remaining data.
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<PackingSlip>] An array of packing slip objects.
-        attribute(:packing_slips, [PackingSlip], from: "packingSlips")
+        attribute?(:packing_slips, [PackingSlip], from: "packingSlips")
       end
     end
   end

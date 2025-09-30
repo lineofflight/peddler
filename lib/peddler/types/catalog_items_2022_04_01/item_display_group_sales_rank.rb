@@ -16,7 +16,7 @@ module Peddler
         attribute(:title, String)
 
         # @return [String] Corresponding Amazon retail website URL for the sales rank.
-        attribute(:link, String)
+        attribute?(:link, String)
 
         # @return [Integer] Sales rank.
         attribute(:rank, Integer)

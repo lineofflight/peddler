@@ -10,7 +10,7 @@ module Peddler
       # The shipment invoice status response.
       ShipmentInvoiceStatusResponse = Structure.new do
         # @return [ShipmentInvoiceStatusInfo]
-        attribute(:shipments, ShipmentInvoiceStatusInfo, from: "Shipments")
+        attribute?(:shipments, ShipmentInvoiceStatusInfo, from: "Shipments")
       end
     end
   end

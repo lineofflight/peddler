@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class DirectPurchaseResult < Data
-        def self.new: (shipment_id: String?, package_document_detail_list: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?) -> Peddler::Types::ShippingV2::DirectPurchaseResult
+        def self.new: (shipment_id: String?, ?package_document_detail_list: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?) -> Peddler::Types::ShippingV2::DirectPurchaseResult
                     | (String?, Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?) -> Peddler::Types::ShippingV2::DirectPurchaseResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DirectPurchaseResult

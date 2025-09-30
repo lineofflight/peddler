@@ -16,7 +16,7 @@ module Peddler
       # This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` `notificationType`s.
       ProcessingDirective = Structure.new do
         # @return [EventFilter] A `notificationType` specific filter.
-        attribute(:event_filter, EventFilter, from: "eventFilter")
+        attribute?(:event_filter, EventFilter, from: "eventFilter")
       end
     end
   end

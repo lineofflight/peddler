@@ -14,11 +14,11 @@ module Peddler
         attribute(:listing_price, Money, from: "listingPrice")
 
         # @return [Money] The shipping cost of the product. Note that the shipping cost is not always available.
-        attribute(:shipping_price, Money, from: "shippingPrice")
+        attribute?(:shipping_price, Money, from: "shippingPrice")
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
         # value of these points.
-        attribute(:points, Points)
+        attribute?(:points, Points)
       end
     end
   end

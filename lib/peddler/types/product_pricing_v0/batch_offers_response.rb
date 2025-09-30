@@ -12,10 +12,10 @@ module Peddler
       # Common schema that present in `ItemOffersResponse` and `ListingOffersResponse`
       BatchOffersResponse = Structure.new do
         # @return [HttpResponseHeaders]
-        attribute(:headers, HttpResponseHeaders)
+        attribute?(:headers, HttpResponseHeaders)
 
         # @return [GetOffersHttpStatusLine]
-        attribute(:status, GetOffersHttpStatusLine)
+        attribute?(:status, GetOffersHttpStatusLine)
 
         # @return [GetOffersResponse]
         attribute(:body, GetOffersResponse)

@@ -10,10 +10,10 @@ module Peddler
       # Period which taxwithholding on seller's account is calculated.
       TaxWithholdingPeriod = Structure.new do
         # @return [String] Start of the time range.
-        attribute(:start_date, String, from: "StartDate")
+        attribute?(:start_date, String, from: "StartDate")
 
         # @return [String] End of the time range.
-        attribute(:end_date, String, from: "EndDate")
+        attribute?(:end_date, String, from: "EndDate")
       end
     end
   end

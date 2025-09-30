@@ -12,16 +12,16 @@ module Peddler
       # (HAL) link to the JSON schema document that describes the expected input.
       GetSolicitationActionResponse = Structure.new do
         # @return [Hash]
-        attribute(:_links, Hash)
+        attribute?(:_links, Hash)
 
         # @return [Hash]
-        attribute(:_embedded, Hash)
+        attribute?(:_embedded, Hash)
 
         # @return [SolicitationsAction]
-        attribute(:payload, SolicitationsAction)
+        attribute?(:payload, SolicitationsAction)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

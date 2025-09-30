@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getOrderMetrics operation.
       GetOrderMetricsResponse = Structure.new do
         # @return [Array<OrderMetricsInterval>] The payload for the getOrderMetrics operation.
-        attribute(:payload, [OrderMetricsInterval])
+        attribute?(:payload, [OrderMetricsInterval])
 
         # @return [Array<Error>] Encountered errors for the getOrderMetrics operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

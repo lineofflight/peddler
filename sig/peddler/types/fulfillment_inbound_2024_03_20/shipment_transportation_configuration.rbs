@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class ShipmentTransportationConfiguration < Data
-        def self.new: (contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, pallets: Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?, ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::WindowInput?, shipment_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
+        def self.new: (?contact_information: Peddler::Types::FulfillmentInbound20240320::ContactInformation?, ?freight_information: Peddler::Types::FulfillmentInbound20240320::FreightInformation?, ?pallets: Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?, ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::WindowInput?, shipment_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
                     | (Peddler::Types::FulfillmentInbound20240320::ContactInformation?, Peddler::Types::FulfillmentInbound20240320::FreightInformation?, Array[Peddler::Types::FulfillmentInbound20240320::PalletInput]?, Peddler::Types::FulfillmentInbound20240320::WindowInput?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentTransportationConfiguration

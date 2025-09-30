@@ -12,10 +12,10 @@ module Peddler
       # this operation until `nextPageToken` is null. Note that this operation can return empty pages.
       AplusPaginatedResponse = Structure.new do
         # @return [Array<Error>]
-        attribute(:warnings, [Error])
+        attribute?(:warnings, [Error])
 
         # @return [String]
-        attribute(:next_page_token, String, from: "nextPageToken")
+        attribute?(:next_page_token, String, from: "nextPageToken")
       end
     end
   end

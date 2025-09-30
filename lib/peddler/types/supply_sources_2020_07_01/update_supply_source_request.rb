@@ -11,13 +11,13 @@ module Peddler
       # A request to update the configuration and capabilities of a supply source.
       UpdateSupplySourceRequest = Structure.new do
         # @return [String]
-        attribute(:alias, String)
+        attribute?(:alias, String)
 
         # @return [SupplySourceConfiguration]
-        attribute(:configuration, SupplySourceConfiguration)
+        attribute?(:configuration, SupplySourceConfiguration)
 
         # @return [SupplySourceCapabilities]
-        attribute(:capabilities, SupplySourceCapabilities)
+        attribute?(:capabilities, SupplySourceCapabilities)
       end
     end
   end

@@ -16,7 +16,7 @@ module Peddler
 
         # @return [Points] The number of Amazon Points that are offered with the purchase of an item and the monetary
         # value of these points.
-        attribute(:points, Points)
+        attribute?(:points, Points)
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class Error < Data
-        def self.new: (code: String?, message: String?, details: String?) -> Peddler::Types::EasyShip20220323::Error
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::EasyShip20220323::Error
                     | (String?, String?, String?) -> Peddler::Types::EasyShip20220323::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::Error

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class ServicesCapability < Data
-        def self.new: (supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::ServicesCapability
+        def self.new: (?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::ServicesCapability
                     | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::ServicesCapability
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ServicesCapability

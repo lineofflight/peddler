@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class OrderItemBuyerInfo < Data
-        def self.new: (order_item_id: String?, buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, gift_wrap_price: Peddler::Types::Money?, gift_wrap_tax: Peddler::Types::Money?, gift_message_text: String?, gift_wrap_level: String?) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
+        def self.new: (order_item_id: String?, ?buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, ?gift_wrap_price: Peddler::Types::Money?, ?gift_wrap_tax: Peddler::Types::Money?, ?gift_message_text: String?, ?gift_wrap_level: String?) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
                     | (String?, Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo

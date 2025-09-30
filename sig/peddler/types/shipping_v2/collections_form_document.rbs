@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class CollectionsFormDocument < Data
-        def self.new: (base64_encoded_content: String?, document_format: String?) -> Peddler::Types::ShippingV2::CollectionsFormDocument
+        def self.new: (?base64_encoded_content: String?, ?document_format: String?) -> Peddler::Types::ShippingV2::CollectionsFormDocument
                     | (String?, String?) -> Peddler::Types::ShippingV2::CollectionsFormDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CollectionsFormDocument

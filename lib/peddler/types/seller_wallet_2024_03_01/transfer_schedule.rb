@@ -19,7 +19,7 @@ module Peddler
         attribute(:transaction_type, String, from: "transactionType")
 
         # @return [TransactionAccount] Source bank account details in the scheduled transfer
-        attribute(:transaction_source_account, TransactionAccount, from: "transactionSourceAccount")
+        attribute?(:transaction_source_account, TransactionAccount, from: "transactionSourceAccount")
 
         # @return [TransactionAccount] Destination bank account details in the scheduled transfer. Here
         # bankAccountCountryCode is a MANDATORY field
@@ -35,7 +35,7 @@ module Peddler
 
         # @return [PaymentPreference] Payment preference of the scheduled transfer. This information can be modified
         # when updating a transfer schedule.
-        attribute(:payment_preference, PaymentPreference, from: "paymentPreference")
+        attribute?(:payment_preference, PaymentPreference, from: "paymentPreference")
 
         # @return [Array<TransferScheduleFailures>] Collection that holds Transfer Schedules that has been cancelled or
         # failed due to certain reasons.

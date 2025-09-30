@@ -10,13 +10,13 @@ module Peddler
       # Response schema for the `getRangeSlotCapacity` operation.
       RangeSlotCapacity = Structure.new do
         # @return [String] Resource Identifier.
-        attribute(:resource_id, String, from: "resourceId")
+        attribute?(:resource_id, String, from: "resourceId")
 
         # @return [Array<RangeCapacity>] Array of range capacities where each entry is for a specific capacity type.
-        attribute(:capacities, [RangeCapacity])
+        attribute?(:capacities, [RangeCapacity])
 
         # @return [String] Next page token, if there are more pages.
-        attribute(:next_page_token, String, from: "nextPageToken")
+        attribute?(:next_page_token, String, from: "nextPageToken")
       end
     end
   end

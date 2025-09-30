@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class PrintOption < Data
-        def self.new: (supported_dp_is: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_file_joining_options: Array[untyped]?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> Peddler::Types::ShippingV2::PrintOption
+        def self.new: (?supported_dp_is: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_file_joining_options: Array[untyped]?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> Peddler::Types::ShippingV2::PrintOption
                     | (Array[untyped]?, Array[untyped]?, Array[untyped]?, Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> Peddler::Types::ShippingV2::PrintOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PrintOption

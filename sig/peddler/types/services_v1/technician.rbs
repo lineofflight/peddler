@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class Technician < Data
-        def self.new: (technician_id: String?, name: String?) -> Peddler::Types::ServicesV1::Technician
+        def self.new: (?technician_id: String?, ?name: String?) -> Peddler::Types::ServicesV1::Technician
                     | (String?, String?) -> Peddler::Types::ServicesV1::Technician
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Technician

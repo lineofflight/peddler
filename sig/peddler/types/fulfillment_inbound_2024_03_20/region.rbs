@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Region < Data
-        def self.new: (country_code: String?, state: String?, warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::Region
+        def self.new: (?country_code: String?, ?state: String?, ?warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::Region
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Region
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Region

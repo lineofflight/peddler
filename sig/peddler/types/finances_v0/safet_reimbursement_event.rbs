@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class SAFETReimbursementEvent < Data
-        def self.new: (posted_date: String?, safet_claim_id: String?, reimbursed_amount: Peddler::Types::Money?, reason_code: String?, safet_reimbursement_item_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
+        def self.new: (?posted_date: String?, ?safet_claim_id: String?, ?reimbursed_amount: Peddler::Types::Money?, ?reason_code: String?, ?safet_reimbursement_item_list: Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
                     | (String?, String?, Peddler::Types::Money?, String?, Array[Peddler::Types::FinancesV0::SAFETReimbursementItem]?) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::SAFETReimbursementEvent

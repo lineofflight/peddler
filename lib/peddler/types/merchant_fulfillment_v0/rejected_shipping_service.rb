@@ -23,7 +23,7 @@ module Peddler
         attribute(:rejection_reason_code, String, from: "RejectionReasonCode")
 
         # @return [String] A localized human readable description of the rejected reason.
-        attribute(:rejection_reason_message, String, from: "RejectionReasonMessage")
+        attribute?(:rejection_reason_message, String, from: "RejectionReasonMessage")
       end
     end
   end

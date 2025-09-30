@@ -10,7 +10,7 @@ module Peddler
       # Total tax details for the line item.
       TaxItemDetails = Structure.new do
         # @return [Array<TaxDetails>] Tax details.
-        attribute(:tax_line_item, [TaxDetails], from: "taxLineItem")
+        attribute?(:tax_line_item, [TaxDetails], from: "taxLineItem")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class FixedSlotCapacity < Data
-        def self.new: (resource_id: String?, slot_duration: Float?, capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, next_page_token: String?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
+        def self.new: (?resource_id: String?, ?slot_duration: Float?, ?capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, ?next_page_token: String?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
                     | (String?, Float?, Array[Peddler::Types::ServicesV1::FixedSlot]?, String?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacity

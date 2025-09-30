@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class ListingOffersRequestParams < Data
-        def self.new: (marketplace_id: String?, item_condition: String?, customer_type: String?, seller_sku: String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams
+        def self.new: (marketplace_id: String?, item_condition: String?, ?customer_type: String?, seller_sku: String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams
                     | (String?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams

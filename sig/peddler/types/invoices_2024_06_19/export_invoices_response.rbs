@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Invoices20240619
       class ExportInvoicesResponse < Data
-        def self.new: (export_id: String?) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse
+        def self.new: (?export_id: String?) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse
                     | (String?) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse

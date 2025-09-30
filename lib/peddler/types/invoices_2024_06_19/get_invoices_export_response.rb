@@ -10,7 +10,7 @@ module Peddler
       # Success.
       GetInvoicesExportResponse = Structure.new do
         # @return [Export]
-        attribute(:export, Export)
+        attribute?(:export, Export)
       end
     end
   end

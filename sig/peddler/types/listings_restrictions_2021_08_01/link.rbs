@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ListingsRestrictions20210801
       class Link < Data
-        def self.new: (resource: String?, verb: String?, title: String?, type: String?) -> Peddler::Types::ListingsRestrictions20210801::Link
+        def self.new: (resource: String?, verb: String?, ?title: String?, ?type: String?) -> Peddler::Types::ListingsRestrictions20210801::Link
                     | (String?, String?, String?, String?) -> Peddler::Types::ListingsRestrictions20210801::Link
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsRestrictions20210801::Link

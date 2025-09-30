@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class GetPrepInstructionsResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult?, errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResponse
+        def self.new: (?payload: Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult?, ?errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResponse
                     | (Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult?, Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResponse

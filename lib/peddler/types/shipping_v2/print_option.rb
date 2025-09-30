@@ -10,7 +10,7 @@ module Peddler
       # The format options available for a label.
       PrintOption = Structure.new do
         # @return [Array<Dpi>] A list of the supported DPI options for a document.
-        attribute(:supported_dp_is, Array, from: "supportedDPIs")
+        attribute?(:supported_dp_is, Array, from: "supportedDPIs")
 
         # @return [Array<PageLayout>] A list of the supported page layout options for a document.
         attribute(:supported_page_layouts, Array, from: "supportedPageLayouts")

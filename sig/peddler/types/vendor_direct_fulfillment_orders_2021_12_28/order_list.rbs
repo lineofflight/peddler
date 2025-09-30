@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class OrderList < Data
-        def self.new: (pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
+        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, ?orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
                     | (Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList

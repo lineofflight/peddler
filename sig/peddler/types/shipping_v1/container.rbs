@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV1
       class Container < Data
-        def self.new: (container_type: String?, container_reference_id: String?, value: Peddler::Types::Money?, dimensions: Peddler::Types::ShippingV1::Dimensions?, items: Array[Peddler::Types::ShippingV1::ContainerItem]?, weight: Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::Container
+        def self.new: (?container_type: String?, container_reference_id: String?, value: Peddler::Types::Money?, dimensions: Peddler::Types::ShippingV1::Dimensions?, items: Array[Peddler::Types::ShippingV1::ContainerItem]?, weight: Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::Container
                     | (String?, String?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Dimensions?, Array[Peddler::Types::ShippingV1::ContainerItem]?, Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::Container
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::Container

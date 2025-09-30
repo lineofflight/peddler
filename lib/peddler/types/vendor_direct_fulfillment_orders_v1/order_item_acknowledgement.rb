@@ -13,11 +13,11 @@ module Peddler
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [String] Buyer's standard identification number (ASIN) of an item.
-        attribute(:buyer_product_identifier, String, from: "buyerProductIdentifier")
+        attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item. Should be the same as was provided in
         # the purchase order.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Details of quantity acknowledged with the above acknowledgement code.
         attribute(:acknowledged_quantity, ItemQuantity, from: "acknowledgedQuantity")

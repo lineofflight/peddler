@@ -14,7 +14,7 @@ module Peddler
         attribute(:id, String)
 
         # @return [Money]
-        attribute(:amount, Money)
+        attribute?(:amount, Money)
       end
     end
   end

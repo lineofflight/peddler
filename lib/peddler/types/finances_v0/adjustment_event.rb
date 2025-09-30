@@ -36,19 +36,19 @@ module Peddler
         #
         # * SellerRewards - An award credited to a seller's account for their participation in an offer in the Seller
         # Rewards program. Applies only to the India marketplace.
-        attribute(:adjustment_type, String, from: "AdjustmentType")
+        attribute?(:adjustment_type, String, from: "AdjustmentType")
 
         # @return [String] The date and time when the financial event was posted.
-        attribute(:posted_date, String, from: "PostedDate")
+        attribute?(:posted_date, String, from: "PostedDate")
 
         # @return [String] The name of the store where the event occurred.
-        attribute(:store_name, String, from: "StoreName")
+        attribute?(:store_name, String, from: "StoreName")
 
         # @return [Money] The amount adjusted as part of this event.
-        attribute(:adjustment_amount, Money, from: "AdjustmentAmount")
+        attribute?(:adjustment_amount, Money, from: "AdjustmentAmount")
 
         # @return [Array<AdjustmentItem>] A list of information about adjustments to an account.
-        attribute(:adjustment_item_list, [AdjustmentItem], from: "AdjustmentItemList")
+        attribute?(:adjustment_item_list, [AdjustmentItem], from: "AdjustmentItemList")
       end
     end
   end

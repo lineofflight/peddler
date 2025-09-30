@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class CouponPaymentEvent < Data
-        def self.new: (posted_date: String?, coupon_id: String?, seller_coupon_description: String?, clip_or_redemption_count: Integer?, payment_event_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
+        def self.new: (?posted_date: String?, ?coupon_id: String?, ?seller_coupon_description: String?, ?clip_or_redemption_count: Integer?, ?payment_event_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
                     | (String?, String?, String?, Integer?, String?, Peddler::Types::FinancesV0::FeeComponent?, Peddler::Types::FinancesV0::ChargeComponent?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::CouponPaymentEvent

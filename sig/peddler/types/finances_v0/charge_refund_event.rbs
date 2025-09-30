@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class ChargeRefundEvent < Data
-        def self.new: (posted_date: String?, reason_code: String?, reason_code_description: String?, charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
+        def self.new: (?posted_date: String?, ?reason_code: String?, ?reason_code_description: String?, ?charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
                     | (String?, String?, String?, Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ChargeRefundEvent

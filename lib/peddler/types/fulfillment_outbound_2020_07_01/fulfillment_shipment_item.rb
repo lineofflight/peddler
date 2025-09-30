@@ -20,13 +20,13 @@ module Peddler
         attribute(:quantity, Integer)
 
         # @return [Integer] An identifier for the package that contains the item quantity.
-        attribute(:package_number, Integer, from: "packageNumber")
+        attribute?(:package_number, Integer, from: "packageNumber")
 
         # @return [String] The serial number of the shipped item.
-        attribute(:serial_number, String, from: "serialNumber")
+        attribute?(:serial_number, String, from: "serialNumber")
 
         # @return [Array<String>] The manufacturer lot codes of the shipped items.
-        attribute(:manufacturer_lot_codes, [String], from: "manufacturerLotCodes")
+        attribute?(:manufacturer_lot_codes, [String], from: "manufacturerLotCodes")
       end
     end
   end

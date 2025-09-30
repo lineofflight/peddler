@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class ShipmentListing < Data
-        def self.new: (next_token: String?, shipments: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
+        def self.new: (?next_token: String?, ?shipments: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
                     | (String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing

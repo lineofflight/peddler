@@ -14,7 +14,7 @@ module Peddler
         attribute(:marketplace_asin, ASINIdentifier, from: "MarketplaceASIN")
 
         # @return [SellerSKUIdentifier] Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
-        attribute(:sku_identifier, SellerSKUIdentifier, from: "SKUIdentifier")
+        attribute?(:sku_identifier, SellerSKUIdentifier, from: "SKUIdentifier")
       end
     end
   end

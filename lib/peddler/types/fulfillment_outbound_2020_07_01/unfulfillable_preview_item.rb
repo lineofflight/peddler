@@ -21,7 +21,7 @@ module Peddler
 
         # @return [Array<String>] Error codes associated with the fulfillment order preview that indicate why the item
         # is unfulfillable.
-        attribute(:item_unfulfillable_reasons, [String], from: "itemUnfulfillableReasons")
+        attribute?(:item_unfulfillable_reasons, [String], from: "itemUnfulfillableReasons")
       end
     end
   end

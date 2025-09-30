@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FeatureSku < Data
-        def self.new: (seller_sku: String?, fn_sku: String?, asin: String?, sku_count: Float?, overlapping_skus: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
+        def self.new: (?seller_sku: String?, ?fn_sku: String?, ?asin: String?, ?sku_count: Float?, ?overlapping_skus: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
                     | (String?, String?, String?, Float?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku

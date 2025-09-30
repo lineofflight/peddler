@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class SubmitShipmentConfirmationsResponse < Data
-        def self.new: (payload: Peddler::Types::VendorShipmentsV1::TransactionReference?, errors: Array[Peddler::Types::VendorShipmentsV1::Error]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
+        def self.new: (?payload: Peddler::Types::VendorShipmentsV1::TransactionReference?, ?errors: Array[Peddler::Types::VendorShipmentsV1::Error]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
                     | (Peddler::Types::VendorShipmentsV1::TransactionReference?, Array[Peddler::Types::VendorShipmentsV1::Error]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse

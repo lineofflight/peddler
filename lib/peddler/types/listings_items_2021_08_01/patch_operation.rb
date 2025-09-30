@@ -18,7 +18,7 @@ module Peddler
         attribute(:path, String)
 
         # @return [Array<Object>] JSON value to `add`, `replace`, `merge` or `delete`.
-        attribute(:value, Array)
+        attribute?(:value, Array)
       end
     end
   end

@@ -16,7 +16,7 @@ module Peddler
         attribute(:ndr_action, String, from: "ndrAction")
 
         # @return [NdrRequestData]
-        attribute(:ndr_request_data, NdrRequestData, from: "ndrRequestData")
+        attribute?(:ndr_request_data, NdrRequestData, from: "ndrRequestData")
       end
     end
   end

@@ -10,7 +10,7 @@ module Peddler
       # Response schema for the cancelShipment operation.
       CancelShipmentResponse = Structure.new do
         # @return [CancelShipmentResult]
-        attribute(:payload, CancelShipmentResult)
+        attribute?(:payload, CancelShipmentResult)
       end
     end
   end

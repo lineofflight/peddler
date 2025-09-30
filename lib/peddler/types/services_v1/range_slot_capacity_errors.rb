@@ -10,7 +10,7 @@ module Peddler
       # The error response schema for the `getRangeSlotCapacity` operation.
       RangeSlotCapacityErrors = Structure.new do
         # @return [Array<Error>] Errors encountered during the `getRangeSlotCapacity` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

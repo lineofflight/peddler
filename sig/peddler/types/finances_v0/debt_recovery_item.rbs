@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class DebtRecoveryItem < Data
-        def self.new: (recovery_amount: Peddler::Types::Money?, original_amount: Peddler::Types::Money?, group_begin_date: String?, group_end_date: String?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
+        def self.new: (?recovery_amount: Peddler::Types::Money?, ?original_amount: Peddler::Types::Money?, ?group_begin_date: String?, ?group_end_date: String?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
                     | (Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryItem

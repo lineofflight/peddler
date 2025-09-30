@@ -10,16 +10,16 @@ module Peddler
       # Information about the buyer.
       Buyer = Structure.new do
         # @return [String] The identifier of the buyer.
-        attribute(:buyer_id, String, from: "buyerId")
+        attribute?(:buyer_id, String, from: "buyerId")
 
         # @return [String] The name of the buyer.
-        attribute(:name, String)
+        attribute?(:name, String)
 
         # @return [String] The phone number of the buyer.
-        attribute(:phone, String)
+        attribute?(:phone, String)
 
         # @return [:boolean] When true, the service is for an Amazon Prime buyer.
-        attribute(:prime_member, :boolean, from: "isPrimeMember")
+        attribute?(:prime_member, :boolean, from: "isPrimeMember")
       end
     end
   end

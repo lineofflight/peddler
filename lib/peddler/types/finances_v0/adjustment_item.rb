@@ -12,29 +12,29 @@ module Peddler
       AdjustmentItem = Structure.new do
         # @return [String] Represents the number of units in the seller's inventory when the AdustmentType is
         # FBAInventoryReimbursement.
-        attribute(:quantity, String, from: "Quantity")
+        attribute?(:quantity, String, from: "Quantity")
 
         # @return [Money] The per unit value of the item.
-        attribute(:per_unit_amount, Money, from: "PerUnitAmount")
+        attribute?(:per_unit_amount, Money, from: "PerUnitAmount")
 
         # @return [Money] The total value of the item.
-        attribute(:total_amount, Money, from: "TotalAmount")
+        attribute?(:total_amount, Money, from: "TotalAmount")
 
         # @return [String] The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is
         # included with every call to the Selling Partner API.
-        attribute(:seller_sku, String, from: "SellerSKU")
+        attribute?(:seller_sku, String, from: "SellerSKU")
 
         # @return [String] A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
-        attribute(:fn_sku, String, from: "FnSKU")
+        attribute?(:fn_sku, String, from: "FnSKU")
 
         # @return [String] A short description of the item.
-        attribute(:product_description, String, from: "ProductDescription")
+        attribute?(:product_description, String, from: "ProductDescription")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item.
-        attribute(:asin, String, from: "ASIN")
+        attribute?(:asin, String, from: "ASIN")
 
         # @return [String] The transaction number that is related to the adjustment.
-        attribute(:transaction_number, String, from: "TransactionNumber")
+        attribute?(:transaction_number, String, from: "TransactionNumber")
       end
     end
   end

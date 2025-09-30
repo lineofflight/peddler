@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class UnlinkCarrierAccountResponse < Data
-        def self.new: (unlinked: bool?) -> Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse
+        def self.new: (?unlinked: bool?) -> Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse
                     | (bool?) -> Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse

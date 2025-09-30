@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class ItemRelatedIdentifier < Data
-        def self.new: (item_related_identifier_name: String?, item_related_identifier_value: String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
+        def self.new: (?item_related_identifier_name: String?, ?item_related_identifier_value: String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
                     | (String?, String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier

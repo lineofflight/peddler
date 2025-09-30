@@ -17,11 +17,11 @@ module Peddler
         attribute(:item_condition, String, from: "ItemCondition")
 
         # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
-        attribute(:customer_type, String, from: "CustomerType")
+        attribute?(:customer_type, String, from: "CustomerType")
 
         # @return [String] The Amazon Standard Identification Number (ASIN) of the item. This is the same Asin passed as
         # a request parameter.
-        attribute(:asin, String, from: "Asin")
+        attribute?(:asin, String, from: "Asin")
       end
     end
   end

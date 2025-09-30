@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getMarketplaceParticipations` operation.
       GetMarketplaceParticipationsResponse = Structure.new do
         # @return [Array<MarketplaceParticipation>] The payload for the `getMarketplaceParticipations` operation.
-        attribute(:payload, [MarketplaceParticipation])
+        attribute?(:payload, [MarketplaceParticipation])
 
         # @return [Array<Error>] The errors encountered by the `getMarketplaceParticipations` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

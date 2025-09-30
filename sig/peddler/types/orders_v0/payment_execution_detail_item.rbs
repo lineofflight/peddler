@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class PaymentExecutionDetailItem < Data
-        def self.new: (payment: Peddler::Types::Money?, payment_method: String?, acquirer_id: String?, card_brand: String?, authorization_code: String?) -> Peddler::Types::OrdersV0::PaymentExecutionDetailItem
+        def self.new: (payment: Peddler::Types::Money?, payment_method: String?, ?acquirer_id: String?, ?card_brand: String?, ?authorization_code: String?) -> Peddler::Types::OrdersV0::PaymentExecutionDetailItem
                     | (Peddler::Types::Money?, String?, String?, String?, String?) -> Peddler::Types::OrdersV0::PaymentExecutionDetailItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PaymentExecutionDetailItem

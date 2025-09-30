@@ -11,10 +11,10 @@ module Peddler
       # A list of purchase orders returned as response.
       OrderList = Structure.new do
         # @return [Pagination] The pagination elements required to retrieve the remaining data.
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<Order>] Represents a purchase order within the OrderList.
-        attribute(:orders, [Order])
+        attribute?(:orders, [Order])
       end
     end
   end

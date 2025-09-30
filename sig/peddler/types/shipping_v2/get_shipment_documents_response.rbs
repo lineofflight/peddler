@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class GetShipmentDocumentsResponse < Data
-        def self.new: (payload: Peddler::Types::ShippingV2::GetShipmentDocumentsResult?) -> Peddler::Types::ShippingV2::GetShipmentDocumentsResponse
+        def self.new: (?payload: Peddler::Types::ShippingV2::GetShipmentDocumentsResult?) -> Peddler::Types::ShippingV2::GetShipmentDocumentsResponse
                     | (Peddler::Types::ShippingV2::GetShipmentDocumentsResult?) -> Peddler::Types::ShippingV2::GetShipmentDocumentsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetShipmentDocumentsResponse

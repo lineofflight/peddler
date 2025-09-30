@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class DocumentDownload < Data
-        def self.new: (download_type: String?, expiration: String?, uri: String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
+        def self.new: (download_type: String?, ?expiration: String?, uri: String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload

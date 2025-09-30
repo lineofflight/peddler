@@ -10,7 +10,7 @@ module Peddler
       # Information about the service job provider.
       ServiceJobProvider = Structure.new do
         # @return [String] The identifier of the service job provider.
-        attribute(:service_job_provider_id, String, from: "serviceJobProviderId")
+        attribute?(:service_job_provider_id, String, from: "serviceJobProviderId")
       end
     end
   end

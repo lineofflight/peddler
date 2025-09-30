@@ -31,7 +31,7 @@ module Peddler
         attribute(:service_name, String, from: "serviceName")
 
         # @return [Weight]
-        attribute(:billed_weight, Weight, from: "billedWeight")
+        attribute?(:billed_weight, Weight, from: "billedWeight")
 
         # @return [Money]
         attribute(:total_charge, Money, from: "totalCharge")
@@ -43,7 +43,7 @@ module Peddler
         attribute(:supported_document_specifications, [SupportedDocumentSpecification], from: "supportedDocumentSpecifications")
 
         # @return [Array<AvailableValueAddedServiceGroup>]
-        attribute(:available_value_added_service_groups, [AvailableValueAddedServiceGroup], from: "availableValueAddedServiceGroups")
+        attribute?(:available_value_added_service_groups, [AvailableValueAddedServiceGroup], from: "availableValueAddedServiceGroups")
 
         # @return [:boolean] When true, indicates that additional inputs are required to purchase this shipment service.
         # You must then call the getAdditionalInputs operation to return the JSON schema to use when providing the
@@ -51,13 +51,13 @@ module Peddler
         attribute(:requires_additional_inputs, :boolean, from: "requiresAdditionalInputs")
 
         # @return [Array<RateItem>]
-        attribute(:rate_item_list, [RateItem], from: "rateItemList")
+        attribute?(:rate_item_list, [RateItem], from: "rateItemList")
 
         # @return [String]
-        attribute(:payment_type, String, from: "paymentType")
+        attribute?(:payment_type, String, from: "paymentType")
 
         # @return [Benefits]
-        attribute(:benefits, Benefits)
+        attribute?(:benefits, Benefits)
       end
     end
   end

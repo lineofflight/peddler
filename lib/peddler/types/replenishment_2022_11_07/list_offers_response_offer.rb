@@ -10,28 +10,28 @@ module Peddler
       # An object which contains details about an offer.
       ListOffersResponseOffer = Structure.new do
         # @return [String] The SKU. This property is only supported for sellers and not for vendors.
-        attribute(:sku, String)
+        attribute?(:sku, String)
 
         # @return [String] The Amazon Standard Identification Number (ASIN).
-        attribute(:asin, String)
+        attribute?(:asin, String)
 
         # @return [String] The marketplace identifier. The supported marketplaces for both sellers and vendors are US,
         # CA, ES, UK, FR, IT, IN, DE and JP. The supported marketplaces for vendors only are BR, AU, MX, AE and NL.
         # Refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) to find the
         # identifier for the marketplace.
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The offer eligibility status.
-        attribute(:eligibility, String)
+        attribute?(:eligibility, String)
 
         # @return [OfferProgramConfiguration]
-        attribute(:offer_program_configuration, OfferProgramConfiguration, from: "offerProgramConfiguration")
+        attribute?(:offer_program_configuration, OfferProgramConfiguration, from: "offerProgramConfiguration")
 
         # @return [String] The replenishment program for the offer.
-        attribute(:program_type, String, from: "programType")
+        attribute?(:program_type, String, from: "programType")
 
         # @return [Array<String>] A list of vendor codes associated with the offer.
-        attribute(:vendor_codes, [String], from: "vendorCodes")
+        attribute?(:vendor_codes, [String], from: "vendorCodes")
       end
     end
   end

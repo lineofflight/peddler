@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `getOrderAddress` operation.
       GetOrderAddressResponse = Structure.new do
         # @return [OrderAddress] The payload for the `getOrderAddress` operations.
-        attribute(:payload, OrderAddress)
+        attribute?(:payload, OrderAddress)
 
         # @return [Array<Error>] One or more unexpected errors occurred during the `getOrderAddress` operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

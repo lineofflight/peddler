@@ -10,10 +10,10 @@ module Peddler
       # The tax classification of the order.
       TaxClassification = Structure.new do
         # @return [String] The type of tax.
-        attribute(:name, String, from: "Name")
+        attribute?(:name, String, from: "Name")
 
         # @return [String] The buyer's tax identifier.
-        attribute(:value, String, from: "Value")
+        attribute?(:value, String, from: "Value")
       end
     end
   end

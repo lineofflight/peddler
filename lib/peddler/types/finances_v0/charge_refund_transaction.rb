@@ -11,10 +11,10 @@ module Peddler
       # The charge refund transaction.
       ChargeRefundTransaction = Structure.new do
         # @return [Money] The amount of the charge refund credit.
-        attribute(:charge_amount, Money, from: "ChargeAmount")
+        attribute?(:charge_amount, Money, from: "ChargeAmount")
 
         # @return [String] The type of charge.
-        attribute(:charge_type, String, from: "ChargeType")
+        attribute?(:charge_type, String, from: "ChargeType")
       end
     end
   end

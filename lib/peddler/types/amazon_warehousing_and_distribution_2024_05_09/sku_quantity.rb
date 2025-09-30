@@ -13,7 +13,7 @@ module Peddler
         attribute(:expected_quantity, InventoryQuantity, from: "expectedQuantity")
 
         # @return [InventoryQuantity]
-        attribute(:received_quantity, InventoryQuantity, from: "receivedQuantity")
+        attribute?(:received_quantity, InventoryQuantity, from: "receivedQuantity")
 
         # @return [String] The merchant stock keeping unit
         attribute(:sku, String)

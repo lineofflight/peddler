@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the `getSellingPartnerMetrics` operation.
       GetSellingPartnerMetricsResponse = Structure.new do
         # @return [Array<GetSellingPartnerMetricsResponseMetric>] A list of metrics data for the selling partner.
-        attribute(:metrics, [GetSellingPartnerMetricsResponseMetric])
+        attribute?(:metrics, [GetSellingPartnerMetricsResponseMetric])
       end
     end
   end

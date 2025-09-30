@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class ShipmentDetails < Data
-        def self.new: (priority_shipment: bool?, scheduled_delivery_shipment: bool?, pslip_required: bool?, gift: bool?, ship_method: String?, shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, message_to_customer: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
+        def self.new: (priority_shipment: bool?, ?scheduled_delivery_shipment: bool?, pslip_required: bool?, ?gift: bool?, ship_method: String?, shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, message_to_customer: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
                     | (bool?, bool?, bool?, bool?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails

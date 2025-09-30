@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class Product < Data
-        def self.new: (identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, attribute_sets: Array[untyped]?, relationships: Array[untyped]?, competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, offers: Array[Peddler::Types::ProductPricingV0::OfferType]?) -> Peddler::Types::ProductPricingV0::Product
+        def self.new: (identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, ?attribute_sets: Array[untyped]?, ?relationships: Array[untyped]?, ?competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, ?sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, ?offers: Array[Peddler::Types::ProductPricingV0::OfferType]?) -> Peddler::Types::ProductPricingV0::Product
                     | (Peddler::Types::ProductPricingV0::IdentifierType?, Array[untyped]?, Array[untyped]?, Peddler::Types::ProductPricingV0::CompetitivePricingType?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?, Array[Peddler::Types::ProductPricingV0::OfferType]?) -> Peddler::Types::ProductPricingV0::Product
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::Product

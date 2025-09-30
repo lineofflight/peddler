@@ -16,10 +16,10 @@ module Peddler
       # `BLANK_BOX`.
       FeatureSettings = Structure.new do
         # @return [String] The name of the feature.
-        attribute(:feature_name, String, from: "featureName")
+        attribute?(:feature_name, String, from: "featureName")
 
         # @return [String] Specifies the policy to use when fulfilling an order.
-        attribute(:feature_fulfillment_policy, String, from: "featureFulfillmentPolicy")
+        attribute?(:feature_fulfillment_policy, String, from: "featureFulfillmentPolicy")
       end
     end
   end

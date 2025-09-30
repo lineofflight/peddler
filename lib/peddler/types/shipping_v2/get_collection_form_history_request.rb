@@ -12,19 +12,19 @@ module Peddler
       # The request schema to get query collections form history API .
       GetCollectionFormHistoryRequest = Structure.new do
         # @return [Array<ClientReferenceDetail>]
-        attribute(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
+        attribute?(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
 
         # @return [Integer] max Number of Results for query .
-        attribute(:max_results, Integer, from: "maxResults")
+        attribute?(:max_results, Integer, from: "maxResults")
 
         # @return [String]
-        attribute(:carrier_id, String, from: "carrierId")
+        attribute?(:carrier_id, String, from: "carrierId")
 
         # @return [Address]
-        attribute(:ship_from_address, Address, from: "shipFromAddress")
+        attribute?(:ship_from_address, Address, from: "shipFromAddress")
 
         # @return [DateRange]
-        attribute(:date_range, DateRange, from: "dateRange")
+        attribute?(:date_range, DateRange, from: "dateRange")
       end
     end
   end

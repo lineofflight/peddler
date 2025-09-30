@@ -12,10 +12,10 @@ module Peddler
         # @return [String] Indicate whether the buyer has requested cancellation.
         #
         # **Possible Values**: `true`, `false`.
-        attribute(:is_buyer_requested_cancel, String, from: "IsBuyerRequestedCancel")
+        attribute?(:is_buyer_requested_cancel, String, from: "IsBuyerRequestedCancel")
 
         # @return [String] The reason that the buyer requested cancellation.
-        attribute(:buyer_cancel_reason, String, from: "BuyerCancelReason")
+        attribute?(:buyer_cancel_reason, String, from: "BuyerCancelReason")
       end
     end
   end

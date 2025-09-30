@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class TrackingSummary < Data
-        def self.new: (status: String?, tracking_detail_codes: Peddler::Types::ShippingV2::TrackingDetailCodes?) -> Peddler::Types::ShippingV2::TrackingSummary
+        def self.new: (?status: String?, ?tracking_detail_codes: Peddler::Types::ShippingV2::TrackingDetailCodes?) -> Peddler::Types::ShippingV2::TrackingSummary
                     | (String?, Peddler::Types::ShippingV2::TrackingDetailCodes?) -> Peddler::Types::ShippingV2::TrackingSummary
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::TrackingSummary

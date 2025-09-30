@@ -10,7 +10,7 @@ module Peddler
       # The shipper instruction.
       ShipperInstruction = Structure.new do
         # @return [String] The delivery notes for the shipment
-        attribute(:delivery_notes, String, from: "deliveryNotes")
+        attribute?(:delivery_notes, String, from: "deliveryNotes")
       end
     end
   end

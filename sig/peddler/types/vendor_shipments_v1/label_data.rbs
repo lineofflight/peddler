@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class LabelData < Data
-        def self.new: (label_sequence_number: Integer?, label_format: String?, carrier_code: String?, tracking_id: String?, label: String?) -> Peddler::Types::VendorShipmentsV1::LabelData
+        def self.new: (?label_sequence_number: Integer?, ?label_format: String?, ?carrier_code: String?, ?tracking_id: String?, ?label: String?) -> Peddler::Types::VendorShipmentsV1::LabelData
                     | (Integer?, String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::LabelData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::LabelData

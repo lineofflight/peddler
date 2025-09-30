@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class ItemQuantity < Data
-        def self.new: (amount: Integer?, unit_of_measure: String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
+        def self.new: (?amount: Integer?, unit_of_measure: String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
                     | (Integer?, String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity

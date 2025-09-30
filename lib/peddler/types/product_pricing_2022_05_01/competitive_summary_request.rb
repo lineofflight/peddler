@@ -22,7 +22,7 @@ module Peddler
         # @return [Array<LowestPricedOffersInput>] The list of `lowestPricedOffersInput` parameters that are used to
         # build `lowestPricedOffers` in the response. This attribute is only valid if `lowestPricedOffers` is requested
         # in `includedData`
-        attribute(:lowest_priced_offers_inputs, [LowestPricedOffersInput], from: "lowestPricedOffersInputs")
+        attribute?(:lowest_priced_offers_inputs, [LowestPricedOffersInput], from: "lowestPricedOffersInputs")
 
         # @return [String] HTTP method type
         attribute(:method, String)

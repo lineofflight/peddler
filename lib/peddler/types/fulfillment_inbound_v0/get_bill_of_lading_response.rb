@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getBillOfLading operation.
       GetBillOfLadingResponse = Structure.new do
         # @return [BillOfLadingDownloadURL] The payload for the getBillOfLading operation.
-        attribute(:payload, BillOfLadingDownloadURL)
+        attribute?(:payload, BillOfLadingDownloadURL)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

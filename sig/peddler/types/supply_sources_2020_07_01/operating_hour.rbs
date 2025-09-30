@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class OperatingHour < Data
-        def self.new: (start_time: String?, end_time: String?) -> Peddler::Types::SupplySources20200701::OperatingHour
+        def self.new: (?start_time: String?, ?end_time: String?) -> Peddler::Types::SupplySources20200701::OperatingHour
                     | (String?, String?) -> Peddler::Types::SupplySources20200701::OperatingHour
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::OperatingHour

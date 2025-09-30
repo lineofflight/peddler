@@ -17,7 +17,7 @@ module Peddler
         attribute(:delivery_window_option_id, String, from: "deliveryWindowOptionId")
 
         # @return [String] The timestamp at which this Window can no longer be edited.
-        attribute(:editable_until, String, from: "editableUntil")
+        attribute?(:editable_until, String, from: "editableUntil")
 
         # @return [String] The end timestamp of the window.
         attribute(:end_date, String, from: "endDate")

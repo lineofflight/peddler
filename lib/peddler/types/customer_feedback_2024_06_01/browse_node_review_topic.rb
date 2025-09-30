@@ -19,11 +19,11 @@ module Peddler
 
         # @return [Array<String>] A list of up to three snippets from reviews that contain the topic. This value is
         # `null` if there aren't enough review snippets for the topic.
-        attribute(:review_snippets, [String], from: "reviewSnippets")
+        attribute?(:review_snippets, [String], from: "reviewSnippets")
 
         # @return [Array<BrowseNodeSubtopic>] A list of the five subtopics that occur most frequently. This value is
         # `null` if there are no subtopics.
-        attribute(:subtopics, [BrowseNodeSubtopic])
+        attribute?(:subtopics, [BrowseNodeSubtopic])
       end
     end
   end

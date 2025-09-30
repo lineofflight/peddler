@@ -15,11 +15,11 @@ module Peddler
 
         # @return [String] Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or
         # vendorProductIdentifier is required.
-        attribute(:buyer_product_identifier, String, from: "buyerProductIdentifier")
+        attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item. Should be the same as was sent in the
         # purchase order, like SKU Number.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Total item quantity shipped in this shipment.
         attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")

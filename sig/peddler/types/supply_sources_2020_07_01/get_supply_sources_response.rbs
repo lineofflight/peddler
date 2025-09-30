@@ -4,7 +4,7 @@ module Peddler
   module Types
     module SupplySources20200701
       class GetSupplySourcesResponse < Data
-        def self.new: (supply_sources: Array[untyped]?, next_page_token: String?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
+        def self.new: (?supply_sources: Array[untyped]?, ?next_page_token: String?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
                     | (Array[untyped]?, String?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse

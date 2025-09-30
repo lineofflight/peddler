@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class LinkableAccountType < Data
-        def self.new: (account_type: String?, carrier_account_inputs: Array[Peddler::Types::ShippingV2::CarrierAccountInput]?) -> Peddler::Types::ShippingV2::LinkableAccountType
+        def self.new: (?account_type: String?, ?carrier_account_inputs: Array[Peddler::Types::ShippingV2::CarrierAccountInput]?) -> Peddler::Types::ShippingV2::LinkableAccountType
                     | (String?, Array[Peddler::Types::ShippingV2::CarrierAccountInput]?) -> Peddler::Types::ShippingV2::LinkableAccountType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::LinkableAccountType

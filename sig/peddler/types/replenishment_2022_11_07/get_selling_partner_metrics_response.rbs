@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class GetSellingPartnerMetricsResponse < Data
-        def self.new: (metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
+        def self.new: (?metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
                     | (Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse

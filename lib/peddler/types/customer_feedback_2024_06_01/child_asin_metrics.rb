@@ -13,12 +13,12 @@ module Peddler
         # @return [ChildAsinMentionMetrics] The child ASIN for which reviews mention the topic the greatest number of
         # times, and the number of times reviews mention the topic. This value is `null` if there are no child ASIN
         # metrics.
-        attribute(:most_mentions, ChildAsinMentionMetrics, from: "mostMentions")
+        attribute?(:most_mentions, ChildAsinMentionMetrics, from: "mostMentions")
 
         # @return [ChildAsinMentionMetrics] The child ASIN for which reviews mention the topic the least number of
         # times, and the number of times reviews mention the topic. This value is `null` if there are no child ASIN
         # metrics.
-        attribute(:least_mentions, ChildAsinMentionMetrics, from: "leastMentions")
+        attribute?(:least_mentions, ChildAsinMentionMetrics, from: "leastMentions")
       end
     end
   end

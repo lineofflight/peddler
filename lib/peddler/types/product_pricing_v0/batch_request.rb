@@ -24,7 +24,7 @@ module Peddler
         attribute(:method, String)
 
         # @return [HttpRequestHeaders]
-        attribute(:headers, HttpRequestHeaders)
+        attribute?(:headers, HttpRequestHeaders)
       end
     end
   end

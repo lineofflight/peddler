@@ -17,7 +17,7 @@ module Peddler
         attribute(:status, String)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -14,7 +14,7 @@ module Peddler
 
         # @return [String] When present and not empty, pass this string token in the next request to return the next
         # response page.
-        attribute(:next_token, String, from: "NextToken")
+        attribute?(:next_token, String, from: "NextToken")
 
         # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
         attribute(:amazon_order_id, String, from: "AmazonOrderId")

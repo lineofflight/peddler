@@ -18,11 +18,11 @@ module Peddler
         attribute(:item_sequence_number, Integer, from: "itemSequenceNumber")
 
         # @return [String] Amazon Standard Identification Number (ASIN) of an item.
-        attribute(:amazon_product_identifier, String, from: "amazonProductIdentifier")
+        attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")
 
         # @return [String] The vendor selected product identifier of the item. Should be the same as was provided in the
         # purchase order.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Invoiced quantity of this item. Quantity must be greater than zero.
         attribute(:invoiced_quantity, ItemQuantity, from: "invoicedQuantity")
@@ -34,28 +34,28 @@ module Peddler
 
         # @return [String] This field represents weight unit of measure of items that are ordered by cases and
         # supporting priced by weight.
-        attribute(:net_cost_unit_of_measure, String, from: "netCostUnitOfMeasure")
+        attribute?(:net_cost_unit_of_measure, String, from: "netCostUnitOfMeasure")
 
         # @return [String] The Amazon purchase order number for this invoiced line item. Formatting Notes: 8-character
         # alpha-numeric code. This value is mandatory only when invoiceType is Invoice, and is not required when
         # invoiceType is CreditNote.
-        attribute(:purchase_order_number, String, from: "purchaseOrderNumber")
+        attribute?(:purchase_order_number, String, from: "purchaseOrderNumber")
 
         # @return [String] HSN Tax code. The HSN number cannot contain alphabets.
-        attribute(:hsn_code, String, from: "hsnCode")
+        attribute?(:hsn_code, String, from: "hsnCode")
 
         # @return [CreditNoteDetails] Details required in order to process a credit note. This information is required
         # only if invoiceType is CreditNote.
-        attribute(:credit_note_details, CreditNoteDetails, from: "creditNoteDetails")
+        attribute?(:credit_note_details, CreditNoteDetails, from: "creditNoteDetails")
 
         # @return [Array<TaxDetails>] Individual tax details per line item.
-        attribute(:tax_details, [TaxDetails], from: "taxDetails")
+        attribute?(:tax_details, [TaxDetails], from: "taxDetails")
 
         # @return [Array<ChargeDetails>] Individual charge details per line item.
-        attribute(:charge_details, [ChargeDetails], from: "chargeDetails")
+        attribute?(:charge_details, [ChargeDetails], from: "chargeDetails")
 
         # @return [Array<AllowanceDetails>] Individual allowance details per line item.
-        attribute(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
+        attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
       end
     end
   end

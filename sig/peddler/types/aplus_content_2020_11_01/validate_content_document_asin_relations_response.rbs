@@ -4,7 +4,7 @@ module Peddler
   module Types
     module AplusContent20201101
       class ValidateContentDocumentAsinRelationsResponse < Data
-        def self.new: (warnings: Array[Peddler::Types::AplusContent20201101::Error]?, errors: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
+        def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?, errors: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
                     | (Array[Peddler::Types::AplusContent20201101::Error]?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse

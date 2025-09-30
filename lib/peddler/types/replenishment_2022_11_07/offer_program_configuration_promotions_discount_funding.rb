@@ -10,7 +10,7 @@ module Peddler
       # A promotional percentage discount applied to the offer.
       OfferProgramConfigurationPromotionsDiscountFunding = Structure.new do
         # @return [Float] The percentage discount on the offer.
-        attribute(:percentage, Float)
+        attribute?(:percentage, Float)
       end
     end
   end

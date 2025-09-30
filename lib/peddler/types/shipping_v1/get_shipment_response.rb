@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getShipment operation.
       GetShipmentResponse = Structure.new do
         # @return [Shipment] The payload for getShipment operation
-        attribute(:payload, Shipment)
+        attribute?(:payload, Shipment)
 
         # @return [Array<Error>] Encountered errors for the operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -11,10 +11,10 @@ module Peddler
       # Represents a list of customer invoices, potentially paginated.
       CustomerInvoiceList = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<CustomerInvoice>] Represents a customer invoice within the CustomerInvoiceList.
-        attribute(:customer_invoices, [CustomerInvoice], from: "customerInvoices")
+        attribute?(:customer_invoices, [CustomerInvoice], from: "customerInvoices")
       end
     end
   end

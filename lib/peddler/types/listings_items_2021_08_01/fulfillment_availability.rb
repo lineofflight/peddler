@@ -13,7 +13,7 @@ module Peddler
         attribute(:fulfillment_channel_code, String, from: "fulfillmentChannelCode")
 
         # @return [Integer] The quantity of the item you are making available for sale.
-        attribute(:quantity, Integer)
+        attribute?(:quantity, Integer)
       end
     end
   end

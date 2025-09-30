@@ -11,10 +11,10 @@ module Peddler
       # The delivery information for the package. This information is available after the package is delivered.
       DeliveryInformation = Structure.new do
         # @return [Array<DeliveryDocument>] All of the delivery documents for a package.
-        attribute(:delivery_document_list, [DeliveryDocument], from: "deliveryDocumentList")
+        attribute?(:delivery_document_list, [DeliveryDocument], from: "deliveryDocumentList")
 
         # @return [DropOffLocation] The drop off location for a package.
-        attribute(:drop_off_location, DropOffLocation, from: "dropOffLocation")
+        attribute?(:drop_off_location, DropOffLocation, from: "dropOffLocation")
       end
     end
   end

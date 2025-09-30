@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class Quote < Data
-        def self.new: (cost: Peddler::Types::Money?, expiration: String?, voidable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
+        def self.new: (cost: Peddler::Types::Money?, ?expiration: String?, ?voidable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
                     | (Peddler::Types::Money?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Quote
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Quote

@@ -16,7 +16,7 @@ module Peddler
         attribute(:package_documents, [PackageDocument], from: "packageDocuments")
 
         # @return [String]
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute?(:tracking_id, String, from: "trackingId")
       end
     end
   end

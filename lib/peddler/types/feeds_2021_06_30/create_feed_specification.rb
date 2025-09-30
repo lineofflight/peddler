@@ -20,7 +20,7 @@ module Peddler
         attribute(:input_feed_document_id, String, from: "inputFeedDocumentId")
 
         # @return [FeedOptions]
-        attribute(:feed_options, FeedOptions, from: "feedOptions")
+        attribute?(:feed_options, FeedOptions, from: "feedOptions")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class CompetitivePricingType < Data
-        def self.new: (competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, trade_in_value: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::CompetitivePricingType
+        def self.new: (competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, ?trade_in_value: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::CompetitivePricingType
                     | (Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::CompetitivePricingType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::CompetitivePricingType

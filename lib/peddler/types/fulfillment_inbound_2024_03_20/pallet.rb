@@ -12,19 +12,19 @@ module Peddler
       # multiple items or boxes.
       Pallet = Structure.new do
         # @return [Dimensions]
-        attribute(:dimensions, Dimensions)
+        attribute?(:dimensions, Dimensions)
 
         # @return [String] Primary key to uniquely identify a Package (Box or Pallet).
         attribute(:package_id, String, from: "packageId")
 
         # @return [Integer] The number of containers where all other properties like weight or dimensions are identical.
-        attribute(:quantity, Integer)
+        attribute?(:quantity, Integer)
 
         # @return [String]
-        attribute(:stackability, String)
+        attribute?(:stackability, String)
 
         # @return [Weight]
-        attribute(:weight, Weight)
+        attribute?(:weight, Weight)
       end
     end
   end

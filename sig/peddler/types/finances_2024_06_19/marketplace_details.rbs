@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Finances20240619
       class MarketplaceDetails < Data
-        def self.new: (marketplace_id: String?, marketplace_name: String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
+        def self.new: (?marketplace_id: String?, ?marketplace_name: String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
                     | (String?, String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::MarketplaceDetails

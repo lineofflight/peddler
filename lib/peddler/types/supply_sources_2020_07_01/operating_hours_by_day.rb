@@ -10,25 +10,25 @@ module Peddler
       # The operating hours per day
       OperatingHoursByDay = Structure.new do
         # @return [Array<OperatingHour>]
-        attribute(:monday, [OperatingHour])
+        attribute?(:monday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
-        attribute(:tuesday, [OperatingHour])
+        attribute?(:tuesday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
-        attribute(:wednesday, [OperatingHour])
+        attribute?(:wednesday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
-        attribute(:thursday, [OperatingHour])
+        attribute?(:thursday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
-        attribute(:friday, [OperatingHour])
+        attribute?(:friday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
-        attribute(:saturday, [OperatingHour])
+        attribute?(:saturday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
-        attribute(:sunday, [OperatingHour])
+        attribute?(:sunday, [OperatingHour])
       end
     end
   end

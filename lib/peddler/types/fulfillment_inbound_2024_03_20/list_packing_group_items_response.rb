@@ -14,7 +14,7 @@ module Peddler
         attribute(:items, [Item])
 
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
       end
     end
   end

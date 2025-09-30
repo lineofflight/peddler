@@ -16,7 +16,7 @@ module Peddler
         attribute(:purchase_order_state, String, from: "purchaseOrderState")
 
         # @return [OrderDetails] Details of an order.
-        attribute(:order_details, OrderDetails, from: "orderDetails")
+        attribute?(:order_details, OrderDetails, from: "orderDetails")
       end
     end
   end

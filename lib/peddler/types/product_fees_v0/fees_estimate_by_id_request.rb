@@ -10,7 +10,7 @@ module Peddler
       # A product, marketplace, and proposed price used to request estimated fees.
       FeesEstimateByIdRequest = Structure.new do
         # @return [FeesEstimateRequest]
-        attribute(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
+        attribute?(:fees_estimate_request, FeesEstimateRequest, from: "FeesEstimateRequest")
 
         # @return [String]
         attribute(:id_type, String, from: "IdType")

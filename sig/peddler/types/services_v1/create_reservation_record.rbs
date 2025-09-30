@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class CreateReservationRecord < Data
-        def self.new: (reservation: Peddler::Types::ServicesV1::Reservation?, warnings: Array[Peddler::Types::ServicesV1::Warning]?, errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CreateReservationRecord
+        def self.new: (?reservation: Peddler::Types::ServicesV1::Reservation?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?, ?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CreateReservationRecord
                     | (Peddler::Types::ServicesV1::Reservation?, Array[Peddler::Types::ServicesV1::Warning]?, Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CreateReservationRecord
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::CreateReservationRecord

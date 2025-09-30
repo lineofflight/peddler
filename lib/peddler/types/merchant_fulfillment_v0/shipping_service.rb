@@ -30,10 +30,10 @@ module Peddler
         attribute(:ship_date, String, from: "ShipDate")
 
         # @return [String] The earliest date by which the shipment will be delivered.
-        attribute(:earliest_estimated_delivery_date, String, from: "EarliestEstimatedDeliveryDate")
+        attribute?(:earliest_estimated_delivery_date, String, from: "EarliestEstimatedDeliveryDate")
 
         # @return [String] The latest date by which the shipment will be delivered.
-        attribute(:latest_estimated_delivery_date, String, from: "LatestEstimatedDeliveryDate")
+        attribute?(:latest_estimated_delivery_date, String, from: "LatestEstimatedDeliveryDate")
 
         # @return [Money] The amount that the carrier will charge for the shipment.
         attribute(:rate, Money, from: "Rate")
@@ -42,19 +42,19 @@ module Peddler
         attribute(:shipping_service_options, ShippingServiceOptions, from: "ShippingServiceOptions")
 
         # @return [AvailableShippingServiceOptions]
-        attribute(:available_shipping_service_options, AvailableShippingServiceOptions, from: "AvailableShippingServiceOptions")
+        attribute?(:available_shipping_service_options, AvailableShippingServiceOptions, from: "AvailableShippingServiceOptions")
 
         # @return [Array<LabelFormat>]
-        attribute(:available_label_formats, Array, from: "AvailableLabelFormats")
+        attribute?(:available_label_formats, Array, from: "AvailableLabelFormats")
 
         # @return [Array<LabelFormatOption>]
-        attribute(:available_format_options_for_label, [LabelFormatOption], from: "AvailableFormatOptionsForLabel")
+        attribute?(:available_format_options_for_label, [LabelFormatOption], from: "AvailableFormatOptionsForLabel")
 
         # @return [:boolean] When true, additional seller inputs are required.
         attribute(:requires_additional_seller_inputs, :boolean, from: "RequiresAdditionalSellerInputs")
 
         # @return [Benefits]
-        attribute(:benefits, Benefits, from: "Benefits")
+        attribute?(:benefits, Benefits, from: "Benefits")
       end
     end
   end

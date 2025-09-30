@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ProductPricingV0
       class ItemOffersResponse < Data
-        def self.new: (headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, body: Peddler::Types::ProductPricingV0::GetOffersResponse?, request: Peddler::Types::ProductPricingV0::ItemOffersRequestParams?) -> Peddler::Types::ProductPricingV0::ItemOffersResponse
+        def self.new: (?headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, body: Peddler::Types::ProductPricingV0::GetOffersResponse?, request: Peddler::Types::ProductPricingV0::ItemOffersRequestParams?) -> Peddler::Types::ProductPricingV0::ItemOffersResponse
                     | (Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::ItemOffersRequestParams?) -> Peddler::Types::ProductPricingV0::ItemOffersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ItemOffersResponse

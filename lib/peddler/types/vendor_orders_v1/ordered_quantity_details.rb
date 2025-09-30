@@ -11,13 +11,13 @@ module Peddler
       OrderedQuantityDetails = Structure.new do
         # @return [String] The date when the line item quantity was updated by buyer. Must be in ISO-8601 date/time
         # format.
-        attribute(:updated_date, String, from: "updatedDate")
+        attribute?(:updated_date, String, from: "updatedDate")
 
         # @return [ItemQuantity] Item quantity ordered.
-        attribute(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
+        attribute?(:ordered_quantity, ItemQuantity, from: "orderedQuantity")
 
         # @return [ItemQuantity] Item quantity ordered.
-        attribute(:cancelled_quantity, ItemQuantity, from: "cancelledQuantity")
+        attribute?(:cancelled_quantity, ItemQuantity, from: "cancelledQuantity")
       end
     end
   end

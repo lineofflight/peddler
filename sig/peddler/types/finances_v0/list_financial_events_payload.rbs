@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class ListFinancialEventsPayload < Data
-        def self.new: (next_token: String?, financial_events: Peddler::Types::FinancesV0::FinancialEvents?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
+        def self.new: (?next_token: String?, ?financial_events: Peddler::Types::FinancesV0::FinancialEvents?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
                     | (String?, Peddler::Types::FinancesV0::FinancialEvents?) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventsPayload

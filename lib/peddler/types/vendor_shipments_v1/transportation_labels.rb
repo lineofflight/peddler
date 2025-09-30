@@ -11,10 +11,10 @@ module Peddler
       # The request schema for the GetShipmentLabels operation.
       TransportationLabels = Structure.new do
         # @return [Pagination]
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Array<TransportLabel>] A list of one or more ShipmentLabels.
-        attribute(:transport_labels, [TransportLabel], from: "transportLabels")
+        attribute?(:transport_labels, [TransportLabel], from: "transportLabels")
       end
     end
   end

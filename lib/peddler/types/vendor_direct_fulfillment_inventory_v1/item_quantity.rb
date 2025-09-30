@@ -10,7 +10,7 @@ module Peddler
       # Details of item quantity.
       ItemQuantity = Structure.new do
         # @return [Integer] Quantity of units available for a specific item.
-        attribute(:amount, Integer)
+        attribute?(:amount, Integer)
 
         # @return [String] Unit of measure for the available quantity.
         attribute(:unit_of_measure, String, from: "unitOfMeasure")

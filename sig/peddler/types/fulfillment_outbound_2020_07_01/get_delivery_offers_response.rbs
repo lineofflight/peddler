@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetDeliveryOffersResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
+        def self.new: (?payload: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult?, ?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
                     | (Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse

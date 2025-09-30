@@ -12,7 +12,7 @@ module Peddler
       InboundEligibility = Structure.new do
         # @return [Array<OrderIneligibilityReason>] If there are order level eligibility issues, then this list will
         # contain those error codes and descriptions.
-        attribute(:ineligibility_reasons, [OrderIneligibilityReason], from: "ineligibilityReasons")
+        attribute?(:ineligibility_reasons, [OrderIneligibilityReason], from: "ineligibilityReasons")
 
         # @return [Array<SkuEligibility>] Details on SKU eligibility for each inbound package.
         attribute(:packages_to_inbound, [SkuEligibility], from: "packagesToInbound")

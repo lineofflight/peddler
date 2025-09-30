@@ -4,7 +4,7 @@ module Peddler
   module Types
     module DataKiosk20231115
       class CreateQuerySpecification < Data
-        def self.new: (query: String?, pagination_token: String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
+        def self.new: (query: String?, ?pagination_token: String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
                     | (String?, String?) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::CreateQuerySpecification

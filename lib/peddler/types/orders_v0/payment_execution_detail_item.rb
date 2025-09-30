@@ -30,19 +30,19 @@ module Peddler
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
         # is `CreditCard` or `Pix`.
-        attribute(:acquirer_id, String, from: "AcquirerId")
+        attribute?(:acquirer_id, String, from: "AcquirerId")
 
         # @return [String] The card network or brand used in the payment transaction (for example, Visa or Mastercard).
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
         # is `CreditCard`.
-        attribute(:card_brand, String, from: "CardBrand")
+        attribute?(:card_brand, String, from: "CardBrand")
 
         # @return [String] The unique code that confirms the payment authorization.
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
         # is `CreditCard` or `Pix`.
-        attribute(:authorization_code, String, from: "AuthorizationCode")
+        attribute?(:authorization_code, String, from: "AuthorizationCode")
       end
     end
   end

@@ -10,10 +10,10 @@ module Peddler
       # Info About Linkable Account Type
       LinkableAccountType = Structure.new do
         # @return [String]
-        attribute(:account_type, String, from: "accountType")
+        attribute?(:account_type, String, from: "accountType")
 
         # @return [Array<CarrierAccountInput>]
-        attribute(:carrier_account_inputs, [CarrierAccountInput], from: "carrierAccountInputs")
+        attribute?(:carrier_account_inputs, [CarrierAccountInput], from: "carrierAccountInputs")
       end
     end
   end

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module EasyShip20220323
       class ScheduledPackageId < Data
-        def self.new: (amazon_order_id: String?, package_id: String?) -> Peddler::Types::EasyShip20220323::ScheduledPackageId
+        def self.new: (amazon_order_id: String?, ?package_id: String?) -> Peddler::Types::EasyShip20220323::ScheduledPackageId
                     | (String?, String?) -> Peddler::Types::EasyShip20220323::ScheduledPackageId
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::ScheduledPackageId

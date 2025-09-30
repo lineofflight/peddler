@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInventoryV1
       class InventorySummary < Data
-        def self.new: (asin: String?, fn_sku: String?, seller_sku: String?, condition: String?, inventory_details: Peddler::Types::FBAInventoryV1::InventoryDetails?, last_updated_time: String?, product_name: String?, total_quantity: Integer?, stores: Array[String]?) -> Peddler::Types::FBAInventoryV1::InventorySummary
+        def self.new: (?asin: String?, ?fn_sku: String?, ?seller_sku: String?, ?condition: String?, ?inventory_details: Peddler::Types::FBAInventoryV1::InventoryDetails?, ?last_updated_time: String?, ?product_name: String?, ?total_quantity: Integer?, ?stores: Array[String]?) -> Peddler::Types::FBAInventoryV1::InventorySummary
                     | (String?, String?, String?, String?, Peddler::Types::FBAInventoryV1::InventoryDetails?, String?, String?, Integer?, Array[String]?) -> Peddler::Types::FBAInventoryV1::InventorySummary
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::InventorySummary

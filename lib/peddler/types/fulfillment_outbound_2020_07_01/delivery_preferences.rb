@@ -15,10 +15,10 @@ module Peddler
       DeliveryPreferences = Structure.new do
         # @return [String] Additional delivery instructions. For example, this could be instructions on how to enter a
         # building, nearby landmark or navigation instructions, 'Beware of dogs', etc.
-        attribute(:delivery_instructions, String, from: "deliveryInstructions")
+        attribute?(:delivery_instructions, String, from: "deliveryInstructions")
 
         # @return [DropOffLocation] The preferred location to leave packages at the destination address.
-        attribute(:drop_off_location, DropOffLocation, from: "dropOffLocation")
+        attribute?(:drop_off_location, DropOffLocation, from: "dropOffLocation")
       end
     end
   end

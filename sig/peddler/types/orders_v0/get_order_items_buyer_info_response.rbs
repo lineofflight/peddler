@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class GetOrderItemsBuyerInfoResponse < Data
-        def self.new: (payload: Peddler::Types::OrdersV0::OrderItemsBuyerInfoList?, errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderItemsBuyerInfoResponse
+        def self.new: (?payload: Peddler::Types::OrdersV0::OrderItemsBuyerInfoList?, ?errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderItemsBuyerInfoResponse
                     | (Peddler::Types::OrdersV0::OrderItemsBuyerInfoList?, Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderItemsBuyerInfoResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::GetOrderItemsBuyerInfoResponse

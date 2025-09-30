@@ -14,10 +14,10 @@ module Peddler
         attribute(:time_of_fees_estimation, String, from: "TimeOfFeesEstimation")
 
         # @return [Money] Total estimated fees for a given item, price, and fulfillment channel.
-        attribute(:total_fees_estimate, Money, from: "TotalFeesEstimate")
+        attribute?(:total_fees_estimate, Money, from: "TotalFeesEstimate")
 
         # @return [Array<FeeDetail>]
-        attribute(:fee_detail_list, [FeeDetail], from: "FeeDetailList")
+        attribute?(:fee_detail_list, [FeeDetail], from: "FeeDetailList")
       end
     end
   end

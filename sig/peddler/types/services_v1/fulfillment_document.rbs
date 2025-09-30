@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class FulfillmentDocument < Data
-        def self.new: (upload_destination_id: String?, content_sha256: String?) -> Peddler::Types::ServicesV1::FulfillmentDocument
+        def self.new: (?upload_destination_id: String?, ?content_sha256: String?) -> Peddler::Types::ServicesV1::FulfillmentDocument
                     | (String?, String?) -> Peddler::Types::ServicesV1::FulfillmentDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::FulfillmentDocument

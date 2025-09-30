@@ -17,7 +17,7 @@ module Peddler
         attribute(:rates, [Rate])
 
         # @return [Array<IneligibleRate>]
-        attribute(:ineligible_rates, [IneligibleRate], from: "ineligibleRates")
+        attribute?(:ineligible_rates, [IneligibleRate], from: "ineligibleRates")
       end
     end
   end

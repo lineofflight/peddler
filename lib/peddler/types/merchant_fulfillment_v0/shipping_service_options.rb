@@ -18,17 +18,17 @@ module Peddler
         # is charged for the additional insurance, as determined by the carrier. For information about optional
         # insurance coverage, refer to Seller Central Help: [UK](https://sellercentral.amazon.co.uk/gp/help/200204080),
         # [US](https://sellercentral.amazon.com/gp/help/200204080).
-        attribute(:declared_value, Money, from: "DeclaredValue")
+        attribute?(:declared_value, Money, from: "DeclaredValue")
 
         # @return [:boolean] When true, the carrier will pick up the package. Note: Scheduled carrier pickup is
         # available only using Dynamex (US), DPD (UK), and Royal Mail (UK).
         attribute(:carrier_will_pick_up, :boolean, from: "CarrierWillPickUp")
 
         # @return [String]
-        attribute(:carrier_will_pick_up_option, String, from: "CarrierWillPickUpOption")
+        attribute?(:carrier_will_pick_up_option, String, from: "CarrierWillPickUpOption")
 
         # @return [String] The seller's preferred label format.
-        attribute(:label_format, String, from: "LabelFormat")
+        attribute?(:label_format, String, from: "LabelFormat")
       end
     end
   end

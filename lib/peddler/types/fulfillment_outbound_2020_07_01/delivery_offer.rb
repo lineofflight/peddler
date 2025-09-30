@@ -11,13 +11,13 @@ module Peddler
       # An available offer for delivery of a product.
       DeliveryOffer = Structure.new do
         # @return [String] The timestamp at which a delivery offer expires.
-        attribute(:expires_at, String, from: "expiresAt")
+        attribute?(:expires_at, String, from: "expiresAt")
 
         # @return [DateRange] The range between which delivery is expected.
-        attribute(:date_range, DateRange, from: "dateRange")
+        attribute?(:date_range, DateRange, from: "dateRange")
 
         # @return [DeliveryPolicy] The policy for a delivery offer, including localized messaging.
-        attribute(:policy, DeliveryPolicy)
+        attribute?(:policy, DeliveryPolicy)
       end
     end
   end

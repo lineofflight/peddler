@@ -11,10 +11,10 @@ module Peddler
       # Represents the contents inside a package, which can be products or a nested package.
       DistributionPackageContents = Structure.new do
         # @return [Array<DistributionPackageQuantity>] This is required only when `DistributionPackageType=PALLET`.
-        attribute(:packages, [DistributionPackageQuantity])
+        attribute?(:packages, [DistributionPackageQuantity])
 
         # @return [Array<ProductQuantity>] This is required only when `DistributionPackageType=CASE`.
-        attribute(:products, [ProductQuantity])
+        attribute?(:products, [ProductQuantity])
       end
     end
   end

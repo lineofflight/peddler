@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the `listOfferMetrics` operation.
       ListOfferMetricsResponse = Structure.new do
         # @return [Array<ListOfferMetricsResponseOffer>] A list of offers and associated metrics.
-        attribute(:offers, [ListOfferMetricsResponseOffer])
+        attribute?(:offers, [ListOfferMetricsResponseOffer])
 
         # @return [PaginationResponse] Use these parameters to paginate through the response.
-        attribute(:pagination, PaginationResponse)
+        attribute?(:pagination, PaginationResponse)
       end
     end
   end

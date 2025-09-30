@@ -15,7 +15,7 @@ module Peddler
         # @return [String] The URI's expiration time. In [ISO
         # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
         # `yyyy-MM-ddTHH:mm:ss.sssZ`.
-        attribute(:expiration, String)
+        attribute?(:expiration, String)
 
         # @return [String] Uniform resource identifier to identify where the document is located.
         attribute(:uri, String)

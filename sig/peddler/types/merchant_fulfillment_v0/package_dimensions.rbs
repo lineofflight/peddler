@@ -4,7 +4,7 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class PackageDimensions < Data
-        def self.new: (length: Float?, width: Float?, height: Float?, unit: String?, predefined_package_dimensions: String?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
+        def self.new: (?length: Float?, ?width: Float?, ?height: Float?, ?unit: String?, ?predefined_package_dimensions: String?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
                     | (Float?, Float?, Float?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::PackageDimensions

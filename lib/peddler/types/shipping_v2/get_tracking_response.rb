@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the getTracking operation.
       GetTrackingResponse = Structure.new do
         # @return [GetTrackingResult]
-        attribute(:payload, GetTrackingResult)
+        attribute?(:payload, GetTrackingResult)
       end
     end
   end

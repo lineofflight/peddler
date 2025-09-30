@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class DirectPurchaseRequest < Data
-        def self.new: (ship_to: Peddler::Types::ShippingV2::Address?, ship_from: Peddler::Types::ShippingV2::Address?, return_to: Peddler::Types::ShippingV2::Address?, packages: Array[Peddler::Types::ShippingV2::Package]?, channel_details: Peddler::Types::ShippingV2::ChannelDetails?, label_specifications: Peddler::Types::ShippingV2::RequestedDocumentSpecification?) -> Peddler::Types::ShippingV2::DirectPurchaseRequest
+        def self.new: (?ship_to: Peddler::Types::ShippingV2::Address?, ?ship_from: Peddler::Types::ShippingV2::Address?, ?return_to: Peddler::Types::ShippingV2::Address?, ?packages: Array[Peddler::Types::ShippingV2::Package]?, channel_details: Peddler::Types::ShippingV2::ChannelDetails?, ?label_specifications: Peddler::Types::ShippingV2::RequestedDocumentSpecification?) -> Peddler::Types::ShippingV2::DirectPurchaseRequest
                     | (Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::Address?, Peddler::Types::ShippingV2::Address?, Array[Peddler::Types::ShippingV2::Package]?, Peddler::Types::ShippingV2::ChannelDetails?, Peddler::Types::ShippingV2::RequestedDocumentSpecification?) -> Peddler::Types::ShippingV2::DirectPurchaseRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DirectPurchaseRequest

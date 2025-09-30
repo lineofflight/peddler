@@ -11,10 +11,10 @@ module Peddler
       ItemProductTypeByMarketplace = Structure.new do
         # @return [String] Amazon marketplace identifier. To find the ID for your marketplace, refer to [Marketplace
         # IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute?(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] Name of the product type that is associated with the Amazon catalog item.
-        attribute(:product_type, String, from: "productType")
+        attribute?(:product_type, String, from: "productType")
       end
     end
   end

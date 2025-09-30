@@ -18,32 +18,32 @@ module Peddler
         attribute(:model, String)
 
         # @return [String] Name of the vehicle variant.
-        attribute(:variant_name, String, from: "variantName")
+        attribute?(:variant_name, String, from: "variantName")
 
         # @return [String] Body style of vehicle (example: Hatchback, Cabriolet).
-        attribute(:body_style, String, from: "bodyStyle")
+        attribute?(:body_style, String, from: "bodyStyle")
 
         # @return [String] Drive type of vehicle(example: Rear wheel drive).
-        attribute(:drive_type, String, from: "driveType")
+        attribute?(:drive_type, String, from: "driveType")
 
         # @return [String] Energy Source for the vehicle(example: Petrol)
-        attribute(:energy, String)
+        attribute?(:energy, String)
 
         # @return [Array<EngineOutput>] Engine output of vehicle.
-        attribute(:engine_output, [EngineOutput], from: "engineOutput")
+        attribute?(:engine_output, [EngineOutput], from: "engineOutput")
 
         # @return [MonthAndYear] Vehicle manufacturing start date.
-        attribute(:manufacturing_start_date, MonthAndYear, from: "manufacturingStartDate")
+        attribute?(:manufacturing_start_date, MonthAndYear, from: "manufacturingStartDate")
 
         # @return [MonthAndYear] Vehicle manufacturing stop date. If it is empty, then the vehicle is still being
         # manufactured.
-        attribute(:manufacturing_stop_date, MonthAndYear, from: "manufacturingStopDate")
+        attribute?(:manufacturing_stop_date, MonthAndYear, from: "manufacturingStopDate")
 
         # @return [String] The date on which the vehicle was last updated, in ISO-8601 date/time format.
-        attribute(:last_processed_date, String, from: "lastProcessedDate")
+        attribute?(:last_processed_date, String, from: "lastProcessedDate")
 
         # @return [String] Denotes if the vehicle is active or deleted from Amazon's catalog.
-        attribute(:status, String)
+        attribute?(:status, String)
 
         # @return [Array<VehicleIdentifiers>] Identifiers that can be used to identify the vehicle uniquely
         attribute(:identifiers, [VehicleIdentifiers])

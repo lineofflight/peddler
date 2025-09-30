@@ -13,7 +13,7 @@ module Peddler
         attribute(:benefit, String)
 
         # @return [Array<String>]
-        attribute(:reason_codes, [String], from: "reasonCodes")
+        attribute?(:reason_codes, [String], from: "reasonCodes")
       end
     end
   end

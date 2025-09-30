@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class ChargeComponent < Data
-        def self.new: (amount: Peddler::Types::Money?, charge_type: String?) -> Peddler::Types::ShippingV2::ChargeComponent
+        def self.new: (?amount: Peddler::Types::Money?, ?charge_type: String?) -> Peddler::Types::ShippingV2::ChargeComponent
                     | (Peddler::Types::Money?, String?) -> Peddler::Types::ShippingV2::ChargeComponent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ChargeComponent

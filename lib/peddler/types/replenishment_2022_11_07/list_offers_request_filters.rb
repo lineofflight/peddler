@@ -19,19 +19,19 @@ module Peddler
 
         # @return [Array<String>] A list of SKUs to filter. This filter is only supported for sellers and not for
         # vendors.
-        attribute(:skus, [String])
+        attribute?(:skus, [String])
 
         # @return [Array<String>] A list of Amazon Standard Identification Numbers (ASINs).
-        attribute(:asins, [String])
+        attribute?(:asins, [String])
 
         # @return [Array<EligibilityStatus>] A list of eligibilities associated with an offer.
-        attribute(:eligibilities, Array)
+        attribute?(:eligibilities, Array)
 
         # @return [Preference] Offer preferences to include in the result filter criteria.
-        attribute(:preferences, Preference)
+        attribute?(:preferences, Preference)
 
         # @return [Promotion] Offer promotions to include in the result filter criteria.
-        attribute(:promotions, Promotion)
+        attribute?(:promotions, Promotion)
 
         # @return [Array<ProgramType>]
         attribute(:program_types, Array, from: "programTypes")

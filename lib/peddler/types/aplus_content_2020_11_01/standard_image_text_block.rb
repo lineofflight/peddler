@@ -12,13 +12,13 @@ module Peddler
       # The A+ Content standard image and text box block.
       StandardImageTextBlock = Structure.new do
         # @return [ImageComponent]
-        attribute(:image, ImageComponent)
+        attribute?(:image, ImageComponent)
 
         # @return [TextComponent]
-        attribute(:headline, TextComponent)
+        attribute?(:headline, TextComponent)
 
         # @return [ParagraphComponent]
-        attribute(:body, ParagraphComponent)
+        attribute?(:body, ParagraphComponent)
       end
     end
   end

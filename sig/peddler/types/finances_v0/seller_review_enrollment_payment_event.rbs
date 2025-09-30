@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FinancesV0
       class SellerReviewEnrollmentPaymentEvent < Data
-        def self.new: (posted_date: String?, enrollment_id: String?, parent_asin: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
+        def self.new: (?posted_date: String?, ?enrollment_id: String?, ?parent_asin: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
                     | (String?, String?, String?, Peddler::Types::FinancesV0::FeeComponent?, Peddler::Types::FinancesV0::ChargeComponent?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::SellerReviewEnrollmentPaymentEvent

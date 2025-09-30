@@ -4,7 +4,7 @@ module Peddler
   module Types
     module Replenishment20221107
       class PaginationResponse < Data
-        def self.new: (total_results: Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
+        def self.new: (?total_results: Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
                     | (Integer?) -> Peddler::Types::Replenishment20221107::PaginationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::PaginationResponse

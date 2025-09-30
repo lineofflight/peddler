@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class FulfillmentInstruction < Data
-        def self.new: (fulfillment_supply_source_id: String?) -> Peddler::Types::OrdersV0::FulfillmentInstruction
+        def self.new: (?fulfillment_supply_source_id: String?) -> Peddler::Types::OrdersV0::FulfillmentInstruction
                     | (String?) -> Peddler::Types::OrdersV0::FulfillmentInstruction
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::FulfillmentInstruction

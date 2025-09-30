@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class GetRatesResult < Data
-        def self.new: (request_token: String?, rates: Array[Peddler::Types::ShippingV2::Rate]?, ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> Peddler::Types::ShippingV2::GetRatesResult
+        def self.new: (request_token: String?, rates: Array[Peddler::Types::ShippingV2::Rate]?, ?ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> Peddler::Types::ShippingV2::GetRatesResult
                     | (String?, Array[Peddler::Types::ShippingV2::Rate]?, Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> Peddler::Types::ShippingV2::GetRatesResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetRatesResult

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInboundV0
       class SKUPrepInstructions < Data
-        def self.new: (seller_sku: String?, asin: String?, barcode_instruction: String?, prep_guidance: String?, prep_instruction_list: Array[untyped]?, amazon_prep_fees_details_list: Array[Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails]?) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
+        def self.new: (?seller_sku: String?, ?asin: String?, ?barcode_instruction: String?, ?prep_guidance: String?, ?prep_instruction_list: Array[untyped]?, ?amazon_prep_fees_details_list: Array[Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails]?) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
                     | (String?, String?, String?, String?, Array[untyped]?, Array[Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails]?) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions

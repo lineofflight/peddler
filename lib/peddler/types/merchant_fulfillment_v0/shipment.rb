@@ -22,7 +22,7 @@ module Peddler
         attribute(:amazon_order_id, String, from: "AmazonOrderId")
 
         # @return [String]
-        attribute(:seller_order_id, String, from: "SellerOrderId")
+        attribute?(:seller_order_id, String, from: "SellerOrderId")
 
         # @return [Array<Item>]
         attribute(:item_list, [Item], from: "ItemList")
@@ -56,13 +56,13 @@ module Peddler
         attribute(:status, String, from: "Status")
 
         # @return [String]
-        attribute(:tracking_id, String, from: "TrackingId")
+        attribute?(:tracking_id, String, from: "TrackingId")
 
         # @return [String] The date and time the shipment is created.
         attribute(:created_date, String, from: "CreatedDate")
 
         # @return [String] The date and time of the last update.
-        attribute(:last_updated_date, String, from: "LastUpdatedDate")
+        attribute?(:last_updated_date, String, from: "LastUpdatedDate")
       end
     end
   end

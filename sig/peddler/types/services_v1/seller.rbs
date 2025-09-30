@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ServicesV1
       class Seller < Data
-        def self.new: (seller_id: String?) -> Peddler::Types::ServicesV1::Seller
+        def self.new: (?seller_id: String?) -> Peddler::Types::ServicesV1::Seller
                     | (String?) -> Peddler::Types::ServicesV1::Seller
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Seller

@@ -10,7 +10,7 @@ module Peddler
       # The response schema for the cancelShipment operation.
       CancelShipmentResponse = Structure.new do
         # @return [Array<Error>] Encountered errors for the operation.
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end

@@ -17,7 +17,7 @@ module Peddler
         attribute(:item_condition, String, from: "ItemCondition")
 
         # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
-        attribute(:customer_type, String, from: "CustomerType")
+        attribute?(:customer_type, String, from: "CustomerType")
       end
     end
   end

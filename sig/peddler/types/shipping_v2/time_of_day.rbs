@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class TimeOfDay < Data
-        def self.new: (hour_of_day: Integer?, minute_of_hour: Integer?, second_of_minute: Integer?) -> Peddler::Types::ShippingV2::TimeOfDay
+        def self.new: (?hour_of_day: Integer?, ?minute_of_hour: Integer?, ?second_of_minute: Integer?) -> Peddler::Types::ShippingV2::TimeOfDay
                     | (Integer?, Integer?, Integer?) -> Peddler::Types::ShippingV2::TimeOfDay
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::TimeOfDay

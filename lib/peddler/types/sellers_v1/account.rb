@@ -21,10 +21,10 @@ module Peddler
         attribute(:selling_plan, String, from: "sellingPlan")
 
         # @return [Business]
-        attribute(:business, Business)
+        attribute?(:business, Business)
 
         # @return [PrimaryContact]
-        attribute(:primary_contact, PrimaryContact, from: "primaryContact")
+        attribute?(:primary_contact, PrimaryContact, from: "primaryContact")
       end
     end
   end

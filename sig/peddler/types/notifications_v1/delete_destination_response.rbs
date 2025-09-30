@@ -4,7 +4,7 @@ module Peddler
   module Types
     module NotificationsV1
       class DeleteDestinationResponse < Data
-        def self.new: (errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse
                     | (Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse

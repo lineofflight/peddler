@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CreateFulfillmentReturnResponse < Data
-        def self.new: (payload: Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
+        def self.new: (?payload: Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult?, ?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
                     | (Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse

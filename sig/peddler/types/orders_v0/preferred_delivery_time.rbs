@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class PreferredDeliveryTime < Data
-        def self.new: (business_hours: Array[Peddler::Types::OrdersV0::BusinessHours]?, exception_dates: Array[Peddler::Types::OrdersV0::ExceptionDates]?) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
+        def self.new: (?business_hours: Array[Peddler::Types::OrdersV0::BusinessHours]?, ?exception_dates: Array[Peddler::Types::OrdersV0::ExceptionDates]?) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
                     | (Array[Peddler::Types::OrdersV0::BusinessHours]?, Array[Peddler::Types::OrdersV0::ExceptionDates]?) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PreferredDeliveryTime

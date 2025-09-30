@@ -15,17 +15,17 @@ module Peddler
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
         # @return [String] Buyer Standard Identification Number (ASIN) of an item.
-        attribute(:amazon_product_identifier, String, from: "amazonProductIdentifier")
+        attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")
 
         # @return [String] The vendor selected product identification of the item. Should be the same as was sent in the
         # purchase order.
-        attribute(:vendor_product_identifier, String, from: "vendorProductIdentifier")
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
 
         # @return [ItemQuantity] Total item quantity shipped in this shipment.
         attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
 
         # @return [ItemDetails]
-        attribute(:item_details, ItemDetails, from: "itemDetails")
+        attribute?(:item_details, ItemDetails, from: "itemDetails")
       end
     end
   end

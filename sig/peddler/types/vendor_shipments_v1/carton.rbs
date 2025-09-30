@@ -4,7 +4,7 @@ module Peddler
   module Types
     module VendorShipmentsV1
       class Carton < Data
-        def self.new: (carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, carton_sequence_number: String?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, weight: Peddler::Types::VendorShipmentsV1::Weight?, tracking_number: String?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> Peddler::Types::VendorShipmentsV1::Carton
+        def self.new: (?carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, carton_sequence_number: String?, ?dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, ?weight: Peddler::Types::VendorShipmentsV1::Weight?, ?tracking_number: String?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> Peddler::Types::VendorShipmentsV1::Carton
                     | (Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, String?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::Weight?, String?, Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?) -> Peddler::Types::VendorShipmentsV1::Carton
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Carton

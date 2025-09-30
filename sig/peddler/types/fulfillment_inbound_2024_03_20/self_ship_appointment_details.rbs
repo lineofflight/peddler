@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class SelfShipAppointmentDetails < Data
-        def self.new: (appointment_id: Float?, appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, appointment_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
+        def self.new: (?appointment_id: Float?, ?appointment_slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, ?appointment_status: String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
                     | (Float?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?, String?) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentDetails

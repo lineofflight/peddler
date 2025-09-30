@@ -11,7 +11,7 @@ module Peddler
       # The request schema for verify and add the merchant's account with a certain carrier.
       LinkCarrierAccountRequest = Structure.new do
         # @return [Array<ClientReferenceDetail>]
-        attribute(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
+        attribute?(:client_reference_details, [ClientReferenceDetail], from: "clientReferenceDetails")
 
         # @return [String]
         attribute(:carrier_account_type, String, from: "carrierAccountType")
@@ -20,7 +20,7 @@ module Peddler
         attribute(:carrier_account_attributes, [CarrierAccountAttribute], from: "carrierAccountAttributes")
 
         # @return [Array<CarrierAccountAttribute>]
-        attribute(:encrypted_carrier_account_attributes, [CarrierAccountAttribute], from: "encryptedCarrierAccountAttributes")
+        attribute?(:encrypted_carrier_account_attributes, [CarrierAccountAttribute], from: "encryptedCarrierAccountAttributes")
       end
     end
   end

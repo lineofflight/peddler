@@ -13,7 +13,7 @@ module Peddler
         attribute(:product_type, String, from: "productType")
 
         # @return [String] The name of the requirements set for the provided data.
-        attribute(:requirements, String)
+        attribute?(:requirements, String)
 
         # @return [Hash] JSON object containing structured listings item attribute data keyed by attribute name.
         attribute(:attributes, Hash)

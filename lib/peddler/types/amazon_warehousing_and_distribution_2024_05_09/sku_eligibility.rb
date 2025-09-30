@@ -11,7 +11,7 @@ module Peddler
       # Represents eligibility of one SKU.
       SkuEligibility = Structure.new do
         # @return [Array<SkuIneligibilityReason>] If not eligible, these are list of error codes and descriptions.
-        attribute(:ineligibility_reasons, [SkuIneligibilityReason], from: "ineligibilityReasons")
+        attribute?(:ineligibility_reasons, [SkuIneligibilityReason], from: "ineligibilityReasons")
 
         # @return [DistributionPackageQuantity]
         attribute(:package_quantity, DistributionPackageQuantity, from: "packageQuantity")

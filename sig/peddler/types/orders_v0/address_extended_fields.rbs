@@ -4,7 +4,7 @@ module Peddler
   module Types
     module OrdersV0
       class AddressExtendedFields < Data
-        def self.new: (street_name: String?, street_number: String?, complement: String?, neighborhood: String?) -> Peddler::Types::OrdersV0::AddressExtendedFields
+        def self.new: (?street_name: String?, ?street_number: String?, ?complement: String?, ?neighborhood: String?) -> Peddler::Types::OrdersV0::AddressExtendedFields
                     | (String?, String?, String?, String?) -> Peddler::Types::OrdersV0::AddressExtendedFields
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::AddressExtendedFields

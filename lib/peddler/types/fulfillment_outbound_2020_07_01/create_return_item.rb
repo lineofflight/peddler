@@ -22,7 +22,7 @@ module Peddler
         attribute(:return_reason_code, String, from: "returnReasonCode")
 
         # @return [String] An optional comment about the return item.
-        attribute(:return_comment, String, from: "returnComment")
+        attribute?(:return_comment, String, from: "returnComment")
       end
     end
   end

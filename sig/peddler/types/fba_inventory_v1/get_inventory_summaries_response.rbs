@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FBAInventoryV1
       class GetInventorySummariesResponse < Data
-        def self.new: (payload: Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?, pagination: Peddler::Types::FBAInventoryV1::Pagination?, errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResponse
+        def self.new: (?payload: Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?, ?pagination: Peddler::Types::FBAInventoryV1::Pagination?, ?errors: Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResponse
                     | (Peddler::Types::FBAInventoryV1::GetInventorySummariesResult?, Peddler::Types::FBAInventoryV1::Pagination?, Array[Peddler::Types::FBAInventoryV1::Error]?) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResponse

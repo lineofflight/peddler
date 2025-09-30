@@ -26,7 +26,7 @@ module Peddler
         attribute(:id, String)
 
         # @return [String] An additional unique reference number used for regulatory or other purposes.
-        attribute(:reference_number, String, from: "referenceNumber")
+        attribute?(:reference_number, String, from: "referenceNumber")
 
         # @return [String] Date when the invoice/credit note information was generated in the origin's accounting
         # system. The invoice date should be on or after the purchase order creation date.
@@ -37,16 +37,16 @@ module Peddler
         attribute(:remit_to_party, PartyIdentification, from: "remitToParty")
 
         # @return [PartyIdentification] Name, address and tax details of the party receiving a shipment of products.
-        attribute(:ship_to_party, PartyIdentification, from: "shipToParty")
+        attribute?(:ship_to_party, PartyIdentification, from: "shipToParty")
 
         # @return [PartyIdentification] Name, address and tax details of the party sending a shipment of products.
-        attribute(:ship_from_party, PartyIdentification, from: "shipFromParty")
+        attribute?(:ship_from_party, PartyIdentification, from: "shipFromParty")
 
         # @return [PartyIdentification] Name, address and tax details of the party to whom this invoice is issued.
-        attribute(:bill_to_party, PartyIdentification, from: "billToParty")
+        attribute?(:bill_to_party, PartyIdentification, from: "billToParty")
 
         # @return [PaymentTerms] The payment terms for the invoice.
-        attribute(:payment_terms, PaymentTerms, from: "paymentTerms")
+        attribute?(:payment_terms, PaymentTerms, from: "paymentTerms")
 
         # @return [Money] Total monetary amount charged in the invoice or full value of credit note to be paid including
         # all relevant taxes. It is the total amount of invoice (including charges, less allowances) before terms
@@ -54,20 +54,20 @@ module Peddler
         attribute(:invoice_total, Money, from: "invoiceTotal")
 
         # @return [Array<TaxDetails>] Total tax amount details for all line items.
-        attribute(:tax_details, [TaxDetails], from: "taxDetails")
+        attribute?(:tax_details, [TaxDetails], from: "taxDetails")
 
         # @return [Array<AdditionalDetails>] Additional details provided by the selling party, for tax related or other
         # purposes.
-        attribute(:additional_details, [AdditionalDetails], from: "additionalDetails")
+        attribute?(:additional_details, [AdditionalDetails], from: "additionalDetails")
 
         # @return [Array<ChargeDetails>] Total charge amount details for all line items.
-        attribute(:charge_details, [ChargeDetails], from: "chargeDetails")
+        attribute?(:charge_details, [ChargeDetails], from: "chargeDetails")
 
         # @return [Array<AllowanceDetails>] Total allowance amount details for all line items.
-        attribute(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
+        attribute?(:allowance_details, [AllowanceDetails], from: "allowanceDetails")
 
         # @return [Array<InvoiceItem>] The list of invoice items.
-        attribute(:items, [InvoiceItem])
+        attribute?(:items, [InvoiceItem])
       end
     end
   end

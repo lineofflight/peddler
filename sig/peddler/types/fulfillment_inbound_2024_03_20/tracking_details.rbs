@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentInbound20240320
       class TrackingDetails < Data
-        def self.new: (ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
+        def self.new: (?ltl_tracking_detail: Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, ?spd_tracking_detail: Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
                     | (Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetail?, Peddler::Types::FulfillmentInbound20240320::SpdTrackingDetail?) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::TrackingDetails

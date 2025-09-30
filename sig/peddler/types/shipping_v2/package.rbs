@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class Package < Data
-        def self.new: (dimensions: Peddler::Types::ShippingV2::Dimensions?, weight: Peddler::Types::ShippingV2::Weight?, insured_value: Peddler::Types::Money?, hazmat: bool?, seller_display_name: String?, charges: Array[Peddler::Types::ShippingV2::ChargeComponent]?, package_client_reference_id: String?, items: Array[Peddler::Types::ShippingV2::Item]?) -> Peddler::Types::ShippingV2::Package
+        def self.new: (dimensions: Peddler::Types::ShippingV2::Dimensions?, weight: Peddler::Types::ShippingV2::Weight?, insured_value: Peddler::Types::Money?, ?hazmat: bool?, ?seller_display_name: String?, ?charges: Array[Peddler::Types::ShippingV2::ChargeComponent]?, package_client_reference_id: String?, items: Array[Peddler::Types::ShippingV2::Item]?) -> Peddler::Types::ShippingV2::Package
                     | (Peddler::Types::ShippingV2::Dimensions?, Peddler::Types::ShippingV2::Weight?, Peddler::Types::Money?, bool?, String?, Array[Peddler::Types::ShippingV2::ChargeComponent]?, String?, Array[Peddler::Types::ShippingV2::Item]?) -> Peddler::Types::ShippingV2::Package
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Package

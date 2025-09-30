@@ -10,7 +10,7 @@ module Peddler
       # The throughput configuration.
       ThroughputConfig = Structure.new do
         # @return [ThroughputCap]
-        attribute(:throughput_cap, ThroughputCap, from: "throughputCap")
+        attribute?(:throughput_cap, ThroughputCap, from: "throughputCap")
 
         # @return [String]
         attribute(:throughput_unit, String, from: "throughputUnit")

@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CreateFulfillmentReturnResult < Data
-        def self.new: (return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
+        def self.new: (?return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, ?invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, ?return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
                     | (Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult

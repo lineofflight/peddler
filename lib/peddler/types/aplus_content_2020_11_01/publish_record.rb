@@ -22,7 +22,7 @@ module Peddler
         attribute(:content_type, String, from: "contentType")
 
         # @return [String]
-        attribute(:content_sub_type, String, from: "contentSubType")
+        attribute?(:content_sub_type, String, from: "contentSubType")
 
         # @return [String]
         attribute(:content_reference_key, String, from: "contentReferenceKey")

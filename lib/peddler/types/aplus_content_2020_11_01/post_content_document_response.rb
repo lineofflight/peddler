@@ -9,7 +9,7 @@ module Peddler
     module AplusContent20201101
       PostContentDocumentResponse = Structure.new do
         # @return [Array<Error>]
-        attribute(:warnings, [Error])
+        attribute?(:warnings, [Error])
 
         # @return [String]
         attribute(:content_reference_key, String, from: "contentReferenceKey")

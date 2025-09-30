@@ -13,23 +13,23 @@ module Peddler
         attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] Amazon Standard Identification Number (ASIN) of the listings item.
-        attribute(:asin, String)
+        attribute?(:asin, String)
 
         # @return [String] The Amazon product type of the listings item.
         attribute(:product_type, String, from: "productType")
 
         # @return [String] Identifies the condition of the listings item.
-        attribute(:condition_type, String, from: "conditionType")
+        attribute?(:condition_type, String, from: "conditionType")
 
         # @return [Array<String>] Statuses that apply to the listings item.
         attribute(:status, [String])
 
         # @return [String] The fulfillment network stock keeping unit is an identifier used by Amazon fulfillment
         # centers to identify each unique item.
-        attribute(:fn_sku, String, from: "fnSku")
+        attribute?(:fn_sku, String, from: "fnSku")
 
         # @return [String] The name or title associated with an Amazon catalog item.
-        attribute(:item_name, String, from: "itemName")
+        attribute?(:item_name, String, from: "itemName")
 
         # @return [String] The date the listings item was created in ISO 8601 format.
         attribute(:created_date, String, from: "createdDate")
@@ -38,7 +38,7 @@ module Peddler
         attribute(:last_updated_date, String, from: "lastUpdatedDate")
 
         # @return [ItemImage] The main image for the listings item.
-        attribute(:main_image, ItemImage, from: "mainImage")
+        attribute?(:main_image, ItemImage, from: "mainImage")
       end
     end
   end

@@ -10,7 +10,7 @@ module Peddler
       # Success.
       GetInvoiceResponse = Structure.new do
         # @return [Invoice]
-        attribute(:invoice, Invoice)
+        attribute?(:invoice, Invoice)
       end
     end
   end

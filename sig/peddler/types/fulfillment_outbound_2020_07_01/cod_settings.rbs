@@ -4,7 +4,7 @@ module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CODSettings < Data
-        def self.new: (cod_required: bool?, cod_charge: Peddler::Types::Money?, cod_charge_tax: Peddler::Types::Money?, shipping_charge: Peddler::Types::Money?, shipping_charge_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings
+        def self.new: (cod_required: bool?, ?cod_charge: Peddler::Types::Money?, ?cod_charge_tax: Peddler::Types::Money?, ?shipping_charge: Peddler::Types::Money?, ?shipping_charge_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings
                     | (bool?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings

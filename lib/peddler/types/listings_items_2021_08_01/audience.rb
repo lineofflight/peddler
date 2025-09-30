@@ -16,10 +16,10 @@ module Peddler
         # * 'ALL' - Standard offer audience for buyers on Amazon retail websites.
         #
         # * 'B2B' - Offer audience for Amazon Business website buyers.
-        attribute(:value, String)
+        attribute?(:value, String)
 
         # @return [String] Localized display name for the audience.
-        attribute(:display_name, String, from: "displayName")
+        attribute?(:display_name, String, from: "displayName")
       end
     end
   end

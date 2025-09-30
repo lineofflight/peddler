@@ -4,7 +4,7 @@ module Peddler
   module Types
     module ShippingV2
       class AccessibilityAttributes < Data
-        def self.new: (distance: String?, drive_time: Integer?) -> Peddler::Types::ShippingV2::AccessibilityAttributes
+        def self.new: (?distance: String?, ?drive_time: Integer?) -> Peddler::Types::ShippingV2::AccessibilityAttributes
                     | (String?, Integer?) -> Peddler::Types::ShippingV2::AccessibilityAttributes
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::AccessibilityAttributes

@@ -14,10 +14,10 @@ module Peddler
         attribute(:content_reference_key, String, from: "contentReferenceKey")
 
         # @return [ContentMetadata]
-        attribute(:content_metadata, ContentMetadata, from: "contentMetadata")
+        attribute?(:content_metadata, ContentMetadata, from: "contentMetadata")
 
         # @return [ContentDocument]
-        attribute(:content_document, ContentDocument, from: "contentDocument")
+        attribute?(:content_document, ContentDocument, from: "contentDocument")
       end
     end
   end

@@ -13,7 +13,7 @@ module Peddler
         attribute(:required_ship_date, String, from: "requiredShipDate")
 
         # @return [String] Delivery date promised to the Amazon customer.
-        attribute(:promised_delivery_date, String, from: "promisedDeliveryDate")
+        attribute?(:promised_delivery_date, String, from: "promisedDeliveryDate")
       end
     end
   end

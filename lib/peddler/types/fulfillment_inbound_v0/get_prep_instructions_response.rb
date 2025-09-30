@@ -11,10 +11,10 @@ module Peddler
       # The response schema for the getPrepInstructions operation.
       GetPrepInstructionsResponse = Structure.new do
         # @return [GetPrepInstructionsResult] The payload for the getPrepInstructions operation.
-        attribute(:payload, GetPrepInstructionsResult)
+        attribute?(:payload, GetPrepInstructionsResult)
 
         # @return [Array<Error>]
-        attribute(:errors, [Error])
+        attribute?(:errors, [Error])
       end
     end
   end
