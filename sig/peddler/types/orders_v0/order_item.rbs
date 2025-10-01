@@ -1,58 +1,58 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class OrderItem < Data
-        def self.new: (asin: String?, ?seller_sku: String?, order_item_id: String?, ?associated_items: Array[Peddler::Types::OrdersV0::AssociatedItem]?, ?title: String?, quantity_ordered: Integer?, ?quantity_shipped: Integer?, ?product_info: Peddler::Types::OrdersV0::ProductInfoDetail?, ?points_granted: Peddler::Types::OrdersV0::PointsGrantedDetail?, ?item_price: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?item_tax: Peddler::Types::Money?, ?shipping_tax: Peddler::Types::Money?, ?shipping_discount: Peddler::Types::Money?, ?shipping_discount_tax: Peddler::Types::Money?, ?promotion_discount: Peddler::Types::Money?, ?promotion_discount_tax: Peddler::Types::Money?, ?promotion_ids: Array[String]?, ?cod_fee: Peddler::Types::Money?, ?cod_fee_discount: Peddler::Types::Money?, ?is_gift: String?, ?condition_note: String?, ?condition_id: String?, ?condition_subtype_id: String?, ?scheduled_delivery_start_date: String?, ?scheduled_delivery_end_date: String?, ?price_designation: String?, ?tax_collection: Peddler::Types::OrdersV0::TaxCollection?, ?serial_number_required: bool?, ?transparency: bool?, ?ioss_number: String?, ?store_chain_store_id: String?, ?deemed_reseller_category: String?, ?buyer_info: Peddler::Types::OrdersV0::ItemBuyerInfo?, ?buyer_requested_cancel: Peddler::Types::OrdersV0::BuyerRequestedCancel?, ?serial_numbers: Array[String]?, ?substitution_preferences: Peddler::Types::OrdersV0::SubstitutionPreferences?, ?measurement: Peddler::Types::OrdersV0::Measurement?, ?shipping_constraints: Peddler::Types::OrdersV0::ShippingConstraints?, ?amazon_programs: Peddler::Types::OrdersV0::AmazonPrograms?) -> Peddler::Types::OrdersV0::OrderItem
-                    | (String?, String?, String?, Array[Peddler::Types::OrdersV0::AssociatedItem]?, String?, Integer?, Integer?, Peddler::Types::OrdersV0::ProductInfoDetail?, Peddler::Types::OrdersV0::PointsGrantedDetail?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Array[String]?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::OrdersV0::TaxCollection?, bool?, bool?, String?, String?, String?, Peddler::Types::OrdersV0::ItemBuyerInfo?, Peddler::Types::OrdersV0::BuyerRequestedCancel?, Array[String]?, Peddler::Types::OrdersV0::SubstitutionPreferences?, Peddler::Types::OrdersV0::Measurement?, Peddler::Types::OrdersV0::ShippingConstraints?, Peddler::Types::OrdersV0::AmazonPrograms?) -> Peddler::Types::OrdersV0::OrderItem
+        def self.new: (asin: String?, order_item_id: String?, quantity_ordered: Integer?, ?amazon_programs: Peddler::Types::OrdersV0::AmazonPrograms?, ?associated_items: Array[Peddler::Types::OrdersV0::AssociatedItem]?, ?buyer_info: Peddler::Types::OrdersV0::ItemBuyerInfo?, ?buyer_requested_cancel: Peddler::Types::OrdersV0::BuyerRequestedCancel?, ?cod_fee: Peddler::Types::Money?, ?cod_fee_discount: Peddler::Types::Money?, ?condition_id: String?, ?condition_note: String?, ?condition_subtype_id: String?, ?deemed_reseller_category: String?, ?ioss_number: String?, ?is_gift: String?, ?transparency: bool?, ?item_price: Peddler::Types::Money?, ?item_tax: Peddler::Types::Money?, ?measurement: Peddler::Types::OrdersV0::Measurement?, ?points_granted: Peddler::Types::OrdersV0::PointsGrantedDetail?, ?price_designation: String?, ?product_info: Peddler::Types::OrdersV0::ProductInfoDetail?, ?promotion_discount: Peddler::Types::Money?, ?promotion_discount_tax: Peddler::Types::Money?, ?promotion_ids: Array[String]?, ?quantity_shipped: Integer?, ?scheduled_delivery_end_date: String?, ?scheduled_delivery_start_date: String?, ?seller_sku: String?, ?serial_number_required: bool?, ?serial_numbers: Array[String]?, ?shipping_constraints: Peddler::Types::OrdersV0::ShippingConstraints?, ?shipping_discount: Peddler::Types::Money?, ?shipping_discount_tax: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?shipping_tax: Peddler::Types::Money?, ?store_chain_store_id: String?, ?substitution_preferences: Peddler::Types::OrdersV0::SubstitutionPreferences?, ?tax_collection: Peddler::Types::OrdersV0::TaxCollection?, ?title: String?) -> Peddler::Types::OrdersV0::OrderItem
+                    | (String?, String?, Integer?, Peddler::Types::OrdersV0::AmazonPrograms?, Array[Peddler::Types::OrdersV0::AssociatedItem]?, Peddler::Types::OrdersV0::ItemBuyerInfo?, Peddler::Types::OrdersV0::BuyerRequestedCancel?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, String?, String?, String?, bool?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::OrdersV0::Measurement?, Peddler::Types::OrdersV0::PointsGrantedDetail?, String?, Peddler::Types::OrdersV0::ProductInfoDetail?, Peddler::Types::Money?, Peddler::Types::Money?, Array[String]?, Integer?, String?, String?, String?, bool?, Array[String]?, Peddler::Types::OrdersV0::ShippingConstraints?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::OrdersV0::SubstitutionPreferences?, Peddler::Types::OrdersV0::TaxCollection?, String?) -> Peddler::Types::OrdersV0::OrderItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderItem
 
         attr_reader asin: String?
-        attr_reader seller_sku: String?
         attr_reader order_item_id: String?
-        attr_reader associated_items: Array[Peddler::Types::OrdersV0::AssociatedItem]?
-        attr_reader title: String?
         attr_reader quantity_ordered: Integer?
-        attr_reader quantity_shipped: Integer?
-        attr_reader product_info: Peddler::Types::OrdersV0::ProductInfoDetail?
-        attr_reader points_granted: Peddler::Types::OrdersV0::PointsGrantedDetail?
+        attr_reader amazon_programs: Peddler::Types::OrdersV0::AmazonPrograms?
+        attr_reader associated_items: Array[Peddler::Types::OrdersV0::AssociatedItem]?
+        attr_reader buyer_info: Peddler::Types::OrdersV0::ItemBuyerInfo?
+        attr_reader buyer_requested_cancel: Peddler::Types::OrdersV0::BuyerRequestedCancel?
+        attr_reader cod_fee: Peddler::Types::Money?
+        attr_reader cod_fee_discount: Peddler::Types::Money?
+        attr_reader condition_id: String?
+        attr_reader condition_note: String?
+        attr_reader condition_subtype_id: String?
+        attr_reader deemed_reseller_category: String?
+        attr_reader ioss_number: String?
+        attr_reader is_gift: String?
+        attr_reader transparency: bool?
         attr_reader item_price: Peddler::Types::Money?
-        attr_reader shipping_price: Peddler::Types::Money?
         attr_reader item_tax: Peddler::Types::Money?
-        attr_reader shipping_tax: Peddler::Types::Money?
-        attr_reader shipping_discount: Peddler::Types::Money?
-        attr_reader shipping_discount_tax: Peddler::Types::Money?
+        attr_reader measurement: Peddler::Types::OrdersV0::Measurement?
+        attr_reader points_granted: Peddler::Types::OrdersV0::PointsGrantedDetail?
+        attr_reader price_designation: String?
+        attr_reader product_info: Peddler::Types::OrdersV0::ProductInfoDetail?
         attr_reader promotion_discount: Peddler::Types::Money?
         attr_reader promotion_discount_tax: Peddler::Types::Money?
         attr_reader promotion_ids: Array[String]?
-        attr_reader cod_fee: Peddler::Types::Money?
-        attr_reader cod_fee_discount: Peddler::Types::Money?
-        attr_reader is_gift: String?
-        attr_reader condition_note: String?
-        attr_reader condition_id: String?
-        attr_reader condition_subtype_id: String?
-        attr_reader scheduled_delivery_start_date: String?
+        attr_reader quantity_shipped: Integer?
         attr_reader scheduled_delivery_end_date: String?
-        attr_reader price_designation: String?
-        attr_reader tax_collection: Peddler::Types::OrdersV0::TaxCollection?
+        attr_reader scheduled_delivery_start_date: String?
+        attr_reader seller_sku: String?
         attr_reader serial_number_required: bool?
-        attr_reader transparency: bool?
-        attr_reader ioss_number: String?
-        attr_reader store_chain_store_id: String?
-        attr_reader deemed_reseller_category: String?
-        attr_reader buyer_info: Peddler::Types::OrdersV0::ItemBuyerInfo?
-        attr_reader buyer_requested_cancel: Peddler::Types::OrdersV0::BuyerRequestedCancel?
         attr_reader serial_numbers: Array[String]?
-        attr_reader substitution_preferences: Peddler::Types::OrdersV0::SubstitutionPreferences?
-        attr_reader measurement: Peddler::Types::OrdersV0::Measurement?
         attr_reader shipping_constraints: Peddler::Types::OrdersV0::ShippingConstraints?
-        attr_reader amazon_programs: Peddler::Types::OrdersV0::AmazonPrograms?
+        attr_reader shipping_discount: Peddler::Types::Money?
+        attr_reader shipping_discount_tax: Peddler::Types::Money?
+        attr_reader shipping_price: Peddler::Types::Money?
+        attr_reader shipping_tax: Peddler::Types::Money?
+        attr_reader store_chain_store_id: String?
+        attr_reader substitution_preferences: Peddler::Types::OrdersV0::SubstitutionPreferences?
+        attr_reader tax_collection: Peddler::Types::OrdersV0::TaxCollection?
+        attr_reader title: String?
 
-        def serial_number_required?: () -> bool
         def transparency?: () -> bool
-        def to_h: () -> { asin: String?, seller_sku: String?, order_item_id: String?, associated_items: Array[Peddler::Types::OrdersV0::AssociatedItem]?, title: String?, quantity_ordered: Integer?, quantity_shipped: Integer?, product_info: Peddler::Types::OrdersV0::ProductInfoDetail?, points_granted: Peddler::Types::OrdersV0::PointsGrantedDetail?, item_price: Peddler::Types::Money?, shipping_price: Peddler::Types::Money?, item_tax: Peddler::Types::Money?, shipping_tax: Peddler::Types::Money?, shipping_discount: Peddler::Types::Money?, shipping_discount_tax: Peddler::Types::Money?, promotion_discount: Peddler::Types::Money?, promotion_discount_tax: Peddler::Types::Money?, promotion_ids: Array[String]?, cod_fee: Peddler::Types::Money?, cod_fee_discount: Peddler::Types::Money?, is_gift: String?, condition_note: String?, condition_id: String?, condition_subtype_id: String?, scheduled_delivery_start_date: String?, scheduled_delivery_end_date: String?, price_designation: String?, tax_collection: Peddler::Types::OrdersV0::TaxCollection?, serial_number_required: bool?, transparency: bool?, ioss_number: String?, store_chain_store_id: String?, deemed_reseller_category: String?, buyer_info: Peddler::Types::OrdersV0::ItemBuyerInfo?, buyer_requested_cancel: Peddler::Types::OrdersV0::BuyerRequestedCancel?, serial_numbers: Array[String]?, substitution_preferences: Peddler::Types::OrdersV0::SubstitutionPreferences?, measurement: Peddler::Types::OrdersV0::Measurement?, shipping_constraints: Peddler::Types::OrdersV0::ShippingConstraints?, amazon_programs: Peddler::Types::OrdersV0::AmazonPrograms? }
+        def serial_number_required?: () -> bool
+        def to_h: () -> { asin: String?, order_item_id: String?, quantity_ordered: Integer?, amazon_programs: Peddler::Types::OrdersV0::AmazonPrograms?, associated_items: Array[Peddler::Types::OrdersV0::AssociatedItem]?, buyer_info: Peddler::Types::OrdersV0::ItemBuyerInfo?, buyer_requested_cancel: Peddler::Types::OrdersV0::BuyerRequestedCancel?, cod_fee: Peddler::Types::Money?, cod_fee_discount: Peddler::Types::Money?, condition_id: String?, condition_note: String?, condition_subtype_id: String?, deemed_reseller_category: String?, ioss_number: String?, is_gift: String?, transparency: bool?, item_price: Peddler::Types::Money?, item_tax: Peddler::Types::Money?, measurement: Peddler::Types::OrdersV0::Measurement?, points_granted: Peddler::Types::OrdersV0::PointsGrantedDetail?, price_designation: String?, product_info: Peddler::Types::OrdersV0::ProductInfoDetail?, promotion_discount: Peddler::Types::Money?, promotion_discount_tax: Peddler::Types::Money?, promotion_ids: Array[String]?, quantity_shipped: Integer?, scheduled_delivery_end_date: String?, scheduled_delivery_start_date: String?, seller_sku: String?, serial_number_required: bool?, serial_numbers: Array[String]?, shipping_constraints: Peddler::Types::OrdersV0::ShippingConstraints?, shipping_discount: Peddler::Types::Money?, shipping_discount_tax: Peddler::Types::Money?, shipping_price: Peddler::Types::Money?, shipping_tax: Peddler::Types::Money?, store_chain_store_id: String?, substitution_preferences: Peddler::Types::OrdersV0::SubstitutionPreferences?, tax_collection: Peddler::Types::OrdersV0::TaxCollection?, title: String? }
       end
     end
   end

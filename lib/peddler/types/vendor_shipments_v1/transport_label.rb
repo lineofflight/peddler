@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/vendor_shipments_v1/shipment_information"
 require "peddler/types/vendor_shipments_v1/label_data"
+require "peddler/types/vendor_shipments_v1/shipment_information"
 
 module Peddler
   module Types
@@ -13,12 +13,12 @@ module Peddler
         # @return [String] Date on which label is created.
         attribute?(:label_create_date_time, String, from: "labelCreateDateTime")
 
+        # @return [Array<LabelData>] Indicates the label data,format and type associated .
+        attribute?(:label_data, [LabelData], from: "labelData")
+
         # @return [ShipmentInformation] Indicates the shipment Information details like warehouse and business reference
         # details like ARN, Selling Party detail and Vendor Warehouse details
         attribute?(:shipment_information, ShipmentInformation, from: "shipmentInformation")
-
-        # @return [Array<LabelData>] Indicates the label data,format and type associated .
-        attribute?(:label_data, [LabelData], from: "labelData")
       end
     end
   end

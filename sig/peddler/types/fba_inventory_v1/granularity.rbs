@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FBAInventoryV1
       class Granularity < Data
-        def self.new: (?granularity_type: String?, ?granularity_id: String?) -> Peddler::Types::FBAInventoryV1::Granularity
+        def self.new: (?granularity_id: String?, ?granularity_type: String?) -> Peddler::Types::FBAInventoryV1::Granularity
                     | (String?, String?) -> Peddler::Types::FBAInventoryV1::Granularity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::Granularity
 
-        attr_reader granularity_type: String?
         attr_reader granularity_id: String?
+        attr_reader granularity_type: String?
 
-        def to_h: () -> { granularity_type: String?, granularity_id: String? }
+        def to_h: () -> { granularity_id: String?, granularity_type: String? }
       end
     end
   end

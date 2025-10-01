@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,11 +9,11 @@ module Peddler
     module OrdersV0
       # The reason for rejecting the order's regulated information. This is only present if the order is rejected.
       RejectionReason = Structure.new do
-        # @return [String] The unique identifier for the rejection reason.
-        attribute(:rejection_reason_id, String, from: "RejectionReasonId")
-
         # @return [String] The description of this rejection reason.
         attribute(:rejection_reason_description, String, from: "RejectionReasonDescription")
+
+        # @return [String] The unique identifier for the rejection reason.
+        attribute(:rejection_reason_id, String, from: "RejectionReasonId")
       end
     end
   end

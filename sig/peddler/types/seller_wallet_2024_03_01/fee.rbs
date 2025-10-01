@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class Fee < Data
-        def self.new: (fee_id: String?, fee_type: String?, fee_rate_value: String?, fee_amount: Peddler::Types::Money?) -> Peddler::Types::SellerWallet20240301::Fee
-                    | (String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::SellerWallet20240301::Fee
+        def self.new: (fee_amount: Peddler::Types::Money?, fee_id: String?, fee_rate_value: String?, fee_type: String?) -> Peddler::Types::SellerWallet20240301::Fee
+                    | (Peddler::Types::Money?, String?, String?, String?) -> Peddler::Types::SellerWallet20240301::Fee
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Fee
 
-        attr_reader fee_id: String?
-        attr_reader fee_type: String?
-        attr_reader fee_rate_value: String?
         attr_reader fee_amount: Peddler::Types::Money?
+        attr_reader fee_id: String?
+        attr_reader fee_rate_value: String?
+        attr_reader fee_type: String?
 
-        def to_h: () -> { fee_id: String?, fee_type: String?, fee_rate_value: String?, fee_amount: Peddler::Types::Money? }
+        def to_h: () -> { fee_amount: Peddler::Types::Money?, fee_id: String?, fee_rate_value: String?, fee_type: String? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FBAInventoryV1
       class Error < Data
-        def self.new: (code: String?, ?message: String?, ?details: String?) -> Peddler::Types::FBAInventoryV1::Error
+        def self.new: (code: String?, ?details: String?, ?message: String?) -> Peddler::Types::FBAInventoryV1::Error
                     | (String?, String?, String?) -> Peddler::Types::FBAInventoryV1::Error
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::Error
 
         attr_reader code: String?
-        attr_reader message: String?
         attr_reader details: String?
+        attr_reader message: String?
 
-        def to_h: () -> { code: String?, message: String?, details: String? }
+        def to_h: () -> { code: String?, details: String?, message: String? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/sellers_v1/address"
 
@@ -9,11 +9,11 @@ module Peddler
     module SellersV1
       # Information about the seller's primary contact.
       PrimaryContact = Structure.new do
-        # @return [String] The full name of the seller's primary contact.
-        attribute(:name, String)
-
         # @return [Address] The primary contact's residential address.
         attribute(:address, Address)
+
+        # @return [String] The full name of the seller's primary contact.
+        attribute(:name, String)
 
         # @return [String] The non-Latin script version of the primary contact's name, if applicable.
         attribute?(:non_latin_name, String, from: "nonLatinName")

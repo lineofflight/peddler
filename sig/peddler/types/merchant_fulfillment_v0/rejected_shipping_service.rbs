@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class RejectedShippingService < Data
-        def self.new: (carrier_name: String?, shipping_service_name: String?, shipping_service_id: String?, rejection_reason_code: String?, ?rejection_reason_message: String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
+        def self.new: (carrier_name: String?, rejection_reason_code: String?, shipping_service_id: String?, shipping_service_name: String?, ?rejection_reason_message: String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::RejectedShippingService
 
         attr_reader carrier_name: String?
-        attr_reader shipping_service_name: String?
-        attr_reader shipping_service_id: String?
         attr_reader rejection_reason_code: String?
+        attr_reader shipping_service_id: String?
+        attr_reader shipping_service_name: String?
         attr_reader rejection_reason_message: String?
 
-        def to_h: () -> { carrier_name: String?, shipping_service_name: String?, shipping_service_id: String?, rejection_reason_code: String?, rejection_reason_message: String? }
+        def to_h: () -> { carrier_name: String?, rejection_reason_code: String?, shipping_service_id: String?, shipping_service_name: String?, rejection_reason_message: String? }
       end
     end
   end

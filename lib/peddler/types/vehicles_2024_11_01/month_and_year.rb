@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -10,10 +10,10 @@ module Peddler
       # Represents a month in a specific year.
       MonthAndYear = Structure.new do
         # @return [Float]
-        attribute?(:year, Float)
+        attribute?(:month, Float)
 
         # @return [Float]
-        attribute?(:month, Float)
+        attribute?(:year, Float)
       end
     end
   end

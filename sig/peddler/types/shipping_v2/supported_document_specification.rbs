@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class SupportedDocumentSpecification < Data
-        def self.new: (format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, print_options: Array[Peddler::Types::ShippingV2::PrintOption]?) -> Peddler::Types::ShippingV2::SupportedDocumentSpecification
-                    | (String?, Peddler::Types::ShippingV2::DocumentSize?, Array[Peddler::Types::ShippingV2::PrintOption]?) -> Peddler::Types::ShippingV2::SupportedDocumentSpecification
+        def self.new: (format: String?, print_options: Array[Peddler::Types::ShippingV2::PrintOption]?, size: Peddler::Types::ShippingV2::DocumentSize?) -> Peddler::Types::ShippingV2::SupportedDocumentSpecification
+                    | (String?, Array[Peddler::Types::ShippingV2::PrintOption]?, Peddler::Types::ShippingV2::DocumentSize?) -> Peddler::Types::ShippingV2::SupportedDocumentSpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::SupportedDocumentSpecification
 
         attr_reader format: String?
-        attr_reader size: Peddler::Types::ShippingV2::DocumentSize?
         attr_reader print_options: Array[Peddler::Types::ShippingV2::PrintOption]?
+        attr_reader size: Peddler::Types::ShippingV2::DocumentSize?
 
-        def to_h: () -> { format: String?, size: Peddler::Types::ShippingV2::DocumentSize?, print_options: Array[Peddler::Types::ShippingV2::PrintOption]? }
+        def to_h: () -> { format: String?, print_options: Array[Peddler::Types::ShippingV2::PrintOption]?, size: Peddler::Types::ShippingV2::DocumentSize? }
       end
     end
   end

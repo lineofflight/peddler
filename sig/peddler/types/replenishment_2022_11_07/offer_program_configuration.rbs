@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Replenishment20221107
       class OfferProgramConfiguration < Data
-        def self.new: (?preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, ?promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, ?enrollment_method: String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
-                    | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, String?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
+        def self.new: (?enrollment_method: String?, ?preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, ?promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
+                    | (String?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfiguration
 
+        attr_reader enrollment_method: String?
         attr_reader preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?
         attr_reader promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?
-        attr_reader enrollment_method: String?
 
-        def to_h: () -> { preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions?, enrollment_method: String? }
+        def to_h: () -> { enrollment_method: String?, preferences: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPreferences?, promotions: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions? }
       end
     end
   end

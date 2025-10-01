@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SupplySources20200701
       class SupplySource < Data
-        def self.new: (?supply_source_id: String?, ?supply_source_code: String?, ?alias: String?, ?status: String?, ?address: Peddler::Types::SupplySources20200701::Address?, ?configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, ?capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, ?created_at: String?, ?updated_at: String?) -> Peddler::Types::SupplySources20200701::SupplySource
-                    | (String?, String?, String?, String?, Peddler::Types::SupplySources20200701::Address?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, String?, String?) -> Peddler::Types::SupplySources20200701::SupplySource
+        def self.new: (?address: Peddler::Types::SupplySources20200701::Address?, ?alias: String?, ?capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, ?created_at: String?, ?status: String?, ?supply_source_code: String?, ?supply_source_id: String?, ?updated_at: String?) -> Peddler::Types::SupplySources20200701::SupplySource
+                    | (Peddler::Types::SupplySources20200701::Address?, String?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, String?, String?, String?, String?, String?) -> Peddler::Types::SupplySources20200701::SupplySource
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::SupplySource
 
-        attr_reader supply_source_id: String?
-        attr_reader supply_source_code: String?
-        attr_reader alias: String?
-        attr_reader status: String?
         attr_reader address: Peddler::Types::SupplySources20200701::Address?
-        attr_reader configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?
+        attr_reader alias: String?
         attr_reader capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?
+        attr_reader configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?
         attr_reader created_at: String?
+        attr_reader status: String?
+        attr_reader supply_source_code: String?
+        attr_reader supply_source_id: String?
         attr_reader updated_at: String?
 
-        def to_h: () -> { supply_source_id: String?, supply_source_code: String?, alias: String?, status: String?, address: Peddler::Types::SupplySources20200701::Address?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, created_at: String?, updated_at: String? }
+        def to_h: () -> { address: Peddler::Types::SupplySources20200701::Address?, alias: String?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, created_at: String?, status: String?, supply_source_code: String?, supply_source_id: String?, updated_at: String? }
       end
     end
   end

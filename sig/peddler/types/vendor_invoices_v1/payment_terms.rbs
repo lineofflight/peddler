@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorInvoicesV1
       class PaymentTerms < Data
-        def self.new: (?type: String?, ?discount_percent: String?, ?discount_due_days: Float?, ?net_due_days: Float?) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
-                    | (String?, String?, Float?, Float?) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
+        def self.new: (?discount_due_days: Float?, ?discount_percent: String?, ?net_due_days: Float?, ?type: String?) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
+                    | (Float?, String?, Float?, String?) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::PaymentTerms
 
-        attr_reader type: String?
-        attr_reader discount_percent: String?
         attr_reader discount_due_days: Float?
+        attr_reader discount_percent: String?
         attr_reader net_due_days: Float?
+        attr_reader type: String?
 
-        def to_h: () -> { type: String?, discount_percent: String?, discount_due_days: Float?, net_due_days: Float? }
+        def to_h: () -> { discount_due_days: Float?, discount_percent: String?, net_due_days: Float?, type: String? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsRestrictions20210801
       class Reason < Data
-        def self.new: (message: String?, ?reason_code: String?, ?links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?) -> Peddler::Types::ListingsRestrictions20210801::Reason
-                    | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Link]?) -> Peddler::Types::ListingsRestrictions20210801::Reason
+        def self.new: (message: String?, ?links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?, ?reason_code: String?) -> Peddler::Types::ListingsRestrictions20210801::Reason
+                    | (String?, Array[Peddler::Types::ListingsRestrictions20210801::Link]?, String?) -> Peddler::Types::ListingsRestrictions20210801::Reason
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsRestrictions20210801::Reason
 
         attr_reader message: String?
-        attr_reader reason_code: String?
         attr_reader links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?
+        attr_reader reason_code: String?
 
-        def to_h: () -> { message: String?, reason_code: String?, links: Array[Peddler::Types::ListingsRestrictions20210801::Link]? }
+        def to_h: () -> { message: String?, links: Array[Peddler::Types::ListingsRestrictions20210801::Link]?, reason_code: String? }
       end
     end
   end

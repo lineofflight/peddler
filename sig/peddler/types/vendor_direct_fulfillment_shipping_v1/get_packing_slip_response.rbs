@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class GetPackingSlipResponse < Data
-        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?, ?errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse
-                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse
+        def self.new: (?errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?, ?payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?, Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse
 
-        attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?
+        attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?
 
-        def to_h: () -> { payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?, payload: Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip? }
       end
     end
   end

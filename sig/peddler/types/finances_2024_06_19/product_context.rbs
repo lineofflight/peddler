@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Finances20240619
       class ProductContext < Data
-        def self.new: (?asin: String?, ?sku: String?, ?quantity_shipped: Integer?, ?fulfillment_network: String?) -> Peddler::Types::Finances20240619::ProductContext
+        def self.new: (?asin: String?, ?fulfillment_network: String?, ?quantity_shipped: Integer?, ?sku: String?) -> Peddler::Types::Finances20240619::ProductContext
                     | (String?, String?, Integer?, String?) -> Peddler::Types::Finances20240619::ProductContext
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::ProductContext
 
         attr_reader asin: String?
-        attr_reader sku: String?
-        attr_reader quantity_shipped: Integer?
         attr_reader fulfillment_network: String?
+        attr_reader quantity_shipped: Integer?
+        attr_reader sku: String?
 
-        def to_h: () -> { asin: String?, sku: String?, quantity_shipped: Integer?, fulfillment_network: String? }
+        def to_h: () -> { asin: String?, fulfillment_network: String?, quantity_shipped: Integer?, sku: String? }
       end
     end
   end

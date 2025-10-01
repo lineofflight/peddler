@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MessagingV1
       class CreateConfirmCustomizationDetailsRequest < Data
-        def self.new: (?text: String?, ?attachments: Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
-                    | (String?, Array[Peddler::Types::MessagingV1::Attachment]?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
+        def self.new: (?attachments: Array[Peddler::Types::MessagingV1::Attachment]?, ?text: String?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
+                    | (Array[Peddler::Types::MessagingV1::Attachment]?, String?) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateConfirmCustomizationDetailsRequest
 
-        attr_reader text: String?
         attr_reader attachments: Array[Peddler::Types::MessagingV1::Attachment]?
+        attr_reader text: String?
 
-        def to_h: () -> { text: String?, attachments: Array[Peddler::Types::MessagingV1::Attachment]? }
+        def to_h: () -> { attachments: Array[Peddler::Types::MessagingV1::Attachment]?, text: String? }
       end
     end
   end

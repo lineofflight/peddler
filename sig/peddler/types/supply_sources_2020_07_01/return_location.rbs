@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SupplySources20200701
       class ReturnLocation < Data
-        def self.new: (?supply_source_id: String?, ?address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?) -> Peddler::Types::SupplySources20200701::ReturnLocation
-                    | (String?, Peddler::Types::SupplySources20200701::AddressWithContact?) -> Peddler::Types::SupplySources20200701::ReturnLocation
+        def self.new: (?address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?, ?supply_source_id: String?) -> Peddler::Types::SupplySources20200701::ReturnLocation
+                    | (Peddler::Types::SupplySources20200701::AddressWithContact?, String?) -> Peddler::Types::SupplySources20200701::ReturnLocation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ReturnLocation
 
-        attr_reader supply_source_id: String?
         attr_reader address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?
+        attr_reader supply_source_id: String?
 
-        def to_h: () -> { supply_source_id: String?, address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact? }
+        def to_h: () -> { address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?, supply_source_id: String? }
       end
     end
   end

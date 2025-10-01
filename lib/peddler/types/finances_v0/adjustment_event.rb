@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "peddler/types/finances_v0/adjustment_item"
@@ -10,6 +10,12 @@ module Peddler
     module FinancesV0
       # An adjustment to the seller's account.
       AdjustmentEvent = Structure.new do
+        # @return [Money] The amount adjusted as part of this event.
+        attribute?(:adjustment_amount, Money, from: "AdjustmentAmount")
+
+        # @return [Array<AdjustmentItem>] A list of information about adjustments to an account.
+        attribute?(:adjustment_item_list, [AdjustmentItem], from: "AdjustmentItemList")
+
         # @return [String] The type of adjustment.
         #
         # Possible values:
@@ -43,12 +49,6 @@ module Peddler
 
         # @return [String] The name of the store where the event occurred.
         attribute?(:store_name, String, from: "StoreName")
-
-        # @return [Money] The amount adjusted as part of this event.
-        attribute?(:adjustment_amount, Money, from: "AdjustmentAmount")
-
-        # @return [Array<AdjustmentItem>] A list of information about adjustments to an account.
-        attribute?(:adjustment_item_list, [AdjustmentItem], from: "AdjustmentItemList")
       end
     end
   end

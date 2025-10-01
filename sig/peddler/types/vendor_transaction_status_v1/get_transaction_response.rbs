@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorTransactionStatusV1
       class GetTransactionResponse < Data
-        def self.new: (?payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?, ?errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
-                    | (Peddler::Types::VendorTransactionStatusV1::TransactionStatus?, Array[Peddler::Types::VendorTransactionStatusV1::Error]?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
+        def self.new: (?errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?, ?payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
+                    | (Array[Peddler::Types::VendorTransactionStatusV1::Error]?, Peddler::Types::VendorTransactionStatusV1::TransactionStatus?) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse
 
-        attr_reader payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?
         attr_reader errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?
+        attr_reader payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?
 
-        def to_h: () -> { payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus?, errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::VendorTransactionStatusV1::Error]?, payload: Peddler::Types::VendorTransactionStatusV1::TransactionStatus? }
       end
     end
   end

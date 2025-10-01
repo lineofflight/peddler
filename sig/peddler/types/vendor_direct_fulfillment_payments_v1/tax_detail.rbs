@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class TaxDetail < Data
-        def self.new: (tax_type: String?, ?tax_rate: String?, tax_amount: Peddler::Types::Money?, ?taxable_amount: Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
-                    | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
+        def self.new: (tax_amount: Peddler::Types::Money?, tax_type: String?, ?tax_rate: String?, ?taxable_amount: Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
+                    | (Peddler::Types::Money?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail
 
+        attr_reader tax_amount: Peddler::Types::Money?
         attr_reader tax_type: String?
         attr_reader tax_rate: String?
-        attr_reader tax_amount: Peddler::Types::Money?
         attr_reader taxable_amount: Peddler::Types::Money?
 
-        def to_h: () -> { tax_type: String?, tax_rate: String?, tax_amount: Peddler::Types::Money?, taxable_amount: Peddler::Types::Money? }
+        def to_h: () -> { tax_amount: Peddler::Types::Money?, tax_type: String?, tax_rate: String?, taxable_amount: Peddler::Types::Money? }
       end
     end
   end

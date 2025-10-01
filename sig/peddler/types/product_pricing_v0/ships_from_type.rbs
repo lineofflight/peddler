@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class ShipsFromType < Data
-        def self.new: (?state: String?, ?country: String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
+        def self.new: (?country: String?, ?state: String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
                     | (String?, String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ShipsFromType
 
-        attr_reader state: String?
         attr_reader country: String?
+        attr_reader state: String?
 
-        def to_h: () -> { state: String?, country: String? }
+        def to_h: () -> { country: String?, state: String? }
       end
     end
   end

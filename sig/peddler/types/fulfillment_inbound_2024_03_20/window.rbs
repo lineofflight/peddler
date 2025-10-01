@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class Window < Data
-        def self.new: (?editable_until: String?, end: String?, start: String?) -> Peddler::Types::FulfillmentInbound20240320::Window
+        def self.new: (end: String?, start: String?, ?editable_until: String?) -> Peddler::Types::FulfillmentInbound20240320::Window
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Window
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Window
 
-        attr_reader editable_until: String?
         attr_reader end: String?
         attr_reader start: String?
+        attr_reader editable_until: String?
 
-        def to_h: () -> { editable_until: String?, end: String?, start: String? }
+        def to_h: () -> { end: String?, start: String?, editable_until: String? }
       end
     end
   end

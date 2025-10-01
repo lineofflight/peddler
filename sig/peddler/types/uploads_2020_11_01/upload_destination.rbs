@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Uploads20201101
       class UploadDestination < Data
-        def self.new: (?upload_destination_id: String?, ?url: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::Uploads20201101::UploadDestination
-                    | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Uploads20201101::UploadDestination
+        def self.new: (?headers: Hash[untyped, untyped]?, ?upload_destination_id: String?, ?url: String?) -> Peddler::Types::Uploads20201101::UploadDestination
+                    | (Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::Uploads20201101::UploadDestination
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Uploads20201101::UploadDestination
 
+        attr_reader headers: Hash[untyped, untyped]?
         attr_reader upload_destination_id: String?
         attr_reader url: String?
-        attr_reader headers: Hash[untyped, untyped]?
 
-        def to_h: () -> { upload_destination_id: String?, url: String?, headers: Hash[untyped, untyped]? }
+        def to_h: () -> { headers: Hash[untyped, untyped]?, upload_destination_id: String?, url: String? }
       end
     end
   end

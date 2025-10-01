@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/services_v1/availability_record"
-require "peddler/types/services_v1/warning"
 require "peddler/types/services_v1/error"
+require "peddler/types/services_v1/warning"
 
 module Peddler
   module Types
@@ -15,11 +15,11 @@ module Peddler
         # @return [AvailabilityRecord] Availability record if the operation failed.
         attribute?(:availability, AvailabilityRecord)
 
-        # @return [Array<Warning>] Warnings encountered, if any.
-        attribute?(:warnings, [Warning])
-
         # @return [Array<Error>] Errors encountered, if any.
         attribute?(:errors, [Error])
+
+        # @return [Array<Warning>] Warnings encountered, if any.
+        attribute?(:warnings, [Warning])
       end
     end
   end

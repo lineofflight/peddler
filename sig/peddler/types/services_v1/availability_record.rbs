@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class AvailabilityRecord < Data
-        def self.new: (start_time: String?, end_time: String?, ?recurrence: Peddler::Types::ServicesV1::Recurrence?, ?capacity: Integer?) -> Peddler::Types::ServicesV1::AvailabilityRecord
-                    | (String?, String?, Peddler::Types::ServicesV1::Recurrence?, Integer?) -> Peddler::Types::ServicesV1::AvailabilityRecord
+        def self.new: (end_time: String?, start_time: String?, ?capacity: Integer?, ?recurrence: Peddler::Types::ServicesV1::Recurrence?) -> Peddler::Types::ServicesV1::AvailabilityRecord
+                    | (String?, String?, Integer?, Peddler::Types::ServicesV1::Recurrence?) -> Peddler::Types::ServicesV1::AvailabilityRecord
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AvailabilityRecord
 
-        attr_reader start_time: String?
         attr_reader end_time: String?
-        attr_reader recurrence: Peddler::Types::ServicesV1::Recurrence?
+        attr_reader start_time: String?
         attr_reader capacity: Integer?
+        attr_reader recurrence: Peddler::Types::ServicesV1::Recurrence?
 
-        def to_h: () -> { start_time: String?, end_time: String?, recurrence: Peddler::Types::ServicesV1::Recurrence?, capacity: Integer? }
+        def to_h: () -> { end_time: String?, start_time: String?, capacity: Integer?, recurrence: Peddler::Types::ServicesV1::Recurrence? }
       end
     end
   end

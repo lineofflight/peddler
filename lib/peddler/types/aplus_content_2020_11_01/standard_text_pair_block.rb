@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/aplus_content_2020_11_01/text_component"
 
@@ -10,10 +10,10 @@ module Peddler
       # The A+ Content standard label and description block, which contains a pair of text components.
       StandardTextPairBlock = Structure.new do
         # @return [TextComponent]
-        attribute?(:label, TextComponent)
+        attribute?(:description, TextComponent)
 
         # @return [TextComponent]
-        attribute?(:description, TextComponent)
+        attribute?(:label, TextComponent)
       end
     end
   end

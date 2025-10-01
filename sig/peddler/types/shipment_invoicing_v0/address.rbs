@@ -1,28 +1,28 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShipmentInvoicingV0
       class Address < Data
-        def self.new: (?name: String?, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?state_or_region: String?, ?postal_code: String?, ?country_code: String?, ?phone: String?, ?address_type: String?) -> Peddler::Types::ShipmentInvoicingV0::Address
+        def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::ShipmentInvoicingV0::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::ShipmentInvoicingV0::Address
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::Address
 
-        attr_reader name: String?
         attr_reader address_line1: String?
         attr_reader address_line2: String?
         attr_reader address_line3: String?
+        attr_reader address_type: String?
         attr_reader city: String?
+        attr_reader country_code: String?
         attr_reader county: String?
         attr_reader district: String?
-        attr_reader state_or_region: String?
-        attr_reader postal_code: String?
-        attr_reader country_code: String?
+        attr_reader name: String?
         attr_reader phone: String?
-        attr_reader address_type: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
 
-        def to_h: () -> { name: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, state_or_region: String?, postal_code: String?, country_code: String?, phone: String?, address_type: String? }
+        def to_h: () -> { address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, country_code: String?, county: String?, district: String?, name: String?, phone: String?, postal_code: String?, state_or_region: String? }
       end
     end
   end

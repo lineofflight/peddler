@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV1
       class CreateShipmentRequest < Data
-        def self.new: (client_reference_id: String?, ship_to: Peddler::Types::ShippingV1::Address?, ship_from: Peddler::Types::ShippingV1::Address?, containers: Array[Peddler::Types::ShippingV1::Container]?) -> Peddler::Types::ShippingV1::CreateShipmentRequest
-                    | (String?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, Array[Peddler::Types::ShippingV1::Container]?) -> Peddler::Types::ShippingV1::CreateShipmentRequest
+        def self.new: (client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?) -> Peddler::Types::ShippingV1::CreateShipmentRequest
+                    | (String?, Array[Peddler::Types::ShippingV1::Container]?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?) -> Peddler::Types::ShippingV1::CreateShipmentRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::CreateShipmentRequest
 
         attr_reader client_reference_id: String?
-        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
-        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
         attr_reader containers: Array[Peddler::Types::ShippingV1::Container]?
+        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
+        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
 
-        def to_h: () -> { client_reference_id: String?, ship_to: Peddler::Types::ShippingV1::Address?, ship_from: Peddler::Types::ShippingV1::Address?, containers: Array[Peddler::Types::ShippingV1::Container]? }
+        def to_h: () -> { client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address? }
       end
     end
   end

@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class AccountHolderAddress < Data
-        def self.new: (address_line1: String?, ?address_line2: String?, city: String?, state: String?, postal_code: String?, ?country: String?, country_code: String?) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
+        def self.new: (address_line1: String?, city: String?, country_code: String?, postal_code: String?, state: String?, ?address_line2: String?, ?country: String?) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
                     | (String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::AccountHolderAddress
 
         attr_reader address_line1: String?
-        attr_reader address_line2: String?
         attr_reader city: String?
-        attr_reader state: String?
-        attr_reader postal_code: String?
-        attr_reader country: String?
         attr_reader country_code: String?
+        attr_reader postal_code: String?
+        attr_reader state: String?
+        attr_reader address_line2: String?
+        attr_reader country: String?
 
-        def to_h: () -> { address_line1: String?, address_line2: String?, city: String?, state: String?, postal_code: String?, country: String?, country_code: String? }
+        def to_h: () -> { address_line1: String?, city: String?, country_code: String?, postal_code: String?, state: String?, address_line2: String?, country: String? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class QuantityDiscountPriceType < Data
-        def self.new: (quantity_tier: Integer?, quantity_discount_type: String?, listing_price: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
-                    | (Integer?, String?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
+        def self.new: (listing_price: Peddler::Types::Money?, quantity_discount_type: String?, quantity_tier: Integer?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
+                    | (Peddler::Types::Money?, String?, Integer?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
 
-        attr_reader quantity_tier: Integer?
-        attr_reader quantity_discount_type: String?
         attr_reader listing_price: Peddler::Types::Money?
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
 
-        def to_h: () -> { quantity_tier: Integer?, quantity_discount_type: String?, listing_price: Peddler::Types::Money? }
+        def to_h: () -> { listing_price: Peddler::Types::Money?, quantity_discount_type: String?, quantity_tier: Integer? }
       end
     end
   end

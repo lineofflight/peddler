@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class TaxWithholdingEvent < Data
-        def self.new: (?posted_date: String?, ?base_amount: Peddler::Types::Money?, ?withheld_amount: Peddler::Types::Money?, ?tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
-                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::FinancesV0::TaxWithholdingPeriod?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
+        def self.new: (?base_amount: Peddler::Types::Money?, ?posted_date: String?, ?tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?, ?withheld_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
+                    | (Peddler::Types::Money?, String?, Peddler::Types::FinancesV0::TaxWithholdingPeriod?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::TaxWithholdingEvent
 
-        attr_reader posted_date: String?
         attr_reader base_amount: Peddler::Types::Money?
-        attr_reader withheld_amount: Peddler::Types::Money?
+        attr_reader posted_date: String?
         attr_reader tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?
+        attr_reader withheld_amount: Peddler::Types::Money?
 
-        def to_h: () -> { posted_date: String?, base_amount: Peddler::Types::Money?, withheld_amount: Peddler::Types::Money?, tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod? }
+        def to_h: () -> { base_amount: Peddler::Types::Money?, posted_date: String?, tax_withholding_period: Peddler::Types::FinancesV0::TaxWithholdingPeriod?, withheld_amount: Peddler::Types::Money? }
       end
     end
   end

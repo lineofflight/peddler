@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,12 +9,6 @@ module Peddler
     module SellersV1
       # Information about an Amazon marketplace where a seller can list items and customers can view and purchase items.
       Marketplace = Structure.new do
-        # @return [String] The encrypted marketplace value.
-        attribute(:id, String)
-
-        # @return [String] The marketplace name.
-        attribute(:name, String)
-
         # @return [String] The ISO 3166-1 alpha-2 format country code of the marketplace.
         attribute(:country_code, String, from: "countryCode")
 
@@ -26,6 +20,12 @@ module Peddler
 
         # @return [String] The domain name of the marketplace.
         attribute(:domain_name, String, from: "domainName")
+
+        # @return [String] The encrypted marketplace value.
+        attribute(:id, String)
+
+        # @return [String] The marketplace name.
+        attribute(:name, String)
       end
     end
   end

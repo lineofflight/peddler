@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class SellerInputDefinition < Data
-        def self.new: (required: bool?, data_type: String?, constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, input_display_text: String?, ?input_target: String?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, ?restricted_set_values: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
-                    | (bool?, String?, Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, String?, String?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
+        def self.new: (constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, data_type: String?, input_display_text: String?, required: bool?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, ?input_target: String?, ?restricted_set_values: Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, String?, String?, bool?, Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, String?, Array[String]?) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::SellerInputDefinition
 
-        attr_reader required: bool?
-        attr_reader data_type: String?
         attr_reader constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?
+        attr_reader data_type: String?
         attr_reader input_display_text: String?
-        attr_reader input_target: String?
+        attr_reader required: bool?
         attr_reader stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?
+        attr_reader input_target: String?
         attr_reader restricted_set_values: Array[String]?
 
         def required?: () -> bool
-        def to_h: () -> { required: bool?, data_type: String?, constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, input_display_text: String?, input_target: String?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, restricted_set_values: Array[String]? }
+        def to_h: () -> { constraints: Array[Peddler::Types::MerchantFulfillmentV0::Constraint]?, data_type: String?, input_display_text: String?, required: bool?, stored_value: Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput?, input_target: String?, restricted_set_values: Array[String]? }
       end
     end
   end

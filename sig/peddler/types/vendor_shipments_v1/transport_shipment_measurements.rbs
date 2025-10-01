@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class TransportShipmentMeasurements < Data
-        def self.new: (?total_carton_count: Integer?, ?total_pallet_stackable: Integer?, ?total_pallet_non_stackable: Integer?, ?shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, ?shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
-                    | (Integer?, Integer?, Integer?, Peddler::Types::VendorShipmentsV1::Weight?, Peddler::Types::VendorShipmentsV1::Volume?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+        def self.new: (?shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, ?shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, ?total_carton_count: Integer?, ?total_pallet_non_stackable: Integer?, ?total_pallet_stackable: Integer?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+                    | (Peddler::Types::VendorShipmentsV1::Volume?, Peddler::Types::VendorShipmentsV1::Weight?, Integer?, Integer?, Integer?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
 
-        attr_reader total_carton_count: Integer?
-        attr_reader total_pallet_stackable: Integer?
-        attr_reader total_pallet_non_stackable: Integer?
-        attr_reader shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?
         attr_reader shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?
+        attr_reader shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?
+        attr_reader total_carton_count: Integer?
+        attr_reader total_pallet_non_stackable: Integer?
+        attr_reader total_pallet_stackable: Integer?
 
-        def to_h: () -> { total_carton_count: Integer?, total_pallet_stackable: Integer?, total_pallet_non_stackable: Integer?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume? }
+        def to_h: () -> { shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, total_carton_count: Integer?, total_pallet_non_stackable: Integer?, total_pallet_stackable: Integer? }
       end
     end
   end

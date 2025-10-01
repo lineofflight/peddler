@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class AdjustmentItem < Data
-        def self.new: (?quantity: String?, ?per_unit_amount: Peddler::Types::Money?, ?total_amount: Peddler::Types::Money?, ?seller_sku: String?, ?fn_sku: String?, ?product_description: String?, ?asin: String?, ?transaction_number: String?) -> Peddler::Types::FinancesV0::AdjustmentItem
-                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::AdjustmentItem
+        def self.new: (?asin: String?, ?fn_sku: String?, ?per_unit_amount: Peddler::Types::Money?, ?product_description: String?, ?quantity: String?, ?seller_sku: String?, ?total_amount: Peddler::Types::Money?, ?transaction_number: String?) -> Peddler::Types::FinancesV0::AdjustmentItem
+                    | (String?, String?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::AdjustmentItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::AdjustmentItem
 
-        attr_reader quantity: String?
-        attr_reader per_unit_amount: Peddler::Types::Money?
-        attr_reader total_amount: Peddler::Types::Money?
-        attr_reader seller_sku: String?
-        attr_reader fn_sku: String?
-        attr_reader product_description: String?
         attr_reader asin: String?
+        attr_reader fn_sku: String?
+        attr_reader per_unit_amount: Peddler::Types::Money?
+        attr_reader product_description: String?
+        attr_reader quantity: String?
+        attr_reader seller_sku: String?
+        attr_reader total_amount: Peddler::Types::Money?
         attr_reader transaction_number: String?
 
-        def to_h: () -> { quantity: String?, per_unit_amount: Peddler::Types::Money?, total_amount: Peddler::Types::Money?, seller_sku: String?, fn_sku: String?, product_description: String?, asin: String?, transaction_number: String? }
+        def to_h: () -> { asin: String?, fn_sku: String?, per_unit_amount: Peddler::Types::Money?, product_description: String?, quantity: String?, seller_sku: String?, total_amount: Peddler::Types::Money?, transaction_number: String? }
       end
     end
   end

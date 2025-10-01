@@ -1,27 +1,27 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShipmentInvoicingV0
       class ShipmentItem < Data
-        def self.new: (?asin: String?, ?seller_sku: String?, ?order_item_id: String?, ?title: String?, ?quantity_ordered: Float?, ?item_price: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?gift_wrap_price: Peddler::Types::Money?, ?shipping_discount: Peddler::Types::Money?, ?promotion_discount: Peddler::Types::Money?, ?serial_numbers: Array[String]?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
-                    | (String?, String?, String?, String?, Float?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Array[String]?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
+        def self.new: (?asin: String?, ?gift_wrap_price: Peddler::Types::Money?, ?item_price: Peddler::Types::Money?, ?order_item_id: String?, ?promotion_discount: Peddler::Types::Money?, ?quantity_ordered: Float?, ?seller_sku: String?, ?serial_numbers: Array[String]?, ?shipping_discount: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?title: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
+                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?, Float?, String?, Array[String]?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
 
         attr_reader asin: String?
-        attr_reader seller_sku: String?
-        attr_reader order_item_id: String?
-        attr_reader title: String?
-        attr_reader quantity_ordered: Float?
-        attr_reader item_price: Peddler::Types::Money?
-        attr_reader shipping_price: Peddler::Types::Money?
         attr_reader gift_wrap_price: Peddler::Types::Money?
-        attr_reader shipping_discount: Peddler::Types::Money?
+        attr_reader item_price: Peddler::Types::Money?
+        attr_reader order_item_id: String?
         attr_reader promotion_discount: Peddler::Types::Money?
+        attr_reader quantity_ordered: Float?
+        attr_reader seller_sku: String?
         attr_reader serial_numbers: Array[String]?
+        attr_reader shipping_discount: Peddler::Types::Money?
+        attr_reader shipping_price: Peddler::Types::Money?
+        attr_reader title: String?
 
-        def to_h: () -> { asin: String?, seller_sku: String?, order_item_id: String?, title: String?, quantity_ordered: Float?, item_price: Peddler::Types::Money?, shipping_price: Peddler::Types::Money?, gift_wrap_price: Peddler::Types::Money?, shipping_discount: Peddler::Types::Money?, promotion_discount: Peddler::Types::Money?, serial_numbers: Array[String]? }
+        def to_h: () -> { asin: String?, gift_wrap_price: Peddler::Types::Money?, item_price: Peddler::Types::Money?, order_item_id: String?, promotion_discount: Peddler::Types::Money?, quantity_ordered: Float?, seller_sku: String?, serial_numbers: Array[String]?, shipping_discount: Peddler::Types::Money?, shipping_price: Peddler::Types::Money?, title: String? }
       end
     end
   end

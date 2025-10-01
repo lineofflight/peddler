@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_direct_fulfillment_transactions_2021_12_28/error_list"
 
@@ -9,12 +9,12 @@ module Peddler
     module VendorDirectFulfillmentTransactions20211228
       # The transaction status details.
       Transaction = Structure.new do
+        # @return [String] Current processing status of the transaction.
+        attribute(:status, String)
+
         # @return [String] The unique identifier sent in the 'transactionId' field in response to the post request of a
         # specific transaction.
         attribute(:transaction_id, String, from: "transactionId")
-
-        # @return [String] Current processing status of the transaction.
-        attribute(:status, String)
 
         # @return [ErrorList] Error code and message for the failed transaction. Only available when transaction status
         # is 'Failure'.

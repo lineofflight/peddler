@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricing20220501
       class HttpStatusLine < Data
-        def self.new: (?status_code: Integer?, ?reason_phrase: String?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
-                    | (Integer?, String?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+        def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+                    | (String?, Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
 
-        attr_reader status_code: Integer?
         attr_reader reason_phrase: String?
+        attr_reader status_code: Integer?
 
-        def to_h: () -> { status_code: Integer?, reason_phrase: String? }
+        def to_h: () -> { reason_phrase: String?, status_code: Integer? }
       end
     end
   end

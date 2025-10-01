@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class DeliveryPreferences < Data
-        def self.new: (?drop_off_location: String?, ?preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?, ?other_attributes: Array[untyped]?, ?address_instructions: String?) -> Peddler::Types::OrdersV0::DeliveryPreferences
-                    | (String?, Peddler::Types::OrdersV0::PreferredDeliveryTime?, Array[untyped]?, String?) -> Peddler::Types::OrdersV0::DeliveryPreferences
+        def self.new: (?address_instructions: String?, ?drop_off_location: String?, ?other_attributes: Array[untyped]?, ?preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?) -> Peddler::Types::OrdersV0::DeliveryPreferences
+                    | (String?, String?, Array[untyped]?, Peddler::Types::OrdersV0::PreferredDeliveryTime?) -> Peddler::Types::OrdersV0::DeliveryPreferences
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::DeliveryPreferences
 
-        attr_reader drop_off_location: String?
-        attr_reader preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?
-        attr_reader other_attributes: Array[untyped]?
         attr_reader address_instructions: String?
+        attr_reader drop_off_location: String?
+        attr_reader other_attributes: Array[untyped]?
+        attr_reader preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?
 
-        def to_h: () -> { drop_off_location: String?, preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime?, other_attributes: Array[untyped]?, address_instructions: String? }
+        def to_h: () -> { address_instructions: String?, drop_off_location: String?, other_attributes: Array[untyped]?, preferred_delivery_time: Peddler::Types::OrdersV0::PreferredDeliveryTime? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewSubtopic < Data
-        def self.new: (subtopic: String?, metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, ?review_snippets: Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
-                    | (String?, Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
+        def self.new: (metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
+                    | (Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
 
-        attr_reader subtopic: String?
         attr_reader metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?
+        attr_reader subtopic: String?
         attr_reader review_snippets: Array[String]?
 
-        def to_h: () -> { subtopic: String?, metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, review_snippets: Array[String]? }
+        def to_h: () -> { metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, review_snippets: Array[String]? }
       end
     end
   end

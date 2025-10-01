@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/customer_feedback_2024_06_01/browse_node_review_topic_metrics"
 require "peddler/types/customer_feedback_2024_06_01/browse_node_subtopic"
@@ -10,12 +10,12 @@ module Peddler
     module CustomerFeedback20240601
       # The browse node review topic.
       BrowseNodeReviewTopic = Structure.new do
-        # @return [String] The name browse node review topic.
-        attribute(:topic, String)
-
         # @return [BrowseNodeReviewTopicMetrics] The percentage of browse node reviews that mention the topic, and the
         # effect the topic has on the star rating.
         attribute(:browse_node_metrics, BrowseNodeReviewTopicMetrics, from: "browseNodeMetrics")
+
+        # @return [String] The name browse node review topic.
+        attribute(:topic, String)
 
         # @return [Array<String>] A list of up to three snippets from reviews that contain the topic. This value is
         # `null` if there aren't enough review snippets for the topic.

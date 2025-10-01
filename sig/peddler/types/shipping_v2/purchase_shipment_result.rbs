@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class PurchaseShipmentResult < Data
-        def self.new: (shipment_id: String?, package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, ?benefits: Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
-                    | (String?, Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, Peddler::Types::ShippingV2::Promise?, Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
+        def self.new: (package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, shipment_id: String?, ?benefits: Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
+                    | (Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, Peddler::Types::ShippingV2::Promise?, String?, Peddler::Types::ShippingV2::Benefits?) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PurchaseShipmentResult
 
-        attr_reader shipment_id: String?
         attr_reader package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?
         attr_reader promise: Peddler::Types::ShippingV2::Promise?
+        attr_reader shipment_id: String?
         attr_reader benefits: Peddler::Types::ShippingV2::Benefits?
 
-        def to_h: () -> { shipment_id: String?, package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, benefits: Peddler::Types::ShippingV2::Benefits? }
+        def to_h: () -> { package_document_details: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?, promise: Peddler::Types::ShippingV2::Promise?, shipment_id: String?, benefits: Peddler::Types::ShippingV2::Benefits? }
       end
     end
   end

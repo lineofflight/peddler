@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class DetailedShippingTimeType < Data
-        def self.new: (?minimum_hours: Integer?, ?maximum_hours: Integer?, ?available_date: String?, ?availability_type: String?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
-                    | (Integer?, Integer?, String?, String?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
+        def self.new: (?availability_type: String?, ?available_date: String?, ?maximum_hours: Integer?, ?minimum_hours: Integer?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
+                    | (String?, String?, Integer?, Integer?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
 
-        attr_reader minimum_hours: Integer?
-        attr_reader maximum_hours: Integer?
-        attr_reader available_date: String?
         attr_reader availability_type: String?
+        attr_reader available_date: String?
+        attr_reader maximum_hours: Integer?
+        attr_reader minimum_hours: Integer?
 
-        def to_h: () -> { minimum_hours: Integer?, maximum_hours: Integer?, available_date: String?, availability_type: String? }
+        def to_h: () -> { availability_type: String?, available_date: String?, maximum_hours: Integer?, minimum_hours: Integer? }
       end
     end
   end

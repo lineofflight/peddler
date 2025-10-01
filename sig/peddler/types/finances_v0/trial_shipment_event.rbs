@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class TrialShipmentEvent < Data
-        def self.new: (?amazon_order_id: String?, ?financial_event_group_id: String?, ?posted_date: String?, ?sku: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
-                    | (String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
+        def self.new: (?amazon_order_id: String?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?financial_event_group_id: String?, ?posted_date: String?, ?sku: String?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
+                    | (String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?) -> Peddler::Types::FinancesV0::TrialShipmentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::TrialShipmentEvent
 
         attr_reader amazon_order_id: String?
+        attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
         attr_reader financial_event_group_id: String?
         attr_reader posted_date: String?
         attr_reader sku: String?
-        attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
 
-        def to_h: () -> { amazon_order_id: String?, financial_event_group_id: String?, posted_date: String?, sku: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]? }
+        def to_h: () -> { amazon_order_id: String?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, financial_event_group_id: String?, posted_date: String?, sku: String? }
       end
     end
   end

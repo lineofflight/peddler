@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellersV1
       class Marketplace < Data
-        def self.new: (id: String?, name: String?, country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?) -> Peddler::Types::SellersV1::Marketplace
+        def self.new: (country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?, id: String?, name: String?) -> Peddler::Types::SellersV1::Marketplace
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Marketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Marketplace
 
-        attr_reader id: String?
-        attr_reader name: String?
         attr_reader country_code: String?
         attr_reader default_currency_code: String?
         attr_reader default_language_code: String?
         attr_reader domain_name: String?
+        attr_reader id: String?
+        attr_reader name: String?
 
-        def to_h: () -> { id: String?, name: String?, country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String? }
+        def to_h: () -> { country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?, id: String?, name: String? }
       end
     end
   end

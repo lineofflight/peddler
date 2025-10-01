@@ -1,28 +1,28 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class Container < Data
-        def self.new: (container_type: String?, container_identifier: String?, ?tracking_number: String?, ?manifest_id: String?, ?manifest_date: String?, ?ship_method: String?, ?scac_code: String?, ?carrier: String?, ?container_sequence_number: Integer?, ?dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
+        def self.new: (container_identifier: String?, container_type: String?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?, weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, ?carrier: String?, ?container_sequence_number: Integer?, ?dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, ?manifest_date: String?, ?manifest_id: String?, ?scac_code: String?, ?ship_method: String?, ?tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
+                    | (String?, String?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?, Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::Container
 
-        attr_reader container_type: String?
         attr_reader container_identifier: String?
-        attr_reader tracking_number: String?
-        attr_reader manifest_id: String?
-        attr_reader manifest_date: String?
-        attr_reader ship_method: String?
-        attr_reader scac_code: String?
+        attr_reader container_type: String?
+        attr_reader packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?
+        attr_reader weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?
         attr_reader carrier: String?
         attr_reader container_sequence_number: Integer?
         attr_reader dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?
-        attr_reader weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?
-        attr_reader packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?
+        attr_reader manifest_date: String?
+        attr_reader manifest_id: String?
+        attr_reader scac_code: String?
+        attr_reader ship_method: String?
+        attr_reader tracking_number: String?
 
-        def to_h: () -> { container_type: String?, container_identifier: String?, tracking_number: String?, manifest_id: String?, manifest_date: String?, ship_method: String?, scac_code: String?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]? }
+        def to_h: () -> { container_identifier: String?, container_type: String?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem]?, weight: Peddler::Types::VendorDirectFulfillmentShippingV1::Weight?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShippingV1::Dimensions?, manifest_date: String?, manifest_id: String?, scac_code: String?, ship_method: String?, tracking_number: String? }
       end
     end
   end

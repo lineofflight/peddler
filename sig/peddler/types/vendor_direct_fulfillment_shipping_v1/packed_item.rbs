@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class PackedItem < Data
-        def self.new: (item_sequence_number: Integer?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem
-                    | (Integer?, String?, String?, Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem
+        def self.new: (item_sequence_number: Integer?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem
+                    | (Integer?, Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackedItem
 
         attr_reader item_sequence_number: Integer?
+        attr_reader packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?
         attr_reader buyer_product_identifier: String?
         attr_reader vendor_product_identifier: String?
-        attr_reader packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?
 
-        def to_h: () -> { item_sequence_number: Integer?, buyer_product_identifier: String?, vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity? }
+        def to_h: () -> { item_sequence_number: Integer?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShippingV1::ItemQuantity?, buyer_product_identifier: String?, vendor_product_identifier: String? }
       end
     end
   end

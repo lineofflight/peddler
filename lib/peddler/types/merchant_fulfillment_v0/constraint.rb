@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,11 +9,11 @@ module Peddler
     module MerchantFulfillmentV0
       # A validation constraint.
       Constraint = Structure.new do
-        # @return [String] A regular expression.
-        attribute?(:validation_reg_ex, String, from: "ValidationRegEx")
-
         # @return [String] A validation string.
         attribute(:validation_string, String, from: "ValidationString")
+
+        # @return [String] A regular expression.
+        attribute?(:validation_reg_ex, String, from: "ValidationRegEx")
       end
     end
   end

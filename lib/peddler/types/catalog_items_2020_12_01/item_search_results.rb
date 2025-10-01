@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
+require "peddler/types/catalog_items_2020_12_01/item"
 require "peddler/types/catalog_items_2020_12_01/pagination"
 require "peddler/types/catalog_items_2020_12_01/refinements"
-require "peddler/types/catalog_items_2020_12_01/item"
 
 module Peddler
   module Types
     module CatalogItems20201201
       # Items in the Amazon catalog and search related metadata.
       ItemSearchResults = Structure.new do
+        # @return [Array<Item>] A list of items from the Amazon catalog.
+        attribute(:items, [Item])
+
         # @return [Integer] The estimated total number of products matched by the search query (only results up to the
         # page count limit will be returned per request regardless of the number found).
         #
@@ -23,9 +26,6 @@ module Peddler
 
         # @return [Refinements]
         attribute(:refinements, Refinements)
-
-        # @return [Array<Item>] A list of items from the Amazon catalog.
-        attribute(:items, [Item])
       end
     end
   end

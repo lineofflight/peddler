@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class ScheduledDeliveryShipment < Data
-        def self.new: (?scheduled_delivery_service_type: String?, ?earliest_nominated_delivery_date: String?, ?latest_nominated_delivery_date: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment
+        def self.new: (?earliest_nominated_delivery_date: String?, ?latest_nominated_delivery_date: String?, ?scheduled_delivery_service_type: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment
                     | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment
 
-        attr_reader scheduled_delivery_service_type: String?
         attr_reader earliest_nominated_delivery_date: String?
         attr_reader latest_nominated_delivery_date: String?
+        attr_reader scheduled_delivery_service_type: String?
 
-        def to_h: () -> { scheduled_delivery_service_type: String?, earliest_nominated_delivery_date: String?, latest_nominated_delivery_date: String? }
+        def to_h: () -> { earliest_nominated_delivery_date: String?, latest_nominated_delivery_date: String?, scheduled_delivery_service_type: String? }
       end
     end
   end

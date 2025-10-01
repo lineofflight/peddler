@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentTransactions20211228
       class Transaction < Data
-        def self.new: (transaction_id: String?, status: String?, ?errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
+        def self.new: (status: String?, transaction_id: String?, ?errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
                     | (String?, String?, Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
 
-        attr_reader transaction_id: String?
         attr_reader status: String?
+        attr_reader transaction_id: String?
         attr_reader errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?
 
-        def to_h: () -> { transaction_id: String?, status: String?, errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList? }
+        def to_h: () -> { status: String?, transaction_id: String?, errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList? }
       end
     end
   end

@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class Stop < Data
-        def self.new: (function_code: String?, ?location_identification: Peddler::Types::VendorShipmentsV1::Location?, ?arrival_time: String?, ?departure_time: String?) -> Peddler::Types::VendorShipmentsV1::Stop
-                    | (String?, Peddler::Types::VendorShipmentsV1::Location?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Stop
+        def self.new: (function_code: String?, ?arrival_time: String?, ?departure_time: String?, ?location_identification: Peddler::Types::VendorShipmentsV1::Location?) -> Peddler::Types::VendorShipmentsV1::Stop
+                    | (String?, String?, String?, Peddler::Types::VendorShipmentsV1::Location?) -> Peddler::Types::VendorShipmentsV1::Stop
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Stop
 
         attr_reader function_code: String?
-        attr_reader location_identification: Peddler::Types::VendorShipmentsV1::Location?
         attr_reader arrival_time: String?
         attr_reader departure_time: String?
+        attr_reader location_identification: Peddler::Types::VendorShipmentsV1::Location?
 
-        def to_h: () -> { function_code: String?, location_identification: Peddler::Types::VendorShipmentsV1::Location?, arrival_time: String?, departure_time: String? }
+        def to_h: () -> { function_code: String?, arrival_time: String?, departure_time: String?, location_identification: Peddler::Types::VendorShipmentsV1::Location? }
       end
     end
   end

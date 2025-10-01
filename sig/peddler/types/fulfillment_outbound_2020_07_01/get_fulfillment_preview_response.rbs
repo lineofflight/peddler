@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFulfillmentPreviewResponse < Data
-        def self.new: (?payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, ?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
-                    | (Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
 
-        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?
         attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?
 
-        def to_h: () -> { payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult? }
       end
     end
   end

@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class ChargeRefundEvent < Data
-        def self.new: (?posted_date: String?, ?reason_code: String?, ?reason_code_description: String?, ?charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
-                    | (String?, String?, String?, Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
+        def self.new: (?charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, ?posted_date: String?, ?reason_code: String?, ?reason_code_description: String?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
+                    | (Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, String?, String?, String?) -> Peddler::Types::FinancesV0::ChargeRefundEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ChargeRefundEvent
 
+        attr_reader charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?
         attr_reader posted_date: String?
         attr_reader reason_code: String?
         attr_reader reason_code_description: String?
-        attr_reader charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?
 
-        def to_h: () -> { posted_date: String?, reason_code: String?, reason_code_description: String?, charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]? }
+        def to_h: () -> { charge_refund_transactions: Array[Peddler::Types::FinancesV0::ChargeRefundTransaction]?, posted_date: String?, reason_code: String?, reason_code_description: String? }
       end
     end
   end

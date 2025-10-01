@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_shipments_v1/location"
 
@@ -12,14 +12,14 @@ module Peddler
         # @return [String] Provide the function code.
         attribute(:function_code, String, from: "functionCode")
 
-        # @return [Location]
-        attribute?(:location_identification, Location, from: "locationIdentification")
-
         # @return [String] Date and time of the arrival of the cargo.
         attribute?(:arrival_time, String, from: "arrivalTime")
 
         # @return [String] Date and time of the departure of the cargo.
         attribute?(:departure_time, String, from: "departureTime")
+
+        # @return [Location]
+        attribute?(:location_identification, Location, from: "locationIdentification")
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -13,17 +13,17 @@ module Peddler
       # (destinationAccount) currency, effectiveRate = (( baseAmount * baseRate ) - sum(fees.feeAmount.currencyAmount ))
       # / baseAmount
       Fee = Structure.new do
+        # @return [Money] Displays actual value of the fee in numeric format.
+        attribute(:fee_amount, Money, from: "feeAmount")
+
         # @return [String] Unique identifier assigned to the Fee.
         attribute(:fee_id, String, from: "feeId")
-
-        # @return [String] Displays type of the Fee.
-        attribute(:fee_type, String, from: "feeType")
 
         # @return [String] The value of the fee in percentage format.
         attribute(:fee_rate_value, String, from: "feeRateValue")
 
-        # @return [Money] Displays actual value of the fee in numeric format.
-        attribute(:fee_amount, Money, from: "feeAmount")
+        # @return [String] Displays type of the Fee.
+        attribute(:fee_type, String, from: "feeType")
       end
     end
   end

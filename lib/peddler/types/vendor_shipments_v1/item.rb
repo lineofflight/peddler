@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_shipments_v1/item_quantity"
 require "peddler/types/vendor_shipments_v1/item_details"
@@ -14,18 +14,18 @@ module Peddler
         # This number is used as a reference to refer to this item from the carton or pallet level.
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
+        # @return [ItemQuantity] Total item quantity shipped in this shipment.
+        attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
+
         # @return [String] Buyer Standard Identification Number (ASIN) of an item.
         attribute?(:amazon_product_identifier, String, from: "amazonProductIdentifier")
+
+        # @return [ItemDetails]
+        attribute?(:item_details, ItemDetails, from: "itemDetails")
 
         # @return [String] The vendor selected product identification of the item. Should be the same as was sent in the
         # purchase order.
         attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
-
-        # @return [ItemQuantity] Total item quantity shipped in this shipment.
-        attribute(:shipped_quantity, ItemQuantity, from: "shippedQuantity")
-
-        # @return [ItemDetails]
-        attribute?(:item_details, ItemDetails, from: "itemDetails")
       end
     end
   end

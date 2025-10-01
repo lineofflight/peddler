@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class PurchaseOrders < Data
-        def self.new: (?purchase_order_number: String?, ?purchase_order_date: String?, ?ship_window: String?, ?items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
-                    | (String?, String?, String?, Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
+        def self.new: (?items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?, ?purchase_order_date: String?, ?purchase_order_number: String?, ?ship_window: String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
+                    | (Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
 
-        attr_reader purchase_order_number: String?
-        attr_reader purchase_order_date: String?
-        attr_reader ship_window: String?
         attr_reader items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?
+        attr_reader purchase_order_date: String?
+        attr_reader purchase_order_number: String?
+        attr_reader ship_window: String?
 
-        def to_h: () -> { purchase_order_number: String?, purchase_order_date: String?, ship_window: String?, items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]? }
+        def to_h: () -> { items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?, purchase_order_date: String?, purchase_order_number: String?, ship_window: String? }
       end
     end
   end

@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SupplySources20200701
       class ParkingWithAddressConfiguration < Data
-        def self.new: (?parking_cost_type: String?, ?parking_spot_identification_type: String?, ?number_of_parking_spots: Integer?, ?address: Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
-                    | (String?, String?, Integer?, Peddler::Types::SupplySources20200701::Address?) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
+        def self.new: (?address: Peddler::Types::SupplySources20200701::Address?, ?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
+                    | (Peddler::Types::SupplySources20200701::Address?, Integer?, String?, String?) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
 
+        attr_reader address: Peddler::Types::SupplySources20200701::Address?
+        attr_reader number_of_parking_spots: Integer?
         attr_reader parking_cost_type: String?
         attr_reader parking_spot_identification_type: String?
-        attr_reader number_of_parking_spots: Integer?
-        attr_reader address: Peddler::Types::SupplySources20200701::Address?
 
-        def to_h: () -> { parking_cost_type: String?, parking_spot_identification_type: String?, number_of_parking_spots: Integer?, address: Peddler::Types::SupplySources20200701::Address? }
+        def to_h: () -> { address: Peddler::Types::SupplySources20200701::Address?, number_of_parking_spots: Integer?, parking_cost_type: String?, parking_spot_identification_type: String? }
       end
     end
   end

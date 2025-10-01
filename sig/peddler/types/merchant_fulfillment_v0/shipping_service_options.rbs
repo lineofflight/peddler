@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class ShippingServiceOptions < Data
-        def self.new: (delivery_experience: String?, ?declared_value: Peddler::Types::Money?, carrier_will_pick_up: bool?, ?carrier_will_pick_up_option: String?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
-                    | (String?, Peddler::Types::Money?, bool?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
+        def self.new: (carrier_will_pick_up: bool?, delivery_experience: String?, ?carrier_will_pick_up_option: String?, ?declared_value: Peddler::Types::Money?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
+                    | (bool?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
 
-        attr_reader delivery_experience: String?
-        attr_reader declared_value: Peddler::Types::Money?
         attr_reader carrier_will_pick_up: bool?
+        attr_reader delivery_experience: String?
         attr_reader carrier_will_pick_up_option: String?
+        attr_reader declared_value: Peddler::Types::Money?
         attr_reader label_format: String?
 
         def carrier_will_pick_up?: () -> bool
-        def to_h: () -> { delivery_experience: String?, declared_value: Peddler::Types::Money?, carrier_will_pick_up: bool?, carrier_will_pick_up_option: String?, label_format: String? }
+        def to_h: () -> { carrier_will_pick_up: bool?, delivery_experience: String?, carrier_will_pick_up_option: String?, declared_value: Peddler::Types::Money?, label_format: String? }
       end
     end
   end

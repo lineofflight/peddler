@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_v0/prep_details"
 
@@ -10,8 +10,8 @@ module Peddler
       # Item information for an inbound shipment. Submitted with a call to the createInboundShipment or
       # updateInboundShipment operation.
       InboundShipmentItem = Structure.new do
-        # @return [String] A shipment identifier originally returned by the createInboundShipmentPlan operation.
-        attribute?(:shipment_id, String, from: "ShipmentId")
+        # @return [Integer] The item quantity that you are shipping.
+        attribute(:quantity_shipped, Integer, from: "QuantityShipped")
 
         # @return [String] The seller SKU of the item.
         attribute(:seller_sku, String, from: "SellerSKU")
@@ -19,11 +19,8 @@ module Peddler
         # @return [String] Amazon's fulfillment network SKU of the item.
         attribute?(:fulfillment_network_sku, String, from: "FulfillmentNetworkSKU")
 
-        # @return [Integer] The item quantity that you are shipping.
-        attribute(:quantity_shipped, Integer, from: "QuantityShipped")
-
-        # @return [Integer] The item quantity that has been received at an Amazon fulfillment center.
-        attribute?(:quantity_received, Integer, from: "QuantityReceived")
+        # @return [Array<PrepDetails>]
+        attribute?(:prep_details_list, [PrepDetails], from: "PrepDetailsList")
 
         # @return [Integer] The item quantity in each case, for case-packed items. Note that QuantityInCase multiplied
         # by the number of boxes in the inbound shipment equals QuantityShipped. Also note that all of the boxes of an
@@ -32,11 +29,14 @@ module Peddler
         # every item in the shipment or for none of the items in the shipment.
         attribute?(:quantity_in_case, Integer, from: "QuantityInCase")
 
+        # @return [Integer] The item quantity that has been received at an Amazon fulfillment center.
+        attribute?(:quantity_received, Integer, from: "QuantityReceived")
+
         # @return [String] The date that a pre-order item will be available for sale.
         attribute?(:release_date, String, from: "ReleaseDate")
 
-        # @return [Array<PrepDetails>]
-        attribute?(:prep_details_list, [PrepDetails], from: "PrepDetailsList")
+        # @return [String] A shipment identifier originally returned by the createInboundShipmentPlan operation.
+        attribute?(:shipment_id, String, from: "ShipmentId")
       end
     end
   end

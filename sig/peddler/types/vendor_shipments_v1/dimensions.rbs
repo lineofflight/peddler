@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class Dimensions < Data
-        def self.new: (length: String?, width: String?, height: String?, unit_of_measure: String?) -> Peddler::Types::VendorShipmentsV1::Dimensions
+        def self.new: (height: String?, length: String?, unit_of_measure: String?, width: String?) -> Peddler::Types::VendorShipmentsV1::Dimensions
                     | (String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Dimensions
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Dimensions
 
-        attr_reader length: String?
-        attr_reader width: String?
         attr_reader height: String?
+        attr_reader length: String?
         attr_reader unit_of_measure: String?
+        attr_reader width: String?
 
-        def to_h: () -> { length: String?, width: String?, height: String?, unit_of_measure: String? }
+        def to_h: () -> { height: String?, length: String?, unit_of_measure: String?, width: String? }
       end
     end
   end

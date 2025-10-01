@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v2/excluded_benefit"
 
@@ -11,11 +11,11 @@ module Peddler
       # (eg. CLAIMS_PROTECTED, etc.) when sellers purchase shipping through Amazon. Benefit details will be made
       # available for any shipment placed on or after January 1st 2024 00:00 UTC.
       Benefits = Structure.new do
-        # @return [Array<String>]
-        attribute(:included_benefits, [String], from: "includedBenefits")
-
         # @return [Array<ExcludedBenefit>]
         attribute(:excluded_benefits, [ExcludedBenefit], from: "excludedBenefits")
+
+        # @return [Array<String>]
+        attribute(:included_benefits, [String], from: "includedBenefits")
       end
     end
   end

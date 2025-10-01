@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class ScopeOfWork < Data
-        def self.new: (?asin: String?, ?title: String?, ?quantity: Integer?, ?required_skills: Array[String]?) -> Peddler::Types::ServicesV1::ScopeOfWork
-                    | (String?, String?, Integer?, Array[String]?) -> Peddler::Types::ServicesV1::ScopeOfWork
+        def self.new: (?asin: String?, ?quantity: Integer?, ?required_skills: Array[String]?, ?title: String?) -> Peddler::Types::ServicesV1::ScopeOfWork
+                    | (String?, Integer?, Array[String]?, String?) -> Peddler::Types::ServicesV1::ScopeOfWork
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::ScopeOfWork
 
         attr_reader asin: String?
-        attr_reader title: String?
         attr_reader quantity: Integer?
         attr_reader required_skills: Array[String]?
+        attr_reader title: String?
 
-        def to_h: () -> { asin: String?, title: String?, quantity: Integer?, required_skills: Array[String]? }
+        def to_h: () -> { asin: String?, quantity: Integer?, required_skills: Array[String]?, title: String? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class BatchOffersResponse < Data
-        def self.new: (?headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, body: Peddler::Types::ProductPricingV0::GetOffersResponse?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
-                    | (Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, Peddler::Types::ProductPricingV0::GetOffersResponse?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
 
+        attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
         attr_reader headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?
         attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?
-        attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
 
-        def to_h: () -> { headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?, body: Peddler::Types::ProductPricingV0::GetOffersResponse? }
+        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
       end
     end
   end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
+require "peddler/types/fulfillment_inbound_2024_03_20/address"
 require "peddler/types/fulfillment_inbound_2024_03_20/packing_option_summary"
 require "peddler/types/fulfillment_inbound_2024_03_20/placement_option_summary"
 require "peddler/types/fulfillment_inbound_2024_03_20/shipment_summary"
-require "peddler/types/fulfillment_inbound_2024_03_20/address"
 
 module Peddler
   module Types
@@ -30,6 +30,13 @@ module Peddler
         # @return [String] Human-readable name of the inbound plan.
         attribute(:name, String)
 
+        # @return [Address]
+        attribute(:source_address, Address, from: "sourceAddress")
+
+        # @return [String] Current status of the inbound plan. Possible values: `ACTIVE`, `VOIDED`, `SHIPPED`,
+        # `ERRORED`.
+        attribute(:status, String)
+
         # @return [Array<PackingOptionSummary>] Packing options for the inbound plan. This property will be populated
         # when it has been generated via the corresponding operation. If there is a chosen placement option, only
         # packing options for that placement option will be returned. If there are confirmed shipments, only packing
@@ -45,13 +52,6 @@ module Peddler
         # it has been generated with the `confirmPlacementOptions` operation. Only shipments from the chosen placement
         # option are returned. Query the shipment for more details.
         attribute?(:shipments, [ShipmentSummary])
-
-        # @return [Address]
-        attribute(:source_address, Address, from: "sourceAddress")
-
-        # @return [String] Current status of the inbound plan. Possible values: `ACTIVE`, `VOIDED`, `SHIPPED`,
-        # `ERRORED`.
-        attribute(:status, String)
       end
     end
   end

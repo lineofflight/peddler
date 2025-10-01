@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class PropertyGroup < Data
-        def self.new: (?title: String?, ?description: String?, ?property_names: Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
-                    | (String?, String?, Array[String]?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
+        def self.new: (?description: String?, ?property_names: Array[String]?, ?title: String?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
+                    | (String?, Array[String]?, String?) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::PropertyGroup
 
-        attr_reader title: String?
         attr_reader description: String?
         attr_reader property_names: Array[String]?
+        attr_reader title: String?
 
-        def to_h: () -> { title: String?, description: String?, property_names: Array[String]? }
+        def to_h: () -> { description: String?, property_names: Array[String]?, title: String? }
       end
     end
   end

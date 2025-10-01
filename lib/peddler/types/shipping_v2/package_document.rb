@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -10,13 +10,13 @@ module Peddler
       # A document related to a package.
       PackageDocument = Structure.new do
         # @return [String]
-        attribute(:type, String)
+        attribute(:contents, String)
 
         # @return [String]
         attribute(:format, String)
 
         # @return [String]
-        attribute(:contents, String)
+        attribute(:type, String)
       end
     end
   end

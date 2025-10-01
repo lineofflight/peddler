@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class ListFinancialEventGroupsResponse < Data
-        def self.new: (?payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?, ?errors: Array[Peddler::Types::FinancesV0::Error]?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
-                    | (Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?, Array[Peddler::Types::FinancesV0::Error]?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
+        def self.new: (?errors: Array[Peddler::Types::FinancesV0::Error]?, ?payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
+                    | (Array[Peddler::Types::FinancesV0::Error]?, Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ListFinancialEventGroupsResponse
 
-        attr_reader payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?
         attr_reader errors: Array[Peddler::Types::FinancesV0::Error]?
+        attr_reader payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?
 
-        def to_h: () -> { payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload?, errors: Array[Peddler::Types::FinancesV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::FinancesV0::Error]?, payload: Peddler::Types::FinancesV0::ListFinancialEventGroupsPayload? }
       end
     end
   end

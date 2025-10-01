@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MessagingV1
       class CreateWarrantyRequest < Data
-        def self.new: (?attachments: Array[Peddler::Types::MessagingV1::Attachment]?, ?coverage_start_date: String?, ?coverage_end_date: String?) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
+        def self.new: (?attachments: Array[Peddler::Types::MessagingV1::Attachment]?, ?coverage_end_date: String?, ?coverage_start_date: String?) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
                     | (Array[Peddler::Types::MessagingV1::Attachment]?, String?, String?) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
 
         attr_reader attachments: Array[Peddler::Types::MessagingV1::Attachment]?
-        attr_reader coverage_start_date: String?
         attr_reader coverage_end_date: String?
+        attr_reader coverage_start_date: String?
 
-        def to_h: () -> { attachments: Array[Peddler::Types::MessagingV1::Attachment]?, coverage_start_date: String?, coverage_end_date: String? }
+        def to_h: () -> { attachments: Array[Peddler::Types::MessagingV1::Attachment]?, coverage_end_date: String?, coverage_start_date: String? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_2024_03_20/incentive"
 
@@ -11,11 +11,6 @@ module Peddler
       PlacementOption = Structure.new do
         # @return [Array<Incentive>] Discount for the offered option.
         attribute(:discounts, [Incentive])
-
-        # @return [String] The expiration date of the placement option. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
-        attribute?(:expiration, String)
 
         # @return [Array<Incentive>] The fee for the offered option.
         attribute(:fees, [Incentive])
@@ -29,6 +24,11 @@ module Peddler
 
         # @return [String] The status of a placement option. Possible values: `OFFERED`, `ACCEPTED`, `EXPIRED`.
         attribute(:status, String)
+
+        # @return [String] The expiration date of the placement option. In [ISO
+        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
+        attribute?(:expiration, String)
       end
     end
   end

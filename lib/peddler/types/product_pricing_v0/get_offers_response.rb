@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/product_pricing_v0/get_offers_result"
 require "peddler/types/product_pricing_v0/error"
+require "peddler/types/product_pricing_v0/get_offers_result"
 
 module Peddler
   module Types
     module ProductPricingV0
       # The response schema for the `getListingOffers` and `getItemOffers` operations.
       GetOffersResponse = Structure.new do
-        # @return [GetOffersResult] The payload for the `getListingOffers` and `getItemOffers` operations.
-        attribute?(:payload, GetOffersResult)
-
         # @return [Array<Error>] One or more unexpected errors occurred during the operation.
         attribute?(:errors, [Error])
+
+        # @return [GetOffersResult] The payload for the `getListingOffers` and `getItemOffers` operations.
+        attribute?(:payload, GetOffersResult)
       end
     end
   end

@@ -1,28 +1,28 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Vehicles20241101
       class Vehicle < Data
-        def self.new: (make: String?, model: String?, ?variant_name: String?, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, ?manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, ?last_processed_date: String?, ?status: String?, identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> Peddler::Types::Vehicles20241101::Vehicle
-                    | (String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Vehicles20241101::EngineOutput]?, Peddler::Types::Vehicles20241101::MonthAndYear?, Peddler::Types::Vehicles20241101::MonthAndYear?, String?, String?, Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?) -> Peddler::Types::Vehicles20241101::Vehicle
+        def self.new: (identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, ?last_processed_date: String?, ?manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, ?status: String?, ?variant_name: String?) -> Peddler::Types::Vehicles20241101::Vehicle
+                    | (Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?, String?, String?, String?, String?, String?, Array[Peddler::Types::Vehicles20241101::EngineOutput]?, String?, Peddler::Types::Vehicles20241101::MonthAndYear?, Peddler::Types::Vehicles20241101::MonthAndYear?, String?, String?) -> Peddler::Types::Vehicles20241101::Vehicle
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::Vehicle
 
+        attr_reader identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?
         attr_reader make: String?
         attr_reader model: String?
-        attr_reader variant_name: String?
         attr_reader body_style: String?
         attr_reader drive_type: String?
         attr_reader energy: String?
         attr_reader engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?
+        attr_reader last_processed_date: String?
         attr_reader manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?
         attr_reader manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?
-        attr_reader last_processed_date: String?
         attr_reader status: String?
-        attr_reader identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?
+        attr_reader variant_name: String?
 
-        def to_h: () -> { make: String?, model: String?, variant_name: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, last_processed_date: String?, status: String?, identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]? }
+        def to_h: () -> { identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, last_processed_date: String?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, status: String?, variant_name: String? }
       end
     end
   end

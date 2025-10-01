@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class FeeComponent < Data
-        def self.new: (?fee_type: String?, ?fee_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::FeeComponent
-                    | (String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::FeeComponent
+        def self.new: (?fee_amount: Peddler::Types::Money?, ?fee_type: String?) -> Peddler::Types::FinancesV0::FeeComponent
+                    | (Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::FeeComponent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::FeeComponent
 
-        attr_reader fee_type: String?
         attr_reader fee_amount: Peddler::Types::Money?
+        attr_reader fee_type: String?
 
-        def to_h: () -> { fee_type: String?, fee_amount: Peddler::Types::Money? }
+        def to_h: () -> { fee_amount: Peddler::Types::Money?, fee_type: String? }
       end
     end
   end

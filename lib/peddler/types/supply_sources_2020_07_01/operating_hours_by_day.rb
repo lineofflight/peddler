@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/supply_sources_2020_07_01/operating_hour"
 
@@ -10,25 +10,25 @@ module Peddler
       # The operating hours per day
       OperatingHoursByDay = Structure.new do
         # @return [Array<OperatingHour>]
-        attribute?(:monday, [OperatingHour])
-
-        # @return [Array<OperatingHour>]
-        attribute?(:tuesday, [OperatingHour])
-
-        # @return [Array<OperatingHour>]
-        attribute?(:wednesday, [OperatingHour])
-
-        # @return [Array<OperatingHour>]
-        attribute?(:thursday, [OperatingHour])
-
-        # @return [Array<OperatingHour>]
         attribute?(:friday, [OperatingHour])
+
+        # @return [Array<OperatingHour>]
+        attribute?(:monday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
         attribute?(:saturday, [OperatingHour])
 
         # @return [Array<OperatingHour>]
         attribute?(:sunday, [OperatingHour])
+
+        # @return [Array<OperatingHour>]
+        attribute?(:thursday, [OperatingHour])
+
+        # @return [Array<OperatingHour>]
+        attribute?(:tuesday, [OperatingHour])
+
+        # @return [Array<OperatingHour>]
+        attribute?(:wednesday, [OperatingHour])
       end
     end
   end

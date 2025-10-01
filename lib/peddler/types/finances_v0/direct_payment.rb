@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -10,6 +10,9 @@ module Peddler
     module FinancesV0
       # A payment made directly to a seller.
       DirectPayment = Structure.new do
+        # @return [Money] The amount of the direct payment.
+        attribute?(:direct_payment_amount, Money, from: "DirectPaymentAmount")
+
         # @return [String] The type of payment.
         #
         # Possible values:
@@ -31,9 +34,6 @@ module Peddler
         # * CollectOnDeliveryRefund - The amount that Amazon refunds to the buyer if an order paid for by COD is
         # refunded.
         attribute?(:direct_payment_type, String, from: "DirectPaymentType")
-
-        # @return [Money] The amount of the direct payment.
-        attribute?(:direct_payment_amount, Money, from: "DirectPaymentAmount")
       end
     end
   end

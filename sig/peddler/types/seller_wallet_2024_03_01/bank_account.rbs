@@ -1,27 +1,27 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class BankAccount < Data
-        def self.new: (?account_id: String?, ?account_holder_name: String?, bank_account_number_format: String?, ?bank_name: String?, bank_account_ownership_type: String?, routing_number: String?, bank_number_format: String?, account_country_code: String?, account_currency: String?, bank_account_number_tail: String?, ?bank_account_holder_status: String?) -> Peddler::Types::SellerWallet20240301::BankAccount
+        def self.new: (account_country_code: String?, account_currency: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_ownership_type: String?, bank_number_format: String?, routing_number: String?, ?account_holder_name: String?, ?account_id: String?, ?bank_account_holder_status: String?, ?bank_name: String?) -> Peddler::Types::SellerWallet20240301::BankAccount
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellerWallet20240301::BankAccount
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::BankAccount
 
-        attr_reader account_id: String?
-        attr_reader account_holder_name: String?
-        attr_reader bank_account_number_format: String?
-        attr_reader bank_name: String?
-        attr_reader bank_account_ownership_type: String?
-        attr_reader routing_number: String?
-        attr_reader bank_number_format: String?
         attr_reader account_country_code: String?
         attr_reader account_currency: String?
+        attr_reader bank_account_number_format: String?
         attr_reader bank_account_number_tail: String?
+        attr_reader bank_account_ownership_type: String?
+        attr_reader bank_number_format: String?
+        attr_reader routing_number: String?
+        attr_reader account_holder_name: String?
+        attr_reader account_id: String?
         attr_reader bank_account_holder_status: String?
+        attr_reader bank_name: String?
 
-        def to_h: () -> { account_id: String?, account_holder_name: String?, bank_account_number_format: String?, bank_name: String?, bank_account_ownership_type: String?, routing_number: String?, bank_number_format: String?, account_country_code: String?, account_currency: String?, bank_account_number_tail: String?, bank_account_holder_status: String? }
+        def to_h: () -> { account_country_code: String?, account_currency: String?, bank_account_number_format: String?, bank_account_number_tail: String?, bank_account_ownership_type: String?, bank_number_format: String?, routing_number: String?, account_holder_name: String?, account_id: String?, bank_account_holder_status: String?, bank_name: String? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateByIdRequest < Data
-        def self.new: (?fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?, id_type: String?, id_value: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
-                    | (Peddler::Types::ProductFeesV0::FeesEstimateRequest?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
+        def self.new: (id_type: String?, id_value: String?, ?fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
+                    | (String?, String?, Peddler::Types::ProductFeesV0::FeesEstimateRequest?) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateByIdRequest
 
-        attr_reader fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?
         attr_reader id_type: String?
         attr_reader id_value: String?
+        attr_reader fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?
 
-        def to_h: () -> { fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest?, id_type: String?, id_value: String? }
+        def to_h: () -> { id_type: String?, id_value: String?, fees_estimate_request: Peddler::Types::ProductFeesV0::FeesEstimateRequest? }
       end
     end
   end

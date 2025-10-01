@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_outbound_2020_07_01/feature_sku"
 
@@ -9,14 +9,14 @@ module Peddler
     module FulfillmentOutbound20200701
       # The payload for the `getFeatureSKU` operation.
       GetFeatureSkuResult = Structure.new do
-        # @return [String] The requested marketplace.
-        attribute(:marketplace_id, String, from: "marketplaceId")
-
         # @return [String] The name of the feature.
         attribute(:feature_name, String, from: "featureName")
 
         # @return [:boolean] When true, the seller SKU is eligible for the requested feature.
         attribute(:eligible, :boolean, from: "isEligible")
+
+        # @return [String] The requested marketplace.
+        attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Array<String>] A list of one or more reasons that the seller SKU is ineligible for the feature.
         #

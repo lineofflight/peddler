@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class AddressExtendedFields < Data
-        def self.new: (?street_name: String?, ?street_number: String?, ?complement: String?, ?neighborhood: String?) -> Peddler::Types::OrdersV0::AddressExtendedFields
+        def self.new: (?complement: String?, ?neighborhood: String?, ?street_name: String?, ?street_number: String?) -> Peddler::Types::OrdersV0::AddressExtendedFields
                     | (String?, String?, String?, String?) -> Peddler::Types::OrdersV0::AddressExtendedFields
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::AddressExtendedFields
 
-        attr_reader street_name: String?
-        attr_reader street_number: String?
         attr_reader complement: String?
         attr_reader neighborhood: String?
+        attr_reader street_name: String?
+        attr_reader street_number: String?
 
-        def to_h: () -> { street_name: String?, street_number: String?, complement: String?, neighborhood: String? }
+        def to_h: () -> { complement: String?, neighborhood: String?, street_name: String?, street_number: String? }
       end
     end
   end

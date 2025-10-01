@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class ListingOffersRequest < Data
-        def self.new: (uri: String?, method: String?, ?headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?, marketplace_id: String?, item_condition: String?, ?customer_type: String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
-                    | (String?, String?, Peddler::Types::ProductPricingV0::HttpRequestHeaders?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
+        def self.new: (item_condition: String?, marketplace_id: String?, method: String?, uri: String?, ?customer_type: String?, ?headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
+                    | (String?, String?, String?, String?, String?, Peddler::Types::ProductPricingV0::HttpRequestHeaders?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
 
-        attr_reader uri: String?
-        attr_reader method: String?
-        attr_reader headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?
-        attr_reader marketplace_id: String?
         attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+        attr_reader method: String?
+        attr_reader uri: String?
         attr_reader customer_type: String?
+        attr_reader headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?
 
-        def to_h: () -> { uri: String?, method: String?, headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?, marketplace_id: String?, item_condition: String?, customer_type: String? }
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, method: String?, uri: String?, customer_type: String?, headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders? }
       end
     end
   end

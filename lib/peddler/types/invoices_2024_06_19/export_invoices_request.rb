@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/invoices_2024_06_19/transaction_identifier"
 
@@ -9,6 +9,9 @@ module Peddler
     module Invoices20240619
       # The information required to create the export request.
       ExportInvoicesRequest = Structure.new do
+        # @return [String] The ID of the marketplace from which you want the invoices.
+        attribute(:marketplace_id, String, from: "marketplaceId")
+
         # @return [String] The latest invoice creation date for invoices that you want to include in the response. Dates
         # are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The default is the
         # time of the request.
@@ -28,9 +31,6 @@ module Peddler
         # @return [String] The marketplace-specific classification of the invoice type. Use the `getInvoicesAttributes`
         # operation to check `invoiceType` options.
         attribute?(:invoice_type, String, from: "invoiceType")
-
-        # @return [String] The ID of the marketplace from which you want the invoices.
-        attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [String] The series number of the invoices you want included in the response.
         attribute?(:series, String)

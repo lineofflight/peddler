@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorInvoicesV1
       class ChargeDetails < Data
-        def self.new: (type: String?, ?description: String?, charge_amount: Peddler::Types::Money?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
-                    | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
+        def self.new: (charge_amount: Peddler::Types::Money?, type: String?, ?description: String?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
+                    | (Peddler::Types::Money?, String?, String?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::ChargeDetails
 
+        attr_reader charge_amount: Peddler::Types::Money?
         attr_reader type: String?
         attr_reader description: String?
-        attr_reader charge_amount: Peddler::Types::Money?
         attr_reader tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?
 
-        def to_h: () -> { type: String?, description: String?, charge_amount: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]? }
+        def to_h: () -> { charge_amount: Peddler::Types::Money?, type: String?, description: String?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]? }
       end
     end
   end

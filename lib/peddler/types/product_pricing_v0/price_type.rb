@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "peddler/types/product_pricing_v0/points"
@@ -10,18 +10,18 @@ module Peddler
     module ProductPricingV0
       # Schema for item's price information, including listing price, shipping price, and Amazon points.
       PriceType = Structure.new do
+        # @return [Money] The listing price of the item including any promotions that apply.
+        attribute(:listing_price, Money, from: "ListingPrice")
+
         # @return [Money] The value calculated by adding ListingPrice + Shipping - Points. Note that if the landed price
         # is not returned, the listing price represents the product with the lowest landed price.
         attribute?(:landed_price, Money, from: "LandedPrice")
 
-        # @return [Money] The listing price of the item including any promotions that apply.
-        attribute(:listing_price, Money, from: "ListingPrice")
+        # @return [Points] The number of Amazon Points offered with the purchase of an item, and their monetary value.
+        attribute?(:points, Points, from: "Points")
 
         # @return [Money] The shipping cost of the product. Note that the shipping cost is not always available.
         attribute?(:shipping, Money, from: "Shipping")
-
-        # @return [Points] The number of Amazon Points offered with the purchase of an item, and their monetary value.
-        attribute?(:points, Points, from: "Points")
       end
     end
   end

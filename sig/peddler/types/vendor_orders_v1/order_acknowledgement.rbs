@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorOrdersV1
       class OrderAcknowledgement < Data
-        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, acknowledgement_date: String?, items: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgement
-                    | (String?, Peddler::Types::VendorOrdersV1::PartyIdentification?, String?, Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgement
+        def self.new: (acknowledgement_date: String?, items: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgement
+                    | (String?, Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]?, String?, Peddler::Types::VendorOrdersV1::PartyIdentification?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgement
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgement
 
-        attr_reader purchase_order_number: String?
-        attr_reader selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
         attr_reader acknowledgement_date: String?
         attr_reader items: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]?
+        attr_reader purchase_order_number: String?
+        attr_reader selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
 
-        def to_h: () -> { purchase_order_number: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, acknowledgement_date: String?, items: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]? }
+        def to_h: () -> { acknowledgement_date: String?, items: Array[Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification? }
       end
     end
   end

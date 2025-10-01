@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v2/date_range"
 require "peddler/types/shipping_v2/operating_hours"

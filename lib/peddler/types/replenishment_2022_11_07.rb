@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/replenishment_2022_11_07/discount_funding"
 require "peddler/types/replenishment_2022_11_07/error"

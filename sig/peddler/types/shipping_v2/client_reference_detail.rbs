@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class ClientReferenceDetail < Data
-        def self.new: (client_reference_type: String?, client_reference_id: String?) -> Peddler::Types::ShippingV2::ClientReferenceDetail
+        def self.new: (client_reference_id: String?, client_reference_type: String?) -> Peddler::Types::ShippingV2::ClientReferenceDetail
                     | (String?, String?) -> Peddler::Types::ShippingV2::ClientReferenceDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ClientReferenceDetail
 
-        attr_reader client_reference_type: String?
         attr_reader client_reference_id: String?
+        attr_reader client_reference_type: String?
 
-        def to_h: () -> { client_reference_type: String?, client_reference_id: String? }
+        def to_h: () -> { client_reference_id: String?, client_reference_type: String? }
       end
     end
   end

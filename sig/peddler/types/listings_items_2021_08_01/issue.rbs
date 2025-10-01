@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20210801
       class Issue < Data
-        def self.new: (code: String?, message: String?, severity: String?, ?attribute_names: Array[String]?, categories: Array[String]?, ?enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements?) -> Peddler::Types::ListingsItems20210801::Issue
-                    | (String?, String?, String?, Array[String]?, Array[String]?, Peddler::Types::ListingsItems20210801::IssueEnforcements?) -> Peddler::Types::ListingsItems20210801::Issue
+        def self.new: (categories: Array[String]?, code: String?, message: String?, severity: String?, ?attribute_names: Array[String]?, ?enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements?) -> Peddler::Types::ListingsItems20210801::Issue
+                    | (Array[String]?, String?, String?, String?, Array[String]?, Peddler::Types::ListingsItems20210801::IssueEnforcements?) -> Peddler::Types::ListingsItems20210801::Issue
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::Issue
 
+        attr_reader categories: Array[String]?
         attr_reader code: String?
         attr_reader message: String?
         attr_reader severity: String?
         attr_reader attribute_names: Array[String]?
-        attr_reader categories: Array[String]?
         attr_reader enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements?
 
-        def to_h: () -> { code: String?, message: String?, severity: String?, attribute_names: Array[String]?, categories: Array[String]?, enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements? }
+        def to_h: () -> { categories: Array[String]?, code: String?, message: String?, severity: String?, attribute_names: Array[String]?, enforcements: Peddler::Types::ListingsItems20210801::IssueEnforcements? }
       end
     end
   end

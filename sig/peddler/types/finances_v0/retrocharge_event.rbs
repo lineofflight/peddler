@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class RetrochargeEvent < Data
-        def self.new: (?retrocharge_event_type: String?, ?amazon_order_id: String?, ?posted_date: String?, ?base_tax: Peddler::Types::Money?, ?shipping_tax: Peddler::Types::Money?, ?marketplace_name: String?, ?retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RetrochargeEvent
-                    | (String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RetrochargeEvent
+        def self.new: (?amazon_order_id: String?, ?base_tax: Peddler::Types::Money?, ?marketplace_name: String?, ?posted_date: String?, ?retrocharge_event_type: String?, ?retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?shipping_tax: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RetrochargeEvent
+                    | (String?, Peddler::Types::Money?, String?, String?, String?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RetrochargeEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RetrochargeEvent
 
-        attr_reader retrocharge_event_type: String?
         attr_reader amazon_order_id: String?
-        attr_reader posted_date: String?
         attr_reader base_tax: Peddler::Types::Money?
-        attr_reader shipping_tax: Peddler::Types::Money?
         attr_reader marketplace_name: String?
+        attr_reader posted_date: String?
+        attr_reader retrocharge_event_type: String?
         attr_reader retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?
+        attr_reader shipping_tax: Peddler::Types::Money?
 
-        def to_h: () -> { retrocharge_event_type: String?, amazon_order_id: String?, posted_date: String?, base_tax: Peddler::Types::Money?, shipping_tax: Peddler::Types::Money?, marketplace_name: String?, retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]? }
+        def to_h: () -> { amazon_order_id: String?, base_tax: Peddler::Types::Money?, marketplace_name: String?, posted_date: String?, retrocharge_event_type: String?, retrocharge_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, shipping_tax: Peddler::Types::Money? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/catalog_items_v0/categories"
 require "peddler/types/catalog_items_v0/error"

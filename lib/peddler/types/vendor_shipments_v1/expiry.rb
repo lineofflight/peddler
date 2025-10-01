@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_shipments_v1/duration"
 
@@ -10,16 +10,16 @@ module Peddler
       # Expiry refers to the collection of dates required for certain items. These could be either expiryDate or mfgDate
       # and expiryAfterDuration. These are mandatory for perishable items.
       Expiry = Structure.new do
-        # @return [String] Production, packaging or assembly date determined by the manufacturer. Its meaning is
-        # determined based on the trade item context.
-        attribute?(:manufacturer_date, String, from: "manufacturerDate")
+        # @return [Duration] Duration after manufacturing date during which the product is valid for consumption.
+        attribute?(:expiry_after_duration, Duration, from: "expiryAfterDuration")
 
         # @return [String] The date that determines the limit of consumption or use of a product. Its meaning is
         # determined based on the trade item context.
         attribute?(:expiry_date, String, from: "expiryDate")
 
-        # @return [Duration] Duration after manufacturing date during which the product is valid for consumption.
-        attribute?(:expiry_after_duration, Duration, from: "expiryAfterDuration")
+        # @return [String] Production, packaging or assembly date determined by the manufacturer. Its meaning is
+        # determined based on the trade item context.
+        attribute?(:manufacturer_date, String, from: "manufacturerDate")
       end
     end
   end

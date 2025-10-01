@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -12,11 +12,11 @@ module Peddler
         # @return [String] The city.
         attribute(:city, String)
 
-        # @return [String] The state.
-        attribute(:state, String)
-
         # @return [String] The country.
         attribute(:country, String)
+
+        # @return [String] The state.
+        attribute(:state, String)
       end
     end
   end

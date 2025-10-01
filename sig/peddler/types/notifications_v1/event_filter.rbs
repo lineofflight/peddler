@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module NotificationsV1
       class EventFilter < Data
-        def self.new: (?aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?, event_filter_type: String?) -> Peddler::Types::NotificationsV1::EventFilter
-                    | (Peddler::Types::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?, String?) -> Peddler::Types::NotificationsV1::EventFilter
+        def self.new: (event_filter_type: String?, ?aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::Types::NotificationsV1::EventFilter
+                    | (String?, Peddler::Types::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::Types::NotificationsV1::EventFilter
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::EventFilter
 
+        attr_reader event_filter_type: String?
         attr_reader aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?
         attr_reader marketplace_ids: Array[String]?
         attr_reader order_change_types: Array[untyped]?
-        attr_reader event_filter_type: String?
 
-        def to_h: () -> { aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array[String]?, order_change_types: Array[untyped]?, event_filter_type: String? }
+        def to_h: () -> { event_filter_type: String?, aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array[String]?, order_change_types: Array[untyped]? }
       end
     end
   end

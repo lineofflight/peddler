@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class GetSelfShipAppointmentSlotsResponse < Data
-        def self.new: (?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
-                    | (Peddler::Types::FulfillmentInbound20240320::Pagination?, Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
+        def self.new: (self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
+                    | (Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::GetSelfShipAppointmentSlotsResponse
 
-        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?
+        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
 
-        def to_h: () -> { pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability? }
+        def to_h: () -> { self_ship_appointment_slots_availability: Peddler::Types::FulfillmentInbound20240320::SelfShipAppointmentSlotsAvailability?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
     end
   end

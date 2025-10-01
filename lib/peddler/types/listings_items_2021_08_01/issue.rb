@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/listings_items_2021_08_01/issue_enforcements"
 
@@ -9,18 +9,6 @@ module Peddler
     module ListingsItems20210801
       # An issue with a listings item.
       Issue = Structure.new do
-        # @return [String] An issue code that identifies the type of issue.
-        attribute(:code, String)
-
-        # @return [String] A message that describes the issue.
-        attribute(:message, String)
-
-        # @return [String] The severity of the issue.
-        attribute(:severity, String)
-
-        # @return [Array<String>] The names of the attributes associated with the issue, if applicable.
-        attribute?(:attribute_names, [String], from: "attributeNames")
-
         # @return [Array<String>] List of issue categories.
         #
         # Possible values:
@@ -42,6 +30,18 @@ module Peddler
         #
         # * 'QUALIFICATION_REQUIRED' - Indicating that the listing requires qualification-related approval.
         attribute(:categories, [String])
+
+        # @return [String] An issue code that identifies the type of issue.
+        attribute(:code, String)
+
+        # @return [String] A message that describes the issue.
+        attribute(:message, String)
+
+        # @return [String] The severity of the issue.
+        attribute(:severity, String)
+
+        # @return [Array<String>] The names of the attributes associated with the issue, if applicable.
+        attribute?(:attribute_names, [String], from: "attributeNames")
 
         # @return [IssueEnforcements] This field provides information about the enforcement actions taken by Amazon that
         # affect the publishing or status of a listing. It also includes details about any associated exemptions.

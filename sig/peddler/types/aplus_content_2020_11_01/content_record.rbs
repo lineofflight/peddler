@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class ContentRecord < Data
-        def self.new: (content_reference_key: String?, ?content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, ?content_document: Peddler::Types::AplusContent20201101::ContentDocument?) -> Peddler::Types::AplusContent20201101::ContentRecord
-                    | (String?, Peddler::Types::AplusContent20201101::ContentMetadata?, Peddler::Types::AplusContent20201101::ContentDocument?) -> Peddler::Types::AplusContent20201101::ContentRecord
+        def self.new: (content_reference_key: String?, ?content_document: Peddler::Types::AplusContent20201101::ContentDocument?, ?content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?) -> Peddler::Types::AplusContent20201101::ContentRecord
+                    | (String?, Peddler::Types::AplusContent20201101::ContentDocument?, Peddler::Types::AplusContent20201101::ContentMetadata?) -> Peddler::Types::AplusContent20201101::ContentRecord
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ContentRecord
 
         attr_reader content_reference_key: String?
-        attr_reader content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?
         attr_reader content_document: Peddler::Types::AplusContent20201101::ContentDocument?
+        attr_reader content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?
 
-        def to_h: () -> { content_reference_key: String?, content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_document: Peddler::Types::AplusContent20201101::ContentDocument? }
+        def to_h: () -> { content_reference_key: String?, content_document: Peddler::Types::AplusContent20201101::ContentDocument?, content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata? }
       end
     end
   end

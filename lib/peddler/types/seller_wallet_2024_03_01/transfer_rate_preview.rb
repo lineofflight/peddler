@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
-require "peddler/types/seller_wallet_2024_03_01/fx_rate_details"
 require "peddler/types/seller_wallet_2024_03_01/fee"
+require "peddler/types/seller_wallet_2024_03_01/fx_rate_details"
 
 module Peddler
   module Types
@@ -23,14 +23,14 @@ module Peddler
         # @return [Money] Base amount of the transaction.
         attribute(:base_amount, Money, from: "baseAmount")
 
+        # @return [Array<Fee>] List of fees
+        attribute(:fees, [Fee])
+
         # @return [FxRateDetails] The foreign exchange rate value of the transaction.
         attribute(:fx_rate_details, FxRateDetails, from: "fxRateDetails")
 
         # @return [Money] The final amount reflects both the fee deduction and currency conversion rate exchange
         attribute(:transfer_amount, Money, from: "transferAmount")
-
-        # @return [Array<Fee>] List of fees
-        attribute(:fees, [Fee])
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -12,11 +12,11 @@ module Peddler
       # categorized further into breakdown types, breakdown amounts, and further breakdowns into a hierarchical
       # structure.
       Breakdown = Structure.new do
-        # @return [String] The type of charge.
-        attribute?(:breakdown_type, String, from: "breakdownType")
-
         # @return [Money] The amount of the charge.
         attribute?(:breakdown_amount, Money, from: "breakdownAmount")
+
+        # @return [String] The type of charge.
+        attribute?(:breakdown_type, String, from: "breakdownType")
 
         # @return [Array<self>] A list of breakdowns that detail how the total amount is calculated for the transaction.
         attribute?(:breakdowns, [:self])

@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class FixedSlotCapacity < Data
-        def self.new: (?resource_id: String?, ?slot_duration: Float?, ?capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, ?next_page_token: String?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
-                    | (String?, Float?, Array[Peddler::Types::ServicesV1::FixedSlot]?, String?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
+        def self.new: (?capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, ?next_page_token: String?, ?resource_id: String?, ?slot_duration: Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
+                    | (Array[Peddler::Types::ServicesV1::FixedSlot]?, String?, String?, Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacity
 
-        attr_reader resource_id: String?
-        attr_reader slot_duration: Float?
         attr_reader capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?
         attr_reader next_page_token: String?
+        attr_reader resource_id: String?
+        attr_reader slot_duration: Float?
 
-        def to_h: () -> { resource_id: String?, slot_duration: Float?, capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, next_page_token: String? }
+        def to_h: () -> { capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, next_page_token: String?, resource_id: String?, slot_duration: Float? }
       end
     end
   end

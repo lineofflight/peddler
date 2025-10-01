@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class PackingOption < Data
-        def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, ?expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[String]?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
+        def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[String]?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, String?) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::PackingOption
 
         attr_reader discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
-        attr_reader expiration: String?
         attr_reader fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
         attr_reader packing_groups: Array[String]?
         attr_reader packing_option_id: String?
         attr_reader status: String?
         attr_reader supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?
         attr_reader supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?
+        attr_reader expiration: String?
 
-        def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]? }
+        def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, packing_groups: Array[String]?, packing_option_id: String?, status: String?, supported_configurations: Array[Peddler::Types::FulfillmentInbound20240320::PackingConfiguration]?, supported_shipping_configurations: Array[Peddler::Types::FulfillmentInbound20240320::ShippingConfiguration]?, expiration: String? }
       end
     end
   end

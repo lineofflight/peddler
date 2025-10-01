@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateError < Data
-        def self.new: (type: String?, code: String?, message: String?, detail: Array[untyped]?) -> Peddler::Types::ProductFeesV0::FeesEstimateError
-                    | (String?, String?, String?, Array[untyped]?) -> Peddler::Types::ProductFeesV0::FeesEstimateError
+        def self.new: (code: String?, detail: Array[untyped]?, message: String?, type: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateError
+                    | (String?, Array[untyped]?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateError
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateError
 
-        attr_reader type: String?
         attr_reader code: String?
-        attr_reader message: String?
         attr_reader detail: Array[untyped]?
+        attr_reader message: String?
+        attr_reader type: String?
 
-        def to_h: () -> { type: String?, code: String?, message: String?, detail: Array[untyped]? }
+        def to_h: () -> { code: String?, detail: Array[untyped]?, message: String?, type: String? }
       end
     end
   end

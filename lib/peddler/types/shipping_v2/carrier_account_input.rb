@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v2/validation_metadata"
 
@@ -12,23 +12,23 @@ module Peddler
         # @return [String] descriptionLocalizationKey value .
         attribute?(:description_localization_key, String, from: "descriptionLocalizationKey")
 
-        # @return [String] name value .
-        attribute?(:name, String)
-
         # @return [String] groupName value .
         attribute?(:group_name, String, from: "groupName")
 
         # @return [String]
         attribute?(:input_type, String, from: "inputType")
 
-        # @return [:boolean] mandatory or not value .
-        attribute?(:mandatory, :boolean, from: "isMandatory")
-
         # @return [:boolean] is value is Confidential .
         attribute?(:confidential, :boolean, from: "isConfidential")
 
         # @return [:boolean] is value is hidden .
         attribute?(:hidden, :boolean, from: "isHidden")
+
+        # @return [:boolean] mandatory or not value .
+        attribute?(:mandatory, :boolean, from: "isMandatory")
+
+        # @return [String] name value .
+        attribute?(:name, String)
 
         # @return [Array<ValidationMetadata>]
         attribute?(:validation_metadata, [ValidationMetadata], from: "validationMetadata")

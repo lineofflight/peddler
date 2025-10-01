@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class TransportationDetails < Data
-        def self.new: (?ship_mode: String?, ?transportation_mode: String?, ?shipped_date: String?, ?estimated_delivery_date: String?, ?shipment_delivery_date: String?, ?carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, ?bill_of_lading_number: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
-                    | (String?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+        def self.new: (?bill_of_lading_number: String?, ?carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, ?estimated_delivery_date: String?, ?ship_mode: String?, ?shipment_delivery_date: String?, ?shipped_date: String?, ?transportation_mode: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+                    | (String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
 
-        attr_reader ship_mode: String?
-        attr_reader transportation_mode: String?
-        attr_reader shipped_date: String?
-        attr_reader estimated_delivery_date: String?
-        attr_reader shipment_delivery_date: String?
-        attr_reader carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?
         attr_reader bill_of_lading_number: String?
+        attr_reader carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?
+        attr_reader estimated_delivery_date: String?
+        attr_reader ship_mode: String?
+        attr_reader shipment_delivery_date: String?
+        attr_reader shipped_date: String?
+        attr_reader transportation_mode: String?
 
-        def to_h: () -> { ship_mode: String?, transportation_mode: String?, shipped_date: String?, estimated_delivery_date: String?, shipment_delivery_date: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, bill_of_lading_number: String? }
+        def to_h: () -> { bill_of_lading_number: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, estimated_delivery_date: String?, ship_mode: String?, shipment_delivery_date: String?, shipped_date: String?, transportation_mode: String? }
       end
     end
   end

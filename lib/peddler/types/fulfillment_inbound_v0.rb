@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_v0/asin_prep_instructions"
 require "peddler/types/fulfillment_inbound_v0/address"

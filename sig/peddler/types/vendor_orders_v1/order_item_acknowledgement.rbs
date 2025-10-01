@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorOrdersV1
       class OrderItemAcknowledgement < Data
-        def self.new: (acknowledgement_code: String?, acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?scheduled_ship_date: String?, ?scheduled_delivery_date: String?, ?rejection_reason: String?) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
-                    | (String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, String?, String?, String?) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
+        def self.new: (acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, acknowledgement_code: String?, ?rejection_reason: String?, ?scheduled_delivery_date: String?, ?scheduled_ship_date: String?) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
+                    | (Peddler::Types::VendorOrdersV1::ItemQuantity?, String?, String?, String?, String?) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
 
-        attr_reader acknowledgement_code: String?
         attr_reader acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
-        attr_reader scheduled_ship_date: String?
-        attr_reader scheduled_delivery_date: String?
+        attr_reader acknowledgement_code: String?
         attr_reader rejection_reason: String?
+        attr_reader scheduled_delivery_date: String?
+        attr_reader scheduled_ship_date: String?
 
-        def to_h: () -> { acknowledgement_code: String?, acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, scheduled_ship_date: String?, scheduled_delivery_date: String?, rejection_reason: String? }
+        def to_h: () -> { acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, acknowledgement_code: String?, rejection_reason: String?, scheduled_delivery_date: String?, scheduled_ship_date: String? }
       end
     end
   end

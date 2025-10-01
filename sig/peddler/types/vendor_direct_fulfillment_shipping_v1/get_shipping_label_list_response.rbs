@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class GetShippingLabelListResponse < Data
-        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?, ?errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse
-                    | (Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse
+        def self.new: (?errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?, ?payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?, Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse
 
-        attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?
+        attr_reader payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?
 
-        def to_h: () -> { payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList?, errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Error]?, payload: Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList? }
       end
     end
   end

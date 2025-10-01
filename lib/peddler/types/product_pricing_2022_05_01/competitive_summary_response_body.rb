@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
+require "peddler/types/product_pricing_2022_05_01/error"
 require "peddler/types/product_pricing_2022_05_01/featured_buying_option"
 require "peddler/types/product_pricing_2022_05_01/lowest_priced_offer"
 require "peddler/types/product_pricing_2022_05_01/reference_price"
-require "peddler/types/product_pricing_2022_05_01/error"
 
 module Peddler
   module Types
@@ -18,6 +18,9 @@ module Peddler
         # @return [String] A marketplace identifier.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
+        # @return [Array<Error>] A list of errors
+        attribute?(:errors, [Error])
+
         # @return [Array<FeaturedBuyingOption>] A list of featured buying options for the specified ASIN `marketplaceId`
         # combination.
         attribute?(:featured_buying_options, [FeaturedBuyingOption], from: "featuredBuyingOptions")
@@ -28,9 +31,6 @@ module Peddler
 
         # @return [Array<ReferencePrice>] A list of reference prices for the specified ASIN `marketplaceId` combination.
         attribute?(:reference_prices, [ReferencePrice], from: "referencePrices")
-
-        # @return [Array<Error>] A list of errors
-        attribute?(:errors, [Error])
       end
     end
   end

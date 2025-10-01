@@ -1,27 +1,27 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class FinancialEventGroup < Data
-        def self.new: (?financial_event_group_id: String?, ?processing_status: String?, ?fund_transfer_status: String?, ?original_total: Peddler::Types::Money?, ?converted_total: Peddler::Types::Money?, ?fund_transfer_date: String?, ?trace_id: String?, ?account_tail: String?, ?beginning_balance: Peddler::Types::Money?, ?financial_event_group_start: String?, ?financial_event_group_end: String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
-                    | (String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
+        def self.new: (?account_tail: String?, ?beginning_balance: Peddler::Types::Money?, ?converted_total: Peddler::Types::Money?, ?financial_event_group_end: String?, ?financial_event_group_id: String?, ?financial_event_group_start: String?, ?fund_transfer_date: String?, ?fund_transfer_status: String?, ?original_total: Peddler::Types::Money?, ?processing_status: String?, ?trace_id: String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
+                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FinancialEventGroup
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::FinancialEventGroup
 
-        attr_reader financial_event_group_id: String?
-        attr_reader processing_status: String?
-        attr_reader fund_transfer_status: String?
-        attr_reader original_total: Peddler::Types::Money?
-        attr_reader converted_total: Peddler::Types::Money?
-        attr_reader fund_transfer_date: String?
-        attr_reader trace_id: String?
         attr_reader account_tail: String?
         attr_reader beginning_balance: Peddler::Types::Money?
-        attr_reader financial_event_group_start: String?
+        attr_reader converted_total: Peddler::Types::Money?
         attr_reader financial_event_group_end: String?
+        attr_reader financial_event_group_id: String?
+        attr_reader financial_event_group_start: String?
+        attr_reader fund_transfer_date: String?
+        attr_reader fund_transfer_status: String?
+        attr_reader original_total: Peddler::Types::Money?
+        attr_reader processing_status: String?
+        attr_reader trace_id: String?
 
-        def to_h: () -> { financial_event_group_id: String?, processing_status: String?, fund_transfer_status: String?, original_total: Peddler::Types::Money?, converted_total: Peddler::Types::Money?, fund_transfer_date: String?, trace_id: String?, account_tail: String?, beginning_balance: Peddler::Types::Money?, financial_event_group_start: String?, financial_event_group_end: String? }
+        def to_h: () -> { account_tail: String?, beginning_balance: Peddler::Types::Money?, converted_total: Peddler::Types::Money?, financial_event_group_end: String?, financial_event_group_id: String?, financial_event_group_start: String?, fund_transfer_date: String?, fund_transfer_status: String?, original_total: Peddler::Types::Money?, processing_status: String?, trace_id: String? }
       end
     end
   end

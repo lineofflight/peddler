@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/supply_sources_2020_07_01/supply_source_configuration"
 require "peddler/types/supply_sources_2020_07_01/supply_source_capabilities"
+require "peddler/types/supply_sources_2020_07_01/supply_source_configuration"
 
 module Peddler
   module Types
@@ -13,11 +13,11 @@ module Peddler
         # @return [String]
         attribute?(:alias, String)
 
-        # @return [SupplySourceConfiguration]
-        attribute?(:configuration, SupplySourceConfiguration)
-
         # @return [SupplySourceCapabilities]
         attribute?(:capabilities, SupplySourceCapabilities)
+
+        # @return [SupplySourceConfiguration]
+        attribute?(:configuration, SupplySourceConfiguration)
       end
     end
   end

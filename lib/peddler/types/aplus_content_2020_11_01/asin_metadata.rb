@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -17,17 +17,17 @@ module Peddler
         # @return [Array<AsinBadge>]
         attribute?(:badge_set, Array, from: "badgeSet")
 
+        # @return [Array<ContentReferenceKey>]
+        attribute?(:content_reference_key_set, Array, from: "contentReferenceKeySet")
+
+        # @return [String] The default image for the ASIN in the Amazon catalog.
+        attribute?(:image_url, String, from: "imageUrl")
+
         # @return [String]
         attribute?(:parent, String)
 
         # @return [String] The title for the ASIN in the Amazon catalog.
         attribute?(:title, String)
-
-        # @return [String] The default image for the ASIN in the Amazon catalog.
-        attribute?(:image_url, String, from: "imageUrl")
-
-        # @return [Array<ContentReferenceKey>]
-        attribute?(:content_reference_key_set, Array, from: "contentReferenceKeySet")
       end
     end
   end

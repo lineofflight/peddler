@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class OrderList < Data
-        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, ?orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
-                    | (Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
+        def self.new: (?orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?, ?pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?, Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList
 
-        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?
         attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?
 
-        def to_h: () -> { pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination?, orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]? }
+        def to_h: () -> { orders: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::Order]?, pagination: Peddler::Types::VendorDirectFulfillmentOrders20211228::Pagination? }
       end
     end
   end

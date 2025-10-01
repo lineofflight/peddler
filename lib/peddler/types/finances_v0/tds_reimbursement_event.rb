@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -13,11 +13,11 @@ module Peddler
         # @return [String] The date and time when the financial event was posted.
         attribute?(:posted_date, String, from: "PostedDate")
 
-        # @return [String] The Tax-Deducted-at-Source (TDS) identifier.
-        attribute?(:tds_order_id, String, from: "TDSOrderId")
-
         # @return [Money] The amount reimbursed.
         attribute?(:reimbursed_amount, Money, from: "ReimbursedAmount")
+
+        # @return [String] The Tax-Deducted-at-Source (TDS) identifier.
+        attribute?(:tds_order_id, String, from: "TDSOrderId")
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/seller_wallet_2024_03_01/account_holder_address"
 require "peddler/types/seller_wallet_2024_03_01/balance"

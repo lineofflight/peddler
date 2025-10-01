@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class Event < Data
-        def self.new: (event_code: String?, ?location: Peddler::Types::ShippingV2::Location?, event_time: String?, ?shipment_type: String?) -> Peddler::Types::ShippingV2::Event
-                    | (String?, Peddler::Types::ShippingV2::Location?, String?, String?) -> Peddler::Types::ShippingV2::Event
+        def self.new: (event_code: String?, event_time: String?, ?location: Peddler::Types::ShippingV2::Location?, ?shipment_type: String?) -> Peddler::Types::ShippingV2::Event
+                    | (String?, String?, Peddler::Types::ShippingV2::Location?, String?) -> Peddler::Types::ShippingV2::Event
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Event
 
         attr_reader event_code: String?
-        attr_reader location: Peddler::Types::ShippingV2::Location?
         attr_reader event_time: String?
+        attr_reader location: Peddler::Types::ShippingV2::Location?
         attr_reader shipment_type: String?
 
-        def to_h: () -> { event_code: String?, location: Peddler::Types::ShippingV2::Location?, event_time: String?, shipment_type: String? }
+        def to_h: () -> { event_code: String?, event_time: String?, location: Peddler::Types::ShippingV2::Location?, shipment_type: String? }
       end
     end
   end

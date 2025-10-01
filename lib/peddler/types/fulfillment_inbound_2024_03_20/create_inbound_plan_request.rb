@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_2024_03_20/item_input"
 require "peddler/types/fulfillment_inbound_2024_03_20/address_input"
@@ -17,11 +17,11 @@ module Peddler
         # @return [Array<ItemInput>] Items included in this plan.
         attribute(:items, [ItemInput])
 
-        # @return [String] Name for the Inbound Plan. If one isn't provided, a default name will be provided.
-        attribute?(:name, String)
-
         # @return [AddressInput]
         attribute(:source_address, AddressInput, from: "sourceAddress")
+
+        # @return [String] Name for the Inbound Plan. If one isn't provided, a default name will be provided.
+        attribute?(:name, String)
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class OperatingHours < Data
-        def self.new: (?closing_time: Peddler::Types::ShippingV2::TimeOfDay?, ?opening_time: Peddler::Types::ShippingV2::TimeOfDay?, ?mid_day_closures: Array[Peddler::Types::ShippingV2::TimeOfDay]?) -> Peddler::Types::ShippingV2::OperatingHours
-                    | (Peddler::Types::ShippingV2::TimeOfDay?, Peddler::Types::ShippingV2::TimeOfDay?, Array[Peddler::Types::ShippingV2::TimeOfDay]?) -> Peddler::Types::ShippingV2::OperatingHours
+        def self.new: (?closing_time: Peddler::Types::ShippingV2::TimeOfDay?, ?mid_day_closures: Array[Peddler::Types::ShippingV2::TimeOfDay]?, ?opening_time: Peddler::Types::ShippingV2::TimeOfDay?) -> Peddler::Types::ShippingV2::OperatingHours
+                    | (Peddler::Types::ShippingV2::TimeOfDay?, Array[Peddler::Types::ShippingV2::TimeOfDay]?, Peddler::Types::ShippingV2::TimeOfDay?) -> Peddler::Types::ShippingV2::OperatingHours
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::OperatingHours
 
         attr_reader closing_time: Peddler::Types::ShippingV2::TimeOfDay?
-        attr_reader opening_time: Peddler::Types::ShippingV2::TimeOfDay?
         attr_reader mid_day_closures: Array[Peddler::Types::ShippingV2::TimeOfDay]?
+        attr_reader opening_time: Peddler::Types::ShippingV2::TimeOfDay?
 
-        def to_h: () -> { closing_time: Peddler::Types::ShippingV2::TimeOfDay?, opening_time: Peddler::Types::ShippingV2::TimeOfDay?, mid_day_closures: Array[Peddler::Types::ShippingV2::TimeOfDay]? }
+        def to_h: () -> { closing_time: Peddler::Types::ShippingV2::TimeOfDay?, mid_day_closures: Array[Peddler::Types::ShippingV2::TimeOfDay]?, opening_time: Peddler::Types::ShippingV2::TimeOfDay? }
       end
     end
   end

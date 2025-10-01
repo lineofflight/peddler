@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v2/time_of_day"
 
@@ -12,11 +12,11 @@ module Peddler
         # @return [TimeOfDay]
         attribute?(:closing_time, TimeOfDay, from: "closingTime")
 
-        # @return [TimeOfDay]
-        attribute?(:opening_time, TimeOfDay, from: "openingTime")
-
         # @return [Array<TimeOfDay>] midDayClosures operating hours array
         attribute?(:mid_day_closures, [TimeOfDay], from: "midDayClosures")
+
+        # @return [TimeOfDay]
+        attribute?(:opening_time, TimeOfDay, from: "openingTime")
       end
     end
   end

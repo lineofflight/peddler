@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class LockerDetails < Data
-        def self.new: (?locker_number: String?, ?locker_access_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
+        def self.new: (?locker_access_code: String?, ?locker_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
                     | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
 
-        attr_reader locker_number: String?
         attr_reader locker_access_code: String?
+        attr_reader locker_number: String?
 
-        def to_h: () -> { locker_number: String?, locker_access_code: String? }
+        def to_h: () -> { locker_access_code: String?, locker_number: String? }
       end
     end
   end

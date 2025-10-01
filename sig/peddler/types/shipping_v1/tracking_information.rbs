@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV1
       class TrackingInformation < Data
-        def self.new: (tracking_id: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, promised_delivery_date: String?, event_history: Array[Peddler::Types::ShippingV1::Event]?) -> Peddler::Types::ShippingV1::TrackingInformation
-                    | (String?, Peddler::Types::ShippingV1::TrackingSummary?, String?, Array[Peddler::Types::ShippingV1::Event]?) -> Peddler::Types::ShippingV1::TrackingInformation
+        def self.new: (event_history: Array[Peddler::Types::ShippingV1::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, tracking_id: String?) -> Peddler::Types::ShippingV1::TrackingInformation
+                    | (Array[Peddler::Types::ShippingV1::Event]?, String?, Peddler::Types::ShippingV1::TrackingSummary?, String?) -> Peddler::Types::ShippingV1::TrackingInformation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::TrackingInformation
 
-        attr_reader tracking_id: String?
-        attr_reader summary: Peddler::Types::ShippingV1::TrackingSummary?
-        attr_reader promised_delivery_date: String?
         attr_reader event_history: Array[Peddler::Types::ShippingV1::Event]?
+        attr_reader promised_delivery_date: String?
+        attr_reader summary: Peddler::Types::ShippingV1::TrackingSummary?
+        attr_reader tracking_id: String?
 
-        def to_h: () -> { tracking_id: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, promised_delivery_date: String?, event_history: Array[Peddler::Types::ShippingV1::Event]? }
+        def to_h: () -> { event_history: Array[Peddler::Types::ShippingV1::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, tracking_id: String? }
       end
     end
   end

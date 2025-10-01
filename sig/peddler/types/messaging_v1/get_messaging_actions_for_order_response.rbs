@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MessagingV1
       class GetMessagingActionsForOrderResponse < Data
-        def self.new: (?_links: Hash[untyped, untyped]?, ?_embedded: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetMessagingActionsForOrderResponse
+        def self.new: (?_embedded: Hash[untyped, untyped]?, ?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetMessagingActionsForOrderResponse
                     | (Hash[untyped, untyped]?, Hash[untyped, untyped]?, Array[Peddler::Types::MessagingV1::Error]?) -> Peddler::Types::MessagingV1::GetMessagingActionsForOrderResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::GetMessagingActionsForOrderResponse
 
-        attr_reader _links: Hash[untyped, untyped]?
         attr_reader _embedded: Hash[untyped, untyped]?
+        attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::Types::MessagingV1::Error]?
 
-        def to_h: () -> { _links: Hash[untyped, untyped]?, _embedded: Hash[untyped, untyped]?, errors: Array[Peddler::Types::MessagingV1::Error]? }
+        def to_h: () -> { _embedded: Hash[untyped, untyped]?, _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::MessagingV1::Error]? }
       end
     end
   end

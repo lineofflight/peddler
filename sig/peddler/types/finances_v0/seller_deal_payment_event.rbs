@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class SellerDealPaymentEvent < Data
-        def self.new: (?posted_date: String?, ?deal_id: String?, ?deal_description: String?, ?event_type: String?, ?fee_type: String?, ?fee_amount: Peddler::Types::Money?, ?tax_amount: Peddler::Types::Money?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
-                    | (String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
+        def self.new: (?deal_description: String?, ?deal_id: String?, ?event_type: String?, ?fee_amount: Peddler::Types::Money?, ?fee_type: String?, ?posted_date: String?, ?tax_amount: Peddler::Types::Money?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
+                    | (String?, String?, String?, Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::SellerDealPaymentEvent
 
-        attr_reader posted_date: String?
-        attr_reader deal_id: String?
         attr_reader deal_description: String?
+        attr_reader deal_id: String?
         attr_reader event_type: String?
-        attr_reader fee_type: String?
         attr_reader fee_amount: Peddler::Types::Money?
+        attr_reader fee_type: String?
+        attr_reader posted_date: String?
         attr_reader tax_amount: Peddler::Types::Money?
         attr_reader total_amount: Peddler::Types::Money?
 
-        def to_h: () -> { posted_date: String?, deal_id: String?, deal_description: String?, event_type: String?, fee_type: String?, fee_amount: Peddler::Types::Money?, tax_amount: Peddler::Types::Money?, total_amount: Peddler::Types::Money? }
+        def to_h: () -> { deal_description: String?, deal_id: String?, event_type: String?, fee_amount: Peddler::Types::Money?, fee_type: String?, posted_date: String?, tax_amount: Peddler::Types::Money?, total_amount: Peddler::Types::Money? }
       end
     end
   end

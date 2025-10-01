@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/supply_sources_2020_07_01/address"
 
@@ -9,14 +9,14 @@ module Peddler
     module SupplySources20200701
       # A request to create a supply source.
       CreateSupplySourceRequest = Structure.new do
-        # @return [String]
-        attribute(:supply_source_code, String, from: "supplySourceCode")
+        # @return [Address]
+        attribute(:address, Address)
 
         # @return [String]
         attribute(:alias, String)
 
-        # @return [Address]
-        attribute(:address, Address)
+        # @return [String]
+        attribute(:supply_source_code, String, from: "supplySourceCode")
       end
     end
   end

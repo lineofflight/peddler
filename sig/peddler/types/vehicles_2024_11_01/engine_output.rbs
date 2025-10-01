@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Vehicles20241101
       class EngineOutput < Data
-        def self.new: (value: Float?, unit: String?) -> Peddler::Types::Vehicles20241101::EngineOutput
-                    | (Float?, String?) -> Peddler::Types::Vehicles20241101::EngineOutput
+        def self.new: (unit: String?, value: Float?) -> Peddler::Types::Vehicles20241101::EngineOutput
+                    | (String?, Float?) -> Peddler::Types::Vehicles20241101::EngineOutput
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::EngineOutput
 
-        attr_reader value: Float?
         attr_reader unit: String?
+        attr_reader value: Float?
 
-        def to_h: () -> { value: Float?, unit: String? }
+        def to_h: () -> { unit: String?, value: Float? }
       end
     end
   end

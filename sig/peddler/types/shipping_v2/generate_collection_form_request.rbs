@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class GenerateCollectionFormRequest < Data
-        def self.new: (?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, carrier_id: String?, ?ship_from_address: Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
-                    | (Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, String?, Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
+        def self.new: (carrier_id: String?, ?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, ?ship_from_address: Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
+                    | (String?, Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GenerateCollectionFormRequest
 
-        attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader carrier_id: String?
+        attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader ship_from_address: Peddler::Types::ShippingV2::Address?
 
-        def to_h: () -> { client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, carrier_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address? }
+        def to_h: () -> { carrier_id: String?, client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, ship_from_address: Peddler::Types::ShippingV2::Address? }
       end
     end
   end

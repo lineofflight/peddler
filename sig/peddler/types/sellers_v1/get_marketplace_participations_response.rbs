@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellersV1
       class GetMarketplaceParticipationsResponse < Data
-        def self.new: (?payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, ?errors: Array[Peddler::Types::SellersV1::Error]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
-                    | (Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, Array[Peddler::Types::SellersV1::Error]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
+        def self.new: (?errors: Array[Peddler::Types::SellersV1::Error]?, ?payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
+                    | (Array[Peddler::Types::SellersV1::Error]?, Array[Peddler::Types::SellersV1::MarketplaceParticipation]?) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse
 
-        attr_reader payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
         attr_reader errors: Array[Peddler::Types::SellersV1::Error]?
+        attr_reader payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?
 
-        def to_h: () -> { payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]?, errors: Array[Peddler::Types::SellersV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::SellersV1::Error]?, payload: Array[Peddler::Types::SellersV1::MarketplaceParticipation]? }
       end
     end
   end

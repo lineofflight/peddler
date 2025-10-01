@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetAdditionalSellerInputsRequest < Data
-        def self.new: (shipping_service_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, order_id: String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
+        def self.new: (order_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_id: String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
                     | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, String?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsRequest
 
-        attr_reader shipping_service_id: String?
-        attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader order_id: String?
+        attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
+        attr_reader shipping_service_id: String?
 
-        def to_h: () -> { shipping_service_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, order_id: String? }
+        def to_h: () -> { order_id: String?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_id: String? }
       end
     end
   end

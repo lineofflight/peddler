@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class Benefits < Data
-        def self.new: (included_benefits: Array[String]?, excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?) -> Peddler::Types::ShippingV2::Benefits
-                    | (Array[String]?, Array[Peddler::Types::ShippingV2::ExcludedBenefit]?) -> Peddler::Types::ShippingV2::Benefits
+        def self.new: (excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?, included_benefits: Array[String]?) -> Peddler::Types::ShippingV2::Benefits
+                    | (Array[Peddler::Types::ShippingV2::ExcludedBenefit]?, Array[String]?) -> Peddler::Types::ShippingV2::Benefits
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Benefits
 
-        attr_reader included_benefits: Array[String]?
         attr_reader excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?
+        attr_reader included_benefits: Array[String]?
 
-        def to_h: () -> { included_benefits: Array[String]?, excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]? }
+        def to_h: () -> { excluded_benefits: Array[Peddler::Types::ShippingV2::ExcludedBenefit]?, included_benefits: Array[String]? }
       end
     end
   end

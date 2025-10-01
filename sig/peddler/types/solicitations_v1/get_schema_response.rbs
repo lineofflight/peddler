@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SolicitationsV1
       class GetSchemaResponse < Data
-        def self.new: (?_links: Hash[untyped, untyped]?, ?payload: Peddler::Types::SolicitationsV1::Schema?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
-                    | (Hash[untyped, untyped]?, Peddler::Types::SolicitationsV1::Schema?, Array[Peddler::Types::SolicitationsV1::Error]?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
+        def self.new: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::SolicitationsV1::Error]?, ?payload: Peddler::Types::SolicitationsV1::Schema?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
+                    | (Hash[untyped, untyped]?, Array[Peddler::Types::SolicitationsV1::Error]?, Peddler::Types::SolicitationsV1::Schema?) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SolicitationsV1::GetSchemaResponse
 
         attr_reader _links: Hash[untyped, untyped]?
-        attr_reader payload: Peddler::Types::SolicitationsV1::Schema?
         attr_reader errors: Array[Peddler::Types::SolicitationsV1::Error]?
+        attr_reader payload: Peddler::Types::SolicitationsV1::Schema?
 
-        def to_h: () -> { _links: Hash[untyped, untyped]?, payload: Peddler::Types::SolicitationsV1::Schema?, errors: Array[Peddler::Types::SolicitationsV1::Error]? }
+        def to_h: () -> { _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::SolicitationsV1::Error]?, payload: Peddler::Types::SolicitationsV1::Schema? }
       end
     end
   end

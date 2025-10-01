@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v2/package_document_detail"
 require "peddler/types/shipping_v2/promise"
@@ -11,14 +11,14 @@ module Peddler
     module ShippingV2
       # The payload for the purchaseShipment operation.
       PurchaseShipmentResult = Structure.new do
-        # @return [String]
-        attribute(:shipment_id, String, from: "shipmentId")
-
         # @return [Array<PackageDocumentDetail>]
         attribute(:package_document_details, [PackageDocumentDetail], from: "packageDocumentDetails")
 
         # @return [Promise]
         attribute(:promise, Promise)
+
+        # @return [String]
+        attribute(:shipment_id, String, from: "shipmentId")
 
         # @return [Benefits]
         attribute?(:benefits, Benefits)

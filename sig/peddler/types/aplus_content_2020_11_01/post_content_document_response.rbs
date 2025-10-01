@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class PostContentDocumentResponse < Data
-        def self.new: (?warnings: Array[Peddler::Types::AplusContent20201101::Error]?, content_reference_key: String?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
-                    | (Array[Peddler::Types::AplusContent20201101::Error]?, String?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
+        def self.new: (content_reference_key: String?, ?warnings: Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
+                    | (String?, Array[Peddler::Types::AplusContent20201101::Error]?) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::PostContentDocumentResponse
 
-        attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
         attr_reader content_reference_key: String?
+        attr_reader warnings: Array[Peddler::Types::AplusContent20201101::Error]?
 
-        def to_h: () -> { warnings: Array[Peddler::Types::AplusContent20201101::Error]?, content_reference_key: String? }
+        def to_h: () -> { content_reference_key: String?, warnings: Array[Peddler::Types::AplusContent20201101::Error]? }
       end
     end
   end

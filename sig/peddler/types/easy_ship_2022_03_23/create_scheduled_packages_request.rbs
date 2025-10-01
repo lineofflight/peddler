@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module EasyShip20220323
       class CreateScheduledPackagesRequest < Data
-        def self.new: (marketplace_id: String?, order_schedule_details_list: Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]?, label_format: String?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesRequest
-                    | (String?, Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]?, String?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesRequest
+        def self.new: (label_format: String?, marketplace_id: String?, order_schedule_details_list: Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesRequest
+                    | (String?, String?, Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]?) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::CreateScheduledPackagesRequest
 
+        attr_reader label_format: String?
         attr_reader marketplace_id: String?
         attr_reader order_schedule_details_list: Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]?
-        attr_reader label_format: String?
 
-        def to_h: () -> { marketplace_id: String?, order_schedule_details_list: Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]?, label_format: String? }
+        def to_h: () -> { label_format: String?, marketplace_id: String?, order_schedule_details_list: Array[Peddler::Types::EasyShip20220323::OrderScheduleDetails]? }
       end
     end
   end

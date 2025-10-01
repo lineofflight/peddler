@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateIdentifier < Data
-        def self.new: (?marketplace_id: String?, ?seller_id: String?, ?id_type: String?, ?id_value: String?, ?amazon_fulfilled: bool?, ?price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, ?seller_input_identifier: String?, ?optional_fulfillment_program: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
-                    | (String?, String?, String?, String?, bool?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
+        def self.new: (?id_type: String?, ?id_value: String?, ?amazon_fulfilled: bool?, ?marketplace_id: String?, ?optional_fulfillment_program: String?, ?price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, ?seller_id: String?, ?seller_input_identifier: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
+                    | (String?, String?, bool?, String?, String?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
 
-        attr_reader marketplace_id: String?
-        attr_reader seller_id: String?
         attr_reader id_type: String?
         attr_reader id_value: String?
         attr_reader amazon_fulfilled: bool?
-        attr_reader price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?
-        attr_reader seller_input_identifier: String?
+        attr_reader marketplace_id: String?
         attr_reader optional_fulfillment_program: String?
+        attr_reader price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?
+        attr_reader seller_id: String?
+        attr_reader seller_input_identifier: String?
 
         def amazon_fulfilled?: () -> bool
-        def to_h: () -> { marketplace_id: String?, seller_id: String?, id_type: String?, id_value: String?, amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, seller_input_identifier: String?, optional_fulfillment_program: String? }
+        def to_h: () -> { id_type: String?, id_value: String?, amazon_fulfilled: bool?, marketplace_id: String?, optional_fulfillment_program: String?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, seller_id: String?, seller_input_identifier: String? }
       end
     end
   end

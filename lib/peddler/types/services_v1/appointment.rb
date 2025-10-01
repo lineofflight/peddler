@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/services_v1/appointment_time"
 require "peddler/types/services_v1/technician"
@@ -23,11 +23,11 @@ module Peddler
         # @return [Array<Technician>] A list of technicians assigned to the service job.
         attribute?(:assigned_technicians, [Technician], from: "assignedTechnicians")
 
-        # @return [String] The identifier of a rescheduled appointment.
-        attribute?(:rescheduled_appointment_id, String, from: "rescheduledAppointmentId")
-
         # @return [Poa] Proof of Appointment (POA) details.
         attribute?(:poa, Poa)
+
+        # @return [String] The identifier of a rescheduled appointment.
+        attribute?(:rescheduled_appointment_id, String, from: "rescheduledAppointmentId")
       end
     end
   end

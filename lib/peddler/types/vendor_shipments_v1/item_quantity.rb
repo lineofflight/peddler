@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_shipments_v1/total_weight"
 
@@ -17,11 +17,11 @@ module Peddler
         # @return [String] Unit of measure for the shipped quantity.
         attribute(:unit_of_measure, String, from: "unitOfMeasure")
 
-        # @return [Integer] The case size, in the event that we ordered using cases. Otherwise, 1.
-        attribute?(:unit_size, Integer, from: "unitSize")
-
         # @return [TotalWeight]
         attribute?(:total_weight, TotalWeight, from: "totalWeight")
+
+        # @return [Integer] The case size, in the event that we ordered using cases. Otherwise, 1.
+        attribute?(:unit_size, Integer, from: "unitSize")
       end
     end
   end

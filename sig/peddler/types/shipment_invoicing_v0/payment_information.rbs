@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShipmentInvoicingV0
       class PaymentInformation < Data
-        def self.new: (?payment_method: String?, ?acquirer_id: String?, ?card_brand: String?, ?payment_value: Peddler::Types::Money?, ?authorization_code: String?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
-                    | (String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
+        def self.new: (?acquirer_id: String?, ?authorization_code: String?, ?card_brand: String?, ?payment_method: String?, ?payment_value: Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
+                    | (String?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
-        attr_reader payment_method: String?
         attr_reader acquirer_id: String?
-        attr_reader card_brand: String?
-        attr_reader payment_value: Peddler::Types::Money?
         attr_reader authorization_code: String?
+        attr_reader card_brand: String?
+        attr_reader payment_method: String?
+        attr_reader payment_value: Peddler::Types::Money?
 
-        def to_h: () -> { payment_method: String?, acquirer_id: String?, card_brand: String?, payment_value: Peddler::Types::Money?, authorization_code: String? }
+        def to_h: () -> { acquirer_id: String?, authorization_code: String?, card_brand: String?, payment_method: String?, payment_value: Peddler::Types::Money? }
       end
     end
   end

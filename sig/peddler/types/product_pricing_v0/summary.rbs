@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class Summary < Data
-        def self.new: (total_offer_count: Integer?, ?number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, ?lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, ?buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, ?list_price: Peddler::Types::Money?, ?competitive_price_threshold: Peddler::Types::Money?, ?suggested_lower_price_plus_shipping: Peddler::Types::Money?, ?sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, ?buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, ?offers_available_time: String?) -> Peddler::Types::ProductPricingV0::Summary
-                    | (Integer?, Array[Peddler::Types::ProductPricingV0::OfferCountType]?, Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?, Array[Peddler::Types::ProductPricingV0::OfferCountType]?, String?) -> Peddler::Types::ProductPricingV0::Summary
+        def self.new: (total_offer_count: Integer?, ?buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, ?buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, ?competitive_price_threshold: Peddler::Types::Money?, ?list_price: Peddler::Types::Money?, ?lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, ?number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, ?offers_available_time: String?, ?sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, ?suggested_lower_price_plus_shipping: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::Summary
+                    | (Integer?, Array[Peddler::Types::ProductPricingV0::OfferCountType]?, Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, Array[Peddler::Types::ProductPricingV0::OfferCountType]?, String?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::Summary
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::Summary
 
         attr_reader total_offer_count: Integer?
-        attr_reader number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?
-        attr_reader lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?
-        attr_reader buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?
-        attr_reader list_price: Peddler::Types::Money?
-        attr_reader competitive_price_threshold: Peddler::Types::Money?
-        attr_reader suggested_lower_price_plus_shipping: Peddler::Types::Money?
-        attr_reader sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?
         attr_reader buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?
+        attr_reader buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?
+        attr_reader competitive_price_threshold: Peddler::Types::Money?
+        attr_reader list_price: Peddler::Types::Money?
+        attr_reader lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?
+        attr_reader number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?
         attr_reader offers_available_time: String?
+        attr_reader sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?
+        attr_reader suggested_lower_price_plus_shipping: Peddler::Types::Money?
 
-        def to_h: () -> { total_offer_count: Integer?, number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, list_price: Peddler::Types::Money?, competitive_price_threshold: Peddler::Types::Money?, suggested_lower_price_plus_shipping: Peddler::Types::Money?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, offers_available_time: String? }
+        def to_h: () -> { total_offer_count: Integer?, buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, competitive_price_threshold: Peddler::Types::Money?, list_price: Peddler::Types::Money?, lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, offers_available_time: String?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, suggested_lower_price_plus_shipping: Peddler::Types::Money? }
       end
     end
   end

@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class CreateReturnItem < Data
-        def self.new: (seller_return_item_id: String?, seller_fulfillment_order_item_id: String?, amazon_shipment_id: String?, return_reason_code: String?, ?return_comment: String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
+        def self.new: (amazon_shipment_id: String?, return_reason_code: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, ?return_comment: String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
 
-        attr_reader seller_return_item_id: String?
-        attr_reader seller_fulfillment_order_item_id: String?
         attr_reader amazon_shipment_id: String?
         attr_reader return_reason_code: String?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_return_item_id: String?
         attr_reader return_comment: String?
 
-        def to_h: () -> { seller_return_item_id: String?, seller_fulfillment_order_item_id: String?, amazon_shipment_id: String?, return_reason_code: String?, return_comment: String? }
+        def to_h: () -> { amazon_shipment_id: String?, return_reason_code: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, return_comment: String? }
       end
     end
   end

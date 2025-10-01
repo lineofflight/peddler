@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateRequest < Data
-        def self.new: (marketplace_id: String?, ?amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, identifier: String?, ?optional_fulfillment_program: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
-                    | (String?, bool?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
+        def self.new: (identifier: String?, marketplace_id: String?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, ?amazon_fulfilled: bool?, ?optional_fulfillment_program: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
+                    | (String?, String?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, bool?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateRequest
 
-        attr_reader marketplace_id: String?
-        attr_reader amazon_fulfilled: bool?
-        attr_reader price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?
         attr_reader identifier: String?
+        attr_reader marketplace_id: String?
+        attr_reader price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?
+        attr_reader amazon_fulfilled: bool?
         attr_reader optional_fulfillment_program: String?
 
         def amazon_fulfilled?: () -> bool
-        def to_h: () -> { marketplace_id: String?, amazon_fulfilled: bool?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, identifier: String?, optional_fulfillment_program: String? }
+        def to_h: () -> { identifier: String?, marketplace_id: String?, price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, amazon_fulfilled: bool?, optional_fulfillment_program: String? }
       end
     end
   end

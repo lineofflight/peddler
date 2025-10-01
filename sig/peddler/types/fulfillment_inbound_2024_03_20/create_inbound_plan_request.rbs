@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class CreateInboundPlanRequest < Data
-        def self.new: (destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, ?name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
-                    | (Array[String]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?, Peddler::Types::FulfillmentInbound20240320::AddressInput?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
+        def self.new: (destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?, ?name: String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
+                    | (Array[String]?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, Peddler::Types::FulfillmentInbound20240320::AddressInput?, String?) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateInboundPlanRequest
 
         attr_reader destination_marketplaces: Array[String]?
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
-        attr_reader name: String?
         attr_reader source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?
+        attr_reader name: String?
 
-        def to_h: () -> { destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, name: String?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput? }
+        def to_h: () -> { destination_marketplaces: Array[String]?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, source_address: Peddler::Types::FulfillmentInbound20240320::AddressInput?, name: String? }
       end
     end
   end

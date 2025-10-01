@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -12,11 +12,11 @@ module Peddler
         # @return [String] An error code that identifies the type of error that occurred.
         attribute(:code, String)
 
-        # @return [String] A message that describes the error condition in a human-readable form.
-        attribute?(:message, String)
-
         # @return [String] Additional information that can help the caller understand or fix the issue.
         attribute?(:details, String)
+
+        # @return [String] A message that describes the error condition in a human-readable form.
+        attribute?(:message, String)
       end
     end
   end

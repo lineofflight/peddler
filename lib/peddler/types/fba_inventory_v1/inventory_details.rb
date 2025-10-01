@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/fba_inventory_v1/reserved_quantity"
 require "peddler/types/fba_inventory_v1/researching_quantity"
+require "peddler/types/fba_inventory_v1/reserved_quantity"
 require "peddler/types/fba_inventory_v1/unfulfillable_quantity"
 
 module Peddler
@@ -14,22 +14,22 @@ module Peddler
         # @return [Integer] The item quantity that can be picked, packed, and shipped.
         attribute?(:fulfillable_quantity, Integer, from: "fulfillableQuantity")
 
-        # @return [Integer] The number of units in an inbound shipment for which you have notified Amazon.
-        attribute?(:inbound_working_quantity, Integer, from: "inboundWorkingQuantity")
+        # @return [Integer] The number of units that have not yet been received at an Amazon fulfillment center for
+        # processing, but are part of an inbound shipment with some units that have already been received and processed.
+        attribute?(:inbound_receiving_quantity, Integer, from: "inboundReceivingQuantity")
 
         # @return [Integer] The number of units in an inbound shipment that you have notified Amazon about and have
         # provided a tracking number.
         attribute?(:inbound_shipped_quantity, Integer, from: "inboundShippedQuantity")
 
-        # @return [Integer] The number of units that have not yet been received at an Amazon fulfillment center for
-        # processing, but are part of an inbound shipment with some units that have already been received and processed.
-        attribute?(:inbound_receiving_quantity, Integer, from: "inboundReceivingQuantity")
-
-        # @return [ReservedQuantity]
-        attribute?(:reserved_quantity, ReservedQuantity, from: "reservedQuantity")
+        # @return [Integer] The number of units in an inbound shipment for which you have notified Amazon.
+        attribute?(:inbound_working_quantity, Integer, from: "inboundWorkingQuantity")
 
         # @return [ResearchingQuantity]
         attribute?(:researching_quantity, ResearchingQuantity, from: "researchingQuantity")
+
+        # @return [ReservedQuantity]
+        attribute?(:reserved_quantity, ReservedQuantity, from: "reservedQuantity")
 
         # @return [UnfulfillableQuantity]
         attribute?(:unfulfillable_quantity, UnfulfillableQuantity, from: "unfulfillableQuantity")

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class PackageDocument < Data
-        def self.new: (type: String?, format: String?, contents: String?) -> Peddler::Types::ShippingV2::PackageDocument
+        def self.new: (contents: String?, format: String?, type: String?) -> Peddler::Types::ShippingV2::PackageDocument
                     | (String?, String?, String?) -> Peddler::Types::ShippingV2::PackageDocument
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PackageDocument
 
-        attr_reader type: String?
-        attr_reader format: String?
         attr_reader contents: String?
+        attr_reader format: String?
+        attr_reader type: String?
 
-        def to_h: () -> { type: String?, format: String?, contents: String? }
+        def to_h: () -> { contents: String?, format: String?, type: String? }
       end
     end
   end

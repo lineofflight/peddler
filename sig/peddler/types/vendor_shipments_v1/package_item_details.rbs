@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class PackageItemDetails < Data
-        def self.new: (?purchase_order_number: String?, ?lot_number: String?, ?expiry: Peddler::Types::VendorShipmentsV1::Expiry?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
-                    | (String?, String?, Peddler::Types::VendorShipmentsV1::Expiry?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
+        def self.new: (?expiry: Peddler::Types::VendorShipmentsV1::Expiry?, ?lot_number: String?, ?purchase_order_number: String?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
+                    | (Peddler::Types::VendorShipmentsV1::Expiry?, String?, String?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
 
-        attr_reader purchase_order_number: String?
-        attr_reader lot_number: String?
         attr_reader expiry: Peddler::Types::VendorShipmentsV1::Expiry?
+        attr_reader lot_number: String?
+        attr_reader purchase_order_number: String?
 
-        def to_h: () -> { purchase_order_number: String?, lot_number: String?, expiry: Peddler::Types::VendorShipmentsV1::Expiry? }
+        def to_h: () -> { expiry: Peddler::Types::VendorShipmentsV1::Expiry?, lot_number: String?, purchase_order_number: String? }
       end
     end
   end

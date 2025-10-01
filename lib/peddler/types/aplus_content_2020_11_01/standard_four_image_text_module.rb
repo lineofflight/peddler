@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/aplus_content_2020_11_01/text_component"
 require "peddler/types/aplus_content_2020_11_01/standard_image_text_block"
+require "peddler/types/aplus_content_2020_11_01/text_component"
 
 module Peddler
   module Types
     module AplusContent20201101
       # Four standard images with text, presented across a single row.
       StandardFourImageTextModule = Structure.new do
-        # @return [TextComponent]
-        attribute?(:headline, TextComponent)
-
         # @return [StandardImageTextBlock]
         attribute?(:block1, StandardImageTextBlock)
 
@@ -24,6 +21,9 @@ module Peddler
 
         # @return [StandardImageTextBlock]
         attribute?(:block4, StandardImageTextBlock)
+
+        # @return [TextComponent]
+        attribute?(:headline, TextComponent)
       end
     end
   end

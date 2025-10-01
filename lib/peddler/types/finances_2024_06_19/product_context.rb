@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -12,14 +12,14 @@ module Peddler
         # @return [String] Amazon Standard Identification Number (ASIN) of the item.
         attribute?(:asin, String)
 
-        # @return [String] Stock keeping unit (SKU) of the item.
-        attribute?(:sku, String)
+        # @return [String] Fulfillment network of the item.
+        attribute?(:fulfillment_network, String, from: "fulfillmentNetwork")
 
         # @return [Integer] Quantity of the item shipped.
         attribute?(:quantity_shipped, Integer, from: "quantityShipped")
 
-        # @return [String] Fulfillment network of the item.
-        attribute?(:fulfillment_network, String, from: "fulfillmentNetwork")
+        # @return [String] Stock keeping unit (SKU) of the item.
+        attribute?(:sku, String)
       end
     end
   end

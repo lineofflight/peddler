@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricing20220501
       class CompetitiveSummaryResponse < Data
-        def self.new: (status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
-                    | (Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+        def self.new: (body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+                    | (Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
 
-        attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
         attr_reader body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?
+        attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
 
-        def to_h: () -> { status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody? }
+        def to_h: () -> { body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine? }
       end
     end
   end

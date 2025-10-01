@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20210801
       class ItemSummaryByMarketplace < Data
-        def self.new: (marketplace_id: String?, ?asin: String?, product_type: String?, ?condition_type: String?, status: Array[String]?, ?fn_sku: String?, ?item_name: String?, created_date: String?, last_updated_date: String?, ?main_image: Peddler::Types::ListingsItems20210801::ItemImage?) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
+        def self.new: (created_date: String?, last_updated_date: String?, marketplace_id: String?, product_type: String?, status: Array[String]?, ?asin: String?, ?condition_type: String?, ?fn_sku: String?, ?item_name: String?, ?main_image: Peddler::Types::ListingsItems20210801::ItemImage?) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
                     | (String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?, Peddler::Types::ListingsItems20210801::ItemImage?) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace
 
-        attr_reader marketplace_id: String?
-        attr_reader asin: String?
-        attr_reader product_type: String?
-        attr_reader condition_type: String?
-        attr_reader status: Array[String]?
-        attr_reader fn_sku: String?
-        attr_reader item_name: String?
         attr_reader created_date: String?
         attr_reader last_updated_date: String?
+        attr_reader marketplace_id: String?
+        attr_reader product_type: String?
+        attr_reader status: Array[String]?
+        attr_reader asin: String?
+        attr_reader condition_type: String?
+        attr_reader fn_sku: String?
+        attr_reader item_name: String?
         attr_reader main_image: Peddler::Types::ListingsItems20210801::ItemImage?
 
-        def to_h: () -> { marketplace_id: String?, asin: String?, product_type: String?, condition_type: String?, status: Array[String]?, fn_sku: String?, item_name: String?, created_date: String?, last_updated_date: String?, main_image: Peddler::Types::ListingsItems20210801::ItemImage? }
+        def to_h: () -> { created_date: String?, last_updated_date: String?, marketplace_id: String?, product_type: String?, status: Array[String]?, asin: String?, condition_type: String?, fn_sku: String?, item_name: String?, main_image: Peddler::Types::ListingsItems20210801::ItemImage? }
       end
     end
   end

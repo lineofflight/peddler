@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class RemovalShipmentAdjustmentEvent < Data
-        def self.new: (?posted_date: String?, ?adjustment_event_id: String?, ?merchant_order_id: String?, ?order_id: String?, ?transaction_type: String?, ?removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
-                    | (String?, String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
+        def self.new: (?adjustment_event_id: String?, ?merchant_order_id: String?, ?order_id: String?, ?posted_date: String?, ?removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, ?transaction_type: String?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
+                    | (String?, String?, String?, String?, Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, String?) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentAdjustmentEvent
 
-        attr_reader posted_date: String?
         attr_reader adjustment_event_id: String?
         attr_reader merchant_order_id: String?
         attr_reader order_id: String?
-        attr_reader transaction_type: String?
+        attr_reader posted_date: String?
         attr_reader removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?
+        attr_reader transaction_type: String?
 
-        def to_h: () -> { posted_date: String?, adjustment_event_id: String?, merchant_order_id: String?, order_id: String?, transaction_type: String?, removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]? }
+        def to_h: () -> { adjustment_event_id: String?, merchant_order_id: String?, order_id: String?, posted_date: String?, removal_shipment_item_adjustment_list: Array[Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment]?, transaction_type: String? }
       end
     end
   end

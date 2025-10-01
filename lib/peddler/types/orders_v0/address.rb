@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/orders_v0/address_extended_fields"
 
@@ -12,11 +12,6 @@ module Peddler
         # @return [String] The name.
         attribute(:name, String, from: "Name")
 
-        # @return [String] The company name of the recipient.
-        #
-        # **Note**: This attribute is only available for shipping address.
-        attribute?(:company_name, String, from: "CompanyName")
-
         # @return [String] The street address.
         attribute?(:address_line1, String, from: "AddressLine1")
 
@@ -26,8 +21,19 @@ module Peddler
         # @return [String] Additional street address information, if required.
         attribute?(:address_line3, String, from: "AddressLine3")
 
+        # @return [String] The address type of the shipping address.
+        attribute?(:address_type, String, from: "AddressType")
+
         # @return [String] The city.
         attribute?(:city, String, from: "City")
+
+        # @return [String] The company name of the recipient.
+        #
+        # **Note**: This attribute is only available for shipping address.
+        attribute?(:company_name, String, from: "CompanyName")
+
+        # @return [String] The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
+        attribute?(:country_code, String, from: "CountryCode")
 
         # @return [String] The county.
         attribute?(:county, String, from: "County")
@@ -35,17 +41,14 @@ module Peddler
         # @return [String] The district.
         attribute?(:district, String, from: "District")
 
-        # @return [String] The state or region.
-        attribute?(:state_or_region, String, from: "StateOrRegion")
+        # @return [AddressExtendedFields] The container for address extended fields. For example, street name or street
+        # number.
+        #
+        # **Note**: This attribute is currently only available with Brazil shipping addresses.
+        attribute?(:extended_fields, AddressExtendedFields, from: "ExtendedFields")
 
         # @return [String] The municipality.
         attribute?(:municipality, String, from: "Municipality")
-
-        # @return [String] The postal code.
-        attribute?(:postal_code, String, from: "PostalCode")
-
-        # @return [String] The country code. A two-character country code, in ISO 3166-1 alpha-2 format.
-        attribute?(:country_code, String, from: "CountryCode")
 
         # @return [String] The phone number of the buyer.
         #
@@ -57,14 +60,11 @@ module Peddler
         # Latest Delivery Date.
         attribute?(:phone, String, from: "Phone")
 
-        # @return [AddressExtendedFields] The container for address extended fields. For example, street name or street
-        # number.
-        #
-        # **Note**: This attribute is currently only available with Brazil shipping addresses.
-        attribute?(:extended_fields, AddressExtendedFields, from: "ExtendedFields")
+        # @return [String] The postal code.
+        attribute?(:postal_code, String, from: "PostalCode")
 
-        # @return [String] The address type of the shipping address.
-        attribute?(:address_type, String, from: "AddressType")
+        # @return [String] The state or region.
+        attribute?(:state_or_region, String, from: "StateOrRegion")
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -10,14 +10,14 @@ module Peddler
     module FinancesV0
       # A payment instrument.
       ChargeInstrument = Structure.new do
+        # @return [Money] The amount charged to this charge instrument.
+        attribute?(:amount, Money, from: "Amount")
+
         # @return [String] A short description of the charge instrument.
         attribute?(:description, String, from: "Description")
 
         # @return [String] The account tail (trailing digits) of the charge instrument.
         attribute?(:tail, String, from: "Tail")
-
-        # @return [Money] The amount charged to this charge instrument.
-        attribute?(:amount, Money, from: "Amount")
       end
     end
   end

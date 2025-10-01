@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CatalogItems20201201
       class ItemIdentifier < Data
-        def self.new: (identifier_type: String?, identifier: String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
+        def self.new: (identifier: String?, identifier_type: String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
                     | (String?, String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
 
-        attr_reader identifier_type: String?
         attr_reader identifier: String?
+        attr_reader identifier_type: String?
 
-        def to_h: () -> { identifier_type: String?, identifier: String? }
+        def to_h: () -> { identifier: String?, identifier_type: String? }
       end
     end
   end

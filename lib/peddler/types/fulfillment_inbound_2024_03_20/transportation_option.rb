@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_2024_03_20/carrier"
 require "peddler/types/fulfillment_inbound_2024_03_20/carrier_appointment"
@@ -14,14 +14,8 @@ module Peddler
         # @return [Carrier]
         attribute(:carrier, Carrier)
 
-        # @return [CarrierAppointment]
-        attribute?(:carrier_appointment, CarrierAppointment, from: "carrierAppointment")
-
         # @return [Array<String>] Identifies a list of preconditions for confirming the transportation option.
         attribute(:preconditions, [String])
-
-        # @return [Quote]
-        attribute?(:quote, Quote)
 
         # @return [String] Identifier of a shipment. A shipment contains the boxes and units being inbounded.
         attribute(:shipment_id, String, from: "shipmentId")
@@ -39,6 +33,12 @@ module Peddler
         # @return [String] Identifier of a transportation option. A transportation option represent one option for how
         # to send a shipment.
         attribute(:transportation_option_id, String, from: "transportationOptionId")
+
+        # @return [CarrierAppointment]
+        attribute?(:carrier_appointment, CarrierAppointment, from: "carrierAppointment")
+
+        # @return [Quote]
+        attribute?(:quote, Quote)
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class InvoiceDetails < Data
-        def self.new: (?invoice_number: String?, ?invoice_date: String?) -> Peddler::Types::ShippingV2::InvoiceDetails
+        def self.new: (?invoice_date: String?, ?invoice_number: String?) -> Peddler::Types::ShippingV2::InvoiceDetails
                     | (String?, String?) -> Peddler::Types::ShippingV2::InvoiceDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::InvoiceDetails
 
-        attr_reader invoice_number: String?
         attr_reader invoice_date: String?
+        attr_reader invoice_number: String?
 
-        def to_h: () -> { invoice_number: String?, invoice_date: String? }
+        def to_h: () -> { invoice_date: String?, invoice_number: String? }
       end
     end
   end

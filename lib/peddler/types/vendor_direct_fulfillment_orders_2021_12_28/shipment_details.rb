@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_direct_fulfillment_orders_2021_12_28/shipment_dates"
 
@@ -12,14 +12,11 @@ module Peddler
         # @return [:boolean] When true, this is a priority shipment.
         attribute(:priority_shipment, :boolean, from: "isPriorityShipment")
 
-        # @return [:boolean] When true, this order is part of a scheduled delivery program.
-        attribute?(:scheduled_delivery_shipment, :boolean, from: "isScheduledDeliveryShipment")
-
         # @return [:boolean] When true, a packing slip is required to be sent to the customer.
         attribute(:pslip_required, :boolean, from: "isPslipRequired")
 
-        # @return [:boolean] When true, the order contain a gift. Include the gift message and gift wrap information.
-        attribute?(:gift, :boolean, from: "isGift")
+        # @return [String] Message to customer for order status.
+        attribute(:message_to_customer, String, from: "messageToCustomer")
 
         # @return [String] Ship method to be used for shipping the order. Amazon defines ship method codes indicating
         # the shipping carrier and shipment service level. To see the full list of ship methods in use, including both
@@ -29,8 +26,11 @@ module Peddler
         # @return [ShipmentDates]
         attribute(:shipment_dates, ShipmentDates, from: "shipmentDates")
 
-        # @return [String] Message to customer for order status.
-        attribute(:message_to_customer, String, from: "messageToCustomer")
+        # @return [:boolean] When true, the order contain a gift. Include the gift message and gift wrap information.
+        attribute?(:gift, :boolean, from: "isGift")
+
+        # @return [:boolean] When true, this order is part of a scheduled delivery program.
+        attribute?(:scheduled_delivery_shipment, :boolean, from: "isScheduledDeliveryShipment")
       end
     end
   end

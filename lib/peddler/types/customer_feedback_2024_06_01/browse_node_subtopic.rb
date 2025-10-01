@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/customer_feedback_2024_06_01/browse_node_review_subtopic_metrics"
 
@@ -9,11 +9,11 @@ module Peddler
     module CustomerFeedback20240601
       # The browse node review subtopic.
       BrowseNodeSubtopic = Structure.new do
-        # @return [String] The name of the browse node review subtopic.
-        attribute(:subtopic, String)
-
         # @return [BrowseNodeReviewSubtopicMetrics] The browse node review subtopic metrics.
         attribute(:metrics, BrowseNodeReviewSubtopicMetrics)
+
+        # @return [String] The name of the browse node review subtopic.
+        attribute(:subtopic, String)
 
         # @return [Array<String>] A list of up to three snippets from reviews that contain the topic. This value is
         # `null` if there aren't enough review snippets for the subtopic.

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CatalogItemsV0
       class ListCatalogCategoriesResponse < Data
-        def self.new: (?payload: Array[Peddler::Types::CatalogItemsV0::Categories]?, ?errors: Array[Peddler::Types::CatalogItemsV0::Error]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
-                    | (Array[Peddler::Types::CatalogItemsV0::Categories]?, Array[Peddler::Types::CatalogItemsV0::Error]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
+        def self.new: (?errors: Array[Peddler::Types::CatalogItemsV0::Error]?, ?payload: Array[Peddler::Types::CatalogItemsV0::Categories]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
+                    | (Array[Peddler::Types::CatalogItemsV0::Error]?, Array[Peddler::Types::CatalogItemsV0::Categories]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
 
-        attr_reader payload: Array[Peddler::Types::CatalogItemsV0::Categories]?
         attr_reader errors: Array[Peddler::Types::CatalogItemsV0::Error]?
+        attr_reader payload: Array[Peddler::Types::CatalogItemsV0::Categories]?
 
-        def to_h: () -> { payload: Array[Peddler::Types::CatalogItemsV0::Categories]?, errors: Array[Peddler::Types::CatalogItemsV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::CatalogItemsV0::Error]?, payload: Array[Peddler::Types::CatalogItemsV0::Categories]? }
       end
     end
   end

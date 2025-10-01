@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FeatureSku < Data
-        def self.new: (?seller_sku: String?, ?fn_sku: String?, ?asin: String?, ?sku_count: Float?, ?overlapping_skus: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
-                    | (String?, String?, String?, Float?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
+        def self.new: (?asin: String?, ?fn_sku: String?, ?overlapping_skus: Array[String]?, ?seller_sku: String?, ?sku_count: Float?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
+                    | (String?, String?, Array[String]?, String?, Float?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
 
-        attr_reader seller_sku: String?
-        attr_reader fn_sku: String?
         attr_reader asin: String?
-        attr_reader sku_count: Float?
+        attr_reader fn_sku: String?
         attr_reader overlapping_skus: Array[String]?
+        attr_reader seller_sku: String?
+        attr_reader sku_count: Float?
 
-        def to_h: () -> { seller_sku: String?, fn_sku: String?, asin: String?, sku_count: Float?, overlapping_skus: Array[String]? }
+        def to_h: () -> { asin: String?, fn_sku: String?, overlapping_skus: Array[String]?, seller_sku: String?, sku_count: Float? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,14 +9,14 @@ module Peddler
     module Finances20240619
       # Additional information related to Amazon Pay.
       AmazonPayContext = Structure.new do
-        # @return [String] Store name related to transaction.
-        attribute?(:store_name, String, from: "storeName")
+        # @return [String] Channel details of related transaction.
+        attribute?(:channel, String)
 
         # @return [String] Order type of the transaction.
         attribute?(:order_type, String, from: "orderType")
 
-        # @return [String] Channel details of related transaction.
-        attribute?(:channel, String)
+        # @return [String] Store name related to transaction.
+        attribute?(:store_name, String, from: "storeName")
       end
     end
   end

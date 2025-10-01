@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -12,9 +12,6 @@ module Peddler
         # @return [String] The unique identifier provided by Amazon to identify the account
         attribute(:account_id, String, from: "accountId")
 
-        # @return [String] Type of the balance
-        attribute?(:balance_type, String, from: "balanceType")
-
         # @return [Float] The balance amount in number format
         attribute(:balance_amount, Float, from: "balanceAmount")
 
@@ -23,6 +20,9 @@ module Peddler
 
         # @return [String] The last update date on the account balance
         attribute(:last_update_date, String, from: "lastUpdateDate")
+
+        # @return [String] Type of the balance
+        attribute?(:balance_type, String, from: "balanceType")
       end
     end
   end

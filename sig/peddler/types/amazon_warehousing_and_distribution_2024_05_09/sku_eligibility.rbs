@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class SkuEligibility < Data
-        def self.new: (?ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?, package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
-                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
+        def self.new: (package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ?ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
 
-        attr_reader ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?
         attr_reader package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?
         attr_reader status: String?
+        attr_reader ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?
 
-        def to_h: () -> { ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?, package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String? }
+        def to_h: () -> { package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]? }
       end
     end
   end

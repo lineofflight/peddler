@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class PlacementOption < Data
-        def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, ?expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
-                    | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
+        def self.new: (discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, String?, Array[String]?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::PlacementOption
 
         attr_reader discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
-        attr_reader expiration: String?
         attr_reader fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?
         attr_reader placement_option_id: String?
         attr_reader shipment_ids: Array[String]?
         attr_reader status: String?
+        attr_reader expiration: String?
 
-        def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, expiration: String?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String? }
+        def to_h: () -> { discounts: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, fees: Array[Peddler::Types::FulfillmentInbound20240320::Incentive]?, placement_option_id: String?, shipment_ids: Array[String]?, status: String?, expiration: String? }
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class TransactionListing < Data
-        def self.new: (?next_page_token: String?, transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?) -> Peddler::Types::SellerWallet20240301::TransactionListing
-                    | (String?, Array[Peddler::Types::SellerWallet20240301::Transaction]?) -> Peddler::Types::SellerWallet20240301::TransactionListing
+        def self.new: (transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?, ?next_page_token: String?) -> Peddler::Types::SellerWallet20240301::TransactionListing
+                    | (Array[Peddler::Types::SellerWallet20240301::Transaction]?, String?) -> Peddler::Types::SellerWallet20240301::TransactionListing
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionListing
 
-        attr_reader next_page_token: String?
         attr_reader transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?
+        attr_reader next_page_token: String?
 
-        def to_h: () -> { next_page_token: String?, transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]? }
+        def to_h: () -> { transactions: Array[Peddler::Types::SellerWallet20240301::Transaction]?, next_page_token: String? }
       end
     end
   end

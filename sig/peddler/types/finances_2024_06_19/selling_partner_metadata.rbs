@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Finances20240619
       class SellingPartnerMetadata < Data
-        def self.new: (?selling_partner_id: String?, ?account_type: String?, ?marketplace_id: String?) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
+        def self.new: (?account_type: String?, ?marketplace_id: String?, ?selling_partner_id: String?) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
                     | (String?, String?, String?) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
 
-        attr_reader selling_partner_id: String?
         attr_reader account_type: String?
         attr_reader marketplace_id: String?
+        attr_reader selling_partner_id: String?
 
-        def to_h: () -> { selling_partner_id: String?, account_type: String?, marketplace_id: String? }
+        def to_h: () -> { account_type: String?, marketplace_id: String?, selling_partner_id: String? }
       end
     end
   end

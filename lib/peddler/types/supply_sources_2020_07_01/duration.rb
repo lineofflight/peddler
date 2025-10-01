@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,11 +9,11 @@ module Peddler
     module SupplySources20200701
       # The duration of time.
       Duration = Structure.new do
-        # @return [Integer]
-        attribute?(:value, Integer)
-
         # @return [String]
         attribute?(:time_unit, String, from: "timeUnit")
+
+        # @return [Integer]
+        attribute?(:value, Integer)
       end
     end
   end

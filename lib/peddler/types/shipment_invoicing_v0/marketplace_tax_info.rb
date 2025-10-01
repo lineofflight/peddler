@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipment_invoicing_v0/tax_classification"
 
@@ -12,11 +12,11 @@ module Peddler
         # @return [String] The legal name of the company.
         attribute?(:company_legal_name, String, from: "CompanyLegalName")
 
-        # @return [String] The country or region imposing the tax.
-        attribute?(:taxing_region, String, from: "TaxingRegion")
-
         # @return [Array<TaxClassification>]
         attribute?(:tax_classifications, [TaxClassification], from: "TaxClassifications")
+
+        # @return [String] The country or region imposing the tax.
+        attribute?(:taxing_region, String, from: "TaxingRegion")
       end
     end
   end

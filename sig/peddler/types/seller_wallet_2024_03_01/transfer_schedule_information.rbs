@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class TransferScheduleInformation < Data
-        def self.new: (?schedule_start_date: String?, ?schedule_end_date: String?, ?schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?, ?schedule_type: String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
-                    | (String?, String?, Peddler::Types::SellerWallet20240301::ScheduleExpression?, String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
+        def self.new: (?schedule_end_date: String?, ?schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?, ?schedule_start_date: String?, ?schedule_type: String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
+                    | (String?, Peddler::Types::SellerWallet20240301::ScheduleExpression?, String?, String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransferScheduleInformation
 
-        attr_reader schedule_start_date: String?
         attr_reader schedule_end_date: String?
         attr_reader schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?
+        attr_reader schedule_start_date: String?
         attr_reader schedule_type: String?
 
-        def to_h: () -> { schedule_start_date: String?, schedule_end_date: String?, schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?, schedule_type: String? }
+        def to_h: () -> { schedule_end_date: String?, schedule_expression: Peddler::Types::SellerWallet20240301::ScheduleExpression?, schedule_start_date: String?, schedule_type: String? }
       end
     end
   end

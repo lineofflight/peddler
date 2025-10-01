@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_direct_fulfillment_shipping_v1/item_quantity"
 
@@ -13,6 +13,9 @@ module Peddler
         # given item.
         attribute(:item_sequence_number, Integer, from: "itemSequenceNumber")
 
+        # @return [ItemQuantity] Total item quantity packed in the container.
+        attribute(:packed_quantity, ItemQuantity, from: "packedQuantity")
+
         # @return [String] Buyer's Standard Identification Number (ASIN) of an item. Either buyerProductIdentifier or
         # vendorProductIdentifier is required.
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
@@ -20,9 +23,6 @@ module Peddler
         # @return [String] The vendor selected product identification of the item. Should be the same as was sent in the
         # Purchase Order, like SKU Number.
         attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
-
-        # @return [ItemQuantity] Total item quantity packed in the container.
-        attribute(:packed_quantity, ItemQuantity, from: "packedQuantity")
       end
     end
   end

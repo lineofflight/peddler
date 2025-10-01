@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ShipmentConfirmation < Data
-        def self.new: (purchase_order_number: String?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
-                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
+        def self.new: (items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
 
+        attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?
         attr_reader purchase_order_number: String?
-        attr_reader shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
-        attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?
+        attr_reader shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?
         attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
 
-        def to_h: () -> { purchase_order_number: String?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
+        def to_h: () -> { items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
       end
     end
   end

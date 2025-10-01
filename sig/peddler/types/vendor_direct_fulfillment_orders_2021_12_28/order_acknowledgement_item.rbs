@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class OrderAcknowledgementItem < Data
-        def self.new: (purchase_order_number: String?, vendor_order_number: String?, acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
-                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
+        def self.new: (acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, vendor_order_number: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
+                    | (String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?, String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderAcknowledgementItem
 
-        attr_reader purchase_order_number: String?
-        attr_reader vendor_order_number: String?
         attr_reader acknowledgement_date: String?
         attr_reader acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?
+        attr_reader item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?
+        attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?
-        attr_reader item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?
+        attr_reader vendor_order_number: String?
 
-        def to_h: () -> { purchase_order_number: String?, vendor_order_number: String?, acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]? }
+        def to_h: () -> { acknowledgement_date: String?, acknowledgement_status: Peddler::Types::VendorDirectFulfillmentOrders20211228::AcknowledgementStatus?, item_acknowledgements: Array[Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderItemAcknowledgement]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentOrders20211228::PartyIdentification?, vendor_order_number: String? }
       end
     end
   end

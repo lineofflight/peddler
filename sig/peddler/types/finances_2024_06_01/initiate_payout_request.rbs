@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Finances20240601
       class InitiatePayoutRequest < Data
-        def self.new: (marketplace_id: String?, account_type: String?) -> Peddler::Types::Finances20240601::InitiatePayoutRequest
+        def self.new: (account_type: String?, marketplace_id: String?) -> Peddler::Types::Finances20240601::InitiatePayoutRequest
                     | (String?, String?) -> Peddler::Types::Finances20240601::InitiatePayoutRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240601::InitiatePayoutRequest
 
-        attr_reader marketplace_id: String?
         attr_reader account_type: String?
+        attr_reader marketplace_id: String?
 
-        def to_h: () -> { marketplace_id: String?, account_type: String? }
+        def to_h: () -> { account_type: String?, marketplace_id: String? }
       end
     end
   end

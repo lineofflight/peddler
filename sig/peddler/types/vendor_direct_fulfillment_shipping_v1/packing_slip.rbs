@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class PackingSlip < Data
-        def self.new: (purchase_order_number: String?, content: String?, ?content_type: String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip
+        def self.new: (content: String?, purchase_order_number: String?, ?content_type: String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip
                     | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::PackingSlip
 
-        attr_reader purchase_order_number: String?
         attr_reader content: String?
+        attr_reader purchase_order_number: String?
         attr_reader content_type: String?
 
-        def to_h: () -> { purchase_order_number: String?, content: String?, content_type: String? }
+        def to_h: () -> { content: String?, purchase_order_number: String?, content_type: String? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/aplus_content_2020_11_01/image_component"
 require "peddler/types/aplus_content_2020_11_01/plain_text_item"
@@ -14,20 +14,20 @@ module Peddler
         # cannot occupy the same position within a single module.
         attribute(:position, Integer)
 
-        # @return [ImageComponent]
-        attribute?(:image, ImageComponent)
-
-        # @return [String] The comparison product title.
-        attribute?(:title, String)
-
         # @return [String]
         attribute?(:asin, String)
 
         # @return [:boolean] When true, indicates that this content block is visually highlighted.
         attribute?(:highlight, :boolean)
 
+        # @return [ImageComponent]
+        attribute?(:image, ImageComponent)
+
         # @return [Array<PlainTextItem>] Comparison metrics for the product.
         attribute?(:metrics, [PlainTextItem])
+
+        # @return [String] The comparison product title.
+        attribute?(:title, String)
       end
     end
   end

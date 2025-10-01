@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class JobListing < Data
-        def self.new: (?total_result_size: Integer?, ?next_page_token: String?, ?previous_page_token: String?, ?jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?) -> Peddler::Types::ServicesV1::JobListing
-                    | (Integer?, String?, String?, Array[Peddler::Types::ServicesV1::ServiceJob]?) -> Peddler::Types::ServicesV1::JobListing
+        def self.new: (?jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?, ?next_page_token: String?, ?previous_page_token: String?, ?total_result_size: Integer?) -> Peddler::Types::ServicesV1::JobListing
+                    | (Array[Peddler::Types::ServicesV1::ServiceJob]?, String?, String?, Integer?) -> Peddler::Types::ServicesV1::JobListing
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::JobListing
 
-        attr_reader total_result_size: Integer?
+        attr_reader jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?
         attr_reader next_page_token: String?
         attr_reader previous_page_token: String?
-        attr_reader jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?
+        attr_reader total_result_size: Integer?
 
-        def to_h: () -> { total_result_size: Integer?, next_page_token: String?, previous_page_token: String?, jobs: Array[Peddler::Types::ServicesV1::ServiceJob]? }
+        def to_h: () -> { jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?, next_page_token: String?, previous_page_token: String?, total_result_size: Integer? }
       end
     end
   end

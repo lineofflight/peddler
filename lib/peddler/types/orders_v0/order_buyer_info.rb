@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/orders_v0/buyer_tax_info"
 
@@ -12,16 +12,16 @@ module Peddler
         # @return [String] An Amazon-defined order identifier, in 3-7-7 format.
         attribute(:amazon_order_id, String, from: "AmazonOrderId")
 
+        # @return [String] The county of the buyer.
+        #
+        # **Note**: This attribute is only available in the Brazil marketplace.
+        attribute?(:buyer_county, String, from: "BuyerCounty")
+
         # @return [String] The anonymized email address of the buyer.
         attribute?(:buyer_email, String, from: "BuyerEmail")
 
         # @return [String] The buyer name or the recipient name.
         attribute?(:buyer_name, String, from: "BuyerName")
-
-        # @return [String] The county of the buyer.
-        #
-        # **Note**: This attribute is only available in the Brazil marketplace.
-        attribute?(:buyer_county, String, from: "BuyerCounty")
 
         # @return [BuyerTaxInfo] Tax information about the buyer. Sellers can use this data to issue electronic invoices
         # for business orders.

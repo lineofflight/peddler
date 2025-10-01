@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,11 +9,11 @@ module Peddler
     module MerchantFulfillmentV0
       # The weight.
       Weight = Structure.new do
-        # @return [Float]
-        attribute(:value, Float, from: "Value")
-
         # @return [String]
         attribute(:unit, String, from: "Unit")
+
+        # @return [Float]
+        attribute(:value, Float, from: "Value")
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class GetOrderResponse < Data
-        def self.new: (?payload: Peddler::Types::OrdersV0::Order?, ?errors: Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderResponse
-                    | (Peddler::Types::OrdersV0::Order?, Array[Peddler::Types::OrdersV0::Error]?) -> Peddler::Types::OrdersV0::GetOrderResponse
+        def self.new: (?errors: Array[Peddler::Types::OrdersV0::Error]?, ?payload: Peddler::Types::OrdersV0::Order?) -> Peddler::Types::OrdersV0::GetOrderResponse
+                    | (Array[Peddler::Types::OrdersV0::Error]?, Peddler::Types::OrdersV0::Order?) -> Peddler::Types::OrdersV0::GetOrderResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::GetOrderResponse
 
-        attr_reader payload: Peddler::Types::OrdersV0::Order?
         attr_reader errors: Array[Peddler::Types::OrdersV0::Error]?
+        attr_reader payload: Peddler::Types::OrdersV0::Order?
 
-        def to_h: () -> { payload: Peddler::Types::OrdersV0::Order?, errors: Array[Peddler::Types::OrdersV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::OrdersV0::Error]?, payload: Peddler::Types::OrdersV0::Order? }
       end
     end
   end

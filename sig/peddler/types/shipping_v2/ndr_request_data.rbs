@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class NdrRequestData < Data
-        def self.new: (?reschedule_date: String?, ?additional_address_notes: String?) -> Peddler::Types::ShippingV2::NdrRequestData
+        def self.new: (?additional_address_notes: String?, ?reschedule_date: String?) -> Peddler::Types::ShippingV2::NdrRequestData
                     | (String?, String?) -> Peddler::Types::ShippingV2::NdrRequestData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::NdrRequestData
 
-        attr_reader reschedule_date: String?
         attr_reader additional_address_notes: String?
+        attr_reader reschedule_date: String?
 
-        def to_h: () -> { reschedule_date: String?, additional_address_notes: String? }
+        def to_h: () -> { additional_address_notes: String?, reschedule_date: String? }
       end
     end
   end

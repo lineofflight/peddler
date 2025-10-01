@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class TransactionInstrumentDetails < Data
-        def self.new: (bank_account: Peddler::Types::SellerWallet20240301::BankAccount?, bank_account_number: String?, account_holder_name: String?) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
-                    | (Peddler::Types::SellerWallet20240301::BankAccount?, String?, String?) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
+        def self.new: (account_holder_name: String?, bank_account: Peddler::Types::SellerWallet20240301::BankAccount?, bank_account_number: String?) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
+                    | (String?, Peddler::Types::SellerWallet20240301::BankAccount?, String?) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails
 
+        attr_reader account_holder_name: String?
         attr_reader bank_account: Peddler::Types::SellerWallet20240301::BankAccount?
         attr_reader bank_account_number: String?
-        attr_reader account_holder_name: String?
 
-        def to_h: () -> { bank_account: Peddler::Types::SellerWallet20240301::BankAccount?, bank_account_number: String?, account_holder_name: String? }
+        def to_h: () -> { account_holder_name: String?, bank_account: Peddler::Types::SellerWallet20240301::BankAccount?, bank_account_number: String? }
       end
     end
   end

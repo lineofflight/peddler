@@ -1,30 +1,30 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentOrderItem < Data
-        def self.new: (seller_sku: String?, seller_fulfillment_order_item_id: String?, quantity: Integer?, ?gift_message: String?, ?displayable_comment: String?, ?fulfillment_network_sku: String?, ?order_item_disposition: String?, cancelled_quantity: Integer?, unfulfillable_quantity: Integer?, ?estimated_ship_date: String?, ?estimated_arrival_date: String?, ?per_unit_price: Peddler::Types::Money?, ?per_unit_tax: Peddler::Types::Money?, ?per_unit_declared_value: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
-                    | (String?, String?, Integer?, String?, String?, String?, String?, Integer?, Integer?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
+        def self.new: (cancelled_quantity: Integer?, quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, unfulfillable_quantity: Integer?, ?displayable_comment: String?, ?estimated_arrival_date: String?, ?estimated_ship_date: String?, ?fulfillment_network_sku: String?, ?gift_message: String?, ?order_item_disposition: String?, ?per_unit_declared_value: Peddler::Types::Money?, ?per_unit_price: Peddler::Types::Money?, ?per_unit_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
+                    | (Integer?, Integer?, String?, String?, Integer?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
 
-        attr_reader seller_sku: String?
-        attr_reader seller_fulfillment_order_item_id: String?
-        attr_reader quantity: Integer?
-        attr_reader gift_message: String?
-        attr_reader displayable_comment: String?
-        attr_reader fulfillment_network_sku: String?
-        attr_reader order_item_disposition: String?
         attr_reader cancelled_quantity: Integer?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
         attr_reader unfulfillable_quantity: Integer?
-        attr_reader estimated_ship_date: String?
+        attr_reader displayable_comment: String?
         attr_reader estimated_arrival_date: String?
+        attr_reader estimated_ship_date: String?
+        attr_reader fulfillment_network_sku: String?
+        attr_reader gift_message: String?
+        attr_reader order_item_disposition: String?
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
         attr_reader per_unit_price: Peddler::Types::Money?
         attr_reader per_unit_tax: Peddler::Types::Money?
-        attr_reader per_unit_declared_value: Peddler::Types::Money?
 
-        def to_h: () -> { seller_sku: String?, seller_fulfillment_order_item_id: String?, quantity: Integer?, gift_message: String?, displayable_comment: String?, fulfillment_network_sku: String?, order_item_disposition: String?, cancelled_quantity: Integer?, unfulfillable_quantity: Integer?, estimated_ship_date: String?, estimated_arrival_date: String?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money?, per_unit_declared_value: Peddler::Types::Money? }
+        def to_h: () -> { cancelled_quantity: Integer?, quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, unfulfillable_quantity: Integer?, displayable_comment: String?, estimated_arrival_date: String?, estimated_ship_date: String?, fulfillment_network_sku: String?, gift_message: String?, order_item_disposition: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money? }
       end
     end
   end

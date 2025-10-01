@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v1/rate"
 
@@ -9,11 +9,11 @@ module Peddler
     module ShippingV1
       # The payload schema for the createShipment operation.
       CreateShipmentResult = Structure.new do
-        # @return [String]
-        attribute(:shipment_id, String, from: "shipmentId")
-
         # @return [Array<Rate>]
         attribute(:eligible_rates, [Rate], from: "eligibleRates")
+
+        # @return [String]
+        attribute(:shipment_id, String, from: "shipmentId")
       end
     end
   end

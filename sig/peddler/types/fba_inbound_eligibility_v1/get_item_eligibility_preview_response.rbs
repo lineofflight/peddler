@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FBAInboundEligibilityV1
       class GetItemEligibilityPreviewResponse < Data
-        def self.new: (?payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?, ?errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
-                    | (Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?, Array[Peddler::Types::FBAInboundEligibilityV1::Error]?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
+        def self.new: (?errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]?, ?payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
+                    | (Array[Peddler::Types::FBAInboundEligibilityV1::Error]?, Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
 
-        attr_reader payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?
         attr_reader errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]?
+        attr_reader payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?
 
-        def to_h: () -> { payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview?, errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::FBAInboundEligibilityV1::Error]?, payload: Peddler::Types::FBAInboundEligibilityV1::ItemEligibilityPreview? }
       end
     end
   end

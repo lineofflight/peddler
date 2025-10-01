@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class RateItem < Data
-        def self.new: (?rate_item_id: String?, ?rate_item_type: String?, ?rate_item_charge: Peddler::Types::Money?, ?rate_item_name_localization: String?) -> Peddler::Types::ShippingV2::RateItem
-                    | (String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::ShippingV2::RateItem
+        def self.new: (?rate_item_charge: Peddler::Types::Money?, ?rate_item_id: String?, ?rate_item_name_localization: String?, ?rate_item_type: String?) -> Peddler::Types::ShippingV2::RateItem
+                    | (Peddler::Types::Money?, String?, String?, String?) -> Peddler::Types::ShippingV2::RateItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::RateItem
 
-        attr_reader rate_item_id: String?
-        attr_reader rate_item_type: String?
         attr_reader rate_item_charge: Peddler::Types::Money?
+        attr_reader rate_item_id: String?
         attr_reader rate_item_name_localization: String?
+        attr_reader rate_item_type: String?
 
-        def to_h: () -> { rate_item_id: String?, rate_item_type: String?, rate_item_charge: Peddler::Types::Money?, rate_item_name_localization: String? }
+        def to_h: () -> { rate_item_charge: Peddler::Types::Money?, rate_item_id: String?, rate_item_name_localization: String?, rate_item_type: String? }
       end
     end
   end

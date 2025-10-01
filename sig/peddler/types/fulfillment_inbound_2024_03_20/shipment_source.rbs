@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class ShipmentSource < Data
-        def self.new: (?address: Peddler::Types::FulfillmentInbound20240320::Address?, source_type: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
-                    | (Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
+        def self.new: (source_type: String?, ?address: Peddler::Types::FulfillmentInbound20240320::Address?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
+                    | (String?, Peddler::Types::FulfillmentInbound20240320::Address?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentSource
 
-        attr_reader address: Peddler::Types::FulfillmentInbound20240320::Address?
         attr_reader source_type: String?
+        attr_reader address: Peddler::Types::FulfillmentInbound20240320::Address?
 
-        def to_h: () -> { address: Peddler::Types::FulfillmentInbound20240320::Address?, source_type: String? }
+        def to_h: () -> { source_type: String?, address: Peddler::Types::FulfillmentInbound20240320::Address? }
       end
     end
   end

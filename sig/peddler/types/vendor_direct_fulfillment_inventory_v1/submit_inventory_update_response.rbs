@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class SubmitInventoryUpdateResponse < Data
-        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?, ?errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
-                    | (Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?, Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
+        def self.new: (?errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?, ?payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
+                    | (Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?, Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
 
-        attr_reader payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?
+        attr_reader payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?
 
-        def to_h: () -> { payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?, errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?, payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference? }
       end
     end
   end

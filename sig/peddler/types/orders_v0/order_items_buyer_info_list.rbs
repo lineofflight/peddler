@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class OrderItemsBuyerInfoList < Data
-        def self.new: (order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, ?next_token: String?, amazon_order_id: String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
-                    | (Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, String?, String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
+        def self.new: (amazon_order_id: String?, order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, ?next_token: String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
+                    | (String?, Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, String?) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderItemsBuyerInfoList
 
+        attr_reader amazon_order_id: String?
         attr_reader order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?
         attr_reader next_token: String?
-        attr_reader amazon_order_id: String?
 
-        def to_h: () -> { order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, next_token: String?, amazon_order_id: String? }
+        def to_h: () -> { amazon_order_id: String?, order_items: Array[Peddler::Types::OrdersV0::OrderItemBuyerInfo]?, next_token: String? }
       end
     end
   end

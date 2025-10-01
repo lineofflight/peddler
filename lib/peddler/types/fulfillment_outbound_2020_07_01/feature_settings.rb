@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -15,11 +15,11 @@ module Peddler
       # Central account setting. To ship in non-Amazon branded packaging (blank boxes), set `featureName` to
       # `BLANK_BOX`.
       FeatureSettings = Structure.new do
-        # @return [String] The name of the feature.
-        attribute?(:feature_name, String, from: "featureName")
-
         # @return [String] Specifies the policy to use when fulfilling an order.
         attribute?(:feature_fulfillment_policy, String, from: "featureFulfillmentPolicy")
+
+        # @return [String] The name of the feature.
+        attribute?(:feature_name, String, from: "featureName")
       end
     end
   end

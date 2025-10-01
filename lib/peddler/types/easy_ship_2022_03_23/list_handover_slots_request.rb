@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/easy_ship_2022_03_23/dimensions"
 require "peddler/types/easy_ship_2022_03_23/weight"
@@ -11,10 +11,10 @@ module Peddler
       # The request schema for the `listHandoverSlots` operation.
       ListHandoverSlotsRequest = Structure.new do
         # @return [String]
-        attribute(:marketplace_id, String, from: "marketplaceId")
+        attribute(:amazon_order_id, String, from: "amazonOrderId")
 
         # @return [String]
-        attribute(:amazon_order_id, String, from: "amazonOrderId")
+        attribute(:marketplace_id, String, from: "marketplaceId")
 
         # @return [Dimensions]
         attribute(:package_dimensions, Dimensions, from: "packageDimensions")

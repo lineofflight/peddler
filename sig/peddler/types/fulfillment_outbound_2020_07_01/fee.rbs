@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class Fee < Data
-        def self.new: (name: String?, amount: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
-                    | (String?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
+        def self.new: (amount: Peddler::Types::Money?, name: String?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
+                    | (Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Fee
 
-        attr_reader name: String?
         attr_reader amount: Peddler::Types::Money?
+        attr_reader name: String?
 
-        def to_h: () -> { name: String?, amount: Peddler::Types::Money? }
+        def to_h: () -> { amount: Peddler::Types::Money?, name: String? }
       end
     end
   end

@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellersV1
       class Participation < Data
-        def self.new: (participating: bool?, has_suspended_listings: bool?) -> Peddler::Types::SellersV1::Participation
+        def self.new: (has_suspended_listings: bool?, participating: bool?) -> Peddler::Types::SellersV1::Participation
                     | (bool?, bool?) -> Peddler::Types::SellersV1::Participation
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Participation
 
-        attr_reader participating: bool?
         attr_reader has_suspended_listings: bool?
+        attr_reader participating: bool?
 
-        def participating?: () -> bool
         def has_suspended_listings?: () -> bool
-        def to_h: () -> { participating: bool?, has_suspended_listings: bool? }
+        def participating?: () -> bool
+        def to_h: () -> { has_suspended_listings: bool?, participating: bool? }
       end
     end
   end

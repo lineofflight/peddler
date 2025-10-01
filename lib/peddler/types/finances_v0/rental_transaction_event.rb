@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "peddler/types/finances_v0/charge_component"
@@ -14,6 +14,19 @@ module Peddler
       RentalTransactionEvent = Structure.new do
         # @return [String] An Amazon-defined identifier for an order.
         attribute?(:amazon_order_id, String, from: "AmazonOrderId")
+
+        # @return [Integer] The number of days that the buyer extended an already rented item. This value is only
+        # returned for RentalCustomerPayment-Extension and RentalCustomerRefund-Extension events.
+        attribute?(:extension_length, Integer, from: "ExtensionLength")
+
+        # @return [String] The name of the marketplace.
+        attribute?(:marketplace_name, String, from: "MarketplaceName")
+
+        # @return [String] The date and time when the financial event was posted.
+        attribute?(:posted_date, String, from: "PostedDate")
+
+        # @return [Array<ChargeComponent>] A list of charges associated with the rental event.
+        attribute?(:rental_charge_list, [ChargeComponent], from: "RentalChargeList")
 
         # @return [String] The type of rental event.
         #
@@ -41,21 +54,8 @@ module Peddler
         # compensate for a lost item.
         attribute?(:rental_event_type, String, from: "RentalEventType")
 
-        # @return [Integer] The number of days that the buyer extended an already rented item. This value is only
-        # returned for RentalCustomerPayment-Extension and RentalCustomerRefund-Extension events.
-        attribute?(:extension_length, Integer, from: "ExtensionLength")
-
-        # @return [String] The date and time when the financial event was posted.
-        attribute?(:posted_date, String, from: "PostedDate")
-
-        # @return [Array<ChargeComponent>] A list of charges associated with the rental event.
-        attribute?(:rental_charge_list, [ChargeComponent], from: "RentalChargeList")
-
         # @return [Array<FeeComponent>] A list of fees associated with the rental event.
         attribute?(:rental_fee_list, [FeeComponent], from: "RentalFeeList")
-
-        # @return [String] The name of the marketplace.
-        attribute?(:marketplace_name, String, from: "MarketplaceName")
 
         # @return [Money] The amount of money the customer originally paid to rent the item. This value is only returned
         # for RentalChargeFailureReimbursement and RentalLostItemReimbursement events.

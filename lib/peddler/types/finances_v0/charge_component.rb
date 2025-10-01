@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -80,11 +80,11 @@ module Peddler
       #
       # * TCS-UTGST - Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
       ChargeComponent = Structure.new do
-        # @return [String] The type of charge.
-        attribute?(:charge_type, String, from: "ChargeType")
-
         # @return [Money] The amount of the charge.
         attribute?(:charge_amount, Money, from: "ChargeAmount")
+
+        # @return [String] The type of charge.
+        attribute?(:charge_type, String, from: "ChargeType")
       end
     end
   end

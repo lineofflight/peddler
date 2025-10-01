@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class LabelData < Data
-        def self.new: (?package_identifier: String?, ?tracking_number: String?, ?ship_method: String?, ?ship_method_name: String?, content: String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData
+        def self.new: (content: String?, ?package_identifier: String?, ?ship_method: String?, ?ship_method_name: String?, ?tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData
 
+        attr_reader content: String?
         attr_reader package_identifier: String?
-        attr_reader tracking_number: String?
         attr_reader ship_method: String?
         attr_reader ship_method_name: String?
-        attr_reader content: String?
+        attr_reader tracking_number: String?
 
-        def to_h: () -> { package_identifier: String?, tracking_number: String?, ship_method: String?, ship_method_name: String?, content: String? }
+        def to_h: () -> { content: String?, package_identifier: String?, ship_method: String?, ship_method_name: String?, tracking_number: String? }
       end
     end
   end

@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductFeesV0
       class FeeDetail < Data
-        def self.new: (fee_type: String?, fee_amount: Peddler::Types::Money?, ?fee_promotion: Peddler::Types::Money?, ?tax_amount: Peddler::Types::Money?, final_fee: Peddler::Types::Money?, ?included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?) -> Peddler::Types::ProductFeesV0::FeeDetail
-                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?) -> Peddler::Types::ProductFeesV0::FeeDetail
+        def self.new: (fee_amount: Peddler::Types::Money?, fee_type: String?, final_fee: Peddler::Types::Money?, ?fee_promotion: Peddler::Types::Money?, ?included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?, ?tax_amount: Peddler::Types::Money?) -> Peddler::Types::ProductFeesV0::FeeDetail
+                    | (Peddler::Types::Money?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?, Peddler::Types::Money?) -> Peddler::Types::ProductFeesV0::FeeDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeeDetail
 
-        attr_reader fee_type: String?
         attr_reader fee_amount: Peddler::Types::Money?
-        attr_reader fee_promotion: Peddler::Types::Money?
-        attr_reader tax_amount: Peddler::Types::Money?
+        attr_reader fee_type: String?
         attr_reader final_fee: Peddler::Types::Money?
+        attr_reader fee_promotion: Peddler::Types::Money?
         attr_reader included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?
+        attr_reader tax_amount: Peddler::Types::Money?
 
-        def to_h: () -> { fee_type: String?, fee_amount: Peddler::Types::Money?, fee_promotion: Peddler::Types::Money?, tax_amount: Peddler::Types::Money?, final_fee: Peddler::Types::Money?, included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]? }
+        def to_h: () -> { fee_amount: Peddler::Types::Money?, fee_type: String?, final_fee: Peddler::Types::Money?, fee_promotion: Peddler::Types::Money?, included_fee_detail_list: Array[Peddler::Types::ProductFeesV0::IncludedFeeDetail]?, tax_amount: Peddler::Types::Money? }
       end
     end
   end

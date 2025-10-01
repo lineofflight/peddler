@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Finances20240619
       class Item < Data
-        def self.new: (?description: String?, ?related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, ?total_amount: Peddler::Types::Money?, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?) -> Peddler::Types::Finances20240619::Item
-                    | (String?, Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, Peddler::Types::Money?, Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?) -> Peddler::Types::Finances20240619::Item
+        def self.new: (?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?, ?description: String?, ?related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::Finances20240619::Item
+                    | (Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?, String?, Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, Peddler::Types::Money?) -> Peddler::Types::Finances20240619::Item
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::Item
 
+        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
+        attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?
         attr_reader description: String?
         attr_reader related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?
         attr_reader total_amount: Peddler::Types::Money?
-        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
-        attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?
 
-        def to_h: () -> { description: String?, related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, total_amount: Peddler::Types::Money?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]? }
+        def to_h: () -> { breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]?, description: String?, related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, total_amount: Peddler::Types::Money? }
       end
     end
   end

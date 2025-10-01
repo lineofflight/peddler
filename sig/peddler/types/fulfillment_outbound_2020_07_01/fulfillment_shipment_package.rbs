@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class FulfillmentShipmentPackage < Data
-        def self.new: (package_number: Integer?, carrier_code: String?, ?tracking_number: String?, ?amazon_fulfillment_tracking_number: String?, ?estimated_arrival_date: String?, ?locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, ?delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
-                    | (Integer?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
+        def self.new: (carrier_code: String?, package_number: Integer?, ?amazon_fulfillment_tracking_number: String?, ?delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?, ?estimated_arrival_date: String?, ?locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, ?tracking_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
+                    | (String?, Integer?, String?, Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?, String?, Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
 
-        attr_reader package_number: Integer?
         attr_reader carrier_code: String?
-        attr_reader tracking_number: String?
+        attr_reader package_number: Integer?
         attr_reader amazon_fulfillment_tracking_number: String?
+        attr_reader delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?
         attr_reader estimated_arrival_date: String?
         attr_reader locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?
-        attr_reader delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?
+        attr_reader tracking_number: String?
 
-        def to_h: () -> { package_number: Integer?, carrier_code: String?, tracking_number: String?, amazon_fulfillment_tracking_number: String?, estimated_arrival_date: String?, locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation? }
+        def to_h: () -> { carrier_code: String?, package_number: Integer?, amazon_fulfillment_tracking_number: String?, delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?, estimated_arrival_date: String?, locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, tracking_number: String? }
       end
     end
   end

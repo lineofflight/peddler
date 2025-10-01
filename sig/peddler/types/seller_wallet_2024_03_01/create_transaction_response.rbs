@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class CreateTransactionResponse < Data
-        def self.new: (transaction: Peddler::Types::SellerWallet20240301::Transaction?, call_back_url: String?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
-                    | (Peddler::Types::SellerWallet20240301::Transaction?, String?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
+        def self.new: (call_back_url: String?, transaction: Peddler::Types::SellerWallet20240301::Transaction?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
+                    | (String?, Peddler::Types::SellerWallet20240301::Transaction?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
 
-        attr_reader transaction: Peddler::Types::SellerWallet20240301::Transaction?
         attr_reader call_back_url: String?
+        attr_reader transaction: Peddler::Types::SellerWallet20240301::Transaction?
 
-        def to_h: () -> { transaction: Peddler::Types::SellerWallet20240301::Transaction?, call_back_url: String? }
+        def to_h: () -> { call_back_url: String?, transaction: Peddler::Types::SellerWallet20240301::Transaction? }
       end
     end
   end

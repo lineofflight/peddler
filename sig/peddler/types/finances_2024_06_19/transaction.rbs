@@ -1,28 +1,28 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Finances20240619
       class Transaction < Data
-        def self.new: (?selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, ?related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, ?transaction_type: String?, ?transaction_id: String?, ?transaction_status: String?, ?description: String?, ?posted_date: String?, ?total_amount: Peddler::Types::Money?, ?marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, ?items: Array[Peddler::Types::Finances20240619::Item]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Transaction
-                    | (Peddler::Types::Finances20240619::SellingPartnerMetadata?, Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Finances20240619::MarketplaceDetails?, Array[Peddler::Types::Finances20240619::Item]?, Array[Peddler::Types::Finances20240619::Context]?, Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Transaction
+        def self.new: (?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?, ?description: String?, ?items: Array[Peddler::Types::Finances20240619::Item]?, ?marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, ?posted_date: String?, ?related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, ?selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, ?total_amount: Peddler::Types::Money?, ?transaction_id: String?, ?transaction_status: String?, ?transaction_type: String?) -> Peddler::Types::Finances20240619::Transaction
+                    | (Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?, String?, Array[Peddler::Types::Finances20240619::Item]?, Peddler::Types::Finances20240619::MarketplaceDetails?, String?, Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, Peddler::Types::Finances20240619::SellingPartnerMetadata?, Peddler::Types::Money?, String?, String?, String?) -> Peddler::Types::Finances20240619::Transaction
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::Transaction
 
-        attr_reader selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?
+        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
+        attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?
+        attr_reader description: String?
+        attr_reader items: Array[Peddler::Types::Finances20240619::Item]?
+        attr_reader marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?
+        attr_reader posted_date: String?
         attr_reader related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?
-        attr_reader transaction_type: String?
+        attr_reader selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?
+        attr_reader total_amount: Peddler::Types::Money?
         attr_reader transaction_id: String?
         attr_reader transaction_status: String?
-        attr_reader description: String?
-        attr_reader posted_date: String?
-        attr_reader total_amount: Peddler::Types::Money?
-        attr_reader marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?
-        attr_reader items: Array[Peddler::Types::Finances20240619::Item]?
-        attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?
-        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
+        attr_reader transaction_type: String?
 
-        def to_h: () -> { selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, transaction_type: String?, transaction_id: String?, transaction_status: String?, description: String?, posted_date: String?, total_amount: Peddler::Types::Money?, marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, items: Array[Peddler::Types::Finances20240619::Item]?, contexts: Array[Peddler::Types::Finances20240619::Context]?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]? }
+        def to_h: () -> { breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]?, description: String?, items: Array[Peddler::Types::Finances20240619::Item]?, marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, posted_date: String?, related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, total_amount: Peddler::Types::Money?, transaction_id: String?, transaction_status: String?, transaction_type: String? }
       end
     end
   end

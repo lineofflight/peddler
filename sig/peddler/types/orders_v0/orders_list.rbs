@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class OrdersList < Data
-        def self.new: (orders: Array[Peddler::Types::OrdersV0::Order]?, ?next_token: String?, ?last_updated_before: String?, ?created_before: String?) -> Peddler::Types::OrdersV0::OrdersList
+        def self.new: (orders: Array[Peddler::Types::OrdersV0::Order]?, ?created_before: String?, ?last_updated_before: String?, ?next_token: String?) -> Peddler::Types::OrdersV0::OrdersList
                     | (Array[Peddler::Types::OrdersV0::Order]?, String?, String?, String?) -> Peddler::Types::OrdersV0::OrdersList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrdersList
 
         attr_reader orders: Array[Peddler::Types::OrdersV0::Order]?
-        attr_reader next_token: String?
-        attr_reader last_updated_before: String?
         attr_reader created_before: String?
+        attr_reader last_updated_before: String?
+        attr_reader next_token: String?
 
-        def to_h: () -> { orders: Array[Peddler::Types::OrdersV0::Order]?, next_token: String?, last_updated_before: String?, created_before: String? }
+        def to_h: () -> { orders: Array[Peddler::Types::OrdersV0::Order]?, created_before: String?, last_updated_before: String?, next_token: String? }
       end
     end
   end

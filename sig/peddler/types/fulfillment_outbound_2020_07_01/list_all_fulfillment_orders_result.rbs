@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class ListAllFulfillmentOrdersResult < Data
-        def self.new: (?next_token: String?, ?fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
-                    | (String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
+        def self.new: (?fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?, ?next_token: String?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
 
-        attr_reader next_token: String?
         attr_reader fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?
+        attr_reader next_token: String?
 
-        def to_h: () -> { next_token: String?, fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]? }
+        def to_h: () -> { fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?, next_token: String? }
       end
     end
   end

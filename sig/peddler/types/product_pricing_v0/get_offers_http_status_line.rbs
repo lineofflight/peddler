@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class GetOffersHttpStatusLine < Data
-        def self.new: (?status_code: Integer?, ?reason_phrase: String?) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
-                    | (Integer?, String?) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
+        def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
+                    | (String?, Integer?) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
 
-        attr_reader status_code: Integer?
         attr_reader reason_phrase: String?
+        attr_reader status_code: Integer?
 
-        def to_h: () -> { status_code: Integer?, reason_phrase: String? }
+        def to_h: () -> { reason_phrase: String?, status_code: Integer? }
       end
     end
   end

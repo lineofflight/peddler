@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class Balance < Data
-        def self.new: (account_id: String?, ?balance_type: String?, balance_amount: Float?, balance_currency: String?, last_update_date: String?) -> Peddler::Types::SellerWallet20240301::Balance
-                    | (String?, String?, Float?, String?, String?) -> Peddler::Types::SellerWallet20240301::Balance
+        def self.new: (account_id: String?, balance_amount: Float?, balance_currency: String?, last_update_date: String?, ?balance_type: String?) -> Peddler::Types::SellerWallet20240301::Balance
+                    | (String?, Float?, String?, String?, String?) -> Peddler::Types::SellerWallet20240301::Balance
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Balance
 
         attr_reader account_id: String?
-        attr_reader balance_type: String?
         attr_reader balance_amount: Float?
         attr_reader balance_currency: String?
         attr_reader last_update_date: String?
+        attr_reader balance_type: String?
 
-        def to_h: () -> { account_id: String?, balance_type: String?, balance_amount: Float?, balance_currency: String?, last_update_date: String? }
+        def to_h: () -> { account_id: String?, balance_amount: Float?, balance_currency: String?, last_update_date: String?, balance_type: String? }
       end
     end
   end

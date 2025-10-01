@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class PackageDetail < Data
-        def self.new: (package_reference_id: String?, carrier_code: String?, ?carrier_name: String?, ?shipping_method: String?, tracking_number: String?, ship_date: String?, ?ship_from_supply_source_id: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> Peddler::Types::OrdersV0::PackageDetail
-                    | (String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?) -> Peddler::Types::OrdersV0::PackageDetail
+        def self.new: (carrier_code: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?, package_reference_id: String?, ship_date: String?, tracking_number: String?, ?carrier_name: String?, ?ship_from_supply_source_id: String?, ?shipping_method: String?) -> Peddler::Types::OrdersV0::PackageDetail
+                    | (String?, Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::OrdersV0::PackageDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PackageDetail
 
-        attr_reader package_reference_id: String?
         attr_reader carrier_code: String?
-        attr_reader carrier_name: String?
-        attr_reader shipping_method: String?
-        attr_reader tracking_number: String?
-        attr_reader ship_date: String?
-        attr_reader ship_from_supply_source_id: String?
         attr_reader order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?
+        attr_reader package_reference_id: String?
+        attr_reader ship_date: String?
+        attr_reader tracking_number: String?
+        attr_reader carrier_name: String?
+        attr_reader ship_from_supply_source_id: String?
+        attr_reader shipping_method: String?
 
-        def to_h: () -> { package_reference_id: String?, carrier_code: String?, carrier_name: String?, shipping_method: String?, tracking_number: String?, ship_date: String?, ship_from_supply_source_id: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]? }
+        def to_h: () -> { carrier_code: String?, order_items: Array[Peddler::Types::OrdersV0::ConfirmShipmentOrderItem]?, package_reference_id: String?, ship_date: String?, tracking_number: String?, carrier_name: String?, ship_from_supply_source_id: String?, shipping_method: String? }
       end
     end
   end

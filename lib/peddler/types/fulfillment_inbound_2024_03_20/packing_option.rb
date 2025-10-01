@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_2024_03_20/incentive"
 require "peddler/types/fulfillment_inbound_2024_03_20/packing_configuration"
@@ -14,11 +14,6 @@ module Peddler
       PackingOption = Structure.new do
         # @return [Array<Incentive>] Discount for the offered option.
         attribute(:discounts, [Incentive])
-
-        # @return [String] The time at which this packing option is no longer valid. In [ISO
-        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
-        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
-        attribute?(:expiration, String)
 
         # @return [Array<Incentive>] Fee for the offered option.
         attribute(:fees, [Incentive])
@@ -38,6 +33,11 @@ module Peddler
         # @return [Array<ShippingConfiguration>] **This field is deprecated**. Use the `shippingRequirements` property
         # under `supportedConfigurations` instead. List of supported shipping modes.
         attribute(:supported_shipping_configurations, [ShippingConfiguration], from: "supportedShippingConfigurations")
+
+        # @return [String] The time at which this packing option is no longer valid. In [ISO
+        # 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern
+        # `yyyy-MM-ddTHH:mm:ss.sssZ`.
+        attribute?(:expiration, String)
       end
     end
   end

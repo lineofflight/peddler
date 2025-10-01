@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
       class OrderItem < Data
-        def self.new: (item_sequence_number: String?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, ?title: String?, ordered_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?, ?scheduled_delivery_shipment: Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?, ?gift_details: Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?, net_price: Peddler::Types::Money?, ?tax_details: Hash[untyped, untyped]?, ?total_price: Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItem
-                    | (String?, String?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?, Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?, Peddler::Types::Money?, Hash[untyped, untyped]?, Peddler::Types::Money?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItem
+        def self.new: (item_sequence_number: String?, net_price: Peddler::Types::Money?, ordered_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?, ?buyer_product_identifier: String?, ?gift_details: Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?, ?scheduled_delivery_shipment: Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?, ?tax_details: Hash[untyped, untyped]?, ?title: String?, ?total_price: Peddler::Types::Money?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItem
+                    | (String?, Peddler::Types::Money?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?, Hash[untyped, untyped]?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderItem
 
         attr_reader item_sequence_number: String?
-        attr_reader buyer_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
-        attr_reader title: String?
-        attr_reader ordered_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?
-        attr_reader scheduled_delivery_shipment: Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?
-        attr_reader gift_details: Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?
         attr_reader net_price: Peddler::Types::Money?
+        attr_reader ordered_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?
+        attr_reader buyer_product_identifier: String?
+        attr_reader gift_details: Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?
+        attr_reader scheduled_delivery_shipment: Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?
         attr_reader tax_details: Hash[untyped, untyped]?
+        attr_reader title: String?
         attr_reader total_price: Peddler::Types::Money?
+        attr_reader vendor_product_identifier: String?
 
-        def to_h: () -> { item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, title: String?, ordered_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?, scheduled_delivery_shipment: Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?, gift_details: Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?, net_price: Peddler::Types::Money?, tax_details: Hash[untyped, untyped]?, total_price: Peddler::Types::Money? }
+        def to_h: () -> { item_sequence_number: String?, net_price: Peddler::Types::Money?, ordered_quantity: Peddler::Types::VendorDirectFulfillmentOrdersV1::ItemQuantity?, buyer_product_identifier: String?, gift_details: Peddler::Types::VendorDirectFulfillmentOrdersV1::GiftDetails?, scheduled_delivery_shipment: Peddler::Types::VendorDirectFulfillmentOrdersV1::ScheduledDeliveryShipment?, tax_details: Hash[untyped, untyped]?, title: String?, total_price: Peddler::Types::Money?, vendor_product_identifier: String? }
       end
     end
   end

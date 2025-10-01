@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CustomerFeedback20240601
       class BrowseNodeReviewTrendPoint < Data
-        def self.new: (date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
-                    | (Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+        def self.new: (browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, Peddler::Types::CustomerFeedback20240601::DateRange?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
 
-        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
         attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
 
-        def to_h: () -> { date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics? }
+        def to_h: () -> { browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange? }
       end
     end
   end

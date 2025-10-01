@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class TimeWindow < Data
-        def self.new: (?start: String?, ?end: String?) -> Peddler::Types::ShippingV2::TimeWindow
+        def self.new: (?end: String?, ?start: String?) -> Peddler::Types::ShippingV2::TimeWindow
                     | (String?, String?) -> Peddler::Types::ShippingV2::TimeWindow
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::TimeWindow
 
-        attr_reader start: String?
         attr_reader end: String?
+        attr_reader start: String?
 
-        def to_h: () -> { start: String?, end: String? }
+        def to_h: () -> { end: String?, start: String? }
       end
     end
   end

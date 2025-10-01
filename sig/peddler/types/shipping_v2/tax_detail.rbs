@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class TaxDetail < Data
-        def self.new: (tax_type: String?, tax_registration_number: String?) -> Peddler::Types::ShippingV2::TaxDetail
+        def self.new: (tax_registration_number: String?, tax_type: String?) -> Peddler::Types::ShippingV2::TaxDetail
                     | (String?, String?) -> Peddler::Types::ShippingV2::TaxDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::TaxDetail
 
-        attr_reader tax_type: String?
         attr_reader tax_registration_number: String?
+        attr_reader tax_type: String?
 
-        def to_h: () -> { tax_type: String?, tax_registration_number: String? }
+        def to_h: () -> { tax_registration_number: String?, tax_type: String? }
       end
     end
   end

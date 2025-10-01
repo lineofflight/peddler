@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -10,10 +10,10 @@ module Peddler
       # The result of creating a new supply source.
       CreateSupplySourceResponse = Structure.new do
         # @return [String]
-        attribute(:supply_source_id, String, from: "supplySourceId")
+        attribute(:supply_source_code, String, from: "supplySourceCode")
 
         # @return [String]
-        attribute(:supply_source_code, String, from: "supplySourceCode")
+        attribute(:supply_source_id, String, from: "supplySourceId")
       end
     end
   end

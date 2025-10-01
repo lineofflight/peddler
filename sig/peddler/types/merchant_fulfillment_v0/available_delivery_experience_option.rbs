@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class AvailableDeliveryExperienceOption < Data
-        def self.new: (delivery_experience_option: String?, charge: Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
-                    | (String?, Peddler::Types::Money?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
+        def self.new: (charge: Peddler::Types::Money?, delivery_experience_option: String?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
+                    | (Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::AvailableDeliveryExperienceOption
 
-        attr_reader delivery_experience_option: String?
         attr_reader charge: Peddler::Types::Money?
+        attr_reader delivery_experience_option: String?
 
-        def to_h: () -> { delivery_experience_option: String?, charge: Peddler::Types::Money? }
+        def to_h: () -> { charge: Peddler::Types::Money?, delivery_experience_option: String? }
       end
     end
   end

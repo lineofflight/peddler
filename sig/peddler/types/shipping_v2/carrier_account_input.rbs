@@ -1,27 +1,27 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class CarrierAccountInput < Data
-        def self.new: (?description_localization_key: String?, ?name: String?, ?group_name: String?, ?input_type: String?, ?mandatory: bool?, ?confidential: bool?, ?hidden: bool?, ?validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
-                    | (String?, String?, String?, String?, bool?, bool?, bool?, Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
+        def self.new: (?description_localization_key: String?, ?group_name: String?, ?input_type: String?, ?confidential: bool?, ?hidden: bool?, ?mandatory: bool?, ?name: String?, ?validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
+                    | (String?, String?, String?, bool?, bool?, bool?, String?, Array[Peddler::Types::ShippingV2::ValidationMetadata]?) -> Peddler::Types::ShippingV2::CarrierAccountInput
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CarrierAccountInput
 
         attr_reader description_localization_key: String?
-        attr_reader name: String?
         attr_reader group_name: String?
         attr_reader input_type: String?
-        attr_reader mandatory: bool?
         attr_reader confidential: bool?
         attr_reader hidden: bool?
+        attr_reader mandatory: bool?
+        attr_reader name: String?
         attr_reader validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]?
 
-        def mandatory?: () -> bool
         def confidential?: () -> bool
         def hidden?: () -> bool
-        def to_h: () -> { description_localization_key: String?, name: String?, group_name: String?, input_type: String?, mandatory: bool?, confidential: bool?, hidden: bool?, validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]? }
+        def mandatory?: () -> bool
+        def to_h: () -> { description_localization_key: String?, group_name: String?, input_type: String?, confidential: bool?, hidden: bool?, mandatory: bool?, name: String?, validation_metadata: Array[Peddler::Types::ShippingV2::ValidationMetadata]? }
       end
     end
   end

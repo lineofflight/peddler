@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Replenishment20221107
       class ListOffersRequestFilters < Data
-        def self.new: (marketplace_id: String?, ?skus: Array[String]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::Types::Replenishment20221107::Preference?, ?promotions: Peddler::Types::Replenishment20221107::Promotion?, program_types: Array[untyped]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
-                    | (String?, Array[String]?, Array[String]?, Array[untyped]?, Peddler::Types::Replenishment20221107::Preference?, Peddler::Types::Replenishment20221107::Promotion?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
+        def self.new: (marketplace_id: String?, program_types: Array[untyped]?, ?asins: Array[String]?, ?eligibilities: Array[untyped]?, ?preferences: Peddler::Types::Replenishment20221107::Preference?, ?promotions: Peddler::Types::Replenishment20221107::Promotion?, ?skus: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
+                    | (String?, Array[untyped]?, Array[String]?, Array[untyped]?, Peddler::Types::Replenishment20221107::Preference?, Peddler::Types::Replenishment20221107::Promotion?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequestFilters
 
         attr_reader marketplace_id: String?
-        attr_reader skus: Array[String]?
+        attr_reader program_types: Array[untyped]?
         attr_reader asins: Array[String]?
         attr_reader eligibilities: Array[untyped]?
         attr_reader preferences: Peddler::Types::Replenishment20221107::Preference?
         attr_reader promotions: Peddler::Types::Replenishment20221107::Promotion?
-        attr_reader program_types: Array[untyped]?
+        attr_reader skus: Array[String]?
 
-        def to_h: () -> { marketplace_id: String?, skus: Array[String]?, asins: Array[String]?, eligibilities: Array[untyped]?, preferences: Peddler::Types::Replenishment20221107::Preference?, promotions: Peddler::Types::Replenishment20221107::Promotion?, program_types: Array[untyped]? }
+        def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, asins: Array[String]?, eligibilities: Array[untyped]?, preferences: Peddler::Types::Replenishment20221107::Preference?, promotions: Peddler::Types::Replenishment20221107::Promotion?, skus: Array[String]? }
       end
     end
   end

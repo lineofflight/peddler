@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class ShippingConstraints < Data
-        def self.new: (?pallet_delivery: String?, ?signature_confirmation: String?, ?recipient_identity_verification: String?, ?recipient_age_verification: String?) -> Peddler::Types::OrdersV0::ShippingConstraints
+        def self.new: (?pallet_delivery: String?, ?recipient_age_verification: String?, ?recipient_identity_verification: String?, ?signature_confirmation: String?) -> Peddler::Types::OrdersV0::ShippingConstraints
                     | (String?, String?, String?, String?) -> Peddler::Types::OrdersV0::ShippingConstraints
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ShippingConstraints
 
         attr_reader pallet_delivery: String?
-        attr_reader signature_confirmation: String?
-        attr_reader recipient_identity_verification: String?
         attr_reader recipient_age_verification: String?
+        attr_reader recipient_identity_verification: String?
+        attr_reader signature_confirmation: String?
 
-        def to_h: () -> { pallet_delivery: String?, signature_confirmation: String?, recipient_identity_verification: String?, recipient_age_verification: String? }
+        def to_h: () -> { pallet_delivery: String?, recipient_age_verification: String?, recipient_identity_verification: String?, signature_confirmation: String? }
       end
     end
   end

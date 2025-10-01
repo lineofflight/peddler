@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class PackingSlipList < Data
-        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, ?packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
-                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+        def self.new: (?packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, ?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
 
-        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?
         attr_reader packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?
 
-        def to_h: () -> { pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]? }
+        def to_h: () -> { packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination? }
       end
     end
   end

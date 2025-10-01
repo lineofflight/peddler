@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricing20220501
       class OfferIdentifier < Data
-        def self.new: (marketplace_id: String?, ?seller_id: String?, ?sku: String?, asin: String?, ?fulfillment_type: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+        def self.new: (asin: String?, marketplace_id: String?, ?fulfillment_type: String?, ?seller_id: String?, ?sku: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
 
+        attr_reader asin: String?
         attr_reader marketplace_id: String?
+        attr_reader fulfillment_type: String?
         attr_reader seller_id: String?
         attr_reader sku: String?
-        attr_reader asin: String?
-        attr_reader fulfillment_type: String?
 
-        def to_h: () -> { marketplace_id: String?, seller_id: String?, sku: String?, asin: String?, fulfillment_type: String? }
+        def to_h: () -> { asin: String?, marketplace_id: String?, fulfillment_type: String?, seller_id: String?, sku: String? }
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class StandardImageCaptionBlock < Data
-        def self.new: (?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?caption: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
-                    | (Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
+        def self.new: (?caption: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
+                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardImageCaptionBlock
 
-        attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
         attr_reader caption: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
 
-        def to_h: () -> { image: Peddler::Types::AplusContent20201101::ImageComponent?, caption: Peddler::Types::AplusContent20201101::TextComponent? }
+        def to_h: () -> { caption: Peddler::Types::AplusContent20201101::TextComponent?, image: Peddler::Types::AplusContent20201101::ImageComponent? }
       end
     end
   end

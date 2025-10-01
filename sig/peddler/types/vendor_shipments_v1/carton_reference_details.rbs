@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class CartonReferenceDetails < Data
-        def self.new: (?carton_count: Integer?, carton_reference_numbers: Array[String]?) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
-                    | (Integer?, Array[String]?) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
+        def self.new: (carton_reference_numbers: Array[String]?, ?carton_count: Integer?) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
+                    | (Array[String]?, Integer?) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
 
-        attr_reader carton_count: Integer?
         attr_reader carton_reference_numbers: Array[String]?
+        attr_reader carton_count: Integer?
 
-        def to_h: () -> { carton_count: Integer?, carton_reference_numbers: Array[String]? }
+        def to_h: () -> { carton_reference_numbers: Array[String]?, carton_count: Integer? }
       end
     end
   end

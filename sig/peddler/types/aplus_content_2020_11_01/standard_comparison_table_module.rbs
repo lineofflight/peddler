@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class StandardComparisonTableModule < Data
-        def self.new: (?product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?, ?metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
-                    | (Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
+        def self.new: (?metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, ?product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
+                    | (Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonTableModule
 
-        attr_reader product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?
         attr_reader metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?
+        attr_reader product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?
 
-        def to_h: () -> { product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]?, metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]? }
+        def to_h: () -> { metric_row_labels: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, product_columns: Array[Peddler::Types::AplusContent20201101::StandardComparisonProductBlock]? }
       end
     end
   end

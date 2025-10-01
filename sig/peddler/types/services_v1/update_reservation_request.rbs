@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class UpdateReservationRequest < Data
-        def self.new: (resource_id: String?, reservation: Peddler::Types::ServicesV1::Reservation?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
-                    | (String?, Peddler::Types::ServicesV1::Reservation?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
+        def self.new: (reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
+                    | (Peddler::Types::ServicesV1::Reservation?, String?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::UpdateReservationRequest
 
-        attr_reader resource_id: String?
         attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
+        attr_reader resource_id: String?
 
-        def to_h: () -> { resource_id: String?, reservation: Peddler::Types::ServicesV1::Reservation? }
+        def to_h: () -> { reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String? }
       end
     end
   end

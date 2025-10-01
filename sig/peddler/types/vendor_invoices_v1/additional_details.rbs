@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorInvoicesV1
       class AdditionalDetails < Data
-        def self.new: (type: String?, detail: String?, ?language_code: String?) -> Peddler::Types::VendorInvoicesV1::AdditionalDetails
+        def self.new: (detail: String?, type: String?, ?language_code: String?) -> Peddler::Types::VendorInvoicesV1::AdditionalDetails
                     | (String?, String?, String?) -> Peddler::Types::VendorInvoicesV1::AdditionalDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::AdditionalDetails
 
-        attr_reader type: String?
         attr_reader detail: String?
+        attr_reader type: String?
         attr_reader language_code: String?
 
-        def to_h: () -> { type: String?, detail: String?, language_code: String? }
+        def to_h: () -> { detail: String?, type: String?, language_code: String? }
       end
     end
   end

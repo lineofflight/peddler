@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class AppointmentSlot < Data
-        def self.new: (?start_time: String?, ?end_time: String?, ?capacity: Integer?) -> Peddler::Types::ServicesV1::AppointmentSlot
-                    | (String?, String?, Integer?) -> Peddler::Types::ServicesV1::AppointmentSlot
+        def self.new: (?capacity: Integer?, ?end_time: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::AppointmentSlot
+                    | (Integer?, String?, String?) -> Peddler::Types::ServicesV1::AppointmentSlot
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentSlot
 
-        attr_reader start_time: String?
-        attr_reader end_time: String?
         attr_reader capacity: Integer?
+        attr_reader end_time: String?
+        attr_reader start_time: String?
 
-        def to_h: () -> { start_time: String?, end_time: String?, capacity: Integer? }
+        def to_h: () -> { capacity: Integer?, end_time: String?, start_time: String? }
       end
     end
   end

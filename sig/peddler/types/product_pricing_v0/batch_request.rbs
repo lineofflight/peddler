@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class BatchRequest < Data
-        def self.new: (uri: String?, method: String?, ?headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?) -> Peddler::Types::ProductPricingV0::BatchRequest
+        def self.new: (method: String?, uri: String?, ?headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?) -> Peddler::Types::ProductPricingV0::BatchRequest
                     | (String?, String?, Peddler::Types::ProductPricingV0::HttpRequestHeaders?) -> Peddler::Types::ProductPricingV0::BatchRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::BatchRequest
 
-        attr_reader uri: String?
         attr_reader method: String?
+        attr_reader uri: String?
         attr_reader headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders?
 
-        def to_h: () -> { uri: String?, method: String?, headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders? }
+        def to_h: () -> { method: String?, uri: String?, headers: Peddler::Types::ProductPricingV0::HttpRequestHeaders? }
       end
     end
   end

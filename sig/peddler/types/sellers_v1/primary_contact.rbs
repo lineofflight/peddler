@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellersV1
       class PrimaryContact < Data
-        def self.new: (name: String?, address: Peddler::Types::SellersV1::Address?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::PrimaryContact
-                    | (String?, Peddler::Types::SellersV1::Address?, String?) -> Peddler::Types::SellersV1::PrimaryContact
+        def self.new: (address: Peddler::Types::SellersV1::Address?, name: String?, ?non_latin_name: String?) -> Peddler::Types::SellersV1::PrimaryContact
+                    | (Peddler::Types::SellersV1::Address?, String?, String?) -> Peddler::Types::SellersV1::PrimaryContact
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::PrimaryContact
 
-        attr_reader name: String?
         attr_reader address: Peddler::Types::SellersV1::Address?
+        attr_reader name: String?
         attr_reader non_latin_name: String?
 
-        def to_h: () -> { name: String?, address: Peddler::Types::SellersV1::Address?, non_latin_name: String? }
+        def to_h: () -> { address: Peddler::Types::SellersV1::Address?, name: String?, non_latin_name: String? }
       end
     end
   end

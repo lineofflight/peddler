@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class PriceType < Data
-        def self.new: (?landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, ?shipping: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?) -> Peddler::Types::ProductPricingV0::PriceType
-                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?) -> Peddler::Types::ProductPricingV0::PriceType
+        def self.new: (listing_price: Peddler::Types::Money?, ?landed_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?, ?shipping: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::PriceType
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::PriceType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::PriceType
 
-        attr_reader landed_price: Peddler::Types::Money?
         attr_reader listing_price: Peddler::Types::Money?
-        attr_reader shipping: Peddler::Types::Money?
+        attr_reader landed_price: Peddler::Types::Money?
         attr_reader points: Peddler::Types::ProductPricingV0::Points?
+        attr_reader shipping: Peddler::Types::Money?
 
-        def to_h: () -> { landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points? }
+        def to_h: () -> { listing_price: Peddler::Types::Money?, landed_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, shipping: Peddler::Types::Money? }
       end
     end
   end

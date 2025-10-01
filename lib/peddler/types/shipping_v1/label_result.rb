@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v1/label"
 
@@ -12,11 +12,11 @@ module Peddler
         # @return [String]
         attribute?(:container_reference_id, String, from: "containerReferenceId")
 
-        # @return [String] The tracking identifier assigned to the container.
-        attribute?(:tracking_id, String, from: "trackingId")
-
         # @return [Label]
         attribute?(:label, Label)
+
+        # @return [String] The tracking identifier assigned to the container.
+        attribute?(:tracking_id, String, from: "trackingId")
       end
     end
   end

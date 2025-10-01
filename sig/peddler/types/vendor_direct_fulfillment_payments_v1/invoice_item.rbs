@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class InvoiceItem < Data
-        def self.new: (item_sequence_number: String?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, ?vendor_order_number: String?, ?hsn_code: String?, ?tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, ?charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
-                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, Peddler::Types::Money?, String?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
+        def self.new: (invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, item_sequence_number: String?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, ?buyer_product_identifier: String?, ?charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?, ?hsn_code: String?, ?tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, ?vendor_order_number: String?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
+                    | (Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, String?, Peddler::Types::Money?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?, String?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem
 
-        attr_reader item_sequence_number: String?
-        attr_reader buyer_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
         attr_reader invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?
+        attr_reader item_sequence_number: String?
         attr_reader net_cost: Peddler::Types::Money?
         attr_reader purchase_order_number: String?
-        attr_reader vendor_order_number: String?
+        attr_reader buyer_product_identifier: String?
+        attr_reader charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?
         attr_reader hsn_code: String?
         attr_reader tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?
-        attr_reader charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?
+        attr_reader vendor_order_number: String?
+        attr_reader vendor_product_identifier: String?
 
-        def to_h: () -> { item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, vendor_order_number: String?, hsn_code: String?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]? }
+        def to_h: () -> { invoiced_quantity: Peddler::Types::VendorDirectFulfillmentPaymentsV1::ItemQuantity?, item_sequence_number: String?, net_cost: Peddler::Types::Money?, purchase_order_number: String?, buyer_product_identifier: String?, charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?, hsn_code: String?, tax_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?, vendor_order_number: String?, vendor_product_identifier: String? }
       end
     end
   end

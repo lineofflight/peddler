@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,11 +9,11 @@ module Peddler
     module FinancesV0
       # Period which taxwithholding on seller's account is calculated.
       TaxWithholdingPeriod = Structure.new do
-        # @return [String] Start of the time range.
-        attribute?(:start_date, String, from: "StartDate")
-
         # @return [String] End of the time range.
         attribute?(:end_date, String, from: "EndDate")
+
+        # @return [String] Start of the time range.
+        attribute?(:start_date, String, from: "StartDate")
       end
     end
   end

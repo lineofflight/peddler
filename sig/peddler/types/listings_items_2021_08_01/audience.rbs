@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20210801
       class Audience < Data
-        def self.new: (?value: String?, ?display_name: String?) -> Peddler::Types::ListingsItems20210801::Audience
+        def self.new: (?display_name: String?, ?value: String?) -> Peddler::Types::ListingsItems20210801::Audience
                     | (String?, String?) -> Peddler::Types::ListingsItems20210801::Audience
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::Audience
 
-        attr_reader value: String?
         attr_reader display_name: String?
+        attr_reader value: String?
 
-        def to_h: () -> { value: String?, display_name: String? }
+        def to_h: () -> { display_name: String?, value: String? }
       end
     end
   end

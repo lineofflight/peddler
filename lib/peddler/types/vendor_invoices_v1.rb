@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_invoices_v1/additional_details"
 require "peddler/types/vendor_invoices_v1/address"

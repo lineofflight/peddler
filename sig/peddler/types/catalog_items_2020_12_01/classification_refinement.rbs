@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CatalogItems20201201
       class ClassificationRefinement < Data
-        def self.new: (number_of_results: Integer?, display_name: String?, classification_id: String?) -> Peddler::Types::CatalogItems20201201::ClassificationRefinement
-                    | (Integer?, String?, String?) -> Peddler::Types::CatalogItems20201201::ClassificationRefinement
+        def self.new: (classification_id: String?, display_name: String?, number_of_results: Integer?) -> Peddler::Types::CatalogItems20201201::ClassificationRefinement
+                    | (String?, String?, Integer?) -> Peddler::Types::CatalogItems20201201::ClassificationRefinement
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ClassificationRefinement
 
-        attr_reader number_of_results: Integer?
-        attr_reader display_name: String?
         attr_reader classification_id: String?
+        attr_reader display_name: String?
+        attr_reader number_of_results: Integer?
 
-        def to_h: () -> { number_of_results: Integer?, display_name: String?, classification_id: String? }
+        def to_h: () -> { classification_id: String?, display_name: String?, number_of_results: Integer? }
       end
     end
   end

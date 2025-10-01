@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Replenishment20221107
       class ListOfferMetricsRequestSort < Data
-        def self.new: (order: String?, key: String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
+        def self.new: (key: String?, order: String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
                     | (String?, String?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort
 
-        attr_reader order: String?
         attr_reader key: String?
+        attr_reader order: String?
 
-        def to_h: () -> { order: String?, key: String? }
+        def to_h: () -> { key: String?, order: String? }
       end
     end
   end

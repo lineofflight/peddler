@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SupplySources20200701
       class GetSupplySourcesResponse < Data
-        def self.new: (?supply_sources: Array[untyped]?, ?next_page_token: String?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
-                    | (Array[untyped]?, String?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
+        def self.new: (?next_page_token: String?, ?supply_sources: Array[untyped]?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
+                    | (String?, Array[untyped]?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
 
-        attr_reader supply_sources: Array[untyped]?
         attr_reader next_page_token: String?
+        attr_reader supply_sources: Array[untyped]?
 
-        def to_h: () -> { supply_sources: Array[untyped]?, next_page_token: String? }
+        def to_h: () -> { next_page_token: String?, supply_sources: Array[untyped]? }
       end
     end
   end

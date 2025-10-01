@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class Weight < Data
-        def self.new: (value: Float?, unit: String?) -> Peddler::Types::MerchantFulfillmentV0::Weight
-                    | (Float?, String?) -> Peddler::Types::MerchantFulfillmentV0::Weight
+        def self.new: (unit: String?, value: Float?) -> Peddler::Types::MerchantFulfillmentV0::Weight
+                    | (String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::Weight
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Weight
 
-        attr_reader value: Float?
         attr_reader unit: String?
+        attr_reader value: Float?
 
-        def to_h: () -> { value: Float?, unit: String? }
+        def to_h: () -> { unit: String?, value: Float? }
       end
     end
   end

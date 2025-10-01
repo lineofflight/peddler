@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ApplicationIntegrations20240401
       class DeleteNotificationsRequest < Data
-        def self.new: (template_id: String?, deletion_reason: String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
+        def self.new: (deletion_reason: String?, template_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
                     | (String?, String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
-        attr_reader template_id: String?
         attr_reader deletion_reason: String?
+        attr_reader template_id: String?
 
-        def to_h: () -> { template_id: String?, deletion_reason: String? }
+        def to_h: () -> { deletion_reason: String?, template_id: String? }
       end
     end
   end

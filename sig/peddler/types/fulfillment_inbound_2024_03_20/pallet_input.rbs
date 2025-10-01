@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class PalletInput < Data
-        def self.new: (?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
-                    | (Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
+        def self.new: (quantity: Integer?, ?dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, ?stackability: String?, ?weight: Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
+                    | (Integer?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, String?, Peddler::Types::FulfillmentInbound20240320::Weight?) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::PalletInput
 
-        attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
         attr_reader quantity: Integer?
+        attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
         attr_reader stackability: String?
         attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
 
-        def to_h: () -> { dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, stackability: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
+        def to_h: () -> { quantity: Integer?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, stackability: String?, weight: Peddler::Types::FulfillmentInbound20240320::Weight? }
       end
     end
   end

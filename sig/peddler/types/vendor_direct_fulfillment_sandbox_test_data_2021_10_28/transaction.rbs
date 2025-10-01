@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
       class Transaction < Data
-        def self.new: (transaction_id: String?, status: String?, ?test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
+        def self.new: (status: String?, transaction_id: String?, ?test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
                     | (String?, String?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
 
-        attr_reader transaction_id: String?
         attr_reader status: String?
+        attr_reader transaction_id: String?
         attr_reader test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?
 
-        def to_h: () -> { transaction_id: String?, status: String?, test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData? }
+        def to_h: () -> { status: String?, transaction_id: String?, test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData? }
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetAdditionalSellerInputsResult < Data
-        def self.new: (?shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, ?item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
-                    | (Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
+        def self.new: (?item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, ?shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResult
 
-        attr_reader shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?
         attr_reader item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?
+        attr_reader shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?
 
-        def to_h: () -> { shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]? }
+        def to_h: () -> { item_level_fields_list: Array[Peddler::Types::MerchantFulfillmentV0::ItemLevelFields]?, shipment_level_fields: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]? }
       end
     end
   end

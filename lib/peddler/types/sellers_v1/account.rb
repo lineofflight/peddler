@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/sellers_v1/marketplace_participation"
 require "peddler/types/sellers_v1/business"
@@ -11,11 +11,11 @@ module Peddler
     module SellersV1
       # The response schema for the `getAccount` operation.
       Account = Structure.new do
-        # @return [Array<MarketplaceParticipation>]
-        attribute(:marketplace_participation_list, [MarketplaceParticipation], from: "marketplaceParticipationList")
-
         # @return [String] The type of business registered for the seller account.
         attribute(:business_type, String, from: "businessType")
+
+        # @return [Array<MarketplaceParticipation>]
+        attribute(:marketplace_participation_list, [MarketplaceParticipation], from: "marketplaceParticipationList")
 
         # @return [String] The selling plan details.
         attribute(:selling_plan, String, from: "sellingPlan")

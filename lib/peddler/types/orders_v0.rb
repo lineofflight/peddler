@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/orders_v0/address"
 require "peddler/types/orders_v0/address_extended_fields"

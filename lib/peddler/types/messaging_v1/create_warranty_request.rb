@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/messaging_v1/attachment"
 
@@ -14,11 +14,11 @@ module Peddler
         # GetAttributes operation.
         attribute?(:attachments, [Attachment])
 
-        # @return [String] The start date of the warranty coverage to include in the message to the buyer.
-        attribute?(:coverage_start_date, String, from: "coverageStartDate")
-
         # @return [String] The end date of the warranty coverage to include in the message to the buyer.
         attribute?(:coverage_end_date, String, from: "coverageEndDate")
+
+        # @return [String] The start date of the warranty coverage to include in the message to the buyer.
+        attribute?(:coverage_start_date, String, from: "coverageStartDate")
       end
     end
   end

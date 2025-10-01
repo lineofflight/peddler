@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class SetAppointmentFulfillmentDataRequest < Data
-        def self.new: (?estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, ?fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?, ?appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, ?fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
-                    | (Peddler::Types::ServicesV1::DateTimeRange?, Peddler::Types::ServicesV1::FulfillmentTime?, Array[Peddler::Types::ServicesV1::AppointmentResource]?, Array[Peddler::Types::ServicesV1::FulfillmentDocument]?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
+        def self.new: (?appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, ?estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, ?fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?, ?fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
+                    | (Array[Peddler::Types::ServicesV1::AppointmentResource]?, Peddler::Types::ServicesV1::DateTimeRange?, Array[Peddler::Types::ServicesV1::FulfillmentDocument]?, Peddler::Types::ServicesV1::FulfillmentTime?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
 
-        attr_reader estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?
-        attr_reader fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?
         attr_reader appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?
+        attr_reader estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?
         attr_reader fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?
+        attr_reader fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?
 
-        def to_h: () -> { estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?, appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]? }
+        def to_h: () -> { appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime? }
       end
     end
   end

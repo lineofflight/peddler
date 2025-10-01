@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/aplus_content_2020_11_01/content_metadata"
 require "peddler/types/aplus_content_2020_11_01/content_document"
+require "peddler/types/aplus_content_2020_11_01/content_metadata"
 
 module Peddler
   module Types
@@ -13,11 +13,11 @@ module Peddler
         # @return [String]
         attribute(:content_reference_key, String, from: "contentReferenceKey")
 
-        # @return [ContentMetadata]
-        attribute?(:content_metadata, ContentMetadata, from: "contentMetadata")
-
         # @return [ContentDocument]
         attribute?(:content_document, ContentDocument, from: "contentDocument")
+
+        # @return [ContentMetadata]
+        attribute?(:content_metadata, ContentMetadata, from: "contentMetadata")
       end
     end
   end

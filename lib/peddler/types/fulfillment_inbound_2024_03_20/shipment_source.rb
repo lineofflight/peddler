@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/fulfillment_inbound_2024_03_20/address"
 
@@ -9,11 +9,11 @@ module Peddler
     module FulfillmentInbound20240320
       # Specifies the 'ship from' address for the shipment.
       ShipmentSource = Structure.new do
-        # @return [Address]
-        attribute?(:address, Address)
-
         # @return [String] The type of source for this shipment. Possible values: `SELLER_FACILITY`.
         attribute(:source_type, String, from: "sourceType")
+
+        # @return [Address]
+        attribute?(:address, Address)
       end
     end
   end

@@ -1,28 +1,28 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorInvoicesV1
       class InvoiceItem < Data
-        def self.new: (item_sequence_number: Integer?, ?amazon_product_identifier: String?, ?vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?, net_cost: Peddler::Types::Money?, ?net_cost_unit_of_measure: String?, ?purchase_order_number: String?, ?hsn_code: String?, ?credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, ?charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, ?allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
-                    | (Integer?, String?, String?, Peddler::Types::VendorInvoicesV1::ItemQuantity?, Peddler::Types::Money?, String?, String?, String?, Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
+        def self.new: (invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?, item_sequence_number: Integer?, net_cost: Peddler::Types::Money?, ?allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, ?amazon_product_identifier: String?, ?charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, ?credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, ?hsn_code: String?, ?net_cost_unit_of_measure: String?, ?purchase_order_number: String?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
+                    | (Peddler::Types::VendorInvoicesV1::ItemQuantity?, Integer?, Peddler::Types::Money?, Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, String?, Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, String?, String?, String?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, String?) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::InvoiceItem
 
-        attr_reader item_sequence_number: Integer?
-        attr_reader amazon_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
         attr_reader invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?
+        attr_reader item_sequence_number: Integer?
         attr_reader net_cost: Peddler::Types::Money?
+        attr_reader allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?
+        attr_reader amazon_product_identifier: String?
+        attr_reader charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?
+        attr_reader credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?
+        attr_reader hsn_code: String?
         attr_reader net_cost_unit_of_measure: String?
         attr_reader purchase_order_number: String?
-        attr_reader hsn_code: String?
-        attr_reader credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?
         attr_reader tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?
-        attr_reader charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?
-        attr_reader allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?
+        attr_reader vendor_product_identifier: String?
 
-        def to_h: () -> { item_sequence_number: Integer?, amazon_product_identifier: String?, vendor_product_identifier: String?, invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?, net_cost: Peddler::Types::Money?, net_cost_unit_of_measure: String?, purchase_order_number: String?, hsn_code: String?, credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]? }
+        def to_h: () -> { invoiced_quantity: Peddler::Types::VendorInvoicesV1::ItemQuantity?, item_sequence_number: Integer?, net_cost: Peddler::Types::Money?, allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, amazon_product_identifier: String?, charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, credit_note_details: Peddler::Types::VendorInvoicesV1::CreditNoteDetails?, hsn_code: String?, net_cost_unit_of_measure: String?, purchase_order_number: String?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, vendor_product_identifier: String? }
       end
     end
   end

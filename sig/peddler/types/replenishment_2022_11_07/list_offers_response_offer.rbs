@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Replenishment20221107
       class ListOffersResponseOffer < Data
-        def self.new: (?sku: String?, ?asin: String?, ?marketplace_id: String?, ?eligibility: String?, ?offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, ?program_type: String?, ?vendor_codes: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
-                    | (String?, String?, String?, String?, Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
+        def self.new: (?asin: String?, ?eligibility: String?, ?marketplace_id: String?, ?offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, ?program_type: String?, ?sku: String?, ?vendor_codes: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
+                    | (String?, String?, String?, Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, String?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
 
-        attr_reader sku: String?
         attr_reader asin: String?
-        attr_reader marketplace_id: String?
         attr_reader eligibility: String?
+        attr_reader marketplace_id: String?
         attr_reader offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?
         attr_reader program_type: String?
+        attr_reader sku: String?
         attr_reader vendor_codes: Array[String]?
 
-        def to_h: () -> { sku: String?, asin: String?, marketplace_id: String?, eligibility: String?, offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, program_type: String?, vendor_codes: Array[String]? }
+        def to_h: () -> { asin: String?, eligibility: String?, marketplace_id: String?, offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, program_type: String?, sku: String?, vendor_codes: Array[String]? }
       end
     end
   end

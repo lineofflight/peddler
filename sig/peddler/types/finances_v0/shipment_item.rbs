@@ -1,29 +1,29 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class ShipmentItem < Data
-        def self.new: (?seller_sku: String?, ?order_item_id: String?, ?order_adjustment_item_id: String?, ?quantity_shipped: Integer?, ?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?cost_of_points_granted: Peddler::Types::Money?, ?cost_of_points_returned: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ShipmentItem
-                    | (String?, String?, String?, Integer?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, Array[Peddler::Types::FinancesV0::Promotion]?, Array[Peddler::Types::FinancesV0::Promotion]?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::ShipmentItem
+        def self.new: (?cost_of_points_granted: Peddler::Types::Money?, ?cost_of_points_returned: Peddler::Types::Money?, ?item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, ?order_adjustment_item_id: String?, ?order_item_id: String?, ?promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, ?quantity_shipped: Integer?, ?seller_sku: String?) -> Peddler::Types::FinancesV0::ShipmentItem
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, String?, String?, Array[Peddler::Types::FinancesV0::Promotion]?, Array[Peddler::Types::FinancesV0::Promotion]?, Integer?, String?) -> Peddler::Types::FinancesV0::ShipmentItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::ShipmentItem
 
-        attr_reader seller_sku: String?
-        attr_reader order_item_id: String?
-        attr_reader order_adjustment_item_id: String?
-        attr_reader quantity_shipped: Integer?
-        attr_reader item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?
-        attr_reader item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?
-        attr_reader item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
-        attr_reader item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
-        attr_reader item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?
-        attr_reader promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?
-        attr_reader promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?
         attr_reader cost_of_points_granted: Peddler::Types::Money?
         attr_reader cost_of_points_returned: Peddler::Types::Money?
+        attr_reader item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?
+        attr_reader item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?
+        attr_reader item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
+        attr_reader item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
+        attr_reader item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?
+        attr_reader order_adjustment_item_id: String?
+        attr_reader order_item_id: String?
+        attr_reader promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?
+        attr_reader promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?
+        attr_reader quantity_shipped: Integer?
+        attr_reader seller_sku: String?
 
-        def to_h: () -> { seller_sku: String?, order_item_id: String?, order_adjustment_item_id: String?, quantity_shipped: Integer?, item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, cost_of_points_granted: Peddler::Types::Money?, cost_of_points_returned: Peddler::Types::Money? }
+        def to_h: () -> { cost_of_points_granted: Peddler::Types::Money?, cost_of_points_returned: Peddler::Types::Money?, item_charge_adjustment_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, item_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, item_fee_adjustment_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, item_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, item_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?, order_adjustment_item_id: String?, order_item_id: String?, promotion_adjustment_list: Array[Peddler::Types::FinancesV0::Promotion]?, promotion_list: Array[Peddler::Types::FinancesV0::Promotion]?, quantity_shipped: Integer?, seller_sku: String? }
       end
     end
   end

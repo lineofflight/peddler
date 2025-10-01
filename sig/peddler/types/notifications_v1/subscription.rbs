@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module NotificationsV1
       class Subscription < Data
-        def self.new: (subscription_id: String?, payload_version: String?, destination_id: String?, ?processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
+        def self.new: (destination_id: String?, payload_version: String?, subscription_id: String?, ?processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
                     | (String?, String?, String?, Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::Subscription
 
-        attr_reader subscription_id: String?
-        attr_reader payload_version: String?
         attr_reader destination_id: String?
+        attr_reader payload_version: String?
+        attr_reader subscription_id: String?
         attr_reader processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?
 
-        def to_h: () -> { subscription_id: String?, payload_version: String?, destination_id: String?, processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective? }
+        def to_h: () -> { destination_id: String?, payload_version: String?, subscription_id: String?, processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective? }
       end
     end
   end

@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class RegulatedOrderVerificationStatus < Data
-        def self.new: (status: String?, requires_merchant_action: bool?, valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?, ?rejection_reason: Peddler::Types::OrdersV0::RejectionReason?, ?review_date: String?, ?external_reviewer_id: String?, ?valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
-                    | (String?, bool?, Array[Peddler::Types::OrdersV0::RejectionReason]?, Peddler::Types::OrdersV0::RejectionReason?, String?, String?, Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
+        def self.new: (requires_merchant_action: bool?, status: String?, valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?, ?external_reviewer_id: String?, ?rejection_reason: Peddler::Types::OrdersV0::RejectionReason?, ?review_date: String?, ?valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
+                    | (bool?, String?, Array[Peddler::Types::OrdersV0::RejectionReason]?, String?, Peddler::Types::OrdersV0::RejectionReason?, String?, Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus
 
-        attr_reader status: String?
         attr_reader requires_merchant_action: bool?
+        attr_reader status: String?
         attr_reader valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?
+        attr_reader external_reviewer_id: String?
         attr_reader rejection_reason: Peddler::Types::OrdersV0::RejectionReason?
         attr_reader review_date: String?
-        attr_reader external_reviewer_id: String?
         attr_reader valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]?
 
         def requires_merchant_action?: () -> bool
-        def to_h: () -> { status: String?, requires_merchant_action: bool?, valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?, rejection_reason: Peddler::Types::OrdersV0::RejectionReason?, review_date: String?, external_reviewer_id: String?, valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]? }
+        def to_h: () -> { requires_merchant_action: bool?, status: String?, valid_rejection_reasons: Array[Peddler::Types::OrdersV0::RejectionReason]?, external_reviewer_id: String?, rejection_reason: Peddler::Types::OrdersV0::RejectionReason?, review_date: String?, valid_verification_details: Array[Peddler::Types::OrdersV0::ValidVerificationDetail]? }
       end
     end
   end

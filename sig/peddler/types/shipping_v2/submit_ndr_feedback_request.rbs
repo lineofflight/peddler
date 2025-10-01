@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class SubmitNdrFeedbackRequest < Data
-        def self.new: (tracking_id: String?, ndr_action: String?, ?ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData?) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
+        def self.new: (ndr_action: String?, tracking_id: String?, ?ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData?) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
                     | (String?, String?, Peddler::Types::ShippingV2::NdrRequestData?) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::SubmitNdrFeedbackRequest
 
-        attr_reader tracking_id: String?
         attr_reader ndr_action: String?
+        attr_reader tracking_id: String?
         attr_reader ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData?
 
-        def to_h: () -> { tracking_id: String?, ndr_action: String?, ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData? }
+        def to_h: () -> { ndr_action: String?, tracking_id: String?, ndr_request_data: Peddler::Types::ShippingV2::NdrRequestData? }
       end
     end
   end

@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class TransactionInitiationRequest < Data
-        def self.new: (source_account_id: String?, ?destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, ?transaction_description: String?, ?customer_payment_reference: String?, ?destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, source_amount: Peddler::Types::Money?, ?transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, request_time: String?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
-                    | (String?, String?, Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, String?, String?, Peddler::Types::SellerWallet20240301::AccountHolderAddress?, Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, String?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
+        def self.new: (destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, request_time: String?, source_account_id: String?, source_amount: Peddler::Types::Money?, ?customer_payment_reference: String?, ?destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, ?destination_account_id: String?, ?transaction_description: String?, ?transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
+                    | (Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, String?, String?, Peddler::Types::Money?, String?, Peddler::Types::SellerWallet20240301::AccountHolderAddress?, String?, String?, Peddler::Types::SellerWallet20240301::TransferRatePreview?) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransactionInitiationRequest
 
-        attr_reader source_account_id: String?
-        attr_reader destination_account_id: String?
         attr_reader destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?
-        attr_reader transaction_description: String?
+        attr_reader request_time: String?
+        attr_reader source_account_id: String?
+        attr_reader source_amount: Peddler::Types::Money?
         attr_reader customer_payment_reference: String?
         attr_reader destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?
-        attr_reader source_amount: Peddler::Types::Money?
+        attr_reader destination_account_id: String?
+        attr_reader transaction_description: String?
         attr_reader transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?
-        attr_reader request_time: String?
 
-        def to_h: () -> { source_account_id: String?, destination_account_id: String?, destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, transaction_description: String?, customer_payment_reference: String?, destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, source_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, request_time: String? }
+        def to_h: () -> { destination_transaction_instrument: Peddler::Types::SellerWallet20240301::TransactionInstrumentDetails?, request_time: String?, source_account_id: String?, source_amount: Peddler::Types::Money?, customer_payment_reference: String?, destination_account_holder_address: Peddler::Types::SellerWallet20240301::AccountHolderAddress?, destination_account_id: String?, transaction_description: String?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview? }
       end
     end
   end

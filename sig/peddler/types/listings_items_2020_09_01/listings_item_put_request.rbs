@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20200901
       class ListingsItemPutRequest < Data
-        def self.new: (product_type: String?, ?requirements: String?, attributes: Hash[untyped, untyped]?) -> Peddler::Types::ListingsItems20200901::ListingsItemPutRequest
-                    | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ListingsItems20200901::ListingsItemPutRequest
+        def self.new: (attributes: Hash[untyped, untyped]?, product_type: String?, ?requirements: String?) -> Peddler::Types::ListingsItems20200901::ListingsItemPutRequest
+                    | (Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::ListingsItems20200901::ListingsItemPutRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20200901::ListingsItemPutRequest
 
+        attr_reader attributes: Hash[untyped, untyped]?
         attr_reader product_type: String?
         attr_reader requirements: String?
-        attr_reader attributes: Hash[untyped, untyped]?
 
-        def to_h: () -> { product_type: String?, requirements: String?, attributes: Hash[untyped, untyped]? }
+        def to_h: () -> { attributes: Hash[untyped, untyped]?, product_type: String?, requirements: String? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "peddler/types/vendor_direct_fulfillment_payments_v1/tax_detail"
@@ -10,11 +10,11 @@ module Peddler
     module VendorDirectFulfillmentPaymentsV1
       # Monetary and tax details of the charge.
       ChargeDetails = Structure.new do
-        # @return [String] Type of charge applied.
-        attribute(:type, String)
-
         # @return [Money]
         attribute(:charge_amount, Money, from: "chargeAmount")
+
+        # @return [String] Type of charge applied.
+        attribute(:type, String)
 
         # @return [Array<TaxDetail>] Individual tax details per line item.
         attribute?(:tax_details, [TaxDetail], from: "taxDetails")

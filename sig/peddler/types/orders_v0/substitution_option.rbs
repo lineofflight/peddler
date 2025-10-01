@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class SubstitutionOption < Data
-        def self.new: (?asin: String?, ?quantity_ordered: Integer?, ?seller_sku: String?, ?title: String?, ?measurement: Peddler::Types::OrdersV0::Measurement?) -> Peddler::Types::OrdersV0::SubstitutionOption
-                    | (String?, Integer?, String?, String?, Peddler::Types::OrdersV0::Measurement?) -> Peddler::Types::OrdersV0::SubstitutionOption
+        def self.new: (?asin: String?, ?measurement: Peddler::Types::OrdersV0::Measurement?, ?quantity_ordered: Integer?, ?seller_sku: String?, ?title: String?) -> Peddler::Types::OrdersV0::SubstitutionOption
+                    | (String?, Peddler::Types::OrdersV0::Measurement?, Integer?, String?, String?) -> Peddler::Types::OrdersV0::SubstitutionOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::SubstitutionOption
 
         attr_reader asin: String?
+        attr_reader measurement: Peddler::Types::OrdersV0::Measurement?
         attr_reader quantity_ordered: Integer?
         attr_reader seller_sku: String?
         attr_reader title: String?
-        attr_reader measurement: Peddler::Types::OrdersV0::Measurement?
 
-        def to_h: () -> { asin: String?, quantity_ordered: Integer?, seller_sku: String?, title: String?, measurement: Peddler::Types::OrdersV0::Measurement? }
+        def to_h: () -> { asin: String?, measurement: Peddler::Types::OrdersV0::Measurement?, quantity_ordered: Integer?, seller_sku: String?, title: String? }
       end
     end
   end

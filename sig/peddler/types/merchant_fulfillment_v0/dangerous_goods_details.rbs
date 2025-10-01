@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class DangerousGoodsDetails < Data
-        def self.new: (?united_nations_regulatory_id: String?, ?transportation_regulatory_class: String?, ?packing_group: String?, ?packing_instruction: String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
+        def self.new: (?packing_group: String?, ?packing_instruction: String?, ?transportation_regulatory_class: String?, ?united_nations_regulatory_id: String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
                     | (String?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails
 
-        attr_reader united_nations_regulatory_id: String?
-        attr_reader transportation_regulatory_class: String?
         attr_reader packing_group: String?
         attr_reader packing_instruction: String?
+        attr_reader transportation_regulatory_class: String?
+        attr_reader united_nations_regulatory_id: String?
 
-        def to_h: () -> { united_nations_regulatory_id: String?, transportation_regulatory_class: String?, packing_group: String?, packing_instruction: String? }
+        def to_h: () -> { packing_group: String?, packing_instruction: String?, transportation_regulatory_class: String?, united_nations_regulatory_id: String? }
       end
     end
   end

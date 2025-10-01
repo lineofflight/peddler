@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CustomerFeedback20240601
       class ItemReviewTopics < Data
-        def self.new: (?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, ?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
+        def self.new: (?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, ?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
                     | (Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
 
-        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?
         attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?
+        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?
 
-        def to_h: () -> { positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]? }
+        def to_h: () -> { negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]? }
       end
     end
   end

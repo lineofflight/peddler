@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class AssociatedItem < Data
-        def self.new: (?order_id: String?, ?order_item_id: String?, ?association_type: String?) -> Peddler::Types::OrdersV0::AssociatedItem
+        def self.new: (?association_type: String?, ?order_id: String?, ?order_item_id: String?) -> Peddler::Types::OrdersV0::AssociatedItem
                     | (String?, String?, String?) -> Peddler::Types::OrdersV0::AssociatedItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::AssociatedItem
 
+        attr_reader association_type: String?
         attr_reader order_id: String?
         attr_reader order_item_id: String?
-        attr_reader association_type: String?
 
-        def to_h: () -> { order_id: String?, order_item_id: String?, association_type: String? }
+        def to_h: () -> { association_type: String?, order_id: String?, order_item_id: String? }
       end
     end
   end

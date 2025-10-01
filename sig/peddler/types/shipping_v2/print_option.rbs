@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class PrintOption < Data
-        def self.new: (?supported_dp_is: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_file_joining_options: Array[untyped]?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> Peddler::Types::ShippingV2::PrintOption
-                    | (Array[untyped]?, Array[untyped]?, Array[untyped]?, Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?) -> Peddler::Types::ShippingV2::PrintOption
+        def self.new: (supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?, supported_file_joining_options: Array[untyped]?, supported_page_layouts: Array[untyped]?, ?supported_dp_is: Array[untyped]?) -> Peddler::Types::ShippingV2::PrintOption
+                    | (Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?, Array[untyped]?, Array[untyped]?, Array[untyped]?) -> Peddler::Types::ShippingV2::PrintOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PrintOption
 
-        attr_reader supported_dp_is: Array[untyped]?
-        attr_reader supported_page_layouts: Array[untyped]?
-        attr_reader supported_file_joining_options: Array[untyped]?
         attr_reader supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?
+        attr_reader supported_file_joining_options: Array[untyped]?
+        attr_reader supported_page_layouts: Array[untyped]?
+        attr_reader supported_dp_is: Array[untyped]?
 
-        def to_h: () -> { supported_dp_is: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_file_joining_options: Array[untyped]?, supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]? }
+        def to_h: () -> { supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?, supported_file_joining_options: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_dp_is: Array[untyped]? }
       end
     end
   end

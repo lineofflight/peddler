@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/replenishment_2022_11_07/preference"
 require "peddler/types/replenishment_2022_11_07/promotion"
@@ -17,9 +17,8 @@ module Peddler
         # identifier for the marketplace.
         attribute(:marketplace_id, String, from: "marketplaceId")
 
-        # @return [Array<String>] A list of SKUs to filter. This filter is only supported for sellers and not for
-        # vendors.
-        attribute?(:skus, [String])
+        # @return [Array<ProgramType>]
+        attribute(:program_types, Array, from: "programTypes")
 
         # @return [Array<String>] A list of Amazon Standard Identification Numbers (ASINs).
         attribute?(:asins, [String])
@@ -33,8 +32,9 @@ module Peddler
         # @return [Promotion] Offer promotions to include in the result filter criteria.
         attribute?(:promotions, Promotion)
 
-        # @return [Array<ProgramType>]
-        attribute(:program_types, Array, from: "programTypes")
+        # @return [Array<String>] A list of SKUs to filter. This filter is only supported for sellers and not for
+        # vendors.
+        attribute?(:skus, [String])
       end
     end
   end

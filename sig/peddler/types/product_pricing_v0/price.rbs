@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class Price < Data
-        def self.new: (status: String?, ?seller_sku: String?, ?asin: String?, ?product: Peddler::Types::ProductPricingV0::Product?) -> Peddler::Types::ProductPricingV0::Price
-                    | (String?, String?, String?, Peddler::Types::ProductPricingV0::Product?) -> Peddler::Types::ProductPricingV0::Price
+        def self.new: (status: String?, ?asin: String?, ?product: Peddler::Types::ProductPricingV0::Product?, ?seller_sku: String?) -> Peddler::Types::ProductPricingV0::Price
+                    | (String?, String?, Peddler::Types::ProductPricingV0::Product?, String?) -> Peddler::Types::ProductPricingV0::Price
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::Price
 
         attr_reader status: String?
-        attr_reader seller_sku: String?
         attr_reader asin: String?
         attr_reader product: Peddler::Types::ProductPricingV0::Product?
+        attr_reader seller_sku: String?
 
-        def to_h: () -> { status: String?, seller_sku: String?, asin: String?, product: Peddler::Types::ProductPricingV0::Product? }
+        def to_h: () -> { status: String?, asin: String?, product: Peddler::Types::ProductPricingV0::Product?, seller_sku: String? }
       end
     end
   end

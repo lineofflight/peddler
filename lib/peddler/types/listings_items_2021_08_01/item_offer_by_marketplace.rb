@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
-require "peddler/types/listings_items_2021_08_01/points"
 require "peddler/types/listings_items_2021_08_01/audience"
+require "peddler/types/listings_items_2021_08_01/points"
 
 module Peddler
   module Types
@@ -20,11 +20,11 @@ module Peddler
         # @return [Money] The purchase price of the listings item
         attribute(:price, Money)
 
-        # @return [Points]
-        attribute?(:points, Points)
-
         # @return [Audience] Buyer segment or program this offer is applicable to.
         attribute?(:audience, Audience)
+
+        # @return [Points]
+        attribute?(:points, Points)
       end
     end
   end

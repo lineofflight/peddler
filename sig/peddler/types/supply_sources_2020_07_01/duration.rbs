@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SupplySources20200701
       class Duration < Data
-        def self.new: (?value: Integer?, ?time_unit: String?) -> Peddler::Types::SupplySources20200701::Duration
-                    | (Integer?, String?) -> Peddler::Types::SupplySources20200701::Duration
+        def self.new: (?time_unit: String?, ?value: Integer?) -> Peddler::Types::SupplySources20200701::Duration
+                    | (String?, Integer?) -> Peddler::Types::SupplySources20200701::Duration
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::Duration
 
-        attr_reader value: Integer?
         attr_reader time_unit: String?
+        attr_reader value: Integer?
 
-        def to_h: () -> { value: Integer?, time_unit: String? }
+        def to_h: () -> { time_unit: String?, value: Integer? }
       end
     end
   end

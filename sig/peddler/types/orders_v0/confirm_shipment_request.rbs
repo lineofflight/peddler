@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class ConfirmShipmentRequest < Data
-        def self.new: (package_detail: Peddler::Types::OrdersV0::PackageDetail?, ?cod_collection_method: String?, marketplace_id: String?) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
-                    | (Peddler::Types::OrdersV0::PackageDetail?, String?, String?) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
+        def self.new: (marketplace_id: String?, package_detail: Peddler::Types::OrdersV0::PackageDetail?, ?cod_collection_method: String?) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
+                    | (String?, Peddler::Types::OrdersV0::PackageDetail?, String?) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ConfirmShipmentRequest
 
+        attr_reader marketplace_id: String?
         attr_reader package_detail: Peddler::Types::OrdersV0::PackageDetail?
         attr_reader cod_collection_method: String?
-        attr_reader marketplace_id: String?
 
-        def to_h: () -> { package_detail: Peddler::Types::OrdersV0::PackageDetail?, cod_collection_method: String?, marketplace_id: String? }
+        def to_h: () -> { marketplace_id: String?, package_detail: Peddler::Types::OrdersV0::PackageDetail?, cod_collection_method: String? }
       end
     end
   end

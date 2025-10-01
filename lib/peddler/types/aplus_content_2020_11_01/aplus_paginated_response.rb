@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/aplus_content_2020_11_01/error"
 
@@ -11,11 +11,11 @@ module Peddler
       # with this token and include the same arguments as the call that produced the token. To get a complete list, call
       # this operation until `nextPageToken` is null. Note that this operation can return empty pages.
       AplusPaginatedResponse = Structure.new do
-        # @return [Array<Error>]
-        attribute?(:warnings, [Error])
-
         # @return [String]
         attribute?(:next_page_token, String, from: "nextPageToken")
+
+        # @return [Array<Error>]
+        attribute?(:warnings, [Error])
       end
     end
   end

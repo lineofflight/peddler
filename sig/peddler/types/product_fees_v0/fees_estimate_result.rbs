@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductFeesV0
       class FeesEstimateResult < Data
-        def self.new: (?status: String?, ?fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, ?fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, ?error: Peddler::Types::ProductFeesV0::FeesEstimateError?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
-                    | (String?, Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, Peddler::Types::ProductFeesV0::FeesEstimate?, Peddler::Types::ProductFeesV0::FeesEstimateError?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
+        def self.new: (?error: Peddler::Types::ProductFeesV0::FeesEstimateError?, ?fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, ?fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, ?status: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
+                    | (Peddler::Types::ProductFeesV0::FeesEstimateError?, Peddler::Types::ProductFeesV0::FeesEstimate?, Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateResult
 
-        attr_reader status: String?
-        attr_reader fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?
-        attr_reader fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?
         attr_reader error: Peddler::Types::ProductFeesV0::FeesEstimateError?
+        attr_reader fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?
+        attr_reader fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?
+        attr_reader status: String?
 
-        def to_h: () -> { status: String?, fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, error: Peddler::Types::ProductFeesV0::FeesEstimateError? }
+        def to_h: () -> { error: Peddler::Types::ProductFeesV0::FeesEstimateError?, fees_estimate: Peddler::Types::ProductFeesV0::FeesEstimate?, fees_estimate_identifier: Peddler::Types::ProductFeesV0::FeesEstimateIdentifier?, status: String? }
       end
     end
   end

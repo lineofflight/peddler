@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/shipping_v2/ndr_request_data"
 
@@ -10,10 +10,10 @@ module Peddler
       # The request schema for the NdrFeedback operation
       SubmitNdrFeedbackRequest = Structure.new do
         # @return [String]
-        attribute(:tracking_id, String, from: "trackingId")
+        attribute(:ndr_action, String, from: "ndrAction")
 
         # @return [String]
-        attribute(:ndr_action, String, from: "ndrAction")
+        attribute(:tracking_id, String, from: "trackingId")
 
         # @return [NdrRequestData]
         attribute?(:ndr_request_data, NdrRequestData, from: "ndrRequestData")

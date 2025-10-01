@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/product_type_definitions_2020_09_01/schema_link"
 require "peddler/types/product_type_definitions_2020_09_01/product_type_version"
+require "peddler/types/product_type_definitions_2020_09_01/schema_link"
 
 module Peddler
   module Types
@@ -12,23 +12,8 @@ module Peddler
       # catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items,
       # Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
       ProductTypeDefinition = Structure.new do
-        # @return [SchemaLink] Link to meta-schema describing the vocabulary used by the product type schema.
-        attribute?(:meta_schema, SchemaLink, from: "metaSchema")
-
-        # @return [SchemaLink] Link to schema describing the attributes and requirements for the product type.
-        attribute(:schema, SchemaLink)
-
-        # @return [String] Name of the requirements set represented in this product type definition.
-        attribute(:requirements, String)
-
-        # @return [String] Identifies if the required attributes for a requirements set are enforced by the product type
-        # definition schema. Non-enforced requirements enable structural validation of individual attributes without all
-        # of the required attributes being present (such as for partial updates).
-        attribute(:requirements_enforced, String, from: "requirementsEnforced")
-
-        # @return [Hash] Mapping of property group names to property groups. Property groups represent logical groupings
-        # of schema properties that can be used for display or informational purposes.
-        attribute(:property_groups, Hash, from: "propertyGroups")
+        # @return [String] Human-readable and localized description of the Amazon product type.
+        attribute(:display_name, String, from: "displayName")
 
         # @return [String] Locale of the display elements contained in the product type definition.
         attribute(:locale, String)
@@ -39,11 +24,26 @@ module Peddler
         # @return [String] The name of the Amazon product type that this product type definition applies to.
         attribute(:product_type, String, from: "productType")
 
-        # @return [String] Human-readable and localized description of the Amazon product type.
-        attribute(:display_name, String, from: "displayName")
-
         # @return [ProductTypeVersion] The version details for the Amazon product type.
         attribute(:product_type_version, ProductTypeVersion, from: "productTypeVersion")
+
+        # @return [Hash] Mapping of property group names to property groups. Property groups represent logical groupings
+        # of schema properties that can be used for display or informational purposes.
+        attribute(:property_groups, Hash, from: "propertyGroups")
+
+        # @return [String] Name of the requirements set represented in this product type definition.
+        attribute(:requirements, String)
+
+        # @return [String] Identifies if the required attributes for a requirements set are enforced by the product type
+        # definition schema. Non-enforced requirements enable structural validation of individual attributes without all
+        # of the required attributes being present (such as for partial updates).
+        attribute(:requirements_enforced, String, from: "requirementsEnforced")
+
+        # @return [SchemaLink] Link to schema describing the attributes and requirements for the product type.
+        attribute(:schema, SchemaLink)
+
+        # @return [SchemaLink] Link to meta-schema describing the vocabulary used by the product type schema.
+        attribute?(:meta_schema, SchemaLink, from: "metaSchema")
       end
     end
   end

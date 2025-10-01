@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class OrderAddress < Data
-        def self.new: (amazon_order_id: String?, ?buyer_company_name: String?, ?shipping_address: Peddler::Types::OrdersV0::Address?, ?delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?) -> Peddler::Types::OrdersV0::OrderAddress
-                    | (String?, String?, Peddler::Types::OrdersV0::Address?, Peddler::Types::OrdersV0::DeliveryPreferences?) -> Peddler::Types::OrdersV0::OrderAddress
+        def self.new: (amazon_order_id: String?, ?buyer_company_name: String?, ?delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?, ?shipping_address: Peddler::Types::OrdersV0::Address?) -> Peddler::Types::OrdersV0::OrderAddress
+                    | (String?, String?, Peddler::Types::OrdersV0::DeliveryPreferences?, Peddler::Types::OrdersV0::Address?) -> Peddler::Types::OrdersV0::OrderAddress
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderAddress
 
         attr_reader amazon_order_id: String?
         attr_reader buyer_company_name: String?
-        attr_reader shipping_address: Peddler::Types::OrdersV0::Address?
         attr_reader delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?
+        attr_reader shipping_address: Peddler::Types::OrdersV0::Address?
 
-        def to_h: () -> { amazon_order_id: String?, buyer_company_name: String?, shipping_address: Peddler::Types::OrdersV0::Address?, delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences? }
+        def to_h: () -> { amazon_order_id: String?, buyer_company_name: String?, delivery_preferences: Peddler::Types::OrdersV0::DeliveryPreferences?, shipping_address: Peddler::Types::OrdersV0::Address? }
       end
     end
   end

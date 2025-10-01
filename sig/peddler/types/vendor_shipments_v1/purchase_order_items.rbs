@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class PurchaseOrderItems < Data
-        def self.new: (item_sequence_number: String?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?maximum_retail_price: Peddler::Types::Money?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
-                    | (String?, String?, String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::Money?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
+        def self.new: (item_sequence_number: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?buyer_product_identifier: String?, ?maximum_retail_price: Peddler::Types::Money?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
+                    | (String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
 
         attr_reader item_sequence_number: String?
-        attr_reader buyer_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
         attr_reader shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
+        attr_reader buyer_product_identifier: String?
         attr_reader maximum_retail_price: Peddler::Types::Money?
+        attr_reader vendor_product_identifier: String?
 
-        def to_h: () -> { item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, maximum_retail_price: Peddler::Types::Money? }
+        def to_h: () -> { item_sequence_number: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, buyer_product_identifier: String?, maximum_retail_price: Peddler::Types::Money?, vendor_product_identifier: String? }
       end
     end
   end

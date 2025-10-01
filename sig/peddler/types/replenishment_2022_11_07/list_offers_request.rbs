@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Replenishment20221107
       class ListOffersRequest < Data
-        def self.new: (pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, ?sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
-                    | (Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
+        def self.new: (filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
+                    | (Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, Peddler::Types::Replenishment20221107::ListOffersRequestSort?) -> Peddler::Types::Replenishment20221107::ListOffersRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersRequest
 
-        attr_reader pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?
         attr_reader filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?
+        attr_reader pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?
         attr_reader sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort?
 
-        def to_h: () -> { pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort? }
+        def to_h: () -> { filters: Peddler::Types::Replenishment20221107::ListOffersRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOffersRequestPagination?, sort: Peddler::Types::Replenishment20221107::ListOffersRequestSort? }
       end
     end
   end

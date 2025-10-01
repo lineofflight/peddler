@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class ASINIdentifier < Data
-        def self.new: (marketplace_id: String?, asin: String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
+        def self.new: (asin: String?, marketplace_id: String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
                     | (String?, String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ASINIdentifier
 
-        attr_reader marketplace_id: String?
         attr_reader asin: String?
+        attr_reader marketplace_id: String?
 
-        def to_h: () -> { marketplace_id: String?, asin: String? }
+        def to_h: () -> { asin: String?, marketplace_id: String? }
       end
     end
   end

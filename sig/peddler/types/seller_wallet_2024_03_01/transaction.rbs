@@ -1,32 +1,32 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class Transaction < Data
-        def self.new: (transaction_id: String?, transaction_type: String?, transaction_status: String?, transaction_request_date: String?, ?expected_completion_date: String?, ?transaction_actual_completion_date: String?, last_update_date: String?, ?requester_name: String?, transaction_requester_source: String?, transaction_description: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_request_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, ?transaction_final_amount: Peddler::Types::Money?, ?transaction_failure_reason: String?) -> Peddler::Types::SellerWallet20240301::Transaction
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::Money?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, Peddler::Types::Money?, String?) -> Peddler::Types::SellerWallet20240301::Transaction
+        def self.new: (last_update_date: String?, transaction_description: String?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_id: String?, transaction_request_amount: Peddler::Types::Money?, transaction_request_date: String?, transaction_requester_source: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_status: String?, transaction_type: String?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, ?expected_completion_date: String?, ?requester_name: String?, ?transaction_actual_completion_date: String?, ?transaction_failure_reason: String?, ?transaction_final_amount: Peddler::Types::Money?) -> Peddler::Types::SellerWallet20240301::Transaction
+                    | (String?, String?, Peddler::Types::SellerWallet20240301::TransactionAccount?, String?, Peddler::Types::Money?, String?, String?, Peddler::Types::SellerWallet20240301::TransactionAccount?, String?, String?, Peddler::Types::SellerWallet20240301::TransferRatePreview?, String?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::SellerWallet20240301::Transaction
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::Transaction
 
-        attr_reader transaction_id: String?
-        attr_reader transaction_type: String?
-        attr_reader transaction_status: String?
-        attr_reader transaction_request_date: String?
-        attr_reader expected_completion_date: String?
-        attr_reader transaction_actual_completion_date: String?
         attr_reader last_update_date: String?
-        attr_reader requester_name: String?
-        attr_reader transaction_requester_source: String?
         attr_reader transaction_description: String?
-        attr_reader transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?
         attr_reader transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?
+        attr_reader transaction_id: String?
         attr_reader transaction_request_amount: Peddler::Types::Money?
+        attr_reader transaction_request_date: String?
+        attr_reader transaction_requester_source: String?
+        attr_reader transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?
+        attr_reader transaction_status: String?
+        attr_reader transaction_type: String?
         attr_reader transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?
-        attr_reader transaction_final_amount: Peddler::Types::Money?
+        attr_reader expected_completion_date: String?
+        attr_reader requester_name: String?
+        attr_reader transaction_actual_completion_date: String?
         attr_reader transaction_failure_reason: String?
+        attr_reader transaction_final_amount: Peddler::Types::Money?
 
-        def to_h: () -> { transaction_id: String?, transaction_type: String?, transaction_status: String?, transaction_request_date: String?, expected_completion_date: String?, transaction_actual_completion_date: String?, last_update_date: String?, requester_name: String?, transaction_requester_source: String?, transaction_description: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_request_amount: Peddler::Types::Money?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, transaction_final_amount: Peddler::Types::Money?, transaction_failure_reason: String? }
+        def to_h: () -> { last_update_date: String?, transaction_description: String?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_id: String?, transaction_request_amount: Peddler::Types::Money?, transaction_request_date: String?, transaction_requester_source: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_status: String?, transaction_type: String?, transfer_rate_details: Peddler::Types::SellerWallet20240301::TransferRatePreview?, expected_completion_date: String?, requester_name: String?, transaction_actual_completion_date: String?, transaction_failure_reason: String?, transaction_final_amount: Peddler::Types::Money? }
       end
     end
   end

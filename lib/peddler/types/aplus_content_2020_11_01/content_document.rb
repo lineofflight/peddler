@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/aplus_content_2020_11_01/content_module"
 
@@ -9,20 +9,20 @@ module Peddler
     module AplusContent20201101
       # The A+ Content document. This is the enhanced content that is published to product detail pages.
       ContentDocument = Structure.new do
-        # @return [String] The A+ Content document name.
-        attribute(:name, String)
+        # @return [Array<ContentModule>]
+        attribute(:content_module_list, [ContentModule], from: "contentModuleList")
 
         # @return [String]
         attribute(:content_type, String, from: "contentType")
 
         # @return [String]
-        attribute?(:content_sub_type, String, from: "contentSubType")
-
-        # @return [String]
         attribute(:locale, String)
 
-        # @return [Array<ContentModule>]
-        attribute(:content_module_list, [ContentModule], from: "contentModuleList")
+        # @return [String] The A+ Content document name.
+        attribute(:name, String)
+
+        # @return [String]
+        attribute?(:content_sub_type, String, from: "contentSubType")
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class StandardTextModule < Data
-        def self.new: (?headline: Peddler::Types::AplusContent20201101::TextComponent?, body: Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
-                    | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ParagraphComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
+        def self.new: (body: Peddler::Types::AplusContent20201101::ParagraphComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
+                    | (Peddler::Types::AplusContent20201101::ParagraphComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextModule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardTextModule
 
-        attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader body: Peddler::Types::AplusContent20201101::ParagraphComponent?
+        attr_reader headline: Peddler::Types::AplusContent20201101::TextComponent?
 
-        def to_h: () -> { headline: Peddler::Types::AplusContent20201101::TextComponent?, body: Peddler::Types::AplusContent20201101::ParagraphComponent? }
+        def to_h: () -> { body: Peddler::Types::AplusContent20201101::ParagraphComponent?, headline: Peddler::Types::AplusContent20201101::TextComponent? }
       end
     end
   end

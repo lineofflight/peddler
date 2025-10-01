@@ -1,23 +1,23 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class RemovalShipmentItemAdjustment < Data
-        def self.new: (?removal_shipment_item_id: String?, ?tax_collection_model: String?, ?fulfillment_network_sku: String?, ?adjusted_quantity: Integer?, ?revenue_adjustment: Peddler::Types::Money?, ?tax_amount_adjustment: Peddler::Types::Money?, ?tax_withheld_adjustment: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
-                    | (String?, String?, String?, Integer?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
+        def self.new: (?adjusted_quantity: Integer?, ?fulfillment_network_sku: String?, ?removal_shipment_item_id: String?, ?revenue_adjustment: Peddler::Types::Money?, ?tax_amount_adjustment: Peddler::Types::Money?, ?tax_collection_model: String?, ?tax_withheld_adjustment: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
+                    | (Integer?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
 
-        attr_reader removal_shipment_item_id: String?
-        attr_reader tax_collection_model: String?
-        attr_reader fulfillment_network_sku: String?
         attr_reader adjusted_quantity: Integer?
+        attr_reader fulfillment_network_sku: String?
+        attr_reader removal_shipment_item_id: String?
         attr_reader revenue_adjustment: Peddler::Types::Money?
         attr_reader tax_amount_adjustment: Peddler::Types::Money?
+        attr_reader tax_collection_model: String?
         attr_reader tax_withheld_adjustment: Peddler::Types::Money?
 
-        def to_h: () -> { removal_shipment_item_id: String?, tax_collection_model: String?, fulfillment_network_sku: String?, adjusted_quantity: Integer?, revenue_adjustment: Peddler::Types::Money?, tax_amount_adjustment: Peddler::Types::Money?, tax_withheld_adjustment: Peddler::Types::Money? }
+        def to_h: () -> { adjusted_quantity: Integer?, fulfillment_network_sku: String?, removal_shipment_item_id: String?, revenue_adjustment: Peddler::Types::Money?, tax_amount_adjustment: Peddler::Types::Money?, tax_collection_model: String?, tax_withheld_adjustment: Peddler::Types::Money? }
       end
     end
   end

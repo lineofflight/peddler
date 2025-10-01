@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class ValidVerificationDetail < Data
-        def self.new: (verification_detail_type: String?, valid_verification_statuses: Array[untyped]?) -> Peddler::Types::OrdersV0::ValidVerificationDetail
-                    | (String?, Array[untyped]?) -> Peddler::Types::OrdersV0::ValidVerificationDetail
+        def self.new: (valid_verification_statuses: Array[untyped]?, verification_detail_type: String?) -> Peddler::Types::OrdersV0::ValidVerificationDetail
+                    | (Array[untyped]?, String?) -> Peddler::Types::OrdersV0::ValidVerificationDetail
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ValidVerificationDetail
 
-        attr_reader verification_detail_type: String?
         attr_reader valid_verification_statuses: Array[untyped]?
+        attr_reader verification_detail_type: String?
 
-        def to_h: () -> { verification_detail_type: String?, valid_verification_statuses: Array[untyped]? }
+        def to_h: () -> { valid_verification_statuses: Array[untyped]?, verification_detail_type: String? }
       end
     end
   end

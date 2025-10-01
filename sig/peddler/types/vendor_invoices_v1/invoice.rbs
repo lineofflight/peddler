@@ -1,31 +1,31 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorInvoicesV1
       class Invoice < Data
-        def self.new: (invoice_type: String?, id: String?, ?reference_number: String?, date: String?, remit_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?ship_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?ship_from_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?bill_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?payment_terms: Peddler::Types::VendorInvoicesV1::PaymentTerms?, invoice_total: Peddler::Types::Money?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, ?additional_details: Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?, ?charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, ?allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, ?items: Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]?) -> Peddler::Types::VendorInvoicesV1::Invoice
-                    | (String?, String?, String?, String?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Peddler::Types::VendorInvoicesV1::PaymentTerms?, Peddler::Types::Money?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?, Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]?) -> Peddler::Types::VendorInvoicesV1::Invoice
+        def self.new: (date: String?, id: String?, invoice_total: Peddler::Types::Money?, invoice_type: String?, remit_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?additional_details: Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?, ?allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, ?bill_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, ?items: Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]?, ?payment_terms: Peddler::Types::VendorInvoicesV1::PaymentTerms?, ?reference_number: String?, ?ship_from_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?ship_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ?tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::Invoice
+                    | (String?, String?, Peddler::Types::Money?, String?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?, Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]?, Peddler::Types::VendorInvoicesV1::PaymentTerms?, String?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Peddler::Types::VendorInvoicesV1::PartyIdentification?, Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?) -> Peddler::Types::VendorInvoicesV1::Invoice
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::Invoice
 
-        attr_reader invoice_type: String?
-        attr_reader id: String?
-        attr_reader reference_number: String?
         attr_reader date: String?
-        attr_reader remit_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
-        attr_reader ship_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
-        attr_reader ship_from_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
-        attr_reader bill_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
-        attr_reader payment_terms: Peddler::Types::VendorInvoicesV1::PaymentTerms?
+        attr_reader id: String?
         attr_reader invoice_total: Peddler::Types::Money?
-        attr_reader tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?
+        attr_reader invoice_type: String?
+        attr_reader remit_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
         attr_reader additional_details: Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?
-        attr_reader charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?
         attr_reader allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?
+        attr_reader bill_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
+        attr_reader charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?
         attr_reader items: Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]?
+        attr_reader payment_terms: Peddler::Types::VendorInvoicesV1::PaymentTerms?
+        attr_reader reference_number: String?
+        attr_reader ship_from_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?
+        attr_reader tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?
 
-        def to_h: () -> { invoice_type: String?, id: String?, reference_number: String?, date: String?, remit_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, bill_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, payment_terms: Peddler::Types::VendorInvoicesV1::PaymentTerms?, invoice_total: Peddler::Types::Money?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]?, additional_details: Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?, charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, items: Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]? }
+        def to_h: () -> { date: String?, id: String?, invoice_total: Peddler::Types::Money?, invoice_type: String?, remit_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, additional_details: Array[Peddler::Types::VendorInvoicesV1::AdditionalDetails]?, allowance_details: Array[Peddler::Types::VendorInvoicesV1::AllowanceDetails]?, bill_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, charge_details: Array[Peddler::Types::VendorInvoicesV1::ChargeDetails]?, items: Array[Peddler::Types::VendorInvoicesV1::InvoiceItem]?, payment_terms: Peddler::Types::VendorInvoicesV1::PaymentTerms?, reference_number: String?, ship_from_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorInvoicesV1::PartyIdentification?, tax_details: Array[Peddler::Types::VendorInvoicesV1::TaxDetails]? }
       end
     end
   end

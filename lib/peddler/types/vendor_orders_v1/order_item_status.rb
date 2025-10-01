@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -14,26 +14,26 @@ module Peddler
         # on.
         attribute(:item_sequence_number, String, from: "itemSequenceNumber")
 
+        # @return [Hash] Acknowledgement status information.
+        attribute?(:acknowledgement_status, Hash, from: "acknowledgementStatus")
+
         # @return [String] Buyer's Standard Identification Number (ASIN) of an item.
         attribute?(:buyer_product_identifier, String, from: "buyerProductIdentifier")
-
-        # @return [String] The vendor selected product identification of the item.
-        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
-
-        # @return [Money] The net cost of an item per each or weight unit.
-        attribute?(:net_cost, Money, from: "netCost")
 
         # @return [Money] The list price of an item per each or weight unit.
         attribute?(:list_price, Money, from: "listPrice")
 
+        # @return [Money] The net cost of an item per each or weight unit.
+        attribute?(:net_cost, Money, from: "netCost")
+
         # @return [Hash] Ordered quantity information.
         attribute?(:ordered_quantity, Hash, from: "orderedQuantity")
 
-        # @return [Hash] Acknowledgement status information.
-        attribute?(:acknowledgement_status, Hash, from: "acknowledgementStatus")
-
         # @return [Hash] Item receive status at the buyer's warehouse.
         attribute?(:receiving_status, Hash, from: "receivingStatus")
+
+        # @return [String] The vendor selected product identification of the item.
+        attribute?(:vendor_product_identifier, String, from: "vendorProductIdentifier")
       end
     end
   end

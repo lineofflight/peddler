@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/product_pricing_v0/http_request_headers"
 
@@ -9,6 +9,9 @@ module Peddler
     module ProductPricingV0
       # Common properties of batch requests against individual APIs.
       BatchRequest = Structure.new do
+        # @return [String]
+        attribute(:method, String)
+
         # @return [String] The resource path of the operation you are calling in batch without any query parameters.
         #
         # If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
@@ -19,9 +22,6 @@ module Peddler
         #
         # **Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
         attribute(:uri, String)
-
-        # @return [String]
-        attribute(:method, String)
 
         # @return [HttpRequestHeaders]
         attribute?(:headers, HttpRequestHeaders)

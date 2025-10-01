@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/aplus_content_2020_11_01/integer_with_units"
 
@@ -11,10 +11,10 @@ module Peddler
       # `ImageDimensions` units must be in pixels.
       ImageDimensions = Structure.new do
         # @return [IntegerWithUnits]
-        attribute(:width, IntegerWithUnits)
+        attribute(:height, IntegerWithUnits)
 
         # @return [IntegerWithUnits]
-        attribute(:height, IntegerWithUnits)
+        attribute(:width, IntegerWithUnits)
       end
     end
   end

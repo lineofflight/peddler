@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -32,17 +32,17 @@ module Peddler
         # is `CreditCard` or `Pix`.
         attribute?(:acquirer_id, String, from: "AcquirerId")
 
-        # @return [String] The card network or brand used in the payment transaction (for example, Visa or Mastercard).
-        #
-        # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
-        # is `CreditCard`.
-        attribute?(:card_brand, String, from: "CardBrand")
-
         # @return [String] The unique code that confirms the payment authorization.
         #
         # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
         # is `CreditCard` or `Pix`.
         attribute?(:authorization_code, String, from: "AuthorizationCode")
+
+        # @return [String] The card network or brand used in the payment transaction (for example, Visa or Mastercard).
+        #
+        # **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `PaymentMethod`
+        # is `CreditCard`.
+        attribute?(:card_brand, String, from: "CardBrand")
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20200901
       class ListingsItemPatchRequest < Data
-        def self.new: (product_type: String?, patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
-                    | (String?, Array[Peddler::Types::ListingsItems20200901::PatchOperation]?) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
+        def self.new: (patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?, product_type: String?) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
+                    | (Array[Peddler::Types::ListingsItems20200901::PatchOperation]?, String?) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20200901::ListingsItemPatchRequest
 
-        attr_reader product_type: String?
         attr_reader patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?
+        attr_reader product_type: String?
 
-        def to_h: () -> { product_type: String?, patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]? }
+        def to_h: () -> { patches: Array[Peddler::Types::ListingsItems20200901::PatchOperation]?, product_type: String? }
       end
     end
   end

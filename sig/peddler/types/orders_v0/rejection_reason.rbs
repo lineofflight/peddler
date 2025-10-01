@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module OrdersV0
       class RejectionReason < Data
-        def self.new: (rejection_reason_id: String?, rejection_reason_description: String?) -> Peddler::Types::OrdersV0::RejectionReason
+        def self.new: (rejection_reason_description: String?, rejection_reason_id: String?) -> Peddler::Types::OrdersV0::RejectionReason
                     | (String?, String?) -> Peddler::Types::OrdersV0::RejectionReason
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::RejectionReason
 
-        attr_reader rejection_reason_id: String?
         attr_reader rejection_reason_description: String?
+        attr_reader rejection_reason_id: String?
 
-        def to_h: () -> { rejection_reason_id: String?, rejection_reason_description: String? }
+        def to_h: () -> { rejection_reason_description: String?, rejection_reason_id: String? }
       end
     end
   end

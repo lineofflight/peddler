@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "structure"
@@ -10,11 +10,11 @@ module Peddler
     module FulfillmentOutbound20200701
       # Fee type and cost.
       Fee = Structure.new do
-        # @return [String] The type of fee.
-        attribute(:name, String)
-
         # @return [Money] The amount of the fee.
         attribute(:amount, Money)
+
+        # @return [String] The type of fee.
+        attribute(:name, String)
       end
     end
   end

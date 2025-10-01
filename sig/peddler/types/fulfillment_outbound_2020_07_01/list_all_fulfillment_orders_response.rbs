@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class ListAllFulfillmentOrdersResponse < Data
-        def self.new: (?payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?, ?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
-                    | (Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?, Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
 
-        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?
         attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?
 
-        def to_h: () -> { payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?, errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult? }
       end
     end
   end

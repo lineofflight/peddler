@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductTypeDefinitions20200901
       class ProductTypeVersion < Data
-        def self.new: (version: String?, latest: bool?, ?release_candidate: bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
-                    | (String?, bool?, bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
+        def self.new: (latest: bool?, version: String?, ?release_candidate: bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
+                    | (bool?, String?, bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
 
-        attr_reader version: String?
         attr_reader latest: bool?
+        attr_reader version: String?
         attr_reader release_candidate: bool?
 
         def latest?: () -> bool
         def release_candidate?: () -> bool
-        def to_h: () -> { version: String?, latest: bool?, release_candidate: bool? }
+        def to_h: () -> { latest: bool?, version: String?, release_candidate: bool? }
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class StandardTextPairBlock < Data
-        def self.new: (?label: Peddler::Types::AplusContent20201101::TextComponent?, ?description: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
+        def self.new: (?description: Peddler::Types::AplusContent20201101::TextComponent?, ?label: Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
                     | (Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardTextPairBlock
 
-        attr_reader label: Peddler::Types::AplusContent20201101::TextComponent?
         attr_reader description: Peddler::Types::AplusContent20201101::TextComponent?
+        attr_reader label: Peddler::Types::AplusContent20201101::TextComponent?
 
-        def to_h: () -> { label: Peddler::Types::AplusContent20201101::TextComponent?, description: Peddler::Types::AplusContent20201101::TextComponent? }
+        def to_h: () -> { description: Peddler::Types::AplusContent20201101::TextComponent?, label: Peddler::Types::AplusContent20201101::TextComponent? }
       end
     end
   end

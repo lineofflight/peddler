@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShipmentInvoicingV0
       class GetInvoiceStatusResponse < Data
-        def self.new: (?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?, ?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
-                    | (Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?, Array[Peddler::Types::ShipmentInvoicingV0::Error]?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
+        def self.new: (?errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, ?payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
+                    | (Array[Peddler::Types::ShipmentInvoicingV0::Error]?, Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
 
-        attr_reader payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?
         attr_reader errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?
+        attr_reader payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?
 
-        def to_h: () -> { payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse?, errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::ShipmentInvoicingV0::Error]?, payload: Peddler::Types::ShipmentInvoicingV0::ShipmentInvoiceStatusResponse? }
       end
     end
   end

@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class PayWithAmazonEvent < Data
-        def self.new: (?seller_order_id: String?, ?transaction_posted_date: String?, ?business_object_type: String?, ?sales_channel: String?, ?charge: Peddler::Types::FinancesV0::ChargeComponent?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?payment_amount_type: String?, ?amount_description: String?, ?fulfillment_channel: String?, ?store_name: String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
-                    | (String?, String?, String?, String?, Peddler::Types::FinancesV0::ChargeComponent?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
+        def self.new: (?amount_description: String?, ?business_object_type: String?, ?charge: Peddler::Types::FinancesV0::ChargeComponent?, ?fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?fulfillment_channel: String?, ?payment_amount_type: String?, ?sales_channel: String?, ?seller_order_id: String?, ?store_name: String?, ?transaction_posted_date: String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
+                    | (String?, String?, Peddler::Types::FinancesV0::ChargeComponent?, Array[Peddler::Types::FinancesV0::FeeComponent]?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::PayWithAmazonEvent
 
-        attr_reader seller_order_id: String?
-        attr_reader transaction_posted_date: String?
+        attr_reader amount_description: String?
         attr_reader business_object_type: String?
-        attr_reader sales_channel: String?
         attr_reader charge: Peddler::Types::FinancesV0::ChargeComponent?
         attr_reader fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?
-        attr_reader payment_amount_type: String?
-        attr_reader amount_description: String?
         attr_reader fulfillment_channel: String?
+        attr_reader payment_amount_type: String?
+        attr_reader sales_channel: String?
+        attr_reader seller_order_id: String?
         attr_reader store_name: String?
+        attr_reader transaction_posted_date: String?
 
-        def to_h: () -> { seller_order_id: String?, transaction_posted_date: String?, business_object_type: String?, sales_channel: String?, charge: Peddler::Types::FinancesV0::ChargeComponent?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, payment_amount_type: String?, amount_description: String?, fulfillment_channel: String?, store_name: String? }
+        def to_h: () -> { amount_description: String?, business_object_type: String?, charge: Peddler::Types::FinancesV0::ChargeComponent?, fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, fulfillment_channel: String?, payment_amount_type: String?, sales_channel: String?, seller_order_id: String?, store_name: String?, transaction_posted_date: String? }
       end
     end
   end

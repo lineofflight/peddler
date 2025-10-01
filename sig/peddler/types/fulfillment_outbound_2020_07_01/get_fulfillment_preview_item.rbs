@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class GetFulfillmentPreviewItem < Data
-        def self.new: (seller_sku: String?, quantity: Integer?, ?per_unit_declared_value: Peddler::Types::Money?, seller_fulfillment_order_item_id: String?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
-                    | (String?, Integer?, Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, ?per_unit_declared_value: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
+                    | (Integer?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
 
-        attr_reader seller_sku: String?
         attr_reader quantity: Integer?
-        attr_reader per_unit_declared_value: Peddler::Types::Money?
         attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
 
-        def to_h: () -> { seller_sku: String?, quantity: Integer?, per_unit_declared_value: Peddler::Types::Money?, seller_fulfillment_order_item_id: String? }
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, per_unit_declared_value: Peddler::Types::Money? }
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,17 +9,19 @@ module Peddler
     module VendorDirectFulfillmentOrdersV1
       # Address of the party.
       Address = Structure.new do
+        # @return [String] First line of the address. For Amazon label only vendors, this field will have the value
+        # `xxxxx` within the object `shipToParty`.
+        attribute(:address_line1, String, from: "addressLine1")
+
+        # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
+        attribute(:country_code, String, from: "countryCode")
+
         # @return [String] The name of the person, business or institution at that address. For Amazon label only
         # vendors, this field will have the value `xxxxx` within the object `shipToParty`.
         attribute(:name, String)
 
-        # @return [String] The attention name of the person at that address. For Amazon label only vendors, this field
-        # will have the value `xxxxx` within the object `shipToParty`.
-        attribute?(:attention, String)
-
-        # @return [String] First line of the address. For Amazon label only vendors, this field will have the value
-        # `xxxxx` within the object `shipToParty`.
-        attribute(:address_line1, String, from: "addressLine1")
+        # @return [String] The state or region where person, business or institution is located.
+        attribute(:state_or_region, String, from: "stateOrRegion")
 
         # @return [String] Additional address information, if required. For Amazon label only vendors, this field will
         # have the value `xxxxx` within the object `shipToParty`.
@@ -28,6 +30,10 @@ module Peddler
         # @return [String] Additional address information, if required. For Amazon label only vendors, this field will
         # have the value `xxxxx` within the object `shipToParty`.
         attribute?(:address_line3, String, from: "addressLine3")
+
+        # @return [String] The attention name of the person at that address. For Amazon label only vendors, this field
+        # will have the value `xxxxx` within the object `shipToParty`.
+        attribute?(:attention, String)
 
         # @return [String] The city where the person, business or institution is located. For Amazon label only vendors,
         # this field will have the value `xxxxx` within the object `shipToParty`.
@@ -41,19 +47,13 @@ module Peddler
         # this field will have the value `xxxxx` within the object `shipToParty`.
         attribute?(:district, String)
 
-        # @return [String] The state or region where person, business or institution is located.
-        attribute(:state_or_region, String, from: "stateOrRegion")
+        # @return [String] The phone number of the person, business or institution located at that address. For Amazon
+        # label only vendors, this field will have the value `xxxxx` within the object `shipToParty`.
+        attribute?(:phone, String)
 
         # @return [String] The postal code of that address. It conatins a series of letters or digits or both, sometimes
         # including spaces or punctuation.
         attribute?(:postal_code, String, from: "postalCode")
-
-        # @return [String] The two digit country code. In ISO 3166-1 alpha-2 format.
-        attribute(:country_code, String, from: "countryCode")
-
-        # @return [String] The phone number of the person, business or institution located at that address. For Amazon
-        # label only vendors, this field will have the value `xxxxx` within the object `shipToParty`.
-        attribute?(:phone, String)
       end
     end
   end

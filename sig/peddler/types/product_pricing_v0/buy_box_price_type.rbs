@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class BuyBoxPriceType < Data
-        def self.new: (condition: String?, ?offer_type: String?, ?quantity_tier: Integer?, ?quantity_discount_type: String?, landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?, ?seller_id: String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
-                    | (String?, String?, Integer?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
+        def self.new: (landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, condition: String?, ?points: Peddler::Types::ProductPricingV0::Points?, ?offer_type: String?, ?quantity_discount_type: String?, ?quantity_tier: Integer?, ?seller_id: String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricingV0::Points?, String?, String?, Integer?, String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
 
-        attr_reader condition: String?
-        attr_reader offer_type: String?
-        attr_reader quantity_tier: Integer?
-        attr_reader quantity_discount_type: String?
         attr_reader landed_price: Peddler::Types::Money?
         attr_reader listing_price: Peddler::Types::Money?
         attr_reader shipping: Peddler::Types::Money?
+        attr_reader condition: String?
         attr_reader points: Peddler::Types::ProductPricingV0::Points?
+        attr_reader offer_type: String?
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
         attr_reader seller_id: String?
 
-        def to_h: () -> { condition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, seller_id: String? }
+        def to_h: () -> { landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, condition: String?, points: Peddler::Types::ProductPricingV0::Points?, offer_type: String?, quantity_discount_type: String?, quantity_tier: Integer?, seller_id: String? }
       end
     end
   end

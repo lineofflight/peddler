@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/supply_sources_2020_07_01/contact_details"
-require "peddler/types/supply_sources_2020_07_01/throughput_config"
-require "peddler/types/supply_sources_2020_07_01/operating_hours_by_day"
 require "peddler/types/supply_sources_2020_07_01/duration"
+require "peddler/types/supply_sources_2020_07_01/operating_hours_by_day"
+require "peddler/types/supply_sources_2020_07_01/throughput_config"
 
 module Peddler
   module Types
@@ -15,14 +15,14 @@ module Peddler
         # @return [ContactDetails]
         attribute?(:contact_details, ContactDetails, from: "contactDetails")
 
-        # @return [ThroughputConfig]
-        attribute?(:throughput_config, ThroughputConfig, from: "throughputConfig")
+        # @return [Duration]
+        attribute?(:handling_time, Duration, from: "handlingTime")
 
         # @return [OperatingHoursByDay]
         attribute?(:operating_hours_by_day, OperatingHoursByDay, from: "operatingHoursByDay")
 
-        # @return [Duration]
-        attribute?(:handling_time, Duration, from: "handlingTime")
+        # @return [ThroughputConfig]
+        attribute?(:throughput_config, ThroughputConfig, from: "throughputConfig")
       end
     end
   end

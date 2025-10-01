@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV1
       class CreateShipmentResult < Data
-        def self.new: (shipment_id: String?, eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?) -> Peddler::Types::ShippingV1::CreateShipmentResult
-                    | (String?, Array[Peddler::Types::ShippingV1::Rate]?) -> Peddler::Types::ShippingV1::CreateShipmentResult
+        def self.new: (eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?, shipment_id: String?) -> Peddler::Types::ShippingV1::CreateShipmentResult
+                    | (Array[Peddler::Types::ShippingV1::Rate]?, String?) -> Peddler::Types::ShippingV1::CreateShipmentResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::CreateShipmentResult
 
-        attr_reader shipment_id: String?
         attr_reader eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?
+        attr_reader shipment_id: String?
 
-        def to_h: () -> { shipment_id: String?, eligible_rates: Array[Peddler::Types::ShippingV1::Rate]? }
+        def to_h: () -> { eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?, shipment_id: String? }
       end
     end
   end

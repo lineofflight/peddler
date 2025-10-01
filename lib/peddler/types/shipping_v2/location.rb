@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -10,9 +10,6 @@ module Peddler
       # The location where the person, business or institution is located.
       Location = Structure.new do
         # @return [String]
-        attribute?(:state_or_region, String, from: "stateOrRegion")
-
-        # @return [String]
         attribute?(:city, String)
 
         # @return [String]
@@ -20,6 +17,9 @@ module Peddler
 
         # @return [String]
         attribute?(:postal_code, String, from: "postalCode")
+
+        # @return [String]
+        attribute?(:state_or_region, String, from: "stateOrRegion")
       end
     end
   end

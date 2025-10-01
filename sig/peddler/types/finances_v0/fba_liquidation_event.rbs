@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class FBALiquidationEvent < Data
-        def self.new: (?posted_date: String?, ?original_removal_order_id: String?, ?liquidation_proceeds_amount: Peddler::Types::Money?, ?liquidation_fee_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
-                    | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
+        def self.new: (?liquidation_fee_amount: Peddler::Types::Money?, ?liquidation_proceeds_amount: Peddler::Types::Money?, ?original_removal_order_id: String?, ?posted_date: String?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::FinancesV0::FBALiquidationEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::FBALiquidationEvent
 
-        attr_reader posted_date: String?
-        attr_reader original_removal_order_id: String?
-        attr_reader liquidation_proceeds_amount: Peddler::Types::Money?
         attr_reader liquidation_fee_amount: Peddler::Types::Money?
+        attr_reader liquidation_proceeds_amount: Peddler::Types::Money?
+        attr_reader original_removal_order_id: String?
+        attr_reader posted_date: String?
 
-        def to_h: () -> { posted_date: String?, original_removal_order_id: String?, liquidation_proceeds_amount: Peddler::Types::Money?, liquidation_fee_amount: Peddler::Types::Money? }
+        def to_h: () -> { liquidation_fee_amount: Peddler::Types::Money?, liquidation_proceeds_amount: Peddler::Types::Money?, original_removal_order_id: String?, posted_date: String? }
       end
     end
   end

@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInboundV0
       class BoxContentsFeeDetails < Data
-        def self.new: (?total_units: Integer?, ?fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?, ?total_fee: Peddler::Types::FulfillmentInboundV0::Amount?) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
-                    | (Integer?, Peddler::Types::FulfillmentInboundV0::Amount?, Peddler::Types::FulfillmentInboundV0::Amount?) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
+        def self.new: (?fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?, ?total_fee: Peddler::Types::FulfillmentInboundV0::Amount?, ?total_units: Integer?) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
+                    | (Peddler::Types::FulfillmentInboundV0::Amount?, Peddler::Types::FulfillmentInboundV0::Amount?, Integer?) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::BoxContentsFeeDetails
 
-        attr_reader total_units: Integer?
         attr_reader fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?
         attr_reader total_fee: Peddler::Types::FulfillmentInboundV0::Amount?
+        attr_reader total_units: Integer?
 
-        def to_h: () -> { total_units: Integer?, fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?, total_fee: Peddler::Types::FulfillmentInboundV0::Amount? }
+        def to_h: () -> { fee_per_unit: Peddler::Types::FulfillmentInboundV0::Amount?, total_fee: Peddler::Types::FulfillmentInboundV0::Amount?, total_units: Integer? }
       end
     end
   end

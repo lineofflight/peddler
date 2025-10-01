@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module NotificationsV1
       class CreateDestinationResponse < Data
-        def self.new: (?payload: Peddler::Types::NotificationsV1::Destination?, ?errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
-                    | (Peddler::Types::NotificationsV1::Destination?, Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Peddler::Types::NotificationsV1::Destination?) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Peddler::Types::NotificationsV1::Destination?) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
 
-        attr_reader payload: Peddler::Types::NotificationsV1::Destination?
         attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Peddler::Types::NotificationsV1::Destination?
 
-        def to_h: () -> { payload: Peddler::Types::NotificationsV1::Destination?, errors: Array[Peddler::Types::NotificationsV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Peddler::Types::NotificationsV1::Destination? }
       end
     end
   end

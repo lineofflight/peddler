@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -16,14 +16,14 @@ module Peddler
         # when a shipment is expected to be delivered.
         attribute(:delivery_window_option_id, String, from: "deliveryWindowOptionId")
 
-        # @return [String] The timestamp at which this Window can no longer be edited.
-        attribute?(:editable_until, String, from: "editableUntil")
-
         # @return [String] The end timestamp of the window.
         attribute(:end_date, String, from: "endDate")
 
         # @return [String] The start timestamp of the window.
         attribute(:start_date, String, from: "startDate")
+
+        # @return [String] The timestamp at which this Window can no longer be edited.
+        attribute?(:editable_until, String, from: "editableUntil")
       end
     end
   end

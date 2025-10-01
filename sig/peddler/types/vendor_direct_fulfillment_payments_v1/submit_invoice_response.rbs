@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
       class SubmitInvoiceResponse < Data
-        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, ?errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
-                    | (Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
+        def self.new: (?errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?, ?payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
+                    | (Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceResponse
 
-        attr_reader payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?
+        attr_reader payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?
 
-        def to_h: () -> { payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference?, errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::Error]?, payload: Peddler::Types::VendorDirectFulfillmentPaymentsV1::TransactionReference? }
       end
     end
   end

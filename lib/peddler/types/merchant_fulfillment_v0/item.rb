@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/merchant_fulfillment_v0/weight"
-require "peddler/types/merchant_fulfillment_v0/additional_seller_inputs"
-require "peddler/types/merchant_fulfillment_v0/liquid_volume"
 require "peddler/types/merchant_fulfillment_v0/dangerous_goods_details"
+require "peddler/types/merchant_fulfillment_v0/additional_seller_inputs"
+require "peddler/types/merchant_fulfillment_v0/weight"
+require "peddler/types/merchant_fulfillment_v0/liquid_volume"
 
 module Peddler
   module Types
@@ -18,27 +18,27 @@ module Peddler
         # @return [Integer]
         attribute(:quantity, Integer, from: "Quantity")
 
-        # @return [Weight]
-        attribute?(:item_weight, Weight, from: "ItemWeight")
+        # @return [DangerousGoodsDetails]
+        attribute?(:dangerous_goods_details, DangerousGoodsDetails, from: "DangerousGoodsDetails")
+
+        # @return [:boolean] When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
+        attribute?(:hazmat, :boolean, from: "IsHazmat")
 
         # @return [String]
         attribute?(:item_description, String, from: "ItemDescription")
-
-        # @return [Array<TransparencyCode>]
-        attribute?(:transparency_code_list, Array, from: "TransparencyCodeList")
 
         # @return [Array<AdditionalSellerInputs>] A list of additional seller inputs required to ship this item using
         # the chosen shipping service.
         attribute?(:item_level_seller_inputs_list, [AdditionalSellerInputs], from: "ItemLevelSellerInputsList")
 
+        # @return [Weight]
+        attribute?(:item_weight, Weight, from: "ItemWeight")
+
         # @return [LiquidVolume]
         attribute?(:liquid_volume, LiquidVolume, from: "LiquidVolume")
 
-        # @return [:boolean] When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
-        attribute?(:hazmat, :boolean, from: "IsHazmat")
-
-        # @return [DangerousGoodsDetails]
-        attribute?(:dangerous_goods_details, DangerousGoodsDetails, from: "DangerousGoodsDetails")
+        # @return [Array<TransparencyCode>]
+        attribute?(:transparency_code_list, Array, from: "TransparencyCodeList")
       end
     end
   end

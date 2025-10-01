@@ -1,22 +1,22 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module Replenishment20221107
       class GetSellingPartnerMetricsRequest < Data
-        def self.new: (?aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?metrics: Array[untyped]?, time_period_type: String?, marketplace_id: String?, program_types: Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
-                    | (String?, Peddler::Types::Replenishment20221107::TimeInterval?, Array[untyped]?, String?, String?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
+        def self.new: (marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, ?aggregation_frequency: String?, ?metrics: Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
+                    | (String?, Array[untyped]?, Peddler::Types::Replenishment20221107::TimeInterval?, String?, String?, Array[untyped]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsRequest
 
-        attr_reader aggregation_frequency: String?
-        attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
-        attr_reader metrics: Array[untyped]?
-        attr_reader time_period_type: String?
         attr_reader marketplace_id: String?
         attr_reader program_types: Array[untyped]?
+        attr_reader time_interval: Peddler::Types::Replenishment20221107::TimeInterval?
+        attr_reader time_period_type: String?
+        attr_reader aggregation_frequency: String?
+        attr_reader metrics: Array[untyped]?
 
-        def to_h: () -> { aggregation_frequency: String?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, metrics: Array[untyped]?, time_period_type: String?, marketplace_id: String?, program_types: Array[untyped]? }
+        def to_h: () -> { marketplace_id: String?, program_types: Array[untyped]?, time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, time_period_type: String?, aggregation_frequency: String?, metrics: Array[untyped]? }
       end
     end
   end

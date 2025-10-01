@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV1
       class ContainerItem < Data
-        def self.new: (quantity: Float?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight?, title: String?) -> Peddler::Types::ShippingV1::ContainerItem
-                    | (Float?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?, String?) -> Peddler::Types::ShippingV1::ContainerItem
+        def self.new: (quantity: Float?, title: String?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::ContainerItem
+                    | (Float?, String?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::ContainerItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::ContainerItem
 
         attr_reader quantity: Float?
+        attr_reader title: String?
         attr_reader unit_price: Peddler::Types::Money?
         attr_reader unit_weight: Peddler::Types::ShippingV1::Weight?
-        attr_reader title: String?
 
-        def to_h: () -> { quantity: Float?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight?, title: String? }
+        def to_h: () -> { quantity: Float?, title: String?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight? }
       end
     end
   end

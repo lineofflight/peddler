@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentOutbound20200701
       class TrackingAddress < Data
-        def self.new: (city: String?, state: String?, country: String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
+        def self.new: (city: String?, country: String?, state: String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
 
         attr_reader city: String?
-        attr_reader state: String?
         attr_reader country: String?
+        attr_reader state: String?
 
-        def to_h: () -> { city: String?, state: String?, country: String? }
+        def to_h: () -> { city: String?, country: String?, state: String? }
       end
     end
   end

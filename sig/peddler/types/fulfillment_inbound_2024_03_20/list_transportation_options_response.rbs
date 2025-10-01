@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class ListTransportationOptionsResponse < Data
-        def self.new: (?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
-                    | (Peddler::Types::FulfillmentInbound20240320::Pagination?, Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
+        def self.new: (transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
+                    | (Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListTransportationOptionsResponse
 
-        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
         attr_reader transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?
+        attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?
 
-        def to_h: () -> { pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?, transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]? }
+        def to_h: () -> { transportation_options: Array[Peddler::Types::FulfillmentInbound20240320::TransportationOption]?, pagination: Peddler::Types::FulfillmentInbound20240320::Pagination? }
       end
     end
   end

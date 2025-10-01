@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class BatchOffersRequestParams < Data
-        def self.new: (marketplace_id: String?, item_condition: String?, ?customer_type: String?) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
+        def self.new: (item_condition: String?, marketplace_id: String?, ?customer_type: String?) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
                     | (String?, String?, String?) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
 
-        attr_reader marketplace_id: String?
         attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
         attr_reader customer_type: String?
 
-        def to_h: () -> { marketplace_id: String?, item_condition: String?, customer_type: String? }
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, customer_type: String? }
       end
     end
   end

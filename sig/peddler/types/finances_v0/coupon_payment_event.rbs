@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FinancesV0
       class CouponPaymentEvent < Data
-        def self.new: (?posted_date: String?, ?coupon_id: String?, ?seller_coupon_description: String?, ?clip_or_redemption_count: Integer?, ?payment_event_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
-                    | (String?, String?, String?, Integer?, String?, Peddler::Types::FinancesV0::FeeComponent?, Peddler::Types::FinancesV0::ChargeComponent?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
+        def self.new: (?charge_component: Peddler::Types::FinancesV0::ChargeComponent?, ?clip_or_redemption_count: Integer?, ?coupon_id: String?, ?fee_component: Peddler::Types::FinancesV0::FeeComponent?, ?payment_event_id: String?, ?posted_date: String?, ?seller_coupon_description: String?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
+                    | (Peddler::Types::FinancesV0::ChargeComponent?, Integer?, String?, Peddler::Types::FinancesV0::FeeComponent?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::CouponPaymentEvent
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::CouponPaymentEvent
 
-        attr_reader posted_date: String?
-        attr_reader coupon_id: String?
-        attr_reader seller_coupon_description: String?
-        attr_reader clip_or_redemption_count: Integer?
-        attr_reader payment_event_id: String?
-        attr_reader fee_component: Peddler::Types::FinancesV0::FeeComponent?
         attr_reader charge_component: Peddler::Types::FinancesV0::ChargeComponent?
+        attr_reader clip_or_redemption_count: Integer?
+        attr_reader coupon_id: String?
+        attr_reader fee_component: Peddler::Types::FinancesV0::FeeComponent?
+        attr_reader payment_event_id: String?
+        attr_reader posted_date: String?
+        attr_reader seller_coupon_description: String?
         attr_reader total_amount: Peddler::Types::Money?
 
-        def to_h: () -> { posted_date: String?, coupon_id: String?, seller_coupon_description: String?, clip_or_redemption_count: Integer?, payment_event_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, charge_component: Peddler::Types::FinancesV0::ChargeComponent?, total_amount: Peddler::Types::Money? }
+        def to_h: () -> { charge_component: Peddler::Types::FinancesV0::ChargeComponent?, clip_or_redemption_count: Integer?, coupon_id: String?, fee_component: Peddler::Types::FinancesV0::FeeComponent?, payment_event_id: String?, posted_date: String?, seller_coupon_description: String?, total_amount: Peddler::Types::Money? }
       end
     end
   end

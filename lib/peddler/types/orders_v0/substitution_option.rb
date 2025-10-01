@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/orders_v0/measurement"
 
@@ -12,6 +12,9 @@ module Peddler
         # @return [String] The item's Amazon Standard Identification Number (ASIN).
         attribute?(:asin, String, from: "ASIN")
 
+        # @return [Measurement] Measurement information for the substitution option.
+        attribute?(:measurement, Measurement, from: "Measurement")
+
         # @return [Integer] The number of items to be picked for this substitution option.
         attribute?(:quantity_ordered, Integer, from: "QuantityOrdered")
 
@@ -20,9 +23,6 @@ module Peddler
 
         # @return [String] The item's title.
         attribute?(:title, String, from: "Title")
-
-        # @return [Measurement] Measurement information for the substitution option.
-        attribute?(:measurement, Measurement, from: "Measurement")
       end
     end
   end

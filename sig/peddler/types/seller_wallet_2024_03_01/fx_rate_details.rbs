@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class FxRateDetails < Data
-        def self.new: (fx_rate_id: String?, base_rate: Float?, effective_fx_rate: Float?, rate_direction: String?) -> Peddler::Types::SellerWallet20240301::FxRateDetails
-                    | (String?, Float?, Float?, String?) -> Peddler::Types::SellerWallet20240301::FxRateDetails
+        def self.new: (base_rate: Float?, effective_fx_rate: Float?, fx_rate_id: String?, rate_direction: String?) -> Peddler::Types::SellerWallet20240301::FxRateDetails
+                    | (Float?, Float?, String?, String?) -> Peddler::Types::SellerWallet20240301::FxRateDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::FxRateDetails
 
-        attr_reader fx_rate_id: String?
         attr_reader base_rate: Float?
         attr_reader effective_fx_rate: Float?
+        attr_reader fx_rate_id: String?
         attr_reader rate_direction: String?
 
-        def to_h: () -> { fx_rate_id: String?, base_rate: Float?, effective_fx_rate: Float?, rate_direction: String? }
+        def to_h: () -> { base_rate: Float?, effective_fx_rate: Float?, fx_rate_id: String?, rate_direction: String? }
       end
     end
   end

@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class PackedItems < Data
-        def self.new: (?item_sequence_number: String?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?, ?packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?) -> Peddler::Types::VendorShipmentsV1::PackedItems
-                    | (String?, String?, String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::VendorShipmentsV1::PackageItemDetails?) -> Peddler::Types::VendorShipmentsV1::PackedItems
+        def self.new: (?buyer_product_identifier: String?, ?item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?, ?item_sequence_number: String?, ?packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorShipmentsV1::PackedItems
+                    | (String?, Peddler::Types::VendorShipmentsV1::PackageItemDetails?, String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, String?) -> Peddler::Types::VendorShipmentsV1::PackedItems
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PackedItems
 
-        attr_reader item_sequence_number: String?
         attr_reader buyer_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
-        attr_reader packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
         attr_reader item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?
+        attr_reader item_sequence_number: String?
+        attr_reader packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
+        attr_reader vendor_product_identifier: String?
 
-        def to_h: () -> { item_sequence_number: String?, buyer_product_identifier: String?, vendor_product_identifier: String?, packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails? }
+        def to_h: () -> { buyer_product_identifier: String?, item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?, item_sequence_number: String?, packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, vendor_product_identifier: String? }
       end
     end
   end

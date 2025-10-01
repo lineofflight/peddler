@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class SubmitAcknowledgementResponse < Data
-        def self.new: (?payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?, ?errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
-                    | (Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?, Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
+        def self.new: (?errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?, ?payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
+                    | (Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?, Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
 
-        attr_reader payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?
         attr_reader errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?
+        attr_reader payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?
 
-        def to_h: () -> { payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?, errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList? }
+        def to_h: () -> { errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?, payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId? }
       end
     end
   end

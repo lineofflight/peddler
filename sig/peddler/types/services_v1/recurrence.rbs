@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class Recurrence < Data
-        def self.new: (end_time: String?, ?days_of_week: Array[untyped]?, ?days_of_month: Array[Integer]?) -> Peddler::Types::ServicesV1::Recurrence
-                    | (String?, Array[untyped]?, Array[Integer]?) -> Peddler::Types::ServicesV1::Recurrence
+        def self.new: (end_time: String?, ?days_of_month: Array[Integer]?, ?days_of_week: Array[untyped]?) -> Peddler::Types::ServicesV1::Recurrence
+                    | (String?, Array[Integer]?, Array[untyped]?) -> Peddler::Types::ServicesV1::Recurrence
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Recurrence
 
         attr_reader end_time: String?
-        attr_reader days_of_week: Array[untyped]?
         attr_reader days_of_month: Array[Integer]?
+        attr_reader days_of_week: Array[untyped]?
 
-        def to_h: () -> { end_time: String?, days_of_week: Array[untyped]?, days_of_month: Array[Integer]? }
+        def to_h: () -> { end_time: String?, days_of_month: Array[Integer]?, days_of_week: Array[untyped]? }
       end
     end
   end

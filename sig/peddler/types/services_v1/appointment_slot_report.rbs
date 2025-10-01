@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class AppointmentSlotReport < Data
-        def self.new: (?scheduling_type: String?, ?start_time: String?, ?end_time: String?, ?appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
-                    | (String?, String?, String?, Array[Peddler::Types::ServicesV1::AppointmentSlot]?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+        def self.new: (?appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?, ?end_time: String?, ?scheduling_type: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+                    | (Array[Peddler::Types::ServicesV1::AppointmentSlot]?, String?, String?, String?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentSlotReport
 
+        attr_reader appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?
+        attr_reader end_time: String?
         attr_reader scheduling_type: String?
         attr_reader start_time: String?
-        attr_reader end_time: String?
-        attr_reader appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?
 
-        def to_h: () -> { scheduling_type: String?, start_time: String?, end_time: String?, appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]? }
+        def to_h: () -> { appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?, end_time: String?, scheduling_type: String?, start_time: String? }
       end
     end
   end

@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorOrdersV1
       class OrderAcknowledgementItem < Data
-        def self.new: (?item_sequence_number: String?, ?amazon_product_identifier: String?, ?vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?net_cost: Peddler::Types::Money?, ?list_price: Peddler::Types::Money?, ?discount_multiplier: String?, item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
-                    | (String?, String?, String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
+        def self.new: (item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?amazon_product_identifier: String?, ?discount_multiplier: String?, ?item_sequence_number: String?, ?list_price: Peddler::Types::Money?, ?net_cost: Peddler::Types::Money?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
+                    | (Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?, Peddler::Types::VendorOrdersV1::ItemQuantity?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderAcknowledgementItem
 
-        attr_reader item_sequence_number: String?
-        attr_reader amazon_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
-        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
-        attr_reader net_cost: Peddler::Types::Money?
-        attr_reader list_price: Peddler::Types::Money?
-        attr_reader discount_multiplier: String?
         attr_reader item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?
+        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
+        attr_reader amazon_product_identifier: String?
+        attr_reader discount_multiplier: String?
+        attr_reader item_sequence_number: String?
+        attr_reader list_price: Peddler::Types::Money?
+        attr_reader net_cost: Peddler::Types::Money?
+        attr_reader vendor_product_identifier: String?
 
-        def to_h: () -> { item_sequence_number: String?, amazon_product_identifier: String?, vendor_product_identifier: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, net_cost: Peddler::Types::Money?, list_price: Peddler::Types::Money?, discount_multiplier: String?, item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]? }
+        def to_h: () -> { item_acknowledgements: Array[Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement]?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, amazon_product_identifier: String?, discount_multiplier: String?, item_sequence_number: String?, list_price: Peddler::Types::Money?, net_cost: Peddler::Types::Money?, vendor_product_identifier: String? }
       end
     end
   end

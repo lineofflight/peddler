@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -12,11 +12,11 @@ module Peddler
         # @return [Float] The length dimension.
         attribute(:length, Float, from: "Length")
 
-        # @return [Float] The width dimension.
-        attribute(:width, Float, from: "Width")
-
         # @return [String] The unit of measurement.
         attribute(:unit, String, from: "Unit")
+
+        # @return [Float] The width dimension.
+        attribute(:width, Float, from: "Width")
       end
     end
   end

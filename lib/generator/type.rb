@@ -33,11 +33,13 @@ module Generator
     end
 
     def properties
-      if definition["allOf"]
+      props = if definition["allOf"]
         merge_from_all_of("properties") { |props| props || {} }
       else
         definition["properties"] || {}
       end
+
+      sorted_properties(props)
     end
 
     def required_properties
@@ -168,6 +170,13 @@ module Generator
     end
 
     private
+
+    def sorted_properties(props)
+      required = required_properties
+      required_props = props.select { |name, _| required.include?(name) }.sort.to_h
+      optional_props = props.reject { |name, _| required.include?(name) }.sort.to_h
+      required_props.merge(optional_props)
+    end
 
     def merge_from_all_of(field_name)
       if field_name == "properties"

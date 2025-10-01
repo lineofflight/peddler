@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module NotificationsV1
       class EventBridgeResource < Data
-        def self.new: (name: String?, region: String?, account_id: String?) -> Peddler::Types::NotificationsV1::EventBridgeResource
+        def self.new: (account_id: String?, name: String?, region: String?) -> Peddler::Types::NotificationsV1::EventBridgeResource
                     | (String?, String?, String?) -> Peddler::Types::NotificationsV1::EventBridgeResource
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::EventBridgeResource
 
+        attr_reader account_id: String?
         attr_reader name: String?
         attr_reader region: String?
-        attr_reader account_id: String?
 
-        def to_h: () -> { name: String?, region: String?, account_id: String? }
+        def to_h: () -> { account_id: String?, name: String?, region: String? }
       end
     end
   end

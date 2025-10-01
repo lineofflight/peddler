@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -13,17 +13,17 @@ module Peddler
         # @return [String] The ASIN for which eligibility was determined.
         attribute(:asin, String)
 
-        # @return [String] The marketplace for which eligibility was determined.
-        attribute?(:marketplace_id, String, from: "marketplaceId")
+        # @return [:boolean] Indicates if the item is eligible for the program.
+        attribute(:eligible_for_program, :boolean, from: "isEligibleForProgram")
 
         # @return [String] The program for which eligibility was determined.
         attribute(:program, String)
 
-        # @return [:boolean] Indicates if the item is eligible for the program.
-        attribute(:eligible_for_program, :boolean, from: "isEligibleForProgram")
-
         # @return [Array<String>] Potential Ineligibility Reason Codes.
         attribute?(:ineligibility_reason_list, [String], from: "ineligibilityReasonList")
+
+        # @return [String] The marketplace for which eligibility was determined.
+        attribute?(:marketplace_id, String, from: "marketplaceId")
       end
     end
   end

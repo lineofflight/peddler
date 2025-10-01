@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
       class ItemDetails < Data
-        def self.new: (?buyer_product_identifier: String?, ?vendor_product_identifier: String?, available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, ?obsolete: bool?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails
-                    | (String?, String?, Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, bool?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails
+        def self.new: (available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, ?buyer_product_identifier: String?, ?obsolete: bool?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails
+                    | (Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, String?, bool?, String?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails
 
-        attr_reader buyer_product_identifier: String?
-        attr_reader vendor_product_identifier: String?
         attr_reader available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?
+        attr_reader buyer_product_identifier: String?
         attr_reader obsolete: bool?
+        attr_reader vendor_product_identifier: String?
 
         def obsolete?: () -> bool
-        def to_h: () -> { buyer_product_identifier: String?, vendor_product_identifier: String?, available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, obsolete: bool? }
+        def to_h: () -> { available_quantity: Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity?, buyer_product_identifier: String?, obsolete: bool?, vendor_product_identifier: String? }
       end
     end
   end

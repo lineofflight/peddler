@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "peddler/types/product_fees_v0/fee_detail"
@@ -13,11 +13,11 @@ module Peddler
         # @return [String] The time at which the fees were estimated. This defaults to the time the request is made.
         attribute(:time_of_fees_estimation, String, from: "TimeOfFeesEstimation")
 
-        # @return [Money] Total estimated fees for a given item, price, and fulfillment channel.
-        attribute?(:total_fees_estimate, Money, from: "TotalFeesEstimate")
-
         # @return [Array<FeeDetail>]
         attribute?(:fee_detail_list, [FeeDetail], from: "FeeDetailList")
+
+        # @return [Money] Total estimated fees for a given item, price, and fulfillment channel.
+        attribute?(:total_fees_estimate, Money, from: "TotalFeesEstimate")
       end
     end
   end

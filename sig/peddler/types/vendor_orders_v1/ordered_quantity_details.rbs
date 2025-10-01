@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorOrdersV1
       class OrderedQuantityDetails < Data
-        def self.new: (?updated_date: String?, ?ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?) -> Peddler::Types::VendorOrdersV1::OrderedQuantityDetails
-                    | (String?, Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::VendorOrdersV1::ItemQuantity?) -> Peddler::Types::VendorOrdersV1::OrderedQuantityDetails
+        def self.new: (?cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ?updated_date: String?) -> Peddler::Types::VendorOrdersV1::OrderedQuantityDetails
+                    | (Peddler::Types::VendorOrdersV1::ItemQuantity?, Peddler::Types::VendorOrdersV1::ItemQuantity?, String?) -> Peddler::Types::VendorOrdersV1::OrderedQuantityDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderedQuantityDetails
 
-        attr_reader updated_date: String?
-        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
         attr_reader cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
+        attr_reader ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
+        attr_reader updated_date: String?
 
-        def to_h: () -> { updated_date: String?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity? }
+        def to_h: () -> { cancelled_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, ordered_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, updated_date: String? }
       end
     end
   end

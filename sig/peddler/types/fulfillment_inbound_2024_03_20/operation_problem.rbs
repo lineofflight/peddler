@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class OperationProblem < Data
-        def self.new: (code: String?, ?details: String?, message: String?, severity: String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
+        def self.new: (code: String?, message: String?, severity: String?, ?details: String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
                     | (String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::OperationProblem
 
         attr_reader code: String?
-        attr_reader details: String?
         attr_reader message: String?
         attr_reader severity: String?
+        attr_reader details: String?
 
-        def to_h: () -> { code: String?, details: String?, message: String?, severity: String? }
+        def to_h: () -> { code: String?, message: String?, severity: String?, details: String? }
       end
     end
   end

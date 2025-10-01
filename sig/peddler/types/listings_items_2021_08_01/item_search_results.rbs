@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20210801
       class ItemSearchResults < Data
-        def self.new: (number_of_results: Integer?, ?pagination: Peddler::Types::ListingsItems20210801::Pagination?, items: Array[Peddler::Types::ListingsItems20210801::Item]?) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
-                    | (Integer?, Peddler::Types::ListingsItems20210801::Pagination?, Array[Peddler::Types::ListingsItems20210801::Item]?) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
+        def self.new: (items: Array[Peddler::Types::ListingsItems20210801::Item]?, number_of_results: Integer?, ?pagination: Peddler::Types::ListingsItems20210801::Pagination?) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
+                    | (Array[Peddler::Types::ListingsItems20210801::Item]?, Integer?, Peddler::Types::ListingsItems20210801::Pagination?) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
 
+        attr_reader items: Array[Peddler::Types::ListingsItems20210801::Item]?
         attr_reader number_of_results: Integer?
         attr_reader pagination: Peddler::Types::ListingsItems20210801::Pagination?
-        attr_reader items: Array[Peddler::Types::ListingsItems20210801::Item]?
 
-        def to_h: () -> { number_of_results: Integer?, pagination: Peddler::Types::ListingsItems20210801::Pagination?, items: Array[Peddler::Types::ListingsItems20210801::Item]? }
+        def to_h: () -> { items: Array[Peddler::Types::ListingsItems20210801::Item]?, number_of_results: Integer?, pagination: Peddler::Types::ListingsItems20210801::Pagination? }
       end
     end
   end

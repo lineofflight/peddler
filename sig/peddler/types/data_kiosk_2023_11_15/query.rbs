@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module DataKiosk20231115
       class Query < Data
-        def self.new: (query_id: String?, query: String?, created_time: String?, processing_status: String?, ?processing_start_time: String?, ?processing_end_time: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::Query
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::Query
+        def self.new: (created_time: String?, processing_status: String?, query: String?, query_id: String?, ?data_document_id: String?, ?error_document_id: String?, ?pagination: Hash[untyped, untyped]?, ?processing_end_time: String?, ?processing_start_time: String?) -> Peddler::Types::DataKiosk20231115::Query
+                    | (String?, String?, String?, String?, String?, String?, Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::DataKiosk20231115::Query
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::Query
 
-        attr_reader query_id: String?
-        attr_reader query: String?
         attr_reader created_time: String?
         attr_reader processing_status: String?
-        attr_reader processing_start_time: String?
-        attr_reader processing_end_time: String?
+        attr_reader query: String?
+        attr_reader query_id: String?
         attr_reader data_document_id: String?
         attr_reader error_document_id: String?
         attr_reader pagination: Hash[untyped, untyped]?
+        attr_reader processing_end_time: String?
+        attr_reader processing_start_time: String?
 
-        def to_h: () -> { query_id: String?, query: String?, created_time: String?, processing_status: String?, processing_start_time: String?, processing_end_time: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]? }
+        def to_h: () -> { created_time: String?, processing_status: String?, query: String?, query_id: String?, data_document_id: String?, error_document_id: String?, pagination: Hash[untyped, untyped]?, processing_end_time: String?, processing_start_time: String? }
       end
     end
   end

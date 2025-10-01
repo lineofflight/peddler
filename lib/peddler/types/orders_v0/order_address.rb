@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/orders_v0/address"
 require "peddler/types/orders_v0/delivery_preferences"
+require "peddler/types/orders_v0/address"
 
 module Peddler
   module Types
@@ -17,14 +17,14 @@ module Peddler
         # entities.
         attribute?(:buyer_company_name, String, from: "BuyerCompanyName")
 
+        # @return [DeliveryPreferences]
+        attribute?(:delivery_preferences, DeliveryPreferences, from: "DeliveryPreferences")
+
         # @return [Address] The shipping address for the order.
         #
         # **Note**: `ShippingAddress` is only available for orders with the following status values: `Unshipped`,
         # `PartiallyShipped`, `Shipped`, and `InvoiceUnconfirmed`.
         attribute?(:shipping_address, Address, from: "ShippingAddress")
-
-        # @return [DeliveryPreferences]
-        attribute?(:delivery_preferences, DeliveryPreferences, from: "DeliveryPreferences")
       end
     end
   end

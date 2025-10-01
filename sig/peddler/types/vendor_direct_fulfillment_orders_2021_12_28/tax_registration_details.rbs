@@ -1,20 +1,20 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
       class TaxRegistrationDetails < Data
-        def self.new: (?tax_registration_type: String?, tax_registration_number: String?, ?tax_registration_address: Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?, ?tax_registration_messages: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxRegistrationDetails
-                    | (String?, String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxRegistrationDetails
+        def self.new: (tax_registration_number: String?, ?tax_registration_address: Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?, ?tax_registration_messages: String?, ?tax_registration_type: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxRegistrationDetails
+                    | (String?, Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxRegistrationDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::TaxRegistrationDetails
 
-        attr_reader tax_registration_type: String?
         attr_reader tax_registration_number: String?
         attr_reader tax_registration_address: Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?
         attr_reader tax_registration_messages: String?
+        attr_reader tax_registration_type: String?
 
-        def to_h: () -> { tax_registration_type: String?, tax_registration_number: String?, tax_registration_address: Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?, tax_registration_messages: String? }
+        def to_h: () -> { tax_registration_number: String?, tax_registration_address: Peddler::Types::VendorDirectFulfillmentOrders20211228::Address?, tax_registration_messages: String?, tax_registration_type: String? }
       end
     end
   end

@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class ShipmentRequestDetails < Data
-        def self.new: (amazon_order_id: String?, ?seller_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?must_arrive_by_date: String?, ?ship_date: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, ?label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
-                    | (String?, String?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Weight?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::LabelCustomization?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
+        def self.new: (amazon_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, ?must_arrive_by_date: String?, ?seller_order_id: String?, ?ship_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
+                    | (String?, Array[Peddler::Types::MerchantFulfillmentV0::Item]?, Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, Peddler::Types::MerchantFulfillmentV0::Address?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails
 
         attr_reader amazon_order_id: String?
-        attr_reader seller_order_id: String?
         attr_reader item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?
-        attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?
-        attr_reader weight: Peddler::Types::MerchantFulfillmentV0::Weight?
-        attr_reader must_arrive_by_date: String?
-        attr_reader ship_date: String?
+        attr_reader ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?
         attr_reader shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?
+        attr_reader weight: Peddler::Types::MerchantFulfillmentV0::Weight?
         attr_reader label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?
+        attr_reader must_arrive_by_date: String?
+        attr_reader seller_order_id: String?
+        attr_reader ship_date: String?
 
-        def to_h: () -> { amazon_order_id: String?, seller_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, must_arrive_by_date: String?, ship_date: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization? }
+        def to_h: () -> { amazon_order_id: String?, item_list: Array[Peddler::Types::MerchantFulfillmentV0::Item]?, package_dimensions: Peddler::Types::MerchantFulfillmentV0::PackageDimensions?, ship_from_address: Peddler::Types::MerchantFulfillmentV0::Address?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, weight: Peddler::Types::MerchantFulfillmentV0::Weight?, label_customization: Peddler::Types::MerchantFulfillmentV0::LabelCustomization?, must_arrive_by_date: String?, seller_order_id: String?, ship_date: String? }
       end
     end
   end

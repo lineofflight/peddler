@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ServicesV1
       class Technician < Data
-        def self.new: (?technician_id: String?, ?name: String?) -> Peddler::Types::ServicesV1::Technician
+        def self.new: (?name: String?, ?technician_id: String?) -> Peddler::Types::ServicesV1::Technician
                     | (String?, String?) -> Peddler::Types::ServicesV1::Technician
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Technician
 
-        attr_reader technician_id: String?
         attr_reader name: String?
+        attr_reader technician_id: String?
 
-        def to_h: () -> { technician_id: String?, name: String? }
+        def to_h: () -> { name: String?, technician_id: String? }
       end
     end
   end

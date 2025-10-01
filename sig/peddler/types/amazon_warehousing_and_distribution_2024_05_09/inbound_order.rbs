@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundOrder < Data
-        def self.new: (created_at: String?, ?destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, order_id: String?, order_status: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
-                    | (String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
+        def self.new: (created_at: String?, order_id: String?, order_status: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, ?preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
+                    | (String?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
 
         attr_reader created_at: String?
-        attr_reader destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?
-        attr_reader external_reference_id: String?
         attr_reader order_id: String?
         attr_reader order_status: String?
         attr_reader origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
         attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?
+        attr_reader external_reference_id: String?
         attr_reader preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?
         attr_reader updated_at: String?
 
-        def to_h: () -> { created_at: String?, destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, external_reference_id: String?, order_id: String?, order_status: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, updated_at: String? }
+        def to_h: () -> { created_at: String?, order_id: String?, order_status: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, external_reference_id: String?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, updated_at: String? }
       end
     end
   end

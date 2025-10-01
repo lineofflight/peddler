@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInboundV0
       class GetLabelsResponse < Data
-        def self.new: (?payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?, ?errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
-                    | (Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?, Array[Peddler::Types::FulfillmentInboundV0::Error]?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?, ?payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
+                    | (Array[Peddler::Types::FulfillmentInboundV0::Error]?, Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetLabelsResponse
 
-        attr_reader payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?
         attr_reader errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?
 
-        def to_h: () -> { payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL?, errors: Array[Peddler::Types::FulfillmentInboundV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentInboundV0::Error]?, payload: Peddler::Types::FulfillmentInboundV0::LabelDownloadURL? }
       end
     end
   end

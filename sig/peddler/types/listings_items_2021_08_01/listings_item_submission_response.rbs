@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ListingsItems20210801
       class ListingsItemSubmissionResponse < Data
-        def self.new: (sku: String?, status: String?, submission_id: String?, ?issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, ?identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
-                    | (String?, String?, String?, Array[Peddler::Types::ListingsItems20210801::Issue]?, Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
+        def self.new: (sku: String?, status: String?, submission_id: String?, ?identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?, ?issues: Array[Peddler::Types::ListingsItems20210801::Issue]?) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
+                    | (String?, String?, String?, Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::Issue]?) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse
 
         attr_reader sku: String?
         attr_reader status: String?
         attr_reader submission_id: String?
-        attr_reader issues: Array[Peddler::Types::ListingsItems20210801::Issue]?
         attr_reader identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?
+        attr_reader issues: Array[Peddler::Types::ListingsItems20210801::Issue]?
 
-        def to_h: () -> { sku: String?, status: String?, submission_id: String?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]? }
+        def to_h: () -> { sku: String?, status: String?, submission_id: String?, identifiers: Array[Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace]?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]? }
       end
     end
   end

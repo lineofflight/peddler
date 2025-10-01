@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/money"
 require "peddler/types/product_pricing_v0/price_type"
@@ -11,22 +11,8 @@ module Peddler
     module ProductPricingV0
       # Schema for an individual offer.
       OfferType = Structure.new do
-        # @return [String] Indicates the type of customer that the offer is valid for.
-        attribute?(:offer_type, String, from: "offerType")
-
         # @return [PriceType] Contains pricing information that includes promotions and contains the shipping cost.
         attribute(:buying_price, PriceType, from: "BuyingPrice")
-
-        # @return [Money] The current price excluding any promotions that apply to the product. Excludes the shipping
-        # cost.
-        attribute(:regular_price, Money, from: "RegularPrice")
-
-        # @return [Money] The current listing price for Business buyers.
-        attribute?(:business_price, Money, from: "businessPrice")
-
-        # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
-        # information when buy in bulk.
-        attribute?(:quantity_discount_prices, [QuantityDiscountPriceType], from: "quantityDiscountPrices")
 
         # @return [String] The fulfillment channel for the offer listing. Possible values:
         #
@@ -42,8 +28,22 @@ module Peddler
         # Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.
         attribute(:item_sub_condition, String, from: "ItemSubCondition")
 
+        # @return [Money] The current price excluding any promotions that apply to the product. Excludes the shipping
+        # cost.
+        attribute(:regular_price, Money, from: "RegularPrice")
+
         # @return [String] The seller stock keeping unit (SKU) of the item.
         attribute(:seller_sku, String, from: "SellerSKU")
+
+        # @return [Money] The current listing price for Business buyers.
+        attribute?(:business_price, Money, from: "businessPrice")
+
+        # @return [String] Indicates the type of customer that the offer is valid for.
+        attribute?(:offer_type, String, from: "offerType")
+
+        # @return [Array<QuantityDiscountPriceType>] List of `QuantityDiscountPrice` that contains item's pricing
+        # information when buy in bulk.
+        attribute?(:quantity_discount_prices, [QuantityDiscountPriceType], from: "quantityDiscountPrices")
       end
     end
   end

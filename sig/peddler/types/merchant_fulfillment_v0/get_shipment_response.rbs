@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module MerchantFulfillmentV0
       class GetShipmentResponse < Data
-        def self.new: (?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?, ?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
-                    | (Peddler::Types::MerchantFulfillmentV0::Shipment?, Array[Peddler::Types::MerchantFulfillmentV0::Error]?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
+        def self.new: (?errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, ?payload: Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
+                    | (Array[Peddler::Types::MerchantFulfillmentV0::Error]?, Peddler::Types::MerchantFulfillmentV0::Shipment?) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse
 
-        attr_reader payload: Peddler::Types::MerchantFulfillmentV0::Shipment?
         attr_reader errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?
+        attr_reader payload: Peddler::Types::MerchantFulfillmentV0::Shipment?
 
-        def to_h: () -> { payload: Peddler::Types::MerchantFulfillmentV0::Shipment?, errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::MerchantFulfillmentV0::Error]?, payload: Peddler::Types::MerchantFulfillmentV0::Shipment? }
       end
     end
   end

@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class LinkCarrierAccountResponse < Data
-        def self.new: (?registration_status: String?, ?account_id: String?) -> Peddler::Types::ShippingV2::LinkCarrierAccountResponse
+        def self.new: (?account_id: String?, ?registration_status: String?) -> Peddler::Types::ShippingV2::LinkCarrierAccountResponse
                     | (String?, String?) -> Peddler::Types::ShippingV2::LinkCarrierAccountResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::LinkCarrierAccountResponse
 
-        attr_reader registration_status: String?
         attr_reader account_id: String?
+        attr_reader registration_status: String?
 
-        def to_h: () -> { registration_status: String?, account_id: String? }
+        def to_h: () -> { account_id: String?, registration_status: String? }
       end
     end
   end

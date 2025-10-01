@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/orders_v0/regulated_information"
 require "peddler/types/orders_v0/regulated_order_verification_status"
@@ -17,11 +17,11 @@ module Peddler
         # order.
         attribute(:regulated_information, RegulatedInformation, from: "RegulatedInformation")
 
-        # @return [:boolean] When true, the order requires attaching a dosage information label when shipped.
-        attribute(:requires_dosage_label, :boolean, from: "RequiresDosageLabel")
-
         # @return [RegulatedOrderVerificationStatus] The order's verification status.
         attribute(:regulated_order_verification_status, RegulatedOrderVerificationStatus, from: "RegulatedOrderVerificationStatus")
+
+        # @return [:boolean] When true, the order requires attaching a dosage information label when shipped.
+        attribute(:requires_dosage_label, :boolean, from: "RequiresDosageLabel")
       end
     end
   end

@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
       class ShippingLabel < Data
-        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, label_format: String?, label_data: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel
-                    | (String?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, String?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel
+        def self.new: (label_data: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?, label_format: String?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?, String?, String?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel
 
+        attr_reader label_data: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?
+        attr_reader label_format: String?
         attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?
-        attr_reader label_format: String?
-        attr_reader label_data: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?
 
-        def to_h: () -> { purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, label_format: String?, label_data: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]? }
+        def to_h: () -> { label_data: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::LabelData]?, label_format: String?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification? }
       end
     end
   end

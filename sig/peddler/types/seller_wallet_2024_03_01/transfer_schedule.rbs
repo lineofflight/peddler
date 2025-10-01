@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module SellerWallet20240301
       class TransferSchedule < Data
-        def self.new: (transfer_schedule_id: String?, transaction_type: String?, ?transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transfer_schedule_status: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, ?payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, transfer_schedule_failures: Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]?) -> Peddler::Types::SellerWallet20240301::TransferSchedule
-                    | (String?, String?, Peddler::Types::SellerWallet20240301::TransactionAccount?, Peddler::Types::SellerWallet20240301::TransactionAccount?, String?, Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, Peddler::Types::SellerWallet20240301::PaymentPreference?, Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]?) -> Peddler::Types::SellerWallet20240301::TransferSchedule
+        def self.new: (transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_type: String?, transfer_schedule_failures: Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]?, transfer_schedule_id: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, transfer_schedule_status: String?, ?payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, ?transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?) -> Peddler::Types::SellerWallet20240301::TransferSchedule
+                    | (Peddler::Types::SellerWallet20240301::TransactionAccount?, String?, Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]?, String?, Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, String?, Peddler::Types::SellerWallet20240301::PaymentPreference?, Peddler::Types::SellerWallet20240301::TransactionAccount?) -> Peddler::Types::SellerWallet20240301::TransferSchedule
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransferSchedule
 
-        attr_reader transfer_schedule_id: String?
-        attr_reader transaction_type: String?
-        attr_reader transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?
         attr_reader transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?
-        attr_reader transfer_schedule_status: String?
-        attr_reader transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?
-        attr_reader payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?
+        attr_reader transaction_type: String?
         attr_reader transfer_schedule_failures: Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]?
+        attr_reader transfer_schedule_id: String?
+        attr_reader transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?
+        attr_reader transfer_schedule_status: String?
+        attr_reader payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?
+        attr_reader transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?
 
-        def to_h: () -> { transfer_schedule_id: String?, transaction_type: String?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transfer_schedule_status: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, transfer_schedule_failures: Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]? }
+        def to_h: () -> { transaction_destination_account: Peddler::Types::SellerWallet20240301::TransactionAccount?, transaction_type: String?, transfer_schedule_failures: Array[Peddler::Types::SellerWallet20240301::TransferScheduleFailures]?, transfer_schedule_id: String?, transfer_schedule_information: Peddler::Types::SellerWallet20240301::TransferScheduleInformation?, transfer_schedule_status: String?, payment_preference: Peddler::Types::SellerWallet20240301::PaymentPreference?, transaction_source_account: Peddler::Types::SellerWallet20240301::TransactionAccount? }
       end
     end
   end

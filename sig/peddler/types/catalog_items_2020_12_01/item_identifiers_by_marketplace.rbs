@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module CatalogItems20201201
       class ItemIdentifiersByMarketplace < Data
-        def self.new: (marketplace_id: String?, identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
-                    | (String?, Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
+        def self.new: (identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?, marketplace_id: String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
+                    | (Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?, String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace
 
-        attr_reader marketplace_id: String?
         attr_reader identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?
+        attr_reader marketplace_id: String?
 
-        def to_h: () -> { marketplace_id: String?, identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]? }
+        def to_h: () -> { identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifier]?, marketplace_id: String? }
       end
     end
   end

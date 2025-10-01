@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorShipmentsV1
       class TransportLabel < Data
-        def self.new: (?label_create_date_time: String?, ?shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?, ?label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?) -> Peddler::Types::VendorShipmentsV1::TransportLabel
-                    | (String?, Peddler::Types::VendorShipmentsV1::ShipmentInformation?, Array[Peddler::Types::VendorShipmentsV1::LabelData]?) -> Peddler::Types::VendorShipmentsV1::TransportLabel
+        def self.new: (?label_create_date_time: String?, ?label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?, ?shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?) -> Peddler::Types::VendorShipmentsV1::TransportLabel
+                    | (String?, Array[Peddler::Types::VendorShipmentsV1::LabelData]?, Peddler::Types::VendorShipmentsV1::ShipmentInformation?) -> Peddler::Types::VendorShipmentsV1::TransportLabel
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportLabel
 
         attr_reader label_create_date_time: String?
-        attr_reader shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?
         attr_reader label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?
+        attr_reader shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?
 
-        def to_h: () -> { label_create_date_time: String?, shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?, label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]? }
+        def to_h: () -> { label_create_date_time: String?, label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?, shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation? }
       end
     end
   end

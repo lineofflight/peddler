@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ShippingV2
       class CollectionFormsHistoryRecord < Data
-        def self.new: (?carrier_name: String?, ?creation_date: String?, ?generation_status: String?, ?collection_form_id: String?, ?ship_from_address: Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::CollectionFormsHistoryRecord
+        def self.new: (?carrier_name: String?, ?collection_form_id: String?, ?creation_date: String?, ?generation_status: String?, ?ship_from_address: Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::CollectionFormsHistoryRecord
                     | (String?, String?, String?, String?, Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::CollectionFormsHistoryRecord
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CollectionFormsHistoryRecord
 
         attr_reader carrier_name: String?
+        attr_reader collection_form_id: String?
         attr_reader creation_date: String?
         attr_reader generation_status: String?
-        attr_reader collection_form_id: String?
         attr_reader ship_from_address: Peddler::Types::ShippingV2::Address?
 
-        def to_h: () -> { carrier_name: String?, creation_date: String?, generation_status: String?, collection_form_id: String?, ship_from_address: Peddler::Types::ShippingV2::Address? }
+        def to_h: () -> { carrier_name: String?, collection_form_id: String?, creation_date: String?, generation_status: String?, ship_from_address: Peddler::Types::ShippingV2::Address? }
       end
     end
   end

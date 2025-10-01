@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricing20220501
       class Price < Data
-        def self.new: (listing_price: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::Price
-                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::Price
+        def self.new: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?shipping_price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
+                    | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::Price
 
         attr_reader listing_price: Peddler::Types::Money?
-        attr_reader shipping_price: Peddler::Types::Money?
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+        attr_reader shipping_price: Peddler::Types::Money?
 
-        def to_h: () -> { listing_price: Peddler::Types::Money?, shipping_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points? }
+        def to_h: () -> { listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points?, shipping_price: Peddler::Types::Money? }
       end
     end
   end

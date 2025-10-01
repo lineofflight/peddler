@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
-require "peddler/types/solicitations_v1/solicitations_action"
 require "peddler/types/solicitations_v1/error"
+require "peddler/types/solicitations_v1/solicitations_action"
 
 module Peddler
   module Types
@@ -12,16 +12,16 @@ module Peddler
       # (HAL) link to the JSON schema document that describes the expected input.
       GetSolicitationActionResponse = Structure.new do
         # @return [Hash]
-        attribute?(:_links, Hash)
-
-        # @return [Hash]
         attribute?(:_embedded, Hash)
 
-        # @return [SolicitationsAction]
-        attribute?(:payload, SolicitationsAction)
+        # @return [Hash]
+        attribute?(:_links, Hash)
 
         # @return [Array<Error>]
         attribute?(:errors, [Error])
+
+        # @return [SolicitationsAction]
+        attribute?(:payload, SolicitationsAction)
       end
     end
   end

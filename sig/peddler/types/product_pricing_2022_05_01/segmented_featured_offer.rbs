@@ -1,25 +1,25 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricing20220501
       class SegmentedFeaturedOffer < Data
-        def self.new: (seller_id: String?, condition: String?, ?sub_condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
-                    | (String?, String?, String?, String?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+        def self.new: (condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+                    | (String?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
 
-        attr_reader seller_id: String?
         attr_reader condition: String?
-        attr_reader sub_condition: String?
+        attr_reader featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?
         attr_reader fulfillment_type: String?
         attr_reader listing_price: Peddler::Types::Money?
-        attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
+        attr_reader seller_id: String?
         attr_reader points: Peddler::Types::ProductPricing20220501::Points?
         attr_reader prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?
-        attr_reader featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?
+        attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
+        attr_reader sub_condition: String?
 
-        def to_h: () -> { seller_id: String?, condition: String?, sub_condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]? }
+        def to_h: () -> { condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
       end
     end
   end

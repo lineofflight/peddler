@@ -1,24 +1,24 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module FulfillmentInbound20240320
       class TransportationOption < Data
-        def self.new: (carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, ?carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, preconditions: Array[String]?, ?quote: Peddler::Types::FulfillmentInbound20240320::Quote?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
-                    | (Peddler::Types::FulfillmentInbound20240320::Carrier?, Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, Array[String]?, Peddler::Types::FulfillmentInbound20240320::Quote?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
+        def self.new: (carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, preconditions: Array[String]?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?, ?carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, ?quote: Peddler::Types::FulfillmentInbound20240320::Quote?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
+                    | (Peddler::Types::FulfillmentInbound20240320::Carrier?, Array[String]?, String?, String?, String?, String?, Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, Peddler::Types::FulfillmentInbound20240320::Quote?) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::TransportationOption
 
         attr_reader carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?
-        attr_reader carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?
         attr_reader preconditions: Array[String]?
-        attr_reader quote: Peddler::Types::FulfillmentInbound20240320::Quote?
         attr_reader shipment_id: String?
         attr_reader shipping_mode: String?
         attr_reader shipping_solution: String?
         attr_reader transportation_option_id: String?
+        attr_reader carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?
+        attr_reader quote: Peddler::Types::FulfillmentInbound20240320::Quote?
 
-        def to_h: () -> { carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, preconditions: Array[String]?, quote: Peddler::Types::FulfillmentInbound20240320::Quote?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String? }
+        def to_h: () -> { carrier: Peddler::Types::FulfillmentInbound20240320::Carrier?, preconditions: Array[String]?, shipment_id: String?, shipping_mode: String?, shipping_solution: String?, transportation_option_id: String?, carrier_appointment: Peddler::Types::FulfillmentInbound20240320::CarrierAppointment?, quote: Peddler::Types::FulfillmentInbound20240320::Quote? }
       end
     end
   end

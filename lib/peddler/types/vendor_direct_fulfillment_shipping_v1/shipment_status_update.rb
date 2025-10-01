@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "peddler/types/vendor_direct_fulfillment_shipping_v1/party_identification"
 require "peddler/types/vendor_direct_fulfillment_shipping_v1/status_update_details"

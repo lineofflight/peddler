@@ -1,19 +1,19 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
       class ContainerLabel < Data
-        def self.new: (?container_tracking_number: String?, content: String?, format: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
+        def self.new: (content: String?, format: String?, ?container_tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
                     | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
 
-        attr_reader container_tracking_number: String?
         attr_reader content: String?
         attr_reader format: String?
+        attr_reader container_tracking_number: String?
 
-        def to_h: () -> { container_tracking_number: String?, content: String?, format: String? }
+        def to_h: () -> { content: String?, format: String?, container_tracking_number: String? }
       end
     end
   end

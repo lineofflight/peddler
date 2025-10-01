@@ -1,21 +1,21 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AplusContent20201101
       class ContentMetadata < Data
-        def self.new: (name: String?, marketplace_id: String?, status: String?, badge_set: Array[untyped]?, update_time: String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
-                    | (String?, String?, String?, Array[untyped]?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
+        def self.new: (badge_set: Array[untyped]?, marketplace_id: String?, name: String?, status: String?, update_time: String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
+                    | (Array[untyped]?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadata
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ContentMetadata
 
-        attr_reader name: String?
-        attr_reader marketplace_id: String?
-        attr_reader status: String?
         attr_reader badge_set: Array[untyped]?
+        attr_reader marketplace_id: String?
+        attr_reader name: String?
+        attr_reader status: String?
         attr_reader update_time: String?
 
-        def to_h: () -> { name: String?, marketplace_id: String?, status: String?, badge_set: Array[untyped]?, update_time: String? }
+        def to_h: () -> { badge_set: Array[untyped]?, marketplace_id: String?, name: String?, status: String?, update_time: String? }
       end
     end
   end

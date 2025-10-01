@@ -1,26 +1,26 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class CompetitivePriceType < Data
-        def self.new: (competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, ?condition: String?, ?subcondition: String?, ?offer_type: String?, ?quantity_tier: Integer?, ?quantity_discount_type: String?, ?seller_id: String?, ?belongs_to_requester: bool?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
-                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, String?, String?, String?, Integer?, String?, String?, bool?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
+        def self.new: (competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, ?belongs_to_requester: bool?, ?condition: String?, ?offer_type: String?, ?quantity_discount_type: String?, ?quantity_tier: Integer?, ?seller_id: String?, ?subcondition: String?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
+                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, bool?, String?, String?, String?, Integer?, String?, String?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
 
         attr_reader competitive_price_id: String?
         attr_reader price: Peddler::Types::ProductPricingV0::PriceType?
-        attr_reader condition: String?
-        attr_reader subcondition: String?
-        attr_reader offer_type: String?
-        attr_reader quantity_tier: Integer?
-        attr_reader quantity_discount_type: String?
-        attr_reader seller_id: String?
         attr_reader belongs_to_requester: bool?
+        attr_reader condition: String?
+        attr_reader offer_type: String?
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
+        attr_reader seller_id: String?
+        attr_reader subcondition: String?
 
         def belongs_to_requester?: () -> bool
-        def to_h: () -> { competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, condition: String?, subcondition: String?, offer_type: String?, quantity_tier: Integer?, quantity_discount_type: String?, seller_id: String?, belongs_to_requester: bool? }
+        def to_h: () -> { competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, belongs_to_requester: bool?, condition: String?, offer_type: String?, quantity_discount_type: String?, quantity_tier: Integer?, seller_id: String?, subcondition: String? }
       end
     end
   end

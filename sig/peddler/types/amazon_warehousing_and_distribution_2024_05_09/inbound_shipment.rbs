@@ -1,32 +1,32 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
       class InboundShipment < Data
-        def self.new: (?carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: String?, destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, ?external_reference_id: String?, order_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, ?received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: String?, shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, ?shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, ?destination_region: String?, shipment_status: String?, ?tracking_id: String?, ?updated_at: String?, ?warehouse_reference_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
-                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, String?, String?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
+        def self.new: (destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, ?carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: String?, ?destination_region: String?, ?external_reference_id: String?, ?received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: String?, ?shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, ?tracking_id: String?, ?updated_at: String?, ?warehouse_reference_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, String?, String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
 
-        attr_reader carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?
-        attr_reader created_at: String?
         attr_reader destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
-        attr_reader external_reference_id: String?
         attr_reader order_id: String?
         attr_reader origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
-        attr_reader received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?
-        attr_reader ship_by: String?
         attr_reader shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
         attr_reader shipment_id: String?
-        attr_reader shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?
-        attr_reader destination_region: String?
         attr_reader shipment_status: String?
+        attr_reader carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?
+        attr_reader created_at: String?
+        attr_reader destination_region: String?
+        attr_reader external_reference_id: String?
+        attr_reader received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?
+        attr_reader ship_by: String?
+        attr_reader shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?
         attr_reader tracking_id: String?
         attr_reader updated_at: String?
         attr_reader warehouse_reference_id: String?
 
-        def to_h: () -> { carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, created_at: String?, destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, external_reference_id: String?, order_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ship_by: String?, shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, destination_region: String?, shipment_status: String?, tracking_id: String?, updated_at: String?, warehouse_reference_id: String? }
+        def to_h: () -> { destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, created_at: String?, destination_region: String?, external_reference_id: String?, received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ship_by: String?, shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, tracking_id: String?, updated_at: String?, warehouse_reference_id: String? }
       end
     end
   end

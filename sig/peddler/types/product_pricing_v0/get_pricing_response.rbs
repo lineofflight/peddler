@@ -1,18 +1,18 @@
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 module Peddler
   module Types
     module ProductPricingV0
       class GetPricingResponse < Data
-        def self.new: (?payload: Array[Peddler::Types::ProductPricingV0::Price]?, ?errors: Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
-                    | (Array[Peddler::Types::ProductPricingV0::Price]?, Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
+        def self.new: (?errors: Array[Peddler::Types::ProductPricingV0::Error]?, ?payload: Array[Peddler::Types::ProductPricingV0::Price]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
+                    | (Array[Peddler::Types::ProductPricingV0::Error]?, Array[Peddler::Types::ProductPricingV0::Price]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetPricingResponse
 
-        attr_reader payload: Array[Peddler::Types::ProductPricingV0::Price]?
         attr_reader errors: Array[Peddler::Types::ProductPricingV0::Error]?
+        attr_reader payload: Array[Peddler::Types::ProductPricingV0::Price]?
 
-        def to_h: () -> { payload: Array[Peddler::Types::ProductPricingV0::Price]?, errors: Array[Peddler::Types::ProductPricingV0::Error]? }
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricingV0::Error]?, payload: Array[Peddler::Types::ProductPricingV0::Price]? }
       end
     end
   end

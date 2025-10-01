@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is generated. Edit template if necessary.
+# This file is generated. Do not edit.
 
 require "structure"
 
@@ -9,12 +9,12 @@ module Peddler
     module CatalogItems20220401
       # A brand that you can use to refine your search.
       BrandRefinement = Structure.new do
+        # @return [String] The brand name that you can use to refine your search.
+        attribute(:brand_name, String, from: "brandName")
+
         # @return [Integer] The estimated number of results that would be returned if you refine your search by the
         # specified `brandName`.
         attribute(:number_of_results, Integer, from: "numberOfResults")
-
-        # @return [String] The brand name that you can use to refine your search.
-        attribute(:brand_name, String, from: "brandName")
       end
     end
   end
