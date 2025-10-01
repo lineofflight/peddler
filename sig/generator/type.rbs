@@ -45,6 +45,8 @@ module Generator
 
     private
 
+    def sorted_properties: (Hash[String, untyped] props) -> Hash[String, untyped]
+
     def merge_from_all_of: [T] (String field_name) { (untyped) -> T } -> (Hash[String, untyped] | Array[String] | untyped)
 
     def extract_dependencies_from_property: (Hash[String, untyped] prop_def) -> Array[String]
