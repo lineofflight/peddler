@@ -30,6 +30,7 @@ module Generator
 
     def description
       description = model["info"]["description"]
+      description = convert_html_links_to_yard(description)
       description = convert_doc_links_to_full_url(description)
 
       split_long_comment_line(description, base_indent: 4)
@@ -94,7 +95,8 @@ module Generator
     end
 
     def github_model_filename
-      File.basename(file)
+      parts = file.split("/")
+      "#{parts[-2]}/#{parts[-1]}"
     end
 
     private

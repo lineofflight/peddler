@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for FBA Inventory lets you programmatically retrieve information about inventory in
     # Amazon's fulfillment network.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fbaInventory.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
     class FBAInventoryV1 < API
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
       # startDateTime, sellerSkus and sellerSku parameters:

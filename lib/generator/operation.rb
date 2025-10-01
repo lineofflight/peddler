@@ -62,6 +62,8 @@ module Generator
         end
         param_name = param["name"].underscore
         param_description = param["description"]&.gsub(/\s+/, " ")
+        param_description = convert_html_links_to_yard(param_description) if param_description
+        param_description = convert_doc_links_to_full_url(param_description) if param_description
 
         "@param #{param_name} [#{param_type}] #{param_description}"
       end

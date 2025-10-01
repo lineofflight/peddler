@@ -20,7 +20,7 @@ module Peddler
     # to [Marketplace
     # support](https://developer-docs.amazon.com/sp-api/docs/easyship-api-v2022-03-23-use-case-guide#marketplace-support).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easyShip_2022-03-23.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
     class EasyShip20220323 < API
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
       # that the seller specifies.

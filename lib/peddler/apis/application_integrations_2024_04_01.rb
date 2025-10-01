@@ -17,7 +17,7 @@ module Peddler
     # With the AppIntegrations API v2024-04-01, you can send notifications to Amazon Selling Partners and display the
     # notifications in Seller Central.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/appIntegrations-2024-04-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
     class ApplicationIntegrations20240401 < API
       # Create a notification for sellers in Seller Central.
       #

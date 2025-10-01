@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Transfers enables selling partners to retrieve payment methods and initiate payouts
     # for their seller accounts. This API supports the following marketplaces: DE, FR, IT, ES, SE, NL, PL, and BE.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/transfers_2024-06-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
     class Finances20240601 < API
       # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
       # `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace

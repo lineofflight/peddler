@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Automotive provides programmatic access to information needed by selling partners to
     # provide compatibility information about their listed products.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles_2024-11-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles-api-model/vehicles_2024-11-01.json
     class Vehicles20241101 < API
       # Get the latest collection of vehicles
       #

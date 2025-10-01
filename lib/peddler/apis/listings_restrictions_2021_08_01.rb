@@ -21,7 +21,7 @@ module Peddler
     # {https://developer-docs.amazon.com/sp-api/docs/listings-restrictions-api-v2021-08-01-use-case-guide Listings
     # Restrictions API Use Case Guide}.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listingsRestrictions_2021-08-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
     class ListingsRestrictions20210801 < API
       # Returns listing restrictions for an item in the Amazon Catalog.
       #

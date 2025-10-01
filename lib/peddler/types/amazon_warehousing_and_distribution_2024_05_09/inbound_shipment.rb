@@ -16,8 +16,8 @@ module Peddler
         # @return [CarrierCode] The shipment carrier code.
         attribute?(:carrier_code, CarrierCode, from: "carrierCode")
 
-        # @return [String] Timestamp when the shipment was created. The date is returned in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+        # @return [String] Timestamp when the shipment was created. The date is returned in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute?(:created_at, String, from: "createdAt")
 
         # @return [Address] Destination address for this shipment.
@@ -59,8 +59,8 @@ module Peddler
         # @return [String] Carrier-unique tracking ID for this shipment.
         attribute?(:tracking_id, String, from: "trackingId")
 
-        # @return [String] Timestamp when the shipment was updated. The date is returned in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+        # @return [String] Timestamp when the shipment was updated. The date is returned in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute?(:updated_at, String, from: "updatedAt")
 
         # @return [String] An AWD-provided reference ID that you can use to interact with the warehouse. For example, a

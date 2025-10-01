@@ -18,7 +18,7 @@ module Peddler
     # product detail pages. Selling partners can use A+ content to share their brand and product story, which helps
     # buyers make informed purchasing decisions. Selling partners use content modules to add images and text.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplusContent_2020-11-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
     class AplusContent20201101 < API
       # Returns a list of all A+ Content documents, including metadata, that are assigned to a selling partner. To get
       # the actual contents of the A+ Content documents, call the `getContentDocument` operation.

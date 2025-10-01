@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Fulfillment Inbound lets you create applications that create and update inbound
     # shipments of inventory to Amazon's fulfillment network.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillmentInboundV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
     class FulfillmentInboundV0 < API
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.

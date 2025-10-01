@@ -22,7 +22,7 @@ module Peddler
     # {https://developer-docs.amazon.com/sp-api/docs/listings-items-api-v2020-09-01-use-case-guide Listing Items API Use
     # Case Guide}.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listingsItems_2020-09-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2020-09-01.json
     class ListingsItems20200901 < API
       # Delete a listings item for a selling partner.
       #

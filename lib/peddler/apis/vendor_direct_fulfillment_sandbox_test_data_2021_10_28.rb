@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Vendor Direct Fulfillment Sandbox Test Data provides programmatic access to vendor
     # direct fulfillment sandbox test data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentSandboxData_2021-10-28.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
     class VendorDirectFulfillmentSandboxTestData20211028 < API
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
       #

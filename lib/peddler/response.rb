@@ -19,7 +19,7 @@ module Peddler
     #   value specified by the sequence of keys
     #
     #   @param [String] key one or more keys
-    #   @see https://ruby-doc.org/core/Hash.html#method-i-dig
+    #   @see https://ruby-doc.org/3.4/Hash.html#method-i-dig
     def_delegator :to_h, :dig
 
     class << self

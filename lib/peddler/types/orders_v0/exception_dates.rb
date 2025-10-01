@@ -9,8 +9,8 @@ module Peddler
     module OrdersV0
       # Dates when the business is closed or open with a different time window.
       ExceptionDates = Structure.new do
-        # @return [String] Date when the business is closed, in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date format.
+        # @return [String] Date when the business is closed, in {https://developer-docs.amazon.com/sp-api/docs/iso-8601
+        # ISO 8601} date format.
         attribute?(:exception_date, String, from: "ExceptionDate")
 
         # @return [:boolean] Boolean indicating if the business is closed or open on that date.

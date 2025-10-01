@@ -16,7 +16,7 @@ module Peddler
     #
     # Manage configurations and capabilities of seller supply sources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supplySources_2020-07-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
     class SupplySources20200701 < API
       # The path to retrieve paginated supply sources.
       #

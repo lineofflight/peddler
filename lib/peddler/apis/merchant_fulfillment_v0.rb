@@ -17,7 +17,7 @@ module Peddler
     # With the Selling Partner API for Merchant Fulfillment, you can build applications that sellers can use to purchase
     # shipping for non-Prime and Prime orders using Amazon's Buy Shipping Services.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchantFulfillmentV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     class MerchantFulfillmentV0 < API
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #

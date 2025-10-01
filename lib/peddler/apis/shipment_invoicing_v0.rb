@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Shipment Invoicing helps you programmatically retrieve shipment invoice information in
     # the Brazil marketplace for a selling partner’s Fulfillment by Amazon (FBA) orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipmentInvoicingV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipment-invoicing-api-model/shipmentInvoicingV0.json
     class ShipmentInvoicingV0 < API
       # Returns the shipment details required to issue an invoice for the specified shipment.
       #

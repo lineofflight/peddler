@@ -26,8 +26,8 @@ module Peddler
         # @return [String] The tracking number used to obtain tracking and delivery information.
         attribute(:tracking_number, String, from: "trackingNumber")
 
-        # @return [String] The shipping date for the package. Must be in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date/time format.
+        # @return [String] The shipping date for the package. Must be in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date/time format.
         attribute(:ship_date, String, from: "shipDate")
 
         # @return [String] The unique identifier for the supply source.

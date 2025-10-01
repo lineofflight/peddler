@@ -13,4 +13,6 @@ target :lib do
     "time",
     "uri",
   )
+
+  configure_code_diagnostics(D::Ruby.strict)
 end

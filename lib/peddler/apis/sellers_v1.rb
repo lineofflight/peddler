@@ -24,7 +24,7 @@ module Peddler
     # Refer to the [Sellers API reference](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) for
     # details about this API's operations, data types, and schemas.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     class SellersV1 < API
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.

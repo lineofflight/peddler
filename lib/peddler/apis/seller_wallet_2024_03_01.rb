@@ -21,7 +21,7 @@ module Peddler
     # seller's Seller Wallet account. You can obtain financial events, balances, and transfer schedules for Seller
     # Wallet accounts. You can also schedule and initiate transactions.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellerWallet_2024-03-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
     class SellerWallet20240301 < API
       # Get Seller Wallet accounts for a seller.
       #

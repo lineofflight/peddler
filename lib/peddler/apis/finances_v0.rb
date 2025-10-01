@@ -18,7 +18,7 @@ module Peddler
     # can obtain financial events for a given order, financial event group, or date range without having to wait until a
     # statement period closes. You can also obtain financial event groups for a given date range.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/financesV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
     class FinancesV0 < API
       # Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your
       # financial events.

@@ -17,7 +17,7 @@ module Peddler
     # The Uploads API lets you upload files that you can programmatically access using other Selling Partner APIs, such
     # as the A+ Content API and the Messaging API.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads_2020-11-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads-api-model/uploads_2020-11-01.json
     class Uploads20201101 < API
       # Creates an upload destination, returning the information required to upload a file to the destination and to
       # programmatically access the file.

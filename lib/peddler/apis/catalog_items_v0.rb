@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Catalog Items helps you programmatically retrieve item details for items in the
     # catalog.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalogItemsV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
     class CatalogItemsV0 < API
       # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
       #

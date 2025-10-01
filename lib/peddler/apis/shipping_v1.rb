@@ -16,12 +16,11 @@ module Peddler
     #
     # Provides programmatic access to Amazon Shipping APIs.
     #
-    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of <a
-    # href="https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference">Amazon Shipping API
-    # (v2)</a> on the <a href="https://developer-docs.amazon.com/amazon-shipping/">Amazon Shipping Developer
-    # Documentation</a> site.
+    # **Note:** If you are new to the Amazon Shipping API, refer to the latest version of
+    # {https://developer-docs.amazon.com/amazon-shipping/docs/shipping-api-v2-reference Amazon Shipping API (v2)} on the
+    # {https://developer-docs.amazon.com/amazon-shipping/ Amazon Shipping Developer Documentation} site.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shipping.json
     class ShippingV1 < API
       # Create a new shipment.
       #

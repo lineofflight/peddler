@@ -21,7 +21,7 @@ module Peddler
     # {https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2020-12-01-use-case-guide Catalog Items API Use
     # Case Guide}.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalogItems_2020-12-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2020-12-01.json
     class CatalogItems20201201 < API
       # Search for and return a list of Amazon catalog items and associated information.
       #

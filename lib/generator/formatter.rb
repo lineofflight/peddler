@@ -70,7 +70,16 @@ module Generator
     end
 
     def convert_html_links_to_yard(text)
-      text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
+      # Handle quoted href attributes: <a href="url"> or <a href='url'>
+      text = text.gsub(%r{<a href=['"]([^'"]+)['"]>([^<]+)</a>}) do
+        url = Regexp.last_match(1)
+        link_text = Regexp.last_match(2)
+
+        "{#{url} #{link_text}}"
+      end
+
+      # Handle unquoted href attributes: <a href=url>
+      text.gsub(%r{<a href=([^\s>]+)>([^<]+)</a>}) do
         url = Regexp.last_match(1)
         link_text = Regexp.last_match(2)
 

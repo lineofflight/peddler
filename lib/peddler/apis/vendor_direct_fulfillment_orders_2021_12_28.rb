@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Orders provides programmatic access to a direct fulfillment
     # vendor's order data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentOrders_2021-12-28.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json
     class VendorDirectFulfillmentOrders20211228 < API
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
       # using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only

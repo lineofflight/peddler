@@ -21,7 +21,7 @@ module Peddler
     # For more information, refer to the [Notifications Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1 < API
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
       # is an optional parameter. When `payloadVersion` is not provided, it will return latest payload version

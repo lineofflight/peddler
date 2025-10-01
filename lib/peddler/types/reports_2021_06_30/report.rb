@@ -36,12 +36,12 @@ module Peddler
         # @return [String] The processing status of the report.
         attribute(:processing_status, String, from: "processingStatus")
 
-        # @return [String] The date and time when the report processing started, in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+        # @return [String] The date and time when the report processing started, in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format.
         attribute?(:processing_start_time, String, from: "processingStartTime")
 
-        # @return [String] The date and time when the report processing completed, in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+        # @return [String] The date and time when the report processing completed, in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format.
         attribute?(:processing_end_time, String, from: "processingEndTime")
 
         # @return [String] The identifier for the report document. Pass this into the `getReportDocument` operation to

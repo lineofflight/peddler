@@ -18,10 +18,10 @@ module Peddler
     # a list of solicitation types that are available for an order that you specify, then call an operation that sends a
     # solicitation to the buyer for that order. Buyers cannot respond to solicitations sent by this API, and these
     # solicitations do not appear in the Messaging section of Seller Central or in the recipient's Message Center. The
-    # Solicitations API returns responses that are formed according to the <a
-    # href=https://tools.ietf.org/html/draft-kelly-json-hal-08>JSON Hypertext Application Language</a> (HAL) standard.
+    # Solicitations API returns responses that are formed according to the
+    # {https://tools.ietf.org/html/draft-kelly-json-hal-08 JSON Hypertext Application Language} (HAL) standard.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
     class SolicitationsV1 < API
       # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
       # represented by an actions object, which contains a path and query parameter(s). You can use the path and

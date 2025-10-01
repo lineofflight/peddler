@@ -18,7 +18,7 @@ module Peddler
     # can obtain financial events for a given order or date range without having to wait until a statement period
     # closes.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances_2024-06-19.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/finances_2024-06-19.json
     class Finances20240619 < API
       # Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
       #

@@ -20,11 +20,13 @@ matches=$(
   {
     # Output README.md
     cat README.md
-    # Find comments in the lib directory
-    grep -EhoR '# .*' lib
+    # Find comments in the lib directory, excluding .erb files
+    grep -EhoR --exclude='*.erb' '# .*' lib
   } |
   # Extract URLs from the combined output
   grep -Eo 'https?://[^ )>,"]+' |
+  # Remove trailing punctuation (period, single quote, closing tags)
+  sed -E "s/[.'\`]+\$//; s/<\/a\$//; s/'\$//;" |
   uniq
 )
 

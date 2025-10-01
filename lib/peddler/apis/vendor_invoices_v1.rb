@@ -16,7 +16,7 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Payments provides programmatic access to vendors payments data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorInvoices.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
     class VendorInvoicesV1 < API
       # Submit new invoices to Amazon.
       #

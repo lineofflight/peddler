@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Retail Procurement Transaction Status provides programmatic access to status
     # information on specific asynchronous POST transactions for vendors.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorTransactionStatus.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-transaction-status-api-model/vendorTransactionStatus.json
     class VendorTransactionStatusV1 < API
       # Returns the status of the transaction that you specify.
       #

@@ -20,7 +20,7 @@ module Peddler
     # is eligible for using the manufacturer barcode for FBA inventory tracking. Sellers can use this information to
     # inform their decisions about which items to ship Amazon's fulfillment centers.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fbaInbound.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
     class FBAInboundEligibilityV1 < API
       # This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility
       # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which

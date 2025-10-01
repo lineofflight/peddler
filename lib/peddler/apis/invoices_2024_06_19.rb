@@ -17,7 +17,7 @@ module Peddler
     # Use the Selling Partner API for Invoices to retrieve and manage invoice-related operations, which can help selling
     # partners manage their bookkeeping processes.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/InvoicesApiModel_2024-06-19.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     class Invoices20240619 < API
       # Returns marketplace-dependent schemas and their respective set of possible values.
       #

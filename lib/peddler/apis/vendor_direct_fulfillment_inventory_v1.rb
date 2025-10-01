@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Inventory Updates provides programmatic access to a direct
     # fulfillment vendor's inventory updates.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentInventoryV1.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
     class VendorDirectFulfillmentInventoryV1 < API
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #

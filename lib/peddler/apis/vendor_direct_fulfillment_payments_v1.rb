@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Payments provides programmatic access to a direct fulfillment
     # vendor's invoice data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentPaymentsV1.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json
     class VendorDirectFulfillmentPaymentsV1 < API
       # Submits one or more invoices for a vendor's direct fulfillment orders.
       #

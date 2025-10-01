@@ -50,5 +50,26 @@ module Generator
 
       assert_equal(expected, convert_html_links_to_yard(text))
     end
+
+    def test_convert_html_links_to_yard_with_single_quotes
+      text = "Refer to <a href='https://example.com'>Example</a>."
+      expected = "Refer to {https://example.com Example}."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
+
+    def test_convert_html_links_to_yard_with_iso_8601
+      text = "Date in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format."
+      expected = "Date in {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
+
+    def test_convert_html_links_to_yard_with_unquoted_href
+      text = "Validated against <a href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>."
+      expected = "Validated against {http://json-schema.org/draft-04/schema http://json-schema.org/draft-04/schema}."
+
+      assert_equal(expected, convert_html_links_to_yard(text))
+    end
   end
 end

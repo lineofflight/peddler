@@ -16,7 +16,7 @@ module Peddler
     #
     # The Selling Partner API for Sales provides APIs related to sales performance.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sales.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sales-api-model/sales.json
     class SalesV1 < API
       # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
       #

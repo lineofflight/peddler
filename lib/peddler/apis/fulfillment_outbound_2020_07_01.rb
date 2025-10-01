@@ -18,7 +18,7 @@ module Peddler
     # Multi-Channel Fulfillment orders using their inventory in Amazon's fulfillment network. You can get information on
     # both potential and existing fulfillment orders.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillmentOutbound_2020-07-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
     class FulfillmentOutbound20200701 < API
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
       #

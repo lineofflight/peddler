@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Retail Procurement Shipments provides programmatic access to retail shipping data for
     # vendors.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorShipments.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
     class VendorShipmentsV1 < API
       # Submits one or more shipment confirmations for vendor orders.
       #

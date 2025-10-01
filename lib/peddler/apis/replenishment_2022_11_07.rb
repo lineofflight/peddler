@@ -21,7 +21,7 @@ module Peddler
     # The Replenishment API is available worldwide wherever Amazon Subscribe & Save is available or is supported. The
     # API is available to vendors and FBA selling partners.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-2022-11-07.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
     class Replenishment20221107 < API
       # Returns aggregated replenishment program metrics for a selling partner.
       #

@@ -18,7 +18,7 @@ module Peddler
     # Amazon-owned marketplaces as well as external channels/marketplaces. With these APIs, you can request shipping
     # rates, create shipments, cancel shipments, and track shipments.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shippingV2.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     class ShippingV2 < API
       # Returns the available shipping service offerings.
       #

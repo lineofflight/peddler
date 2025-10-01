@@ -54,8 +54,8 @@ module Peddler
         # @return [String]
         attribute(:fulfillment_order_status, String, from: "fulfillmentOrderStatus")
 
-        # @return [String] The date and time that the status of the fulfillment order last changed. Must be in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+        # @return [String] The date and time that the status of the fulfillment order last changed. Must be in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute(:status_updated_date, String, from: "statusUpdatedDate")
 
         # @return [Array<String>]

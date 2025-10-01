@@ -22,7 +22,7 @@ module Peddler
     # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/product-type-api-use-case-guide
     # Product Type Definitions API Use Case Guide}.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/definitionsProductTypes_2020-09-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
     class ProductTypeDefinitions20200901 < API
       # Search for and return a list of Amazon product types that have definitions available.
       #

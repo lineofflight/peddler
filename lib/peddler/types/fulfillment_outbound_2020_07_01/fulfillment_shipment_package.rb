@@ -23,8 +23,8 @@ module Peddler
         # delivery information.
         attribute?(:amazon_fulfillment_tracking_number, String, from: "amazonFulfillmentTrackingNumber")
 
-        # @return [String] The estimated arrival date and time of the package. Must be in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+        # @return [String] The estimated arrival date and time of the package. Must be in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute?(:estimated_arrival_date, String, from: "estimatedArrivalDate")
 
         # @return [LockerDetails] The locker details, if provided can be used to access locker delivery box.

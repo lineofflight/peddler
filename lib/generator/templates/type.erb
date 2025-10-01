@@ -15,8 +15,8 @@ require "peddler/types/<%= api_name %>/<%= dep.underscore %>"
 module Peddler
   module Types
     module <%= api_name.camelize %>
-      <% if definition["description"] -%>
-        <%= split_long_comment_line(definition["description"], base_indent: 6) %>
+      <% if class_description -%>
+        <%= class_description %>
       <% end -%>
       <%= class_name %> = Structure.new do
         <% properties.each_with_index do |(prop_name, prop_def), index| -%>

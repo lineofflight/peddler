@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Amazon Warehousing and Distribution (AWD) provides programmatic access to information
     # about AWD shipments and inventory.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/awd_2024-05-09.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     class AmazonWarehousingAndDistribution20240509 < API
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
       # shipment per order.

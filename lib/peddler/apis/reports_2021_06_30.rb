@@ -18,7 +18,7 @@ module Peddler
     # The Selling Partner API for Reports lets you retrieve and manage a variety of reports that can help selling
     # partners manage their businesses.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports_2021-06-30.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports-api-model/reports_2021-06-30.json
     class Reports20210630 < API
       include Peddler::Helpers::Reports20210630
 

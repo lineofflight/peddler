@@ -17,7 +17,7 @@ module Peddler
     #
     # The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds_2021-06-30.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds-api-model/feeds_2021-06-30.json
     class Feeds20210630 < API
       include Peddler::Helpers::Feeds20210630
 

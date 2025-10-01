@@ -17,7 +17,7 @@ module Peddler
     # With the Services API, you can build applications that help service providers get and modify their service orders
     # and manage their resources.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     class ServicesV1 < API
       # Gets details of service job indicated by the provided `serviceJobID`.
       #

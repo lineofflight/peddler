@@ -20,7 +20,7 @@ module Peddler
     # For more information, refer to the [Product Pricing v2022-05-01 Use Case
     # Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api-v2022-05-01-use-case-guide).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/productPricing_2022-05-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
     class ProductPricing20220501 < API
       # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
       # body. The response for each successful (HTTP status code 200) request in the set includes the computed listing

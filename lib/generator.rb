@@ -24,18 +24,19 @@ module Generator
   class << self
     include Logger
 
-    def generate
-      logger.info("Starting code generation!")
+    def generate(api_filter: nil)
+      @api_filter = api_filter
+      logger.info("Starting code generation#{" for #{api_filter}" if api_filter}!")
 
       ensure_api_models_exist!
-      initialize_directories!
+      initialize_directories! unless api_filter
       generate_apis!
       generate_types!
       generate_types_index_files!
-      generate_entry_point!
+      generate_entry_point! unless api_filter
       generate_api_signatures!
       generate_type_signatures!
-      generate_entry_point_for_signatures!
+      generate_entry_point_for_signatures! unless api_filter
       format_code!
 
       logger.info("Code generation completed successfully!")
@@ -133,17 +134,47 @@ module Generator
       system("bundle exec rubocop --version > /dev/null 2>&1") ||
         raise("RuboCop isn't available")
 
-      paths = ["lib/peddler.rb", "lib/peddler/apis", "lib/peddler/types"]
+      paths = @api_filter ? ["lib/peddler/apis", "lib/peddler/types"] : ["lib/peddler.rb", "lib/peddler/apis", "lib/peddler/types"]
       paths.each do |path|
-        system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{path} > /dev/null 2>&1") ||
-          raise("Couldn't format #{path}")
+        # Get list of actual files to format
+        files_to_format = if File.directory?(path)
+          Dir.glob(File.join(path, "**/*.rb")).select { |f| should_format?(f) }
+        elsif File.exist?(path)
+          [path]
+        else
+          [] #: Array[String]
+        end
+
+        next if files_to_format.empty?
+
+        files_to_format.each do |file|
+          system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{file} > /dev/null 2>&1") ||
+            raise("Couldn't format #{file}")
+        end
 
         logger.info("Formatted #{path}")
       end
     end
 
+    def should_format?(file)
+      return true unless @api_filter
+
+      # When filtering, only format files related to the filtered API
+      apis.any? { |api| file.include?(api.name_with_version) }
+    end
+
     def apis
-      @apis ||= api_model_files.map { |file| API.new(file) }
+      @apis ||= begin
+        all_apis = api_model_files.map { |file| API.new(file) }
+        filter = @api_filter
+        if filter
+          filtered = all_apis.select { |api| api.name_with_version.include?(filter) }
+          logger.info("Filtered to #{filtered.count} API(s) matching '#{filter}'")
+          filtered
+        else
+          all_apis
+        end
+      end
     end
 
     def types

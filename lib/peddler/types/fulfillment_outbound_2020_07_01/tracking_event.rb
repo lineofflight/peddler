@@ -9,8 +9,8 @@ module Peddler
     module FulfillmentOutbound20200701
       # Information for tracking package deliveries.
       TrackingEvent = Structure.new do
-        # @return [String] The date and time that the delivery event took place. Must be in <a
-        # href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> format.
+        # @return [String] The date and time that the delivery event took place. Must be in
+        # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} format.
         attribute(:event_date, String, from: "eventDate")
 
         # @return [TrackingAddress] The city where the delivery event took place.

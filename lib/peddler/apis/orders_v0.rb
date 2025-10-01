@@ -22,7 +22,7 @@ module Peddler
     # marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the
     # response).
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/ordersV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     class OrdersV0 < API
       # Returns orders that are created or updated during the specified time period. If you want to return specific
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include

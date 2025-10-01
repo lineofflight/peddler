@@ -57,6 +57,8 @@ module Generator
 
     def format_property_comment: (Hash[String, untyped] prop_def) -> String
 
+    def class_description: () -> String?
+
     def render: () -> String
 
     def template: () -> String

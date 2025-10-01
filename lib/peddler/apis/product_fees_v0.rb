@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can
     # then account for those fees in your pricing.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/productFeesV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
     class ProductFeesV0 < API
       # Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in
       # the request body.

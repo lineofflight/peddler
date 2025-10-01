@@ -16,7 +16,7 @@ module Peddler
     #
     # The Selling Partner API for Retail Procurement Orders provides programmatic access to vendor orders data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorOrders.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
     class VendorOrdersV1 < API
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
       # frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range

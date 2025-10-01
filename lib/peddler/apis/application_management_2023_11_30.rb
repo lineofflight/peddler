@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Application Management lets you programmatically update the client secret on
     # registered applications.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application_2023-11-30.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
     class ApplicationManagement20231130 < API
       # Rotates application client secrets for a developer application. Developers must register a destination queue in
       # the developer console before calling this operation. When this operation is called a new client secret is

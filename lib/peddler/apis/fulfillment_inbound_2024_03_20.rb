@@ -18,7 +18,7 @@ module Peddler
     # workflows to create, manage, and send shipments into Amazon's fulfillment network. The API has interoperability
     # with the Send-to-Amazon user interface.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillmentInbound_2024-03-20.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
     class FulfillmentInbound20240320 < API
       # Provides a list of inbound plans with minimal information.
       #

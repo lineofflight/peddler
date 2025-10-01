@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Pricing helps you programmatically retrieve product pricing and offer information for
     # Amazon Marketplace products.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/productPricingV0.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
     class ProductPricingV0 < API
       # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
       #

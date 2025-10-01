@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Transaction Status provides programmatic access to a direct
     # fulfillment vendor's transaction status.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentTransactions_2021-12-28.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json
     class VendorDirectFulfillmentTransactions20211228 < API
       # Returns the status of the transaction indicated by the specified transactionId.
       #

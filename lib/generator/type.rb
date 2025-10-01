@@ -245,10 +245,20 @@ module Generator
     def format_property_comment(prop_def)
       return_type = ruby_type_for(prop_def, for_comment: true)
       if prop_def["description"]
-        split_long_comment_line("@return [#{return_type}] #{prop_def["description"]}", base_indent: 8)
+        description = convert_html_links_to_yard(prop_def["description"])
+        description = convert_doc_links_to_full_url(description)
+        split_long_comment_line("@return [#{return_type}] #{description}", base_indent: 8)
       else
         "        # @return [#{return_type}]"
       end
+    end
+
+    def class_description
+      return unless definition["description"]
+
+      description = convert_html_links_to_yard(definition["description"])
+      description = convert_doc_links_to_full_url(description)
+      split_long_comment_line(description, base_indent: 6)
     end
 
     def render

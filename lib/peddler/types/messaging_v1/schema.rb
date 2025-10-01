@@ -7,8 +7,8 @@ require "structure"
 module Peddler
   module Types
     module MessagingV1
-      # A JSON schema document describing the expected payload of the action. This object can be validated against <a
-      # href=http://json-schema.org/draft-04/schema>http://json-schema.org/draft-04/schema</a>.
+      # A JSON schema document describing the expected payload of the action. This object can be validated against
+      # {http://json-schema.org/draft-04/schema http://json-schema.org/draft-04/schema}.
       Schema = Structure.new do
       end
     end

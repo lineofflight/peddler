@@ -212,7 +212,7 @@ begin
 rescue Peddler::Error => e
   puts "API Error: #{e.message}"
   puts "Status: #{e.response.status}"
-  
+
   # Handle retries for server errors
   if e.response.status >= 500
     # Retry logic here
@@ -381,7 +381,7 @@ document_response = api.create_feed_document(
 # If the response structure is:
 # {
 #   "feedDocumentId": "amzn1.tortuga.3.abc123...",
-#   "url": "https://s3.amazonaws.com/bucket/key...",
+#   "url": "...",
 #   "encryptionDetails": {
 #     "standard": "AES",
 #     "key": "encryption-key",
@@ -743,7 +743,7 @@ bin/generate-code
 bundle exec steep check --severity-level=hint
 ```
 
-[build]: https://github.com/hakanensari/peddler/actions
+[build]: https://github.com/lineofflight/peddler/actions
 [docs-overview]: https://developer.amazonservices.com/sp-api-docs/overview
 [register-as-developer]: https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer
 [register-application]: https://developer-docs.amazon.com/sp-api/docs/registering-your-application

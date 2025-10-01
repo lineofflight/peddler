@@ -17,7 +17,7 @@ module Peddler
     # The Selling Partner API for Direct Fulfillment Shipping provides programmatic access to a direct fulfillment
     # vendor's shipping data.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendorDirectFulfillmentShippingV1.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
     class VendorDirectFulfillmentShippingV1 < API
       # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to

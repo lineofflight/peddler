@@ -22,7 +22,7 @@ module Peddler
     # For more information, see the {https://developer-docs.amazon.com/sp-api/docs/tokens-api-use-case-guide Tokens API
     # Use Case Guide}.
     #
-    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens_2021-03-01.json
+    # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
     class Tokens20210301 < API
       # Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted
       # resource is the HTTP method and path from a restricted operation that returns Personally Identifiable
