@@ -5,10 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.9.0] - 2025-10-01
+
 ### Changed
 
 - Upgrade structure gem to 4.0 for improved optional attribute handling
 - Regenerate all type classes with attribute? for optional fields
+- Treat OpenAPI types with additionalProperties as Hash instead of generating empty Structure classes
 
 ### Fixed
 
