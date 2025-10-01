@@ -14,7 +14,7 @@ jobs:
         with:
           ruby-version: "3.4"
           bundler-cache: true
-      - run: bundle exec rubocop
+      - run: bundle exec rake rubocop
 
   typecheck:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
         with:
           ruby-version: "3.4"
           bundler-cache: true
-      - run: bundle exec steep check
+      - run: bundle exec rake steep:check
 
   verify-links:
     runs-on: ubuntu-latest
