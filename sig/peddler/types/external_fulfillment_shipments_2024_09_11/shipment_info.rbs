@@ -1,0 +1,25 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class ShipmentInfo < Data
+        def self.new: (buyer_order_id: String?, number_of_units: Integer?, priority: String?, shipment_type: String?, ?order_placed_timestamp: String?, ?order_states_eligible_for_rejection: Array[String]?, ?original_shipment_info: Peddler::Types::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, ?processing_source: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo
+                    | (String?, Integer?, String?, String?, String?, Array[String]?, Peddler::Types::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo
+
+        attr_reader buyer_order_id: String?
+        attr_reader number_of_units: Integer?
+        attr_reader priority: String?
+        attr_reader shipment_type: String?
+        attr_reader order_placed_timestamp: String?
+        attr_reader order_states_eligible_for_rejection: Array[String]?
+        attr_reader original_shipment_info: Peddler::Types::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?
+        attr_reader processing_source: String?
+
+        def to_h: () -> { buyer_order_id: String?, number_of_units: Integer?, priority: String?, shipment_type: String?, order_placed_timestamp: String?, order_states_eligible_for_rejection: Array[String]?, original_shipment_info: Peddler::Types::ExternalFulfillmentShipments20240911::ReplacedShipmentInfo?, processing_source: String? }
+      end
+    end
+  end
+end

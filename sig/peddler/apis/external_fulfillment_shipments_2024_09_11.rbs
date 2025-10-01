@@ -1,0 +1,18 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module APIs
+    class ExternalFulfillmentShipments20240911 < API
+      def get_shipments: (String, ?location_id: String?, ?marketplace_id: String?, ?channel_name: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?pagination_token: String?) -> Peddler::Response
+      def get_shipment: (String) -> Peddler::Response
+      def process_shipment: (String, String, ?body: Hash[untyped, untyped]?) -> Peddler::Response
+      def create_packages: (String, Hash[untyped, untyped]) -> Peddler::Response
+      def update_package: (String, String, Hash[untyped, untyped]) -> Peddler::Response
+      def update_package_status: (String, String, ?status: String?, ?body: Hash[untyped, untyped]?) -> Peddler::Response
+      def retrieve_shipping_options: (String, String) -> Peddler::Response
+      def generate_invoice: (String) -> Peddler::Response
+      def retrieve_invoice: (String) -> Peddler::Response
+      def generate_ship_labels: (String, String, ?shipping_option_id: String?, ?body: Hash[untyped, untyped]?) -> Peddler::Response
+    end
+  end
+end

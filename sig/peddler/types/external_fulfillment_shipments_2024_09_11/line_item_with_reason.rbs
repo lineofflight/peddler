@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class LineItemWithReason < Data
+        def self.new: (line_item: Peddler::Types::ExternalFulfillmentShipments20240911::LineItem?, ?reason: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::LineItemWithReason
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::LineItem?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::LineItemWithReason
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::LineItemWithReason
+
+        attr_reader line_item: Peddler::Types::ExternalFulfillmentShipments20240911::LineItem?
+        attr_reader reason: String?
+
+        def to_h: () -> { line_item: Peddler::Types::ExternalFulfillmentShipments20240911::LineItem?, reason: String? }
+      end
+    end
+  end
+end

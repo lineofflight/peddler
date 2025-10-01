@@ -1,0 +1,18 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class DocumentV2 < Data
+        def self.new: (url: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::DocumentV2
+                    | (String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::DocumentV2
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::DocumentV2
+
+        attr_reader url: String?
+
+        def to_h: () -> { url: String? }
+      end
+    end
+  end
+end

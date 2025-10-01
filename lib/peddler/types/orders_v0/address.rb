@@ -9,9 +9,6 @@ module Peddler
     module OrdersV0
       # The shipping address for the order.
       Address = Structure.new do
-        # @return [String] The name.
-        attribute(:name, String, from: "Name")
-
         # @return [String] The street address.
         attribute?(:address_line1, String, from: "AddressLine1")
 
@@ -49,6 +46,9 @@ module Peddler
 
         # @return [String] The municipality.
         attribute?(:municipality, String, from: "Municipality")
+
+        # @return [String] The name.
+        attribute?(:name, String, from: "Name")
 
         # @return [String] The phone number of the buyer.
         #

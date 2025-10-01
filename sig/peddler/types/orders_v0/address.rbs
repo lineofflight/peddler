@@ -4,12 +4,11 @@ module Peddler
   module Types
     module OrdersV0
       class Address < Data
-        def self.new: (name: String?, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?company_name: String?, ?country_code: String?, ?county: String?, ?district: String?, ?extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?, ?municipality: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::OrdersV0::Address
-                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::OrdersV0::AddressExtendedFields?, String?, String?, String?, String?) -> Peddler::Types::OrdersV0::Address
+        def self.new: (?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?address_type: String?, ?city: String?, ?company_name: String?, ?country_code: String?, ?county: String?, ?district: String?, ?extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?, ?municipality: String?, ?name: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::OrdersV0::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::OrdersV0::AddressExtendedFields?, String?, String?, String?, String?, String?) -> Peddler::Types::OrdersV0::Address
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::Address
 
-        attr_reader name: String?
         attr_reader address_line1: String?
         attr_reader address_line2: String?
         attr_reader address_line3: String?
@@ -21,11 +20,12 @@ module Peddler
         attr_reader district: String?
         attr_reader extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?
         attr_reader municipality: String?
+        attr_reader name: String?
         attr_reader phone: String?
         attr_reader postal_code: String?
         attr_reader state_or_region: String?
 
-        def to_h: () -> { name: String?, address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, company_name: String?, country_code: String?, county: String?, district: String?, extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?, municipality: String?, phone: String?, postal_code: String?, state_or_region: String? }
+        def to_h: () -> { address_line1: String?, address_line2: String?, address_line3: String?, address_type: String?, city: String?, company_name: String?, country_code: String?, county: String?, district: String?, extended_fields: Peddler::Types::OrdersV0::AddressExtendedFields?, municipality: String?, name: String?, phone: String?, postal_code: String?, state_or_region: String? }
       end
     end
   end

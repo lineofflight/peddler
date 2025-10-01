@@ -1,0 +1,20 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class Tax < Data
+        def self.new: (charge: Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup?, ?rate: String?, ?type: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::Tax
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup?, String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::Tax
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::Tax
+
+        attr_reader charge: Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup?
+        attr_reader rate: String?
+        attr_reader type: String?
+
+        def to_h: () -> { charge: Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup?, rate: String?, type: String? }
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentInventory20240911
+      class InventoryResponse < Data
+        def self.new: (body: Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody?, status: Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine?) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse
+                    | (Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody?, Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine?) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse
+
+        attr_reader body: Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody?
+        attr_reader status: Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine?
+
+        def to_h: () -> { body: Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody?, status: Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine? }
+      end
+    end
+  end
+end

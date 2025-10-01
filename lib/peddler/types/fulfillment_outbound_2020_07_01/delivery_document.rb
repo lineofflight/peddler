@@ -9,7 +9,7 @@ module Peddler
     module FulfillmentOutbound20200701
       # A delivery document for a package.
       DeliveryDocument = Structure.new do
-        # @return [String] The delivery document type. Values are `SIGNATURE` and `DELIVERY_IMAGE`.
+        # @return [String] The delivery document type. The only possible value is `DELIVERY_IMAGE`.
         attribute(:document_type, String, from: "documentType")
 
         # @return [String] A URL that you can use to download the document. This URL has a `Content-Type` header. Note

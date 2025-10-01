@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class ShipmentsResponse < Data
+        def self.new: (?pagination: Peddler::Types::ExternalFulfillmentShipments20240911::Pagination?, ?shipments: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Shipment]?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentsResponse
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::Pagination?, Array[Peddler::Types::ExternalFulfillmentShipments20240911::Shipment]?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentsResponse
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentsResponse
+
+        attr_reader pagination: Peddler::Types::ExternalFulfillmentShipments20240911::Pagination?
+        attr_reader shipments: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Shipment]?
+
+        def to_h: () -> { pagination: Peddler::Types::ExternalFulfillmentShipments20240911::Pagination?, shipments: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Shipment]? }
+      end
+    end
+  end
+end

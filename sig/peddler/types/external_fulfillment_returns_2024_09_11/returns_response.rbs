@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentReturns20240911
+      class ReturnsResponse < Data
+        def self.new: (?next_token: String?, ?returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+                    | (String?, Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+
+        attr_reader next_token: String?
+        attr_reader returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?
+
+        def to_h: () -> { next_token: String?, returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]? }
+      end
+    end
+  end
+end

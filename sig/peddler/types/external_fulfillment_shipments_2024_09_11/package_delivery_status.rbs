@@ -1,0 +1,20 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class PackageDeliveryStatus < Data
+        def self.new: (?reason: String?, ?status: String?, ?sub_status: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+                    | (String?, String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageDeliveryStatus
+
+        attr_reader reason: String?
+        attr_reader status: String?
+        attr_reader sub_status: String?
+
+        def to_h: () -> { reason: String?, status: String?, sub_status: String? }
+      end
+    end
+  end
+end

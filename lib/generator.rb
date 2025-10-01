@@ -7,6 +7,7 @@ require "set"
 require "generator/config"
 require "generator/logger"
 require "generator/api"
+require "generator/api_name_resolver"
 require "generator/type"
 require "generator/type_resolver"
 require "generator/circular_dependency_detector"
@@ -57,18 +58,37 @@ module Generator
       end
 
       if !Dir.exist?(api_models_dir)
-        logger.info("Cloning Amazon Selling Partner API models")
-
-        # Clone the repository
-        repo_url = "https://github.com/amzn/selling-partner-api-models.git"
-        _stdout, stderr, status = Open3.capture3("git", "clone", repo_url, api_models_dir)
-
-        unless status.success?
-          raise "Failed to clone API models: #{stderr}"
-        end
+        clone_api_models(api_models_dir)
+      elsif !@api_filter && models_older_than_one_day?(api_models_dir)
+        logger.info("API models are over 1 day old, updating")
+        update_api_models(api_models_dir)
       else
         logger.info("Existing API models found")
       end
+    end
+
+    def clone_api_models(api_models_dir)
+      logger.info("Cloning Amazon Selling Partner API models")
+      repo_url = "https://github.com/amzn/selling-partner-api-models.git"
+      _stdout, stderr, status = Open3.capture3("git", "clone", repo_url, api_models_dir)
+
+      raise "Failed to clone API models: #{stderr}" unless status.success?
+    end
+
+    def update_api_models(api_models_dir)
+      _stdout, stderr, status = Open3.capture3("git", "-C", api_models_dir, "pull")
+
+      raise "Failed to update API models: #{stderr}" unless status.success?
+    end
+
+    def models_older_than_one_day?(api_models_dir)
+      git_dir = File.join(api_models_dir, ".git")
+      return false unless Dir.exist?(git_dir)
+
+      fetch_head = File.join(git_dir, "FETCH_HEAD")
+      return true unless File.exist?(fetch_head)
+
+      File.mtime(fetch_head) < Time.now - (24 * 60 * 60)
     end
 
     def initialize_directories!
@@ -108,6 +128,7 @@ module Generator
     end
 
     def generate_apis!
+      APINameResolver.validate_no_unmapped_collisions!(api_model_files)
       apis.each(&:generate)
       logger.info("Generated #{apis.count} APIs")
     end

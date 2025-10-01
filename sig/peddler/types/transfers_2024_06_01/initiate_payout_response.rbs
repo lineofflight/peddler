@@ -1,0 +1,18 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module Transfers20240601
+      class InitiatePayoutResponse < Data
+        def self.new: (payout_reference_id: String?) -> Peddler::Types::Transfers20240601::InitiatePayoutResponse
+                    | (String?) -> Peddler::Types::Transfers20240601::InitiatePayoutResponse
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Transfers20240601::InitiatePayoutResponse
+
+        attr_reader payout_reference_id: String?
+
+        def to_h: () -> { payout_reference_id: String? }
+      end
+    end
+  end
+end

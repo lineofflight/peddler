@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+# This file is generated. Do not edit.
+
+require "peddler/types/external_fulfillment_returns_2024_09_11/error"
+require "peddler/types/external_fulfillment_returns_2024_09_11/error_list"
+require "peddler/types/external_fulfillment_returns_2024_09_11/invoice_information"
+require "peddler/types/external_fulfillment_returns_2024_09_11/marketplace_channel"
+require "peddler/types/external_fulfillment_returns_2024_09_11/marketplace_channel_details"
+require "peddler/types/external_fulfillment_returns_2024_09_11/otp_details"
+require "peddler/types/external_fulfillment_returns_2024_09_11/replanning_details"
+require "peddler/types/external_fulfillment_returns_2024_09_11/return"
+require "peddler/types/external_fulfillment_returns_2024_09_11/return_metadata"
+require "peddler/types/external_fulfillment_returns_2024_09_11/return_shipping_info"
+require "peddler/types/external_fulfillment_returns_2024_09_11/returns_response"
+require "peddler/types/external_fulfillment_returns_2024_09_11/tracking_info"

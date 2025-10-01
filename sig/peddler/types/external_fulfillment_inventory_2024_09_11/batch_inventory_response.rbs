@@ -1,0 +1,18 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentInventory20240911
+      class BatchInventoryResponse < Data
+        def self.new: (?responses: Array[Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse]?) -> Peddler::Types::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+                    | (Array[Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse]?) -> Peddler::Types::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::BatchInventoryResponse
+
+        attr_reader responses: Array[Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse]?
+
+        def to_h: () -> { responses: Array[Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponse]? }
+      end
+    end
+  end
+end

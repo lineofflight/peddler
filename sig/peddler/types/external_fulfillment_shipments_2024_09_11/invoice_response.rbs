@@ -1,0 +1,18 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class InvoiceResponse < Data
+        def self.new: (document: Peddler::Types::ExternalFulfillmentShipments20240911::Document?) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceResponse
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::Document?) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceResponse
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceResponse
+
+        attr_reader document: Peddler::Types::ExternalFulfillmentShipments20240911::Document?
+
+        def to_h: () -> { document: Peddler::Types::ExternalFulfillmentShipments20240911::Document? }
+      end
+    end
+  end
+end

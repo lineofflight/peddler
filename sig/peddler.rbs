@@ -12,10 +12,12 @@ module Peddler
   def self.customer_feedback_2024_06_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::CustomerFeedback20240601
   def self.data_kiosk_2023_11_15: (String aws_region, String access_token, ?retries: Integer) -> APIs::DataKiosk20231115
   def self.easy_ship_2022_03_23: (String aws_region, String access_token, ?retries: Integer) -> APIs::EasyShip20220323
+  def self.external_fulfillment_inventory_2024_09_11: (String aws_region, String access_token, ?retries: Integer) -> APIs::ExternalFulfillmentInventory20240911
+  def self.external_fulfillment_returns_2024_09_11: (String aws_region, String access_token, ?retries: Integer) -> APIs::ExternalFulfillmentReturns20240911
+  def self.external_fulfillment_shipments_2024_09_11: (String aws_region, String access_token, ?retries: Integer) -> APIs::ExternalFulfillmentShipments20240911
   def self.fba_inbound_eligibility_v1: (String aws_region, String access_token, ?retries: Integer) -> APIs::FBAInboundEligibilityV1
   def self.fba_inventory_v1: (String aws_region, String access_token, ?retries: Integer) -> APIs::FBAInventoryV1
   def self.feeds_2021_06_30: (String aws_region, String access_token, ?retries: Integer) -> APIs::Feeds20210630
-  def self.finances_2024_06_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::Finances20240601
   def self.finances_2024_06_19: (String aws_region, String access_token, ?retries: Integer) -> APIs::Finances20240619
   def self.finances_v0: (String aws_region, String access_token, ?retries: Integer) -> APIs::FinancesV0
   def self.fulfillment_inbound_2024_03_20: (String aws_region, String access_token, ?retries: Integer) -> APIs::FulfillmentInbound20240320
@@ -45,6 +47,7 @@ module Peddler
   def self.solicitations_v1: (String aws_region, String access_token, ?retries: Integer) -> APIs::SolicitationsV1
   def self.supply_sources_2020_07_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::SupplySources20200701
   def self.tokens_2021_03_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::Tokens20210301
+  def self.transfers_2024_06_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::Transfers20240601
   def self.uploads_2020_11_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::Uploads20201101
   def self.vehicles_2024_11_01: (String aws_region, String access_token, ?retries: Integer) -> APIs::Vehicles20241101
   def self.vendor_direct_fulfillment_inventory_v1: (String aws_region, String access_token, ?retries: Integer) -> APIs::VendorDirectFulfillmentInventoryV1
@@ -70,6 +73,9 @@ module Peddler
   def self.customer_feedback: (String aws_region, String access_token, ?retries: Integer) -> APIs::CustomerFeedback20240601
   def self.data_kiosk: (String aws_region, String access_token, ?retries: Integer) -> APIs::DataKiosk20231115
   def self.easy_ship: (String aws_region, String access_token, ?retries: Integer) -> APIs::EasyShip20220323
+  def self.external_fulfillment_inventory: (String aws_region, String access_token, ?retries: Integer) -> APIs::ExternalFulfillmentInventory20240911
+  def self.external_fulfillment_returns: (String aws_region, String access_token, ?retries: Integer) -> APIs::ExternalFulfillmentReturns20240911
+  def self.external_fulfillment_shipments: (String aws_region, String access_token, ?retries: Integer) -> APIs::ExternalFulfillmentShipments20240911
   def self.fba_inbound_eligibility: (String aws_region, String access_token, ?retries: Integer) -> APIs::FBAInboundEligibilityV1
   def self.fba_inventory: (String aws_region, String access_token, ?retries: Integer) -> APIs::FBAInventoryV1
   def self.feeds: (String aws_region, String access_token, ?retries: Integer) -> APIs::Feeds20210630
@@ -97,6 +103,7 @@ module Peddler
   def self.solicitations: (String aws_region, String access_token, ?retries: Integer) -> APIs::SolicitationsV1
   def self.supply_sources: (String aws_region, String access_token, ?retries: Integer) -> APIs::SupplySources20200701
   def self.tokens: (String aws_region, String access_token, ?retries: Integer) -> APIs::Tokens20210301
+  def self.transfers: (String aws_region, String access_token, ?retries: Integer) -> APIs::Transfers20240601
   def self.uploads: (String aws_region, String access_token, ?retries: Integer) -> APIs::Uploads20201101
   def self.vehicles: (String aws_region, String access_token, ?retries: Integer) -> APIs::Vehicles20241101
   def self.vendor_direct_fulfillment_inventory: (String aws_region, String access_token, ?retries: Integer) -> APIs::VendorDirectFulfillmentInventoryV1

@@ -1,0 +1,24 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module Transfers20240601
+      class PaymentMethodDetails < Data
+        def self.new: (?account_holder_name: String?, ?assignment_type: String?, ?country_code: String?, ?expiry_date: Peddler::Types::Transfers20240601::ExpiryDate?, ?payment_method_id: String?, ?payment_method_type: String?, ?tail: String?) -> Peddler::Types::Transfers20240601::PaymentMethodDetails
+                    | (String?, String?, String?, Peddler::Types::Transfers20240601::ExpiryDate?, String?, String?, String?) -> Peddler::Types::Transfers20240601::PaymentMethodDetails
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Transfers20240601::PaymentMethodDetails
+
+        attr_reader account_holder_name: String?
+        attr_reader assignment_type: String?
+        attr_reader country_code: String?
+        attr_reader expiry_date: Peddler::Types::Transfers20240601::ExpiryDate?
+        attr_reader payment_method_id: String?
+        attr_reader payment_method_type: String?
+        attr_reader tail: String?
+
+        def to_h: () -> { account_holder_name: String?, assignment_type: String?, country_code: String?, expiry_date: Peddler::Types::Transfers20240601::ExpiryDate?, payment_method_id: String?, payment_method_type: String?, tail: String? }
+      end
+    end
+  end
+end

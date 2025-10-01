@@ -4,6 +4,7 @@
 
 require "peddler/types/money"
 require "peddler/types/merchant_fulfillment_v0/shipping_service_options"
+require "peddler/types/merchant_fulfillment_v0/rate_item"
 require "peddler/types/merchant_fulfillment_v0/label_format_option"
 require "peddler/types/merchant_fulfillment_v0/available_shipping_service_options"
 require "peddler/types/merchant_fulfillment_v0/benefits"
@@ -18,6 +19,9 @@ module Peddler
 
         # @return [Money] The amount that the carrier will charge for the shipment.
         attribute(:rate, Money, from: "Rate")
+
+        # @return [Money] The amount that the carrier will charge for the shipment with adjustments.
+        attribute(:rate_with_adjustments, Money, from: "RateWithAdjustments")
 
         # @return [:boolean] When true, additional seller inputs are required.
         attribute(:requires_additional_seller_inputs, :boolean, from: "RequiresAdditionalSellerInputs")
@@ -37,6 +41,9 @@ module Peddler
 
         # @return [ShippingServiceOptions] Extra services offered by the carrier.
         attribute(:shipping_service_options, ShippingServiceOptions, from: "ShippingServiceOptions")
+
+        # @return [Array<RateItem>] A list of adjustments applied to a shipping service.
+        attribute?(:adjustment_item_list, [RateItem], from: "AdjustmentItemList")
 
         # @return [Array<LabelFormatOption>]
         attribute?(:available_format_options_for_label, [LabelFormatOption], from: "AvailableFormatOptionsForLabel")

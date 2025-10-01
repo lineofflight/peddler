@@ -12,10 +12,12 @@ require "peddler/apis/catalog_items_v0"
 require "peddler/apis/customer_feedback_2024_06_01"
 require "peddler/apis/data_kiosk_2023_11_15"
 require "peddler/apis/easy_ship_2022_03_23"
+require "peddler/apis/external_fulfillment_inventory_2024_09_11"
+require "peddler/apis/external_fulfillment_returns_2024_09_11"
+require "peddler/apis/external_fulfillment_shipments_2024_09_11"
 require "peddler/apis/fba_inbound_eligibility_v1"
 require "peddler/apis/fba_inventory_v1"
 require "peddler/apis/feeds_2021_06_30"
-require "peddler/apis/finances_2024_06_01"
 require "peddler/apis/finances_2024_06_19"
 require "peddler/apis/finances_v0"
 require "peddler/apis/fulfillment_inbound_2024_03_20"
@@ -45,6 +47,7 @@ require "peddler/apis/shipping_v2"
 require "peddler/apis/solicitations_v1"
 require "peddler/apis/supply_sources_2020_07_01"
 require "peddler/apis/tokens_2021_03_01"
+require "peddler/apis/transfers_2024_06_01"
 require "peddler/apis/uploads_2020_11_01"
 require "peddler/apis/vehicles_2024_11_01"
 require "peddler/apis/vendor_direct_fulfillment_inventory_v1"
@@ -72,6 +75,9 @@ module Peddler
     alias_method :customer_feedback, :customer_feedback_2024_06_01
     alias_method :data_kiosk, :data_kiosk_2023_11_15
     alias_method :easy_ship, :easy_ship_2022_03_23
+    alias_method :external_fulfillment_inventory, :external_fulfillment_inventory_2024_09_11
+    alias_method :external_fulfillment_returns, :external_fulfillment_returns_2024_09_11
+    alias_method :external_fulfillment_shipments, :external_fulfillment_shipments_2024_09_11
     alias_method :fba_inbound_eligibility, :fba_inbound_eligibility_v1
     alias_method :fba_inventory, :fba_inventory_v1
     alias_method :feeds, :feeds_2021_06_30
@@ -99,6 +105,7 @@ module Peddler
     alias_method :solicitations, :solicitations_v1
     alias_method :supply_sources, :supply_sources_2020_07_01
     alias_method :tokens, :tokens_2021_03_01
+    alias_method :transfers, :transfers_2024_06_01
     alias_method :uploads, :uploads_2020_11_01
     alias_method :vehicles, :vehicles_2024_11_01
     alias_method :vendor_direct_fulfillment_inventory, :vendor_direct_fulfillment_inventory_v1

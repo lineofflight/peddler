@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class PartyIdentificationInfoList < Array[PartyIdentificationInfo]
+        def self.parse: (Array[untyped]) -> PartyIdentificationInfoList
+      end
+    end
+  end
+end

@@ -1,0 +1,20 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentInventory20240911
+      class InventoryRequest < Data
+        def self.new: (method: String?, uri: String?, ?body: Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequestParams?) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequest
+                    | (String?, String?, Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequestParams?) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequest
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequest
+
+        attr_reader method: String?
+        attr_reader uri: String?
+        attr_reader body: Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequestParams?
+
+        def to_h: () -> { method: String?, uri: String?, body: Peddler::Types::ExternalFulfillmentInventory20240911::InventoryRequestParams? }
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentInventory20240911
+      class HttpStatusLine < Data
+        def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine
+                    | (String?, Integer?) -> Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::HttpStatusLine
+
+        attr_reader reason_phrase: String?
+        attr_reader status_code: Integer?
+
+        def to_h: () -> { reason_phrase: String?, status_code: Integer? }
+      end
+    end
+  end
+end

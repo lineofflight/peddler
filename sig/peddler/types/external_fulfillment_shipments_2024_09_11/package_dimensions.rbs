@@ -1,0 +1,20 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class PackageDimensions < Data
+        def self.new: (height: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?, length: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?, width: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageDimensions
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?, Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?, Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageDimensions
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageDimensions
+
+        attr_reader height: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?
+        attr_reader length: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?
+        attr_reader width: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?
+
+        def to_h: () -> { height: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?, length: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension?, width: Peddler::Types::ExternalFulfillmentShipments20240911::Dimension? }
+      end
+    end
+  end
+end

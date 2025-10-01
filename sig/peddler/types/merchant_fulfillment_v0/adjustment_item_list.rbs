@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module MerchantFulfillmentV0
+      class AdjustmentItemList < Array[RateItem]
+        def self.parse: (Array[untyped]) -> AdjustmentItemList
+      end
+    end
+  end
+end

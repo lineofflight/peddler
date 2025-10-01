@@ -1,0 +1,18 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentReturns20240911
+      class ReplanningDetails < Data
+        def self.new: (?previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+                    | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+
+        attr_reader previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?
+
+        def to_h: () -> { previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]? }
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class InvoiceRequirement < Data
+        def self.new: (?requirement: String?, ?status: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceRequirement
+                    | (String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceRequirement
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceRequirement
+
+        attr_reader requirement: String?
+        attr_reader status: String?
+
+        def to_h: () -> { requirement: String?, status: String? }
+      end
+    end
+  end
+end

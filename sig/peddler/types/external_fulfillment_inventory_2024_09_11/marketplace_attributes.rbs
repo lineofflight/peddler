@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentInventory20240911
+      class MarketplaceAttributes < Data
+        def self.new: (?channel_name: String?, ?marketplace_id: String?) -> Peddler::Types::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+                    | (String?, String?) -> Peddler::Types::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::MarketplaceAttributes
+
+        attr_reader channel_name: String?
+        attr_reader marketplace_id: String?
+
+        def to_h: () -> { channel_name: String?, marketplace_id: String? }
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class PackageShipLabelList < Array[PackageShipLabel]
+        def self.parse: (Array[untyped]) -> PackageShipLabelList
+      end
+    end
+  end
+end

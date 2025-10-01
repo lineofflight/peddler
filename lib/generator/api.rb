@@ -8,6 +8,7 @@ require "generator/logger"
 require "generator/formatter"
 require "generator/path"
 require "generator/type_resolver"
+require "generator/api_name_resolver"
 
 module Generator
   class API
@@ -57,7 +58,7 @@ module Generator
     end
 
     def name
-      file.split("/")[-2].tr("-", "_").sub(/(?:_api)?_model$/, "")
+      @name ||= APINameResolver.new(file).name
     end
 
     def version

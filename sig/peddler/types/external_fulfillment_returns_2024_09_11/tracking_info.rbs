@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentReturns20240911
+      class TrackingInfo < Data
+        def self.new: (carrier_name: String?, tracking_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+                    | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+
+        attr_reader carrier_name: String?
+        attr_reader tracking_id: String?
+
+        def to_h: () -> { carrier_name: String?, tracking_id: String? }
+      end
+    end
+  end
+end

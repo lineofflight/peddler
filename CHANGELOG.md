@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- **BREAKING**: Separate colliding APIs in external-fulfillment and finances directories into distinct API classes
+
 ## [4.9.0] - 2025-10-01
 
 ### Changed

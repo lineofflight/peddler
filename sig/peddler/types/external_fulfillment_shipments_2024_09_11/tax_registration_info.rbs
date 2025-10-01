@@ -1,0 +1,21 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class TaxRegistrationInfo < Data
+        def self.new: (?address: Peddler::Types::ExternalFulfillmentShipments20240911::Address?, ?messages: String?, ?number: String?, ?type: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::Address?, String?, String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::TaxRegistrationInfo
+
+        attr_reader address: Peddler::Types::ExternalFulfillmentShipments20240911::Address?
+        attr_reader messages: String?
+        attr_reader number: String?
+        attr_reader type: String?
+
+        def to_h: () -> { address: Peddler::Types::ExternalFulfillmentShipments20240911::Address?, messages: String?, number: String?, type: String? }
+      end
+    end
+  end
+end

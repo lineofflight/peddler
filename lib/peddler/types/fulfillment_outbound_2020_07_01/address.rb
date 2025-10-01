@@ -21,9 +21,6 @@ module Peddler
         # @return [String] The postal code of the address.
         attribute(:postal_code, String, from: "postalCode")
 
-        # @return [String] The state or region where the person, business or institution is located.
-        attribute(:state_or_region, String, from: "stateOrRegion")
-
         # @return [String] Additional address information, if required.
         attribute?(:address_line2, String, from: "addressLine2")
 
@@ -39,6 +36,9 @@ module Peddler
 
         # @return [String] The phone number of the person, business, or institution located at the address.
         attribute?(:phone, String)
+
+        # @return [String] The state or region where the person, business or institution is located.
+        attribute?(:state_or_region, String, from: "stateOrRegion")
       end
     end
   end

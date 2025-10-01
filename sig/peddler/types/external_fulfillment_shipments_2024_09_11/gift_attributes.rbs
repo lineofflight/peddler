@@ -1,0 +1,21 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class GiftAttributes < Data
+        def self.new: (gift_message_presence: String?, gift_wrap_requirement: String?, ?gift_message: Peddler::Types::ExternalFulfillmentShipments20240911::Document?, ?gift_wrap_label: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::GiftAttributes
+                    | (String?, String?, Peddler::Types::ExternalFulfillmentShipments20240911::Document?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::GiftAttributes
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::GiftAttributes
+
+        attr_reader gift_message_presence: String?
+        attr_reader gift_wrap_requirement: String?
+        attr_reader gift_message: Peddler::Types::ExternalFulfillmentShipments20240911::Document?
+        attr_reader gift_wrap_label: String?
+
+        def to_h: () -> { gift_message_presence: String?, gift_wrap_requirement: String?, gift_message: Peddler::Types::ExternalFulfillmentShipments20240911::Document?, gift_wrap_label: String? }
+      end
+    end
+  end
+end

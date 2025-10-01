@@ -4,19 +4,21 @@ module Peddler
   module Types
     module MerchantFulfillmentV0
       class ShippingService < Data
-        def self.new: (carrier_name: String?, rate: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, ?available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, ?available_label_formats: Array[untyped]?, ?available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, ?benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, ?earliest_estimated_delivery_date: String?, ?latest_estimated_delivery_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
-                    | (String?, Peddler::Types::Money?, bool?, String?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, Array[untyped]?, Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Benefits?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
+        def self.new: (carrier_name: String?, rate: Peddler::Types::Money?, rate_with_adjustments: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, ?adjustment_item_list: Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, ?available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, ?available_label_formats: Array[untyped]?, ?available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, ?benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, ?earliest_estimated_delivery_date: String?, ?latest_estimated_delivery_date: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
+                    | (String?, Peddler::Types::Money?, Peddler::Types::Money?, bool?, String?, String?, String?, String?, Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, Array[untyped]?, Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, Peddler::Types::MerchantFulfillmentV0::Benefits?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingService
 
         attr_reader carrier_name: String?
         attr_reader rate: Peddler::Types::Money?
+        attr_reader rate_with_adjustments: Peddler::Types::Money?
         attr_reader requires_additional_seller_inputs: bool?
         attr_reader ship_date: String?
         attr_reader shipping_service_id: String?
         attr_reader shipping_service_name: String?
         attr_reader shipping_service_offer_id: String?
         attr_reader shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?
+        attr_reader adjustment_item_list: Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?
         attr_reader available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?
         attr_reader available_label_formats: Array[untyped]?
         attr_reader available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?
@@ -25,7 +27,7 @@ module Peddler
         attr_reader latest_estimated_delivery_date: String?
 
         def requires_additional_seller_inputs?: () -> bool
-        def to_h: () -> { carrier_name: String?, rate: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, available_label_formats: Array[untyped]?, available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, earliest_estimated_delivery_date: String?, latest_estimated_delivery_date: String? }
+        def to_h: () -> { carrier_name: String?, rate: Peddler::Types::Money?, rate_with_adjustments: Peddler::Types::Money?, requires_additional_seller_inputs: bool?, ship_date: String?, shipping_service_id: String?, shipping_service_name: String?, shipping_service_offer_id: String?, shipping_service_options: Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions?, adjustment_item_list: Array[Peddler::Types::MerchantFulfillmentV0::RateItem]?, available_format_options_for_label: Array[Peddler::Types::MerchantFulfillmentV0::LabelFormatOption]?, available_label_formats: Array[untyped]?, available_shipping_service_options: Peddler::Types::MerchantFulfillmentV0::AvailableShippingServiceOptions?, benefits: Peddler::Types::MerchantFulfillmentV0::Benefits?, earliest_estimated_delivery_date: String?, latest_estimated_delivery_date: String? }
       end
     end
   end

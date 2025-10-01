@@ -1,0 +1,20 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class OriginalLineItem < Data
+        def self.new: (charges: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?, original_sku: String?, replacing_sku: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::OriginalLineItem
+                    | (Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?, String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::OriginalLineItem
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::OriginalLineItem
+
+        attr_reader charges: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?
+        attr_reader original_sku: String?
+        attr_reader replacing_sku: String?
+
+        def to_h: () -> { charges: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?, original_sku: String?, replacing_sku: String? }
+      end
+    end
+  end
+end

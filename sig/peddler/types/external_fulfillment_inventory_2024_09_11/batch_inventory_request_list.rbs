@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentInventory20240911
+      class BatchInventoryRequestList < Array[InventoryRequest]
+        def self.parse: (Array[untyped]) -> BatchInventoryRequestList
+      end
+    end
+  end
+end

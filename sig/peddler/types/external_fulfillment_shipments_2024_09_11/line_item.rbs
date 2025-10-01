@@ -1,0 +1,19 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class LineItem < Data
+        def self.new: (id: String?, ?quantity: Integer?) -> Peddler::Types::ExternalFulfillmentShipments20240911::LineItem
+                    | (String?, Integer?) -> Peddler::Types::ExternalFulfillmentShipments20240911::LineItem
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::LineItem
+
+        attr_reader id: String?
+        attr_reader quantity: Integer?
+
+        def to_h: () -> { id: String?, quantity: Integer? }
+      end
+    end
+  end
+end

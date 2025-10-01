@@ -1,0 +1,21 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentReturns20240911
+      class ReturnShippingInfo < Data
+        def self.new: (?delivery_date_time: String?, ?forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, ?pickup_date_time: String?, ?reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+                    | (String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+
+        attr_reader delivery_date_time: String?
+        attr_reader forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?
+        attr_reader pickup_date_time: String?
+        attr_reader reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?
+
+        def to_h: () -> { delivery_date_time: String?, forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, pickup_date_time: String?, reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo? }
+      end
+    end
+  end
+end

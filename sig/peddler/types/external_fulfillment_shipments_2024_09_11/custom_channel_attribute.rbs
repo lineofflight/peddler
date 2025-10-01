@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class CustomChannelAttribute < Array[untyped]
+        def self.parse: (Array[untyped]) -> CustomChannelAttribute
+      end
+    end
+  end
+end

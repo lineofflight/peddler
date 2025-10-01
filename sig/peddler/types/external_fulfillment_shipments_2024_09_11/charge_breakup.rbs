@@ -1,0 +1,20 @@
+# This file is generated. Do not edit.
+
+module Peddler
+  module Types
+    module ExternalFulfillmentShipments20240911
+      class ChargeBreakup < Data
+        def self.new: (base_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, discount_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, net_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup
+                    | (Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, Peddler::Types::ExternalFulfillmentShipments20240911::Amount?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup
+
+        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::ChargeBreakup
+
+        attr_reader base_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader discount_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader net_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?
+
+        def to_h: () -> { base_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, discount_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, net_amount: Peddler::Types::ExternalFulfillmentShipments20240911::Amount? }
+      end
+    end
+  end
+end

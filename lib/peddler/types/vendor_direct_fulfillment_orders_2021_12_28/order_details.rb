@@ -39,6 +39,9 @@ module Peddler
         # @return [ShipmentDetails]
         attribute(:shipment_details, ShipmentDetails, from: "shipmentDetails")
 
+        # @return [:boolean] When `true`, the order contains customizable items.
+        attribute?(:has_customizable_items, :boolean, from: "hasCustomizableItems")
+
         # @return [String] Current status of the order.
         attribute?(:order_status, String, from: "orderStatus")
 

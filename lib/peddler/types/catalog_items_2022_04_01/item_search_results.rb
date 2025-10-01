@@ -24,10 +24,10 @@ module Peddler
 
         # @return [Pagination] The `nextToken` and `previousToken` values that are required to retrieve paginated
         # results.
-        attribute(:pagination, Pagination)
+        attribute?(:pagination, Pagination)
 
         # @return [Refinements] Search refinements for searches that are based on `keywords`.
-        attribute(:refinements, Refinements)
+        attribute?(:refinements, Refinements)
       end
     end
   end

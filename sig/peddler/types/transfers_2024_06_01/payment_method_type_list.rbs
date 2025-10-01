@@ -1,0 +1,11 @@
+# This file is generated. Edit template if necessary.
+
+module Peddler
+  module Types
+    module Transfers20240601
+      class PaymentMethodTypeList < Array[untyped]
+        def self.parse: (Array[untyped]) -> PaymentMethodTypeList
+      end
+    end
+  end
+end
