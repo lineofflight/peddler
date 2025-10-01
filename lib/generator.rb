@@ -87,8 +87,9 @@ module Generator
     end
 
     def cleanup_filtered_api_types!
+      bases = ["lib", "sig"]
       apis.each do |api|
-        ["lib", "sig"].each do |base|
+        bases.each do |base|
           # Remove the type directory
           api_types_path = File.join(Config::BASE_PATH, base, "peddler/types", api.name_with_version)
           FileUtils.rm_rf(api_types_path) if Dir.exist?(api_types_path)
