@@ -5,15 +5,15 @@ set -euo pipefail
 
 # Logger function
 log_info() {
-  echo -e "\e[32m✅ $1\e[0m"
+  printf "\e[32m✅ %s\e[0m\n" "$1"
 }
 
 log_warn() {
-  echo -e "\e[33m👀 $1\e[0m"
+  printf "\e[33m👀 %s\e[0m\n" "$1"
 }
 
 log_error() {
-  echo -e "\e[31m❌ $1\e[0m" >&2
+  printf "\e[31m❌ %s\e[0m\n" "$1" >&2
 }
 
 matches=$(
@@ -28,7 +28,8 @@ matches=$(
   uniq
 )
 
-failed=false
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
 
 # Check each URL
 while IFS= read -r url; do
@@ -42,7 +43,7 @@ while IFS= read -r url; do
         log_warn "$response $url"
         ;;
       *)
-        failed=true
+        touch "$tmpdir/failed"
         log_error "$response $url"
         ;;
     esac
@@ -52,7 +53,7 @@ done <<< "$matches"
 # Wait for all background jobs to finish
 wait
 
-if $failed; then
+if [[ -f "$tmpdir/failed" ]]; then
   log_warn "Please fix broken documentation links."
   exit 1
 fi
