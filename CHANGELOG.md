@@ -497,7 +497,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.0 - 2015-08-25
 
-[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.8.0...HEAD
+[Unreleased]: https://github.com/hakanensari/peddler/compare/v4.9.0...HEAD
+[4.9.0]: https://github.com/hakanensari/peddler/compare/v4.8.0...v4.9.0
 [4.8.0]: https://github.com/hakanensari/peddler/compare/v4.7.0...v4.8.0
 [4.7.0]: https://github.com/hakanensari/peddler/compare/v4.6.1...v4.7.0
 [4.6.1]: https://github.com/hakanensari/peddler/compare/v4.6.0...v4.6.1
