@@ -4,16 +4,16 @@ module Peddler
   module Types
     module ProductPricingV0
       class BatchOffersResponse < Data
-        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
-                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Hash[untyped, untyped]?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Hash[untyped, untyped]?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
 
         attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
-        attr_reader headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?
+        attr_reader headers: Hash[untyped, untyped]?
         attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?
 
-        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
+        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
       end
     end
   end

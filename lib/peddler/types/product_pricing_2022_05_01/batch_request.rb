@@ -2,7 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/product_pricing_2022_05_01/http_headers"
+require "structure"
 
 module Peddler
   module Types
@@ -19,8 +19,8 @@ module Peddler
         # @return [Hash]
         attribute?(:body, Hash)
 
-        # @return [HttpHeaders]
-        attribute?(:headers, HttpHeaders)
+        # @return [Hash]
+        attribute?(:headers, Hash)
       end
     end
   end

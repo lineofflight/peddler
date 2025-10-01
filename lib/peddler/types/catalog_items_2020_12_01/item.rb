@@ -2,7 +2,6 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/catalog_items_2020_12_01/item_attributes"
 require "peddler/types/catalog_items_2020_12_01/item_identifiers_by_marketplace"
 require "peddler/types/catalog_items_2020_12_01/item_images_by_marketplace"
 require "peddler/types/catalog_items_2020_12_01/item_product_type_by_marketplace"
@@ -19,8 +18,8 @@ module Peddler
         # @return [String]
         attribute(:asin, String)
 
-        # @return [ItemAttributes]
-        attribute?(:attributes, ItemAttributes)
+        # @return [Hash]
+        attribute?(:attributes, Hash)
 
         # @return [Array<ItemIdentifiersByMarketplace>]
         attribute?(:identifiers, [ItemIdentifiersByMarketplace])

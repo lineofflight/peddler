@@ -20,7 +20,6 @@ require "peddler/types/product_pricing_2022_05_01/featured_offer_expected_price_
 require "peddler/types/product_pricing_2022_05_01/featured_offer_segment"
 require "peddler/types/product_pricing_2022_05_01/get_featured_offer_expected_price_batch_request"
 require "peddler/types/product_pricing_2022_05_01/get_featured_offer_expected_price_batch_response"
-require "peddler/types/product_pricing_2022_05_01/http_headers"
 require "peddler/types/product_pricing_2022_05_01/http_status_line"
 require "peddler/types/product_pricing_2022_05_01/lowest_priced_offer"
 require "peddler/types/product_pricing_2022_05_01/lowest_priced_offers_input"

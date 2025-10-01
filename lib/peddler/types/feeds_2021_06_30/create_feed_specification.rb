@@ -2,7 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/feeds_2021_06_30/feed_options"
+require "structure"
 
 module Peddler
   module Types
@@ -19,8 +19,8 @@ module Peddler
         # @return [Array<String>] A list of identifiers for marketplaces that you want the feed to be applied to.
         attribute(:marketplace_ids, [String], from: "marketplaceIds")
 
-        # @return [FeedOptions]
-        attribute?(:feed_options, FeedOptions, from: "feedOptions")
+        # @return [Hash]
+        attribute?(:feed_options, Hash, from: "feedOptions")
       end
     end
   end

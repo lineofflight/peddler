@@ -4,8 +4,8 @@ module Peddler
   module Types
     module ProductPricing20220501
       class FeaturedOfferExpectedPriceRequest < Data
-        def self.new: (marketplace_id: String?, method: String?, sku: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Peddler::Types::ProductPricing20220501::HttpHeaders?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
-                    | (String?, String?, String?, String?, Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::HttpHeaders?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+        def self.new: (marketplace_id: String?, method: String?, sku: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+                    | (String?, String?, String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
 
@@ -14,10 +14,10 @@ module Peddler
         attr_reader sku: String?
         attr_reader uri: String?
         attr_reader body: Hash[untyped, untyped]?
-        attr_reader headers: Peddler::Types::ProductPricing20220501::HttpHeaders?
+        attr_reader headers: Hash[untyped, untyped]?
         attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
 
-        def to_h: () -> { marketplace_id: String?, method: String?, sku: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Peddler::Types::ProductPricing20220501::HttpHeaders?, segment: Peddler::Types::ProductPricing20220501::Segment? }
+        def to_h: () -> { marketplace_id: String?, method: String?, sku: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Hash[untyped, untyped]?, segment: Peddler::Types::ProductPricing20220501::Segment? }
       end
     end
   end

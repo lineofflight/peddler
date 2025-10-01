@@ -4,8 +4,8 @@ module Peddler
   module Types
     module Reports20210630
       class CreateReportSpecification < Data
-        def self.new: (marketplace_ids: Array[String]?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?report_options: Peddler::Types::Reports20210630::ReportOptions?) -> Peddler::Types::Reports20210630::CreateReportSpecification
-                    | (Array[String]?, String?, String?, String?, Peddler::Types::Reports20210630::ReportOptions?) -> Peddler::Types::Reports20210630::CreateReportSpecification
+        def self.new: (marketplace_ids: Array[String]?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
+                    | (Array[String]?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::CreateReportSpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::CreateReportSpecification
 
@@ -13,9 +13,9 @@ module Peddler
         attr_reader report_type: String?
         attr_reader data_end_time: String?
         attr_reader data_start_time: String?
-        attr_reader report_options: Peddler::Types::Reports20210630::ReportOptions?
+        attr_reader report_options: Hash[untyped, untyped]?
 
-        def to_h: () -> { marketplace_ids: Array[String]?, report_type: String?, data_end_time: String?, data_start_time: String?, report_options: Peddler::Types::Reports20210630::ReportOptions? }
+        def to_h: () -> { marketplace_ids: Array[String]?, report_type: String?, data_end_time: String?, data_start_time: String?, report_options: Hash[untyped, untyped]? }
       end
     end
   end

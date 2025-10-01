@@ -2,7 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/reports_2021_06_30/report_options"
+require "structure"
 
 module Peddler
   module Types
@@ -28,8 +28,8 @@ module Peddler
         # report types make use of this.
         attribute?(:data_start_time, String, from: "dataStartTime")
 
-        # @return [ReportOptions]
-        attribute?(:report_options, ReportOptions, from: "reportOptions")
+        # @return [Hash]
+        attribute?(:report_options, Hash, from: "reportOptions")
       end
     end
   end

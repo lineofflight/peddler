@@ -13,6 +13,7 @@ module Generator
 
   def self.ensure_api_models_exist!: () -> void
   def self.initialize_directories!: () -> void
+  def self.cleanup_filtered_api_types!: () -> void
   def self.generate_apis!: () -> void
   def self.generate_types!: () -> void
   def self.generate_types_index_files!: () -> void

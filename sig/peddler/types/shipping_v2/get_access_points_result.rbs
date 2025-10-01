@@ -4,14 +4,14 @@ module Peddler
   module Types
     module ShippingV2
       class GetAccessPointsResult < Data
-        def self.new: (access_points_map: Peddler::Types::ShippingV2::AccessPointsMap?) -> Peddler::Types::ShippingV2::GetAccessPointsResult
-                    | (Peddler::Types::ShippingV2::AccessPointsMap?) -> Peddler::Types::ShippingV2::GetAccessPointsResult
+        def self.new: (access_points_map: Hash[untyped, untyped]?) -> Peddler::Types::ShippingV2::GetAccessPointsResult
+                    | (Hash[untyped, untyped]?) -> Peddler::Types::ShippingV2::GetAccessPointsResult
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetAccessPointsResult
 
-        attr_reader access_points_map: Peddler::Types::ShippingV2::AccessPointsMap?
+        attr_reader access_points_map: Hash[untyped, untyped]?
 
-        def to_h: () -> { access_points_map: Peddler::Types::ShippingV2::AccessPointsMap? }
+        def to_h: () -> { access_points_map: Hash[untyped, untyped]? }
       end
     end
   end

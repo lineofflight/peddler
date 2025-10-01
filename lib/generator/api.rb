@@ -77,7 +77,7 @@ module Generator
 
     def type_names
       openapi_spec["definitions"]
-        .select { |name, def_| def_["type"] == "object" && !TypeResolver::MONEY_TYPES.include?(name) }
+        .select { |name, def_| def_["type"] == "object" && !TypeResolver::MONEY_TYPES.include?(name) && !def_["additionalProperties"] }
         .keys
         .sort
     end

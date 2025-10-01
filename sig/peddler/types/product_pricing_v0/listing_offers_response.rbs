@@ -4,17 +4,17 @@ module Peddler
   module Types
     module ProductPricingV0
       class ListingOffersResponse < Data
-        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, ?request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
-                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::HttpResponseHeaders?, Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
+        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Hash[untyped, untyped]?, ?request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
+                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Hash[untyped, untyped]?, Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
 
         attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
-        attr_reader headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?
+        attr_reader headers: Hash[untyped, untyped]?
         attr_reader request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?
         attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?
 
-        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Peddler::Types::ProductPricingV0::HttpResponseHeaders?, request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
+        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
       end
     end
   end

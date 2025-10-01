@@ -5,7 +5,6 @@
 require "peddler/types/shipping_v2/accessibility_attributes"
 require "peddler/types/shipping_v2/address"
 require "peddler/types/shipping_v2/exception_operating_hours"
-require "peddler/types/shipping_v2/day_of_week_time_map"
 
 module Peddler
   module Types
@@ -34,8 +33,8 @@ module Peddler
         # be used to sort access point results on shipper's end.
         attribute?(:score, String)
 
-        # @return [DayOfWeekTimeMap]
-        attribute?(:standard_operating_hours, DayOfWeekTimeMap, from: "standardOperatingHours")
+        # @return [Hash]
+        attribute?(:standard_operating_hours, Hash, from: "standardOperatingHours")
 
         # @return [String] Timezone of access point
         attribute?(:timezone, String)

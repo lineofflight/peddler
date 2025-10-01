@@ -4,16 +4,16 @@ module Peddler
   module Types
     module ApplicationIntegrations20240401
       class CreateNotificationRequest < Data
-        def self.new: (notification_parameters: Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, template_id: String?, ?marketplace_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
-                    | (Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, String?, String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
+        def self.new: (notification_parameters: Hash[untyped, untyped]?, template_id: String?, ?marketplace_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
+                    | (Hash[untyped, untyped]?, String?, String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationRequest
 
-        attr_reader notification_parameters: Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?
+        attr_reader notification_parameters: Hash[untyped, untyped]?
         attr_reader template_id: String?
         attr_reader marketplace_id: String?
 
-        def to_h: () -> { notification_parameters: Peddler::Types::ApplicationIntegrations20240401::NotificationParameters?, template_id: String?, marketplace_id: String? }
+        def to_h: () -> { notification_parameters: Hash[untyped, untyped]?, template_id: String?, marketplace_id: String? }
       end
     end
   end

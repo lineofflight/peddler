@@ -2,7 +2,6 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/catalog_items_2022_04_01/item_attributes"
 require "peddler/types/catalog_items_2022_04_01/item_browse_classifications_by_marketplace"
 require "peddler/types/catalog_items_2022_04_01/item_dimensions_by_marketplace"
 require "peddler/types/catalog_items_2022_04_01/item_identifiers_by_marketplace"
@@ -21,8 +20,8 @@ module Peddler
         # @return [String]
         attribute(:asin, String)
 
-        # @return [ItemAttributes]
-        attribute?(:attributes, ItemAttributes)
+        # @return [Hash]
+        attribute?(:attributes, Hash)
 
         # @return [Array<ItemBrowseClassificationsByMarketplace>]
         attribute?(:classifications, [ItemBrowseClassificationsByMarketplace])

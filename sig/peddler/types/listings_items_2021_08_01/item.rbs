@@ -4,13 +4,13 @@ module Peddler
   module Types
     module ListingsItems20210801
       class Item < Data
-        def self.new: (sku: String?, ?attributes: Peddler::Types::ListingsItems20210801::ItemAttributes?, ?fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, ?issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, ?offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, ?procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, ?product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?, ?relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, ?summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::Types::ListingsItems20210801::Item
-                    | (String?, Peddler::Types::ListingsItems20210801::ItemAttributes?, Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, Array[Peddler::Types::ListingsItems20210801::Issue]?, Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::Types::ListingsItems20210801::Item
+        def self.new: (sku: String?, ?attributes: Hash[untyped, untyped]?, ?fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, ?issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, ?offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, ?procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, ?product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?, ?relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, ?summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::Types::ListingsItems20210801::Item
+                    | (String?, Hash[untyped, untyped]?, Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, Array[Peddler::Types::ListingsItems20210801::Issue]?, Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?) -> Peddler::Types::ListingsItems20210801::Item
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::Item
 
         attr_reader sku: String?
-        attr_reader attributes: Peddler::Types::ListingsItems20210801::ItemAttributes?
+        attr_reader attributes: Hash[untyped, untyped]?
         attr_reader fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?
         attr_reader issues: Array[Peddler::Types::ListingsItems20210801::Issue]?
         attr_reader offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?
@@ -19,7 +19,7 @@ module Peddler
         attr_reader relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?
         attr_reader summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]?
 
-        def to_h: () -> { sku: String?, attributes: Peddler::Types::ListingsItems20210801::ItemAttributes?, fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?, relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]? }
+        def to_h: () -> { sku: String?, attributes: Hash[untyped, untyped]?, fulfillment_availability: Array[Peddler::Types::ListingsItems20210801::FulfillmentAvailability]?, issues: Array[Peddler::Types::ListingsItems20210801::Issue]?, offers: Array[Peddler::Types::ListingsItems20210801::ItemOfferByMarketplace]?, procurement: Array[Peddler::Types::ListingsItems20210801::ItemProcurement]?, product_types: Array[Peddler::Types::ListingsItems20210801::ItemProductTypeByMarketplace]?, relationships: Array[Peddler::Types::ListingsItems20210801::ItemRelationshipsByMarketplace]?, summaries: Array[Peddler::Types::ListingsItems20210801::ItemSummaryByMarketplace]? }
       end
     end
   end

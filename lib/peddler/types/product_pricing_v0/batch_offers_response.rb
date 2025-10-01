@@ -3,7 +3,6 @@
 # This file is generated. Do not edit.
 
 require "peddler/types/product_pricing_v0/get_offers_response"
-require "peddler/types/product_pricing_v0/http_response_headers"
 require "peddler/types/product_pricing_v0/get_offers_http_status_line"
 
 module Peddler
@@ -14,8 +13,8 @@ module Peddler
         # @return [GetOffersResponse]
         attribute(:body, GetOffersResponse)
 
-        # @return [HttpResponseHeaders]
-        attribute?(:headers, HttpResponseHeaders)
+        # @return [Hash]
+        attribute?(:headers, Hash)
 
         # @return [GetOffersHttpStatusLine]
         attribute?(:status, GetOffersHttpStatusLine)

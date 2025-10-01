@@ -4,17 +4,17 @@ module Peddler
   module Types
     module Feeds20210630
       class CreateFeedSpecification < Data
-        def self.new: (feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, ?feed_options: Peddler::Types::Feeds20210630::FeedOptions?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
-                    | (String?, String?, Array[String]?, Peddler::Types::Feeds20210630::FeedOptions?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
+        def self.new: (feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, ?feed_options: Hash[untyped, untyped]?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
+                    | (String?, String?, Array[String]?, Hash[untyped, untyped]?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
 
         attr_reader feed_type: String?
         attr_reader input_feed_document_id: String?
         attr_reader marketplace_ids: Array[String]?
-        attr_reader feed_options: Peddler::Types::Feeds20210630::FeedOptions?
+        attr_reader feed_options: Hash[untyped, untyped]?
 
-        def to_h: () -> { feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, feed_options: Peddler::Types::Feeds20210630::FeedOptions? }
+        def to_h: () -> { feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, feed_options: Hash[untyped, untyped]? }
       end
     end
   end

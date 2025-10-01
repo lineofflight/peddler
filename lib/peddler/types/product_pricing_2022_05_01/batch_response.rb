@@ -2,7 +2,6 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/product_pricing_2022_05_01/http_headers"
 require "peddler/types/product_pricing_2022_05_01/http_status_line"
 
 module Peddler
@@ -10,8 +9,8 @@ module Peddler
     module ProductPricing20220501
       # The common properties for responses to individual requests within a batch.
       BatchResponse = Structure.new do
-        # @return [HttpHeaders]
-        attribute(:headers, HttpHeaders)
+        # @return [Hash]
+        attribute(:headers, Hash)
 
         # @return [HttpStatusLine]
         attribute(:status, HttpStatusLine)

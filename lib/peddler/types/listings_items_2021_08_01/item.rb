@@ -2,7 +2,6 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/listings_items_2021_08_01/item_attributes"
 require "peddler/types/listings_items_2021_08_01/fulfillment_availability"
 require "peddler/types/listings_items_2021_08_01/issue"
 require "peddler/types/listings_items_2021_08_01/item_offer_by_marketplace"
@@ -19,8 +18,8 @@ module Peddler
         # @return [String] A selling partner provided identifier for an Amazon listing.
         attribute(:sku, String)
 
-        # @return [ItemAttributes]
-        attribute?(:attributes, ItemAttributes)
+        # @return [Hash]
+        attribute?(:attributes, Hash)
 
         # @return [Array<FulfillmentAvailability>] The fulfillment availability for the listings item.
         attribute?(:fulfillment_availability, [FulfillmentAvailability], from: "fulfillmentAvailability")

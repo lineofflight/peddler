@@ -2,7 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/product_pricing_v0/http_request_headers"
+require "structure"
 
 module Peddler
   module Types
@@ -33,8 +33,8 @@ module Peddler
         # @return [String] Indicates whether to request Consumer or Business offers. Default is Consumer.
         attribute?(:customer_type, String, from: "CustomerType")
 
-        # @return [HttpRequestHeaders]
-        attribute?(:headers, HttpRequestHeaders)
+        # @return [Hash]
+        attribute?(:headers, Hash)
       end
     end
   end

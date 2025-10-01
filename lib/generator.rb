@@ -29,7 +29,11 @@ module Generator
       logger.info("Starting code generation#{" for #{api_filter}" if api_filter}!")
 
       ensure_api_models_exist!
-      initialize_directories! unless api_filter
+      if api_filter
+        cleanup_filtered_api_types!
+      else
+        initialize_directories!
+      end
       generate_apis!
       generate_types!
       generate_types_index_files!
@@ -80,6 +84,26 @@ module Generator
       end
 
       logger.info("Initialized directories")
+    end
+
+    def cleanup_filtered_api_types!
+      apis.each do |api|
+        ["lib", "sig"].each do |base|
+          # Remove the type directory
+          api_types_path = File.join(Config::BASE_PATH, base, "peddler/types", api.name_with_version)
+          FileUtils.rm_rf(api_types_path) if Dir.exist?(api_types_path)
+
+          # Remove the types index file
+          api_types_index = File.join(Config::BASE_PATH, base, "peddler/types/#{api.name_with_version}.rb")
+          File.delete(api_types_index) if File.exist?(api_types_index)
+
+          # Remove the RBS types index file
+          api_types_index_rbs = File.join(Config::BASE_PATH, base, "peddler/types/#{api.name_with_version}.rbs")
+          File.delete(api_types_index_rbs) if File.exist?(api_types_index_rbs)
+        end
+      end
+
+      logger.info("Cleaned up type directories for filtered API(s)")
     end
 
     def generate_apis!
@@ -147,9 +171,11 @@ module Generator
 
         next if files_to_format.empty?
 
-        files_to_format.each do |file|
-          system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{file} > /dev/null 2>&1") ||
-            raise("Couldn't format #{file}")
+        # Format files in batches for better performance
+        files_to_format.each_slice(100) do |batch|
+          files_list = batch.join(" ")
+          system("bundle exec rubocop --format simple --autocorrect-all --fail-level E #{files_list} > /dev/null 2>&1") ||
+            raise("Couldn't format files in batch")
         end
 
         logger.info("Formatted #{path}")
@@ -186,6 +212,8 @@ module Generator
             next unless definition["type"] == "object" || definition["allOf"] || definition["type"] == "array"
             # Skip Money types as we use the custom Money type for these
             next if TypeResolver.money?(name)
+            # Skip types with additionalProperties - they'll be referenced as Hash
+            next if definition["additionalProperties"]
 
             arr << Type.new(name, definition, api.name_with_version, api.openapi_spec)
           end

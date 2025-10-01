@@ -3,7 +3,6 @@
 # This file is generated. Do not edit.
 
 require "peddler/types/messaging_v1/error"
-require "peddler/types/messaging_v1/schema"
 
 module Peddler
   module Types
@@ -16,8 +15,8 @@ module Peddler
         # @return [Array<Error>]
         attribute?(:errors, [Error])
 
-        # @return [Schema]
-        attribute?(:payload, Schema)
+        # @return [Hash]
+        attribute?(:payload, Hash)
       end
     end
   end

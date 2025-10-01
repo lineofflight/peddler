@@ -2,7 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/product_pricing_v0/http_request_headers"
+require "structure"
 
 module Peddler
   module Types
@@ -23,8 +23,8 @@ module Peddler
         # **Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`
         attribute(:uri, String)
 
-        # @return [HttpRequestHeaders]
-        attribute?(:headers, HttpRequestHeaders)
+        # @return [Hash]
+        attribute?(:headers, Hash)
       end
     end
   end

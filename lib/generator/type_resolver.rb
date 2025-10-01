@@ -29,6 +29,7 @@ module Generator
     end
 
     def generated_type?(name)
+      return false if name.nil?
       return false unless specification && specification["definitions"]
 
       type_def = specification["definitions"][name]
@@ -36,7 +37,8 @@ module Generator
 
       # Only object types and allOf compositions get generated as separate files
       # Money-related types are handled specially
-      (type_def["type"] == "object" || type_def["allOf"]) && !money?(name)
+      # Types with additionalProperties are treated as Hash and not generated
+      (type_def["type"] == "object" || type_def["allOf"]) && !money?(name) && !type_def["additionalProperties"]
     end
 
     private

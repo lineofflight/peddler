@@ -2,15 +2,15 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/shipping_v2/cancel_shipment_result"
+require "structure"
 
 module Peddler
   module Types
     module ShippingV2
       # Response schema for the cancelShipment operation.
       CancelShipmentResponse = Structure.new do
-        # @return [CancelShipmentResult]
-        attribute?(:payload, CancelShipmentResult)
+        # @return [Hash]
+        attribute?(:payload, Hash)
       end
     end
   end

@@ -4,16 +4,16 @@ module Peddler
   module Types
     module MessagingV1
       class GetSchemaResponse < Data
-        def self.new: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::MessagingV1::Error]?, ?payload: Peddler::Types::MessagingV1::Schema?) -> Peddler::Types::MessagingV1::GetSchemaResponse
-                    | (Hash[untyped, untyped]?, Array[Peddler::Types::MessagingV1::Error]?, Peddler::Types::MessagingV1::Schema?) -> Peddler::Types::MessagingV1::GetSchemaResponse
+        def self.new: (?_links: Hash[untyped, untyped]?, ?errors: Array[Peddler::Types::MessagingV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::Types::MessagingV1::GetSchemaResponse
+                    | (Hash[untyped, untyped]?, Array[Peddler::Types::MessagingV1::Error]?, Hash[untyped, untyped]?) -> Peddler::Types::MessagingV1::GetSchemaResponse
 
         def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::GetSchemaResponse
 
         attr_reader _links: Hash[untyped, untyped]?
         attr_reader errors: Array[Peddler::Types::MessagingV1::Error]?
-        attr_reader payload: Peddler::Types::MessagingV1::Schema?
+        attr_reader payload: Hash[untyped, untyped]?
 
-        def to_h: () -> { _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::MessagingV1::Error]?, payload: Peddler::Types::MessagingV1::Schema? }
+        def to_h: () -> { _links: Hash[untyped, untyped]?, errors: Array[Peddler::Types::MessagingV1::Error]?, payload: Hash[untyped, untyped]? }
       end
     end
   end

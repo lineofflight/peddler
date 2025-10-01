@@ -2,7 +2,7 @@
 
 # This file is generated. Do not edit.
 
-require "peddler/types/reports_2021_06_30/report_options"
+require "structure"
 
 module Peddler
   module Types
@@ -24,8 +24,8 @@ module Peddler
         # {https://developer-docs.amazon.com/sp-api/docs/iso-8601 ISO 8601} date time format.
         attribute?(:next_report_creation_time, String, from: "nextReportCreationTime")
 
-        # @return [ReportOptions]
-        attribute?(:report_options, ReportOptions, from: "reportOptions")
+        # @return [Hash]
+        attribute?(:report_options, Hash, from: "reportOptions")
       end
     end
   end
