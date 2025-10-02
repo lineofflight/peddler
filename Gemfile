@@ -11,7 +11,6 @@ gem "minitest"
 gem "rake"
 gem "rbs"
 gem "rubocop"
-gem "rubocop-erb"
 gem "rubocop-minitest"
 gem "rubocop-performance"
 gem "rubocop-rake"
@@ -20,6 +19,8 @@ gem "steep"
 gem "vcr"
 gem "webmock"
 gem "yard"
+
+gem "herb", "~> 0.7", ">= 0.7.4"
 
 # TODO: Remove the version guard when Yard handles changes in the new Commonmarker
 # https://github.com/lsegal/yard/issues/1528
