@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def amazon_warehousing_and_distribution_2024_05_09
-      api = APIs::AmazonWarehousingAndDistribution20240509
-      typed? ? api.typed : api
+      typed? ? APIs::AmazonWarehousingAndDistribution20240509.typed : APIs::AmazonWarehousingAndDistribution20240509
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     class AmazonWarehousingAndDistribution20240509 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/amazon_warehousing_and_distribution_2024_05_09"
+          self
+        end
+      end
+
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
       # shipment per order.
       #

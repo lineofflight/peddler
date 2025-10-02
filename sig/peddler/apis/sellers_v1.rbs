@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class SellersV1 < API
+      def self.typed: () -> singleton(SellersV1)
+
       def get_account: (?rate_limit: Float) -> Peddler::Response
       def get_marketplace_participations: (?rate_limit: Float) -> Peddler::Response
     end

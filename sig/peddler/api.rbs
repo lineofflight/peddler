@@ -15,8 +15,7 @@ module Peddler
     @retries: Integer
     @sandbox: bool
 
-    def self.snake_case_name: () -> String
-    def self.typed: () -> singleton(API)
+    def self.typed: () -> bot
     def self.typed?: () -> bool
     attr_reader access_token: String
     attr_reader endpoint: Endpoint

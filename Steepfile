@@ -9,6 +9,7 @@ target :lib do
   library(
     "json",
     "open3",
+    "rbs",
     "socket",
     "time",
     "uri",

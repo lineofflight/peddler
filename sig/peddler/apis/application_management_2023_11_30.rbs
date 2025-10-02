@@ -1,6 +1,7 @@
 module Peddler
   module APIs
     class ApplicationManagement20231130 < API
+      def self.typed: () -> singleton(ApplicationManagement20231130)
       def rotate_application_client_secret: (?rate_limit: Float) -> Peddler::Response
     end
   end

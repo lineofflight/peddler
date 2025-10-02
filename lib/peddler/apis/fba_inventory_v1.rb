@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fba_inventory_v1
-      api = APIs::FBAInventoryV1
-      typed? ? api.typed : api
+      typed? ? APIs::FBAInventoryV1.typed : APIs::FBAInventoryV1
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
     class FBAInventoryV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/fba_inventory_v1"
+          self
+        end
+      end
+
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
       # startDateTime, sellerSkus and sellerSku parameters:
       #

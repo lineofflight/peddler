@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_inventory_v1
-      api = APIs::VendorDirectFulfillmentInventoryV1
-      typed? ? api.typed : api
+      typed? ? APIs::VendorDirectFulfillmentInventoryV1.typed : APIs::VendorDirectFulfillmentInventoryV1
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
     class VendorDirectFulfillmentInventoryV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/vendor_direct_fulfillment_inventory_v1"
+          self
+        end
+      end
+
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #
       # @note This operation can make a static sandbox call.

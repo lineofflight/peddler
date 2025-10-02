@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def messaging_v1
-      api = APIs::MessagingV1
-      typed? ? api.typed : api
+      typed? ? APIs::MessagingV1.typed : APIs::MessagingV1
     end
   end
 
@@ -22,6 +21,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/messaging-api-model/messaging.json
     class MessagingV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/messaging_v1"
+          self
+        end
+      end
+
       # Returns a list of message types that are available for an order that you specify. A message type is represented
       # by an actions object, which contains a path and query parameter(s). You can use the path and parameter(s) to
       # call an operation that sends a message.

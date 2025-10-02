@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def aplus_content_2020_11_01
-      api = APIs::AplusContent20201101
-      typed? ? api.typed : api
+      typed? ? APIs::AplusContent20201101.typed : APIs::AplusContent20201101
     end
   end
 
@@ -21,6 +20,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
     class AplusContent20201101 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/aplus_content_2020_11_01"
+          self
+        end
+      end
+
       # Returns a list of all A+ Content documents, including metadata, that are assigned to a selling partner. To get
       # the actual contents of the A+ Content documents, call the `getContentDocument` operation.
       #

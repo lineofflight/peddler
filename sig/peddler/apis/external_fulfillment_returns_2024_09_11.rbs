@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class ExternalFulfillmentReturns20240911 < API
+      def self.typed: () -> singleton(ExternalFulfillmentReturns20240911)
+
       def get_return: (String) -> Peddler::Response
       def list_returns: (?return_location_id: String?, ?rma_id: String?, ?status: String?, ?reverse_tracking_id: String?, ?created_since: String?, ?created_until: String?, ?last_updated_since: String?, ?last_updated_until: String?, ?last_updated_after: String?, ?last_updated_before: String?, ?max_results: Integer?, ?next_token: String?) -> Peddler::Response
     end

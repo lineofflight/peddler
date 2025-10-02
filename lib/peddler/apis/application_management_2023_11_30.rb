@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def application_management_2023_11_30
-      api = APIs::ApplicationManagement20231130
-      typed? ? api.typed : api
+      typed? ? APIs::ApplicationManagement20231130.typed : APIs::ApplicationManagement20231130
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-management-api-model/application_2023-11-30.json
     class ApplicationManagement20231130 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/application_management_2023_11_30"
+          self
+        end
+      end
+
       # Rotates application client secrets for a developer application. Developers must register a destination queue in
       # the developer console before calling this operation. When this operation is called a new client secret is
       # generated and sent to the developer-registered queue. For more information, refer to [Rotate your application

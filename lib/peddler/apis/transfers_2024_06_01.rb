@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def transfers_2024_06_01
-      api = APIs::Transfers20240601
-      typed? ? api.typed : api
+      typed? ? APIs::Transfers20240601.typed : APIs::Transfers20240601
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
     class Transfers20240601 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/transfers_2024_06_01"
+          self
+        end
+      end
+
       # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
       # `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace
       # and account type within a 24-hour period.

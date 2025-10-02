@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class ProductTypeDefinitions20200901 < API
+      def self.typed: () -> singleton(ProductTypeDefinitions20200901)
+
       def get_definitions_product_type: (String, Array[String], ?seller_id: String?, ?product_type_version: String?, ?requirements: String?, ?requirements_enforced: String?, ?locale: String?, ?rate_limit: Float) -> Peddler::Response
       def search_definitions_product_types: (Array[String], ?keywords: Array[String]?, ?item_name: String?, ?locale: String?, ?search_locale: String?, ?rate_limit: Float) -> Peddler::Response
     end

@@ -31,15 +31,17 @@ class PeddlerTest < Minitest::Test
   end
 
   def test_typed_enables_typed_flag
-    refute(Peddler.typed?)
+    refute_predicate(Peddler, :typed?)
     Peddler.typed
-    assert(Peddler.typed?)
+
+    assert_predicate(Peddler, :typed?)
   end
 
   def test_typed_returns_typed_api_class
     Peddler.typed
     api = Peddler.orders
-    assert(api.typed?)
+
+    assert_predicate(api, :typed?)
   ensure
     Peddler.instance_variable_set(:@typed, false)
   end
@@ -60,21 +62,5 @@ class PeddlerTest < Minitest::Test
     end
 
     assert(Peddler.raise_on_server_errors)
-  end
-
-  def test_typed_returns_self
-    assert_equal(Peddler, Peddler.typed)
-  end
-
-  def test_typed_enables_typed_flag
-    refute(Peddler.typed?)
-    Peddler.typed
-    assert(Peddler.typed?)
-  end
-
-  def test_typed_returns_typed_api_class
-    Peddler.typed
-    api = Peddler.orders
-    assert(api.typed?)
   end
 end

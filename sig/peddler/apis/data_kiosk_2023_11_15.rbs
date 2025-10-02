@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class DataKiosk20231115 < API
+      def self.typed: () -> singleton(DataKiosk20231115)
+
       def cancel_query: (String, ?rate_limit: Float) -> Peddler::Response
       def create_query: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 

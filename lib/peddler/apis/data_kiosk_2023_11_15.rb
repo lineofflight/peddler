@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def data_kiosk_2023_11_15
-      api = APIs::DataKiosk20231115
-      typed? ? api.typed : api
+      typed? ? APIs::DataKiosk20231115.typed : APIs::DataKiosk20231115
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/data-kiosk-api-model/dataKiosk_2023-11-15.json
     class DataKiosk20231115 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/data_kiosk_2023_11_15"
+          self
+        end
+      end
+
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
       # details about query retention.
       #

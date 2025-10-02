@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def seller_wallet_2024_03_01
-      api = APIs::SellerWallet20240301
-      typed? ? api.typed : api
+      typed? ? APIs::SellerWallet20240301.typed : APIs::SellerWallet20240301
     end
   end
 
@@ -24,6 +23,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
     class SellerWallet20240301 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/seller_wallet_2024_03_01"
+          self
+        end
+      end
+
       # Get Seller Wallet accounts for a seller.
       #
       # @note This operation can make a static sandbox call.

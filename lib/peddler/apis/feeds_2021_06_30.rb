@@ -8,8 +8,7 @@ require "peddler/helpers/feeds_2021_06_30"
 module Peddler
   class << self
     def feeds_2021_06_30
-      api = APIs::Feeds20210630
-      typed? ? api.typed : api
+      typed? ? APIs::Feeds20210630.typed : APIs::Feeds20210630
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds-api-model/feeds_2021-06-30.json
     class Feeds20210630 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/feeds_2021_06_30"
+          self
+        end
+      end
+
       include Peddler::Helpers::Feeds20210630
 
       # Returns feed details for the feeds that match the filters that you specify.

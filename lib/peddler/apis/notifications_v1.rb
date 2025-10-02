@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def notifications_v1
-      api = APIs::NotificationsV1
-      typed? ? api.typed : api
+      typed? ? APIs::NotificationsV1.typed : APIs::NotificationsV1
     end
   end
 
@@ -24,6 +23,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/notifications_v1"
+          self
+        end
+      end
+
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
       # is an optional parameter. When `payloadVersion` is not provided, it will return latest payload version
       # subscription's information. You can use this API to get subscription information when you do not have a

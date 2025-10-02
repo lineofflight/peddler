@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fulfillment_inbound_v0
-      api = APIs::FulfillmentInboundV0
-      typed? ? api.typed : api
+      typed? ? APIs::FulfillmentInboundV0.typed : APIs::FulfillmentInboundV0
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
     class FulfillmentInboundV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/fulfillment_inbound_v0"
+          self
+        end
+      end
+
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.
       #

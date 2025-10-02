@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def sales_v1
-      api = APIs::SalesV1
-      typed? ? api.typed : api
+      typed? ? APIs::SalesV1.typed : APIs::SalesV1
     end
   end
 
@@ -19,6 +18,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sales-api-model/sales.json
     class SalesV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/sales_v1"
+          self
+        end
+      end
+
       # Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.
       #
       # @note This operation can make a static sandbox call.

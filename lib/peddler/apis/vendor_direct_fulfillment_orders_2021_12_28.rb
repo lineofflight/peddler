@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_orders_2021_12_28
-      api = APIs::VendorDirectFulfillmentOrders20211228
-      typed? ? api.typed : api
+      typed? ? APIs::VendorDirectFulfillmentOrders20211228.typed : APIs::VendorDirectFulfillmentOrders20211228
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json
     class VendorDirectFulfillmentOrders20211228 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/vendor_direct_fulfillment_orders_2021_12_28"
+          self
+        end
+      end
+
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
       # using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only
       # the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns

@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_sandbox_test_data_2021_10_28
-      api = APIs::VendorDirectFulfillmentSandboxTestData20211028
-      typed? ? api.typed : api
+      typed? ? APIs::VendorDirectFulfillmentSandboxTestData20211028.typed : APIs::VendorDirectFulfillmentSandboxTestData20211028
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json
     class VendorDirectFulfillmentSandboxTestData20211028 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/vendor_direct_fulfillment_sandbox_test_data_2021_10_28"
+          self
+        end
+      end
+
       # Submits a request to generate test order data for Vendor Direct Fulfillment API entities.
       #
       # @note This operation can make a dynamic sandbox call.

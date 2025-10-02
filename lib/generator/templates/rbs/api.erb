@@ -3,6 +3,7 @@
 module Peddler
   module APIs
     class <%= class_name %> < API
+      def self.typed: () -> singleton(<%= class_name %>)
 <% operations.each do |operation| -%>
       <%= render_operation(operation) %>
 <% end -%>

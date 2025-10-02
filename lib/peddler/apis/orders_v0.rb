@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def orders_v0
-      api = APIs::OrdersV0
-      typed? ? api.typed : api
+      typed? ? APIs::OrdersV0.typed : APIs::OrdersV0
     end
   end
 
@@ -25,6 +24,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     class OrdersV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/orders_v0"
+          self
+        end
+      end
+
       # Returns orders that are created or updated during the specified time period. If you want to return specific
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
       # in your request; it only impacts the pagination for the filtered orders response.

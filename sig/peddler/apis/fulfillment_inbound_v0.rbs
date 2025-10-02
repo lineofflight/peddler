@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class FulfillmentInboundV0 < API
+      def self.typed: () -> singleton(FulfillmentInboundV0)
+
       def get_bill_of_lading: (String, ?rate_limit: Float) -> Peddler::Response
       def get_labels: (String, String, String, ?number_of_packages: Integer?, ?package_labels_to_print: Array[String]?, ?number_of_pallets: Integer?, ?page_size: Integer?, ?page_start_index: Integer?, ?rate_limit: Float) -> Peddler::Response
       def get_prep_instructions: (String, ?seller_sku_list: Array[String]?, ?asin_list: Array[String]?, ?rate_limit: Float) -> Peddler::Response

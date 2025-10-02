@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def supply_sources_2020_07_01
-      api = APIs::SupplySources20200701
-      typed? ? api.typed : api
+      typed? ? APIs::SupplySources20200701.typed : APIs::SupplySources20200701
     end
   end
 
@@ -19,6 +18,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
     class SupplySources20200701 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/supply_sources_2020_07_01"
+          self
+        end
+      end
+
       # The path to retrieve paginated supply sources.
       #
       # @note This operation can make a static sandbox call.

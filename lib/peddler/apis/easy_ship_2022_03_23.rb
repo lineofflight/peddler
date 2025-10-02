@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def easy_ship_2022_03_23
-      api = APIs::EasyShip20220323
-      typed? ? api.typed : api
+      typed? ? APIs::EasyShip20220323.typed : APIs::EasyShip20220323
     end
   end
 
@@ -23,6 +22,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
     class EasyShip20220323 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/easy_ship_2022_03_23"
+          self
+        end
+      end
+
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
       # that the seller specifies.
       #

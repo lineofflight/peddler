@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def invoices_2024_06_19
-      api = APIs::Invoices20240619
-      typed? ? api.typed : api
+      typed? ? APIs::Invoices20240619.typed : APIs::Invoices20240619
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     class Invoices20240619 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/invoices_2024_06_19"
+          self
+        end
+      end
+
       # Returns marketplace-dependent schemas and their respective set of possible values.
       #
       # @note This operation can make a static sandbox call.

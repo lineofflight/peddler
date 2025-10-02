@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def merchant_fulfillment_v0
-      api = APIs::MerchantFulfillmentV0
-      typed? ? api.typed : api
+      typed? ? APIs::MerchantFulfillmentV0.typed : APIs::MerchantFulfillmentV0
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     class MerchantFulfillmentV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/merchant_fulfillment_v0"
+          self
+        end
+      end
+
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
       # @note This operation can make a static sandbox call.

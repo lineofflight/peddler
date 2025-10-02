@@ -8,8 +8,7 @@ require "peddler/helpers/reports_2021_06_30"
 module Peddler
   class << self
     def reports_2021_06_30
-      api = APIs::Reports20210630
-      typed? ? api.typed : api
+      typed? ? APIs::Reports20210630.typed : APIs::Reports20210630
     end
   end
 
@@ -21,6 +20,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports-api-model/reports_2021-06-30.json
     class Reports20210630 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/reports_2021_06_30"
+          self
+        end
+      end
+
       include Peddler::Helpers::Reports20210630
 
       # Returns report details for the reports that match the filters that you specify.

@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def listings_restrictions_2021_08_01
-      api = APIs::ListingsRestrictions20210801
-      typed? ? api.typed : api
+      typed? ? APIs::ListingsRestrictions20210801.typed : APIs::ListingsRestrictions20210801
     end
   end
 
@@ -24,6 +23,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json
     class ListingsRestrictions20210801 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/listings_restrictions_2021_08_01"
+          self
+        end
+      end
+
       # Returns listing restrictions for an item in the Amazon Catalog.
       #
       # @note This operation can make a static sandbox call.

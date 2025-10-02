@@ -1,6 +1,7 @@
 module Peddler
   module APIs
     class VendorDirectFulfillmentInventoryV1 < API
+      def self.typed: () -> singleton(VendorDirectFulfillmentInventoryV1)
       def submit_inventory_update: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
     end
   end

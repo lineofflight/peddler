@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def product_pricing_2022_05_01
-      api = APIs::ProductPricing20220501
-      typed? ? api.typed : api
+      typed? ? APIs::ProductPricing20220501.typed : APIs::ProductPricing20220501
     end
   end
 
@@ -23,6 +22,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricing_2022-05-01.json
     class ProductPricing20220501 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/product_pricing_2022_05_01"
+          self
+        end
+      end
+
       # Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request
       # body. The response for each successful (HTTP status code 200) request in the set includes the computed listing
       # price at or below which a seller can expect to become the featured offer (before applicable promotions). This is

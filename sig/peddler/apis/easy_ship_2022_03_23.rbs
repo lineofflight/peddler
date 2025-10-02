@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class EasyShip20220323 < API
+      def self.typed: () -> singleton(EasyShip20220323)
+
       def create_scheduled_package: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def create_scheduled_package_bulk: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class ExternalFulfillmentShipments20240911 < API
+      def self.typed: () -> singleton(ExternalFulfillmentShipments20240911)
+
       def create_packages: (String, Hash[untyped, untyped]) -> Peddler::Response
 
       def generate_invoice: (String) -> Peddler::Response

@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def product_type_definitions_2020_09_01
-      api = APIs::ProductTypeDefinitions20200901
-      typed? ? api.typed : api
+      typed? ? APIs::ProductTypeDefinitions20200901.typed : APIs::ProductTypeDefinitions20200901
     end
   end
 
@@ -25,6 +24,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
     class ProductTypeDefinitions20200901 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/product_type_definitions_2020_09_01"
+          self
+        end
+      end
+
       # Search for and return a list of Amazon product types that have definitions available.
       #
       # @note This operation can make a static sandbox call.

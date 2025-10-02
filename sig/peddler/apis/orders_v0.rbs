@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class OrdersV0 < API
+      def self.typed: () -> singleton(OrdersV0)
+
       def confirm_shipment: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_order: (String, ?rate_limit: Float) -> Peddler::Response
 

@@ -188,7 +188,7 @@ module Generator
       $stdout = File.new(File::NULL, "w")
 
       rbs_files.each do |file|
-        RBS::Sorter.new(Pathname(file)).run
+        ::RBS::Sorter.new(Pathname(file)).run
       end
 
       $stdout = original_stdout

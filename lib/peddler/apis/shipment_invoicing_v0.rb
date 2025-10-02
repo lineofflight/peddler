@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def shipment_invoicing_v0
-      api = APIs::ShipmentInvoicingV0
-      typed? ? api.typed : api
+      typed? ? APIs::ShipmentInvoicingV0.typed : APIs::ShipmentInvoicingV0
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipment-invoicing-api-model/shipmentInvoicingV0.json
     class ShipmentInvoicingV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/shipment_invoicing_v0"
+          self
+        end
+      end
+
       # Returns the shipment details required to issue an invoice for the specified shipment.
       #
       # @note This operation can make a static sandbox call.

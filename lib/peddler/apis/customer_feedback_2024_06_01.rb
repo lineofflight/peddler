@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def customer_feedback_2024_06_01
-      api = APIs::CustomerFeedback20240601
-      typed? ? api.typed : api
+      typed? ? APIs::CustomerFeedback20240601.typed : APIs::CustomerFeedback20240601
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json
     class CustomerFeedback20240601 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/customer_feedback_2024_06_01"
+          self
+        end
+      end
+
       # Retrieve an item's ten most positive and ten most negative review topics.
       #
       # @note This operation can make a static sandbox call.

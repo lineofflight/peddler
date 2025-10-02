@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def finances_v0
-      api = APIs::FinancesV0
-      typed? ? api.typed : api
+      typed? ? APIs::FinancesV0.typed : APIs::FinancesV0
     end
   end
 
@@ -21,6 +20,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/financesV0.json
     class FinancesV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/finances_v0"
+          self
+        end
+      end
+
       # Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your
       # financial events.
       #

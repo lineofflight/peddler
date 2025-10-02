@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class VendorDirectFulfillmentShipping20211228 < API
+      def self.typed: () -> singleton(VendorDirectFulfillmentShipping20211228)
+
       def create_container_label: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def create_shipping_labels: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 

@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class SupplySources20200701 < API
+      def self.typed: () -> singleton(SupplySources20200701)
+
       def archive_supply_source: (String) -> Peddler::Response
       def create_supply_source: (Hash[untyped, untyped]) -> Peddler::Response
       def get_supply_source: (String) -> Peddler::Response

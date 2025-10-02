@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vehicles_2024_11_01
-      api = APIs::Vehicles20241101
-      typed? ? api.typed : api
+      typed? ? APIs::Vehicles20241101.typed : APIs::Vehicles20241101
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vehicles-api-model/vehicles_2024-11-01.json
     class Vehicles20241101 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/vehicles_2024_11_01"
+          self
+        end
+      end
+
       # Get the latest collection of vehicles
       #
       # @note This operation can make a static sandbox call.

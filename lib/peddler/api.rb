@@ -28,27 +28,15 @@ module Peddler
 
     class << self
       # Enables typed response parsing
+      # @note This method must be implemented by each API subclass
       # @return [self]
       def typed
-        @typed = true
-        require_relative "types/#{snake_case_name}"
-        self
+        raise NotImplementedError, "#{self} must implement .typed"
       end
 
       # @return [Boolean]
       def typed?
         @typed ||= false
-      end
-
-      # Converts the class name to snake_case
-      # @return [String]
-      def snake_case_name
-        class_name = name.split("::").last
-        class_name
-          .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-          .gsub(/([a-z\d])([A-Z])/, '\1_\2')
-          .gsub(/([a-z])(\d{4})(\d{2})(\d{2})/, '\1_\2_\3_\4')
-          .downcase
       end
     end
 

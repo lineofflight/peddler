@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class Transfers20240601 < API
+      def self.typed: () -> singleton(Transfers20240601)
+
       def get_payment_methods: (String, ?payment_method_types: Array[String]?, ?rate_limit: Float) -> Peddler::Response
       def initiate_payout: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end

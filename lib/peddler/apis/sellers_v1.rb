@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def sellers_v1
-      api = APIs::SellersV1
-      typed? ? api.typed : api
+      typed? ? APIs::SellersV1.typed : APIs::SellersV1
     end
   end
 
@@ -27,6 +26,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     class SellersV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/sellers_v1"
+          self
+        end
+      end
+
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
       #

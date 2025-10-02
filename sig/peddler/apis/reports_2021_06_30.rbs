@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class Reports20210630 < API
+      def self.typed: () -> singleton(Reports20210630)
+
       def cancel_report: (String, ?rate_limit: Float) -> Peddler::Response
 
       def cancel_report_schedule: (String, ?rate_limit: Float) -> Peddler::Response

@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class ShippingV2 < API
+      def self.typed: () -> singleton(ShippingV2)
+
       def cancel_shipment: (String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
 
       def create_claim: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response

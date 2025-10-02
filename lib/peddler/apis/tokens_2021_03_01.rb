@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def tokens_2021_03_01
-      api = APIs::Tokens20210301
-      typed? ? api.typed : api
+      typed? ? APIs::Tokens20210301.typed : APIs::Tokens20210301
     end
   end
 
@@ -25,6 +24,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/tokens-api-model/tokens_2021-03-01.json
     class Tokens20210301 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/tokens_2021_03_01"
+          self
+        end
+      end
+
       # Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted
       # resource is the HTTP method and path from a restricted operation that returns Personally Identifiable
       # Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use

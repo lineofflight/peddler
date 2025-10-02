@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_orders_v1
-      api = APIs::VendorOrdersV1
-      typed? ? api.typed : api
+      typed? ? APIs::VendorOrdersV1.typed : APIs::VendorOrdersV1
     end
   end
 
@@ -19,6 +18,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-orders-api-model/vendorOrders.json
     class VendorOrdersV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/vendor_orders_v1"
+          self
+        end
+      end
+
       # Returns a list of purchase orders created or changed during the time frame that you specify. You define the time
       # frame using the `createdAfter`, `createdBefore`, `changedAfter` and `changedBefore` parameters. The date range
       # to search must not be more than 7 days. You can choose to get only the purchase order numbers by setting

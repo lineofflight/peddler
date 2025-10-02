@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def product_pricing_v0
-      api = APIs::ProductPricingV0
-      typed? ? api.typed : api
+      typed? ? APIs::ProductPricingV0.typed : APIs::ProductPricingV0
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
     class ProductPricingV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/product_pricing_v0"
+          self
+        end
+      end
+
       # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
       #
       # **Note:** The parameters associated with this operation may contain special characters that require URL encoding

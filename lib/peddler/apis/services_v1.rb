@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def services_v1
-      api = APIs::ServicesV1
-      typed? ? api.typed : api
+      typed? ? APIs::ServicesV1.typed : APIs::ServicesV1
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     class ServicesV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/services_v1"
+          self
+        end
+      end
+
       # Gets details of service job indicated by the provided `serviceJobID`.
       #
       # @note This operation can make a static sandbox call.

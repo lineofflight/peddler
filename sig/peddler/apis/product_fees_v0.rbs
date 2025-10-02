@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class ProductFeesV0 < API
+      def self.typed: () -> singleton(ProductFeesV0)
+
       def get_my_fees_estimate_for_asin: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
       def get_my_fees_estimate_for_sku: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
 

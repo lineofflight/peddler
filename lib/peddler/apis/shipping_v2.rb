@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def shipping_v2
-      api = APIs::ShippingV2
-      typed? ? api.typed : api
+      typed? ? APIs::ShippingV2.typed : APIs::ShippingV2
     end
   end
 
@@ -21,6 +20,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     class ShippingV2 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/shipping_v2"
+          self
+        end
+      end
+
       # Returns the available shipping service offerings.
       #
       # @note This operation can make a dynamic sandbox call.

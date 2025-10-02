@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def listings_items_2021_08_01
-      api = APIs::ListingsItems20210801
-      typed? ? api.typed : api
+      typed? ? APIs::ListingsItems20210801.typed : APIs::ListingsItems20210801
     end
   end
 
@@ -24,6 +23,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/listings_items_2021_08_01"
+          self
+        end
+      end
+
       # Delete a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.

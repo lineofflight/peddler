@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_shipping_v1
-      api = APIs::VendorDirectFulfillmentShippingV1
-      typed? ? api.typed : api
+      typed? ? APIs::VendorDirectFulfillmentShippingV1.typed : APIs::VendorDirectFulfillmentShippingV1
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
     class VendorDirectFulfillmentShippingV1 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/vendor_direct_fulfillment_shipping_v1"
+          self
+        end
+      end
+
       # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must not be more than 7 days.

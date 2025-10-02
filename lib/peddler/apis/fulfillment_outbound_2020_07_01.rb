@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fulfillment_outbound_2020_07_01
-      api = APIs::FulfillmentOutbound20200701
-      typed? ? api.typed : api
+      typed? ? APIs::FulfillmentOutbound20200701.typed : APIs::FulfillmentOutbound20200701
     end
   end
 
@@ -21,6 +20,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
     class FulfillmentOutbound20200701 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/fulfillment_outbound_2020_07_01"
+          self
+        end
+      end
+
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
       #
       # @note This operation can make a dynamic sandbox call.

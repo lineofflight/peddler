@@ -1,6 +1,7 @@
 module Peddler
   module APIs
     class VendorDirectFulfillmentTransactions20211228 < API
+      def self.typed: () -> singleton(VendorDirectFulfillmentTransactions20211228)
       def get_transaction_status: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end

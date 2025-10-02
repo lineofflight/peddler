@@ -1,6 +1,7 @@
 module Peddler
   module APIs
     class Finances20240619 < API
+      def self.typed: () -> singleton(Finances20240619)
       def list_transactions: (String, ?posted_before: String?, ?marketplace_id: String?, ?transaction_status: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

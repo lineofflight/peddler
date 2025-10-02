@@ -1,6 +1,7 @@
 module Peddler
   module APIs
     class ListingsRestrictions20210801 < API
+      def self.typed: () -> singleton(ListingsRestrictions20210801)
       def get_listings_restrictions: (String, String, Array[String], ?condition_type: String?, ?reason_locale: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

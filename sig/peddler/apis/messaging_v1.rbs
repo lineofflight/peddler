@@ -1,6 +1,8 @@
 module Peddler
   module APIs
     class MessagingV1 < API
+      def self.typed: () -> singleton(MessagingV1)
+
       def confirm_customization_details: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def create_amazon_motors: (String, Array[String], Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

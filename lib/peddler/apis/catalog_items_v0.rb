@@ -7,8 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def catalog_items_v0
-      api = APIs::CatalogItemsV0
-      typed? ? api.typed : api
+      typed? ? APIs::CatalogItemsV0.typed : APIs::CatalogItemsV0
     end
   end
 
@@ -20,6 +19,16 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItemsV0.json
     class CatalogItemsV0 < API
+      class << self
+        # Enables typed response parsing
+        # @return [self]
+        def typed
+          @typed = true
+          require_relative "../types/catalog_items_v0"
+          self
+        end
+      end
+
       # Returns the parent categories to which an item belongs, based on the specified ASIN or SellerSKU.
       #
       # @note This operation can make a static sandbox call.
