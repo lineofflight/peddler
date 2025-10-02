@@ -5,7 +5,6 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 ## Communication Style
 
 - Avoid unnecessary validations like "you're (absolutely) right"
-- Be direct and concise
 - Focus on the task at hand without commentary on correctness
 
 ## Commands
@@ -21,6 +20,7 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 - Type check: `bundle exec rake steep`
 - Generate API classes from OpenAPI specs: `bin/generate-code`
 - **Note** Type checking and generating code takes up to a few minutes. Run in the background and check periodically back. You may continue working on something else in the meantime.
+- When encountering errors or ambiguity, ask rather than assume
 
 ## Tech Stack
 
@@ -43,7 +43,6 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 - Design intuitive APIs for your classes and modules
 - Hide internal details behind private methods
 - Use concise and descriptive names
-- Avoid monolithic files
 - Wrap code and comments at 120 characters
 - Use positional and keyword arguments for required and optional parameters, respectively
 - Follow patterns and conventions from neighboring files
@@ -52,14 +51,13 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 
 - Follow Amazon SP-API conventions and naming patterns
 - Maintain consistent method signatures across API classes
-- Use keyword arguments for optional parameters
-- Provide clear error handling and meaningful error messages
 - Support both sandbox and production environments
 
 ### Code Generation System
 
 - **API classes and types are auto-generated** from Amazon's OpenAPI specs
-- Generated code lives in `lib/peddler/apis/`, `lib/peddler/types/`, and `lib/peddler.rb` - these should not be manually edited
+- Generated code lives in `lib/peddler/apis/`, `lib/peddler/types/`, and `lib/peddler.rb`
+- **Never manually edit generated files** - changes will be overwritten on next generation
 - The generator in `lib/generator/` transforms OpenAPI specs into Ruby classes
 - OpenAPI models are downloaded to `selling-partner-api-models/` from Amazon's official repository
 - To change generated API classes, edit generator logic in `lib/generator/` or templates in `lib/generator/templates/`
@@ -70,18 +68,17 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 - Work on feature branches (delete when done)
 - Use descriptive branch names (e.g., `fix/api-timeout`)
 - Use GitHub mcp, fall back to gh cli
-- Test first
+- Write tests first (TDD)
 - Test behavior, not implementation (don't test private methods directly)
 - Use meaningful test names that describe what's being tested
 - Use VCR cassettes for integration tests
-- Update CHANGELOG
+- Update CHANGELOG for significant user-facing changes with short, succinct one-liners
 
 ### Git
 
-- Run tests, lint, check types before committing
+- Run tests, lint, check types before committing (don't commit if any fail)
 - Use conventional commit messages (e.g., "feat: add feature")
-- 50/72 rule
-- Keep it concise, focus on what/why
+- 50/72 rule - keep it concise, focus on what/why not how
 - Reference or close issues if applicable
 - Add yourself as co-author
 - **NEVER `git add .`** - stage explicitly
@@ -143,3 +140,28 @@ When researching SP-API functionality or issues:
 - Throttling rates (found in "Usage Plan" sections of operation descriptions)
 - Look for markdown tables with "Rate (requests per second)" and "Burst" columns in descriptions
 - Sandbox-specific endpoints and test data (check for sandbox operations in the specs)
+
+## Common Patterns
+
+### Generated API Classes
+See `lib/peddler/apis/catalog_items_2022_04_01.rb` for typical generated API structure:
+- Class inherits from `API`
+- `.typed` class method enables type parsing
+- Methods use keyword arguments with YARD documentation
+- Amazon SP-API links in comments reference official docs
+
+### Integration Tests  
+See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for standard test patterns:
+- Include `FeatureHelpers` for VCR setup and API instantiation
+- Use `Marketplace.ids("UK")` for marketplace parameters
+- Test methods call API and assert `res.status.success?`
+- VCR cassettes auto-record based on test path and filter sensitive data
+
+### Generator Workflow
+When modifying code generation:
+1. Edit templates in `lib/generator/templates/` (e.g., operation.erb, type.erb)
+2. Or modify generator logic in `lib/generator/` (e.g., `operation.rb`, `type.rb`)
+3. Run `bin/generate-code` (may take several minutes, run in background)
+4. Review generated files in `lib/peddler/apis/` and `lib/peddler/types/`
+5. Run tests to verify: `bundle exec rake test`
+6. Type check if needed: `bundle exec rake steep`
