@@ -6,6 +6,7 @@ module Peddler
     class MustSandbox < StandardError
     end
 
+    self.@typed: bool
     @endpoint: Endpoint
     @access_token: String
     @retries: Integer
