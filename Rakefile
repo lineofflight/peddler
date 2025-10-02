@@ -27,4 +27,11 @@ task "rbs:sort" do
   end
 end
 
+desc "Generate API classes from OpenAPI specs"
+task :generate, [:api_filter] do |_t, args|
+  require_relative "lib/generator"
+  Generator.generate(api_filter: args[:api_filter])
+  puts "\nCode generation completed successfully."
+end
+
 task default: [:rubocop, :test, :steep]

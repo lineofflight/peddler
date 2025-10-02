@@ -12,15 +12,20 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 ### General Development
 
 - Run a test: `bundle exec ruby -Itest test/path/to/test_file.rb`
-- Run all tests: `bundle exec rake test`
-- Lint a file: `bundle exec rubocop path/to/file.rb`
-- Lint all files: `bundle exec rake rubocop`
-- Add `-A` for rubocop to autocorrect
+- Lint a file: `bundle exec rubocop path/to/file.rb` (add `-A` to autocorrect)
 - Type check a path: `bundle exec steep check path/to/file.rbs`
-- Type check: `bundle exec rake steep`
-- Generate API classes from OpenAPI specs: `bin/generate-code`
-- **Note** Type checking and generating code takes up to a few minutes. Run in the background and check periodically back. You may continue working on something else in the meantime.
 - When encountering errors or ambiguity, ask rather than assume
+
+### Long-Running Tasks
+
+For full test suite, linting, type checking, or code generation (1+ minutes), use the runner subagent:
+
+- Run all tests
+- Lint all files
+- Type check all
+- Generate code
+
+The runner executes in background and reports when complete. You can continue working on other tasks while it runs.
 
 ## Tech Stack
 
@@ -150,7 +155,7 @@ See `lib/peddler/apis/catalog_items_2022_04_01.rb` for typical generated API str
 - Methods use keyword arguments with YARD documentation
 - Amazon SP-API links in comments reference official docs
 
-### Integration Tests  
+### Integration Tests
 See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for standard test patterns:
 - Include `FeatureHelpers` for VCR setup and API instantiation
 - Use `Marketplace.ids("UK")` for marketplace parameters
@@ -161,7 +166,7 @@ See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for standard test patte
 When modifying code generation:
 1. Edit templates in `lib/generator/templates/` (e.g., operation.erb, type.erb)
 2. Or modify generator logic in `lib/generator/` (e.g., `operation.rb`, `type.rb`)
-3. Run `bin/generate-code` (may take several minutes, run in background)
+3. Run `bundle exec rake generate` (may take several minutes, use runner subagent)
 4. Review generated files in `lib/peddler/apis/` and `lib/peddler/types/`
 5. Run tests to verify: `bundle exec rake test`
 6. Type check if needed: `bundle exec rake steep`
