@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?buyer_reference_number: String?, ?master_tracking_id: String?, ?ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ?ship_mode: String?, ?ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ?total_label_count: Integer?, ?vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?, ?warehouse_id: String?) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
                     | (String?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Integer?, Peddler::Types::VendorShipmentsV1::VendorDetails?, String?) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
 
         attr_reader buyer_reference_number: String?
         attr_reader master_tracking_id: String?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SellerWallet20240301
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?, ?next_page_token: String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleListing
                     | (Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?, String?) -> Peddler::Types::SellerWallet20240301::TransferScheduleListing
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::TransferScheduleListing
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellerWallet20240301::TransferScheduleListing
 
-        attr_reader transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?
         attr_reader next_page_token: String?
+        attr_reader transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?
 
         def to_h: () -> { transfer_schedules: Array[Peddler::Types::SellerWallet20240301::TransferSchedule]?, next_page_token: String? }
       end

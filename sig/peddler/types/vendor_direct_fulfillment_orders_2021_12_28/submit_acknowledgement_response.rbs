@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?, ?payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
                     | (Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?, Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::SubmitAcknowledgementResponse
 
         attr_reader errors: Peddler::Types::VendorDirectFulfillmentOrders20211228::ErrorList?
         attr_reader payload: Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId?

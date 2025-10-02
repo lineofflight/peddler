@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?business_hours: Array[Peddler::Types::OrdersV0::BusinessHours]?, ?exception_dates: Array[Peddler::Types::OrdersV0::ExceptionDates]?) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
                     | (Array[Peddler::Types::OrdersV0::BusinessHours]?, Array[Peddler::Types::OrdersV0::ExceptionDates]?) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::PreferredDeliveryTime
 
         attr_reader business_hours: Array[Peddler::Types::OrdersV0::BusinessHours]?
         attr_reader exception_dates: Array[Peddler::Types::OrdersV0::ExceptionDates]?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,13 +5,14 @@ module Peddler
         def self.new: (position: Integer?, ?asin: String?, ?highlight: bool?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, ?title: String?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
                     | (Integer?, String?, bool?, Peddler::Types::AplusContent20201101::ImageComponent?, Array[Peddler::Types::AplusContent20201101::PlainTextItem]?, String?) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardComparisonProductBlock
 
-        attr_reader position: Integer?
         attr_reader asin: String?
         attr_reader highlight: bool?
         attr_reader image: Peddler::Types::AplusContent20201101::ImageComponent?
         attr_reader metrics: Array[Peddler::Types::AplusContent20201101::PlainTextItem]?
+        attr_reader position: Integer?
+
         attr_reader title: String?
 
         def highlight?: () -> bool

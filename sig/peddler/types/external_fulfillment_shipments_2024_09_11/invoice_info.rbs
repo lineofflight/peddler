@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentShipments20240911
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (creation_date_time: String?, invoice_id: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo
                     | (String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo
 
         attr_reader creation_date_time: String?
         attr_reader invoice_id: String?

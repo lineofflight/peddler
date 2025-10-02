@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, ?gift_message_text: String?, ?gift_wrap_level: String?, ?gift_wrap_price: Peddler::Types::Money?, ?gift_wrap_tax: Peddler::Types::Money?) -> Peddler::Types::OrdersV0::ItemBuyerInfo
                     | (Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::OrdersV0::ItemBuyerInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ItemBuyerInfo
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::ItemBuyerInfo
 
         attr_reader buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?
         attr_reader gift_message_text: String?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ListingsRestrictions20210801
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
                     | (Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::RestrictionList
 
         attr_reader restrictions: Array[Peddler::Types::ListingsRestrictions20210801::Restriction]?
 

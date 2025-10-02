@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (length: Float?, unit: String?, width: Float?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
                     | (Float?, String?, Float?) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::LabelDimensions
 
         attr_reader length: Float?
         attr_reader unit: String?

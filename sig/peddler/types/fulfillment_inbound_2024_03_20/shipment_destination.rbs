@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (destination_type: String?, ?address: Peddler::Types::FulfillmentInbound20240320::Address?, ?warehouse_id: String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Address?, String?) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ShipmentDestination
 
-        attr_reader destination_type: String?
         attr_reader address: Peddler::Types::FulfillmentInbound20240320::Address?
+        attr_reader destination_type: String?
+
         attr_reader warehouse_id: String?
 
         def to_h: () -> { destination_type: String?, address: Peddler::Types::FulfillmentInbound20240320::Address?, warehouse_id: String? }

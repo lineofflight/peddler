@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?reason_comment: String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
                     | (String?) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CancelSelfShipAppointmentRequest
 
         attr_reader reason_comment: String?
 

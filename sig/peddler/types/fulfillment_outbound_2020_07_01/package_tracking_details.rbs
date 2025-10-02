@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,9 +5,8 @@ module Peddler
         def self.new: (package_number: Integer?, ?additional_location_info: String?, ?carrier_code: String?, ?carrier_phone_number: String?, ?carrier_url: String?, ?current_status: String?, ?current_status_description: String?, ?customer_tracking_link: String?, ?delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?, ?estimated_arrival_date: String?, ?ship_date: String?, ?ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, ?signed_for_by: String?, ?tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?, ?tracking_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
                     | (Integer?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::DateRange?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?, String?) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
 
-        attr_reader package_number: Integer?
         attr_reader additional_location_info: String?
         attr_reader carrier_code: String?
         attr_reader carrier_phone_number: String?
@@ -19,6 +16,8 @@ module Peddler
         attr_reader customer_tracking_link: String?
         attr_reader delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?
         attr_reader estimated_arrival_date: String?
+        attr_reader package_number: Integer?
+
         attr_reader ship_date: String?
         attr_reader ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?
         attr_reader signed_for_by: String?

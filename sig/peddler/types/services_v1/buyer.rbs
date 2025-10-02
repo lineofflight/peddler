@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,12 +5,13 @@ module Peddler
         def self.new: (?buyer_id: String?, ?prime_member: bool?, ?name: String?, ?phone: String?) -> Peddler::Types::ServicesV1::Buyer
                     | (String?, bool?, String?, String?) -> Peddler::Types::ServicesV1::Buyer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::Buyer
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Buyer
 
         attr_reader buyer_id: String?
-        attr_reader prime_member: bool?
+
         attr_reader name: String?
         attr_reader phone: String?
+        attr_reader prime_member: bool?
 
         def prime_member?: () -> bool
         def to_h: () -> { buyer_id: String?, prime_member: bool?, name: String?, phone: String? }

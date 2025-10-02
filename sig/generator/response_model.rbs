@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Generator
   class ResponseModel
     DEFAULT_PAYLOAD_KEY: String
@@ -12,24 +10,21 @@ module Generator
 
     private
 
-    def find_success_response: () -> Hash[String, untyped]?
+    def build_properties_array_model: (String array_name) -> Hash[Symbol, untyped]
 
+    def build_properties_single_model: (String model_name) -> Hash[Symbol, untyped]
+    def build_ref_response_model: (String ref) -> Hash[Symbol, untyped]
+
+    def build_single_model: (String model_name) -> Hash[Symbol, untyped]
     def default_response_model: () -> Hash[Symbol, untyped]
 
-    def build_ref_response_model: (String ref) -> Hash[Symbol, untyped]
+    def find_array_in_properties: (Hash[String, untyped] properties) -> [ String, Hash[String, untyped] ]?
+    def find_success_response: () -> Hash[String, untyped]?
 
     def handle_inline_payload_response: (Hash[String, untyped] payload_schema) -> Hash[Symbol, untyped]
 
     def handle_payload_ref: (String ref) -> Hash[Symbol, untyped]
 
     def handle_properties_payload: (Hash[String, untyped] payload_schema) -> Hash[Symbol, untyped]
-
-    def find_array_in_properties: (Hash[String, untyped] properties) -> [String, Hash[String, untyped]]?
-
-    def build_properties_array_model: (String array_name) -> Hash[Symbol, untyped]
-
-    def build_properties_single_model: (String model_name) -> Hash[Symbol, untyped]
-
-    def build_single_model: (String model_name) -> Hash[Symbol, untyped]
   end
 end

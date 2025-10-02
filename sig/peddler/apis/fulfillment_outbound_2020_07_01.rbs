@@ -1,22 +1,25 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class FulfillmentOutbound20200701 < API
-      def get_fulfillment_preview: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def delivery_offers: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def list_all_fulfillment_orders: (?query_start_date: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def create_fulfillment_order: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_package_tracking_details: (?package_number: Integer?, ?amazon_fulfillment_tracking_number: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_return_reason_codes: (String, ?marketplace_id: String?, ?seller_fulfillment_order_id: String?, ?language: String?, ?rate_limit: Float) -> Peddler::Response
-      def create_fulfillment_return: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
-      def get_fulfillment_order: (String, ?rate_limit: Float) -> Peddler::Response
-      def update_fulfillment_order: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
       def cancel_fulfillment_order: (String, ?rate_limit: Float) -> Peddler::Response
-      def submit_fulfillment_order_status_update: (String, Hash[untyped, untyped]) -> Peddler::Response
-      def get_features: (String, ?rate_limit: Float) -> Peddler::Response
+      def create_fulfillment_order: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def create_fulfillment_return: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
+      def delivery_offers: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
       def get_feature_inventory: (String, String, ?next_token: String?, ?query_start_date: String?, ?rate_limit: Float) -> Peddler::Response
       def get_feature_sku: (String, String, String, ?rate_limit: Float) -> Peddler::Response
+      def get_features: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_fulfillment_order: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_fulfillment_preview: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def get_package_tracking_details: (?package_number: Integer?, ?amazon_fulfillment_tracking_number: String?, ?rate_limit: Float) -> Peddler::Response
+      def list_all_fulfillment_orders: (?query_start_date: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def list_return_reason_codes: (String, ?marketplace_id: String?, ?seller_fulfillment_order_id: String?, ?language: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def submit_fulfillment_order_status_update: (String, Hash[untyped, untyped]) -> Peddler::Response
+      def update_fulfillment_order: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

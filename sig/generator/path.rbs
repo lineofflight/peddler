@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Generator
   class Path
     HTTP_METHODS: Array[String]
@@ -10,16 +8,13 @@ module Generator
 
     def initialize: (String path, Hash[String, untyped] methods) -> void
 
+    def has_dynamic_sandbox?: () -> bool
     def operations: (?String? api_name_with_version) -> Array[Operation]
 
-    def to_s: () -> String
-
+    def parameters: () -> Array[Hash[String, untyped]]
     def path: () -> String
 
-    def parameters: () -> Array[Hash[String, untyped]]
-
-    def has_dynamic_sandbox?: () -> bool
-
     def sandbox_only?: () -> bool
+    def to_s: () -> String
   end
 end

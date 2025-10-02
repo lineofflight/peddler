@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Invoices20240619
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?export: Peddler::Types::Invoices20240619::Export?) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
                     | (Peddler::Types::Invoices20240619::Export?) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
 
         attr_reader export: Peddler::Types::Invoices20240619::Export?
 

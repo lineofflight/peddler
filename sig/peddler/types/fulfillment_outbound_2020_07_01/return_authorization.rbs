@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (amazon_rma_id: String?, fulfillment_center_id: String?, return_authorization_id: String?, return_to_address: Peddler::Types::FulfillmentOutbound20200701::Address?, rma_page_url: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
                     | (String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::Address?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
 
         attr_reader amazon_rma_id: String?
         attr_reader fulfillment_center_id: String?

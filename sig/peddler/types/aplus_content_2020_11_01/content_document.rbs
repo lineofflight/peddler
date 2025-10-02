@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,13 +5,14 @@ module Peddler
         def self.new: (content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?, content_type: String?, locale: String?, name: String?, ?content_sub_type: String?) -> Peddler::Types::AplusContent20201101::ContentDocument
                     | (Array[Peddler::Types::AplusContent20201101::ContentModule]?, String?, String?, String?, String?) -> Peddler::Types::AplusContent20201101::ContentDocument
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ContentDocument
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentDocument
 
         attr_reader content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?
+
+        attr_reader content_sub_type: String?
         attr_reader content_type: String?
         attr_reader locale: String?
         attr_reader name: String?
-        attr_reader content_sub_type: String?
 
         def to_h: () -> { content_module_list: Array[Peddler::Types::AplusContent20201101::ContentModule]?, content_type: String?, locale: String?, name: String?, content_sub_type: String? }
       end

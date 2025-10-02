@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Open3
-  def self.capture3: (*String, ?stdin_data: String, ?binmode: boolish) -> [String, String, Process::Status]
+  def self.capture3: (*String, ?stdin_data: String, ?binmode: boolish) -> [ String, String, Process::Status ]
 end

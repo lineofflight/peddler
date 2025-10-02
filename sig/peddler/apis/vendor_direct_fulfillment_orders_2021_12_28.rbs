@@ -1,10 +1,9 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class VendorDirectFulfillmentOrders20211228 < API
-      def get_orders: (String, String, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: String?, ?rate_limit: Float) -> Peddler::Response
       def get_order: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_orders: (String, String, ?ship_from_party_id: String?, ?status: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?include_details: String?, ?rate_limit: Float) -> Peddler::Response
+
       def submit_acknowledgement: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end

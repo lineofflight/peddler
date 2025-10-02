@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Reports20210630
@@ -7,19 +5,22 @@ module Peddler
         def self.new: (created_time: String?, processing_status: String?, report_id: String?, report_type: String?, ?data_end_time: String?, ?data_start_time: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: String?, ?processing_start_time: String?, ?report_document_id: String?, ?report_schedule_id: String?) -> Peddler::Types::Reports20210630::Report
                     | (String?, String?, String?, String?, String?, String?, Array[String]?, String?, String?, String?, String?) -> Peddler::Types::Reports20210630::Report
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::Report
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::Report
 
         attr_reader created_time: String?
-        attr_reader processing_status: String?
-        attr_reader report_id: String?
-        attr_reader report_type: String?
+
         attr_reader data_end_time: String?
         attr_reader data_start_time: String?
         attr_reader marketplace_ids: Array[String]?
         attr_reader processing_end_time: String?
         attr_reader processing_start_time: String?
+        attr_reader processing_status: String?
+
         attr_reader report_document_id: String?
+        attr_reader report_id: String?
+
         attr_reader report_schedule_id: String?
+        attr_reader report_type: String?
 
         def to_h: () -> { created_time: String?, processing_status: String?, report_id: String?, report_type: String?, data_end_time: String?, data_start_time: String?, marketplace_ids: Array[String]?, processing_end_time: String?, processing_start_time: String?, report_document_id: String?, report_schedule_id: String? }
       end

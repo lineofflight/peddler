@@ -1,19 +1,20 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class VendorDirectFulfillmentShipping20211228 < API
-      def get_shipping_labels: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def submit_shipping_label_request: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_shipping_label: (String, ?rate_limit: Float) -> Peddler::Response
+      def create_container_label: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def create_shipping_labels: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def get_customer_invoice: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_customer_invoices: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def get_packing_slip: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_packing_slips: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_shipping_label: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_shipping_labels: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+
       def submit_shipment_confirmations: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def submit_shipment_status_updates: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_customer_invoices: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_customer_invoice: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_packing_slips: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_packing_slip: (String, ?rate_limit: Float) -> Peddler::Response
-      def create_container_label: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def submit_shipping_label_request: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

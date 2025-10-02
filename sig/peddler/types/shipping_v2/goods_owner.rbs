@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (merchant_id: String?) -> Peddler::Types::ShippingV2::GoodsOwner
                     | (String?) -> Peddler::Types::ShippingV2::GoodsOwner
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GoodsOwner
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::GoodsOwner
 
         attr_reader merchant_id: String?
 

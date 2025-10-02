@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FinancesV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?adjusted_quantity: Integer?, ?fulfillment_network_sku: String?, ?removal_shipment_item_id: String?, ?revenue_adjustment: Peddler::Types::Money?, ?tax_amount_adjustment: Peddler::Types::Money?, ?tax_collection_model: String?, ?tax_withheld_adjustment: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
                     | (Integer?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RemovalShipmentItemAdjustment
 
         attr_reader adjusted_quantity: Integer?
         attr_reader fulfillment_network_sku: String?

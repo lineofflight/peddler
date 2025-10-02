@@ -2,6 +2,9 @@
 
 require "fileutils"
 require "open3"
+require "pathname"
+require "rbs"
+require "rbs/sorter"
 require "set"
 
 require "generator/config"
@@ -42,6 +45,7 @@ module Generator
       generate_api_signatures!
       generate_type_signatures!
       generate_entry_point_for_signatures! unless api_filter
+      sort_rbs_files!
       format_code!
 
       logger.info("Code generation completed successfully!")
@@ -174,6 +178,21 @@ module Generator
     def generate_entry_point_for_signatures!
       RBS::Entrypoint.new(apis).generate
       logger.info("Generated entry point for signatures")
+    end
+
+    def sort_rbs_files!
+      rbs_files = Dir.glob(File.join(Config::BASE_PATH, "sig/**/*.rbs"))
+
+      # Suppress RBS::Sorter's stdout logging
+      original_stdout = $stdout
+      $stdout = File.new(File::NULL, "w")
+
+      rbs_files.each do |file|
+        RBS::Sorter.new(Pathname(file)).run
+      end
+
+      $stdout = original_stdout
+      logger.info("Sorted #{rbs_files.count} RBS files")
     end
 
     def format_code!

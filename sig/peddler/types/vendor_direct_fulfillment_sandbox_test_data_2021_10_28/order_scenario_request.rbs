@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentSandboxTestData20211028
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
                     | (Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
 
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?

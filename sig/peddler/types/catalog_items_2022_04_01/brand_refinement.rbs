@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CatalogItems20220401
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (brand_name: String?, number_of_results: Integer?) -> Peddler::Types::CatalogItems20220401::BrandRefinement
                     | (String?, Integer?) -> Peddler::Types::CatalogItems20220401::BrandRefinement
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20220401::BrandRefinement
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItems20220401::BrandRefinement
 
         attr_reader brand_name: String?
         attr_reader number_of_results: Integer?

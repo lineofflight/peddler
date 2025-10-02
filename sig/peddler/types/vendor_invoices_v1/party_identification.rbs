@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorInvoicesV1
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (party_id: String?, ?address: Peddler::Types::VendorInvoicesV1::Address?, ?tax_registration_details: Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
                     | (String?, Peddler::Types::VendorInvoicesV1::Address?, Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorInvoicesV1::PartyIdentification
 
-        attr_reader party_id: String?
         attr_reader address: Peddler::Types::VendorInvoicesV1::Address?
+        attr_reader party_id: String?
+
         attr_reader tax_registration_details: Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]?
 
         def to_h: () -> { party_id: String?, address: Peddler::Types::VendorInvoicesV1::Address?, tax_registration_details: Array[Peddler::Types::VendorInvoicesV1::TaxRegistrationDetails]? }

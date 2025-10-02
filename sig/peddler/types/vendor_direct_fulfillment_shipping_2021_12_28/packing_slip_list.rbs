@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, ?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
                     | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
 
         attr_reader packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?
         attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?

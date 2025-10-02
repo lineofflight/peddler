@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class ListingsRestrictions20210801 < API

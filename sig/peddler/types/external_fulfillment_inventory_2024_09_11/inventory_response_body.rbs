@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentInventory20240911
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?actionable_errors: Array[Peddler::Types::ExternalFulfillmentInventory20240911::ActionableError]?, ?client_sequence_number: Integer?, ?location_id: String?, ?marketplace_attributes: Peddler::Types::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, ?reserved_quantity: Integer?, ?sellable_quantity: Integer?, ?sku_id: String?) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody
                     | (Array[Peddler::Types::ExternalFulfillmentInventory20240911::ActionableError]?, Integer?, String?, Peddler::Types::ExternalFulfillmentInventory20240911::MarketplaceAttributes?, Integer?, Integer?, String?) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentInventory20240911::InventoryResponseBody
 
         attr_reader actionable_errors: Array[Peddler::Types::ExternalFulfillmentInventory20240911::ActionableError]?
         attr_reader client_sequence_number: Integer?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Tokens20210301
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?, ?target_application: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
                     | (Array[Peddler::Types::Tokens20210301::RestrictedResource]?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
 
         attr_reader restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?
         attr_reader target_application: String?

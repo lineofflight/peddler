@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,19 +5,20 @@ module Peddler
         def self.new: (amazon_shipment_id: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, seller_return_reason_code: String?, status: String?, status_changed_date: String?, ?amazon_return_reason_code: String?, ?fulfillment_center_id: String?, ?return_authorization_id: String?, ?return_comment: String?, ?return_received_condition: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
 
+        attr_reader amazon_return_reason_code: String?
         attr_reader amazon_shipment_id: String?
+
+        attr_reader fulfillment_center_id: String?
+        attr_reader return_authorization_id: String?
+        attr_reader return_comment: String?
+        attr_reader return_received_condition: String?
         attr_reader seller_fulfillment_order_item_id: String?
         attr_reader seller_return_item_id: String?
         attr_reader seller_return_reason_code: String?
         attr_reader status: String?
         attr_reader status_changed_date: String?
-        attr_reader amazon_return_reason_code: String?
-        attr_reader fulfillment_center_id: String?
-        attr_reader return_authorization_id: String?
-        attr_reader return_comment: String?
-        attr_reader return_received_condition: String?
 
         def to_h: () -> { amazon_shipment_id: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, seller_return_reason_code: String?, status: String?, status_changed_date: String?, amazon_return_reason_code: String?, fulfillment_center_id: String?, return_authorization_id: String?, return_comment: String?, return_received_condition: String? }
       end

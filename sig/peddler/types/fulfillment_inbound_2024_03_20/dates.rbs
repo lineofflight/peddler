@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?) -> Peddler::Types::FulfillmentInbound20240320::Dates
                     | (Peddler::Types::FulfillmentInbound20240320::Window?) -> Peddler::Types::FulfillmentInbound20240320::Dates
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Dates
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Dates
 
         attr_reader ready_to_ship_window: Peddler::Types::FulfillmentInbound20240320::Window?
 

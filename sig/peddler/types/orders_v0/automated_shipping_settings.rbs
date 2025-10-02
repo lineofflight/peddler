@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?automated_carrier: String?, ?automated_ship_method: String?, ?has_automated_shipping_settings: bool?) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
                     | (String?, String?, bool?) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::AutomatedShippingSettings
 
         attr_reader automated_carrier: String?
         attr_reader automated_ship_method: String?

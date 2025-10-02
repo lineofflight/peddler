@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (marketplace_id: String?, shipment_status: String?, ?order_items: Array[untyped]?) -> Peddler::Types::OrdersV0::UpdateShipmentStatusRequest
                     | (String?, String?, Array[untyped]?) -> Peddler::Types::OrdersV0::UpdateShipmentStatusRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::UpdateShipmentStatusRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::UpdateShipmentStatusRequest
 
         attr_reader marketplace_id: String?
-        attr_reader shipment_status: String?
+
         attr_reader order_items: Array[untyped]?
+        attr_reader shipment_status: String?
 
         def to_h: () -> { marketplace_id: String?, shipment_status: String?, order_items: Array[untyped]? }
       end

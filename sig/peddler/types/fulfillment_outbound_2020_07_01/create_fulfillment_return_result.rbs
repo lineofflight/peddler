@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, ?return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, ?return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
                     | (Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
 
         attr_reader invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?
         attr_reader return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?

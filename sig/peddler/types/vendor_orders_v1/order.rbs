@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,11 +5,11 @@ module Peddler
         def self.new: (purchase_order_number: String?, purchase_order_state: String?, ?order_details: Peddler::Types::VendorOrdersV1::OrderDetails?) -> Peddler::Types::VendorOrdersV1::Order
                     | (String?, String?, Peddler::Types::VendorOrdersV1::OrderDetails?) -> Peddler::Types::VendorOrdersV1::Order
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::Order
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::Order
 
+        attr_reader order_details: Peddler::Types::VendorOrdersV1::OrderDetails?
         attr_reader purchase_order_number: String?
         attr_reader purchase_order_state: String?
-        attr_reader order_details: Peddler::Types::VendorOrdersV1::OrderDetails?
 
         def to_h: () -> { purchase_order_number: String?, purchase_order_state: String?, order_details: Peddler::Types::VendorOrdersV1::OrderDetails? }
       end

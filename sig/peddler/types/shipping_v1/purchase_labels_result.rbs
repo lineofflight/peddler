@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV1
@@ -7,12 +5,13 @@ module Peddler
         def self.new: (accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, shipment_id: String?, ?client_reference_id: String?) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
                     | (Peddler::Types::ShippingV1::AcceptedRate?, Array[Peddler::Types::ShippingV1::LabelResult]?, String?, String?) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
 
         attr_reader accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?
+
+        attr_reader client_reference_id: String?
         attr_reader label_results: Array[Peddler::Types::ShippingV1::LabelResult]?
         attr_reader shipment_id: String?
-        attr_reader client_reference_id: String?
 
         def to_h: () -> { accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, shipment_id: String?, client_reference_id: String? }
       end

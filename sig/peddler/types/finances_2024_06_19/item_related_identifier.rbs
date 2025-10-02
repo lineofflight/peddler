@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Finances20240619
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?item_related_identifier_name: String?, ?item_related_identifier_value: String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
                     | (String?, String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
 
         attr_reader item_related_identifier_name: String?
         attr_reader item_related_identifier_value: String?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Uploads20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::Uploads20201101::Error]?, ?payload: Peddler::Types::Uploads20201101::UploadDestination?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
                     | (Array[Peddler::Types::Uploads20201101::Error]?, Peddler::Types::Uploads20201101::UploadDestination?) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Uploads20201101::CreateUploadDestinationResponse
 
         attr_reader errors: Array[Peddler::Types::Uploads20201101::Error]?
         attr_reader payload: Peddler::Types::Uploads20201101::UploadDestination?

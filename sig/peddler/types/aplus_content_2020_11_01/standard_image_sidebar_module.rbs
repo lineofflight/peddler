@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?description_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?, ?description_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image_caption_block: Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, ?sidebar_image_text_block: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, ?sidebar_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
                     | (Peddler::Types::AplusContent20201101::StandardTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardImageCaptionBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardTextListBlock?) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardImageSidebarModule
 
         attr_reader description_list_block: Peddler::Types::AplusContent20201101::StandardTextListBlock?
         attr_reader description_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (delivery_time_zone: String?, delivery_windows: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]?) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
                     | (String?, Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]?) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
 
         attr_reader delivery_time_zone: String?
         attr_reader delivery_windows: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]?

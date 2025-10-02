@@ -1,13 +1,11 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class MerchantFulfillmentV0 < API
-      def get_eligible_shipment_services: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_shipment: (String, ?rate_limit: Float) -> Peddler::Response
       def cancel_shipment: (String, ?rate_limit: Float) -> Peddler::Response
       def create_shipment: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_additional_seller_inputs: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_eligible_shipment_services: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_shipment: (String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

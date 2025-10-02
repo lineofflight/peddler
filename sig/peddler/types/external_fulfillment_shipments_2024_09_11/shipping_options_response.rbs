@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentShipments20240911
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?recommended_shipping_option: Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptions?, ?shipping_options: Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptions]?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
                     | (Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptions?, Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptions]?) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
 
         attr_reader recommended_shipping_option: Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptions?
         attr_reader shipping_options: Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptions]?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
                     | (Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
 
         attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]?
 

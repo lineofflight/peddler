@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,12 +5,13 @@ module Peddler
         def self.new: (supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?, supported_file_joining_options: Array[untyped]?, supported_page_layouts: Array[untyped]?, ?supported_dp_is: Array[untyped]?) -> Peddler::Types::ShippingV2::PrintOption
                     | (Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?, Array[untyped]?, Array[untyped]?, Array[untyped]?) -> Peddler::Types::ShippingV2::PrintOption
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::PrintOption
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::PrintOption
 
         attr_reader supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?
+
+        attr_reader supported_dp_is: Array[untyped]?
         attr_reader supported_file_joining_options: Array[untyped]?
         attr_reader supported_page_layouts: Array[untyped]?
-        attr_reader supported_dp_is: Array[untyped]?
 
         def to_h: () -> { supported_document_details: Array[Peddler::Types::ShippingV2::SupportedDocumentDetail]?, supported_file_joining_options: Array[untyped]?, supported_page_layouts: Array[untyped]?, supported_dp_is: Array[untyped]? }
       end

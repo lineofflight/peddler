@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (label_specification: Peddler::Types::ShippingV1::LabelSpecification?, label_stream: String?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
                     | (Peddler::Types::ShippingV1::LabelSpecification?, String?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
 
         attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
         attr_reader label_stream: String?

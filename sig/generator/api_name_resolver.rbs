@@ -1,10 +1,16 @@
-# frozen_string_literal: true
-
 module Generator
   class APINameResolver
     FILENAME_BASED_DIRECTORIES: Set[String]
 
     @file: String
+
+    def self.validate_no_unmapped_collisions!: (Array[String] api_files) -> void
+
+    private
+
+    def self.extract_base_name: (String file) -> String
+
+    public
 
     attr_reader file: String
 
@@ -12,18 +18,12 @@ module Generator
 
     def name: () -> String
 
-    def self.validate_no_unmapped_collisions!: (Array[String] api_files) -> void
-
     private
 
     def directory_name: () -> String
 
-    def filename_based_directory?: () -> bool
-
-    def extract_name_from_filename: () -> String
-
     def extract_name_from_directory: () -> String
-
-    def self.extract_base_name: (String file) -> String
+    def extract_name_from_filename: () -> String
+    def filename_based_directory?: () -> bool
   end
 end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, service_rate: Peddler::Types::ShippingV1::ServiceRate?, shipment_id: String?) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
                     | (Array[Peddler::Types::ShippingV1::LabelResult]?, Peddler::Types::ShippingV1::ServiceRate?, String?) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
 
         attr_reader label_results: Array[Peddler::Types::ShippingV1::LabelResult]?
         attr_reader service_rate: Peddler::Types::ShippingV1::ServiceRate?

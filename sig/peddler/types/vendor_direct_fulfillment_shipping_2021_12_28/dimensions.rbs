@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (height: String?, length: String?, unit_of_measure: String?, width: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
                     | (String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
 
         attr_reader height: String?
         attr_reader length: String?

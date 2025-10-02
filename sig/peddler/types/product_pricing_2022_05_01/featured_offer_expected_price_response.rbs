@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricing20220501
@@ -7,12 +5,12 @@ module Peddler
         def self.new: (headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, ?body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
                     | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
 
+        attr_reader body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?
         attr_reader headers: Hash[untyped, untyped]?
         attr_reader request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?
         attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
-        attr_reader body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?
 
         def to_h: () -> { headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody? }
       end

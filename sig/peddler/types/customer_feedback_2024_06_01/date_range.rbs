@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (end_date: String?, start_date: String?) -> Peddler::Types::CustomerFeedback20240601::DateRange
                     | (String?, String?) -> Peddler::Types::CustomerFeedback20240601::DateRange
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::DateRange
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::DateRange
 
         attr_reader end_date: String?
         attr_reader start_date: String?

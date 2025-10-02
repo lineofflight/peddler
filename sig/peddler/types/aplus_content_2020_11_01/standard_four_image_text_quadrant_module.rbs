@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block3: Peddler::Types::AplusContent20201101::StandardImageTextBlock?, block4: Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
                     | (Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?, Peddler::Types::AplusContent20201101::StandardImageTextBlock?) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardFourImageTextQuadrantModule
 
         attr_reader block1: Peddler::Types::AplusContent20201101::StandardImageTextBlock?
         attr_reader block2: Peddler::Types::AplusContent20201101::StandardImageTextBlock?

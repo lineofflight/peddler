@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
                     | (Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::UpdateShipmentTrackingDetailsRequest
 
         attr_reader tracking_details: Peddler::Types::FulfillmentInbound20240320::TrackingDetailsInput?
 

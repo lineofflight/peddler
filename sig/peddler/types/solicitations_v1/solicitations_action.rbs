@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SolicitationsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (name: String?) -> Peddler::Types::SolicitationsV1::SolicitationsAction
                     | (String?) -> Peddler::Types::SolicitationsV1::SolicitationsAction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SolicitationsV1::SolicitationsAction
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SolicitationsV1::SolicitationsAction
 
         attr_reader name: String?
 

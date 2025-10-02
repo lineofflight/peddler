@@ -1,25 +1,13 @@
-# frozen_string_literal: true
-
 module Generator
   module Formatter
     MAX_LINE_LENGTH: Integer
 
-    def split_long_comment_line: (
-      String line,
-      ?base_indent: Integer,
-      ?wrap_indent: Integer,
-      ?max_line_length: Integer
-    ) -> String
-
-    def format_method_definition: (
-      String method_name,
-      Array[String] params,
-      ?base_indent: Integer,
-      ?max_line_length: Integer
-    ) -> String
-
     def convert_doc_links_to_full_url: (String text) -> String
 
     def convert_html_links_to_yard: (String text) -> String
+
+    def format_method_definition: (String method_name, Array[String] params, ?base_indent: Integer, ?max_line_length: Integer) -> String
+
+    def split_long_comment_line: (String line, ?base_indent: Integer, ?wrap_indent: Integer, ?max_line_length: Integer) -> String
   end
 end

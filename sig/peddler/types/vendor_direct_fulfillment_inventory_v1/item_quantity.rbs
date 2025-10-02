@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (unit_of_measure: String?, ?amount: Integer?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
                     | (String?, Integer?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemQuantity
 
-        attr_reader unit_of_measure: String?
         attr_reader amount: Integer?
+        attr_reader unit_of_measure: String?
 
         def to_h: () -> { unit_of_measure: String?, amount: Integer? }
       end

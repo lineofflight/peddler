@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CatalogItems20201201
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (asin: String?, ?attributes: Hash[untyped, untyped]?, ?identifiers: Array[Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace]?, ?images: Array[Peddler::Types::CatalogItems20201201::ItemImagesByMarketplace]?, ?product_types: Array[Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace]?, ?sales_ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace]?, ?summaries: Array[Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace]?, ?variations: Array[Peddler::Types::CatalogItems20201201::ItemVariationsByMarketplace]?, ?vendor_details: Array[Peddler::Types::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> Peddler::Types::CatalogItems20201201::Item
                     | (String?, Hash[untyped, untyped]?, Array[Peddler::Types::CatalogItems20201201::ItemIdentifiersByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemImagesByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemProductTypeByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemSummaryByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemVariationsByMarketplace]?, Array[Peddler::Types::CatalogItems20201201::ItemVendorDetailsByMarketplace]?) -> Peddler::Types::CatalogItems20201201::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::Item
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItems20201201::Item
 
         attr_reader asin: String?
         attr_reader attributes: Hash[untyped, untyped]?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FBAInventoryV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?asin: String?, ?condition: String?, ?fn_sku: String?, ?inventory_details: Peddler::Types::FBAInventoryV1::InventoryDetails?, ?last_updated_time: String?, ?product_name: String?, ?seller_sku: String?, ?stores: Array[String]?, ?total_quantity: Integer?) -> Peddler::Types::FBAInventoryV1::InventorySummary
                     | (String?, String?, String?, Peddler::Types::FBAInventoryV1::InventoryDetails?, String?, String?, String?, Array[String]?, Integer?) -> Peddler::Types::FBAInventoryV1::InventorySummary
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::InventorySummary
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FBAInventoryV1::InventorySummary
 
         attr_reader asin: String?
         attr_reader condition: String?

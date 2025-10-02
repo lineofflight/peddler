@@ -3,12 +3,15 @@ module Peddler
     self.@raise_on_server_errors: bool
 
     def self.raise_on_server_errors: () -> bool
+
     def self.raise_on_server_errors=: (bool) -> bool
   end
 
   extend Forwardable
 
-  def self.raise_on_server_errors: () -> bool
-  def self.raise_on_server_errors=: (bool) -> bool
   def self.configure: () { (singleton(Config)) -> void } -> void
+
+  def self.raise_on_server_errors: () -> bool
+
+  def self.raise_on_server_errors=: (bool) -> bool
 end

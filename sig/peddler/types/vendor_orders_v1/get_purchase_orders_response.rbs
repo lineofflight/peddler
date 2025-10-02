@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::VendorOrdersV1::Error]?, ?payload: Peddler::Types::VendorOrdersV1::OrderList?) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrdersResponse
                     | (Array[Peddler::Types::VendorOrdersV1::Error]?, Peddler::Types::VendorOrdersV1::OrderList?) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrdersResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrdersResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::GetPurchaseOrdersResponse
 
         attr_reader errors: Array[Peddler::Types::VendorOrdersV1::Error]?
         attr_reader payload: Peddler::Types::VendorOrdersV1::OrderList?

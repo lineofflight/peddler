@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (amazon_order_id: String?, ?buyer_county: String?, ?buyer_email: String?, ?buyer_name: String?, ?buyer_tax_info: Peddler::Types::OrdersV0::BuyerTaxInfo?, ?purchase_order_number: String?) -> Peddler::Types::OrdersV0::OrderBuyerInfo
                     | (String?, String?, String?, String?, Peddler::Types::OrdersV0::BuyerTaxInfo?, String?) -> Peddler::Types::OrdersV0::OrderBuyerInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderBuyerInfo
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::OrderBuyerInfo
 
         attr_reader amazon_order_id: String?
         attr_reader buyer_county: String?

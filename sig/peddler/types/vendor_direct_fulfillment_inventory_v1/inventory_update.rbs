@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (full_update: bool?, items: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?, selling_party: Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
                     | (bool?, Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?, Peddler::Types::VendorDirectFulfillmentInventoryV1::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::InventoryUpdate
 
         attr_reader full_update: bool?
         attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::ItemDetails]?

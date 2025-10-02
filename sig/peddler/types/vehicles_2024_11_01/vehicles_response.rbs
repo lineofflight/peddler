@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Vehicles20241101
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?, ?pagination: Peddler::Types::Vehicles20241101::Pagination?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
                     | (Array[Peddler::Types::Vehicles20241101::Vehicle]?, Peddler::Types::Vehicles20241101::Pagination?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Vehicles20241101::VehiclesResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::VehiclesResponse
 
-        attr_reader vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?
         attr_reader pagination: Peddler::Types::Vehicles20241101::Pagination?
+        attr_reader vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?
 
         def to_h: () -> { vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?, pagination: Peddler::Types::Vehicles20241101::Pagination? }
       end

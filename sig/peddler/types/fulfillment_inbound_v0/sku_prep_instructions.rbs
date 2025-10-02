@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInboundV0
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (?asin: String?, ?amazon_prep_fees_details_list: Array[Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails]?, ?barcode_instruction: String?, ?prep_guidance: String?, ?prep_instruction_list: Array[untyped]?, ?seller_sku: String?) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
                     | (String?, Array[Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails]?, String?, String?, Array[untyped]?, String?) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions
 
-        attr_reader asin: String?
         attr_reader amazon_prep_fees_details_list: Array[Peddler::Types::FulfillmentInboundV0::AmazonPrepFeesDetails]?
+        attr_reader asin: String?
+
         attr_reader barcode_instruction: String?
         attr_reader prep_guidance: String?
         attr_reader prep_instruction_list: Array[untyped]?

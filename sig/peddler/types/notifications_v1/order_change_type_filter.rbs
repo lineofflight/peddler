@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module NotificationsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?order_change_types: Array[untyped]?) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
                     | (Array[untyped]?) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
 
         attr_reader order_change_types: Array[untyped]?
 

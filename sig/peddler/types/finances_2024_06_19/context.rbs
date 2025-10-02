@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Finances20240619
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (context_type: String?, ?asin: String?, ?channel: String?, ?deferral_reason: String?, ?end_time: String?, ?fulfillment_network: String?, ?maturity_date: String?, ?order_type: String?, ?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?, ?quantity_shipped: Integer?, ?sku: String?, ?start_time: String?, ?store_name: String?) -> Peddler::Types::Finances20240619::Context
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Types::Finances20240619::Context
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::Context
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::Context
 
-        attr_reader context_type: String?
         attr_reader asin: String?
         attr_reader channel: String?
+        attr_reader context_type: String?
+
         attr_reader deferral_reason: String?
         attr_reader end_time: String?
         attr_reader fulfillment_network: String?

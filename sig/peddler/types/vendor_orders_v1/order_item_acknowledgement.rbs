@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?, acknowledgement_code: String?, ?rejection_reason: String?, ?scheduled_delivery_date: String?, ?scheduled_ship_date: String?) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
                     | (Peddler::Types::VendorOrdersV1::ItemQuantity?, String?, String?, String?, String?) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::OrderItemAcknowledgement
 
         attr_reader acknowledged_quantity: Peddler::Types::VendorOrdersV1::ItemQuantity?
         attr_reader acknowledgement_code: String?

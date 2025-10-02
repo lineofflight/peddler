@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShipmentInvoicingV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?asin: String?, ?gift_wrap_price: Peddler::Types::Money?, ?item_price: Peddler::Types::Money?, ?order_item_id: String?, ?promotion_discount: Peddler::Types::Money?, ?quantity_ordered: Float?, ?seller_sku: String?, ?serial_numbers: Array[String]?, ?shipping_discount: Peddler::Types::Money?, ?shipping_price: Peddler::Types::Money?, ?title: String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
                     | (String?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::Money?, Float?, String?, Array[String]?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::ShipmentItem
 
         attr_reader asin: String?
         attr_reader gift_wrap_price: Peddler::Types::Money?

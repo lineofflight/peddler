@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FBAInventoryV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?fc_processing_quantity: Integer?, ?pending_customer_order_quantity: Integer?, ?pending_transshipment_quantity: Integer?, ?total_reserved_quantity: Integer?) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
                     | (Integer?, Integer?, Integer?, Integer?) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FBAInventoryV1::ReservedQuantity
 
         attr_reader fc_processing_quantity: Integer?
         attr_reader pending_customer_order_quantity: Integer?

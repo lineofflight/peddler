@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?invoices: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceRequest
                     | (Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::SubmitInvoiceRequest
 
         attr_reader invoices: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail]?
 

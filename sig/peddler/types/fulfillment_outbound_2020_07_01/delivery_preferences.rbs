@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?delivery_instructions: String?, ?drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
                     | (String?, Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
 
         attr_reader delivery_instructions: String?
         attr_reader drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?

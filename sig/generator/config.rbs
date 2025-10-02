@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 module Generator
   module Config
     BASE_PATH: String
+
     GENERATED_FILE_NOTICE: String
 
     def self.template_path: (String template_name) -> String

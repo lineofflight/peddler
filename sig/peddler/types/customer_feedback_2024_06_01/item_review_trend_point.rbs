@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,11 +5,13 @@ module Peddler
         def self.new: (asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, ?browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, ?parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
                     | (Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
 
         attr_reader asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?
-        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+
         attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+
         attr_reader parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?
 
         def to_h: () -> { asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics? }

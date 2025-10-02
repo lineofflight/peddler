@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductFeesV0
@@ -7,12 +5,14 @@ module Peddler
         def self.new: (fee_amount: Peddler::Types::Money?, fee_type: String?, final_fee: Peddler::Types::Money?, ?fee_promotion: Peddler::Types::Money?, ?tax_amount: Peddler::Types::Money?) -> Peddler::Types::ProductFeesV0::IncludedFeeDetail
                     | (Peddler::Types::Money?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::ProductFeesV0::IncludedFeeDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::IncludedFeeDetail
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductFeesV0::IncludedFeeDetail
 
         attr_reader fee_amount: Peddler::Types::Money?
+
+        attr_reader fee_promotion: Peddler::Types::Money?
         attr_reader fee_type: String?
         attr_reader final_fee: Peddler::Types::Money?
-        attr_reader fee_promotion: Peddler::Types::Money?
+
         attr_reader tax_amount: Peddler::Types::Money?
 
         def to_h: () -> { fee_amount: Peddler::Types::Money?, fee_type: String?, final_fee: Peddler::Types::Money?, fee_promotion: Peddler::Types::Money?, tax_amount: Peddler::Types::Money? }

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentPaymentsV1
@@ -7,19 +5,21 @@ module Peddler
         def self.new: (invoice_date: String?, invoice_number: String?, invoice_total: Peddler::Types::Money?, items: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem]?, remit_to_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?, ?additional_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::AdditionalDetails]?, ?bill_to_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?, ?charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?, ?payment_terms_code: String?, ?reference_number: String?, ?ship_to_country_code: String?, ?tax_totals: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail
                     | (String?, String?, Peddler::Types::Money?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem]?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::AdditionalDetails]?, Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?, String?, String?, String?, Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceDetail
 
+        attr_reader additional_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::AdditionalDetails]?
+        attr_reader bill_to_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?
+        attr_reader charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?
         attr_reader invoice_date: String?
         attr_reader invoice_number: String?
         attr_reader invoice_total: Peddler::Types::Money?
         attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::InvoiceItem]?
-        attr_reader remit_to_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?
-        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?
-        attr_reader additional_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::AdditionalDetails]?
-        attr_reader bill_to_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?
-        attr_reader charge_details: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::ChargeDetails]?
+
         attr_reader payment_terms_code: String?
         attr_reader reference_number: String?
+        attr_reader remit_to_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentPaymentsV1::PartyIdentification?
+
         attr_reader ship_to_country_code: String?
         attr_reader tax_totals: Array[Peddler::Types::VendorDirectFulfillmentPaymentsV1::TaxDetail]?
 

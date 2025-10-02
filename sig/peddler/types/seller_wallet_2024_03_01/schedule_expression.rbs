@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SellerWallet20240301
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (schedule_expression_type: String?, ?recurring_frequency: String?) -> Peddler::Types::SellerWallet20240301::ScheduleExpression
                     | (String?, String?) -> Peddler::Types::SellerWallet20240301::ScheduleExpression
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::ScheduleExpression
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellerWallet20240301::ScheduleExpression
 
-        attr_reader schedule_expression_type: String?
         attr_reader recurring_frequency: String?
+        attr_reader schedule_expression_type: String?
 
         def to_h: () -> { schedule_expression_type: String?, recurring_frequency: String? }
       end

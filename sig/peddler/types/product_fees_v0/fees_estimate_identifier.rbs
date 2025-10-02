@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductFeesV0
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (?id_type: String?, ?id_value: String?, ?amazon_fulfilled: bool?, ?marketplace_id: String?, ?optional_fulfillment_program: String?, ?price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?, ?seller_id: String?, ?seller_input_identifier: String?) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
                     | (String?, String?, bool?, String?, String?, Peddler::Types::ProductFeesV0::PriceToEstimateFees?, String?, String?) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimateIdentifier
 
+        attr_reader amazon_fulfilled: bool?
         attr_reader id_type: String?
         attr_reader id_value: String?
-        attr_reader amazon_fulfilled: bool?
+
         attr_reader marketplace_id: String?
         attr_reader optional_fulfillment_program: String?
         attr_reader price_to_estimate_fees: Peddler::Types::ProductFeesV0::PriceToEstimateFees?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?, ?end_time: String?, ?scheduling_type: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
                     | (Array[Peddler::Types::ServicesV1::AppointmentSlot]?, String?, String?, String?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentSlotReport
 
         attr_reader appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?
         attr_reader end_time: String?

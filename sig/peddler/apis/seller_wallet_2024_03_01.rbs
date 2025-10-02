@@ -1,20 +1,25 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class SellerWallet20240301 < API
-      def list_accounts: (String) -> Peddler::Response
-      def get_account: (String, String) -> Peddler::Response
-      def list_account_balances: (String, String) -> Peddler::Response
-      def get_transfer_preview: (String, String, String, String, Numeric, String) -> Peddler::Response
-      def list_account_transactions: (String, String, ?next_page_token: String?) -> Peddler::Response
       def create_transaction: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
-      def get_transaction: (String, String) -> Peddler::Response
-      def list_transfer_schedules: (String, String, ?next_page_token: String?) -> Peddler::Response
+
       def create_transfer_schedule: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
-      def update_transfer_schedule: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
-      def get_transfer_schedule: (String, String) -> Peddler::Response
+
       def delete_schedule_transaction: (String, String) -> Peddler::Response
+      def get_account: (String, String) -> Peddler::Response
+
+      def get_transaction: (String, String) -> Peddler::Response
+      def get_transfer_preview: (String, String, String, String, Numeric, String) -> Peddler::Response
+
+      def get_transfer_schedule: (String, String) -> Peddler::Response
+      def list_account_balances: (String, String) -> Peddler::Response
+
+      def list_account_transactions: (String, String, ?next_page_token: String?) -> Peddler::Response
+      def list_accounts: (String) -> Peddler::Response
+
+      def list_transfer_schedules: (String, String, ?next_page_token: String?) -> Peddler::Response
+
+      def update_transfer_schedule: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
     end
   end
 end

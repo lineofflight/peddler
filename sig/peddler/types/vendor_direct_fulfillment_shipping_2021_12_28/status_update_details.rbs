@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,14 +5,15 @@ module Peddler
         def self.new: (reason_code: String?, status_code: String?, status_date_time: String?, status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tracking_number: String?, ?shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
                     | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
 
         attr_reader reason_code: String?
+
+        attr_reader shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?
         attr_reader status_code: String?
         attr_reader status_date_time: String?
         attr_reader status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?
         attr_reader tracking_number: String?
-        attr_reader shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?
 
         def to_h: () -> { reason_code: String?, status_code: String?, status_date_time: String?, status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tracking_number: String?, shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule? }
       end

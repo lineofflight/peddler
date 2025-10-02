@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?, content_reference_key: String?) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
                     | (Peddler::Types::AplusContent20201101::ContentMetadata?, String?) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ContentMetadataRecord
 
         attr_reader content_metadata: Peddler::Types::AplusContent20201101::ContentMetadata?
         attr_reader content_reference_key: String?

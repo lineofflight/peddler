@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Finances20240619
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?channel: String?, ?order_type: String?, ?store_name: String?) -> Peddler::Types::Finances20240619::AmazonPayContext
                     | (String?, String?, String?) -> Peddler::Types::Finances20240619::AmazonPayContext
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::AmazonPayContext
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::AmazonPayContext
 
         attr_reader channel: String?
         attr_reader order_type: String?

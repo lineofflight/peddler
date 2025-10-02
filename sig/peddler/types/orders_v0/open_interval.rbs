@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?end_time: Peddler::Types::OrdersV0::OpenTimeInterval?, ?start_time: Peddler::Types::OrdersV0::OpenTimeInterval?) -> Peddler::Types::OrdersV0::OpenInterval
                     | (Peddler::Types::OrdersV0::OpenTimeInterval?, Peddler::Types::OrdersV0::OpenTimeInterval?) -> Peddler::Types::OrdersV0::OpenInterval
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OpenInterval
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::OpenInterval
 
         attr_reader end_time: Peddler::Types::OrdersV0::OpenTimeInterval?
         attr_reader start_time: Peddler::Types::OrdersV0::OpenTimeInterval?

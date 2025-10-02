@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (start_time: String?, ?duration_in_minutes: Integer?) -> Peddler::Types::ServicesV1::AppointmentTimeInput
                     | (String?, Integer?) -> Peddler::Types::ServicesV1::AppointmentTimeInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::AppointmentTimeInput
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentTimeInput
 
-        attr_reader start_time: String?
         attr_reader duration_in_minutes: Integer?
+        attr_reader start_time: String?
 
         def to_h: () -> { start_time: String?, duration_in_minutes: Integer? }
       end

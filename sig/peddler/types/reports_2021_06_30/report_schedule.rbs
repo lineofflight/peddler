@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Reports20210630
@@ -7,14 +5,15 @@ module Peddler
         def self.new: (period: String?, report_schedule_id: String?, report_type: String?, ?marketplace_ids: Array[String]?, ?next_report_creation_time: String?, ?report_options: Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::ReportSchedule
                     | (String?, String?, String?, Array[String]?, String?, Hash[untyped, untyped]?) -> Peddler::Types::Reports20210630::ReportSchedule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Reports20210630::ReportSchedule
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Reports20210630::ReportSchedule
 
-        attr_reader period: String?
-        attr_reader report_schedule_id: String?
-        attr_reader report_type: String?
         attr_reader marketplace_ids: Array[String]?
         attr_reader next_report_creation_time: String?
+        attr_reader period: String?
+
         attr_reader report_options: Hash[untyped, untyped]?
+        attr_reader report_schedule_id: String?
+        attr_reader report_type: String?
 
         def to_h: () -> { period: String?, report_schedule_id: String?, report_type: String?, marketplace_ids: Array[String]?, next_report_creation_time: String?, report_options: Hash[untyped, untyped]? }
       end

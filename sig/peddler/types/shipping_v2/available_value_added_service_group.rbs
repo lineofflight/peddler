@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (group_description: String?, group_id: String?, required: bool?, ?value_added_services: Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
                     | (String?, String?, bool?, Array[Peddler::Types::ShippingV2::ValueAddedService]?) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::AvailableValueAddedServiceGroup
 
         attr_reader group_description: String?
         attr_reader group_id: String?

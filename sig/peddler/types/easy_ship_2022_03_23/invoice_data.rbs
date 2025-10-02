@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module EasyShip20220323
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (invoice_number: String?, ?invoice_date: String?) -> Peddler::Types::EasyShip20220323::InvoiceData
                     | (String?, String?) -> Peddler::Types::EasyShip20220323::InvoiceData
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::InvoiceData
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::EasyShip20220323::InvoiceData
 
-        attr_reader invoice_number: String?
         attr_reader invoice_date: String?
+        attr_reader invoice_number: String?
 
         def to_h: () -> { invoice_number: String?, invoice_date: String? }
       end

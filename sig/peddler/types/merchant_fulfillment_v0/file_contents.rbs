@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (checksum: String?, contents: String?, file_type: String?) -> Peddler::Types::MerchantFulfillmentV0::FileContents
                     | (String?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::FileContents
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::FileContents
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::FileContents
 
         attr_reader checksum: String?
         attr_reader contents: String?

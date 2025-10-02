@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, asin: String?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
                     | (Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?, String?) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ItemLevelFields
 
         attr_reader additional_inputs: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalInputs]?
         attr_reader asin: String?

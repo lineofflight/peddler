@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SalesV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (average_unit_price: Peddler::Types::Money?, interval: String?, order_count: Integer?, order_item_count: Integer?, total_sales: Peddler::Types::Money?, unit_count: Integer?) -> Peddler::Types::SalesV1::OrderMetricsInterval
                     | (Peddler::Types::Money?, String?, Integer?, Integer?, Peddler::Types::Money?, Integer?) -> Peddler::Types::SalesV1::OrderMetricsInterval
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SalesV1::OrderMetricsInterval
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SalesV1::OrderMetricsInterval
 
         attr_reader average_unit_price: Peddler::Types::Money?
         attr_reader interval: String?

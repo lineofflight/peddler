@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,12 +5,13 @@ module Peddler
         def self.new: (end_date_time: String?, start_date_time: String?, ?capacity_types: Array[untyped]?, ?slot_duration: Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
                     | (String?, String?, Array[untyped]?, Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
 
-        attr_reader end_date_time: String?
-        attr_reader start_date_time: String?
         attr_reader capacity_types: Array[untyped]?
+        attr_reader end_date_time: String?
+
         attr_reader slot_duration: Float?
+        attr_reader start_date_time: String?
 
         def to_h: () -> { end_date_time: String?, start_date_time: String?, capacity_types: Array[untyped]?, slot_duration: Float? }
       end

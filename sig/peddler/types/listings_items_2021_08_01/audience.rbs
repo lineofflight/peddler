@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ListingsItems20210801
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?display_name: String?, ?value: String?) -> Peddler::Types::ListingsItems20210801::Audience
                     | (String?, String?) -> Peddler::Types::ListingsItems20210801::Audience
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::Audience
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsItems20210801::Audience
 
         attr_reader display_name: String?
         attr_reader value: String?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?maximum_retail_price: Peddler::Types::Money?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
                     | (Peddler::Types::Money?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
 
         attr_reader maximum_retail_price: Peddler::Types::Money?
 

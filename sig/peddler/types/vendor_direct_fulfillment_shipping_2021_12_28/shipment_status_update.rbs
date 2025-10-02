@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, status_update_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
                     | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
 
         attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?

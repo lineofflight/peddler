@@ -1,6 +1,4 @@
 module Nokogiri
-  def self.XML: (String | _ToStr) -> XML::Document
-
   module XML
     class Document
       def root: () -> Element
@@ -12,4 +10,6 @@ module Nokogiri
       def text: () -> String
     end
   end
+
+  def self.XML: (String | _ToStr) -> XML::Document
 end

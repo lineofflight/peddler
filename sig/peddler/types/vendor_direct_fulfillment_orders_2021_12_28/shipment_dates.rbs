@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (required_ship_date: String?, ?promised_delivery_date: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ShipmentDates
                     | (String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ShipmentDates
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ShipmentDates
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::ShipmentDates
 
-        attr_reader required_ship_date: String?
         attr_reader promised_delivery_date: String?
+        attr_reader required_ship_date: String?
 
         def to_h: () -> { required_ship_date: String?, promised_delivery_date: String? }
       end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module EasyShip20220323
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (amazon_order_id: String?, marketplace_id: String?, package_dimensions: Peddler::Types::EasyShip20220323::Dimensions?, package_weight: Peddler::Types::EasyShip20220323::Weight?) -> Peddler::Types::EasyShip20220323::ListHandoverSlotsRequest
                     | (String?, String?, Peddler::Types::EasyShip20220323::Dimensions?, Peddler::Types::EasyShip20220323::Weight?) -> Peddler::Types::EasyShip20220323::ListHandoverSlotsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::EasyShip20220323::ListHandoverSlotsRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::EasyShip20220323::ListHandoverSlotsRequest
 
         attr_reader amazon_order_id: String?
         attr_reader marketplace_id: String?

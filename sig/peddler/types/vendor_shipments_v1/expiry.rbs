@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?, ?expiry_date: String?, ?manufacturer_date: String?) -> Peddler::Types::VendorShipmentsV1::Expiry
                     | (Peddler::Types::VendorShipmentsV1::Duration?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Expiry
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Expiry
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Expiry
 
         attr_reader expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?
         attr_reader expiry_date: String?

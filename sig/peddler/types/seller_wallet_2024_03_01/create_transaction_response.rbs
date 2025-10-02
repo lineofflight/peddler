@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SellerWallet20240301
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (call_back_url: String?, transaction: Peddler::Types::SellerWallet20240301::Transaction?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
                     | (String?, Peddler::Types::SellerWallet20240301::Transaction?) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellerWallet20240301::CreateTransactionResponse
 
         attr_reader call_back_url: String?
         attr_reader transaction: Peddler::Types::SellerWallet20240301::Transaction?

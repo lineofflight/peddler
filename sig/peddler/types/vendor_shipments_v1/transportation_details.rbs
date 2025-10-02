@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?bill_of_lading_number: String?, ?carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, ?estimated_delivery_date: String?, ?ship_mode: String?, ?shipment_delivery_date: String?, ?shipped_date: String?, ?transportation_mode: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
                     | (String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
 
         attr_reader bill_of_lading_number: String?
         attr_reader carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?

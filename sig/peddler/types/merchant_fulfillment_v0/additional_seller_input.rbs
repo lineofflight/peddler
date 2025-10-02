@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?data_type: String?, ?value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, ?value_as_boolean: bool?, ?value_as_currency: Peddler::Types::Money?, ?value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, ?value_as_integer: Integer?, ?value_as_string: String?, ?value_as_timestamp: String?, ?value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
                     | (String?, Peddler::Types::MerchantFulfillmentV0::Address?, bool?, Peddler::Types::Money?, Peddler::Types::MerchantFulfillmentV0::Length?, Integer?, String?, String?, Peddler::Types::MerchantFulfillmentV0::Weight?) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInput
 
         attr_reader data_type: String?
         attr_reader value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?
@@ -19,8 +17,8 @@ module Peddler
         attr_reader value_as_timestamp: String?
         attr_reader value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight?
 
-        def value_as_boolean?: () -> bool
         def to_h: () -> { data_type: String?, value_as_address: Peddler::Types::MerchantFulfillmentV0::Address?, value_as_boolean: bool?, value_as_currency: Peddler::Types::Money?, value_as_dimension: Peddler::Types::MerchantFulfillmentV0::Length?, value_as_integer: Integer?, value_as_string: String?, value_as_timestamp: String?, value_as_weight: Peddler::Types::MerchantFulfillmentV0::Weight? }
+        def value_as_boolean?: () -> bool
       end
     end
   end

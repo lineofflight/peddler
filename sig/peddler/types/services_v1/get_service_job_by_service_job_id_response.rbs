@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::ServiceJob?) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
                     | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::ServiceJob?) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
 
         attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
         attr_reader payload: Peddler::Types::ServicesV1::ServiceJob?

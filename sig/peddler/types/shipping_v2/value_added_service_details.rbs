@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?collect_on_delivery: Peddler::Types::ShippingV2::CollectOnDelivery?) -> Peddler::Types::ShippingV2::ValueAddedServiceDetails
                     | (Peddler::Types::ShippingV2::CollectOnDelivery?) -> Peddler::Types::ShippingV2::ValueAddedServiceDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::ValueAddedServiceDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::ValueAddedServiceDetails
 
         attr_reader collect_on_delivery: Peddler::Types::ShippingV2::CollectOnDelivery?
 

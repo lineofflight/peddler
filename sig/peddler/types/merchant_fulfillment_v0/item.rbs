@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,16 +5,17 @@ module Peddler
         def self.new: (order_item_id: String?, quantity: Integer?, ?dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, ?hazmat: bool?, ?item_description: String?, ?item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, ?item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?, ?liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, ?transparency_code_list: Array[untyped]?) -> Peddler::Types::MerchantFulfillmentV0::Item
                     | (String?, Integer?, Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?, bool?, String?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, Peddler::Types::MerchantFulfillmentV0::Weight?, Peddler::Types::MerchantFulfillmentV0::LiquidVolume?, Array[untyped]?) -> Peddler::Types::MerchantFulfillmentV0::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::Item
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::Item
 
-        attr_reader order_item_id: String?
-        attr_reader quantity: Integer?
         attr_reader dangerous_goods_details: Peddler::Types::MerchantFulfillmentV0::DangerousGoodsDetails?
         attr_reader hazmat: bool?
         attr_reader item_description: String?
         attr_reader item_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?
         attr_reader item_weight: Peddler::Types::MerchantFulfillmentV0::Weight?
         attr_reader liquid_volume: Peddler::Types::MerchantFulfillmentV0::LiquidVolume?
+        attr_reader order_item_id: String?
+        attr_reader quantity: Integer?
+
         attr_reader transparency_code_list: Array[untyped]?
 
         def hazmat?: () -> bool

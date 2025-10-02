@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (freight_bill_number: Array[String]?, ?bill_of_lading_number: String?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
                     | (Array[String]?, String?) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::LtlTrackingDetailInput
 
-        attr_reader freight_bill_number: Array[String]?
         attr_reader bill_of_lading_number: String?
+        attr_reader freight_bill_number: Array[String]?
 
         def to_h: () -> { freight_bill_number: Array[String]?, bill_of_lading_number: String? }
       end

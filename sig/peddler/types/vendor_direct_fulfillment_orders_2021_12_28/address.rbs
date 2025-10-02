@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentOrders20211228
@@ -7,20 +5,23 @@ module Peddler
         def self.new: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?attention: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
                     | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentOrders20211228::Address
 
         attr_reader address_line1: String?
-        attr_reader country_code: String?
-        attr_reader name: String?
-        attr_reader state_or_region: String?
+
         attr_reader address_line2: String?
         attr_reader address_line3: String?
         attr_reader attention: String?
         attr_reader city: String?
+        attr_reader country_code: String?
+
         attr_reader county: String?
         attr_reader district: String?
+        attr_reader name: String?
+
         attr_reader phone: String?
         attr_reader postal_code: String?
+        attr_reader state_or_region: String?
 
         def to_h: () -> { address_line1: String?, country_code: String?, name: String?, state_or_region: String?, address_line2: String?, address_line3: String?, attention: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String? }
       end

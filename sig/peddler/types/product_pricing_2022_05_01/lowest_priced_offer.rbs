@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricing20220501
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
                     | (Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
 
         attr_reader lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?
         attr_reader offers: Array[Peddler::Types::ProductPricing20220501::Offer]?

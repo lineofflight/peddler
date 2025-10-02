@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (slot_id: String?, slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
                     | (String?, Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::AppointmentSlot
 
         attr_reader slot_id: String?
         attr_reader slot_time: Peddler::Types::FulfillmentInbound20240320::AppointmentSlotTime?

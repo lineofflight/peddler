@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,12 +5,13 @@ module Peddler
         def self.new: (browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
                     | (Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, String?, Array[String]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
 
         attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?
-        attr_reader topic: String?
+
         attr_reader review_snippets: Array[String]?
         attr_reader subtopics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]?
+        attr_reader topic: String?
 
         def to_h: () -> { browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]? }
       end

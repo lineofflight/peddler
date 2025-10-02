@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (height: Peddler::Types::AplusContent20201101::IntegerWithUnits?, width: Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageDimensions
                     | (Peddler::Types::AplusContent20201101::IntegerWithUnits?, Peddler::Types::AplusContent20201101::IntegerWithUnits?) -> Peddler::Types::AplusContent20201101::ImageDimensions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ImageDimensions
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ImageDimensions
 
         attr_reader height: Peddler::Types::AplusContent20201101::IntegerWithUnits?
         attr_reader width: Peddler::Types::AplusContent20201101::IntegerWithUnits?

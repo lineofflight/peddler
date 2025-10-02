@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Replenishment20221107
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?asin: String?, ?eligibility: String?, ?marketplace_id: String?, ?offer_program_configuration: Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, ?program_type: String?, ?sku: String?, ?vendor_codes: Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
                     | (String?, String?, String?, Peddler::Types::Replenishment20221107::OfferProgramConfiguration?, String?, String?, Array[String]?) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOffersResponseOffer
 
         attr_reader asin: String?
         attr_reader eligibility: String?

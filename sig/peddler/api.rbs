@@ -7,46 +7,53 @@ module Peddler
     end
 
     self.@typed: bool
-    @endpoint: Endpoint
+
     @access_token: String
+    @endpoint: Endpoint
+
+    @http: HTTP::Client?
     @retries: Integer
     @sandbox: bool
-    @http: HTTP::Client?
 
-    attr_reader endpoint: Endpoint
-    attr_reader access_token: String
-    attr_reader retries: Integer
-
+    def self.snake_case_name: () -> String
     def self.typed: () -> singleton(API)
     def self.typed?: () -> bool
-    def self.snake_case_name: () -> String
+    attr_reader access_token: String
+    attr_reader endpoint: Endpoint
+
+    attr_reader retries: Integer
 
     def initialize: (String aws_region, String access_token, ?retries: Integer) -> void
-    def endpoint_uri: () -> URI::HTTPS
-    def typed?: () -> bool
-    def sandbox: () -> self
-    def sandbox?: () -> bool
-    def cannot_sandbox!: () -> void
-    def must_sandbox!: () -> void
-    def http: () -> HTTP::Client
 
-    def via: (*untyped, **untyped) ?{ () -> untyped } -> self
-    alias through via
-    def use: (*untyped, **untyped) ?{ () -> untyped } -> self
-    def retriable: (**untyped) ?{ () -> untyped } -> self
+    def cannot_sandbox!: () -> void
+
+    def delete: (String path, ?parser: untyped, **untyped) -> Response
+    def endpoint_uri: () -> URI::HTTPS
 
     def get: (String path, ?parser: untyped, **untyped) -> Response
+    def http: () -> HTTP::Client
+    def must_sandbox!: () -> void
+
+    def patch: (String path, ?parser: untyped, **untyped) -> Response
     def post: (String path, ?parser: untyped, **untyped) -> Response
     def put: (String path, ?parser: untyped, **untyped) -> Response
-    def delete: (String path, ?parser: untyped, **untyped) -> Response
-    def patch: (String path, ?parser: untyped, **untyped) -> Response
+    def retriable: (**untyped) ?{ () -> untyped } -> self
+    def sandbox: () -> self
+    def sandbox?: () -> bool
+
+    alias through via
+    def typed?: () -> bool
+
+    def use: (*untyped, **untyped) ?{ () -> untyped } -> self
+    def via: (*untyped, **untyped) ?{ () -> untyped } -> self
 
     private
 
     def meter: (Float? requests_per_second) -> self
-    def user_agent: () -> String
-    def timestamp: () -> String
+
     def percent_encode: (String component) -> String
     def stringify_array: (Array[untyped]? val) -> String?
+    def timestamp: () -> String
+    def user_agent: () -> String
   end
 end

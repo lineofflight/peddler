@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SellersV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (country_code: String?, default_currency_code: String?, default_language_code: String?, domain_name: String?, id: String?, name: String?) -> Peddler::Types::SellersV1::Marketplace
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::SellersV1::Marketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::Marketplace
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::Marketplace
 
         attr_reader country_code: String?
         attr_reader default_currency_code: String?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, ?displayable_order_comment: String?, ?displayable_order_date: String?, ?displayable_order_id: String?, ?feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, ?fulfillment_action: String?, ?fulfillment_policy: String?, ?items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?, ?marketplace_id: String?, ?notification_emails: Array[String]?, ?ship_from_country_code: String?, ?shipping_speed_category: String?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
                     | (Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?, String?, Array[String]?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
 
         attr_reader destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?
         attr_reader displayable_order_comment: String?

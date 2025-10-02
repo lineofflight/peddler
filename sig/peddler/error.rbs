@@ -3,12 +3,12 @@ module Peddler
     @response: HTTP::Response?
 
     def self.build: (HTTP::Response response) -> Error?
-    def initialize: (?(String | Integer | nil) msg, ?(HTTP::Response | nil) response) -> void
 
     private
 
-    def self.parse_xml_error: (HTTP::Response response) -> Hash[String, untyped]
     def self.normalize_class_name: (String code) -> String
+    def self.parse_xml_error: (HTTP::Response response) -> Hash[String, untyped]
+    def initialize: (?String | Integer | nil msg, ?HTTP::Response | nil response) -> void
   end
 
   module Errors

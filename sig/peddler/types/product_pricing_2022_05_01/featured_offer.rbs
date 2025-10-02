@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricing20220501
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, ?condition: String?, ?price: Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
                     | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, String?, Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
 
-        attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
         attr_reader condition: String?
+        attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
+
         attr_reader price: Peddler::Types::ProductPricing20220501::Price?
 
         def to_h: () -> { offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, condition: String?, price: Peddler::Types::ProductPricing20220501::Price? }

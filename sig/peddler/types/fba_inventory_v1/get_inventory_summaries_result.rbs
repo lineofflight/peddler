@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FBAInventoryV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (granularity: Peddler::Types::FBAInventoryV1::Granularity?, inventory_summaries: Array[Peddler::Types::FBAInventoryV1::InventorySummary]?) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResult
                     | (Peddler::Types::FBAInventoryV1::Granularity?, Array[Peddler::Types::FBAInventoryV1::InventorySummary]?) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FBAInventoryV1::GetInventorySummariesResult
 
         attr_reader granularity: Peddler::Types::FBAInventoryV1::Granularity?
         attr_reader inventory_summaries: Array[Peddler::Types::FBAInventoryV1::InventorySummary]?

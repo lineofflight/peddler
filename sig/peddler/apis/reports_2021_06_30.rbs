@@ -1,17 +1,18 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class Reports20210630 < API
-      def get_reports: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def create_report: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def cancel_report: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_report: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_report_schedules: (Array[String], ?rate_limit: Float) -> Peddler::Response
-      def create_report_schedule: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
       def cancel_report_schedule: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_report_schedule: (String, ?rate_limit: Float) -> Peddler::Response
+      def create_report: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def create_report_schedule: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_report: (String, ?rate_limit: Float) -> Peddler::Response
+
       def get_report_document: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_report_schedule: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_report_schedules: (Array[String], ?rate_limit: Float) -> Peddler::Response
+      def get_reports: (?report_types: Array[String]?, ?processing_statuses: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

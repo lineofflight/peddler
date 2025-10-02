@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FBAInventoryV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (code: String?, ?details: String?, ?message: String?) -> Peddler::Types::FBAInventoryV1::Error
                     | (String?, String?, String?) -> Peddler::Types::FBAInventoryV1::Error
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FBAInventoryV1::Error
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FBAInventoryV1::Error
 
         attr_reader code: String?
         attr_reader details: String?

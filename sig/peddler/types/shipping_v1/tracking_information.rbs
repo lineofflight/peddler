@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (event_history: Array[Peddler::Types::ShippingV1::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, tracking_id: String?) -> Peddler::Types::ShippingV1::TrackingInformation
                     | (Array[Peddler::Types::ShippingV1::Event]?, String?, Peddler::Types::ShippingV1::TrackingSummary?, String?) -> Peddler::Types::ShippingV1::TrackingInformation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::TrackingInformation
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::TrackingInformation
 
         attr_reader event_history: Array[Peddler::Types::ShippingV1::Event]?
         attr_reader promised_delivery_date: String?

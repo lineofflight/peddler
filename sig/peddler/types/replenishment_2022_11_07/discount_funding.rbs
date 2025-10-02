@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Replenishment20221107
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?percentage: Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
                     | (Array[Float]?) -> Peddler::Types::Replenishment20221107::DiscountFunding
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::DiscountFunding
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::DiscountFunding
 
         attr_reader percentage: Array[Float]?
 

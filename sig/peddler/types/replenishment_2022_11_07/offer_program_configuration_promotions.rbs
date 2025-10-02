@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Replenishment20221107
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?selling_partner_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, ?selling_partner_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
                     | (Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?, Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotions
 
         attr_reader amazon_funded_base_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?
         attr_reader amazon_funded_tiered_discount: Peddler::Types::Replenishment20221107::OfferProgramConfigurationPromotionsDiscountFunding?

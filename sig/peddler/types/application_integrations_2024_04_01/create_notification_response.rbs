@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ApplicationIntegrations20240401
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?notification_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
                     | (String?) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse
 
         attr_reader notification_id: String?
 

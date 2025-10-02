@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorInvoicesV1
@@ -7,11 +5,13 @@ module Peddler
         def self.new: (tax_amount: Peddler::Types::Money?, tax_type: String?, ?tax_rate: String?, ?taxable_amount: Peddler::Types::Money?) -> Peddler::Types::VendorInvoicesV1::TaxDetails
                     | (Peddler::Types::Money?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::VendorInvoicesV1::TaxDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::TaxDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorInvoicesV1::TaxDetails
 
         attr_reader tax_amount: Peddler::Types::Money?
-        attr_reader tax_type: String?
+
         attr_reader tax_rate: String?
+        attr_reader tax_type: String?
+
         attr_reader taxable_amount: Peddler::Types::Money?
 
         def to_h: () -> { tax_amount: Peddler::Types::Money?, tax_type: String?, tax_rate: String?, taxable_amount: Peddler::Types::Money? }

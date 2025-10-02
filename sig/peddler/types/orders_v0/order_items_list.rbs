@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (amazon_order_id: String?, order_items: Array[Peddler::Types::OrdersV0::OrderItem]?, ?next_token: String?) -> Peddler::Types::OrdersV0::OrderItemsList
                     | (String?, Array[Peddler::Types::OrdersV0::OrderItem]?, String?) -> Peddler::Types::OrdersV0::OrderItemsList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderItemsList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::OrderItemsList
 
         attr_reader amazon_order_id: String?
-        attr_reader order_items: Array[Peddler::Types::OrdersV0::OrderItem]?
+
         attr_reader next_token: String?
+        attr_reader order_items: Array[Peddler::Types::OrdersV0::OrderItem]?
 
         def to_h: () -> { amazon_order_id: String?, order_items: Array[Peddler::Types::OrdersV0::OrderItem]?, next_token: String? }
       end

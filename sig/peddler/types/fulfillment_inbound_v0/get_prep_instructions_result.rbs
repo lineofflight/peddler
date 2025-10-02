@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInboundV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, ?invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?, ?invalid_sku_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, ?sku_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
                     | (Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?, Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?, Array[Peddler::Types::FulfillmentInboundV0::InvalidSKU]?, Array[Peddler::Types::FulfillmentInboundV0::SKUPrepInstructions]?) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResult
 
         attr_reader asin_prep_instructions_list: Array[Peddler::Types::FulfillmentInboundV0::ASINPrepInstructions]?
         attr_reader invalid_asin_list: Array[Peddler::Types::FulfillmentInboundV0::InvalidASIN]?

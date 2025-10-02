@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?orders: Array[Peddler::Types::VendorDirectFulfillmentOrdersV1::Order]?, ?pagination: Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderList
                     | (Array[Peddler::Types::VendorDirectFulfillmentOrdersV1::Order]?, Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::OrderList
 
         attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentOrdersV1::Order]?
         attr_reader pagination: Peddler::Types::VendorDirectFulfillmentOrdersV1::Pagination?

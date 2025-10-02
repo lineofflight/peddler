@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module NotificationsV1
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (event_filter_type: String?, ?aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::Types::NotificationsV1::EventFilter
                     | (String?, Peddler::Types::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::Types::NotificationsV1::EventFilter
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::EventFilter
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::EventFilter
 
-        attr_reader event_filter_type: String?
         attr_reader aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?
+        attr_reader event_filter_type: String?
+
         attr_reader marketplace_ids: Array[String]?
         attr_reader order_change_types: Array[untyped]?
 

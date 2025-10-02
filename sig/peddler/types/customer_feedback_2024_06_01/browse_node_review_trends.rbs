@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, ?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
                     | (Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
 
         attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?
         attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?

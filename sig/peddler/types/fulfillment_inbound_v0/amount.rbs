@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInboundV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (currency_code: String?, value: Float?) -> Peddler::Types::FulfillmentInboundV0::Amount
                     | (String?, Float?) -> Peddler::Types::FulfillmentInboundV0::Amount
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::Amount
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInboundV0::Amount
 
         attr_reader currency_code: String?
         attr_reader value: Float?

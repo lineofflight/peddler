@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module NotificationsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?event_bridge: Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?, ?sqs: Peddler::Types::NotificationsV1::SqsResource?) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
                     | (Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?, Peddler::Types::NotificationsV1::SqsResource?) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
 
         attr_reader event_bridge: Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?
         attr_reader sqs: Peddler::Types::NotificationsV1::SqsResource?

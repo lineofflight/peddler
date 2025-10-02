@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
@@ -7,14 +5,14 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Item]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, shipment_details: Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentDetails?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation
                     | (Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Item]?, String?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentDetails?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentConfirmation
 
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?
         attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Item]?
         attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?
         attr_reader shipment_details: Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentDetails?
-        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]?
 
         def to_h: () -> { items: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Item]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShippingV1::PartyIdentification?, shipment_details: Peddler::Types::VendorDirectFulfillmentShippingV1::ShipmentDetails?, containers: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::Container]? }
       end

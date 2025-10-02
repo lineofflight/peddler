@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?locale: String?, ?text: String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
                     | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
 
         attr_reader locale: String?
         attr_reader text: String?

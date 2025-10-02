@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (valid_verification_statuses: Array[untyped]?, verification_detail_type: String?) -> Peddler::Types::OrdersV0::ValidVerificationDetail
                     | (Array[untyped]?, String?) -> Peddler::Types::OrdersV0::ValidVerificationDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::ValidVerificationDetail
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::ValidVerificationDetail
 
         attr_reader valid_verification_statuses: Array[untyped]?
         attr_reader verification_detail_type: String?

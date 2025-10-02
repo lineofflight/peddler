@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Replenishment20221107
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?active_subscriptions: Float?, ?asin: String?, ?coupons_revenue_penetration: Float?, ?currency_code: String?, ?lost_revenue_due_to_oos: Float?, ?next30_day_shipped_subscription_units: Float?, ?next30_day_total_subscriptions_revenue: Float?, ?next60_day_shipped_subscription_units: Float?, ?next60_day_total_subscriptions_revenue: Float?, ?next90_day_shipped_subscription_units: Float?, ?next90_day_total_subscriptions_revenue: Float?, ?not_delivered_due_to_oos: Float?, ?revenue_penetration: Float?, ?share_of_coupon_subscriptions: Float?, ?shipped_subscription_units: Float?, ?time_interval: Peddler::Types::Replenishment20221107::TimeInterval?, ?total_subscriptions_revenue: Float?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
                     | (Float?, String?, Float?, String?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Float?, Peddler::Types::Replenishment20221107::TimeInterval?, Float?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsResponseOffer
 
         attr_reader active_subscriptions: Float?
         attr_reader asin: String?

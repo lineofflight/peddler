@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentInventoryV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?, ?payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
                     | (Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?, Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
 
         attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentInventoryV1::Error]?
         attr_reader payload: Peddler::Types::VendorDirectFulfillmentInventoryV1::TransactionReference?

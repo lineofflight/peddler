@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,16 +5,19 @@ module Peddler
         def self.new: (channel_details: Peddler::Types::ShippingV2::ChannelDetails?, packages: Array[Peddler::Types::ShippingV2::Package]?, ship_from: Peddler::Types::ShippingV2::Address?, ?carrier_accounts: Array[Peddler::Types::ShippingV2::CarrierAccount]?, ?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, ?destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?, ?return_to: Peddler::Types::ShippingV2::Address?, ?ship_date: String?, ?ship_to: Peddler::Types::ShippingV2::Address?, ?shipment_type: String?, ?shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?, ?tax_details: Array[Peddler::Types::ShippingV2::TaxDetail]?, ?value_added_services: Peddler::Types::ShippingV2::ValueAddedServiceDetails?) -> Peddler::Types::ShippingV2::GetRatesRequest
                     | (Peddler::Types::ShippingV2::ChannelDetails?, Array[Peddler::Types::ShippingV2::Package]?, Peddler::Types::ShippingV2::Address?, Array[Peddler::Types::ShippingV2::CarrierAccount]?, Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, Peddler::Types::ShippingV2::AccessPointDetails?, Peddler::Types::ShippingV2::Address?, String?, Peddler::Types::ShippingV2::Address?, String?, Peddler::Types::ShippingV2::ShipperInstruction?, Array[Peddler::Types::ShippingV2::TaxDetail]?, Peddler::Types::ShippingV2::ValueAddedServiceDetails?) -> Peddler::Types::ShippingV2::GetRatesRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetRatesRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::GetRatesRequest
 
-        attr_reader channel_details: Peddler::Types::ShippingV2::ChannelDetails?
-        attr_reader packages: Array[Peddler::Types::ShippingV2::Package]?
-        attr_reader ship_from: Peddler::Types::ShippingV2::Address?
         attr_reader carrier_accounts: Array[Peddler::Types::ShippingV2::CarrierAccount]?
+        attr_reader channel_details: Peddler::Types::ShippingV2::ChannelDetails?
+
         attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?
         attr_reader destination_access_point_details: Peddler::Types::ShippingV2::AccessPointDetails?
+        attr_reader packages: Array[Peddler::Types::ShippingV2::Package]?
+
         attr_reader return_to: Peddler::Types::ShippingV2::Address?
         attr_reader ship_date: String?
+        attr_reader ship_from: Peddler::Types::ShippingV2::Address?
+
         attr_reader ship_to: Peddler::Types::ShippingV2::Address?
         attr_reader shipment_type: String?
         attr_reader shipper_instruction: Peddler::Types::ShippingV2::ShipperInstruction?

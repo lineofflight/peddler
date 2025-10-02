@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ListingsItems20210801
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (type: String?, ?child_skus: Array[String]?, ?parent_skus: Array[String]?, ?variation_theme: Peddler::Types::ListingsItems20210801::ItemVariationTheme?) -> Peddler::Types::ListingsItems20210801::ItemRelationship
                     | (String?, Array[String]?, Array[String]?, Peddler::Types::ListingsItems20210801::ItemVariationTheme?) -> Peddler::Types::ListingsItems20210801::ItemRelationship
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemRelationship
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsItems20210801::ItemRelationship
 
-        attr_reader type: String?
         attr_reader child_skus: Array[String]?
         attr_reader parent_skus: Array[String]?
+        attr_reader type: String?
+
         attr_reader variation_theme: Peddler::Types::ListingsItems20210801::ItemVariationTheme?
 
         def to_h: () -> { type: String?, child_skus: Array[String]?, parent_skus: Array[String]?, variation_theme: Peddler::Types::ListingsItems20210801::ItemVariationTheme? }

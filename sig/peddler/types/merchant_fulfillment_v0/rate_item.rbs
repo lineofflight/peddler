@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (rate_item_id: String?, ?rate_item_charge: Peddler::Types::Money?, ?rate_item_name_localization: String?, ?rate_item_type: String?) -> Peddler::Types::MerchantFulfillmentV0::RateItem
                     | (String?, Peddler::Types::Money?, String?, String?) -> Peddler::Types::MerchantFulfillmentV0::RateItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::RateItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::RateItem
 
-        attr_reader rate_item_id: String?
         attr_reader rate_item_charge: Peddler::Types::Money?
+        attr_reader rate_item_id: String?
+
         attr_reader rate_item_name_localization: String?
         attr_reader rate_item_type: String?
 

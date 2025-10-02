@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CatalogItems20201201
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (brands: Array[Peddler::Types::CatalogItems20201201::BrandRefinement]?, classifications: Array[Peddler::Types::CatalogItems20201201::ClassificationRefinement]?) -> Peddler::Types::CatalogItems20201201::Refinements
                     | (Array[Peddler::Types::CatalogItems20201201::BrandRefinement]?, Array[Peddler::Types::CatalogItems20201201::ClassificationRefinement]?) -> Peddler::Types::CatalogItems20201201::Refinements
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::Refinements
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItems20201201::Refinements
 
         attr_reader brands: Array[Peddler::Types::CatalogItems20201201::BrandRefinement]?
         attr_reader classifications: Array[Peddler::Types::CatalogItems20201201::ClassificationRefinement]?

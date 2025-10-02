@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (position: Integer?, value: String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
                     | (Integer?, String?) -> Peddler::Types::AplusContent20201101::PlainTextItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::PlainTextItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::PlainTextItem
 
         attr_reader position: Integer?
         attr_reader value: String?

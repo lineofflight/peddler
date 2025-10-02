@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, ?amount: Peddler::Types::FulfillmentOutbound20200701::Amount?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
                     | (Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, Peddler::Types::FulfillmentOutbound20200701::Amount?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
 
-        attr_reader product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?
         attr_reader amount: Peddler::Types::FulfillmentOutbound20200701::Amount?
+        attr_reader product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?
 
         def to_h: () -> { product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, amount: Peddler::Types::FulfillmentOutbound20200701::Amount? }
       end

@@ -1,27 +1,32 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class ShippingV2 < API
-      def get_rates: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def direct_purchase_shipment: (Hash[untyped, untyped], ?x_amzn_idempotency_key: String?, ?locale: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def purchase_shipment: (Hash[untyped, untyped], ?x_amzn_idempotency_key: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def one_click_shipment: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_tracking: (String, String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_shipment_documents: (String, String, ?format: String?, ?dpi: Numeric?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
       def cancel_shipment: (String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def create_claim: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def direct_purchase_shipment: (Hash[untyped, untyped], ?x_amzn_idempotency_key: String?, ?locale: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def generate_collection_form: (Hash[untyped, untyped], ?x_amzn_idempotency_key: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def get_access_points: (Array[String], String, String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
       def get_additional_inputs: (String, String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
       def get_carrier_account_form_inputs: (?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
       def get_carrier_accounts: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def link_carrier_account: (String, Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def unlink_carrier_account: (String, Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def generate_collection_form: (Hash[untyped, untyped], ?x_amzn_idempotency_key: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_collection_form_history: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_unmanifested_shipments: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
       def get_collection_form: (String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_access_points: (Array[String], String, String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_collection_form_history: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_rates: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def get_shipment_documents: (String, String, ?format: String?, ?dpi: Numeric?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def get_tracking: (String, String, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def get_unmanifested_shipments: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def link_carrier_account: (String, Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def one_click_shipment: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def purchase_shipment: (Hash[untyped, untyped], ?x_amzn_idempotency_key: String?, ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+
       def submit_ndr_feedback: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
-      def create_claim: (Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
+      def unlink_carrier_account: (String, Hash[untyped, untyped], ?x_amzn_shipping_business_id: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

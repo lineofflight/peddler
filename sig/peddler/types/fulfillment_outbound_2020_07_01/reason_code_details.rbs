@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (description: String?, return_reason_code: String?, ?translated_description: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
 
         attr_reader description: String?
         attr_reader return_reason_code: String?

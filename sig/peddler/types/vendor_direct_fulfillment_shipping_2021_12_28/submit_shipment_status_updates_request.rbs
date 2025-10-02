@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
                     | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
 
         attr_reader shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]?
 

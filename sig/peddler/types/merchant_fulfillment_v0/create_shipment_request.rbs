@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,13 +5,14 @@ module Peddler
         def self.new: (shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, ?hazmat_type: String?, ?label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, ?shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, ?shipping_service_offer_id: String?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
                     | (Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, String?, String?, Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, String?) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::CreateShipmentRequest
 
-        attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
-        attr_reader shipping_service_id: String?
         attr_reader hazmat_type: String?
         attr_reader label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?
         attr_reader shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?
+        attr_reader shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?
+        attr_reader shipping_service_id: String?
+
         attr_reader shipping_service_offer_id: String?
 
         def to_h: () -> { shipment_request_details: Peddler::Types::MerchantFulfillmentV0::ShipmentRequestDetails?, shipping_service_id: String?, hazmat_type: String?, label_format_option: Peddler::Types::MerchantFulfillmentV0::LabelFormatOptionRequest?, shipment_level_seller_inputs_list: Array[Peddler::Types::MerchantFulfillmentV0::AdditionalSellerInputs]?, shipping_service_offer_id: String? }

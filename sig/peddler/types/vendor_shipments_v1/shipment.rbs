@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,14 +5,8 @@ module Peddler
         def self.new: (selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, transaction_date: String?, transaction_type: String?, vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?collect_freight_pickup_details: Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?, ?containers: Array[Peddler::Types::VendorShipmentsV1::Containers]?, ?current_shipment_status: String?, ?currentshipment_status_date: String?, ?import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, ?package_label_create_date: String?, ?purchase_orders: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?, ?shipment_confirm_date: String?, ?shipment_create_date: String?, ?shipment_freight_term: String?, ?shipment_measurements: Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?, ?shipment_status_details: Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?, ?transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetails?) -> Peddler::Types::VendorShipmentsV1::Shipment
                     | (Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?, Array[Peddler::Types::VendorShipmentsV1::Containers]?, String?, String?, Peddler::Types::VendorShipmentsV1::ImportDetails?, String?, Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?, Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?, Peddler::Types::VendorShipmentsV1::TransportationDetails?) -> Peddler::Types::VendorShipmentsV1::Shipment
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Shipment
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Shipment
 
-        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
-        attr_reader ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
-        attr_reader ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
-        attr_reader transaction_date: String?
-        attr_reader transaction_type: String?
-        attr_reader vendor_shipment_identifier: String?
         attr_reader buyer_reference_number: String?
         attr_reader collect_freight_pickup_details: Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?
         attr_reader containers: Array[Peddler::Types::VendorShipmentsV1::Containers]?
@@ -23,12 +15,20 @@ module Peddler
         attr_reader import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?
         attr_reader package_label_create_date: String?
         attr_reader purchase_orders: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?
+        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+
         attr_reader shipment_confirm_date: String?
         attr_reader shipment_create_date: String?
         attr_reader shipment_freight_term: String?
         attr_reader shipment_measurements: Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?
         attr_reader shipment_status_details: Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?
+        attr_reader transaction_date: String?
+        attr_reader transaction_type: String?
+
         attr_reader transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetails?
+        attr_reader vendor_shipment_identifier: String?
 
         def to_h: () -> { selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, transaction_date: String?, transaction_type: String?, vendor_shipment_identifier: String?, buyer_reference_number: String?, collect_freight_pickup_details: Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?, containers: Array[Peddler::Types::VendorShipmentsV1::Containers]?, current_shipment_status: String?, currentshipment_status_date: String?, import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, package_label_create_date: String?, purchase_orders: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?, shipment_confirm_date: String?, shipment_create_date: String?, shipment_freight_term: String?, shipment_measurements: Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?, shipment_status_details: Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?, transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetails? }
       end

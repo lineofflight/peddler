@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
@@ -7,13 +5,14 @@ module Peddler
         def self.new: (order_id: String?, shipment_id: String?, shipment_status: String?, ?created_at: String?, ?external_reference_id: String?, ?updated_at: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
                     | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
 
+        attr_reader created_at: String?
+        attr_reader external_reference_id: String?
         attr_reader order_id: String?
         attr_reader shipment_id: String?
         attr_reader shipment_status: String?
-        attr_reader created_at: String?
-        attr_reader external_reference_id: String?
+
         attr_reader updated_at: String?
 
         def to_h: () -> { order_id: String?, shipment_id: String?, shipment_status: String?, created_at: String?, external_reference_id: String?, updated_at: String? }

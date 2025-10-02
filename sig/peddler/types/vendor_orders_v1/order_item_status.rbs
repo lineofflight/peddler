@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (item_sequence_number: String?, ?acknowledgement_status: Hash[untyped, untyped]?, ?buyer_product_identifier: String?, ?list_price: Peddler::Types::Money?, ?net_cost: Peddler::Types::Money?, ?ordered_quantity: Hash[untyped, untyped]?, ?receiving_status: Hash[untyped, untyped]?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
                     | (String?, Hash[untyped, untyped]?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, String?) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::OrderItemStatus
 
-        attr_reader item_sequence_number: String?
         attr_reader acknowledgement_status: Hash[untyped, untyped]?
         attr_reader buyer_product_identifier: String?
+        attr_reader item_sequence_number: String?
+
         attr_reader list_price: Peddler::Types::Money?
         attr_reader net_cost: Peddler::Types::Money?
         attr_reader ordered_quantity: Hash[untyped, untyped]?

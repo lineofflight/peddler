@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module DataKiosk20231115
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (queries: Array[Peddler::Types::DataKiosk20231115::Query]?, ?pagination: Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
                     | (Array[Peddler::Types::DataKiosk20231115::Query]?, Hash[untyped, untyped]?) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::DataKiosk20231115::GetQueriesResponse
 
-        attr_reader queries: Array[Peddler::Types::DataKiosk20231115::Query]?
         attr_reader pagination: Hash[untyped, untyped]?
+        attr_reader queries: Array[Peddler::Types::DataKiosk20231115::Query]?
 
         def to_h: () -> { queries: Array[Peddler::Types::DataKiosk20231115::Query]?, pagination: Hash[untyped, untyped]? }
       end

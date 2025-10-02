@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?carrier_id: String?, ?client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, ?date_range: Peddler::Types::ShippingV2::DateRange?, ?max_results: Integer?, ?ship_from_address: Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
                     | (String?, Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?, Peddler::Types::ShippingV2::DateRange?, Integer?, Peddler::Types::ShippingV2::Address?) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::GetCollectionFormHistoryRequest
 
         attr_reader carrier_id: String?
         attr_reader client_reference_details: Array[Peddler::Types::ShippingV2::ClientReferenceDetail]?

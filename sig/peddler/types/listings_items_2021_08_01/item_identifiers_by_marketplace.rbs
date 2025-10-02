@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ListingsItems20210801
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?asin: String?, ?marketplace_id: String?) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
                     | (String?, String?) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsItems20210801::ItemIdentifiersByMarketplace
 
         attr_reader asin: String?
         attr_reader marketplace_id: String?

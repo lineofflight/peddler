@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductFeesV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::ProductFeesV0::Error]?) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
                     | (Array[Peddler::Types::ProductFeesV0::Error]?) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductFeesV0::GetMyFeesEstimatesErrorList
 
         attr_reader errors: Array[Peddler::Types::ProductFeesV0::Error]?
 

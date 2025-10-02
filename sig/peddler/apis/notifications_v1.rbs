@@ -1,16 +1,17 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class NotificationsV1 < API
-      def get_subscription: (String, ?payload_version: String?, ?rate_limit: Float) -> Peddler::Response
-      def create_subscription: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
-      def get_subscription_by_id: (String, String, ?rate_limit: Float) -> Peddler::Response
-      def delete_subscription_by_id: (String, String, ?rate_limit: Float) -> Peddler::Response
-      def get_destinations: (?rate_limit: Float) -> Peddler::Response
       def create_destination: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_destination: (String, ?rate_limit: Float) -> Peddler::Response
+      def create_subscription: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
+
       def delete_destination: (String, ?rate_limit: Float) -> Peddler::Response
+      def delete_subscription_by_id: (String, String, ?rate_limit: Float) -> Peddler::Response
+
+      def get_destination: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_destinations: (?rate_limit: Float) -> Peddler::Response
+      def get_subscription: (String, ?payload_version: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def get_subscription_by_id: (String, String, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

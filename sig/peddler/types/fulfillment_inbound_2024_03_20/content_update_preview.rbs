@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (content_update_preview_id: String?, expiration: String?, requested_updates: Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, transportation_option: Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
                     | (String?, String?, Peddler::Types::FulfillmentInbound20240320::RequestedUpdates?, Peddler::Types::FulfillmentInbound20240320::TransportationOption?) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ContentUpdatePreview
 
         attr_reader content_update_preview_id: String?
         attr_reader expiration: String?

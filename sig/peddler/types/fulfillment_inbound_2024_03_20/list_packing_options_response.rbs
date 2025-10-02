@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, ?pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
                     | (Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?, Peddler::Types::FulfillmentInbound20240320::Pagination?) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::ListPackingOptionsResponse
 
         attr_reader packing_options: Array[Peddler::Types::FulfillmentInbound20240320::PackingOption]?
         attr_reader pagination: Peddler::Types::FulfillmentInbound20240320::Pagination?

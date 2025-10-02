@@ -1,14 +1,14 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class ProductPricingV0 < API
-      def get_pricing: (String, String, ?asins: Array[String]?, ?skus: Array[String]?, ?item_condition: String?, ?offer_type: String?, ?rate_limit: Float) -> Peddler::Response
       def get_competitive_pricing: (String, String, ?asins: Array[String]?, ?skus: Array[String]?, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_listing_offers: (String, String, String, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
+
       def get_item_offers: (String, String, String, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
       def get_item_offers_batch: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_listing_offers: (String, String, String, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
+
       def get_listing_offers_batch: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_pricing: (String, String, ?asins: Array[String]?, ?skus: Array[String]?, ?item_condition: String?, ?offer_type: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

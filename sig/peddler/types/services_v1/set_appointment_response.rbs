@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?appointment_id: String?, ?errors: Array[Peddler::Types::ServicesV1::Error]?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
                     | (String?, Array[Peddler::Types::ServicesV1::Error]?, Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::SetAppointmentResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::SetAppointmentResponse
 
         attr_reader appointment_id: String?
         attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?

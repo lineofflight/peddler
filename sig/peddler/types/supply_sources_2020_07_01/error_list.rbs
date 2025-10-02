@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SupplySources20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (errors: Array[Peddler::Types::SupplySources20200701::Error]?) -> Peddler::Types::SupplySources20200701::ErrorList
                     | (Array[Peddler::Types::SupplySources20200701::Error]?) -> Peddler::Types::SupplySources20200701::ErrorList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ErrorList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ErrorList
 
         attr_reader errors: Array[Peddler::Types::SupplySources20200701::Error]?
 

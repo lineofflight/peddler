@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentReturns20240911
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?channel_name: String?, ?marketplace_name: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
                     | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
 
         attr_reader channel_name: String?
         attr_reader marketplace_name: String?

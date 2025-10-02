@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ListingsRestrictions20210801
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (marketplace_id: String?, ?condition_type: String?, ?reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> Peddler::Types::ListingsRestrictions20210801::Restriction
                     | (String?, String?, Array[Peddler::Types::ListingsRestrictions20210801::Reason]?) -> Peddler::Types::ListingsRestrictions20210801::Restriction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsRestrictions20210801::Restriction
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsRestrictions20210801::Restriction
 
-        attr_reader marketplace_id: String?
         attr_reader condition_type: String?
+        attr_reader marketplace_id: String?
+
         attr_reader reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]?
 
         def to_h: () -> { marketplace_id: String?, condition_type: String?, reasons: Array[Peddler::Types::ListingsRestrictions20210801::Reason]? }

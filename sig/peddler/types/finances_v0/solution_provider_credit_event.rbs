@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FinancesV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?marketplace_country_code: String?, ?marketplace_id: String?, ?provider_id: String?, ?provider_store_name: String?, ?provider_transaction_type: String?, ?seller_id: String?, ?seller_order_id: String?, ?seller_store_name: String?, ?transaction_amount: Peddler::Types::Money?, ?transaction_creation_date: String?) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
                     | (String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::SolutionProviderCreditEvent
 
         attr_reader marketplace_country_code: String?
         attr_reader marketplace_id: String?

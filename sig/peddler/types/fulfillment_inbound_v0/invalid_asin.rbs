@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInboundV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?asin: String?, ?error_reason: String?) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
                     | (String?, String?) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInboundV0::InvalidASIN
 
         attr_reader asin: String?
         attr_reader error_reason: String?

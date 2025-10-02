@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductFeesV0
@@ -7,10 +5,11 @@ module Peddler
         def self.new: (time_of_fees_estimation: String?, ?fee_detail_list: Array[Peddler::Types::ProductFeesV0::FeeDetail]?, ?total_fees_estimate: Peddler::Types::Money?) -> Peddler::Types::ProductFeesV0::FeesEstimate
                     | (String?, Array[Peddler::Types::ProductFeesV0::FeeDetail]?, Peddler::Types::Money?) -> Peddler::Types::ProductFeesV0::FeesEstimate
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimate
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductFeesV0::FeesEstimate
 
-        attr_reader time_of_fees_estimation: String?
         attr_reader fee_detail_list: Array[Peddler::Types::ProductFeesV0::FeeDetail]?
+        attr_reader time_of_fees_estimation: String?
+
         attr_reader total_fees_estimate: Peddler::Types::Money?
 
         def to_h: () -> { time_of_fees_estimation: String?, fee_detail_list: Array[Peddler::Types::ProductFeesV0::FeeDetail]?, total_fees_estimate: Peddler::Types::Money? }

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FinancesV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?, ?debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, ?debt_recovery_type: String?, ?over_payment_credit: Peddler::Types::Money?, ?recovery_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
                     | (Array[Peddler::Types::FinancesV0::ChargeInstrument]?, Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryEvent
 
         attr_reader charge_instrument_list: Array[Peddler::Types::FinancesV0::ChargeInstrument]?
         attr_reader debt_recovery_item_list: Array[Peddler::Types::FinancesV0::DebtRecoveryItem]?

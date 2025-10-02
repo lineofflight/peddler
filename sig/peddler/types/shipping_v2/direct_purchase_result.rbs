@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (shipment_id: String?, ?package_document_detail_list: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?) -> Peddler::Types::ShippingV2::DirectPurchaseResult
                     | (String?, Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?) -> Peddler::Types::ShippingV2::DirectPurchaseResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DirectPurchaseResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::DirectPurchaseResult
 
-        attr_reader shipment_id: String?
         attr_reader package_document_detail_list: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]?
+        attr_reader shipment_id: String?
 
         def to_h: () -> { shipment_id: String?, package_document_detail_list: Array[Peddler::Types::ShippingV2::PackageDocumentDetail]? }
       end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
                     | (Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse
 
         attr_reader content_metadata_records: Array[Peddler::Types::AplusContent20201101::ContentMetadataRecord]?
 

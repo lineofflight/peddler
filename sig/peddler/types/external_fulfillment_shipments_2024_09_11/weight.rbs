@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentShipments20240911
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (value: String?, weight_unit: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::Weight
                     | (String?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::Weight
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::Weight
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::Weight
 
         attr_reader value: String?
         attr_reader weight_unit: String?

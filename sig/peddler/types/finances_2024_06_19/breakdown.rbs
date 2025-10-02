@@ -1,17 +1,10 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Finances20240619
       class Breakdown < Data
+        type parse_data = { ?breakdown_amount: untyped, ?breakdown_type: untyped, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown | parse_data] }
         def self.new: (?breakdown_amount: Peddler::Types::Money?, ?breakdown_type: String?, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
                     | (Peddler::Types::Money?, String?, Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
-
-        type parse_data = {
-          ?breakdown_amount: untyped,
-          ?breakdown_type: untyped,
-          ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown | parse_data]
-        }
 
         def self.parse: (?parse_data data) -> Peddler::Types::Finances20240619::Breakdown
                       | (?Hash[String, untyped] data) -> Peddler::Types::Finances20240619::Breakdown

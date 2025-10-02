@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (national_prime: bool?, prime: bool?) -> Peddler::Types::ProductPricingV0::PrimeInformationType
                     | (bool?, bool?) -> Peddler::Types::ProductPricingV0::PrimeInformationType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::PrimeInformationType
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::PrimeInformationType
 
         attr_reader national_prime: bool?
         attr_reader prime: bool?

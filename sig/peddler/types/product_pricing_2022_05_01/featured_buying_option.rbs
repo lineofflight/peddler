@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricing20220501
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
                     | (String?, Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
 
         attr_reader buying_option_type: String?
         attr_reader segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?

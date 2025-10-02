@@ -1,15 +1,15 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class CustomerFeedback20240601 < API
-      def get_item_review_topics: (String, String, String) -> Peddler::Response
-      def get_item_browse_node: (String, String) -> Peddler::Response
-      def get_browse_node_review_topics: (String, String, String) -> Peddler::Response
-      def get_item_review_trends: (String, String) -> Peddler::Response
-      def get_browse_node_review_trends: (String, String) -> Peddler::Response
       def get_browse_node_return_topics: (String, String) -> Peddler::Response
       def get_browse_node_return_trends: (String, String) -> Peddler::Response
+      def get_browse_node_review_topics: (String, String, String) -> Peddler::Response
+
+      def get_browse_node_review_trends: (String, String) -> Peddler::Response
+      def get_item_browse_node: (String, String) -> Peddler::Response
+      def get_item_review_topics: (String, String, String) -> Peddler::Response
+
+      def get_item_review_trends: (String, String) -> Peddler::Response
     end
   end
 end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
@@ -7,12 +5,12 @@ module Peddler
         def self.new: (packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?, previewed_at: String?, status: String?, ?ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
                     | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?, String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
 
+        attr_reader ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?
         attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?
         attr_reader previewed_at: String?
         attr_reader status: String?
-        attr_reader ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?
 
         def to_h: () -> { packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?, previewed_at: String?, status: String?, ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]? }
       end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentShipments20240911
@@ -7,13 +5,15 @@ module Peddler
         def self.new: (package_line_item_id: String?, quantity: Integer?, ?country_of_origin: String?, ?item_value: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, ?pieces: Integer?, ?serial_numbers: Array[untyped]?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageLineItem
                     | (String?, Integer?, String?, Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, Integer?, Array[untyped]?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageLineItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageLineItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageLineItem
 
-        attr_reader package_line_item_id: String?
-        attr_reader quantity: Integer?
         attr_reader country_of_origin: String?
         attr_reader item_value: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?
+        attr_reader package_line_item_id: String?
+
         attr_reader pieces: Integer?
+        attr_reader quantity: Integer?
+
         attr_reader serial_numbers: Array[untyped]?
 
         def to_h: () -> { package_line_item_id: String?, quantity: Integer?, country_of_origin: String?, item_value: Peddler::Types::ExternalFulfillmentShipments20240911::Amount?, pieces: Integer?, serial_numbers: Array[untyped]? }

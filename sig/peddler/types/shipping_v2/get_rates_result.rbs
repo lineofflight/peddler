@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,11 +5,11 @@ module Peddler
         def self.new: (rates: Array[Peddler::Types::ShippingV2::Rate]?, request_token: String?, ?ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> Peddler::Types::ShippingV2::GetRatesResult
                     | (Array[Peddler::Types::ShippingV2::Rate]?, String?, Array[Peddler::Types::ShippingV2::IneligibleRate]?) -> Peddler::Types::ShippingV2::GetRatesResult
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetRatesResult
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::GetRatesResult
 
+        attr_reader ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?
         attr_reader rates: Array[Peddler::Types::ShippingV2::Rate]?
         attr_reader request_token: String?
-        attr_reader ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]?
 
         def to_h: () -> { rates: Array[Peddler::Types::ShippingV2::Rate]?, request_token: String?, ineligible_rates: Array[Peddler::Types::ShippingV2::IneligibleRate]? }
       end

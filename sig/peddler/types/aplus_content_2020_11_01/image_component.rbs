@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (alt_text: String?, image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?, upload_destination_id: String?) -> Peddler::Types::AplusContent20201101::ImageComponent
                     | (String?, Peddler::Types::AplusContent20201101::ImageCropSpecification?, String?) -> Peddler::Types::AplusContent20201101::ImageComponent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::ImageComponent
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::ImageComponent
 
         attr_reader alt_text: String?
         attr_reader image_crop_specification: Peddler::Types::AplusContent20201101::ImageCropSpecification?

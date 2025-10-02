@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,15 +5,17 @@ module Peddler
         def self.new: (format: String?, need_file_joining: bool?, requested_document_types: Array[untyped]?, size: Peddler::Types::ShippingV2::DocumentSize?, ?dpi: Integer?, ?page_layout: String?, ?requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
                     | (String?, bool?, Array[untyped]?, Peddler::Types::ShippingV2::DocumentSize?, Integer?, String?, Peddler::Types::ShippingV2::RequestedLabelCustomization?) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::RequestedDocumentSpecification
 
+        attr_reader dpi: Integer?
         attr_reader format: String?
         attr_reader need_file_joining: bool?
-        attr_reader requested_document_types: Array[untyped]?
-        attr_reader size: Peddler::Types::ShippingV2::DocumentSize?
-        attr_reader dpi: Integer?
+
         attr_reader page_layout: String?
+        attr_reader requested_document_types: Array[untyped]?
+
         attr_reader requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization?
+        attr_reader size: Peddler::Types::ShippingV2::DocumentSize?
 
         def need_file_joining?: () -> bool
         def to_h: () -> { format: String?, need_file_joining: bool?, requested_document_types: Array[untyped]?, size: Peddler::Types::ShippingV2::DocumentSize?, dpi: Integer?, page_layout: String?, requested_label_customization: Peddler::Types::ShippingV2::RequestedLabelCustomization? }

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?least_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?, ?most_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
                     | (Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?, Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
 
         attr_reader least_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?
         attr_reader most_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?

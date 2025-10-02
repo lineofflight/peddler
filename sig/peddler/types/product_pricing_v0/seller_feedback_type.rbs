@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (feedback_count: Integer?, ?seller_positive_feedback_rating: Float?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
                     | (Integer?, Float?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
 
         attr_reader feedback_count: Integer?
         attr_reader seller_positive_feedback_rating: Float?

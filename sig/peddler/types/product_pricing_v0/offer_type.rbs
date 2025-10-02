@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,17 +5,18 @@ module Peddler
         def self.new: (buying_price: Peddler::Types::ProductPricingV0::PriceType?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, regular_price: Peddler::Types::Money?, seller_sku: String?, ?business_price: Peddler::Types::Money?, ?offer_type: String?, ?quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?) -> Peddler::Types::ProductPricingV0::OfferType
                     | (Peddler::Types::ProductPricingV0::PriceType?, String?, String?, String?, Peddler::Types::Money?, String?, Peddler::Types::Money?, String?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?) -> Peddler::Types::ProductPricingV0::OfferType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::OfferType
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::OfferType
 
+        attr_reader business_price: Peddler::Types::Money?
         attr_reader buying_price: Peddler::Types::ProductPricingV0::PriceType?
         attr_reader fulfillment_channel: String?
         attr_reader item_condition: String?
         attr_reader item_sub_condition: String?
-        attr_reader regular_price: Peddler::Types::Money?
-        attr_reader seller_sku: String?
-        attr_reader business_price: Peddler::Types::Money?
+
         attr_reader offer_type: String?
         attr_reader quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?
+        attr_reader regular_price: Peddler::Types::Money?
+        attr_reader seller_sku: String?
 
         def to_h: () -> { buying_price: Peddler::Types::ProductPricingV0::PriceType?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, regular_price: Peddler::Types::Money?, seller_sku: String?, business_price: Peddler::Types::Money?, offer_type: String?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]? }
       end

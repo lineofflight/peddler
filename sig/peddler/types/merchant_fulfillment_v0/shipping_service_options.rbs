@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MerchantFulfillmentV0
@@ -7,12 +5,14 @@ module Peddler
         def self.new: (carrier_will_pick_up: bool?, delivery_experience: String?, ?carrier_will_pick_up_option: String?, ?declared_value: Peddler::Types::Money?, ?label_format: String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
                     | (bool?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MerchantFulfillmentV0::ShippingServiceOptions
 
         attr_reader carrier_will_pick_up: bool?
-        attr_reader delivery_experience: String?
+
         attr_reader carrier_will_pick_up_option: String?
         attr_reader declared_value: Peddler::Types::Money?
+        attr_reader delivery_experience: String?
+
         attr_reader label_format: String?
 
         def carrier_will_pick_up?: () -> bool

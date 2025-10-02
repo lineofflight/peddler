@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShipmentInvoicingV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?acquirer_id: String?, ?authorization_code: String?, ?card_brand: String?, ?payment_method: String?, ?payment_value: Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
                     | (String?, String?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShipmentInvoicingV0::PaymentInformation
 
         attr_reader acquirer_id: String?
         attr_reader authorization_code: String?

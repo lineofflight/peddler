@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,14 +5,17 @@ module Peddler
         def self.new: (amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, fulfillment_shipment_status: String?, ?estimated_arrival_date: String?, ?fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?, ?shipping_date: String?, ?shipping_notes: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
                     | (String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?, String?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
 
         attr_reader amazon_shipment_id: String?
+
+        attr_reader estimated_arrival_date: String?
         attr_reader fulfillment_center_id: String?
         attr_reader fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?
-        attr_reader fulfillment_shipment_status: String?
-        attr_reader estimated_arrival_date: String?
+
         attr_reader fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?
+        attr_reader fulfillment_shipment_status: String?
+
         attr_reader shipping_date: String?
         attr_reader shipping_notes: Array[String]?
 

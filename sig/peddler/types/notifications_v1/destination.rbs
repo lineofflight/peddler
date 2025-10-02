@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module NotificationsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (destination_id: String?, name: String?, resource: Peddler::Types::NotificationsV1::DestinationResource?) -> Peddler::Types::NotificationsV1::Destination
                     | (String?, String?, Peddler::Types::NotificationsV1::DestinationResource?) -> Peddler::Types::NotificationsV1::Destination
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::NotificationsV1::Destination
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::Destination
 
         attr_reader destination_id: String?
         attr_reader name: String?

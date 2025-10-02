@@ -1,10 +1,8 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class ProductPricing20220501 < API
-      def get_featured_offer_expected_price_batch: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_competitive_summary: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_featured_offer_expected_price_batch: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

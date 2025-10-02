@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
                     | (Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
 
         attr_reader requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?
 

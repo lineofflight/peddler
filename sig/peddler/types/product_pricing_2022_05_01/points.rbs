@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricing20220501
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?points_monetary_value: Peddler::Types::Money?, ?points_number: Integer?) -> Peddler::Types::ProductPricing20220501::Points
                     | (Peddler::Types::Money?, Integer?) -> Peddler::Types::ProductPricing20220501::Points
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::Points
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Points
 
         attr_reader points_monetary_value: Peddler::Types::Money?
         attr_reader points_number: Integer?

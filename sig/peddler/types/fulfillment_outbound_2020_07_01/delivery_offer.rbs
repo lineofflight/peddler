@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentOutbound20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?, ?expires_at: String?, ?policy: Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
                     | (Peddler::Types::FulfillmentOutbound20200701::DateRange?, String?, Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
 
         attr_reader date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?
         attr_reader expires_at: String?

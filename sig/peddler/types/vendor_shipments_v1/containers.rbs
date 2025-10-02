@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,12 +5,14 @@ module Peddler
         def self.new: (container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, container_type: String?, ?block: Integer?, ?container_sequence_number: String?, ?dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, ?inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, ?packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?, ?tier: Integer?, ?tracking_number: String?, ?weight: Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Containers
                     | (Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, String?, Integer?, String?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, Array[Peddler::Types::VendorShipmentsV1::PackedItems]?, Integer?, String?, Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Containers
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::Containers
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Containers
 
-        attr_reader container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
-        attr_reader container_type: String?
         attr_reader block: Integer?
+        attr_reader container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
+
         attr_reader container_sequence_number: String?
+        attr_reader container_type: String?
+
         attr_reader dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?
         attr_reader inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?
         attr_reader packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?

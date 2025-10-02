@@ -1,12 +1,11 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class FinancesV0 < API
       def list_financial_event_groups: (?max_results_per_page: Integer?, ?financial_event_group_started_before: String?, ?financial_event_group_started_after: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
+
+      def list_financial_events: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
       def list_financial_events_by_group_id: (String, ?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
       def list_financial_events_by_order_id: (String, ?max_results_per_page: Integer?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def list_financial_events: (?max_results_per_page: Integer?, ?posted_after: String?, ?posted_before: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

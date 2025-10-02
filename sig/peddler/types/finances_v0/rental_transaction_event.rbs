@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FinancesV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?amazon_order_id: String?, ?extension_length: Integer?, ?marketplace_name: String?, ?posted_date: String?, ?rental_charge_list: Array[Peddler::Types::FinancesV0::ChargeComponent]?, ?rental_event_type: String?, ?rental_fee_list: Array[Peddler::Types::FinancesV0::FeeComponent]?, ?rental_initial_value: Peddler::Types::Money?, ?rental_reimbursement: Peddler::Types::Money?, ?rental_tax_withheld_list: Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
                     | (String?, Integer?, String?, String?, Array[Peddler::Types::FinancesV0::ChargeComponent]?, String?, Array[Peddler::Types::FinancesV0::FeeComponent]?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::FinancesV0::TaxWithheldComponent]?) -> Peddler::Types::FinancesV0::RentalTransactionEvent
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::RentalTransactionEvent
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::RentalTransactionEvent
 
         attr_reader amazon_order_id: String?
         attr_reader extension_length: Integer?

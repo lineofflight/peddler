@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Finances20240619
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?, ?description: String?, ?items: Array[Peddler::Types::Finances20240619::Item]?, ?marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, ?posted_date: String?, ?related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, ?selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, ?total_amount: Peddler::Types::Money?, ?transaction_id: String?, ?transaction_status: String?, ?transaction_type: String?) -> Peddler::Types::Finances20240619::Transaction
                     | (Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?, String?, Array[Peddler::Types::Finances20240619::Item]?, Peddler::Types::Finances20240619::MarketplaceDetails?, String?, Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, Peddler::Types::Finances20240619::SellingPartnerMetadata?, Peddler::Types::Money?, String?, String?, String?) -> Peddler::Types::Finances20240619::Transaction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::Transaction
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::Transaction
 
         attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
         attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?

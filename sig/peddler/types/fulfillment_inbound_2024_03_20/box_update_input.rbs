@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,14 +5,15 @@ module Peddler
         def self.new: (content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, ?items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, ?package_id: String?) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
                     | (String?, Peddler::Types::FulfillmentInbound20240320::Dimensions?, Integer?, Peddler::Types::FulfillmentInbound20240320::Weight?, Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, String?) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::BoxUpdateInput
 
         attr_reader content_information_source: String?
         attr_reader dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?
-        attr_reader quantity: Integer?
-        attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
+
         attr_reader items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?
         attr_reader package_id: String?
+        attr_reader quantity: Integer?
+        attr_reader weight: Peddler::Types::FulfillmentInbound20240320::Weight?
 
         def to_h: () -> { content_information_source: String?, dimensions: Peddler::Types::FulfillmentInbound20240320::Dimensions?, quantity: Integer?, weight: Peddler::Types::FulfillmentInbound20240320::Weight?, items: Array[Peddler::Types::FulfillmentInbound20240320::ItemInput]?, package_id: String? }
       end

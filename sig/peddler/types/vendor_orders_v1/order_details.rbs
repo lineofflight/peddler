@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,18 +5,20 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::VendorOrdersV1::OrderItem]?, purchase_order_date: String?, purchase_order_state_changed_date: String?, ?bill_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ?buying_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ?deal_code: String?, ?delivery_window: String?, ?import_details: Peddler::Types::VendorOrdersV1::ImportDetails?, ?payment_method: String?, ?purchase_order_changed_date: String?, ?purchase_order_type: String?, ?selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ?ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ?ship_window: String?) -> Peddler::Types::VendorOrdersV1::OrderDetails
                     | (Array[Peddler::Types::VendorOrdersV1::OrderItem]?, String?, String?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, String?, String?, Peddler::Types::VendorOrdersV1::ImportDetails?, String?, String?, String?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, String?) -> Peddler::Types::VendorOrdersV1::OrderDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::OrderDetails
 
-        attr_reader items: Array[Peddler::Types::VendorOrdersV1::OrderItem]?
-        attr_reader purchase_order_date: String?
-        attr_reader purchase_order_state_changed_date: String?
         attr_reader bill_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
         attr_reader buying_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
         attr_reader deal_code: String?
         attr_reader delivery_window: String?
         attr_reader import_details: Peddler::Types::VendorOrdersV1::ImportDetails?
+        attr_reader items: Array[Peddler::Types::VendorOrdersV1::OrderItem]?
+
         attr_reader payment_method: String?
         attr_reader purchase_order_changed_date: String?
+        attr_reader purchase_order_date: String?
+        attr_reader purchase_order_state_changed_date: String?
+
         attr_reader purchase_order_type: String?
         attr_reader selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
         attr_reader ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?

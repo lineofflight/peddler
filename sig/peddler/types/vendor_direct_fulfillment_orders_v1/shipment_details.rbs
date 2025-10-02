@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentOrdersV1
@@ -7,19 +5,21 @@ module Peddler
         def self.new: (priority_shipment: bool?, pslip_required: bool?, message_to_customer: String?, ship_method: String?, shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, ?gift: bool?, ?scheduled_delivery_shipment: bool?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
                     | (bool?, bool?, String?, String?, Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, bool?, bool?) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDetails
 
+        attr_reader gift: bool?
+        attr_reader message_to_customer: String?
         attr_reader priority_shipment: bool?
         attr_reader pslip_required: bool?
-        attr_reader message_to_customer: String?
+
+        attr_reader scheduled_delivery_shipment: bool?
         attr_reader ship_method: String?
         attr_reader shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?
-        attr_reader gift: bool?
-        attr_reader scheduled_delivery_shipment: bool?
 
+        def gift?: () -> bool
         def priority_shipment?: () -> bool
         def pslip_required?: () -> bool
-        def gift?: () -> bool
+
         def scheduled_delivery_shipment?: () -> bool
         def to_h: () -> { priority_shipment: bool?, pslip_required: bool?, message_to_customer: String?, ship_method: String?, shipment_dates: Peddler::Types::VendorDirectFulfillmentOrdersV1::ShipmentDates?, gift: bool?, scheduled_delivery_shipment: bool? }
       end

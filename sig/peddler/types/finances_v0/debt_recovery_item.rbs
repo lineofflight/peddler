@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FinancesV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?group_begin_date: String?, ?group_end_date: String?, ?original_amount: Peddler::Types::Money?, ?recovery_amount: Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
                     | (String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FinancesV0::DebtRecoveryItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FinancesV0::DebtRecoveryItem
 
         attr_reader group_begin_date: String?
         attr_reader group_end_date: String?

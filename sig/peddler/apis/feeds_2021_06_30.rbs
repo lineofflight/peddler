@@ -1,14 +1,14 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class Feeds20210630 < API
-      def get_feeds: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
-      def create_feed: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def cancel_feed: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_feed: (String, ?rate_limit: Float) -> Peddler::Response
+      def create_feed: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
       def create_feed_document: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+      def get_feed: (String, ?rate_limit: Float) -> Peddler::Response
+
       def get_feed_document: (String, ?rate_limit: Float) -> Peddler::Response
+      def get_feeds: (?feed_types: Array[String]?, ?marketplace_ids: Array[String]?, ?page_size: Integer?, ?processing_statuses: Array[String]?, ?created_since: String?, ?created_until: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

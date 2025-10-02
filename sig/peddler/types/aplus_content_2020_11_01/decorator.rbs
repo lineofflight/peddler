@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?depth: Integer?, ?length: Integer?, ?offset: Integer?, ?type: String?) -> Peddler::Types::AplusContent20201101::Decorator
                     | (Integer?, Integer?, Integer?, String?) -> Peddler::Types::AplusContent20201101::Decorator
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::Decorator
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::Decorator
 
         attr_reader depth: Integer?
         attr_reader length: Integer?

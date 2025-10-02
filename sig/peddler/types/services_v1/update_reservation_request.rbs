@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ServicesV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
                     | (Peddler::Types::ServicesV1::Reservation?, String?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ServicesV1::UpdateReservationRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateReservationRequest
 
         attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
         attr_reader resource_id: String?

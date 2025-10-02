@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Generator
   module RBS
     class Entrypoint
@@ -7,17 +5,15 @@ module Generator
 
       def initialize: (Array[Generator::API] apis) -> void
 
-      def generate: () -> void
-
       def api_methods: () -> Array[Hash[Symbol, String]]
 
       def apis_with_latest_version: () -> Hash[String, Generator::API]
+      def generate: () -> void
 
       private
 
-      def render_template: () -> String
-
       def file_path: () -> String
+      def render_template: () -> String
 
       def template: () -> String
     end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricing20220501
@@ -7,15 +5,16 @@ module Peddler
         def self.new: (marketplace_id: String?, method: String?, sku: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
                     | (String?, String?, String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
 
-        attr_reader marketplace_id: String?
-        attr_reader method: String?
-        attr_reader sku: String?
-        attr_reader uri: String?
         attr_reader body: Hash[untyped, untyped]?
         attr_reader headers: Hash[untyped, untyped]?
+        attr_reader marketplace_id: String?
+        attr_reader method: String?
+
         attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
+        attr_reader sku: String?
+        attr_reader uri: String?
 
         def to_h: () -> { marketplace_id: String?, method: String?, sku: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Hash[untyped, untyped]?, segment: Peddler::Types::ProductPricing20220501::Segment? }
       end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,18 +5,21 @@ module Peddler
         def self.new: (quantity: Integer?, ?dangerous_goods_details: Peddler::Types::ShippingV2::DangerousGoodsDetails?, ?description: String?, ?direct_fulfillment_item_identifiers: Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers?, ?invoice_details: Peddler::Types::ShippingV2::InvoiceDetails?, ?hazmat: bool?, ?item_identifier: String?, ?item_value: Peddler::Types::Money?, ?liquid_volume: Peddler::Types::ShippingV2::LiquidVolume?, ?product_type: String?, ?serial_numbers: Array[String]?, ?weight: Peddler::Types::ShippingV2::Weight?) -> Peddler::Types::ShippingV2::Item
                     | (Integer?, Peddler::Types::ShippingV2::DangerousGoodsDetails?, String?, Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers?, Peddler::Types::ShippingV2::InvoiceDetails?, bool?, String?, Peddler::Types::Money?, Peddler::Types::ShippingV2::LiquidVolume?, String?, Array[String]?, Peddler::Types::ShippingV2::Weight?) -> Peddler::Types::ShippingV2::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::Item
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::Item
 
-        attr_reader quantity: Integer?
         attr_reader dangerous_goods_details: Peddler::Types::ShippingV2::DangerousGoodsDetails?
         attr_reader description: String?
         attr_reader direct_fulfillment_item_identifiers: Peddler::Types::ShippingV2::DirectFulfillmentItemIdentifiers?
-        attr_reader invoice_details: Peddler::Types::ShippingV2::InvoiceDetails?
+
         attr_reader hazmat: bool?
+        attr_reader invoice_details: Peddler::Types::ShippingV2::InvoiceDetails?
+
         attr_reader item_identifier: String?
         attr_reader item_value: Peddler::Types::Money?
         attr_reader liquid_volume: Peddler::Types::ShippingV2::LiquidVolume?
         attr_reader product_type: String?
+        attr_reader quantity: Integer?
+
         attr_reader serial_numbers: Array[String]?
         attr_reader weight: Peddler::Types::ShippingV2::Weight?
 

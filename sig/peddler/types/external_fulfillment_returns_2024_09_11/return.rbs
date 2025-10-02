@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentReturns20240911
@@ -7,24 +5,26 @@ module Peddler
         def self.new: (fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, ?creation_date_time: String?, ?merchant_sku: String?, ?number_of_units: Integer?, ?otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, ?package_delivery_mode: String?, ?replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, ?return_location_id: String?, ?return_sub_type: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
                     | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, String?, String?, String?, String?, Integer?, Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
 
+        attr_reader creation_date_time: String?
         attr_reader fulfillment_location_id: String?
         attr_reader id: String?
         attr_reader last_updated_date_time: String?
         attr_reader marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?
-        attr_reader return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?
-        attr_reader return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?
-        attr_reader return_type: String?
-        attr_reader status: String?
-        attr_reader creation_date_time: String?
+
         attr_reader merchant_sku: String?
         attr_reader number_of_units: Integer?
         attr_reader otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?
         attr_reader package_delivery_mode: String?
         attr_reader replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?
         attr_reader return_location_id: String?
+        attr_reader return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?
+        attr_reader return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?
+
         attr_reader return_sub_type: String?
+        attr_reader return_type: String?
+        attr_reader status: String?
 
         def to_h: () -> { fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, creation_date_time: String?, merchant_sku: String?, number_of_units: Integer?, otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, package_delivery_mode: String?, replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, return_location_id: String?, return_sub_type: String? }
       end

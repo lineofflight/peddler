@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,14 +5,14 @@ module Peddler
         def self.new: (item_condition: String?, marketplace_id: String?, method: String?, uri: String?, ?customer_type: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
                     | (String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
 
+        attr_reader customer_type: String?
+        attr_reader headers: Hash[untyped, untyped]?
         attr_reader item_condition: String?
         attr_reader marketplace_id: String?
         attr_reader method: String?
         attr_reader uri: String?
-        attr_reader customer_type: String?
-        attr_reader headers: Hash[untyped, untyped]?
 
         def to_h: () -> { item_condition: String?, marketplace_id: String?, method: String?, uri: String?, customer_type: String?, headers: Hash[untyped, untyped]? }
       end

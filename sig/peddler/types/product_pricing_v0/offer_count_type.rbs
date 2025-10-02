@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,11 +5,11 @@ module Peddler
         def self.new: (?offer_count: Integer?, ?condition: String?, ?fulfillment_channel: String?) -> Peddler::Types::ProductPricingV0::OfferCountType
                     | (Integer?, String?, String?) -> Peddler::Types::ProductPricingV0::OfferCountType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::OfferCountType
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::OfferCountType
 
-        attr_reader offer_count: Integer?
         attr_reader condition: String?
         attr_reader fulfillment_channel: String?
+        attr_reader offer_count: Integer?
 
         def to_h: () -> { offer_count: Integer?, condition: String?, fulfillment_channel: String? }
       end

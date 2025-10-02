@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SupplySources20200701
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?contact_details: Peddler::Types::SupplySources20200701::ContactDetails?, ?handling_time: Peddler::Types::SupplySources20200701::Duration?, ?operating_hours_by_day: Peddler::Types::SupplySources20200701::OperatingHoursByDay?, ?throughput_config: Peddler::Types::SupplySources20200701::ThroughputConfig?) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
                     | (Peddler::Types::SupplySources20200701::ContactDetails?, Peddler::Types::SupplySources20200701::Duration?, Peddler::Types::SupplySources20200701::OperatingHoursByDay?, Peddler::Types::SupplySources20200701::ThroughputConfig?) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
 
         attr_reader contact_details: Peddler::Types::SupplySources20200701::ContactDetails?
         attr_reader handling_time: Peddler::Types::SupplySources20200701::Duration?

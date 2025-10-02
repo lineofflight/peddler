@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentTransactions20211228
@@ -7,11 +5,11 @@ module Peddler
         def self.new: (status: String?, transaction_id: String?, ?errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
                     | (String?, String?, Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentTransactions20211228::Transaction
 
+        attr_reader errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?
         attr_reader status: String?
         attr_reader transaction_id: String?
-        attr_reader errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList?
 
         def to_h: () -> { status: String?, transaction_id: String?, errors: Peddler::Types::VendorDirectFulfillmentTransactions20211228::ErrorList? }
       end

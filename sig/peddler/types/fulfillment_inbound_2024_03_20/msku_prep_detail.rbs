@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,14 +5,15 @@ module Peddler
         def self.new: (msku: String?, prep_category: String?, prep_types: Array[untyped]?, ?all_owners_constraint: String?, ?label_owner_constraint: String?, ?prep_owner_constraint: String?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
                     | (String?, String?, Array[untyped]?, String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::MskuPrepDetail
 
-        attr_reader msku: String?
-        attr_reader prep_category: String?
-        attr_reader prep_types: Array[untyped]?
         attr_reader all_owners_constraint: String?
         attr_reader label_owner_constraint: String?
+        attr_reader msku: String?
+        attr_reader prep_category: String?
+
         attr_reader prep_owner_constraint: String?
+        attr_reader prep_types: Array[untyped]?
 
         def to_h: () -> { msku: String?, prep_category: String?, prep_types: Array[untyped]?, all_owners_constraint: String?, label_owner_constraint: String?, prep_owner_constraint: String? }
       end

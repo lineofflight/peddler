@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?billed_weight: Peddler::Types::ShippingV1::Weight?, ?promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, ?service_type: String?, ?total_charge: Peddler::Types::Money?) -> Peddler::Types::ShippingV1::AcceptedRate
                     | (Peddler::Types::ShippingV1::Weight?, Peddler::Types::ShippingV1::ShippingPromiseSet?, String?, Peddler::Types::Money?) -> Peddler::Types::ShippingV1::AcceptedRate
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV1::AcceptedRate
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::AcceptedRate
 
         attr_reader billed_weight: Peddler::Types::ShippingV1::Weight?
         attr_reader promise: Peddler::Types::ShippingV1::ShippingPromiseSet?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ApplicationIntegrations20240401
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (deletion_reason: String?, template_id: String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
                     | (String?, String?) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ApplicationIntegrations20240401::DeleteNotificationsRequest
 
         attr_reader deletion_reason: String?
         attr_reader template_id: String?

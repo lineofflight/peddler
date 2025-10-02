@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?number_of_mentions: Integer?, ?occurrence_percentage: Float?, ?star_rating_impact: Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
                     | (Integer?, Float?, Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
 
         attr_reader number_of_mentions: Integer?
         attr_reader occurrence_percentage: Float?

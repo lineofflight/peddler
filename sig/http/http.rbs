@@ -1,22 +1,17 @@
 # Minimal HTTP singleton method declarations
 module HTTP
-  def self.headers: (Hash[String, String?]) -> HTTP::Client
-  def self.get: (String uri, **untyped options) -> HTTP::Response
-  def self.post: (String uri, **untyped options) -> HTTP::Response
-  def self.put: (String uri, **untyped options) -> HTTP::Response
-  def self.delete: (String uri, **untyped options) -> HTTP::Response
-  def self.patch: (String uri, **untyped options) -> HTTP::Response
-
   class Client
-    def headers: (Hash[String, String?]) -> HTTP::Client
+    def delete: (String | URI uri, **untyped options) -> HTTP::Response
     def get: (String | URI uri, **untyped options) -> HTTP::Response
+    def headers: (Hash[String, String?]) -> HTTP::Client
+
+    def patch: (String | URI uri, **untyped options) -> HTTP::Response
     def post: (String | URI uri, **untyped options) -> HTTP::Response
     def put: (String | URI uri, **untyped options) -> HTTP::Response
-    def delete: (String | URI uri, **untyped options) -> HTTP::Response
-    def patch: (String | URI uri, **untyped options) -> HTTP::Response
+
+    def retriable: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
     def use: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
     def via: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
-    def retriable: (*untyped args, **untyped kwargs) { (*untyped) -> untyped } -> HTTP::Client
   end
 
   class Response
@@ -24,4 +19,16 @@ module HTTP
     # This allows implicit string conversion for JSON.parse and other string operations
     def to_str: () -> String
   end
+
+  def self.delete: (String uri, **untyped options) -> HTTP::Response
+
+  def self.get: (String uri, **untyped options) -> HTTP::Response
+
+  def self.headers: (Hash[String, String?]) -> HTTP::Client
+
+  def self.patch: (String uri, **untyped options) -> HTTP::Response
+
+  def self.post: (String uri, **untyped options) -> HTTP::Response
+
+  def self.put: (String uri, **untyped options) -> HTTP::Response
 end

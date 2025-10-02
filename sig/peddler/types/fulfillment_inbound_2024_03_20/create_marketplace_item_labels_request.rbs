@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,13 +5,15 @@ module Peddler
         def self.new: (label_type: String?, marketplace_id: String?, msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, ?height: Float?, ?locale_code: String?, ?page_type: String?, ?width: Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
                     | (String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?, Float?, String?, String?, Float?) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::CreateMarketplaceItemLabelsRequest
 
+        attr_reader height: Float?
         attr_reader label_type: String?
+
+        attr_reader locale_code: String?
         attr_reader marketplace_id: String?
         attr_reader msku_quantities: Array[Peddler::Types::FulfillmentInbound20240320::MskuQuantity]?
-        attr_reader height: Float?
-        attr_reader locale_code: String?
+
         attr_reader page_type: String?
         attr_reader width: Float?
 

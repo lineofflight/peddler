@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module MessagingV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?attachments: Array[Peddler::Types::MessagingV1::Attachment]?, ?coverage_end_date: String?, ?coverage_start_date: String?) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
                     | (Array[Peddler::Types::MessagingV1::Attachment]?, String?, String?) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::MessagingV1::CreateWarrantyRequest
 
         attr_reader attachments: Array[Peddler::Types::MessagingV1::Attachment]?
         attr_reader coverage_end_date: String?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CatalogItems20201201
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (identifier: String?, identifier_type: String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
                     | (String?, String?) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItems20201201::ItemIdentifier
 
         attr_reader identifier: String?
         attr_reader identifier_type: String?

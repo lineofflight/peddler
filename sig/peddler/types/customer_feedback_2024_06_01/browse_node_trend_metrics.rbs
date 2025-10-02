@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
                     | (Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
 
         attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?
 

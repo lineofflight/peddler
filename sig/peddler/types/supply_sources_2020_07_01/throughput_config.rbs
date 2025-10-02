@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SupplySources20200701
@@ -7,10 +5,10 @@ module Peddler
         def self.new: (throughput_unit: String?, ?throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
                     | (String?, Peddler::Types::SupplySources20200701::ThroughputCap?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SupplySources20200701::ThroughputConfig
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ThroughputConfig
 
-        attr_reader throughput_unit: String?
         attr_reader throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap?
+        attr_reader throughput_unit: String?
 
         def to_h: () -> { throughput_unit: String?, throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap? }
       end

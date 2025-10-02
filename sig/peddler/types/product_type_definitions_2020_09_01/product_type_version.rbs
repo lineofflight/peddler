@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductTypeDefinitions20200901
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (latest: bool?, version: String?, ?release_candidate: bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
                     | (bool?, String?, bool?) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductTypeDefinitions20200901::ProductTypeVersion
 
         attr_reader latest: bool?
-        attr_reader version: String?
+
         attr_reader release_candidate: bool?
+        attr_reader version: String?
 
         def latest?: () -> bool
         def release_candidate?: () -> bool

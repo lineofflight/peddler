@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Feeds20210630
@@ -7,15 +5,17 @@ module Peddler
         def self.new: (created_time: String?, feed_id: String?, feed_type: String?, processing_status: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: String?, ?processing_start_time: String?, ?result_feed_document_id: String?) -> Peddler::Types::Feeds20210630::Feed
                     | (String?, String?, String?, String?, Array[String]?, String?, String?, String?) -> Peddler::Types::Feeds20210630::Feed
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Feeds20210630::Feed
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::Feed
 
         attr_reader created_time: String?
         attr_reader feed_id: String?
         attr_reader feed_type: String?
-        attr_reader processing_status: String?
+
         attr_reader marketplace_ids: Array[String]?
         attr_reader processing_end_time: String?
         attr_reader processing_start_time: String?
+        attr_reader processing_status: String?
+
         attr_reader result_feed_document_id: String?
 
         def to_h: () -> { created_time: String?, feed_id: String?, feed_type: String?, processing_status: String?, marketplace_ids: Array[String]?, processing_end_time: String?, processing_start_time: String?, result_feed_document_id: String? }

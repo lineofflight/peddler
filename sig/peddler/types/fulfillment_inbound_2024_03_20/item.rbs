@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,16 +5,18 @@ module Peddler
         def self.new: (asin: String?, fnsku: String?, label_owner: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?, ?expiration: String?, ?manufacturing_lot_code: String?) -> Peddler::Types::FulfillmentInbound20240320::Item
                     | (String?, String?, String?, String?, Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, Integer?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::Item
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::Item
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::Item
 
         attr_reader asin: String?
+
+        attr_reader expiration: String?
         attr_reader fnsku: String?
         attr_reader label_owner: String?
+
+        attr_reader manufacturing_lot_code: String?
         attr_reader msku: String?
         attr_reader prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?
         attr_reader quantity: Integer?
-        attr_reader expiration: String?
-        attr_reader manufacturing_lot_code: String?
 
         def to_h: () -> { asin: String?, fnsku: String?, label_owner: String?, msku: String?, prep_instructions: Array[Peddler::Types::FulfillmentInbound20240320::PrepInstruction]?, quantity: Integer?, expiration: String?, manufacturing_lot_code: String? }
       end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInboundV0
@@ -7,15 +5,17 @@ module Peddler
         def self.new: (quantity_shipped: Integer?, seller_sku: String?, ?fulfillment_network_sku: String?, ?prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?, ?quantity_in_case: Integer?, ?quantity_received: Integer?, ?release_date: String?, ?shipment_id: String?) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
                     | (Integer?, String?, String?, Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?, Integer?, Integer?, String?, String?) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInboundV0::InboundShipmentItem
 
-        attr_reader quantity_shipped: Integer?
-        attr_reader seller_sku: String?
         attr_reader fulfillment_network_sku: String?
         attr_reader prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?
         attr_reader quantity_in_case: Integer?
         attr_reader quantity_received: Integer?
+        attr_reader quantity_shipped: Integer?
+
         attr_reader release_date: String?
+        attr_reader seller_sku: String?
+
         attr_reader shipment_id: String?
 
         def to_h: () -> { quantity_shipped: Integer?, seller_sku: String?, fulfillment_network_sku: String?, prep_details_list: Array[Peddler::Types::FulfillmentInboundV0::PrepDetails]?, quantity_in_case: Integer?, quantity_received: Integer?, release_date: String?, shipment_id: String? }

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentShipments20240911
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?error_details: Peddler::Types::ExternalFulfillmentShipments20240911::Error?, ?file_data: Peddler::Types::ExternalFulfillmentShipments20240911::DocumentV2?, ?package_id: String?, ?ship_label_metadata: Peddler::Types::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, ?status: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageShipLabel
                     | (Peddler::Types::ExternalFulfillmentShipments20240911::Error?, Peddler::Types::ExternalFulfillmentShipments20240911::DocumentV2?, String?, Peddler::Types::ExternalFulfillmentShipments20240911::ShipLabelMetadata?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageShipLabel
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageShipLabel
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::PackageShipLabel
 
         attr_reader error_details: Peddler::Types::ExternalFulfillmentShipments20240911::Error?
         attr_reader file_data: Peddler::Types::ExternalFulfillmentShipments20240911::DocumentV2?

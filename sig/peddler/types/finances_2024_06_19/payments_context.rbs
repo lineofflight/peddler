@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Finances20240619
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?) -> Peddler::Types::Finances20240619::PaymentsContext
                     | (String?, String?, String?, String?) -> Peddler::Types::Finances20240619::PaymentsContext
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Finances20240619::PaymentsContext
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::PaymentsContext
 
         attr_reader payment_date: String?
         attr_reader payment_method: String?

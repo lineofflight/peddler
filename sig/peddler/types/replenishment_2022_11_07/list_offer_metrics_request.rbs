@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Replenishment20221107
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, ?sort: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
                     | (Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?, Peddler::Types::Replenishment20221107::ListOfferMetricsRequestSort?) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::ListOfferMetricsRequest
 
         attr_reader filters: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestFilters?
         attr_reader pagination: Peddler::Types::Replenishment20221107::ListOfferMetricsRequestPagination?

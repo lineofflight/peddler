@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorInvoicesV1
@@ -7,11 +5,13 @@ module Peddler
         def self.new: (amount: Integer?, unit_of_measure: String?, ?total_weight: Peddler::Types::VendorInvoicesV1::TotalWeight?, ?unit_size: Integer?) -> Peddler::Types::VendorInvoicesV1::ItemQuantity
                     | (Integer?, String?, Peddler::Types::VendorInvoicesV1::TotalWeight?, Integer?) -> Peddler::Types::VendorInvoicesV1::ItemQuantity
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorInvoicesV1::ItemQuantity
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorInvoicesV1::ItemQuantity
 
         attr_reader amount: Integer?
-        attr_reader unit_of_measure: String?
+
         attr_reader total_weight: Peddler::Types::VendorInvoicesV1::TotalWeight?
+        attr_reader unit_of_measure: String?
+
         attr_reader unit_size: Integer?
 
         def to_h: () -> { amount: Integer?, unit_of_measure: String?, total_weight: Peddler::Types::VendorInvoicesV1::TotalWeight?, unit_size: Integer? }

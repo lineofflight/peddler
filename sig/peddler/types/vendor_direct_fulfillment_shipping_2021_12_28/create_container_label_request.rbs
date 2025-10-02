@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (carrier_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, vendor_container_id: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
                     | (String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
 
         attr_reader carrier_id: String?
         attr_reader packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?

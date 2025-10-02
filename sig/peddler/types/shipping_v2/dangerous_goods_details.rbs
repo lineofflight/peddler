@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?packing_group: String?, ?packing_instruction: String?, ?transportation_regulatory_class: String?, ?united_nations_regulatory_id: String?) -> Peddler::Types::ShippingV2::DangerousGoodsDetails
                     | (String?, String?, String?, String?) -> Peddler::Types::ShippingV2::DangerousGoodsDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::DangerousGoodsDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::DangerousGoodsDetails
 
         attr_reader packing_group: String?
         attr_reader packing_instruction: String?

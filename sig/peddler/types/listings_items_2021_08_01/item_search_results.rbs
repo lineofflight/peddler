@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ListingsItems20210801
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (items: Array[Peddler::Types::ListingsItems20210801::Item]?, number_of_results: Integer?, ?pagination: Peddler::Types::ListingsItems20210801::Pagination?) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
                     | (Array[Peddler::Types::ListingsItems20210801::Item]?, Integer?, Peddler::Types::ListingsItems20210801::Pagination?) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ListingsItems20210801::ItemSearchResults
 
         attr_reader items: Array[Peddler::Types::ListingsItems20210801::Item]?
         attr_reader number_of_results: Integer?

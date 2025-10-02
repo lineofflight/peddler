@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?unmanifested_carrier_information_list: Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
                     | (Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse
 
         attr_reader unmanifested_carrier_information_list: Array[Peddler::Types::ShippingV2::UnmanifestedCarrierInformation]?
 

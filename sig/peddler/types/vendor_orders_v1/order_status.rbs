@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,15 +5,16 @@ module Peddler
         def self.new: (item_status: Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?, purchase_order_date: String?, purchase_order_number: String?, purchase_order_status: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ?last_updated_date: String?) -> Peddler::Types::VendorOrdersV1::OrderStatus
                     | (Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?, String?, String?, String?, Peddler::Types::VendorOrdersV1::PartyIdentification?, Peddler::Types::VendorOrdersV1::PartyIdentification?, String?) -> Peddler::Types::VendorOrdersV1::OrderStatus
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::OrderStatus
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::OrderStatus
 
         attr_reader item_status: Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?
+
+        attr_reader last_updated_date: String?
         attr_reader purchase_order_date: String?
         attr_reader purchase_order_number: String?
         attr_reader purchase_order_status: String?
         attr_reader selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
         attr_reader ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?
-        attr_reader last_updated_date: String?
 
         def to_h: () -> { item_status: Array[Peddler::Types::VendorOrdersV1::OrderItemStatus]?, purchase_order_date: String?, purchase_order_number: String?, purchase_order_status: String?, selling_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorOrdersV1::PartyIdentification?, last_updated_date: String? }
       end

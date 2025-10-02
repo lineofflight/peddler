@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AmazonWarehousingAndDistribution20240509
@@ -7,11 +5,11 @@ module Peddler
         def self.new: (weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?, ?dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
                     | (Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
 
-        attr_reader weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?
         attr_reader dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?
         attr_reader volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?
+        attr_reader weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?
 
         def to_h: () -> { weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?, dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume? }
       end

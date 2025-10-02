@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, ?shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, ?total_carton_count: Integer?, ?total_pallet_non_stackable: Integer?, ?total_pallet_stackable: Integer?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
                     | (Peddler::Types::VendorShipmentsV1::Volume?, Peddler::Types::VendorShipmentsV1::Weight?, Integer?, Integer?, Integer?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
 
         attr_reader shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?
         attr_reader shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?

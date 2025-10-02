@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (content: String?, ?package_identifier: String?, ?ship_method: String?, ?ship_method_name: String?, ?tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
 
         attr_reader content: String?
         attr_reader package_identifier: String?

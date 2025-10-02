@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ProductPricingV0
@@ -7,17 +5,19 @@ module Peddler
         def self.new: (listing_price: Peddler::Types::Money?, condition: String?, fulfillment_channel: String?, ?landed_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?, ?shipping: Peddler::Types::Money?, ?offer_type: String?, ?quantity_discount_type: String?, ?quantity_tier: Integer?) -> Peddler::Types::ProductPricingV0::LowestPriceType
                     | (Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, Peddler::Types::Money?, String?, String?, Integer?) -> Peddler::Types::ProductPricingV0::LowestPriceType
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ProductPricingV0::LowestPriceType
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::LowestPriceType
 
-        attr_reader listing_price: Peddler::Types::Money?
         attr_reader condition: String?
         attr_reader fulfillment_channel: String?
         attr_reader landed_price: Peddler::Types::Money?
-        attr_reader points: Peddler::Types::ProductPricingV0::Points?
-        attr_reader shipping: Peddler::Types::Money?
+        attr_reader listing_price: Peddler::Types::Money?
+
         attr_reader offer_type: String?
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
+
         attr_reader quantity_discount_type: String?
         attr_reader quantity_tier: Integer?
+        attr_reader shipping: Peddler::Types::Money?
 
         def to_h: () -> { listing_price: Peddler::Types::Money?, condition: String?, fulfillment_channel: String?, landed_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, shipping: Peddler::Types::Money?, offer_type: String?, quantity_discount_type: String?, quantity_tier: Integer? }
       end

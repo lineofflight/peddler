@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module Replenishment20221107
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
                     | (Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse
 
         attr_reader metrics: Array[Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponseMetric]?
 

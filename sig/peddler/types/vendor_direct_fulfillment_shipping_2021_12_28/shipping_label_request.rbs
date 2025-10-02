@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,12 +5,12 @@ module Peddler
         def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
                     | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
 
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
         attr_reader purchase_order_number: String?
         attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
         attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
-        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
 
         def to_h: () -> { purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
       end

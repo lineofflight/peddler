@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorOrdersV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?import_containers: String?, ?international_commercial_terms: String?, ?method_of_payment: String?, ?port_of_delivery: String?, ?shipping_instructions: String?) -> Peddler::Types::VendorOrdersV1::ImportDetails
                     | (String?, String?, String?, String?, String?) -> Peddler::Types::VendorOrdersV1::ImportDetails
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorOrdersV1::ImportDetails
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorOrdersV1::ImportDetails
 
         attr_reader import_containers: String?
         attr_reader international_commercial_terms: String?

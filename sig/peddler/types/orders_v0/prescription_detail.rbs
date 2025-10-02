@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (clinic_id: String?, expiration_date: String?, prescription_id: String?, refills_remaining: Integer?, total_refills_authorized: Integer?, usage_instructions: String?, written_quantity: Integer?) -> Peddler::Types::OrdersV0::PrescriptionDetail
                     | (String?, String?, String?, Integer?, Integer?, String?, Integer?) -> Peddler::Types::OrdersV0::PrescriptionDetail
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::PrescriptionDetail
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::PrescriptionDetail
 
         attr_reader clinic_id: String?
         attr_reader expiration_date: String?

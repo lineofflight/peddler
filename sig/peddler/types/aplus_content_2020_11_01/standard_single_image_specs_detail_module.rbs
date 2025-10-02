@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module AplusContent20201101
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?, ?description_headline: Peddler::Types::AplusContent20201101::TextComponent?, ?headline: Peddler::Types::AplusContent20201101::TextComponent?, ?image: Peddler::Types::AplusContent20201101::ImageComponent?, ?specification_headline: Peddler::Types::AplusContent20201101::TextComponent?, ?specification_list_block: Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, ?specification_text_block: Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
                     | (Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::ImageComponent?, Peddler::Types::AplusContent20201101::TextComponent?, Peddler::Types::AplusContent20201101::StandardHeaderTextListBlock?, Peddler::Types::AplusContent20201101::StandardTextBlock?) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AplusContent20201101::StandardSingleImageSpecsDetailModule
 
         attr_reader description_block1: Peddler::Types::AplusContent20201101::StandardTextBlock?
         attr_reader description_block2: Peddler::Types::AplusContent20201101::StandardTextBlock?

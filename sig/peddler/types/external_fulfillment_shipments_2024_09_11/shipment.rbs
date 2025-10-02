@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ExternalFulfillmentShipments20240911
@@ -7,23 +5,27 @@ module Peddler
         def self.new: (charges: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?, creation_date_time: String?, id: String?, last_updated_date_time: String?, line_items: Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, location_id: String?, marketplace_attributes: Peddler::Types::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, shipment_info: Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo?, shipment_requirements: Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentRequirements?, shipping_info: Peddler::Types::ExternalFulfillmentShipments20240911::ShippingInfo?, status: String?, ?earliest_pack_date_time: String?, ?invoice_info: Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo?, ?packages: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Package]?, ?party_info_list: Array[Peddler::Types::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, ?sub_status: String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::Shipment
                     | (Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?, String?, String?, String?, Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, String?, Peddler::Types::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo?, Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentRequirements?, Peddler::Types::ExternalFulfillmentShipments20240911::ShippingInfo?, String?, String?, Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo?, Array[Peddler::Types::ExternalFulfillmentShipments20240911::Package]?, Array[Peddler::Types::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, String?) -> Peddler::Types::ExternalFulfillmentShipments20240911::Shipment
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::Shipment
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentShipments20240911::Shipment
 
         attr_reader charges: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?
         attr_reader creation_date_time: String?
+
+        attr_reader earliest_pack_date_time: String?
         attr_reader id: String?
+
+        attr_reader invoice_info: Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo?
         attr_reader last_updated_date_time: String?
         attr_reader line_items: Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentLineItem]?
         attr_reader location_id: String?
         attr_reader marketplace_attributes: Peddler::Types::ExternalFulfillmentShipments20240911::MarketplaceAttributes?
+
+        attr_reader packages: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Package]?
+        attr_reader party_info_list: Array[Peddler::Types::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?
         attr_reader shipment_info: Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo?
         attr_reader shipment_requirements: Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentRequirements?
         attr_reader shipping_info: Peddler::Types::ExternalFulfillmentShipments20240911::ShippingInfo?
         attr_reader status: String?
-        attr_reader earliest_pack_date_time: String?
-        attr_reader invoice_info: Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo?
-        attr_reader packages: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Package]?
-        attr_reader party_info_list: Array[Peddler::Types::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?
+
         attr_reader sub_status: String?
 
         def to_h: () -> { charges: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Charge]?, creation_date_time: String?, id: String?, last_updated_date_time: String?, line_items: Array[Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentLineItem]?, location_id: String?, marketplace_attributes: Peddler::Types::ExternalFulfillmentShipments20240911::MarketplaceAttributes?, shipment_info: Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentInfo?, shipment_requirements: Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentRequirements?, shipping_info: Peddler::Types::ExternalFulfillmentShipments20240911::ShippingInfo?, status: String?, earliest_pack_date_time: String?, invoice_info: Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceInfo?, packages: Array[Peddler::Types::ExternalFulfillmentShipments20240911::Package]?, party_info_list: Array[Peddler::Types::ExternalFulfillmentShipments20240911::PartyIdentificationInfo]?, sub_status: String? }

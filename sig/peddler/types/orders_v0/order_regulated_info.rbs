@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (amazon_order_id: String?, regulated_information: Peddler::Types::OrdersV0::RegulatedInformation?, regulated_order_verification_status: Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus?, requires_dosage_label: bool?) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
                     | (String?, Peddler::Types::OrdersV0::RegulatedInformation?, Peddler::Types::OrdersV0::RegulatedOrderVerificationStatus?, bool?) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::OrderRegulatedInfo
 
         attr_reader amazon_order_id: String?
         attr_reader regulated_information: Peddler::Types::OrdersV0::RegulatedInformation?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module OrdersV0
@@ -7,14 +5,14 @@ module Peddler
         def self.new: (order_item_id: String?, ?buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, ?gift_message_text: String?, ?gift_wrap_level: String?, ?gift_wrap_price: Peddler::Types::Money?, ?gift_wrap_tax: Peddler::Types::Money?) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
                     | (String?, Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::OrdersV0::OrderItemBuyerInfo
 
-        attr_reader order_item_id: String?
         attr_reader buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?
         attr_reader gift_message_text: String?
         attr_reader gift_wrap_level: String?
         attr_reader gift_wrap_price: Peddler::Types::Money?
         attr_reader gift_wrap_tax: Peddler::Types::Money?
+        attr_reader order_item_id: String?
 
         def to_h: () -> { order_item_id: String?, buyer_customized_info: Peddler::Types::OrdersV0::BuyerCustomizedInfoDetail?, gift_message_text: String?, gift_wrap_level: String?, gift_wrap_price: Peddler::Types::Money?, gift_wrap_tax: Peddler::Types::Money? }
       end

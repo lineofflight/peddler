@@ -1,15 +1,15 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module APIs
     class Invoices20240619 < API
+      def create_invoices_export: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
+
+      def get_invoice: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def get_invoices: (String, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?rate_limit: Float) -> Peddler::Response
       def get_invoices_attributes: (String, ?rate_limit: Float) -> Peddler::Response
       def get_invoices_document: (String, ?rate_limit: Float) -> Peddler::Response
-      def create_invoices_export: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
-      def get_invoices_exports: (String, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?rate_limit: Float) -> Peddler::Response
+
       def get_invoices_export: (String, ?rate_limit: Float) -> Peddler::Response
-      def get_invoices: (String, ?transaction_identifier_name: String?, ?page_size: Integer?, ?date_end: String?, ?transaction_type: String?, ?transaction_identifier_id: String?, ?date_start: String?, ?series: String?, ?next_token: String?, ?sort_order: String?, ?invoice_type: String?, ?statuses: Array[String]?, ?external_invoice_id: String?, ?sort_by: String?, ?rate_limit: Float) -> Peddler::Response
-      def get_invoice: (String, String, ?rate_limit: Float) -> Peddler::Response
+      def get_invoices_exports: (String, ?date_start: String?, ?next_token: String?, ?page_size: Integer?, ?date_end: String?, ?status: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end
 end

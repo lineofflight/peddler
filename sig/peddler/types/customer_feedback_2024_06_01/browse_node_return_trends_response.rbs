@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CustomerFeedback20240601
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, return_trends: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
                     | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
 
         attr_reader browse_node_id: String?
         attr_reader country_code: String?

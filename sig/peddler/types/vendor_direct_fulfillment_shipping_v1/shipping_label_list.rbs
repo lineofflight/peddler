@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShippingV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, ?shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList
                     | (Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabelList
 
         attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShippingV1::Pagination?
         attr_reader shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShippingV1::ShippingLabel]?

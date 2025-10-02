@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module CatalogItems20201201
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (marketplace_id: String?, ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]?) -> Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace
                     | (String?, Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]?) -> Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItems20201201::ItemSalesRanksByMarketplace
 
         attr_reader marketplace_id: String?
         attr_reader ranks: Array[Peddler::Types::CatalogItems20201201::ItemSalesRank]?

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module FulfillmentInbound20240320
@@ -7,11 +5,12 @@ module Peddler
         def self.new: (download_type: String?, uri: String?, ?expiration: String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
                     | (String?, String?, String?) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentInbound20240320::DocumentDownload
 
         attr_reader download_type: String?
-        attr_reader uri: String?
+
         attr_reader expiration: String?
+        attr_reader uri: String?
 
         def to_h: () -> { download_type: String?, uri: String?, expiration: String? }
       end

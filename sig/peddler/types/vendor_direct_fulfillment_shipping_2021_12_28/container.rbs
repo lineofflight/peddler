@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorDirectFulfillmentShipping20211228
@@ -7,20 +5,23 @@ module Peddler
         def self.new: (container_identifier: String?, container_type: String?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?, weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, ?carrier: String?, ?container_sequence_number: Integer?, ?dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, ?manifest_date: String?, ?manifest_id: String?, ?scac_code: String?, ?ship_method: String?, ?tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
                     | (String?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
 
-        attr_reader container_identifier: String?
-        attr_reader container_type: String?
-        attr_reader packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?
-        attr_reader weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?
         attr_reader carrier: String?
+        attr_reader container_identifier: String?
+
         attr_reader container_sequence_number: Integer?
+        attr_reader container_type: String?
+
         attr_reader dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?
         attr_reader manifest_date: String?
         attr_reader manifest_id: String?
+        attr_reader packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?
+
         attr_reader scac_code: String?
         attr_reader ship_method: String?
         attr_reader tracking_number: String?
+        attr_reader weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?
 
         def to_h: () -> { container_identifier: String?, container_type: String?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?, weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, manifest_date: String?, manifest_id: String?, scac_code: String?, ship_method: String?, tracking_number: String? }
       end

@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module VendorShipmentsV1
@@ -7,11 +5,11 @@ module Peddler
         def self.new: (item_reference: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
                     | (String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerItem
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerItem
 
+        attr_reader item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?
         attr_reader item_reference: String?
         attr_reader shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
-        attr_reader item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?
 
         def to_h: () -> { item_reference: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, item_details: Peddler::Types::VendorShipmentsV1::ItemDetails? }
       end

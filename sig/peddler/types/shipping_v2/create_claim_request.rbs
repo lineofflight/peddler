@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module ShippingV2
@@ -7,14 +5,16 @@ module Peddler
         def self.new: (claim_reason: String?, settlement_type: String?, tracking_id: String?, ?declared_value: Peddler::Types::Money?, ?replacement_package_sent: bool?, ?proofs: Array[String]?) -> Peddler::Types::ShippingV2::CreateClaimRequest
                     | (String?, String?, String?, Peddler::Types::Money?, bool?, Array[String]?) -> Peddler::Types::ShippingV2::CreateClaimRequest
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::ShippingV2::CreateClaimRequest
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV2::CreateClaimRequest
 
         attr_reader claim_reason: String?
+
+        attr_reader declared_value: Peddler::Types::Money?
+
+        attr_reader proofs: Array[String]?
+        attr_reader replacement_package_sent: bool?
         attr_reader settlement_type: String?
         attr_reader tracking_id: String?
-        attr_reader declared_value: Peddler::Types::Money?
-        attr_reader replacement_package_sent: bool?
-        attr_reader proofs: Array[String]?
 
         def replacement_package_sent?: () -> bool
         def to_h: () -> { claim_reason: String?, settlement_type: String?, tracking_id: String?, declared_value: Peddler::Types::Money?, replacement_package_sent: bool?, proofs: Array[String]? }

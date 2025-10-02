@@ -1,5 +1,3 @@
-# This file is generated. Do not edit.
-
 module Peddler
   module Types
     module SellersV1
@@ -7,7 +5,7 @@ module Peddler
         def self.new: (marketplace: Peddler::Types::SellersV1::Marketplace?, participation: Peddler::Types::SellersV1::Participation?, store_name: String?) -> Peddler::Types::SellersV1::MarketplaceParticipation
                     | (Peddler::Types::SellersV1::Marketplace?, Peddler::Types::SellersV1::Participation?, String?) -> Peddler::Types::SellersV1::MarketplaceParticipation
 
-        def self.parse: (?(Hash[String | Symbol, untyped]), **untyped) -> Peddler::Types::SellersV1::MarketplaceParticipation
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SellersV1::MarketplaceParticipation
 
         attr_reader marketplace: Peddler::Types::SellersV1::Marketplace?
         attr_reader participation: Peddler::Types::SellersV1::Participation?
