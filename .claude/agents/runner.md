@@ -18,8 +18,8 @@ Available rake tasks:
 
 Workflow:
 1. Start command in background
-2. Poll silently until complete
-3. Report results
+2. Poll and report progress every 60 seconds with: "Still running: <command> (Xm)"
+3. Report final results when complete
 
 Output format:
 ```
@@ -34,8 +34,3 @@ Error handling:
 - Include full error output on failure
 - Kill and report if timeout (>10 minutes)
 - Report immediately if cannot start
-
-Important:
-- Run commands exactly as provided
-- No interim status messages
-- Report all output

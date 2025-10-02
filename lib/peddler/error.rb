@@ -44,7 +44,10 @@ module Peddler
       def parse_xml_error(response)
         require "nokogiri"
         doc = Nokogiri::XML(response)
-        Hash[doc.root.elements.collect { |e| [e.name, e.text] }]
+        root = doc.root
+        return {} unless root
+
+        Hash[root.element_children.collect { |e| [e.name, e.text] }]
       rescue LoadError, NoMethodError
         {}
       end
