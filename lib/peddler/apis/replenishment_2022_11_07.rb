@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def replenishment_2022_11_07
-      typed? ? APIs::Replenishment20221107.typed : APIs::Replenishment20221107
+      APIs::Replenishment20221107
     end
   end
 
@@ -23,16 +23,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/replenishment-api-model/replenishment-2022-11-07.json
     class Replenishment20221107 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/replenishment_2022_11_07"
-          self
-        end
-      end
-
       # Returns aggregated replenishment program metrics for a selling partner.
       #
       # @note This operation can make a static sandbox call.
@@ -41,7 +31,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_selling_partner_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/sellingPartners/metrics/search"
-        parser = Peddler::Types::Replenishment20221107::GetSellingPartnerMetricsResponse if typed?
+        parser = -> {
+          require "peddler/types/replenishment_2022_11_07"
+          Types::Replenishment20221107::GetSellingPartnerMetricsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -53,7 +46,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_offer_metrics(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/metrics/search"
-        parser = Peddler::Types::Replenishment20221107::ListOfferMetricsResponse if typed?
+        parser = -> {
+          require "peddler/types/replenishment_2022_11_07"
+          Types::Replenishment20221107::ListOfferMetricsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -65,7 +61,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def list_offers(body: nil, rate_limit: 1.0)
         path = "/replenishment/2022-11-07/offers/search"
-        parser = Peddler::Types::Replenishment20221107::ListOffersResponse if typed?
+        parser = -> {
+          require "peddler/types/replenishment_2022_11_07"
+          Types::Replenishment20221107::ListOffersResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

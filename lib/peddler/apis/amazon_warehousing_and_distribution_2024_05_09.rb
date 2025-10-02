@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def amazon_warehousing_and_distribution_2024_05_09
-      typed? ? APIs::AmazonWarehousingAndDistribution20240509.typed : APIs::AmazonWarehousingAndDistribution20240509
+      APIs::AmazonWarehousingAndDistribution20240509
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/amazon-warehousing-and-distribution-model/awd_2024-05-09.json
     class AmazonWarehousingAndDistribution20240509 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/amazon_warehousing_and_distribution_2024_05_09"
-          self
-        end
-      end
-
       # Creates a draft AWD inbound order with a list of packages for inbound shipment. The operation creates one
       # shipment per order.
       #
@@ -38,7 +28,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_inbound(body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundOrders"
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -50,7 +43,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_inbound(order_id, rate_limit: 2.0)
         path = "/awd/2024-05-09/inboundOrders/#{percent_encode(order_id)}"
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::InboundOrder
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -102,7 +98,10 @@ module Peddler
         params = {
           "skuQuantities" => sku_quantities,
         }.compact
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::InboundShipment
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -122,7 +121,10 @@ module Peddler
           "pageType" => page_type,
           "formatType" => format_type,
         }.compact
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -147,7 +149,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def check_inbound_eligibility(body, rate_limit: 1.0)
         path = "/awd/2024-05-09/inboundEligibility"
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -183,7 +188,10 @@ module Peddler
           "maxResults" => max_results,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -211,7 +219,10 @@ module Peddler
           "nextToken" => next_token,
           "maxResults" => max_results,
         }.compact
-        parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryListing if typed?
+        parser = -> {
+          require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
+          Types::AmazonWarehousingAndDistribution20240509::InventoryListing
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def listings_items_2021_08_01
-      typed? ? APIs::ListingsItems20210801.typed : APIs::ListingsItems20210801
+      APIs::ListingsItems20210801
     end
   end
 
@@ -23,16 +23,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/listings-items-api-model/listingsItems_2021-08-01.json
     class ListingsItems20210801 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/listings_items_2021_08_01"
-          self
-        end
-      end
-
       # Delete a listings item for a selling partner.
       #
       # @note This operation can make a static sandbox call.
@@ -50,7 +40,10 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "issueLocale" => issue_locale,
         }.compact
-        parser = Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse if typed?
+        parser = -> {
+          require "peddler/types/listings_items_2021_08_01"
+          Types::ListingsItems20210801::ListingsItemSubmissionResponse
+        }
         meter(rate_limit).delete(path, params:, parser:)
       end
 
@@ -75,7 +68,10 @@ module Peddler
           "issueLocale" => issue_locale,
           "includedData" => stringify_array(included_data),
         }.compact
-        parser = Peddler::Types::ListingsItems20210801::Item if typed?
+        parser = -> {
+          require "peddler/types/listings_items_2021_08_01"
+          Types::ListingsItems20210801::Item
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -104,7 +100,10 @@ module Peddler
           "mode" => mode,
           "issueLocale" => issue_locale,
         }.compact
-        parser = Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse if typed?
+        parser = -> {
+          require "peddler/types/listings_items_2021_08_01"
+          Types::ListingsItems20210801::ListingsItemSubmissionResponse
+        }
         meter(rate_limit).patch(path, body:, params:, parser:)
       end
 
@@ -132,7 +131,10 @@ module Peddler
           "mode" => mode,
           "issueLocale" => issue_locale,
         }.compact
-        parser = Peddler::Types::ListingsItems20210801::ListingsItemSubmissionResponse if typed?
+        parser = -> {
+          require "peddler/types/listings_items_2021_08_01"
+          Types::ListingsItems20210801::ListingsItemSubmissionResponse
+        }
         meter(rate_limit).put(path, body:, params:, parser:)
       end
 
@@ -207,7 +209,10 @@ module Peddler
           "pageSize" => page_size,
           "pageToken" => page_token,
         }.compact
-        parser = Peddler::Types::ListingsItems20210801::ItemSearchResults if typed?
+        parser = -> {
+          require "peddler/types/listings_items_2021_08_01"
+          Types::ListingsItems20210801::ItemSearchResults
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

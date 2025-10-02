@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_inventory_v1
-      typed? ? APIs::VendorDirectFulfillmentInventoryV1.typed : APIs::VendorDirectFulfillmentInventoryV1
+      APIs::VendorDirectFulfillmentInventoryV1
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json
     class VendorDirectFulfillmentInventoryV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_direct_fulfillment_inventory_v1"
-          self
-        end
-      end
-
       # Submits inventory updates for the specified warehouse for either a partial or full feed of inventory items.
       #
       # @note This operation can make a static sandbox call.
@@ -38,7 +28,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_inventory_update(body, warehouse_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{percent_encode(warehouse_id)}/items"
-        parser = Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_inventory_v1"
+          Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_orders_2021_12_28
-      typed? ? APIs::VendorDirectFulfillmentOrders20211228.typed : APIs::VendorDirectFulfillmentOrders20211228
+      APIs::VendorDirectFulfillmentOrders20211228
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrders_2021-12-28.json
     class VendorDirectFulfillmentOrders20211228 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_direct_fulfillment_orders_2021_12_28"
-          self
-        end
-      end
-
       # Returns a list of purchase orders created during the time frame that you specify. You define the time frame
       # using the createdAfter and createdBefore parameters. You must use both parameters. You can choose to get only
       # the purchase order numbers by setting the includeDetails parameter to false. In that case, the operation returns
@@ -65,7 +55,10 @@ module Peddler
           "nextToken" => next_token,
           "includeDetails" => include_details,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentOrders20211228::OrderList if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_orders_2021_12_28"
+          Types::VendorDirectFulfillmentOrders20211228::OrderList
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -78,7 +71,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/purchaseOrders/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentOrders20211228::Order if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_orders_2021_12_28"
+          Types::VendorDirectFulfillmentOrders20211228::Order
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -90,7 +86,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_acknowledgement(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
-        parser = Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_orders_2021_12_28"
+          Types::VendorDirectFulfillmentOrders20211228::TransactionId
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def application_integrations_2024_04_01
-      typed? ? APIs::ApplicationIntegrations20240401.typed : APIs::ApplicationIntegrations20240401
+      APIs::ApplicationIntegrations20240401
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/application-integrations-api-model/appIntegrations-2024-04-01.json
     class ApplicationIntegrations20240401 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/application_integrations_2024_04_01"
-          self
-        end
-      end
-
       # Create a notification for sellers in Seller Central.
       #
       # @note This operation can make a static sandbox call.
@@ -37,7 +27,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_notification(body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications"
-        parser = Peddler::Types::ApplicationIntegrations20240401::CreateNotificationResponse if typed?
+        parser = -> {
+          require "peddler/types/application_integrations_2024_04_01"
+          Types::ApplicationIntegrations20240401::CreateNotificationResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 

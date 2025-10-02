@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def seller_wallet_2024_03_01
-      typed? ? APIs::SellerWallet20240301.typed : APIs::SellerWallet20240301
+      APIs::SellerWallet20240301
     end
   end
 
@@ -23,16 +23,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/seller-wallet-api-model/sellerWallet_2024-03-01.json
     class SellerWallet20240301 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/seller_wallet_2024_03_01"
-          self
-        end
-      end
-
       # Get Seller Wallet accounts for a seller.
       #
       # @note This operation can make a static sandbox call.
@@ -43,7 +33,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::BankAccountListing if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::BankAccountListing
+        }
         get(path, params:, parser:)
       end
 
@@ -60,7 +53,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::BankAccount if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::BankAccount
+        }
         get(path, params:, parser:)
       end
 
@@ -77,7 +73,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::BalanceListing if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::BalanceListing
+        }
         get(path, params:, parser:)
       end
 
@@ -109,7 +108,10 @@ module Peddler
           "baseAmount" => base_amount,
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::TransferRatePreview if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::TransferRatePreview
+        }
         get(path, params:, parser:)
       end
 
@@ -129,7 +131,10 @@ module Peddler
           "nextPageToken" => next_page_token,
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::TransactionListing if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::TransactionListing
+        }
         get(path, params:, parser:)
       end
 
@@ -148,7 +153,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::CreateTransactionResponse if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::CreateTransactionResponse
+        }
         post(path, body:, params:, parser:)
       end
 
@@ -165,7 +173,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::Transaction if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::Transaction
+        }
         get(path, params:, parser:)
       end
 
@@ -185,7 +196,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "nextPageToken" => next_page_token,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::TransferScheduleListing if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::TransferScheduleListing
+        }
         get(path, params:, parser:)
       end
 
@@ -204,7 +218,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::TransferSchedule if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::TransferSchedule
+        }
         post(path, body:, params:, parser:)
       end
 
@@ -223,7 +240,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::TransferSchedule if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::TransferSchedule
+        }
         put(path, body:, params:, parser:)
       end
 
@@ -240,7 +260,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::TransferSchedule if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::TransferSchedule
+        }
         get(path, params:, parser:)
       end
 
@@ -258,7 +281,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::SellerWallet20240301::DeleteTransferSchedule if typed?
+        parser = -> {
+          require "peddler/types/seller_wallet_2024_03_01"
+          Types::SellerWallet20240301::DeleteTransferSchedule
+        }
         delete(path, params:, parser:)
       end
     end

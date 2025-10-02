@@ -19,7 +19,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       # The description should have **Note:** on its own line with a blank line before
@@ -33,7 +33,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       assert_includes(description, "# This is a test operation.\n      #\n      # **Examples:** Here are some examples")
@@ -46,7 +46,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       assert_includes(description, "# This is a test operation.\n      #\n      # **Note:** This is a note.\n      #\n      # **Examples:** Here are examples")
@@ -59,7 +59,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       assert_includes(description, "      # Line one.\n      #\n      # Line two.\n      #\n      # **Note:** This is a note")
@@ -72,7 +72,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       refute_includes(description, "Usage Plan")
@@ -88,7 +88,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       # Should have the main description
@@ -106,7 +106,7 @@ module Generator
         "parameters" => [],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       description = operation.description
 
       # **Note:** should be on its own line with blank line before
@@ -131,7 +131,7 @@ module Generator
         ],
       }
 
-      operation = Generator::Operation.new(@path, "get", operation_data)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0")
       method_def = operation.method_definition
 
       assert_includes(method_def, 'included_data: ["summaries"]')

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def invoices_2024_06_19
-      typed? ? APIs::Invoices20240619.typed : APIs::Invoices20240619
+      APIs::Invoices20240619
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/invoices-api-model/InvoicesApiModel_2024-06-19.json
     class Invoices20240619 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/invoices_2024_06_19"
-          self
-        end
-      end
-
       # Returns marketplace-dependent schemas and their respective set of possible values.
       #
       # @note This operation can make a static sandbox call.
@@ -40,7 +30,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::Invoices20240619::GetInvoicesAttributesResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::GetInvoicesAttributesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -53,7 +46,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoices_document(invoices_document_id, rate_limit: 0.0167)
         path = "/tax/invoices/2024-06-19/documents/#{percent_encode(invoices_document_id)}"
-        parser = Peddler::Types::Invoices20240619::GetInvoicesDocumentResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::GetInvoicesDocumentResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -65,7 +61,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_invoices_export(body, rate_limit: 0.167)
         path = "/tax/invoices/2024-06-19/exports"
-        parser = Peddler::Types::Invoices20240619::ExportInvoicesResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::ExportInvoicesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -98,7 +97,10 @@ module Peddler
           "dateEnd" => date_end,
           "status" => status,
         }.compact
-        parser = Peddler::Types::Invoices20240619::GetInvoicesExportsResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::GetInvoicesExportsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -110,7 +112,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoices_export(export_id, rate_limit: 2.0)
         path = "/tax/invoices/2024-06-19/exports/#{percent_encode(export_id)}"
-        parser = Peddler::Types::Invoices20240619::GetInvoicesExportResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::GetInvoicesExportResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -168,7 +173,10 @@ module Peddler
           "externalInvoiceId" => external_invoice_id,
           "sortBy" => sort_by,
         }.compact
-        parser = Peddler::Types::Invoices20240619::GetInvoicesResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::GetInvoicesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -186,7 +194,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::Invoices20240619::GetInvoiceResponse if typed?
+        parser = -> {
+          require "peddler/types/invoices_2024_06_19"
+          Types::Invoices20240619::GetInvoiceResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

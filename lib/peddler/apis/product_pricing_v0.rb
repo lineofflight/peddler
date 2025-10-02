@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def product_pricing_v0
-      typed? ? APIs::ProductPricingV0.typed : APIs::ProductPricingV0
+      APIs::ProductPricingV0
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-pricing-api-model/productPricingV0.json
     class ProductPricingV0 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/product_pricing_v0"
-          self
-        end
-      end
-
       # Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
       #
       # **Note:** The parameters associated with this operation may contain special characters that require URL encoding
@@ -63,7 +53,10 @@ module Peddler
           "ItemCondition" => item_condition,
           "OfferType" => offer_type,
         }.compact
-        parser = Peddler::Types::ProductPricingV0::GetPricingResponse if typed?
+        parser = -> {
+          require "peddler/types/product_pricing_v0"
+          Types::ProductPricingV0::GetPricingResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -97,7 +90,10 @@ module Peddler
           "ItemType" => item_type,
           "CustomerType" => customer_type,
         }.compact
-        parser = Peddler::Types::ProductPricingV0::GetPricingResponse if typed?
+        parser = -> {
+          require "peddler/types/product_pricing_v0"
+          Types::ProductPricingV0::GetPricingResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -124,7 +120,10 @@ module Peddler
           "ItemCondition" => item_condition,
           "CustomerType" => customer_type,
         }.compact
-        parser = Peddler::Types::ProductPricingV0::GetOffersResponse if typed?
+        parser = -> {
+          require "peddler/types/product_pricing_v0"
+          Types::ProductPricingV0::GetOffersResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -146,7 +145,10 @@ module Peddler
           "ItemCondition" => item_condition,
           "CustomerType" => customer_type,
         }.compact
-        parser = Peddler::Types::ProductPricingV0::GetOffersResponse if typed?
+        parser = -> {
+          require "peddler/types/product_pricing_v0"
+          Types::ProductPricingV0::GetOffersResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -159,7 +161,10 @@ module Peddler
       def get_item_offers_batch(get_item_offers_batch_request_body, rate_limit: 0.1)
         path = "/batches/products/pricing/v0/itemOffers"
         body = get_item_offers_batch_request_body
-        parser = Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse if typed?
+        parser = -> {
+          require "peddler/types/product_pricing_v0"
+          Types::ProductPricingV0::GetItemOffersBatchResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -173,7 +178,10 @@ module Peddler
       def get_listing_offers_batch(get_listing_offers_batch_request_body, rate_limit: 0.5)
         path = "/batches/products/pricing/v0/listingOffers"
         body = get_listing_offers_batch_request_body
-        parser = Peddler::Types::ProductPricingV0::GetListingOffersBatchResponse if typed?
+        parser = -> {
+          require "peddler/types/product_pricing_v0"
+          Types::ProductPricingV0::GetListingOffersBatchResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

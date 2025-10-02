@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_transaction_status_v1
-      typed? ? APIs::VendorTransactionStatusV1.typed : APIs::VendorTransactionStatusV1
+      APIs::VendorTransactionStatusV1
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-transaction-status-api-model/vendorTransactionStatus.json
     class VendorTransactionStatusV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_transaction_status_v1"
-          self
-        end
-      end
-
       # Returns the status of the transaction that you specify.
       #
       # @param transaction_id [String] The GUID provided by Amazon in the 'transactionId' field in response to the post
@@ -39,7 +29,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/vendor/transactions/v1/transactions/#{percent_encode(transaction_id)}"
-        parser = Peddler::Types::VendorTransactionStatusV1::GetTransactionResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_transaction_status_v1"
+          Types::VendorTransactionStatusV1::GetTransactionResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

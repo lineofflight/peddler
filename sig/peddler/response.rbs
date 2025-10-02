@@ -14,6 +14,7 @@ module Peddler
     def dig: (*untyped keys) -> untyped
     def failure?: () -> bool
     def headers: () -> Hash[String, String]
+    def parsable?: () -> bool
     def parse: () -> untyped
 
     def raise_for_status!: (?raise_on_server_errors: bool) -> void

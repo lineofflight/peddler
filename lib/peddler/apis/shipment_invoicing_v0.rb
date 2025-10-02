@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def shipment_invoicing_v0
-      typed? ? APIs::ShipmentInvoicingV0.typed : APIs::ShipmentInvoicingV0
+      APIs::ShipmentInvoicingV0
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipment-invoicing-api-model/shipmentInvoicingV0.json
     class ShipmentInvoicingV0 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/shipment_invoicing_v0"
-          self
-        end
-      end
-
       # Returns the shipment details required to issue an invoice for the specified shipment.
       #
       # @note This operation can make a static sandbox call.
@@ -40,7 +30,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment_details(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}"
-        parser = Peddler::Types::ShipmentInvoicingV0::GetShipmentDetailsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipment_invoicing_v0"
+          Types::ShipmentInvoicingV0::GetShipmentDetailsResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -53,7 +46,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoice(shipment_id, body, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice"
-        parser = Peddler::Types::ShipmentInvoicingV0::SubmitInvoiceResponse if typed?
+        parser = -> {
+          require "peddler/types/shipment_invoicing_v0"
+          Types::ShipmentInvoicingV0::SubmitInvoiceResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -65,7 +61,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_invoice_status(shipment_id, rate_limit: 1.133)
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice/status"
-        parser = Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse if typed?
+        parser = -> {
+          require "peddler/types/shipment_invoicing_v0"
+          Types::ShipmentInvoicingV0::GetInvoiceStatusResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

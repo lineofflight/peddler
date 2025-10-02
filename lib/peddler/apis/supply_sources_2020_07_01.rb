@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def supply_sources_2020_07_01
-      typed? ? APIs::SupplySources20200701.typed : APIs::SupplySources20200701
+      APIs::SupplySources20200701
     end
   end
 
@@ -18,16 +18,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/supply-sources-api-model/supplySources_2020-07-01.json
     class SupplySources20200701 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/supply_sources_2020_07_01"
-          self
-        end
-      end
-
       # The path to retrieve paginated supply sources.
       #
       # @note This operation can make a static sandbox call.
@@ -40,7 +30,10 @@ module Peddler
           "nextPageToken" => next_page_token,
           "pageSize" => page_size,
         }.compact
-        parser = Peddler::Types::SupplySources20200701::GetSupplySourcesResponse if typed?
+        parser = -> {
+          require "peddler/types/supply_sources_2020_07_01"
+          Types::SupplySources20200701::GetSupplySourcesResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -52,7 +45,10 @@ module Peddler
       def create_supply_source(payload)
         path = "/supplySources/2020-07-01/supplySources"
         body = payload
-        parser = Peddler::Types::SupplySources20200701::CreateSupplySourceResponse if typed?
+        parser = -> {
+          require "peddler/types/supply_sources_2020_07_01"
+          Types::SupplySources20200701::CreateSupplySourceResponse
+        }
         post(path, body:, parser:)
       end
 
@@ -63,7 +59,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_supply_source(supply_source_id)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-        parser = Peddler::Types::SupplySources20200701::SupplySource if typed?
+        parser = -> {
+          require "peddler/types/supply_sources_2020_07_01"
+          Types::SupplySources20200701::SupplySource
+        }
         get(path, parser:)
       end
 
@@ -76,7 +75,10 @@ module Peddler
       def update_supply_source(supply_source_id, payload: nil)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
         body = payload
-        parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
+        parser = -> {
+          require "peddler/types/supply_sources_2020_07_01"
+          Types::SupplySources20200701::ErrorList
+        }
         put(path, body:, parser:)
       end
 
@@ -87,7 +89,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def archive_supply_source(supply_source_id)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}"
-        parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
+        parser = -> {
+          require "peddler/types/supply_sources_2020_07_01"
+          Types::SupplySources20200701::ErrorList
+        }
         delete(path, parser:)
       end
 
@@ -100,7 +105,10 @@ module Peddler
       def update_supply_source_status(supply_source_id, payload: nil)
         path = "/supplySources/2020-07-01/supplySources/#{percent_encode(supply_source_id)}/status"
         body = payload
-        parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
+        parser = -> {
+          require "peddler/types/supply_sources_2020_07_01"
+          Types::SupplySources20200701::ErrorList
+        }
         put(path, body:, parser:)
       end
     end

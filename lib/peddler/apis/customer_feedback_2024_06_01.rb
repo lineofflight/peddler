@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def customer_feedback_2024_06_01
-      typed? ? APIs::CustomerFeedback20240601.typed : APIs::CustomerFeedback20240601
+      APIs::CustomerFeedback20240601
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/customer-feedback-api-model/customerFeedback_2024-06-01.json
     class CustomerFeedback20240601 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/customer_feedback_2024_06_01"
-          self
-        end
-      end
-
       # Retrieve an item's ten most positive and ten most negative review topics.
       #
       # @note This operation can make a static sandbox call.
@@ -44,7 +34,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "sortBy" => sort_by,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::ItemReviewTopicsResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::ItemReviewTopicsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -62,7 +55,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::BrowseNodeResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -81,7 +77,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "sortBy" => sort_by,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -98,7 +97,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::ItemReviewTrendsResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::ItemReviewTrendsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -115,7 +117,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -132,7 +137,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -149,7 +157,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse if typed?
+        parser = -> {
+          require "peddler/types/customer_feedback_2024_06_01"
+          Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+        }
         get(path, params:, parser:)
       end
     end

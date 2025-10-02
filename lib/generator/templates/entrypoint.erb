@@ -8,20 +8,6 @@
 
 module Peddler
   class << self
-    @typed = false
-
-    # Enable typed responses for all APIs
-    # @return [self]
-    def typed
-      @typed = true
-      self
-    end
-
-    # @return [Boolean]
-    def typed?
-      @typed
-    end
-
     <% apis_with_latest_version.each do |api_name, api| -%>
       alias_method :<%= api_name %>, :<%= api.name_with_version %>
     <% end -%>

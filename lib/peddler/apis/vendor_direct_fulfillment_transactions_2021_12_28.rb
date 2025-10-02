@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_transactions_2021_12_28
-      typed? ? APIs::VendorDirectFulfillmentTransactions20211228.typed : APIs::VendorDirectFulfillmentTransactions20211228
+      APIs::VendorDirectFulfillmentTransactions20211228
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactions_2021-12-28.json
     class VendorDirectFulfillmentTransactions20211228 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_direct_fulfillment_transactions_2021_12_28"
-          self
-        end
-      end
-
       # Returns the status of the transaction indicated by the specified transactionId.
       #
       # @note This operation can make a dynamic sandbox call.
@@ -38,7 +28,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_transaction_status(transaction_id, rate_limit: 10.0)
         path = "/vendor/directFulfillment/transactions/2021-12-28/transactions/#{percent_encode(transaction_id)}"
-        parser = Peddler::Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_transactions_2021_12_28"
+          Types::VendorDirectFulfillmentTransactions20211228::TransactionStatus
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

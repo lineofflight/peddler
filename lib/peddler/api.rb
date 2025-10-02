@@ -26,20 +26,6 @@ module Peddler
     # @return [Integer]
     attr_reader :retries
 
-    class << self
-      # Enables typed response parsing
-      # @note This method must be implemented by each API subclass
-      # @return [self]
-      def typed
-        raise NotImplementedError, "#{self} must implement .typed"
-      end
-
-      # @return [Boolean]
-      def typed?
-        @typed ||= false
-      end
-    end
-
     # @param [String] aws_region The AWS region to use for the endpoint
     # @param [String] access_token The access token for authentication
     # @param [Integer] retries The number of retries if throttled (default: 0)
@@ -53,11 +39,6 @@ module Peddler
     # @return [URI::HTTPS]
     def endpoint_uri
       sandbox? ? endpoint.sandbox : endpoint.production
-    end
-
-    # @return [Boolean]
-    def typed?
-      self.class.typed?
     end
 
     # Switches to the SP-API sandbox to make test calls
@@ -140,7 +121,10 @@ module Peddler
           uri.path = path
         end
 
-        http_response = http.headers("X-Amz-Date" => timestamp).send(method, uri, **options)
+        http_response = http
+          .headers("X-Amz-Date" => timestamp)
+          .send(method, uri, **options)
+
         Response.wrap(http_response, parser:)
       end
     end

@@ -8,7 +8,7 @@ require "peddler/helpers/feeds_2021_06_30"
 module Peddler
   class << self
     def feeds_2021_06_30
-      typed? ? APIs::Feeds20210630.typed : APIs::Feeds20210630
+      APIs::Feeds20210630
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/feeds-api-model/feeds_2021-06-30.json
     class Feeds20210630 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/feeds_2021_06_30"
-          self
-        end
-      end
-
       include Peddler::Helpers::Feeds20210630
 
       # Returns feed details for the feeds that match the filters that you specify.
@@ -63,7 +53,10 @@ module Peddler
           "createdUntil" => created_until,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::Feeds20210630::GetFeedsResponse if typed?
+        parser = -> {
+          require "peddler/types/feeds_2021_06_30"
+          Types::Feeds20210630::GetFeedsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -75,7 +68,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_feed(body, rate_limit: 0.0083)
         path = "/feeds/2021-06-30/feeds"
-        parser = Peddler::Types::Feeds20210630::CreateFeedResponse if typed?
+        parser = -> {
+          require "peddler/types/feeds_2021_06_30"
+          Types::Feeds20210630::CreateFeedResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -102,7 +98,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed(feed_id, rate_limit: 2.0)
         path = "/feeds/2021-06-30/feeds/#{percent_encode(feed_id)}"
-        parser = Peddler::Types::Feeds20210630::Feed if typed?
+        parser = -> {
+          require "peddler/types/feeds_2021_06_30"
+          Types::Feeds20210630::Feed
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -116,7 +115,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_feed_document(body, rate_limit: 0.5)
         path = "/feeds/2021-06-30/documents"
-        parser = Peddler::Types::Feeds20210630::CreateFeedDocumentResponse if typed?
+        parser = -> {
+          require "peddler/types/feeds_2021_06_30"
+          Types::Feeds20210630::CreateFeedDocumentResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -128,7 +130,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_feed_document(feed_document_id, rate_limit: 0.0222)
         path = "/feeds/2021-06-30/documents/#{percent_encode(feed_document_id)}"
-        parser = Peddler::Types::Feeds20210630::FeedDocument if typed?
+        parser = -> {
+          require "peddler/types/feeds_2021_06_30"
+          Types::Feeds20210630::FeedDocument
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_invoices_v1
-      typed? ? APIs::VendorInvoicesV1.typed : APIs::VendorInvoicesV1
+      APIs::VendorInvoicesV1
     end
   end
 
@@ -18,16 +18,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-invoices-api-model/vendorInvoices.json
     class VendorInvoicesV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_invoices_v1"
-          self
-        end
-      end
-
       # Submit new invoices to Amazon.
       #
       # @note This operation can make a static sandbox call.
@@ -36,7 +26,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_invoices(body, rate_limit: 10.0)
         path = "/vendor/payments/v1/invoices"
-        parser = Peddler::Types::VendorInvoicesV1::SubmitInvoicesResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_invoices_v1"
+          Types::VendorInvoicesV1::SubmitInvoicesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

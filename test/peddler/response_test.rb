@@ -64,6 +64,18 @@ module Peddler
       end
     end
 
+    def test_parsable_with_parser
+      wrapper = Response.new(response, parser: custom_parser)
+
+      assert_predicate(wrapper, :parsable?)
+    end
+
+    def test_parsable_without_parser
+      wrapper = Response.new(response)
+
+      refute_predicate(wrapper, :parsable?)
+    end
+
     def test_parse_with_custom_parser
       wrapper = Response.new(response, parser: custom_parser)
 
@@ -94,7 +106,7 @@ module Peddler
         request: nil,
       )
 
-      wrapper = Response.new(http_response, parser: test_type)
+      wrapper = Response.new(http_response, parser: -> { test_type })
       parsed = wrapper.parse
 
       # Test that values are correctly parsed
@@ -128,7 +140,7 @@ module Peddler
         request: nil,
       )
 
-      wrapper = Response.new(http_response, parser: feed_type)
+      wrapper = Response.new(http_response, parser: -> { feed_type })
       parsed = wrapper.parse
 
       # Verify we can access values using snake_case attribute names
@@ -192,11 +204,12 @@ module Peddler
 
     def custom_parser
       test_payload = payload
-      Class.new do
+      parser_class = Class.new do
         define_singleton_method :parse do |_payload|
           test_payload
         end
       end
+      lambda { parser_class }
     end
 
     def payload

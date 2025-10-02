@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def solicitations_v1
-      typed? ? APIs::SolicitationsV1.typed : APIs::SolicitationsV1
+      APIs::SolicitationsV1
     end
   end
 
@@ -23,16 +23,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/solicitations-api-model/solicitations.json
     class SolicitationsV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/solicitations_v1"
-          self
-        end
-      end
-
       # Returns a list of solicitation types that are available for an order that you specify. A solicitation type is
       # represented by an actions object, which contains a path and query parameter(s). You can use the path and
       # parameter(s) to call an operation that sends a solicitation. Currently only the
@@ -50,7 +40,10 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::SolicitationsV1::GetSolicitationActionsForOrderResponse if typed?
+        parser = -> {
+          require "peddler/types/solicitations_v1"
+          Types::SolicitationsV1::GetSolicitationActionsForOrderResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -69,7 +62,10 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse if typed?
+        parser = -> {
+          require "peddler/types/solicitations_v1"
+          Types::SolicitationsV1::CreateProductReviewAndSellerFeedbackSolicitationResponse
+        }
         meter(rate_limit).post(path, params:, parser:)
       end
     end
