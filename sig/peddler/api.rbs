@@ -16,10 +16,6 @@ module Peddler
     attr_reader access_token: String
     attr_reader retries: Integer
 
-    class << self
-      @typed: bool
-    end
-
     def self.typed: () -> singleton(API)
     def self.typed?: () -> bool
     def self.snake_case_name: () -> String
