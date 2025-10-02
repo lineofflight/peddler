@@ -14,16 +14,17 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 - Run a test: `bundle exec ruby -Itest test/path/to/test_file.rb`
 - Lint a file: `bundle exec rubocop path/to/file.rb` (add `-A` to autocorrect)
 - Type check a path: `bundle exec steep check path/to/file.rbs`
+- **NEVER run full suite/lint/type-check directly** - use runner subagent
 - When encountering errors or ambiguity, ask rather than assume
 
 ### Long-Running Tasks
 
 For full test suite, linting, type checking, or code generation (1+ minutes), use the runner subagent:
 
-- Run all tests
-- Lint all files
-- Type check all
-- Generate code
+- **Run all tests** (`bundle exec rake test`)
+- **Lint all files** (`bundle exec rubocop`)
+- **Type check all** (`bundle exec steep check`)
+- **Generate code** (`bundle exec rake generate`)
 
 The runner executes in background and reports when complete. You can continue working on other tasks while it runs.
 
@@ -166,7 +167,7 @@ See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for standard test patte
 When modifying code generation:
 1. Edit templates in `lib/generator/templates/` (e.g., operation.erb, type.erb)
 2. Or modify generator logic in `lib/generator/` (e.g., `operation.rb`, `type.rb`)
-3. Run `bundle exec rake generate` (may take several minutes, use runner subagent)
+3. Use runner subagent to generate code
 4. Review generated files in `lib/peddler/apis/` and `lib/peddler/types/`
-5. Run tests to verify: `bundle exec rake test`
-6. Type check if needed: `bundle exec rake steep`
+5. Use runner subagent to run tests
+6. Use runner subagent to type check if needed
