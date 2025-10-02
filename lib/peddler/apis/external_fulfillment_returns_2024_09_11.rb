@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def external_fulfillment_returns_2024_09_11
-      typed? ? APIs::ExternalFulfillmentReturns20240911.typed : APIs::ExternalFulfillmentReturns20240911
+      APIs::ExternalFulfillmentReturns20240911
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentReturns_2024-09-11.json
     class ExternalFulfillmentReturns20240911 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/external_fulfillment_returns_2024_09_11"
-          self
-        end
-      end
-
       # Retrieve a list of return items. You can filter results by location, RMA ID, status, or time.
       #
       # @note This operation can make a static sandbox call.
@@ -75,7 +65,10 @@ module Peddler
           "maxResults" => max_results,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_returns_2024_09_11"
+          Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -86,7 +79,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_return(return_id)
         path = "/externalFulfillment/2024-09-11/returns/#{percent_encode(return_id)}"
-        parser = Peddler::Types::ExternalFulfillmentReturns20240911::Return if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_returns_2024_09_11"
+          Types::ExternalFulfillmentReturns20240911::Return
+        }
         get(path, parser:)
       end
     end

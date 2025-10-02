@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def aplus_content_2020_11_01
-      typed? ? APIs::AplusContent20201101.typed : APIs::AplusContent20201101
+      APIs::AplusContent20201101
     end
   end
 
@@ -20,16 +20,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/aplus-content-api-model/aplusContent_2020-11-01.json
     class AplusContent20201101 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/aplus_content_2020_11_01"
-          self
-        end
-      end
-
       # Returns a list of all A+ Content documents, including metadata, that are assigned to a selling partner. To get
       # the actual contents of the A+ Content documents, call the `getContentDocument` operation.
       #
@@ -48,7 +38,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "pageToken" => page_token,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::SearchContentDocumentsResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::SearchContentDocumentsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -68,7 +61,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::PostContentDocumentResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::PostContentDocumentResponse
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -91,7 +87,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "includedDataSet" => stringify_array(included_data_set),
         }.compact
-        parser = Peddler::Types::AplusContent20201101::GetContentDocumentResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::GetContentDocumentResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -115,7 +114,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::PostContentDocumentResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::PostContentDocumentResponse
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -146,7 +148,10 @@ module Peddler
           "asinSet" => stringify_array(asin_set),
           "pageToken" => page_token,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::ListContentDocumentAsinRelationsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -173,7 +178,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::PostContentDocumentAsinRelationsResponse
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -196,7 +204,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "asinSet" => stringify_array(asin_set),
         }.compact
-        parser = Peddler::Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::ValidateContentDocumentAsinRelationsResponse
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -220,7 +231,10 @@ module Peddler
           "asin" => asin,
           "pageToken" => page_token,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::SearchContentPublishRecordsResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::SearchContentPublishRecordsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -241,7 +255,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::PostContentDocumentApprovalSubmissionResponse
+        }
         meter(rate_limit).post(path, params:, parser:)
       end
 
@@ -262,7 +279,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse if typed?
+        parser = -> {
+          require "peddler/types/aplus_content_2020_11_01"
+          Types::AplusContent20201101::PostContentDocumentSuspendSubmissionResponse
+        }
         meter(rate_limit).post(path, params:, parser:)
       end
     end

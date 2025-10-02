@@ -31,7 +31,7 @@ module Generator
         end
       ERB
 
-      operation = Generator::Operation.new(@path, "get", operation_data, template: template)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0", template: template)
       result = operation.render
 
       assert_includes(result, "def get_order(order_id)")
@@ -66,7 +66,7 @@ module Generator
       ERB
 
       @path = Generator::Path.new("/orders", {})
-      operation = Generator::Operation.new(@path, "get", operation_data, template: template)
+      operation = Generator::Operation.new(@path, "get", operation_data, "test_api_v0", template: template)
       result = operation.render
 
       assert_includes(result, "def list_orders(marketplace_ids, created_after: nil)")
@@ -74,7 +74,7 @@ module Generator
       assert_includes(result, '"createdAfter" => created_after')
     end
 
-    def test_renders_operation_with_typed_response
+    def test_renders_operation_with_typed_response # rubocop:disable Minitest/MultipleAssertions
       operation_data = {
         "operationId" => "getOrder",
         "description" => "Get an order",
@@ -93,17 +93,21 @@ module Generator
         def <%= method_definition %>
           path = "<%= path %>"
           <% if has_typed_response? -%>
-          parser = <%= parser_class %> if typed?
+          parser = -> {
+            require "peddler/types/<%= api_name_with_version %>"
+            Types::<%= parser_class_name %>
+          }
           <% end -%>
           get(path<% if has_typed_response? -%>, parser:<% end -%>)
         end
       ERB
 
-      operation = Generator::Operation.new(@path, "get", operation_data, api_name_with_version: "orders_v0", template: template)
+      operation = Generator::Operation.new(@path, "get", operation_data, "orders_v0", template: template)
       result = operation.render
 
       assert_includes(result, "def get_order(order_id)")
-      assert_includes(result, "parser = Peddler::Types::OrdersV0::GetOrderResponse if typed?")
+      assert_includes(result, 'require "peddler/types/orders_v0"')
+      assert_includes(result, "Types::OrdersV0::GetOrderResponse")
       assert_includes(result, "get(path, parser:)")
     end
 
@@ -131,7 +135,7 @@ module Generator
         end
       ERB
 
-      operation = Generator::Operation.new(@path, "post", operation_data, template: template)
+      operation = Generator::Operation.new(@path, "post", operation_data, "test_api_v0", template: template)
       result = operation.render
 
       assert_includes(result, "def create_order(body)")

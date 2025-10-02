@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def product_fees_v0
-      typed? ? APIs::ProductFeesV0.typed : APIs::ProductFeesV0
+      APIs::ProductFeesV0
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-fees-api-model/productFeesV0.json
     class ProductFeesV0 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/product_fees_v0"
-          self
-        end
-      end
-
       # Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in
       # the request body.
       #
@@ -56,7 +46,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_sku(body, seller_sku, rate_limit: 1.0)
         path = "/products/fees/v0/listings/#{percent_encode(seller_sku)}/feesEstimate"
-        parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimateResponse if typed?
+        parser = -> {
+          require "peddler/types/product_fees_v0"
+          Types::ProductFeesV0::GetMyFeesEstimateResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -83,7 +76,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimate_for_asin(body, asin, rate_limit: 1.0)
         path = "/products/fees/v0/items/#{percent_encode(asin)}/feesEstimate"
-        parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimateResponse if typed?
+        parser = -> {
+          require "peddler/types/product_fees_v0"
+          Types::ProductFeesV0::GetMyFeesEstimateResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -95,7 +91,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_my_fees_estimates(body, rate_limit: 0.5)
         path = "/products/fees/v0/feesEstimate"
-        parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimatesResponse if typed?
+        parser = -> {
+          require "peddler/types/product_fees_v0"
+          Types::ProductFeesV0::GetMyFeesEstimatesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

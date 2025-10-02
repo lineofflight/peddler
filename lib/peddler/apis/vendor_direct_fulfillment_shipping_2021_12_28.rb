@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_shipping_2021_12_28
-      typed? ? APIs::VendorDirectFulfillmentShipping20211228.typed : APIs::VendorDirectFulfillmentShipping20211228
+      APIs::VendorDirectFulfillmentShipping20211228
     end
   end
 
@@ -18,16 +18,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShipping_2021-12-28.json
     class VendorDirectFulfillmentShipping20211228 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_direct_fulfillment_shipping_2021_12_28"
-          self
-        end
-      end
-
       # Returns a list of shipping labels created during the time frame that you specify. Use the `createdAfter` and
       # `createdBefore` parameters to define the time frame. You must use both of these parameters. The date range to
       # search must not be more than seven days.
@@ -58,7 +48,10 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -70,7 +63,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -83,7 +79,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -97,7 +96,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_shipping_labels(purchase_order_number, body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -109,7 +111,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -123,7 +128,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -155,7 +163,10 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoiceList if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::CustomerInvoiceList
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -167,7 +178,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -198,7 +212,10 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -210,7 +227,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/packingSlips/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::PackingSlip
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -222,7 +242,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_container_label(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/2021-12-28/containerLabel"
-        parser = Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_2021_12_28"
+          Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

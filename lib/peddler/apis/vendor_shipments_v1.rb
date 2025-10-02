@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_shipments_v1
-      typed? ? APIs::VendorShipmentsV1.typed : APIs::VendorShipmentsV1
+      APIs::VendorShipmentsV1
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-shipments-api-model/vendorShipments.json
     class VendorShipmentsV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_shipments_v1"
-          self
-        end
-      end
-
       # Submits one or more shipment confirmations for vendor orders.
       #
       # @note This operation can make a static sandbox call.
@@ -37,7 +27,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/shipping/v1/shipmentConfirmations"
-        parser = Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_shipments_v1"
+          Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -50,7 +43,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/vendor/shipping/v1/shipments"
-        parser = Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_shipments_v1"
+          Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -138,7 +134,10 @@ module Peddler
           "buyerWarehouseCode" => buyer_warehouse_code,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
-        parser = Peddler::Types::VendorShipmentsV1::GetShipmentDetailsResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_shipments_v1"
+          Types::VendorShipmentsV1::GetShipmentDetailsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -177,7 +176,10 @@ module Peddler
           "vendorShipmentIdentifier" => vendor_shipment_identifier,
           "sellerWarehouseCode" => seller_warehouse_code,
         }.compact
-        parser = Peddler::Types::VendorShipmentsV1::GetShipmentLabels if typed?
+        parser = -> {
+          require "peddler/types/vendor_shipments_v1"
+          Types::VendorShipmentsV1::GetShipmentLabels
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

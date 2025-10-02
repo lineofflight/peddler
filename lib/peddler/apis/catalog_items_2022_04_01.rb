@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def catalog_items_2022_04_01
-      typed? ? APIs::CatalogItems20220401.typed : APIs::CatalogItems20220401
+      APIs::CatalogItems20220401
     end
   end
 
@@ -21,16 +21,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/catalog-items-api-model/catalogItems_2022-04-01.json
     class CatalogItems20220401 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/catalog_items_2022_04_01"
-          self
-        end
-      end
-
       # Search for a list of Amazon catalog items and item-related information. You can search by identifier or by
       # keywords.
       #
@@ -78,7 +68,10 @@ module Peddler
           "pageToken" => page_token,
           "keywordsLocale" => keywords_locale,
         }.compact
-        parser = Peddler::Types::CatalogItems20220401::ItemSearchResults if typed?
+        parser = -> {
+          require "peddler/types/catalog_items_2022_04_01"
+          Types::CatalogItems20220401::ItemSearchResults
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -101,7 +94,10 @@ module Peddler
           "includedData" => stringify_array(included_data),
           "locale" => locale,
         }.compact
-        parser = Peddler::Types::CatalogItems20220401::Item if typed?
+        parser = -> {
+          require "peddler/types/catalog_items_2022_04_01"
+          Types::CatalogItems20220401::Item
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

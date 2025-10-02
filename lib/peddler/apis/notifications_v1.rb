@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def notifications_v1
-      typed? ? APIs::NotificationsV1.typed : APIs::NotificationsV1
+      APIs::NotificationsV1
     end
   end
 
@@ -23,16 +23,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/notifications-api-model/notifications.json
     class NotificationsV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/notifications_v1"
-          self
-        end
-      end
-
       # Returns information about subscription of the specified notification type and payload version. `payloadVersion`
       # is an optional parameter. When `payloadVersion` is not provided, it will return latest payload version
       # subscription's information. You can use this API to get subscription information when you do not have a
@@ -49,7 +39,10 @@ module Peddler
         params = {
           "payloadVersion" => payload_version,
         }.compact
-        parser = Peddler::Types::NotificationsV1::GetSubscriptionResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::GetSubscriptionResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -66,7 +59,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_subscription(body, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}"
-        parser = Peddler::Types::NotificationsV1::CreateSubscriptionResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::CreateSubscriptionResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -82,7 +78,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/#{percent_encode(subscription_id)}"
-        parser = Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::GetSubscriptionByIdResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -100,7 +99,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_subscription_by_id(subscription_id, notification_type, rate_limit: 1.0)
         path = "/notifications/v1/subscriptions/#{percent_encode(notification_type)}/#{percent_encode(subscription_id)}"
-        parser = Peddler::Types::NotificationsV1::DeleteSubscriptionByIdResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::DeleteSubscriptionByIdResponse
+        }
         meter(rate_limit).delete(path, parser:)
       end
 
@@ -112,7 +114,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_destinations(rate_limit: 1.0)
         path = "/notifications/v1/destinations"
-        parser = Peddler::Types::NotificationsV1::GetDestinationsResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::GetDestinationsResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -126,7 +131,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_destination(body, rate_limit: 1.0)
         path = "/notifications/v1/destinations"
-        parser = Peddler::Types::NotificationsV1::CreateDestinationResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::CreateDestinationResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -140,7 +148,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
-        parser = Peddler::Types::NotificationsV1::GetDestinationResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::GetDestinationResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -153,7 +164,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delete_destination(destination_id, rate_limit: 1.0)
         path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
-        parser = Peddler::Types::NotificationsV1::DeleteDestinationResponse if typed?
+        parser = -> {
+          require "peddler/types/notifications_v1"
+          Types::NotificationsV1::DeleteDestinationResponse
+        }
         meter(rate_limit).delete(path, parser:)
       end
     end

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def merchant_fulfillment_v0
-      typed? ? APIs::MerchantFulfillmentV0.typed : APIs::MerchantFulfillmentV0
+      APIs::MerchantFulfillmentV0
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json
     class MerchantFulfillmentV0 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/merchant_fulfillment_v0"
-          self
-        end
-      end
-
       # Returns a list of shipping service offers that satisfy the specified shipment request details.
       #
       # @note This operation can make a static sandbox call.
@@ -37,7 +27,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_eligible_shipment_services(body, rate_limit: 6.0)
         path = "/mfn/v0/eligibleShippingServices"
-        parser = Peddler::Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse if typed?
+        parser = -> {
+          require "peddler/types/merchant_fulfillment_v0"
+          Types::MerchantFulfillmentV0::GetEligibleShipmentServicesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -49,7 +42,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
-        parser = Peddler::Types::MerchantFulfillmentV0::GetShipmentResponse if typed?
+        parser = -> {
+          require "peddler/types/merchant_fulfillment_v0"
+          Types::MerchantFulfillmentV0::GetShipmentResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -61,7 +57,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, rate_limit: 1.0)
         path = "/mfn/v0/shipments/#{percent_encode(shipment_id)}"
-        parser = Peddler::Types::MerchantFulfillmentV0::CancelShipmentResponse if typed?
+        parser = -> {
+          require "peddler/types/merchant_fulfillment_v0"
+          Types::MerchantFulfillmentV0::CancelShipmentResponse
+        }
         meter(rate_limit).delete(path, parser:)
       end
 
@@ -73,7 +72,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_shipment(body, rate_limit: 2.0)
         path = "/mfn/v0/shipments"
-        parser = Peddler::Types::MerchantFulfillmentV0::CreateShipmentResponse if typed?
+        parser = -> {
+          require "peddler/types/merchant_fulfillment_v0"
+          Types::MerchantFulfillmentV0::CreateShipmentResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -86,7 +88,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_additional_seller_inputs(body, rate_limit: 1.0)
         path = "/mfn/v0/additionalSellerInputs"
-        parser = Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse if typed?
+        parser = -> {
+          require "peddler/types/merchant_fulfillment_v0"
+          Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

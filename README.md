@@ -54,6 +54,12 @@ Require the library.
 require "peddler"
 ```
 
+You can also require individual API libraries to reduce load time:
+
+```ruby
+require "peddler/apis/orders_v0"
+```
+
 ### Authorization
 
 A seller or vendor [provides you a refresh token][authorization] to access their data on Amazon.
@@ -124,11 +130,10 @@ api.get_orders(
 
 ### Typed Responses
 
-Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support:
+Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support. Types are based on Ruby's [Data class](https://docs.ruby-lang.org/en/3.4/Data.html) and are lazy-loaded only when you first call `parse`.
 
 ```ruby
-# Enable typed responses with .typed
-api = Peddler.orders.typed.new(aws_region, access_token)
+api = Peddler.orders.new(aws_region, access_token)
 
 # Get orders with type-safe response
 response = api.get_orders(
@@ -136,8 +141,8 @@ response = api.get_orders(
   createdAfter: "2023-01-01T00:00:00Z"
 )
 
-# Access data with type safety
-orders = response.payload.orders  # Returns array of Order objects
+# Use .parse to get typed Data objects
+orders = response.parse.payload.orders  # Returns array of Order Data objects
 order = orders.first
 
 # Type-safe attribute access
@@ -151,11 +156,16 @@ order.order_total.currency.iso_code # => "USD"
 
 #### Hash Access
 
-If you prefer working with plain hashes, use the standard (non-typed) API:
+If you prefer working with plain hashes instead of typed Data objects:
 
 ```ruby
 api = Peddler.orders.new(aws_region, access_token)
 response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
+
+# Use .to_h to get raw Hash
+orders = response.to_h["payload"]["orders"]
+
+# Or use .dig directly (delegates to .to_h)
 orders = response.dig("payload", "orders")
 ```
 

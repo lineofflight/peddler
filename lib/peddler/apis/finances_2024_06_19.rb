@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def finances_2024_06_19
-      typed? ? APIs::Finances20240619.typed : APIs::Finances20240619
+      APIs::Finances20240619
     end
   end
 
@@ -20,16 +20,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/finances_2024-06-19.json
     class Finances20240619 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/finances_2024_06_19"
-          self
-        end
-      end
-
       # Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours.
       #
       # @note This operation can make a static sandbox call.
@@ -61,7 +51,10 @@ module Peddler
           "transactionStatus" => transaction_status,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::Finances20240619::ListTransactionsResponse if typed?
+        parser = -> {
+          require "peddler/types/finances_2024_06_19"
+          Types::Finances20240619::ListTransactionsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

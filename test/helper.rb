@@ -81,11 +81,9 @@ end
 module FeatureHelpers
   include Configurable, Recordable
 
-  def api(grantless: false, typed: false)
+  def api(grantless: false)
     access_token = request_access_token(grantless:)
-    klass = api_class
-    klass = klass.typed if typed
-    klass.new(aws_region, access_token)
+    api_class.new(aws_region, access_token)
   end
 
   def api_class

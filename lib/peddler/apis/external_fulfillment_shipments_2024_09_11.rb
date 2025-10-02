@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def external_fulfillment_shipments_2024_09_11
-      typed? ? APIs::ExternalFulfillmentShipments20240911.typed : APIs::ExternalFulfillmentShipments20240911
+      APIs::ExternalFulfillmentShipments20240911
     end
   end
 
@@ -20,16 +20,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/external-fulfillment/externalFulfillmentShipments_2024-09-11.json
     class ExternalFulfillmentShipments20240911 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/external_fulfillment_shipments_2024_09_11"
-          self
-        end
-      end
-
       # Get a list of shipments created for the seller in the status you specify. Shipments can be further filtered
       # based on the fulfillment node or the time of the shipments' last update.
       #
@@ -63,7 +53,10 @@ module Peddler
           "maxResults" => max_results,
           "paginationToken" => pagination_token,
         }.compact
-        parser = Peddler::Types::ExternalFulfillmentShipments20240911::ShipmentsResponse if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_shipments_2024_09_11"
+          Types::ExternalFulfillmentShipments20240911::ShipmentsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -74,7 +67,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipment(shipment_id)
         path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}"
-        parser = Peddler::Types::ExternalFulfillmentShipments20240911::Shipment if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_shipments_2024_09_11"
+          Types::ExternalFulfillmentShipments20240911::Shipment
+        }
         get(path, parser:)
       end
 
@@ -144,7 +140,10 @@ module Peddler
         params = {
           "packageId" => package_id,
         }.compact
-        parser = Peddler::Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_shipments_2024_09_11"
+          Types::ExternalFulfillmentShipments20240911::ShippingOptionsResponse
+        }
         get(path, params:, parser:)
       end
 
@@ -155,7 +154,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def generate_invoice(shipment_id)
         path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}/invoice"
-        parser = Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceResponse if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_shipments_2024_09_11"
+          Types::ExternalFulfillmentShipments20240911::InvoiceResponse
+        }
         post(path, parser:)
       end
 
@@ -166,7 +168,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def retrieve_invoice(shipment_id)
         path = "/externalFulfillment/2024-09-11/shipments/#{percent_encode(shipment_id)}/invoice"
-        parser = Peddler::Types::ExternalFulfillmentShipments20240911::InvoiceResponse if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_shipments_2024_09_11"
+          Types::ExternalFulfillmentShipments20240911::InvoiceResponse
+        }
         get(path, parser:)
       end
 
@@ -184,7 +189,10 @@ module Peddler
           "shippingOptionId" => shipping_option_id,
           "operation" => operation,
         }.compact
-        parser = Peddler::Types::ExternalFulfillmentShipments20240911::ShipLabelsResponse if typed?
+        parser = -> {
+          require "peddler/types/external_fulfillment_shipments_2024_09_11"
+          Types::ExternalFulfillmentShipments20240911::ShipLabelsResponse
+        }
         put(path, body:, params:, parser:)
       end
     end

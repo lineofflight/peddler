@@ -51,8 +51,16 @@ module Peddler
       @parser = parser
     end
 
+    # @return [Boolean] Whether this response can be parsed into typed objects
+    def parsable?
+      !parser.nil?
+    end
+
+    # Parses the response with typed Data objects
+    #
+    # @return [Object] Parsed response with type information, or Hash if no parser
     def parse
-      parser ? parser.parse(to_h) : to_h
+      parsable? ? parser.call.parse(to_h) : to_h
     end
 
     # Converts the response body to a Hash

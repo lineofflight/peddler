@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def orders_v0
-      typed? ? APIs::OrdersV0.typed : APIs::OrdersV0
+      APIs::OrdersV0
     end
   end
 
@@ -24,16 +24,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/orders-api-model/ordersV0.json
     class OrdersV0 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/orders_v0"
-          self
-        end
-      end
-
       # Returns orders that are created or updated during the specified time period. If you want to return specific
       # types of orders, you can apply filters to your request. `NextToken` doesn't affect any filters that you include
       # in your request; it only impacts the pagination for the filtered orders response.
@@ -159,7 +149,10 @@ module Peddler
           "LatestDeliveryDateBefore" => latest_delivery_date_before,
           "LatestDeliveryDateAfter" => latest_delivery_date_after,
         }.compact
-        parser = Peddler::Types::OrdersV0::GetOrdersResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrdersResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -171,7 +164,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}"
-        parser = Peddler::Types::OrdersV0::GetOrderResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrderResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -183,7 +179,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_buyer_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/buyerInfo"
-        parser = Peddler::Types::OrdersV0::GetOrderBuyerInfoResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrderBuyerInfoResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -195,7 +194,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_address(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/address"
-        parser = Peddler::Types::OrdersV0::GetOrderAddressResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrderAddressResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -219,7 +221,10 @@ module Peddler
         params = {
           "NextToken" => next_token,
         }.compact
-        parser = Peddler::Types::OrdersV0::GetOrderItemsResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrderItemsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -235,7 +240,10 @@ module Peddler
         params = {
           "NextToken" => next_token,
         }.compact
-        parser = Peddler::Types::OrdersV0::GetOrderItemsBuyerInfoResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrderItemsBuyerInfoResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -260,7 +268,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_order_regulated_info(order_id, rate_limit: 0.5)
         path = "/orders/v0/orders/#{percent_encode(order_id)}/regulatedInfo"
-        parser = Peddler::Types::OrdersV0::GetOrderRegulatedInfoResponse if typed?
+        parser = -> {
+          require "peddler/types/orders_v0"
+          Types::OrdersV0::GetOrderRegulatedInfoResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 

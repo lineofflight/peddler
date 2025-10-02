@@ -7,14 +7,14 @@ module Generator
     @rate_limit: (Float | :unknown | nil)?
     @response_model: Hash[Symbol, untyped]?
 
-    attr_reader api_name_with_version: String?
+    attr_reader api_name_with_version: String
     attr_reader operation: Hash[String, untyped]
     attr_reader path: Path
 
     attr_reader template: String
     attr_reader verb: String
 
-    def initialize: (Path path, String verb, Hash[String, untyped] operation, ?api_name_with_version: String?, ?template: String) -> void
+    def initialize: (Path path, String verb, Hash[String, untyped] operation, String api_name_with_version, ?template: String) -> void
 
     def body_param_name: () -> String?
     def description: () -> String
@@ -37,24 +37,10 @@ module Generator
 
     private
 
-    def build_dig_path: (Array[String] path) -> String
-    def build_type_class_name: (String model_name) -> String
-
     def dynamic_sandbox?: () -> bool
     def name: () -> String
-    def parse_array_type: (String type_class, Array[String] path) -> String
-
-    def parse_nested_array: (String type_class, String array_name) -> String
-    def parse_response_type: (String type_class) -> String
-
-    def parse_simple_array: (String type_class) -> String
-    def parse_single_type: (String type_class, Array[String] path) -> String
-    def parser_class: () -> String?
-
-    def parsing_logic: () -> String?
-
+    def parser_class_name: () -> String?
     def sandbox_only?: () -> bool
     def static_sandbox?: () -> bool
-    def use_ternary?: () -> bool
   end
 end

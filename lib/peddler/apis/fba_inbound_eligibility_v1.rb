@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fba_inbound_eligibility_v1
-      typed? ? APIs::FBAInboundEligibilityV1.typed : APIs::FBAInboundEligibilityV1
+      APIs::FBAInboundEligibilityV1
     end
   end
 
@@ -22,16 +22,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inbound-eligibility-api-model/fbaInbound.json
     class FBAInboundEligibilityV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/fba_inbound_eligibility_v1"
-          self
-        end
-      end
-
       # This operation gets an eligibility preview for an item that you specify. You can specify the type of eligibility
       # preview that you want (INBOUND or COMMINGLING). For INBOUND previews, you can specify the marketplace in which
       # you want to determine the item's eligibility.
@@ -50,7 +40,10 @@ module Peddler
           "asin" => asin,
           "program" => program,
         }.compact
-        parser = Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse if typed?
+        parser = -> {
+          require "peddler/types/fba_inbound_eligibility_v1"
+          Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

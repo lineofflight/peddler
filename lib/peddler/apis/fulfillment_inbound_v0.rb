@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fulfillment_inbound_v0
-      typed? ? APIs::FulfillmentInboundV0.typed : APIs::FulfillmentInboundV0
+      APIs::FulfillmentInboundV0
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json
     class FulfillmentInboundV0 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/fulfillment_inbound_v0"
-          self
-        end
-      end
-
       # Returns labeling requirements and item preparation instructions to help prepare items for shipment to Amazon's
       # fulfillment network.
       #
@@ -56,7 +46,10 @@ module Peddler
           "SellerSKUList" => stringify_array(seller_sku_list),
           "ASINList" => stringify_array(asin_list),
         }.compact
-        parser = Peddler::Types::FulfillmentInboundV0::GetPrepInstructionsResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_inbound_v0"
+          Types::FulfillmentInboundV0::GetPrepInstructionsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -98,7 +91,10 @@ module Peddler
           "PageSize" => page_size,
           "PageStartIndex" => page_start_index,
         }.compact
-        parser = Peddler::Types::FulfillmentInboundV0::GetLabelsResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_inbound_v0"
+          Types::FulfillmentInboundV0::GetLabelsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -113,7 +109,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_bill_of_lading(shipment_id, rate_limit: 2.0)
         path = "/fba/inbound/v0/shipments/#{percent_encode(shipment_id)}/billOfLading"
-        parser = Peddler::Types::FulfillmentInboundV0::GetBillOfLadingResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_inbound_v0"
+          Types::FulfillmentInboundV0::GetBillOfLadingResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -150,7 +149,10 @@ module Peddler
           "NextToken" => next_token,
           "MarketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::FulfillmentInboundV0::GetShipmentsResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_inbound_v0"
+          Types::FulfillmentInboundV0::GetShipmentsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -166,7 +168,10 @@ module Peddler
         params = {
           "MarketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_inbound_v0"
+          Types::FulfillmentInboundV0::GetShipmentItemsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -196,7 +201,10 @@ module Peddler
           "NextToken" => next_token,
           "MarketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::FulfillmentInboundV0::GetShipmentItemsResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_inbound_v0"
+          Types::FulfillmentInboundV0::GetShipmentItemsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

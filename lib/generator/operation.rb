@@ -15,7 +15,7 @@ module Generator
 
     attr_reader :path, :verb, :operation, :api_name_with_version, :template
 
-    def initialize(path, verb, operation, api_name_with_version: nil, template: DEFAULT_TEMPLATE)
+    def initialize(path, verb, operation, api_name_with_version, template: DEFAULT_TEMPLATE)
       @path = path
       @verb = verb
       @operation = operation
@@ -164,82 +164,10 @@ module Generator
 
     private
 
-    def parser_class
+    def parser_class_name
       return unless has_typed_response?
 
-      model = response_model
-      return unless model && model[:model]
-
-      api_class = (api_name_with_version || raise("api_name_with_version is nil")).camelize
-
-      # For response types, we use the response class directly as the parser
-      # The type class knows how to parse the JSON response
-      "Peddler::Types::#{api_class}::#{model[:model]}"
-    end
-
-    def parsing_logic
-      return unless has_typed_response?
-
-      model = response_model
-      return unless model && model[:model]
-
-      type_class = build_type_class_name(model[:model])
-
-      case model[:type]
-      when :response
-        parse_response_type(type_class)
-      when :single
-        parse_single_type(type_class, model[:path])
-      when :array
-        parse_array_type(type_class, model[:path])
-      else
-        "response.parse"
-      end
-    end
-
-    def build_type_class_name(model_name)
-      api_class = (api_name_with_version || raise("api_name_with_version is nil")).camelize
-      "Peddler::Types::#{api_class}::#{model_name}"
-    end
-
-    def parse_response_type(type_class)
-      "#{type_class}.parse(response.parse)"
-    end
-
-    def parse_single_type(type_class, path)
-      dig_path = build_dig_path(path)
-      "#{type_class}.parse(response.parse.dig(#{dig_path}))"
-    end
-
-    def parse_array_type(type_class, path)
-      if path.size == 2 && path.first == "payload"
-        parse_nested_array(type_class, path.last)
-      else
-        parse_simple_array(type_class)
-      end
-    end
-
-    def parse_nested_array(type_class, array_name)
-      "(response.parse.dig(\"payload\", \"#{array_name}\") || []).map { |item| #{type_class}.parse(item) }"
-    end
-
-    def parse_simple_array(type_class)
-      "(response.parse.dig(\"payload\") || []).map { |item| #{type_class}.parse(item) }"
-    end
-
-    def build_dig_path(path)
-      path.map { |p| "\"#{p}\"" }.join(", ")
-    end
-
-    def use_ternary?
-      return false unless has_typed_response?
-
-      # Calculate the full ternary line length
-      typed_response = parsing_logic || "response.parse"
-      ternary_line = "typed? ? #{typed_response} : response"
-
-      # Use ternary if it fits in 120 characters (with 8 spaces for indentation)
-      ternary_line.length <= 112 # 120 chars - 8 spaces indentation
+      "#{api_name_with_version.camelize}::#{response_model[:model]}"
     end
 
     def name

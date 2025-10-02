@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def transfers_2024_06_01
-      typed? ? APIs::Transfers20240601.typed : APIs::Transfers20240601
+      APIs::Transfers20240601
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/finances-api-model/transfers_2024-06-01.json
     class Transfers20240601 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/transfers_2024_06_01"
-          self
-        end
-      end
-
       # Initiates an on-demand payout to the seller's default deposit method in Seller Central for the given
       # `marketplaceId` and `accountType`, if eligible. You can only initiate one on-demand payout for each marketplace
       # and account type within a 24-hour period.
@@ -39,7 +29,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def initiate_payout(body, rate_limit: 0.017)
         path = "/finances/transfers/2024-06-01/payouts"
-        parser = Peddler::Types::Transfers20240601::InitiatePayoutResponse if typed?
+        parser = -> {
+          require "peddler/types/transfers_2024_06_01"
+          Types::Transfers20240601::InitiatePayoutResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -59,7 +52,10 @@ module Peddler
           "marketplaceId" => marketplace_id,
           "paymentMethodTypes" => stringify_array(payment_method_types),
         }.compact
-        parser = Peddler::Types::Transfers20240601::GetPaymentMethodsResponse if typed?
+        parser = -> {
+          require "peddler/types/transfers_2024_06_01"
+          Types::Transfers20240601::GetPaymentMethodsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

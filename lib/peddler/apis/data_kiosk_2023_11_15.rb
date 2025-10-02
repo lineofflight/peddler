@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def data_kiosk_2023_11_15
-      typed? ? APIs::DataKiosk20231115.typed : APIs::DataKiosk20231115
+      APIs::DataKiosk20231115
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/data-kiosk-api-model/dataKiosk_2023-11-15.json
     class DataKiosk20231115 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/data_kiosk_2023_11_15"
-          self
-        end
-      end
-
       # Returns details for the Data Kiosk queries that match the specified filters. See the `createQuery` operation for
       # details about query retention.
       #
@@ -56,7 +46,10 @@ module Peddler
           "createdUntil" => created_until,
           "paginationToken" => pagination_token,
         }.compact
-        parser = Peddler::Types::DataKiosk20231115::GetQueriesResponse if typed?
+        parser = -> {
+          require "peddler/types/data_kiosk_2023_11_15"
+          Types::DataKiosk20231115::GetQueriesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -73,7 +66,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_query(body, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/queries"
-        parser = Peddler::Types::DataKiosk20231115::CreateQueryResponse if typed?
+        parser = -> {
+          require "peddler/types/data_kiosk_2023_11_15"
+          Types::DataKiosk20231115::CreateQueryResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -101,7 +97,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_query(query_id, rate_limit: 2.0)
         path = "/dataKiosk/2023-11-15/queries/#{percent_encode(query_id)}"
-        parser = Peddler::Types::DataKiosk20231115::Query if typed?
+        parser = -> {
+          require "peddler/types/data_kiosk_2023_11_15"
+          Types::DataKiosk20231115::Query
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -114,7 +113,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_document(document_id, rate_limit: 0.0167)
         path = "/dataKiosk/2023-11-15/documents/#{percent_encode(document_id)}"
-        parser = Peddler::Types::DataKiosk20231115::GetDocumentResponse if typed?
+        parser = -> {
+          require "peddler/types/data_kiosk_2023_11_15"
+          Types::DataKiosk20231115::GetDocumentResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

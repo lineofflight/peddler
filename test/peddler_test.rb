@@ -7,13 +7,11 @@ class PeddlerTest < Minitest::Test
   def setup
     # Reset configuration to default
     Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
-    Peddler.instance_variable_set(:@typed, false)
   end
 
   def teardown
     # Reset configuration after each test
     Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
-    Peddler.instance_variable_set(:@typed, false)
   end
 
   def test_entrypoint
@@ -24,26 +22,6 @@ class PeddlerTest < Minitest::Test
     assert_equal(Peddler::APIs::FBAInventoryV1, Peddler.fba_inventory_v1)
     assert_equal(Peddler::APIs::Reports20210630, Peddler.reports_2021_06_30)
     assert_equal(Peddler::APIs::ProductPricing20220501, Peddler.product_pricing)
-  end
-
-  def test_typed_returns_self
-    assert_equal(Peddler, Peddler.typed)
-  end
-
-  def test_typed_enables_typed_flag
-    refute_predicate(Peddler, :typed?)
-    Peddler.typed
-
-    assert_predicate(Peddler, :typed?)
-  end
-
-  def test_typed_returns_typed_api_class
-    Peddler.typed
-    api = Peddler.orders
-
-    assert_predicate(api, :typed?)
-  ensure
-    Peddler.instance_variable_set(:@typed, false)
   end
 
   def test_default_raise_on_server_errors_is_false

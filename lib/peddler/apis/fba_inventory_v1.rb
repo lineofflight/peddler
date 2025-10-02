@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fba_inventory_v1
-      typed? ? APIs::FBAInventoryV1.typed : APIs::FBAInventoryV1
+      APIs::FBAInventoryV1
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fba-inventory-api-model/fbaInventory.json
     class FBAInventoryV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/fba_inventory_v1"
-          self
-        end
-      end
-
       # Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the
       # startDateTime, sellerSkus and sellerSku parameters:
       #
@@ -78,7 +68,10 @@ module Peddler
           "nextToken" => next_token,
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::FBAInventoryV1::GetInventorySummariesResponse if typed?
+        parser = -> {
+          require "peddler/types/fba_inventory_v1"
+          Types::FBAInventoryV1::GetInventorySummariesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -94,7 +87,10 @@ module Peddler
 
         path = "/fba/inventory/v1/items"
         body = create_inventory_item_request_body
-        parser = Peddler::Types::FBAInventoryV1::CreateInventoryItemResponse if typed?
+        parser = -> {
+          require "peddler/types/fba_inventory_v1"
+          Types::FBAInventoryV1::CreateInventoryItemResponse
+        }
         post(path, body:, parser:)
       end
 
@@ -113,7 +109,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::FBAInventoryV1::DeleteInventoryItemResponse if typed?
+        parser = -> {
+          require "peddler/types/fba_inventory_v1"
+          Types::FBAInventoryV1::DeleteInventoryItemResponse
+        }
         delete(path, params:, parser:)
       end
 
@@ -131,7 +130,10 @@ module Peddler
 
         path = "/fba/inventory/v1/items/inventory"
         body = add_inventory_request_body
-        parser = Peddler::Types::FBAInventoryV1::AddInventoryResponse if typed?
+        parser = -> {
+          require "peddler/types/fba_inventory_v1"
+          Types::FBAInventoryV1::AddInventoryResponse
+        }
         post(path, body:, parser:)
       end
     end

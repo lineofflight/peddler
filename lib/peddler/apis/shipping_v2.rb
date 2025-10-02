@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def shipping_v2
-      typed? ? APIs::ShippingV2.typed : APIs::ShippingV2
+      APIs::ShippingV2
     end
   end
 
@@ -20,16 +20,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/shipping-api-model/shippingV2.json
     class ShippingV2 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/shipping_v2"
-          self
-        end
-      end
-
       # Returns the available shipping service offerings.
       #
       # @note This operation can make a dynamic sandbox call.
@@ -40,7 +30,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_rates(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/rates"
-        parser = Peddler::Types::ShippingV2::GetRatesResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetRatesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -61,7 +54,10 @@ module Peddler
       def direct_purchase_shipment(body, x_amzn_idempotency_key: nil, locale: nil, x_amzn_shipping_business_id: nil,
         rate_limit: 80.0)
         path = "/shipping/v2/shipments/directPurchase"
-        parser = Peddler::Types::ShippingV2::DirectPurchaseResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::DirectPurchaseResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -81,7 +77,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def purchase_shipment(body, x_amzn_idempotency_key: nil, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments"
-        parser = Peddler::Types::ShippingV2::PurchaseShipmentResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::PurchaseShipmentResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -95,7 +94,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def one_click_shipment(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/oneClickShipment"
-        parser = Peddler::Types::ShippingV2::OneClickShipmentResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::OneClickShipmentResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -116,7 +118,10 @@ module Peddler
           "trackingId" => tracking_id,
           "carrierId" => carrier_id,
         }.compact
-        parser = Peddler::Types::ShippingV2::GetTrackingResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetTrackingResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -142,7 +147,10 @@ module Peddler
           "format" => format,
           "dpi" => dpi,
         }.compact
-        parser = Peddler::Types::ShippingV2::GetShipmentDocumentsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetShipmentDocumentsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -156,7 +164,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_shipment(shipment_id, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/shipments/#{percent_encode(shipment_id)}/cancel"
-        parser = Peddler::Types::ShippingV2::CancelShipmentResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::CancelShipmentResponse
+        }
         meter(rate_limit).put(path, parser:)
       end
 
@@ -178,7 +189,10 @@ module Peddler
           "requestToken" => request_token,
           "rateId" => rate_id,
         }.compact
-        parser = Peddler::Types::ShippingV2::GetAdditionalInputsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetAdditionalInputsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -192,7 +206,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/carrierAccountFormInputs"
-        parser = Peddler::Types::ShippingV2::GetCarrierAccountFormInputsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetCarrierAccountFormInputsResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -207,7 +224,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/carrierAccounts"
-        parser = Peddler::Types::ShippingV2::GetCarrierAccountsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetCarrierAccountsResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -222,7 +242,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def link_carrier_account(carrier_id, body, x_amzn_shipping_business_id: nil, rate_limit: 5.0)
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}"
-        parser = Peddler::Types::ShippingV2::LinkCarrierAccountResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::LinkCarrierAccountResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -238,7 +261,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/carrierAccounts/#{percent_encode(carrier_id)}/unlink"
-        parser = Peddler::Types::ShippingV2::UnlinkCarrierAccountResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::UnlinkCarrierAccountResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -256,7 +282,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/collectionForms"
-        parser = Peddler::Types::ShippingV2::GenerateCollectionFormResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GenerateCollectionFormResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -271,7 +300,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/collectionForms/history"
-        parser = Peddler::Types::ShippingV2::GetCollectionFormHistoryResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetCollectionFormHistoryResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -287,7 +319,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/unmanifestedShipments"
-        parser = Peddler::Types::ShippingV2::GetUnmanifestedShipmentsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetUnmanifestedShipmentsResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -302,7 +337,10 @@ module Peddler
         cannot_sandbox!
 
         path = "/shipping/v2/collectionForms/#{percent_encode(collection_form_id)}"
-        parser = Peddler::Types::ShippingV2::GetCollectionFormResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetCollectionFormResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -324,7 +362,10 @@ module Peddler
           "countryCode" => country_code,
           "postalCode" => postal_code,
         }.compact
-        parser = Peddler::Types::ShippingV2::GetAccessPointsResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::GetAccessPointsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -351,7 +392,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_claim(body, x_amzn_shipping_business_id: nil, rate_limit: 80.0)
         path = "/shipping/v2/claims"
-        parser = Peddler::Types::ShippingV2::CreateClaimResponse if typed?
+        parser = -> {
+          require "peddler/types/shipping_v2"
+          Types::ShippingV2::CreateClaimResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

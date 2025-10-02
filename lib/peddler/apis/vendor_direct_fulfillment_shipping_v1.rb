@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_shipping_v1
-      typed? ? APIs::VendorDirectFulfillmentShippingV1.typed : APIs::VendorDirectFulfillmentShippingV1
+      APIs::VendorDirectFulfillmentShippingV1
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json
     class VendorDirectFulfillmentShippingV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/vendor_direct_fulfillment_shipping_v1"
-          self
-        end
-      end
-
       # Returns a list of shipping labels created during the time frame that you specify. You define that time frame
       # using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to
       # search must not be more than 7 days.
@@ -57,7 +47,10 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::GetShippingLabelListResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -69,7 +62,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipping_label_request(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels"
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::SubmitShippingLabelsResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::SubmitShippingLabelsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -82,7 +78,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_shipping_label(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shippingLabels/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetShippingLabelResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::GetShippingLabelResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -94,7 +93,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_confirmations(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentConfirmations"
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::SubmitShipmentConfirmationsResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::SubmitShipmentConfirmationsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -108,7 +110,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def submit_shipment_status_updates(body, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates"
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::SubmitShipmentStatusUpdatesResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::SubmitShipmentStatusUpdatesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -140,7 +145,10 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoicesResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoicesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -152,7 +160,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_customer_invoice(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/customerInvoices/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoiceResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::GetCustomerInvoiceResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -183,7 +194,10 @@ module Peddler
           "sortOrder" => sort_order,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipListResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::GetPackingSlipListResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -195,7 +209,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_packing_slip(purchase_order_number, rate_limit: 10.0)
         path = "/vendor/directFulfillment/shipping/v1/packingSlips/#{percent_encode(purchase_order_number)}"
-        parser = Peddler::Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse if typed?
+        parser = -> {
+          require "peddler/types/vendor_direct_fulfillment_shipping_v1"
+          Types::VendorDirectFulfillmentShippingV1::GetPackingSlipResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

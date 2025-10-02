@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def fulfillment_outbound_2020_07_01
-      typed? ? APIs::FulfillmentOutbound20200701.typed : APIs::FulfillmentOutbound20200701
+      APIs::FulfillmentOutbound20200701
     end
   end
 
@@ -20,16 +20,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
     class FulfillmentOutbound20200701 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/fulfillment_outbound_2020_07_01"
-          self
-        end
-      end
-
       # Returns a list of fulfillment order previews based on shipping criteria that you specify.
       #
       # @note This operation can make a dynamic sandbox call.
@@ -38,7 +28,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fulfillment_preview(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/preview"
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -51,7 +44,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def delivery_offers(body, rate_limit: 5.0)
         path = "/fba/outbound/2020-07-01/deliveryOffers"
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -71,7 +67,10 @@ module Peddler
           "queryStartDate" => query_start_date,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -84,7 +83,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_fulfillment_order(body, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders"
-        parser = Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -104,7 +106,10 @@ module Peddler
           "packageNumber" => package_number,
           "amazonFulfillmentTrackingNumber" => amazon_fulfillment_tracking_number,
         }.compact
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -131,7 +136,10 @@ module Peddler
           "sellerFulfillmentOrderId" => seller_fulfillment_order_id,
           "language" => language,
         }.compact
-        parser = Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -146,7 +154,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_fulfillment_return(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/return"
-        parser = Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -159,7 +170,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -173,7 +187,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def update_fulfillment_order(body, seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}"
-        parser = Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -187,7 +204,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def cancel_fulfillment_order(seller_fulfillment_order_id, rate_limit: 2.0)
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/cancel"
-        parser = Peddler::Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse
+        }
         meter(rate_limit).put(path, parser:)
       end
 
@@ -206,7 +226,10 @@ module Peddler
         must_sandbox!
 
         path = "/fba/outbound/2020-07-01/fulfillmentOrders/#{percent_encode(seller_fulfillment_order_id)}/status"
-        parser = Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
+        }
         put(path, body:, parser:)
       end
 
@@ -222,7 +245,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetFeaturesResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -246,7 +272,10 @@ module Peddler
           "nextToken" => next_token,
           "queryStartDate" => query_start_date,
         }.compact
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -267,7 +296,10 @@ module Peddler
         params = {
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse if typed?
+        parser = -> {
+          require "peddler/types/fulfillment_outbound_2020_07_01"
+          Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

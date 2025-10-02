@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def services_v1
-      typed? ? APIs::ServicesV1.typed : APIs::ServicesV1
+      APIs::ServicesV1
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/services-api-model/services.json
     class ServicesV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/services_v1"
-          self
-        end
-      end
-
       # Gets details of service job indicated by the provided `serviceJobID`.
       #
       # @note This operation can make a static sandbox call.
@@ -37,7 +27,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_service_job_by_service_job_id(service_job_id, rate_limit: 20.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}"
-        parser = Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::GetServiceJobByServiceJobIdResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -54,7 +47,10 @@ module Peddler
         params = {
           "cancellationReasonCode" => cancellation_reason_code,
         }.compact
-        parser = Peddler::Types::ServicesV1::CancelServiceJobByServiceJobIdResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::CancelServiceJobByServiceJobIdResponse
+        }
         meter(rate_limit).put(path, params:, parser:)
       end
 
@@ -66,7 +62,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def complete_service_job_by_service_job_id(service_job_id, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/completions"
-        parser = Peddler::Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse
+        }
         meter(rate_limit).put(path, parser:)
       end
 
@@ -128,7 +127,10 @@ module Peddler
           "requiredSkills" => stringify_array(required_skills),
           "storeIds" => stringify_array(store_ids),
         }.compact
-        parser = Peddler::Types::ServicesV1::GetServiceJobsResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::GetServiceJobsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -141,7 +143,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def add_appointment_for_service_job_by_service_job_id(service_job_id, body, rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments"
-        parser = Peddler::Types::ServicesV1::SetAppointmentResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::SetAppointmentResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -156,7 +161,10 @@ module Peddler
       def reschedule_appointment_for_service_job_by_service_job_id(service_job_id, appointment_id, body,
         rate_limit: 5.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}"
-        parser = Peddler::Types::ServicesV1::SetAppointmentResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::SetAppointmentResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -171,7 +179,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def assign_appointment_resources(service_job_id, appointment_id, body, rate_limit: 1.0)
         path = "/service/v1/serviceJobs/#{percent_encode(service_job_id)}/appointments/#{percent_encode(appointment_id)}/resources"
-        parser = Peddler::Types::ServicesV1::AssignAppointmentResourcesResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::AssignAppointmentResourcesResponse
+        }
         meter(rate_limit).put(path, body:, parser:)
       end
 
@@ -204,7 +215,10 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
-        parser = Peddler::Types::ServicesV1::RangeSlotCapacity if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::RangeSlotCapacity
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -223,7 +237,10 @@ module Peddler
           "marketplaceIds" => stringify_array(marketplace_ids),
           "nextPageToken" => next_page_token,
         }.compact
-        parser = Peddler::Types::ServicesV1::FixedSlotCapacity if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::FixedSlotCapacity
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -240,7 +257,10 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::ServicesV1::UpdateScheduleResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::UpdateScheduleResponse
+        }
         meter(rate_limit).put(path, body:, params:, parser:)
       end
 
@@ -256,7 +276,10 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::ServicesV1::CreateReservationResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::CreateReservationResponse
+        }
         meter(rate_limit).post(path, body:, params:, parser:)
       end
 
@@ -273,7 +296,10 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::ServicesV1::UpdateReservationResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::UpdateReservationResponse
+        }
         meter(rate_limit).put(path, body:, params:, parser:)
       end
 
@@ -289,7 +315,10 @@ module Peddler
         params = {
           "marketplaceIds" => stringify_array(marketplace_ids),
         }.compact
-        parser = Peddler::Types::ServicesV1::CancelReservationResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::CancelReservationResponse
+        }
         meter(rate_limit).delete(path, params:, parser:)
       end
 
@@ -314,7 +343,10 @@ module Peddler
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
-        parser = Peddler::Types::ServicesV1::GetAppointmentSlotsResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::GetAppointmentSlotsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -341,7 +373,10 @@ module Peddler
           "startTime" => start_time,
           "endTime" => end_time,
         }.compact
-        parser = Peddler::Types::ServicesV1::GetAppointmentSlotsResponse if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::GetAppointmentSlotsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -353,7 +388,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_service_document_upload_destination(body, rate_limit: 5.0)
         path = "/service/v1/documents"
-        parser = Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination if typed?
+        parser = -> {
+          require "peddler/types/services_v1"
+          Types::ServicesV1::CreateServiceDocumentUploadDestination
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end

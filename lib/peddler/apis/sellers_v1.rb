@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def sellers_v1
-      typed? ? APIs::SellersV1.typed : APIs::SellersV1
+      APIs::SellersV1
     end
   end
 
@@ -26,16 +26,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/sellers-api-model/sellers.json
     class SellersV1 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/sellers_v1"
-          self
-        end
-      end
-
       # Returns a list of marketplaces where the seller can list items and information about the seller's participation
       # in those marketplaces.
       #
@@ -44,7 +34,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_marketplace_participations(rate_limit: 0.016)
         path = "/sellers/v1/marketplaceParticipations"
-        parser = Peddler::Types::SellersV1::GetMarketplaceParticipationsResponse if typed?
+        parser = -> {
+          require "peddler/types/sellers_v1"
+          Types::SellersV1::GetMarketplaceParticipationsResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -55,7 +48,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_account(rate_limit: 0.016)
         path = "/sellers/v1/account"
-        parser = Peddler::Types::SellersV1::GetAccountResponse if typed?
+        parser = -> {
+          require "peddler/types/sellers_v1"
+          Types::SellersV1::GetAccountResponse
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

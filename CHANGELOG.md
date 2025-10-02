@@ -7,7 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- **BREAKING**: Separate colliding APIs in external-fulfillment and finances directories into distinct API classes
+- Simplify typed response handling - `parse` now always returns typed responses, use `to_h` for raw Hash
+- Remove `typed` helpers
+- Separate colliding APIs in external-fulfillment and finances directories into distinct API classes
 
 ## [4.9.0] - 2025-10-01
 

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def product_type_definitions_2020_09_01
-      typed? ? APIs::ProductTypeDefinitions20200901.typed : APIs::ProductTypeDefinitions20200901
+      APIs::ProductTypeDefinitions20200901
     end
   end
 
@@ -24,16 +24,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json
     class ProductTypeDefinitions20200901 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/product_type_definitions_2020_09_01"
-          self
-        end
-      end
-
       # Search for and return a list of Amazon product types that have definitions available.
       #
       # @note This operation can make a static sandbox call.
@@ -58,7 +48,10 @@ module Peddler
           "locale" => locale,
           "searchLocale" => search_locale,
         }.compact
-        parser = Peddler::Types::ProductTypeDefinitions20200901::ProductTypeList if typed?
+        parser = -> {
+          require "peddler/types/product_type_definitions_2020_09_01"
+          Types::ProductTypeDefinitions20200901::ProductTypeList
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -93,7 +86,10 @@ module Peddler
           "requirementsEnforced" => requirements_enforced,
           "locale" => locale,
         }.compact
-        parser = Peddler::Types::ProductTypeDefinitions20200901::ProductTypeDefinition if typed?
+        parser = -> {
+          require "peddler/types/product_type_definitions_2020_09_01"
+          Types::ProductTypeDefinitions20200901::ProductTypeDefinition
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
     end

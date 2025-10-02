@@ -8,7 +8,7 @@ require "peddler/helpers/reports_2021_06_30"
 module Peddler
   class << self
     def reports_2021_06_30
-      typed? ? APIs::Reports20210630.typed : APIs::Reports20210630
+      APIs::Reports20210630
     end
   end
 
@@ -20,16 +20,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/reports-api-model/reports_2021-06-30.json
     class Reports20210630 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/reports_2021_06_30"
-          self
-        end
-      end
-
       include Peddler::Helpers::Reports20210630
 
       # Returns report details for the reports that match the filters that you specify.
@@ -66,7 +56,10 @@ module Peddler
           "createdUntil" => created_until,
           "nextToken" => next_token,
         }.compact
-        parser = Peddler::Types::Reports20210630::GetReportsResponse if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::GetReportsResponse
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -78,7 +71,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_report(body, rate_limit: 0.0167)
         path = "/reports/2021-06-30/reports"
-        parser = Peddler::Types::Reports20210630::CreateReportResponse if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::CreateReportResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -104,7 +100,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report(report_id, rate_limit: 2.0)
         path = "/reports/2021-06-30/reports/#{percent_encode(report_id)}"
-        parser = Peddler::Types::Reports20210630::Report if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::Report
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -120,7 +119,10 @@ module Peddler
         params = {
           "reportTypes" => stringify_array(report_types),
         }.compact
-        parser = Peddler::Types::Reports20210630::ReportScheduleList if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::ReportScheduleList
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -133,7 +135,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def create_report_schedule(body, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules"
-        parser = Peddler::Types::Reports20210630::CreateReportScheduleResponse if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::CreateReportScheduleResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -158,7 +163,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_schedule(report_schedule_id, rate_limit: 0.0222)
         path = "/reports/2021-06-30/schedules/#{percent_encode(report_schedule_id)}"
-        parser = Peddler::Types::Reports20210630::ReportSchedule if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::ReportSchedule
+        }
         meter(rate_limit).get(path, parser:)
       end
 
@@ -170,7 +178,10 @@ module Peddler
       # @return [Peddler::Response] The API response
       def get_report_document(report_document_id, rate_limit: 0.0167)
         path = "/reports/2021-06-30/documents/#{percent_encode(report_document_id)}"
-        parser = Peddler::Types::Reports20210630::ReportDocument if typed?
+        parser = -> {
+          require "peddler/types/reports_2021_06_30"
+          Types::Reports20210630::ReportDocument
+        }
         meter(rate_limit).get(path, parser:)
       end
     end

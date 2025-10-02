@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def uploads_2020_11_01
-      typed? ? APIs::Uploads20201101.typed : APIs::Uploads20201101
+      APIs::Uploads20201101
     end
   end
 
@@ -19,16 +19,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/uploads-api-model/uploads_2020-11-01.json
     class Uploads20201101 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/uploads_2020_11_01"
-          self
-        end
-      end
-
       # Creates an upload destination, returning the information required to upload a file to the destination and to
       # programmatically access the file.
       #
@@ -57,7 +47,10 @@ module Peddler
           "contentMD5" => content_md5,
           "contentType" => content_type,
         }.compact
-        parser = Peddler::Types::Uploads20201101::CreateUploadDestinationResponse if typed?
+        parser = -> {
+          require "peddler/types/uploads_2020_11_01"
+          Types::Uploads20201101::CreateUploadDestinationResponse
+        }
         meter(rate_limit).post(path, params:, parser:)
       end
     end

@@ -7,7 +7,7 @@ require "peddler/api"
 module Peddler
   class << self
     def easy_ship_2022_03_23
-      typed? ? APIs::EasyShip20220323.typed : APIs::EasyShip20220323
+      APIs::EasyShip20220323
     end
   end
 
@@ -22,16 +22,6 @@ module Peddler
     #
     # @see https://github.com/amzn/selling-partner-api-models/blob/main/models/easy-ship-model/easyShip_2022-03-23.json
     class EasyShip20220323 < API
-      class << self
-        # Enables typed response parsing
-        # @return [self]
-        def typed
-          @typed = true
-          require_relative "../types/easy_ship_2022_03_23"
-          self
-        end
-      end
-
       # Returns time slots available for Easy Ship orders to be scheduled based on the package weight and dimensions
       # that the seller specifies.
       #
@@ -52,7 +42,10 @@ module Peddler
       def list_handover_slots(list_handover_slots_request: nil, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/timeSlot"
         body = list_handover_slots_request
-        parser = Peddler::Types::EasyShip20220323::ListHandoverSlotsResponse if typed?
+        parser = -> {
+          require "peddler/types/easy_ship_2022_03_23"
+          Types::EasyShip20220323::ListHandoverSlotsResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -71,7 +64,10 @@ module Peddler
           "amazonOrderId" => amazon_order_id,
           "marketplaceId" => marketplace_id,
         }.compact
-        parser = Peddler::Types::EasyShip20220323::Package if typed?
+        parser = -> {
+          require "peddler/types/easy_ship_2022_03_23"
+          Types::EasyShip20220323::Package
+        }
         meter(rate_limit).get(path, params:, parser:)
       end
 
@@ -102,7 +98,10 @@ module Peddler
       def create_scheduled_package(create_scheduled_package_request, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/package"
         body = create_scheduled_package_request
-        parser = Peddler::Types::EasyShip20220323::Package if typed?
+        parser = -> {
+          require "peddler/types/easy_ship_2022_03_23"
+          Types::EasyShip20220323::Package
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
 
@@ -121,7 +120,10 @@ module Peddler
       def update_scheduled_packages(update_scheduled_packages_request: nil, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/package"
         body = update_scheduled_packages_request
-        parser = Peddler::Types::EasyShip20220323::Packages if typed?
+        parser = -> {
+          require "peddler/types/easy_ship_2022_03_23"
+          Types::EasyShip20220323::Packages
+        }
         meter(rate_limit).patch(path, body:, parser:)
       end
 
@@ -154,7 +156,10 @@ module Peddler
       def create_scheduled_package_bulk(create_scheduled_packages_request, rate_limit: 1.0)
         path = "/easyShip/2022-03-23/packages/bulk"
         body = create_scheduled_packages_request
-        parser = Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse if typed?
+        parser = -> {
+          require "peddler/types/easy_ship_2022_03_23"
+          Types::EasyShip20220323::CreateScheduledPackagesResponse
+        }
         meter(rate_limit).post(path, body:, parser:)
       end
     end
