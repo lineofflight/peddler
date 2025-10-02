@@ -40,8 +40,6 @@ module Generator
         end
       end
 
-      private
-
       def extract_base_name(file)
         basename = File.basename(file, ".json")
         basename.sub(/[_-]\d{4}[-_]\d{2}[-_]\d{2}$/, "").sub(/V\d+$/, "")
