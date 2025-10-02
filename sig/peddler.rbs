@@ -1,6 +1,13 @@
 # This file is generated. Do not edit.
 
 module Peddler
+  class << self
+    @typed: bool
+  end
+
+  def self.typed: () -> singleton(Peddler)
+  def self.typed?: () -> bool
+
   # API method declarations
   def self.amazon_warehousing_and_distribution_2024_05_09: () -> singleton(APIs::AmazonWarehousingAndDistribution20240509)
   def self.aplus_content_2020_11_01: () -> singleton(APIs::AplusContent20201101)

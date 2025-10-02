@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def fba_inbound_eligibility_v1
-      APIs::FBAInboundEligibilityV1
+      api = APIs::FBAInboundEligibilityV1
+      typed? ? api.typed : api
     end
   end
 

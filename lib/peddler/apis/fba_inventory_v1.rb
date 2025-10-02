@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def fba_inventory_v1
-      APIs::FBAInventoryV1
+      api = APIs::FBAInventoryV1
+      typed? ? api.typed : api
     end
   end
 

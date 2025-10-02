@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def application_management_2023_11_30
-      APIs::ApplicationManagement20231130
+      api = APIs::ApplicationManagement20231130
+      typed? ? api.typed : api
     end
   end
 

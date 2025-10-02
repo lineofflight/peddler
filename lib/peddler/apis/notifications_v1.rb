@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def notifications_v1
-      APIs::NotificationsV1
+      api = APIs::NotificationsV1
+      typed? ? api.typed : api
     end
   end
 

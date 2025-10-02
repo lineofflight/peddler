@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def messaging_v1
-      APIs::MessagingV1
+      api = APIs::MessagingV1
+      typed? ? api.typed : api
     end
   end
 

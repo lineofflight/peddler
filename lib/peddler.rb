@@ -67,6 +67,20 @@ require "peddler/token"
 
 module Peddler
   class << self
+    @typed = false
+
+    # Enable typed responses for all APIs
+    # @return [self]
+    def typed
+      @typed = true
+      self
+    end
+
+    # @return [Boolean]
+    def typed?
+      @typed
+    end
+
     alias_method :amazon_warehousing_and_distribution, :amazon_warehousing_and_distribution_2024_05_09
     alias_method :aplus_content, :aplus_content_2020_11_01
     alias_method :application_integrations, :application_integrations_2024_04_01

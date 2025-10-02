@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def vendor_direct_fulfillment_orders_v1
-      APIs::VendorDirectFulfillmentOrdersV1
+      api = APIs::VendorDirectFulfillmentOrdersV1
+      typed? ? api.typed : api
     end
   end
 

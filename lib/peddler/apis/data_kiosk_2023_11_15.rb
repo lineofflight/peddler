@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def data_kiosk_2023_11_15
-      APIs::DataKiosk20231115
+      api = APIs::DataKiosk20231115
+      typed? ? api.typed : api
     end
   end
 

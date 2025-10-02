@@ -8,7 +8,8 @@ require "peddler/helpers/reports_2021_06_30"
 module Peddler
   class << self
     def reports_2021_06_30
-      APIs::Reports20210630
+      api = APIs::Reports20210630
+      typed? ? api.typed : api
     end
   end
 

@@ -7,7 +7,8 @@ require "peddler/api"
 module Peddler
   class << self
     def listings_items_2021_08_01
-      APIs::ListingsItems20210801
+      api = APIs::ListingsItems20210801
+      typed? ? api.typed : api
     end
   end
 
