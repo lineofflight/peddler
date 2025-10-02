@@ -10,7 +10,8 @@ require "peddler/api"
 module Peddler
   class << self
     def <%= name_with_version %>
-      APIs::<%= class_name %>
+      api = APIs::<%= class_name %>
+      typed? ? api.typed : api
     end
   end
 
