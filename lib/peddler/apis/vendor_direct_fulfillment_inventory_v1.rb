@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vendor_direct_fulfillment_inventory_v1(...)
-      APIs::VendorDirectFulfillmentInventoryV1.new(...)
+    def vendor_direct_fulfillment_inventory_v1
+      APIs::VendorDirectFulfillmentInventoryV1
     end
   end
 
@@ -30,12 +30,6 @@ module Peddler
         path = "/vendor/directFulfillment/inventory/v1/warehouses/#{percent_encode(warehouse_id)}/items"
         parser = Peddler::Types::VendorDirectFulfillmentInventoryV1::SubmitInventoryUpdateResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vendor_direct_fulfillment_inventory_v1"
       end
     end
   end

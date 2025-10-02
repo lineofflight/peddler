@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def fulfillment_inbound_2024_03_20(...)
-      APIs::FulfillmentInbound20240320.new(...)
+    def fulfillment_inbound_2024_03_20
+      APIs::FulfillmentInbound20240320
     end
   end
 
@@ -814,12 +814,6 @@ module Peddler
         path = "/inbound/fba/2024-03-20/operations/#{percent_encode(operation_id)}"
         parser = Peddler::Types::FulfillmentInbound20240320::InboundOperationStatus if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/fulfillment_inbound_2024_03_20"
       end
     end
   end

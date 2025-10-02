@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def easy_ship_2022_03_23(...)
-      APIs::EasyShip20220323.new(...)
+    def easy_ship_2022_03_23
+      APIs::EasyShip20220323
     end
   end
 
@@ -121,7 +121,7 @@ module Peddler
       # marketplace document support table}).
       #
       # Developers calling this operation may optionally assign a `packageDetails` object, allowing them to input a
-      # preferred time slot for each order in their request. In this case, Amazon will try to schedule the respective
+      # preferred time slot for each order in ther request. In this case, Amazon will try to schedule the respective
       # packages using their optional settings. On the other hand, *i.e.*, if the time slot is not provided, Amazon will
       # then pick the earliest time slot possible.
       #
@@ -146,12 +146,6 @@ module Peddler
         body = create_scheduled_packages_request
         parser = Peddler::Types::EasyShip20220323::CreateScheduledPackagesResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/easy_ship_2022_03_23"
       end
     end
   end

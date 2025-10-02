@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def external_fulfillment_shipments_2024_09_11(...)
-      APIs::ExternalFulfillmentShipments20240911.new(...)
+    def external_fulfillment_shipments_2024_09_11
+      APIs::ExternalFulfillmentShipments20240911
     end
   end
 
@@ -176,12 +176,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::ExternalFulfillmentShipments20240911::ShipLabelsResponse if typed?
         put(path, body:, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/external_fulfillment_shipments_2024_09_11"
       end
     end
   end

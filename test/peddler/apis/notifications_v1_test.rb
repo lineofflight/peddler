@@ -10,7 +10,7 @@ module Peddler
       include FeatureHelpers
 
       def test_get_destinations
-        res = api(grantless: true).typed.sandbox.get_destinations
+        res = api(grantless: true, typed: true).sandbox.get_destinations
 
         assert_predicate(res.status, :ok?)
       end
@@ -24,19 +24,19 @@ module Peddler
           },
           name: "Test Destination",
         }
-        res = api(grantless: true).typed.sandbox.create_destination(body)
+        res = api(grantless: true, typed: true).sandbox.create_destination(body)
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_get_destination
-        res = api(grantless: true).typed.sandbox.get_destination("TEST_DESTINATION_ID")
+        res = api(grantless: true, typed: true).sandbox.get_destination("TEST_DESTINATION_ID")
 
         assert_predicate(res.status, :ok?)
       end
 
       def test_delete_destination
-        res = api(grantless: true).typed.sandbox.delete_destination("TEST_DESTINATION_ID")
+        res = api(grantless: true, typed: true).sandbox.delete_destination("TEST_DESTINATION_ID")
 
         assert_predicate(res.status, :ok?)
       end

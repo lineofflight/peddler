@@ -60,20 +60,40 @@ module Peddler
       assert_equal(initial_http_object_id, @api.meter(1.0).http.object_id)
     end
 
-    def test_typed
-      api_subclass = Class.new(API) do
-        def load_types
+    def test_snake_case_name_with_date
+      test_class = Class.new(API) do
+        class << self
+          def name
+            "Peddler::APIs::Orders20220401"
+          end
         end
       end
 
-      api = api_subclass.new("eu-west-1", "access_token")
+      assert_equal("orders_2022_04_01", test_class.snake_case_name)
+    end
 
-      refute_predicate(api, :typed?)
+    def test_snake_case_name_with_version
+      test_class = Class.new(API) do
+        class << self
+          def name
+            "Peddler::APIs::InventoryV1"
+          end
+        end
+      end
 
-      result = api.typed
+      assert_equal("inventory_v1", test_class.snake_case_name)
+    end
 
-      assert_predicate(api, :typed?)
-      assert_same(api, result)
+    def test_snake_case_name_with_acronym
+      test_class = Class.new(API) do
+        class << self
+          def name
+            "Peddler::APIs::FBAOrders"
+          end
+        end
+      end
+
+      assert_equal("fba_orders", test_class.snake_case_name)
     end
 
     def test_rate_limit

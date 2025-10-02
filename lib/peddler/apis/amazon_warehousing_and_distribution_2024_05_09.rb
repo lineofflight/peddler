@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def amazon_warehousing_and_distribution_2024_05_09(...)
-      APIs::AmazonWarehousingAndDistribution20240509.new(...)
+    def amazon_warehousing_and_distribution_2024_05_09
+      APIs::AmazonWarehousingAndDistribution20240509
     end
   end
 
@@ -203,12 +203,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryListing if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/amazon_warehousing_and_distribution_2024_05_09"
       end
     end
   end

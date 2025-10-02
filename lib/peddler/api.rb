@@ -26,6 +26,32 @@ module Peddler
     # @return [Integer]
     attr_reader :retries
 
+    class << self
+      # Enables typed response parsing
+      # @return [self]
+      def typed
+        @typed = true
+        require_relative "types/#{snake_case_name}"
+        self
+      end
+
+      # @return [Boolean]
+      def typed?
+        @typed ||= false
+      end
+
+      # Converts the class name to snake_case
+      # @return [String]
+      def snake_case_name
+        class_name = name.split("::").last
+        class_name
+          .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+          .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+          .gsub(/([a-z])(\d{4})(\d{2})(\d{2})/, '\1_\2_\3_\4')
+          .downcase
+      end
+    end
+
     # @param [String] aws_region The AWS region to use for the endpoint
     # @param [String] access_token The access token for authentication
     # @param [Integer] retries The number of retries if throttled (default: 0)
@@ -41,18 +67,9 @@ module Peddler
       sandbox? ? endpoint.sandbox : endpoint.production
     end
 
-    # Enables typed response parsing
-    # @return [self]
-    def typed
-      load_types
-      @typed = true
-
-      self
-    end
-
     # @return [Boolean]
     def typed?
-      !!@typed
+      self.class.typed?
     end
 
     # Switches to the SP-API sandbox to make test calls
@@ -114,15 +131,19 @@ module Peddler
     #   @return [self]
     [:via, :use, :retriable].each do |method|
       define_method(method) do |*args, **kwargs, &block|
-        @http = http.send(method, *args, **kwargs, &block) # steep:ignore
+        # @type self: API
+        # @type var kwargs: Hash[Symbol, untyped]
+        @http = http.send(method, *args, **kwargs, &block)
         self
       end
     end
     alias_method :through, :via
 
     [:get, :post, :put, :delete, :patch].each do |method|
-      # steep:ignore:start
       define_method(method) do |path, parser: nil, **options|
+        # @type self: API
+        # @type var parser: untyped
+        # @type var options: Hash[Symbol, untyped]
         if options[:body] && !options[:body].is_a?(String)
           options[:json] = options.delete(:body)
         end
@@ -132,10 +153,8 @@ module Peddler
         end
 
         http_response = http.headers("X-Amz-Date" => timestamp).send(method, uri, **options)
-
         Response.wrap(http_response, parser:)
       end
-      # steep:ignore:end
     end
 
     private
@@ -154,10 +173,6 @@ module Peddler
 
     def timestamp
       Time.now.utc.strftime("%Y%m%dT%H%M%SZ")
-    end
-
-    def load_types
-      raise NotImplementedError, "subclasses must implement #load_types"
     end
 
     # Encodes URL path components

@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def messaging_v1(...)
-      APIs::MessagingV1.new(...)
+    def messaging_v1
+      APIs::MessagingV1
     end
   end
 
@@ -252,12 +252,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::MessagingV1::InvoiceResponse if typed?
         post(path, body:, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/messaging_v1"
       end
     end
   end

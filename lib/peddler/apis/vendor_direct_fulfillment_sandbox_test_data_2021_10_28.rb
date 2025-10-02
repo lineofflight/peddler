@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vendor_direct_fulfillment_sandbox_test_data_2021_10_28(...)
-      APIs::VendorDirectFulfillmentSandboxTestData20211028.new(...)
+    def vendor_direct_fulfillment_sandbox_test_data_2021_10_28
+      APIs::VendorDirectFulfillmentSandboxTestData20211028
     end
   end
 
@@ -45,12 +45,6 @@ module Peddler
         path = "/vendor/directFulfillment/sandbox/2021-10-28/transactions/#{percent_encode(transaction_id)}"
         parser = Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus if typed?
         get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vendor_direct_fulfillment_sandbox_test_data_2021_10_28"
       end
     end
   end

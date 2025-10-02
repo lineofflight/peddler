@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def external_fulfillment_inventory_2024_09_11(...)
-      APIs::ExternalFulfillmentInventory20240911.new(...)
+    def external_fulfillment_inventory_2024_09_11
+      APIs::ExternalFulfillmentInventory20240911
     end
   end
 
@@ -29,12 +29,6 @@ module Peddler
       def batch_inventory(body)
         path = "/externalFulfillment/inventory/2024-09-11/inventories"
         post(path, body:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/external_fulfillment_inventory_2024_09_11"
       end
     end
   end

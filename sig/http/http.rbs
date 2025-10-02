@@ -8,6 +8,7 @@ module HTTP
   def self.patch: (String uri, **untyped options) -> HTTP::Response
 
   class Client
+    def headers: (Hash[String, String?]) -> HTTP::Client
     def get: (String | URI uri, **untyped options) -> HTTP::Response
     def post: (String | URI uri, **untyped options) -> HTTP::Response
     def put: (String | URI uri, **untyped options) -> HTTP::Response

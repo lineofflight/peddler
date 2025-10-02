@@ -14,4 +14,4 @@ RuboCop::RakeTask.new
 Steep::RakeTask.new
 YARD::Rake::YardocTask.new
 
-task default: [:rubocop, :test]
+task default: [:rubocop, :test, :steep]

@@ -9,8 +9,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def <%= name_with_version %>(...)
-      APIs::<%= class_name %>.new(...)
+    def <%= name_with_version %>
+      APIs::<%= class_name %>
     end
   end
 
@@ -29,12 +29,6 @@ module Peddler
         <%= "\n" if index > 0 -%>
         <%= operation.render %>
       <% end -%>
-
-      private
-
-      def load_types
-        require "peddler/types/<%= name_with_version %>"
-      end
     end
   end
 end

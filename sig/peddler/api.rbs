@@ -5,20 +5,27 @@ module Peddler
 
     class MustSandbox < StandardError
     end
+
     @endpoint: Endpoint
     @access_token: String
     @retries: Integer
     @sandbox: bool
-    @typed: bool
-    @http: untyped
+    @http: HTTP::Client?
 
     attr_reader endpoint: Endpoint
     attr_reader access_token: String
     attr_reader retries: Integer
 
+    class << self
+      @typed: bool
+    end
+
+    def self.typed: () -> singleton(API)
+    def self.typed?: () -> bool
+    def self.snake_case_name: () -> String
+
     def initialize: (String aws_region, String access_token, ?retries: Integer) -> void
     def endpoint_uri: () -> URI::HTTPS
-    def typed: () -> self
     def typed?: () -> bool
     def sandbox: () -> self
     def sandbox?: () -> bool
@@ -26,24 +33,22 @@ module Peddler
     def must_sandbox!: () -> void
     def http: () -> HTTP::Client
 
-    # Methods defined dynamically in the class
-    def via: (*untyped args, **untyped kwargs) ?{ () -> untyped } -> self
+    def via: (*untyped, **untyped) ?{ () -> untyped } -> self
     alias through via
-    def use: (*untyped args, **untyped kwargs) ?{ () -> untyped } -> self
-    def retriable: (**untyped kwargs) ?{ () -> untyped } -> self
+    def use: (*untyped, **untyped) ?{ () -> untyped } -> self
+    def retriable: (**untyped) ?{ () -> untyped } -> self
 
-    def get: (String path, ?parser: untyped?, **untyped options) -> Response
-    def post: (String path, ?parser: untyped?, **untyped options) -> Response
-    def put: (String path, ?parser: untyped?, **untyped options) -> Response
-    def delete: (String path, ?parser: untyped?, **untyped options) -> Response
-    def patch: (String path, ?parser: untyped?, **untyped options) -> Response
+    def get: (String path, ?parser: untyped, **untyped) -> Response
+    def post: (String path, ?parser: untyped, **untyped) -> Response
+    def put: (String path, ?parser: untyped, **untyped) -> Response
+    def delete: (String path, ?parser: untyped, **untyped) -> Response
+    def patch: (String path, ?parser: untyped, **untyped) -> Response
 
     private
 
     def meter: (Float? requests_per_second) -> self
     def user_agent: () -> String
     def timestamp: () -> String
-    def load_types: () -> void
     def percent_encode: (String component) -> String
     def stringify_array: (Array[untyped]? val) -> String?
   end

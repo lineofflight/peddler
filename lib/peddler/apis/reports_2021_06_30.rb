@@ -7,8 +7,8 @@ require "peddler/helpers/reports_2021_06_30"
 
 module Peddler
   class << self
-    def reports_2021_06_30(...)
-      APIs::Reports20210630.new(...)
+    def reports_2021_06_30
+      APIs::Reports20210630
     end
   end
 
@@ -162,12 +162,6 @@ module Peddler
         path = "/reports/2021-06-30/documents/#{percent_encode(report_document_id)}"
         parser = Peddler::Types::Reports20210630::ReportDocument if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/reports_2021_06_30"
       end
     end
   end

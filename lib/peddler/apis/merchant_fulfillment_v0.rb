@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def merchant_fulfillment_v0(...)
-      APIs::MerchantFulfillmentV0.new(...)
+    def merchant_fulfillment_v0
+      APIs::MerchantFulfillmentV0
     end
   end
 
@@ -78,12 +78,6 @@ module Peddler
         path = "/mfn/v0/additionalSellerInputs"
         parser = Peddler::Types::MerchantFulfillmentV0::GetAdditionalSellerInputsResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/merchant_fulfillment_v0"
       end
     end
   end

@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vehicles_2024_11_01(...)
-      APIs::Vehicles20241101.new(...)
+    def vehicles_2024_11_01
+      APIs::Vehicles20241101
     end
   end
 
@@ -38,12 +38,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::Vehicles20241101::VehiclesResponse if typed?
         get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vehicles_2024_11_01"
       end
     end
   end

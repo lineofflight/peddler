@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def replenishment_2022_11_07(...)
-      APIs::Replenishment20221107.new(...)
+    def replenishment_2022_11_07
+      APIs::Replenishment20221107
     end
   end
 
@@ -57,12 +57,6 @@ module Peddler
         path = "/replenishment/2022-11-07/offers/search"
         parser = Peddler::Types::Replenishment20221107::ListOffersResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/replenishment_2022_11_07"
       end
     end
   end

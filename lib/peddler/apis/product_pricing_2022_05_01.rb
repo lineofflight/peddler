@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def product_pricing_2022_05_01(...)
-      APIs::ProductPricing20220501.new(...)
+    def product_pricing_2022_05_01
+      APIs::ProductPricing20220501
     end
   end
 
@@ -54,12 +54,6 @@ module Peddler
         body = requests
         parser = Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/product_pricing_2022_05_01"
       end
     end
   end

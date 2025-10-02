@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vendor_direct_fulfillment_orders_2021_12_28(...)
-      APIs::VendorDirectFulfillmentOrders20211228.new(...)
+    def vendor_direct_fulfillment_orders_2021_12_28
+      APIs::VendorDirectFulfillmentOrders20211228
     end
   end
 
@@ -82,12 +82,6 @@ module Peddler
         path = "/vendor/directFulfillment/orders/2021-12-28/acknowledgements"
         parser = Peddler::Types::VendorDirectFulfillmentOrders20211228::TransactionId if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vendor_direct_fulfillment_orders_2021_12_28"
       end
     end
   end

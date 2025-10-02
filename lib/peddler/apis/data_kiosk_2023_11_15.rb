@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def data_kiosk_2023_11_15(...)
-      APIs::DataKiosk20231115.new(...)
+    def data_kiosk_2023_11_15
+      APIs::DataKiosk20231115
     end
   end
 
@@ -106,12 +106,6 @@ module Peddler
         path = "/dataKiosk/2023-11-15/documents/#{percent_encode(document_id)}"
         parser = Peddler::Types::DataKiosk20231115::GetDocumentResponse if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/data_kiosk_2023_11_15"
       end
     end
   end

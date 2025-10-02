@@ -11,6 +11,9 @@ module Generator
 
   private
 
+  def self.clone_api_models: (String api_models_dir) -> void
+  def self.update_api_models: (String api_models_dir) -> void
+  def self.models_older_than_one_day?: (String api_models_dir) -> bool
   def self.ensure_api_models_exist!: () -> void
   def self.initialize_directories!: () -> void
   def self.cleanup_filtered_api_types!: () -> void

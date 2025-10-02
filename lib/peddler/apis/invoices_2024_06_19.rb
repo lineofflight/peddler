@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def invoices_2024_06_19(...)
-      APIs::Invoices20240619.new(...)
+    def invoices_2024_06_19
+      APIs::Invoices20240619
     end
   end
 
@@ -178,12 +178,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::Invoices20240619::GetInvoiceResponse if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/invoices_2024_06_19"
       end
     end
   end

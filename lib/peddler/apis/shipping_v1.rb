@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def shipping_v1(...)
-      APIs::ShippingV1.new(...)
+    def shipping_v1
+      APIs::ShippingV1
     end
   end
 
@@ -130,12 +130,6 @@ module Peddler
         path = "/shipping/v1/tracking/#{percent_encode(tracking_id)}"
         parser = Peddler::Types::ShippingV1::GetTrackingInformationResponse if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/shipping_v1"
       end
     end
   end

@@ -3,11 +3,11 @@
 module Peddler
   # API method declarations
   <%- api_methods.each do |api| -%>
-  def self.<%= api[:name] %>: (String aws_region, String access_token, ?retries: Integer) -> APIs::<%= api[:class_name] %>
+  def self.<%= api[:name] %>: () -> singleton(APIs::<%= api[:class_name] %>)
   <%- end -%>
 
   # Aliased API methods (latest versions)
   <%- apis_with_latest_version.each do |name, api| -%>
-  def self.<%= name %>: (String aws_region, String access_token, ?retries: Integer) -> APIs::<%= api.class_name %>
+  def self.<%= name %>: () -> singleton(APIs::<%= api.class_name %>)
   <%- end -%>
 end

@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def product_fees_v0(...)
-      APIs::ProductFeesV0.new(...)
+    def product_fees_v0
+      APIs::ProductFeesV0
     end
   end
 
@@ -87,12 +87,6 @@ module Peddler
         path = "/products/fees/v0/feesEstimate"
         parser = Peddler::Types::ProductFeesV0::GetMyFeesEstimatesResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/product_fees_v0"
       end
     end
   end

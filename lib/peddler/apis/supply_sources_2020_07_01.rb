@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def supply_sources_2020_07_01(...)
-      APIs::SupplySources20200701.new(...)
+    def supply_sources_2020_07_01
+      APIs::SupplySources20200701
     end
   end
 
@@ -92,12 +92,6 @@ module Peddler
         body = payload
         parser = Peddler::Types::SupplySources20200701::ErrorList if typed?
         put(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/supply_sources_2020_07_01"
       end
     end
   end

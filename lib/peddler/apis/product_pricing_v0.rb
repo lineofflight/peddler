@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def product_pricing_v0(...)
-      APIs::ProductPricingV0.new(...)
+    def product_pricing_v0
+      APIs::ProductPricingV0
     end
   end
 
@@ -165,12 +165,6 @@ module Peddler
         body = get_listing_offers_batch_request_body
         parser = Peddler::Types::ProductPricingV0::GetListingOffersBatchResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/product_pricing_v0"
       end
     end
   end

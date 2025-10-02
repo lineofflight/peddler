@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def fba_inbound_eligibility_v1(...)
-      APIs::FBAInboundEligibilityV1.new(...)
+    def fba_inbound_eligibility_v1
+      APIs::FBAInboundEligibilityV1
     end
   end
 
@@ -42,12 +42,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::FBAInboundEligibilityV1::GetItemEligibilityPreviewResponse if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/fba_inbound_eligibility_v1"
       end
     end
   end

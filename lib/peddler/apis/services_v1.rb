@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def services_v1(...)
-      APIs::ServicesV1.new(...)
+    def services_v1
+      APIs::ServicesV1
     end
   end
 
@@ -345,12 +345,6 @@ module Peddler
         path = "/service/v1/documents"
         parser = Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/services_v1"
       end
     end
   end

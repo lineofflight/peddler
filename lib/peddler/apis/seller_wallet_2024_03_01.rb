@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def seller_wallet_2024_03_01(...)
-      APIs::SellerWallet20240301.new(...)
+    def seller_wallet_2024_03_01
+      APIs::SellerWallet20240301
     end
   end
 
@@ -250,12 +250,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::SellerWallet20240301::DeleteTransferSchedule if typed?
         delete(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/seller_wallet_2024_03_01"
       end
     end
   end

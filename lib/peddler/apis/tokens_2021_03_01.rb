@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def tokens_2021_03_01(...)
-      APIs::Tokens20210301.new(...)
+    def tokens_2021_03_01
+      APIs::Tokens20210301
     end
   end
 
@@ -38,12 +38,6 @@ module Peddler
         path = "/tokens/2021-03-01/restrictedDataToken"
         parser = Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/tokens_2021_03_01"
       end
     end
   end

@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def sellers_v1(...)
-      APIs::SellersV1.new(...)
+    def sellers_v1
+      APIs::SellersV1
     end
   end
 
@@ -47,12 +47,6 @@ module Peddler
         path = "/sellers/v1/account"
         parser = Peddler::Types::SellersV1::GetAccountResponse if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/sellers_v1"
       end
     end
   end

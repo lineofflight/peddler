@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def orders_v0(...)
-      APIs::OrdersV0.new(...)
+    def orders_v0
+      APIs::OrdersV0
     end
   end
 
@@ -278,12 +278,6 @@ module Peddler
         path = "/orders/v0/orders/#{percent_encode(order_id)}/shipmentConfirmation"
         body = payload
         meter(rate_limit).post(path, body:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/orders_v0"
       end
     end
   end

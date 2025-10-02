@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def shipment_invoicing_v0(...)
-      APIs::ShipmentInvoicingV0.new(...)
+    def shipment_invoicing_v0
+      APIs::ShipmentInvoicingV0
     end
   end
 
@@ -57,12 +57,6 @@ module Peddler
         path = "/fba/outbound/brazil/v0/shipments/#{percent_encode(shipment_id)}/invoice/status"
         parser = Peddler::Types::ShipmentInvoicingV0::GetInvoiceStatusResponse if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/shipment_invoicing_v0"
       end
     end
   end

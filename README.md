@@ -2,6 +2,8 @@
 
 [![Build](https://github.com/lineofflight/peddler/actions/workflows/ci.yml/badge.svg)][build]
 
+> **IMPORTANT:** This README reflects unreleased changes and may not match the [latest stable release](https://github.com/hakanensari/peddler/tree/v4.9.0). For documentation matching the current stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
+
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
 Peddler is automatically generated from the latest Open API models provided by Amazon.
@@ -113,7 +115,7 @@ Amazon's SP-API imposes [rate limits][rate-limits] on operations. Override the d
 Provide an optional `:retries` argument when initializing an API to specify retry attempts if throttled. Default is 0 (no retries). If set to a positive value, Peddler will retry with exponential backoff based on the rate limit.
 
 ```ruby
-api = Peddler.orders_v0(aws_region, access_token, retries: 3)
+api = Peddler.orders_v0.new(aws_region, access_token, retries: 3)
 api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
@@ -125,8 +127,8 @@ api.get_orders(
 Peddler provides typed response parsing using the [Structure gem](https://github.com/hakanensari/structure), offering runtime type checking and better IDE support:
 
 ```ruby
-# Enable typed responses
-api = Peddler.orders(aws_region, access_token).typed
+# Enable typed responses with .typed
+api = Peddler.orders.typed.new(aws_region, access_token)
 
 # Get orders with type-safe response
 response = api.get_orders(
@@ -152,7 +154,7 @@ order.order_total.currency.iso_code # => "USD"
 If you prefer working with plain hashes, use the standard (non-typed) API:
 
 ```ruby
-api = Peddler.orders(aws_region, access_token)
+api = Peddler.orders.new(aws_region, access_token)
 response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
 orders = response.dig("payload", "orders")
 ```
@@ -243,13 +245,13 @@ Without Nokogiri, S3 XML errors are still handled gracefully but with less detai
 Peddler provides Ruby interfaces to all Amazon SP-API endpoints. Each API is available in its respective version. Access APIs by calling methods on the Peddler module:
 
 ```ruby
-api = Peddler.<api_name>_<version>(aws_region, access_token, options)
+api = Peddler.<api_name>_<version>.new(aws_region, access_token, options)
 ```
 
-You can also simply initialize the latest version:
+You can also simply use the latest version:
 
 ```ruby
-api = Peddler.<api_name>(aws_region, access_token, options)
+api = Peddler.<api_name>.new(aws_region, access_token, options)
 ```
 
 Below is a comprehensive list of all available APIs organized by category:
@@ -262,7 +264,7 @@ Below is a comprehensive list of all available APIs organized by category:
 - **Sales API (v1)**: Get order metrics and sales data
 
 ```ruby
-api = Peddler.orders(aws_region, access_token)
+api = Peddler.orders.new(aws_region, access_token)
 response = api.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "2023-01-01T00:00:00Z"
@@ -279,6 +281,7 @@ first_order_id = response.dig("payload", "orders", 0, "amazonOrderId")
 # response.parse["payload"]["orders"][0]["amazonOrderId"]  # Error prone!
 
 # For sandbox testing
+api = Peddler.orders.new(aws_region, access_token)
 api.sandbox.get_orders(
   marketplaceIds: ["ATVPDKIKX0DER"],
   createdAfter: "TEST_CASE_200"
@@ -296,7 +299,7 @@ api.sandbox.get_orders(
 - **Product Fees API (v0)**: Retrieve fee estimates for products
 
 ```ruby
-api = Peddler.catalog_items(aws_region, access_token)
+api = Peddler.catalog_items.new(aws_region, access_token)
 response = api.get_catalog_item(
   marketplaceIds: ["ATVPDKIKX0DER"],
   asin: "B08N5WRWNW"
@@ -328,7 +331,7 @@ search_results = response.parse
 
 ```ruby
 # FBA outbound example
-api = Peddler.fulfillment_outbound(aws_region, access_token)
+api = Peddler.fulfillment_outbound.new(aws_region, access_token)
 api.create_fulfillment_order(
   body: {
     sellerFulfillmentOrderId: "ORDER123",
@@ -362,7 +365,7 @@ api.create_fulfillment_order(
 - **Data Kiosk API (2023-11-15)**: Access and manage analytical data
 
 ```ruby
-api = Peddler.feeds(aws_region, access_token)
+api = Peddler.feeds.new(aws_region, access_token)
 
 # Complete Feeds API Workflow:
 # 1. Create a feed document (input feed document)
@@ -467,7 +470,7 @@ api.upload_feed_document(json_document.dig("url"), json_feed_content, "applicati
 
 ```ruby
 # Customer Feedback API example
-api = Peddler.customer_feedback_2024_06_01(aws_region, access_token)
+api = Peddler.customer_feedback_2024_06_01.new(aws_region, access_token)
 
 # Get item review topics (most positive and negative)
 review_topics = api.get_item_review_topics(
@@ -490,7 +493,7 @@ return_topics = api.get_browse_node_return_topics(
 ```
 
 ```ruby
-api = Peddler.notifications(aws_region, access_token)
+api = Peddler.notifications.new(aws_region, access_token)
 # Create destination
 destination = api.create_destination(
   name: "MyEventQueue",
@@ -508,7 +511,8 @@ api.create_subscription(
 )
 
 # For sandbox testing (requires grantless token)
-sandbox_api = Peddler.notifications(aws_region, grantless_access_token).sandbox
+sandbox_api = Peddler.notifications.new(aws_region, grantless_access_token)
+sandbox_api = sandbox_api.sandbox
 # Get all destinations
 destinations = sandbox_api.get_destinations
 
@@ -532,7 +536,7 @@ APIs for vendors selling to Amazon:
 - **Vendor Transaction Status API (v1)**: Check transaction status
 
 ```ruby
-api = Peddler.vendor_orders(aws_region, access_token)
+api = Peddler.vendor_orders.new(aws_region, access_token)
 orders = api.get_purchase_orders(
   limit: 10,
   createdAfter: "2023-01-01T00:00:00Z"
@@ -555,7 +559,7 @@ orders = api.get_purchase_orders(
 
 ```ruby
 # Using Product Pricing v0
-api = Peddler.product_pricing_v0(aws_region, access_token)
+api = Peddler.product_pricing_v0.new(aws_region, access_token)
 
 # Get pricing information for an ASIN
 pricing = api.get_pricing(
@@ -579,7 +583,7 @@ offers = api.get_item_offers(
 )
 
 # Batch request for multiple items (2022-05-01 API)
-api = Peddler.product_pricing_2022_05_01(aws_region, access_token)
+api = Peddler.product_pricing_2022_05_01.new(aws_region, access_token)
 batch_request = {
   requests: [
     {
@@ -598,7 +602,7 @@ results = api.get_competitive_summary(batch_request)
 #### Listings Items API
 
 ```ruby
-api = Peddler.listings_items(aws_region, access_token)
+api = Peddler.listings_items.new(aws_region, access_token)
 
 # Create or update a listing
 listing_result = api.put_listings_item(
@@ -661,7 +665,7 @@ api.delete_listings_item("SELLER_ID", "SKU123", Marketplace.id("US"))
 #### Listings Restrictions API
 
 ```ruby
-api = Peddler.listings_restrictions(aws_region, access_token)
+api = Peddler.listings_restrictions.new(aws_region, access_token)
 
 # Check restrictions for an ASIN
 restrictions = api.get_listings_restrictions(
@@ -675,7 +679,7 @@ restrictions = api.get_listings_restrictions(
 #### Product Type Definitions API
 
 ```ruby
-api = Peddler.product_type_definitions(aws_region, access_token)
+api = Peddler.product_type_definitions.new(aws_region, access_token)
 
 # Get schema for a product type
 definition = api.get_definitions_product_type(
@@ -692,7 +696,7 @@ json_schema = HTTP.get(schema_url).parse(:json)
 #### Reports API
 
 ```ruby
-api = Peddler.reports(aws_region, access_token)
+api = Peddler.reports.new(aws_region, access_token)
 
 # Request a report
 report_response = api.create_report({
@@ -715,7 +719,7 @@ response = api.download_report_document("DOCUMENT_ID")
 #### Sellers API
 
 ```ruby
-api = Peddler.sellers(aws_region, access_token)
+api = Peddler.sellers.new(aws_region, access_token)
 
 # Get marketplace participations
 participations = api.get_marketplace_participations

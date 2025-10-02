@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def application_integrations_2024_04_01(...)
-      APIs::ApplicationIntegrations20240401.new(...)
+    def application_integrations_2024_04_01
+      APIs::ApplicationIntegrations20240401
     end
   end
 
@@ -52,12 +52,6 @@ module Peddler
       def record_action_feedback(notification_id, body, rate_limit: 1.0)
         path = "/appIntegrations/2024-04-01/notifications/#{percent_encode(notification_id)}/feedback"
         meter(rate_limit).post(path, body:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/application_integrations_2024_04_01"
       end
     end
   end

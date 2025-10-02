@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def fulfillment_outbound_2020_07_01(...)
-      APIs::FulfillmentOutbound20200701.new(...)
+    def fulfillment_outbound_2020_07_01
+      APIs::FulfillmentOutbound20200701
     end
   end
 
@@ -259,12 +259,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/fulfillment_outbound_2020_07_01"
       end
     end
   end

@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def external_fulfillment_returns_2024_09_11(...)
-      APIs::ExternalFulfillmentReturns20240911.new(...)
+    def external_fulfillment_returns_2024_09_11
+      APIs::ExternalFulfillmentReturns20240911
     end
   end
 
@@ -78,12 +78,6 @@ module Peddler
         path = "/externalFulfillment/2024-09-11/returns/#{percent_encode(return_id)}"
         parser = Peddler::Types::ExternalFulfillmentReturns20240911::Return if typed?
         get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/external_fulfillment_returns_2024_09_11"
       end
     end
   end

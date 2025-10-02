@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vendor_direct_fulfillment_transactions_v1(...)
-      APIs::VendorDirectFulfillmentTransactionsV1.new(...)
+    def vendor_direct_fulfillment_transactions_v1
+      APIs::VendorDirectFulfillmentTransactionsV1
     end
   end
 
@@ -30,12 +30,6 @@ module Peddler
         path = "/vendor/directFulfillment/transactions/v1/transactions/#{percent_encode(transaction_id)}"
         parser = Peddler::Types::VendorDirectFulfillmentTransactionsV1::GetTransactionResponse if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vendor_direct_fulfillment_transactions_v1"
       end
     end
   end

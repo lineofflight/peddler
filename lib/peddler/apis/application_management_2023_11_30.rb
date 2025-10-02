@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def application_management_2023_11_30(...)
-      APIs::ApplicationManagement20231130.new(...)
+    def application_management_2023_11_30
+      APIs::ApplicationManagement20231130
     end
   end
 
@@ -32,12 +32,6 @@ module Peddler
 
         path = "/applications/2023-11-30/clientSecret"
         meter(rate_limit).post(path)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/application_management_2023_11_30"
       end
     end
   end

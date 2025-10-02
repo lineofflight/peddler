@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def customer_feedback_2024_06_01(...)
-      APIs::CustomerFeedback20240601.new(...)
+    def customer_feedback_2024_06_01
+      APIs::CustomerFeedback20240601
     end
   end
 
@@ -141,12 +141,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse if typed?
         get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/customer_feedback_2024_06_01"
       end
     end
   end

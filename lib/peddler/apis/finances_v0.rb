@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def finances_v0(...)
-      APIs::FinancesV0.new(...)
+    def finances_v0
+      APIs::FinancesV0
     end
   end
 
@@ -136,12 +136,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::FinancesV0::ListFinancialEventsResponse if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/finances_v0"
       end
     end
   end

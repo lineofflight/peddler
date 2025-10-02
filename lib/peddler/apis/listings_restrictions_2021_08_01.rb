@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def listings_restrictions_2021_08_01(...)
-      APIs::ListingsRestrictions20210801.new(...)
+    def listings_restrictions_2021_08_01
+      APIs::ListingsRestrictions20210801
     end
   end
 
@@ -47,12 +47,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::ListingsRestrictions20210801::RestrictionList if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/listings_restrictions_2021_08_01"
       end
     end
   end

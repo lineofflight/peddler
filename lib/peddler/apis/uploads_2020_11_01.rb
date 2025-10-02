@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def uploads_2020_11_01(...)
-      APIs::Uploads20201101.new(...)
+    def uploads_2020_11_01
+      APIs::Uploads20201101
     end
   end
 
@@ -49,12 +49,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::Uploads20201101::CreateUploadDestinationResponse if typed?
         meter(rate_limit).post(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/uploads_2020_11_01"
       end
     end
   end

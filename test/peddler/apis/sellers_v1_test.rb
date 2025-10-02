@@ -9,7 +9,7 @@ module Peddler
       include FeatureHelpers
 
       def test_get_marketplace_participations
-        res = api.typed.get_marketplace_participations
+        res = api(typed: true).get_marketplace_participations
 
         assert_predicate(res.status, :ok?)
       end

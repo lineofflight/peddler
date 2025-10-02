@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def fba_inventory_v1(...)
-      APIs::FBAInventoryV1.new(...)
+    def fba_inventory_v1
+      APIs::FBAInventoryV1
     end
   end
 
@@ -123,12 +123,6 @@ module Peddler
         body = add_inventory_request_body
         parser = Peddler::Types::FBAInventoryV1::AddInventoryResponse if typed?
         post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/fba_inventory_v1"
       end
     end
   end

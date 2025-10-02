@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vendor_orders_v1(...)
-      APIs::VendorOrdersV1.new(...)
+    def vendor_orders_v1
+      APIs::VendorOrdersV1
     end
   end
 
@@ -157,12 +157,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::VendorOrdersV1::GetPurchaseOrdersStatusResponse if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vendor_orders_v1"
       end
     end
   end

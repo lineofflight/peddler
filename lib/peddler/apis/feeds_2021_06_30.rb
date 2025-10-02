@@ -7,8 +7,8 @@ require "peddler/helpers/feeds_2021_06_30"
 
 module Peddler
   class << self
-    def feeds_2021_06_30(...)
-      APIs::Feeds20210630.new(...)
+    def feeds_2021_06_30
+      APIs::Feeds20210630
     end
   end
 
@@ -120,12 +120,6 @@ module Peddler
         path = "/feeds/2021-06-30/documents/#{percent_encode(feed_document_id)}"
         parser = Peddler::Types::Feeds20210630::FeedDocument if typed?
         meter(rate_limit).get(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/feeds_2021_06_30"
       end
     end
   end

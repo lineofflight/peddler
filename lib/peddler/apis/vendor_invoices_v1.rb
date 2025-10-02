@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def vendor_invoices_v1(...)
-      APIs::VendorInvoicesV1.new(...)
+    def vendor_invoices_v1
+      APIs::VendorInvoicesV1
     end
   end
 
@@ -28,12 +28,6 @@ module Peddler
         path = "/vendor/payments/v1/invoices"
         parser = Peddler::Types::VendorInvoicesV1::SubmitInvoicesResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/vendor_invoices_v1"
       end
     end
   end

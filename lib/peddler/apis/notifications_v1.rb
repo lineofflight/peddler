@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def notifications_v1(...)
-      APIs::NotificationsV1.new(...)
+    def notifications_v1
+      APIs::NotificationsV1
     end
   end
 
@@ -145,12 +145,6 @@ module Peddler
         path = "/notifications/v1/destinations/#{percent_encode(destination_id)}"
         parser = Peddler::Types::NotificationsV1::DeleteDestinationResponse if typed?
         meter(rate_limit).delete(path, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/notifications_v1"
       end
     end
   end

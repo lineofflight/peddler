@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def listings_items_2020_09_01(...)
-      APIs::ListingsItems20200901.new(...)
+    def listings_items_2020_09_01
+      APIs::ListingsItems20200901
     end
   end
 
@@ -100,12 +100,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::ListingsItems20200901::ListingsItemSubmissionResponse if typed?
         meter(rate_limit).put(path, body:, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/listings_items_2020_09_01"
       end
     end
   end

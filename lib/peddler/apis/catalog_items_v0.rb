@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def catalog_items_v0(...)
-      APIs::CatalogItemsV0.new(...)
+    def catalog_items_v0
+      APIs::CatalogItemsV0
     end
   end
 
@@ -37,12 +37,6 @@ module Peddler
         }.compact
         parser = Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse if typed?
         meter(rate_limit).get(path, params:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/catalog_items_v0"
       end
     end
   end

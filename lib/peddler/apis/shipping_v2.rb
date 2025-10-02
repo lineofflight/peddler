@@ -6,8 +6,8 @@ require "peddler/api"
 
 module Peddler
   class << self
-    def shipping_v2(...)
-      APIs::ShippingV2.new(...)
+    def shipping_v2
+      APIs::ShippingV2
     end
   end
 
@@ -343,12 +343,6 @@ module Peddler
         path = "/shipping/v2/claims"
         parser = Peddler::Types::ShippingV2::CreateClaimResponse if typed?
         meter(rate_limit).post(path, body:, parser:)
-      end
-
-      private
-
-      def load_types
-        require "peddler/types/shipping_v2"
       end
     end
   end
