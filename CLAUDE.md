@@ -14,19 +14,22 @@ You are working on Peddler, a Ruby library that allows sellers and vendors to in
 - Run a test: `bundle exec ruby -Itest test/path/to/test_file.rb`
 - Lint a file: `bundle exec rubocop path/to/file.rb` (add `-A` to autocorrect)
 - Type check a path: `bundle exec steep check path/to/file.rbs`
-- **NEVER run full suite/lint/type-check directly** - use runner subagent
+- Full test suite: `bundle exec rake test`
+- Lint all files: `bundle exec rubocop`
+- Type check all: `bundle exec rake steep`
+- Generate code: `bundle exec rake generate`
 - When encountering errors or ambiguity, ask rather than assume
 
 ### Long-Running Tasks
 
-For full test suite, linting, type checking, or code generation (1+ minutes), use the runner subagent:
+For tasks that take 1+ minutes (e.g. code generation, type checking), consider running them in the background to keep the conversation flowing:
 
-- **Run all tests** (`bundle exec rake test`)
-- **Lint all files** (`bundle exec rubocop`)
-- **Type check all** (`bundle exec steep check`)
-- **Generate code** (`bundle exec rake generate`)
+1. Use Bash tool with `run_in_background: true` to start the task
+2. Stay silent - don't announce status between start and completion
+3. Check status with BashOutput at each response turn (silently)
+4. Report full results only when task completes
 
-The runner executes in background and reports when complete. You can continue working on other tasks while it runs.
+When results are needed immediately (e.g., before committing), run commands normally. The user will wait for completion.
 
 ## Tech Stack
 
@@ -67,7 +70,7 @@ The runner executes in background and reports when complete. You can continue wo
 - The generator in `lib/generator/` transforms OpenAPI specs into Ruby classes
 - OpenAPI models are downloaded to `selling-partner-api-models/` from Amazon's official repository
 - To change generated API classes, edit generator logic in `lib/generator/` or templates in `lib/generator/templates/`
-- Run `bin/generate-code` to regenerate all API classes after generator changes
+- Run `bundle exec rake generate` to regenerate all API classes after generator changes
 
 ## Development Practices
 
@@ -152,7 +155,6 @@ When researching SP-API functionality or issues:
 ### Generated API Classes
 See `lib/peddler/apis/catalog_items_2022_04_01.rb` for typical generated API structure:
 - Class inherits from `API`
-- `.typed` class method enables type parsing
 - Methods use keyword arguments with YARD documentation
 - Amazon SP-API links in comments reference official docs
 
@@ -167,7 +169,6 @@ See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for standard test patte
 When modifying code generation:
 1. Edit templates in `lib/generator/templates/` (e.g., operation.erb, type.erb)
 2. Or modify generator logic in `lib/generator/` (e.g., `operation.rb`, `type.rb`)
-3. Use runner subagent to generate code
+3. Run `bundle exec rake generate` in background
 4. Review generated files in `lib/peddler/apis/` and `lib/peddler/types/`
-5. Use runner subagent to run tests
-6. Use runner subagent to type check if needed
+5. Run tests and type check as needed
