@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class ApplicationIntegrations20240401 < API
-      def self.typed: () -> singleton(ApplicationIntegrations20240401)
       def create_notification: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def delete_notifications: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def record_action_feedback: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class AmazonWarehousingAndDistribution20240509 < API
-      def self.typed: () -> singleton(AmazonWarehousingAndDistribution20240509)
-
       def cancel_inbound: (String, ?rate_limit: Float) -> Peddler::Response
 
       def check_inbound_eligibility: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

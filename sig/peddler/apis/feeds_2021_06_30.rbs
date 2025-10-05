@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class Feeds20210630 < API
-      def self.typed: () -> singleton(Feeds20210630)
-
       def cancel_feed: (String, ?rate_limit: Float) -> Peddler::Response
       def create_feed: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 

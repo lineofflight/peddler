@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class Vehicles20241101 < API
-      def self.typed: () -> singleton(Vehicles20241101)
       def get_vehicles: (String, String, ?page_token: String?, ?updated_after: String?) -> Peddler::Response
     end
   end

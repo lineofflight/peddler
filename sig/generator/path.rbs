@@ -9,7 +9,7 @@ module Generator
     def initialize: (String path, Hash[String, untyped] methods) -> void
 
     def has_dynamic_sandbox?: () -> bool
-    def operations: (?String? api_name_with_version) -> Array[Operation]
+    def operations: (String api_name_with_version) -> Array[Operation]
 
     def parameters: () -> Array[Hash[String, untyped]]
     def path: () -> String

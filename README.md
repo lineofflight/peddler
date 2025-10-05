@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/lineofflight/peddler/actions/workflows/ci.yml/badge.svg)][build]
 
-> **IMPORTANT:** This README reflects unreleased changes and may not match the [latest stable release](https://github.com/hakanensari/peddler/tree/v4.9.0). For documentation matching the current stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
+> **IMPORTANT:** This README is for the v5.0.0.pre.1 pre-release. For the latest stable version, see the [v4.9.0 README](https://github.com/hakanensari/peddler/blob/v4.9.0/README.md).
 
 **Peddler** is a Ruby interface to the [Amazon Selling Partner API (SP-API)][docs-overview]. The SP-API enables Amazon sellers and vendors to programmatically access their data on orders, shipments, payments, and more.
 
@@ -20,7 +20,7 @@ To begin using the Amazon SP-API, you must [register as a developer][register-as
 Add this line to your Gemfile.
 
 ```ruby
-gem "peddler", "~> 4.0"
+gem "peddler", "~> 5.0.0.pre.1"
 ```
 
 And then execute:
@@ -28,16 +28,6 @@ And then execute:
 ```shell
 bundle install
 ```
-
-### Optional Dependencies
-
-For enhanced error handling when uploading or downloading files, Peddler can parse XML error responses from Amazon S3 if Nokogiri is available:
-
-```ruby
-gem "nokogiri"
-```
-
-If Nokogiri is not available, S3 XML errors will still be handled gracefully, but with less detailed error information.
 
 ## Usage
 
@@ -171,53 +161,9 @@ orders = response.dig("payload", "orders")
 
 ### Error Handling
 
-By default, Peddler v4 maintains backward compatibility:
-- **Client errors (4xx)**: Always raise `Peddler::Error` exceptions
-- **Server errors (5xx)**: Return response objects (deprecated behavior)
-
-To adopt the recommended v5.0 behavior where all errors raise exceptions:
+All HTTP errors (4xx and 5xx) raise `Peddler::Error` exceptions:
 
 ```ruby
-Peddler.configure do |config|
-  config.raise_on_server_errors = true
-end
-```
-
-This ensures consistent error handling and prevents silent failures from server errors.
-
-#### Current Default Behavior (v4.x)
-
-```ruby
-# Server errors (5xx) return response objects by default
-response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
-
-# Must check status to detect server errors
-if response.status >= 500
-  puts "Server error: #{response.status}"
-  # Handle error or retry
-else
-  orders = response.parse["payload"]["orders"]
-end
-
-# Client errors (4xx) always raise
-begin
-  response = api.get_orders(marketplaceIds: ["INVALID"])
-rescue Peddler::Error => e
-  puts "Client error: #{e.message}"
-end
-```
-
-#### Recommended Behavior (v5.0)
-
-Enable consistent error handling by setting `raise_on_server_errors`:
-
-```ruby
-# Configure once at application startup
-Peddler.configure do |config|
-  config.raise_on_server_errors = true
-end
-
-# Now all errors raise exceptions consistently
 begin
   response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
   orders = response.parse["payload"]["orders"]
@@ -231,24 +177,6 @@ rescue Peddler::Error => e
   end
 end
 ```
-
-#### S3 Error Handling
-
-For file upload/download operations, Amazon S3 may return XML error responses. If Nokogiri is available, these are parsed for detailed error information:
-
-```ruby
-# With Nokogiri gem
-gem "nokogiri"
-
-# Enhanced S3 error parsing
-begin
-  api.upload_document(document_data)
-rescue Peddler::Error => e
-  puts "S3 Error: #{e.message}"  # Detailed XML-parsed error
-end
-```
-
-Without Nokogiri, S3 XML errors are still handled gracefully but with less detailed information.
 
 ### Available APIs
 

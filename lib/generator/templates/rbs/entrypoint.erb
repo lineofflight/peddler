@@ -1,10 +1,6 @@
 # <%= Generator::Config::GENERATED_FILE_NOTICE %>
 
 module Peddler
-  self.@typed: bool
-  def self.typed: () -> singleton(Peddler)
-  def self.typed?: () -> bool
-
   # API method declarations
   <%- api_methods.each do |api| -%>
   def self.<%= api[:name] %>: () -> singleton(APIs::<%= api[:class_name] %>)

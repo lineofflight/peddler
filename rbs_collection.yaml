@@ -12,6 +12,3 @@ sources:
 
 # A directory to install the downloaded RBSs
 path: .gem_rbs_collection
-
-gems:
-  - name: nokogiri

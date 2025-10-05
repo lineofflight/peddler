@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class VendorOrdersV1 < API
-      def self.typed: () -> singleton(VendorOrdersV1)
-
       def get_purchase_order: (String, ?rate_limit: Float) -> Peddler::Response
       def get_purchase_orders: (?limit: Integer?, ?created_after: String?, ?created_before: String?, ?sort_order: String?, ?next_token: String?, ?include_details: String?, ?changed_after: String?, ?changed_before: String?, ?po_item_state: String?, ?is_po_changed: String?, ?purchase_order_state: String?, ?ordering_vendor_code: String?, ?rate_limit: Float) -> Peddler::Response
 

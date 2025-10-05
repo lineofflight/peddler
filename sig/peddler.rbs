@@ -1,6 +1,4 @@
 module Peddler
-  self.@typed: bool
-
   # Aliased API methods (latest versions)
   def self.amazon_warehousing_and_distribution: () -> singleton(APIs::AmazonWarehousingAndDistribution20240509)
 
@@ -172,10 +170,6 @@ module Peddler
   def self.transfers: () -> singleton(APIs::Transfers20240601)
 
   def self.transfers_2024_06_01: () -> singleton(APIs::Transfers20240601)
-
-  def self.typed: () -> singleton(Peddler)
-
-  def self.typed?: () -> bool
 
   def self.uploads: () -> singleton(APIs::Uploads20201101)
 

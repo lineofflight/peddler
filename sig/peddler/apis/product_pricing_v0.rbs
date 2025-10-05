@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class ProductPricingV0 < API
-      def self.typed: () -> singleton(ProductPricingV0)
-
       def get_competitive_pricing: (String, String, ?asins: Array[String]?, ?skus: Array[String]?, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response
 
       def get_item_offers: (String, String, String, ?customer_type: String?, ?rate_limit: Float) -> Peddler::Response

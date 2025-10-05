@@ -1,174 +1,134 @@
 # CLAUDE.md
 
-You are working on Peddler, a Ruby library that allows sellers and vendors to interact with Amazon's Selling Partner API (SP-API).
+You are working on Peddler, a Ruby library for interacting with Amazon's Selling Partner API (SP-API).
 
-## Communication Style
+## Project Structure
 
-- Avoid unnecessary validations like "you're (absolutely) right"
-- Focus on the task at hand without commentary on correctness
+```
+peddler/
+├── lib/
+│   ├── peddler.rb              # Main entrypoint (GENERATED)
+│   ├── peddler/
+│   │   ├── api.rb              # Base API class (manual)
+│   │   ├── endpoint.rb         # Endpoint configuration (manual)
+│   │   ├── marketplace.rb      # Marketplace utilities (manual)
+│   │   ├── token.rb            # LWA authentication (manual)
+│   │   ├── error.rb            # Error classes (manual)
+│   │   ├── response.rb         # Response wrapper (manual)
+│   │   ├── apis/               # Generated API classes
+│   │   ├── types/              # Generated type classes
+│   │   └── helpers/            # Manual extensions for generated APIs
+│   └── generator/              # Code generation system
+│       ├── templates/          # ERB templates
+│       └── rbs/                # RBS type generation
+├── sig/                        # RBS signatures (generated + manual)
+├── test/                       # Tests (mirrors lib/ structure)
+└── selling-partner-api-models/ # Amazon's OpenAPI specs
+```
+
+### Architecture
+
+Generated code (don't edit): `lib/peddler/{apis,types}/*`, `lib/peddler.rb`, `sig/peddler/{apis,types}/*`
+
+Manual code (safe to edit): Core classes, generator, tests
+
+### Core Concepts
+
+- All API classes inherit from `Peddler::API`
+- Response objects wrap HTTP.rb responses with helpers:
+  - `.parse` - Parse JSON with type checking (uses Structure gem)
+  - `.dig(*keys)` - Safely navigate nested hashes
+  - `.to_h` - Get raw response hash
+  - `.status` - HTTP status code
+- Sandbox mode: `api.sandbox.method_name(...)`
+- Rate limiting: Pass `retries:` to API constructor
 
 ## Commands
 
-### General Development
+- Run test: `bundle exec ruby -Itest test/<path>_test.rb`
+- Lint file: `bundle exec rubocop <path>.rb` (add `-A` to autocorrect)
+- Type check: `bundle exec steep check <path>.rbs`
+- Full suite: `bundle exec rake test`
+- All linting: `bundle exec rake rubocop`
+- All types: `bundle exec rake steep`
+- Generate: `bundle exec rake generate`
 
-- Run a test: `bundle exec ruby -Itest test/path/to/test_file.rb`
-- Lint a file: `bundle exec rubocop path/to/file.rb` (add `-A` to autocorrect)
-- Type check a path: `bundle exec steep check path/to/file.rbs`
-- Full test suite: `bundle exec rake test`
-- Lint all files: `bundle exec rubocop`
-- Type check all: `bundle exec rake steep`
-- Generate code: `bundle exec rake generate`
-- When encountering errors or ambiguity, ask rather than assume
-
-### Long-Running Tasks
-
-For tasks that take 1+ minutes (e.g. code generation, type checking), consider running them in the background to keep the conversation flowing:
-
-1. Use Bash tool with `run_in_background: true` to start the task
-2. Stay silent - don't announce status between start and completion
-3. Check status with BashOutput at each response turn (silently)
-4. Report full results only when task completes
-
-When results are needed immediately (e.g., before committing), run commands normally. The user will wait for completion.
+Run the generator and type checker, which may take a few minutes or more, in the background.
 
 ## Tech Stack
 
 - Ruby 3.2+
-- [HTTP](https://github.com/httprb/http)
-- [Minitest](https://github.com/minitest/minitest)
-- [VCR/WebMock](https://github.com/vcr/vcr)
-- [YARD](https://rubydoc.info/gems/yard/file/docs/Tags.md)
-- [RuboCop](https://docs.rubocop.org)
-- [RBS](https://github.com/ruby/rbs)
-- [Steep](https://github.com/soutaro/steep)
+- [HTTP](https://github.com/httprb/http) - HTTP client
+- [Structure](https://github.com/hakanensari/structure) - Type-safe response parsing
+- Testing: Minitest with VCR (HTTP fixtures) and WebMock (stubbing)
+- Types: RBS signatures checked with Steep
+- Docs: YARD for public API documentation
+- [Nokogiri](https://nokogiri.org) - Optional for S3 error parsing
 
-## Code Style and Architecture Guidelines
+## Code Style
 
-### Ruby
-
-- Keep your code idiomatic and direct
-- Write clear, direct code over clever code
-- Avoid excessive commenting - let the code speak for itself
-- Design intuitive APIs for your classes and modules
-- Hide internal details behind private methods
-- Use concise and descriptive names
-- Wrap code and comments at 120 characters
-- Use positional and keyword arguments for required and optional parameters, respectively
-- Follow patterns and conventions from neighboring files
-
-### API Design
-
-- Follow Amazon SP-API conventions and naming patterns
-- Maintain consistent method signatures across API classes
-- Support both sandbox and production environments
-
-### Code Generation System
-
-- **API classes and types are auto-generated** from Amazon's OpenAPI specs
-- Generated code lives in `lib/peddler/apis/`, `lib/peddler/types/`, and `lib/peddler.rb`
-- **Never manually edit generated files** - changes will be overwritten on next generation
-- The generator in `lib/generator/` transforms OpenAPI specs into Ruby classes
-- OpenAPI models are downloaded to `selling-partner-api-models/` from Amazon's official repository
-- To change generated API classes, edit generator logic in `lib/generator/` or templates in `lib/generator/templates/`
-- Run `bundle exec rake generate` to regenerate all API classes after generator changes
+- Wrap at 120 characters
+- Positional args for required, keyword args for optional
+- Follow patterns from neighboring files
 
 ## Development Practices
 
-- Work on feature branches (delete when done)
-- Use descriptive branch names (e.g., `fix/api-timeout`)
-- Use GitHub mcp, fall back to gh cli
-- Write tests first (TDD)
-- Test behavior, not implementation (don't test private methods directly)
-- Use meaningful test names that describe what's being tested
-- Use VCR cassettes for integration tests
-- Update CHANGELOG for significant user-facing changes with short, succinct one-liners
+### Workflow
 
-### Git
+- Work on feature branches (delete when merged)
+- Use descriptive names (e.g., `fix/api-timeout`)
+- Use GitHub MCP, fall back to gh CLI
+- TDD - write tests first
+- Test behavior, not implementation
+- VCR cassettes for integration tests
+- Update CHANGELOG for user-facing changes (short, succinct one-liners)
 
-- Run tests, lint, check types before committing (don't commit if any fail)
-- Use conventional commit messages (e.g., "feat: add feature")
-- 50/72 rule - keep it concise, focus on what/why not how
-- Reference or close issues if applicable
-- Add yourself as co-author
-- **NEVER `git add .`** - stage explicitly
-- **NEVER commit changes unless explicitly asked** - always let the user review changes first
+### Testing
 
-## Working with SP-API Specifications
-
-### Amazon specs
-- All specifications are stored locally in `selling-partner-api-models/models/`
-- If missing, run `bin/generate-code` to download
-- Use `rg` (ripgrep) to search
-- Use `jq` to parse and extract
-- These are the authoritative source for API behavior
-
-#### Parsing OpenAPI Model Files
-
-Each API model file (e.g., `awd_2024-05-09.json`) follows this structure:
-- **paths**: API endpoints and operations
-  - Each path contains HTTP methods (get, post, put, delete)
-  - Each method has `operationId`, `parameters`, `responses`
-- **definitions**: Type definitions for request/response objects
-  - Watch for circular references (e.g., Type A → Type B → Type A)
-- **x-amzn-api-sandbox**: Sandbox response examples (when available)
-
-Common jq commands for exploring models:
-```bash
-# List all type definitions
-jq '.definitions | keys' <api-model>.json
-
-# Find operations that use a specific type
-grep -n '"#/definitions/TypeName"' <api-model>.json
-
-# Check for sandbox examples
-grep -c "x-amzn-api-sandbox" <api-model>.json
-
-# Extract operation IDs
-jq '.paths | .[] | .[] | .operationId' <api-model>.json
-
-# Find circular type dependencies
-jq '.definitions.TypeName.properties | to_entries[] | select(.value["$ref"]) | .value["$ref"]' <api-model>.json
-```
-
-### Researching SP-API Issues
-
-When researching SP-API functionality or issues:
-
-- Check docs at: https://developer-docs.amazon.com/sp-api/docs/
-- GitHub repos: amzn/selling-partner-api-models, amzn/selling-partner-api-samples
-- Release notes: https://developer-docs.amazon.com/sp-api/docs/sp-api-release-notes
-- Deprecation schedule: https://developer-docs.amazon.com/sp-api/docs/sp-api-deprecation-schedule
-- Error handling guide: https://developer-docs.amazon.com/sp-api/docs/error-handling
-- Usage plans: https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits
-
-### Extracting API Details from Specs
-
-- Operation details: operationId, HTTP method, path parameters
-- Request/response schemas and headers
-- Error response structures
-- Throttling rates (found in "Usage Plan" sections of operation descriptions)
-- Look for markdown tables with "Rate (requests per second)" and "Burst" columns in descriptions
-- Sandbox-specific endpoints and test data (check for sandbox operations in the specs)
-
-## Common Patterns
-
-### Generated API Classes
-See `lib/peddler/apis/catalog_items_2022_04_01.rb` for typical generated API structure:
-- Class inherits from `API`
-- Methods use keyword arguments with YARD documentation
-- Amazon SP-API links in comments reference official docs
-
-### Integration Tests
-See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for standard test patterns:
 - Include `FeatureHelpers` for VCR setup and API instantiation
 - Use `Marketplace.ids("UK")` for marketplace parameters
-- Test methods call API and assert `res.status.success?`
-- VCR cassettes auto-record based on test path and filter sensitive data
+- Assert `res.status.success?` for API responses
+- VCR cassettes auto-record and filter credentials
+- See `test/peddler/apis/catalog_items_2022_04_01_test.rb` for patterns
+
+## Code Generation
 
 ### Generator Workflow
-When modifying code generation:
-1. Edit templates in `lib/generator/templates/` (e.g., operation.erb, type.erb)
-2. Or modify generator logic in `lib/generator/` (e.g., `operation.rb`, `type.rb`)
+
+1. Edit templates in `lib/generator/templates/` (operation.erb, type.erb, etc.)
+2. Or modify logic in `lib/generator/` (operation.rb, type.rb, etc.)
 3. Run `bundle exec rake generate` in background
 4. Review generated files in `lib/peddler/apis/` and `lib/peddler/types/`
-5. Run tests and type check as needed
+5. Run tests and type check
+
+### Generator Internals
+
+Main orchestrator: `lib/generator.rb`
+
+Key modules: `api.rb`, `type.rb`, `operation.rb`, `templates/`
+
+Pipeline: Clone specs → Generate APIs/types → Generate RBS → Format
+
+To regenerate single API: `bundle exec rake generate[api_name]`
+
+## SP-API Specifications
+
+### Local Specs
+
+- Location: `selling-partner-api-models/models/`
+- If missing: `bin/generate-code` to download
+- Search: Use `rg` (ripgrep)
+- Parse: Use `jq`
+- Authoritative source for API behavior
+
+### Structure
+
+Each OpenAPI spec contains `paths` (endpoints/operations), `definitions` (types), and `x-amzn-api-sandbox` (test data).
+
+Use `jq` to parse, `rg` to search specs in `selling-partner-api-models/models/`
+
+### External Research
+
+Use the researcher subagent when OpenAPI specs don't contain needed information or when behavior differs from documented specs.
+
+For quick local lookups, use jq/grep directly.

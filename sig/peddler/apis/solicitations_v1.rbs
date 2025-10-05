@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class SolicitationsV1 < API
-      def self.typed: () -> singleton(SolicitationsV1)
-
       def create_product_review_and_seller_feedback_solicitation: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
       def get_solicitation_actions_for_order: (String, Array[String], ?rate_limit: Float) -> Peddler::Response
     end

@@ -7,9 +7,49 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- All HTTP errors (4xx and 5xx) now raise `Peddler::Error` exceptions
 - Simplify typed response handling - `parse` now always returns typed responses, use `to_h` for raw Hash
-- Remove `typed` helpers
+- Make Nokogiri a required dependency for S3 error parsing
+
+### Removed
+
+- Remove deprecated `Response.decorate` method (use `Response.new` instead)
+- Remove obsolete `raise_on_server_errors` configuration option
+- Remove `API#through` alias (use `API#via` instead)
+- Remove deprecated `Token::Error` class
+- Remove `typed` helpers (use `parse` directly)
+
+### Fixed
+
 - Separate colliding APIs in external-fulfillment and finances directories into distinct API classes
+
+### Migration Guide
+
+#### Error Handling
+
+**Before (v4.x):**
+```ruby
+# 5xx errors returned response objects
+response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
+if response.status >= 500
+  # Handle error
+end
+
+# Or opt-in to v5 behavior
+Peddler.configure do |config|
+  config.raise_on_server_errors = true
+end
+```
+
+**After (v5.0):**
+```ruby
+# All errors now raise exceptions
+begin
+  response = api.get_orders(marketplaceIds: ["ATVPDKIKX0DER"])
+rescue Peddler::Error => e
+  # Handle error: e.status, e.response
+end
+```
 
 ## [4.9.0] - 2025-10-01
 

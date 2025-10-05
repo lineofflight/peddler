@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "nokogiri"
 
 module Peddler
   class Error < StandardError
@@ -42,13 +43,12 @@ module Peddler
       private
 
       def parse_xml_error(response)
-        require "nokogiri"
         doc = Nokogiri::XML(response)
         root = doc.root
         return {} unless root
 
         Hash[root.element_children.collect { |e| [e.name, e.text] }]
-      rescue LoadError, NoMethodError
+      rescue NoMethodError
         {}
       end
 

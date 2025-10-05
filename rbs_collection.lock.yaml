@@ -289,14 +289,6 @@ gems:
   version: 4.0.0
   source:
     type: rubygems
-- name: thor
-  version: '1.2'
-  source:
-    type: git
-    name: ruby/gem_rbs_collection
-    revision: 0cb6351d218704700cf4df797ff8966b3a418fcd
-    remote: https://github.com/ruby/gem_rbs_collection.git
-    repo_dir: gems
 - name: time
   version: '0'
   source:

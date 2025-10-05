@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class ShipmentInvoicingV0 < API
-      def self.typed: () -> singleton(ShipmentInvoicingV0)
-
       def get_invoice_status: (String, ?rate_limit: Float) -> Peddler::Response
       def get_shipment_details: (String, ?rate_limit: Float) -> Peddler::Response
       def submit_invoice: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

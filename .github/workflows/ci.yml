@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  rubocop:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +16,7 @@ jobs:
           bundler-cache: true
       - run: bundle exec rake rubocop
 
-  typecheck:
+  steep:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
         with:
           ruby-version: "3.4"
           bundler-cache: true
-      - run: bundle exec rake steep:check
+      - run: bundle exec rake steep
 
   verify-links:
     runs-on: ubuntu-latest
@@ -39,7 +39,6 @@ jobs:
     strategy:
       matrix:
         ruby: ["3.2", "3.3", "3.4", "head"]
-        appraisal: [default, nokogiri]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,8 +46,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - run: bundle exec appraisal install
-      - run: bundle exec appraisal ${{ matrix.appraisal }} rake test
+      - run: bundle exec rake test
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')

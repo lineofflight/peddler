@@ -9,14 +9,6 @@ module Peddler
 
     def setup
       @api = API.new("eu-west-1", "access_token")
-      # Reset configuration to default
-      Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
-      super
-    end
-
-    def teardown
-      # Reset configuration after each test
-      Peddler::Config.instance_variable_set(:@raise_on_server_errors, nil)
       super
     end
 
@@ -128,38 +120,7 @@ module Peddler
       end
     end
 
-    def test_server_errors_return_response_by_default
-      # Mock HTTP client to return 500 error
-      mock_http = Minitest::Mock.new
-      mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
-      mock_http.expect(
-        :get,
-        HTTP::Response.new(
-          body: "Internal Server Error",
-          headers: {},
-          status: 500,
-          version: nil,
-          request: nil,
-        ),
-        [URI],
-      )
-
-      @api.stub(:http, mock_http) do
-        # Should emit deprecation warning
-        response = nil
-        assert_output(nil, /\[DEPRECATION\]/) do
-          response = @api.get("/test")
-        end
-
-        # Should return wrapped response, not raise
-        assert_instance_of(Response, response)
-        assert_equal(500, response.status)
-      end
-    end
-
-    def test_server_errors_raise_when_configured
-      Peddler.raise_on_server_errors = true
-
+    def test_server_errors_always_raise
       # Mock HTTP client to return 500 error
       mock_http = Minitest::Mock.new
       mock_http.expect(:headers, mock_http) { |h| h.key?("X-Amz-Date") }
@@ -180,8 +141,6 @@ module Peddler
           @api.get("/test")
         end
       end
-    ensure
-      Peddler.instance_variable_set(:@raise_on_server_errors, nil)
     end
 
     def test_client_errors_always_raise

@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class Invoices20240619 < API
-      def self.typed: () -> singleton(Invoices20240619)
-
       def create_invoices_export: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def get_invoice: (String, String, ?rate_limit: Float) -> Peddler::Response

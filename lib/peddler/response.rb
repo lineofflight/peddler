@@ -3,11 +3,12 @@
 require "delegate"
 require "forwardable"
 
-require "peddler/config"
 require "peddler/error"
 
 module Peddler
   # Wraps HTTP::Response to allow custom parsing
+  #
+  # Delegates all unimplemented methods to the wrapped HTTP::Response object.
   class Response < SimpleDelegator
     extend Forwardable
 
@@ -33,12 +34,6 @@ module Peddler
         wrapped = new(response, parser:)
         wrapped.raise_for_status!
         wrapped
-      end
-
-      # @deprecated Use {.new} instead
-      def decorate(...)
-        warn("Response.decorate is deprecated and will be removed in v5.0. Use Response.new instead.", uplevel: 1)
-        new(...)
       end
     end
 
@@ -72,45 +67,13 @@ module Peddler
 
     # Raises an error if the HTTP response status indicates failure
     #
-    # @param raise_on_server_errors [Boolean] Whether to raise on 5xx errors (defaults to Peddler config)
     # @return [void]
     # @raise [Peddler::Error] if the response indicates an error
-    def raise_for_status!(raise_on_server_errors: Peddler.raise_on_server_errors)
+    def raise_for_status!
       return if status < 400
 
-      # Client errors (4xx) always raise
-      if status < 500
-        error = Error.build(__getobj__)
-        raise error || Error.new(status, __getobj__)
-      # Server errors (5xx) - check configuration
-      elsif raise_on_server_errors
-        error = Error.build(__getobj__)
-        raise error || Error.new(status, __getobj__)
-      else
-        # Emit deprecation warning for v4 behavior
-        warn_about_server_error_handling
-      end
-    end
-
-    private
-
-    def warn_about_server_error_handling
-      return if self.class.instance_variable_get(:@deprecation_warned)
-
-      self.class.instance_variable_set(:@deprecation_warned, true)
-
-      warn(<<~MSG)
-        [DEPRECATION] Peddler v4 behavior: Server errors (5xx) are returning response objects instead of raising exceptions.
-        This behavior is deprecated and will change in Peddler v5.0.
-
-        To adopt the new behavior now and silence this warning:
-
-          Peddler.configure do |config|
-            config.raise_on_server_errors = true
-          end
-
-        For more information, see: https://github.com/hakanensari/peddler/blob/main/CHANGELOG.md
-      MSG
+      error = Error.build(__getobj__)
+      raise error || Error.new(status, __getobj__)
     end
   end
 end

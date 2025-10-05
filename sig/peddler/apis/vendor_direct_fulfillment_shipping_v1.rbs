@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class VendorDirectFulfillmentShippingV1 < API
-      def self.typed: () -> singleton(VendorDirectFulfillmentShippingV1)
-
       def get_customer_invoice: (String, ?rate_limit: Float) -> Peddler::Response
       def get_customer_invoices: (String, String, ?ship_from_party_id: String?, ?limit: Integer?, ?sort_order: String?, ?next_token: String?, ?rate_limit: Float) -> Peddler::Response
 

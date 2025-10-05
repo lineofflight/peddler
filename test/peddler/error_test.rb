@@ -79,13 +79,7 @@ module Peddler
       )
       error = Error.build(response)
 
-      begin
-        require "nokogiri"
-
-        assert_kind_of(Errors::AccessDenied, error)
-      rescue LoadError
-        assert_nil(error)
-      end
+      assert_kind_of(Errors::AccessDenied, error)
     end
 
     def test_other_api_error

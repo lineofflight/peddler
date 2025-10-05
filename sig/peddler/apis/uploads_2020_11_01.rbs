@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class Uploads20201101 < API
-      def self.typed: () -> singleton(Uploads20201101)
       def create_upload_destination_for_resource: (Array[String], String, String, ?content_type: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class Replenishment20221107 < API
-      def self.typed: () -> singleton(Replenishment20221107)
       def get_selling_partner_metrics: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
       def list_offer_metrics: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response
       def list_offers: (?body: Hash[untyped, untyped]?, ?rate_limit: Float) -> Peddler::Response

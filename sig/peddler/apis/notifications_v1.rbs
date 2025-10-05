@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class NotificationsV1 < API
-      def self.typed: () -> singleton(NotificationsV1)
-
       def create_destination: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def create_subscription: (Hash[untyped, untyped], String, ?rate_limit: Float) -> Peddler::Response
 

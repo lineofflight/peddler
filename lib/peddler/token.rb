@@ -12,8 +12,6 @@ module Peddler
   #
   # @see https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
   class Token
-    Error = Class.new(Peddler::Error) # steep:ignore
-
     URL = "https://api.amazon.com/auth/o2/token"
 
     attr_reader :client_id, :client_secret, :options

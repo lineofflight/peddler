@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class ListingsItems20210801 < API
-      def self.typed: () -> singleton(ListingsItems20210801)
       def delete_listings_item: (String, String, Array[String], ?issue_locale: String?, ?rate_limit: Float) -> Peddler::Response
       def get_listings_item: (String, String, Array[String], ?issue_locale: String?, ?included_data: Array[String]?, ?rate_limit: Float) -> Peddler::Response
       def patch_listings_item: (String, String, Array[String], Hash[untyped, untyped], ?included_data: Array[String]?, ?mode: String?, ?issue_locale: String?, ?rate_limit: Float) -> Peddler::Response

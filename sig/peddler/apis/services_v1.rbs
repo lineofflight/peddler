@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class ServicesV1 < API
-      def self.typed: () -> singleton(ServicesV1)
-
       def add_appointment_for_service_job_by_service_job_id: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 
       def assign_appointment_resources: (String, String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

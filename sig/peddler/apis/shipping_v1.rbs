@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class ShippingV1 < API
-      def self.typed: () -> singleton(ShippingV1)
-
       def cancel_shipment: (String, ?rate_limit: Float) -> Peddler::Response
       def create_shipment: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
 

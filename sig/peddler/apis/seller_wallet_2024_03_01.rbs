@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class SellerWallet20240301 < API
-      def self.typed: () -> singleton(SellerWallet20240301)
-
       def create_transaction: (Hash[untyped, untyped], String, String, String) -> Peddler::Response
 
       def create_transfer_schedule: (Hash[untyped, untyped], String, String, String) -> Peddler::Response

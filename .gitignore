@@ -1,6 +1,7 @@
 Gemfile.lock
 .bundle
 .claude/settings.local.json
+.claude/commands/
 .yardoc
 coverage
 doc

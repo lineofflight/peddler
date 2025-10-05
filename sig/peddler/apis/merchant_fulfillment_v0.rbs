@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class MerchantFulfillmentV0 < API
-      def self.typed: () -> singleton(MerchantFulfillmentV0)
-
       def cancel_shipment: (String, ?rate_limit: Float) -> Peddler::Response
       def create_shipment: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_additional_seller_inputs: (Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response

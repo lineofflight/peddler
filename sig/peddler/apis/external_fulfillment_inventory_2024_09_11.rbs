@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class ExternalFulfillmentInventory20240911 < API
-      def self.typed: () -> singleton(ExternalFulfillmentInventory20240911)
       def batch_inventory: (Hash[untyped, untyped]) -> Peddler::Response
     end
   end

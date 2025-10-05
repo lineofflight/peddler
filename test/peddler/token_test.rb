@@ -29,13 +29,6 @@ module Peddler
       refute_nil(error.response)
     end
 
-    def test_obsolete_error_class
-      assert(defined?(Token::Error))
-      if Gem.loaded_specs["peddler"].version.segments.first >= 5
-        flunk("Token::Error should have been removed in v5.0. Please delete it now.")
-      end
-    end
-
     def test_grant_type_with_code
       token = Token.new(code: "dummy_code")
 

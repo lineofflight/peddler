@@ -1,7 +1,6 @@
 module Peddler
   module APIs
     class CatalogItemsV0 < API
-      def self.typed: () -> singleton(CatalogItemsV0)
       def list_catalog_categories: (String, ?asin: String?, ?seller_sku: String?, ?rate_limit: Float) -> Peddler::Response
     end
   end

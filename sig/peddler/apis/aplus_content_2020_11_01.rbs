@@ -1,8 +1,6 @@
 module Peddler
   module APIs
     class AplusContent20201101 < API
-      def self.typed: () -> singleton(AplusContent20201101)
-
       def create_content_document: (String, Hash[untyped, untyped], ?rate_limit: Float) -> Peddler::Response
       def get_content_document: (String, String, Array[String], ?rate_limit: Float) -> Peddler::Response
 
