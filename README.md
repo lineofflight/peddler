@@ -55,7 +55,7 @@ require "peddler/apis/orders_v0"
 A seller or vendor [provides you a refresh token][authorization] to access their data on Amazon.
 
 ```ruby
-refresh_token = Peddled::Token.request(
+refresh_token = Peddler::Token.request(
   code: "<AUTHORIZATION_CODE>"
 ).parse["refresh_token"]
 ```
