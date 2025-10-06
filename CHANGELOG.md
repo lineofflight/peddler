@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0.pre.2] - 2025-10-06
+
 ### Added
 
 - Add typed `Peddler::Types::LWAToken` response for `Peddler::LWA.request`
