@@ -15,6 +15,38 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Rename `Peddler::Token` to `Peddler::LWA` for clarity and consistency with Amazon terminology
 
+### Migration Guide
+
+#### LWA Token Authentication
+
+**Before (v5.0.0.pre.1):**
+```ruby
+# Class was named Token
+payload = Peddler::Token.request(
+  client_id: "YOUR_LWA_CLIENT_ID",
+  client_secret: "YOUR_LWA_CLIENT_SECRET",
+  grant_type: "refresh_token",
+  refresh_token: "YOUR_REFRESH_TOKEN",
+)
+
+# Access token via hash keys
+access_token = payload.parse["access_token"]
+```
+
+**After (v5.0.0.pre.2):**
+```ruby
+# Class renamed to LWA
+payload = Peddler::LWA.request(
+  client_id: "YOUR_LWA_CLIENT_ID",
+  client_secret: "YOUR_LWA_CLIENT_SECRET",
+  grant_type: "refresh_token",
+  refresh_token: "YOUR_REFRESH_TOKEN",
+)
+
+# Access token via typed attributes
+access_token = payload.parse.access_token
+```
+
 ## [5.0.0.pre.1] - 2025-10-06
 
 ### Changed
@@ -61,6 +93,25 @@ begin
 rescue Peddler::Error => e
   # Handle error: e.status, e.response
 end
+```
+
+#### Typed Responses
+
+**Before (v4.x):**
+```ruby
+# Using .typed helper for type-safe responses
+response = api.get_catalog_item(asin: "B08N5WRWNW")
+item = response.typed  # Returns typed Structure object
+```
+
+**After (v5.0):**
+```ruby
+# .parse always returns typed responses
+response = api.get_catalog_item(asin: "B08N5WRWNW")
+item = response.parse  # Returns typed Structure object
+
+# Use .to_h for raw Hash
+hash = response.to_h
 ```
 
 ## [4.9.0] - 2025-10-01
