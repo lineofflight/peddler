@@ -97,6 +97,8 @@ module Generator
     end
 
     def initialize_directories!
+      manual_type_files = ["money.rb", "money.rbs", "lwa_token.rb", "lwa_token.rbs"].freeze
+
       ["lib", "sig"].each do |base|
         apis_path = File.join(Config::BASE_PATH, base, "peddler/apis")
         FileUtils.rm_rf(apis_path)
@@ -105,7 +107,8 @@ module Generator
         types_path = File.join(Config::BASE_PATH, base, "peddler/types")
         Dir.glob(File.join(types_path, "*")).each do |item|
           # Skip manual files that shouldn't be deleted
-          next if File.basename(item) == "money.rbs"
+          basename = File.basename(item)
+          next if manual_type_files.include?(basename)
 
           # Remove type directories and consolidated RBS files
           if File.directory?(item)

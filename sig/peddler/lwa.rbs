@@ -1,9 +1,8 @@
 module Peddler
-  class Token
+  # Requests Login with Amazon (LWA) access tokens for SP-API authorization
+  class LWA
     URL: String
 
-    class Error < Peddler::Error
-    end
     @client_id: String?
     @client_secret: String?
     @options: Hash[Symbol, untyped]

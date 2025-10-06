@@ -95,15 +95,15 @@ module FeatureHelpers
   end
 
   def request_access_token(grantless:)
-    require "peddler/token"
+    require "peddler/lwa"
 
     payload = if grantless
       scope = "sellingpartnerapi::notifications"
-      Peddler::Token.request(client_id: client_id, client_secret: client_secret, scope: scope)
+      Peddler::LWA.request(client_id: client_id, client_secret: client_secret, scope: scope)
     else
-      Peddler::Token.request(client_id: client_id, client_secret: client_secret, refresh_token: refresh_token)
+      Peddler::LWA.request(client_id: client_id, client_secret: client_secret, refresh_token: refresh_token)
     end
 
-    payload.parse["access_token"]
+    payload.parse.access_token
   end
 end

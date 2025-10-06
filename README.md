@@ -55,35 +55,35 @@ require "peddler/apis/orders_v0"
 A seller or vendor [provides you a refresh token][authorization] to access their data on Amazon.
 
 ```ruby
-refresh_token = Peddler::Token.request(
+refresh_token = Peddler::LWA.request(
   code: "<AUTHORIZATION_CODE>"
-).parse["refresh_token"]
+).parse.refresh_token
 ```
 
 You use this to generate a temporary access token to authenticate individual API requests.
 
 ```ruby
-access_token = Peddler::Token.request(
+access_token = Peddler::LWA.request(
   refresh_token: "<REFRESH_TOKEN>",
-).parse["access_token"]
+).parse.access_token
 ```
 
 Similarly, you can request a token for grantless operations.
 
 ```ruby
-access_token = Peddler::Token.request(
+access_token = Peddler::LWA.request(
   scope: "sellingpartnerapi::notifications",
-).parse["access_token"]
+).parse.access_token
 ```
 
 If you haven't set your LWA credentials as environment variables, pass them directly when requesting the token.
 
 ```ruby
-access_token = Peddler::Token.request(
+access_token = Peddler::LWA.request(
   client_id: "<YOUR_CLIENT_ID>",
   client_secret: "<YOUR_CLIENT_SECRET>",
   refresh_token: "<REFRESH_TOKEN>",
-).parse["access_token"]
+).parse.access_token
 ```
 
 Access tokens are valid for one hour. To optimize performance, cache the token and reuse across calls.
@@ -96,9 +96,9 @@ class Seller
 
   def access_token
     Rails.cache.fetch("#{cache_key}/access_key", expires_in: 1.hour) do
-      Peddler::Token.request(
+      Peddler::LWA.request(
         refresh_token:,
-      ).parse["access_token"]
+      ).parse.access_token
     end
   end
 end

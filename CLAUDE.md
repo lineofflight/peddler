@@ -12,7 +12,7 @@ peddler/
 │   │   ├── api.rb              # Base API class (manual)
 │   │   ├── endpoint.rb         # Endpoint configuration (manual)
 │   │   ├── marketplace.rb      # Marketplace utilities (manual)
-│   │   ├── token.rb            # LWA authentication (manual)
+│   │   ├── lwa.rb              # LWA authentication (manual)
 │   │   ├── error.rb            # Error classes (manual)
 │   │   ├── response.rb         # Response wrapper (manual)
 │   │   ├── apis/               # Generated API classes

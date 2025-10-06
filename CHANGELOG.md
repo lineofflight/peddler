@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Add typed `Peddler::Types::LWAToken` response for `Peddler::LWA.request`
+
+### Changed
+
+- Rename `Peddler::Token` to `Peddler::LWA` for clarity and consistency with Amazon terminology
+
 ## [5.0.0.pre.1] - 2025-10-06
 
 ### Changed

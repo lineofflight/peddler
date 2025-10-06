@@ -4,14 +4,18 @@ require "http"
 
 require "peddler/error"
 require "peddler/response"
+require "peddler/types/lwa_token"
 
 module Peddler
-  # Requests refresh and access tokens that authorize your application to take actions on behalf of a selling partner.
+  # Requests Login with Amazon (LWA) access tokens that authorize your application to make SP-API requests.
   #
-  # The refresh token allows you to generate access tokens. Access tokens expire one hour after they are issued.
+  # Supports three OAuth 2.0 grant types:
+  # - authorization_code: Exchange authorization code for refresh token (initial authorization)
+  # - refresh_token: Exchange refresh token for access token (most common)
+  # - client_credentials: Get access token for grantless operations (e.g., notifications)
   #
   # @see https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
-  class Token
+  class LWA
     URL = "https://api.amazon.com/auth/o2/token"
 
     attr_reader :client_id, :client_secret, :options
@@ -30,7 +34,7 @@ module Peddler
 
     def request
       http_response = HTTP.post(URL, form: params)
-      Response.wrap(http_response)
+      Response.wrap(http_response, parser: -> { Types::LWAToken })
     end
 
     def grant_type
