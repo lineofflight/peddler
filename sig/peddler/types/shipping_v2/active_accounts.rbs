@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class ActiveAccounts < Array[ActiveAccount]
-        def self.parse: (Array[untyped]) -> ActiveAccounts
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class TemporarilyUnavailableCarrierList < Array[TemporarilyUnavailableCarrier]
-        def self.parse: (Array[untyped]) -> TemporarilyUnavailableCarrierList
-      end
-    end
-  end
-end

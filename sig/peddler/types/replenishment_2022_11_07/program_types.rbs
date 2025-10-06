@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module Replenishment20221107
-      class ProgramTypes < Array[untyped]
-        def self.parse: (Array[untyped]) -> ProgramTypes
-      end
-    end
-  end
-end

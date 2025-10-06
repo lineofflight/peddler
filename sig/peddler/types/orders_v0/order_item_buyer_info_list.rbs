@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module OrdersV0
-      class OrderItemBuyerInfoList < Array[OrderItemBuyerInfo]
-        def self.parse: (Array[untyped]) -> OrderItemBuyerInfoList
-      end
-    end
-  end
-end

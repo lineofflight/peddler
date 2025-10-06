@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module AplusContent20201101
-      class ContentMetadataRecordList < Array[ContentMetadataRecord]
-        def self.parse: (Array[untyped]) -> ContentMetadataRecordList
-      end
-    end
-  end
-end

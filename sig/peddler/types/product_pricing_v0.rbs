@@ -1,0 +1,691 @@
+module Peddler
+  module Types
+    module ProductPricingV0
+      class ASINIdentifier < Data
+        def self.new: (asin: String?, marketplace_id: String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
+                    | (String?, String?) -> Peddler::Types::ProductPricingV0::ASINIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ASINIdentifier
+
+        attr_reader asin: String?
+        attr_reader marketplace_id: String?
+
+        def to_h: () -> { asin: String?, marketplace_id: String? }
+      end
+
+      class AttributeSetList < Array[untyped]
+        def self.parse: (Array[untyped]) -> AttributeSetList
+      end
+
+      class BatchOffersRequestParams < Data
+        def self.new: (item_condition: String?, marketplace_id: String?, ?customer_type: String?) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
+                    | (String?, String?, String?) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::BatchOffersRequestParams
+
+        attr_reader customer_type: String?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, customer_type: String? }
+      end
+
+      class BatchOffersResponse < Data
+        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Hash[untyped, untyped]?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Hash[untyped, untyped]?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::BatchOffersResponse
+
+        attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?
+
+        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
+      end
+
+      class BatchRequest < Data
+        def self.new: (method: String?, uri: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::BatchRequest
+                    | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::BatchRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::BatchRequest
+
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader method: String?
+        attr_reader uri: String?
+
+        def to_h: () -> { method: String?, uri: String?, headers: Hash[untyped, untyped]? }
+      end
+
+      class BuyBoxEligibleOffers < Array[OfferCountType]
+        def self.parse: (Array[untyped]) -> BuyBoxEligibleOffers
+      end
+
+      class BuyBoxPriceType < Data
+        def self.new: (landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, condition: String?, ?points: Peddler::Types::ProductPricingV0::Points?, ?offer_type: String?, ?quantity_discount_type: String?, ?quantity_tier: Integer?, ?seller_id: String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricingV0::Points?, String?, String?, Integer?, String?) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::BuyBoxPriceType
+
+        attr_reader condition: String?
+        attr_reader landed_price: Peddler::Types::Money?
+        attr_reader listing_price: Peddler::Types::Money?
+
+        attr_reader offer_type: String?
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
+
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
+        attr_reader seller_id: String?
+        attr_reader shipping: Peddler::Types::Money?
+
+        def to_h: () -> { landed_price: Peddler::Types::Money?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, condition: String?, points: Peddler::Types::ProductPricingV0::Points?, offer_type: String?, quantity_discount_type: String?, quantity_tier: Integer?, seller_id: String? }
+      end
+
+      class BuyBoxPrices < Array[BuyBoxPriceType]
+        def self.parse: (Array[untyped]) -> BuyBoxPrices
+      end
+
+      class CompetitivePriceList < Array[CompetitivePriceType]
+        def self.parse: (Array[untyped]) -> CompetitivePriceList
+      end
+
+      class CompetitivePriceType < Data
+        def self.new: (competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, ?belongs_to_requester: bool?, ?condition: String?, ?offer_type: String?, ?quantity_discount_type: String?, ?quantity_tier: Integer?, ?seller_id: String?, ?subcondition: String?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
+                    | (String?, Peddler::Types::ProductPricingV0::PriceType?, bool?, String?, String?, String?, Integer?, String?, String?) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::CompetitivePriceType
+
+        attr_reader belongs_to_requester: bool?
+        attr_reader competitive_price_id: String?
+
+        attr_reader condition: String?
+        attr_reader offer_type: String?
+        attr_reader price: Peddler::Types::ProductPricingV0::PriceType?
+
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
+        attr_reader seller_id: String?
+        attr_reader subcondition: String?
+
+        def belongs_to_requester?: () -> bool
+        def to_h: () -> { competitive_price_id: String?, price: Peddler::Types::ProductPricingV0::PriceType?, belongs_to_requester: bool?, condition: String?, offer_type: String?, quantity_discount_type: String?, quantity_tier: Integer?, seller_id: String?, subcondition: String? }
+      end
+
+      class CompetitivePricingType < Data
+        def self.new: (competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, ?trade_in_value: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::CompetitivePricingType
+                    | (Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::CompetitivePricingType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::CompetitivePricingType
+
+        attr_reader competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?
+        attr_reader number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?
+        attr_reader trade_in_value: Peddler::Types::Money?
+
+        def to_h: () -> { competitive_prices: Array[Peddler::Types::ProductPricingV0::CompetitivePriceType]?, number_of_offer_listings: Array[Peddler::Types::ProductPricingV0::OfferListingCountType]?, trade_in_value: Peddler::Types::Money? }
+      end
+
+      class DetailedShippingTimeType < Data
+        def self.new: (?availability_type: String?, ?available_date: String?, ?maximum_hours: Integer?, ?minimum_hours: Integer?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
+                    | (String?, String?, Integer?, Integer?) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::DetailedShippingTimeType
+
+        attr_reader availability_type: String?
+        attr_reader available_date: String?
+        attr_reader maximum_hours: Integer?
+        attr_reader minimum_hours: Integer?
+
+        def to_h: () -> { availability_type: String?, available_date: String?, maximum_hours: Integer?, minimum_hours: Integer? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ProductPricingV0::Error
+                    | (String?, String?, String?) -> Peddler::Types::ProductPricingV0::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class Errors < Data
+        def self.new: (errors: Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::Errors
+                    | (Array[Peddler::Types::ProductPricingV0::Error]?) -> Peddler::Types::ProductPricingV0::Errors
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::Errors
+
+        attr_reader errors: Array[Peddler::Types::ProductPricingV0::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricingV0::Error]? }
+      end
+
+      class GetItemOffersBatchRequest < Data
+        def self.new: (?requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
+                    | (Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchRequest
+
+        attr_reader requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]?
+
+        def to_h: () -> { requests: Array[Peddler::Types::ProductPricingV0::ItemOffersRequest]? }
+      end
+
+      class GetItemOffersBatchResponse < Data
+        def self.new: (?responses: Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse
+                    | (Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetItemOffersBatchResponse
+
+        attr_reader responses: Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]?
+
+        def to_h: () -> { responses: Array[Peddler::Types::ProductPricingV0::ItemOffersResponse]? }
+      end
+
+      class GetListingOffersBatchRequest < Data
+        def self.new: (?requests: Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest
+                    | (Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchRequest
+
+        attr_reader requests: Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]?
+
+        def to_h: () -> { requests: Array[Peddler::Types::ProductPricingV0::ListingOffersRequest]? }
+      end
+
+      class GetListingOffersBatchResponse < Data
+        def self.new: (?responses: Array[Peddler::Types::ProductPricingV0::ListingOffersResponse]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchResponse
+                    | (Array[Peddler::Types::ProductPricingV0::ListingOffersResponse]?) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetListingOffersBatchResponse
+
+        attr_reader responses: Array[Peddler::Types::ProductPricingV0::ListingOffersResponse]?
+
+        def to_h: () -> { responses: Array[Peddler::Types::ProductPricingV0::ListingOffersResponse]? }
+      end
+
+      class GetOffersHttpStatusLine < Data
+        def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
+                    | (String?, Integer?) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine
+
+        attr_reader reason_phrase: String?
+        attr_reader status_code: Integer?
+
+        def to_h: () -> { reason_phrase: String?, status_code: Integer? }
+      end
+
+      class GetOffersResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ProductPricingV0::Error]?, ?payload: Peddler::Types::ProductPricingV0::GetOffersResult?) -> Peddler::Types::ProductPricingV0::GetOffersResponse
+                    | (Array[Peddler::Types::ProductPricingV0::Error]?, Peddler::Types::ProductPricingV0::GetOffersResult?) -> Peddler::Types::ProductPricingV0::GetOffersResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetOffersResponse
+
+        attr_reader errors: Array[Peddler::Types::ProductPricingV0::Error]?
+        attr_reader payload: Peddler::Types::ProductPricingV0::GetOffersResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricingV0::Error]?, payload: Peddler::Types::ProductPricingV0::GetOffersResult? }
+      end
+
+      class GetOffersResult < Data
+        def self.new: (identifier: Peddler::Types::ProductPricingV0::ItemIdentifier?, item_condition: String?, marketplace_id: String?, offers: Array[Peddler::Types::ProductPricingV0::OfferDetail]?, summary: Peddler::Types::ProductPricingV0::Summary?, status: String?, ?asin: String?, ?sku: String?) -> Peddler::Types::ProductPricingV0::GetOffersResult
+                    | (Peddler::Types::ProductPricingV0::ItemIdentifier?, String?, String?, Array[Peddler::Types::ProductPricingV0::OfferDetail]?, Peddler::Types::ProductPricingV0::Summary?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::GetOffersResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetOffersResult
+
+        attr_reader asin: String?
+        attr_reader identifier: Peddler::Types::ProductPricingV0::ItemIdentifier?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+        attr_reader offers: Array[Peddler::Types::ProductPricingV0::OfferDetail]?
+
+        attr_reader sku: String?
+        attr_reader status: String?
+        attr_reader summary: Peddler::Types::ProductPricingV0::Summary?
+
+        def to_h: () -> { identifier: Peddler::Types::ProductPricingV0::ItemIdentifier?, item_condition: String?, marketplace_id: String?, offers: Array[Peddler::Types::ProductPricingV0::OfferDetail]?, summary: Peddler::Types::ProductPricingV0::Summary?, status: String?, asin: String?, sku: String? }
+      end
+
+      class GetPricingResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ProductPricingV0::Error]?, ?payload: Array[Peddler::Types::ProductPricingV0::Price]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
+                    | (Array[Peddler::Types::ProductPricingV0::Error]?, Array[Peddler::Types::ProductPricingV0::Price]?) -> Peddler::Types::ProductPricingV0::GetPricingResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::GetPricingResponse
+
+        attr_reader errors: Array[Peddler::Types::ProductPricingV0::Error]?
+        attr_reader payload: Array[Peddler::Types::ProductPricingV0::Price]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricingV0::Error]?, payload: Array[Peddler::Types::ProductPricingV0::Price]? }
+      end
+
+      class IdentifierType < Data
+        def self.new: (marketplace_asin: Peddler::Types::ProductPricingV0::ASINIdentifier?, ?sku_identifier: Peddler::Types::ProductPricingV0::SellerSKUIdentifier?) -> Peddler::Types::ProductPricingV0::IdentifierType
+                    | (Peddler::Types::ProductPricingV0::ASINIdentifier?, Peddler::Types::ProductPricingV0::SellerSKUIdentifier?) -> Peddler::Types::ProductPricingV0::IdentifierType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::IdentifierType
+
+        attr_reader marketplace_asin: Peddler::Types::ProductPricingV0::ASINIdentifier?
+        attr_reader sku_identifier: Peddler::Types::ProductPricingV0::SellerSKUIdentifier?
+
+        def to_h: () -> { marketplace_asin: Peddler::Types::ProductPricingV0::ASINIdentifier?, sku_identifier: Peddler::Types::ProductPricingV0::SellerSKUIdentifier? }
+      end
+
+      class ItemIdentifier < Data
+        def self.new: (item_condition: String?, marketplace_id: String?, ?asin: String?, ?seller_sku: String?) -> Peddler::Types::ProductPricingV0::ItemIdentifier
+                    | (String?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::ItemIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ItemIdentifier
+
+        attr_reader asin: String?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, asin: String?, seller_sku: String? }
+      end
+
+      class ItemOffersRequest < Data
+        def self.new: (item_condition: String?, marketplace_id: String?, method: String?, uri: String?, ?customer_type: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::ItemOffersRequest
+                    | (String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::ItemOffersRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ItemOffersRequest
+
+        attr_reader customer_type: String?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+        attr_reader method: String?
+        attr_reader uri: String?
+
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, method: String?, uri: String?, customer_type: String?, headers: Hash[untyped, untyped]? }
+      end
+
+      class ItemOffersRequestList < Array[ItemOffersRequest]
+        def self.parse: (Array[untyped]) -> ItemOffersRequestList
+      end
+
+      class ItemOffersRequestParams < Data
+        def self.new: (item_condition: String?, marketplace_id: String?, ?asin: String?, ?customer_type: String?) -> Peddler::Types::ProductPricingV0::ItemOffersRequestParams
+                    | (String?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::ItemOffersRequestParams
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ItemOffersRequestParams
+
+        attr_reader asin: String?
+        attr_reader customer_type: String?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, asin: String?, customer_type: String? }
+      end
+
+      class ItemOffersResponse < Data
+        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, request: Peddler::Types::ProductPricingV0::ItemOffersRequestParams?, ?headers: Hash[untyped, untyped]?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ItemOffersResponse
+                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Peddler::Types::ProductPricingV0::ItemOffersRequestParams?, Hash[untyped, untyped]?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ItemOffersResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ItemOffersResponse
+
+        attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
+
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader request: Peddler::Types::ProductPricingV0::ItemOffersRequestParams?
+
+        attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?
+
+        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, request: Peddler::Types::ProductPricingV0::ItemOffersRequestParams?, headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
+      end
+
+      class ItemOffersResponseList < Array[ItemOffersResponse]
+        def self.parse: (Array[untyped]) -> ItemOffersResponseList
+      end
+
+      class ListingOffersRequest < Data
+        def self.new: (item_condition: String?, marketplace_id: String?, method: String?, uri: String?, ?customer_type: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
+                    | (String?, String?, String?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersRequest
+
+        attr_reader customer_type: String?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+        attr_reader method: String?
+        attr_reader uri: String?
+
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, method: String?, uri: String?, customer_type: String?, headers: Hash[untyped, untyped]? }
+      end
+
+      class ListingOffersRequestList < Array[ListingOffersRequest]
+        def self.parse: (Array[untyped]) -> ListingOffersRequestList
+      end
+
+      class ListingOffersRequestParams < Data
+        def self.new: (item_condition: String?, marketplace_id: String?, seller_sku: String?, ?customer_type: String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams
+                    | (String?, String?, String?, String?) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersRequestParams
+
+        attr_reader customer_type: String?
+        attr_reader item_condition: String?
+        attr_reader marketplace_id: String?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { item_condition: String?, marketplace_id: String?, seller_sku: String?, customer_type: String? }
+      end
+
+      class ListingOffersResponse < Data
+        def self.new: (body: Peddler::Types::ProductPricingV0::GetOffersResponse?, ?headers: Hash[untyped, untyped]?, ?request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, ?status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
+                    | (Peddler::Types::ProductPricingV0::GetOffersResponse?, Hash[untyped, untyped]?, Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ListingOffersResponse
+
+        attr_reader body: Peddler::Types::ProductPricingV0::GetOffersResponse?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?
+        attr_reader status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine?
+
+        def to_h: () -> { body: Peddler::Types::ProductPricingV0::GetOffersResponse?, headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricingV0::ListingOffersRequestParams?, status: Peddler::Types::ProductPricingV0::GetOffersHttpStatusLine? }
+      end
+
+      class ListingOffersResponseList < Array[ListingOffersResponse]
+        def self.parse: (Array[untyped]) -> ListingOffersResponseList
+      end
+
+      class LowestPriceType < Data
+        def self.new: (listing_price: Peddler::Types::Money?, condition: String?, fulfillment_channel: String?, ?landed_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?, ?shipping: Peddler::Types::Money?, ?offer_type: String?, ?quantity_discount_type: String?, ?quantity_tier: Integer?) -> Peddler::Types::ProductPricingV0::LowestPriceType
+                    | (Peddler::Types::Money?, String?, String?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, Peddler::Types::Money?, String?, String?, Integer?) -> Peddler::Types::ProductPricingV0::LowestPriceType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::LowestPriceType
+
+        attr_reader condition: String?
+        attr_reader fulfillment_channel: String?
+        attr_reader landed_price: Peddler::Types::Money?
+        attr_reader listing_price: Peddler::Types::Money?
+
+        attr_reader offer_type: String?
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
+
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
+        attr_reader shipping: Peddler::Types::Money?
+
+        def to_h: () -> { listing_price: Peddler::Types::Money?, condition: String?, fulfillment_channel: String?, landed_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, shipping: Peddler::Types::Money?, offer_type: String?, quantity_discount_type: String?, quantity_tier: Integer? }
+      end
+
+      class LowestPrices < Array[LowestPriceType]
+        def self.parse: (Array[untyped]) -> LowestPrices
+      end
+
+      class NumberOfOfferListingsList < Array[OfferListingCountType]
+        def self.parse: (Array[untyped]) -> NumberOfOfferListingsList
+      end
+
+      class NumberOfOffers < Array[OfferCountType]
+        def self.parse: (Array[untyped]) -> NumberOfOffers
+      end
+
+      class OfferCountType < Data
+        def self.new: (?offer_count: Integer?, ?condition: String?, ?fulfillment_channel: String?) -> Peddler::Types::ProductPricingV0::OfferCountType
+                    | (Integer?, String?, String?) -> Peddler::Types::ProductPricingV0::OfferCountType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::OfferCountType
+
+        attr_reader condition: String?
+        attr_reader fulfillment_channel: String?
+        attr_reader offer_count: Integer?
+
+        def to_h: () -> { offer_count: Integer?, condition: String?, fulfillment_channel: String? }
+      end
+
+      class OfferDetail < Data
+        def self.new: (fulfilled_by_amazon: bool?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, shipping_time: Peddler::Types::ProductPricingV0::DetailedShippingTimeType?, sub_condition: String?, ?condition_notes: String?, ?buy_box_winner: bool?, ?featured_merchant: bool?, ?my_offer: bool?, ?points: Peddler::Types::ProductPricingV0::Points?, ?prime_information: Peddler::Types::ProductPricingV0::PrimeInformationType?, ?seller_feedback_rating: Peddler::Types::ProductPricingV0::SellerFeedbackType?, ?seller_id: String?, ?ships_from: Peddler::Types::ProductPricingV0::ShipsFromType?, ?offer_type: String?, ?quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?) -> Peddler::Types::ProductPricingV0::OfferDetail
+                    | (bool?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::DetailedShippingTimeType?, String?, String?, bool?, bool?, bool?, Peddler::Types::ProductPricingV0::Points?, Peddler::Types::ProductPricingV0::PrimeInformationType?, Peddler::Types::ProductPricingV0::SellerFeedbackType?, String?, Peddler::Types::ProductPricingV0::ShipsFromType?, String?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?) -> Peddler::Types::ProductPricingV0::OfferDetail
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::OfferDetail
+
+        attr_reader buy_box_winner: bool?
+        attr_reader condition_notes: String?
+
+        attr_reader featured_merchant: bool?
+        attr_reader fulfilled_by_amazon: bool?
+        attr_reader listing_price: Peddler::Types::Money?
+
+        attr_reader my_offer: bool?
+
+        attr_reader offer_type: String?
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
+        attr_reader prime_information: Peddler::Types::ProductPricingV0::PrimeInformationType?
+
+        attr_reader quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?
+        attr_reader seller_feedback_rating: Peddler::Types::ProductPricingV0::SellerFeedbackType?
+        attr_reader seller_id: String?
+        attr_reader shipping: Peddler::Types::Money?
+        attr_reader shipping_time: Peddler::Types::ProductPricingV0::DetailedShippingTimeType?
+
+        attr_reader ships_from: Peddler::Types::ProductPricingV0::ShipsFromType?
+        attr_reader sub_condition: String?
+
+        def buy_box_winner?: () -> bool
+        def featured_merchant?: () -> bool
+        def fulfilled_by_amazon?: () -> bool
+
+        def my_offer?: () -> bool
+        def to_h: () -> { fulfilled_by_amazon: bool?, listing_price: Peddler::Types::Money?, shipping: Peddler::Types::Money?, shipping_time: Peddler::Types::ProductPricingV0::DetailedShippingTimeType?, sub_condition: String?, condition_notes: String?, buy_box_winner: bool?, featured_merchant: bool?, my_offer: bool?, points: Peddler::Types::ProductPricingV0::Points?, prime_information: Peddler::Types::ProductPricingV0::PrimeInformationType?, seller_feedback_rating: Peddler::Types::ProductPricingV0::SellerFeedbackType?, seller_id: String?, ships_from: Peddler::Types::ProductPricingV0::ShipsFromType?, offer_type: String?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]? }
+      end
+
+      class OfferDetailList < Array[OfferDetail]
+        def self.parse: (Array[untyped]) -> OfferDetailList
+      end
+
+      class OfferListingCountType < Data
+        def self.new: (count: Integer?, condition: String?) -> Peddler::Types::ProductPricingV0::OfferListingCountType
+                    | (Integer?, String?) -> Peddler::Types::ProductPricingV0::OfferListingCountType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::OfferListingCountType
+
+        attr_reader condition: String?
+        attr_reader count: Integer?
+
+        def to_h: () -> { count: Integer?, condition: String? }
+      end
+
+      class OfferType < Data
+        def self.new: (buying_price: Peddler::Types::ProductPricingV0::PriceType?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, regular_price: Peddler::Types::Money?, seller_sku: String?, ?business_price: Peddler::Types::Money?, ?offer_type: String?, ?quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?) -> Peddler::Types::ProductPricingV0::OfferType
+                    | (Peddler::Types::ProductPricingV0::PriceType?, String?, String?, String?, Peddler::Types::Money?, String?, Peddler::Types::Money?, String?, Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?) -> Peddler::Types::ProductPricingV0::OfferType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::OfferType
+
+        attr_reader business_price: Peddler::Types::Money?
+        attr_reader buying_price: Peddler::Types::ProductPricingV0::PriceType?
+        attr_reader fulfillment_channel: String?
+        attr_reader item_condition: String?
+        attr_reader item_sub_condition: String?
+
+        attr_reader offer_type: String?
+        attr_reader quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]?
+        attr_reader regular_price: Peddler::Types::Money?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { buying_price: Peddler::Types::ProductPricingV0::PriceType?, fulfillment_channel: String?, item_condition: String?, item_sub_condition: String?, regular_price: Peddler::Types::Money?, seller_sku: String?, business_price: Peddler::Types::Money?, offer_type: String?, quantity_discount_prices: Array[Peddler::Types::ProductPricingV0::QuantityDiscountPriceType]? }
+      end
+
+      class OffersList < Array[OfferType]
+        def self.parse: (Array[untyped]) -> OffersList
+      end
+
+      class Points < Data
+        def self.new: (?points_monetary_value: Peddler::Types::Money?, ?points_number: Integer?) -> Peddler::Types::ProductPricingV0::Points
+                    | (Peddler::Types::Money?, Integer?) -> Peddler::Types::ProductPricingV0::Points
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::Points
+
+        attr_reader points_monetary_value: Peddler::Types::Money?
+        attr_reader points_number: Integer?
+
+        def to_h: () -> { points_monetary_value: Peddler::Types::Money?, points_number: Integer? }
+      end
+
+      class Price < Data
+        def self.new: (status: String?, ?asin: String?, ?product: Peddler::Types::ProductPricingV0::Product?, ?seller_sku: String?) -> Peddler::Types::ProductPricingV0::Price
+                    | (String?, String?, Peddler::Types::ProductPricingV0::Product?, String?) -> Peddler::Types::ProductPricingV0::Price
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::Price
+
+        attr_reader asin: String?
+        attr_reader product: Peddler::Types::ProductPricingV0::Product?
+        attr_reader seller_sku: String?
+        attr_reader status: String?
+
+        def to_h: () -> { status: String?, asin: String?, product: Peddler::Types::ProductPricingV0::Product?, seller_sku: String? }
+      end
+
+      class PriceList < Array[Price]
+        def self.parse: (Array[untyped]) -> PriceList
+      end
+
+      class PriceType < Data
+        def self.new: (listing_price: Peddler::Types::Money?, ?landed_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricingV0::Points?, ?shipping: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::PriceType
+                    | (Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::ProductPricingV0::Points?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::PriceType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::PriceType
+
+        attr_reader landed_price: Peddler::Types::Money?
+        attr_reader listing_price: Peddler::Types::Money?
+
+        attr_reader points: Peddler::Types::ProductPricingV0::Points?
+        attr_reader shipping: Peddler::Types::Money?
+
+        def to_h: () -> { listing_price: Peddler::Types::Money?, landed_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricingV0::Points?, shipping: Peddler::Types::Money? }
+      end
+
+      class PrimeInformationType < Data
+        def self.new: (national_prime: bool?, prime: bool?) -> Peddler::Types::ProductPricingV0::PrimeInformationType
+                    | (bool?, bool?) -> Peddler::Types::ProductPricingV0::PrimeInformationType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::PrimeInformationType
+
+        attr_reader national_prime: bool?
+        attr_reader prime: bool?
+
+        def national_prime?: () -> bool
+        def prime?: () -> bool
+        def to_h: () -> { national_prime: bool?, prime: bool? }
+      end
+
+      class Product < Data
+        def self.new: (identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, ?attribute_sets: Array[untyped]?, ?competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, ?offers: Array[Peddler::Types::ProductPricingV0::OfferType]?, ?relationships: Array[untyped]?, ?sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?) -> Peddler::Types::ProductPricingV0::Product
+                    | (Peddler::Types::ProductPricingV0::IdentifierType?, Array[untyped]?, Peddler::Types::ProductPricingV0::CompetitivePricingType?, Array[Peddler::Types::ProductPricingV0::OfferType]?, Array[untyped]?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?) -> Peddler::Types::ProductPricingV0::Product
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::Product
+
+        attr_reader attribute_sets: Array[untyped]?
+        attr_reader competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?
+        attr_reader identifiers: Peddler::Types::ProductPricingV0::IdentifierType?
+
+        attr_reader offers: Array[Peddler::Types::ProductPricingV0::OfferType]?
+        attr_reader relationships: Array[untyped]?
+        attr_reader sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?
+
+        def to_h: () -> { identifiers: Peddler::Types::ProductPricingV0::IdentifierType?, attribute_sets: Array[untyped]?, competitive_pricing: Peddler::Types::ProductPricingV0::CompetitivePricingType?, offers: Array[Peddler::Types::ProductPricingV0::OfferType]?, relationships: Array[untyped]?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]? }
+      end
+
+      class QuantityDiscountPriceType < Data
+        def self.new: (listing_price: Peddler::Types::Money?, quantity_discount_type: String?, quantity_tier: Integer?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
+                    | (Peddler::Types::Money?, String?, Integer?) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::QuantityDiscountPriceType
+
+        attr_reader listing_price: Peddler::Types::Money?
+        attr_reader quantity_discount_type: String?
+        attr_reader quantity_tier: Integer?
+
+        def to_h: () -> { listing_price: Peddler::Types::Money?, quantity_discount_type: String?, quantity_tier: Integer? }
+      end
+
+      class RelationshipList < Array[untyped]
+        def self.parse: (Array[untyped]) -> RelationshipList
+      end
+
+      class SalesRankList < Array[SalesRankType]
+        def self.parse: (Array[untyped]) -> SalesRankList
+      end
+
+      class SalesRankType < Data
+        def self.new: (product_category_id: String?, rank: Integer?) -> Peddler::Types::ProductPricingV0::SalesRankType
+                    | (String?, Integer?) -> Peddler::Types::ProductPricingV0::SalesRankType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::SalesRankType
+
+        attr_reader product_category_id: String?
+        attr_reader rank: Integer?
+
+        def to_h: () -> { product_category_id: String?, rank: Integer? }
+      end
+
+      class SellerFeedbackType < Data
+        def self.new: (feedback_count: Integer?, ?seller_positive_feedback_rating: Float?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
+                    | (Integer?, Float?) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::SellerFeedbackType
+
+        attr_reader feedback_count: Integer?
+        attr_reader seller_positive_feedback_rating: Float?
+
+        def to_h: () -> { feedback_count: Integer?, seller_positive_feedback_rating: Float? }
+      end
+
+      class SellerSKUIdentifier < Data
+        def self.new: (marketplace_id: String?, seller_id: String?, seller_sku: String?) -> Peddler::Types::ProductPricingV0::SellerSKUIdentifier
+                    | (String?, String?, String?) -> Peddler::Types::ProductPricingV0::SellerSKUIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::SellerSKUIdentifier
+
+        attr_reader marketplace_id: String?
+        attr_reader seller_id: String?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { marketplace_id: String?, seller_id: String?, seller_sku: String? }
+      end
+
+      class ShipsFromType < Data
+        def self.new: (?country: String?, ?state: String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
+                    | (String?, String?) -> Peddler::Types::ProductPricingV0::ShipsFromType
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::ShipsFromType
+
+        attr_reader country: String?
+        attr_reader state: String?
+
+        def to_h: () -> { country: String?, state: String? }
+      end
+
+      class Summary < Data
+        def self.new: (total_offer_count: Integer?, ?buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, ?buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, ?competitive_price_threshold: Peddler::Types::Money?, ?list_price: Peddler::Types::Money?, ?lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, ?number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, ?offers_available_time: String?, ?sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, ?suggested_lower_price_plus_shipping: Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::Summary
+                    | (Integer?, Array[Peddler::Types::ProductPricingV0::OfferCountType]?, Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, Peddler::Types::Money?, Peddler::Types::Money?, Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, Array[Peddler::Types::ProductPricingV0::OfferCountType]?, String?, Array[Peddler::Types::ProductPricingV0::SalesRankType]?, Peddler::Types::Money?) -> Peddler::Types::ProductPricingV0::Summary
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricingV0::Summary
+
+        attr_reader buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?
+        attr_reader buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?
+        attr_reader competitive_price_threshold: Peddler::Types::Money?
+        attr_reader list_price: Peddler::Types::Money?
+        attr_reader lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?
+        attr_reader number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?
+        attr_reader offers_available_time: String?
+        attr_reader sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?
+        attr_reader suggested_lower_price_plus_shipping: Peddler::Types::Money?
+        attr_reader total_offer_count: Integer?
+
+        def to_h: () -> { total_offer_count: Integer?, buy_box_eligible_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, buy_box_prices: Array[Peddler::Types::ProductPricingV0::BuyBoxPriceType]?, competitive_price_threshold: Peddler::Types::Money?, list_price: Peddler::Types::Money?, lowest_prices: Array[Peddler::Types::ProductPricingV0::LowestPriceType]?, number_of_offers: Array[Peddler::Types::ProductPricingV0::OfferCountType]?, offers_available_time: String?, sales_rankings: Array[Peddler::Types::ProductPricingV0::SalesRankType]?, suggested_lower_price_plus_shipping: Peddler::Types::Money? }
+      end
+    end
+  end
+end

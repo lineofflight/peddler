@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module Feeds20210630
-      class FeedList < Array[Feed]
-        def self.parse: (Array[untyped]) -> FeedList
-      end
-    end
-  end
-end

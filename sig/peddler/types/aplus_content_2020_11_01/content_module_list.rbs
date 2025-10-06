@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module AplusContent20201101
-      class ContentModuleList < Array[ContentModule]
-        def self.parse: (Array[untyped]) -> ContentModuleList
-      end
-    end
-  end
-end

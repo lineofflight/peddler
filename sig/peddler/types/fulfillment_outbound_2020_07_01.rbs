@@ -1,0 +1,1242 @@
+module Peddler
+  module Types
+    module FulfillmentOutbound20200701
+      class Address < Data
+        def self.new: (address_line1: String?, country_code: String?, name: String?, postal_code: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?district_or_county: String?, ?phone: String?, ?state_or_region: String?) -> Peddler::Types::FulfillmentOutbound20200701::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+
+        attr_reader district_or_county: String?
+        attr_reader name: String?
+
+        attr_reader phone: String?
+        attr_reader postal_code: String?
+
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, postal_code: String?, address_line2: String?, address_line3: String?, city: String?, district_or_county: String?, phone: String?, state_or_region: String? }
+      end
+
+      class Amount < Data
+        def self.new: (unit_of_measure: String?, value: String?) -> Peddler::Types::FulfillmentOutbound20200701::Amount
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Amount
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Amount
+
+        attr_reader unit_of_measure: String?
+        attr_reader value: String?
+
+        def to_h: () -> { unit_of_measure: String?, value: String? }
+      end
+
+      class CODSettings < Data
+        def self.new: (cod_required: bool?, ?cod_charge: Peddler::Types::Money?, ?cod_charge_tax: Peddler::Types::Money?, ?shipping_charge: Peddler::Types::Money?, ?shipping_charge_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings
+                    | (bool?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CODSettings
+
+        attr_reader cod_charge: Peddler::Types::Money?
+        attr_reader cod_charge_tax: Peddler::Types::Money?
+        attr_reader cod_required: bool?
+
+        attr_reader shipping_charge: Peddler::Types::Money?
+        attr_reader shipping_charge_tax: Peddler::Types::Money?
+
+        def cod_required?: () -> bool
+        def to_h: () -> { cod_required: bool?, cod_charge: Peddler::Types::Money?, cod_charge_tax: Peddler::Types::Money?, shipping_charge: Peddler::Types::Money?, shipping_charge_tax: Peddler::Types::Money? }
+      end
+
+      class CancelFulfillmentOrderResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CancelFulfillmentOrderResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
+      end
+
+      class CreateFulfillmentOrderItem < Data
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, ?displayable_comment: String?, ?fulfillment_network_sku: String?, ?gift_message: String?, ?per_unit_declared_value: Peddler::Types::Money?, ?per_unit_price: Peddler::Types::Money?, ?per_unit_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem
+                    | (Integer?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem
+
+        attr_reader displayable_comment: String?
+        attr_reader fulfillment_network_sku: String?
+        attr_reader gift_message: String?
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
+        attr_reader per_unit_price: Peddler::Types::Money?
+        attr_reader per_unit_tax: Peddler::Types::Money?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, displayable_comment: String?, fulfillment_network_sku: String?, gift_message: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money? }
+      end
+
+      class CreateFulfillmentOrderItemList < Array[CreateFulfillmentOrderItem]
+        def self.parse: (Array[untyped]) -> CreateFulfillmentOrderItemList
+      end
+
+      class CreateFulfillmentOrderRequest < Data
+        def self.new: (destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, displayable_order_comment: String?, displayable_order_date: String?, displayable_order_id: String?, items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem]?, seller_fulfillment_order_id: String?, shipping_speed_category: String?, ?cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, ?delivery_preferences: Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences?, ?delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, ?feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, ?fulfillment_action: String?, ?fulfillment_policy: String?, ?marketplace_id: String?, ?notification_emails: Array[String]?, ?payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?, ?ship_from_country_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderRequest
+                    | (Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem]?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::CODSettings?, Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences?, Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, String?, String?, String?, Array[String]?, Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?, String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderRequest
+
+        attr_reader cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?
+        attr_reader delivery_preferences: Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences?
+        attr_reader delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?
+        attr_reader destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?
+        attr_reader displayable_order_comment: String?
+        attr_reader displayable_order_date: String?
+        attr_reader displayable_order_id: String?
+
+        attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
+        attr_reader fulfillment_action: String?
+        attr_reader fulfillment_policy: String?
+        attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem]?
+
+        attr_reader marketplace_id: String?
+        attr_reader notification_emails: Array[String]?
+        attr_reader payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?
+        attr_reader seller_fulfillment_order_id: String?
+
+        attr_reader ship_from_country_code: String?
+        attr_reader shipping_speed_category: String?
+
+        def to_h: () -> { destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, displayable_order_comment: String?, displayable_order_date: String?, displayable_order_id: String?, items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderItem]?, seller_fulfillment_order_id: String?, shipping_speed_category: String?, cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, delivery_preferences: Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, fulfillment_action: String?, fulfillment_policy: String?, marketplace_id: String?, notification_emails: Array[String]?, payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?, ship_from_country_code: String? }
+      end
+
+      class CreateFulfillmentOrderResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentOrderResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
+      end
+
+      class CreateFulfillmentReturnRequest < Data
+        def self.new: (items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnRequest
+
+        attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]?
+
+        def to_h: () -> { items: Array[Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem]? }
+      end
+
+      class CreateFulfillmentReturnResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult? }
+      end
+
+      class CreateFulfillmentReturnResult < Data
+        def self.new: (?invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, ?return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, ?return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateFulfillmentReturnResult
+
+        attr_reader invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?
+        attr_reader return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?
+        attr_reader return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?
+
+        def to_h: () -> { invalid_return_items: Array[Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]? }
+      end
+
+      class CreateReturnItem < Data
+        def self.new: (amazon_shipment_id: String?, return_reason_code: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, ?return_comment: String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::CreateReturnItem
+
+        attr_reader amazon_shipment_id: String?
+
+        attr_reader return_comment: String?
+        attr_reader return_reason_code: String?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_return_item_id: String?
+
+        def to_h: () -> { amazon_shipment_id: String?, return_reason_code: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, return_comment: String? }
+      end
+
+      class CreateReturnItemList < Array[CreateReturnItem]
+        def self.parse: (Array[untyped]) -> CreateReturnItemList
+      end
+
+      class DateRange < Data
+        def self.new: (earliest: String?, latest: String?) -> Peddler::Types::FulfillmentOutbound20200701::DateRange
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DateRange
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DateRange
+
+        attr_reader earliest: String?
+        attr_reader latest: String?
+
+        def to_h: () -> { earliest: String?, latest: String? }
+      end
+
+      class DeliveryDocument < Data
+        def self.new: (document_type: String?, ?url: String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument
+
+        attr_reader document_type: String?
+        attr_reader url: String?
+
+        def to_h: () -> { document_type: String?, url: String? }
+      end
+
+      class DeliveryDocumentList < Array[DeliveryDocument]
+        def self.parse: (Array[untyped]) -> DeliveryDocumentList
+      end
+
+      class DeliveryInformation < Data
+        def self.new: (?delivery_document_list: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument]?, ?drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument]?, Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation
+
+        attr_reader delivery_document_list: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument]?
+        attr_reader drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?
+
+        def to_h: () -> { delivery_document_list: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryDocument]?, drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation? }
+      end
+
+      class DeliveryMessage < Data
+        def self.new: (?locale: String?, ?text: String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage
+
+        attr_reader locale: String?
+        attr_reader text: String?
+
+        def to_h: () -> { locale: String?, text: String? }
+      end
+
+      class DeliveryOffer < Data
+        def self.new: (?date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?, ?expires_at: String?, ?policy: Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
+                    | (Peddler::Types::FulfillmentOutbound20200701::DateRange?, String?, Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer
+
+        attr_reader date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?
+        attr_reader expires_at: String?
+        attr_reader policy: Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy?
+
+        def to_h: () -> { date_range: Peddler::Types::FulfillmentOutbound20200701::DateRange?, expires_at: String?, policy: Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy? }
+      end
+
+      class DeliveryOffersList < Array[DeliveryOffer]
+        def self.parse: (Array[untyped]) -> DeliveryOffersList
+      end
+
+      class DeliveryPolicy < Data
+        def self.new: (?message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy
+                    | (Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPolicy
+
+        attr_reader message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage?
+
+        def to_h: () -> { message: Peddler::Types::FulfillmentOutbound20200701::DeliveryMessage? }
+      end
+
+      class DeliveryPreferences < Data
+        def self.new: (?delivery_instructions: String?, ?drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
+                    | (String?, Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryPreferences
+
+        attr_reader delivery_instructions: String?
+        attr_reader drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation?
+
+        def to_h: () -> { delivery_instructions: String?, drop_off_location: Peddler::Types::FulfillmentOutbound20200701::DropOffLocation? }
+      end
+
+      class DeliveryWindow < Data
+        def self.new: (end_date: String?, start_date: String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow
+
+        attr_reader end_date: String?
+        attr_reader start_date: String?
+
+        def to_h: () -> { end_date: String?, start_date: String? }
+      end
+
+      class DeliveryWindowList < Array[DeliveryWindow]
+        def self.parse: (Array[untyped]) -> DeliveryWindowList
+      end
+
+      class Destination < Data
+        def self.new: (?delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, ?ip_address: String?) -> Peddler::Types::FulfillmentOutbound20200701::Destination
+                    | (Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Destination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Destination
+
+        attr_reader delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?
+        attr_reader ip_address: String?
+
+        def to_h: () -> { delivery_address: Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress?, ip_address: String? }
+      end
+
+      class DropOffLocation < Data
+        def self.new: (type: String?, ?attributes: Hash[untyped, untyped]?) -> Peddler::Types::FulfillmentOutbound20200701::DropOffLocation
+                    | (String?, Hash[untyped, untyped]?) -> Peddler::Types::FulfillmentOutbound20200701::DropOffLocation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::DropOffLocation
+
+        attr_reader attributes: Hash[untyped, untyped]?
+        attr_reader type: String?
+
+        def to_h: () -> { type: String?, attributes: Hash[untyped, untyped]? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::FulfillmentOutbound20200701::Error
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class Feature < Data
+        def self.new: (feature_description: String?, feature_name: String?, ?seller_eligible: bool?) -> Peddler::Types::FulfillmentOutbound20200701::Feature
+                    | (String?, String?, bool?) -> Peddler::Types::FulfillmentOutbound20200701::Feature
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Feature
+
+        attr_reader feature_description: String?
+        attr_reader feature_name: String?
+        attr_reader seller_eligible: bool?
+
+        def seller_eligible?: () -> bool
+        def to_h: () -> { feature_description: String?, feature_name: String?, seller_eligible: bool? }
+      end
+
+      class FeatureSettings < Data
+        def self.new: (?feature_fulfillment_policy: String?, ?feature_name: String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSettings
+
+        attr_reader feature_fulfillment_policy: String?
+        attr_reader feature_name: String?
+
+        def to_h: () -> { feature_fulfillment_policy: String?, feature_name: String? }
+      end
+
+      class FeatureSku < Data
+        def self.new: (?asin: String?, ?fn_sku: String?, ?overlapping_skus: Array[String]?, ?seller_sku: String?, ?sku_count: Float?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
+                    | (String?, String?, Array[String]?, String?, Float?) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FeatureSku
+
+        attr_reader asin: String?
+        attr_reader fn_sku: String?
+        attr_reader overlapping_skus: Array[String]?
+        attr_reader seller_sku: String?
+        attr_reader sku_count: Float?
+
+        def to_h: () -> { asin: String?, fn_sku: String?, overlapping_skus: Array[String]?, seller_sku: String?, sku_count: Float? }
+      end
+
+      class Features < Array[Feature]
+        def self.parse: (Array[untyped]) -> Features
+      end
+
+      class Fee < Data
+        def self.new: (amount: Peddler::Types::Money?, name: String?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
+                    | (Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Fee
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Fee
+
+        attr_reader amount: Peddler::Types::Money?
+        attr_reader name: String?
+
+        def to_h: () -> { amount: Peddler::Types::Money?, name: String? }
+      end
+
+      class FeeList < Array[Fee]
+        def self.parse: (Array[untyped]) -> FeeList
+      end
+
+      class FulfillmentOrder < Data
+        def self.new: (destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, displayable_order_comment: String?, displayable_order_date: String?, displayable_order_id: String?, fulfillment_order_status: String?, marketplace_id: String?, received_date: String?, seller_fulfillment_order_id: String?, shipping_speed_category: String?, status_updated_date: String?, ?cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, ?delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, ?feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, ?fulfillment_action: String?, ?fulfillment_policy: String?, ?notification_emails: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder
+                    | (Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::CODSettings?, Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, String?, String?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder
+
+        attr_reader cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?
+        attr_reader delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?
+        attr_reader destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?
+        attr_reader displayable_order_comment: String?
+        attr_reader displayable_order_date: String?
+        attr_reader displayable_order_id: String?
+
+        attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
+        attr_reader fulfillment_action: String?
+        attr_reader fulfillment_order_status: String?
+
+        attr_reader fulfillment_policy: String?
+        attr_reader marketplace_id: String?
+
+        attr_reader notification_emails: Array[String]?
+        attr_reader received_date: String?
+        attr_reader seller_fulfillment_order_id: String?
+        attr_reader shipping_speed_category: String?
+        attr_reader status_updated_date: String?
+
+        def to_h: () -> { destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, displayable_order_comment: String?, displayable_order_date: String?, displayable_order_id: String?, fulfillment_order_status: String?, marketplace_id: String?, received_date: String?, seller_fulfillment_order_id: String?, shipping_speed_category: String?, status_updated_date: String?, cod_settings: Peddler::Types::FulfillmentOutbound20200701::CODSettings?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, fulfillment_action: String?, fulfillment_policy: String?, notification_emails: Array[String]? }
+      end
+
+      class FulfillmentOrderItem < Data
+        def self.new: (cancelled_quantity: Integer?, quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, unfulfillable_quantity: Integer?, ?displayable_comment: String?, ?estimated_arrival_date: String?, ?estimated_ship_date: String?, ?fulfillment_network_sku: String?, ?gift_message: String?, ?order_item_disposition: String?, ?per_unit_declared_value: Peddler::Types::Money?, ?per_unit_price: Peddler::Types::Money?, ?per_unit_tax: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
+                    | (Integer?, Integer?, String?, String?, Integer?, String?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem
+
+        attr_reader cancelled_quantity: Integer?
+
+        attr_reader displayable_comment: String?
+        attr_reader estimated_arrival_date: String?
+        attr_reader estimated_ship_date: String?
+        attr_reader fulfillment_network_sku: String?
+        attr_reader gift_message: String?
+        attr_reader order_item_disposition: String?
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
+        attr_reader per_unit_price: Peddler::Types::Money?
+        attr_reader per_unit_tax: Peddler::Types::Money?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+        attr_reader unfulfillable_quantity: Integer?
+
+        def to_h: () -> { cancelled_quantity: Integer?, quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, unfulfillable_quantity: Integer?, displayable_comment: String?, estimated_arrival_date: String?, estimated_ship_date: String?, fulfillment_network_sku: String?, gift_message: String?, order_item_disposition: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money? }
+      end
+
+      class FulfillmentOrderItemList < Array[FulfillmentOrderItem]
+        def self.parse: (Array[untyped]) -> FulfillmentOrderItemList
+      end
+
+      class FulfillmentPreview < Data
+        def self.new: (cod_capable: bool?, fulfillable: bool?, marketplace_id: String?, shipping_speed_category: String?, ?estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, ?estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, ?feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, ?fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, ?order_unfulfillable_reasons: Array[String]?, ?scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, ?unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview
+                    | (bool?, bool?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, Peddler::Types::FulfillmentOutbound20200701::Weight?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, Array[String]?, Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview
+
+        attr_reader cod_capable: bool?
+
+        attr_reader estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?
+        attr_reader estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?
+        attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
+        attr_reader fulfillable: bool?
+
+        attr_reader fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?
+        attr_reader marketplace_id: String?
+
+        attr_reader order_unfulfillable_reasons: Array[String]?
+        attr_reader scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?
+        attr_reader shipping_speed_category: String?
+
+        attr_reader unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]?
+
+        def cod_capable?: () -> bool
+        def fulfillable?: () -> bool
+        def to_h: () -> { cod_capable: bool?, fulfillable: bool?, marketplace_id: String?, shipping_speed_category: String?, estimated_fees: Array[Peddler::Types::FulfillmentOutbound20200701::Fee]?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, fulfillment_preview_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment]?, order_unfulfillable_reasons: Array[String]?, scheduled_delivery_info: Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo?, unfulfillable_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem]? }
+      end
+
+      class FulfillmentPreviewItem < Data
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, ?estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, ?shipping_weight_calculation_method: String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem
+                    | (Integer?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::Weight?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem
+
+        attr_reader estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+
+        attr_reader shipping_weight_calculation_method: String?
+
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, estimated_shipping_weight: Peddler::Types::FulfillmentOutbound20200701::Weight?, shipping_weight_calculation_method: String? }
+      end
+
+      class FulfillmentPreviewItemList < Array[FulfillmentPreviewItem]
+        def self.parse: (Array[untyped]) -> FulfillmentPreviewItemList
+      end
+
+      class FulfillmentPreviewList < Array[FulfillmentPreview]
+        def self.parse: (Array[untyped]) -> FulfillmentPreviewList
+      end
+
+      class FulfillmentPreviewShipment < Data
+        def self.new: (fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?, ?earliest_arrival_date: String?, ?earliest_ship_date: String?, ?latest_arrival_date: String?, ?latest_ship_date: String?, ?shipping_notes: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?, String?, String?, String?, String?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewShipment
+
+        attr_reader earliest_arrival_date: String?
+        attr_reader earliest_ship_date: String?
+        attr_reader fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?
+
+        attr_reader latest_arrival_date: String?
+        attr_reader latest_ship_date: String?
+        attr_reader shipping_notes: Array[String]?
+
+        def to_h: () -> { fulfillment_preview_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreviewItem]?, earliest_arrival_date: String?, earliest_ship_date: String?, latest_arrival_date: String?, latest_ship_date: String?, shipping_notes: Array[String]? }
+      end
+
+      class FulfillmentPreviewShipmentList < Array[FulfillmentPreviewShipment]
+        def self.parse: (Array[untyped]) -> FulfillmentPreviewShipmentList
+      end
+
+      class FulfillmentShipment < Data
+        def self.new: (amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, fulfillment_shipment_status: String?, ?estimated_arrival_date: String?, ?fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?, ?shipping_date: String?, ?shipping_notes: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
+                    | (String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?, String?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment
+
+        attr_reader amazon_shipment_id: String?
+
+        attr_reader estimated_arrival_date: String?
+        attr_reader fulfillment_center_id: String?
+        attr_reader fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?
+
+        attr_reader fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?
+        attr_reader fulfillment_shipment_status: String?
+
+        attr_reader shipping_date: String?
+        attr_reader shipping_notes: Array[String]?
+
+        def to_h: () -> { amazon_shipment_id: String?, fulfillment_center_id: String?, fulfillment_shipment_item: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem]?, fulfillment_shipment_status: String?, estimated_arrival_date: String?, fulfillment_shipment_package: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage]?, shipping_date: String?, shipping_notes: Array[String]? }
+      end
+
+      class FulfillmentShipmentItem < Data
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, ?manufacturer_lot_codes: Array[String]?, ?package_number: Integer?, ?serial_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem
+                    | (Integer?, String?, String?, Array[String]?, Integer?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentItem
+
+        attr_reader manufacturer_lot_codes: Array[String]?
+        attr_reader package_number: Integer?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+
+        attr_reader serial_number: String?
+
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, manufacturer_lot_codes: Array[String]?, package_number: Integer?, serial_number: String? }
+      end
+
+      class FulfillmentShipmentItemList < Array[FulfillmentShipmentItem]
+        def self.parse: (Array[untyped]) -> FulfillmentShipmentItemList
+      end
+
+      class FulfillmentShipmentList < Array[FulfillmentShipment]
+        def self.parse: (Array[untyped]) -> FulfillmentShipmentList
+      end
+
+      class FulfillmentShipmentPackage < Data
+        def self.new: (carrier_code: String?, package_number: Integer?, ?amazon_fulfillment_tracking_number: String?, ?delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?, ?estimated_arrival_date: String?, ?locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, ?tracking_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
+                    | (String?, Integer?, String?, Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?, String?, Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, String?) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipmentPackage
+
+        attr_reader amazon_fulfillment_tracking_number: String?
+        attr_reader carrier_code: String?
+
+        attr_reader delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?
+        attr_reader estimated_arrival_date: String?
+        attr_reader locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?
+        attr_reader package_number: Integer?
+
+        attr_reader tracking_number: String?
+
+        def to_h: () -> { carrier_code: String?, package_number: Integer?, amazon_fulfillment_tracking_number: String?, delivery_information: Peddler::Types::FulfillmentOutbound20200701::DeliveryInformation?, estimated_arrival_date: String?, locker_details: Peddler::Types::FulfillmentOutbound20200701::LockerDetails?, tracking_number: String? }
+      end
+
+      class FulfillmentShipmentPackageList < Array[FulfillmentShipmentPackage]
+        def self.parse: (Array[untyped]) -> FulfillmentShipmentPackageList
+      end
+
+      class GetDeliveryOffersProduct < Data
+        def self.new: (product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, ?amount: Peddler::Types::FulfillmentOutbound20200701::Amount?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
+                    | (Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, Peddler::Types::FulfillmentOutbound20200701::Amount?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct
+
+        attr_reader amount: Peddler::Types::FulfillmentOutbound20200701::Amount?
+        attr_reader product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?
+
+        def to_h: () -> { product_identifier: Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier?, amount: Peddler::Types::FulfillmentOutbound20200701::Amount? }
+      end
+
+      class GetDeliveryOffersRequest < Data
+        def self.new: (product: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, terms: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersRequest
+                    | (Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersRequest
+
+        attr_reader product: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?
+        attr_reader terms: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms?
+
+        def to_h: () -> { product: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersProduct?, terms: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms? }
+      end
+
+      class GetDeliveryOffersResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult? }
+      end
+
+      class GetDeliveryOffersResult < Data
+        def self.new: (?delivery_offers: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer]?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer]?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersResult
+
+        attr_reader delivery_offers: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer]?
+
+        def to_h: () -> { delivery_offers: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryOffer]? }
+      end
+
+      class GetDeliveryOffersTerms < Data
+        def self.new: (destination: Peddler::Types::FulfillmentOutbound20200701::Destination?, origin: Peddler::Types::FulfillmentOutbound20200701::Origin?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms
+                    | (Peddler::Types::FulfillmentOutbound20200701::Destination?, Peddler::Types::FulfillmentOutbound20200701::Origin?) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetDeliveryOffersTerms
+
+        attr_reader destination: Peddler::Types::FulfillmentOutbound20200701::Destination?
+        attr_reader origin: Peddler::Types::FulfillmentOutbound20200701::Origin?
+
+        def to_h: () -> { destination: Peddler::Types::FulfillmentOutbound20200701::Destination?, origin: Peddler::Types::FulfillmentOutbound20200701::Origin? }
+      end
+
+      class GetFeatureInventoryResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult? }
+      end
+
+      class GetFeatureInventoryResult < Data
+        def self.new: (feature_name: String?, marketplace_id: String?, ?feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?, ?next_token: String?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult
+                    | (String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?, String?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureInventoryResult
+
+        attr_reader feature_name: String?
+
+        attr_reader feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?
+        attr_reader marketplace_id: String?
+
+        attr_reader next_token: String?
+
+        def to_h: () -> { feature_name: String?, marketplace_id: String?, feature_skus: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSku]?, next_token: String? }
+      end
+
+      class GetFeatureSkuResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult? }
+      end
+
+      class GetFeatureSkuResult < Data
+        def self.new: (feature_name: String?, eligible: bool?, marketplace_id: String?, ?ineligible_reasons: Array[String]?, ?sku_info: Peddler::Types::FulfillmentOutbound20200701::FeatureSku?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult
+                    | (String?, bool?, String?, Array[String]?, Peddler::Types::FulfillmentOutbound20200701::FeatureSku?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeatureSkuResult
+
+        attr_reader eligible: bool?
+        attr_reader feature_name: String?
+
+        attr_reader ineligible_reasons: Array[String]?
+        attr_reader marketplace_id: String?
+
+        attr_reader sku_info: Peddler::Types::FulfillmentOutbound20200701::FeatureSku?
+
+        def eligible?: () -> bool
+        def to_h: () -> { feature_name: String?, eligible: bool?, marketplace_id: String?, ineligible_reasons: Array[String]?, sku_info: Peddler::Types::FulfillmentOutbound20200701::FeatureSku? }
+      end
+
+      class GetFeaturesResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult? }
+      end
+
+      class GetFeaturesResult < Data
+        def self.new: (features: Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFeaturesResult
+
+        attr_reader features: Array[Peddler::Types::FulfillmentOutbound20200701::Feature]?
+
+        def to_h: () -> { features: Array[Peddler::Types::FulfillmentOutbound20200701::Feature]? }
+      end
+
+      class GetFulfillmentOrderResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult? }
+      end
+
+      class GetFulfillmentOrderResult < Data
+        def self.new: (fulfillment_order: Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?, fulfillment_order_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, ?fulfillment_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?, ?payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult
+                    | (Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?, Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentOrderResult
+
+        attr_reader fulfillment_order: Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?
+        attr_reader fulfillment_order_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?
+
+        attr_reader fulfillment_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?
+        attr_reader payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]?
+        attr_reader return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?
+        attr_reader return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?
+
+        def to_h: () -> { fulfillment_order: Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder?, fulfillment_order_items: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrderItem]?, return_authorizations: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization]?, return_items: Array[Peddler::Types::FulfillmentOutbound20200701::ReturnItem]?, fulfillment_shipments: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentShipment]?, payment_information: Array[Peddler::Types::FulfillmentOutbound20200701::PaymentInformation]? }
+      end
+
+      class GetFulfillmentPreviewItem < Data
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, ?per_unit_declared_value: Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
+                    | (Integer?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem
+
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, per_unit_declared_value: Peddler::Types::Money? }
+      end
+
+      class GetFulfillmentPreviewItemList < Array[GetFulfillmentPreviewItem]
+        def self.parse: (Array[untyped]) -> GetFulfillmentPreviewItemList
+      end
+
+      class GetFulfillmentPreviewRequest < Data
+        def self.new: (address: Peddler::Types::FulfillmentOutbound20200701::Address?, items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, ?feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, ?include_cod_fulfillment_preview: bool?, ?include_delivery_windows: bool?, ?marketplace_id: String?, ?shipping_speed_categories: Array[untyped]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewRequest
+                    | (Peddler::Types::FulfillmentOutbound20200701::Address?, Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, bool?, bool?, String?, Array[untyped]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewRequest
+
+        attr_reader address: Peddler::Types::FulfillmentOutbound20200701::Address?
+
+        attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
+        attr_reader include_cod_fulfillment_preview: bool?
+        attr_reader include_delivery_windows: bool?
+        attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?
+
+        attr_reader marketplace_id: String?
+        attr_reader shipping_speed_categories: Array[untyped]?
+
+        def include_cod_fulfillment_preview?: () -> bool
+        def include_delivery_windows?: () -> bool
+        def to_h: () -> { address: Peddler::Types::FulfillmentOutbound20200701::Address?, items: Array[Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewItem]?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, include_cod_fulfillment_preview: bool?, include_delivery_windows: bool?, marketplace_id: String?, shipping_speed_categories: Array[untyped]? }
+      end
+
+      class GetFulfillmentPreviewResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult? }
+      end
+
+      class GetFulfillmentPreviewResult < Data
+        def self.new: (?fulfillment_previews: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]?) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetFulfillmentPreviewResult
+
+        attr_reader fulfillment_previews: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]?
+
+        def to_h: () -> { fulfillment_previews: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentPreview]? }
+      end
+
+      class GetPackageTrackingDetailsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails?) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails?) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::GetPackageTrackingDetailsResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails? }
+      end
+
+      class InvalidItemReason < Data
+        def self.new: (description: String?, invalid_item_reason_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason
+
+        attr_reader description: String?
+        attr_reader invalid_item_reason_code: String?
+
+        def to_h: () -> { description: String?, invalid_item_reason_code: String? }
+      end
+
+      class InvalidReturnItem < Data
+        def self.new: (invalid_item_reason: Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?) -> Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem
+                    | (Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::InvalidReturnItem
+
+        attr_reader invalid_item_reason: Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_return_item_id: String?
+
+        def to_h: () -> { invalid_item_reason: Peddler::Types::FulfillmentOutbound20200701::InvalidItemReason?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String? }
+      end
+
+      class InvalidReturnItemList < Array[InvalidReturnItem]
+        def self.parse: (Array[untyped]) -> InvalidReturnItemList
+      end
+
+      class ListAllFulfillmentOrdersResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult? }
+      end
+
+      class ListAllFulfillmentOrdersResult < Data
+        def self.new: (?fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?, ?next_token: String?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListAllFulfillmentOrdersResult
+
+        attr_reader fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?
+        attr_reader next_token: String?
+
+        def to_h: () -> { fulfillment_orders: Array[Peddler::Types::FulfillmentOutbound20200701::FulfillmentOrder]?, next_token: String? }
+      end
+
+      class ListReturnReasonCodesResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, ?payload: Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult?) -> Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult?) -> Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+        attr_reader payload: Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?, payload: Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult? }
+      end
+
+      class ListReturnReasonCodesResult < Data
+        def self.new: (?reason_code_details: Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]?) -> Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]?) -> Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ListReturnReasonCodesResult
+
+        attr_reader reason_code_details: Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]?
+
+        def to_h: () -> { reason_code_details: Array[Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails]? }
+      end
+
+      class LockerDetails < Data
+        def self.new: (?locker_access_code: String?, ?locker_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::LockerDetails
+
+        attr_reader locker_access_code: String?
+        attr_reader locker_number: String?
+
+        def to_h: () -> { locker_access_code: String?, locker_number: String? }
+      end
+
+      class NotificationEmailList < Array[untyped]
+        def self.parse: (Array[untyped]) -> NotificationEmailList
+      end
+
+      class Origin < Data
+        def self.new: (country_code: String?) -> Peddler::Types::FulfillmentOutbound20200701::Origin
+                    | (String?) -> Peddler::Types::FulfillmentOutbound20200701::Origin
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Origin
+
+        attr_reader country_code: String?
+
+        def to_h: () -> { country_code: String? }
+      end
+
+      class PackageTrackingDetails < Data
+        def self.new: (package_number: Integer?, ?additional_location_info: String?, ?carrier_code: String?, ?carrier_phone_number: String?, ?carrier_url: String?, ?current_status: String?, ?current_status_description: String?, ?customer_tracking_link: String?, ?delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?, ?estimated_arrival_date: String?, ?ship_date: String?, ?ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, ?signed_for_by: String?, ?tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?, ?tracking_number: String?) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
+                    | (Integer?, String?, String?, String?, String?, String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::DateRange?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?, String?) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::PackageTrackingDetails
+
+        attr_reader additional_location_info: String?
+        attr_reader carrier_code: String?
+        attr_reader carrier_phone_number: String?
+        attr_reader carrier_url: String?
+        attr_reader current_status: String?
+        attr_reader current_status_description: String?
+        attr_reader customer_tracking_link: String?
+        attr_reader delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?
+        attr_reader estimated_arrival_date: String?
+        attr_reader package_number: Integer?
+
+        attr_reader ship_date: String?
+        attr_reader ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?
+        attr_reader signed_for_by: String?
+        attr_reader tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?
+        attr_reader tracking_number: String?
+
+        def to_h: () -> { package_number: Integer?, additional_location_info: String?, carrier_code: String?, carrier_phone_number: String?, carrier_url: String?, current_status: String?, current_status_description: String?, customer_tracking_link: String?, delivery_window: Peddler::Types::FulfillmentOutbound20200701::DateRange?, estimated_arrival_date: String?, ship_date: String?, ship_to_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, signed_for_by: String?, tracking_events: Array[Peddler::Types::FulfillmentOutbound20200701::TrackingEvent]?, tracking_number: String? }
+      end
+
+      class PaymentInformation < Data
+        def self.new: (payment_date: String?, payment_mode: String?, payment_transaction_id: String?) -> Peddler::Types::FulfillmentOutbound20200701::PaymentInformation
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::PaymentInformation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::PaymentInformation
+
+        attr_reader payment_date: String?
+        attr_reader payment_mode: String?
+        attr_reader payment_transaction_id: String?
+
+        def to_h: () -> { payment_date: String?, payment_mode: String?, payment_transaction_id: String? }
+      end
+
+      class PaymentInformationList < Array[PaymentInformation]
+        def self.parse: (Array[untyped]) -> PaymentInformationList
+      end
+
+      class ProductIdentifier < Data
+        def self.new: (merchant_sku: String?) -> Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier
+                    | (String?) -> Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ProductIdentifier
+
+        attr_reader merchant_sku: String?
+
+        def to_h: () -> { merchant_sku: String? }
+      end
+
+      class ReasonCodeDetails < Data
+        def self.new: (description: String?, return_reason_code: String?, ?translated_description: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReasonCodeDetails
+
+        attr_reader description: String?
+        attr_reader return_reason_code: String?
+        attr_reader translated_description: String?
+
+        def to_h: () -> { description: String?, return_reason_code: String?, translated_description: String? }
+      end
+
+      class ReasonCodeDetailsList < Array[ReasonCodeDetails]
+        def self.parse: (Array[untyped]) -> ReasonCodeDetailsList
+      end
+
+      class ReturnAuthorization < Data
+        def self.new: (amazon_rma_id: String?, fulfillment_center_id: String?, return_authorization_id: String?, return_to_address: Peddler::Types::FulfillmentOutbound20200701::Address?, rma_page_url: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
+                    | (String?, String?, String?, Peddler::Types::FulfillmentOutbound20200701::Address?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReturnAuthorization
+
+        attr_reader amazon_rma_id: String?
+        attr_reader fulfillment_center_id: String?
+        attr_reader return_authorization_id: String?
+        attr_reader return_to_address: Peddler::Types::FulfillmentOutbound20200701::Address?
+        attr_reader rma_page_url: String?
+
+        def to_h: () -> { amazon_rma_id: String?, fulfillment_center_id: String?, return_authorization_id: String?, return_to_address: Peddler::Types::FulfillmentOutbound20200701::Address?, rma_page_url: String? }
+      end
+
+      class ReturnAuthorizationList < Array[ReturnAuthorization]
+        def self.parse: (Array[untyped]) -> ReturnAuthorizationList
+      end
+
+      class ReturnItem < Data
+        def self.new: (amazon_shipment_id: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, seller_return_reason_code: String?, status: String?, status_changed_date: String?, ?amazon_return_reason_code: String?, ?fulfillment_center_id: String?, ?return_authorization_id: String?, ?return_comment: String?, ?return_received_condition: String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ReturnItem
+
+        attr_reader amazon_return_reason_code: String?
+        attr_reader amazon_shipment_id: String?
+
+        attr_reader fulfillment_center_id: String?
+        attr_reader return_authorization_id: String?
+        attr_reader return_comment: String?
+        attr_reader return_received_condition: String?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_return_item_id: String?
+        attr_reader seller_return_reason_code: String?
+        attr_reader status: String?
+        attr_reader status_changed_date: String?
+
+        def to_h: () -> { amazon_shipment_id: String?, seller_fulfillment_order_item_id: String?, seller_return_item_id: String?, seller_return_reason_code: String?, status: String?, status_changed_date: String?, amazon_return_reason_code: String?, fulfillment_center_id: String?, return_authorization_id: String?, return_comment: String?, return_received_condition: String? }
+      end
+
+      class ReturnItemList < Array[ReturnItem]
+        def self.parse: (Array[untyped]) -> ReturnItemList
+      end
+
+      class ScheduledDeliveryInfo < Data
+        def self.new: (delivery_time_zone: String?, delivery_windows: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]?) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
+                    | (String?, Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]?) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::ScheduledDeliveryInfo
+
+        attr_reader delivery_time_zone: String?
+        attr_reader delivery_windows: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]?
+
+        def to_h: () -> { delivery_time_zone: String?, delivery_windows: Array[Peddler::Types::FulfillmentOutbound20200701::DeliveryWindow]? }
+      end
+
+      class ShippingSpeedCategoryList < Array[untyped]
+        def self.parse: (Array[untyped]) -> ShippingSpeedCategoryList
+      end
+
+      class StringList < Array[untyped]
+        def self.parse: (Array[untyped]) -> StringList
+      end
+
+      class SubmitFulfillmentOrderStatusUpdateRequest < Data
+        def self.new: (?fulfillment_order_status: String?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest
+                    | (String?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateRequest
+
+        attr_reader fulfillment_order_status: String?
+
+        def to_h: () -> { fulfillment_order_status: String? }
+      end
+
+      class SubmitFulfillmentOrderStatusUpdateResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::SubmitFulfillmentOrderStatusUpdateResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
+      end
+
+      class TrackingAddress < Data
+        def self.new: (city: String?, country: String?, state: String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
+                    | (String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::TrackingAddress
+
+        attr_reader city: String?
+        attr_reader country: String?
+        attr_reader state: String?
+
+        def to_h: () -> { city: String?, country: String?, state: String? }
+      end
+
+      class TrackingEvent < Data
+        def self.new: (event_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, event_code: String?, event_date: String?, event_description: String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingEvent
+                    | (Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::TrackingEvent
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::TrackingEvent
+
+        attr_reader event_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?
+        attr_reader event_code: String?
+        attr_reader event_date: String?
+        attr_reader event_description: String?
+
+        def to_h: () -> { event_address: Peddler::Types::FulfillmentOutbound20200701::TrackingAddress?, event_code: String?, event_date: String?, event_description: String? }
+      end
+
+      class TrackingEventList < Array[TrackingEvent]
+        def self.parse: (Array[untyped]) -> TrackingEventList
+      end
+
+      class UnfulfillablePreviewItem < Data
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, ?item_unfulfillable_reasons: Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
+                    | (Integer?, String?, String?, Array[String]?) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UnfulfillablePreviewItem
+
+        attr_reader item_unfulfillable_reasons: Array[String]?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, seller_sku: String?, item_unfulfillable_reasons: Array[String]? }
+      end
+
+      class UnfulfillablePreviewItemList < Array[UnfulfillablePreviewItem]
+        def self.parse: (Array[untyped]) -> UnfulfillablePreviewItemList
+      end
+
+      class UpdateFulfillmentOrderItem < Data
+        def self.new: (quantity: Integer?, seller_fulfillment_order_item_id: String?, ?displayable_comment: String?, ?fulfillment_network_sku: String?, ?gift_message: String?, ?order_item_disposition: String?, ?per_unit_declared_value: Peddler::Types::Money?, ?per_unit_price: Peddler::Types::Money?, ?per_unit_tax: Peddler::Types::Money?, ?seller_sku: String?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem
+                    | (Integer?, String?, String?, String?, String?, String?, Peddler::Types::Money?, Peddler::Types::Money?, Peddler::Types::Money?, String?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem
+
+        attr_reader displayable_comment: String?
+        attr_reader fulfillment_network_sku: String?
+        attr_reader gift_message: String?
+        attr_reader order_item_disposition: String?
+        attr_reader per_unit_declared_value: Peddler::Types::Money?
+        attr_reader per_unit_price: Peddler::Types::Money?
+        attr_reader per_unit_tax: Peddler::Types::Money?
+        attr_reader quantity: Integer?
+        attr_reader seller_fulfillment_order_item_id: String?
+
+        attr_reader seller_sku: String?
+
+        def to_h: () -> { quantity: Integer?, seller_fulfillment_order_item_id: String?, displayable_comment: String?, fulfillment_network_sku: String?, gift_message: String?, order_item_disposition: String?, per_unit_declared_value: Peddler::Types::Money?, per_unit_price: Peddler::Types::Money?, per_unit_tax: Peddler::Types::Money?, seller_sku: String? }
+      end
+
+      class UpdateFulfillmentOrderItemList < Array[UpdateFulfillmentOrderItem]
+        def self.parse: (Array[untyped]) -> UpdateFulfillmentOrderItemList
+      end
+
+      class UpdateFulfillmentOrderRequest < Data
+        def self.new: (?destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, ?displayable_order_comment: String?, ?displayable_order_date: String?, ?displayable_order_id: String?, ?feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, ?fulfillment_action: String?, ?fulfillment_policy: String?, ?items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?, ?marketplace_id: String?, ?notification_emails: Array[String]?, ?ship_from_country_code: String?, ?shipping_speed_category: String?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
+                    | (Peddler::Types::FulfillmentOutbound20200701::Address?, String?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, String?, String?, Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?, String?, Array[String]?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderRequest
+
+        attr_reader destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?
+        attr_reader displayable_order_comment: String?
+        attr_reader displayable_order_date: String?
+        attr_reader displayable_order_id: String?
+        attr_reader feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?
+        attr_reader fulfillment_action: String?
+        attr_reader fulfillment_policy: String?
+        attr_reader items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?
+        attr_reader marketplace_id: String?
+        attr_reader notification_emails: Array[String]?
+        attr_reader ship_from_country_code: String?
+        attr_reader shipping_speed_category: String?
+
+        def to_h: () -> { destination_address: Peddler::Types::FulfillmentOutbound20200701::Address?, displayable_order_comment: String?, displayable_order_date: String?, displayable_order_id: String?, feature_constraints: Array[Peddler::Types::FulfillmentOutbound20200701::FeatureSettings]?, fulfillment_action: String?, fulfillment_policy: String?, items: Array[Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderItem]?, marketplace_id: String?, notification_emails: Array[String]?, ship_from_country_code: String?, shipping_speed_category: String? }
+      end
+
+      class UpdateFulfillmentOrderResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse
+                    | (Array[Peddler::Types::FulfillmentOutbound20200701::Error]?) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::UpdateFulfillmentOrderResponse
+
+        attr_reader errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::FulfillmentOutbound20200701::Error]? }
+      end
+
+      class VariablePrecisionAddress < Data
+        def self.new: (country_code: String?, postal_code: String?, ?address_line1: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?district_or_county: String?, ?state_or_region: String?) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress
+                    | (String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::VariablePrecisionAddress
+
+        attr_reader address_line1: String?
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+
+        attr_reader district_or_county: String?
+        attr_reader postal_code: String?
+
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { country_code: String?, postal_code: String?, address_line1: String?, address_line2: String?, address_line3: String?, city: String?, district_or_county: String?, state_or_region: String? }
+      end
+
+      class Weight < Data
+        def self.new: (unit: String?, value: String?) -> Peddler::Types::FulfillmentOutbound20200701::Weight
+                    | (String?, String?) -> Peddler::Types::FulfillmentOutbound20200701::Weight
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::FulfillmentOutbound20200701::Weight
+
+        attr_reader unit: String?
+        attr_reader value: String?
+
+        def to_h: () -> { unit: String?, value: String? }
+      end
+    end
+  end
+end

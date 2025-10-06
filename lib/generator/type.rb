@@ -154,19 +154,14 @@ module Generator
       end
     end
 
-    def generate_rbs
-      # Generate RBS file path
-      rbs_path = File.join(Config::BASE_PATH, "sig/#{library_name}.rbs")
-      FileUtils.mkdir_p(File.dirname(rbs_path))
-
-      # Generate the appropriate RBS content
-      rbs_content = if array_type?
-        generate_array_rbs
+    # Returns just the class definition without module wrapping
+    # Used for consolidated RBS generation
+    def rbs_class_definition
+      if array_type?
+        array_rbs_class_definition
       else
-        generate_structure_rbs
+        structure_rbs_class_definition
       end
-
-      File.write(rbs_path, rbs_content)
     end
 
     private
@@ -296,7 +291,7 @@ module Generator
       File.read(Config.template_path("array"))
     end
 
-    def generate_structure_rbs
+    def structure_rbs_class_definition
       # Load the specific type
       require library_name
       klass = Peddler::Types.const_get(api_name.camelize).const_get(class_name)
@@ -305,42 +300,30 @@ module Generator
       rbs_content = Structure::RBS.emit(klass)
       raise "Structure::RBS.emit returned nil for #{api_name.camelize}::#{class_name}" unless rbs_content
 
-      # Wrap in proper module structure
-      wrap_rbs_in_modules(rbs_content)
+      # Fix the class name if it's fully qualified and return
+      class_lines = rbs_content.lines
+      class_lines[0] = class_lines[0].sub(/class .*::(\w+)/, 'class \1')
+      class_lines.join
     rescue => e
       raise "Couldn't generate RBS for #{api_name.camelize}::#{class_name}: #{e.message}"
     end
 
-    def generate_array_rbs
-      template = File.read(Config.template_path("rbs/array"))
-      ERB.new(template, trim_mode: "-").result(binding)
-    end
-
-    def wrap_rbs_in_modules(rbs_content)
-      # Extract the class definition from Structure::RBS output
-      class_lines = rbs_content.lines
-
-      # Fix the class name if it's fully qualified
-      class_lines[0] = class_lines[0].sub(/class .*::(\w+)/, 'class \1')
-
-      # Build the properly nested module structure
-      lines = [] #: Array[String]
-      lines << "# #{Generator::Config::GENERATED_FILE_NOTICE}"
-      lines << ""
-      lines << "module Peddler"
-      lines << "  module Types"
-      lines << "    module #{api_name.camelize}"
-
-      # Indent the class definition properly
-      class_lines.each do |line|
-        lines << "      #{line}".rstrip
+    def array_rbs_class_definition
+      # Generate the array class definition inline (no template needed)
+      item_type = array_item_type
+      if item_type && generated_type?(item_type)
+        <<~RBS
+          class #{class_name} < Array[#{item_type.camelize}]
+            def self.parse: (Array[untyped]) -> #{class_name}
+          end
+        RBS
+      else
+        <<~RBS
+          class #{class_name} < Array[untyped]
+            def self.parse: (Array[untyped]) -> #{class_name}
+          end
+        RBS
       end
-
-      lines << "    end"
-      lines << "  end"
-      lines << "end"
-
-      lines.join("\n") + "\n"
     end
   end
 end

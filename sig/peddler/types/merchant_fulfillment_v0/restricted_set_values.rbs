@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class RestrictedSetValues < Array[untyped]
-        def self.parse: (Array[untyped]) -> RestrictedSetValues
-      end
-    end
-  end
-end

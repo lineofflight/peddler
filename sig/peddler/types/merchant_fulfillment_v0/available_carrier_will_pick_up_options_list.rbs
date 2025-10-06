@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class AvailableCarrierWillPickUpOptionsList < Array[AvailableCarrierWillPickUpOption]
-        def self.parse: (Array[untyped]) -> AvailableCarrierWillPickUpOptionsList
-      end
-    end
-  end
-end

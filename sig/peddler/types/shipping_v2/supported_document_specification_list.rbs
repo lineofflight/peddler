@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class SupportedDocumentSpecificationList < Array[SupportedDocumentSpecification]
-        def self.parse: (Array[untyped]) -> SupportedDocumentSpecificationList
-      end
-    end
-  end
-end

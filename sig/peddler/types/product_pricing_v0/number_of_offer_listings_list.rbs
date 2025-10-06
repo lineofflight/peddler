@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ProductPricingV0
-      class NumberOfOfferListingsList < Array[OfferListingCountType]
-        def self.parse: (Array[untyped]) -> NumberOfOfferListingsList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShipmentInvoicingV0
-      class PaymentMethodDetailItemList < Array[untyped]
-        def self.parse: (Array[untyped]) -> PaymentMethodDetailItemList
-      end
-    end
-  end
-end

@@ -1,0 +1,312 @@
+module Peddler
+  module Types
+    module NotificationsV1
+      class AggregationFilter < Data
+        def self.new: (?aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?) -> Peddler::Types::NotificationsV1::AggregationFilter
+                    | (Peddler::Types::NotificationsV1::AggregationSettings?) -> Peddler::Types::NotificationsV1::AggregationFilter
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::AggregationFilter
+
+        attr_reader aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?
+
+        def to_h: () -> { aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings? }
+      end
+
+      class AggregationSettings < Data
+        def self.new: (aggregation_time_period: String?) -> Peddler::Types::NotificationsV1::AggregationSettings
+                    | (String?) -> Peddler::Types::NotificationsV1::AggregationSettings
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::AggregationSettings
+
+        attr_reader aggregation_time_period: String?
+
+        def to_h: () -> { aggregation_time_period: String? }
+      end
+
+      class CreateDestinationRequest < Data
+        def self.new: (name: String?, resource_specification: Peddler::Types::NotificationsV1::DestinationResourceSpecification?) -> Peddler::Types::NotificationsV1::CreateDestinationRequest
+                    | (String?, Peddler::Types::NotificationsV1::DestinationResourceSpecification?) -> Peddler::Types::NotificationsV1::CreateDestinationRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::CreateDestinationRequest
+
+        attr_reader name: String?
+        attr_reader resource_specification: Peddler::Types::NotificationsV1::DestinationResourceSpecification?
+
+        def to_h: () -> { name: String?, resource_specification: Peddler::Types::NotificationsV1::DestinationResourceSpecification? }
+      end
+
+      class CreateDestinationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Peddler::Types::NotificationsV1::Destination?) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Peddler::Types::NotificationsV1::Destination?) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::CreateDestinationResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Peddler::Types::NotificationsV1::Destination?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Peddler::Types::NotificationsV1::Destination? }
+      end
+
+      class CreateSubscriptionRequest < Data
+        def self.new: (destination_id: String?, payload_version: String?, ?processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::CreateSubscriptionRequest
+                    | (String?, String?, Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::CreateSubscriptionRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::CreateSubscriptionRequest
+
+        attr_reader destination_id: String?
+        attr_reader payload_version: String?
+        attr_reader processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?
+
+        def to_h: () -> { destination_id: String?, payload_version: String?, processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective? }
+      end
+
+      class CreateSubscriptionResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Peddler::Types::NotificationsV1::Subscription?) -> Peddler::Types::NotificationsV1::CreateSubscriptionResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Peddler::Types::NotificationsV1::Subscription?) -> Peddler::Types::NotificationsV1::CreateSubscriptionResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::CreateSubscriptionResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Peddler::Types::NotificationsV1::Subscription?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Peddler::Types::NotificationsV1::Subscription? }
+      end
+
+      class DeleteDestinationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::DeleteDestinationResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]? }
+      end
+
+      class DeleteSubscriptionByIdResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteSubscriptionByIdResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?) -> Peddler::Types::NotificationsV1::DeleteSubscriptionByIdResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::DeleteSubscriptionByIdResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]? }
+      end
+
+      class Destination < Data
+        def self.new: (destination_id: String?, name: String?, resource: Peddler::Types::NotificationsV1::DestinationResource?) -> Peddler::Types::NotificationsV1::Destination
+                    | (String?, String?, Peddler::Types::NotificationsV1::DestinationResource?) -> Peddler::Types::NotificationsV1::Destination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::Destination
+
+        attr_reader destination_id: String?
+        attr_reader name: String?
+        attr_reader resource: Peddler::Types::NotificationsV1::DestinationResource?
+
+        def to_h: () -> { destination_id: String?, name: String?, resource: Peddler::Types::NotificationsV1::DestinationResource? }
+      end
+
+      class DestinationList < Array[Destination]
+        def self.parse: (Array[untyped]) -> DestinationList
+      end
+
+      class DestinationResource < Data
+        def self.new: (?event_bridge: Peddler::Types::NotificationsV1::EventBridgeResource?, ?sqs: Peddler::Types::NotificationsV1::SqsResource?) -> Peddler::Types::NotificationsV1::DestinationResource
+                    | (Peddler::Types::NotificationsV1::EventBridgeResource?, Peddler::Types::NotificationsV1::SqsResource?) -> Peddler::Types::NotificationsV1::DestinationResource
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::DestinationResource
+
+        attr_reader event_bridge: Peddler::Types::NotificationsV1::EventBridgeResource?
+        attr_reader sqs: Peddler::Types::NotificationsV1::SqsResource?
+
+        def to_h: () -> { event_bridge: Peddler::Types::NotificationsV1::EventBridgeResource?, sqs: Peddler::Types::NotificationsV1::SqsResource? }
+      end
+
+      class DestinationResourceSpecification < Data
+        def self.new: (?event_bridge: Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?, ?sqs: Peddler::Types::NotificationsV1::SqsResource?) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
+                    | (Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?, Peddler::Types::NotificationsV1::SqsResource?) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::DestinationResourceSpecification
+
+        attr_reader event_bridge: Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?
+        attr_reader sqs: Peddler::Types::NotificationsV1::SqsResource?
+
+        def to_h: () -> { event_bridge: Peddler::Types::NotificationsV1::EventBridgeResourceSpecification?, sqs: Peddler::Types::NotificationsV1::SqsResource? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::NotificationsV1::Error
+                    | (String?, String?, String?) -> Peddler::Types::NotificationsV1::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class EventBridgeResource < Data
+        def self.new: (account_id: String?, name: String?, region: String?) -> Peddler::Types::NotificationsV1::EventBridgeResource
+                    | (String?, String?, String?) -> Peddler::Types::NotificationsV1::EventBridgeResource
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::EventBridgeResource
+
+        attr_reader account_id: String?
+        attr_reader name: String?
+        attr_reader region: String?
+
+        def to_h: () -> { account_id: String?, name: String?, region: String? }
+      end
+
+      class EventBridgeResourceSpecification < Data
+        def self.new: (account_id: String?, region: String?) -> Peddler::Types::NotificationsV1::EventBridgeResourceSpecification
+                    | (String?, String?) -> Peddler::Types::NotificationsV1::EventBridgeResourceSpecification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::EventBridgeResourceSpecification
+
+        attr_reader account_id: String?
+        attr_reader region: String?
+
+        def to_h: () -> { account_id: String?, region: String? }
+      end
+
+      class EventFilter < Data
+        def self.new: (event_filter_type: String?, ?aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, ?marketplace_ids: Array[String]?, ?order_change_types: Array[untyped]?) -> Peddler::Types::NotificationsV1::EventFilter
+                    | (String?, Peddler::Types::NotificationsV1::AggregationSettings?, Array[String]?, Array[untyped]?) -> Peddler::Types::NotificationsV1::EventFilter
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::EventFilter
+
+        attr_reader aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?
+        attr_reader event_filter_type: String?
+
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader order_change_types: Array[untyped]?
+
+        def to_h: () -> { event_filter_type: String?, aggregation_settings: Peddler::Types::NotificationsV1::AggregationSettings?, marketplace_ids: Array[String]?, order_change_types: Array[untyped]? }
+      end
+
+      class GetDestinationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Peddler::Types::NotificationsV1::Destination?) -> Peddler::Types::NotificationsV1::GetDestinationResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Peddler::Types::NotificationsV1::Destination?) -> Peddler::Types::NotificationsV1::GetDestinationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::GetDestinationResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Peddler::Types::NotificationsV1::Destination?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Peddler::Types::NotificationsV1::Destination? }
+      end
+
+      class GetDestinationsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Array[Peddler::Types::NotificationsV1::Destination]?) -> Peddler::Types::NotificationsV1::GetDestinationsResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Array[Peddler::Types::NotificationsV1::Destination]?) -> Peddler::Types::NotificationsV1::GetDestinationsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::GetDestinationsResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Array[Peddler::Types::NotificationsV1::Destination]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Array[Peddler::Types::NotificationsV1::Destination]? }
+      end
+
+      class GetSubscriptionByIdResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Peddler::Types::NotificationsV1::Subscription?) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Peddler::Types::NotificationsV1::Subscription?) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::GetSubscriptionByIdResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Peddler::Types::NotificationsV1::Subscription?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Peddler::Types::NotificationsV1::Subscription? }
+      end
+
+      class GetSubscriptionResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::NotificationsV1::Error]?, ?payload: Peddler::Types::NotificationsV1::Subscription?) -> Peddler::Types::NotificationsV1::GetSubscriptionResponse
+                    | (Array[Peddler::Types::NotificationsV1::Error]?, Peddler::Types::NotificationsV1::Subscription?) -> Peddler::Types::NotificationsV1::GetSubscriptionResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::GetSubscriptionResponse
+
+        attr_reader errors: Array[Peddler::Types::NotificationsV1::Error]?
+        attr_reader payload: Peddler::Types::NotificationsV1::Subscription?
+
+        def to_h: () -> { errors: Array[Peddler::Types::NotificationsV1::Error]?, payload: Peddler::Types::NotificationsV1::Subscription? }
+      end
+
+      class MarketplaceFilter < Data
+        def self.new: (?marketplace_ids: Array[String]?) -> Peddler::Types::NotificationsV1::MarketplaceFilter
+                    | (Array[String]?) -> Peddler::Types::NotificationsV1::MarketplaceFilter
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::MarketplaceFilter
+
+        attr_reader marketplace_ids: Array[String]?
+
+        def to_h: () -> { marketplace_ids: Array[String]? }
+      end
+
+      class MarketplaceIds < Array[untyped]
+        def self.parse: (Array[untyped]) -> MarketplaceIds
+      end
+
+      class OrderChangeTypeFilter < Data
+        def self.new: (?order_change_types: Array[untyped]?) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
+                    | (Array[untyped]?) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::OrderChangeTypeFilter
+
+        attr_reader order_change_types: Array[untyped]?
+
+        def to_h: () -> { order_change_types: Array[untyped]? }
+      end
+
+      class OrderChangeTypes < Array[untyped]
+        def self.parse: (Array[untyped]) -> OrderChangeTypes
+      end
+
+      class ProcessingDirective < Data
+        def self.new: (?event_filter: Peddler::Types::NotificationsV1::EventFilter?) -> Peddler::Types::NotificationsV1::ProcessingDirective
+                    | (Peddler::Types::NotificationsV1::EventFilter?) -> Peddler::Types::NotificationsV1::ProcessingDirective
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::ProcessingDirective
+
+        attr_reader event_filter: Peddler::Types::NotificationsV1::EventFilter?
+
+        def to_h: () -> { event_filter: Peddler::Types::NotificationsV1::EventFilter? }
+      end
+
+      class SqsResource < Data
+        def self.new: (arn: String?) -> Peddler::Types::NotificationsV1::SqsResource
+                    | (String?) -> Peddler::Types::NotificationsV1::SqsResource
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::SqsResource
+
+        attr_reader arn: String?
+
+        def to_h: () -> { arn: String? }
+      end
+
+      class Subscription < Data
+        def self.new: (destination_id: String?, payload_version: String?, subscription_id: String?, ?processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
+                    | (String?, String?, String?, Peddler::Types::NotificationsV1::ProcessingDirective?) -> Peddler::Types::NotificationsV1::Subscription
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::NotificationsV1::Subscription
+
+        attr_reader destination_id: String?
+        attr_reader payload_version: String?
+
+        attr_reader processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective?
+        attr_reader subscription_id: String?
+
+        def to_h: () -> { destination_id: String?, payload_version: String?, subscription_id: String?, processing_directive: Peddler::Types::NotificationsV1::ProcessingDirective? }
+      end
+    end
+  end
+end

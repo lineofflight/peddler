@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module Finances20240619
-      class Contexts < Array[Context]
-        def self.parse: (Array[untyped]) -> Contexts
-      end
-    end
-  end
-end

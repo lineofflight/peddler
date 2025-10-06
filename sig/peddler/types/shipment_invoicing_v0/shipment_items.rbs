@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShipmentInvoicingV0
-      class ShipmentItems < Array[ShipmentItem]
-        def self.parse: (Array[untyped]) -> ShipmentItems
-      end
-    end
-  end
-end

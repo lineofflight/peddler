@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class InvalidReturnItemList < Array[InvalidReturnItem]
-        def self.parse: (Array[untyped]) -> InvalidReturnItemList
-      end
-    end
-  end
-end

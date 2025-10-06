@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class ItemLevelFieldsList < Array[ItemLevelFields]
-        def self.parse: (Array[untyped]) -> ItemLevelFieldsList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module NotificationsV1
-      class DestinationList < Array[Destination]
-        def self.parse: (Array[untyped]) -> DestinationList
-      end
-    end
-  end
-end

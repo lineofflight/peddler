@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ProductFeesV0
-      class GetMyFeesEstimatesRequest < Array[FeesEstimateByIdRequest]
-        def self.parse: (Array[untyped]) -> GetMyFeesEstimatesRequest
-      end
-    end
-  end
-end

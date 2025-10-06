@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class ImagingServicesFeeEventList < Array[ImagingServicesFeeEvent]
-        def self.parse: (Array[untyped]) -> ImagingServicesFeeEventList
-      end
-    end
-  end
-end

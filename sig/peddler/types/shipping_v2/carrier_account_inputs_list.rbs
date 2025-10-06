@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class CarrierAccountInputsList < Array[CarrierAccountInput]
-        def self.parse: (Array[untyped]) -> CarrierAccountInputsList
-      end
-    end
-  end
-end

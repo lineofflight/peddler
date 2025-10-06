@@ -1,0 +1,145 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentSandboxTestData20211028
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error
+                    | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::ErrorList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Error]? }
+      end
+
+      class GenerateOrderScenarioRequest < Data
+        def self.new: (?orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::GenerateOrderScenarioRequest
+                    | (Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::GenerateOrderScenarioRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::GenerateOrderScenarioRequest
+
+        attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]?
+
+        def to_h: () -> { orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest]? }
+      end
+
+      class OrderScenarioRequest < Data
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
+                    | (Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::OrderScenarioRequest
+
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Pagination
+
+        attr_reader next_token: String?
+
+        def to_h: () -> { next_token: String? }
+      end
+
+      class PartyIdentification < Data
+        def self.new: (party_id: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::PartyIdentification
+
+        attr_reader party_id: String?
+
+        def to_h: () -> { party_id: String? }
+      end
+
+      class Scenario < Data
+        def self.new: (orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?, scenario_id: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario
+                    | (Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?, String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario
+
+        attr_reader orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?
+        attr_reader scenario_id: String?
+
+        def to_h: () -> { orders: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder]?, scenario_id: String? }
+      end
+
+      class TestCaseData < Data
+        def self.new: (?scenarios: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData
+                    | (Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData
+
+        attr_reader scenarios: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]?
+
+        def to_h: () -> { scenarios: Array[Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Scenario]? }
+      end
+
+      class TestOrder < Data
+        def self.new: (order_id: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestOrder
+
+        attr_reader order_id: String?
+
+        def to_h: () -> { order_id: String? }
+      end
+
+      class Transaction < Data
+        def self.new: (status: String?, transaction_id: String?, ?test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
+                    | (String?, String?, Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction
+
+        attr_reader status: String?
+
+        attr_reader test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData?
+        attr_reader transaction_id: String?
+
+        def to_h: () -> { status: String?, transaction_id: String?, test_case_data: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TestCaseData? }
+      end
+
+      class TransactionReference < Data
+        def self.new: (?transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionReference
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionReference
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionReference
+
+        attr_reader transaction_id: String?
+
+        def to_h: () -> { transaction_id: String? }
+      end
+
+      class TransactionStatus < Data
+        def self.new: (?transaction_status: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
+                    | (Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction?) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::TransactionStatus
+
+        attr_reader transaction_status: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction?
+
+        def to_h: () -> { transaction_status: Peddler::Types::VendorDirectFulfillmentSandboxTestData20211028::Transaction? }
+      end
+    end
+  end
+end

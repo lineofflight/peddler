@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV1
-      class ServiceRateList < Array[ServiceRate]
-        def self.parse: (Array[untyped]) -> ServiceRateList
-      end
-    end
-  end
-end

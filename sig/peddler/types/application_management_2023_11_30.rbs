@@ -1,0 +1,30 @@
+module Peddler
+  module Types
+    module ApplicationManagement20231130
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ApplicationManagement20231130::Error
+                    | (String?, String?, String?) -> Peddler::Types::ApplicationManagement20231130::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ApplicationManagement20231130::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::ApplicationManagement20231130::Error]?) -> Peddler::Types::ApplicationManagement20231130::ErrorList
+                    | (Array[Peddler::Types::ApplicationManagement20231130::Error]?) -> Peddler::Types::ApplicationManagement20231130::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ApplicationManagement20231130::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::ApplicationManagement20231130::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ApplicationManagement20231130::Error]? }
+      end
+    end
+  end
+end

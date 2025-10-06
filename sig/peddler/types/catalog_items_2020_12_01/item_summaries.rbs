@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module CatalogItems20201201
-      class ItemSummaries < Array[ItemSummaryByMarketplace]
-        def self.parse: (Array[untyped]) -> ItemSummaries
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class RemovalShipmentAdjustmentEventList < Array[RemovalShipmentAdjustmentEvent]
-        def self.parse: (Array[untyped]) -> RemovalShipmentAdjustmentEventList
-      end
-    end
-  end
-end

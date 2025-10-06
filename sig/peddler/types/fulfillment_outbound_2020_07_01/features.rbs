@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class Features < Array[Feature]
-        def self.parse: (Array[untyped]) -> Features
-      end
-    end
-  end
-end

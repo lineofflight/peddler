@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class DebtRecoveryEventList < Array[DebtRecoveryEvent]
-        def self.parse: (Array[untyped]) -> DebtRecoveryEventList
-      end
-    end
-  end
-end

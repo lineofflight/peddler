@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShipmentInvoicingV0
-      class SerialNumbersList < Array[untyped]
-        def self.parse: (Array[untyped]) -> SerialNumbersList
-      end
-    end
-  end
-end

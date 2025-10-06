@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentInboundV0
-      class PrepDetailsList < Array[PrepDetails]
-        def self.parse: (Array[untyped]) -> PrepDetailsList
-      end
-    end
-  end
-end

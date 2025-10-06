@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class PackageDocumentDetailList < Array[PackageDocumentDetail]
-        def self.parse: (Array[untyped]) -> PackageDocumentDetailList
-      end
-    end
-  end
-end

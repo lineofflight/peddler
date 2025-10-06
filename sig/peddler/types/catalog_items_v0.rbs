@@ -1,0 +1,52 @@
+module Peddler
+  module Types
+    module CatalogItemsV0
+      class Categories < Data
+        def self.new: (?product_category_id: String?, ?product_category_name: String?, ?parent: Hash[untyped, untyped]?) -> Peddler::Types::CatalogItemsV0::Categories
+                    | (String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::CatalogItemsV0::Categories
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItemsV0::Categories
+
+        attr_reader parent: Hash[untyped, untyped]?
+        attr_reader product_category_id: String?
+        attr_reader product_category_name: String?
+
+        def to_h: () -> { product_category_id: String?, product_category_name: String?, parent: Hash[untyped, untyped]? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::CatalogItemsV0::Error
+                    | (String?, String?, String?) -> Peddler::Types::CatalogItemsV0::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItemsV0::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class ListCatalogCategoriesResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::CatalogItemsV0::Error]?, ?payload: Array[Peddler::Types::CatalogItemsV0::Categories]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
+                    | (Array[Peddler::Types::CatalogItemsV0::Error]?, Array[Peddler::Types::CatalogItemsV0::Categories]?) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CatalogItemsV0::ListCatalogCategoriesResponse
+
+        attr_reader errors: Array[Peddler::Types::CatalogItemsV0::Error]?
+        attr_reader payload: Array[Peddler::Types::CatalogItemsV0::Categories]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::CatalogItemsV0::Error]?, payload: Array[Peddler::Types::CatalogItemsV0::Categories]? }
+      end
+
+      class ListOfCategories < Array[Categories]
+        def self.parse: (Array[untyped]) -> ListOfCategories
+      end
+    end
+  end
+end

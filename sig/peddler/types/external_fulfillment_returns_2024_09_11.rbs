@@ -1,0 +1,174 @@
+module Peddler
+  module Types
+    module ExternalFulfillmentReturns20240911
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
+                    | (String?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
+                    | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Error]? }
+      end
+
+      class InvoiceInformation < Data
+        def self.new: (id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
+                    | (String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation
+
+        attr_reader id: String?
+
+        def to_h: () -> { id: String? }
+      end
+
+      class MarketplaceChannel < Data
+        def self.new: (?channel_name: String?, ?marketplace_name: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
+                    | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel
+
+        attr_reader channel_name: String?
+        attr_reader marketplace_name: String?
+
+        def to_h: () -> { channel_name: String?, marketplace_name: String? }
+      end
+
+      class MarketplaceChannelDetails < Data
+        def self.new: (?channel_sku: String?, ?customer_order_id: String?, ?exchange_order_id: String?, ?marketplace_channel: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, ?merchant_id: String?, ?return_location_id: String?, ?shipment_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
+                    | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, String?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails
+
+        attr_reader channel_sku: String?
+        attr_reader customer_order_id: String?
+        attr_reader exchange_order_id: String?
+        attr_reader marketplace_channel: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?
+        attr_reader merchant_id: String?
+        attr_reader return_location_id: String?
+        attr_reader shipment_id: String?
+
+        def to_h: () -> { channel_sku: String?, customer_order_id: String?, exchange_order_id: String?, marketplace_channel: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannel?, merchant_id: String?, return_location_id: String?, shipment_id: String? }
+      end
+
+      class OtpDetails < Data
+        def self.new: (otp: String?, valid_till: Integer?) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
+                    | (String?, Integer?) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails
+
+        attr_reader otp: String?
+        attr_reader valid_till: Integer?
+
+        def to_h: () -> { otp: String?, valid_till: Integer? }
+      end
+
+      class ReplanningDetails < Data
+        def self.new: (?previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+                    | (Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails
+
+        attr_reader previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]?
+
+        def to_h: () -> { previous_tracking_info: Array[Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo]? }
+      end
+
+      class Return < Data
+        def self.new: (fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, ?creation_date_time: String?, ?merchant_sku: String?, ?number_of_units: Integer?, ?otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, ?package_delivery_mode: String?, ?replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, ?return_location_id: String?, ?return_sub_type: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
+                    | (String?, String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, String?, String?, String?, String?, Integer?, Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::Return
+
+        attr_reader creation_date_time: String?
+        attr_reader fulfillment_location_id: String?
+        attr_reader id: String?
+        attr_reader last_updated_date_time: String?
+        attr_reader marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?
+
+        attr_reader merchant_sku: String?
+        attr_reader number_of_units: Integer?
+        attr_reader otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?
+        attr_reader package_delivery_mode: String?
+        attr_reader replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?
+        attr_reader return_location_id: String?
+        attr_reader return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?
+        attr_reader return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?
+
+        attr_reader return_sub_type: String?
+        attr_reader return_type: String?
+        attr_reader status: String?
+
+        def to_h: () -> { fulfillment_location_id: String?, id: String?, last_updated_date_time: String?, marketplace_channel_details: Peddler::Types::ExternalFulfillmentReturns20240911::MarketplaceChannelDetails?, return_metadata: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata?, return_shipping_info: Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo?, return_type: String?, status: String?, creation_date_time: String?, merchant_sku: String?, number_of_units: Integer?, otp_details: Peddler::Types::ExternalFulfillmentReturns20240911::OtpDetails?, package_delivery_mode: String?, replanning_details: Peddler::Types::ExternalFulfillmentReturns20240911::ReplanningDetails?, return_location_id: String?, return_sub_type: String? }
+      end
+
+      class ReturnMetadata < Data
+        def self.new: (return_reason: String?, ?fulfillment_order_id: String?, ?invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, ?rma_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
+                    | (String?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnMetadata
+
+        attr_reader fulfillment_order_id: String?
+        attr_reader invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?
+        attr_reader return_reason: String?
+
+        attr_reader rma_id: String?
+
+        def to_h: () -> { return_reason: String?, fulfillment_order_id: String?, invoice_information: Peddler::Types::ExternalFulfillmentReturns20240911::InvoiceInformation?, rma_id: String? }
+      end
+
+      class ReturnShippingInfo < Data
+        def self.new: (?delivery_date_time: String?, ?forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, ?pickup_date_time: String?, ?reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+                    | (String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, String?, Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnShippingInfo
+
+        attr_reader delivery_date_time: String?
+        attr_reader forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?
+        attr_reader pickup_date_time: String?
+        attr_reader reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?
+
+        def to_h: () -> { delivery_date_time: String?, forward_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo?, pickup_date_time: String?, reverse_tracking_info: Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo? }
+      end
+
+      class ReturnsResponse < Data
+        def self.new: (?next_token: String?, ?returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+                    | (String?, Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::ReturnsResponse
+
+        attr_reader next_token: String?
+        attr_reader returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]?
+
+        def to_h: () -> { next_token: String?, returns: Array[Peddler::Types::ExternalFulfillmentReturns20240911::Return]? }
+      end
+
+      class TrackingInfo < Data
+        def self.new: (carrier_name: String?, tracking_id: String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+                    | (String?, String?) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ExternalFulfillmentReturns20240911::TrackingInfo
+
+        attr_reader carrier_name: String?
+        attr_reader tracking_id: String?
+
+        def to_h: () -> { carrier_name: String?, tracking_id: String? }
+      end
+    end
+  end
+end

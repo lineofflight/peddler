@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentInboundV0
-      class ASINPrepInstructionsList < Array[ASINPrepInstructions]
-        def self.parse: (Array[untyped]) -> ASINPrepInstructionsList
-      end
-    end
-  end
-end

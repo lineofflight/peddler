@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class AvailableFormatOptionsForLabel < Array[LabelFormatOption]
-        def self.parse: (Array[untyped]) -> AvailableFormatOptionsForLabel
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class DeliveryOffersList < Array[DeliveryOffer]
-        def self.parse: (Array[untyped]) -> DeliveryOffersList
-      end
-    end
-  end
-end

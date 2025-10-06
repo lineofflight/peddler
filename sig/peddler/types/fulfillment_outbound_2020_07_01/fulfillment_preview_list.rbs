@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class FulfillmentPreviewList < Array[FulfillmentPreview]
-        def self.parse: (Array[untyped]) -> FulfillmentPreviewList
-      end
-    end
-  end
-end

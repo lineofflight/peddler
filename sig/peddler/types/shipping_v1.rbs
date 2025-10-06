@@ -1,0 +1,583 @@
+module Peddler
+  module Types
+    module ShippingV1
+      class AcceptedRate < Data
+        def self.new: (?billed_weight: Peddler::Types::ShippingV1::Weight?, ?promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, ?service_type: String?, ?total_charge: Peddler::Types::Money?) -> Peddler::Types::ShippingV1::AcceptedRate
+                    | (Peddler::Types::ShippingV1::Weight?, Peddler::Types::ShippingV1::ShippingPromiseSet?, String?, Peddler::Types::Money?) -> Peddler::Types::ShippingV1::AcceptedRate
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::AcceptedRate
+
+        attr_reader billed_weight: Peddler::Types::ShippingV1::Weight?
+        attr_reader promise: Peddler::Types::ShippingV1::ShippingPromiseSet?
+        attr_reader service_type: String?
+        attr_reader total_charge: Peddler::Types::Money?
+
+        def to_h: () -> { billed_weight: Peddler::Types::ShippingV1::Weight?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, service_type: String?, total_charge: Peddler::Types::Money? }
+      end
+
+      class Account < Data
+        def self.new: (account_id: String?) -> Peddler::Types::ShippingV1::Account
+                    | (String?) -> Peddler::Types::ShippingV1::Account
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Account
+
+        attr_reader account_id: String?
+
+        def to_h: () -> { account_id: String? }
+      end
+
+      class Address < Data
+        def self.new: (address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?copy_emails: Array[String]?, ?email: String?, ?phone_number: String?) -> Peddler::Types::ShippingV1::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Array[String]?, String?, String?) -> Peddler::Types::ShippingV1::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+
+        attr_reader copy_emails: Array[String]?
+        attr_reader country_code: String?
+
+        attr_reader email: String?
+        attr_reader name: String?
+
+        attr_reader phone_number: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, city: String?, country_code: String?, name: String?, postal_code: String?, state_or_region: String?, address_line2: String?, address_line3: String?, copy_emails: Array[String]?, email: String?, phone_number: String? }
+      end
+
+      class CancelShipmentResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::CancelShipmentResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?) -> Peddler::Types::ShippingV1::CancelShipmentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::CancelShipmentResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]? }
+      end
+
+      class Container < Data
+        def self.new: (container_reference_id: String?, dimensions: Peddler::Types::ShippingV1::Dimensions?, items: Array[Peddler::Types::ShippingV1::ContainerItem]?, value: Peddler::Types::Money?, weight: Peddler::Types::ShippingV1::Weight?, ?container_type: String?) -> Peddler::Types::ShippingV1::Container
+                    | (String?, Peddler::Types::ShippingV1::Dimensions?, Array[Peddler::Types::ShippingV1::ContainerItem]?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?, String?) -> Peddler::Types::ShippingV1::Container
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Container
+
+        attr_reader container_reference_id: String?
+
+        attr_reader container_type: String?
+        attr_reader dimensions: Peddler::Types::ShippingV1::Dimensions?
+        attr_reader items: Array[Peddler::Types::ShippingV1::ContainerItem]?
+        attr_reader value: Peddler::Types::Money?
+        attr_reader weight: Peddler::Types::ShippingV1::Weight?
+
+        def to_h: () -> { container_reference_id: String?, dimensions: Peddler::Types::ShippingV1::Dimensions?, items: Array[Peddler::Types::ShippingV1::ContainerItem]?, value: Peddler::Types::Money?, weight: Peddler::Types::ShippingV1::Weight?, container_type: String? }
+      end
+
+      class ContainerItem < Data
+        def self.new: (quantity: Float?, title: String?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::ContainerItem
+                    | (Float?, String?, Peddler::Types::Money?, Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::ContainerItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::ContainerItem
+
+        attr_reader quantity: Float?
+        attr_reader title: String?
+        attr_reader unit_price: Peddler::Types::Money?
+        attr_reader unit_weight: Peddler::Types::ShippingV1::Weight?
+
+        def to_h: () -> { quantity: Float?, title: String?, unit_price: Peddler::Types::Money?, unit_weight: Peddler::Types::ShippingV1::Weight? }
+      end
+
+      class ContainerList < Array[Container]
+        def self.parse: (Array[untyped]) -> ContainerList
+      end
+
+      class ContainerSpecification < Data
+        def self.new: (dimensions: Peddler::Types::ShippingV1::Dimensions?, weight: Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::ContainerSpecification
+                    | (Peddler::Types::ShippingV1::Dimensions?, Peddler::Types::ShippingV1::Weight?) -> Peddler::Types::ShippingV1::ContainerSpecification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::ContainerSpecification
+
+        attr_reader dimensions: Peddler::Types::ShippingV1::Dimensions?
+        attr_reader weight: Peddler::Types::ShippingV1::Weight?
+
+        def to_h: () -> { dimensions: Peddler::Types::ShippingV1::Dimensions?, weight: Peddler::Types::ShippingV1::Weight? }
+      end
+
+      class ContainerSpecificationList < Array[ContainerSpecification]
+        def self.parse: (Array[untyped]) -> ContainerSpecificationList
+      end
+
+      class CreateShipmentRequest < Data
+        def self.new: (client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?) -> Peddler::Types::ShippingV1::CreateShipmentRequest
+                    | (String?, Array[Peddler::Types::ShippingV1::Container]?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?) -> Peddler::Types::ShippingV1::CreateShipmentRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::CreateShipmentRequest
+
+        attr_reader client_reference_id: String?
+        attr_reader containers: Array[Peddler::Types::ShippingV1::Container]?
+        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
+        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
+
+        def to_h: () -> { client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address? }
+      end
+
+      class CreateShipmentResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::CreateShipmentResult?) -> Peddler::Types::ShippingV1::CreateShipmentResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::CreateShipmentResult?) -> Peddler::Types::ShippingV1::CreateShipmentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::CreateShipmentResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::CreateShipmentResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::CreateShipmentResult? }
+      end
+
+      class CreateShipmentResult < Data
+        def self.new: (eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?, shipment_id: String?) -> Peddler::Types::ShippingV1::CreateShipmentResult
+                    | (Array[Peddler::Types::ShippingV1::Rate]?, String?) -> Peddler::Types::ShippingV1::CreateShipmentResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::CreateShipmentResult
+
+        attr_reader eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?
+        attr_reader shipment_id: String?
+
+        def to_h: () -> { eligible_rates: Array[Peddler::Types::ShippingV1::Rate]?, shipment_id: String? }
+      end
+
+      class Dimensions < Data
+        def self.new: (height: Float?, length: Float?, unit: String?, width: Float?) -> Peddler::Types::ShippingV1::Dimensions
+                    | (Float?, Float?, String?, Float?) -> Peddler::Types::ShippingV1::Dimensions
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Dimensions
+
+        attr_reader height: Float?
+        attr_reader length: Float?
+        attr_reader unit: String?
+        attr_reader width: Float?
+
+        def to_h: () -> { height: Float?, length: Float?, unit: String?, width: Float? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ShippingV1::Error
+                    | (String?, String?, String?) -> Peddler::Types::ShippingV1::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class Event < Data
+        def self.new: (event_code: String?, event_time: String?, ?location: Peddler::Types::ShippingV1::Location?) -> Peddler::Types::ShippingV1::Event
+                    | (String?, String?, Peddler::Types::ShippingV1::Location?) -> Peddler::Types::ShippingV1::Event
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Event
+
+        attr_reader event_code: String?
+        attr_reader event_time: String?
+        attr_reader location: Peddler::Types::ShippingV1::Location?
+
+        def to_h: () -> { event_code: String?, event_time: String?, location: Peddler::Types::ShippingV1::Location? }
+      end
+
+      class EventList < Array[Event]
+        def self.parse: (Array[untyped]) -> EventList
+      end
+
+      class GetAccountResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::Account?) -> Peddler::Types::ShippingV1::GetAccountResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::Account?) -> Peddler::Types::ShippingV1::GetAccountResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::GetAccountResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::Account?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::Account? }
+      end
+
+      class GetRatesRequest < Data
+        def self.new: (container_specifications: Array[Peddler::Types::ShippingV1::ContainerSpecification]?, service_types: Array[untyped]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, ?ship_date: String?) -> Peddler::Types::ShippingV1::GetRatesRequest
+                    | (Array[Peddler::Types::ShippingV1::ContainerSpecification]?, Array[untyped]?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, String?) -> Peddler::Types::ShippingV1::GetRatesRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::GetRatesRequest
+
+        attr_reader container_specifications: Array[Peddler::Types::ShippingV1::ContainerSpecification]?
+        attr_reader service_types: Array[untyped]?
+
+        attr_reader ship_date: String?
+        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
+        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
+
+        def to_h: () -> { container_specifications: Array[Peddler::Types::ShippingV1::ContainerSpecification]?, service_types: Array[untyped]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, ship_date: String? }
+      end
+
+      class GetRatesResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::GetRatesResult?) -> Peddler::Types::ShippingV1::GetRatesResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::GetRatesResult?) -> Peddler::Types::ShippingV1::GetRatesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::GetRatesResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::GetRatesResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::GetRatesResult? }
+      end
+
+      class GetRatesResult < Data
+        def self.new: (service_rates: Array[Peddler::Types::ShippingV1::ServiceRate]?) -> Peddler::Types::ShippingV1::GetRatesResult
+                    | (Array[Peddler::Types::ShippingV1::ServiceRate]?) -> Peddler::Types::ShippingV1::GetRatesResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::GetRatesResult
+
+        attr_reader service_rates: Array[Peddler::Types::ShippingV1::ServiceRate]?
+
+        def to_h: () -> { service_rates: Array[Peddler::Types::ShippingV1::ServiceRate]? }
+      end
+
+      class GetShipmentResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::Shipment?) -> Peddler::Types::ShippingV1::GetShipmentResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::Shipment?) -> Peddler::Types::ShippingV1::GetShipmentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::GetShipmentResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::Shipment?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::Shipment? }
+      end
+
+      class GetTrackingInformationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::TrackingInformation?) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::TrackingInformation?) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::GetTrackingInformationResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::TrackingInformation?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::TrackingInformation? }
+      end
+
+      class Label < Data
+        def self.new: (?label_specification: Peddler::Types::ShippingV1::LabelSpecification?, ?label_stream: String?) -> Peddler::Types::ShippingV1::Label
+                    | (Peddler::Types::ShippingV1::LabelSpecification?, String?) -> Peddler::Types::ShippingV1::Label
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Label
+
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
+        attr_reader label_stream: String?
+
+        def to_h: () -> { label_specification: Peddler::Types::ShippingV1::LabelSpecification?, label_stream: String? }
+      end
+
+      class LabelResult < Data
+        def self.new: (?container_reference_id: String?, ?label: Peddler::Types::ShippingV1::Label?, ?tracking_id: String?) -> Peddler::Types::ShippingV1::LabelResult
+                    | (String?, Peddler::Types::ShippingV1::Label?, String?) -> Peddler::Types::ShippingV1::LabelResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::LabelResult
+
+        attr_reader container_reference_id: String?
+        attr_reader label: Peddler::Types::ShippingV1::Label?
+        attr_reader tracking_id: String?
+
+        def to_h: () -> { container_reference_id: String?, label: Peddler::Types::ShippingV1::Label?, tracking_id: String? }
+      end
+
+      class LabelResultList < Array[LabelResult]
+        def self.parse: (Array[untyped]) -> LabelResultList
+      end
+
+      class LabelSpecification < Data
+        def self.new: (label_format: String?, label_stock_size: String?) -> Peddler::Types::ShippingV1::LabelSpecification
+                    | (String?, String?) -> Peddler::Types::ShippingV1::LabelSpecification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::LabelSpecification
+
+        attr_reader label_format: String?
+        attr_reader label_stock_size: String?
+
+        def to_h: () -> { label_format: String?, label_stock_size: String? }
+      end
+
+      class Location < Data
+        def self.new: (?city: String?, ?country_code: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::ShippingV1::Location
+                    | (String?, String?, String?, String?) -> Peddler::Types::ShippingV1::Location
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Location
+
+        attr_reader city: String?
+        attr_reader country_code: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { city: String?, country_code: String?, postal_code: String?, state_or_region: String? }
+      end
+
+      class Party < Data
+        def self.new: (?account_id: String?) -> Peddler::Types::ShippingV1::Party
+                    | (String?) -> Peddler::Types::ShippingV1::Party
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Party
+
+        attr_reader account_id: String?
+
+        def to_h: () -> { account_id: String? }
+      end
+
+      class PurchaseLabelsRequest < Data
+        def self.new: (label_specification: Peddler::Types::ShippingV1::LabelSpecification?, rate_id: String?) -> Peddler::Types::ShippingV1::PurchaseLabelsRequest
+                    | (Peddler::Types::ShippingV1::LabelSpecification?, String?) -> Peddler::Types::ShippingV1::PurchaseLabelsRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseLabelsRequest
+
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
+        attr_reader rate_id: String?
+
+        def to_h: () -> { label_specification: Peddler::Types::ShippingV1::LabelSpecification?, rate_id: String? }
+      end
+
+      class PurchaseLabelsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::PurchaseLabelsResult?) -> Peddler::Types::ShippingV1::PurchaseLabelsResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::PurchaseLabelsResult?) -> Peddler::Types::ShippingV1::PurchaseLabelsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseLabelsResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::PurchaseLabelsResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::PurchaseLabelsResult? }
+      end
+
+      class PurchaseLabelsResult < Data
+        def self.new: (accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, shipment_id: String?, ?client_reference_id: String?) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
+                    | (Peddler::Types::ShippingV1::AcceptedRate?, Array[Peddler::Types::ShippingV1::LabelResult]?, String?, String?) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseLabelsResult
+
+        attr_reader accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?
+
+        attr_reader client_reference_id: String?
+        attr_reader label_results: Array[Peddler::Types::ShippingV1::LabelResult]?
+        attr_reader shipment_id: String?
+
+        def to_h: () -> { accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, shipment_id: String?, client_reference_id: String? }
+      end
+
+      class PurchaseShipmentRequest < Data
+        def self.new: (client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, label_specification: Peddler::Types::ShippingV1::LabelSpecification?, service_type: String?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, ?ship_date: String?) -> Peddler::Types::ShippingV1::PurchaseShipmentRequest
+                    | (String?, Array[Peddler::Types::ShippingV1::Container]?, Peddler::Types::ShippingV1::LabelSpecification?, String?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, String?) -> Peddler::Types::ShippingV1::PurchaseShipmentRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseShipmentRequest
+
+        attr_reader client_reference_id: String?
+        attr_reader containers: Array[Peddler::Types::ShippingV1::Container]?
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
+        attr_reader service_type: String?
+
+        attr_reader ship_date: String?
+        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
+        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
+
+        def to_h: () -> { client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, label_specification: Peddler::Types::ShippingV1::LabelSpecification?, service_type: String?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, ship_date: String? }
+      end
+
+      class PurchaseShipmentResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::PurchaseShipmentResult?) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::PurchaseShipmentResult?) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseShipmentResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::PurchaseShipmentResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::PurchaseShipmentResult? }
+      end
+
+      class PurchaseShipmentResult < Data
+        def self.new: (label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, service_rate: Peddler::Types::ShippingV1::ServiceRate?, shipment_id: String?) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
+                    | (Array[Peddler::Types::ShippingV1::LabelResult]?, Peddler::Types::ShippingV1::ServiceRate?, String?) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::PurchaseShipmentResult
+
+        attr_reader label_results: Array[Peddler::Types::ShippingV1::LabelResult]?
+        attr_reader service_rate: Peddler::Types::ShippingV1::ServiceRate?
+        attr_reader shipment_id: String?
+
+        def to_h: () -> { label_results: Array[Peddler::Types::ShippingV1::LabelResult]?, service_rate: Peddler::Types::ShippingV1::ServiceRate?, shipment_id: String? }
+      end
+
+      class Rate < Data
+        def self.new: (?billed_weight: Peddler::Types::ShippingV1::Weight?, ?expiration_time: String?, ?promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, ?rate_id: String?, ?service_type: String?, ?total_charge: Peddler::Types::Money?) -> Peddler::Types::ShippingV1::Rate
+                    | (Peddler::Types::ShippingV1::Weight?, String?, Peddler::Types::ShippingV1::ShippingPromiseSet?, String?, String?, Peddler::Types::Money?) -> Peddler::Types::ShippingV1::Rate
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Rate
+
+        attr_reader billed_weight: Peddler::Types::ShippingV1::Weight?
+        attr_reader expiration_time: String?
+        attr_reader promise: Peddler::Types::ShippingV1::ShippingPromiseSet?
+        attr_reader rate_id: String?
+        attr_reader service_type: String?
+        attr_reader total_charge: Peddler::Types::Money?
+
+        def to_h: () -> { billed_weight: Peddler::Types::ShippingV1::Weight?, expiration_time: String?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, rate_id: String?, service_type: String?, total_charge: Peddler::Types::Money? }
+      end
+
+      class RateList < Array[Rate]
+        def self.parse: (Array[untyped]) -> RateList
+      end
+
+      class RetrieveShippingLabelRequest < Data
+        def self.new: (label_specification: Peddler::Types::ShippingV1::LabelSpecification?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelRequest
+                    | (Peddler::Types::ShippingV1::LabelSpecification?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::RetrieveShippingLabelRequest
+
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
+
+        def to_h: () -> { label_specification: Peddler::Types::ShippingV1::LabelSpecification? }
+      end
+
+      class RetrieveShippingLabelResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ShippingV1::Error]?, ?payload: Peddler::Types::ShippingV1::RetrieveShippingLabelResult?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResponse
+                    | (Array[Peddler::Types::ShippingV1::Error]?, Peddler::Types::ShippingV1::RetrieveShippingLabelResult?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResponse
+
+        attr_reader errors: Array[Peddler::Types::ShippingV1::Error]?
+        attr_reader payload: Peddler::Types::ShippingV1::RetrieveShippingLabelResult?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ShippingV1::Error]?, payload: Peddler::Types::ShippingV1::RetrieveShippingLabelResult? }
+      end
+
+      class RetrieveShippingLabelResult < Data
+        def self.new: (label_specification: Peddler::Types::ShippingV1::LabelSpecification?, label_stream: String?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
+                    | (Peddler::Types::ShippingV1::LabelSpecification?, String?) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::RetrieveShippingLabelResult
+
+        attr_reader label_specification: Peddler::Types::ShippingV1::LabelSpecification?
+        attr_reader label_stream: String?
+
+        def to_h: () -> { label_specification: Peddler::Types::ShippingV1::LabelSpecification?, label_stream: String? }
+      end
+
+      class ServiceRate < Data
+        def self.new: (billable_weight: Peddler::Types::ShippingV1::Weight?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, service_type: String?, total_charge: Peddler::Types::Money?) -> Peddler::Types::ShippingV1::ServiceRate
+                    | (Peddler::Types::ShippingV1::Weight?, Peddler::Types::ShippingV1::ShippingPromiseSet?, String?, Peddler::Types::Money?) -> Peddler::Types::ShippingV1::ServiceRate
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::ServiceRate
+
+        attr_reader billable_weight: Peddler::Types::ShippingV1::Weight?
+        attr_reader promise: Peddler::Types::ShippingV1::ShippingPromiseSet?
+        attr_reader service_type: String?
+        attr_reader total_charge: Peddler::Types::Money?
+
+        def to_h: () -> { billable_weight: Peddler::Types::ShippingV1::Weight?, promise: Peddler::Types::ShippingV1::ShippingPromiseSet?, service_type: String?, total_charge: Peddler::Types::Money? }
+      end
+
+      class ServiceRateList < Array[ServiceRate]
+        def self.parse: (Array[untyped]) -> ServiceRateList
+      end
+
+      class ServiceTypeList < Array[untyped]
+        def self.parse: (Array[untyped]) -> ServiceTypeList
+      end
+
+      class Shipment < Data
+        def self.new: (client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, shipment_id: String?, ?accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, ?shipper: Peddler::Types::ShippingV1::Party?) -> Peddler::Types::ShippingV1::Shipment
+                    | (String?, Array[Peddler::Types::ShippingV1::Container]?, Peddler::Types::ShippingV1::Address?, Peddler::Types::ShippingV1::Address?, String?, Peddler::Types::ShippingV1::AcceptedRate?, Peddler::Types::ShippingV1::Party?) -> Peddler::Types::ShippingV1::Shipment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Shipment
+
+        attr_reader accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?
+        attr_reader client_reference_id: String?
+        attr_reader containers: Array[Peddler::Types::ShippingV1::Container]?
+        attr_reader ship_from: Peddler::Types::ShippingV1::Address?
+        attr_reader ship_to: Peddler::Types::ShippingV1::Address?
+        attr_reader shipment_id: String?
+
+        attr_reader shipper: Peddler::Types::ShippingV1::Party?
+
+        def to_h: () -> { client_reference_id: String?, containers: Array[Peddler::Types::ShippingV1::Container]?, ship_from: Peddler::Types::ShippingV1::Address?, ship_to: Peddler::Types::ShippingV1::Address?, shipment_id: String?, accepted_rate: Peddler::Types::ShippingV1::AcceptedRate?, shipper: Peddler::Types::ShippingV1::Party? }
+      end
+
+      class ShippingPromiseSet < Data
+        def self.new: (?delivery_window: Peddler::Types::ShippingV1::TimeRange?, ?receive_window: Peddler::Types::ShippingV1::TimeRange?) -> Peddler::Types::ShippingV1::ShippingPromiseSet
+                    | (Peddler::Types::ShippingV1::TimeRange?, Peddler::Types::ShippingV1::TimeRange?) -> Peddler::Types::ShippingV1::ShippingPromiseSet
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::ShippingPromiseSet
+
+        attr_reader delivery_window: Peddler::Types::ShippingV1::TimeRange?
+        attr_reader receive_window: Peddler::Types::ShippingV1::TimeRange?
+
+        def to_h: () -> { delivery_window: Peddler::Types::ShippingV1::TimeRange?, receive_window: Peddler::Types::ShippingV1::TimeRange? }
+      end
+
+      class TimeRange < Data
+        def self.new: (?end: String?, ?start: String?) -> Peddler::Types::ShippingV1::TimeRange
+                    | (String?, String?) -> Peddler::Types::ShippingV1::TimeRange
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::TimeRange
+
+        attr_reader end: String?
+        attr_reader start: String?
+
+        def to_h: () -> { end: String?, start: String? }
+      end
+
+      class TrackingInformation < Data
+        def self.new: (event_history: Array[Peddler::Types::ShippingV1::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, tracking_id: String?) -> Peddler::Types::ShippingV1::TrackingInformation
+                    | (Array[Peddler::Types::ShippingV1::Event]?, String?, Peddler::Types::ShippingV1::TrackingSummary?, String?) -> Peddler::Types::ShippingV1::TrackingInformation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::TrackingInformation
+
+        attr_reader event_history: Array[Peddler::Types::ShippingV1::Event]?
+        attr_reader promised_delivery_date: String?
+        attr_reader summary: Peddler::Types::ShippingV1::TrackingSummary?
+        attr_reader tracking_id: String?
+
+        def to_h: () -> { event_history: Array[Peddler::Types::ShippingV1::Event]?, promised_delivery_date: String?, summary: Peddler::Types::ShippingV1::TrackingSummary?, tracking_id: String? }
+      end
+
+      class TrackingSummary < Data
+        def self.new: (?status: String?) -> Peddler::Types::ShippingV1::TrackingSummary
+                    | (String?) -> Peddler::Types::ShippingV1::TrackingSummary
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::TrackingSummary
+
+        attr_reader status: String?
+
+        def to_h: () -> { status: String? }
+      end
+
+      class Weight < Data
+        def self.new: (unit: String?, value: Float?) -> Peddler::Types::ShippingV1::Weight
+                    | (String?, Float?) -> Peddler::Types::ShippingV1::Weight
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ShippingV1::Weight
+
+        attr_reader unit: String?
+        attr_reader value: Float?
+
+        def to_h: () -> { unit: String?, value: Float? }
+      end
+    end
+  end
+end

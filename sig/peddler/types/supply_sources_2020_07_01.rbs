@@ -1,0 +1,394 @@
+module Peddler
+  module Types
+    module SupplySources20200701
+      class Address < Data
+        def self.new: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?) -> Peddler::Types::SupplySources20200701::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::SupplySources20200701::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+
+        attr_reader county: String?
+        attr_reader district: String?
+        attr_reader name: String?
+
+        attr_reader phone: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, state_or_region: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String? }
+      end
+
+      class AddressWithContact < Data
+        def self.new: (?address: Peddler::Types::SupplySources20200701::Address?, ?contact_details: Peddler::Types::SupplySources20200701::ContactDetails?) -> Peddler::Types::SupplySources20200701::AddressWithContact
+                    | (Peddler::Types::SupplySources20200701::Address?, Peddler::Types::SupplySources20200701::ContactDetails?) -> Peddler::Types::SupplySources20200701::AddressWithContact
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::AddressWithContact
+
+        attr_reader address: Peddler::Types::SupplySources20200701::Address?
+        attr_reader contact_details: Peddler::Types::SupplySources20200701::ContactDetails?
+
+        def to_h: () -> { address: Peddler::Types::SupplySources20200701::Address?, contact_details: Peddler::Types::SupplySources20200701::ContactDetails? }
+      end
+
+      class ContactDetails < Data
+        def self.new: (?primary: Hash[untyped, untyped]?) -> Peddler::Types::SupplySources20200701::ContactDetails
+                    | (Hash[untyped, untyped]?) -> Peddler::Types::SupplySources20200701::ContactDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ContactDetails
+
+        attr_reader primary: Hash[untyped, untyped]?
+
+        def to_h: () -> { primary: Hash[untyped, untyped]? }
+      end
+
+      class CreateSupplySourceRequest < Data
+        def self.new: (address: Peddler::Types::SupplySources20200701::Address?, alias: String?, supply_source_code: String?) -> Peddler::Types::SupplySources20200701::CreateSupplySourceRequest
+                    | (Peddler::Types::SupplySources20200701::Address?, String?, String?) -> Peddler::Types::SupplySources20200701::CreateSupplySourceRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::CreateSupplySourceRequest
+
+        attr_reader address: Peddler::Types::SupplySources20200701::Address?
+        attr_reader alias: String?
+        attr_reader supply_source_code: String?
+
+        def to_h: () -> { address: Peddler::Types::SupplySources20200701::Address?, alias: String?, supply_source_code: String? }
+      end
+
+      class CreateSupplySourceResponse < Data
+        def self.new: (supply_source_code: String?, supply_source_id: String?) -> Peddler::Types::SupplySources20200701::CreateSupplySourceResponse
+                    | (String?, String?) -> Peddler::Types::SupplySources20200701::CreateSupplySourceResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::CreateSupplySourceResponse
+
+        attr_reader supply_source_code: String?
+        attr_reader supply_source_id: String?
+
+        def to_h: () -> { supply_source_code: String?, supply_source_id: String? }
+      end
+
+      class CurbsidePickupConfiguration < Data
+        def self.new: (?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, ?parking_with_address_configuration: Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?) -> Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader parking_with_address_configuration: Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration?
+        attr_reader supported: bool?
+
+        def supported?: () -> bool
+        def to_h: () -> { supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, parking_with_address_configuration: Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration? }
+      end
+
+      class DeliveryChannel < Data
+        def self.new: (?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::DeliveryChannel
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::DeliveryChannel
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::DeliveryChannel
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader supported: bool?
+
+        def supported?: () -> bool
+        def to_h: () -> { supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration? }
+      end
+
+      class Duration < Data
+        def self.new: (?time_unit: String?, ?value: Integer?) -> Peddler::Types::SupplySources20200701::Duration
+                    | (String?, Integer?) -> Peddler::Types::SupplySources20200701::Duration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::Duration
+
+        attr_reader time_unit: String?
+        attr_reader value: Integer?
+
+        def to_h: () -> { time_unit: String?, value: Integer? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::SupplySources20200701::Error
+                    | (String?, String?, String?) -> Peddler::Types::SupplySources20200701::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::SupplySources20200701::Error]?) -> Peddler::Types::SupplySources20200701::ErrorList
+                    | (Array[Peddler::Types::SupplySources20200701::Error]?) -> Peddler::Types::SupplySources20200701::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::SupplySources20200701::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::SupplySources20200701::Error]? }
+      end
+
+      class GetSupplySourcesResponse < Data
+        def self.new: (?next_page_token: String?, ?supply_sources: Array[untyped]?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
+                    | (String?, Array[untyped]?) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::GetSupplySourcesResponse
+
+        attr_reader next_page_token: String?
+        attr_reader supply_sources: Array[untyped]?
+
+        def to_h: () -> { next_page_token: String?, supply_sources: Array[untyped]? }
+      end
+
+      class InStorePickupConfiguration < Data
+        def self.new: (?supported: bool?, ?parking_configuration: Peddler::Types::SupplySources20200701::ParkingConfiguration?) -> Peddler::Types::SupplySources20200701::InStorePickupConfiguration
+                    | (bool?, Peddler::Types::SupplySources20200701::ParkingConfiguration?) -> Peddler::Types::SupplySources20200701::InStorePickupConfiguration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::InStorePickupConfiguration
+
+        attr_reader parking_configuration: Peddler::Types::SupplySources20200701::ParkingConfiguration?
+        attr_reader supported: bool?
+
+        def supported?: () -> bool
+        def to_h: () -> { supported: bool?, parking_configuration: Peddler::Types::SupplySources20200701::ParkingConfiguration? }
+      end
+
+      class OperatingHour < Data
+        def self.new: (?end_time: String?, ?start_time: String?) -> Peddler::Types::SupplySources20200701::OperatingHour
+                    | (String?, String?) -> Peddler::Types::SupplySources20200701::OperatingHour
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::OperatingHour
+
+        attr_reader end_time: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { end_time: String?, start_time: String? }
+      end
+
+      class OperatingHours < Array[OperatingHour]
+        def self.parse: (Array[untyped]) -> OperatingHours
+      end
+
+      class OperatingHoursByDay < Data
+        def self.new: (?friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, ?monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, ?saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, ?sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, ?thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, ?tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, ?wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> Peddler::Types::SupplySources20200701::OperatingHoursByDay
+                    | (Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?, Array[Peddler::Types::SupplySources20200701::OperatingHour]?) -> Peddler::Types::SupplySources20200701::OperatingHoursByDay
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::OperatingHoursByDay
+
+        attr_reader friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+        attr_reader wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?
+
+        def to_h: () -> { friday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, monday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, saturday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, sunday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, thursday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, tuesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]?, wednesday: Array[Peddler::Types::SupplySources20200701::OperatingHour]? }
+      end
+
+      class OperationalConfiguration < Data
+        def self.new: (?contact_details: Peddler::Types::SupplySources20200701::ContactDetails?, ?handling_time: Peddler::Types::SupplySources20200701::Duration?, ?operating_hours_by_day: Peddler::Types::SupplySources20200701::OperatingHoursByDay?, ?throughput_config: Peddler::Types::SupplySources20200701::ThroughputConfig?) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
+                    | (Peddler::Types::SupplySources20200701::ContactDetails?, Peddler::Types::SupplySources20200701::Duration?, Peddler::Types::SupplySources20200701::OperatingHoursByDay?, Peddler::Types::SupplySources20200701::ThroughputConfig?) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::OperationalConfiguration
+
+        attr_reader contact_details: Peddler::Types::SupplySources20200701::ContactDetails?
+        attr_reader handling_time: Peddler::Types::SupplySources20200701::Duration?
+        attr_reader operating_hours_by_day: Peddler::Types::SupplySources20200701::OperatingHoursByDay?
+        attr_reader throughput_config: Peddler::Types::SupplySources20200701::ThroughputConfig?
+
+        def to_h: () -> { contact_details: Peddler::Types::SupplySources20200701::ContactDetails?, handling_time: Peddler::Types::SupplySources20200701::Duration?, operating_hours_by_day: Peddler::Types::SupplySources20200701::OperatingHoursByDay?, throughput_config: Peddler::Types::SupplySources20200701::ThroughputConfig? }
+      end
+
+      class OutboundCapability < Data
+        def self.new: (?delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?, ?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, ?pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?, ?return_location: Peddler::Types::SupplySources20200701::ReturnLocation?) -> Peddler::Types::SupplySources20200701::OutboundCapability
+                    | (Peddler::Types::SupplySources20200701::DeliveryChannel?, bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?, Peddler::Types::SupplySources20200701::PickupChannel?, Peddler::Types::SupplySources20200701::ReturnLocation?) -> Peddler::Types::SupplySources20200701::OutboundCapability
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::OutboundCapability
+
+        attr_reader delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?
+        attr_reader return_location: Peddler::Types::SupplySources20200701::ReturnLocation?
+        attr_reader supported: bool?
+
+        def supported?: () -> bool
+        def to_h: () -> { delivery_channel: Peddler::Types::SupplySources20200701::DeliveryChannel?, supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, pickup_channel: Peddler::Types::SupplySources20200701::PickupChannel?, return_location: Peddler::Types::SupplySources20200701::ReturnLocation? }
+      end
+
+      class ParkingConfiguration < Data
+        def self.new: (?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::Types::SupplySources20200701::ParkingConfiguration
+                    | (Integer?, String?, String?) -> Peddler::Types::SupplySources20200701::ParkingConfiguration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ParkingConfiguration
+
+        attr_reader number_of_parking_spots: Integer?
+        attr_reader parking_cost_type: String?
+        attr_reader parking_spot_identification_type: String?
+
+        def to_h: () -> { number_of_parking_spots: Integer?, parking_cost_type: String?, parking_spot_identification_type: String? }
+      end
+
+      class ParkingWithAddressConfiguration < Data
+        def self.new: (?address: Peddler::Types::SupplySources20200701::Address?, ?number_of_parking_spots: Integer?, ?parking_cost_type: String?, ?parking_spot_identification_type: String?) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
+                    | (Peddler::Types::SupplySources20200701::Address?, Integer?, String?, String?) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ParkingWithAddressConfiguration
+
+        attr_reader address: Peddler::Types::SupplySources20200701::Address?
+        attr_reader number_of_parking_spots: Integer?
+        attr_reader parking_cost_type: String?
+        attr_reader parking_spot_identification_type: String?
+
+        def to_h: () -> { address: Peddler::Types::SupplySources20200701::Address?, number_of_parking_spots: Integer?, parking_cost_type: String?, parking_spot_identification_type: String? }
+      end
+
+      class PickupChannel < Data
+        def self.new: (?curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?, ?in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, ?inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?, ?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::PickupChannel
+                    | (Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?, Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, Peddler::Types::SupplySources20200701::Duration?, bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::PickupChannel
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::PickupChannel
+
+        attr_reader curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?
+        attr_reader in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?
+        attr_reader inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader supported: bool?
+
+        def supported?: () -> bool
+        def to_h: () -> { curbside_pickup_configuration: Peddler::Types::SupplySources20200701::CurbsidePickupConfiguration?, in_store_pickup_configuration: Peddler::Types::SupplySources20200701::InStorePickupConfiguration?, inventory_hold_period: Peddler::Types::SupplySources20200701::Duration?, supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration? }
+      end
+
+      class ReturnLocation < Data
+        def self.new: (?address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?, ?supply_source_id: String?) -> Peddler::Types::SupplySources20200701::ReturnLocation
+                    | (Peddler::Types::SupplySources20200701::AddressWithContact?, String?) -> Peddler::Types::SupplySources20200701::ReturnLocation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ReturnLocation
+
+        attr_reader address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?
+        attr_reader supply_source_id: String?
+
+        def to_h: () -> { address_with_contact: Peddler::Types::SupplySources20200701::AddressWithContact?, supply_source_id: String? }
+      end
+
+      class ServicesCapability < Data
+        def self.new: (?supported: bool?, ?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::ServicesCapability
+                    | (bool?, Peddler::Types::SupplySources20200701::OperationalConfiguration?) -> Peddler::Types::SupplySources20200701::ServicesCapability
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ServicesCapability
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader supported: bool?
+
+        def supported?: () -> bool
+        def to_h: () -> { supported: bool?, operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration? }
+      end
+
+      class SupplySource < Data
+        def self.new: (?address: Peddler::Types::SupplySources20200701::Address?, ?alias: String?, ?capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, ?created_at: String?, ?status: String?, ?supply_source_code: String?, ?supply_source_id: String?, ?updated_at: String?) -> Peddler::Types::SupplySources20200701::SupplySource
+                    | (Peddler::Types::SupplySources20200701::Address?, String?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, String?, String?, String?, String?, String?) -> Peddler::Types::SupplySources20200701::SupplySource
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::SupplySource
+
+        attr_reader address: Peddler::Types::SupplySources20200701::Address?
+        attr_reader alias: String?
+        attr_reader capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?
+        attr_reader configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?
+        attr_reader created_at: String?
+        attr_reader status: String?
+        attr_reader supply_source_code: String?
+        attr_reader supply_source_id: String?
+        attr_reader updated_at: String?
+
+        def to_h: () -> { address: Peddler::Types::SupplySources20200701::Address?, alias: String?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?, created_at: String?, status: String?, supply_source_code: String?, supply_source_id: String?, updated_at: String? }
+      end
+
+      class SupplySourceCapabilities < Data
+        def self.new: (?outbound: Peddler::Types::SupplySources20200701::OutboundCapability?, ?services: Peddler::Types::SupplySources20200701::ServicesCapability?) -> Peddler::Types::SupplySources20200701::SupplySourceCapabilities
+                    | (Peddler::Types::SupplySources20200701::OutboundCapability?, Peddler::Types::SupplySources20200701::ServicesCapability?) -> Peddler::Types::SupplySources20200701::SupplySourceCapabilities
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::SupplySourceCapabilities
+
+        attr_reader outbound: Peddler::Types::SupplySources20200701::OutboundCapability?
+        attr_reader services: Peddler::Types::SupplySources20200701::ServicesCapability?
+
+        def to_h: () -> { outbound: Peddler::Types::SupplySources20200701::OutboundCapability?, services: Peddler::Types::SupplySources20200701::ServicesCapability? }
+      end
+
+      class SupplySourceConfiguration < Data
+        def self.new: (?operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, ?timezone: String?) -> Peddler::Types::SupplySources20200701::SupplySourceConfiguration
+                    | (Peddler::Types::SupplySources20200701::OperationalConfiguration?, String?) -> Peddler::Types::SupplySources20200701::SupplySourceConfiguration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::SupplySourceConfiguration
+
+        attr_reader operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?
+        attr_reader timezone: String?
+
+        def to_h: () -> { operational_configuration: Peddler::Types::SupplySources20200701::OperationalConfiguration?, timezone: String? }
+      end
+
+      class SupplySourceList < Array[untyped]
+        def self.parse: (Array[untyped]) -> SupplySourceList
+      end
+
+      class ThroughputCap < Data
+        def self.new: (?time_unit: String?, ?value: Integer?) -> Peddler::Types::SupplySources20200701::ThroughputCap
+                    | (String?, Integer?) -> Peddler::Types::SupplySources20200701::ThroughputCap
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ThroughputCap
+
+        attr_reader time_unit: String?
+        attr_reader value: Integer?
+
+        def to_h: () -> { time_unit: String?, value: Integer? }
+      end
+
+      class ThroughputConfig < Data
+        def self.new: (throughput_unit: String?, ?throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
+                    | (String?, Peddler::Types::SupplySources20200701::ThroughputCap?) -> Peddler::Types::SupplySources20200701::ThroughputConfig
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::ThroughputConfig
+
+        attr_reader throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap?
+        attr_reader throughput_unit: String?
+
+        def to_h: () -> { throughput_unit: String?, throughput_cap: Peddler::Types::SupplySources20200701::ThroughputCap? }
+      end
+
+      class UpdateSupplySourceRequest < Data
+        def self.new: (?alias: String?, ?capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, ?configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceRequest
+                    | (String?, Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, Peddler::Types::SupplySources20200701::SupplySourceConfiguration?) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceRequest
+
+        attr_reader alias: String?
+        attr_reader capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?
+        attr_reader configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration?
+
+        def to_h: () -> { alias: String?, capabilities: Peddler::Types::SupplySources20200701::SupplySourceCapabilities?, configuration: Peddler::Types::SupplySources20200701::SupplySourceConfiguration? }
+      end
+
+      class UpdateSupplySourceStatusRequest < Data
+        def self.new: (?status: String?) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceStatusRequest
+                    | (String?) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceStatusRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::SupplySources20200701::UpdateSupplySourceStatusRequest
+
+        attr_reader status: String?
+
+        def to_h: () -> { status: String? }
+      end
+    end
+  end
+end

@@ -1,0 +1,281 @@
+module Peddler
+  module Types
+    module Finances20240619
+      class AmazonPayContext < Data
+        def self.new: (?channel: String?, ?order_type: String?, ?store_name: String?) -> Peddler::Types::Finances20240619::AmazonPayContext
+                    | (String?, String?, String?) -> Peddler::Types::Finances20240619::AmazonPayContext
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::AmazonPayContext
+
+        attr_reader channel: String?
+        attr_reader order_type: String?
+        attr_reader store_name: String?
+
+        def to_h: () -> { channel: String?, order_type: String?, store_name: String? }
+      end
+
+      class Breakdown < Data
+        type parse_data = { ?breakdown_amount: untyped, ?breakdown_type: untyped, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown | parse_data] }
+        def self.new: (?breakdown_amount: Peddler::Types::Money?, ?breakdown_type: String?, ?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
+                    | (Peddler::Types::Money?, String?, Array[Peddler::Types::Finances20240619::Breakdown]?) -> Peddler::Types::Finances20240619::Breakdown
+
+        def self.parse: (?parse_data data) -> Peddler::Types::Finances20240619::Breakdown
+                      | (?Hash[String, untyped] data) -> Peddler::Types::Finances20240619::Breakdown
+
+        attr_reader breakdown_amount: Peddler::Types::Money?
+        attr_reader breakdown_type: String?
+        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
+
+        def to_h: () -> { breakdown_amount: Peddler::Types::Money?, breakdown_type: String?, breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]? }
+      end
+
+      class Breakdowns < Array[Breakdown]
+        def self.parse: (Array[untyped]) -> Breakdowns
+      end
+
+      class BusinessContext < Data
+        def self.new: (?store_name: String?) -> Peddler::Types::Finances20240619::BusinessContext
+                    | (String?) -> Peddler::Types::Finances20240619::BusinessContext
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::BusinessContext
+
+        attr_reader store_name: String?
+
+        def to_h: () -> { store_name: String? }
+      end
+
+      class Context < Data
+        def self.new: (context_type: String?, ?asin: String?, ?channel: String?, ?deferral_reason: String?, ?end_time: String?, ?fulfillment_network: String?, ?maturity_date: String?, ?order_type: String?, ?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?, ?quantity_shipped: Integer?, ?sku: String?, ?start_time: String?, ?store_name: String?) -> Peddler::Types::Finances20240619::Context
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, Integer?, String?, String?, String?) -> Peddler::Types::Finances20240619::Context
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::Context
+
+        attr_reader asin: String?
+        attr_reader channel: String?
+        attr_reader context_type: String?
+
+        attr_reader deferral_reason: String?
+        attr_reader end_time: String?
+        attr_reader fulfillment_network: String?
+        attr_reader maturity_date: String?
+        attr_reader order_type: String?
+        attr_reader payment_date: String?
+        attr_reader payment_method: String?
+        attr_reader payment_reference: String?
+        attr_reader payment_type: String?
+        attr_reader quantity_shipped: Integer?
+        attr_reader sku: String?
+        attr_reader start_time: String?
+        attr_reader store_name: String?
+
+        def to_h: () -> { context_type: String?, asin: String?, channel: String?, deferral_reason: String?, end_time: String?, fulfillment_network: String?, maturity_date: String?, order_type: String?, payment_date: String?, payment_method: String?, payment_reference: String?, payment_type: String?, quantity_shipped: Integer?, sku: String?, start_time: String?, store_name: String? }
+      end
+
+      class Contexts < Array[Context]
+        def self.parse: (Array[untyped]) -> Contexts
+      end
+
+      class DeferredContext < Data
+        def self.new: (?deferral_reason: String?, ?maturity_date: String?) -> Peddler::Types::Finances20240619::DeferredContext
+                    | (String?, String?) -> Peddler::Types::Finances20240619::DeferredContext
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::DeferredContext
+
+        attr_reader deferral_reason: String?
+        attr_reader maturity_date: String?
+
+        def to_h: () -> { deferral_reason: String?, maturity_date: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Finances20240619::Error
+                    | (String?, String?, String?) -> Peddler::Types::Finances20240619::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::Finances20240619::Error]?) -> Peddler::Types::Finances20240619::ErrorList
+                    | (Array[Peddler::Types::Finances20240619::Error]?) -> Peddler::Types::Finances20240619::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::Finances20240619::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::Finances20240619::Error]? }
+      end
+
+      class Item < Data
+        def self.new: (?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?, ?description: String?, ?related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, ?total_amount: Peddler::Types::Money?) -> Peddler::Types::Finances20240619::Item
+                    | (Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?, String?, Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, Peddler::Types::Money?) -> Peddler::Types::Finances20240619::Item
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::Item
+
+        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
+        attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?
+        attr_reader description: String?
+        attr_reader related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?
+        attr_reader total_amount: Peddler::Types::Money?
+
+        def to_h: () -> { breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]?, description: String?, related_identifiers: Array[Peddler::Types::Finances20240619::ItemRelatedIdentifier]?, total_amount: Peddler::Types::Money? }
+      end
+
+      class ItemRelatedIdentifier < Data
+        def self.new: (?item_related_identifier_name: String?, ?item_related_identifier_value: String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
+                    | (String?, String?) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::ItemRelatedIdentifier
+
+        attr_reader item_related_identifier_name: String?
+        attr_reader item_related_identifier_value: String?
+
+        def to_h: () -> { item_related_identifier_name: String?, item_related_identifier_value: String? }
+      end
+
+      class ItemRelatedIdentifiers < Array[ItemRelatedIdentifier]
+        def self.parse: (Array[untyped]) -> ItemRelatedIdentifiers
+      end
+
+      class Items < Array[Item]
+        def self.parse: (Array[untyped]) -> Items
+      end
+
+      class ListTransactionsResponse < Data
+        def self.new: (?payload: Peddler::Types::Finances20240619::TransactionsPayload?) -> Peddler::Types::Finances20240619::ListTransactionsResponse
+                    | (Peddler::Types::Finances20240619::TransactionsPayload?) -> Peddler::Types::Finances20240619::ListTransactionsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::ListTransactionsResponse
+
+        attr_reader payload: Peddler::Types::Finances20240619::TransactionsPayload?
+
+        def to_h: () -> { payload: Peddler::Types::Finances20240619::TransactionsPayload? }
+      end
+
+      class MarketplaceDetails < Data
+        def self.new: (?marketplace_id: String?, ?marketplace_name: String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
+                    | (String?, String?) -> Peddler::Types::Finances20240619::MarketplaceDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::MarketplaceDetails
+
+        attr_reader marketplace_id: String?
+        attr_reader marketplace_name: String?
+
+        def to_h: () -> { marketplace_id: String?, marketplace_name: String? }
+      end
+
+      class PaymentsContext < Data
+        def self.new: (?payment_date: String?, ?payment_method: String?, ?payment_reference: String?, ?payment_type: String?) -> Peddler::Types::Finances20240619::PaymentsContext
+                    | (String?, String?, String?, String?) -> Peddler::Types::Finances20240619::PaymentsContext
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::PaymentsContext
+
+        attr_reader payment_date: String?
+        attr_reader payment_method: String?
+        attr_reader payment_reference: String?
+        attr_reader payment_type: String?
+
+        def to_h: () -> { payment_date: String?, payment_method: String?, payment_reference: String?, payment_type: String? }
+      end
+
+      class ProductContext < Data
+        def self.new: (?asin: String?, ?fulfillment_network: String?, ?quantity_shipped: Integer?, ?sku: String?) -> Peddler::Types::Finances20240619::ProductContext
+                    | (String?, String?, Integer?, String?) -> Peddler::Types::Finances20240619::ProductContext
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::ProductContext
+
+        attr_reader asin: String?
+        attr_reader fulfillment_network: String?
+        attr_reader quantity_shipped: Integer?
+        attr_reader sku: String?
+
+        def to_h: () -> { asin: String?, fulfillment_network: String?, quantity_shipped: Integer?, sku: String? }
+      end
+
+      class RelatedIdentifier < Data
+        def self.new: (?related_identifier_name: String?, ?related_identifier_value: String?) -> Peddler::Types::Finances20240619::RelatedIdentifier
+                    | (String?, String?) -> Peddler::Types::Finances20240619::RelatedIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::RelatedIdentifier
+
+        attr_reader related_identifier_name: String?
+        attr_reader related_identifier_value: String?
+
+        def to_h: () -> { related_identifier_name: String?, related_identifier_value: String? }
+      end
+
+      class RelatedIdentifiers < Array[RelatedIdentifier]
+        def self.parse: (Array[untyped]) -> RelatedIdentifiers
+      end
+
+      class SellingPartnerMetadata < Data
+        def self.new: (?account_type: String?, ?marketplace_id: String?, ?selling_partner_id: String?) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
+                    | (String?, String?, String?) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::SellingPartnerMetadata
+
+        attr_reader account_type: String?
+        attr_reader marketplace_id: String?
+        attr_reader selling_partner_id: String?
+
+        def to_h: () -> { account_type: String?, marketplace_id: String?, selling_partner_id: String? }
+      end
+
+      class TimeRangeContext < Data
+        def self.new: (?end_time: String?, ?start_time: String?) -> Peddler::Types::Finances20240619::TimeRangeContext
+                    | (String?, String?) -> Peddler::Types::Finances20240619::TimeRangeContext
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::TimeRangeContext
+
+        attr_reader end_time: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { end_time: String?, start_time: String? }
+      end
+
+      class Transaction < Data
+        def self.new: (?breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, ?contexts: Array[Peddler::Types::Finances20240619::Context]?, ?description: String?, ?items: Array[Peddler::Types::Finances20240619::Item]?, ?marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, ?posted_date: String?, ?related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, ?selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, ?total_amount: Peddler::Types::Money?, ?transaction_id: String?, ?transaction_status: String?, ?transaction_type: String?) -> Peddler::Types::Finances20240619::Transaction
+                    | (Array[Peddler::Types::Finances20240619::Breakdown]?, Array[Peddler::Types::Finances20240619::Context]?, String?, Array[Peddler::Types::Finances20240619::Item]?, Peddler::Types::Finances20240619::MarketplaceDetails?, String?, Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, Peddler::Types::Finances20240619::SellingPartnerMetadata?, Peddler::Types::Money?, String?, String?, String?) -> Peddler::Types::Finances20240619::Transaction
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::Transaction
+
+        attr_reader breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?
+        attr_reader contexts: Array[Peddler::Types::Finances20240619::Context]?
+        attr_reader description: String?
+        attr_reader items: Array[Peddler::Types::Finances20240619::Item]?
+        attr_reader marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?
+        attr_reader posted_date: String?
+        attr_reader related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?
+        attr_reader selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?
+        attr_reader total_amount: Peddler::Types::Money?
+        attr_reader transaction_id: String?
+        attr_reader transaction_status: String?
+        attr_reader transaction_type: String?
+
+        def to_h: () -> { breakdowns: Array[Peddler::Types::Finances20240619::Breakdown]?, contexts: Array[Peddler::Types::Finances20240619::Context]?, description: String?, items: Array[Peddler::Types::Finances20240619::Item]?, marketplace_details: Peddler::Types::Finances20240619::MarketplaceDetails?, posted_date: String?, related_identifiers: Array[Peddler::Types::Finances20240619::RelatedIdentifier]?, selling_partner_metadata: Peddler::Types::Finances20240619::SellingPartnerMetadata?, total_amount: Peddler::Types::Money?, transaction_id: String?, transaction_status: String?, transaction_type: String? }
+      end
+
+      class Transactions < Array[Transaction]
+        def self.parse: (Array[untyped]) -> Transactions
+      end
+
+      class TransactionsPayload < Data
+        def self.new: (?next_token: String?, ?transactions: Array[Peddler::Types::Finances20240619::Transaction]?) -> Peddler::Types::Finances20240619::TransactionsPayload
+                    | (String?, Array[Peddler::Types::Finances20240619::Transaction]?) -> Peddler::Types::Finances20240619::TransactionsPayload
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Finances20240619::TransactionsPayload
+
+        attr_reader next_token: String?
+        attr_reader transactions: Array[Peddler::Types::Finances20240619::Transaction]?
+
+        def to_h: () -> { next_token: String?, transactions: Array[Peddler::Types::Finances20240619::Transaction]? }
+      end
+    end
+  end
+end

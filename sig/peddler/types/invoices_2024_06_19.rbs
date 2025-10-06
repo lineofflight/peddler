@@ -1,0 +1,216 @@
+module Peddler
+  module Types
+    module Invoices20240619
+      class AttributeOption < Data
+        def self.new: (?description: String?, ?value: String?) -> Peddler::Types::Invoices20240619::AttributeOption
+                    | (String?, String?) -> Peddler::Types::Invoices20240619::AttributeOption
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::AttributeOption
+
+        attr_reader description: String?
+        attr_reader value: String?
+
+        def to_h: () -> { description: String?, value: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Invoices20240619::Error
+                    | (String?, String?, String?) -> Peddler::Types::Invoices20240619::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::Invoices20240619::Error]?) -> Peddler::Types::Invoices20240619::ErrorList
+                    | (Array[Peddler::Types::Invoices20240619::Error]?) -> Peddler::Types::Invoices20240619::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::Invoices20240619::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::Invoices20240619::Error]? }
+      end
+
+      class Export < Data
+        def self.new: (?error_message: String?, ?export_id: String?, ?generate_export_finished_at: String?, ?generate_export_started_at: String?, ?invoices_document_ids: Array[String]?, ?status: String?) -> Peddler::Types::Invoices20240619::Export
+                    | (String?, String?, String?, String?, Array[String]?, String?) -> Peddler::Types::Invoices20240619::Export
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::Export
+
+        attr_reader error_message: String?
+        attr_reader export_id: String?
+        attr_reader generate_export_finished_at: String?
+        attr_reader generate_export_started_at: String?
+        attr_reader invoices_document_ids: Array[String]?
+        attr_reader status: String?
+
+        def to_h: () -> { error_message: String?, export_id: String?, generate_export_finished_at: String?, generate_export_started_at: String?, invoices_document_ids: Array[String]?, status: String? }
+      end
+
+      class ExportInvoicesRequest < Data
+        def self.new: (marketplace_id: String?, ?date_end: String?, ?date_start: String?, ?external_invoice_id: String?, ?file_format: String?, ?invoice_type: String?, ?series: String?, ?statuses: Array[String]?, ?transaction_identifier: Peddler::Types::Invoices20240619::TransactionIdentifier?, ?transaction_type: String?) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest
+                    | (String?, String?, String?, String?, String?, String?, String?, Array[String]?, Peddler::Types::Invoices20240619::TransactionIdentifier?, String?) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::ExportInvoicesRequest
+
+        attr_reader date_end: String?
+        attr_reader date_start: String?
+        attr_reader external_invoice_id: String?
+        attr_reader file_format: String?
+        attr_reader invoice_type: String?
+        attr_reader marketplace_id: String?
+
+        attr_reader series: String?
+        attr_reader statuses: Array[String]?
+        attr_reader transaction_identifier: Peddler::Types::Invoices20240619::TransactionIdentifier?
+        attr_reader transaction_type: String?
+
+        def to_h: () -> { marketplace_id: String?, date_end: String?, date_start: String?, external_invoice_id: String?, file_format: String?, invoice_type: String?, series: String?, statuses: Array[String]?, transaction_identifier: Peddler::Types::Invoices20240619::TransactionIdentifier?, transaction_type: String? }
+      end
+
+      class ExportInvoicesResponse < Data
+        def self.new: (?export_id: String?) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse
+                    | (String?) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::ExportInvoicesResponse
+
+        attr_reader export_id: String?
+
+        def to_h: () -> { export_id: String? }
+      end
+
+      class GetInvoiceResponse < Data
+        def self.new: (?invoice: Peddler::Types::Invoices20240619::Invoice?) -> Peddler::Types::Invoices20240619::GetInvoiceResponse
+                    | (Peddler::Types::Invoices20240619::Invoice?) -> Peddler::Types::Invoices20240619::GetInvoiceResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoiceResponse
+
+        attr_reader invoice: Peddler::Types::Invoices20240619::Invoice?
+
+        def to_h: () -> { invoice: Peddler::Types::Invoices20240619::Invoice? }
+      end
+
+      class GetInvoicesAttributesResponse < Data
+        def self.new: (?invoices_attributes: Peddler::Types::Invoices20240619::InvoicesAttributes?) -> Peddler::Types::Invoices20240619::GetInvoicesAttributesResponse
+                    | (Peddler::Types::Invoices20240619::InvoicesAttributes?) -> Peddler::Types::Invoices20240619::GetInvoicesAttributesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesAttributesResponse
+
+        attr_reader invoices_attributes: Peddler::Types::Invoices20240619::InvoicesAttributes?
+
+        def to_h: () -> { invoices_attributes: Peddler::Types::Invoices20240619::InvoicesAttributes? }
+      end
+
+      class GetInvoicesDocumentResponse < Data
+        def self.new: (?invoices_document: Peddler::Types::Invoices20240619::InvoicesDocument?) -> Peddler::Types::Invoices20240619::GetInvoicesDocumentResponse
+                    | (Peddler::Types::Invoices20240619::InvoicesDocument?) -> Peddler::Types::Invoices20240619::GetInvoicesDocumentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesDocumentResponse
+
+        attr_reader invoices_document: Peddler::Types::Invoices20240619::InvoicesDocument?
+
+        def to_h: () -> { invoices_document: Peddler::Types::Invoices20240619::InvoicesDocument? }
+      end
+
+      class GetInvoicesExportResponse < Data
+        def self.new: (?export: Peddler::Types::Invoices20240619::Export?) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
+                    | (Peddler::Types::Invoices20240619::Export?) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesExportResponse
+
+        attr_reader export: Peddler::Types::Invoices20240619::Export?
+
+        def to_h: () -> { export: Peddler::Types::Invoices20240619::Export? }
+      end
+
+      class GetInvoicesExportsResponse < Data
+        def self.new: (?exports: Array[Peddler::Types::Invoices20240619::Export]?, ?next_token: String?) -> Peddler::Types::Invoices20240619::GetInvoicesExportsResponse
+                    | (Array[Peddler::Types::Invoices20240619::Export]?, String?) -> Peddler::Types::Invoices20240619::GetInvoicesExportsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesExportsResponse
+
+        attr_reader exports: Array[Peddler::Types::Invoices20240619::Export]?
+        attr_reader next_token: String?
+
+        def to_h: () -> { exports: Array[Peddler::Types::Invoices20240619::Export]?, next_token: String? }
+      end
+
+      class GetInvoicesResponse < Data
+        def self.new: (?invoices: Array[Peddler::Types::Invoices20240619::Invoice]?, ?next_token: String?) -> Peddler::Types::Invoices20240619::GetInvoicesResponse
+                    | (Array[Peddler::Types::Invoices20240619::Invoice]?, String?) -> Peddler::Types::Invoices20240619::GetInvoicesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::GetInvoicesResponse
+
+        attr_reader invoices: Array[Peddler::Types::Invoices20240619::Invoice]?
+        attr_reader next_token: String?
+
+        def to_h: () -> { invoices: Array[Peddler::Types::Invoices20240619::Invoice]?, next_token: String? }
+      end
+
+      class Invoice < Data
+        def self.new: (?date: String?, ?error_code: String?, ?external_invoice_id: String?, ?gov_response: String?, ?id: String?, ?invoice_type: String?, ?series: String?, ?status: String?, ?transaction_ids: Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, ?transaction_type: String?) -> Peddler::Types::Invoices20240619::Invoice
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, String?) -> Peddler::Types::Invoices20240619::Invoice
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::Invoice
+
+        attr_reader date: String?
+        attr_reader error_code: String?
+        attr_reader external_invoice_id: String?
+        attr_reader gov_response: String?
+        attr_reader id: String?
+        attr_reader invoice_type: String?
+        attr_reader series: String?
+        attr_reader status: String?
+        attr_reader transaction_ids: Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?
+        attr_reader transaction_type: String?
+
+        def to_h: () -> { date: String?, error_code: String?, external_invoice_id: String?, gov_response: String?, id: String?, invoice_type: String?, series: String?, status: String?, transaction_ids: Array[Peddler::Types::Invoices20240619::TransactionIdentifier]?, transaction_type: String? }
+      end
+
+      class InvoicesAttributes < Data
+        def self.new: (?invoice_status_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, ?invoice_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, ?transaction_identifier_name_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, ?transaction_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?) -> Peddler::Types::Invoices20240619::InvoicesAttributes
+                    | (Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?, Array[Peddler::Types::Invoices20240619::AttributeOption]?) -> Peddler::Types::Invoices20240619::InvoicesAttributes
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::InvoicesAttributes
+
+        attr_reader invoice_status_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?
+        attr_reader invoice_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?
+        attr_reader transaction_identifier_name_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?
+        attr_reader transaction_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?
+
+        def to_h: () -> { invoice_status_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, invoice_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, transaction_identifier_name_options: Array[Peddler::Types::Invoices20240619::AttributeOption]?, transaction_type_options: Array[Peddler::Types::Invoices20240619::AttributeOption]? }
+      end
+
+      class InvoicesDocument < Data
+        def self.new: (?invoices_document_id: String?, ?invoices_document_url: String?) -> Peddler::Types::Invoices20240619::InvoicesDocument
+                    | (String?, String?) -> Peddler::Types::Invoices20240619::InvoicesDocument
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::InvoicesDocument
+
+        attr_reader invoices_document_id: String?
+        attr_reader invoices_document_url: String?
+
+        def to_h: () -> { invoices_document_id: String?, invoices_document_url: String? }
+      end
+
+      class TransactionIdentifier < Data
+        def self.new: (?id: String?, ?name: String?) -> Peddler::Types::Invoices20240619::TransactionIdentifier
+                    | (String?, String?) -> Peddler::Types::Invoices20240619::TransactionIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Invoices20240619::TransactionIdentifier
+
+        attr_reader id: String?
+        attr_reader name: String?
+
+        def to_h: () -> { id: String?, name: String? }
+      end
+    end
+  end
+end

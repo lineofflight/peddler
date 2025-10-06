@@ -1,0 +1,482 @@
+module Peddler
+  module Types
+    module VendorDirectFulfillmentShipping20211228
+      class Address < Data
+        def self.new: (address_line1: String?, country_code: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+
+        attr_reader county: String?
+        attr_reader district: String?
+        attr_reader name: String?
+
+        attr_reader phone: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
+      end
+
+      class Container < Data
+        def self.new: (container_identifier: String?, container_type: String?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?, weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, ?carrier: String?, ?container_sequence_number: Integer?, ?dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, ?manifest_date: String?, ?manifest_id: String?, ?scac_code: String?, ?ship_method: String?, ?tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
+                    | (String?, String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, String?, Integer?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Container
+
+        attr_reader carrier: String?
+        attr_reader container_identifier: String?
+
+        attr_reader container_sequence_number: Integer?
+        attr_reader container_type: String?
+
+        attr_reader dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?
+        attr_reader manifest_date: String?
+        attr_reader manifest_id: String?
+        attr_reader packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?
+
+        attr_reader scac_code: String?
+        attr_reader ship_method: String?
+        attr_reader tracking_number: String?
+        attr_reader weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?
+
+        def to_h: () -> { container_identifier: String?, container_type: String?, packed_items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem]?, weight: Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight?, carrier: String?, container_sequence_number: Integer?, dimensions: Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions?, manifest_date: String?, manifest_id: String?, scac_code: String?, ship_method: String?, tracking_number: String? }
+      end
+
+      class ContainerLabel < Data
+        def self.new: (content: String?, format: String?, ?container_tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
+                    | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel
+
+        attr_reader container_tracking_number: String?
+        attr_reader content: String?
+        attr_reader format: String?
+
+        def to_h: () -> { content: String?, format: String?, container_tracking_number: String? }
+      end
+
+      class CreateContainerLabelRequest < Data
+        def self.new: (carrier_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, vendor_container_id: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
+                    | (String?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelRequest
+
+        attr_reader carrier_id: String?
+        attr_reader packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader vendor_container_id: String?
+
+        def to_h: () -> { carrier_id: String?, packages: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Package]?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, vendor_container_id: String? }
+      end
+
+      class CreateContainerLabelResponse < Data
+        def self.new: (container_label: Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateContainerLabelResponse
+
+        attr_reader container_label: Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel?
+
+        def to_h: () -> { container_label: Peddler::Types::VendorDirectFulfillmentShipping20211228::ContainerLabel? }
+      end
+
+      class CreateShippingLabelsRequest < Data
+        def self.new: (selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CreateShippingLabelsRequest
+
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
+      end
+
+      class CustomerInvoice < Data
+        def self.new: (content: String?, purchase_order_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
+                    | (String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice
+
+        attr_reader content: String?
+        attr_reader purchase_order_number: String?
+
+        def to_h: () -> { content: String?, purchase_order_number: String? }
+      end
+
+      class CustomerInvoiceList < Data
+        def self.new: (?customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice]?, ?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoiceList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoiceList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoiceList
+
+        attr_reader customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice]?
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?
+
+        def to_h: () -> { customer_invoices: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::CustomerInvoice]?, pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination? }
+      end
+
+      class Dimensions < Data
+        def self.new: (height: String?, length: String?, unit_of_measure: String?, width: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
+                    | (String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Dimensions
+
+        attr_reader height: String?
+        attr_reader length: String?
+        attr_reader unit_of_measure: String?
+        attr_reader width: String?
+
+        def to_h: () -> { height: String?, length: String?, unit_of_measure: String?, width: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Error
+                    | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ErrorList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Error]? }
+      end
+
+      class Item < Data
+        def self.new: (item_sequence_number: Integer?, shipped_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?, ?buyer_product_identifier: String?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item
+                    | (Integer?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Item
+
+        attr_reader buyer_product_identifier: String?
+        attr_reader item_sequence_number: Integer?
+        attr_reader shipped_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?
+
+        attr_reader vendor_product_identifier: String?
+
+        def to_h: () -> { item_sequence_number: Integer?, shipped_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?, buyer_product_identifier: String?, vendor_product_identifier: String? }
+      end
+
+      class ItemQuantity < Data
+        def self.new: (amount: Integer?, unit_of_measure: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity
+                    | (Integer?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity
+
+        attr_reader amount: Integer?
+        attr_reader unit_of_measure: String?
+
+        def to_h: () -> { amount: Integer?, unit_of_measure: String? }
+      end
+
+      class LabelData < Data
+        def self.new: (content: String?, ?package_identifier: String?, ?ship_method: String?, ?ship_method_name: String?, ?tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData
+
+        attr_reader content: String?
+        attr_reader package_identifier: String?
+        attr_reader ship_method: String?
+        attr_reader ship_method_name: String?
+        attr_reader tracking_number: String?
+
+        def to_h: () -> { content: String?, package_identifier: String?, ship_method: String?, ship_method_name: String?, tracking_number: String? }
+      end
+
+      class Package < Data
+        def self.new: (package_tracking_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Package
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Package
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Package
+
+        attr_reader package_tracking_number: String?
+
+        def to_h: () -> { package_tracking_number: String? }
+      end
+
+      class Packages < Array[Package]
+        def self.parse: (Array[untyped]) -> Packages
+      end
+
+      class PackedItem < Data
+        def self.new: (item_sequence_number: Integer?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?, ?buyer_product_identifier: String?, ?piece_number: Integer?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem
+                    | (Integer?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?, String?, Integer?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackedItem
+
+        attr_reader buyer_product_identifier: String?
+        attr_reader item_sequence_number: Integer?
+        attr_reader packed_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?
+
+        attr_reader piece_number: Integer?
+        attr_reader vendor_product_identifier: String?
+
+        def to_h: () -> { item_sequence_number: Integer?, packed_quantity: Peddler::Types::VendorDirectFulfillmentShipping20211228::ItemQuantity?, buyer_product_identifier: String?, piece_number: Integer?, vendor_product_identifier: String? }
+      end
+
+      class PackingSlip < Data
+        def self.new: (content: String?, purchase_order_number: String?, ?content_type: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip
+                    | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip
+
+        attr_reader content: String?
+
+        attr_reader content_type: String?
+        attr_reader purchase_order_number: String?
+
+        def to_h: () -> { content: String?, purchase_order_number: String?, content_type: String? }
+      end
+
+      class PackingSlipList < Data
+        def self.new: (?packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, ?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlipList
+
+        attr_reader packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?
+
+        def to_h: () -> { packing_slips: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::PackingSlip]?, pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination
+
+        attr_reader next_token: String?
+
+        def to_h: () -> { next_token: String? }
+      end
+
+      class PartyIdentification < Data
+        def self.new: (party_id: String?, ?address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, ?tax_registration_details: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification
+
+        attr_reader address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?
+        attr_reader party_id: String?
+
+        attr_reader tax_registration_details: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails]?
+
+        def to_h: () -> { party_id: String?, address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tax_registration_details: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails]? }
+      end
+
+      class ShipmentConfirmation < Data
+        def self.new: (items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation
+
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
+        attr_reader items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?
+        attr_reader purchase_order_number: String?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?
+
+        def to_h: () -> { items: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Item]?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, shipment_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
+      end
+
+      class ShipmentDetails < Data
+        def self.new: (shipment_status: String?, shipped_date: String?, ?estimated_delivery_date: String?, ?priority_shipment: bool?, ?vendor_order_number: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails
+                    | (String?, String?, String?, bool?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentDetails
+
+        attr_reader estimated_delivery_date: String?
+        attr_reader priority_shipment: bool?
+        attr_reader shipment_status: String?
+        attr_reader shipped_date: String?
+
+        attr_reader vendor_order_number: String?
+
+        def priority_shipment?: () -> bool
+        def to_h: () -> { shipment_status: String?, shipped_date: String?, estimated_delivery_date: String?, priority_shipment: bool?, vendor_order_number: String? }
+      end
+
+      class ShipmentSchedule < Data
+        def self.new: (?appt_window_end_date_time: String?, ?appt_window_start_date_time: String?, ?estimated_delivery_date_time: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule
+                    | (String?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule
+
+        attr_reader appt_window_end_date_time: String?
+        attr_reader appt_window_start_date_time: String?
+        attr_reader estimated_delivery_date_time: String?
+
+        def to_h: () -> { appt_window_end_date_time: String?, appt_window_start_date_time: String?, estimated_delivery_date_time: String? }
+      end
+
+      class ShipmentStatusUpdate < Data
+        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, status_update_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate
+
+        attr_reader purchase_order_number: String?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader status_update_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails?
+
+        def to_h: () -> { purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, status_update_details: Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails? }
+      end
+
+      class ShippingLabel < Data
+        def self.new: (label_data: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?, label_format: String?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?, String?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel
+
+        attr_reader label_data: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?
+        attr_reader label_format: String?
+        attr_reader purchase_order_number: String?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+
+        def to_h: () -> { label_data: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::LabelData]?, label_format: String?, purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification? }
+      end
+
+      class ShippingLabelList < Data
+        def self.new: (?pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, ?shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
+                    | (Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelList
+
+        attr_reader pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?
+        attr_reader shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorDirectFulfillmentShipping20211228::Pagination?, shipping_labels: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabel]? }
+      end
+
+      class ShippingLabelRequest < Data
+        def self.new: (purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ?containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest
+
+        attr_reader containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]?
+        attr_reader purchase_order_number: String?
+        attr_reader selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?
+
+        def to_h: () -> { purchase_order_number: String?, selling_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, ship_from_party: Peddler::Types::VendorDirectFulfillmentShipping20211228::PartyIdentification?, containers: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::Container]? }
+      end
+
+      class StatusUpdateDetails < Data
+        def self.new: (reason_code: String?, status_code: String?, status_date_time: String?, status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tracking_number: String?, ?shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
+                    | (String?, String?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::StatusUpdateDetails
+
+        attr_reader reason_code: String?
+
+        attr_reader shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule?
+        attr_reader status_code: String?
+        attr_reader status_date_time: String?
+        attr_reader status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?
+        attr_reader tracking_number: String?
+
+        def to_h: () -> { reason_code: String?, status_code: String?, status_date_time: String?, status_location_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tracking_number: String?, shipment_schedule: Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentSchedule? }
+      end
+
+      class SubmitShipmentConfirmationsRequest < Data
+        def self.new: (?shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentConfirmationsRequest
+
+        attr_reader shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]?
+
+        def to_h: () -> { shipment_confirmations: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentConfirmation]? }
+      end
+
+      class SubmitShipmentStatusUpdatesRequest < Data
+        def self.new: (?shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShipmentStatusUpdatesRequest
+
+        attr_reader shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]?
+
+        def to_h: () -> { shipment_status_updates: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShipmentStatusUpdate]? }
+      end
+
+      class SubmitShippingLabelsRequest < Data
+        def self.new: (?shipping_label_requests: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShippingLabelsRequest
+                    | (Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest]?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShippingLabelsRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::SubmitShippingLabelsRequest
+
+        attr_reader shipping_label_requests: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest]?
+
+        def to_h: () -> { shipping_label_requests: Array[Peddler::Types::VendorDirectFulfillmentShipping20211228::ShippingLabelRequest]? }
+      end
+
+      class TaxRegistrationDetails < Data
+        def self.new: (tax_registration_number: String?, ?tax_registration_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, ?tax_registration_messages: String?, ?tax_registration_type: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails
+                    | (String?, Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TaxRegistrationDetails
+
+        attr_reader tax_registration_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?
+        attr_reader tax_registration_messages: String?
+        attr_reader tax_registration_number: String?
+
+        attr_reader tax_registration_type: String?
+
+        def to_h: () -> { tax_registration_number: String?, tax_registration_address: Peddler::Types::VendorDirectFulfillmentShipping20211228::Address?, tax_registration_messages: String?, tax_registration_type: String? }
+      end
+
+      class TransactionReference < Data
+        def self.new: (?transaction_id: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+                    | (String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::TransactionReference
+
+        attr_reader transaction_id: String?
+
+        def to_h: () -> { transaction_id: String? }
+      end
+
+      class Weight < Data
+        def self.new: (unit_of_measure: String?, value: String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight
+                    | (String?, String?) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorDirectFulfillmentShipping20211228::Weight
+
+        attr_reader unit_of_measure: String?
+        attr_reader value: String?
+
+        def to_h: () -> { unit_of_measure: String?, value: String? }
+      end
+    end
+  end
+end

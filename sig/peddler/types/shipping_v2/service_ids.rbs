@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class ServiceIds < Array[untyped]
-        def self.parse: (Array[untyped]) -> ServiceIds
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class TaxWithheldComponentList < Array[TaxWithheldComponent]
-        def self.parse: (Array[untyped]) -> TaxWithheldComponentList
-      end
-    end
-  end
-end

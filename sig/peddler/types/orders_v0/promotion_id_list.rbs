@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module OrdersV0
-      class PromotionIdList < Array[untyped]
-        def self.parse: (Array[untyped]) -> PromotionIdList
-      end
-    end
-  end
-end

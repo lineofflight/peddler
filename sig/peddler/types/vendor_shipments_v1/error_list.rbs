@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module VendorShipmentsV1
-      class ErrorList < Array[Error]
-        def self.parse: (Array[untyped]) -> ErrorList
-      end
-    end
-  end
-end

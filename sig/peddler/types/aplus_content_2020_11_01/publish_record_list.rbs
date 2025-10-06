@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module AplusContent20201101
-      class PublishRecordList < Array[PublishRecord]
-        def self.parse: (Array[untyped]) -> PublishRecordList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentInboundV0
-      class InvalidSKUList < Array[InvalidSKU]
-        def self.parse: (Array[untyped]) -> InvalidSKUList
-      end
-    end
-  end
-end

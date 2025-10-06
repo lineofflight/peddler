@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ListingsItems20210801
-      class ItemRelationships < Array[ItemRelationshipsByMarketplace]
-        def self.parse: (Array[untyped]) -> ItemRelationships
-      end
-    end
-  end
-end

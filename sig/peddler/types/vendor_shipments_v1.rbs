@@ -1,0 +1,775 @@
+module Peddler
+  module Types
+    module VendorShipmentsV1
+      class Address < Data
+        def self.new: (address_line1: String?, country_code: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::VendorShipmentsV1::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+
+        attr_reader county: String?
+        attr_reader district: String?
+        attr_reader name: String?
+
+        attr_reader phone: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
+      end
+
+      class CarrierDetails < Data
+        def self.new: (?code: String?, ?email: String?, ?name: String?, ?phone: String?, ?shipment_reference_number: String?) -> Peddler::Types::VendorShipmentsV1::CarrierDetails
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::CarrierDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::CarrierDetails
+
+        attr_reader code: String?
+        attr_reader email: String?
+        attr_reader name: String?
+        attr_reader phone: String?
+        attr_reader shipment_reference_number: String?
+
+        def to_h: () -> { code: String?, email: String?, name: String?, phone: String?, shipment_reference_number: String? }
+      end
+
+      class Carton < Data
+        def self.new: (carton_sequence_number: String?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?, ?carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, ?dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, ?tracking_number: String?, ?weight: Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Carton
+                    | (String?, Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?, Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, Peddler::Types::VendorShipmentsV1::Dimensions?, String?, Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Carton
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Carton
+
+        attr_reader carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
+        attr_reader carton_sequence_number: String?
+
+        attr_reader dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?
+        attr_reader items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?
+
+        attr_reader tracking_number: String?
+        attr_reader weight: Peddler::Types::VendorShipmentsV1::Weight?
+
+        def to_h: () -> { carton_sequence_number: String?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?, carton_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, tracking_number: String?, weight: Peddler::Types::VendorShipmentsV1::Weight? }
+      end
+
+      class CartonReferenceDetails < Data
+        def self.new: (carton_reference_numbers: Array[String]?, ?carton_count: Integer?) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
+                    | (Array[String]?, Integer?) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::CartonReferenceDetails
+
+        attr_reader carton_count: Integer?
+        attr_reader carton_reference_numbers: Array[String]?
+
+        def to_h: () -> { carton_reference_numbers: Array[String]?, carton_count: Integer? }
+      end
+
+      class CollectFreightPickupDetails < Data
+        def self.new: (?carrier_assignment_date: String?, ?requested_pick_up: String?, ?scheduled_pick_up: String?) -> Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails
+                    | (String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails
+
+        attr_reader carrier_assignment_date: String?
+        attr_reader requested_pick_up: String?
+        attr_reader scheduled_pick_up: String?
+
+        def to_h: () -> { carrier_assignment_date: String?, requested_pick_up: String?, scheduled_pick_up: String? }
+      end
+
+      class ContainerIdentification < Data
+        def self.new: (container_identification_number: String?, container_identification_type: String?) -> Peddler::Types::VendorShipmentsV1::ContainerIdentification
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::ContainerIdentification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerIdentification
+
+        attr_reader container_identification_number: String?
+        attr_reader container_identification_type: String?
+
+        def to_h: () -> { container_identification_number: String?, container_identification_type: String? }
+      end
+
+      class ContainerItem < Data
+        def self.new: (item_reference: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
+                    | (String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, Peddler::Types::VendorShipmentsV1::ItemDetails?) -> Peddler::Types::VendorShipmentsV1::ContainerItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerItem
+
+        attr_reader item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?
+        attr_reader item_reference: String?
+        attr_reader shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
+
+        def to_h: () -> { item_reference: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, item_details: Peddler::Types::VendorShipmentsV1::ItemDetails? }
+      end
+
+      class ContainerSequenceNumbers < Data
+        def self.new: (?container_sequence_number: String?) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers
+                    | (String?) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers
+
+        attr_reader container_sequence_number: String?
+
+        def to_h: () -> { container_sequence_number: String? }
+      end
+
+      class Containers < Data
+        def self.new: (container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, container_type: String?, ?block: Integer?, ?container_sequence_number: String?, ?dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, ?inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, ?packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?, ?tier: Integer?, ?tracking_number: String?, ?weight: Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Containers
+                    | (Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, String?, Integer?, String?, Peddler::Types::VendorShipmentsV1::Dimensions?, Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, Array[Peddler::Types::VendorShipmentsV1::PackedItems]?, Integer?, String?, Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Containers
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Containers
+
+        attr_reader block: Integer?
+        attr_reader container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
+
+        attr_reader container_sequence_number: String?
+        attr_reader container_type: String?
+
+        attr_reader dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?
+        attr_reader inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?
+        attr_reader packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?
+        attr_reader tier: Integer?
+        attr_reader tracking_number: String?
+        attr_reader weight: Peddler::Types::VendorShipmentsV1::Weight?
+
+        def to_h: () -> { container_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, container_type: String?, block: Integer?, container_sequence_number: String?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, inner_containers_details: Peddler::Types::VendorShipmentsV1::InnerContainersDetails?, packed_items: Array[Peddler::Types::VendorShipmentsV1::PackedItems]?, tier: Integer?, tracking_number: String?, weight: Peddler::Types::VendorShipmentsV1::Weight? }
+      end
+
+      class Dimensions < Data
+        def self.new: (height: String?, length: String?, unit_of_measure: String?, width: String?) -> Peddler::Types::VendorShipmentsV1::Dimensions
+                    | (String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Dimensions
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Dimensions
+
+        attr_reader height: String?
+        attr_reader length: String?
+        attr_reader unit_of_measure: String?
+        attr_reader width: String?
+
+        def to_h: () -> { height: String?, length: String?, unit_of_measure: String?, width: String? }
+      end
+
+      class Duration < Data
+        def self.new: (duration_unit: String?, duration_value: Integer?) -> Peddler::Types::VendorShipmentsV1::Duration
+                    | (String?, Integer?) -> Peddler::Types::VendorShipmentsV1::Duration
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Duration
+
+        attr_reader duration_unit: String?
+        attr_reader duration_value: Integer?
+
+        def to_h: () -> { duration_unit: String?, duration_value: Integer? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::VendorShipmentsV1::Error
+                    | (String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class Expiry < Data
+        def self.new: (?expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?, ?expiry_date: String?, ?manufacturer_date: String?) -> Peddler::Types::VendorShipmentsV1::Expiry
+                    | (Peddler::Types::VendorShipmentsV1::Duration?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Expiry
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Expiry
+
+        attr_reader expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?
+        attr_reader expiry_date: String?
+        attr_reader manufacturer_date: String?
+
+        def to_h: () -> { expiry_after_duration: Peddler::Types::VendorShipmentsV1::Duration?, expiry_date: String?, manufacturer_date: String? }
+      end
+
+      class GetShipmentDetailsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::VendorShipmentsV1::Error]?, ?payload: Peddler::Types::VendorShipmentsV1::ShipmentDetails?) -> Peddler::Types::VendorShipmentsV1::GetShipmentDetailsResponse
+                    | (Array[Peddler::Types::VendorShipmentsV1::Error]?, Peddler::Types::VendorShipmentsV1::ShipmentDetails?) -> Peddler::Types::VendorShipmentsV1::GetShipmentDetailsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::GetShipmentDetailsResponse
+
+        attr_reader errors: Array[Peddler::Types::VendorShipmentsV1::Error]?
+        attr_reader payload: Peddler::Types::VendorShipmentsV1::ShipmentDetails?
+
+        def to_h: () -> { errors: Array[Peddler::Types::VendorShipmentsV1::Error]?, payload: Peddler::Types::VendorShipmentsV1::ShipmentDetails? }
+      end
+
+      class GetShipmentLabels < Data
+        def self.new: (?errors: Array[Peddler::Types::VendorShipmentsV1::Error]?, ?payload: Peddler::Types::VendorShipmentsV1::TransportationLabels?) -> Peddler::Types::VendorShipmentsV1::GetShipmentLabels
+                    | (Array[Peddler::Types::VendorShipmentsV1::Error]?, Peddler::Types::VendorShipmentsV1::TransportationLabels?) -> Peddler::Types::VendorShipmentsV1::GetShipmentLabels
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::GetShipmentLabels
+
+        attr_reader errors: Array[Peddler::Types::VendorShipmentsV1::Error]?
+        attr_reader payload: Peddler::Types::VendorShipmentsV1::TransportationLabels?
+
+        def to_h: () -> { errors: Array[Peddler::Types::VendorShipmentsV1::Error]?, payload: Peddler::Types::VendorShipmentsV1::TransportationLabels? }
+      end
+
+      class ImportDetails < Data
+        def self.new: (?billable_weight: Peddler::Types::VendorShipmentsV1::Weight?, ?estimated_ship_by_date: String?, ?handling_instructions: String?, ?import_containers: String?, ?method_of_payment: String?, ?route: Peddler::Types::VendorShipmentsV1::Route?, ?seal_number: String?) -> Peddler::Types::VendorShipmentsV1::ImportDetails
+                    | (Peddler::Types::VendorShipmentsV1::Weight?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::Route?, String?) -> Peddler::Types::VendorShipmentsV1::ImportDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ImportDetails
+
+        attr_reader billable_weight: Peddler::Types::VendorShipmentsV1::Weight?
+        attr_reader estimated_ship_by_date: String?
+        attr_reader handling_instructions: String?
+        attr_reader import_containers: String?
+        attr_reader method_of_payment: String?
+        attr_reader route: Peddler::Types::VendorShipmentsV1::Route?
+        attr_reader seal_number: String?
+
+        def to_h: () -> { billable_weight: Peddler::Types::VendorShipmentsV1::Weight?, estimated_ship_by_date: String?, handling_instructions: String?, import_containers: String?, method_of_payment: String?, route: Peddler::Types::VendorShipmentsV1::Route?, seal_number: String? }
+      end
+
+      class InnerContainersDetails < Data
+        def self.new: (?container_count: Integer?, ?container_sequence_numbers: Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]?) -> Peddler::Types::VendorShipmentsV1::InnerContainersDetails
+                    | (Integer?, Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]?) -> Peddler::Types::VendorShipmentsV1::InnerContainersDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::InnerContainersDetails
+
+        attr_reader container_count: Integer?
+        attr_reader container_sequence_numbers: Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]?
+
+        def to_h: () -> { container_count: Integer?, container_sequence_numbers: Array[Peddler::Types::VendorShipmentsV1::ContainerSequenceNumbers]? }
+      end
+
+      class Item < Data
+        def self.new: (item_sequence_number: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?amazon_product_identifier: String?, ?item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorShipmentsV1::Item
+                    | (String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, String?, Peddler::Types::VendorShipmentsV1::ItemDetails?, String?) -> Peddler::Types::VendorShipmentsV1::Item
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Item
+
+        attr_reader amazon_product_identifier: String?
+        attr_reader item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?
+        attr_reader item_sequence_number: String?
+        attr_reader shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
+
+        attr_reader vendor_product_identifier: String?
+
+        def to_h: () -> { item_sequence_number: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, amazon_product_identifier: String?, item_details: Peddler::Types::VendorShipmentsV1::ItemDetails?, vendor_product_identifier: String? }
+      end
+
+      class ItemDetails < Data
+        def self.new: (?expiry: Peddler::Types::VendorShipmentsV1::Expiry?, ?handling_code: String?, ?lot_number: String?, ?maximum_retail_price: Peddler::Types::Money?, ?purchase_order_number: String?) -> Peddler::Types::VendorShipmentsV1::ItemDetails
+                    | (Peddler::Types::VendorShipmentsV1::Expiry?, String?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::VendorShipmentsV1::ItemDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ItemDetails
+
+        attr_reader expiry: Peddler::Types::VendorShipmentsV1::Expiry?
+        attr_reader handling_code: String?
+        attr_reader lot_number: String?
+        attr_reader maximum_retail_price: Peddler::Types::Money?
+        attr_reader purchase_order_number: String?
+
+        def to_h: () -> { expiry: Peddler::Types::VendorShipmentsV1::Expiry?, handling_code: String?, lot_number: String?, maximum_retail_price: Peddler::Types::Money?, purchase_order_number: String? }
+      end
+
+      class ItemQuantity < Data
+        def self.new: (amount: Integer?, unit_of_measure: String?, ?total_weight: Peddler::Types::VendorShipmentsV1::TotalWeight?, ?unit_size: Integer?) -> Peddler::Types::VendorShipmentsV1::ItemQuantity
+                    | (Integer?, String?, Peddler::Types::VendorShipmentsV1::TotalWeight?, Integer?) -> Peddler::Types::VendorShipmentsV1::ItemQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ItemQuantity
+
+        attr_reader amount: Integer?
+
+        attr_reader total_weight: Peddler::Types::VendorShipmentsV1::TotalWeight?
+        attr_reader unit_of_measure: String?
+
+        attr_reader unit_size: Integer?
+
+        def to_h: () -> { amount: Integer?, unit_of_measure: String?, total_weight: Peddler::Types::VendorShipmentsV1::TotalWeight?, unit_size: Integer? }
+      end
+
+      class LabelData < Data
+        def self.new: (?carrier_code: String?, ?label: String?, ?label_format: String?, ?label_sequence_number: Integer?, ?tracking_id: String?) -> Peddler::Types::VendorShipmentsV1::LabelData
+                    | (String?, String?, String?, Integer?, String?) -> Peddler::Types::VendorShipmentsV1::LabelData
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::LabelData
+
+        attr_reader carrier_code: String?
+        attr_reader label: String?
+        attr_reader label_format: String?
+        attr_reader label_sequence_number: Integer?
+        attr_reader tracking_id: String?
+
+        def to_h: () -> { carrier_code: String?, label: String?, label_format: String?, label_sequence_number: Integer?, tracking_id: String? }
+      end
+
+      class Location < Data
+        def self.new: (?country_code: String?, ?location_code: String?, ?type: String?) -> Peddler::Types::VendorShipmentsV1::Location
+                    | (String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::Location
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Location
+
+        attr_reader country_code: String?
+        attr_reader location_code: String?
+        attr_reader type: String?
+
+        def to_h: () -> { country_code: String?, location_code: String?, type: String? }
+      end
+
+      class PackageItemDetails < Data
+        def self.new: (?expiry: Peddler::Types::VendorShipmentsV1::Expiry?, ?lot_number: String?, ?purchase_order_number: String?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
+                    | (Peddler::Types::VendorShipmentsV1::Expiry?, String?, String?) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PackageItemDetails
+
+        attr_reader expiry: Peddler::Types::VendorShipmentsV1::Expiry?
+        attr_reader lot_number: String?
+        attr_reader purchase_order_number: String?
+
+        def to_h: () -> { expiry: Peddler::Types::VendorShipmentsV1::Expiry?, lot_number: String?, purchase_order_number: String? }
+      end
+
+      class PackedItems < Data
+        def self.new: (?buyer_product_identifier: String?, ?item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?, ?item_sequence_number: String?, ?packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorShipmentsV1::PackedItems
+                    | (String?, Peddler::Types::VendorShipmentsV1::PackageItemDetails?, String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, String?) -> Peddler::Types::VendorShipmentsV1::PackedItems
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PackedItems
+
+        attr_reader buyer_product_identifier: String?
+        attr_reader item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?
+        attr_reader item_sequence_number: String?
+        attr_reader packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
+        attr_reader vendor_product_identifier: String?
+
+        def to_h: () -> { buyer_product_identifier: String?, item_details: Peddler::Types::VendorShipmentsV1::PackageItemDetails?, item_sequence_number: String?, packed_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, vendor_product_identifier: String? }
+      end
+
+      class PackedQuantity < Data
+        def self.new: (amount: Integer?, unit_of_measure: String?, ?unit_size: Integer?) -> Peddler::Types::VendorShipmentsV1::PackedQuantity
+                    | (Integer?, String?, Integer?) -> Peddler::Types::VendorShipmentsV1::PackedQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PackedQuantity
+
+        attr_reader amount: Integer?
+        attr_reader unit_of_measure: String?
+        attr_reader unit_size: Integer?
+
+        def to_h: () -> { amount: Integer?, unit_of_measure: String?, unit_size: Integer? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?) -> Peddler::Types::VendorShipmentsV1::Pagination
+                    | (String?) -> Peddler::Types::VendorShipmentsV1::Pagination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Pagination
+
+        attr_reader next_token: String?
+
+        def to_h: () -> { next_token: String? }
+      end
+
+      class Pallet < Data
+        def self.new: (pallet_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, ?block: Integer?, ?carton_reference_details: Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?, ?dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, ?items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?, ?tier: Integer?, ?weight: Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Pallet
+                    | (Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, Integer?, Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?, Peddler::Types::VendorShipmentsV1::Dimensions?, Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?, Integer?, Peddler::Types::VendorShipmentsV1::Weight?) -> Peddler::Types::VendorShipmentsV1::Pallet
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Pallet
+
+        attr_reader block: Integer?
+        attr_reader carton_reference_details: Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?
+        attr_reader dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?
+        attr_reader items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?
+        attr_reader pallet_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?
+
+        attr_reader tier: Integer?
+        attr_reader weight: Peddler::Types::VendorShipmentsV1::Weight?
+
+        def to_h: () -> { pallet_identifiers: Array[Peddler::Types::VendorShipmentsV1::ContainerIdentification]?, block: Integer?, carton_reference_details: Peddler::Types::VendorShipmentsV1::CartonReferenceDetails?, dimensions: Peddler::Types::VendorShipmentsV1::Dimensions?, items: Array[Peddler::Types::VendorShipmentsV1::ContainerItem]?, tier: Integer?, weight: Peddler::Types::VendorShipmentsV1::Weight? }
+      end
+
+      class PartyIdentification < Data
+        def self.new: (party_id: String?, ?address: Peddler::Types::VendorShipmentsV1::Address?, ?tax_registration_details: Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorShipmentsV1::PartyIdentification
+                    | (String?, Peddler::Types::VendorShipmentsV1::Address?, Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?) -> Peddler::Types::VendorShipmentsV1::PartyIdentification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PartyIdentification
+
+        attr_reader address: Peddler::Types::VendorShipmentsV1::Address?
+        attr_reader party_id: String?
+
+        attr_reader tax_registration_details: Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]?
+
+        def to_h: () -> { party_id: String?, address: Peddler::Types::VendorShipmentsV1::Address?, tax_registration_details: Array[Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails]? }
+      end
+
+      class PurchaseOrderItemDetails < Data
+        def self.new: (?maximum_retail_price: Peddler::Types::Money?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
+                    | (Peddler::Types::Money?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItemDetails
+
+        attr_reader maximum_retail_price: Peddler::Types::Money?
+
+        def to_h: () -> { maximum_retail_price: Peddler::Types::Money? }
+      end
+
+      class PurchaseOrderItems < Data
+        def self.new: (item_sequence_number: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, ?buyer_product_identifier: String?, ?maximum_retail_price: Peddler::Types::Money?, ?vendor_product_identifier: String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
+                    | (String?, Peddler::Types::VendorShipmentsV1::ItemQuantity?, String?, Peddler::Types::Money?, String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrderItems
+
+        attr_reader buyer_product_identifier: String?
+        attr_reader item_sequence_number: String?
+
+        attr_reader maximum_retail_price: Peddler::Types::Money?
+        attr_reader shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?
+
+        attr_reader vendor_product_identifier: String?
+
+        def to_h: () -> { item_sequence_number: String?, shipped_quantity: Peddler::Types::VendorShipmentsV1::ItemQuantity?, buyer_product_identifier: String?, maximum_retail_price: Peddler::Types::Money?, vendor_product_identifier: String? }
+      end
+
+      class PurchaseOrders < Data
+        def self.new: (?items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?, ?purchase_order_date: String?, ?purchase_order_number: String?, ?ship_window: String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
+                    | (Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::PurchaseOrders
+
+        attr_reader items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?
+        attr_reader purchase_order_date: String?
+        attr_reader purchase_order_number: String?
+        attr_reader ship_window: String?
+
+        def to_h: () -> { items: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrderItems]?, purchase_order_date: String?, purchase_order_number: String?, ship_window: String? }
+      end
+
+      class Route < Data
+        def self.new: (stops: Array[Peddler::Types::VendorShipmentsV1::Stop]?) -> Peddler::Types::VendorShipmentsV1::Route
+                    | (Array[Peddler::Types::VendorShipmentsV1::Stop]?) -> Peddler::Types::VendorShipmentsV1::Route
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Route
+
+        attr_reader stops: Array[Peddler::Types::VendorShipmentsV1::Stop]?
+
+        def to_h: () -> { stops: Array[Peddler::Types::VendorShipmentsV1::Stop]? }
+      end
+
+      class Shipment < Data
+        def self.new: (selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, transaction_date: String?, transaction_type: String?, vendor_shipment_identifier: String?, ?buyer_reference_number: String?, ?collect_freight_pickup_details: Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?, ?containers: Array[Peddler::Types::VendorShipmentsV1::Containers]?, ?current_shipment_status: String?, ?currentshipment_status_date: String?, ?import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, ?package_label_create_date: String?, ?purchase_orders: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?, ?shipment_confirm_date: String?, ?shipment_create_date: String?, ?shipment_freight_term: String?, ?shipment_measurements: Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?, ?shipment_status_details: Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?, ?transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetails?) -> Peddler::Types::VendorShipmentsV1::Shipment
+                    | (Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?, Array[Peddler::Types::VendorShipmentsV1::Containers]?, String?, String?, Peddler::Types::VendorShipmentsV1::ImportDetails?, String?, Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?, Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?, Peddler::Types::VendorShipmentsV1::TransportationDetails?) -> Peddler::Types::VendorShipmentsV1::Shipment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Shipment
+
+        attr_reader buyer_reference_number: String?
+        attr_reader collect_freight_pickup_details: Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?
+        attr_reader containers: Array[Peddler::Types::VendorShipmentsV1::Containers]?
+        attr_reader current_shipment_status: String?
+        attr_reader currentshipment_status_date: String?
+        attr_reader import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?
+        attr_reader package_label_create_date: String?
+        attr_reader purchase_orders: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?
+        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+
+        attr_reader shipment_confirm_date: String?
+        attr_reader shipment_create_date: String?
+        attr_reader shipment_freight_term: String?
+        attr_reader shipment_measurements: Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?
+        attr_reader shipment_status_details: Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?
+        attr_reader transaction_date: String?
+        attr_reader transaction_type: String?
+
+        attr_reader transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetails?
+        attr_reader vendor_shipment_identifier: String?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, transaction_date: String?, transaction_type: String?, vendor_shipment_identifier: String?, buyer_reference_number: String?, collect_freight_pickup_details: Peddler::Types::VendorShipmentsV1::CollectFreightPickupDetails?, containers: Array[Peddler::Types::VendorShipmentsV1::Containers]?, current_shipment_status: String?, currentshipment_status_date: String?, import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, package_label_create_date: String?, purchase_orders: Array[Peddler::Types::VendorShipmentsV1::PurchaseOrders]?, shipment_confirm_date: String?, shipment_create_date: String?, shipment_freight_term: String?, shipment_measurements: Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements?, shipment_status_details: Array[Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails]?, transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetails? }
+      end
+
+      class ShipmentConfirmation < Data
+        def self.new: (selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, shipment_confirmation_date: String?, shipment_confirmation_type: String?, shipment_identifier: String?, shipped_items: Array[Peddler::Types::VendorShipmentsV1::Item]?, ?amazon_reference_number: String?, ?cartons: Array[Peddler::Types::VendorShipmentsV1::Carton]?, ?estimated_delivery_date: String?, ?import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, ?pallets: Array[Peddler::Types::VendorShipmentsV1::Pallet]?, ?shipment_measurements: Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?, ?shipment_structure: String?, ?shipment_type: String?, ?shipped_date: String?, ?transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?) -> Peddler::Types::VendorShipmentsV1::ShipmentConfirmation
+                    | (Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, String?, String?, Array[Peddler::Types::VendorShipmentsV1::Item]?, String?, Array[Peddler::Types::VendorShipmentsV1::Carton]?, String?, Peddler::Types::VendorShipmentsV1::ImportDetails?, Array[Peddler::Types::VendorShipmentsV1::Pallet]?, Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?, String?, String?, String?, Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?) -> Peddler::Types::VendorShipmentsV1::ShipmentConfirmation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentConfirmation
+
+        attr_reader amazon_reference_number: String?
+        attr_reader cartons: Array[Peddler::Types::VendorShipmentsV1::Carton]?
+        attr_reader estimated_delivery_date: String?
+        attr_reader import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?
+        attr_reader pallets: Array[Peddler::Types::VendorShipmentsV1::Pallet]?
+        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader shipment_confirmation_date: String?
+        attr_reader shipment_confirmation_type: String?
+        attr_reader shipment_identifier: String?
+
+        attr_reader shipment_measurements: Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?
+        attr_reader shipment_structure: String?
+        attr_reader shipment_type: String?
+        attr_reader shipped_date: String?
+        attr_reader shipped_items: Array[Peddler::Types::VendorShipmentsV1::Item]?
+
+        attr_reader transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, shipment_confirmation_date: String?, shipment_confirmation_type: String?, shipment_identifier: String?, shipped_items: Array[Peddler::Types::VendorShipmentsV1::Item]?, amazon_reference_number: String?, cartons: Array[Peddler::Types::VendorShipmentsV1::Carton]?, estimated_delivery_date: String?, import_details: Peddler::Types::VendorShipmentsV1::ImportDetails?, pallets: Array[Peddler::Types::VendorShipmentsV1::Pallet]?, shipment_measurements: Peddler::Types::VendorShipmentsV1::ShipmentMeasurements?, shipment_structure: String?, shipment_type: String?, shipped_date: String?, transportation_details: Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation? }
+      end
+
+      class ShipmentDetails < Data
+        def self.new: (?pagination: Peddler::Types::VendorShipmentsV1::Pagination?, ?shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails
+                    | (Peddler::Types::VendorShipmentsV1::Pagination?, Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentDetails
+
+        attr_reader pagination: Peddler::Types::VendorShipmentsV1::Pagination?
+        attr_reader shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorShipmentsV1::Pagination?, shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]? }
+      end
+
+      class ShipmentInformation < Data
+        def self.new: (?buyer_reference_number: String?, ?master_tracking_id: String?, ?ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ?ship_mode: String?, ?ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ?total_label_count: Integer?, ?vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?, ?warehouse_id: String?) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
+                    | (String?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?, Peddler::Types::VendorShipmentsV1::PartyIdentification?, Integer?, Peddler::Types::VendorShipmentsV1::VendorDetails?, String?) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentInformation
+
+        attr_reader buyer_reference_number: String?
+        attr_reader master_tracking_id: String?
+        attr_reader ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader ship_mode: String?
+        attr_reader ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader total_label_count: Integer?
+        attr_reader vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?
+        attr_reader warehouse_id: String?
+
+        def to_h: () -> { buyer_reference_number: String?, master_tracking_id: String?, ship_from_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ship_mode: String?, ship_to_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, total_label_count: Integer?, vendor_details: Peddler::Types::VendorShipmentsV1::VendorDetails?, warehouse_id: String? }
+      end
+
+      class ShipmentMeasurements < Data
+        def self.new: (?carton_count: Integer?, ?gross_shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, ?pallet_count: Integer?, ?shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?) -> Peddler::Types::VendorShipmentsV1::ShipmentMeasurements
+                    | (Integer?, Peddler::Types::VendorShipmentsV1::Weight?, Integer?, Peddler::Types::VendorShipmentsV1::Volume?) -> Peddler::Types::VendorShipmentsV1::ShipmentMeasurements
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentMeasurements
+
+        attr_reader carton_count: Integer?
+        attr_reader gross_shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?
+        attr_reader pallet_count: Integer?
+        attr_reader shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?
+
+        def to_h: () -> { carton_count: Integer?, gross_shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, pallet_count: Integer?, shipment_volume: Peddler::Types::VendorShipmentsV1::Volume? }
+      end
+
+      class ShipmentStatusDetails < Data
+        def self.new: (?shipment_status: String?, ?shipment_status_date: String?) -> Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::ShipmentStatusDetails
+
+        attr_reader shipment_status: String?
+        attr_reader shipment_status_date: String?
+
+        def to_h: () -> { shipment_status: String?, shipment_status_date: String? }
+      end
+
+      class Stop < Data
+        def self.new: (function_code: String?, ?arrival_time: String?, ?departure_time: String?, ?location_identification: Peddler::Types::VendorShipmentsV1::Location?) -> Peddler::Types::VendorShipmentsV1::Stop
+                    | (String?, String?, String?, Peddler::Types::VendorShipmentsV1::Location?) -> Peddler::Types::VendorShipmentsV1::Stop
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Stop
+
+        attr_reader arrival_time: String?
+        attr_reader departure_time: String?
+        attr_reader function_code: String?
+
+        attr_reader location_identification: Peddler::Types::VendorShipmentsV1::Location?
+
+        def to_h: () -> { function_code: String?, arrival_time: String?, departure_time: String?, location_identification: Peddler::Types::VendorShipmentsV1::Location? }
+      end
+
+      class SubmitShipmentConfirmationsRequest < Data
+        def self.new: (?shipment_confirmations: Array[Peddler::Types::VendorShipmentsV1::ShipmentConfirmation]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsRequest
+                    | (Array[Peddler::Types::VendorShipmentsV1::ShipmentConfirmation]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsRequest
+
+        attr_reader shipment_confirmations: Array[Peddler::Types::VendorShipmentsV1::ShipmentConfirmation]?
+
+        def to_h: () -> { shipment_confirmations: Array[Peddler::Types::VendorShipmentsV1::ShipmentConfirmation]? }
+      end
+
+      class SubmitShipmentConfirmationsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::VendorShipmentsV1::Error]?, ?payload: Peddler::Types::VendorShipmentsV1::TransactionReference?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
+                    | (Array[Peddler::Types::VendorShipmentsV1::Error]?, Peddler::Types::VendorShipmentsV1::TransactionReference?) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::SubmitShipmentConfirmationsResponse
+
+        attr_reader errors: Array[Peddler::Types::VendorShipmentsV1::Error]?
+        attr_reader payload: Peddler::Types::VendorShipmentsV1::TransactionReference?
+
+        def to_h: () -> { errors: Array[Peddler::Types::VendorShipmentsV1::Error]?, payload: Peddler::Types::VendorShipmentsV1::TransactionReference? }
+      end
+
+      class SubmitShipments < Data
+        def self.new: (?shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipments
+                    | (Array[Peddler::Types::VendorShipmentsV1::Shipment]?) -> Peddler::Types::VendorShipmentsV1::SubmitShipments
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::SubmitShipments
+
+        attr_reader shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]?
+
+        def to_h: () -> { shipments: Array[Peddler::Types::VendorShipmentsV1::Shipment]? }
+      end
+
+      class TaxRegistrationDetails < Data
+        def self.new: (tax_registration_number: String?, tax_registration_type: String?) -> Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TaxRegistrationDetails
+
+        attr_reader tax_registration_number: String?
+        attr_reader tax_registration_type: String?
+
+        def to_h: () -> { tax_registration_number: String?, tax_registration_type: String? }
+      end
+
+      class TotalWeight < Data
+        def self.new: (amount: String?, unit_of_measure: String?) -> Peddler::Types::VendorShipmentsV1::TotalWeight
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::TotalWeight
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TotalWeight
+
+        attr_reader amount: String?
+        attr_reader unit_of_measure: String?
+
+        def to_h: () -> { amount: String?, unit_of_measure: String? }
+      end
+
+      class TransactionReference < Data
+        def self.new: (?transaction_id: String?) -> Peddler::Types::VendorShipmentsV1::TransactionReference
+                    | (String?) -> Peddler::Types::VendorShipmentsV1::TransactionReference
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransactionReference
+
+        attr_reader transaction_id: String?
+
+        def to_h: () -> { transaction_id: String? }
+      end
+
+      class TransportLabel < Data
+        def self.new: (?label_create_date_time: String?, ?label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?, ?shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?) -> Peddler::Types::VendorShipmentsV1::TransportLabel
+                    | (String?, Array[Peddler::Types::VendorShipmentsV1::LabelData]?, Peddler::Types::VendorShipmentsV1::ShipmentInformation?) -> Peddler::Types::VendorShipmentsV1::TransportLabel
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportLabel
+
+        attr_reader label_create_date_time: String?
+        attr_reader label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?
+        attr_reader shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation?
+
+        def to_h: () -> { label_create_date_time: String?, label_data: Array[Peddler::Types::VendorShipmentsV1::LabelData]?, shipment_information: Peddler::Types::VendorShipmentsV1::ShipmentInformation? }
+      end
+
+      class TransportShipmentMeasurements < Data
+        def self.new: (?shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, ?shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, ?total_carton_count: Integer?, ?total_pallet_non_stackable: Integer?, ?total_pallet_stackable: Integer?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+                    | (Peddler::Types::VendorShipmentsV1::Volume?, Peddler::Types::VendorShipmentsV1::Weight?, Integer?, Integer?, Integer?) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportShipmentMeasurements
+
+        attr_reader shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?
+        attr_reader shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?
+        attr_reader total_carton_count: Integer?
+        attr_reader total_pallet_non_stackable: Integer?
+        attr_reader total_pallet_stackable: Integer?
+
+        def to_h: () -> { shipment_volume: Peddler::Types::VendorShipmentsV1::Volume?, shipment_weight: Peddler::Types::VendorShipmentsV1::Weight?, total_carton_count: Integer?, total_pallet_non_stackable: Integer?, total_pallet_stackable: Integer? }
+      end
+
+      class TransportationDetails < Data
+        def self.new: (?bill_of_lading_number: String?, ?carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, ?estimated_delivery_date: String?, ?ship_mode: String?, ?shipment_delivery_date: String?, ?shipped_date: String?, ?transportation_mode: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+                    | (String?, Peddler::Types::VendorShipmentsV1::CarrierDetails?, String?, String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetails
+
+        attr_reader bill_of_lading_number: String?
+        attr_reader carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?
+        attr_reader estimated_delivery_date: String?
+        attr_reader ship_mode: String?
+        attr_reader shipment_delivery_date: String?
+        attr_reader shipped_date: String?
+        attr_reader transportation_mode: String?
+
+        def to_h: () -> { bill_of_lading_number: String?, carrier_details: Peddler::Types::VendorShipmentsV1::CarrierDetails?, estimated_delivery_date: String?, ship_mode: String?, shipment_delivery_date: String?, shipped_date: String?, transportation_mode: String? }
+      end
+
+      class TransportationDetailsForShipmentConfirmation < Data
+        def self.new: (?bill_of_lading_number: String?, ?carrier_scac: String?, ?carrier_shipment_reference_number: String?, ?transportation_mode: String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation
+                    | (String?, String?, String?, String?) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationDetailsForShipmentConfirmation
+
+        attr_reader bill_of_lading_number: String?
+        attr_reader carrier_scac: String?
+        attr_reader carrier_shipment_reference_number: String?
+        attr_reader transportation_mode: String?
+
+        def to_h: () -> { bill_of_lading_number: String?, carrier_scac: String?, carrier_shipment_reference_number: String?, transportation_mode: String? }
+      end
+
+      class TransportationLabels < Data
+        def self.new: (?pagination: Peddler::Types::VendorShipmentsV1::Pagination?, ?transport_labels: Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?) -> Peddler::Types::VendorShipmentsV1::TransportationLabels
+                    | (Peddler::Types::VendorShipmentsV1::Pagination?, Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?) -> Peddler::Types::VendorShipmentsV1::TransportationLabels
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::TransportationLabels
+
+        attr_reader pagination: Peddler::Types::VendorShipmentsV1::Pagination?
+        attr_reader transport_labels: Array[Peddler::Types::VendorShipmentsV1::TransportLabel]?
+
+        def to_h: () -> { pagination: Peddler::Types::VendorShipmentsV1::Pagination?, transport_labels: Array[Peddler::Types::VendorShipmentsV1::TransportLabel]? }
+      end
+
+      class VendorDetails < Data
+        def self.new: (?selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, ?vendor_shipment_identifier: String?) -> Peddler::Types::VendorShipmentsV1::VendorDetails
+                    | (Peddler::Types::VendorShipmentsV1::PartyIdentification?, String?) -> Peddler::Types::VendorShipmentsV1::VendorDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::VendorDetails
+
+        attr_reader selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?
+        attr_reader vendor_shipment_identifier: String?
+
+        def to_h: () -> { selling_party: Peddler::Types::VendorShipmentsV1::PartyIdentification?, vendor_shipment_identifier: String? }
+      end
+
+      class Volume < Data
+        def self.new: (unit_of_measure: String?, value: String?) -> Peddler::Types::VendorShipmentsV1::Volume
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::Volume
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Volume
+
+        attr_reader unit_of_measure: String?
+        attr_reader value: String?
+
+        def to_h: () -> { unit_of_measure: String?, value: String? }
+      end
+
+      class Weight < Data
+        def self.new: (unit_of_measure: String?, value: String?) -> Peddler::Types::VendorShipmentsV1::Weight
+                    | (String?, String?) -> Peddler::Types::VendorShipmentsV1::Weight
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::VendorShipmentsV1::Weight
+
+        attr_reader unit_of_measure: String?
+        attr_reader value: String?
+
+        def to_h: () -> { unit_of_measure: String?, value: String? }
+      end
+    end
+  end
+end

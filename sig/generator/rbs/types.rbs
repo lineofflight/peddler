@@ -1,0 +1,16 @@
+module Generator
+  module RBS
+    class Types
+      @api_name: String
+      @api_types: Array[Type]
+
+      def initialize: (String api_name, Array[Type] api_types) -> void
+      def generate: () -> void
+
+      private
+
+      def indent: (String text, Integer spaces) -> String
+      def write_file: (String content) -> void
+    end
+  end
+end

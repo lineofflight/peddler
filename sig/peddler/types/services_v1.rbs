@@ -1,0 +1,826 @@
+module Peddler
+  module Types
+    module ServicesV1
+      class AddAppointmentRequest < Data
+        def self.new: (appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?) -> Peddler::Types::ServicesV1::AddAppointmentRequest
+                    | (Peddler::Types::ServicesV1::AppointmentTimeInput?) -> Peddler::Types::ServicesV1::AddAppointmentRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AddAppointmentRequest
+
+        attr_reader appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?
+
+        def to_h: () -> { appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput? }
+      end
+
+      class Address < Data
+        def self.new: (address_line1: String?, name: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?country_code: String?, ?county: String?, ?district: String?, ?phone: String?, ?postal_code: String?, ?state_or_region: String?) -> Peddler::Types::ServicesV1::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::ServicesV1::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+        attr_reader county: String?
+        attr_reader district: String?
+        attr_reader name: String?
+
+        attr_reader phone: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, name: String?, address_line2: String?, address_line3: String?, city: String?, country_code: String?, county: String?, district: String?, phone: String?, postal_code: String?, state_or_region: String? }
+      end
+
+      class Appointment < Data
+        def self.new: (?appointment_id: String?, ?appointment_status: String?, ?appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, ?assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?, ?poa: Peddler::Types::ServicesV1::Poa?, ?rescheduled_appointment_id: String?) -> Peddler::Types::ServicesV1::Appointment
+                    | (String?, String?, Peddler::Types::ServicesV1::AppointmentTime?, Array[Peddler::Types::ServicesV1::Technician]?, Peddler::Types::ServicesV1::Poa?, String?) -> Peddler::Types::ServicesV1::Appointment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Appointment
+
+        attr_reader appointment_id: String?
+        attr_reader appointment_status: String?
+        attr_reader appointment_time: Peddler::Types::ServicesV1::AppointmentTime?
+        attr_reader assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?
+        attr_reader poa: Peddler::Types::ServicesV1::Poa?
+        attr_reader rescheduled_appointment_id: String?
+
+        def to_h: () -> { appointment_id: String?, appointment_status: String?, appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, assigned_technicians: Array[Peddler::Types::ServicesV1::Technician]?, poa: Peddler::Types::ServicesV1::Poa?, rescheduled_appointment_id: String? }
+      end
+
+      class AppointmentResource < Data
+        def self.new: (?resource_id: String?) -> Peddler::Types::ServicesV1::AppointmentResource
+                    | (String?) -> Peddler::Types::ServicesV1::AppointmentResource
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentResource
+
+        attr_reader resource_id: String?
+
+        def to_h: () -> { resource_id: String? }
+      end
+
+      class AppointmentResources < Array[AppointmentResource]
+        def self.parse: (Array[untyped]) -> AppointmentResources
+      end
+
+      class AppointmentSlot < Data
+        def self.new: (?capacity: Integer?, ?end_time: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::AppointmentSlot
+                    | (Integer?, String?, String?) -> Peddler::Types::ServicesV1::AppointmentSlot
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentSlot
+
+        attr_reader capacity: Integer?
+        attr_reader end_time: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { capacity: Integer?, end_time: String?, start_time: String? }
+      end
+
+      class AppointmentSlotReport < Data
+        def self.new: (?appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?, ?end_time: String?, ?scheduling_type: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+                    | (Array[Peddler::Types::ServicesV1::AppointmentSlot]?, String?, String?, String?) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentSlotReport
+
+        attr_reader appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?
+        attr_reader end_time: String?
+        attr_reader scheduling_type: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { appointment_slots: Array[Peddler::Types::ServicesV1::AppointmentSlot]?, end_time: String?, scheduling_type: String?, start_time: String? }
+      end
+
+      class AppointmentTime < Data
+        def self.new: (duration_in_minutes: Integer?, start_time: String?) -> Peddler::Types::ServicesV1::AppointmentTime
+                    | (Integer?, String?) -> Peddler::Types::ServicesV1::AppointmentTime
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentTime
+
+        attr_reader duration_in_minutes: Integer?
+        attr_reader start_time: String?
+
+        def to_h: () -> { duration_in_minutes: Integer?, start_time: String? }
+      end
+
+      class AppointmentTimeInput < Data
+        def self.new: (start_time: String?, ?duration_in_minutes: Integer?) -> Peddler::Types::ServicesV1::AppointmentTimeInput
+                    | (String?, Integer?) -> Peddler::Types::ServicesV1::AppointmentTimeInput
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AppointmentTimeInput
+
+        attr_reader duration_in_minutes: Integer?
+        attr_reader start_time: String?
+
+        def to_h: () -> { start_time: String?, duration_in_minutes: Integer? }
+      end
+
+      class AssignAppointmentResourcesRequest < Data
+        def self.new: (resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?) -> Peddler::Types::ServicesV1::AssignAppointmentResourcesRequest
+                    | (Array[Peddler::Types::ServicesV1::AppointmentResource]?) -> Peddler::Types::ServicesV1::AssignAppointmentResourcesRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AssignAppointmentResourcesRequest
+
+        attr_reader resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?
+
+        def to_h: () -> { resources: Array[Peddler::Types::ServicesV1::AppointmentResource]? }
+      end
+
+      class AssignAppointmentResourcesResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Hash[untyped, untyped]?) -> Peddler::Types::ServicesV1::AssignAppointmentResourcesResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Hash[untyped, untyped]?) -> Peddler::Types::ServicesV1::AssignAppointmentResourcesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AssignAppointmentResourcesResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Hash[untyped, untyped]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Hash[untyped, untyped]? }
+      end
+
+      class AssociatedItem < Data
+        def self.new: (?asin: String?, ?brand_name: String?, ?item_delivery: Peddler::Types::ServicesV1::ItemDelivery?, ?item_status: String?, ?order_id: String?, ?quantity: Integer?, ?title: String?) -> Peddler::Types::ServicesV1::AssociatedItem
+                    | (String?, String?, Peddler::Types::ServicesV1::ItemDelivery?, String?, String?, Integer?, String?) -> Peddler::Types::ServicesV1::AssociatedItem
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AssociatedItem
+
+        attr_reader asin: String?
+        attr_reader brand_name: String?
+        attr_reader item_delivery: Peddler::Types::ServicesV1::ItemDelivery?
+        attr_reader item_status: String?
+        attr_reader order_id: String?
+        attr_reader quantity: Integer?
+        attr_reader title: String?
+
+        def to_h: () -> { asin: String?, brand_name: String?, item_delivery: Peddler::Types::ServicesV1::ItemDelivery?, item_status: String?, order_id: String?, quantity: Integer?, title: String? }
+      end
+
+      class AvailabilityRecord < Data
+        def self.new: (end_time: String?, start_time: String?, ?capacity: Integer?, ?recurrence: Peddler::Types::ServicesV1::Recurrence?) -> Peddler::Types::ServicesV1::AvailabilityRecord
+                    | (String?, String?, Integer?, Peddler::Types::ServicesV1::Recurrence?) -> Peddler::Types::ServicesV1::AvailabilityRecord
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::AvailabilityRecord
+
+        attr_reader capacity: Integer?
+        attr_reader end_time: String?
+
+        attr_reader recurrence: Peddler::Types::ServicesV1::Recurrence?
+        attr_reader start_time: String?
+
+        def to_h: () -> { end_time: String?, start_time: String?, capacity: Integer?, recurrence: Peddler::Types::ServicesV1::Recurrence? }
+      end
+
+      class AvailabilityRecords < Array[AvailabilityRecord]
+        def self.parse: (Array[untyped]) -> AvailabilityRecords
+      end
+
+      class Buyer < Data
+        def self.new: (?buyer_id: String?, ?prime_member: bool?, ?name: String?, ?phone: String?) -> Peddler::Types::ServicesV1::Buyer
+                    | (String?, bool?, String?, String?) -> Peddler::Types::ServicesV1::Buyer
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Buyer
+
+        attr_reader buyer_id: String?
+
+        attr_reader name: String?
+        attr_reader phone: String?
+        attr_reader prime_member: bool?
+
+        def prime_member?: () -> bool
+        def to_h: () -> { buyer_id: String?, prime_member: bool?, name: String?, phone: String? }
+      end
+
+      class CancelReservationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CancelReservationResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CancelReservationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CancelReservationResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]? }
+      end
+
+      class CancelServiceJobByServiceJobIdResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CancelServiceJobByServiceJobIdResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CancelServiceJobByServiceJobIdResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CancelServiceJobByServiceJobIdResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]? }
+      end
+
+      class CompleteServiceJobByServiceJobIdResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CompleteServiceJobByServiceJobIdResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]? }
+      end
+
+      class CreateReservationRecord < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?reservation: Peddler::Types::ServicesV1::Reservation?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::CreateReservationRecord
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::Reservation?, Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::CreateReservationRecord
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CreateReservationRecord
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
+        attr_reader warnings: Array[Peddler::Types::ServicesV1::Warning]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, reservation: Peddler::Types::ServicesV1::Reservation?, warnings: Array[Peddler::Types::ServicesV1::Warning]? }
+      end
+
+      class CreateReservationRequest < Data
+        def self.new: (reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String?) -> Peddler::Types::ServicesV1::CreateReservationRequest
+                    | (Peddler::Types::ServicesV1::Reservation?, String?) -> Peddler::Types::ServicesV1::CreateReservationRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CreateReservationRequest
+
+        attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
+        attr_reader resource_id: String?
+
+        def to_h: () -> { reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String? }
+      end
+
+      class CreateReservationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::CreateReservationRecord?) -> Peddler::Types::ServicesV1::CreateReservationResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::CreateReservationRecord?) -> Peddler::Types::ServicesV1::CreateReservationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CreateReservationResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Peddler::Types::ServicesV1::CreateReservationRecord?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Peddler::Types::ServicesV1::CreateReservationRecord? }
+      end
+
+      class CreateServiceDocumentUploadDestination < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?) -> Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?) -> Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::CreateServiceDocumentUploadDestination
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Peddler::Types::ServicesV1::ServiceDocumentUploadDestination?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Peddler::Types::ServicesV1::ServiceDocumentUploadDestination? }
+      end
+
+      class DateTimeRange < Data
+        def self.new: (end_time: String?, start_time: String?) -> Peddler::Types::ServicesV1::DateTimeRange
+                    | (String?, String?) -> Peddler::Types::ServicesV1::DateTimeRange
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::DateTimeRange
+
+        attr_reader end_time: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { end_time: String?, start_time: String? }
+      end
+
+      class EncryptionDetails < Data
+        def self.new: (initialization_vector: String?, key: String?, standard: String?) -> Peddler::Types::ServicesV1::EncryptionDetails
+                    | (String?, String?, String?) -> Peddler::Types::ServicesV1::EncryptionDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::EncryptionDetails
+
+        attr_reader initialization_vector: String?
+        attr_reader key: String?
+        attr_reader standard: String?
+
+        def to_h: () -> { initialization_vector: String?, key: String?, standard: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?, ?error_level: String?) -> Peddler::Types::ServicesV1::Error
+                    | (String?, String?, String?, String?) -> Peddler::Types::ServicesV1::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader error_level: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String?, error_level: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class FixedSlot < Data
+        def self.new: (?available_capacity: Integer?, ?encumbered_capacity: Integer?, ?reserved_capacity: Integer?, ?scheduled_capacity: Integer?, ?start_date_time: String?) -> Peddler::Types::ServicesV1::FixedSlot
+                    | (Integer?, Integer?, Integer?, Integer?, String?) -> Peddler::Types::ServicesV1::FixedSlot
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FixedSlot
+
+        attr_reader available_capacity: Integer?
+        attr_reader encumbered_capacity: Integer?
+        attr_reader reserved_capacity: Integer?
+        attr_reader scheduled_capacity: Integer?
+        attr_reader start_date_time: String?
+
+        def to_h: () -> { available_capacity: Integer?, encumbered_capacity: Integer?, reserved_capacity: Integer?, scheduled_capacity: Integer?, start_date_time: String? }
+      end
+
+      class FixedSlotCapacity < Data
+        def self.new: (?capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, ?next_page_token: String?, ?resource_id: String?, ?slot_duration: Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
+                    | (Array[Peddler::Types::ServicesV1::FixedSlot]?, String?, String?, Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacity
+
+        attr_reader capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?
+        attr_reader next_page_token: String?
+        attr_reader resource_id: String?
+        attr_reader slot_duration: Float?
+
+        def to_h: () -> { capacities: Array[Peddler::Types::ServicesV1::FixedSlot]?, next_page_token: String?, resource_id: String?, slot_duration: Float? }
+      end
+
+      class FixedSlotCapacityErrors < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::FixedSlotCapacityErrors
+                    | (Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::FixedSlotCapacityErrors
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacityErrors
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]? }
+      end
+
+      class FixedSlotCapacityQuery < Data
+        def self.new: (end_date_time: String?, start_date_time: String?, ?capacity_types: Array[untyped]?, ?slot_duration: Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
+                    | (String?, String?, Array[untyped]?, Float?) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FixedSlotCapacityQuery
+
+        attr_reader capacity_types: Array[untyped]?
+        attr_reader end_date_time: String?
+
+        attr_reader slot_duration: Float?
+        attr_reader start_date_time: String?
+
+        def to_h: () -> { end_date_time: String?, start_date_time: String?, capacity_types: Array[untyped]?, slot_duration: Float? }
+      end
+
+      class FulfillmentDocument < Data
+        def self.new: (?content_sha256: String?, ?upload_destination_id: String?) -> Peddler::Types::ServicesV1::FulfillmentDocument
+                    | (String?, String?) -> Peddler::Types::ServicesV1::FulfillmentDocument
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FulfillmentDocument
+
+        attr_reader content_sha256: String?
+        attr_reader upload_destination_id: String?
+
+        def to_h: () -> { content_sha256: String?, upload_destination_id: String? }
+      end
+
+      class FulfillmentDocuments < Array[FulfillmentDocument]
+        def self.parse: (Array[untyped]) -> FulfillmentDocuments
+      end
+
+      class FulfillmentTime < Data
+        def self.new: (?end_time: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::FulfillmentTime
+                    | (String?, String?) -> Peddler::Types::ServicesV1::FulfillmentTime
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::FulfillmentTime
+
+        attr_reader end_time: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { end_time: String?, start_time: String? }
+      end
+
+      class GetAppointmentSlotsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::AppointmentSlotReport?) -> Peddler::Types::ServicesV1::GetAppointmentSlotsResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::AppointmentSlotReport?) -> Peddler::Types::ServicesV1::GetAppointmentSlotsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::GetAppointmentSlotsResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Peddler::Types::ServicesV1::AppointmentSlotReport?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Peddler::Types::ServicesV1::AppointmentSlotReport? }
+      end
+
+      class GetServiceJobByServiceJobIdResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::ServiceJob?) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::ServiceJob?) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::GetServiceJobByServiceJobIdResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Peddler::Types::ServicesV1::ServiceJob?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Peddler::Types::ServicesV1::ServiceJob? }
+      end
+
+      class GetServiceJobsResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::JobListing?) -> Peddler::Types::ServicesV1::GetServiceJobsResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::JobListing?) -> Peddler::Types::ServicesV1::GetServiceJobsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::GetServiceJobsResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Peddler::Types::ServicesV1::JobListing?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Peddler::Types::ServicesV1::JobListing? }
+      end
+
+      class ItemDelivery < Data
+        def self.new: (?estimated_delivery_date: String?, ?item_delivery_promise: Peddler::Types::ServicesV1::ItemDeliveryPromise?) -> Peddler::Types::ServicesV1::ItemDelivery
+                    | (String?, Peddler::Types::ServicesV1::ItemDeliveryPromise?) -> Peddler::Types::ServicesV1::ItemDelivery
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ItemDelivery
+
+        attr_reader estimated_delivery_date: String?
+        attr_reader item_delivery_promise: Peddler::Types::ServicesV1::ItemDeliveryPromise?
+
+        def to_h: () -> { estimated_delivery_date: String?, item_delivery_promise: Peddler::Types::ServicesV1::ItemDeliveryPromise? }
+      end
+
+      class ItemDeliveryPromise < Data
+        def self.new: (?end_time: String?, ?start_time: String?) -> Peddler::Types::ServicesV1::ItemDeliveryPromise
+                    | (String?, String?) -> Peddler::Types::ServicesV1::ItemDeliveryPromise
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ItemDeliveryPromise
+
+        attr_reader end_time: String?
+        attr_reader start_time: String?
+
+        def to_h: () -> { end_time: String?, start_time: String? }
+      end
+
+      class JobListing < Data
+        def self.new: (?jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?, ?next_page_token: String?, ?previous_page_token: String?, ?total_result_size: Integer?) -> Peddler::Types::ServicesV1::JobListing
+                    | (Array[Peddler::Types::ServicesV1::ServiceJob]?, String?, String?, Integer?) -> Peddler::Types::ServicesV1::JobListing
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::JobListing
+
+        attr_reader jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?
+        attr_reader next_page_token: String?
+        attr_reader previous_page_token: String?
+        attr_reader total_result_size: Integer?
+
+        def to_h: () -> { jobs: Array[Peddler::Types::ServicesV1::ServiceJob]?, next_page_token: String?, previous_page_token: String?, total_result_size: Integer? }
+      end
+
+      class Poa < Data
+        def self.new: (?appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, ?poa_type: String?, ?technicians: Array[Peddler::Types::ServicesV1::Technician]?, ?upload_time: String?, ?uploading_technician: String?) -> Peddler::Types::ServicesV1::Poa
+                    | (Peddler::Types::ServicesV1::AppointmentTime?, String?, Array[Peddler::Types::ServicesV1::Technician]?, String?, String?) -> Peddler::Types::ServicesV1::Poa
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Poa
+
+        attr_reader appointment_time: Peddler::Types::ServicesV1::AppointmentTime?
+        attr_reader poa_type: String?
+        attr_reader technicians: Array[Peddler::Types::ServicesV1::Technician]?
+        attr_reader upload_time: String?
+        attr_reader uploading_technician: String?
+
+        def to_h: () -> { appointment_time: Peddler::Types::ServicesV1::AppointmentTime?, poa_type: String?, technicians: Array[Peddler::Types::ServicesV1::Technician]?, upload_time: String?, uploading_technician: String? }
+      end
+
+      class RangeCapacity < Data
+        def self.new: (?capacity_type: String?, ?slots: Array[Peddler::Types::ServicesV1::RangeSlot]?) -> Peddler::Types::ServicesV1::RangeCapacity
+                    | (String?, Array[Peddler::Types::ServicesV1::RangeSlot]?) -> Peddler::Types::ServicesV1::RangeCapacity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::RangeCapacity
+
+        attr_reader capacity_type: String?
+        attr_reader slots: Array[Peddler::Types::ServicesV1::RangeSlot]?
+
+        def to_h: () -> { capacity_type: String?, slots: Array[Peddler::Types::ServicesV1::RangeSlot]? }
+      end
+
+      class RangeSlot < Data
+        def self.new: (?capacity: Integer?, ?end_date_time: String?, ?start_date_time: String?) -> Peddler::Types::ServicesV1::RangeSlot
+                    | (Integer?, String?, String?) -> Peddler::Types::ServicesV1::RangeSlot
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::RangeSlot
+
+        attr_reader capacity: Integer?
+        attr_reader end_date_time: String?
+        attr_reader start_date_time: String?
+
+        def to_h: () -> { capacity: Integer?, end_date_time: String?, start_date_time: String? }
+      end
+
+      class RangeSlotCapacity < Data
+        def self.new: (?capacities: Array[Peddler::Types::ServicesV1::RangeCapacity]?, ?next_page_token: String?, ?resource_id: String?) -> Peddler::Types::ServicesV1::RangeSlotCapacity
+                    | (Array[Peddler::Types::ServicesV1::RangeCapacity]?, String?, String?) -> Peddler::Types::ServicesV1::RangeSlotCapacity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::RangeSlotCapacity
+
+        attr_reader capacities: Array[Peddler::Types::ServicesV1::RangeCapacity]?
+        attr_reader next_page_token: String?
+        attr_reader resource_id: String?
+
+        def to_h: () -> { capacities: Array[Peddler::Types::ServicesV1::RangeCapacity]?, next_page_token: String?, resource_id: String? }
+      end
+
+      class RangeSlotCapacityErrors < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors
+                    | (Array[Peddler::Types::ServicesV1::Error]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::RangeSlotCapacityErrors
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]? }
+      end
+
+      class RangeSlotCapacityQuery < Data
+        def self.new: (end_date_time: String?, start_date_time: String?, ?capacity_types: Array[untyped]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityQuery
+                    | (String?, String?, Array[untyped]?) -> Peddler::Types::ServicesV1::RangeSlotCapacityQuery
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::RangeSlotCapacityQuery
+
+        attr_reader capacity_types: Array[untyped]?
+        attr_reader end_date_time: String?
+        attr_reader start_date_time: String?
+
+        def to_h: () -> { end_date_time: String?, start_date_time: String?, capacity_types: Array[untyped]? }
+      end
+
+      class Recurrence < Data
+        def self.new: (end_time: String?, ?days_of_month: Array[Integer]?, ?days_of_week: Array[untyped]?) -> Peddler::Types::ServicesV1::Recurrence
+                    | (String?, Array[Integer]?, Array[untyped]?) -> Peddler::Types::ServicesV1::Recurrence
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Recurrence
+
+        attr_reader days_of_month: Array[Integer]?
+        attr_reader days_of_week: Array[untyped]?
+        attr_reader end_time: String?
+
+        def to_h: () -> { end_time: String?, days_of_month: Array[Integer]?, days_of_week: Array[untyped]? }
+      end
+
+      class RescheduleAppointmentRequest < Data
+        def self.new: (appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?, reschedule_reason_code: String?) -> Peddler::Types::ServicesV1::RescheduleAppointmentRequest
+                    | (Peddler::Types::ServicesV1::AppointmentTimeInput?, String?) -> Peddler::Types::ServicesV1::RescheduleAppointmentRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::RescheduleAppointmentRequest
+
+        attr_reader appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?
+        attr_reader reschedule_reason_code: String?
+
+        def to_h: () -> { appointment_time: Peddler::Types::ServicesV1::AppointmentTimeInput?, reschedule_reason_code: String? }
+      end
+
+      class Reservation < Data
+        def self.new: (availability: Peddler::Types::ServicesV1::AvailabilityRecord?, type: String?, ?reservation_id: String?) -> Peddler::Types::ServicesV1::Reservation
+                    | (Peddler::Types::ServicesV1::AvailabilityRecord?, String?, String?) -> Peddler::Types::ServicesV1::Reservation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Reservation
+
+        attr_reader availability: Peddler::Types::ServicesV1::AvailabilityRecord?
+
+        attr_reader reservation_id: String?
+        attr_reader type: String?
+
+        def to_h: () -> { availability: Peddler::Types::ServicesV1::AvailabilityRecord?, type: String?, reservation_id: String? }
+      end
+
+      class ScopeOfWork < Data
+        def self.new: (?asin: String?, ?quantity: Integer?, ?required_skills: Array[String]?, ?title: String?) -> Peddler::Types::ServicesV1::ScopeOfWork
+                    | (String?, Integer?, Array[String]?, String?) -> Peddler::Types::ServicesV1::ScopeOfWork
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ScopeOfWork
+
+        attr_reader asin: String?
+        attr_reader quantity: Integer?
+        attr_reader required_skills: Array[String]?
+        attr_reader title: String?
+
+        def to_h: () -> { asin: String?, quantity: Integer?, required_skills: Array[String]?, title: String? }
+      end
+
+      class Seller < Data
+        def self.new: (?seller_id: String?) -> Peddler::Types::ServicesV1::Seller
+                    | (String?) -> Peddler::Types::ServicesV1::Seller
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Seller
+
+        attr_reader seller_id: String?
+
+        def to_h: () -> { seller_id: String? }
+      end
+
+      class ServiceDocumentUploadDestination < Data
+        def self.new: (encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?, upload_destination_id: String?, url: String?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ServicesV1::ServiceDocumentUploadDestination
+                    | (Peddler::Types::ServicesV1::EncryptionDetails?, String?, String?, Hash[untyped, untyped]?) -> Peddler::Types::ServicesV1::ServiceDocumentUploadDestination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ServiceDocumentUploadDestination
+
+        attr_reader encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?
+
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader upload_destination_id: String?
+        attr_reader url: String?
+
+        def to_h: () -> { encryption_details: Peddler::Types::ServicesV1::EncryptionDetails?, upload_destination_id: String?, url: String?, headers: Hash[untyped, untyped]? }
+      end
+
+      class ServiceJob < Data
+        def self.new: (?appointments: Array[Peddler::Types::ServicesV1::Appointment]?, ?associated_items: Array[Peddler::Types::ServicesV1::AssociatedItem]?, ?buyer: Peddler::Types::ServicesV1::Buyer?, ?create_time: String?, ?marketplace_id: String?, ?preferred_appointment_times: Array[Peddler::Types::ServicesV1::AppointmentTime]?, ?scope_of_work: Peddler::Types::ServicesV1::ScopeOfWork?, ?seller: Peddler::Types::ServicesV1::Seller?, ?service_job_id: String?, ?service_job_provider: Peddler::Types::ServicesV1::ServiceJobProvider?, ?service_job_status: String?, ?service_location: Peddler::Types::ServicesV1::ServiceLocation?, ?service_order_id: String?, ?store_id: String?) -> Peddler::Types::ServicesV1::ServiceJob
+                    | (Array[Peddler::Types::ServicesV1::Appointment]?, Array[Peddler::Types::ServicesV1::AssociatedItem]?, Peddler::Types::ServicesV1::Buyer?, String?, String?, Array[Peddler::Types::ServicesV1::AppointmentTime]?, Peddler::Types::ServicesV1::ScopeOfWork?, Peddler::Types::ServicesV1::Seller?, String?, Peddler::Types::ServicesV1::ServiceJobProvider?, String?, Peddler::Types::ServicesV1::ServiceLocation?, String?, String?) -> Peddler::Types::ServicesV1::ServiceJob
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ServiceJob
+
+        attr_reader appointments: Array[Peddler::Types::ServicesV1::Appointment]?
+        attr_reader associated_items: Array[Peddler::Types::ServicesV1::AssociatedItem]?
+        attr_reader buyer: Peddler::Types::ServicesV1::Buyer?
+        attr_reader create_time: String?
+        attr_reader marketplace_id: String?
+        attr_reader preferred_appointment_times: Array[Peddler::Types::ServicesV1::AppointmentTime]?
+        attr_reader scope_of_work: Peddler::Types::ServicesV1::ScopeOfWork?
+        attr_reader seller: Peddler::Types::ServicesV1::Seller?
+        attr_reader service_job_id: String?
+        attr_reader service_job_provider: Peddler::Types::ServicesV1::ServiceJobProvider?
+        attr_reader service_job_status: String?
+        attr_reader service_location: Peddler::Types::ServicesV1::ServiceLocation?
+        attr_reader service_order_id: String?
+        attr_reader store_id: String?
+
+        def to_h: () -> { appointments: Array[Peddler::Types::ServicesV1::Appointment]?, associated_items: Array[Peddler::Types::ServicesV1::AssociatedItem]?, buyer: Peddler::Types::ServicesV1::Buyer?, create_time: String?, marketplace_id: String?, preferred_appointment_times: Array[Peddler::Types::ServicesV1::AppointmentTime]?, scope_of_work: Peddler::Types::ServicesV1::ScopeOfWork?, seller: Peddler::Types::ServicesV1::Seller?, service_job_id: String?, service_job_provider: Peddler::Types::ServicesV1::ServiceJobProvider?, service_job_status: String?, service_location: Peddler::Types::ServicesV1::ServiceLocation?, service_order_id: String?, store_id: String? }
+      end
+
+      class ServiceJobProvider < Data
+        def self.new: (?service_job_provider_id: String?) -> Peddler::Types::ServicesV1::ServiceJobProvider
+                    | (String?) -> Peddler::Types::ServicesV1::ServiceJobProvider
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ServiceJobProvider
+
+        attr_reader service_job_provider_id: String?
+
+        def to_h: () -> { service_job_provider_id: String? }
+      end
+
+      class ServiceLocation < Data
+        def self.new: (?address: Peddler::Types::ServicesV1::Address?, ?service_location_type: String?) -> Peddler::Types::ServicesV1::ServiceLocation
+                    | (Peddler::Types::ServicesV1::Address?, String?) -> Peddler::Types::ServicesV1::ServiceLocation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ServiceLocation
+
+        attr_reader address: Peddler::Types::ServicesV1::Address?
+        attr_reader service_location_type: String?
+
+        def to_h: () -> { address: Peddler::Types::ServicesV1::Address?, service_location_type: String? }
+      end
+
+      class ServiceUploadDocument < Data
+        def self.new: (content_length: Float?, content_type: String?, ?content_md5: String?) -> Peddler::Types::ServicesV1::ServiceUploadDocument
+                    | (Float?, String?, String?) -> Peddler::Types::ServicesV1::ServiceUploadDocument
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::ServiceUploadDocument
+
+        attr_reader content_length: Float?
+
+        attr_reader content_md5: String?
+        attr_reader content_type: String?
+
+        def to_h: () -> { content_length: Float?, content_type: String?, content_md5: String? }
+      end
+
+      class SetAppointmentFulfillmentDataRequest < Data
+        def self.new: (?appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, ?estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, ?fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?, ?fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
+                    | (Array[Peddler::Types::ServicesV1::AppointmentResource]?, Peddler::Types::ServicesV1::DateTimeRange?, Array[Peddler::Types::ServicesV1::FulfillmentDocument]?, Peddler::Types::ServicesV1::FulfillmentTime?) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::SetAppointmentFulfillmentDataRequest
+
+        attr_reader appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?
+        attr_reader estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?
+        attr_reader fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?
+        attr_reader fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime?
+
+        def to_h: () -> { appointment_resources: Array[Peddler::Types::ServicesV1::AppointmentResource]?, estimated_arrival_time: Peddler::Types::ServicesV1::DateTimeRange?, fulfillment_documents: Array[Peddler::Types::ServicesV1::FulfillmentDocument]?, fulfillment_time: Peddler::Types::ServicesV1::FulfillmentTime? }
+      end
+
+      class SetAppointmentResponse < Data
+        def self.new: (?appointment_id: String?, ?errors: Array[Peddler::Types::ServicesV1::Error]?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
+                    | (String?, Array[Peddler::Types::ServicesV1::Error]?, Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::SetAppointmentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::SetAppointmentResponse
+
+        attr_reader appointment_id: String?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader warnings: Array[Peddler::Types::ServicesV1::Warning]?
+
+        def to_h: () -> { appointment_id: String?, errors: Array[Peddler::Types::ServicesV1::Error]?, warnings: Array[Peddler::Types::ServicesV1::Warning]? }
+      end
+
+      class Technician < Data
+        def self.new: (?name: String?, ?technician_id: String?) -> Peddler::Types::ServicesV1::Technician
+                    | (String?, String?) -> Peddler::Types::ServicesV1::Technician
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Technician
+
+        attr_reader name: String?
+        attr_reader technician_id: String?
+
+        def to_h: () -> { name: String?, technician_id: String? }
+      end
+
+      class UpdateReservationRecord < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?reservation: Peddler::Types::ServicesV1::Reservation?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::UpdateReservationRecord
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::Reservation?, Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::UpdateReservationRecord
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateReservationRecord
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
+        attr_reader warnings: Array[Peddler::Types::ServicesV1::Warning]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, reservation: Peddler::Types::ServicesV1::Reservation?, warnings: Array[Peddler::Types::ServicesV1::Warning]? }
+      end
+
+      class UpdateReservationRequest < Data
+        def self.new: (reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
+                    | (Peddler::Types::ServicesV1::Reservation?, String?) -> Peddler::Types::ServicesV1::UpdateReservationRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateReservationRequest
+
+        attr_reader reservation: Peddler::Types::ServicesV1::Reservation?
+        attr_reader resource_id: String?
+
+        def to_h: () -> { reservation: Peddler::Types::ServicesV1::Reservation?, resource_id: String? }
+      end
+
+      class UpdateReservationResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Peddler::Types::ServicesV1::UpdateReservationRecord?) -> Peddler::Types::ServicesV1::UpdateReservationResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Peddler::Types::ServicesV1::UpdateReservationRecord?) -> Peddler::Types::ServicesV1::UpdateReservationResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateReservationResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Peddler::Types::ServicesV1::UpdateReservationRecord?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Peddler::Types::ServicesV1::UpdateReservationRecord? }
+      end
+
+      class UpdateScheduleRecord < Data
+        def self.new: (?availability: Peddler::Types::ServicesV1::AvailabilityRecord?, ?errors: Array[Peddler::Types::ServicesV1::Error]?, ?warnings: Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::UpdateScheduleRecord
+                    | (Peddler::Types::ServicesV1::AvailabilityRecord?, Array[Peddler::Types::ServicesV1::Error]?, Array[Peddler::Types::ServicesV1::Warning]?) -> Peddler::Types::ServicesV1::UpdateScheduleRecord
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateScheduleRecord
+
+        attr_reader availability: Peddler::Types::ServicesV1::AvailabilityRecord?
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader warnings: Array[Peddler::Types::ServicesV1::Warning]?
+
+        def to_h: () -> { availability: Peddler::Types::ServicesV1::AvailabilityRecord?, errors: Array[Peddler::Types::ServicesV1::Error]?, warnings: Array[Peddler::Types::ServicesV1::Warning]? }
+      end
+
+      class UpdateScheduleRequest < Data
+        def self.new: (schedules: Array[Peddler::Types::ServicesV1::AvailabilityRecord]?) -> Peddler::Types::ServicesV1::UpdateScheduleRequest
+                    | (Array[Peddler::Types::ServicesV1::AvailabilityRecord]?) -> Peddler::Types::ServicesV1::UpdateScheduleRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateScheduleRequest
+
+        attr_reader schedules: Array[Peddler::Types::ServicesV1::AvailabilityRecord]?
+
+        def to_h: () -> { schedules: Array[Peddler::Types::ServicesV1::AvailabilityRecord]? }
+      end
+
+      class UpdateScheduleResponse < Data
+        def self.new: (?errors: Array[Peddler::Types::ServicesV1::Error]?, ?payload: Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?) -> Peddler::Types::ServicesV1::UpdateScheduleResponse
+                    | (Array[Peddler::Types::ServicesV1::Error]?, Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?) -> Peddler::Types::ServicesV1::UpdateScheduleResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::UpdateScheduleResponse
+
+        attr_reader errors: Array[Peddler::Types::ServicesV1::Error]?
+        attr_reader payload: Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ServicesV1::Error]?, payload: Array[Peddler::Types::ServicesV1::UpdateScheduleRecord]? }
+      end
+
+      class Warning < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ServicesV1::Warning
+                    | (String?, String?, String?) -> Peddler::Types::ServicesV1::Warning
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ServicesV1::Warning
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class WarningList < Array[Warning]
+        def self.parse: (Array[untyped]) -> WarningList
+      end
+    end
+  end
+end

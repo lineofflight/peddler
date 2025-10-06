@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class AccessPointList < Array[AccessPoint]
-        def self.parse: (Array[untyped]) -> AccessPointList
-      end
-    end
-  end
-end

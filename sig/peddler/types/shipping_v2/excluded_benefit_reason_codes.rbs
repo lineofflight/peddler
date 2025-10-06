@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class ExcludedBenefitReasonCodes < Array[untyped]
-        def self.parse: (Array[untyped]) -> ExcludedBenefitReasonCodes
-      end
-    end
-  end
-end

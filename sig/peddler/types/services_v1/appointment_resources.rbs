@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ServicesV1
-      class AppointmentResources < Array[AppointmentResource]
-        def self.parse: (Array[untyped]) -> AppointmentResources
-      end
-    end
-  end
-end

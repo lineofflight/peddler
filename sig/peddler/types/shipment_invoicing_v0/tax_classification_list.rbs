@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShipmentInvoicingV0
-      class TaxClassificationList < Array[TaxClassification]
-        def self.parse: (Array[untyped]) -> TaxClassificationList
-      end
-    end
-  end
-end

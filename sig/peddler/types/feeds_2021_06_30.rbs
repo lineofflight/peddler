@@ -1,0 +1,127 @@
+module Peddler
+  module Types
+    module Feeds20210630
+      class CreateFeedDocumentResponse < Data
+        def self.new: (feed_document_id: String?, url: String?) -> Peddler::Types::Feeds20210630::CreateFeedDocumentResponse
+                    | (String?, String?) -> Peddler::Types::Feeds20210630::CreateFeedDocumentResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::CreateFeedDocumentResponse
+
+        attr_reader feed_document_id: String?
+        attr_reader url: String?
+
+        def to_h: () -> { feed_document_id: String?, url: String? }
+      end
+
+      class CreateFeedDocumentSpecification < Data
+        def self.new: (content_type: String?) -> Peddler::Types::Feeds20210630::CreateFeedDocumentSpecification
+                    | (String?) -> Peddler::Types::Feeds20210630::CreateFeedDocumentSpecification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::CreateFeedDocumentSpecification
+
+        attr_reader content_type: String?
+
+        def to_h: () -> { content_type: String? }
+      end
+
+      class CreateFeedResponse < Data
+        def self.new: (feed_id: String?) -> Peddler::Types::Feeds20210630::CreateFeedResponse
+                    | (String?) -> Peddler::Types::Feeds20210630::CreateFeedResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::CreateFeedResponse
+
+        attr_reader feed_id: String?
+
+        def to_h: () -> { feed_id: String? }
+      end
+
+      class CreateFeedSpecification < Data
+        def self.new: (feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, ?feed_options: Hash[untyped, untyped]?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
+                    | (String?, String?, Array[String]?, Hash[untyped, untyped]?) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::CreateFeedSpecification
+
+        attr_reader feed_options: Hash[untyped, untyped]?
+        attr_reader feed_type: String?
+        attr_reader input_feed_document_id: String?
+        attr_reader marketplace_ids: Array[String]?
+
+        def to_h: () -> { feed_type: String?, input_feed_document_id: String?, marketplace_ids: Array[String]?, feed_options: Hash[untyped, untyped]? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Feeds20210630::Error
+                    | (String?, String?, String?) -> Peddler::Types::Feeds20210630::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::Feeds20210630::Error]?) -> Peddler::Types::Feeds20210630::ErrorList
+                    | (Array[Peddler::Types::Feeds20210630::Error]?) -> Peddler::Types::Feeds20210630::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::Feeds20210630::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::Feeds20210630::Error]? }
+      end
+
+      class Feed < Data
+        def self.new: (created_time: String?, feed_id: String?, feed_type: String?, processing_status: String?, ?marketplace_ids: Array[String]?, ?processing_end_time: String?, ?processing_start_time: String?, ?result_feed_document_id: String?) -> Peddler::Types::Feeds20210630::Feed
+                    | (String?, String?, String?, String?, Array[String]?, String?, String?, String?) -> Peddler::Types::Feeds20210630::Feed
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::Feed
+
+        attr_reader created_time: String?
+        attr_reader feed_id: String?
+        attr_reader feed_type: String?
+
+        attr_reader marketplace_ids: Array[String]?
+        attr_reader processing_end_time: String?
+        attr_reader processing_start_time: String?
+        attr_reader processing_status: String?
+
+        attr_reader result_feed_document_id: String?
+
+        def to_h: () -> { created_time: String?, feed_id: String?, feed_type: String?, processing_status: String?, marketplace_ids: Array[String]?, processing_end_time: String?, processing_start_time: String?, result_feed_document_id: String? }
+      end
+
+      class FeedDocument < Data
+        def self.new: (feed_document_id: String?, url: String?, ?compression_algorithm: String?) -> Peddler::Types::Feeds20210630::FeedDocument
+                    | (String?, String?, String?) -> Peddler::Types::Feeds20210630::FeedDocument
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::FeedDocument
+
+        attr_reader compression_algorithm: String?
+        attr_reader feed_document_id: String?
+        attr_reader url: String?
+
+        def to_h: () -> { feed_document_id: String?, url: String?, compression_algorithm: String? }
+      end
+
+      class FeedList < Array[Feed]
+        def self.parse: (Array[untyped]) -> FeedList
+      end
+
+      class GetFeedsResponse < Data
+        def self.new: (feeds: Array[Peddler::Types::Feeds20210630::Feed]?, ?next_token: String?) -> Peddler::Types::Feeds20210630::GetFeedsResponse
+                    | (Array[Peddler::Types::Feeds20210630::Feed]?, String?) -> Peddler::Types::Feeds20210630::GetFeedsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Feeds20210630::GetFeedsResponse
+
+        attr_reader feeds: Array[Peddler::Types::Feeds20210630::Feed]?
+        attr_reader next_token: String?
+
+        def to_h: () -> { feeds: Array[Peddler::Types::Feeds20210630::Feed]?, next_token: String? }
+      end
+    end
+  end
+end

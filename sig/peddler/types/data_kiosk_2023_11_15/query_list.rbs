@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module DataKiosk20231115
-      class QueryList < Array[Query]
-        def self.parse: (Array[untyped]) -> QueryList
-      end
-    end
-  end
-end

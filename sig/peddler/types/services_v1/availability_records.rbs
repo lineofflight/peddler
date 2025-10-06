@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ServicesV1
-      class AvailabilityRecords < Array[AvailabilityRecord]
-        def self.parse: (Array[untyped]) -> AvailabilityRecords
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class SAFETReimbursementItemList < Array[SAFETReimbursementItem]
-        def self.parse: (Array[untyped]) -> SAFETReimbursementItemList
-      end
-    end
-  end
-end

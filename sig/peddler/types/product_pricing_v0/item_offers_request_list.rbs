@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ProductPricingV0
-      class ItemOffersRequestList < Array[ItemOffersRequest]
-        def self.parse: (Array[untyped]) -> ItemOffersRequestList
-      end
-    end
-  end
-end

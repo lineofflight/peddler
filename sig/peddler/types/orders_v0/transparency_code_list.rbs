@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module OrdersV0
-      class TransparencyCodeList < Array[untyped]
-        def self.parse: (Array[untyped]) -> TransparencyCodeList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class UnmanifestedShipmentLocationList < Array[UnmanifestedShipmentLocation]
-        def self.parse: (Array[untyped]) -> UnmanifestedShipmentLocationList
-      end
-    end
-  end
-end

@@ -1,0 +1,115 @@
+module Peddler
+  module Types
+    module Vehicles20241101
+      class EngineOutput < Data
+        def self.new: (unit: String?, value: Float?) -> Peddler::Types::Vehicles20241101::EngineOutput
+                    | (String?, Float?) -> Peddler::Types::Vehicles20241101::EngineOutput
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::EngineOutput
+
+        attr_reader unit: String?
+        attr_reader value: Float?
+
+        def to_h: () -> { unit: String?, value: Float? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Vehicles20241101::Error
+                    | (String?, String?, String?) -> Peddler::Types::Vehicles20241101::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::Vehicles20241101::Error]?) -> Peddler::Types::Vehicles20241101::ErrorList
+                    | (Array[Peddler::Types::Vehicles20241101::Error]?) -> Peddler::Types::Vehicles20241101::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::Vehicles20241101::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::Vehicles20241101::Error]? }
+      end
+
+      class MonthAndYear < Data
+        def self.new: (?month: Float?, ?year: Float?) -> Peddler::Types::Vehicles20241101::MonthAndYear
+                    | (Float?, Float?) -> Peddler::Types::Vehicles20241101::MonthAndYear
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::MonthAndYear
+
+        attr_reader month: Float?
+        attr_reader year: Float?
+
+        def to_h: () -> { month: Float?, year: Float? }
+      end
+
+      class Pagination < Data
+        def self.new: (?next_token: String?, ?previous_token: String?) -> Peddler::Types::Vehicles20241101::Pagination
+                    | (String?, String?) -> Peddler::Types::Vehicles20241101::Pagination
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::Pagination
+
+        attr_reader next_token: String?
+        attr_reader previous_token: String?
+
+        def to_h: () -> { next_token: String?, previous_token: String? }
+      end
+
+      class Vehicle < Data
+        def self.new: (identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, ?body_style: String?, ?drive_type: String?, ?energy: String?, ?engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, ?last_processed_date: String?, ?manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, ?manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, ?status: String?, ?variant_name: String?) -> Peddler::Types::Vehicles20241101::Vehicle
+                    | (Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?, String?, String?, String?, String?, String?, Array[Peddler::Types::Vehicles20241101::EngineOutput]?, String?, Peddler::Types::Vehicles20241101::MonthAndYear?, Peddler::Types::Vehicles20241101::MonthAndYear?, String?, String?) -> Peddler::Types::Vehicles20241101::Vehicle
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::Vehicle
+
+        attr_reader body_style: String?
+        attr_reader drive_type: String?
+        attr_reader energy: String?
+        attr_reader engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?
+        attr_reader identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?
+
+        attr_reader last_processed_date: String?
+        attr_reader make: String?
+
+        attr_reader manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?
+        attr_reader manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?
+        attr_reader model: String?
+
+        attr_reader status: String?
+        attr_reader variant_name: String?
+
+        def to_h: () -> { identifiers: Array[Peddler::Types::Vehicles20241101::VehicleIdentifiers]?, make: String?, model: String?, body_style: String?, drive_type: String?, energy: String?, engine_output: Array[Peddler::Types::Vehicles20241101::EngineOutput]?, last_processed_date: String?, manufacturing_start_date: Peddler::Types::Vehicles20241101::MonthAndYear?, manufacturing_stop_date: Peddler::Types::Vehicles20241101::MonthAndYear?, status: String?, variant_name: String? }
+      end
+
+      class VehicleIdentifiers < Data
+        def self.new: (standard: String?, value: String?) -> Peddler::Types::Vehicles20241101::VehicleIdentifiers
+                    | (String?, String?) -> Peddler::Types::Vehicles20241101::VehicleIdentifiers
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::VehicleIdentifiers
+
+        attr_reader standard: String?
+        attr_reader value: String?
+
+        def to_h: () -> { standard: String?, value: String? }
+      end
+
+      class VehiclesResponse < Data
+        def self.new: (vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?, ?pagination: Peddler::Types::Vehicles20241101::Pagination?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
+                    | (Array[Peddler::Types::Vehicles20241101::Vehicle]?, Peddler::Types::Vehicles20241101::Pagination?) -> Peddler::Types::Vehicles20241101::VehiclesResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Vehicles20241101::VehiclesResponse
+
+        attr_reader pagination: Peddler::Types::Vehicles20241101::Pagination?
+        attr_reader vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?
+
+        def to_h: () -> { vehicles: Array[Peddler::Types::Vehicles20241101::Vehicle]?, pagination: Peddler::Types::Vehicles20241101::Pagination? }
+      end
+    end
+  end
+end

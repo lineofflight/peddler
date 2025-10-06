@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class FeeComponentList < Array[FeeComponent]
-        def self.parse: (Array[untyped]) -> FeeComponentList
-      end
-    end
-  end
-end

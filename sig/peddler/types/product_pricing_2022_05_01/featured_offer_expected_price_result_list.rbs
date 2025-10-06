@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ProductPricing20220501
-      class FeaturedOfferExpectedPriceResultList < Array[FeaturedOfferExpectedPriceResult]
-        def self.parse: (Array[untyped]) -> FeaturedOfferExpectedPriceResultList
-      end
-    end
-  end
-end

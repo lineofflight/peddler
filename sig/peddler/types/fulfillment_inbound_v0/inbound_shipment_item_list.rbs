@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentInboundV0
-      class InboundShipmentItemList < Array[InboundShipmentItem]
-        def self.parse: (Array[untyped]) -> InboundShipmentItemList
-      end
-    end
-  end
-end

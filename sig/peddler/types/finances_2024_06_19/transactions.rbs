@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module Finances20240619
-      class Transactions < Array[Transaction]
-        def self.parse: (Array[untyped]) -> Transactions
-      end
-    end
-  end
-end

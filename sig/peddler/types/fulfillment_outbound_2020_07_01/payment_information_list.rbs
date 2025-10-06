@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class PaymentInformationList < Array[PaymentInformation]
-        def self.parse: (Array[untyped]) -> PaymentInformationList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module SupplySources20200701
-      class OperatingHours < Array[OperatingHour]
-        def self.parse: (Array[untyped]) -> OperatingHours
-      end
-    end
-  end
-end

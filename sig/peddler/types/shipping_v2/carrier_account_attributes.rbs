@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class CarrierAccountAttributes < Array[CarrierAccountAttribute]
-        def self.parse: (Array[untyped]) -> CarrierAccountAttributes
-      end
-    end
-  end
-end

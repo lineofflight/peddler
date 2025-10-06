@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class Constraints < Array[Constraint]
-        def self.parse: (Array[untyped]) -> Constraints
-      end
-    end
-  end
-end

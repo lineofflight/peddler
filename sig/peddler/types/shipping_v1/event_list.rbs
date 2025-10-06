@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV1
-      class EventList < Array[Event]
-        def self.parse: (Array[untyped]) -> EventList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module NotificationsV1
-      class MarketplaceIds < Array[untyped]
-        def self.parse: (Array[untyped]) -> MarketplaceIds
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module Finances20240619
-      class RelatedIdentifiers < Array[RelatedIdentifier]
-        def self.parse: (Array[untyped]) -> RelatedIdentifiers
-      end
-    end
-  end
-end

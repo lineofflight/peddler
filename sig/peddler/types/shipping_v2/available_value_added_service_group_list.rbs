@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class AvailableValueAddedServiceGroupList < Array[AvailableValueAddedServiceGroup]
-        def self.parse: (Array[untyped]) -> AvailableValueAddedServiceGroupList
-      end
-    end
-  end
-end

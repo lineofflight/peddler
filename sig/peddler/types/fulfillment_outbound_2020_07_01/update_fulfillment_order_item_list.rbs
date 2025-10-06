@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class UpdateFulfillmentOrderItemList < Array[UpdateFulfillmentOrderItem]
-        def self.parse: (Array[untyped]) -> UpdateFulfillmentOrderItemList
-      end
-    end
-  end
-end

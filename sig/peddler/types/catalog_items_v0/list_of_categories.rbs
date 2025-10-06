@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module CatalogItemsV0
-      class ListOfCategories < Array[Categories]
-        def self.parse: (Array[untyped]) -> ListOfCategories
-      end
-    end
-  end
-end

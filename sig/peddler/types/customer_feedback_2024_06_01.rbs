@@ -1,0 +1,510 @@
+module Peddler
+  module Types
+    module CustomerFeedback20240601
+      class BrowseNodeAllOccurrence < Data
+        def self.new: (all_products: Float?, top_twenty_five_percent_products: Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence
+                    | (Float?, Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence
+
+        attr_reader all_products: Float?
+        attr_reader top_twenty_five_percent_products: Float?
+
+        def to_h: () -> { all_products: Float?, top_twenty_five_percent_products: Float? }
+      end
+
+      class BrowseNodeAllStarRatingImpact < Data
+        def self.new: (all_products: Float?, top_twenty_five_percent_products: Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+                    | (Float?, Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact
+
+        attr_reader all_products: Float?
+        attr_reader top_twenty_five_percent_products: Float?
+
+        def to_h: () -> { all_products: Float?, top_twenty_five_percent_products: Float? }
+      end
+
+      class BrowseNodeOccurrence < Data
+        def self.new: (all_products: Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence
+                    | (Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence
+
+        attr_reader all_products: Float?
+
+        def to_h: () -> { all_products: Float? }
+      end
+
+      class BrowseNodeResponse < Data
+        def self.new: (browse_node_id: String?, display_name: String?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeResponse
+                    | (String?, String?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeResponse
+
+        attr_reader browse_node_id: String?
+        attr_reader display_name: String?
+
+        def to_h: () -> { browse_node_id: String?, display_name: String? }
+      end
+
+      class BrowseNodeReturnTopics < Data
+        def self.new: (browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, topic: String?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, String?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics
+
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?
+        attr_reader topic: String?
+
+        def to_h: () -> { browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, topic: String? }
+      end
+
+      class BrowseNodeReturnTopicsResponse < Data
+        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+                    | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopicsResponse
+
+        attr_reader browse_node_id: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader display_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]?
+
+        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTopics]? }
+      end
+
+      class BrowseNodeReturnTrend < Data
+        def self.new: (topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend
+                    | (String?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend
+
+        attr_reader topic: String?
+        attr_reader trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]?
+
+        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint]? }
+      end
+
+      class BrowseNodeReturnTrendPoint < Data
+        def self.new: (browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::Types::CustomerFeedback20240601::DateRange?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendPoint
+
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+
+        def to_h: () -> { browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange? }
+      end
+
+      class BrowseNodeReturnTrendsResponse < Data
+        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, return_trends: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+                    | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrendsResponse
+
+        attr_reader browse_node_id: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader display_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader return_trends: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend]?
+
+        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, return_trends: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReturnTrend]? }
+      end
+
+      class BrowseNodeReviewSubtopicMetrics < Data
+        def self.new: (occurrence_percentage: Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+                    | (Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics
+
+        attr_reader occurrence_percentage: Float?
+
+        def to_h: () -> { occurrence_percentage: Float? }
+      end
+
+      class BrowseNodeReviewTopic < Data
+        def self.new: (browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, String?, Array[String]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic
+
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?
+
+        attr_reader review_snippets: Array[String]?
+        attr_reader subtopics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]?
+        attr_reader topic: String?
+
+        def to_h: () -> { browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics?, topic: String?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic]? }
+      end
+
+      class BrowseNodeReviewTopicMetrics < Data
+        def self.new: (?occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, ?star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicMetrics
+
+        attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?
+        attr_reader star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact?
+
+        def to_h: () -> { occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?, star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllStarRatingImpact? }
+      end
+
+      class BrowseNodeReviewTopics < Data
+        def self.new: (?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?, ?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics
+                    | (Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics
+
+        attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?
+        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?
+
+        def to_h: () -> { negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]?, positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopic]? }
+      end
+
+      class BrowseNodeReviewTopicsResponse < Data
+        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+                    | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopicsResponse
+
+        attr_reader browse_node_id: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader display_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader topics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics?
+
+        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, topics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTopics? }
+      end
+
+      class BrowseNodeReviewTrend < Data
+        def self.new: (topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend
+                    | (String?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend
+
+        attr_reader topic: String?
+        attr_reader trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]?
+
+        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint]? }
+      end
+
+      class BrowseNodeReviewTrendMetrics < Data
+        def self.new: (occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics
+
+        attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence?
+
+        def to_h: () -> { occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeAllOccurrence? }
+      end
+
+      class BrowseNodeReviewTrendPoint < Data
+        def self.new: (browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, Peddler::Types::CustomerFeedback20240601::DateRange?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendPoint
+
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+
+        def to_h: () -> { browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange? }
+      end
+
+      class BrowseNodeReviewTrends < Data
+        def self.new: (?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, ?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
+                    | (Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends
+
+        attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?
+        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?
+
+        def to_h: () -> { negative_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]?, positive_topics: Array[Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrend]? }
+      end
+
+      class BrowseNodeReviewTrendsResponse < Data
+        def self.new: (browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, review_trends: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+                    | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrendsResponse
+
+        attr_reader browse_node_id: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader display_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader review_trends: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends?
+
+        def to_h: () -> { browse_node_id: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, display_name: String?, marketplace_id: String?, review_trends: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewTrends? }
+      end
+
+      class BrowseNodeStarRatingImpact < Data
+        def self.new: (all_products: Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+                    | (Float?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact
+
+        attr_reader all_products: Float?
+
+        def to_h: () -> { all_products: Float? }
+      end
+
+      class BrowseNodeSubtopic < Data
+        def self.new: (metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeSubtopic
+
+        attr_reader metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?
+
+        attr_reader review_snippets: Array[String]?
+        attr_reader subtopic: String?
+
+        def to_h: () -> { metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeReviewSubtopicMetrics?, subtopic: String?, review_snippets: Array[String]? }
+      end
+
+      class BrowseNodeTrendMetrics < Data
+        def self.new: (occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics
+
+        attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?
+
+        def to_h: () -> { occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence? }
+      end
+
+      class ChildAsinMentionMetrics < Data
+        def self.new: (asin: String?, number_of_mentions: Integer?) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics
+                    | (String?, Integer?) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics
+
+        attr_reader asin: String?
+        attr_reader number_of_mentions: Integer?
+
+        def to_h: () -> { asin: String?, number_of_mentions: Integer? }
+      end
+
+      class ChildAsinMetrics < Data
+        def self.new: (?least_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?, ?most_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
+                    | (Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?, Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics
+
+        attr_reader least_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?
+        attr_reader most_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?
+
+        def to_h: () -> { least_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics?, most_mentions: Peddler::Types::CustomerFeedback20240601::ChildAsinMentionMetrics? }
+      end
+
+      class DateRange < Data
+        def self.new: (end_date: String?, start_date: String?) -> Peddler::Types::CustomerFeedback20240601::DateRange
+                    | (String?, String?) -> Peddler::Types::CustomerFeedback20240601::DateRange
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::DateRange
+
+        attr_reader end_date: String?
+        attr_reader start_date: String?
+
+        def to_h: () -> { end_date: String?, start_date: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::CustomerFeedback20240601::Error
+                    | (String?, String?, String?) -> Peddler::Types::CustomerFeedback20240601::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::CustomerFeedback20240601::Error]?) -> Peddler::Types::CustomerFeedback20240601::ErrorList
+                    | (Array[Peddler::Types::CustomerFeedback20240601::Error]?) -> Peddler::Types::CustomerFeedback20240601::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::CustomerFeedback20240601::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::CustomerFeedback20240601::Error]? }
+      end
+
+      class ItemReviewBrowseNodeMetrics < Data
+        def self.new: (?occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?, ?star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics
+                    | (Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?, Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics
+
+        attr_reader occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?
+        attr_reader star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact?
+
+        def to_h: () -> { occurrence_percentage: Peddler::Types::CustomerFeedback20240601::BrowseNodeOccurrence?, star_rating_impact: Peddler::Types::CustomerFeedback20240601::BrowseNodeStarRatingImpact? }
+      end
+
+      class ItemReviewSubtopic < Data
+        def self.new: (metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, ?review_snippets: Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
+                    | (Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, String?, Array[String]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic
+
+        attr_reader metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?
+
+        attr_reader review_snippets: Array[String]?
+        attr_reader subtopic: String?
+
+        def to_h: () -> { metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics?, subtopic: String?, review_snippets: Array[String]? }
+      end
+
+      class ItemReviewSubtopicMetrics < Data
+        def self.new: (number_of_mentions: Integer?, occurrence_percentage: Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+                    | (Integer?, Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopicMetrics
+
+        attr_reader number_of_mentions: Integer?
+        attr_reader occurrence_percentage: Float?
+
+        def to_h: () -> { number_of_mentions: Integer?, occurrence_percentage: Float? }
+      end
+
+      class ItemReviewTopic < Data
+        def self.new: (asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, topic: String?, ?browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, ?child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, ?parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, ?review_snippets: Array[String]?, ?subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopic
+                    | (Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, String?, Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, Array[String]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopic
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopic
+
+        attr_reader asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?
+
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?
+        attr_reader child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?
+        attr_reader parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?
+        attr_reader review_snippets: Array[String]?
+        attr_reader subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]?
+        attr_reader topic: String?
+
+        def to_h: () -> { asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, topic: String?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewBrowseNodeMetrics?, child_asin_metrics: Peddler::Types::CustomerFeedback20240601::ChildAsinMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics?, review_snippets: Array[String]?, subtopics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewSubtopic]? }
+      end
+
+      class ItemReviewTopicMetrics < Data
+        def self.new: (?number_of_mentions: Integer?, ?occurrence_percentage: Float?, ?star_rating_impact: Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
+                    | (Integer?, Float?, Float?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicMetrics
+
+        attr_reader number_of_mentions: Integer?
+        attr_reader occurrence_percentage: Float?
+        attr_reader star_rating_impact: Float?
+
+        def to_h: () -> { number_of_mentions: Integer?, occurrence_percentage: Float?, star_rating_impact: Float? }
+      end
+
+      class ItemReviewTopics < Data
+        def self.new: (?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, ?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
+                    | (Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopics
+
+        attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?
+        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?
+
+        def to_h: () -> { negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]?, positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTopic]? }
+      end
+
+      class ItemReviewTopicsResponse < Data
+        def self.new: (asin: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, topics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopics?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicsResponse
+                    | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::Types::CustomerFeedback20240601::ItemReviewTopics?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTopicsResponse
+
+        attr_reader asin: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader item_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader topics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopics?
+
+        def to_h: () -> { asin: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, topics: Peddler::Types::CustomerFeedback20240601::ItemReviewTopics? }
+      end
+
+      class ItemReviewTrend < Data
+        def self.new: (topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrend
+                    | (String?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrend
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrend
+
+        attr_reader topic: String?
+        attr_reader trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint]?
+
+        def to_h: () -> { topic: String?, trend_metrics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint]? }
+      end
+
+      class ItemReviewTrendPoint < Data
+        def self.new: (asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, ?browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, ?parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
+                    | (Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, Peddler::Types::CustomerFeedback20240601::DateRange?, Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendPoint
+
+        attr_reader asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?
+
+        attr_reader browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+
+        attr_reader parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?
+
+        def to_h: () -> { asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, browse_node_metrics: Peddler::Types::CustomerFeedback20240601::BrowseNodeTrendMetrics?, parent_asin_metrics: Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics? }
+      end
+
+      class ItemReviewTrends < Data
+        def self.new: (?negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?, ?positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrends
+                    | (Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?, Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrends
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrends
+
+        attr_reader negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?
+        attr_reader positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?
+
+        def to_h: () -> { negative_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]?, positive_topics: Array[Peddler::Types::CustomerFeedback20240601::ItemReviewTrend]? }
+      end
+
+      class ItemReviewTrendsResponse < Data
+        def self.new: (asin: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, review_trends: Peddler::Types::CustomerFeedback20240601::ItemReviewTrends?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendsResponse
+                    | (String?, String?, Peddler::Types::CustomerFeedback20240601::DateRange?, String?, String?, Peddler::Types::CustomerFeedback20240601::ItemReviewTrends?) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendsResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ItemReviewTrendsResponse
+
+        attr_reader asin: String?
+        attr_reader country_code: String?
+        attr_reader date_range: Peddler::Types::CustomerFeedback20240601::DateRange?
+        attr_reader item_name: String?
+        attr_reader marketplace_id: String?
+        attr_reader review_trends: Peddler::Types::CustomerFeedback20240601::ItemReviewTrends?
+
+        def to_h: () -> { asin: String?, country_code: String?, date_range: Peddler::Types::CustomerFeedback20240601::DateRange?, item_name: String?, marketplace_id: String?, review_trends: Peddler::Types::CustomerFeedback20240601::ItemReviewTrends? }
+      end
+
+      class ReviewTrendMetrics < Data
+        def self.new: (occurrence_percentage: Float?) -> Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics
+                    | (Float?) -> Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::CustomerFeedback20240601::ReviewTrendMetrics
+
+        attr_reader occurrence_percentage: Float?
+
+        def to_h: () -> { occurrence_percentage: Float? }
+      end
+    end
+  end
+end

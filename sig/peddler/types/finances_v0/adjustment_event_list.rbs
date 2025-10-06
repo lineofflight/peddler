@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class AdjustmentEventList < Array[AdjustmentEvent]
-        def self.parse: (Array[untyped]) -> AdjustmentEventList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module EasyShip20220323
-      class TimeSlots < Array[TimeSlot]
-        def self.parse: (Array[untyped]) -> TimeSlots
-      end
-    end
-  end
-end

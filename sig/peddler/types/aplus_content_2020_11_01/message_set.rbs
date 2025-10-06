@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module AplusContent20201101
-      class MessageSet < Array[Error]
-        def self.parse: (Array[untyped]) -> MessageSet
-      end
-    end
-  end
-end

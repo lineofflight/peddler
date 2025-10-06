@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module VendorDirectFulfillmentOrders20211228
-      class TaxLineItem < Array[TaxDetails]
-        def self.parse: (Array[untyped]) -> TaxLineItem
-      end
-    end
-  end
-end

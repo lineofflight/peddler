@@ -1,0 +1,494 @@
+module Peddler
+  module Types
+    module ProductPricing20220501
+      class BatchRequest < Data
+        def self.new: (method: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?) -> Peddler::Types::ProductPricing20220501::BatchRequest
+                    | (String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?) -> Peddler::Types::ProductPricing20220501::BatchRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::BatchRequest
+
+        attr_reader body: Hash[untyped, untyped]?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader method: String?
+        attr_reader uri: String?
+
+        def to_h: () -> { method: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Hash[untyped, untyped]? }
+      end
+
+      class BatchResponse < Data
+        def self.new: (headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
+                    | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::BatchResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::BatchResponse
+
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
+
+        def to_h: () -> { headers: Hash[untyped, untyped]?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine? }
+      end
+
+      class CompetitiveSummaryBatchRequest < Data
+        def self.new: (requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
+                    | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchRequest
+
+        attr_reader requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]?
+
+        def to_h: () -> { requests: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest]? }
+      end
+
+      class CompetitiveSummaryBatchResponse < Data
+        def self.new: (responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
+                    | (Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryBatchResponse
+
+        attr_reader responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]?
+
+        def to_h: () -> { responses: Array[Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse]? }
+      end
+
+      class CompetitiveSummaryRequest < Data
+        def self.new: (asin: String?, included_data: Array[untyped]?, marketplace_id: String?, method: String?, uri: String?, ?lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
+                    | (String?, Array[untyped]?, String?, String?, String?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryRequest
+
+        attr_reader asin: String?
+        attr_reader included_data: Array[untyped]?
+
+        attr_reader lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]?
+        attr_reader marketplace_id: String?
+        attr_reader method: String?
+        attr_reader uri: String?
+
+        def to_h: () -> { asin: String?, included_data: Array[untyped]?, marketplace_id: String?, method: String?, uri: String?, lowest_priced_offers_inputs: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffersInput]? }
+      end
+
+      class CompetitiveSummaryRequestList < Array[CompetitiveSummaryRequest]
+        def self.parse: (Array[untyped]) -> CompetitiveSummaryRequestList
+      end
+
+      class CompetitiveSummaryResponse < Data
+        def self.new: (body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+                    | (Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, Peddler::Types::ProductPricing20220501::HttpStatusLine?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponse
+
+        attr_reader body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?
+        attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
+
+        def to_h: () -> { body: Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine? }
+      end
+
+      class CompetitiveSummaryResponseBody < Data
+        def self.new: (asin: String?, marketplace_id: String?, ?errors: Array[Peddler::Types::ProductPricing20220501::Error]?, ?featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, ?lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, ?reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
+                    | (String?, String?, Array[Peddler::Types::ProductPricing20220501::Error]?, Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::CompetitiveSummaryResponseBody
+
+        attr_reader asin: String?
+
+        attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
+        attr_reader featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?
+        attr_reader lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?
+        attr_reader marketplace_id: String?
+
+        attr_reader reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]?
+
+        def to_h: () -> { asin: String?, marketplace_id: String?, errors: Array[Peddler::Types::ProductPricing20220501::Error]?, featured_buying_options: Array[Peddler::Types::ProductPricing20220501::FeaturedBuyingOption]?, lowest_priced_offers: Array[Peddler::Types::ProductPricing20220501::LowestPricedOffer]?, reference_prices: Array[Peddler::Types::ProductPricing20220501::ReferencePrice]? }
+      end
+
+      class CompetitiveSummaryResponseList < Array[CompetitiveSummaryResponse]
+        def self.parse: (Array[untyped]) -> CompetitiveSummaryResponseList
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::ProductPricing20220501::Error
+                    | (String?, String?, String?) -> Peddler::Types::ProductPricing20220501::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Array[Error]
+        def self.parse: (Array[untyped]) -> ErrorList
+      end
+
+      class Errors < Data
+        def self.new: (errors: Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::Errors
+                    | (Array[Peddler::Types::ProductPricing20220501::Error]?) -> Peddler::Types::ProductPricing20220501::Errors
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Errors
+
+        attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricing20220501::Error]? }
+      end
+
+      class FeaturedBuyingOption < Data
+        def self.new: (buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
+                    | (String?, Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedBuyingOption
+
+        attr_reader buying_option_type: String?
+        attr_reader segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]?
+
+        def to_h: () -> { buying_option_type: String?, segmented_featured_offers: Array[Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer]? }
+      end
+
+      class FeaturedOffer < Data
+        def self.new: (offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, ?condition: String?, ?price: Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+                    | (Peddler::Types::ProductPricing20220501::OfferIdentifier?, String?, Peddler::Types::ProductPricing20220501::Price?) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOffer
+
+        attr_reader condition: String?
+        attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
+
+        attr_reader price: Peddler::Types::ProductPricing20220501::Price?
+
+        def to_h: () -> { offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?, condition: String?, price: Peddler::Types::ProductPricing20220501::Price? }
+      end
+
+      class FeaturedOfferExpectedPrice < Data
+        def self.new: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
+                    | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice
+
+        attr_reader listing_price: Peddler::Types::Money?
+        attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+
+        def to_h: () -> { listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points? }
+      end
+
+      class FeaturedOfferExpectedPriceRequest < Data
+        def self.new: (marketplace_id: String?, method: String?, sku: String?, uri: String?, ?body: Hash[untyped, untyped]?, ?headers: Hash[untyped, untyped]?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+                    | (String?, String?, String?, String?, Hash[untyped, untyped]?, Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest
+
+        attr_reader body: Hash[untyped, untyped]?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader marketplace_id: String?
+        attr_reader method: String?
+
+        attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
+        attr_reader sku: String?
+        attr_reader uri: String?
+
+        def to_h: () -> { marketplace_id: String?, method: String?, sku: String?, uri: String?, body: Hash[untyped, untyped]?, headers: Hash[untyped, untyped]?, segment: Peddler::Types::ProductPricing20220501::Segment? }
+      end
+
+      class FeaturedOfferExpectedPriceRequestList < Array[FeaturedOfferExpectedPriceRequest]
+        def self.parse: (Array[untyped]) -> FeaturedOfferExpectedPriceRequestList
+      end
+
+      class FeaturedOfferExpectedPriceRequestParams < Data
+        def self.new: (marketplace_id: String?, sku: String?, ?segment: Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
+                    | (String?, String?, Peddler::Types::ProductPricing20220501::Segment?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams
+
+        attr_reader marketplace_id: String?
+
+        attr_reader segment: Peddler::Types::ProductPricing20220501::Segment?
+        attr_reader sku: String?
+
+        def to_h: () -> { marketplace_id: String?, sku: String?, segment: Peddler::Types::ProductPricing20220501::Segment? }
+      end
+
+      class FeaturedOfferExpectedPriceResponse < Data
+        def self.new: (headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, ?body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+                    | (Hash[untyped, untyped]?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, Peddler::Types::ProductPricing20220501::HttpStatusLine?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse
+
+        attr_reader body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody?
+        attr_reader headers: Hash[untyped, untyped]?
+        attr_reader request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?
+        attr_reader status: Peddler::Types::ProductPricing20220501::HttpStatusLine?
+
+        def to_h: () -> { headers: Hash[untyped, untyped]?, request: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequestParams?, status: Peddler::Types::ProductPricing20220501::HttpStatusLine?, body: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody? }
+      end
+
+      class FeaturedOfferExpectedPriceResponseBody < Data
+        def self.new: (?errors: Array[Peddler::Types::ProductPricing20220501::Error]?, ?featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, ?offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
+                    | (Array[Peddler::Types::ProductPricing20220501::Error]?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, Peddler::Types::ProductPricing20220501::OfferIdentifier?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponseBody
+
+        attr_reader errors: Array[Peddler::Types::ProductPricing20220501::Error]?
+        attr_reader featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?
+        attr_reader offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier?
+
+        def to_h: () -> { errors: Array[Peddler::Types::ProductPricing20220501::Error]?, featured_offer_expected_price_results: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult]?, offer_identifier: Peddler::Types::ProductPricing20220501::OfferIdentifier? }
+      end
+
+      class FeaturedOfferExpectedPriceResponseList < Array[FeaturedOfferExpectedPriceResponse]
+        def self.parse: (Array[untyped]) -> FeaturedOfferExpectedPriceResponseList
+      end
+
+      class FeaturedOfferExpectedPriceResult < Data
+        def self.new: (result_status: String?, ?competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, ?current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, ?featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
+                    | (String?, Peddler::Types::ProductPricing20220501::FeaturedOffer?, Peddler::Types::ProductPricing20220501::FeaturedOffer?, Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResult
+
+        attr_reader competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?
+        attr_reader current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?
+        attr_reader featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice?
+        attr_reader result_status: String?
+
+        def to_h: () -> { result_status: String?, competing_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, current_featured_offer: Peddler::Types::ProductPricing20220501::FeaturedOffer?, featured_offer_expected_price: Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPrice? }
+      end
+
+      class FeaturedOfferExpectedPriceResultList < Array[FeaturedOfferExpectedPriceResult]
+        def self.parse: (Array[untyped]) -> FeaturedOfferExpectedPriceResultList
+      end
+
+      class FeaturedOfferSegment < Data
+        def self.new: (customer_membership: String?, segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
+                    | (String?, Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::FeaturedOfferSegment
+
+        attr_reader customer_membership: String?
+        attr_reader segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?
+
+        def to_h: () -> { customer_membership: String?, segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails? }
+      end
+
+      class GetFeaturedOfferExpectedPriceBatchRequest < Data
+        def self.new: (?requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
+                    | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchRequest
+
+        attr_reader requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]?
+
+        def to_h: () -> { requests: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceRequest]? }
+      end
+
+      class GetFeaturedOfferExpectedPriceBatchResponse < Data
+        def self.new: (?responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
+                    | (Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::GetFeaturedOfferExpectedPriceBatchResponse
+
+        attr_reader responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]?
+
+        def to_h: () -> { responses: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferExpectedPriceResponse]? }
+      end
+
+      class HttpStatusLine < Data
+        def self.new: (?reason_phrase: String?, ?status_code: Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+                    | (String?, Integer?) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::HttpStatusLine
+
+        attr_reader reason_phrase: String?
+        attr_reader status_code: Integer?
+
+        def to_h: () -> { reason_phrase: String?, status_code: Integer? }
+      end
+
+      class LowestPricedOffer < Data
+        def self.new: (lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
+                    | (Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, Array[Peddler::Types::ProductPricing20220501::Offer]?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::LowestPricedOffer
+
+        attr_reader lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?
+        attr_reader offers: Array[Peddler::Types::ProductPricing20220501::Offer]?
+
+        def to_h: () -> { lowest_priced_offers_input: Peddler::Types::ProductPricing20220501::LowestPricedOffersInput?, offers: Array[Peddler::Types::ProductPricing20220501::Offer]? }
+      end
+
+      class LowestPricedOffersInput < Data
+        def self.new: (item_condition: String?, offer_type: String?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
+                    | (String?, String?) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::LowestPricedOffersInput
+
+        attr_reader item_condition: String?
+        attr_reader offer_type: String?
+
+        def to_h: () -> { item_condition: String?, offer_type: String? }
+      end
+
+      class Offer < Data
+        def self.new: (condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::Offer
+                    | (String?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::Offer
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Offer
+
+        attr_reader condition: String?
+        attr_reader fulfillment_type: String?
+        attr_reader listing_price: Peddler::Types::Money?
+
+        attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+        attr_reader prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?
+        attr_reader seller_id: String?
+
+        attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
+        attr_reader sub_condition: String?
+
+        def to_h: () -> { condition: String?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
+      end
+
+      class OfferIdentifier < Data
+        def self.new: (asin: String?, marketplace_id: String?, ?fulfillment_type: String?, ?seller_id: String?, ?sku: String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+                    | (String?, String?, String?, String?, String?) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::OfferIdentifier
+
+        attr_reader asin: String?
+
+        attr_reader fulfillment_type: String?
+        attr_reader marketplace_id: String?
+
+        attr_reader seller_id: String?
+        attr_reader sku: String?
+
+        def to_h: () -> { asin: String?, marketplace_id: String?, fulfillment_type: String?, seller_id: String?, sku: String? }
+      end
+
+      class Points < Data
+        def self.new: (?points_monetary_value: Peddler::Types::Money?, ?points_number: Integer?) -> Peddler::Types::ProductPricing20220501::Points
+                    | (Peddler::Types::Money?, Integer?) -> Peddler::Types::ProductPricing20220501::Points
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Points
+
+        attr_reader points_monetary_value: Peddler::Types::Money?
+        attr_reader points_number: Integer?
+
+        def to_h: () -> { points_monetary_value: Peddler::Types::Money?, points_number: Integer? }
+      end
+
+      class PostalCode < Data
+        def self.new: (?country_code: String?, ?value: String?) -> Peddler::Types::ProductPricing20220501::PostalCode
+                    | (String?, String?) -> Peddler::Types::ProductPricing20220501::PostalCode
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::PostalCode
+
+        attr_reader country_code: String?
+        attr_reader value: String?
+
+        def to_h: () -> { country_code: String?, value: String? }
+      end
+
+      class Price < Data
+        def self.new: (listing_price: Peddler::Types::Money?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?shipping_price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
+                    | (Peddler::Types::Money?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::Price
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Price
+
+        attr_reader listing_price: Peddler::Types::Money?
+        attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+        attr_reader shipping_price: Peddler::Types::Money?
+
+        def to_h: () -> { listing_price: Peddler::Types::Money?, points: Peddler::Types::ProductPricing20220501::Points?, shipping_price: Peddler::Types::Money? }
+      end
+
+      class PrimeDetails < Data
+        def self.new: (eligibility: String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
+                    | (String?) -> Peddler::Types::ProductPricing20220501::PrimeDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::PrimeDetails
+
+        attr_reader eligibility: String?
+
+        def to_h: () -> { eligibility: String? }
+      end
+
+      class ReferencePrice < Data
+        def self.new: (name: String?, price: Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::ReferencePrice
+                    | (String?, Peddler::Types::Money?) -> Peddler::Types::ProductPricing20220501::ReferencePrice
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::ReferencePrice
+
+        attr_reader name: String?
+        attr_reader price: Peddler::Types::Money?
+
+        def to_h: () -> { name: String?, price: Peddler::Types::Money? }
+      end
+
+      class SampleLocation < Data
+        def self.new: (?postal_code: Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
+                    | (Peddler::Types::ProductPricing20220501::PostalCode?) -> Peddler::Types::ProductPricing20220501::SampleLocation
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::SampleLocation
+
+        attr_reader postal_code: Peddler::Types::ProductPricing20220501::PostalCode?
+
+        def to_h: () -> { postal_code: Peddler::Types::ProductPricing20220501::PostalCode? }
+      end
+
+      class Segment < Data
+        def self.new: (?segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
+                    | (Peddler::Types::ProductPricing20220501::SegmentDetails?) -> Peddler::Types::ProductPricing20220501::Segment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::Segment
+
+        attr_reader segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails?
+
+        def to_h: () -> { segment_details: Peddler::Types::ProductPricing20220501::SegmentDetails? }
+      end
+
+      class SegmentDetails < Data
+        def self.new: (?glance_view_weight_percentage: Float?, ?sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
+                    | (Float?, Peddler::Types::ProductPricing20220501::SampleLocation?) -> Peddler::Types::ProductPricing20220501::SegmentDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::SegmentDetails
+
+        attr_reader glance_view_weight_percentage: Float?
+        attr_reader sample_location: Peddler::Types::ProductPricing20220501::SampleLocation?
+
+        def to_h: () -> { glance_view_weight_percentage: Float?, sample_location: Peddler::Types::ProductPricing20220501::SampleLocation? }
+      end
+
+      class SegmentedFeaturedOffer < Data
+        def self.new: (condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, ?points: Peddler::Types::ProductPricing20220501::Points?, ?prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, ?shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, ?sub_condition: String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+                    | (String?, Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, String?, Peddler::Types::Money?, String?, Peddler::Types::ProductPricing20220501::Points?, Peddler::Types::ProductPricing20220501::PrimeDetails?, Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, String?) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::SegmentedFeaturedOffer
+
+        attr_reader condition: String?
+        attr_reader featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?
+        attr_reader fulfillment_type: String?
+        attr_reader listing_price: Peddler::Types::Money?
+
+        attr_reader points: Peddler::Types::ProductPricing20220501::Points?
+        attr_reader prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?
+        attr_reader seller_id: String?
+
+        attr_reader shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?
+        attr_reader sub_condition: String?
+
+        def to_h: () -> { condition: String?, featured_offer_segments: Array[Peddler::Types::ProductPricing20220501::FeaturedOfferSegment]?, fulfillment_type: String?, listing_price: Peddler::Types::Money?, seller_id: String?, points: Peddler::Types::ProductPricing20220501::Points?, prime_details: Peddler::Types::ProductPricing20220501::PrimeDetails?, shipping_options: Array[Peddler::Types::ProductPricing20220501::ShippingOption]?, sub_condition: String? }
+      end
+
+      class ShippingOption < Data
+        def self.new: (price: Peddler::Types::Money?, shipping_option_type: String?) -> Peddler::Types::ProductPricing20220501::ShippingOption
+                    | (Peddler::Types::Money?, String?) -> Peddler::Types::ProductPricing20220501::ShippingOption
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::ProductPricing20220501::ShippingOption
+
+        attr_reader price: Peddler::Types::Money?
+        attr_reader shipping_option_type: String?
+
+        def to_h: () -> { price: Peddler::Types::Money?, shipping_option_type: String? }
+      end
+    end
+  end
+end

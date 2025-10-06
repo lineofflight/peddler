@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class PackageList < Array[Package]
-        def self.parse: (Array[untyped]) -> PackageList
-      end
-    end
-  end
-end

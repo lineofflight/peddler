@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module CatalogItems20220401
-      class ItemIdentifiers < Array[ItemIdentifiersByMarketplace]
-        def self.parse: (Array[untyped]) -> ItemIdentifiers
-      end
-    end
-  end
-end

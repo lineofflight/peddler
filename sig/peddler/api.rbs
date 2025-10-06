@@ -36,8 +36,6 @@ module Peddler
     def sandbox: () -> self
     def sandbox?: () -> bool
 
-    alias through via
-
     def use: (*untyped, **untyped) ?{ () -> untyped } -> self
     def via: (*untyped, **untyped) ?{ () -> untyped } -> self
 

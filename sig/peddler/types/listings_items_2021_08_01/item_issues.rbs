@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ListingsItems20210801
-      class ItemIssues < Array[Issue]
-        def self.parse: (Array[untyped]) -> ItemIssues
-      end
-    end
-  end
-end

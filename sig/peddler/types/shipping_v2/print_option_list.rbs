@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class PrintOptionList < Array[PrintOption]
-        def self.parse: (Array[untyped]) -> PrintOptionList
-      end
-    end
-  end
-end

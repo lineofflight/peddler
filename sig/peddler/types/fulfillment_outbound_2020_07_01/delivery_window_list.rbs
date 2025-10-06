@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class DeliveryWindowList < Array[DeliveryWindow]
-        def self.parse: (Array[untyped]) -> DeliveryWindowList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module SupplySources20200701
-      class SupplySourceList < Array[untyped]
-        def self.parse: (Array[untyped]) -> SupplySourceList
-      end
-    end
-  end
-end

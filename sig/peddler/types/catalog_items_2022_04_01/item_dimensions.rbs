@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module CatalogItems20220401
-      class ItemDimensions < Array[ItemDimensionsByMarketplace]
-        def self.parse: (Array[untyped]) -> ItemDimensions
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class AvailableDeliveryExperienceOptionsList < Array[AvailableDeliveryExperienceOption]
-        def self.parse: (Array[untyped]) -> AvailableDeliveryExperienceOptionsList
-      end
-    end
-  end
-end

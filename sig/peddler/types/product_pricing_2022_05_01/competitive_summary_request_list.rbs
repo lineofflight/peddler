@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ProductPricing20220501
-      class CompetitiveSummaryRequestList < Array[CompetitiveSummaryRequest]
-        def self.parse: (Array[untyped]) -> CompetitiveSummaryRequestList
-      end
-    end
-  end
-end

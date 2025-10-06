@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class RequestedValueAddedServiceList < Array[RequestedValueAddedService]
-        def self.parse: (Array[untyped]) -> RequestedValueAddedServiceList
-      end
-    end
-  end
-end

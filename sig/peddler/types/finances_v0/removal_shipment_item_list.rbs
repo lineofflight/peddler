@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class RemovalShipmentItemList < Array[RemovalShipmentItem]
-        def self.parse: (Array[untyped]) -> RemovalShipmentItemList
-      end
-    end
-  end
-end

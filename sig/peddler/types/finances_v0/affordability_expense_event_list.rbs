@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class AffordabilityExpenseEventList < Array[AffordabilityExpenseEvent]
-        def self.parse: (Array[untyped]) -> AffordabilityExpenseEventList
-      end
-    end
-  end
-end

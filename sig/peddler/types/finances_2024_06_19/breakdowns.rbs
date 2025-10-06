@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module Finances20240619
-      class Breakdowns < Array[Breakdown]
-        def self.parse: (Array[untyped]) -> Breakdowns
-      end
-    end
-  end
-end

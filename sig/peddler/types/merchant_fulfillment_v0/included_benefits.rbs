@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class IncludedBenefits < Array[untyped]
-        def self.parse: (Array[untyped]) -> IncludedBenefits
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentInboundV0
-      class InvalidASINList < Array[InvalidASIN]
-        def self.parse: (Array[untyped]) -> InvalidASINList
-      end
-    end
-  end
-end

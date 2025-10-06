@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class TrialShipmentEventList < Array[TrialShipmentEvent]
-        def self.parse: (Array[untyped]) -> TrialShipmentEventList
-      end
-    end
-  end
-end

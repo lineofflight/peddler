@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module OrdersV0
-      class PaymentExecutionDetailItemList < Array[PaymentExecutionDetailItem]
-        def self.parse: (Array[untyped]) -> PaymentExecutionDetailItemList
-      end
-    end
-  end
-end

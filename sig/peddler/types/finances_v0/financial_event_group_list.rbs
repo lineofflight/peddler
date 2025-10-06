@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class FinancialEventGroupList < Array[FinancialEventGroup]
-        def self.parse: (Array[untyped]) -> FinancialEventGroupList
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class AdjustmentItemList < Array[RateItem]
-        def self.parse: (Array[untyped]) -> AdjustmentItemList
-      end
-    end
-  end
-end

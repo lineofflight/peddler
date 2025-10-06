@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module CatalogItems20220401
-      class ItemVendorDetails < Array[ItemVendorDetailsByMarketplace]
-        def self.parse: (Array[untyped]) -> ItemVendorDetails
-      end
-    end
-  end
-end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ExternalFulfillmentShipments20240911
-      class RecommendedPackageLineItems < Array[RecommendedPackageLineItem]
-        def self.parse: (Array[untyped]) -> RecommendedPackageLineItems
-      end
-    end
-  end
-end

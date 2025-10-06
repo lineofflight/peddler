@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class RejectedShippingServiceList < Array[RejectedShippingService]
-        def self.parse: (Array[untyped]) -> RejectedShippingServiceList
-      end
-    end
-  end
-end

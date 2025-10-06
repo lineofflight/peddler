@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module AplusContent20201101
-      class ContentReferenceKeySet < Array[untyped]
-        def self.parse: (Array[untyped]) -> ContentReferenceKeySet
-      end
-    end
-  end
-end

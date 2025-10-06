@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class AdjustmentItemList < Array[AdjustmentItem]
-        def self.parse: (Array[untyped]) -> AdjustmentItemList
-      end
-    end
-  end
-end

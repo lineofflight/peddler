@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FulfillmentOutbound20200701
-      class TrackingEventList < Array[TrackingEvent]
-        def self.parse: (Array[untyped]) -> TrackingEventList
-      end
-    end
-  end
-end

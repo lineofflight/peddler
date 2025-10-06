@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class ValidationMetadataList < Array[ValidationMetadata]
-        def self.parse: (Array[untyped]) -> ValidationMetadataList
-      end
-    end
-  end
-end

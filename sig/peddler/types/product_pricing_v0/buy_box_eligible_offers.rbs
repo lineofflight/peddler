@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ProductPricingV0
-      class BuyBoxEligibleOffers < Array[OfferCountType]
-        def self.parse: (Array[untyped]) -> BuyBoxEligibleOffers
-      end
-    end
-  end
-end

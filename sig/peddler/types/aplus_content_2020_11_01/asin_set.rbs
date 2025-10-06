@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module AplusContent20201101
-      class AsinSet < Array[untyped]
-        def self.parse: (Array[untyped]) -> AsinSet
-      end
-    end
-  end
-end

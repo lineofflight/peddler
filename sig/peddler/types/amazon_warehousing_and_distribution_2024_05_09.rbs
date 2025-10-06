@@ -1,0 +1,513 @@
+module Peddler
+  module Types
+    module AmazonWarehousingAndDistribution20240509
+      class Address < Data
+        def self.new: (address_line1: String?, country_code: String?, name: String?, state_or_region: String?, ?address_line2: String?, ?address_line3: String?, ?city: String?, ?county: String?, ?district: String?, ?phone_number: String?, ?postal_code: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Address
+                    | (String?, String?, String?, String?, String?, String?, String?, String?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Address
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Address
+
+        attr_reader address_line1: String?
+
+        attr_reader address_line2: String?
+        attr_reader address_line3: String?
+        attr_reader city: String?
+        attr_reader country_code: String?
+
+        attr_reader county: String?
+        attr_reader district: String?
+        attr_reader name: String?
+
+        attr_reader phone_number: String?
+        attr_reader postal_code: String?
+        attr_reader state_or_region: String?
+
+        def to_h: () -> { address_line1: String?, country_code: String?, name: String?, state_or_region: String?, address_line2: String?, address_line3: String?, city: String?, county: String?, district: String?, phone_number: String?, postal_code: String? }
+      end
+
+      class CarrierCode < Data
+        def self.new: (?carrier_code_type: String?, ?carrier_code_value: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode
+
+        attr_reader carrier_code_type: String?
+        attr_reader carrier_code_value: String?
+
+        def to_h: () -> { carrier_code_type: String?, carrier_code_value: String? }
+      end
+
+      class DestinationDetails < Data
+        def self.new: (?destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, ?destination_region: String?, ?shipment_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails
+
+        attr_reader destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
+        attr_reader destination_region: String?
+        attr_reader shipment_id: String?
+
+        def to_h: () -> { destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, destination_region: String?, shipment_id: String? }
+      end
+
+      class DistributionPackage < Data
+        def self.new: (contents: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, measurements: Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData?, type: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackage
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackage
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackage
+
+        attr_reader contents: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?
+        attr_reader measurements: Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData?
+        attr_reader type: String?
+
+        def to_h: () -> { contents: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents?, measurements: Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData?, type: String? }
+      end
+
+      class DistributionPackageContents < Data
+        def self.new: (?packages: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?products: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageContents
+
+        attr_reader packages: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader products: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity]?
+
+        def to_h: () -> { packages: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, products: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity]? }
+      end
+
+      class DistributionPackageQuantity < Data
+        def self.new: (count: Integer?, distribution_package: untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+                    | (Integer?, untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity
+
+        attr_reader count: Integer?
+        attr_reader distribution_package: untyped
+
+        def to_h: () -> { count: Integer?, distribution_package: untyped }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error
+                    | (String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (errors: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ErrorList
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::Error]? }
+      end
+
+      class ExpirationDetails < Data
+        def self.new: (?expiration: String?, ?onhand_quantity: Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails
+                    | (String?, Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails
+
+        attr_reader expiration: String?
+        attr_reader onhand_quantity: Integer?
+
+        def to_h: () -> { expiration: String?, onhand_quantity: Integer? }
+      end
+
+      class InboundEligibility < Data
+        def self.new: (packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?, previewed_at: String?, status: String?, ?ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?, String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundEligibility
+
+        attr_reader ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]?
+        attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?
+        attr_reader previewed_at: String?
+        attr_reader status: String?
+
+        def to_h: () -> { packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility]?, previewed_at: String?, status: String?, ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason]? }
+      end
+
+      class InboundOrder < Data
+        def self.new: (created_at: String?, order_id: String?, order_status: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, ?external_reference_id: String?, ?preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, ?updated_at: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
+                    | (String?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrder
+
+        attr_reader created_at: String?
+
+        attr_reader destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?
+        attr_reader external_reference_id: String?
+        attr_reader order_id: String?
+        attr_reader order_status: String?
+        attr_reader origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
+        attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+
+        attr_reader preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?
+        attr_reader updated_at: String?
+
+        def to_h: () -> { created_at: String?, order_id: String?, order_status: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, destination_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::DestinationDetails?, external_reference_id: String?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?, updated_at: String? }
+      end
+
+      class InboundOrderCreationData < Data
+        def self.new: (origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, ?external_reference_id: String?, ?preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderCreationData
+
+        attr_reader external_reference_id: String?
+        attr_reader origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
+        attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+
+        attr_reader preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences?
+
+        def to_h: () -> { origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, external_reference_id: String?, preferences: Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences? }
+      end
+
+      class InboundOrderReference < Data
+        def self.new: (order_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+                    | (String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundOrderReference
+
+        attr_reader order_id: String?
+
+        def to_h: () -> { order_id: String? }
+      end
+
+      class InboundPackages < Data
+        def self.new: (packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPackages
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPackages
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPackages
+
+        attr_reader packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+
+        def to_h: () -> { packages_to_inbound: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]? }
+      end
+
+      class InboundPreferences < Data
+        def self.new: (?destination_region: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences
+                    | (String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundPreferences
+
+        attr_reader destination_region: String?
+
+        def to_h: () -> { destination_region: String? }
+      end
+
+      class InboundShipment < Data
+        def self.new: (destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, ?carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, ?created_at: String?, ?destination_region: String?, ?external_reference_id: String?, ?received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ?ship_by: String?, ?shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, ?tracking_id: String?, ?updated_at: String?, ?warehouse_reference_id: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, String?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, String?, String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipment
+
+        attr_reader carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?
+        attr_reader created_at: String?
+        attr_reader destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
+
+        attr_reader destination_region: String?
+        attr_reader external_reference_id: String?
+        attr_reader order_id: String?
+        attr_reader origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?
+
+        attr_reader received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?
+        attr_reader ship_by: String?
+        attr_reader shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?
+        attr_reader shipment_id: String?
+
+        attr_reader shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?
+        attr_reader shipment_status: String?
+
+        attr_reader tracking_id: String?
+        attr_reader updated_at: String?
+        attr_reader warehouse_reference_id: String?
+
+        def to_h: () -> { destination_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, order_id: String?, origin_address: Peddler::Types::AmazonWarehousingAndDistribution20240509::Address?, shipment_container_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity]?, shipment_id: String?, shipment_status: String?, carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?, created_at: String?, destination_region: String?, external_reference_id: String?, received_quantity: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity]?, ship_by: String?, shipment_sku_quantities: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity]?, tracking_id: String?, updated_at: String?, warehouse_reference_id: String? }
+      end
+
+      class InboundShipmentSummary < Data
+        def self.new: (order_id: String?, shipment_id: String?, shipment_status: String?, ?created_at: String?, ?external_reference_id: String?, ?updated_at: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+                    | (String?, String?, String?, String?, String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary
+
+        attr_reader created_at: String?
+        attr_reader external_reference_id: String?
+        attr_reader order_id: String?
+        attr_reader shipment_id: String?
+        attr_reader shipment_status: String?
+
+        attr_reader updated_at: String?
+
+        def to_h: () -> { order_id: String?, shipment_id: String?, shipment_status: String?, created_at: String?, external_reference_id: String?, updated_at: String? }
+      end
+
+      class InventoryDetails < Data
+        def self.new: (?available_distributable_quantity: Integer?, ?replenishment_quantity: Integer?, ?reserved_distributable_quantity: Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails
+                    | (Integer?, Integer?, Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails
+
+        attr_reader available_distributable_quantity: Integer?
+        attr_reader replenishment_quantity: Integer?
+        attr_reader reserved_distributable_quantity: Integer?
+
+        def to_h: () -> { available_distributable_quantity: Integer?, replenishment_quantity: Integer?, reserved_distributable_quantity: Integer? }
+      end
+
+      class InventoryListing < Data
+        def self.new: (inventory: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?, ?next_token: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryListing
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryListing
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryListing
+
+        attr_reader inventory: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?
+        attr_reader next_token: String?
+
+        def to_h: () -> { inventory: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary]?, next_token: String? }
+      end
+
+      class InventoryQuantity < Data
+        def self.new: (quantity: Float?, unit_of_measurement: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+                    | (Float?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity
+
+        attr_reader quantity: Float?
+        attr_reader unit_of_measurement: String?
+
+        def to_h: () -> { quantity: Float?, unit_of_measurement: String? }
+      end
+
+      class InventorySummary < Data
+        def self.new: (sku: String?, ?expiration_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, ?inventory_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?, ?total_inbound_quantity: Integer?, ?total_onhand_quantity: Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary
+                    | (String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?, Integer?, Integer?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::InventorySummary
+
+        attr_reader expiration_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?
+        attr_reader inventory_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?
+        attr_reader sku: String?
+
+        attr_reader total_inbound_quantity: Integer?
+        attr_reader total_onhand_quantity: Integer?
+
+        def to_h: () -> { sku: String?, expiration_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ExpirationDetails]?, inventory_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryDetails?, total_inbound_quantity: Integer?, total_onhand_quantity: Integer? }
+      end
+
+      class MeasurementData < Data
+        def self.new: (weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?, ?dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, ?volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::MeasurementData
+
+        attr_reader dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?
+        attr_reader volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume?
+        attr_reader weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?
+
+        def to_h: () -> { weight: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight?, dimensions: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions?, volume: Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume? }
+      end
+
+      class OrderIneligibilityReason < Data
+        def self.new: (code: String?, description: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::OrderIneligibilityReason
+
+        attr_reader code: String?
+        attr_reader description: String?
+
+        def to_h: () -> { code: String?, description: String? }
+      end
+
+      class PackageDimensions < Data
+        def self.new: (height: Float?, length: Float?, unit_of_measurement: String?, width: Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions
+                    | (Float?, Float?, String?, Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageDimensions
+
+        attr_reader height: Float?
+        attr_reader length: Float?
+        attr_reader unit_of_measurement: String?
+        attr_reader width: Float?
+
+        def to_h: () -> { height: Float?, length: Float?, unit_of_measurement: String?, width: Float? }
+      end
+
+      class PackageVolume < Data
+        def self.new: (unit_of_measurement: String?, volume: Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume
+                    | (String?, Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageVolume
+
+        attr_reader unit_of_measurement: String?
+        attr_reader volume: Float?
+
+        def to_h: () -> { unit_of_measurement: String?, volume: Float? }
+      end
+
+      class PackageWeight < Data
+        def self.new: (unit_of_measurement: String?, weight: Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight
+                    | (String?, Float?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PackageWeight
+
+        attr_reader unit_of_measurement: String?
+        attr_reader weight: Float?
+
+        def to_h: () -> { unit_of_measurement: String?, weight: Float? }
+      end
+
+      class PrepDetails < Data
+        def self.new: (?label_owner: String?, ?prep_category: String?, ?prep_instructions: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, ?prep_owner: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails
+                    | (String?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails
+
+        attr_reader label_owner: String?
+        attr_reader prep_category: String?
+        attr_reader prep_instructions: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?
+        attr_reader prep_owner: String?
+
+        def to_h: () -> { label_owner: String?, prep_category: String?, prep_instructions: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction]?, prep_owner: String? }
+      end
+
+      class PrepInstruction < Data
+        def self.new: (?prep_owner: String?, ?prep_type: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepInstruction
+
+        attr_reader prep_owner: String?
+        attr_reader prep_type: String?
+
+        def to_h: () -> { prep_owner: String?, prep_type: String? }
+      end
+
+      class ProductAttribute < Data
+        def self.new: (?name: String?, ?value: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute
+
+        attr_reader name: String?
+        attr_reader value: String?
+
+        def to_h: () -> { name: String?, value: String? }
+      end
+
+      class ProductQuantity < Data
+        def self.new: (quantity: Integer?, sku: String?, ?attributes: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, ?expiration: String?, ?prep_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity
+                    | (Integer?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductQuantity
+
+        attr_reader attributes: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?
+        attr_reader expiration: String?
+        attr_reader prep_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails?
+        attr_reader quantity: Integer?
+        attr_reader sku: String?
+
+        def to_h: () -> { quantity: Integer?, sku: String?, attributes: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::ProductAttribute]?, expiration: String?, prep_details: Peddler::Types::AmazonWarehousingAndDistribution20240509::PrepDetails? }
+      end
+
+      class ShipmentLabels < Data
+        def self.new: (label_status: String?, ?label_download_url: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentLabels
+
+        attr_reader label_download_url: String?
+        attr_reader label_status: String?
+
+        def to_h: () -> { label_status: String?, label_download_url: String? }
+      end
+
+      class ShipmentListing < Data
+        def self.new: (?next_token: String?, ?shipments: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
+                    | (String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::ShipmentListing
+
+        attr_reader next_token: String?
+        attr_reader shipments: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]?
+
+        def to_h: () -> { next_token: String?, shipments: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::InboundShipmentSummary]? }
+      end
+
+      class SkuEligibility < Data
+        def self.new: (package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ?ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, String?, Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuEligibility
+
+        attr_reader ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]?
+        attr_reader package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?
+        attr_reader status: String?
+
+        def to_h: () -> { package_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::DistributionPackageQuantity?, status: String?, ineligibility_reasons: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason]? }
+      end
+
+      class SkuIneligibilityReason < Data
+        def self.new: (code: String?, description: String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason
+                    | (String?, String?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuIneligibilityReason
+
+        attr_reader code: String?
+        attr_reader description: String?
+
+        def to_h: () -> { code: String?, description: String? }
+      end
+
+      class SkuQuantity < Data
+        def self.new: (expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?, ?received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity
+                    | (Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::SkuQuantity
+
+        attr_reader expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?
+
+        attr_reader received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?
+        attr_reader sku: String?
+
+        def to_h: () -> { expected_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity?, sku: String?, received_quantity: Peddler::Types::AmazonWarehousingAndDistribution20240509::InventoryQuantity? }
+      end
+
+      class TrackingDetails < Data
+        def self.new: (booking_id: String?, ?carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails
+                    | (String?, Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails
+
+        attr_reader booking_id: String?
+        attr_reader carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode?
+
+        def to_h: () -> { booking_id: String?, carrier_code: Peddler::Types::AmazonWarehousingAndDistribution20240509::CarrierCode? }
+      end
+
+      class TransportationDetails < Data
+        def self.new: (tracking_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TransportationDetails
+                    | (Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]?) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TransportationDetails
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::AmazonWarehousingAndDistribution20240509::TransportationDetails
+
+        attr_reader tracking_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]?
+
+        def to_h: () -> { tracking_details: Array[Peddler::Types::AmazonWarehousingAndDistribution20240509::TrackingDetails]? }
+      end
+    end
+  end
+end

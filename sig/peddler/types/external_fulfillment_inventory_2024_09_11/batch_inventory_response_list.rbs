@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ExternalFulfillmentInventory20240911
-      class BatchInventoryResponseList < Array[InventoryResponse]
-        def self.parse: (Array[untyped]) -> BatchInventoryResponseList
-      end
-    end
-  end
-end

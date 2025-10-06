@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class RequestAttributes < Array[untyped]
-        def self.parse: (Array[untyped]) -> RequestAttributes
-      end
-    end
-  end
-end

@@ -17,6 +17,7 @@ require "generator/circular_dependency_detector"
 require "generator/entrypoint"
 require "generator/rbs/api"
 require "generator/rbs/entrypoint"
+require "generator/rbs/types"
 
 # NOTE: Test generation was explored but removed due to Amazon SP-API sandbox limitations. Most APIs require special
 # roles (vendor, finance, restricted shipping) that aren't available in standard sandbox environments, resulting in ~60%
@@ -63,7 +64,7 @@ module Generator
 
       if !Dir.exist?(api_models_dir)
         clone_api_models(api_models_dir)
-      elsif !@api_filter && models_older_than_one_day?(api_models_dir)
+      elsif models_older_than_one_day?(api_models_dir)
         logger.info("API models are over 1 day old, updating")
         update_api_models(api_models_dir)
       else
@@ -103,7 +104,16 @@ module Generator
 
         types_path = File.join(Config::BASE_PATH, base, "peddler/types")
         Dir.glob(File.join(types_path, "*")).each do |item|
-          FileUtils.rm_rf(item) if File.directory?(item)
+          # Skip manual files that shouldn't be deleted
+          next if File.basename(item) == "money.rbs"
+
+          # Remove type directories and consolidated RBS files
+          if File.directory?(item)
+            FileUtils.rm_rf(item)
+          elsif base == "sig" && item.end_with?(".rbs")
+            # Remove consolidated type RBS files (e.g., orders_v0.rbs)
+            File.delete(item)
+          end
         end
       end
 
@@ -114,17 +124,9 @@ module Generator
       bases = ["lib", "sig"]
       apis.each do |api|
         bases.each do |base|
-          # Remove the type directory
+          # Remove the old type directory structure (if it exists from previous versions)
           api_types_path = File.join(Config::BASE_PATH, base, "peddler/types", api.name_with_version)
           FileUtils.rm_rf(api_types_path) if Dir.exist?(api_types_path)
-
-          # Remove the types index file
-          api_types_index = File.join(Config::BASE_PATH, base, "peddler/types/#{api.name_with_version}.rb")
-          File.delete(api_types_index) if File.exist?(api_types_index)
-
-          # Remove the RBS types index file
-          api_types_index_rbs = File.join(Config::BASE_PATH, base, "peddler/types/#{api.name_with_version}.rbs")
-          File.delete(api_types_index_rbs) if File.exist?(api_types_index_rbs)
         end
       end
 
@@ -170,9 +172,12 @@ module Generator
     end
 
     def generate_type_signatures!
-      # Generate RBS for all types (both Structure and Array types)
-      types.each(&:generate_rbs)
-      logger.info("Generated #{types.count} type signatures")
+      # Group types by API and generate consolidated RBS files
+      types_by_api = types.group_by(&:api_name)
+      types_by_api.each do |api_name, api_types|
+        RBS::Types.new(api_name, api_types).generate
+      end
+      logger.info("Generated type signatures for #{types_by_api.count} APIs (#{types.count} types total)")
     end
 
     def generate_entry_point_for_signatures!

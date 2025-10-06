@@ -106,7 +106,6 @@ module Peddler
         self
       end
     end
-    alias_method :through, :via
 
     [:get, :post, :put, :delete, :patch].each do |method|
       define_method(method) do |path, parser: nil, **options|

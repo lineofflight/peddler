@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module MerchantFulfillmentV0
-      class TermsAndConditionsNotAcceptedCarrierList < Array[TermsAndConditionsNotAcceptedCarrier]
-        def self.parse: (Array[untyped]) -> TermsAndConditionsNotAcceptedCarrierList
-      end
-    end
-  end
-end

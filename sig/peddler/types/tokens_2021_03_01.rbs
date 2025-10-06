@@ -1,0 +1,67 @@
+module Peddler
+  module Types
+    module Tokens20210301
+      class CreateRestrictedDataTokenRequest < Data
+        def self.new: (restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?, ?target_application: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+                    | (Array[Peddler::Types::Tokens20210301::RestrictedResource]?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenRequest
+
+        attr_reader restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?
+        attr_reader target_application: String?
+
+        def to_h: () -> { restricted_resources: Array[Peddler::Types::Tokens20210301::RestrictedResource]?, target_application: String? }
+      end
+
+      class CreateRestrictedDataTokenResponse < Data
+        def self.new: (?expires_in: Integer?, ?restricted_data_token: String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
+                    | (Integer?, String?) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::CreateRestrictedDataTokenResponse
+
+        attr_reader expires_in: Integer?
+        attr_reader restricted_data_token: String?
+
+        def to_h: () -> { expires_in: Integer?, restricted_data_token: String? }
+      end
+
+      class Error < Data
+        def self.new: (code: String?, message: String?, ?details: String?) -> Peddler::Types::Tokens20210301::Error
+                    | (String?, String?, String?) -> Peddler::Types::Tokens20210301::Error
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::Error
+
+        attr_reader code: String?
+
+        attr_reader details: String?
+        attr_reader message: String?
+
+        def to_h: () -> { code: String?, message: String?, details: String? }
+      end
+
+      class ErrorList < Data
+        def self.new: (?errors: Array[Peddler::Types::Tokens20210301::Error]?) -> Peddler::Types::Tokens20210301::ErrorList
+                    | (Array[Peddler::Types::Tokens20210301::Error]?) -> Peddler::Types::Tokens20210301::ErrorList
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::ErrorList
+
+        attr_reader errors: Array[Peddler::Types::Tokens20210301::Error]?
+
+        def to_h: () -> { errors: Array[Peddler::Types::Tokens20210301::Error]? }
+      end
+
+      class RestrictedResource < Data
+        def self.new: (method: String?, path: String?, ?data_elements: Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
+                    | (String?, String?, Array[String]?) -> Peddler::Types::Tokens20210301::RestrictedResource
+
+        def self.parse: (?Hash[String | Symbol, untyped], **untyped) -> Peddler::Types::Tokens20210301::RestrictedResource
+
+        attr_reader data_elements: Array[String]?
+        attr_reader method: String?
+        attr_reader path: String?
+
+        def to_h: () -> { method: String?, path: String?, data_elements: Array[String]? }
+      end
+    end
+  end
+end

@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class FBALiquidationEventList < Array[FBALiquidationEvent]
-        def self.parse: (Array[untyped]) -> FBALiquidationEventList
-      end
-    end
-  end
-end

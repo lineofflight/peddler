@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module FinancesV0
-      class TaxWithholdingEventList < Array[TaxWithholdingEvent]
-        def self.parse: (Array[untyped]) -> TaxWithholdingEventList
-      end
-    end
-  end
-end

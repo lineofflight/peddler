@@ -1,9 +1,0 @@
-module Peddler
-  module Types
-    module ShippingV2
-      class ClaimProofURLs < Array[untyped]
-        def self.parse: (Array[untyped]) -> ClaimProofURLs
-      end
-    end
-  end
-end
