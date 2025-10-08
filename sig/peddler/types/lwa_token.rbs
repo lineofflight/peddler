@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Peddler
   module Types
     # Login with Amazon (LWA) OAuth 2.0 token response
@@ -9,11 +7,9 @@ module Peddler
     # - refresh_token: Returns access_token, token_type, expires_in (refresh_token rarely included)
     # - client_credentials: Returns access_token, token_type, expires_in, scope
     class LWAToken < Data
+      def self.parse: (untyped value) -> LWAToken
       # The access token used to authenticate SP-API requests
       def access_token: () -> String
-
-      # The token type (always "bearer")
-      def token_type: () -> String
 
       # Number of seconds until the access token expires (typically 3600)
       def expires_in: () -> Integer?
@@ -23,8 +19,8 @@ module Peddler
 
       # The scope granted (only present for client_credentials grant)
       def scope: () -> String?
-
-      def self.parse: (untyped value) -> LWAToken
+      # The token type (always "bearer")
+      def token_type: () -> String
     end
   end
 end
