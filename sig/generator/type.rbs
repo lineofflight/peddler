@@ -42,7 +42,6 @@ module Generator
     def array_type?: () -> bool
     def class_description: () -> String?
     def extract_dependencies_from_property: (Hash[String, untyped] prop_def) -> Array[String]
-    def structure_rbs_class_definition: () -> String
 
     def file_path: () -> String
 
@@ -53,6 +52,7 @@ module Generator
 
     def render: () -> String
     def sorted_properties: (Hash[String, untyped] props) -> Hash[String, untyped]
+    def structure_rbs_class_definition: () -> String
 
     def template: () -> String
     def type_resolver: () -> TypeResolver
